@@ -8,7 +8,8 @@ Sources : cahier §7, §10.3, §11.1, ENF-09 ; DSL des effets : `docs/dsl/DSL_V1
 
 ```
 tools/srd_builder/sources/
-  pack.json                 métadonnées du manifeste (sans entity_count ni checksum)
+  pack.json                 métadonnées du manifeste (sans entity_count ni checksum ;
+                            format et format_version facultatifs)
   <type>/<slug>.json        une entité par fichier ; le dossier = son type, le nom = son slug
 ```
 
@@ -59,7 +60,8 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 }
 ```
 
-- `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité.
+- `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité. Les slugs `con`, `prn`, `aux`, `nul`, `com1`-`com9`, `lpt1`-`lpt9` sont interdits (noms réservés sous Windows).
+- Types v1 : `ability`, `skill`, `language`, `condition`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
 - `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`.
