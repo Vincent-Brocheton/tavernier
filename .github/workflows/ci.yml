@@ -1,0 +1,47 @@
+# Contrôles obligatoires sur chaque pull request (cahier §12.2, US-01).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Format, analyse, tests, couverture
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version de Flutter (.fvmrc)
+        run: echo "FLUTTER_VERSION=$(jq -r .flutter .fvmrc)" >> "$GITHUB_ENV"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Melos
+        run: |
+          dart pub global activate melos 8.9.0
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
+      - run: melos bootstrap
+      - run: melos run format
+      - run: melos run analyze
+      - run: melos run test
+      - run: melos run coverage
+
+      - name: Publier la couverture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: couverture
+          path: packages/*/coverage/lcov.info
+          if-no-files-found: ignore

@@ -1,0 +1,13 @@
+name: srd_builder
+description: CLI qui produit le pack SRD 5.2.1 (FR) à partir des sources JSON.
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  args: ^2.7.0
+
+dev_dependencies:
+  test: ^1.25.6
