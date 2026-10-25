@@ -73,6 +73,26 @@ void main() {
     expect(result.entity!.textFr, 'Texte du Soldat.');
   });
 
+  test('chaque type se lit puis se réécrit à l\'identique', () {
+    expect(_oneOfEachType.map((e) => e['type']).toSet(), entityTypes);
+    for (final json in _oneOfEachType) {
+      final result = parseEntity(json, '${json['id']}');
+      expect(result.issues, isEmpty, reason: '${json['id']}');
+      final again = parseEntity(result.entity!.toJson(), 'relu');
+      expect(
+        again.entity!.toJson(),
+        result.entity!.toJson(),
+        reason: '${json['id']}',
+      );
+    }
+  });
+
+  test('une valeur d\'énumération inconnue est refusée', () {
+    final json = _longsword();
+    (json['data']! as Map<String, Object?>)['category'] = 'exotic';
+    expect(_issuePaths(json), contains('weapon/longsword.json.data.category'));
+  });
+
   test('un effet valide est lu', () {
     final json = {
       'id': 'srd:feat:defense',
@@ -161,3 +181,134 @@ void main() {
     });
   });
 }
+
+/// Une entité minimale valide de chaque type de l'échantillon.
+final _oneOfEachType = <Map<String, Object?>>[
+  {
+    'id': 'srd:ability:str',
+    'type': 'ability',
+    'name': 'Force',
+    'data': {'abbreviation': 'FOR'},
+  },
+  {
+    'id': 'srd:skill:athletics',
+    'type': 'skill',
+    'name': 'Athlétisme',
+    'data': {'ability': 'srd:ability:str'},
+  },
+  {
+    'id': 'srd:language:common',
+    'type': 'language',
+    'name': 'Commun',
+    'data': {'category': 'standard'},
+  },
+  {
+    'id': 'srd:condition:blinded',
+    'type': 'condition',
+    'name': 'Aveuglé',
+    'text': {'fr': 'Texte.'},
+  },
+  {'id': 'srd:damage-type:fire', 'type': 'damage-type', 'name': 'Feu'},
+  {
+    'id': 'srd:mastery:sap',
+    'type': 'mastery',
+    'name': 'Sape',
+    'text': {'fr': 'Texte.'},
+  },
+  _longsword(),
+  {
+    'id': 'srd:armor:chain-mail',
+    'type': 'armor',
+    'name': 'Cotte de mailles',
+    'data': {
+      'category': 'heavy',
+      'base_ac': 16,
+      'dex_cap': 0,
+      'str_requirement': 13,
+      'stealth_disadvantage': true,
+      'weight_kg': 27.5,
+      'cost_cp': 7500,
+    },
+  },
+  {
+    'id': 'srd:tool:dice-set',
+    'type': 'tool',
+    'name': 'Dés',
+    'data': {
+      'category': 'gaming_set',
+      'ability': 'srd:ability:wis',
+      'cost_cp': 10,
+    },
+  },
+  {
+    'id': 'srd:gear:healers-kit',
+    'type': 'gear',
+    'name': 'Trousse de soins',
+    'data': {'weight_kg': 1.5, 'cost_cp': 500},
+  },
+  _soldier(),
+  {
+    'id': 'srd:species:human',
+    'type': 'species',
+    'name': 'Humain',
+    'data': {
+      'creature_type': 'humanoid',
+      'sizes': ['M', 'P'],
+      'speed_feet': 30,
+      'traits': ['srd:feature:human-skillful'],
+    },
+  },
+  {
+    'id': 'srd:feat:grappler',
+    'type': 'feat',
+    'name': 'Empoigneur',
+    'data': {
+      'category': 'general',
+      'prerequisites': {
+        'min_level': 4,
+        'ability_min_any': {'str': 13, 'dex': 13},
+      },
+      'repeatable': false,
+    },
+    'text': {'fr': 'Texte.'},
+  },
+  {
+    'id': 'srd:class:fighter',
+    'type': 'class',
+    'name': 'Guerrier',
+    'data': {
+      'primary_abilities': ['srd:ability:str', 'srd:ability:dex'],
+      'hit_die': 10,
+      'saving_throws': ['srd:ability:str', 'srd:ability:con'],
+      'skill_choice_count': 2,
+      'skill_choices': ['srd:skill:athletics'],
+      'weapon_proficiencies': ['simple', 'martial'],
+      'armor_training': ['light', 'medium', 'heavy', 'shield'],
+      'subclass_level': 3,
+      'levels': [
+        {
+          'level': 1,
+          'proficiency_bonus': 2,
+          'features': ['srd:feature:fighter-second-wind'],
+          'columns': {'second_wind': 2, 'weapon_mastery': 3},
+        },
+      ],
+    },
+  },
+  {
+    'id': 'srd:subclass:champion',
+    'type': 'subclass',
+    'name': 'Champion',
+    'data': {
+      'parent_class': 'srd:class:fighter',
+      'features': ['srd:feature:champion-improved-critical'],
+    },
+  },
+  {
+    'id': 'srd:feature:fighter-second-wind',
+    'type': 'feature',
+    'name': 'Second souffle',
+    'data': {'source': 'srd:class:fighter', 'level': 1},
+    'text': {'fr': 'Texte.'},
+  },
+];
