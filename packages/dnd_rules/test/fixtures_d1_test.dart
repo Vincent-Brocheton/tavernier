@@ -6,6 +6,7 @@
 // Les tables de référence ci-dessous sont recopiées du SRD 5.2.1 français.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:test/test.dart';
 
@@ -28,7 +29,12 @@ const _modifierByScore = {
 
 const _abilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
-final _dir = Directory('test/fixtures/d1');
+// Résolu depuis le package, pour que les tests tournent quel que soit le
+// répertoire courant (racine du dépôt, IDE, melos).
+final _dir = Directory.fromUri(
+  Isolate.resolvePackageUriSync(Uri.parse('package:dnd_rules/'))!
+      .resolve('../test/fixtures/d1/'),
+);
 
 Map<String, Object?> _load(String name) =>
     jsonDecode(File('${_dir.path}/$name.json').readAsStringSync())
@@ -43,8 +49,15 @@ Map<String, Object?> _resolvedInput(Map<String, Object?> fixture) {
   final parent = fixture['extends'] as String?;
   if (parent == null) return _map(fixture['input']);
   final input = {..._map(_load(parent)['input'])};
-  final changes = _map(fixture['input_changes']);
-  input['feats'] = [..._list(input['feats']), ..._list(changes['feats_added'])];
+  // `<clé>_added` complète la liste du parent, toute autre clé la remplace.
+  _map(fixture['input_changes']).forEach((key, value) {
+    if (key.endsWith('_added')) {
+      final base = key.substring(0, key.length - '_added'.length);
+      input[base] = [..._list(input[base]), ..._list(value)];
+    } else {
+      input[key] = value;
+    }
+  });
   return input;
 }
 
@@ -162,7 +175,7 @@ void main() {
             .reduce((a, b) => a + b);
         expect(sum, encounter['xp']);
         if (encounter['xp_per_pc'] != null) {
-          expect((encounter['xp']! as int) ~/ 4, encounter['xp_per_pc']);
+          expect((encounter['xp_per_pc']! as int) * 4, encounter['xp']);
         }
       });
 
@@ -180,6 +193,8 @@ void main() {
             case 'moderate':
               expect(total, greaterThan(budget['low']!));
               expect(total, lessThanOrEqualTo(budget['moderate']!));
+            default:
+              fail('difficulté inconnue : $difficulty');
           }
         });
       }

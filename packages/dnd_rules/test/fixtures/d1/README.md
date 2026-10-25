@@ -12,7 +12,11 @@ Conventions :
 
 - identifiants de contenu `{namespace}:{type}:{slug}`, slugs anglais stables (cahier §10.3) ;
 - distances en **pieds** (stockage, ENF-13) ; la planche affiche des mètres (30 pieds = 9 m) ;
-- `"status": "active"` : testé dès M0 ; `"status": "pending_content"` : attend le contenu SRD de M1 (classe absente de l'échantillon M0), test marqué `skip`.
+- `"status"` :
+  - `active` : testé avec `computeSheet()` dès M0 ;
+  - `pending_engine` : contenu disponible, mais le moteur ne gère pas encore ce cas (niveaux 2 à 20, jauge de difficulté) ;
+  - `pending_content` : attend le contenu SRD de M1 (classe absente de l'échantillon M0).
+  Les tests du moteur sur une fixture non `active` sont marqués `skip`. La cohérence interne (`fixtures_d1_test.dart`) est vérifiée pour toutes.
 
 `encounters.json` reprend les rencontres et les PX de la planche (tests de la jauge de difficulté en M3).
 
