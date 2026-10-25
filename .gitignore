@@ -16,3 +16,6 @@ pubspec_overrides.yaml
 
 # superpowers (espace de travail des plans)
 .superpowers/
+
+# Claude Code : réglages locaux de chaque poste
+.claude/settings.local.json

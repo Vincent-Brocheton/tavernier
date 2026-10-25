@@ -51,13 +51,24 @@ backend/
 ## Règles de travail
 
 - **Un jalon à la fois** (M0 → M4), carte par carte, dans l'ordre de la liste Trello du jalon. Respecte le critère de sortie du jalon (cahier §3) avant de passer au suivant.
-- **Plan avant code** pour chaque carte : fichiers touchés, tests prévus, exigences couvertes. Commence à coder sans attendre validation, sauf si la carte est ambiguë ou touche à une décision irréversible (schéma publié, format `.dndpack`, RLS).
+- **Plan avant code** pour chaque carte, sous forme de change OpenSpec (voir « Spécifications (OpenSpec) ») : fichiers touchés, tests prévus, exigences couvertes. Commence à coder sans attendre validation, sauf si la carte est ambiguë ou touche à une décision irréversible (schéma publié, format `.dndpack`, RLS).
 - **Tests d'abord pour `dnd_rules`** : couverture ≥ 95 % des lignes, un test par règle d'intégrité (§11.3). Les valeurs attendues viennent de [D1] ou du SRD, écrites à la main, jamais recopiées depuis la sortie du code.
 - **Branches** `feature/<id-carte>-<slug>`, **commits conventionnels** (`feat:`, `fix:`, `test:`, `chore:`…) qui citent la carte et les exigences, par exemple `feat(rules): bonus d'Historique 2-1 / 1-1-1 (US-06, EF-PJ-02)`. Fusion par pull request, CI verte obligatoire.
 - **Aucune chaîne d'interface en dur** : tout passe par les ARB, en français. **Aucune valeur de règle en dur dans l'UI** : elle vient de `dnd_rules`.
 - **Vocabulaire du SRD français** : « état » (pas « condition »), « profil de jeu », « Amical / Indifférent / Hostile », « Bottes d'armes », « Acquisition par points », « Repos court / Repos long », « Inspiration héroïque ». Distances stockées en pieds, affichées en mètres (1,5 m pour 5 pieds).
 - **Interfaces** : suis les planches et `COMPOSANTS.md` à la lettre, avec les tokens de `design_tokens.json` via le thème (jamais de couleur en dur) et des cibles tactiles ≥ 48 dp. La couleur ne porte jamais seule une information : toujours une icône et un libellé.
 - **Quand une règle de jeu est floue**, cherche dans `docs/srd/FR_SRD_CC_v5.2.1.txt`. Si le SRD ne tranche pas, demande au porteur de projet au lieu d'inventer.
+
+## Spécifications (OpenSpec)
+
+OpenSpec (CLI `openspec`, schéma `spec-driven`) porte la spécification vivante du code. Configuration et règles d'écriture : `openspec/config.yaml`.
+
+- **Un change par carte Trello**, nommé `<id-carte>-<slug>` en minuscules (ex. `us-03-compute-sheet-niveau-1`), dans `openspec/changes/`. Il contient `proposal.md` (quoi, pourquoi, hors périmètre, carte et exigences citées), `specs/<capacité>/spec.md` (exigences et scénarios, en delta), `design.md` (comment) et `tasks.md` (étapes en TDD).
+- **Cycle** : `/opsx:explore` pour réfléchir (n'écrit pas de code) → `/opsx:propose <carte>` pour écrire le change (planification seulement) → relecture → `/opsx:apply <change>` pour coder sur `feature/<id-carte>-<slug>` en TDD, puis `code-review` et PR → après la fusion, `/opsx:archive <change>` reporte les specs dans `openspec/specs/` et la carte passe dans « Fait ».
+- **Capacités** (dossiers de `openspec/specs/`) : une par domaine stable, par exemple `content-pack`, `effect-dsl`, `character-sheet`, `local-database`, `ui-kit`. Les cartes déjà livrées (US-01, T-02, T-03, US-02) n'ont pas de change : leurs specs se rattrapent au premier change qui touche leur capacité.
+- **Hiérarchie** : une spec OpenSpec reformule le cahier sans jamais le contredire ; en cas de doute, le cahier gagne. Le tableau Trello reste la liste de travail ; `tasks.md` détaille la carte en cours, il ne la remplace pas.
+- **Plans superpowers** : le `design.md` et le `tasks.md` du change remplacent les plans de `docs/superpowers/plans/` (celui de US-02 reste comme historique).
+- **Commandes utiles** : `openspec list`, `openspec show <change>`, `openspec validate <change>`, `openspec view` (tableau de bord), `openspec list --specs`.
 
 ## Suivi des tâches (Trello)
 

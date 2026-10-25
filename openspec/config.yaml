@@ -1,0 +1,35 @@
+schema: spec-driven
+
+# Contexte du projet : contraintes qu'un agent ne peut pas déduire du code.
+context: |
+  Projet « Tavernier » : gestion de personnage compatible 5e, règles 2024 (SRD 5.2.1 français).
+  Rédiger tous les artefacts (proposal, specs, design, tasks) en français.
+  Ordre de vérité : docs/CAHIER_DES_CHARGES.md prime sur tout, puis le tableau Trello, puis
+  docs/design/, docs/maquettes/, docs/srd/. Une spec OpenSpec reformule le cahier, elle ne le contredit jamais.
+  Toute règle de jeu se vérifie dans docs/srd/FR_SRD_CC_v5.2.1.txt (page citée), jamais de mémoire.
+  Les fixtures de la planche [D1] (packages/dnd_rules/test/fixtures/d1) sont les valeurs de référence.
+  Un change = une carte Trello : nommer le change `<id-carte>-<slug>` en minuscules (ex. us-03-compute-sheet-niveau-1).
+  Décisions figées : CLAUDE.md (« Décisions à ne pas rediscuter ») et cahier §14.2 ; ne pas les rouvrir.
+
+rules:
+  proposal:
+    - "Citer la carte Trello (lien), les exigences (EF-…, ENF-…, US-…) et les sections du cahier."
+    - "Dire explicitement ce qui est hors périmètre et à quel jalon il est renvoyé."
+    - "Signaler tout écart entre [D1] et le SRD au lieu de le trancher."
+  specs:
+    - "Un scénario par règle d'intégrité (cahier §11.3) ou par valeur de fixture qu'il vérifie."
+    - "Les valeurs attendues viennent de [D1] ou du SRD, avec la page du SRD."
+  design:
+    - "Respecter l'architecture du cahier §10 (dnd_rules pur Dart, grants, DSL v1 docs/dsl/DSL_V1.md, format docs/packs/FORMAT_DNDPACK.md)."
+  tasks:
+    - "Tâches en TDD : chaque tâche commence par le test qui échoue."
+    - "Dernière tâche : fvm exec melos run format, analyze, test et coverage verts."
+
+operations:
+  apply:
+    guidance:
+      - "Travailler sur la branche feature/<id-carte>-<slug> ; commits conventionnels qui citent la carte."
+      - "Suivre superpowers:test-driven-development ; revue code-review avant la pull request."
+  archive:
+    guidance:
+      - "Archiver seulement après la fusion de la pull request ; passer alors la carte Trello dans « Fait »."
