@@ -1,0 +1,93 @@
+{
+  "fixture": "mira_n5",
+  "status": "pending_content",
+  "board": "D1",
+  "note": "Clerc absent de l'échantillon SRD de M0 : testé en M1.",
+  "srd_refs": {
+    "clerc": "p. 38, Aptitudes du Clerc niv. 5 : 4 sorts mineurs, 9 préparés, emplacements 4/3/2",
+    "disciple_de_la_vie": "p. 42, + 2 + niveau de l'emplacement aux soins",
+    "acolyte": "p. 87, Int/Sag/Cha, Initié à la magie (Clerc), Intuition et Religion",
+    "pv_fixes": "p. 25, Clerc 5 + modificateur de Con"
+  },
+  "input": {
+    "name": "Mira Solen",
+    "player": "Inès",
+    "kind": "pc",
+    "species_id": "srd:species:human",
+    "species_choices": { "size": "M", "skillful_skill": "srd:skill:perception" },
+    "background_id": "srd:background:acolyte",
+    "base_scores": { "method": "point_buy", "str": 13, "dex": 10, "con": 13, "int": 10, "wis": 15, "cha": 12 },
+    "background_choice": { "distribution": "2-1", "bonuses": { "wis": 2, "cha": 1 } },
+    "class_levels": [
+      {
+        "class_id": "srd:class:cleric", "level": 5, "subclass_id": "srd:subclass:life-domain", "hp_roll": null,
+        "skill_choices": ["srd:skill:medicine", "srd:skill:persuasion"],
+        "class_choices": { "divine_order": "protector" }
+      }
+    ],
+    "feats": [
+      {
+        "feat_id": "srd:feat:magic-initiate", "source_type": "background", "source_ref": "srd:background:acolyte",
+        "choices": {
+          "spell_list": "srd:class:cleric", "ability": "wis",
+          "cantrips": ["srd:spell:mending", "srd:spell:resistance"],
+          "level_1_spell": "srd:spell:protection-from-evil-and-good"
+        }
+      },
+      {
+        "feat_id": "srd:feat:skilled", "source_type": "species", "source_ref": "srd:species:human",
+        "choices": { "proficiencies": ["srd:skill:history", "srd:skill:nature", "srd:tool:herbalism-kit"] }
+      },
+      {
+        "feat_id": "srd:feat:ability-score-improvement", "source_type": "class_level", "source_ref": "srd:class:cleric:4",
+        "choices": { "con": 1, "cha": 1 }
+      }
+    ],
+    "spells": {
+      "cantrips": ["srd:spell:guidance", "srd:spell:sacred-flame", "srd:spell:light", "srd:spell:thaumaturgy"],
+      "prepared": [
+        "srd:spell:shield-of-faith", "srd:spell:detect-magic", "srd:spell:command", "srd:spell:healing-word",
+        "srd:spell:sanctuary", "srd:spell:spiritual-weapon", "srd:spell:silence", "srd:spell:dispel-magic",
+        "srd:spell:spirit-guardians"
+      ]
+    },
+    "items": [
+      { "item_id": "srd:armor:chain-mail", "quantity": 1, "equipped": true },
+      { "item_id": "srd:armor:shield", "quantity": 1, "equipped": true }
+    ],
+    "xp": 7475
+  },
+  "expected": {
+    "level": 5,
+    "proficiency_bonus": 3,
+    "point_buy_cost": 27,
+    "abilities": {
+      "str": { "score": 13, "modifier": 1 },
+      "dex": { "score": 10, "modifier": 0 },
+      "con": { "score": 14, "modifier": 2 },
+      "int": { "score": 10, "modifier": 0 },
+      "wis": { "score": 17, "modifier": 3 },
+      "cha": { "score": 14, "modifier": 2 }
+    },
+    "hit_points_max": 38,
+    "armor_class": 18,
+    "speed_feet": 30,
+    "initiative": { "bonus": 0, "advantage": false },
+    "saving_throws": { "wis": 6, "cha": 5 },
+    "passive_perception": 16,
+    "skill_proficiencies": ["history", "insight", "medicine", "nature", "perception", "persuasion", "religion"],
+    "spellcasting": {
+      "srd:class:cleric": { "ability": "wis", "save_dc": 14, "attack_bonus": 6, "cantrips_known": 4, "prepared_max": 9 }
+    },
+    "spell_slots": [4, 3, 2],
+    "domain_spells": [
+      "srd:spell:aid", "srd:spell:bless", "srd:spell:mass-healing-word",
+      "srd:spell:lesser-restoration", "srd:spell:revivify", "srd:spell:cure-wounds"
+    ],
+    "healing": {
+      "srd:spell:healing-word@1": "2d4+6",
+      "srd:spell:cure-wounds@1": "2d8+6",
+      "srd:spell:mass-healing-word@3": "2d4+8"
+    }
+  }
+}

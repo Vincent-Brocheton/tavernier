@@ -1,0 +1,77 @@
+{
+  "fixture": "encounters",
+  "status": "pending_engine",
+  "board": "D1",
+  "note": "Rencontres et PX de la planche. La jauge de difficulté est testée en M3 (US-19) ; la cohérence des totaux est vérifiée dès M0.",
+  "srd_refs": {
+    "budget": "p. 213, Budget de PX par personnage : niv. 1 faible 50 / modérée 75 / élevée 100 ; niv. 5 faible 500 / modérée 750 / élevée 1 100",
+    "px_monstres": "Profils de jeu (FP et PX) : Bandit 25, Loup 50, Loup sanguinaire 200, Chef de bande 450, Ogre 450, Vétéran 700"
+  },
+  "monster_xp": {
+    "srd:monster:bandit": 25,
+    "srd:monster:wolf": 50,
+    "srd:monster:dire-wolf": 200,
+    "srd:monster:bandit-captain": 450,
+    "srd:monster:ogre": 450,
+    "srd:monster:veteran": 700
+  },
+  "budgets_for_4_pcs": {
+    "1": { "low": 200, "moderate": 300, "high": 400 },
+    "5": { "low": 2000, "moderate": 3000, "high": 4400 }
+  },
+  "encounters": [
+    {
+      "session": 1, "date": "2026-05-29", "name": "La patrouille perdue", "party_level": 1,
+      "monsters": { "srd:monster:bandit": 4, "srd:monster:wolf": 4 },
+      "xp": 300, "difficulty": "moderate"
+    },
+    {
+      "session": 1, "date": "2026-05-29", "name": "Le péage du moulin", "party_level": 1,
+      "monsters": { "srd:monster:bandit": 2, "srd:monster:wolf": 3 },
+      "xp": 200, "difficulty": "low"
+    },
+    {
+      "session": 10, "date": "2026-10-16", "name": "La meute du moulin",
+      "monsters": { "srd:monster:wolf": 4 },
+      "xp": 200, "result": "Terminée · niveau 5 atteint (6 500 PX)"
+    },
+    {
+      "session": 11, "date": "2026-10-23", "name": "Le gué des Loups", "party_level": 5,
+      "monsters": { "srd:monster:dire-wolf": 3 },
+      "xp": 600, "xp_per_pc": 150, "rounds": 5
+    },
+    {
+      "session": 12, "date": "2026-10-30", "name": "Embuscade sur la route", "party_level": 5,
+      "monsters": { "srd:monster:bandit": 4, "srd:monster:wolf": 4 },
+      "added_round_2": { "srd:monster:bandit-captain": 1 },
+      "xp": 300, "xp_per_pc": 75, "difficulty": "below_low",
+      "note": "Varga ajoutée au round 2, en fuite au round 4 : non vaincue, ses PX ne comptent pas."
+    },
+    {
+      "session": 12, "date": "2026-10-30", "name": "Le relais du Sel", "party_level": 5,
+      "monsters": {
+        "srd:monster:bandit-captain": 1, "srd:monster:veteran": 2, "srd:monster:ogre": 1,
+        "srd:monster:dire-wolf": 3, "srd:monster:bandit": 4
+      },
+      "xp": 3000, "xp_per_pc": 750, "difficulty": "moderate", "rounds": 6
+    },
+    {
+      "session": 13, "date": "2026-11-13", "name": "Les chiens de Varga", "party_level": 5,
+      "monsters": { "srd:monster:dire-wolf": 2 },
+      "xp": 400
+    },
+    {
+      "session": null, "name": "Embuscade de la Guilde", "party_level": 5, "status": "draft",
+      "monsters": { "srd:monster:veteran": 1, "srd:monster:bandit": 4 },
+      "xp": 800
+    }
+  ],
+  "xp_track": {
+    "aldric": [
+      { "after_session": 10, "xp": 6500 },
+      { "after_session": 11, "xp": 6650 },
+      { "after_session": 12, "xp": 7475 }
+    ],
+    "level_thresholds": { "5": 6500, "6": 14000 }
+  }
+}

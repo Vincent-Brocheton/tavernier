@@ -234,6 +234,49 @@ Corrections
 Sommeil remplacé par Projectile magique · Lame d’ombre retiré
 PX
 2 100 · absent à la séance 12
+Aldric Varenne · niveau 1
+Humain · Guerrier 1 · Soldat · séance 1 (29 mai) · fixture du critère de sortie M0
+Hugo
+FOR
+17
++3
+DEX
+13
++1
+CON
+15
++2
+INT
+8
+−1
+SAG
+12
++1
+CHA
+10
++0
+PV / CA / Vitesse
+12 · 19 (cotte de mailles 16 + bouclier 2 + Défense 1) · 9 m
+Initiative
++3 (DEX +1, maîtrise +2 par Vigilant)
+Maîtrise · JS
++2 · FOR +5, CON +4 · Perception passive 13
+Compétences
+Athlétisme +5, Intimidation +2 (Soldat) · Perception +3, Survie +3 (Guerrier) · Intuition +3 (Compétent)
+Dons
+Sauvagerie martiale (Soldat) · Vigilant (Polyvalent) · Défense (Style de combat)
+Bottes (3)
+Épée longue · Sape · Javeline · Ralentissement · Hache d’armes · Renversement
+Attaques
+Épée longue +5, 1d8 + 3 tranchants · Javeline +5, 1d6 + 3 perforants (9 / 36 m) · Mains nues +5, 4 contondants
+Ressources
+Second souffle 2 · Inspiration héroïque (Ingénieux)
+Création
+Points : FOR 15, DEX 13, CON 14, INT 8, SAG 12, CHA 10 · Soldat +2 FOR, +1 CON · boîte de jeux : dés
+Équipement
+Cotte de mailles, bouclier, épée longue, javelines ×4, hache d’armes, trousse de soins
+PX
+0 · niveau 2 à 300
 Fiches de test hors table
 Sélène
 Tieffeline · Occultiste 5 (Protecteur fiélon) · fiche de test, hors table

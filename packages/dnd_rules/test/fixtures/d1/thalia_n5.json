@@ -1,0 +1,80 @@
+{
+  "fixture": "thalia_n5",
+  "status": "pending_content",
+  "board": "D1",
+  "note": "Roublard absent de l'échantillon SRD de M0 : testé en M1. Perception passive et Discrétion calculées à la main (absentes de la planche).",
+  "srd_refs": {
+    "roublard": "p. 84, d8, JS Dex et Int, 4 compétences, Attaque sournoise 3d6 au niv. 5, Expertise niv. 1",
+    "criminel": "p. 87, Dex/Con/Int, Vigilant, Discrétion et Escamotage, outils de voleur",
+    "elfe": "p. 88, 9 m, Vision dans le noir 18 m, Sens aiguisés, lignage haut-elfe (prestidigitation, détection de la magie niv. 3, foulée brumeuse niv. 5)",
+    "pv_fixes": "p. 25, Roublard 5 + modificateur de Con",
+    "armures": "p. 98, Armure de cuir 11 + modificateur de Dex"
+  },
+  "input": {
+    "name": "Thalia",
+    "player": "Léo",
+    "kind": "pc",
+    "species_id": "srd:species:elf",
+    "species_choices": {
+      "lineage": "high-elf", "lineage_ability": "int",
+      "keen_senses_skill": "srd:skill:perception"
+    },
+    "background_id": "srd:background:criminal",
+    "base_scores": { "method": "point_buy", "str": 8, "dex": 15, "con": 12, "int": 11, "wis": 14, "cha": 12 },
+    "background_choice": { "distribution": "2-1", "bonuses": { "dex": 2, "int": 1 } },
+    "class_levels": [
+      {
+        "class_id": "srd:class:rogue", "level": 5, "subclass_id": "srd:subclass:thief", "hp_roll": null,
+        "skill_choices": ["srd:skill:acrobatics", "srd:skill:insight", "srd:skill:investigation", "srd:skill:deception"],
+        "expertise": ["srd:skill:stealth", "srd:skill:perception"]
+      }
+    ],
+    "feats": [
+      { "feat_id": "srd:feat:alert", "source_type": "background", "source_ref": "srd:background:criminal" },
+      {
+        "feat_id": "srd:feat:ability-score-improvement", "source_type": "class_level", "source_ref": "srd:class:rogue:4",
+        "choices": { "dex": 1, "con": 1 }
+      }
+    ],
+    "weapon_masteries": [
+      { "weapon_id": "srd:weapon:rapier", "slot_index": 0 },
+      { "weapon_id": "srd:weapon:shortbow", "slot_index": 1 }
+    ],
+    "items": [
+      { "item_id": "srd:armor:leather", "quantity": 1, "equipped": true },
+      { "item_id": "srd:weapon:rapier", "quantity": 1, "equipped": true },
+      { "item_id": "srd:weapon:shortbow", "quantity": 1, "equipped": true }
+    ],
+    "xp": 7475
+  },
+  "expected": {
+    "level": 5,
+    "proficiency_bonus": 3,
+    "point_buy_cost": 27,
+    "abilities": {
+      "str": { "score": 8, "modifier": -1 },
+      "dex": { "score": 18, "modifier": 4 },
+      "con": { "score": 13, "modifier": 1 },
+      "int": { "score": 12, "modifier": 1 },
+      "wis": { "score": 14, "modifier": 2 },
+      "cha": { "score": 12, "modifier": 1 }
+    },
+    "hit_points_max": 33,
+    "armor_class": 15,
+    "speed_feet": 30,
+    "darkvision_feet": 60,
+    "initiative": { "bonus": 7, "advantage": false },
+    "saving_throws": { "dex": 7, "int": 4 },
+    "skills": { "history": 1, "stealth": 10, "perception": 8 },
+    "passive_perception": 18,
+    "skill_proficiencies": ["acrobatics", "deception", "insight", "investigation", "perception", "sleight_of_hand", "stealth"],
+    "expertise": ["perception", "stealth"],
+    "weapon_mastery_slots": 2,
+    "sneak_attack": "3d6",
+    "attacks": [
+      { "weapon_id": "srd:weapon:rapier", "attack_bonus": 7, "damage": "1d8+4", "damage_type": "piercing", "mastery": "srd:mastery:vex" },
+      { "weapon_id": "srd:weapon:shortbow", "attack_bonus": 7, "damage": "1d6+4", "damage_type": "piercing", "mastery": "srd:mastery:vex" }
+    ],
+    "species_spells": ["srd:spell:prestidigitation", "srd:spell:detect-magic", "srd:spell:misty-step"]
+  }
+}
