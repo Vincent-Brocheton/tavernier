@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>0 PV — personnage stabilisé</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <div style="flex: none; background: var(--sf-low); padding: 10px 16px; display: flex; flex-direction: column; gap: 2px"><span class="n" style="font-size: 12px; color: var(--on-sfv)">Le relais du Sel · round 3</span><span style="font-size: 16px; font-weight: 500">Combat (MJ)</span></div>
+  <div style="flex: 1; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px">
+    <div style="border-radius: 12px; background: var(--sf-c); box-shadow: inset 0 0 0 1px var(--heal); padding: 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; gap: 10px"><span class="n" style="width: 32px; height: 32px; border-radius: 16px; background: var(--sf-highest); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">8</span><span style="flex: 1; font-size: 15px; font-weight: 500">Brannoc</span><span class="n" style="font-size: 15px; font-weight: 600">0</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">/ 27</span></div>
+      <div role="meter" aria-label="0.01 PV sur 27" style="height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><div style="width: 0%; height: 100%; background: #FF9F8F"></div></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="height: 24px; padding: 0 8px 0 6px; border-radius: 6px; background: var(--heal-c); color: var(--on-heal-c); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg>Stabilisé</span><span style="height: 24px; padding: 0 8px 0 6px; border-radius: 6px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 6h6l-6 7h6 M13 13h5l-5 6h5"></path></svg>Inconscient</span></div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Stabilisé au round 3 par Mira (Soutien, Sagesse (Médecine) 14 contre DD 10). Plus de jets contre la mort. Le moindre dégât relance les jets ; un soin le réveille.</span>
+    </div>
+    <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">CE QUE L’APPLICATION FAIT SEULE</span>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 18px">
+      <span>• À 0 PV : état Inconscient, jets contre la mort.</span>
+      <span>• Concentration : prend fin si le lanceur devient Inconscient ou Neutralisé, ou meurt ; effets liés retirés après confirmation.</span>
+      <span>• Dégâts à 0 PV : un échec, deux sur un coup critique ; mort si les dégâts atteignent les PV max.</span>
+      <span>• Soins à 0 PV : Inconscient retiré, compteurs remis à zéro.</span>
+      <span>• Trois réussites ou Soutien réussi : Stabilisé.</span>
+      <span style="color: var(--on-sfv)">Chaque automatisme est inscrit au journal et annulable.</span>
+    </div>
+  </div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+Peuples de la frontière · v0.2.0 · brouillon
+Classe
+Enregistré sur l’appareil
+Tester sur un personnage
+Enregistrer
+CLASSES
+Sentinelle des Marches
+1
+ESPÈCES
+Brumelin
+HISTORIQUES
+Garde-frontière
+DONS
+Garde du pont
+Ajouter une entité
+Identité
+Nom *
+Sentinelle des Marches
+Dé de vie *
+d10
+Incantation
+Aucune
+Caractéristique principale *
+Force
+Dextérité
+Constitution
+Intelligence
+Sagesse
+Charisme
+Force ou Dextérité : le joueur choisit, comme pour le Guerrier.
+Jets de sauvegarde maîtrisés * 2 / 2
+Force
+Dextérité
+Constitution
+Intelligence
+Sagesse
+Charisme
+Armures
+Légères, intermédiaires, boucliers
+Armes
+Courantes et de guerre
+Compétences
+2 au choix parmi 6
+Progression
+Le bonus de maîtrise suit la règle commune ; les niveaux de sous-classe sont ceux du tableau.
+14 niveaux sur 20 renseignés
+Niveau
+Maîtrise
+Aptitudes
+Bottes
+1
++2
+Bottes d’arme · Vigie
+3
+Modifier
+2
++2
+Pas de la sentinelle
+3
+Modifier
+3
++2
+Guet nocturne
+ Le niveau 3 doit accorder la sous-classe (règle 2024).
+3
+Corriger
+4
++2
+Amélioration de caractéristique
+4
+Modifier
+5
++3
+Attaque supplémentaire
+4
+Modifier
+6
++3
+Regard d’aigle
+4
+Modifier
+7
++3
+Aptitude de sous-classe
+4
+Modifier
+8
++3
+Amélioration de caractéristique
+4
+Modifier
+9
++4
+Tenir la ligne
+4
+Modifier
+10
++4
+Aptitude de sous-classe
+5
+Modifier
+11
++4
+Attaque supplémentaire (deux)
+5
+Modifier
+12
++4
+Amélioration de caractéristique
+5
+Modifier
+13
++5
+Vide
+5
+Ajouter
+14
++5
+Vide
+5
+Ajouter
+15
++5
+Aptitude de sous-classe
+5
+Modifier
+16
++5
+Amélioration de caractéristique
+5
+Modifier
+17
++6
+Vide
+5
+Ajouter
+18
++6
+Aptitude de sous-classe
+5
+Modifier
+19
++6
+Faveur épique
+5
+Modifier
+20
++6
+Vide
+5
+Ajouter
+Créer la sous-classe de niveau 3
+Copier la progression du Guerrier
+Vérification
+Identité complète
+d10, Force ou Dextérité, 2 jets de sauvegarde
+Sous-classe au niveau 3
+Le niveau 3 n’accorde pas la sous-classe
+Progression complète sur 20 niveaux
+Niveaux 13, 14, 17 et 20 vides : requis pour publier
+Améliorations de caractéristique
+Niveaux 4, 8, 12, 16 et Faveur épique au 19
+Bottes d’arme
+3, puis 4 au niveau 4, 5 au niveau 10
+Une entité qui ne passe pas ces contrôles ne peut pas être publiée ; elle reste testable.
+Aperçu au niveau 1
+PV au niveau 1
+10 + CON
+PV par niveau
+6 + CON (ou 1d10)
+Maîtrise
++2
+Bottes d’arme
+3

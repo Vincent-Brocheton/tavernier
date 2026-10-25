@@ -1,0 +1,74 @@
+Sorts d’Inès · v2.3.0 · brouillon
+Sort
+Enregistré sur l’appareil
+Tester sur un personnage
+Enregistrer
+SORTS DU 1ER NIVEAU
+Lame d’ombre
+SORTS DU 2E NIVEAU
+Bouclier de givre
+Brume mordante
+1
+SOUS-CLASSES
+Lame de minuit
+Ajouter une entité
+Identité
+Nom *
+Brume mordante
+Niveau *
+2
+École *
+Invocation
+Incantation
+Temps d’incantation
+Action
+Portée
+36 m
+Durée
+Instantanée
+Un sort de concentration a une durée : « Concentration, jusqu’à 1 minute » ou plus.
+Composantes
+V
+S
+M
+Matériel
+une pincée de cendres froides
+Concentration
+Rituel
+Concentration sans durée
+Cochée avec une durée Instantanée : la concentration ne pourrait jamais être maintenue.
+Durée : jusqu’à 1 minute
+Décocher Concentration
+Effet
+Sphère de
+6 m
+de rayon · jet de sauvegarde de
+Constitution
+· échec :
+3d8 nécrotiques
+· réussite :
+moitié
+Niveau supérieur : +
+1d8
+par niveau d’emplacement au-delà du 2e
+Listes de classes *
+Ensorceleur
+Magicien
+Occultiste
+Clerc
+Druide
+Barde
+Vérification
+Niveau, école, incantation
+Niveau 2 · Invocation · action
+Durée cohérente
+Concentration avec une durée Instantanée
+Effet valide
+Dégâts et jet de sauvegarde dans la liste autorisée
+Listes de classes
+3 classes
+Une entité qui ne passe pas ces contrôles ne peut pas être publiée ; elle reste testable.
+Aperçu dans le compendium
+Brume mordante
+Invocation du 2e niveau · Sorts d’Inès 2.3
+Une sphère de brume de 6 m de rayon. Chaque créature dans la zone fait un jet de sauvegarde de Constitution : 3d8 dégâts nécrotiques en cas d’échec, moitié en cas de réussite.

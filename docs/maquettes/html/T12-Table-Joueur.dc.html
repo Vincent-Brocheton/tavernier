@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Table — vue joueur</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--dmg:#FF9F8F}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 960px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: #2F4A3E; padding: 4px 4px 20px">
+    <svg aria-hidden="true" width="390" height="160" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gT12"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT12)"></rect></svg>
+    <div style="position: relative; height: 56px; display: flex; align-items: center"><button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button></div>
+    <div style="position: relative; padding: 0 16px">
+      <h1 class="d" style="margin: 0; font-size: 26px; line-height: 34px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</h1><span style="position: relative; font-size: 13px; color: var(--on-pc)">Début de campagne · avant la séance 1 (29 mai)</span>
+      <span style="font-size: 13px; color: var(--on-pc)">MJ : Camille · prochaine séance vendredi 30 oct.</span>
+    </div>
+  </header>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 16px">
+    <section aria-label="Mon personnage" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Mon personnage</h2>
+      <a href="#" style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--on-sf)">
+        <span class="d" style="width: 52px; height: 52px; flex: none; border-radius: 26px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600">AV</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 500">Aldric Varenne</span><span style="font-size: 12px; color: var(--on-sfv)">Humain · Guerrier 1</span></span>
+        <span style="height: 24px; padding: 0 8px 0 6px; border-radius: 6px; background: var(--heal-c); color: var(--on-heal-c); display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Validée</span>
+      </a>
+    </section>
+
+    <section aria-label="Le groupe" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Le groupe</h2>
+      <div style="border-radius: 16px; background: var(--sf-c); padding: 4px 0">
+        <sc-for list="{{party}}" as="p" hint-placeholder-count="3">
+          <div style="min-height: 64px; padding: 6px 16px; display: flex; align-items: center; gap: 12px">
+            <span class="d" style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: var(--sf-highest); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{p.i}}</span>
+            <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{p.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{p.s}}</span></span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: {{p.fg}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{p.d}}"></path></svg>{{p.h}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Les PV exacts des autres joueurs restent visibles du MJ seulement.</span>
+    </section>
+
+    <section aria-label="Mes notes" style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; align-items: center"><h2 style="margin: 0; flex: 1; font-size: 14px; line-height: 20px; font-weight: 500">Mes notes</h2><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Privées</span></div>
+      <span style="font-size: 14px; line-height: 20px">Le marchand du relais a menti sur la route du nord. Demander à Mira ce qu’elle a vu.</span>
+    </section>
+
+    <section aria-label="Packs de la table" style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Packs de la table</h2>
+      <span class="n" style="font-size: 13px; color: var(--on-sfv)">SRD 5.2.1 · Bestiaire des Marches 1.3 — reçus automatiquement, à jour</span>
+    </section>
+  </div>
+
+  <nav aria-label="Navigation principale" style="flex: none; height: 80px; background: var(--sf-c); display: flex; padding: 12px 0 16px">
+    <sc-for list="{{nav}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 64px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const full = 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z';
+    const hurt = 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z M12 7.4L10.5 11l3 1.5L12 16';
+    const party = [
+      { i: 'MS', n: 'Mira Solen', s: 'Humaine · Clerc 1', h: 'Indemne', fg: 'var(--heal)', d: full },
+      { i: 'T', n: 'Thalia', s: 'Elfe · Roublarde 1', h: 'Blessée', fg: 'var(--warn)', d: hurt },
+      { i: 'B', n: 'Brannoc', s: 'Nain · Magicien 1', h: 'Gravement blessé', fg: 'var(--dmg)', d: hurt },
+    ];
+    const N = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const nav = N.map(([l, d], i) => ({ l, d, cur: i === 1 ? 'page' : 'false', bg: i === 1 ? 'var(--sc)' : 'transparent', fg: i === 1 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 1 ? 700 : 500 }));
+    return { party, nav };
+  }
+}
+</script>
+</body>
+</html>

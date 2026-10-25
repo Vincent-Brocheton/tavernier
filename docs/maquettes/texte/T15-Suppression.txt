@@ -1,0 +1,13 @@
+Supprimer le compte
+D’abord, gardez une copie
+Fiches, tables, packs et notes, dans un fichier JSON que vous pourrez réimporter.
+Exporter mes données
+Ce qui va se passer
+Vos personnages sont retirés des tables où ils jouent.
+Les tables dont vous êtes MJ restent en place pour leurs joueurs, mais sans MJ.
+Les packs que vous avez publiés restent disponibles, attribués à « auteur supprimé ».
+Le compte et ses données sont effacés des serveurs sous 30 jours.
+Tapez SUPPRIMER pour confirmer
+La suppression est définitive.
+Annuler
+Supprimer définitivement

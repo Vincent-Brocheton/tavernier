@@ -1,0 +1,8 @@
+Mot de passe oublié
+Indiquez l’e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.
+E-mail
+Vérifiez votre boîte mail
+Si un compte existe pour hugo@exemple.fr, un lien vient d’y être envoyé. Il est valable 1 heure. Pensez à regarder dans les courriers indésirables.
+Renvoyer le lien dans 0:42
+Revenir à la connexion
+Compte créé avec Google ou Apple : pas de mot de passe à réinitialiser, utilisez le même bouton qu’à l’inscription.

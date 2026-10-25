@@ -1,0 +1,46 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+VOUS ÊTES MJ
+Les Marches de Brumeval
+Vue d’ensemble
+Séances
+Rencontres
+PNJ
+Notes
+Membres
+Configuration
+Création des personnages
+Méthode de caractéristiques
+Valeurs standard
+Niveau de départ
+1
+Ce changement ne touche pas les fiches existantes
+Les valeurs standard s’appliqueront aux prochaines créations. Les 5 fiches de la table gardent leurs caractéristiques ; un personnage libre rattaché plus tard sera comparé à la nouvelle méthode.
+Règles de jeu
+Repos long
+Récupération totale des PV
+PV à la montée de niveau
+Moyenne fixe
+Progression
+Points d’expérience
+Passer aux jalons garde les PX déjà acquis sur les fiches, mais ils n’évoluent plus ; vous accordez ensuite les niveaux vous-même.
+Visibilité entre joueurs
+Ouvrir les fiches complètes des autres PJ
+En lecture seule. Désactivé : chaque joueur voit nom, portrait, espèce, classe, niveau et état de santé qualitatif, sans PV chiffrés.
+Packs actifs
+SRD 5.2.1 · Bestiaire des Marches 1.3 · Sorts d’Inès 2.2.0
+Gérer les packs
+Versions figées ; bannissement d’entités et mises à jour depuis l’écran des packs.
+Zone sensible
+Archiver la table
+Tout passe en lecture seule pour tous les membres. Restaurable à tout moment.
+Archiver
+Modifications non enregistrées
+Méthode : Acquisition par points → Valeurs standard
+Annuler
+Enregistrer
+Qui est prévenu
+Les joueurs voient la nouvelle règle dans la vue de la table à leur prochaine synchronisation. Chaque changement est daté dans l’activité de la table.

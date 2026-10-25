@@ -1,0 +1,49 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+C
+Profil et réglages
+Compte
+Affichage
+Confidentialité
+Appareils connectés
+Mes données
+Se déconnecter
+Profil
+C
+Avatar
+Image carrée, compressée à 200 Ko. Visible des membres de vos tables.
+Pseudonyme affiché
+E-mail et mot de passe
+E-mail
+Confirmé · un changement demande une confirmation par lien.
+Mot de passe
+Modifié il y a 2 mois
+Changer
+Méthodes de connexion
+Mot de passe
+Active
+camille@exemple.fr
+Google
+Non liée
+Lier
+Apple
+Non liée
+Lier
+Annuler
+Enregistrer
+Appareils connectés
+Chrome sur macOS
+Actif maintenant
+Cet appareil
+iPhone
+Il y a 1 heure
+Déconnecter
+iPad
+Il y a 5 jours
+Déconnecter
+Supprimer le compte
+Vous êtes MJ de 1 table. Un export de vos données vous sera proposé avant la suppression.
+Supprimer mon compte…

@@ -1,0 +1,44 @@
+Gardien du rempart · niveau 3
+Aptitude : Rempart vivant
+Enregistrer l’aptitude
+Ajouter un effet
+Liste fermée : pas de formule libre, pas de code.
+Modifier une valeur
+Accorder une maîtrise
+Accorder l’Avantage
+Résistance aux dégâts
+Dégâts supplémentaires
+Ressource à utilisations
+Réaction
+Action Bonus
+Imposer un état
+Soins ou PV temporaires
+1
+Modifier une valeur
+Tant que
+vous portez un bouclier
+,
+Classe d’armure
+−
++1
++
+2
+Réaction
+Déclencheur :
+une créature attaque un allié
+à 1,50 m ou moins
+→
+imposer le Désavantage
+à ce jet d’attaque ·
+nombre = bonus de maîtrise
+par
+Repos long
+Ce que le joueur lira
+Rempart vivant · niveau 3
+
+Tant que vous portez un bouclier, vous gagnez un bonus de +1 à la Classe d’armure.
+
+Réaction. Quand une créature attaque un allié situé à 1,50 m ou moins de vous, vous imposez le Désavantage à ce jet d’attaque. Utilisable un nombre de fois égal à votre bonus de maîtrise, par Repos long.
+
+Effets sur la fiche
+La CA calculée inclura le bonus avec sa source (« +1 Rempart vivant »). La réaction apparaîtra dans l’onglet Combat avec son compteur.

@@ -1,0 +1,57 @@
+Aldric Varenne
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+Conflit résolu à la synchronisation. Pendant votre hors-ligne, Camille a réglé vos PV en combat à 34. Votre soin (+5) a été remplacé : en combat, la version du MJ prime.
+Voir l’historique
+OK
+14
+Perception passive
++3
+Maîtrise
+FORCE
+Athlétisme
+Avantage
++7
+DEXTÉRITÉ
+Acrobaties
++1
+Discrétion
++1
+Escamotage
++1
+INTELLIGENCE
+Arcanes
+−1
+Histoire
+−1
+Investigation
+−1
+Nature
+−1
+Religion
+−1
+SAGESSE
+Dressage
++1
+Intuition
++4
+Médecine
++1
+Perception
++4
+Survie
++4
+CHARISME
+Intimidation
++3
+Persuasion
++0
+Représentation
++0
+Tromperie
++0

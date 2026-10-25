@@ -1,0 +1,63 @@
+Embuscade sur la route
+Round 3
+10 combattants · 2 hors de combat
+Hors-ligne
+Début du tour · Chef de bande
+Empoisonné expire à la fin de ce tour. Bandit 2 : refaire le JS de SAG contre Effrayé.
+OK
+22
+Thalia
+PJ · Roublarde 5
+15
+33 / 33
+18
+Chef de bande
+En cours
+Humanoïde · FP 2
+15
+31 / 52
+Empoisonné
+· expire
+Loups · initiative commune
+15
+Loup 1
+Hors de combat
+12
+0 / 11
+15
+Loup 2
+Bête · FP 1/4
+12
+6 / 11
+À terre
+14
+Aldric Varenne
+PJ · Guerrier 5
+19
+41 / 49
++
+5
+Bandits · initiative commune
+12
+Bandit 1
+Humanoïde · FP 1/8
+12
+11 / 11
+12
+Bandit 2
+Humanoïde · FP 1/8
+12
+4 / 11
+Effrayé
+· JS SAG
+9
+Mira Solen
+PJ · Clerc 5
+18
+22 / 38
+Concentration · Bénédiction
+Cible : Chef de bande · appui long pour en cibler plusieurs
+Dégâts
+Soins
+État
+Tour suivant

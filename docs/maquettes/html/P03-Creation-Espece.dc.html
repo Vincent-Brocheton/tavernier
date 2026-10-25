@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création 3 — Espèce</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low)">
+    <svg aria-hidden="true" width="390" height="140" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP03"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP03)"></rect></svg>
+    <div style="position: relative; height: 56px; display: flex; align-items: center; gap: 4px; padding: 0 4px">
+      <button aria-label="Quitter la création" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Nouveau personnage</span>
+      <span class="n" style="padding-right: 16px; font-size: 14px; color: var(--on-sfv)">Étape 3 sur 9</span>
+    </div>
+    <div role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="3" aria-label="Progression" style="position: relative; height: 4px; margin: 0 16px; display: flex; gap: 4px"><div style="width: 33.3%; height: 4px; border-radius: 2px; background: var(--p)"></div><div style="flex: 1; height: 4px; border-radius: 2px; background: var(--sf-highest)"></div></div>
+    <div style="position: relative; padding: 12px 16px 14px">
+      <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Espèce</h1>
+      <div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Taille, Vitesse et traits. Aucun bonus de caractéristique : ils viennent de l’Historique.</div>
+    </div>
+  </header>
+
+  <div role="radiogroup" aria-label="Espèces" style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 4px">
+    <sc-for list="{{species}}" as="s" hint-placeholder-count="9">
+      <sc-if value="{{s.sel}}" hint-placeholder-val="{{false}}">
+        <div role="radio" aria-checked="true" tabindex="0" style="border-radius: 16px; background: var(--pc); box-shadow: inset 0 0 0 2px var(--p); padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 20px; height: 20px; border-radius: 10px; border: 2px solid var(--p); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: var(--p)"></span></span>
+            <span style="flex: 1; font-size: 16px; font-weight: 600">{{s.n}}</span>
+            <span class="n" style="font-size: 13px; color: var(--on-pc)">{{s.m}}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span style="flex: 1; font-size: 13px; color: var(--on-pc)">Catégorie de taille</span>
+            <div role="radiogroup" aria-label="Taille" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+              <button role="radio" aria-checked="true" style="width: 88px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">M</button>
+              <button role="radio" aria-checked="false" style="width: 88px; border-left: 1px solid var(--ol); font-size: 14px; font-weight: 500">P</button>
+            </div>
+          </div>
+          <sc-for list="{{s.traits}}" as="t" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span style="width: 6px; height: 6px; margin-top: 6px; border-radius: 3px; background: var(--p); flex: none"></span><span><strong style="font-weight: 600">{{t.k}}.</strong> {{t.v}}</span></div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{s.plain}}" hint-placeholder-val="{{true}}">
+        <button role="radio" aria-checked="false" style="min-height: 56px; border-radius: 12px; padding: 8px 16px; display: flex; align-items: center; gap: 12px; text-align: left">
+          <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid var(--ol)"></span>
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 16px; line-height: 22px">{{s.n}}</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{s.t}}</span></span>
+          <span class="n" style="font-size: 13px; color: var(--on-sfv)">{{s.m}}</span>
+        </button>
+      </sc-if>
+    </sc-for>
+  </div>
+
+  <div style="flex: none; padding: 12px 16px 20px; display: flex; gap: 8px; background: var(--sf); box-shadow: 0 -1px 0 var(--olv)">
+    <button style="flex: 1; height: 48px; border-radius: 24px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500; color: var(--p)">Précédent</button>
+    <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Suivant</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = [
+      ['Drakéide', 'M · 9 m', 'Souffle, résistance aux dégâts, vision dans le noir'],
+      ['Elfe', 'M · 9 m', 'Lignage elfique, transe, sens aiguisés'],
+      ['Gnome', 'P · 9 m', 'Ruse gnome, vision dans le noir'],
+      ['Goliath', 'M · 10,50 m', 'Ascendance de géant, forme de géant (niv. 5)'],
+      ['Halfelin', 'P · 9 m', 'Chanceux, brave, agilité halfeline'],
+      ['Humain', 'M ou P · 9 m', ''],
+      ['Nain', 'M · 9 m', 'Résistance naine, connaissance de la pierre'],
+      ['Orc', 'M · 9 m', 'Endurance implacable, poussée d’adrénaline'],
+      ['Tieffelin', 'M ou P · 9 m', 'Héritage fiélon, présence d’outre-monde'],
+    ];
+    const species = S.map(([n, m, t]) => {
+      const sel = n === 'Humain';
+      return { n, m, t, sel, plain: !sel, traits: sel ? [
+        { k: 'Compétent', v: 'maîtrise d’une compétence au choix (étape 6).' },
+        { k: 'Ingénieux', v: 'Inspiration héroïque à la fin de chaque Repos long.' },
+        { k: 'Polyvalent', v: 'un don d’origines au choix (étape 6). Doué est recommandé.' },
+      ] : [] };
+    });
+    return { species };
+  }
+}
+</script>
+</body>
+</html>

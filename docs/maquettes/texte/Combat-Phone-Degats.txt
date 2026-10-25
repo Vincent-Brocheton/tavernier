@@ -1,0 +1,35 @@
+Embuscade sur la route
+Dégâts
+Cibles
+Mira Solen
+Cible
+12
+tranchants
+Tranchants
+Perforants
+Contondants
+Feu
+Froid
+Mira Solen
+22
+10 / 38 PV
+Concentrée sur Bénédiction : JS de Constitution DD 10 demandé juste après.
+Coup critique
+Ne change pas le montant saisi ; sur un PJ à 0 PV, compte deux échecs.
+7
+8
+9
+Vulnérabilité ×2
+4
+5
+6
+Résistance ½
+1
+2
+3
+PV temp.
+0
++
+−
+Soins
+Appliquer 12 dégâts tranchants

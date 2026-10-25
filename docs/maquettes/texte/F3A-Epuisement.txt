@@ -1,0 +1,24 @@
+Aldric Varenne
+Guerrier 5
+Épuisement 2 · −4 aux tests d20 · Vitesse −3 m
+19
+CA
++0
+Initiative
+6 m
+Vitesse
+Athlétisme
+Test de Force · décomposition
+Force
++4
+Bonus de maîtrise
++3
+Épuisement (niveau 2)
+−4
+Total
++3
+Chaque niveau d’épuisement retire 2 à tous les tests d20 et 1,50 m à la Vitesse. Un repos long retire un niveau. Au niveau 6, le personnage meurt.
+Niveau d’épuisement
+−
+2
++

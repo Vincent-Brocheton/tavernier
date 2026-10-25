@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Choix MJ ou joueur</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low); padding: 8px 8px 24px 24px">
+    <svg aria-hidden="true" width="390" height="190" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gT03"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT03)"></rect></svg>
+    <div style="position: relative; display: flex; justify-content: flex-end"><button style="height: 48px; padding: 0 16px; border-radius: 24px; color: var(--p); font-size: 14px; font-weight: 500">Passer</button></div>
+    <h1 class="d" style="position: relative; margin: 8px 0 4px; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Bonjour Hugo</h1>
+    <p style="position: relative; margin: 0; padding-right: 16px; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Que voulez-vous faire en premier ? Ce choix règle seulement l’accueil : votre rôle se décide table par table.</p>
+  </header>
+
+  <div role="group" aria-label="Usages" style="flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+    <sc-for list="{{opts}}" as="o" hint-placeholder-count="2">
+      <button role="checkbox" aria-checked="{{o.on}}" style="min-height: 112px; border-radius: 16px; background: {{o.bg}}; box-shadow: {{o.ring}}; padding: 16px; display: flex; gap: 16px; align-items: flex-start; text-align: left">
+        <span style="width: 48px; height: 48px; flex: none; border-radius: 24px; background: {{o.icBg}}; color: {{o.icFg}}; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{o.d}}"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 18px; line-height: 24px; font-weight: 500">{{o.l}}</span><span style="font-size: 13px; line-height: 18px; color: {{o.sFg}}">{{o.s}}</span></span>
+        <span style="width: 24px; height: 24px; flex: none; display: flex; align-items: center; justify-content: center"><span style="width: 18px; height: 18px; border-radius: 2px; border: 2px solid {{o.cbBd}}; background: {{o.cbBg}}; color: var(--on-p); display: flex; align-items: center; justify-content: center"><sc-if value="{{o.sel}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if></span></span>
+      </button>
+    </sc-for>
+    <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Les deux sont possibles : MJ d’une table, joueur d’une autre.</span>
+  </div>
+
+  <div style="flex: none; padding: 12px 24px 24px">
+    <button style="width: 100%; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Continuer</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const O = [
+      ['Je joue un personnage', 'Créer une fiche guidée, rejoindre la table de mon MJ par lien, code ou QR.', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0', true],
+      ['Je mène des parties', 'Créer une table, inviter les joueurs, préparer rencontres et PNJ.', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16', false],
+    ];
+    const opts = O.map(([l, s, d, sel]) => ({ l, s, d, sel, on: sel ? 'true' : 'false', bg: sel ? 'var(--pc)' : 'var(--sf-c)', ring: sel ? 'inset 0 0 0 2px var(--p)' : 'none', icBg: sel ? 'var(--p)' : 'var(--sf-highest)', icFg: sel ? 'var(--on-p)' : 'var(--on-sf)', sFg: sel ? 'var(--on-pc)' : 'var(--on-sfv)', cbBd: sel ? 'var(--p)' : 'var(--on-sfv)', cbBg: sel ? 'var(--p)' : 'transparent' }));
+    return { opts };
+  }
+}
+</script>
+</body>
+</html>

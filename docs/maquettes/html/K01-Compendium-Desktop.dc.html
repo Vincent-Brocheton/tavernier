@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Compendium</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 960px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="padding: 16px 32px 12px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+        <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Compendium</h1>
+        <span style="flex: 1; font-size: 13px; color: var(--on-sfv)">Contexte : Les Marches de Brumeval · SRD 5.2.1, Bestiaire des Marches 1.3, Sorts d’Inès 2.2.0</span>
+      </div>
+      <label style="height: 56px; border-radius: 28px; background: var(--sf-high); display: flex; align-items: center; gap: 12px; padding: 0 20px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher dans le compendium" placeholder="Sorts, dons, objets, monstres, états…" value="{{q}}" onChange="{{onQ}}" style="flex: 1; border: 0; outline: 0; background: transparent; font-size: 16px"></label>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{types}}" as="t" hint-placeholder-count="6"><button aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{t.bg}}; color: {{t.fg}}; border: {{t.bd}}; font-size: 13px; font-weight: 500">{{t.l}} <span class="n" style="opacity: 0.8">{{t.c}}</span></button></sc-for>
+      </div>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 0 32px 32px; align-items: flex-start">
+      <section aria-label="Résultats" style="flex: 1 1 340px; max-width: 460px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 6px 0">
+        <sc-if value="{{none}}" hint-placeholder-val="{{false}}"><div style="padding: 28px 16px; text-align: center; font-size: 14px; color: var(--on-sfv)">Aucun résultat. Essayez un autre mot ou un autre type.</div></sc-if>
+        <sc-for list="{{results}}" as="r" hint-placeholder-count="10">
+          <button onClick="{{r.pick}}" aria-current="{{r.cur}}" style="width: 100%; min-height: 56px; padding: 6px 16px; display: flex; align-items: center; gap: 12px; text-align: left; background: {{r.bg}}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 15px; text-decoration: {{r.td}}">{{r.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{r.s}}</span></span>
+            <sc-if value="{{r.banned}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--ec); color: var(--on-ec); font-size: 10px; font-weight: 700; display: inline-flex; align-items: center">BANNI</span></sc-if>
+            <span style="height: 22px; padding: 0 6px; border-radius: 6px; background: {{r.srcBg}}; color: {{r.srcFg}}; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{r.src}}</span>
+          </button>
+        </sc-for>
+      </section>
+
+      <article aria-label="Fiche" style="flex: 2 1 420px; min-width: 0; position: relative; overflow: hidden; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px">
+          <div style="flex: 1 1 240px"><h2 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">{{det.n}}</h2><span style="font-size: 14px; color: var(--on-sfv); font-style: italic">{{det.sub}}</span></div>
+          <span style="height: 26px; padding: 0 8px; border-radius: 6px; background: {{det.srcBg}}; color: {{det.srcFg}}; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center">Source : {{det.srcLong}}</span>
+        </div>
+        <sc-if value="{{det.banned}}" hint-placeholder-val="{{false}}"><div role="status" style="border-radius: 12px; background: var(--ec); color: var(--on-ec); padding: 10px 12px; font-size: 13px; line-height: 18px">Banni par le MJ dans Les Marches de Brumeval : non proposé à la création ni à la montée de niveau de cette table.</div></sc-if>
+        <dl style="margin: 0; display: grid; grid-template-columns: 140px 1fr; row-gap: 8px; column-gap: 12px; font-size: 14px; line-height: 20px">
+          <sc-for list="{{det.lines}}" as="l" hint-placeholder-count="4"><dt style="color: var(--on-sfv)">{{l.k}}</dt><dd class="n" style="margin: 0">{{l.v}}</dd></sc-for>
+        </dl>
+        <div style="height: 1px; background: var(--olv)"></div>
+        <sc-for list="{{det.body}}" as="b" hint-placeholder-count="2"><p style="margin: 0; font-size: 15px; line-height: 22px">{{b}}</p></sc-for>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px">
+          <sc-for list="{{det.actions}}" as="a" hint-placeholder-count="2"><button style="height: 40px; padding: 0 16px; border-radius: 20px; background: {{a.bg}}; color: {{a.fg}}; border: {{a.bd}}; font-size: 14px; font-weight: 500">{{a.l}}</button></sc-for>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: '', type: 'Tout', sel: 'Bénédiction|Sort' };
+  }
+  renderVals() {
+    const { q, type, sel } = this.state;
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 3 ? 'page' : 'false', bg: i === 3 ? 'var(--sc)' : 'transparent', fg: i === 3 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 3 ? 700 : 500 }));
+    const IC = {
+      Sort: 'M12 2l1.8 4.6L18.5 8l-4.7 1.4L12 14l-1.8-4.6L5.5 8l4.7-1.4z M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z',
+      Don: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',
+      Objet: 'M14.5 17.5L3 6V3h3l11.5 11.5 M13 19l6-6 M16 16l4 4 M19 21l2-2',
+      Monstre: 'M5 9l2-5 3 4h4l3-4 2 5v5a7 7 0 0 1-14 0z M9.5 13h.01 M14.5 13h.01',
+      'État': 'M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1',
+    };
+    const SRC = { SRD: ['SRD', 'SRD 5.2.1', 'var(--sf-highest)', 'var(--on-sfv)'], INES: ['Inès 2.2', 'Sorts d’Inès 2.2.0', 'var(--tc)', 'var(--on-tc)'], MARCHES: ['Marches 1.3', 'Bestiaire des Marches 1.3', 'var(--tc)', 'var(--on-tc)'] };
+    const E = [
+      { n: 'Bénédiction', t: 'Sort', s: '1er niveau · Enchantement · concentration', src: 'SRD',
+        lines: [['Incantation', 'action'], ['Portée', '9 m'], ['Composantes', 'V, S, M (un symbole sacré d’une valeur minimale de 5 po)'], ['Durée', 'Concentration, jusqu’à 1 minute'], ['Listes', 'Clerc, Paladin']],
+        body: ['Vous bénissez jusqu’à trois créatures à portée. Chaque fois qu’une cible effectue un jet d’attaque ou un jet de sauvegarde avant la fin du sort, elle ajoute 1d4 au résultat.', 'Emplacement de niveau supérieur : une créature supplémentaire par niveau d’emplacement au-delà du 1er.'] },
+      { n: 'Esprits gardiens', t: 'Sort', s: '3e niveau · Invocation · concentration', src: 'SRD' },
+      { n: 'Sommeil', t: 'Sort', s: '1er niveau · Enchantement · concentration', src: 'SRD', banned: true },
+      { n: 'Lame d’ombre', t: 'Sort', s: '1er niveau · 3d6 psychiques', src: 'INES' },
+      { n: 'Bouclier de givre', t: 'Sort', s: '2e niveau · Abjuration', src: 'INES' },
+      { n: 'Bouclier de givre', t: 'Objet', s: 'Bouclier · rare', src: 'MARCHES' },
+      { n: 'Vigilant', t: 'Don', s: 'Don d’origines', src: 'SRD',
+        lines: [['Catégorie', 'Origines'], ['Prérequis', 'Aucun'], ['Répétable', 'Non']],
+        body: ['Maîtrise de l’Initiative : ajoutez votre bonus de maîtrise à vos jets d’Initiative.', 'Échange d’Initiative : juste après avoir joué l’Initiative, vous pouvez échanger la vôtre avec celle d’un allié volontaire, sauf si l’un de vous a l’état Neutralisé.'] },
+      { n: 'Empoigneur', t: 'Don', s: 'Don général · niveau 4, FOR ou DEX 13', src: 'SRD' },
+      { n: 'Épée longue', t: 'Objet', s: 'Arme de guerre · 1d8 tranchants · botte Sape', src: 'SRD' },
+      { n: 'Loup sanguinaire', t: 'Monstre', s: 'Bête de taille G · FP 1 (200 PX)', src: 'SRD',
+        lines: [['CA', '14'], ['Initiative', '+2 (12)'], ['PV', '22 (3d10 + 6)'], ['Vitesse', '15 m'], ['Caractéristiques', 'FOR 17 · DEX 15 · CON 15 · INT 3 · SAG 12 · CHA 7'], ['Sens', 'Vision dans le noir 18 m ; Perception passive 15']],
+        body: ['Tactique de meute. Avantage au jet d’attaque si un allié non Neutralisé se trouve à 1,50 m de sa cible.', 'Morsure. Corps à corps : +5, allonge 1,50 m. Touché : 8 (1d10 + 3) dégâts perforants ; une cible de taille G ou inférieure subit l’état À terre.'] },
+      { n: 'Capitaine des Marches', t: 'Monstre', s: 'Humanoïde · FP 5 (1 800 PX)', src: 'MARCHES' },
+      { n: 'Entravé', t: 'État', s: 'Vitesse 0, Désavantage aux attaques', src: 'SRD',
+        lines: [['Type', 'État']],
+        body: ['Vitesse 0 : votre Vitesse est de 0 et ne peut pas augmenter.', 'Effet sur les attaques : les jets d’attaque contre vous ont l’Avantage, et vos jets d’attaque subissent le Désavantage.', 'Effet sur les jets de sauvegarde : Désavantage aux jets de sauvegarde de Dextérité.'] },
+      { n: 'Agrippé', t: 'État', s: 'Vitesse 0, l’agrippeur peut vous déplacer', src: 'SRD' },
+    ];
+    const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    const TYPES = ['Tout', 'Sort', 'Don', 'Objet', 'Monstre', 'État'];
+    const LBL = { Tout: 'Tout', Sort: 'Sorts', Don: 'Dons', Objet: 'Objets', Monstre: 'Monstres', 'État': 'États' };
+    const matchQ = (e) => !q || norm(e.n + ' ' + e.s).includes(norm(q));
+    const types = TYPES.map((tp) => { const on = type === tp; const c = E.filter((e) => matchQ(e) && (tp === 'Tout' || e.t === tp)).length; return { l: LBL[tp], c, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)', pick: () => this.setState({ type: tp }) }; });
+    const list = E.filter((e) => matchQ(e) && (type === 'Tout' || e.t === type));
+    const key = (e) => e.n + '|' + e.t;
+    const results = list.map((e) => { const s = SRC[e.src]; const cur = key(e) === sel; return { n: e.n, s: e.t + ' · ' + e.s, d: IC[e.t], src: s[0], srcBg: s[2], srcFg: s[3], banned: !!e.banned, td: e.banned ? 'line-through' : 'none', cur: cur ? 'true' : 'false', bg: cur ? 'var(--sf-highest)' : 'transparent', pick: () => this.setState({ sel: key(e) }) }; });
+    const e = E.find((x) => key(x) === sel) || E[0];
+    const s = SRC[e.src];
+    const prim = { bg: 'var(--sc)', fg: 'var(--on-sc)', bd: '1px solid var(--sc)' }, sec = { bg: 'transparent', fg: 'var(--p)', bd: '1px solid var(--ol)' };
+    const actionsBy = { Sort: [['Ajouter à un personnage', prim], ['Dériver en homebrew', sec]], Don: [['Voir qui peut le prendre', prim], ['Dériver en homebrew', sec]], Objet: [['Ajouter à un inventaire', prim], ['Dériver en homebrew', sec]], Monstre: [['Ajouter à une rencontre', prim], ['Dériver en homebrew', sec]], 'État': [['Appliquer en combat', prim]] };
+    const det = {
+      n: e.n, sub: e.t + ' · ' + e.s, srcLong: s[1], srcBg: s[2], srcFg: s[3], banned: !!e.banned,
+      lines: (e.lines || [['Résumé', e.s]]).map(([k, v]) => ({ k, v })),
+      body: e.body || ['Fiche complète disponible hors-ligne.'],
+      actions: (actionsBy[e.t] || []).map(([l, st]) => ({ l, ...st })),
+    };
+    return { rail, q, onQ: (ev) => this.setState({ q: ev.target.value }), types, results, none: results.length === 0, det };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+Bestiaire des Marches · v1.4.0 · brouillon
+Monstre
+Enregistré sur l’appareil
+Tester sur un personnage
+Enregistrer
+HUMANOÏDES
+Capitaine des Marches
+1
+Contrebandier du Sel
+BÊTES
+Loup des brumes
+Ajouter une entité
+Identité
+Nom *
+Capitaine des Marches
+Type
+Humanoïde
+Taille
+Moyenne
+Facteur de puissance
+5
+PX
+1 800 · calculé
+Bonus de maîtrise
++3 · calculé
+Défense et déplacement
+Classe d’armure
+Calculée
+Naturelle ou libre
+Armure
+Cuirasse · intermédiaire, 14 + DEX (max 2)
+Bouclier
+Bouclier · +2
+CA
+18 · calculée
+14 cuirasse + 2 DEX (max 2) + 2 bouclier = 18. Une saisie qui contredit l’équipement déclenche une alerte non bloquante.
+Points de vie
+97 (15d8 + 30)
+Vitesse
+9 m
+PV moyens calculés : 15 × 4,5 + 15 × 2 (CON) = 97.
+Caractéristiques
+FOR
+18
++4
+DEX
+14
++2
+CON
+14
++2
+INT *
+—
+SAG
+12
++1
+CHA
+14
++2
+Intelligence obligatoire
+Elle fixe le DD des tests d’Influence contre ce monstre : 15, ou sa valeur d’Intelligence si elle est plus élevée.
+Saisir l’Intelligence
+Actions
+Ajouter
+Attaques multiples
+Deux attaques d’Épée longue
+Modifier
+Épée longue
+Corps à corps : +7, allonge 1,50 m · Touché : 8 (1d8 + 4) tranchants
+Modifier
+Ordre de bataille (action Bonus)
+Un allié à 9 m qui l’entend peut se déplacer de la moitié de sa Vitesse
+Modifier
+Actions légendaires
+Désactivées pour ce monstre
+Informations d’Étude par palier
+Révélées au MJ selon le résultat du test d’Étude ; il les annonce à la table.
+DD 10
+Information
+Officier de la garde des Marches, connu dans les postes frontière.
+DD 15
+Information
+Touche une part des péages de la Guilde du Sel.
+DD 20
+Information
+A livré le fort de Brumeval aux contrebandiers.
+Vérification
+Bloc de stats complet
+Intelligence manquante
+FP et PX cohérents
+FP 5 · 1 800 PX · maîtrise +3
+CA cohérente avec l’équipement
+14 + 2 + 2 = 18
+Attaques calculées
++7 = maîtrise +3 et FOR +4
+Paliers d’Étude
+3 paliers renseignés
+Une entité qui ne passe pas ces contrôles ne peut pas être publiée ; elle reste testable.
+Aperçu du bloc
+Capitaine des Marches
+Humanoïde de taille M · FP 5 (1 800 PX)
+CA 18 (cuirasse, bouclier) · PV 97 (15d8 + 30) · Vitesse 9 m
+FOR 18 · DEX 14 · CON 14 · INT — · SAG 12 · CHA 14
+Bestiaire des Marches 1.4 · brouillon

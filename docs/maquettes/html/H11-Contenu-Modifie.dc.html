@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Contenu modifié</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg:#FF9F8F;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column">
+    <div style="height: 64px; background: var(--sf-low); display: flex; align-items: center; padding-left: 56px"><span class="d" style="font-size: 20px; font-weight: 600; color: var(--t)">Brannoc</span></div>
+    <div style="height: 48px; background: var(--sf-low); border-bottom: 1px solid var(--olv)"></div>
+    <div style="margin: 16px; height: 56px; border-radius: 12px; background: var(--warn-c)"></div>
+    <div style="margin: 0 16px; height: 220px; border-radius: 16px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-labelledby="h11t" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="align-self: flex-start; height: 24px; padding: 0 8px; border-radius: 6px; background: var(--warn-c); color: var(--on-warn-c); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center">Contenu modifié</span>
+      <h2 id="h11t" style="margin: 4px 0 0; font-size: 22px; line-height: 28px; font-weight: 400">Lame d’ombre a changé</h2>
+      <span class="n" style="font-size: 13px; color: var(--on-sfv)">Sorts d’Inès · la table est passée de 2.0.0 à 2.2.0</span>
+    </div>
+
+    <div style="border-radius: 16px; background: var(--sf-c); overflow: hidden">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 10px 14px; font-size: 12px; color: var(--on-sfv); border-bottom: 1px solid var(--olv)"><span></span><span>Votre version · 2.0.0</span><span>Nouvelle · 2.2.0</span></div>
+      <sc-for list="{{diff}}" as="d" hint-placeholder-count="3">
+        <div class="n" style="display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; min-height: 44px; padding: 4px 14px; font-size: 14px; background: {{d.bg}}">
+          <span style="color: var(--on-sfv); font-size: 13px">{{d.k}}</span><span>{{d.a}}</span><span style="font-weight: {{d.w}}">{{d.b}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Vos autres sorts ne changent pas. Le choix est inscrit dans l’historique de la fiche.</span>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <button style="height: 52px; border-radius: 26px; background: var(--p); color: var(--on-p); font-size: 15px; font-weight: 600">Passer à la nouvelle version</button>
+      <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Garder la version 2.0.0</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { diff: [
+      { k: 'Dégâts', a: '2d8 nécrotiques', b: '3d6 psychiques', bg: 'rgba(99,64,0,0.25)', w: 700 },
+      { k: 'Moyenne', a: '9', b: '10,5', bg: 'rgba(99,64,0,0.25)', w: 700 },
+      { k: 'Niveau, portée', a: '1er · 18 m', b: '1er · 18 m', bg: 'transparent', w: 400 },
+    ] };
+  }
+}
+</script>
+</body>
+</html>

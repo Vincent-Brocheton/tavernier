@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Table — vue d’ensemble</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--dmg:#FF9F8F}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 980px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="position: relative; overflow: hidden; background: #2F4A3E; padding: 28px 32px 0; display: flex; flex-direction: column; gap: 16px">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gT08"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT08)"></rect></svg>
+      <div style="position: relative; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+        <div style="flex: 1 1 320px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-pc)">VOUS ÊTES MJ</span>
+          <h1 class="d" style="margin: 2px 0 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</h1>
+          <span style="font-size: 14px; color: var(--on-pc)">Acquisition par points · niveau de départ 1 · repos long : récupération totale</span>
+        </div>
+        <button style="height: 40px; padding: 0 16px 0 12px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M19 8v6 M22 11h-6"></path></svg>Inviter</button>
+      </div>
+      <nav aria-label="Sections de la table" style="position: relative; display: flex; overflow-x: auto; margin: 0 -8px">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+          <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 16px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+        </sc-for>
+      </nav>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 24px 32px 32px; align-items: flex-start">
+      <section aria-label="Prochaine séance" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+          <div><span style="font-size: 12px; color: var(--on-sfv)">Prochaine séance</span><h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 500">Séance 1 · vendredi 29 mai</h2></div>
+          <sc-for list="{{encounters}}" as="e" hint-placeholder-count="2">
+            <div style="border-radius: 12px; background: var(--sf-high); padding: 12px; display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">{{e.n}}</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{e.dBg}}; color: {{e.dFg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">{{e.d}}</span></div>
+              <span class="n" style="font-size: 12px; color: var(--on-sfv)">{{e.s}}</span>
+              <div style="height: 6px; border-radius: 3px; background: var(--sf-highest); overflow: hidden"><div style="height: 100%; width: {{e.pct}}; background: {{e.bar}}"></div></div>
+            </div>
+          </sc-for>
+          <button style="height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Ouvrir la séance</button>
+        </div>
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: center"><h2 style="margin: 0; flex: 1; font-size: 16px; line-height: 24px; font-weight: 500">Notes de séance</h2><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Privées MJ</span></div>
+          <span style="font-size: 14px; line-height: 20px">Le chef de bande porte le sceau de la <a href="#">Guilde du Sel</a>. Si capturé, il propose de trahir son contact au <a href="#">relais</a>.</span>
+        </div>
+      </section>
+
+      <section aria-label="Personnages" style="flex: 1.4 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center"><h2 style="margin: 0; flex: 1; font-size: 16px; line-height: 24px; font-weight: 500">Personnages <span class="n" style="color: var(--on-sfv); font-weight: 400">4 / 5 emplacements</span></h2><button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Ajouter un emplacement</button></div>
+        <sc-for list="{{pcs}}" as="c" hint-placeholder-count="5">
+          <div style="min-height: 72px; border-radius: 12px; background: {{c.bg}}; border: {{c.bd}}; padding: 10px 12px; display: flex; align-items: center; gap: 12px">
+            <span class="d" style="width: 44px; height: 44px; flex: none; border-radius: 22px; background: {{c.avBg}}; color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">{{c.i}}</span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">{{c.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span></span>
+            <sc-if value="{{c.hasHp}}" hint-placeholder-val="{{false}}"><span class="n" style="font-size: 13px; color: var(--on-sfv)">PV <strong style="color: var(--on-sf)">{{c.hp}}</strong></span></sc-if>
+            <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: {{c.tBg}}; color: {{c.tFg}}; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">{{c.tag}}</span>
+            <sc-if value="{{c.hasAction}}" hint-placeholder-val="{{false}}"><button style="height: 36px; padding: 0 14px; border-radius: 18px; background: var(--p); color: var(--on-p); font-size: 13px; font-weight: 600">{{c.action}}</button></sc-if>
+          </div>
+        </sc-for>
+      </section>
+
+      <aside aria-label="Activité" style="flex: 1 1 280px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Activité récente</h2>
+          <sc-for list="{{activity}}" as="a" hint-placeholder-count="4">
+            <div style="display: flex; gap: 10px"><span style="width: 28px; height: 28px; flex: none; border-radius: 14px; background: {{a.bg}}; color: {{a.fg}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{a.d}}"></path></svg></span><span style="display: flex; flex-direction: column"><span style="font-size: 13px; line-height: 18px">{{a.t}}</span><span class="n" style="font-size: 11px; color: var(--on-sfv)">{{a.m}}</span></span></div>
+          </sc-for>
+        </div>
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Packs actifs</h2>
+          <span style="font-size: 13px">SRD 5.2.1 <span style="color: var(--on-sfv)">· 2 sorts bannis</span></span>
+          <span class="n" style="font-size: 13px">Bestiaire des Marches <span style="color: var(--on-sfv)">· figé en 1.3</span></span>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 1 ? 'page' : 'false', bg: i === 1 ? 'var(--sc)' : 'transparent', fg: i === 1 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 1 ? 700 : 500 }));
+    const tabs = ['Vue d’ensemble', 'Séances', 'Rencontres', 'PNJ', 'Notes', 'Membres', 'Configuration'].map((l, i) => ({ l, cur: i === 0 ? 'page' : 'false', fg: i === 0 ? 'var(--t)' : 'var(--on-pc)', bar: i === 0 ? 'var(--t)' : 'transparent' }));
+    const encounters = [
+      { n: 'La patrouille perdue', s: '4 bandits, 4 loups · 300 PX / 400 (élevée)', d: 'MODÉRÉE', dBg: 'var(--warn-c)', dFg: 'var(--on-warn-c)', pct: '75%', bar: 'var(--warn)' },
+      { n: 'Le péage du moulin', s: '2 bandits, 3 loups · 200 PX / 400 (élevée)', d: 'FAIBLE', dBg: 'var(--heal-c)', dFg: 'var(--on-heal-c)', pct: '50%', bar: 'var(--heal)' },
+    ];
+    const ok = { tBg: 'var(--heal-c)', tFg: 'var(--on-heal-c)' };
+    const pcs = [
+      { i: 'AV', n: 'Aldric Varenne', s: 'Guerrier 1 · Hugo', tag: 'À valider', tBg: 'var(--warn-c)', tFg: 'var(--on-warn-c)', hasHp: false, hp: '', hasAction: true, action: 'Examiner', bg: 'var(--sf-c)', bd: '1px solid var(--warn)', avBg: 'var(--sc)' },
+      { i: 'MS', n: 'Mira Solen', s: 'Clerc 1 · Inès', tag: 'Validée', ...ok, hasHp: true, hp: '10 / 10', hasAction: false, action: '', bg: 'var(--sf-c)', bd: '1px solid transparent', avBg: 'var(--sc)' },
+      { i: 'T', n: 'Thalia', s: 'Roublarde 1 · Léo', tag: 'Validée', ...ok, hasHp: true, hp: '9 / 9', hasAction: false, action: '', bg: 'var(--sf-c)', bd: '1px solid transparent', avBg: 'var(--sc)' },
+      { i: 'B', n: 'Brannoc', s: 'Magicien 1 · Sam', tag: 'En création', tBg: 'var(--sf-highest)', tFg: 'var(--on-sfv)', hasHp: false, hp: '', hasAction: false, action: '', bg: 'var(--sf-c)', bd: '1px solid transparent', avBg: 'var(--sc)' },
+      { i: '+', n: 'Emplacement libre', s: 'À attribuer à un joueur ayant rejoint', tag: 'Libre', tBg: 'transparent', tFg: 'var(--on-sfv)', hasHp: false, hp: '', hasAction: true, action: 'Attribuer', bg: 'transparent', bd: '1px dashed var(--ol)', avBg: 'var(--sf-highest)' },
+    ];
+    const activity = [
+      { t: 'Hugo a envoyé Aldric pour validation', m: 'il y a 12 min', bg: 'var(--warn-c)', fg: 'var(--on-warn-c)', d: 'M22 2L11 13 M22 2l-7 20-4-9-9-4z' },
+      { t: 'Conflit résolu : PV de Thalia, votre version de combat est conservée', m: 'hier, 23:04', bg: 'var(--sf-highest)', fg: 'var(--warn)', d: 'M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z' },
+      { t: 'Sam a rejoint la table (code)', m: 'hier, 19:30', bg: 'var(--pc)', fg: 'var(--on-pc)', d: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' },
+      { t: 'Mira Solen validée', m: 'mar. 27 oct.', bg: 'var(--heal-c)', fg: 'var(--on-heal-c)', d: 'M5 12l5 5L20 7' },
+    ];
+    return { rail, tabs, encounters, pcs, activity };
+  }
+}
+</script>
+</body>
+</html>

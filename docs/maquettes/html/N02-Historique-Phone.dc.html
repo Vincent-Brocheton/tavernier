@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Historique — téléphone, hors-ligne</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--tmp:#A7C8FF;--tmp-c:#1C4778;--on-tmp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px; background: var(--sf-low)">
+    <button aria-label="Retour à la fiche" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <div style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 20px; line-height: 26px">Historique</span><span style="font-size: 12px; color: var(--on-sfv)">Kael · Magicien 3</span></div>
+    <span aria-label="Hors-ligne" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: var(--on-sfv)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18 M8.5 8.6A5 5 0 0 0 7 18h10.5 M11 5.1A6 6 0 0 1 18 9a4.5 4.5 0 0 1 2.9 7.9"></path></svg></span>
+  </header>
+
+  <div role="status" style="flex: none; background: var(--sf-highest); padding: 10px 16px; display: flex; gap: 10px; font-size: 13px; line-height: 18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 3l18 18 M8.5 8.6A5 5 0 0 0 7 18h10.5 M11 5.1A6 6 0 0 1 18 9a4.5 4.5 0 0 1 2.9 7.9"></path></svg><span>Hors-ligne. Vous voyez l’historique de cet appareil ; les entrées des autres appareils arriveront à la reconnexion.</span></div>
+
+  <div style="flex: none; display: flex; gap: 8px; padding: 12px 16px 4px; overflow: hidden">
+    <sc-for list="{{chips}}" as="c" hint-placeholder-count="5">
+      <span aria-pressed="{{c.on}}" style="flex: none; height: 32px; padding: 0 12px; border-radius: 8px; background: {{c.bg}}; color: {{c.fg}}; border: {{c.bd}}; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px">{{c.l}}<span class="n" style="font-size: 12px; color: {{c.cfg}}">{{c.c}}</span></span>
+    </sc-for>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 0 0 16px">
+    <sc-for list="{{days}}" as="g" hint-placeholder-count="2">
+      <div style="padding: 14px 16px 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{g.l}}</div>
+      <sc-for list="{{g.items}}" as="e" hint-placeholder-count="3">
+        <div style="margin: 0 8px; border-radius: 12px; background: {{e.bg}}">
+          <div style="min-height: 64px; padding: 8px 8px; display: flex; align-items: center; gap: 12px">
+            <span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 18px; background: {{e.icBg}}; color: {{e.icFg}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{e.ic}}"></path></svg></span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 15px; line-height: 20px">{{e.t}}</span>
+              <span class="n" style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{e.h}} · {{e.who}}</span>
+              <sc-if value="{{e.tag}}" hint-placeholder-val="{{true}}"><span style="align-self: flex-start; margin-top: 4px; height: 22px; padding: 0 8px; border-radius: 6px; background: {{e.tagBg}}; color: {{e.tagFg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px">{{e.tag}}</span></sc-if>
+            </span>
+            <span aria-hidden="true" style="width: 32px; display: flex; justify-content: center; color: var(--on-sfv)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{e.chev}}"></path></svg></span>
+          </div>
+          <sc-if value="{{e.open}}" hint-placeholder-val="{{false}}">
+            <div style="padding: 0 12px 12px 56px; display: flex; flex-direction: column; gap: 10px">
+              <div style="border-radius: 10px; background: var(--sf-c); padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+                <sc-for list="{{e.rows}}" as="r" hint-placeholder-count="2"><div style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="flex: 1">{{r.k}}</span><span class="n" style="color: var(--on-sfv)">{{r.a}}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="devient" style="color: var(--on-sfv)"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><span class="n" style="font-weight: 600; color: var(--warn)">{{r.b}}</span></div></sc-for>
+              </div>
+              <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">{{e.more}}</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const chip = (l, c, on) => ({ l, c, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', cfg: on ? 'var(--on-sc)' : 'var(--on-sfv)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)' });
+    const chips = [chip('Tout', 9, true), chip('Dérogations MJ', 2), chip('Progression', 4), chip('Combat', 0), chip('Synchronisation', 1)];
+    const SH = 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M12 8v5 M12 16h.01';
+    const BOOK = 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z';
+    const LINK = 'M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1 M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1';
+    const DOWN = 'M6 9l6 6 6-6', UP = 'M6 15l6-6 6 6';
+    const W = { icBg: 'var(--warn-c)', icFg: 'var(--on-warn-c)' }, N = { icBg: 'var(--sf-highest)', icFg: 'var(--on-sf)' }, P = { icBg: 'var(--pc)', icFg: 'var(--on-pc)' };
+    const base = { tag: '', open: false, rows: [], more: '', bg: 'transparent', chev: DOWN };
+    const days = [
+      { l: 'AUJOURD’HUI', items: [
+        { ...base, ...P, ic: BOOK, t: 'Sort préparé : Sommeil remplacé par Projectile magique', h: '10:05', who: 'Léo (vous)', tag: '◷ En attente de synchronisation', tagBg: 'var(--tmp-c)', tagFg: 'var(--on-tmp-c)' },
+        { ...base, ...P, ic: BOOK, t: 'Sort retiré : Lame d’ombre (pack Sorts d’Inès 2.0)', h: '10:03', who: 'Léo (vous)', tag: '◷ En attente de synchronisation', tagBg: 'var(--tmp-c)', tagFg: 'var(--on-tmp-c)' },
+      ] },
+      { l: 'VENDREDI 23 OCTOBRE', items: [
+        { ...base, ...W, ic: SH, t: 'Dérogation : niveau 3 accepté', h: '18:20', who: 'Camille (MJ)', tag: 'Dérogation MJ', tagBg: 'var(--warn-c)', tagFg: 'var(--on-warn-c)', open: true, bg: 'var(--sf-high)', chev: UP,
+          rows: [{ k: 'Niveau de départ (table)', a: '1', b: '3' }], more: 'Acceptée au rattachement : « Tu nous rejoins en cours de campagne. » Aucune notification envoyée ; trace conservée ici.' },
+        { ...base, ...W, ic: SH, t: 'Dérogation : génération aléatoire acceptée', h: '18:20', who: 'Camille (MJ)', tag: 'Dérogation MJ', tagBg: 'var(--warn-c)', tagFg: 'var(--on-warn-c)' },
+        { ...base, ...N, ic: LINK, t: 'Rattachement aux Marches de Brumeval, 2 corrections demandées', h: '18:20', who: 'Camille (MJ)' },
+      ] },
+    ];
+    return { chips, days };
+  }
+}
+</script>
+</body>
+</html>

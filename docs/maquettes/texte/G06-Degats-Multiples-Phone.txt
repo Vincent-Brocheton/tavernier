@@ -1,0 +1,30 @@
+Dégâts · 4 cibles
+Boule de feu de Brannoc · JS de Dextérité DD 15
+28
+feu
+8d6
+Chef de bande
+JS réussi · moitié
+31
+17 / 52
+28 → 14 (moitié)
+Bandit 1
+JS raté
+11
+0 / 11
+Hors de combat
+28
+Loup 2
+JS raté
+6
+0 / 11
+Hors de combat
+28
+Aldric Varenne
+JS réussi · moitié
+41 + 5 temp.
+39 / 49
+28 → 14 (moitié) → 7 : résistance au feu (Potion de résistance)
+Les 5 PV temporaires absorbent d’abord 5, puis 2 sur les PV
+Touchez un résultat de JS pour l’inverser. Résistances, vulnérabilités et immunités sont appliquées d’après chaque fiche.
+Appliquer à 4 cibles

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Éditeur de sous-classe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Retour au pack" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Gardiens des Marches · v0.1.0 · brouillon</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Sous-classe de Guerrier</h1></div>
+    <span style="font-size: 12px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ED98C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Enregistré sur l’appareil</span>
+    <button style="height: 40px; padding: 0 16px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Tester sur un personnage</button>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <nav aria-label="Contenu du pack" style="flex: 0 1 230px; min-width: 200px; border-radius: 16px; background: var(--sf-low); padding: 8px">
+      <sc-for list="{{tree}}" as="g" hint-placeholder-count="2">
+        <div style="padding: 10px 12px 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{g.l}}</div>
+        <sc-for list="{{g.items}}" as="i" hint-placeholder-count="1"><a href="#" aria-current="{{i.cur}}" style="min-height: 44px; padding: 0 12px; border-radius: 22px; background: {{i.bg}}; color: {{i.fg}}; display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; font-weight: {{i.w}}"><span style="flex: 1">{{i.n}}</span><sc-if value="{{i.err}}" hint-placeholder-val="{{false}}"><span aria-label="1 erreur" style="min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--e); color: var(--ec); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center">1</span></sc-if></a></sc-for>
+      </sc-for>
+      <button style="margin: 8px 4px 4px; height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Ajouter une entité</button>
+    </nav>
+
+    <main style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section aria-label="Identité" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+        <label style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 14px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Nom *</span><input aria-label="Nom" value="Gardien du rempart" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+        <div style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 14px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Classe parente *</span><span style="font-size: 16px">Guerrier · SRD 5.2.1</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+        <label style="grid-column: 1 / -1; border-radius: 4px; border: 1px solid var(--ol); padding: 8px 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Description</span><textarea aria-label="Description" rows="2" style="border: 0; outline: 0; background: transparent; font-size: 15px; line-height: 22px; padding: 0; resize: none">Soldats des postes frontière, formés à tenir la ligne et à protéger leurs compagnons derrière le bouclier.</textarea></label>
+      </section>
+
+      <section aria-label="Aptitudes par niveau" style="border-radius: 16px; background: var(--sf-c); padding: 16px 20px; display: flex; flex-direction: column; gap: 4px">
+        <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 6px"><h2 style="margin: 0; flex: 1; font-size: 16px; line-height: 24px; font-weight: 500">Aptitudes par niveau</h2><span class="n" style="font-size: 12px; color: var(--on-sfv)">Niveaux du Guerrier : 3, 7, 10, 15, 18</span></div>
+        <sc-for list="{{levels}}" as="l" hint-placeholder-count="6">
+          <div style="display: flex; gap: 14px">
+            <div style="width: 44px; display: flex; flex-direction: column; align-items: center"><span class="n" style="width: 40px; height: 40px; border-radius: 20px; background: {{l.bg}}; color: {{l.fg}}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">{{l.lv}}</span><span style="flex: 1; width: 2px; min-height: 12px; background: var(--olv)"></span></div>
+            <div style="flex: 1; min-width: 0; padding-bottom: 14px; display: flex; flex-direction: column; gap: 8px">
+              <sc-for list="{{l.feats}}" as="f" hint-placeholder-count="1">
+                <div style="border-radius: 12px; background: var(--sf-high); padding: 10px 14px; display: flex; align-items: center; gap: 10px">
+                  <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">{{f.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{f.s}}</span></span>
+                  <button style="height: 36px; padding: 0 12px; border-radius: 18px; color: var(--p); font-size: 13px; font-weight: 500">Modifier</button>
+                </div>
+              </sc-for>
+              <sc-if value="{{l.isErr}}" hint-placeholder-val="{{false}}">
+                <div role="alert" style="border-radius: 12px; background: var(--ec); color: var(--on-ec); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 1px var(--e)">
+                  <span style="font-size: 15px; font-weight: 500">Bouclier relevé</span>
+                  <span style="font-size: 13px; line-height: 18px">Le Guerrier n’accorde pas d’aptitude de sous-classe au niveau 4. Choisissez l’un des niveaux 3, 7, 10, 15 ou 18.</span>
+                  <div style="display: flex; gap: 8px"><button style="height: 36px; padding: 0 14px; border-radius: 18px; background: var(--e); color: var(--ec); font-size: 13px; font-weight: 600">Déplacer au niveau 7</button><button style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid var(--e); font-size: 13px; font-weight: 500">Autre niveau…</button></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{l.empty}}" hint-placeholder-val="{{false}}"><button style="height: 44px; border-radius: 12px; border: 1px dashed var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Ajouter une aptitude au niveau {{l.lv}}</button></sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+    </main>
+
+    <aside aria-label="Validation" style="flex: 1 1 260px; max-width: 340px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Vérification</h2>
+      <sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+        <div style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 20px; height: 20px; flex: none; border-radius: 10px; background: {{c.bg}}; color: {{c.fg}}; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.d}}"></path></svg></span><span style="display: flex; flex-direction: column"><span style="font-size: 13px; line-height: 18px">{{c.t}}</span><span style="font-size: 12px; line-height: 16px; color: {{c.sFg}}">{{c.s}}</span></span></div>
+      </sc-for>
+      <span style="margin-top: 4px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Les mêmes contrôles que pour le SRD : une entité qui ne passe pas ne peut pas être publiée, ni casser une fiche.</span>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const it = (n, cur, err) => ({ n, err: !!err, cur: cur ? 'page' : 'false', bg: cur ? 'var(--sc)' : 'transparent', fg: cur ? 'var(--on-sc)' : 'var(--on-sf)', w: cur ? 700 : 500 });
+    const tree = [{ l: 'SOUS-CLASSES', items: [it('Gardien du rempart', true, true)] }, { l: 'OBJETS', items: [it('Bouclier de Brumeval')] }];
+    const L = [
+      [3, [{ n: 'Rempart vivant', s: '2 effets · +1 CA avec bouclier, Réaction pour protéger un allié' }, { n: 'Serment de garde', s: '1 effet · maîtrise de l’Intuition' }]],
+      [4, [], true],
+      [7, [{ n: 'Pas de la sentinelle', s: '1 effet · ignorer le terrain difficile sur 3 m' }]],
+      [10, []], [15, []], [18, []],
+    ];
+    const levels = L.map(([lv, feats, err]) => ({ lv, feats, isErr: !!err, empty: !err && feats.length === 0,
+      bg: err ? 'var(--e)' : feats.length ? 'var(--p)' : 'var(--sf-highest)', fg: err ? 'var(--ec)' : feats.length ? 'var(--on-p)' : 'var(--on-sfv)' }));
+    const ok = { bg: 'var(--heal)', fg: '#10380F', d: 'M5 12l5 5L20 7', sFg: 'var(--on-sfv)' };
+    const ko = { bg: 'var(--e)', fg: 'var(--ec)', d: 'M12 7v6 M12 17h.01', sFg: 'var(--e)' };
+    const wa = { bg: 'var(--warn)', fg: '#3A2600', d: 'M12 7v6 M12 17h.01', sFg: 'var(--warn)' };
+    const checks = [
+      { t: 'Classe parente définie', s: 'Guerrier', ...ok },
+      { t: 'Niveaux alignés sur le Guerrier', s: '1 aptitude au niveau 4', ...ko },
+      { t: 'Progression complète', s: 'Niveaux 10, 15 et 18 vides : requis pour publier, pas pour tester', ...wa },
+      { t: 'Effets valides', s: '4 effets, tous dans la liste autorisée', ...ok },
+    ];
+    return { tree, levels, checks };
+  }
+}
+</script>
+</body>
+</html>

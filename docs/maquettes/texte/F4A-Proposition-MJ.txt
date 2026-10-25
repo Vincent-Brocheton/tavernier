@@ -1,0 +1,30 @@
+MODE PROPOSITION
+Proposer une modification à Hugo
+Aldric Varenne · hors combat, une modification structurelle passe par l’accord du joueur
+Type
+Don
+Remplacer
+Vigilant (Polyvalent, Humain)
+Par
+Doué · Origine
+Seuls les dons éligibles sont proposés : catégorie Origine pour Polyvalent.
+Valeur
+Avant
+Après
+Don (Polyvalent)
+Vigilant
+→
+Doué
+Initiative
++4
+→
++1
+Maîtrises
+5 compétences
+→
++ Histoire, Médecine, Dressage
+Motif (obligatoire, visible du joueur) *
+Ton passé à la garde des Marches : tu as appris l’histoire de la frontière et soigné des chevaux.
+Pour corriger sans accord, utilisez une dérogation : elle est tracée dans l’historique.
+Annuler
+Envoyer la proposition

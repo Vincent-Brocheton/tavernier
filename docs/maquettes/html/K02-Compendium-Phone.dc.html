@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Compendium — téléphone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <div style="flex: none; padding: 12px 16px 8px; display: flex; flex-direction: column; gap: 10px">
+    <label style="height: 56px; border-radius: 28px; background: var(--sf-high); display: flex; align-items: center; gap: 4px; padding: 0 4px 0 16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher" value="bouclier" style="flex: 1; border: 0; outline: 0; background: transparent; font-size: 16px; padding-left: 8px"><button aria-label="Effacer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></label>
+    <div style="display: flex; gap: 8px; overflow: hidden; margin-right: -16px">
+      <sc-for list="{{types}}" as="t" hint-placeholder-count="6"><button aria-pressed="{{t.on}}" style="flex: none; height: 32px; padding: 0 12px; border-radius: 8px; background: {{t.bg}}; color: {{t.fg}}; border: {{t.bd}}; font-size: 13px; font-weight: 500">{{t.l}}</button></sc-for>
+    </div>
+    <span style="font-size: 12px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18 M8 18a5 5 0 0 1-1.6-9.7 M10.5 6.3A6 6 0 0 1 18 9a4.5 4.5 0 0 1 2.4 8.3"></path></svg>Hors-ligne · tout le compendium reste disponible</span>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 4px">
+    <span class="n" style="padding: 4px 4px 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">4 RÉSULTATS · LES MARCHES DE BRUMEVAL</span>
+    <sc-for list="{{results}}" as="r" hint-placeholder-count="4">
+      <a href="#" style="min-height: 64px; border-radius: 12px; background: var(--sf-c); padding: 8px 12px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--on-sf)">
+        <span style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: var(--sf-highest); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span>
+        <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 15px">{{r.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{r.s}}</span></span>
+        <span style="height: 22px; padding: 0 6px; border-radius: 6px; background: {{r.bg}}; color: {{r.fg}}; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{r.src}}</span>
+      </a>
+    </sc-for>
+    <div style="margin-top: 8px; border-radius: 12px; border: 1px dashed var(--ol); padding: 10px 12px; font-size: 13px; line-height: 18px; color: var(--on-sfv)">1 autre résultat dans un pack inactif pour cette table : « Bouclier de Brumeval » (Gardiens des Marches). <a href="#">Afficher</a></div>
+  </div>
+
+  <nav aria-label="Navigation principale" style="flex: none; height: 80px; background: var(--sf-c); display: flex; padding: 12px 0 16px">
+    <sc-for list="{{nav}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 64px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const types = ['Tout', 'Sorts', 'Dons', 'Objets', 'Monstres', 'États'].map((l, i) => ({ l, on: i === 0 ? 'true' : 'false', bg: i === 0 ? 'var(--sc)' : 'transparent', fg: i === 0 ? 'var(--on-sc)' : 'var(--on-sf)', bd: i === 0 ? '1px solid var(--sc)' : '1px solid var(--ol)' }));
+    const SPELL = 'M12 2l1.8 4.6L18.5 8l-4.7 1.4L12 14l-1.8-4.6L5.5 8l4.7-1.4z', SHIELD = 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z';
+    const srd = { src: 'SRD', bg: 'var(--sf-highest)', fg: 'var(--on-sfv)' };
+    const results = [
+      { n: 'Bouclier', s: 'Objet · armure · +2 CA', d: SHIELD, ...srd },
+      { n: 'Bouclier de la foi', s: 'Sort · 1er niveau · Abjuration', d: SPELL, ...srd },
+      { n: 'Bouclier de givre', s: 'Sort · 2e niveau · Abjuration', d: SPELL, src: 'Inès 2.2', bg: 'var(--tc)', fg: 'var(--on-tc)' },
+      { n: 'Bouclier de givre', s: 'Objet · bouclier · rare', d: SHIELD, src: 'Marches 1.3', bg: 'var(--tc)', fg: 'var(--on-tc)' },
+    ];
+    const N = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const nav = N.map(([l, d], i) => ({ l, d, cur: i === 3 ? 'page' : 'false', bg: i === 3 ? 'var(--sc)' : 'transparent', fg: i === 3 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 3 ? 700 : 500 }));
+    return { types, results, nav };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création 6 — Sous-choix</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:disabled{cursor:not-allowed}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP05"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP05)"></rect></svg>
+    <div style="position: relative; height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px">
+      <button aria-label="Quitter la création" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Nouveau personnage <span style="color: var(--on-sfv); font-weight: 400">· Les Marches de Brumeval · niveau 1</span></span>
+    </div>
+    <div style="position: relative; padding: 8px 32px 28px; display: flex; flex-direction: column; gap: 6px">
+      <span class="n" style="font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: var(--on-sfv)">ÉTAPE 6 SUR 9</span>
+      <h1 class="d" style="margin: 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Sous-choix</h1>
+      <p style="margin: 0; max-width: 720px; font-size: 16px; line-height: 24px; color: var(--on-sfv)">Les choix laissés ouverts par votre classe, votre Historique et votre espèce. Les options impossibles sont grisées, avec la règle qui les bloque.</p>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 32px; align-items: flex-start">
+    <nav aria-label="Étapes de création" style="flex: 0 1 220px; min-width: 200px; border-radius: 16px; background: var(--sf-low); padding: 8px">
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="9">
+          <li><a href="#" aria-current="{{s.cur}}" style="height: 48px; padding: 0 12px; border-radius: 24px; background: {{s.bg}}; color: {{s.fg}}; display: flex; align-items: center; gap: 12px; text-decoration: none">
+            <span class="n" style="width: 24px; height: 24px; border-radius: 12px; background: {{s.dotBg}}; color: {{s.dotFg}}; border: {{s.dotBd}}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{s.mark}}</span>
+            <span style="flex: 1; font-size: 14px; line-height: 18px; font-weight: {{s.w}}">{{s.l}}</span>
+          </a></li>
+        </sc-for>
+      </ol>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+
+      <section aria-label="Compétences de classe" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap"><h2 style="margin: 0; flex: 1; font-size: 16px; line-height: 24px; font-weight: 500">Compétences de Guerrier</h2><span class="n" style="font-size: 14px; font-weight: 600; color: {{skillCountFg}}">{{skillCount}} / 2</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{skills}}" as="s" hint-placeholder-count="9">
+            <button aria-pressed="{{s.pressed}}" disabled="{{s.dis}}" onClick="{{s.toggle}}" title="{{s.why}}" style="height: 40px; padding: 0 14px 0 10px; border-radius: 8px; background: {{s.bg}}; color: {{s.fg}}; border: {{s.bd}}; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"></path></svg>{{s.l}}</button>
+          </sc-for>
+        </div>
+        <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Athlétisme et Intimidation viennent déjà de l’Historique Soldat : une maîtrise ne se prend pas deux fois.</span>
+      </section>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+        <section aria-label="Style de combat" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0 0 4px; font-size: 16px; line-height: 24px; font-weight: 500">Style de combat</h2>
+          <sc-for list="{{styles}}" as="o" hint-placeholder-count="4">
+            <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="min-height: 48px; text-align: left; display: flex; align-items: center; gap: 12px">
+              <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{o.ring}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{o.dot}}"></span></span>
+              <span style="display: flex; flex-direction: column"><span style="font-size: 15px">{{o.l}}</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{o.s}}</span></span>
+            </button>
+          </sc-for>
+        </section>
+
+        <section aria-label="Don d’origines (Humain, Polyvalent)" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0 0 4px; font-size: 16px; line-height: 24px; font-weight: 500">Don d’origines · Humain (Polyvalent)</h2>
+          <sc-for list="{{feats}}" as="o" hint-placeholder-count="4">
+            <button role="radio" aria-checked="{{o.on}}" disabled="{{o.dis}}" onClick="{{o.pick}}" style="min-height: 48px; text-align: left; display: flex; align-items: center; gap: 12px; opacity: {{o.op}}">
+              <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{o.ring}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{o.dot}}"></span></span>
+              <span style="display: flex; flex-direction: column"><span style="font-size: 15px">{{o.l}}</span><span style="font-size: 12px; line-height: 16px; color: {{o.sFg}}">{{o.s}}</span></span>
+            </button>
+          </sc-for>
+        </section>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+        <section aria-label="Bottes d’armes" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: baseline; gap: 12px"><h2 style="margin: 0; flex: 1; font-size: 16px; line-height: 24px; font-weight: 500">Bottes d’armes</h2><span class="n" style="font-size: 14px; font-weight: 600; color: {{mCountFg}}">{{mCount}} / 3</span></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <sc-for list="{{weapons}}" as="w" hint-placeholder-count="9">
+              <button aria-pressed="{{w.pressed}}" disabled="{{w.dis}}" onClick="{{w.toggle}}" style="height: 40px; padding: 0 12px; border-radius: 8px; background: {{w.bg}}; color: {{w.fg}}; border: {{w.bd}}; display: inline-flex; align-items: center; gap: 6px; font-size: 13px">{{w.l}}<span style="font-weight: 600; color: {{w.bfg}}">{{w.b}}</span></button>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Une arme par type, parmi celles que vous maîtrisez. Modifiable après chaque Repos long.</span>
+        </section>
+
+        <section aria-label="Compétence (Humain, Compétent)" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Compétence · Humain (Compétent)</h2>
+          <div style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 6px 12px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Compétence au choix</span><span style="font-size: 16px">Intuition</span></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+          <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">La liste exclut les compétences déjà maîtrisées.</span>
+        </section>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; gap: 8px">
+        <button style="height: 48px; padding: 0 24px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Précédent : Caractéristiques</button>
+        <button disabled="{{nextDis}}" style="height: 48px; padding: 0 24px; border-radius: 24px; background: {{nextBg}}; color: {{nextFg}}; font-size: 14px; font-weight: 600">Suivant : Équipement</button>
+      </div>
+    </main>
+
+    <aside aria-label="Choix restants" style="flex: 1 1 280px; max-width: 340px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">À compléter</h2>
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{checks}}" as="c" hint-placeholder-count="5">
+          <li style="display: flex; gap: 10px; align-items: flex-start">
+            <span style="width: 22px; height: 22px; flex: none; border-radius: 11px; background: {{c.bg}}; color: {{c.fg}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg></span>
+            <span style="display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 20px">{{c.l}}</span><span style="font-size: 12px; line-height: 16px; color: {{c.sFg}}">{{c.s}}</span></span>
+          </li>
+        </sc-for>
+      </ul>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { skills: ['Perception'], style: 'Défense', feat: 'Vigilant', weapons: ['Épée longue', 'Javeline', 'Hache d’armes'] };
+  }
+  renderVals() {
+    const { skills: sk, style, feat, weapons: wp } = this.state;
+    const CHECK = 'M5 12l5 5L20 7', PLUS = 'M12 5v14 M5 12h14', LOCK = 'M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4';
+    const dimFg = 'rgba(237,224,214,0.38)';
+    const SK = ['Acrobaties', 'Athlétisme', 'Dressage', 'Histoire', 'Intimidation', 'Intuition', 'Perception', 'Persuasion', 'Survie'];
+    const FROM_BG = ['Athlétisme', 'Intimidation'];
+    const skills = SK.map((l) => {
+      const owned = FROM_BG.includes(l), on = sk.includes(l), full = sk.length >= 2;
+      const dis = owned || (!on && full) || l === 'Intuition';
+      const why = owned ? 'Déjà maîtrisée (Soldat)' : l === 'Intuition' ? 'Déjà prise via Compétent (Humain)' : (!on && full) ? '2 sur 2 : retirez-en une' : '';
+      return { l, pressed: on ? 'true' : 'false', dis, why,
+        icon: owned || l === 'Intuition' ? LOCK : on ? CHECK : PLUS,
+        bg: on ? 'var(--sc)' : 'transparent', fg: dis && !on ? dimFg : on ? 'var(--on-sc)' : 'var(--on-sf)',
+        bd: on ? '1px solid var(--sc)' : dis ? '1px dashed rgba(237,224,214,0.25)' : '1px solid var(--ol)',
+        toggle: () => !dis || on ? this.setState({ skills: on ? sk.filter((x) => x !== l) : [...sk, l] }) : null };
+    });
+    const radio = (on) => ({ on: on ? 'true' : 'false', ring: on ? 'var(--p)' : 'var(--ol)', dot: on ? 'var(--p)' : 'transparent' });
+    const styles = [['Archerie', '+2 aux attaques à distance'], ['Armes à deux mains', '1 et 2 aux dégâts comptent comme 3'], ['Combat à deux armes', 'Modificateur aux dégâts de l’attaque supplémentaire'], ['Défense', '+1 à la CA en armure']].map(([l, s]) => ({ l, s, ...radio(style === l), pick: () => this.setState({ style: l }) }));
+    const F = [
+      ['Doué', 'Trois maîtrises de compétences ou d’outils au choix', false],
+      ['Initié à la magie', 'Répétable · 2 sorts mineurs et 1 sort du 1er niveau', false],
+      ['Sauvagerie martiale', 'Déjà obtenu par l’Historique Soldat · non répétable', true],
+      ['Vigilant', 'Maîtrise ajoutée à l’Initiative, échange d’Initiative', false],
+    ];
+    const feats = F.map(([l, s, blocked]) => ({ l, s, dis: blocked, op: blocked ? 0.6 : 1, sFg: blocked ? 'var(--e)' : 'var(--on-sfv)', ...radio(feat === l), pick: () => !blocked && this.setState({ feat: l }) }));
+    const W = [['Bâton de combat', 'Renversement'], ['Dague', 'Coup double'], ['Épée à deux mains', 'Écorchure'], ['Épée longue', 'Sape'], ['Hache d’armes', 'Renversement'], ['Hachette', 'Ouverture'], ['Javeline', 'Ralentissement'], ['Marteau de guerre', 'Poussée'], ['Rapière', 'Ouverture']];
+    const weapons = W.map(([l, b]) => {
+      const on = wp.includes(l), full = wp.length >= 3, dis = !on && full;
+      return { l, b, pressed: on ? 'true' : 'false', dis, bg: on ? 'var(--sc)' : 'transparent', fg: dis ? dimFg : on ? 'var(--on-sc)' : 'var(--on-sf)', bfg: dis ? dimFg : 'var(--p)', bd: on ? '1px solid var(--sc)' : dis ? '1px dashed rgba(237,224,214,0.25)' : '1px solid var(--ol)',
+        toggle: () => this.setState({ weapons: on ? wp.filter((x) => x !== l) : full ? wp : [...wp, l] }) };
+    });
+    const ok = (l, s) => ({ l, s, bg: 'var(--heal)', fg: '#10380F', icon: CHECK, sFg: 'var(--on-sfv)' });
+    const ko = (l, s) => ({ l, s, bg: 'var(--e)', fg: 'var(--ec)', icon: 'M12 7v6 M12 17h.01', sFg: 'var(--e)' });
+    const checks = [
+      sk.length === 2 ? ok('Compétences de Guerrier', sk.join(', ')) : ko('Compétences de Guerrier', 'Choisissez encore ' + (2 - sk.length) + ' compétence' + (2 - sk.length > 1 ? 's' : '')),
+      ok('Style de combat', style),
+      ok('Don d’origines', feat),
+      wp.length === 3 ? ok('Bottes d’armes', wp.join(', ')) : ko('Bottes d’armes', 'Choisissez encore ' + (3 - wp.length) + ' arme' + (3 - wp.length > 1 ? 's' : '')),
+      ok('Compétence (Compétent)', 'Intuition'),
+    ];
+    const valid = sk.length === 2 && wp.length === 3;
+    const steps = ['Classe', 'Historique', 'Espèce', 'Langues', 'Caractéristiques', 'Sous-choix', 'Équipement', 'Détails', 'Récapitulatif'].map((l, i) => {
+      const done = i < 5, c = i === 5;
+      return { l, cur: c ? 'step' : 'false', bg: c ? 'var(--sc)' : 'transparent', fg: c ? 'var(--on-sc)' : 'var(--on-sf)', w: c ? 700 : 500, mark: done ? '✓' : String(i + 1), dotBg: done ? 'var(--p)' : c ? 'var(--on-sc)' : 'transparent', dotFg: done ? 'var(--on-p)' : c ? 'var(--sc)' : 'var(--on-sfv)', dotBd: done || c ? 'none' : '1px solid var(--ol)' };
+    });
+    return {
+      steps, skills, styles, feats, weapons, checks,
+      skillCount: sk.length, skillCountFg: sk.length === 2 ? 'var(--on-sf)' : 'var(--e)',
+      mCount: wp.length, mCountFg: wp.length === 3 ? 'var(--on-sf)' : 'var(--e)',
+      nextDis: !valid, nextBg: valid ? 'var(--p)' : 'rgba(237,224,214,0.12)', nextFg: valid ? 'var(--on-p)' : 'rgba(237,224,214,0.5)',
+    };
+  }
+}
+</script>
+</body>
+</html>

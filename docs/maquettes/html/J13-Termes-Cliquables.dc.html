@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Termes de règles cliquables</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column"><header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px; background: var(--sf-low)"><button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button><span style="flex: 1; display: flex; flex-direction: column"><span class="d" style="font-size: 19px; font-weight: 600; color: var(--t)">Aldric Varenne</span><span style="font-size: 12px; color: var(--on-sfv)">onglet Aptitudes</span></span></header>
+  <div style="padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 12px; font-size: 14px; line-height: 20px"><strong>Second souffle.</strong> Par une <a href="#" style="color: var(--p); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px">action Bonus</a>, récupérez 1d10 + 5 PV.</div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 12px; font-size: 14px; line-height: 20px"><strong>Botte : Sape.</strong> Si vous touchez, la cible subit le <a href="#" style="color: var(--p); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px">Désavantage</a> à son prochain jet d’attaque avant le début de votre tour suivant.</div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 12px; font-size: 14px; line-height: 20px"><strong>Botte : Renversement.</strong> La cible réussit un JS de Constitution ou subit l’état <a href="#" style="color: var(--p); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px">À terre</a>.</div></div></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+  <section role="dialog" aria-label="Désavantage" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 20px; display: flex; flex-direction: column; gap: 12px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Désavantage</h2><span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Règle · ouverte sans quitter la fiche</span></div><button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></div>
+    <p style="margin: 0; font-size: 15px; line-height: 22px">Quand vous avez le Désavantage à un test d20, lancez deux d20 et gardez le plus faible.</p>
+  <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Avantage et Désavantage ne se cumulent pas : si vous avez les deux, ils s’annulent.</p>
+  <div style="display: flex; gap: 8px; align-items: center"><span style="height: 24px; padding: 0 8px 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap">Glossaire · SRD 5.2.1</span><span style="flex: 1"></span><button style="height: 40px; padding: 0 16px 0 16px; border-radius: 20px; color: var(--p); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; ">Ouvrir dans le compendium</button></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

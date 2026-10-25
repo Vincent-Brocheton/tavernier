@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fondations M3</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--s:#D8C4AE;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--on-e:#690005;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-lowest:#14110D;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--thp:#A7C8FF;--thp-c:#1C4778;--on-thp-c:#D5E3FF;--conc:#D4BBFF;--conc-c:#523A7E;--on-conc-c:#EBDCFF;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1760px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); padding: 56px 64px 40px; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="1440" height="240" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="grainMain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#grainMain)"></rect></svg>
+    <div style="position: relative; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: 0.1px; color: var(--on-sfv)">Gestion de personnage compatible 5E · Brief §9</span>
+      <h1 class="d" style="margin: 0; font-size: 45px; line-height: 52px; font-weight: 600; color: var(--t)">Langage visuel</h1>
+      <p style="margin: 0; max-width: 760px; font-size: 16px; line-height: 24px; color: var(--on-sfv)">Outil de travail sobre et dense. Fond sombre chaud, un accent (vert-de-gris), cinq couleurs sémantiques réservées. Fantasy limitée aux titres et à un grain discret sur les en-têtes.</p>
+    </div>
+    <div style="position: relative; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end">
+      <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; font-size: 14px; font-weight: 500">Material 3</span>
+      <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; font-size: 14px; font-weight: 500">Sombre par défaut</span>
+      <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; font-size: 14px; font-weight: 500">Tokens clair : V1.5</span>
+    </div>
+  </header>
+
+  <div style="padding: 40px 64px 0; display: grid; grid-template-columns: 7fr 5fr; gap: 48px">
+    <section style="display: flex; flex-direction: column; gap: 20px">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Couleurs — rôles M3</h2>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{roles}}" as="r" hint-placeholder-count="6">
+          <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--olv)">
+            <div style="height: 72px; background: {{r.bg}}; color: {{r.fg}}; padding: 10px; font-size: 12px; font-weight: 600; line-height: 16px">{{r.name}}</div>
+            <div style="padding: 8px 10px; background: var(--sf-c); display: flex; flex-direction: column; gap: 2px">
+              <span class="n" style="font-size: 12px; line-height: 16px; font-weight: 500">{{r.hex}}</span>
+              <span style="font-size: 11px; line-height: 16px; color: var(--on-sfv)">{{r.use}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--on-sfv)">Surfaces (élévation tonale, pas d’ombre en sombre)</span>
+        <div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--olv)">
+          <sc-for list="{{surfaces}}" as="s" hint-placeholder-count="8">
+            <div style="height: 64px; background: {{s.bg}}; padding: 8px; display: flex; flex-direction: column; justify-content: flex-end; color: {{s.fg}}">
+              <span style="font-size: 11px; line-height: 14px; font-weight: 600">{{s.name}}</span>
+              <span class="n" style="font-size: 11px; line-height: 14px">{{s.hex}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--on-sfv)">Sémantiques réservées — toujours doublées d’une icône et d’un libellé</span>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+          <sc-for list="{{semantics}}" as="m" hint-placeholder-count="5">
+            <div style="border-radius: 12px; background: {{m.c}}; color: {{m.on}}; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; align-items: center; gap: 8px">
+                <span style="width: 32px; height: 32px; border-radius: 16px; background: {{m.fg}}; color: {{m.c}}; display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{m.d}}"></path></svg></span>
+                <span style="font-size: 14px; font-weight: 600">{{m.name}}</span>
+              </div>
+              <span class="n" style="font-size: 12px; line-height: 16px">{{m.hex}}</span>
+              <span style="font-size: 11px; line-height: 16px; opacity: 0.9">{{m.use}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Typographie</h2>
+      <div style="border-radius: 12px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Display S · Cinzel</span><span class="d" style="font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Brumeval</span></div>
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Headline S · Cinzel</span><span class="d" style="font-size: 24px; line-height: 32px; font-weight: 600; color: var(--t)">Caractéristiques</span></div>
+        <div style="height: 1px; background: var(--olv)"></div>
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Title L · Roboto Flex</span><span style="font-size: 22px; line-height: 28px">Embuscade sur la route</span></div>
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Title M · 500</span><span style="font-size: 16px; line-height: 24px; font-weight: 500">Chef de bande</span></div>
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Body M</span><span style="font-size: 14px; line-height: 20px">Si vous touchez, la cible subit le Désavantage à son prochain jet d’attaque.</span></div>
+        <div style="display: flex; align-items: baseline; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Label M · 500</span><span style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.5px">ROUND 3 · TOUR EN COURS</span></div>
+        <div style="height: 1px; background: var(--olv)"></div>
+        <div style="display: flex; align-items: center; gap: 16px"><span style="width: 120px; flex: none; font-size: 12px; color: var(--on-sfv)">Chiffres tabulaires</span>
+          <div class="n" style="display: grid; grid-template-columns: repeat(3, auto); column-gap: 24px; row-gap: 2px; font-size: 22px; line-height: 28px; font-weight: 500">
+            <span>PV 41/49</span><span>CA 19</span><span>Init +4</span>
+            <span>PV 11/11</span><span>CA 12</span><span>Init +1</span>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Règle : Cinzel uniquement en Display et Headline (titres d’écran évocateurs, nom de personnage). Tout le reste en Roboto Flex. Échelle M3 inchangée ; texte réglable de 85 % à 200 %.</p>
+    </section>
+  </div>
+
+  <section style="padding: 40px 64px 0; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Carte de combattant compacte — états</h2>
+      <span style="font-size: 12px; color: var(--on-sfv)">Ordre de lecture : initiative · nom · CA · PV (barre + chiffres) · états · concentration</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--on-sfv)">{{c.label}}</span>
+          <div style="background: {{c.bg}}; box-shadow: {{c.ring}}; border-radius: 12px; padding: 12px; display: flex; gap: 12px; align-items: flex-start; opacity: {{c.op}}">
+            <div class="n" style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: {{c.initBg}}; color: {{c.initFg}}; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">{{c.init}}</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; align-items: center; gap: 8px">
+                <div style="flex: 1; min-width: 0">
+                  <div style="display: flex; align-items: center; gap: 8px">
+                    <span style="font-size: 16px; line-height: 24px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</span>
+                    <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}"><span style="height: 20px; padding: 0 8px; border-radius: 10px; background: var(--p); color: var(--on-p); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l12 8-12 8z"></path></svg>En cours</span></sc-if>
+                  </div>
+                  <div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{c.sub}}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px; color: var(--on-sf)" aria-label="Classe d’armure {{c.ca}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.shield}}"></path></svg><span class="n" style="font-size: 16px; font-weight: 600">{{c.ca}}</span></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px">
+                <div style="flex: 1; height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><div style="height: 100%; width: {{c.pct}}; background: {{c.hpColor}}; border-radius: 4px"></div></div>
+                <span class="n" style="font-size: 14px; line-height: 20px; font-weight: 600">{{c.hp}}<span style="font-weight: 400; color: var(--on-sfv)"> / {{c.max}}</span></span>
+                <sc-if value="{{c.temp}}" hint-placeholder-val="{{false}}"><span class="n" style="height: 20px; padding: 0 6px; border-radius: 6px; background: var(--thp-c); color: var(--on-thp-c); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 2px" aria-label="5 PV temporaires"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.thp}}"></path></svg>+{{c.temp}}</span></sc-if>
+              </div>
+              <sc-if value="{{c.hasChips}}" hint-placeholder-val="{{false}}">
+                <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                  <sc-for list="{{c.chips}}" as="ch" hint-placeholder-count="2">
+                    <span style="height: 28px; padding: 0 8px 0 6px; border-radius: 8px; background: {{ch.bg}}; color: {{ch.fg}}; border: 1px solid {{ch.bd}}; display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; white-space: nowrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ch.d}}"></path></svg>{{ch.l}}<span class="n" style="opacity: 0.85">{{ch.dur}}</span></span>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{c.death}}" hint-placeholder-val="{{false}}">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+                  <span style="font-size: 12px; font-weight: 500; color: var(--on-sfv)">Jets contre la mort</span>
+                  <div style="display: flex; gap: 4px" aria-label="1 réussite sur 3">
+                    <span style="width: 22px; height: 22px; border-radius: 11px; background: var(--heal); color: var(--heal-c); display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.check}}"></path></svg></span>
+                    <span style="width: 22px; height: 22px; border-radius: 11px; border: 2px solid var(--ol)"></span>
+                    <span style="width: 22px; height: 22px; border-radius: 11px; border: 2px solid var(--ol)"></span>
+                  </div>
+                  <div style="display: flex; gap: 4px" aria-label="1 échec sur 3">
+                    <span style="width: 22px; height: 22px; border-radius: 4px; background: var(--dmg); color: var(--dmg-c); display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.x}}"></path></svg></span>
+                    <span style="width: 22px; height: 22px; border-radius: 4px; border: 2px solid var(--ol)"></span>
+                    <span style="width: 22px; height: 22px; border-radius: 4px; border: 2px solid var(--ol)"></span>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding: 40px 64px 0; display: grid; grid-template-columns: 5fr 4fr 3fr; gap: 48px">
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Les 15 états · icône + libellé</h2>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{conds}}" as="k" hint-placeholder-count="15">
+          <div style="height: 72px; border-radius: 12px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{k.d}}"></path></svg>
+            <span style="font-size: 12px; line-height: 16px; font-weight: 500">{{k.l}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Au toucher : résumé de la règle du SRD dans une infobulle riche (desktop) ou une feuille modale (téléphone).</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Types de dégâts</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{dmgTypes}}" as="t" hint-placeholder-count="13">
+          <span style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>{{t.l}}</span>
+        </sc-for>
+      </div>
+      <h2 style="margin: 8px 0 0; font-size: 16px; line-height: 24px; font-weight: 500">Économie d’actions</h2>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <span style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="{{I.action}}"></path></svg>Action</span>
+        <span style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="{{I.bonus}}"></path></svg>Action Bonus</span>
+        <span style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.reaction}}"></path></svg>Réaction</span>
+      </div>
+      <h2 style="margin: 8px 0 0; font-size: 16px; line-height: 24px; font-weight: 500">Puce d’état avec durée</h2>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <sc-for list="{{durChips}}" as="ch" hint-placeholder-count="4">
+          <span style="height: 32px; padding: 0 10px 0 8px; border-radius: 8px; background: var(--sf-high); border: 1px solid var(--olv); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ch.d}}"></path></svg>{{ch.l}}<span class="n" style="font-weight: 400; color: var(--on-sfv)">{{ch.dur}}</span></span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Badge de source</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start">
+        <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.book}}"></path></svg>SRD 5.2.1</span>
+        <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--tc); color: var(--on-tc); display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.flask}}"></path></svg>Bestiaire des Marches · v1.3</span>
+        <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--warn-c); color: var(--on-warn-c); display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{I.warn}}"></path></svg>Contenu modifié · v1.4 dispo</span>
+      </div>
+      <h2 style="margin: 8px 0 0; font-size: 16px; line-height: 24px; font-weight: 500">Indicateur de synchronisation</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{sync}}" as="y" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 8px; border-radius: 16px; background: var(--sf-c); color: {{y.fg}}; align-self: flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{y.d}}"></path></svg><span style="font-size: 12px; font-weight: 500; color: var(--on-sf)">{{y.l}}</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const I = {
+      shield: 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z',
+      thp: 'M12 2l8.5 5v10L12 22l-8.5-5V7z M12 8v8 M8 12h8',
+      heart: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z',
+      heal: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v8 M8 12h8',
+      dmg: 'M12 2l2.4 6.2L21 7l-4.2 5L21 17l-6.6-1.2L12 22l-2.4-6.2L3 17l4.2-5L3 7l6.6 1.2z',
+      conc: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1',
+      warn: 'M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z',
+      check: 'M5 12l5 5L20 7',
+      x: 'M6 6l12 12 M18 6L6 18',
+      book: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z',
+      flask: 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3',
+      action: 'M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14z',
+      bonus: 'M12 4l8.5 15h-17z',
+      reaction: 'M20 11a8 8 0 1 0-2.3 5.7 M20 4v7h-7',
+      cloudOk: 'M7 18a5 5 0 0 1-.5-9.98A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z M9.5 13.5l2 2 3.5-3.5',
+      cloudUp: 'M7 18a5 5 0 0 1-.5-9.98A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z M12 16v-5 M9.5 13.5L12 11l2.5 2.5',
+      cloudOff: 'M3 3l18 18 M8 18a5 5 0 0 1-1.6-9.7 M10.5 6.3A6 6 0 0 1 18 9a4.5 4.5 0 0 1 2.4 8.3',
+    };
+    const C = {
+      prone: 'M3 19h18 M5 15h9l4-2 M8 15l2-3h4 M18.5 9.5a2 2 0 1 0 0 .01',
+      grappled: 'M7 11V6a1.5 1.5 0 0 1 3 0v4 M10 9V5a1.5 1.5 0 0 1 3 0v5 M13 9V6a1.5 1.5 0 0 1 3 0v6 M16 11a1.5 1.5 0 0 1 3 0v3a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-3l-2.5-4a1.5 1.5 0 0 1 2.6-1.5L7 14',
+      deafened: 'M6 8.5a6 6 0 0 1 12 0c0 3.5-3 4.5-3 7.5a3 3 0 0 1-5.5 1.6 M3 3l18 18',
+      blinded: 'M3 3l18 18 M10.6 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3 3.8 M6.6 6.6C3.9 8.4 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6',
+      charmed: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z M19 2v4 M17 4h4',
+      frightened: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9.5h.01 M15 9.5h.01 M8 16c1-1 2-1 2.7 0s1.9 1 2.6 0 2-1 2.7 0',
+      poisoned: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z M10 12.5l4 4 M14 12.5l-4 4',
+      restrained: 'M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1',
+      exhaustion: 'M3 8h15v8H3z M21 11v2 M6 11v2',
+      stunned: 'M5 3l1 2 2 1-2 1-1 2-1-2-2-1 2-1z M18 3l.7 1.5L20 5l-1.3.5L18 7l-.7-1.5L16 5l1.3-.5z M4 14a8 3 0 1 0 16 0 8 3 0 1 0-16 0',
+      unconscious: 'M4 6h6l-6 7h6 M13 13h5l-5 6h5',
+      invisible: 'M5 21V10a7 7 0 0 1 14 0v11l-2.3-2-2.3 2-2.4-2-2.3 2-2.4-2z M9.5 10h.01 M14.5 10h.01',
+      incapacitated: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M5.6 5.6l12.8 12.8',
+      paralyzed: 'M12 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z M12 9v6 M8 21l4-6 4 6 M6 11h12',
+      petrified: 'M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 12l8-4.5 M12 12v9 M12 12L4 7.5',
+      blessed: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1',
+      out: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9l6 6 M15 9l-6 6',
+    };
+    const conds = [
+      ['À terre', C.prone], ['Agrippé', C.grappled], ['Assourdi', C.deafened], ['Aveuglé', C.blinded], ['Charmé', C.charmed],
+      ['Effrayé', C.frightened], ['Empoisonné', C.poisoned], ['Entravé', C.restrained], ['Épuisement', C.exhaustion], ['Étourdi', C.stunned],
+      ['Inconscient', C.unconscious], ['Invisible', C.invisible], ['Neutralisé', C.incapacitated], ['Paralysé', C.paralyzed], ['Pétrifié', C.petrified],
+    ].map(([l, d]) => ({ l, d }));
+    const neutral = { bg: 'var(--sf-high)', fg: 'var(--on-sf)', bd: 'var(--olv)' };
+    const concChip = { bg: 'var(--conc-c)', fg: 'var(--on-conc-c)', bd: 'transparent' };
+    const hpColor = (hp, max) => { const r = hp / max; return r > 0.5 ? 'var(--heal)' : r > 0.25 ? 'var(--warn)' : 'var(--dmg)'; };
+    const card = (o) => ({
+      bg: 'var(--sf-c)', ring: 'none', op: 1, initBg: 'var(--sf-highest)', initFg: 'var(--on-sf)', active: false, temp: 0, chips: [], death: false,
+      ...o,
+      pct: Math.round((o.hp / o.max) * 100) + '%', hpColor: hpColor(o.hp, o.max),
+      hasChips: (o.chips || []).length > 0,
+    });
+    const cards = [
+      card({ label: 'Standard · PV temporaires', name: 'Aldric Varenne', sub: 'PJ · Guerrier 5', init: 14, ca: 19, hp: 41, max: 49, temp: 5 }),
+      card({ label: 'Combattant actif', name: 'Chef de bande', sub: 'Humanoïde · FP 2', init: 18, ca: 15, hp: 31, max: 52, active: true, bg: 'var(--pc)', ring: 'inset 0 0 0 2px var(--p)', initBg: 'var(--p)', initFg: 'var(--on-p)', chips: [{ l: 'Empoisonné', dur: '· 1 rd', d: C.poisoned, ...neutral }] }),
+      card({ label: 'Concentré', name: 'Mira Solen', sub: 'PJ · Clerc 5', init: 9, ca: 18, hp: 22, max: 38, chips: [{ l: 'Concentration · Bénédiction', dur: '', d: C.blessed, ...concChip }] }),
+      card({ label: 'Sous plusieurs états', name: 'Loup 2', sub: 'Bête · FP 1/4', init: 15, ca: 12, hp: 3, max: 11, chips: [{ l: 'À terre', dur: '', d: C.prone, ...neutral }, { l: 'Agrippé', dur: '· DD 13', d: C.grappled, ...neutral }, { l: 'Effrayé', dur: '· fin tour Mira', d: C.frightened, ...neutral }] }),
+      card({ label: 'À 0 PV — PJ', name: 'Brannoc', sub: 'PJ · Magicien 5', init: 6, ca: 12, hp: 0, max: 27, death: true, bg: 'var(--sf-c)', ring: 'inset 0 0 0 1px var(--dmg)', chips: [{ l: 'Inconscient', dur: '', d: C.unconscious, bg: 'var(--dmg-c)', fg: 'var(--on-dmg-c)', bd: 'transparent' }] }),
+      card({ label: 'Hors de combat — monstre', name: 'Loup 1', sub: 'Bête · conservé par le MJ', init: 15, ca: 12, hp: 0, max: 11, op: 0.6, bg: 'var(--sf-low)', chips: [{ l: 'Hors de combat', dur: '', d: C.out, ...neutral }] }),
+    ];
+    const roles = [
+      { name: 'Primary', hex: '#84D5C4', use: 'Tour suivant, action principale', bg: '#84D5C4', fg: '#00382F' },
+      { name: 'Primary container', hex: '#1F5047', use: 'Combattant actif, sélection', bg: '#1F5047', fg: '#A6F2E0' },
+      { name: 'Secondary container', hex: '#54463A', use: 'Boutons tonaux, filtres', bg: '#54463A', fg: '#F5E0C9' },
+      { name: 'Tertiary', hex: '#E7C28A', use: 'Titres Cinzel, homebrew', bg: '#E7C28A', fg: '#422C00' },
+      { name: 'Error', hex: '#FFB4AB', use: 'Règle non respectée', bg: '#FFB4AB', fg: '#690005' },
+      { name: 'Outline', hex: '#9C8E82', use: 'Bordures actives, champs', bg: '#9C8E82', fg: '#1A1612' },
+    ];
+    const surfaces = [
+      { name: 'Lowest', hex: '#14110D', bg: '#14110D', fg: '#D3C4B6' },
+      { name: 'Surface', hex: '#1A1612', bg: '#1A1612', fg: '#D3C4B6' },
+      { name: 'Low', hex: '#221E1A', bg: '#221E1A', fg: '#D3C4B6' },
+      { name: 'Container', hex: '#27221E', bg: '#27221E', fg: '#D3C4B6' },
+      { name: 'High', hex: '#322C28', bg: '#322C28', fg: '#EDE0D6' },
+      { name: 'Highest', hex: '#3D3732', bg: '#3D3732', fg: '#EDE0D6' },
+      { name: 'Outline var.', hex: '#4F453C', bg: '#4F453C', fg: '#EDE0D6' },
+      { name: 'On surface', hex: '#EDE0D6', bg: '#EDE0D6', fg: '#1A1612' },
+    ];
+    const semantics = [
+      { name: 'Dégâts', hex: '#FF9F8F / #73241B', use: 'Pavé dégâts, perte de PV, échec', c: 'var(--dmg-c)', on: 'var(--on-dmg-c)', fg: 'var(--dmg)', d: I.dmg },
+      { name: 'Soins', hex: '#9ED98C / #24501C', use: 'Soins, réussite, PV > 50 %', c: 'var(--heal-c)', on: 'var(--on-heal-c)', fg: 'var(--heal)', d: I.heal },
+      { name: 'PV temporaires', hex: '#A7C8FF / #1C4778', use: 'Gain, réserve consommée en premier', c: 'var(--thp-c)', on: 'var(--on-thp-c)', fg: 'var(--thp)', d: I.thp },
+      { name: 'Concentration', hex: '#D4BBFF / #523A7E', use: 'Sort actif, effets liés, jet de DD', c: 'var(--conc-c)', on: 'var(--on-conc-c)', fg: 'var(--conc)', d: I.conc },
+      { name: 'Alerte', hex: '#FFC266 / #634000', use: 'Rappels de tour, expirations', c: 'var(--warn-c)', on: 'var(--on-warn-c)', fg: 'var(--warn)', d: I.warn },
+    ];
+    const dmgTypes = [
+      ['Acide', 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z M9 14a3 3 0 0 0 3 3'],
+      ['Contondants', 'M15 4l5 5-3 3-5-5z M12 7l-8 8a1.4 1.4 0 0 0 2 2l8-8'],
+      ['Feu', 'M12 22a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8a7 7 0 0 0 7 7z'],
+      ['Force', 'M12 2l10 10-10 10L2 12z M12 7l5 5-5 5-5-5z'],
+      ['Foudre', 'M13 2L4 14h7l-1 8 9-12h-7z'],
+      ['Froid', 'M12 2v20 M3.3 7l17.4 10 M3.3 17L20.7 7 M9 4l3 2 3-2 M9 20l3-2 3 2'],
+      ['Nécrotiques', 'M12 3a8 8 0 0 0-8 8c0 3 1.5 4.5 3 5.5V20h10v-3.5c1.5-1 3-2.5 3-5.5a8 8 0 0 0-8-8z M9 11h.01 M15 11h.01 M10 20v-2 M14 20v-2'],
+      ['Perforants', 'M4 20L20 4 M14 4h6v6'],
+      ['Poison', 'M9 3h6 M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3 M7.5 15h9'],
+      ['Psychiques', 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M5.6 5.6a9 9 0 0 1 12.8 0 M18.4 18.4a9 9 0 0 1-12.8 0'],
+      ['Radiants', 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.9 4.9l1.4 1.4 M17.7 17.7l1.4 1.4 M4.9 19.1l1.4-1.4 M17.7 6.3l1.4-1.4'],
+      ['Tonnerre', 'M2 12h1 M6 8v8 M10 5v14 M14 8v8 M18 10v4 M22 12h-1'],
+      ['Tranchants', 'M5 19L19 5 M9 20L20 9 M4 15L15 4'],
+    ].map(([l, d]) => ({ l, d }));
+    const durChips = [
+      { l: 'Empoisonné', dur: '2 rounds', d: C.poisoned },
+      { l: 'Effrayé', dur: 'fin du tour de Mira', d: C.frightened },
+      { l: 'Entravé', dur: 'JS FOR DD 13', d: C.restrained },
+      { l: 'Charmé', dur: 'indéfinie', d: C.charmed },
+    ];
+    const sync = [
+      { l: 'Synchronisé', d: I.cloudOk, fg: 'var(--heal)' },
+      { l: '3 modifications en attente', d: I.cloudUp, fg: 'var(--thp)' },
+      { l: 'Hors-ligne — tout reste disponible', d: I.cloudOff, fg: 'var(--on-sfv)' },
+      { l: 'Conflit résolu — voir le détail', d: I.warn, fg: 'var(--warn)' },
+    ];
+    return { I, cards, roles, surfaces, semantics, conds, dmgTypes, durChips, sync };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+Empoigneur
+Don général
+SRD 5.2.1
+Prérequis : niveau 4 ou supérieur, Force ou Dextérité 13 ou plus.
+
+Augmentation de caractéristique. +1 en Force ou en Dextérité, jusqu’à un maximum de 20.
+
+Frappe et empoignade. Quand vous touchez à mains nues lors de l’action Attaque, vous pouvez infliger les dégâts et agripper en même temps, une fois par tour.
+
+Attaque avec avantage. Avantage aux attaques contre une créature que vous agrippez.
+
+Lutteur rapide. Votre Vitesse n’est pas divisée par deux quand vous déplacez une créature agrippée de votre taille ou plus petite.
+
+Personnages des Marches de Brumeval
+Aldric Varenne
+Éligible · Guerrier 5, FOR 18 · prochain don au niveau 6
+Thalia
+Éligible · Roublarde 5, DEX 18
+Mira Solen
+Non éligible : FOR 12 et DEX 10, il faut 13 dans l’une des deux

@@ -1,0 +1,147 @@
+Accueil
+Table
+Combat
+Compendium
+Homebrew
+Les Marches de Brumeval · Séance 12
+Embuscade sur la route
+3 en attente
+Annuler
+Étude · Influence · Observation
+Fin de rencontre
+Tour suivant
+Round 3
+Initiative
+22
+Thalia
+PJ · Roublarde 5
+15
+33 / 33
+Réaction utilisée
+18
+Chef de bande
+En cours
+Humanoïde · FP 2
+15
+31 / 52
+Empoisonné · expire
+15
+Loup 1
+Hors de combat
+12
+0 / 11
+15
+Loup 2
+Bête · FP 1/4
+12
+6 / 11
+À terre
+14
+Aldric Varenne
+PJ · Guerrier 5
+19
+41 / 49
++
+5
+Réaction disponible
+12
+Bandit 1
+Humanoïde · FP 1/8
+12
+11 / 11
+12
+Bandit 2
+Humanoïde · FP 1/8
+12
+4 / 11
+Effrayé · JS SAG
+12
+Bandit 3
+Hors de combat
+12
+0 / 11
+9
+Mira Solen
+PJ · Clerc 5 · sélectionnée
+18
+10 / 38
+Concentration · Bénédiction
+Réaction disponible
+6
+Brannoc
+PJ · Magicien 5
+12
+0 / 27
+Inconscient · 1 ✓ 1 ✕
+MS
+Mira Solen
+PJ · Humaine · Clerc 5 · joueuse : Inès
+18
+CA
++0
+Initiative
+9 m
+Vitesse
+16
+Percep. passive
+Jet de concentration · Constitution DD 10
+12 dégâts subis → DD = 10 (la moitié, 6, est plus basse). Mira ajoute +2 (CON). Échec : Bénédiction prend fin et Béni est retiré d’Aldric, Thalia et Brannoc.
+Échec
+Réussite
+Points de vie
+10
+/ 38
+Gravement blessée
+PV temporaires : 0 · Dés de vie : 5 d8
+Dégâts
+Soins
+PV temp.
+Valeur
+Type
+Tranchants
+Appliquer
+États et effets
+Bénédiction · 8 rounds restants
+Ajouter un état
+Effet lié : Béni sur Aldric, Thalia, Brannoc (+1d4 aux jets d’attaque et de sauvegarde).
+Jets de sauvegarde
+FOR
++1
+DEX
++0
+CON
++2
+INT
++0
+SAG
++6
+CHA
++5
+Fond clair = maîtrise (SAG, CHA)
+Emplacements de sorts
+1er
+2e
+3e
+Conduit divin 1 / 2
+Journal
+20 actions annulables
+Tout
+PV
+États
+Étude
+Chef de bande → Mira Solen : 12 tranchants (22 → 10)
+R3 · 21:42
+Concentration de Mira : JS de CON DD 10 en attente
+R3 · 21:42
+Début du tour de Chef de bande : Empoisonné expire en fin de tour
+R3 · 21:41
+Thalia → Bandit 3 : 13 perforants — hors de combat
+R3 · 21:40
+Brannoc : jet contre la mort, échec (1 ✓ · 1 ✕)
+R2 · 21:38
+Étude — Thalia, Histoire 16 contre DD 15 : palier révélé « le chef porte le sceau de la Guilde du Sel »
+R2 · 21:37
+Loup 2 → Brannoc : 8 perforants (5 → 0), Inconscient
+R2 · 21:36
+Mira lance Bénédiction (concentration) : Aldric, Thalia, Brannoc
+R1 · 21:31

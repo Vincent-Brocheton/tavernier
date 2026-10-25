@@ -1,0 +1,15 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+Accueil
+Stockage persistant refusé par le navigateur
+Il pourrait effacer vos données hors-ligne s’il manque de place. Tant que vous êtes connecté, la synchronisation en garde une copie dans le cloud.
+Comment l’autoriser
+Redemander
+Aucune sauvegarde depuis 32 jours
+Ni synchronisation ni export sur cet appareil. Exportez vos données pour ne rien perdre.
+Plus tard
+Exporter maintenant
+Version Web uniquement pour le premier bandeau ; le second s’affiche sur toutes les plateformes. Le second apparaît après 30 jours sans synchronisation ni export (ENF-12).

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Constructeur d’effets</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 960px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Retour à la sous-classe" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Gardien du rempart · niveau 3</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Aptitude : Rempart vivant</h1></div>
+    <button disabled="{{saveDis}}" style="height: 40px; padding: 0 20px; border-radius: 20px; background: {{saveBg}}; color: {{saveFg}}; font-size: 14px; font-weight: 600">Enregistrer l’aptitude</button>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <aside aria-label="Opérations disponibles" style="flex: 0 1 260px; min-width: 220px; border-radius: 16px; background: var(--sf-low); padding: 12px; display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0 4px 2px; font-size: 14px; line-height: 20px; font-weight: 500">Ajouter un effet</h2>
+      <span style="margin: 0 4px 6px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Liste fermée : pas de formule libre, pas de code.</span>
+      <sc-for list="{{palette}}" as="o" hint-placeholder-count="10">
+        <button onClick="{{o.add}}" style="min-height: 44px; border-radius: 12px; background: var(--sf-c); padding: 0 12px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; text-align: left"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{o.d}}"></path></svg><span style="flex: 1">{{o.l}}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84D5C4" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></button>
+      </sc-for>
+    </aside>
+
+    <main style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <sc-for list="{{rules}}" as="r" hint-placeholder-count="2">
+        <section aria-label="Effet {{r.i}}" style="border-radius: 16px; background: var(--sf-c); box-shadow: {{r.ring}}; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span class="n" style="width: 28px; height: 28px; border-radius: 14px; background: var(--sf-highest); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{r.i}}</span>
+            <span style="flex: 1; font-size: 13px; font-weight: 600; color: var(--on-sfv)">{{r.title}}</span>
+            <button aria-label="Supprimer l’effet {{r.i}}" onClick="{{r.del}}" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16 M9 7V4h6v3 M6 7l1 13h10l1-13"></path></svg></button>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 15px; line-height: 22px">
+            <sc-for list="{{r.segs}}" as="s" hint-placeholder-count="5">
+              <sc-if value="{{s.kw}}" hint-placeholder-val="{{true}}"><span style="color: var(--on-sfv)">{{s.t}}</span></sc-if>
+              <sc-if value="{{s.chip}}" hint-placeholder-val="{{false}}"><button style="height: 36px; padding: 0 10px 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 500">{{s.t}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></sc-if>
+              <sc-if value="{{s.val}}" hint-placeholder-val="{{false}}"><span style="height: 36px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center"><button aria-label="Diminuer" onClick="{{s.dec}}" style="width: 36px; height: 36px; font-size: 18px">−</button><span class="n" style="min-width: 28px; text-align: center; font-weight: 700">{{s.t}}</span><button aria-label="Augmenter" onClick="{{s.inc}}" style="width: 36px; height: 36px; font-size: 18px">+</button></span></sc-if>
+              <sc-if value="{{s.miss}}" hint-placeholder-val="{{false}}"><button style="height: 36px; padding: 0 12px; border-radius: 8px; border: 2px dashed var(--e); color: var(--e); font-size: 14px; font-weight: 500">{{s.t}}</button></sc-if>
+            </sc-for>
+          </div>
+          <sc-if value="{{r.incomplete}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; color: var(--e)">Complétez les paramètres en pointillés pour enregistrer.</span></sc-if>
+        </section>
+      </sc-for>
+      <sc-if value="{{noRules}}" hint-placeholder-val="{{false}}"><div style="border-radius: 16px; border: 1px dashed var(--ol); padding: 32px; text-align: center; font-size: 14px; color: var(--on-sfv)">Aucun effet. Choisissez une opération à gauche.</div></sc-if>
+    </main>
+
+    <aside aria-label="Aperçu" style="flex: 1 1 280px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <section style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 12px; font-weight: 500; color: var(--on-sfv)">Ce que le joueur lira</span>
+        <h3 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 600">Rempart vivant <span style="font-weight: 400; color: var(--on-sfv)">· niveau 3</span></h3>
+        <sc-for list="{{preview}}" as="p" hint-placeholder-count="2"><p style="margin: 0; font-size: 14px; line-height: 20px">{{p}}</p></sc-for>
+      </section>
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 13px; font-weight: 500">Effets sur la fiche</span>
+        <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">La CA calculée inclura le bonus avec sa source (« +{{acVal}} Rempart vivant »). La réaction apparaîtra dans l’onglet Combat avec son compteur.</span>
+      </section>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { ac: 1, rules: ['ac', 'reaction'], next: 1 };
+  }
+  renderVals() {
+    const { ac, rules } = this.state;
+    const P = [
+      ['mod', 'Modifier une valeur', 'M5 12h14 M12 5v14'],
+      ['prof', 'Accorder une maîtrise', 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z'],
+      ['adv', 'Accorder l’Avantage', 'M12 19V5 M5 12l7-7 7 7'],
+      ['res', 'Résistance aux dégâts', 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z'],
+      ['dmg', 'Dégâts supplémentaires', 'M12 2l2.4 6.2L21 7l-4.2 5L21 17l-6.6-1.2L12 22l-2.4-6.2L3 17l4.2-5L3 7l6.6 1.2z'],
+      ['uses', 'Ressource à utilisations', 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2'],
+      ['react', 'Réaction', 'M20 11a8 8 0 1 0-2.3 5.7 M20 4v7h-7'],
+      ['bonus', 'Action Bonus', 'M12 4l8.5 15h-17z'],
+      ['cond', 'Imposer un état', 'M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1'],
+      ['heal', 'Soins ou PV temporaires', 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v8 M8 12h8'],
+    ];
+    const labelOf = Object.fromEntries(P.map(([k, l]) => [k, l]));
+    const palette = P.map(([k, l, d]) => ({ l, d, add: () => this.setState({ rules: [...rules, k] }) }));
+    const kw = (t) => ({ t, kw: true, chip: false, val: false, miss: false });
+    const chip = (t) => ({ t, kw: false, chip: true, val: false, miss: false });
+    const miss = (t) => ({ t, kw: false, chip: false, val: false, miss: true });
+    const val = (t, inc, dec) => ({ t, inc, dec, kw: false, chip: false, val: true, miss: false });
+    const del = (idx) => () => this.setState({ rules: rules.filter((_, i) => i !== idx) });
+    const preview = [];
+    const ruleViews = rules.map((k, idx) => {
+      let segs, title, incomplete = false;
+      if (k === 'ac') {
+        title = 'Modifier une valeur';
+        segs = [kw('Tant que'), chip('vous portez un bouclier'), kw(','), chip('Classe d’armure'), val('+' + ac, () => this.setState({ ac: Math.min(5, ac + 1) }), () => this.setState({ ac: Math.max(1, ac - 1) }))];
+        preview.push('Tant que vous portez un bouclier, vous gagnez un bonus de +' + ac + ' à la Classe d’armure.');
+      } else if (k === 'reaction') {
+        title = 'Réaction';
+        segs = [kw('Déclencheur :'), chip('une créature attaque un allié'), chip('à 1,50 m ou moins'), kw('→'), chip('imposer le Désavantage'), kw('à ce jet d’attaque ·'), chip('nombre = bonus de maîtrise'), kw('par'), chip('Repos long')];
+        preview.push('Réaction. Quand une créature attaque un allié situé à 1,50 m ou moins de vous, vous imposez le Désavantage à ce jet d’attaque. Utilisable un nombre de fois égal à votre bonus de maîtrise, par Repos long.');
+      } else {
+        title = labelOf[k];
+        incomplete = true;
+        segs = k === 'mod' ? [kw('Tant que'), miss('condition (optionnelle)'), kw(','), miss('valeur à modifier'), miss('montant')]
+          : k === 'res' ? [kw('Résistance aux dégâts'), miss('type de dégâts'), kw('tant que'), miss('condition (optionnelle)')]
+          : [kw(labelOf[k] + ' :'), miss('cible'), miss('paramètre')];
+      }
+      return { i: idx + 1, title, segs, incomplete, ring: incomplete ? 'inset 0 0 0 1px var(--e)' : 'none', del: del(idx) };
+    });
+    const bad = ruleViews.some((r) => r.incomplete) || ruleViews.length === 0;
+    return { palette, rules: ruleViews, noRules: ruleViews.length === 0, preview, acVal: ac, saveDis: bad, saveBg: bad ? 'rgba(237,224,214,0.12)' : 'var(--p)', saveFg: bad ? 'rgba(237,224,214,0.5)' : 'var(--on-p)' };
+  }
+}
+</script>
+</body>
+</html>

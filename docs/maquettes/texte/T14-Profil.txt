@@ -1,0 +1,35 @@
+Profil et réglages
+H
+Hugo
+hugo@exemple.fr
+Modifier
+Affichage
+Langue
+Français
+Taille du texte
+100 %
+85 %
+200 %
+Thème
+Sombre
+Clair
+Système
+Le thème clair arrive dans une prochaine version.
+Rapports de plantage
+Sans données de jeu ni contenu personnel
+Appareils connectés
+Téléphone Android
+Cet appareil · actif maintenant
+Chrome sur Windows
+Il y a 2 jours
+Déconnecter
+Tablette
+Il y a 3 semaines
+Déconnecter
+Mes données
+Exporter toutes mes données
+Fichier JSON : fiches, tables, packs, notes
+Sauvegarde locale
+Dernière synchronisation : il y a 3 min
+Supprimer mon compte
+Se déconnecter

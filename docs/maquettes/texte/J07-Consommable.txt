@@ -1,0 +1,13 @@
+Inventaire
+Utiliser
+Aldric Varenne · inventaire
+Potion de guérison
+Action Bonus · 2d4 + 2 PV · ×2 dans le sac
+Saisir mon jet (2d4)
+Lancer
+Formule : 2d4 + 2
+Résultat : 2d4 (3, 2) + 2 = 7
+PV 34 → 41 / 49 · potions 2 → 1
+Annuler
+Boire la potion
+Inscrit dans l’historique de la fiche.

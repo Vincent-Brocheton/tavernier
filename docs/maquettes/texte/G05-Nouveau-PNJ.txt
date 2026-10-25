@@ -1,0 +1,22 @@
+Nouveau PNJ
+Les Marches de Brumeval
+Bloc de stats
+Format monstre : rapide à préparer, idéal pour un adversaire ou un figurant.
+Partir d’un monstre du bestiaire (SRD ou packs actifs) ou d’un bloc vide
+Informations d’Étude par palier
+Ajout direct aux rencontres
+Fiche complète
+Même assistant que les personnages joueurs, pour un allié récurrent ou un PNJ qui progresse.
+Classe, espèce, historique, niveau libre
+Aucune contrainte de méthode de caractéristiques
+Montée de niveau et repos comme un PJ
+Nom *
+Maître Odran
+Partir de
+Roturier · SRD 5.2.1
+Dossier
+Relais du Sel
+Attitude initiale
+Indifférent
+Annuler
+Créer le PNJ

@@ -1,0 +1,15 @@
+Bienvenue
+Un compte sert à rejoindre des tables et à synchroniser vos fiches.
+Connexion
+Inscription
+Pseudonyme affiché
+E-mail
+Mot de passe
+Date de naissance
+Il faut avoir au moins 15 ans pour créer un compte.
+Créer le compte
+ou
+Continuer avec Google
+Continuer avec Apple
+
+La première connexion demande le réseau, ensuite tout fonctionne hors-ligne. Politique de confidentialité

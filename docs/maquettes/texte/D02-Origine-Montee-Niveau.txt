@@ -1,0 +1,20 @@
+Bouton « Monter de niveau » : toujours avec son origine
+Le bouton dépend du mode de progression de la table et dit d’où il vient. Sans déverrouillage, l’en-tête de la fiche montre la progression à la place ([2c]).
+Table en PX, sous le seuil
+PX
+7 475 / 14 000 PX · niveau 6 au seuil
+Table en PX, seuil atteint
+PX
+Seuil de 14 000 PX atteint
+Monter au niveau 6
+Table en jalons, en attente
+Jalons
+Prochain jalon : décidé par le MJ
+Table en jalons, niveau accordé
+Jalons
+Niveau 6 accordé par Camille · « Varga capturée, le relais du Sel libéré »
+Monter au niveau 6
+Les deux modes : dérogation
+Dérogation
+Niveau 6 accordé par Camille (dérogation) · tracé dans l’historique
+Monter au niveau 6

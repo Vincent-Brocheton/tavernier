@@ -1,0 +1,29 @@
+Espèce
+Peuples de la frontière · v0.2.0 · brouillon
+Nom *
+Brumelin
+Taille *
+Petite
+Moyenne
+Vitesse *
+9 m
+Type de créature
+Humanoïde
+Traits
+Vision dans le noir
+Portée 18 m
+Modifier
+Pas de brume
+Avantage aux tests de Dextérité (Discrétion) dans une zone de brouillard
+Modifier
+Agilité du marais
+1 effet : +2 en Dextérité
+Modifier
+Pas de bonus de caractéristique
+En 2024, les bonus de caractéristique viennent de l’Historique, jamais de l’espèce.
+Retirer l’effet
+En faire un don d’origine
+Sous-lignées · 2
+Gérer
+Tester
+Enregistrer

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Créer une table</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gT07"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT07)"></rect></svg>
+    <div style="position: relative; height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px">
+      <button aria-label="Annuler" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <h1 class="d" style="margin: 0; flex: 1; font-size: 24px; line-height: 32px; font-weight: 600; color: var(--t)">Nouvelle table</h1>
+      <button style="height: 40px; padding: 0 24px; border-radius: 20px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Créer la table</button>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 32px; align-items: flex-start">
+    <main style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section aria-label="Identité" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <label style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 16px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Nom de la table *</span><input aria-label="Nom de la table" value="Les Marches de Brumeval" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+          <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 16px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Description</span><textarea aria-label="Description" rows="3" style="border: 0; outline: 0; background: transparent; font-size: 15px; line-height: 22px; padding: 0; resize: none">Campagne de frontière, toutes les deux semaines le vendredi. Niveau 1 à 10 environ.</textarea></label>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="flex: 1; font-size: 15px">Niveau de départ des personnages</span>
+            <button aria-label="Diminuer" disabled="true" style="width: 40px; height: 40px; border-radius: 20px; border: 1px solid rgba(237,224,214,0.12); color: rgba(237,224,214,0.38); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+            <span class="n" style="width: 32px; text-align: center; font-size: 22px; font-weight: 600">1</span>
+            <button aria-label="Augmenter" style="width: 40px; height: 40px; border-radius: 20px; border: 1px solid var(--ol); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></button>
+          </div>
+        </div>
+        <button aria-label="Ajouter une image de couverture (optionnel)" style="min-height: 180px; border-radius: 12px; border: 2px dashed var(--ol); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--on-sfv); padding: 12px; text-align: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3z M3 16l5-5 4 4 3-3 6 6 M15.5 9a1.5 1.5 0 1 0 0-.01"></path></svg><span style="font-size: 13px">Image de couverture<br>(optionnelle)</span></button>
+      </section>
+
+      <section aria-label="Méthode de caractéristiques" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <div><h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Méthode de caractéristiques</h2><span style="font-size: 13px; color: var(--on-sfv)">Imposée à toutes les créations de personnage de la table.</span></div>
+        <div role="radiogroup" aria-label="Méthode" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{methods}}" as="m" hint-placeholder-count="3">
+            <button role="radio" aria-checked="{{m.on}}" onClick="{{m.pick}}" style="text-align: left; min-height: 104px; border-radius: 12px; background: {{m.bg}}; box-shadow: {{m.ring}}; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+              <span style="display: flex; align-items: center; gap: 10px"><span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{m.rc}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{m.dot}}"></span></span><span style="font-size: 15px; font-weight: 600">{{m.l}}</span></span>
+              <span class="n" style="font-size: 12px; line-height: 16px; color: {{m.sFg}}">{{m.s}}</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Repos, points de vie et progression" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+        <div role="radiogroup" aria-label="Règle du repos long" style="display: flex; flex-direction: column; gap: 6px">
+          <h2 style="margin: 0 0 4px; font-size: 16px; line-height: 24px; font-weight: 500">Repos long</h2>
+          <sc-for list="{{rests}}" as="o" hint-placeholder-count="2">
+            <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="min-height: 56px; text-align: left; display: flex; align-items: center; gap: 12px">
+              <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{o.rc}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{o.dot}}"></span></span>
+              <span style="display: flex; flex-direction: column"><span style="font-size: 15px">{{o.l}}</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{o.s}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">PV à la montée de niveau</h2>
+          <div role="radiogroup" aria-label="PV à la montée de niveau" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+            <sc-for list="{{hps}}" as="h" hint-placeholder-count="2">
+              <button role="radio" aria-checked="{{h.on}}" onClick="{{h.pick}}" style="flex: 1; background: {{h.bg}}; color: {{h.fg}}; border-left: {{h.bl}}; font-size: 14px; font-weight: 500">{{h.l}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{hpHint}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Progression des personnages</h2>
+          <div role="radiogroup" aria-label="Progression" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+            <sc-for list="{{progs}}" as="g" hint-placeholder-count="2">
+              <button role="radio" aria-checked="{{g.on}}" onClick="{{g.pick}}" style="flex: 1; background: {{g.bg}}; color: {{g.fg}}; border-left: {{g.bl}}; font-size: 14px; font-weight: 500">{{g.l}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{progHint}}</span>
+        </div>
+      </section>
+
+      <section aria-label="Packs actifs" style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+        <div style="padding: 12px 20px 4px"><h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Packs actifs</h2><span style="font-size: 13px; color: var(--on-sfv)">La version est figée pour la table ; les joueurs reçoivent les packs par la synchronisation.</span></div>
+        <sc-for list="{{packs}}" as="p" hint-placeholder-count="3">
+          <div style="min-height: 64px; padding: 6px 20px; display: flex; align-items: center; gap: 12px">
+            <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{p.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{p.s}}</span></span>
+            <sc-if value="{{p.showVer}}" hint-placeholder-val="{{false}}"><span class="n" style="height: 28px; padding: 0 10px 0 8px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{p.ver}}</span></sc-if>
+            <sc-if value="{{p.locked}}" hint-placeholder-val="{{false}}"><button style="height: 36px; padding: 0 12px; border-radius: 18px; color: var(--p); font-size: 13px; font-weight: 500">Bannir des entités…</button></sc-if>
+            <button role="switch" aria-checked="{{p.on}}" aria-label="Activer {{p.n}}" aria-disabled="{{p.dis}}" onClick="{{p.toggle}}" style="width: 52px; height: 32px; border-radius: 16px; background: {{p.trk}}; border: {{p.bd}}; display: flex; align-items: center; justify-content: {{p.jc}}; padding: 0 4px; opacity: {{p.op}}"><span style="width: {{p.th}}; height: {{p.th}}; border-radius: 12px; background: {{p.thumb}}"></span></button>
+          </div>
+        </sc-for>
+      </section>
+    </main>
+
+    <aside aria-label="Résumé" style="flex: 1 1 280px; max-width: 340px; min-width: 0; position: relative; overflow: hidden; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gT07b"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT07b)"></rect></svg>
+      <span style="position: relative; font-size: 12px; font-weight: 500; color: var(--on-sfv)">Aperçu de la carte</span>
+      <span class="d" style="position: relative; font-size: 22px; line-height: 28px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</span>
+      <sc-for list="{{summary}}" as="s" hint-placeholder-count="5">
+        <div style="position: relative; display: flex; gap: 8px; font-size: 14px; line-height: 20px"><span style="width: 110px; flex: none; color: var(--on-sfv)">{{s.k}}</span><span>{{s.v}}</span></div>
+      </sc-for>
+      <span style="position: relative; margin-top: 6px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Tout reste modifiable dans Configuration. Étape suivante : inviter les joueurs.</span>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { method: 'points', rest: 'full', hp: 'avg', prog: 'xp', marches: true, ines: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const radio = (on) => ({ on: on ? 'true' : 'false', rc: on ? 'var(--p)' : 'var(--ol)', dot: on ? 'var(--p)' : 'transparent' });
+    const M = [['standard', 'Valeurs standard', '15, 14, 13, 12, 10, 8 à répartir'], ['points', 'Acquisition par points', '27 points, valeurs de 8 à 15'], ['random', 'Génération aléatoire', '4d6, on retire le plus faible, six fois']];
+    const methods = M.map(([id, l, s]) => { const on = st.method === id; return { l, s, ...radio(on), bg: on ? 'var(--pc)' : 'var(--sf-high)', ring: on ? 'inset 0 0 0 2px var(--p)' : 'none', sFg: on ? 'var(--on-pc)' : 'var(--on-sfv)', pick: () => this.setState({ method: id }) }; });
+    const rests = [['full', 'Récupération totale des PV', 'Règle de base du SRD'], ['dice', 'Récupération par dés de vie', 'Les PV ne remontent qu’en dépensant des dés de vie']].map(([id, l, s]) => ({ l, s, ...radio(st.rest === id), pick: () => this.setState({ rest: id }) }));
+    const hps = [['avg', 'Moyenne fixe'], ['roll', 'Jet de dé']].map(([id, l], i) => { const on = st.hp === id; return { l, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', bl: i ? '1px solid var(--ol)' : 'none', pick: () => this.setState({ hp: id }) }; });
+    const sw = (on, locked) => ({ on: on ? 'true' : 'false', dis: locked ? 'true' : 'false', op: locked ? 0.6 : 1, trk: on ? 'var(--p)' : 'var(--sf-highest)', bd: on ? '2px solid var(--p)' : '2px solid var(--ol)', jc: on ? 'flex-end' : 'flex-start', th: on ? '24px' : '16px', thumb: on ? 'var(--on-p)' : 'var(--ol)' });
+    const packs = [
+      { n: 'SRD 5.2.1', s: 'Toujours actif · désactivable entité par entité', showVer: false, ver: '', locked: true, ...sw(true, true), toggle: () => null },
+      { n: 'Bestiaire des Marches', s: 'Homebrew · le mien · 42 monstres', showVer: st.marches, ver: 'Version figée 1.3', locked: false, ...sw(st.marches, false), toggle: () => this.setState({ marches: !st.marches }) },
+      { n: 'Sorts d’Inès', s: 'Importé · 18 sorts, 1 sous-classe', showVer: st.ines, ver: 'Version figée 2.0', locked: false, ...sw(st.ines, false), toggle: () => this.setState({ ines: !st.ines }) },
+    ];
+    const mLabel = { standard: 'Valeurs standard', points: 'Acquisition par points', random: 'Génération aléatoire' }[st.method];
+    const summary = [
+      { k: 'Niveau de départ', v: '1' },
+      { k: 'Caractéristiques', v: mLabel },
+      { k: 'Repos long', v: st.rest === 'full' ? 'Récupération totale' : 'Par dés de vie' },
+      { k: 'PV par niveau', v: st.hp === 'avg' ? 'Moyenne fixe' : 'Jet de dé' },
+      { k: 'Progression', v: st.prog === 'xp' ? 'Points d’expérience' : 'Jalons' },
+      { k: 'Packs', v: ['SRD 5.2.1', st.marches ? 'Bestiaire des Marches 1.3' : null, st.ines ? 'Sorts d’Inès 2.0' : null].filter(Boolean).join(', ') },
+    ];
+    const hpHint = st.hp === 'avg' ? 'Exemple Guerrier : 6 + modificateur de CON à chaque niveau.' : 'Le joueur lance 1d10 (Guerrier) ; le résultat est tracé dans l’historique.';
+    const progs = [['xp', 'Points d’expérience'], ['ms', 'Jalons']].map(([id, l], i) => { const on = st.prog === id; return { l, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', bl: i ? '1px solid var(--ol)' : 'none', pick: () => this.setState({ prog: id }) }; });
+    const progHint = st.prog === 'xp' ? 'Les PX des rencontres s’ajoutent aux fiches à la clôture de chaque séance ; le niveau suit les seuils du SRD.' : 'Pas de PX sur les fiches : à la clôture d’une séance, vous décidez qui passe au niveau suivant. La jauge de difficulté des rencontres reste calculée en PX.';
+    return { methods, rests, hps, progs, progHint, packs, summary, hpHint };
+  }
+}
+</script>
+</body>
+</html>

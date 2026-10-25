@@ -1,0 +1,46 @@
+Aldric Varenne
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+ATTAQUES · 2 PAR ACTION ATTAQUE
+Épée longue
+Tranchants · polyvalente (1d10 à deux mains)
++7
+toucher
+1d8 + 4
+dégâts
+Botte : Sape
+Critique sur 19 ou 20
+Si vous touchez, la cible subit le Désavantage à son prochain jet d’attaque avant le début de votre tour suivant.
+Javeline
+Perforants · lancer 9 / 36 m · 4 en réserve
++7
+toucher
+1d6 + 4
+dégâts
+Botte : Ralentissement
+Critique sur 19 ou 20
+Si vous touchez et infligez des dégâts, sa Vitesse baisse de 3 m jusqu’au début de votre tour suivant.
+Mains nues
+Contondants · pas de botte
++7
+toucher
+5
+dégâts
+RESSOURCES
+Second souffle
+Action Bonus · 1d10 + 5 PV
+1 au repos court
+Utiliser
+Fougue
+Une action en plus à votre tour
+repos court ou long
+Utiliser
+Bottes d’arme 4 / 4
+Épée longue · Sape
+Javeline · Ralentissement
+Hache d’armes · Renversement
+Épée à deux mains · Écorchure
+Un choix modifiable à chaque repos long.

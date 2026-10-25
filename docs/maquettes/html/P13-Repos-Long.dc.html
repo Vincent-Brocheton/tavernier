@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Repos long</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column">
+    <div style="height: 64px; background: var(--sf-low)"></div>
+    <div style="height: 104px; background: var(--sf-low); padding: 4px 16px; display: flex; gap: 14px; align-items: center"><div style="width: 64px; height: 64px; border-radius: 32px; background: var(--sc)"></div><span class="d" style="font-size: 24px; font-weight: 600; color: var(--t)">Aldric Varenne</span></div>
+    <div style="margin: 16px; height: 150px; border-radius: 16px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-label="Repos long" style="position: absolute; left: 24px; right: 24px; top: 96px; border-radius: 28px; background: var(--sf-high); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84D5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"></path></svg>
+      <h2 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 400">Repos long</h2>
+      <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Au moins 8 heures, dont 6 de sommeil. Règle de la table : <strong style="color: var(--on-sf)">récupération totale des PV</strong>.</p>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+      <sc-for list="{{gains}}" as="g" hint-placeholder-count="5">
+        <li style="min-height: 44px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--olv)">
+          <span style="flex: 1; font-size: 14px">{{g.l}}</span>
+          <span class="n" style="font-size: 14px; font-weight: 600; color: {{g.fg}}">{{g.v}}</span>
+        </li>
+      </sc-for>
+    </ul>
+    <label style="min-height: 48px; display: flex; align-items: center; gap: 14px; cursor: pointer">
+      <span style="width: 18px; height: 18px; border-radius: 2px; background: var(--p); color: var(--on-p); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
+      <input type="checkbox" checked aria-label="Revoir mes bottes d’armes ensuite" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+      <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">Revoir mes bottes d’armes ensuite</span><span style="font-size: 12px; color: var(--on-sfv)">Possible uniquement après un repos long</span></span>
+    </label>
+    <div style="display: flex; justify-content: flex-end; gap: 8px">
+      <button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Annuler</button>
+      <button style="height: 40px; padding: 0 16px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 600">Terminer le repos</button>
+    </div>
+  </section>
+  <span class="n" style="position: absolute; left: 24px; right: 24px; bottom: 32px; text-align: center; font-size: 12px; color: var(--on-sfv)">Prochain repos long possible 16 h après celui-ci.</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const up = 'var(--heal)', same = 'var(--on-sfv)';
+    return { gains: [
+      { l: 'Points de vie', v: '41 → 49', fg: up },
+      { l: 'Dés de vie', v: '2 → 5 d10', fg: up },
+      { l: 'Épuisement', v: '1 → 0', fg: up },
+      { l: 'Inspiration héroïque (Ingénieux)', v: 'Obtenue', fg: up },
+      { l: 'Second souffle, Fougue', v: 'Déjà pleins', fg: same },
+    ] };
+  }
+}
+</script>
+</body>
+</html>

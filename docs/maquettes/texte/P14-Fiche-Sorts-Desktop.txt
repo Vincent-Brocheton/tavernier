@@ -1,0 +1,131 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+MS
+Mira Solen
+Humaine · Clerc 5 (Domaine de la Vie) · Acolyte
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+14
+DD des sorts
++6
+Attaque de sort
+Emplacements
+1er
+2 / 4
+2e
+3 / 3
+3e
+1 / 2
+Concentration en cours
+Bénédiction
+Aldric, Thalia, Brannoc · jusqu’à 1 minute
+Mettre fin
+Préparés : 9 / 9 · plus 6 sorts de domaine toujours préparés (Aide, Bénédiction, Mot de guérison de groupe, Restauration partielle, Retour à la vie, Soins)
+Tous
+Préparés
+Concentration
+Rituels
+SORTS MINEURS
+Assistance
+Divination · action
+C
+Lancer
+Flamme sacrée
+Évocation · action
+Lancer
+Lumière
+Évocation · action
+Lancer
+Thaumaturgie
+Transmutation · action
+Lancer
+1ER NIVEAU
+Bénédiction
+Enchantement · action
+Domaine
+C
+Lancer
+Bouclier de la foi
+Abjuration · action Bonus
+C
+Lancer
+Détection de la magie
+Divination · action
+C
+R
+Lancer
+Injonction
+Enchantement · action
+Lancer
+Mot de guérison
+Abjuration · action Bonus · 2d4 + 6 PV (dont +3 Disciple de la Vie)
+Lancer
+Sanctuaire
+Abjuration · action Bonus
+Lancer
+Soins
+Abjuration · action · 2d8 + 6 PV (dont +3 Disciple de la Vie)
+Domaine
+Lancer
+2E NIVEAU
+Aide
+Abjuration · action
+Domaine
+Lancer
+Arme spirituelle
+Évocation · action Bonus
+C
+Lancer
+Restauration partielle
+Abjuration · action
+Domaine
+Lancer
+Silence
+Illusion · action
+C
+R
+Lancer
+3E NIVEAU
+Dissipation de la magie
+Abjuration · action
+Lancer
+Esprits gardiens
+Invocation · action
+C
+Lancer
+Mot de guérison de groupe
+Abjuration · action Bonus · 2d4 + 8 PV au 3e niveau (dont +5 Disciple de la Vie)
+Domaine
+Lancer
+Retour à la vie
+Nécromancie · action
+Domaine
+Lancer
+Esprits gardiens
+Invocation du 3e niveau
+SRD 5.2.1
+Incantation
+Action
+Portée
+Personnelle (émanation de 4,50 m)
+Composantes
+V, S, M (un parchemin de prière)
+Durée
+Concentration, jusqu’à 10 minutes
+
+Les créatures non désignées ont leur Vitesse réduite de moitié dans la zone. Quand elles y entrent ou y terminent leur tour : JS de Sagesse, 3d8 dégâts radiants en cas d’échec, moitié en cas de réussite.
+
+Niveau supérieur. +1d8 par niveau d’emplacement au-delà du 3e.
+
+Le lancer met fin à Bénédiction : un seul sort de concentration à la fois. Une confirmation sera demandée.
+Emplacement
+3e niveau (1 restant)
+Lancer

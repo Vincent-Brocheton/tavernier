@@ -1,0 +1,22 @@
+Le relais du Sel
+Dégâts
+Le relais du Sel · round 2
+Brannoc
+par Ogre · massue
+30
+contondants
+Coup critique
+Ne change pas le montant ; à 0 PV, deux échecs
+Mort sur le coup
+3 PV → 0 · excédent 27 ≥ PV max 27 (règle des dégâts massifs).
+Vérifiez le montant avant de valider (ici, une faute de frappe : 30 au lieu de 13). L’action reste annulable depuis le journal.
+7
+8
+9
++
+4
+5
+6
+−
+Corriger
+Appliquer : Brannoc meurt

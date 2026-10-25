@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Décomposition — téléphone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column">
+    <div style="height: 64px; background: var(--sf-low)"></div>
+    <div style="height: 104px; background: var(--sf-low); padding: 4px 16px; display: flex; gap: 14px; align-items: center"><div style="width: 64px; height: 64px; border-radius: 32px; background: var(--sc)"></div><span class="d" style="font-size: 24px; font-weight: 600; color: var(--t)">Aldric Varenne</span></div>
+    <div style="height: 48px; background: var(--sf-low); border-bottom: 1px solid var(--olv)"></div>
+    <div style="padding: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <div style="height: 120px; border-radius: 12px; background: var(--sf-c); box-shadow: inset 0 0 0 2px var(--p)"></div>
+      <div style="height: 120px; border-radius: 12px; background: var(--sf-c)"></div>
+      <div style="height: 120px; border-radius: 12px; background: var(--sf-c)"></div>
+    </div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-label="Décomposition de la Force" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 0 24px; display: flex; flex-direction: column; gap: 4px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+
+    <div style="padding: 4px 16px 12px 24px; display: flex; align-items: center; gap: 16px">
+      <div style="flex: 1">
+        <div style="font-size: 12px; font-weight: 500; color: var(--on-sfv)">Caractéristique</div>
+        <h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Force</h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <span class="n" style="height: 48px; min-width: 56px; padding: 0 12px; border-radius: 12px; background: var(--sf-highest); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 600">18</span>
+        <span class="n" style="height: 48px; min-width: 56px; padding: 0 12px; border-radius: 12px; background: var(--pc); color: var(--on-pc); display: inline-flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 600">+4</span>
+      </div>
+    </div>
+
+    <ol aria-label="Calcul" style="list-style: none; margin: 0 16px; padding: 4px 0; border-radius: 16px; background: var(--sf-c)">
+      <sc-for list="{{lines}}" as="l" hint-placeholder-count="3">
+        <li style="min-height: 64px; padding: 8px 16px; display: flex; align-items: center; gap: 16px">
+          <span class="n" style="width: 44px; flex: none; text-align: right; font-size: 20px; font-weight: 600; color: {{l.fg}}">{{l.v}}</span>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 16px; line-height: 24px">{{l.t}}</div>
+            <div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{l.s}}</div>
+          </div>
+          <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); display: inline-flex; align-items: center; font-size: 11px; font-weight: 500; flex: none">{{l.src}}</span>
+        </li>
+      </sc-for>
+      <li style="min-height: 56px; margin: 0 16px; padding: 8px 0; border-top: 1px solid var(--olv); display: flex; align-items: center; gap: 16px">
+        <span class="n" style="width: 44px; flex: none; text-align: right; font-size: 20px; font-weight: 700">= 18</span>
+        <span style="flex: 1; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Modificateur <strong class="n" style="color: var(--on-sf)">+4</strong> = (18 − 10) ÷ 2, arrondi à l’inférieur</span>
+      </li>
+    </ol>
+
+    <div style="padding: 16px 24px 4px; font-size: 14px; line-height: 20px; font-weight: 500">Utilisée par</div>
+    <div style="padding: 0 16px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{uses}}" as="u" hint-placeholder-count="4">
+        <button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500">{{u.l}}<span class="n" style="color: var(--p); font-weight: 600">{{u.v}}</span></button>
+      </sc-for>
+    </div>
+
+    <div style="margin: 16px 16px 0; padding: 12px 16px; border-radius: 12px; border: 1px dashed var(--ol); display: flex; align-items: center; gap: 12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <span style="flex: 1; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Aucun ajustement manuel. Seul le MJ peut déroger à une valeur calculée ; la dérogation est tracée dans l’historique.</span>
+    </div>
+
+    <div style="padding: 16px 16px 0; display: flex; justify-content: flex-end; gap: 8px">
+      <button style="height: 48px; padding: 0 16px; border-radius: 24px; font-size: 14px; font-weight: 500; color: var(--p)">Historique des modifications</button>
+      <a href="Fiche-Phone.dc.html" style="height: 48px; padding: 0 24px; border-radius: 24px; background: var(--p); color: var(--on-p); display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; text-decoration: none">Fermer</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lines = [
+      { v: '15', t: 'Valeur de base', s: 'Acquisition par points, à la création', src: 'Création', fg: 'var(--on-sf)' },
+      { v: '+2', t: 'Historique Soldat', s: 'Répartition +2 / +1 (Force, Constitution)', src: 'SRD 5.2.1', fg: 'var(--p)' },
+      { v: '+1', t: 'Amélioration de caractéristique', s: 'Guerrier niveau 4 · +1 Force, +1 Constitution', src: 'SRD 5.2.1', fg: 'var(--p)' },
+    ];
+    const uses = [
+      { l: 'JS Force', v: '+7' }, { l: 'Athlétisme', v: '+7' }, { l: 'Épée longue', v: '+7' }, { l: 'Dégâts d’arme', v: '+4' },
+    ];
+    return { lines, uses };
+  }
+}
+</script>
+</body>
+</html>

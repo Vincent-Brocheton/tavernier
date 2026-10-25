@@ -1,0 +1,25 @@
+Orin
+Clerc 3 / Paladin 4 · fiche de test
+Emplacements combinés
+Lanceur de niveau 5
+1er
+4 / 4
+2e
+3 / 3
+3e
+2 / 2
+Décomposition (touchée)
+Clerc 3 + Paladin 4 ÷ 2 (arrondi supérieur) = 5
+Table des emplacements du multiclassage : niveau 5 → 4 / 3 / 2.
+SORTS PRÉPARÉS PAR CLASSE
+Clerc · 6
+SAG
+DD 13
++5
+Bénédiction, Injonction, Mot de guérison, Sanctuaire, Aide, Arme spirituelle
+Paladin · 5
+CHA
+DD 13
++5
+Bouclier de la foi, Châtiment divin, Détection de la magie, Faveur divine, Protection contre le mal et le bien
+Chaque sort se lance avec la caractéristique et le DD de sa classe, sur les emplacements communs. Une magie de pacte resterait à part.

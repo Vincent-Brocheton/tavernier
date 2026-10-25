@@ -1,0 +1,25 @@
+Aldric Varenne
+Guerrier 5 · onglet Principal
+Camille propose : remplacer le don Vigilant par Doué
+Motif : « Ton passé à la garde des Marches : tu as appris l’histoire de la frontière et soigné des chevaux. »
+Valeur
+Avant
+Après
+Don (Polyvalent)
+Vigilant
+→
+Doué
+Initiative
++4
+→
++1
+Maîtrises
+5 compétences
+→
++ Histoire, Médecine, Dressage
+Doué : maîtrise de 3 compétences ou outils au choix. Vous choisirez les vôtres en acceptant ; ceux du MJ sont préremplis.
+Message si vous refusez
+Je préfère garder Vigilant : je joue souvent en premier.
+Refuser
+Accepter
+L’acceptation applique la modification et l’inscrit dans l’historique de la fiche.

@@ -1,0 +1,31 @@
+Aldric Varenne
+Caractéristique
+Force
+18
++4
+15
+Valeur de base
+Acquisition par points, à la création
+Création
++2
+Historique Soldat
+Répartition +2 / +1 (Force, Constitution)
+SRD 5.2.1
++1
+Amélioration de caractéristique
+Guerrier niveau 4 · +1 Force, +1 Constitution
+SRD 5.2.1
+= 18
+Modificateur +4 = (18 − 10) ÷ 2, arrondi à l’inférieur
+Utilisée par
+JS Force
++7
+Athlétisme
++7
+Épée longue
++7
+Dégâts d’arme
++4
+Aucun ajustement manuel. Seul le MJ peut déroger à une valeur calculée ; la dérogation est tracée dans l’historique.
+Historique des modifications
+Fermer

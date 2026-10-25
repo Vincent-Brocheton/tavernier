@@ -1,0 +1,54 @@
+Aldric Varenne
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+0
+pp
+46
+po
+0
+pe
+12
+pa
+30
+pc
+Harmonisation
+0 / 3
+ÉQUIPÉ
+Cotte de mailles
+Armure lourde · CA 16 · FOR 13 requise
+Bouclier
++2 à la CA
+Épée longue
++7 · 1d8 + 4 tranchants · botte Sape
+Cape de protection
+Harmonisation requise
++1 à la CA et aux jets de sauvegarde, une fois harmonisée et portée.
+Aperçu : CA 19 → 20 · JS +1
+S’harmoniser
+SAC
+Javeline
+×
+4
+Hache d’armes
+×
+1
+Potion de guérison
+×
+2
+Utiliser
+Trousse de soins
+×
+1
+Utiliser
+Dés
+×
+1
+Paquetage d’exploration souterraine
+×
+1
+Ajouter un objet

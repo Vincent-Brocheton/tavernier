@@ -1,0 +1,14 @@
+Aldric Varenne
+onglet Aptitudes
+Second souffle. Par une action Bonus, récupérez 1d10 + 5 PV.
+Botte : Sape. Si vous touchez, la cible subit le Désavantage à son prochain jet d’attaque avant le début de votre tour suivant.
+Botte : Renversement. La cible réussit un JS de Constitution ou subit l’état À terre.
+Désavantage
+Règle · ouverte sans quitter la fiche
+
+Quand vous avez le Désavantage à un test d20, lancez deux d20 et gardez le plus faible.
+
+Avantage et Désavantage ne se cumulent pas : si vous avez les deux, ils s’annulent.
+
+Glossaire · SRD 5.2.1
+Ouvrir dans le compendium

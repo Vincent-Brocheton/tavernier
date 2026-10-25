@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche — onglet Notes (téléphone)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--tmp-c:#1C4778;--on-tmp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px; background: var(--sf-low)">
+    <button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <span class="d" style="flex: 1; font-size: 20px; font-weight: 600; color: var(--t)">Aldric Varenne</span>
+    <button aria-label="Historique des modifications" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8 M3 3v5h5 M12 7v5l3 2"></path></svg></button>
+  </header>
+  <nav aria-label="Onglets de la fiche" style="flex: none; height: 48px; display: flex; justify-content: flex-end; background: var(--sf-low); border-bottom: 1px solid var(--olv); overflow: hidden; padding-right: 8px">
+    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+      <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 14px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+    </sc-for>
+  </nav>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 96px; display: flex; flex-direction: column; gap: 10px">
+    <label style="flex: none; height: 48px; border-radius: 24px; background: var(--sf-high); display: flex; align-items: center; gap: 8px; padding: 0 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher dans mes notes" placeholder="Rechercher dans mes notes" style="flex: 1; border: 0; outline: 0; background: transparent; font-size: 15px"></label>
+    <span style="flex: none; font-size: 12px; line-height: 16px; color: var(--on-sfv); display: flex; gap: 6px; align-items: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h12v10H6z M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Privées par défaut. Vous pouvez partager une note avec la table, en lecture seule pour les autres.</span>
+
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+      <div style="padding: 6px 4px 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{g.l}}</div>
+      <sc-for list="{{g.items}}" as="n" hint-placeholder-count="2">
+        <a href="#" style="border-radius: 12px; background: var(--sf-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--on-sf)">
+          <span style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">{{n.t}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{n.d}}</span></span>
+          <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">{{n.s}}</span>
+          <span style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px">
+            <sc-for list="{{n.tags}}" as="tg" hint-placeholder-count="1"><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: {{tg.bg}}; color: {{tg.fg}}; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">{{tg.l}}</span></sc-for>
+          </span>
+        </a>
+      </sc-for>
+    </sc-for>
+  </div>
+
+  <button style="position: absolute; right: 16px; bottom: 24px; height: 56px; padding: 0 20px 0 16px; border-radius: 16px; background: var(--pc); color: var(--on-pc); font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.4)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg>Nouvelle note</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tabs = ['Combat', 'Sorts', 'Inventaire', 'Aptitudes', 'Notes'].map((l, i) => ({ l, cur: i === 4 ? 'page' : 'false', fg: i === 4 ? 'var(--p)' : 'var(--on-sfv)', bar: i === 4 ? 'var(--p)' : 'transparent' }));
+    const link = (l) => ({ l, bg: 'var(--pc)', fg: 'var(--on-pc)' });
+    const pend = { l: '◷ En attente de synchronisation', bg: 'var(--tmp-c)', fg: 'var(--on-tmp-c)' };
+    const shared = { l: 'Partagée par le MJ · lecture seule', bg: 'var(--tc)', fg: 'var(--on-tc)' };
+    const mine = { l: 'Partagée avec la table', bg: 'var(--sc)', fg: 'var(--on-sc)' };
+    const groups = [
+      { l: 'SÉANCE 11 · 23 OCT.', items: [
+        { t: 'Ce que le loup portait', d: 'aujourd’hui', s: 'Collier gravé d’un sceau, le même que celui du chef bandit. Demander à Thalia de comparer.', tags: [link('Le gué des Loups'), pend] },
+        { t: 'Dette envers Brug', d: '23 oct.', s: 'On lui a promis de chasser les loups du gué. C’est fait pour deux sur trois.', tags: [link('Brug'), mine] },
+      ] },
+      { l: 'PNJ', items: [
+        { t: 'Varga la Balafrée', d: '22 oct.', s: 'Ancienne sergente des Marches. Elle a reconnu mon épée de régiment.', tags: [link('Varga la Balafrée')] },
+      ] },
+      { l: 'TABLE', items: [
+        { t: 'Calendrier et factions', d: '12 oct.', s: 'La Guilde du Sel contrôle les péages du fleuve depuis l’hiver dernier.', tags: [shared] },
+      ] },
+    ];
+    return { tabs, groups };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Table — Notes du MJ (desktop)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+mark{background:var(--tc);color:var(--on-tc);border-radius:3px;padding:0 2px}mark:empty{display:none}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1140px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="position: relative; overflow: hidden; background: #2F4A3E; padding: 20px 32px 0; display: flex; flex-direction: column; gap: 12px">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gN03"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gN03)"></rect></svg>
+      <div style="position: relative">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-pc)">VOUS ÊTES MJ</span>
+        <h1 class="d" style="margin: 2px 0 0; font-size: 32px; line-height: 40px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</h1>
+      </div>
+      <nav aria-label="Sections de la table" style="position: relative; display: flex; overflow-x: auto; margin: 0 -8px">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+          <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 16px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+        </sc-for>
+      </nav>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 32px 32px; align-items: flex-start">
+      <section aria-label="Liste des notes" style="flex: 1 1 320px; max-width: 400px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; gap: 8px">
+          <label style="flex: 1; height: 48px; border-radius: 24px; background: var(--sf-high); display: flex; align-items: center; gap: 8px; padding: 0 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher dans les notes" placeholder="Rechercher dans les notes" value="{{q}}" onChange="{{onQ}}" style="flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 15px"></label>
+          <button aria-label="Nouvelle note" style="width: 48px; height: 48px; flex: none; border-radius: 16px; background: var(--pc); color: var(--on-pc); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></button>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <sc-for list="{{scopes}}" as="s" hint-placeholder-count="5">
+            <button onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="height: 32px; padding: 0 10px; border-radius: 8px; background: {{s.bg}}; color: {{s.fg}}; border: {{s.bd}}; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px">{{s.l}}<span class="n" style="font-size: 12px; color: {{s.cfg}}">{{s.c}}</span></button>
+          </sc-for>
+        </div>
+        <span class="n" style="font-size: 12px; color: var(--on-sfv); display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>{{countLabel}}</span>
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 4px 0; display: flex; flex-direction: column">
+          <sc-if value="{{none}}" hint-placeholder-val="{{false}}">
+            <div style="padding: 28px 20px; text-align: center; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 500">Aucune note ne contient « {{q}} »</span><span style="font-size: 13px; color: var(--on-sfv)">La recherche porte sur les titres et le texte, sans les accents.</span></div>
+          </sc-if>
+          <sc-for list="{{list}}" as="n" hint-placeholder-count="5">
+            <button onClick="{{n.pick}}" aria-current="{{n.cur}}" style="width: 100%; padding: 10px 16px; display: flex; flex-direction: column; gap: 4px; text-align: left; background: {{n.bg}}; border-left: 3px solid {{n.bar}}">
+              <span style="display: flex; align-items: center; gap: 8px; width: 100%"><span style="flex: 1; min-width: 0; font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{n.title}}</span>
+                <sc-if value="{{n.priv}}" hint-placeholder-val="{{true}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Privée" style="color: var(--on-sfv); flex: none"><path d="M6 11h12v10H6z M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if>
+                <sc-if value="{{n.conflict}}" hint-placeholder-val="{{false}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFC266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Conflit à résoudre" style="flex: none"><path d="M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></sc-if>
+                <span class="n" style="flex: none; font-size: 12px; color: var(--on-sfv)">{{n.date}}</span></span>
+              <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">{{n.pre}}<mark>{{n.hit}}</mark>{{n.post}}</span>
+              <span style="display: flex; gap: 6px; flex-wrap: wrap"><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">{{n.scope}}</span><sc-if value="{{n.by}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--sc); color: var(--on-sc); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Partagée par {{n.by}}</span></sc-if></span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <article aria-label="Note" style="flex: 2 1 480px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); display: flex; flex-direction: column">
+        <sc-if value="{{cur.conflict}}" hint-placeholder-val="{{false}}">
+          <div role="status" style="margin: 16px 16px 0; border-radius: 12px; background: var(--warn-c); color: var(--on-warn-c); padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 20px">
+            <span><strong style="font-weight: 600">Modifiée sur deux appareils hors-ligne.</strong> Aucune version n’a été écrasée : celle de la tablette est ajoutée sous un séparateur, en bas de la note.</span>
+            <div style="display: flex; justify-content: flex-end; gap: 4px"><button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--warn); font-size: 14px; font-weight: 500">Comparer</button><button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--warn); font-size: 14px; font-weight: 600">J’ai fusionné</button></div>
+          </div>
+        </sc-if>
+        <div style="padding: 20px 24px 8px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+            <span style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; border: 1px solid var(--ol); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1 M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"></path></svg>Rattachée à : {{cur.scopeLong}}</span>
+            <span style="flex: 1"></span>
+            <span class="n" style="font-size: 12px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.5-9.98A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z M9 13l2 2 4-4"></path></svg>{{cur.status}}</span>
+          </div>
+          <h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 500">{{cur.title}}</h2>
+        </div>
+        <sc-if value="{{cur.rw}}" hint-placeholder-val="{{true}}"><div role="toolbar" aria-label="Mise en forme" style="margin: 0 16px; padding: 4px; border-radius: 12px; background: var(--sf-c); display: flex; align-items: center; gap: 2px">
+          <button aria-label="Gras" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 20px; font-weight: 700; font-size: 16px">B</button>
+          <button aria-label="Liste à puces" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11 M9 12h11 M9 18h11 M4.5 6h.01 M4.5 12h.01 M4.5 18h.01"></path></svg></button>
+          <button aria-label="Liste numérotée" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 6h10 M10 12h10 M10 18h10 M4 5l1-1v4 M3.5 14.5a1.2 1.2 0 0 1 2 1L3.5 18H6"></path></svg></button>
+          <span style="width: 1px; height: 24px; background: var(--olv); margin: 0 6px"></span>
+          <button style="height: 40px; padding: 0 12px 0 10px; border-radius: 20px; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1 M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"></path></svg>Lien vers un PNJ ou une rencontre</button>
+        </div></sc-if>
+        <div style="padding: 16px 24px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 24px; flex: 1">
+          <sc-for list="{{cur.blocks}}" as="b" hint-placeholder-count="5">
+            <div style="display: flex; gap: 10px; padding-left: {{b.ind}}"><sc-if value="{{b.li}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="color: var(--on-sfv)">•</span></sc-if><span style="flex: 1; color: {{b.fg}}"><sc-for list="{{b.segs}}" as="s" hint-placeholder-count="2"><span style="font-weight: {{s.w}}; color: {{s.c}}; background: {{s.bg}}; border-radius: 6px; padding: {{s.pad}}; text-decoration: {{s.td}}; cursor: {{s.cur}}">{{s.t}}</span></sc-for></span></div>
+          </sc-for>
+        </div>
+        <div style="border-top: 1px solid var(--olv); padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <span style="display: flex; flex-direction: column; flex: 1 1 260px"><span style="font-size: 14px; font-weight: 500">{{cur.visL}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{cur.visS}}</span></span>
+          <sc-if value="{{cur.rw}}" hint-placeholder-val="{{true}}"><span role="switch" aria-checked="{{cur.shared}}" aria-label="Visible par les joueurs" style="width: 52px; height: 32px; border-radius: 16px; background: {{cur.swBg}}; border: 2px solid {{cur.swBd}}; display: flex; align-items: center; padding: 0 4px; justify-content: {{cur.swJ}}"><span style="width: {{cur.knob}}; height: {{cur.knob}}; border-radius: 12px; background: {{cur.knobBg}}"></span></span></sc-if>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1140}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: '', scope: 'Toutes', sel: 'prep12' };
+  }
+  renderVals() {
+    const { q, scope, sel } = this.state;
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 1 ? 'page' : 'false', bg: i === 1 ? 'var(--sc)' : 'transparent', fg: i === 1 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 1 ? 700 : 500 }));
+    const tabs = ['Vue d’ensemble', 'Séances', 'Rencontres', 'PNJ', 'Notes', 'Membres', 'Configuration'].map((l, i) => ({ l, cur: i === 4 ? 'page' : 'false', fg: i === 4 ? 'var(--t)' : 'var(--on-pc)', bar: i === 4 ? 'var(--t)' : 'transparent' }));
+    // Segments : texte simple, **gras**, [[lien]]
+    const parse = (str) => str.split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/).filter(Boolean).map((t) => {
+      if (t.startsWith('**')) return { t: t.slice(2, -2), w: 600, c: 'inherit', bg: 'transparent', pad: '0', td: 'none', cur: 'text' };
+      if (t.startsWith('[[')) return { t: t.slice(2, -2), w: 500, c: 'var(--on-pc)', bg: 'var(--pc)', pad: '1px 6px', td: 'none', cur: 'pointer' };
+      return { t, w: 400, c: 'inherit', bg: 'transparent', pad: '0', td: 'none', cur: 'text' };
+    });
+    const N = [
+      { id: 'prep12', title: 'Préparation de la séance 12', sc: 'Séances', scope: 'Séance 12', scopeLong: 'Séance 12 · vendredi 30 oct.', date: '24 oct.', priv: true,
+        body: ['p:**Objectif** : amener le groupe au relais avant la nuit.', 'li:[[Varga la Balafrée]] attend au relais avec quatre bandits.', 'li:Si Thalia montre le **sceau de la Guilde du Sel**, Varga accepte de parler (Influence, DD 15).', 'li:Sinon : rencontre [[Le relais du Sel]], difficulté élevée.', 'p:**À ne pas oublier** : Aldric parle maintenant géant, l’ogre Brug peut servir d’intermédiaire.'] },
+      { id: 'varga', title: 'Varga la Balafrée', sc: 'PNJ', scope: 'PNJ', scopeLong: 'PNJ · Varga la Balafrée', date: '22 oct.', priv: true, conflict: true,
+        body: ['p:Ancienne sergente des Marches, passée à la Guilde du Sel après la chute du fort.', 'li:**Veut** : racheter la dette de son frère.', 'li:**Cache** : le sceau qu’elle porte est un faux.', 'p:— Version de la tablette (22 oct., 23:40) —', 'li:**Cache** : le sceau est authentique, volé au trésorier de la Guilde.'] },
+      { id: 'gue', title: 'Le gué des Loups — bilan', sc: 'Rencontres', scope: 'Rencontre', scopeLong: 'Rencontre · Le gué des Loups (séance 11)', date: '23 oct.', priv: true,
+        body: ['p:Deux loups sanguinaires vaincus, le troisième a fui vers le nord.', 'li:Aldric termine à 34 PV.', 'li:Le loup en fuite porte un collier de la Guilde : piste pour [[Varga la Balafrée]].'] },
+      { id: 'factions', title: 'Calendrier et factions', sc: 'Table', scope: 'Table', scopeLong: 'Table · Les Marches de Brumeval', date: '12 oct.', priv: false,
+        body: ['p:**La Guilde du Sel** contrôle les péages du fleuve depuis l’hiver dernier.', 'li:Fête des Récoltes dans 6 jours (temps de jeu).', 'li:Le fort de Brumeval est en ruine ; les gardes-frontières se sont dispersés.'] },
+      { id: 'recomp', title: 'Récompenses en attente', sc: 'Table', scope: 'Table', scopeLong: 'Table · Les Marches de Brumeval', date: '23 oct.', priv: true,
+        body: ['li:Langue géant pour Aldric : fait (dérogation inscrite dans sa fiche).', 'li:Potion de soins pour Mira : à remettre au relais.'] },
+      { id: 'dette', title: 'Dette envers Brug', sc: 'Séances', scope: 'Séance 11', scopeLong: 'Séance 11 · vendredi 23 oct.', date: '23 oct.', priv: false, by: 'Hugo',
+        body: ['p:On a promis à [[Brug, l’ogre du moulin]] de chasser les loups du gué.', 'li:Deux sur trois : c’est fait.', 'li:Le troisième a fui vers le nord, on le cherchera après le relais.'] },
+      { id: 'brug', title: 'Brug, l’ogre du moulin', sc: 'PNJ', scope: 'PNJ', scopeLong: 'PNJ · Brug', date: '16 oct.', priv: true,
+        body: ['p:A gardé le groupe captif deux jours, puis l’a laissé partir contre la promesse de chasser les loups du gué.', 'li:Ne parle que le géant.'] },
+    ];
+    const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    const plain = (n) => n.body.map((b) => b.slice(b.indexOf(':') + 1).replace(/\*\*|\[\[|\]\]/g, '')).join(' ');
+    const matchQ = (n) => !q || norm(n.title + ' ' + plain(n)).includes(norm(q));
+    const SC = ['Toutes', 'Table', 'Séances', 'PNJ', 'Rencontres'];
+    const scopes = SC.map((s) => { const on = scope === s; const c = N.filter((n) => matchQ(n) && (s === 'Toutes' || n.sc === s)).length; return { l: s, c, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', cfg: on ? 'var(--on-sc)' : 'var(--on-sfv)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)', pick: () => this.setState({ scope: s }) }; });
+    const vis = N.filter((n) => matchQ(n) && (scope === 'Toutes' || n.sc === scope));
+    const snip = (n) => {
+      const txt = plain(n);
+      if (!q) return { pre: txt.length > 96 ? txt.slice(0, 96) + '…' : txt, hit: '', post: '' };
+      const i = norm(txt).indexOf(norm(q));
+      if (i < 0) return { pre: txt.slice(0, 96) + (txt.length > 96 ? '…' : ''), hit: '', post: '' };
+      const a = Math.max(0, i - 36), e = i + q.length;
+      return { pre: (a ? '…' : '') + txt.slice(a, i), hit: txt.slice(i, e), post: txt.slice(e, e + 50) + (txt.length > e + 50 ? '…' : '') };
+    };
+    const list = vis.map((n) => { const cur = n.id === sel; return { ...snip(n), title: n.title, date: n.date, scope: n.scope, by: n.by || '', priv: n.priv, conflict: !!n.conflict, cur: cur ? 'true' : 'false', bg: cur ? 'var(--sf-highest)' : 'transparent', bar: cur ? 'var(--p)' : 'transparent', pick: () => this.setState({ sel: n.id }) }; });
+    const n = N.find((x) => x.id === sel) || N[0];
+    const blocks = n.body.map((b) => { const li = b.startsWith('li:'); const txt = b.slice(b.indexOf(':') + 1); const sep = txt.startsWith('—'); return { li, ind: li ? '4px' : '0', fg: sep ? 'var(--warn)' : 'inherit', segs: parse(txt) }; });
+    const shared = !n.priv;
+    const ro = !!n.by;
+    const cur = { rw: !ro, status: ro ? 'Note de ' + n.by + ' · lecture seule' : 'Enregistrée et synchronisée · ' + n.date, title: n.title, scopeLong: n.scopeLong, date: n.date, conflict: !!n.conflict, blocks,
+      visL: ro ? 'Partagée par ' + n.by + ' avec la table' : shared ? 'Visible par les joueurs de la table' : 'Privée : invisible des joueurs', visS: ro ? 'Seul son auteur peut la modifier ou cesser de la partager.' : shared ? 'Les joueurs la lisent sans pouvoir la modifier.' : 'Seul le MJ la voit, sur tous ses appareils.',
+      shared: shared ? 'true' : 'false', swBg: shared ? 'var(--p)' : 'var(--sf-highest)', swBd: shared ? 'var(--p)' : 'var(--ol)', swJ: shared ? 'flex-end' : 'flex-start', knob: shared ? '24px' : '16px', knobBg: shared ? 'var(--on-p)' : 'var(--ol)' };
+    const total = N.length;
+    return { rail, tabs, q, onQ: (ev) => this.setState({ q: ev.target.value }), scopes, list, none: list.length === 0, cur,
+      countLabel: q ? vis.length + ' résultat' + (vis.length > 1 ? 's' : '') + ' · recherche hors-ligne sur ' + total + ' notes' : total + ' notes sur cet appareil · recherche hors-ligne' };
+  }
+}
+</script>
+</body>
+</html>

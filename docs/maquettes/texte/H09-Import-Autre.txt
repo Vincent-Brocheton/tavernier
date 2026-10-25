@@ -1,0 +1,15 @@
+Importer un pack
+sorts-ines-2.3.0.dndpack · 2,6 Mo
+Sorts d’Inès
+Version 2.3.0 · 22 entités · signé par Karl
+Ce n’est pas une mise à jour.
+Votre pack « Sorts d’Inès » est signé par Inès. Celui-ci est signé par Karl : il sera importé comme un pack distinct, sans toucher au vôtre ni à vos tables.
+Nom dans votre bibliothèque
+Sorts d’Inès (Karl)
+Format et contenu
+Valides
+Dépendances
+SRD 5.2.1
+Les deux packs apparaîtront côte à côte, chacun avec son badge de source. Vous choisissez ensuite lequel activer dans chaque table.
+Importer comme pack distinct
+Ne pas importer

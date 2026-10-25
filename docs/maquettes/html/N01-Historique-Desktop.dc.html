@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Historique des modifications (desktop)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="position: relative; overflow: hidden; background: var(--sf-low); padding: 16px 32px 20px; display: flex; align-items: center; gap: 12px">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gN01"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gN01)"></rect></svg>
+      <button aria-label="Retour à la fiche" style="position: relative; width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+      <div style="position: relative; flex: 1">
+        <span style="font-size: 13px; color: var(--on-sfv)">Aldric Varenne · Guerrier 5 · Les Marches de Brumeval</span>
+        <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Historique des modifications</h1>
+      </div>
+      <span style="position: relative; font-size: 13px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0"></path></svg>Consultable par Hugo et Camille (MJ)</span>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 16px 32px 0">
+      <sc-for list="{{kinds}}" as="k" hint-placeholder-count="7">
+        <button onClick="{{k.pick}}" aria-pressed="{{k.on}}" disabled="{{k.dis}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{k.bg}}; color: {{k.fg}}; border: {{k.bd}}; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; opacity: {{k.op}}">{{k.l}}<span class="n" style="font-size: 12px; color: {{k.cfg}}">{{k.c}}</span></button>
+      </sc-for>
+      <span style="flex: 1"></span>
+      <div role="group" aria-label="Auteur" style="display: flex; height: 40px; border: 1px solid var(--ol); border-radius: 20px; overflow: hidden">
+        <sc-for list="{{authors}}" as="a" hint-placeholder-count="4">
+          <button onClick="{{a.pick}}" aria-pressed="{{a.on}}" style="min-width: 72px; padding: 0 14px; background: {{a.bg}}; color: {{a.fg}}; font-size: 13px; font-weight: 500; border-left: {{a.sep}}">{{a.l}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 16px 32px 32px; align-items: flex-start">
+      <section aria-label="Entrées de l’historique" style="flex: 2 1 480px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 4px 0 8px">
+        <sc-if value="{{none}}" hint-placeholder-val="{{false}}">
+          <div style="padding: 48px 24px; text-align: center; display: flex; flex-direction: column; gap: 6px; align-items: center"><span style="font-size: 16px; font-weight: 500">Aucune entrée pour ce filtre</span><span style="font-size: 14px; color: var(--on-sfv)">Changez de catégorie ou d’auteur.</span></div>
+        </sc-if>
+        <sc-for list="{{days}}" as="g" hint-placeholder-count="3">
+          <div style="padding: 14px 16px 6px; display: flex; align-items: baseline; gap: 8px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{g.l}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{g.s}}</span></div>
+          <sc-for list="{{g.items}}" as="e" hint-placeholder-count="3">
+            <button onClick="{{e.pick}}" aria-current="{{e.cur}}" style="width: 100%; min-height: 64px; padding: 8px 16px; display: flex; align-items: center; gap: 12px; text-align: left; background: {{e.bg}}">
+              <span class="n" style="width: 40px; flex: none; font-size: 13px; color: var(--on-sfv)">{{e.h}}</span>
+              <span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 18px; background: {{e.icBg}}; color: {{e.icFg}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{e.ic}}"></path></svg></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                <span style="font-size: 15px; line-height: 20px; text-decoration: {{e.td}}">{{e.t}}</span>
+                <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{e.who}} · {{e.kl}}</span>
+              </span>
+              <sc-if value="{{e.tag}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{e.tagBg}}; color: {{e.tagFg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{e.tag}}</span></sc-if>
+              <span class="n" style="font-size: 14px; font-weight: 600; color: {{e.dfg}}; white-space: nowrap">{{e.delta}}</span>
+            </button>
+          </sc-for>
+        </sc-for>
+        <div style="padding: 12px 16px 4px; display: flex; justify-content: center"><button style="height: 40px; padding: 0 16px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Afficher les 41 entrées plus anciennes</button></div>
+      </section>
+
+      <aside aria-label="Détail de l’entrée" style="flex: 1 1 320px; max-width: 400px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: flex-start; gap: 12px">
+          <span aria-hidden="true" style="width: 44px; height: 44px; flex: none; border-radius: 22px; background: {{det.icBg}}; color: {{det.icFg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{det.ic}}"></path></svg></span>
+          <div style="flex: 1; min-width: 0"><h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 500">{{det.t}}</h2><span style="font-size: 13px; color: var(--on-sfv)">{{det.kl}}</span></div>
+        </div>
+        <dl style="margin: 0; display: grid; grid-template-columns: 72px 1fr; row-gap: 8px; column-gap: 12px; font-size: 14px; line-height: 20px">
+          <dt style="color: var(--on-sfv)">Qui</dt><dd style="margin: 0">{{det.who}}</dd>
+          <dt style="color: var(--on-sfv)">Quand</dt><dd class="n" style="margin: 0">{{det.when}}</dd>
+          <dt style="color: var(--on-sfv)">Où</dt><dd style="margin: 0">{{det.where}}</dd>
+        </dl>
+        <div style="border-radius: 12px; background: var(--sf-c); overflow: hidden">
+          <div style="display: grid; grid-template-columns: 1fr 72px 24px 72px; gap: 8px; padding: 8px 12px; font-size: 12px; color: var(--on-sfv); border-bottom: 1px solid var(--olv)"><span>Valeur</span><span style="text-align: right">Avant</span><span></span><span>Après</span></div>
+          <sc-for list="{{det.rows}}" as="r" hint-placeholder-count="3">
+            <div style="display: grid; grid-template-columns: 1fr 72px 24px 72px; gap: 8px; padding: 8px 12px; font-size: 14px; align-items: center"><span>{{r.k}}</span><span class="n" style="text-align: right; color: var(--on-sfv)">{{r.a}}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="devient" style="color: var(--on-sfv)"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><span class="n" style="font-weight: 600; color: {{r.fg}}">{{r.b}}</span></div>
+          </sc-for>
+        </div>
+        <sc-if value="{{det.motif}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: var(--on-sfv)">Motif saisi par le MJ</span><span style="font-size: 14px; line-height: 20px; font-style: italic">« {{det.motif}} »</span></div>
+        </sc-if>
+        <sc-if value="{{det.note}}" hint-placeholder-val="{{true}}">
+          <div style="border-radius: 12px; background: {{det.noteBg}}; color: {{det.noteFg}}; padding: 10px 12px; display: flex; gap: 10px; font-size: 13px; line-height: 18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 11v5 M12 8h.01"></path></svg><span>{{det.note}}</span></div>
+        </sc-if>
+        <sc-if value="{{det.link}}" hint-placeholder-val="{{true}}"><a href="#" style="align-self: flex-start; font-size: 14px; font-weight: 500">{{det.link}}</a></sc-if>
+        <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv); border-top: 1px solid var(--olv); padding-top: 12px">L’historique est en lecture seule. Une correction se fait par une nouvelle modification, elle-même inscrite ici.</span>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { kind: 'Tout', author: 'Tous', sel: 'derog' };
+  }
+  renderVals() {
+    const { kind, author, sel } = this.state;
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 2 ? 'page' : 'false', bg: i === 2 ? 'var(--sc)' : 'transparent', fg: i === 2 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 2 ? 700 : 500 }));
+    const IC = {
+      Combat: 'M14.5 17.5L3 6V3h3l11.5 11.5 M13 19l6-6 M16 16l4 4 M19 21l2-2',
+      Soin: 'M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z',
+      Progression: 'M12 19V5 M5 12l7-7 7 7',
+      Repos: 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z',
+      'Dérogation MJ': 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M12 8v5 M12 16h.01',
+      Synchronisation: 'M21 12a9 9 0 0 1-15.5 6.2 M3 12A9 9 0 0 1 18.5 5.8 M18 2v4h-4 M6 22v-4h4',
+      Homebrew: 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3',
+    };
+    const COL = {
+      Combat: ['var(--dmg-c)', 'var(--on-dmg-c)'], Soin: ['var(--heal-c)', 'var(--on-heal-c)'], Progression: ['var(--pc)', 'var(--on-pc)'],
+      Repos: ['var(--sf-highest)', 'var(--on-sf)'], 'Dérogation MJ': ['var(--warn-c)', 'var(--on-warn-c)'], Synchronisation: ['var(--sf-highest)', 'var(--on-sf)'], Homebrew: ['var(--tc)', 'var(--on-tc)'],
+    };
+    const HUGO = 'Hugo (vous)', CAM = 'Camille (MJ)', SYS = 'Système';
+    const E = [
+      { id: 'sync', day: 0, h: '09:12', k: 'Synchronisation', a: 'sys', who: SYS, t: 'Conflit résolu : la valeur du MJ en combat est conservée', delta: 'PV 34', dfg: 'var(--on-sf)', tag: 'Conflit résolu', tagBg: 'var(--warn-c)', tagFg: 'var(--on-warn-c)',
+        when: 'sam. 24 oct. 2026, 09:12', where: 'Synchronisation au retour en ligne',
+        rows: [['PV actuels', '39', '34', 'var(--dmg)']], note: 'Votre soin de +5, saisi hors-ligne à 22:58, a été remplacé : en combat, la version du MJ prime. Il reste visible ci-dessous, barré.', noteBg: 'var(--warn-c)', noteFg: 'var(--on-warn-c)' },
+      { id: 'heal', day: 1, h: '22:58', k: 'Soin', a: 'me', who: HUGO, t: 'Soin +5 (saisi hors-ligne)', td: 'line-through', delta: '+5', dfg: 'var(--on-sfv)', tag: 'Remplacé', tagBg: 'var(--sf-highest)', tagFg: 'var(--on-sfv)',
+        when: 'ven. 23 oct. 2026, 22:58 (téléphone, hors-ligne)', where: 'Séance 11 · Le gué des Loups',
+        rows: [['PV actuels', '34', '39', 'var(--heal)']], note: 'Remplacé à la synchronisation du 24 oct. à 09:12.', noteBg: 'var(--sf-c)', noteFg: 'var(--on-sfv)' },
+      { id: 'hit2', day: 1, h: '22:41', k: 'Combat', a: 'gm', who: CAM, t: '7 dégâts perforants · Loup sanguinaire 2', delta: '−7', dfg: 'var(--dmg)',
+        when: 'ven. 23 oct. 2026, 22:41 · round 3', where: 'Séance 11 · Le gué des Loups',
+        rows: [['PV actuels', '41', '34', 'var(--dmg)']] },
+      { id: 'hit1', day: 1, h: '22:37', k: 'Combat', a: 'gm', who: CAM, t: '8 dégâts perforants · Loup sanguinaire 1', delta: '−8', dfg: 'var(--dmg)',
+        when: 'ven. 23 oct. 2026, 22:37 · round 2', where: 'Séance 11 · Le gué des Loups',
+        rows: [['PV actuels', '49', '41', 'var(--dmg)']] },
+      { id: 'derog', day: 1, h: '20:15', k: 'Dérogation MJ', a: 'gm', who: CAM, t: 'Ajustement manuel : langue Géant ajoutée', delta: '', dfg: 'var(--on-sf)', tag: 'Non notifiée', tagBg: 'var(--warn-c)', tagFg: 'var(--on-warn-c)',
+        when: 'ven. 23 oct. 2026, 20:15', where: 'Hors combat · onglet Principal',
+        rows: [['Langues', '3', '4', 'var(--warn)']], motif: 'Appris auprès de l’ogre Brug pendant la captivité (séance 10).',
+        note: 'Dérogation à la règle de création (Commune + 2 langues courantes). Elle n’envoie pas de notification : elle est seulement inscrite ici et visible du joueur.', noteBg: 'var(--warn-c)', noteFg: 'var(--on-warn-c)' },
+      { id: 'rest', day: 2, h: '23:10', k: 'Repos', a: 'me', who: HUGO, t: 'Repos long', delta: 'PV 49', dfg: 'var(--heal)',
+        when: 'ven. 16 oct. 2026, 23:10', where: 'Séance 10 · règle de la table : récupération totale',
+        rows: [['PV actuels', '22', '49', 'var(--heal)'], ['Dés de vie', '2 / 5', '5 / 5', 'var(--heal)'], ['Second souffle', '1 / 3', '3 / 3', 'var(--heal)'], ['Fougue', '0 / 1', '1 / 1', 'var(--heal)']] },
+      { id: 'lvl', day: 2, h: '21:52', k: 'Progression', a: 'me', who: HUGO, t: 'Montée de niveau 4 → 5', delta: 'Niv. 5', dfg: 'var(--p)',
+        when: 'ven. 16 oct. 2026, 21:52', where: 'Assistant de montée de niveau',
+        rows: [['Niveau', '4', '5', 'var(--p)'], ['PV max', '40', '49', 'var(--p)'], ['Bonus de maîtrise', '+2', '+3', 'var(--p)'], ['Attaque supplémentaire', '—', 'Acquise', 'var(--p)'], ['Décalage tactique', '—', 'Acquis', 'var(--p)']], note: 'PV : valeur fixe de la classe (6) + modificateur de Constitution (+3).', noteBg: 'var(--sf-c)', noteFg: 'var(--on-sfv)' },
+      { id: 'prop', day: 2, h: '21:48', k: 'Progression', a: 'gm', who: CAM, t: 'Proposition du MJ acceptée : passage au niveau 5', delta: '', dfg: 'var(--on-sf)', tag: 'Acceptée', tagBg: 'var(--pc)', tagFg: 'var(--on-pc)',
+        when: 'ven. 16 oct. 2026, 21:48 · acceptée par Hugo à 21:50', where: 'Fin de la séance 10 · 6 500 PX atteints',
+        rows: [['Niveau disponible', '4', '5', 'var(--p)']], note: 'Hors combat, une modification structurelle du MJ passe par une proposition que le joueur accepte.', noteBg: 'var(--sf-c)', noteFg: 'var(--on-sfv)' },
+    ];
+    const DAYS = [['AUJOURD’HUI', 'samedi 24 octobre'], ['VENDREDI 23 OCTOBRE', 'Séance 11'], ['VENDREDI 16 OCTOBRE', 'Séance 10']];
+    const KINDS = ['Tout', 'Combat', 'Soin', 'Progression', 'Repos', 'Dérogation MJ', 'Synchronisation', 'Homebrew'];
+    const AUTH = [['Tous', null], ['Moi', 'me'], ['MJ', 'gm'], ['Système', 'sys']];
+    const okA = (e) => author === 'Tous' || e.a === AUTH.find((x) => x[0] === author)[1];
+    const okK = (e, k) => k === 'Tout' || e.k === k;
+    const kinds = KINDS.map((k) => { const on = kind === k; const c = E.filter((e) => okA(e) && okK(e, k)).length; const dis = c === 0 && !on; return { l: k === 'Tout' ? 'Tout' : k, c, on: on ? 'true' : 'false', dis: dis ? 'true' : null, op: dis ? 0.38 : 1, bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', cfg: on ? 'var(--on-sc)' : 'var(--on-sfv)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)', pick: () => this.setState({ kind: k }) }; });
+    const authors = AUTH.map(([l], i) => { const on = author === l; return { l, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', sep: i ? '1px solid var(--ol)' : '0', pick: () => this.setState({ author: l }) }; });
+    const list = E.filter((e) => okA(e) && okK(e, kind));
+    const deco = (e) => ({ ic: IC[e.k], icBg: COL[e.k][0], icFg: COL[e.k][1], kl: e.k });
+    const days = DAYS.map(([l, s], i) => ({ l, s, items: list.filter((e) => e.day === i).map((e) => { const cur = e.id === sel; return { ...deco(e), h: e.h, t: e.t, who: e.who, td: e.td || 'none', tag: e.tag || '', tagBg: e.tagBg, tagFg: e.tagFg, delta: e.delta, dfg: e.dfg, cur: cur ? 'true' : 'false', bg: cur ? 'var(--sf-highest)' : 'transparent', pick: () => this.setState({ sel: e.id }) }; }) })).filter((g) => g.items.length);
+    const e = list.find((x) => x.id === sel) || list[0] || E[0];
+    const det = { ...deco(e), t: e.t, who: e.who, when: e.when, where: e.where, rows: e.rows.map(([k, a, b, fg]) => ({ k, a, b, fg })), motif: e.motif || '', note: e.note || '', noteBg: e.noteBg, noteFg: e.noteFg, link: e.link || '' };
+    return { rail, kinds, authors, days, none: list.length === 0, det };
+  }
+}
+</script>
+</body>
+</html>

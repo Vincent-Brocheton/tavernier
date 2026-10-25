@@ -1,0 +1,14 @@
+Bienvenue
+Un compte sert à rejoindre des tables et à synchroniser vos fiches.
+Connexion
+Inscription
+E-mail ou mot de passe incorrect. Vérifiez la saisie, ou réinitialisez votre mot de passe.
+E-mail
+Mot de passe
+Mot de passe oublié ?
+Se connecter
+ou
+Continuer avec Google
+Continuer avec Apple
+
+La première connexion demande le réseau, ensuite tout fonctionne hors-ligne. Politique de confidentialité

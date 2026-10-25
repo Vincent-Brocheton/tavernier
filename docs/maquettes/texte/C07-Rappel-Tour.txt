@@ -1,0 +1,13 @@
+Fin du tour · Loup sanguinaire 2
+Round 2
+Entravé · sauvegarde à refaire
+JS de Force DD 13 · bonus +3
+Lancer
+Échec
+Réussite
+Réussite : l’état Entravé est retiré.
+Effrayé · expire
+Durée : jusqu’à la fin de son tour
+Retiré
+Plus tard
+Tour suivant : Bandits

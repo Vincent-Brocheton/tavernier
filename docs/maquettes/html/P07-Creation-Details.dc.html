@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création 8 — Détails</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low)">
+    <svg aria-hidden="true" width="390" height="140" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP07"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP07)"></rect></svg>
+    <div style="position: relative; height: 56px; display: flex; align-items: center; gap: 4px; padding: 0 4px">
+      <button aria-label="Quitter la création" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Nouveau personnage</span>
+      <span class="n" style="padding-right: 16px; font-size: 14px; color: var(--on-sfv)">Étape 8 sur 9</span>
+    </div>
+    <div role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="8" aria-label="Progression" style="position: relative; height: 4px; margin: 0 16px; display: flex; gap: 4px"><div style="width: 88.8%; height: 4px; border-radius: 2px; background: var(--p)"></div><div style="flex: 1; height: 4px; border-radius: 2px; background: var(--sf-highest)"></div></div>
+    <div style="position: relative; padding: 12px 16px 14px">
+      <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Détails</h1>
+      <div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Qui est votre personnage ? Seul le nom est obligatoire.</div>
+    </div>
+  </header>
+
+  <div role="status" style="flex: none; display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--sf-high); font-size: 13px; line-height: 18px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 3l18 18 M8 18a5 5 0 0 1-1.6-9.7 M10.5 6.3A6 6 0 0 1 18 9a4.5 4.5 0 0 1 2.4 8.3"></path></svg>
+    <span style="flex: 1">Hors-ligne. Le brouillon reste sur l’appareil ; le portrait sera envoyé à la reconnexion.</span>
+  </div>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; gap: 16px">
+      <button aria-label="Ajouter un portrait (optionnel)" style="width: 80px; height: 80px; flex: none; border-radius: 40px; border: 2px dashed var(--ol); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--on-sfv)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z M12 10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path></svg><span style="font-size: 11px">Portrait</span></button>
+      <label style="flex: 1; height: 56px; border-radius: 4px; border: 2px solid var(--p); padding: 4px 12px; display: flex; flex-direction: column; justify-content: center; position: relative"><span style="font-size: 12px; line-height: 14px; color: var(--p)">Nom *</span><input value="Aldric Varenne" aria-label="Nom" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+    </div>
+
+    <div style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 6px 12px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Alignement</span><span style="font-size: 16px">Loyal Bon</span></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+
+    <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Apparence</span><textarea aria-label="Apparence" rows="3" style="border: 0; outline: 0; background: transparent; font-size: 16px; line-height: 22px; padding: 0; resize: none">Grand, épaules larges, une cicatrice qui barre le sourcil gauche. Porte encore le tabard délavé de son ancienne compagnie.</textarea></label>
+
+    <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Personnalité</span><textarea aria-label="Personnalité" rows="2" style="border: 0; outline: 0; background: transparent; font-size: 16px; line-height: 22px; padding: 0; resize: none">Parle peu, tient toujours parole. Joue aux dés pour décider des tours de garde.</textarea></label>
+
+    <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Histoire</span><textarea aria-label="Histoire" rows="2" placeholder="D’où vient-il ? Pourquoi part-il à l’aventure ?" style="border: 0; outline: 0; background: transparent; font-size: 16px; line-height: 22px; padding: 0; resize: none"></textarea></label>
+    <span style="font-size: 12px; color: var(--on-sfv); margin-top: -10px; padding-left: 12px">Optionnel · modifiable à tout moment depuis l’onglet Notes</span>
+  </div>
+
+  <div style="flex: none; padding: 12px 16px 20px; display: flex; gap: 8px; background: var(--sf); box-shadow: 0 -1px 0 var(--olv)">
+    <button style="flex: 1; height: 48px; border-radius: 24px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500; color: var(--p)">Précédent</button>
+    <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Récapitulatif</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

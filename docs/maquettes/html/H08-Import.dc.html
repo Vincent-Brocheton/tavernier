@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Importer un pack</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 980px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Annuler l’import" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    <div style="flex: 1 1 260px"><div class="n" style="font-size: 12px; color: var(--on-sfv)">sorts-ines-2.2.0.dndpack · 2,4 Mo</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Importer un pack</h1></div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <main style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section style="position: relative; overflow: hidden; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+        <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gH08"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gH08)"></rect></svg>
+        <div style="position: relative; flex: 1 1 280px">
+          <h2 class="d" style="margin: 0; font-size: 26px; line-height: 34px; font-weight: 600; color: var(--t)">Sorts d’Inès</h2>
+          <span style="font-size: 14px; color: var(--on-sfv)">par Inès · CC-BY-4.0 · dépend de SRD 5.2.1</span>
+        </div>
+        <div style="position: relative; display: flex; align-items: center; gap: 10px"><span class="n" style="font-size: 15px; color: var(--on-sfv)">installée : 2.0.0</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><span class="n" style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--pc); color: var(--on-pc); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center">2.2.0</span></div>
+      </section>
+
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+        <h2 style="margin: 0; padding: 8px 16px; font-size: 15px; line-height: 22px; font-weight: 500">Contenu <span class="n" style="font-weight: 400; color: var(--on-sfv)">20 entités</span></h2>
+        <sc-for list="{{content}}" as="c" hint-placeholder-count="5">
+          <div style="min-height: 48px; padding: 4px 16px; display: flex; align-items: center; gap: 12px">
+            <span style="height: 22px; min-width: 72px; padding: 0 6px; border-radius: 6px; background: {{c.bg}}; color: {{c.fg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center">{{c.k}}</span>
+            <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">{{c.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span></span>
+          </div>
+        </sc-for>
+        <a href="#" style="display: block; padding: 6px 16px 10px; font-size: 13px">Voir les 15 entités inchangées</a>
+      </section>
+
+      <section aria-label="Conflit" style="border-radius: 16px; background: var(--sf-c); box-shadow: inset 0 0 0 1px var(--warn); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 10px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFC266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 500">Nom déjà utilisé : « Bouclier de givre »</span><span style="font-size: 13px; color: var(--on-sfv)">Votre pack Bestiaire des Marches contient un objet du même nom. Le nouveau est un sort.</span></span></div>
+        <div role="radiogroup" aria-label="Résolution" style="display: flex; flex-direction: column; gap: 4px; padding-left: 30px">
+          <sc-for list="{{resol}}" as="r" hint-placeholder-count="2">
+            <button role="radio" aria-checked="{{r.on}}" style="min-height: 48px; display: flex; align-items: center; gap: 12px; text-align: left">
+              <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{r.rc}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{r.dot}}"></span></span>
+              <span style="display: flex; flex-direction: column"><span style="font-size: 14px">{{r.l}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{r.s}}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </main>
+
+    <aside style="flex: 1 1 300px; max-width: 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <section style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Vérifications</h2>
+        <sc-for list="{{checks}}" as="c" hint-placeholder-count="5">
+          <div style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 20px; height: 20px; flex: none; border-radius: 10px; background: var(--heal); color: #10380F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span><span style="display: flex; flex-direction: column"><span class="n" style="font-size: 13px">{{c.t}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span></span></div>
+        </sc-for>
+      </section>
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 12px 14px; font-size: 13px; line-height: 18px">Vos tables restent figées sur la version 2.0.0. Vous pourrez passer chaque table à la 2.2.0 depuis sa configuration.</section>
+      <button style="height: 56px; border-radius: 28px; background: var(--p); color: var(--on-p); font-size: 15px; font-weight: 600">Importer la mise à jour</button>
+      <button style="height: 40px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Annuler</button>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const add = { k: 'NOUVEAU', bg: 'var(--heal-c)', fg: 'var(--on-heal-c)' }, mod = { k: 'MODIFIÉ', bg: 'var(--warn-c)', fg: 'var(--on-warn-c)' };
+    const content = [
+      { n: 'Bouclier de givre', s: 'Sort · Abjuration du 2e niveau', ...add },
+      { n: 'Brume d’encre', s: 'Sort · Illusion du 1er niveau', ...add },
+      { n: 'Marque glacée', s: 'Sort mineur · Évocation', ...add },
+      { n: 'Lame d’ombre', s: 'Sort · dégâts 2d8 → 3d6 psychiques', ...mod },
+      { n: 'Sous-classe Lame d’ombre', s: 'Niveau 10 : texte précisé', ...mod },
+    ];
+    const resol = [
+      { l: 'Garder les deux', s: 'Chacun s’affiche avec le badge de son pack', on: 'true', rc: 'var(--p)', dot: 'var(--p)' },
+      { l: 'Renommer le nouveau sort…', s: 'Seulement dans votre bibliothèque', on: 'false', rc: 'var(--ol)', dot: 'transparent' },
+    ];
+    const checks = [
+      { t: 'Taille : 2,4 Mo (max. 20 Mo)', s: '' },
+      { t: 'Signature : Inès', s: 'Même auteur que la version installée, donc c’est une mise à jour' },
+      { t: 'Format et contenu valides', s: '20 entités, aucune donnée exécutable' },
+      { t: 'Dépendances résolues', s: 'SRD 5.2.1' },
+    ];
+    return { content, resol, checks };
+  }
+}
+</script>
+</body>
+</html>

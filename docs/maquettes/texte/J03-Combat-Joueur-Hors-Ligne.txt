@@ -1,0 +1,24 @@
+Embuscade sur la route · round 3 · dernier état connu 21:41
+Tour du Chef de bande
+Hors-ligne : dites vos changements au MJ. Ils partiront à la reconnexion ; si le MJ a modifié la même valeur, sa version prime.
+41
+/ 49
++5 temp.
+Réaction disponible
+Dégâts
+Soins
+PV temp.
+Second souffle utilisé : +8 PV (49 max) · en attente d’envoi
+Béni
++1d4 aux jets d’attaque et de sauvegarde
+de Mira · peut avoir changé
+8 rounds
+Épée longue
+Botte : Sape
++7
+1d8 + 4
+Attaquer
+Second souffle
+Action Bonus · 1d10 + 5
+Utiliser
+L’ordre du tour et les états des autres combattants ne se mettent plus à jour sans réseau.

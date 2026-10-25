@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tester sur un personnage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--thp-c:#1C4778;--on-thp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 900px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Fermer le test" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Gardiens des Marches · brouillon</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Tester « Gardien du rempart »</h1></div>
+    <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: var(--thp-c); color: var(--on-thp-c); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">Bac à sable : aucune fiche réelle n’est modifiée</span>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <aside aria-label="Personnage de test" style="flex: 0 1 300px; min-width: 260px; border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 14px">
+      <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Personnage de test</h2>
+      <div style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 14px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Base</span><span style="font-size: 15px">Guerrier prétiré (Humain, Soldat)</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; align-items: center"><span style="flex: 1; font-size: 14px">Niveau</span><span class="n" style="font-size: 16px; font-weight: 700">7</span></div>
+        <div role="slider" aria-label="Niveau du personnage de test" aria-valuemin="3" aria-valuemax="20" aria-valuenow="7" tabindex="0" style="position: relative; height: 44px; display: flex; align-items: center">
+          <div style="position: absolute; left: 0; right: 0; height: 16px; border-radius: 8px; background: var(--sf-highest)"></div>
+          <div style="position: absolute; left: 0; width: 24%; height: 16px; border-radius: 8px 2px 2px 8px; background: var(--p)"></div>
+          <div style="position: absolute; left: calc(24% + 2px); width: 4px; height: 44px; border-radius: 2px; background: var(--p)"></div>
+        </div>
+        <div class="n" style="display: flex; justify-content: space-between; font-size: 11px; color: var(--on-sfv)"><span>3</span><span>20</span></div>
+      </div>
+      <div style="min-height: 48px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; font-size: 14px">Porte un bouclier</span><button role="switch" aria-checked="true" aria-label="Porte un bouclier" style="width: 52px; height: 32px; border-radius: 16px; background: var(--p); display: flex; align-items: center; justify-content: flex-end; padding: 0 4px"><span style="width: 24px; height: 24px; border-radius: 12px; background: var(--on-p)"></span></button></div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Changez le niveau ou l’équipement pour vérifier chaque aptitude et ses conditions.</span>
+    </aside>
+
+    <main style="flex: 2 1 520px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 8px 0; overflow-x: auto">
+      <table style="width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px">
+        <thead><tr style="text-align: left; font-size: 12px; color: var(--on-sfv)"><th style="padding: 10px 16px; font-weight: 500">Valeur</th><th style="padding: 10px 8px; font-weight: 500">Sans la sous-classe</th><th style="padding: 10px 8px; font-weight: 500">Avec Gardien du rempart</th><th style="padding: 10px 16px 10px 8px; font-weight: 500">Source</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+            <tr style="border-top: 1px solid var(--olv); background: {{r.bg}}">
+              <td style="padding: 12px 16px; font-weight: 500">{{r.k}}</td>
+              <td class="n" style="padding: 12px 8px; color: var(--on-sfv)">{{r.a}}</td>
+              <td class="n" style="padding: 12px 8px; font-weight: 600; color: {{r.fg}}">{{r.b}}</td>
+              <td style="padding: 12px 16px 12px 8px; font-size: 12px; color: var(--on-sfv)">{{r.s}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </main>
+
+    <aside style="flex: 1 1 260px; max-width: 340px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <section style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Résultat du test</h2>
+        <span style="font-size: 13px; line-height: 18px">Toutes les valeurs se calculent sans erreur au niveau 7. Le bonus de CA disparaît bien quand le bouclier est retiré.</span>
+        <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Reste à corriger : l’aptitude placée au niveau 4.</span>
+      </section>
+      <button style="height: 48px; border-radius: 24px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Retour à l’éditeur</button>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const up = 'var(--p)', same = 'var(--on-sf)';
+    const rows = [
+      { k: 'Classe d’armure', a: '19', b: '20', s: '+1 Rempart vivant (bouclier porté)', fg: up, bg: 'rgba(31,80,71,0.25)' },
+      { k: 'Réactions', a: 'Attaque d’opportunité', b: '+ Rempart vivant · 3 / Repos long', s: 'Rempart vivant (bonus de maîtrise +3)', fg: up, bg: 'rgba(31,80,71,0.25)' },
+      { k: 'Intuition', a: '+1', b: '+4', s: 'Serment de garde (maîtrise)', fg: up, bg: 'rgba(31,80,71,0.25)' },
+      { k: 'Déplacement', a: 'Terrain difficile normal', b: 'Ignore 3 m de terrain difficile', s: 'Pas de la sentinelle (niveau 7)', fg: up, bg: 'rgba(31,80,71,0.25)' },
+      { k: 'PV max', a: '67', b: '67', s: '—', fg: same, bg: 'transparent' },
+      { k: 'Attaque, épée longue', a: '+7 · 1d8 + 4', b: '+7 · 1d8 + 4', s: '—', fg: same, bg: 'transparent' },
+    ];
+    return { rows };
+  }
+}
+</script>
+</body>
+</html>

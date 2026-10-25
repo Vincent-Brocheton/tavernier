@@ -1,0 +1,18 @@
+Modifier le compte
+Profil
+Pseudonyme affiché
+E-mail
+E-mail
+Fourni par Google. Pour en changer, ajoutez d’abord un mot de passe.
+Méthodes de connexion
+Google
+Active
+ines.l@gmail.com · utilisée à l’inscription
+Retirer
+Apple
+Non liée
+Lier
+Mot de passe
+Aucun pour l’instant
+Ajouter
+Il faut garder au moins une méthode : Google ne peut pas être retiré tant que c’est la seule.

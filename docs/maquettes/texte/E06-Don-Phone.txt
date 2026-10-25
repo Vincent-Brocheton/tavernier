@@ -1,0 +1,28 @@
+Don
+Peuples de la frontière · v0.2.0 · brouillon
+Nom *
+Garde du pont
+Catégorie *
+Origine
+Général
+Style de combat
+Faveur épique
+Obligatoire : elle décide quand le don se prend. Origine au niveau 1 par l’Historique, Général dès le niveau 4, Style de combat par une aptitude de classe, Faveur épique au niveau 19.
+Prérequis
+Niveau 4 · Force 13 ou plus
+Répétable
+Le même personnage peut le prendre plusieurs fois
+Effets · 2
+Augmentez
+Force ou Constitution
+de
+1
+(maximum 20)
+Réaction : quand une créature à
+1,50 m
+attaque
+un allié
+→
+imposer le Désavantage
+Tester
+Enregistrer

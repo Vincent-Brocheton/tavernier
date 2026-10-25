@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création 1 — Classe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 980px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP01"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP01)"></rect></svg>
+    <div style="position: relative; height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px">
+      <button aria-label="Quitter la création" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Nouveau personnage <span style="color: var(--on-sfv); font-weight: 400">· Les Marches de Brumeval · niveau 1</span></span>
+      <span style="font-size: 12px; color: var(--on-sfv)">Packs actifs : SRD 5.2.1 · Les Marches v1.3</span>
+    </div>
+    <div style="position: relative; padding: 8px 32px 28px; display: flex; flex-direction: column; gap: 6px">
+      <span class="n" style="font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: var(--on-sfv)">ÉTAPE 1 SUR 9</span>
+      <h1 class="d" style="margin: 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Classe</h1>
+      <p style="margin: 0; max-width: 720px; font-size: 16px; line-height: 24px; color: var(--on-sfv)">Votre classe décide de vos talents au combat, de vos dés de vie et de vos maîtrises. Vous pourrez revenir sur ce choix.</p>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 32px; align-items: flex-start">
+    <nav aria-label="Étapes de création" style="flex: 0 1 240px; min-width: 200px; border-radius: 16px; background: var(--sf-low); padding: 8px">
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="9">
+          <li><a href="#" aria-current="{{s.cur}}" style="height: 48px; padding: 0 12px; border-radius: 24px; background: {{s.bg}}; color: {{s.fg}}; display: flex; align-items: center; gap: 12px; text-decoration: none">
+            <span class="n" style="width: 24px; height: 24px; border-radius: 12px; background: {{s.dotBg}}; color: {{s.dotFg}}; border: {{s.dotBd}}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{s.mark}}</span>
+            <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 18px; font-weight: {{s.w}}">{{s.l}}</span><span style="font-size: 11px; line-height: 14px; color: var(--on-sfv)">{{s.v}}</span></span>
+          </a></li>
+        </sc-for>
+      </ol>
+    </nav>
+
+    <main style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+        <label style="flex: 1 1 260px; height: 48px; border-radius: 24px; background: var(--sf-high); display: flex; align-items: center; gap: 10px; padding: 0 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher une classe" placeholder="Rechercher une classe" style="flex: 1; border: 0; outline: 0; background: transparent; font-size: 16px"></label>
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+          <button aria-pressed="{{f.on}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; color: {{f.fg}}; border: {{f.bd}}; font-size: 14px; font-weight: 500">{{f.l}}</button>
+        </sc-for>
+      </div>
+      <div role="radiogroup" aria-label="Classes" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px">
+        <sc-for list="{{classes}}" as="c" hint-placeholder-count="13">
+          <button role="radio" aria-checked="{{c.on}}" style="text-align: left; min-height: 124px; border-radius: 12px; background: {{c.bg}}; box-shadow: {{c.ring}}; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+            <span style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 16px; line-height: 24px; font-weight: 600">{{c.n}}</span><sc-if value="{{c.sel}}" hint-placeholder-val="{{false}}"><span style="width: 24px; height: 24px; border-radius: 12px; background: var(--p); color: var(--on-p); display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span></sc-if></span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">{{c.p}}</span>
+            <span style="display: flex; align-items: center; gap: 8px; margin-top: auto"><span class="n" style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">{{c.dv}}</span><span style="height: 24px; padding: 0 8px; border-radius: 6px; background: {{c.srcBg}}; color: {{c.srcFg}}; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">{{c.src}}</span></span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 8px">
+        <button style="height: 48px; padding: 0 24px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Suivant : Historique</button>
+      </div>
+    </main>
+
+    <aside aria-label="Détail de la classe" style="flex: 1 1 300px; max-width: 380px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: flex-start; gap: 8px">
+        <h2 class="d" style="margin: 0; flex: 1; font-size: 24px; line-height: 32px; font-weight: 600; color: var(--t)">Guerrier</h2>
+        <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">SRD 5.2.1</span>
+      </div>
+      <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Maître des armes et des armures, le Guerrier tient la ligne et frappe plusieurs fois par tour dès le niveau 5.</p>
+      <dl style="margin: 0; display: grid; grid-template-columns: 130px 1fr; row-gap: 10px; column-gap: 12px; font-size: 14px; line-height: 20px">
+        <sc-for list="{{traits}}" as="t" hint-placeholder-count="6">
+          <dt style="color: var(--on-sfv)">{{t.k}}</dt><dd style="margin: 0">{{t.v}}</dd>
+        </sc-for>
+      </dl>
+      <div style="height: 1px; background: var(--olv)"></div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; font-weight: 500; color: var(--on-sfv)">Au niveau 1</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">Bottes d’armes · 3</span>
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">Second souffle · 2</span>
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">Style de combat</span>
+        </div>
+      </div>
+      <button style="align-self: flex-start; height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Voir la progression 1 à 20</button>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const cur = 0;
+    const st = (l, v, i) => {
+      const done = i < cur, c = i === cur;
+      return { l, v, cur: c ? 'step' : 'false', bg: c ? 'var(--sc)' : 'transparent', fg: c ? 'var(--on-sc)' : 'var(--on-sf)', w: c ? 700 : 500,
+        mark: done ? '✓' : String(i + 1), dotBg: done ? 'var(--p)' : c ? 'var(--on-sc)' : 'transparent', dotFg: done ? 'var(--on-p)' : c ? 'var(--sc)' : 'var(--on-sfv)', dotBd: done || c ? 'none' : '1px solid var(--ol)' };
+    };
+    const steps = [['Classe', 'Guerrier'], ['Historique', 'À choisir'], ['Espèce', 'À choisir'], ['Langues', 'Commun + 2'], ['Caractéristiques', 'Acquisition par points'], ['Sous-choix', 'Compétences, bottes, don'], ['Équipement', 'Pack ou or'], ['Détails', 'Nom, apparence'], ['Récapitulatif', 'Envoi au MJ']].map(([l, v], i) => st(l, v, i));
+    const filters = [['Toutes', true], ['Martiales', false], ['Lanceurs de sorts', false], ['Homebrew', false]].map(([l, on]) => ({ l, on: on ? 'true' : 'false', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)' }));
+    const C = [
+      ['Barbare', 'Force', 'd12'], ['Barde', 'Charisme', 'd8'], ['Clerc', 'Sagesse', 'd8'], ['Druide', 'Sagesse', 'd8'],
+      ['Ensorceleur', 'Charisme', 'd6'], ['Guerrier', 'Force ou Dextérité', 'd10'], ['Magicien', 'Intelligence', 'd6'], ['Moine', 'Dextérité et Sagesse', 'd8'],
+      ['Occultiste', 'Charisme', 'd8'], ['Paladin', 'Force et Charisme', 'd10'], ['Rôdeur', 'Dextérité et Sagesse', 'd10'], ['Roublard', 'Dextérité', 'd8'],
+    ];
+    const classes = C.map(([n, p, dv]) => {
+      const sel = n === 'Guerrier';
+      return { n, p: 'Principale : ' + p, dv: 'Dé de vie ' + dv, sel, on: sel ? 'true' : 'false', bg: sel ? 'var(--pc)' : 'var(--sf-c)', ring: sel ? 'inset 0 0 0 2px var(--p)' : 'none', src: 'SRD 5.2.1', srcBg: 'var(--sf-highest)', srcFg: 'var(--on-sfv)' };
+    });
+    classes.push({ n: 'Lame-runique', p: 'Principale : Force et Intelligence', dv: 'Dé de vie d10', sel: false, on: 'false', bg: 'var(--sf-c)', ring: 'none', src: 'Les Marches v1.3', srcBg: 'var(--tc)', srcFg: 'var(--on-tc)' });
+    const traits = [
+      { k: 'Principale', v: 'Force ou Dextérité' },
+      { k: 'Dé de vie', v: 'd10 par niveau' },
+      { k: 'Jets de sauvegarde', v: 'Force et Constitution' },
+      { k: 'Compétences', v: '2 parmi Acrobaties, Athlétisme, Dressage, Histoire, Intimidation, Intuition, Perception, Persuasion, Survie' },
+      { k: 'Armes', v: 'Courantes et de guerre' },
+      { k: 'Armures', v: 'Légères, intermédiaires, lourdes, boucliers' },
+    ];
+    return { steps, filters, classes, traits };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+Le relais du Sel · séance 13
+Round 4 · tour du Capitaine des Marches
+Annuler
+Tour suivant
+Capitaine des Marches
+En cours
+Humanoïde de taille M · FP 5 (1 800 PX)
+Bestiaire des Marches · v1.3
+17
+CA
+74 / 97 PV
+Actions
+
+Attaques multiples. Trois attaques d’Épée longue.
+
+Épée longue. Corps à corps : +7, allonge 1,50 m. Touché : 8 (1d8 + 4) dégâts tranchants.
+
+Cri de ralliement (Recharge 5–6). Chaque allié à 9 m ou moins gagne 10 PV temporaires et peut se déplacer de la moitié de sa Vitesse.
+
+Utilisé
+Actions légendaires
+
+Ordre (coûte 1 action). Un allié qui voit le capitaine peut utiliser sa Réaction pour effectuer une attaque.
+
+Charge (coûte 2 actions). Le capitaine se déplace de sa Vitesse et effectue une attaque d’Épée longue.
+
+Début de son tour : lancez 1d6 pour Cri de ralliement (recharge sur 5–6).
+Lancer 1d6
+Rechargé
+Actions légendaires
+3 / 3
+Toutes récupérées : son tour vient de commencer.
+Résistance légendaire
+2 / 3 par jour
+Ne se récupère pas pendant la rencontre.
+Réaction · Parade
+Disponible
+Réinitialisée au début de son tour.

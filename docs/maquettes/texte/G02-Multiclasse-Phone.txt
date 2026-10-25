@@ -1,0 +1,21 @@
+Montée de niveau
+Aldric · Guerrier 5 → niveau 6
+Étape 1 sur 4
+Quelle classe pour le niveau 6 ?
+Guerrier 6
+Continuer · Amélioration de caractéristique
+MULTICLASSER · NIVEAU 1 DANS UNE AUTRE CLASSE
+Barbare 1
+Force 13 requise · Force 18 ✓
+Roublard 1
+Dextérité 13 requise · Dextérité 13 ✓
+Clerc 1
+Sagesse 13 requise · Sagesse 12 : il manque 1
+Magicien 1
+Intelligence 13 requise · Intelligence 8
+Paladin 1
+Force et Charisme 13 requis · Charisme 10
+Multiclasser demande 13 dans la caractéristique principale de la nouvelle classe et de la classe actuelle (Guerrier : Force 18 ✓).
+Voir les 6 autres classes
+Annuler
+Suivant

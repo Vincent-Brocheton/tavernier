@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Clore la séance — jalons (desktop)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--tmp:#A7C8FF;--tmp-c:#1C4778;--on-tmp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 980px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: #2F4A3E; padding: 24px 32px 20px; display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gS07"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gS07)"></rect></svg>
+    <div style="position: relative; flex: 1 1 320px"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-pc)">CLORE LA SÉANCE 12 · VENDREDI 30 OCTOBRE · TABLE EN JALONS</span><h1 class="d" style="margin: 2px 0 0; font-size: 32px; line-height: 40px; font-weight: 600; color: var(--t)">Le relais du Sel</h1></div>
+    <span role="status" style="position: relative; height: 32px; padding: 0 12px; border-radius: 8px; background: var(--tmp-c); color: var(--on-tmp-c); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2"></path></svg>Hors-ligne : la clôture partira à la reconnexion</span>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 32px 32px; align-items: flex-start">
+    <section style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="3"><div style="border-radius: 12px; background: var(--sf-c); padding: 14px 8px; display: flex; flex-direction: column; align-items: center"><span class="n" style="font-size: 26px; line-height: 32px; font-weight: 600">{{k.v}}</span><span style="font-size: 12px; color: var(--on-sfv); text-align: center">{{k.l}}</span></div></sc-for>
+      </div>
+
+      <div style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+        <h2 style="margin: 0; padding: 8px 16px; font-size: 16px; font-weight: 500">Rencontres jouées</h2>
+        <sc-for list="{{played}}" as="e" hint-placeholder-count="2">
+          <div style="padding: 10px 16px; display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--olv)">
+            <span style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">{{e.n}}</span><a href="#" style="font-size: 14px; font-weight: 500">Résumé et journal</a></span>
+            <span class="n" style="font-size: 13px; color: var(--on-sfv)">{{e.s}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 16px; display: flex; flex-direction: column; gap: 10px">
+        <div><h2 style="margin: 0; font-size: 16px; font-weight: 500">Rencontre non jouée</h2><span class="n" style="font-size: 13px; color: var(--on-sfv)">Les chiens de Varga · 2 loups sanguinaires</span></div>
+        <div role="radiogroup" aria-label="Que faire de cette rencontre" style="display: flex; height: 40px; border: 1px solid var(--ol); border-radius: 20px; overflow: hidden">
+          <sc-for list="{{fate}}" as="f" hint-placeholder-count="3"><span role="radio" aria-checked="{{f.on}}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: {{f.bg}}; color: {{f.fg}}; font-size: 13px; font-weight: 500; border-left: {{f.sep}}"><sc-if value="{{f.check}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if>{{f.l}}</span></sc-for>
+        </div>
+      </div>
+
+      <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-size: 16px; font-weight: 500">PNJ à suivre</h2>
+        <div style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 18px; background: var(--tc); color: var(--on-tc); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4 M5 11h14v10H5z"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">Varga la Balafrée · capturée</span><span style="font-size: 12px; color: var(--on-sfv)">Attitude Hostile conservée pour la séance 13</span></span></div>
+      </div>
+    </section>
+
+    <section aria-label="Jalon" style="flex: 1.4 1 480px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 8px 0 12px">
+      <div style="padding: 10px 20px 8px; display: flex; align-items: center; gap: 12px">
+        <span style="flex: 1; display: flex; flex-direction: column"><h2 style="margin: 0; font-size: 18px; font-weight: 500">Jalon atteint</h2><span style="font-size: 13px; color: var(--on-sfv)">Table en progression par jalons : pas de PX, vous choisissez qui passe au niveau suivant.</span></span>
+        <span role="switch" aria-checked="true" aria-label="Jalon atteint" style="width: 52px; height: 32px; flex: none; border-radius: 16px; background: var(--p); border: 2px solid var(--p); display: flex; align-items: center; justify-content: flex-end; padding: 0 4px"><span style="width: 24px; height: 24px; border-radius: 12px; background: var(--on-p)"></span></span>
+      </div>
+      <label style="margin: 4px 20px 8px; height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 6px 14px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; color: var(--on-sfv)">Motif (visible des joueurs)</span><span style="font-size: 15px">Varga capturée, le relais du Sel libéré</span></label>
+      <div style="padding: 8px 20px 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">PROPOSER LA MONTÉE DE NIVEAU À</div>
+      <sc-for list="{{pcs}}" as="c" hint-placeholder-count="5">
+        <div style="min-height: 56px; padding: 6px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--olv)">
+          <span role="checkbox" aria-checked="{{c.on}}" aria-label="{{c.aria}}" style="width: 18px; height: 18px; flex: none; border-radius: 2px; border: 2px solid {{c.bd}}; background: {{c.bg}}; color: var(--on-p); display: flex; align-items: center; justify-content: center"><sc-if value="{{c.check}}" hint-placeholder-val="{{true}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if></span>
+          <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{c.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span></span>
+          <span class="n" style="font-size: 15px; font-weight: 600; color: {{c.fg}}">{{c.lv}}</span>
+        </div>
+      </sc-for>
+      <span style="display: block; padding: 12px 20px 0; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Chaque joueur coché reçoit une proposition de montée de niveau, qu’il accepte puis réalise avec l’assistant. Le jalon est inscrit dans l’historique des fiches.</span>
+      <div style="padding: 16px 20px 0; display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap">
+        <button style="height: 48px; padding: 0 20px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Revenir à la séance</button>
+        <button style="height: 48px; padding: 0 24px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Clore la séance 12</button>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const kpis = [{ v: '2', l: 'rencontres jouées' }, { v: '10', l: 'rounds au total' }, { v: '1', l: 'PNJ capturée' }];
+    const played = [
+      { n: 'Embuscade sur la route', s: '4 rounds · 8 / 8 adversaires tombés' },
+      { n: 'Le relais du Sel', s: '6 rounds · 10 / 11 adversaires tombés · Brannoc à 0 PV au round 2, stabilisé' },
+    ];
+    const fate = [['Reporter à la séance 13', true], ['Garder sans séance', false], ['Supprimer', false]].map(([l, on], i) => ({ l, on: on ? 'true' : 'false', check: on, bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', sep: i ? '1px solid var(--ol)' : '0' }));
+    const pc = (n, s, lv, on) => ({ n, s, lv, on: on ? 'true' : 'false', check: on, aria: 'Proposer le niveau suivant à ' + n, bd: on ? 'var(--p)' : 'var(--on-sfv)', bg: on ? 'var(--p)' : 'transparent', fg: on ? 'var(--p)' : 'var(--on-sfv)' });
+    const pcs = [pc('Aldric Varenne', 'Guerrier · présent', '5 → 6', true), pc('Mira Solen', 'Clerc · présente', '5 → 6', true), pc('Thalia', 'Roublarde · présente', '5 → 6', true), pc('Brannoc', 'Magicien · présent', '5 → 6', true), pc('Kael', 'Magicien · absent ce soir', '3 → 4', false)];
+    return { kpis, played, fate, pcs };
+  }
+}
+</script>
+</body>
+</html>

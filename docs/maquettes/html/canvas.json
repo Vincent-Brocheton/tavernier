@@ -1,0 +1,1683 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-24T10:00:00Z"
+ },
+ "title": "Maquettes M3 — langage visuel",
+ "launch": {
+  "view": "canvas",
+  "page": "revue"
+ },
+ "pages": [
+  {
+   "id": "langage",
+   "name": "Langage visuel"
+  },
+  {
+   "id": "personnage",
+   "name": "Parcours personnage"
+  },
+  {
+   "id": "table",
+   "name": "Compte, accueil et table"
+  },
+  {
+   "id": "combat",
+   "name": "Combat complet"
+  },
+  {
+   "id": "homebrew",
+   "name": "Homebrew et packs"
+  },
+  {
+   "id": "compendium",
+   "name": "Compendium"
+  },
+  {
+   "id": "suivi",
+   "name": "Historique et notes"
+  },
+  {
+   "id": "seances",
+   "name": "Séances"
+  },
+  {
+   "id": "tablette",
+   "name": "Tablette paysage"
+  },
+  {
+   "id": "editeurs",
+   "name": "Éditeurs de contenu"
+  },
+  {
+   "id": "complements",
+   "name": "Compléments"
+  },
+  {
+   "id": "revue",
+   "name": "Revue MJ"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1760,
+   "title": "0 · Fondations M3 et composants clés",
+   "page": "langage"
+  },
+  "Combat-Phone.dc.html": {
+   "x": 0,
+   "y": 2180,
+   "w": 390,
+   "h": 844,
+   "title": "1a · Combat — téléphone",
+   "page": "langage"
+  },
+  "Combat-Phone-Degats.dc.html": {
+   "x": 470,
+   "y": 2180,
+   "w": 390,
+   "h": 844,
+   "title": "1b · Combat — pavé dégâts (feuille modale)",
+   "page": "langage"
+  },
+  "Combat-Desktop.dc.html": {
+   "x": 940,
+   "y": 2180,
+   "w": 1440,
+   "h": 920,
+   "title": "1c · Combat — Web desktop (réaction des PJ)",
+   "expand": "fill",
+   "page": "langage"
+  },
+  "Fiche-Phone.dc.html": {
+   "x": 0,
+   "y": 3520,
+   "w": 390,
+   "h": 1360,
+   "title": "2a · Fiche — téléphone (onglet Principal, défilement complet)",
+   "page": "langage"
+  },
+  "Fiche-Phone-Decomposition.dc.html": {
+   "x": 470,
+   "y": 3520,
+   "w": 390,
+   "h": 844,
+   "title": "2b · Fiche — décomposition d’une valeur",
+   "page": "langage"
+  },
+  "Fiche-Desktop.dc.html": {
+   "x": 940,
+   "y": 3520,
+   "w": 1440,
+   "h": 1060,
+   "title": "2c · Fiche — Web desktop",
+   "expand": "fill",
+   "page": "langage"
+  },
+  "Creation-Phone.dc.html": {
+   "x": 470,
+   "y": 5280,
+   "w": 390,
+   "h": 844,
+   "title": "3a · Création, étape 5 — choix devenu invalide",
+   "page": "langage"
+  },
+  "Creation-Desktop.dc.html": {
+   "x": 940,
+   "y": 5280,
+   "w": 1440,
+   "h": 1000,
+   "title": "3b · Création, étape 5 — Web desktop (interactif)",
+   "expand": "fill",
+   "is_interactive": true,
+   "page": "langage"
+  },
+  "P01-Creation-Classe.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "P1 · Création 1 — Classe (desktop)",
+   "page": "personnage"
+  },
+  "P02-Creation-Historique.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "P2 · Création 2 — Historique (desktop)",
+   "page": "personnage"
+  },
+  "P03-Creation-Espece.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "P3 · Création 3 — Espèce (téléphone)",
+   "page": "personnage"
+  },
+  "P04-Creation-Langues.dc.html": {
+   "x": 3510,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "P4 · Création 4 — Langues (téléphone)",
+   "page": "personnage"
+  },
+  "P05-Creation-SousChoix.dc.html": {
+   "x": 0,
+   "y": 1400,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1000,
+   "title": "P5 · Création 6 — Sous-choix, erreur de règle (desktop)",
+   "page": "personnage",
+   "is_interactive": true
+  },
+  "P06-Creation-Equipement.dc.html": {
+   "x": 1520,
+   "y": 1400,
+   "w": 390,
+   "h": 844,
+   "title": "P6 · Création 7 — Équipement (téléphone)",
+   "page": "personnage"
+  },
+  "P07-Creation-Details.dc.html": {
+   "x": 1990,
+   "y": 1400,
+   "w": 390,
+   "h": 844,
+   "title": "P7 · Création 8 — Détails, hors-ligne (téléphone)",
+   "page": "personnage"
+  },
+  "P08-Creation-Recap.dc.html": {
+   "x": 2460,
+   "y": 1400,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1040,
+   "title": "P8 · Création 9 — Récapitulatif (desktop)",
+   "page": "personnage"
+  },
+  "P09-Creation-Envoyee.dc.html": {
+   "x": 3980,
+   "y": 1400,
+   "w": 390,
+   "h": 844,
+   "title": "P9 · Fiche envoyée — corrections demandées (téléphone)",
+   "page": "personnage"
+  },
+  "P10-Niveau-Desktop.dc.html": {
+   "x": 0,
+   "y": 2860,
+   "w": 1440,
+   "expand": "fill",
+   "h": 960,
+   "title": "P10 · Montée de niveau 5 → 6 (desktop)",
+   "page": "personnage"
+  },
+  "P11-Niveau-Phone.dc.html": {
+   "x": 1520,
+   "y": 2860,
+   "w": 390,
+   "h": 844,
+   "title": "P11 · Montée de niveau — choix du don (téléphone)",
+   "page": "personnage"
+  },
+  "P12-Repos-Court.dc.html": {
+   "x": 1990,
+   "y": 2860,
+   "w": 390,
+   "h": 844,
+   "title": "P12 · Repos court — dés de vie (téléphone)",
+   "page": "personnage"
+  },
+  "P13-Repos-Long.dc.html": {
+   "x": 2460,
+   "y": 2860,
+   "w": 390,
+   "h": 844,
+   "title": "P13 · Repos long (téléphone)",
+   "page": "personnage"
+  },
+  "P14-Fiche-Sorts-Desktop.dc.html": {
+   "x": 0,
+   "y": 4240,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1180,
+   "title": "P14 · Fiche — Sorts (desktop, Clerc)",
+   "page": "personnage"
+  },
+  "P15-Fiche-Inventaire.dc.html": {
+   "x": 1520,
+   "y": 4240,
+   "w": 390,
+   "h": 1000,
+   "title": "P15 · Fiche — Inventaire (téléphone)",
+   "page": "personnage"
+  },
+  "P16-Fiche-Competences.dc.html": {
+   "x": 1990,
+   "y": 4240,
+   "w": 390,
+   "h": 1000,
+   "title": "P16 · Fiche — Compétences, conflit résolu (téléphone)",
+   "page": "personnage"
+  },
+  "P17-Fiche-Sorts-Vide.dc.html": {
+   "x": 2460,
+   "y": 4240,
+   "w": 390,
+   "h": 844,
+   "title": "P17 · Fiche — Sorts, état vide (téléphone)",
+   "page": "personnage"
+  },
+  "P18-Fiche-Chargement.dc.html": {
+   "x": 2930,
+   "y": 4240,
+   "w": 390,
+   "h": 844,
+   "title": "P18 · Fiche — chargement (téléphone)",
+   "page": "personnage"
+  },
+  "T01-Consentement.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "T1 · Premier lancement — consentement aux rapports de crash",
+   "page": "table"
+  },
+  "T02-Inscription.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "T2 · Inscription — erreur de validation (âge)",
+   "page": "table"
+  },
+  "T03-Choix-Role.dc.html": {
+   "x": 940,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "T3 · Choix MJ ou joueur (non bloquant)",
+   "page": "table"
+  },
+  "T04-Accueil-Vide.dc.html": {
+   "x": 1410,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "T4 · Accueil — premier usage (vide)",
+   "page": "table"
+  },
+  "T14-Profil.dc.html": {
+   "x": 1880,
+   "y": 0,
+   "w": 390,
+   "h": 1100,
+   "title": "T5 · Profil et réglages",
+   "page": "table"
+  },
+  "T15-Suppression.dc.html": {
+   "x": 2350,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "T6 · Suppression du compte",
+   "page": "table"
+  },
+  "T05-Accueil-Desktop.dc.html": {
+   "x": 0,
+   "y": 1520,
+   "w": 1440,
+   "expand": "fill",
+   "h": 960,
+   "title": "T7 · Accueil (desktop) — sync en attente",
+   "page": "table"
+  },
+  "T07-Creer-Table.dc.html": {
+   "x": 1520,
+   "y": 1520,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1000,
+   "title": "T8 · Créer une table (desktop, interactif) — avec PX ou jalons",
+   "page": "table",
+   "is_interactive": true
+  },
+  "T08-Table-Vue.dc.html": {
+   "x": 0,
+   "y": 2940,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "T9 · Table — vue d’ensemble MJ (desktop)",
+   "page": "table"
+  },
+  "T09-Membres.dc.html": {
+   "x": 1520,
+   "y": 2940,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1000,
+   "title": "T10 · Table — membres, invitations, emplacements (desktop)",
+   "page": "table"
+  },
+  "T10-Inviter-Phone.dc.html": {
+   "x": 3040,
+   "y": 2940,
+   "w": 390,
+   "h": 844,
+   "title": "T11 · Inviter — lien, code, QR (téléphone)",
+   "page": "table"
+  },
+  "T11-Rejoindre.dc.html": {
+   "x": 0,
+   "y": 4360,
+   "w": 390,
+   "h": 844,
+   "title": "T12 · Rejoindre — hors-ligne (téléphone)",
+   "page": "table"
+  },
+  "T12-Table-Joueur.dc.html": {
+   "x": 470,
+   "y": 4360,
+   "w": 390,
+   "h": 960,
+   "title": "T13 · Table — vue joueur (téléphone)",
+   "page": "table"
+  },
+  "T13-Rattacher.dc.html": {
+   "x": 940,
+   "y": 4360,
+   "w": 1440,
+   "expand": "fill",
+   "h": 900,
+   "title": "T14 · Rattacher un personnage libre — écarts (desktop, MJ)",
+   "page": "table"
+  },
+  "C01-Preparation.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1000,
+   "title": "C1 · Préparer une rencontre — jauge de difficulté (desktop, interactif)",
+   "page": "combat",
+   "is_interactive": true
+  },
+  "C03-PNJ.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "C2 · PNJ / monstre — attitude et informations cachées (desktop)",
+   "page": "combat"
+  },
+  "C04-Initiative.dc.html": {
+   "x": 0,
+   "y": 1420,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1060,
+   "title": "C3 · Lancer le combat — initiative (desktop) — égalités et Vigilant",
+   "page": "combat"
+  },
+  "C05-Initiative-Joueur.dc.html": {
+   "x": 1520,
+   "y": 1420,
+   "w": 390,
+   "h": 844,
+   "title": "C4 · Initiative saisie par le joueur (téléphone)",
+   "page": "combat"
+  },
+  "C06-Ajout-Etat.dc.html": {
+   "x": 0,
+   "y": 2760,
+   "w": 390,
+   "h": 844,
+   "title": "C5 · Ajouter un état avec durée (téléphone)",
+   "page": "combat"
+  },
+  "C07-Rappel-Tour.dc.html": {
+   "x": 470,
+   "y": 2760,
+   "w": 390,
+   "h": 844,
+   "title": "C6 · Rappel de début de tour — sauvegarde à répéter (téléphone)",
+   "page": "combat"
+  },
+  "C13-Joueur-0PV.dc.html": {
+   "x": 940,
+   "y": 2760,
+   "w": 390,
+   "h": 844,
+   "title": "C7 · Joueur à 0 PV — jet contre la mort (téléphone)",
+   "page": "combat"
+  },
+  "C08-Monstre-Detail.dc.html": {
+   "x": 1410,
+   "y": 2760,
+   "w": 1440,
+   "expand": "fill",
+   "h": 960,
+   "title": "C8 · Détail d’un monstre — compteurs légendaires (desktop)",
+   "page": "combat"
+  },
+  "C09-Etude.dc.html": {
+   "x": 0,
+   "y": 4140,
+   "w": 1440,
+   "expand": "fill",
+   "h": 900,
+   "title": "C9 · Assistant Étude (desktop)",
+   "page": "combat"
+  },
+  "C10-Influence.dc.html": {
+   "x": 1520,
+   "y": 4140,
+   "w": 390,
+   "h": 844,
+   "title": "C10 · Assistant Influence (téléphone)",
+   "page": "combat"
+  },
+  "C12-Fin.dc.html": {
+   "x": 1990,
+   "y": 4140,
+   "w": 1440,
+   "expand": "fill",
+   "h": 940,
+   "title": "C11 · Fin de rencontre — résumé (desktop)",
+   "page": "combat"
+  },
+  "H01-Mes-Packs.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 900,
+   "title": "H1 · Mes packs (desktop)",
+   "page": "homebrew"
+  },
+  "H02-Editeur-SousClasse.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "expand": "fill",
+   "h": 1000,
+   "title": "H2 · Éditeur de sous-classe — erreur de règle (desktop)",
+   "page": "homebrew"
+  },
+  "H03-Effets.dc.html": {
+   "x": 0,
+   "y": 1420,
+   "w": 1440,
+   "expand": "fill",
+   "h": 960,
+   "title": "H3 · Constructeur d’effets (desktop, interactif)",
+   "page": "homebrew",
+   "is_interactive": true
+  },
+  "H04-Test.dc.html": {
+   "x": 1520,
+   "y": 1420,
+   "w": 1440,
+   "expand": "fill",
+   "h": 900,
+   "title": "H4 · Tester sur un personnage (desktop)",
+   "page": "homebrew"
+  },
+  "H05-Objet-Phone.dc.html": {
+   "x": 3040,
+   "y": 1420,
+   "w": 390,
+   "h": 844,
+   "title": "H5 · Éditeur d’objet — botte obligatoire (téléphone)",
+   "page": "homebrew"
+  },
+  "H06-Publier.dc.html": {
+   "x": 0,
+   "y": 2800,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "H6 · Pack — version, licence, export (desktop)",
+   "page": "homebrew"
+  },
+  "H08-Import.dc.html": {
+   "x": 1520,
+   "y": 2800,
+   "w": 1440,
+   "expand": "fill",
+   "h": 980,
+   "title": "H7 · Import — aperçu et conflits (desktop)",
+   "page": "homebrew"
+  },
+  "H09-Import-Autre.dc.html": {
+   "x": 3040,
+   "y": 2800,
+   "w": 390,
+   "h": 844,
+   "title": "H8 · Import — autre auteur (téléphone)",
+   "page": "homebrew"
+  },
+  "H10-Activation.dc.html": {
+   "x": 0,
+   "y": 4200,
+   "w": 1440,
+   "expand": "fill",
+   "h": 900,
+   "title": "H9 · Packs d’une table — activation et bannissement (desktop)",
+   "page": "homebrew"
+  },
+  "H11-Contenu-Modifie.dc.html": {
+   "x": 1520,
+   "y": 4200,
+   "w": 390,
+   "h": 844,
+   "title": "H10 · Fiche — contenu modifié, migrer ou conserver (téléphone)",
+   "page": "homebrew"
+  },
+  "K01-Compendium-Desktop.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 960,
+   "expand": "fill",
+   "title": "K1 · Compendium — recherche transverse et fiche (desktop, interactif)",
+   "page": "compendium",
+   "is_interactive": true
+  },
+  "K02-Compendium-Phone.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "K2 · Compendium — résultats (téléphone)",
+   "page": "compendium"
+  },
+  "K03-Don-Phone.dc.html": {
+   "x": 1990,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "K3 · Fiche de don — éligibilité (téléphone)",
+   "page": "compendium"
+  },
+  "K04-Etat-Phone.dc.html": {
+   "x": 2460,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "K4 · Fiche d’état (téléphone)",
+   "page": "compendium"
+  },
+  "K05-Aucun-Resultat.dc.html": {
+   "x": 2930,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "K5 · Aucun résultat, entité bannie (téléphone)",
+   "page": "compendium"
+  },
+  "N01-Historique-Desktop.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1000,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "N1 · Historique des modifications — Aldric (desktop, interactif)",
+   "page": "suivi"
+  },
+  "N02-Historique-Phone.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "N2 · Historique — Kael, dérogations et hors-ligne (téléphone)",
+   "page": "suivi"
+  },
+  "N03-Notes-MJ-Desktop.dc.html": {
+   "x": 0,
+   "y": 1520,
+   "w": 1440,
+   "h": 1140,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "N3 · Table — notes du MJ, note partagée par un joueur, conflit (desktop, interactif)",
+   "page": "suivi"
+  },
+  "N04-Notes-Fiche-Phone.dc.html": {
+   "x": 1520,
+   "y": 1520,
+   "w": 390,
+   "h": 844,
+   "title": "N4 · Fiche — onglet Notes du joueur (téléphone)",
+   "page": "suivi"
+  },
+  "N05-Note-Editeur-Phone.dc.html": {
+   "x": 1990,
+   "y": 1520,
+   "w": 390,
+   "h": 844,
+   "title": "N5 · Éditeur — insérer un lien, hors-ligne (téléphone)",
+   "page": "suivi"
+  },
+  "N06-Notes-Recherche-Phone.dc.html": {
+   "x": 2460,
+   "y": 1520,
+   "w": 390,
+   "h": 844,
+   "title": "N6 · Recherche plein texte hors-ligne (téléphone)",
+   "page": "suivi"
+  },
+  "N07-Notes-Vide-Phone.dc.html": {
+   "x": 2930,
+   "y": 1520,
+   "w": 390,
+   "h": 844,
+   "title": "N7 · Notes — premier usage (téléphone)",
+   "page": "suivi"
+  },
+  "S01-Seances-Desktop.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1040,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "S1 · Table — séances, prochaine et passées (desktop, interactif)",
+   "page": "seances"
+  },
+  "S02-Preparer-Seance-Desktop.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 1000,
+   "expand": "fill",
+   "title": "S2 · Préparer la séance — prête hors-ligne, sync en attente (desktop)",
+   "page": "seances"
+  },
+  "S03-Seance-En-Cours-Phone.dc.html": {
+   "x": 0,
+   "y": 1480,
+   "w": 390,
+   "h": 844,
+   "title": "S3 · Séance en cours — MJ, hors-ligne (téléphone)",
+   "page": "seances"
+  },
+  "S04-Clore-Seance-Desktop.dc.html": {
+   "x": 470,
+   "y": 1480,
+   "w": 1440,
+   "h": 980,
+   "expand": "fill",
+   "title": "S4 · Clore la séance — PX, rencontre non jouée (desktop)",
+   "page": "seances"
+  },
+  "S05-Seances-Joueur-Phone.dc.html": {
+   "x": 1990,
+   "y": 1480,
+   "w": 390,
+   "h": 844,
+   "title": "S5 · Séances — vue joueur après clôture (téléphone)",
+   "page": "seances"
+  },
+  "S06-Seances-Vide-Phone.dc.html": {
+   "x": 2460,
+   "y": 1480,
+   "w": 390,
+   "h": 844,
+   "title": "S6 · Séances — premier usage, MJ (téléphone)",
+   "page": "seances"
+  },
+  "S07-Clore-Seance-Jalons-Desktop.dc.html": {
+   "x": 2930,
+   "y": 1480,
+   "w": 1440,
+   "h": 980,
+   "expand": "fill",
+   "page": "seances",
+   "title": "S7 · Clore la séance — table en jalons (desktop)"
+  },
+  "S08-Seance-Jalon-Phone.dc.html": {
+   "x": 0,
+   "y": 2900,
+   "w": 390,
+   "h": 844,
+   "page": "seances",
+   "title": "S8 · Séance en cours — accorder un niveau (MJ, table en jalons)"
+  },
+  "S09-Fiche-Niveau-Accorde-Phone.dc.html": {
+   "x": 470,
+   "y": 2900,
+   "w": 390,
+   "h": 844,
+   "page": "seances",
+   "title": "S9 · Fiche du joueur — bouton « Monter au niveau 6 »"
+  },
+  "TB1-Combat-Tablette.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 960,
+   "h": 600,
+   "title": "TB1 · Combat — liste + détail, journal en onglet (960 × 600)",
+   "page": "tablette"
+  },
+  "TB2-Fiche-Tablette.dc.html": {
+   "x": 1040,
+   "y": 0,
+   "w": 960,
+   "h": 600,
+   "title": "TB2 · Fiche — résumé permanent + onglets (960 × 600)",
+   "page": "tablette"
+  },
+  "TB3-Creation-Tablette.dc.html": {
+   "x": 2080,
+   "y": 0,
+   "w": 960,
+   "h": 600,
+   "is_interactive": true,
+   "title": "TB3 · Création, Caractéristiques — étapes + tableau fusionné (960 × 600, interactif)",
+   "page": "tablette"
+  },
+  "E01-Nouvelle-Entite.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "E1 · Ajouter une entité — choix du type (desktop)",
+   "page": "editeurs",
+   "expand": "fill"
+  },
+  "E02-Deriver-Phone.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "E2 · Dériver d’une entité du SRD (téléphone)",
+   "page": "editeurs"
+  },
+  "E03-Classe-Desktop.dc.html": {
+   "x": 0,
+   "y": 1320,
+   "w": 1440,
+   "h": 1490,
+   "title": "E3 · Éditeur de classe — sous-classe absente au niveau 3 (desktop)",
+   "page": "editeurs",
+   "expand": "fill"
+  },
+  "E04-Espece-Phone.dc.html": {
+   "x": 1520,
+   "y": 1320,
+   "w": 390,
+   "h": 900,
+   "title": "E4 · Éditeur d’espèce — bonus de caractéristique refusé (téléphone)",
+   "page": "editeurs"
+  },
+  "E06-Don-Phone.dc.html": {
+   "x": 1990,
+   "y": 1320,
+   "w": 390,
+   "h": 900,
+   "title": "E5 · Éditeur de don — catégorie manquante (téléphone)",
+   "page": "editeurs"
+  },
+  "E05-Historique-Desktop.dc.html": {
+   "x": 0,
+   "y": 3240,
+   "w": 1440,
+   "h": 1060,
+   "title": "E6 · Éditeur d’historique — 4 caractéristiques au lieu de 3 (desktop)",
+   "page": "editeurs",
+   "expand": "fill"
+  },
+  "E07-Sort-Desktop.dc.html": {
+   "x": 1520,
+   "y": 3240,
+   "w": 1440,
+   "h": 1080,
+   "title": "E7 · Éditeur de sort — concentration sans durée (desktop)",
+   "page": "editeurs",
+   "expand": "fill"
+  },
+  "E08-Monstre-Desktop.dc.html": {
+   "x": 0,
+   "y": 4760,
+   "w": 1440,
+   "h": 1560,
+   "title": "E8 · Éditeur de monstre — Intelligence manquante (desktop)",
+   "page": "editeurs",
+   "expand": "fill"
+  },
+  "F01-Fiche-Combat-Phone.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 1180,
+   "title": "F1 · Fiche — onglet Combat : attaques, ressources, bottes (téléphone)",
+   "page": "complements"
+  },
+  "F02-Fiche-Aptitudes-Phone.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 1240,
+   "title": "F2 · Fiche — onglet Aptitudes, par origine (téléphone)",
+   "page": "complements"
+  },
+  "F06-Observation.dc.html": {
+   "x": 940,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "F3 · Assistant Observation (desktop)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "F03-PNJ-Liste-Desktop.dc.html": {
+   "x": 0,
+   "y": 1660,
+   "w": 1440,
+   "h": 980,
+   "title": "F4 · Table — PNJ : liste et résumé (desktop)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "F04-Rencontres-Liste-Desktop.dc.html": {
+   "x": 1520,
+   "y": 1660,
+   "w": 1440,
+   "h": 1000,
+   "title": "F5 · Table — rencontres par séance (desktop)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "F05-Configuration-Desktop.dc.html": {
+   "x": 0,
+   "y": 3060,
+   "w": 1440,
+   "h": 1180,
+   "title": "F6 · Table — configuration après création (desktop)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "G01-Ecoles-Magie.dc.html": {
+   "x": 0,
+   "y": 4620,
+   "w": 1440,
+   "h": 320,
+   "title": "G1 · Icônes des écoles de magie (§9.1)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "G02-Multiclasse-Phone.dc.html": {
+   "x": 0,
+   "y": 5380,
+   "w": 390,
+   "h": 980,
+   "title": "G2 · Montée de niveau — multiclasser, prérequis 13 (EF-PJ-01)",
+   "page": "complements"
+  },
+  "G03-Grimoire-Phone.dc.html": {
+   "x": 470,
+   "y": 5380,
+   "w": 390,
+   "h": 1240,
+   "title": "G3 · Sorts du Magicien — grimoire et rituels (EF-PJ-07)",
+   "page": "complements"
+  },
+  "G06-Degats-Multiples-Phone.dc.html": {
+   "x": 940,
+   "y": 5380,
+   "w": 390,
+   "h": 900,
+   "title": "G4 · Dégâts sur 4 cibles — JS, résistance, PV temporaires (EF-PV-01/02)",
+   "page": "complements"
+  },
+  "G05-Nouveau-PNJ.dc.html": {
+   "x": 1410,
+   "y": 5380,
+   "w": 1440,
+   "h": 860,
+   "title": "G5 · Nouveau PNJ — bloc de stats ou fiche complète (EF-PNJ-01)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "G07-Bandeaux-Systeme-Desktop.dc.html": {
+   "x": 0,
+   "y": 6900,
+   "w": 1440,
+   "h": 620,
+   "title": "G6 · Bandeaux système — stockage Web et sauvegarde (ENF-07, ENF-12)",
+   "page": "complements",
+   "expand": "fill"
+  },
+  "D01-Jeu-De-Donnees.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 2900,
+   "title": "D1 · Jeu de données de référence",
+   "page": "revue",
+   "expand": "fill"
+  },
+  "D02-Origine-Montee-Niveau.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 420,
+   "title": "D2 · Bouton « Monter de niveau » et son origine (R2)",
+   "page": "revue",
+   "expand": "fill"
+  },
+  "J01-Combat-Joueur.dc.html": {
+   "x": 0,
+   "y": 3300,
+   "w": 390,
+   "h": 1100,
+   "title": "J1 · En combat, joueur — pas son tour (F1)",
+   "page": "revue"
+  },
+  "J02-Combat-Joueur-Son-Tour.dc.html": {
+   "x": 470,
+   "y": 3300,
+   "w": 390,
+   "h": 960,
+   "title": "J2 · En combat, joueur — c’est votre tour (F1)",
+   "page": "revue"
+  },
+  "J03-Combat-Joueur-Hors-Ligne.dc.html": {
+   "x": 940,
+   "y": 3300,
+   "w": 390,
+   "h": 844,
+   "title": "J3 · En combat, joueur — hors-ligne (F1)",
+   "page": "revue"
+  },
+  "J04-Effets-Recus.dc.html": {
+   "x": 1410,
+   "y": 3300,
+   "w": 390,
+   "h": 844,
+   "title": "J4 · Effets reçus et décomposition (J2)",
+   "page": "revue"
+  },
+  "J05-Demande-De-Jet.dc.html": {
+   "x": 1880,
+   "y": 3300,
+   "w": 390,
+   "h": 844,
+   "title": "J5 · Demande de jet au joueur (J3)",
+   "page": "revue"
+  },
+  "J06-Jet-Simple.dc.html": {
+   "x": 2350,
+   "y": 3300,
+   "w": 390,
+   "h": 844,
+   "title": "J6 · Jet simple, résultat détaillé (J9)",
+   "page": "revue"
+  },
+  "F2A-Mort-Sur-Le-Coup.dc.html": {
+   "x": 0,
+   "y": 4720,
+   "w": 390,
+   "h": 844,
+   "title": "F2a · 0 PV — mort sur le coup, aperçu avant validation",
+   "page": "revue"
+  },
+  "F2B-Assommer.dc.html": {
+   "x": 470,
+   "y": 4720,
+   "w": 390,
+   "h": 844,
+   "title": "F2b · 0 PV — assommer",
+   "page": "revue"
+  },
+  "F2C-Stabilise.dc.html": {
+   "x": 940,
+   "y": 4720,
+   "w": 390,
+   "h": 844,
+   "title": "F2c · 0 PV — PJ stabilisé, automatismes",
+   "page": "revue"
+  },
+  "F3A-Epuisement.dc.html": {
+   "x": 1410,
+   "y": 4720,
+   "w": 390,
+   "h": 844,
+   "title": "F3a · Épuisement appliqué aux valeurs",
+   "page": "revue"
+  },
+  "F3B-Epuisement-6.dc.html": {
+   "x": 1880,
+   "y": 4720,
+   "w": 390,
+   "h": 844,
+   "title": "F3b · Épuisement 6 — confirmation",
+   "page": "revue"
+  },
+  "F4A-Proposition-MJ.dc.html": {
+   "x": 0,
+   "y": 5880,
+   "w": 1440,
+   "h": 860,
+   "title": "F4a · Proposition du MJ — envoi (desktop)",
+   "page": "revue",
+   "expand": "fill"
+  },
+  "F4B-Proposition-Joueur.dc.html": {
+   "x": 1520,
+   "y": 5880,
+   "w": 390,
+   "h": 844,
+   "title": "F4b · Proposition du MJ — réception",
+   "page": "revue"
+  },
+  "F5A-Magie-De-Pacte.dc.html": {
+   "x": 1990,
+   "y": 5880,
+   "w": 390,
+   "h": 844,
+   "title": "F5a · Magie de pacte (Occultiste)",
+   "page": "revue"
+  },
+  "F5B-Multiclassage-Emplacements.dc.html": {
+   "x": 2460,
+   "y": 5880,
+   "w": 390,
+   "h": 844,
+   "title": "F5b · Emplacements de multiclassage",
+   "page": "revue"
+  },
+  "J07-Consommable.dc.html": {
+   "x": 0,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J7 · Utiliser une potion (J4)",
+   "page": "revue"
+  },
+  "J08-Inspiration.dc.html": {
+   "x": 470,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J8 · Inspiration héroïque — donner (J4)",
+   "page": "revue"
+  },
+  "J09-Repos-Groupe-MJ.dc.html": {
+   "x": 940,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J9 · Repos de groupe — MJ (J5)",
+   "page": "revue"
+  },
+  "J10-Repos-Groupe-Joueur.dc.html": {
+   "x": 1410,
+   "y": 7040,
+   "w": 390,
+   "h": 900,
+   "title": "J10 · Repos de groupe — joueur (J5)",
+   "page": "revue"
+  },
+  "J11-Suggestion.dc.html": {
+   "x": 1880,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J11 · Suggestion pour débutant (J6)",
+   "page": "revue"
+  },
+  "J12-Fiche-En-Attente.dc.html": {
+   "x": 2350,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J12 · Fiche en attente, jouable (J7)",
+   "page": "revue"
+  },
+  "J13-Termes-Cliquables.dc.html": {
+   "x": 2820,
+   "y": 7040,
+   "w": 390,
+   "h": 844,
+   "title": "J13 · Termes de règles cliquables (J8)",
+   "page": "revue"
+  },
+  "A01-Connexion-Phone.dc.html": {
+   "x": 0,
+   "y": 5520,
+   "w": 390,
+   "h": 844,
+   "title": "A1 · Connexion — erreur d’identifiants (téléphone)",
+   "page": "table"
+  },
+  "A02-Mot-De-Passe-Oublie.dc.html": {
+   "x": 470,
+   "y": 5520,
+   "w": 390,
+   "h": 844,
+   "title": "A2 · Mot de passe oublié — lien envoyé",
+   "page": "table"
+  },
+  "A03-Nouveau-Mot-De-Passe.dc.html": {
+   "x": 940,
+   "y": 5520,
+   "w": 390,
+   "h": 844,
+   "title": "A3 · Nouveau mot de passe (depuis le lien)",
+   "page": "table"
+  },
+  "A05-Modifier-Compte.dc.html": {
+   "x": 1410,
+   "y": 5520,
+   "w": 390,
+   "h": 900,
+   "title": "A5 · Modifier le compte — e-mail et mot de passe",
+   "page": "table"
+  },
+  "A06-Methodes-Connexion.dc.html": {
+   "x": 1880,
+   "y": 5520,
+   "w": 390,
+   "h": 844,
+   "title": "A6 · Méthodes de connexion — compte Google",
+   "page": "table"
+  },
+  "A04-Connexion-Desktop.dc.html": {
+   "x": 0,
+   "y": 6640,
+   "w": 1440,
+   "h": 900,
+   "title": "A4 · Connexion — desktop, hors-ligne",
+   "page": "table",
+   "expand": "fill"
+  },
+  "A07-Profil-Desktop.dc.html": {
+   "x": 1520,
+   "y": 6640,
+   "w": 1440,
+   "h": 1000,
+   "title": "A7 · Profil et réglages — desktop",
+   "page": "table",
+   "expand": "fill"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Combat-Phone.dc.html",
+  "Combat-Phone-Degats.dc.html",
+  "Combat-Desktop.dc.html",
+  "Fiche-Phone.dc.html",
+  "Fiche-Phone-Decomposition.dc.html",
+  "Fiche-Desktop.dc.html",
+  "Creation-Phone.dc.html",
+  "Creation-Desktop.dc.html",
+  "P01-Creation-Classe.dc.html",
+  "P02-Creation-Historique.dc.html",
+  "P03-Creation-Espece.dc.html",
+  "P04-Creation-Langues.dc.html",
+  "P05-Creation-SousChoix.dc.html",
+  "P06-Creation-Equipement.dc.html",
+  "P07-Creation-Details.dc.html",
+  "P08-Creation-Recap.dc.html",
+  "P09-Creation-Envoyee.dc.html",
+  "P10-Niveau-Desktop.dc.html",
+  "P11-Niveau-Phone.dc.html",
+  "P12-Repos-Court.dc.html",
+  "P13-Repos-Long.dc.html",
+  "P14-Fiche-Sorts-Desktop.dc.html",
+  "P15-Fiche-Inventaire.dc.html",
+  "P16-Fiche-Competences.dc.html",
+  "P17-Fiche-Sorts-Vide.dc.html",
+  "P18-Fiche-Chargement.dc.html",
+  "T01-Consentement.dc.html",
+  "T02-Inscription.dc.html",
+  "T03-Choix-Role.dc.html",
+  "T04-Accueil-Vide.dc.html",
+  "T14-Profil.dc.html",
+  "T15-Suppression.dc.html",
+  "T05-Accueil-Desktop.dc.html",
+  "T07-Creer-Table.dc.html",
+  "T08-Table-Vue.dc.html",
+  "T09-Membres.dc.html",
+  "T10-Inviter-Phone.dc.html",
+  "T11-Rejoindre.dc.html",
+  "T12-Table-Joueur.dc.html",
+  "T13-Rattacher.dc.html",
+  "C01-Preparation.dc.html",
+  "C03-PNJ.dc.html",
+  "C04-Initiative.dc.html",
+  "C05-Initiative-Joueur.dc.html",
+  "C06-Ajout-Etat.dc.html",
+  "C07-Rappel-Tour.dc.html",
+  "C13-Joueur-0PV.dc.html",
+  "C08-Monstre-Detail.dc.html",
+  "C09-Etude.dc.html",
+  "C10-Influence.dc.html",
+  "C12-Fin.dc.html",
+  "H01-Mes-Packs.dc.html",
+  "H02-Editeur-SousClasse.dc.html",
+  "H03-Effets.dc.html",
+  "H04-Test.dc.html",
+  "H05-Objet-Phone.dc.html",
+  "H06-Publier.dc.html",
+  "H08-Import.dc.html",
+  "H09-Import-Autre.dc.html",
+  "H10-Activation.dc.html",
+  "H11-Contenu-Modifie.dc.html",
+  "K01-Compendium-Desktop.dc.html",
+  "K02-Compendium-Phone.dc.html",
+  "K03-Don-Phone.dc.html",
+  "K04-Etat-Phone.dc.html",
+  "K05-Aucun-Resultat.dc.html",
+  "N01-Historique-Desktop.dc.html",
+  "N02-Historique-Phone.dc.html",
+  "N03-Notes-MJ-Desktop.dc.html",
+  "N04-Notes-Fiche-Phone.dc.html",
+  "N05-Note-Editeur-Phone.dc.html",
+  "N06-Notes-Recherche-Phone.dc.html",
+  "N07-Notes-Vide-Phone.dc.html",
+  "S01-Seances-Desktop.dc.html",
+  "S02-Preparer-Seance-Desktop.dc.html",
+  "S03-Seance-En-Cours-Phone.dc.html",
+  "S04-Clore-Seance-Desktop.dc.html",
+  "S05-Seances-Joueur-Phone.dc.html",
+  "S06-Seances-Vide-Phone.dc.html",
+  "S07-Clore-Seance-Jalons-Desktop.dc.html",
+  "S08-Seance-Jalon-Phone.dc.html",
+  "S09-Fiche-Niveau-Accorde-Phone.dc.html",
+  "TB1-Combat-Tablette.dc.html",
+  "TB2-Fiche-Tablette.dc.html",
+  "TB3-Creation-Tablette.dc.html",
+  "E01-Nouvelle-Entite.dc.html",
+  "E02-Deriver-Phone.dc.html",
+  "E03-Classe-Desktop.dc.html",
+  "E04-Espece-Phone.dc.html",
+  "E06-Don-Phone.dc.html",
+  "E05-Historique-Desktop.dc.html",
+  "E07-Sort-Desktop.dc.html",
+  "E08-Monstre-Desktop.dc.html",
+  "F01-Fiche-Combat-Phone.dc.html",
+  "F02-Fiche-Aptitudes-Phone.dc.html",
+  "F06-Observation.dc.html",
+  "F03-PNJ-Liste-Desktop.dc.html",
+  "F04-Rencontres-Liste-Desktop.dc.html",
+  "F05-Configuration-Desktop.dc.html",
+  "G01-Ecoles-Magie.dc.html",
+  "G02-Multiclasse-Phone.dc.html",
+  "G03-Grimoire-Phone.dc.html",
+  "G06-Degats-Multiples-Phone.dc.html",
+  "G05-Nouveau-PNJ.dc.html",
+  "G07-Bandeaux-Systeme-Desktop.dc.html",
+  "D01-Jeu-De-Donnees.dc.html",
+  "D02-Origine-Montee-Niveau.dc.html",
+  "J01-Combat-Joueur.dc.html",
+  "J02-Combat-Joueur-Son-Tour.dc.html",
+  "J03-Combat-Joueur-Hors-Ligne.dc.html",
+  "J04-Effets-Recus.dc.html",
+  "J05-Demande-De-Jet.dc.html",
+  "J06-Jet-Simple.dc.html",
+  "F2A-Mort-Sur-Le-Coup.dc.html",
+  "F2B-Assommer.dc.html",
+  "F2C-Stabilise.dc.html",
+  "F3A-Epuisement.dc.html",
+  "F3B-Epuisement-6.dc.html",
+  "F4A-Proposition-MJ.dc.html",
+  "F4B-Proposition-Joueur.dc.html",
+  "F5A-Magie-De-Pacte.dc.html",
+  "F5B-Multiclassage-Emplacements.dc.html",
+  "J07-Consommable.dc.html",
+  "J08-Inspiration.dc.html",
+  "J09-Repos-Groupe-MJ.dc.html",
+  "J10-Repos-Groupe-Joueur.dc.html",
+  "J11-Suggestion.dc.html",
+  "J12-Fiche-En-Attente.dc.html",
+  "J13-Termes-Cliquables.dc.html",
+  "A01-Connexion-Phone.dc.html",
+  "A02-Mot-De-Passe-Oublie.dc.html",
+  "A03-Nouveau-Mot-De-Passe.dc.html",
+  "A05-Modifier-Compte.dc.html",
+  "A06-Methodes-Connexion.dc.html",
+  "A04-Connexion-Desktop.dc.html",
+  "A07-Profil-Desktop.dc.html"
+ ],
+ "notes": {
+  "t0": {
+   "x": 0,
+   "y": -280,
+   "text": "0 · Fondations",
+   "kind": "title1",
+   "maxW": 1440,
+   "page": "langage"
+  },
+  "t1": {
+   "x": 0,
+   "y": 1900,
+   "text": "1 · Carte de combattant et écran de combat",
+   "kind": "title1",
+   "maxW": 2380,
+   "page": "langage"
+  },
+  "t2": {
+   "x": 0,
+   "y": 3240,
+   "text": "2 · Fiche de personnage",
+   "kind": "title1",
+   "maxW": 2380,
+   "page": "langage"
+  },
+  "t3": {
+   "x": 470,
+   "y": 5000,
+   "text": "3 · Création — Caractéristiques et bonus d’Historique",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "langage"
+  },
+  "p1": {
+   "x": 0,
+   "y": -280,
+   "text": "Création guidée — étapes 1 à 4",
+   "kind": "title1",
+   "maxW": 3900,
+   "page": "personnage"
+  },
+  "p2": {
+   "x": 0,
+   "y": 1120,
+   "text": "Création guidée — étapes 6 à 9 et envoi au MJ",
+   "kind": "title1",
+   "maxW": 4370,
+   "page": "personnage"
+  },
+  "p3": {
+   "x": 0,
+   "y": 2580,
+   "text": "Montée de niveau et repos",
+   "kind": "title1",
+   "maxW": 2850,
+   "page": "personnage"
+  },
+  "p4": {
+   "x": 0,
+   "y": 3960,
+   "text": "Fiche — onglets et états",
+   "kind": "title1",
+   "maxW": 3320,
+   "page": "personnage"
+  },
+  "q1": {
+   "x": 0,
+   "y": -280,
+   "text": "Premier lancement et compte",
+   "kind": "title1",
+   "maxW": 2740,
+   "page": "table"
+  },
+  "q2": {
+   "x": 0,
+   "y": 1240,
+   "text": "Accueil et création de table",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "table"
+  },
+  "q3": {
+   "x": 0,
+   "y": 2660,
+   "text": "Table du MJ",
+   "kind": "title1",
+   "maxW": 3430,
+   "page": "table"
+  },
+  "q4": {
+   "x": 0,
+   "y": 4080,
+   "text": "Rejoindre une table et rattacher un personnage",
+   "kind": "title1",
+   "maxW": 2380,
+   "page": "table"
+  },
+  "r1": {
+   "x": 0,
+   "y": -280,
+   "text": "Préparer la rencontre",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "combat"
+  },
+  "r2": {
+   "x": 0,
+   "y": 1140,
+   "text": "Lancer le combat : initiative",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "combat"
+  },
+  "r3": {
+   "x": 0,
+   "y": 2480,
+   "text": "En combat : états, rappels, monstres",
+   "kind": "title1",
+   "maxW": 2850,
+   "page": "combat"
+  },
+  "r4": {
+   "x": 0,
+   "y": 3860,
+   "text": "Étude, Influence et fin de rencontre",
+   "kind": "title1",
+   "maxW": 3430,
+   "page": "combat"
+  },
+  "h1": {
+   "x": 0,
+   "y": -280,
+   "text": "Créer un contenu",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "homebrew"
+  },
+  "h2": {
+   "x": 0,
+   "y": 1140,
+   "text": "Composer, tester",
+   "kind": "title1",
+   "maxW": 3430,
+   "page": "homebrew"
+  },
+  "h3": {
+   "x": 0,
+   "y": 2520,
+   "text": "Publier et partager un pack",
+   "kind": "title1",
+   "maxW": 3430,
+   "page": "homebrew"
+  },
+  "h4": {
+   "x": 0,
+   "y": 3920,
+   "text": "Utiliser un pack dans une table",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "homebrew"
+  },
+  "k1": {
+   "x": 0,
+   "y": -280,
+   "text": "Compendium",
+   "kind": "title1",
+   "maxW": 3320,
+   "page": "compendium"
+  },
+  "s1": {
+   "x": 0,
+   "y": -280,
+   "text": "Historique des modifications de la fiche",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "suivi"
+  },
+  "s2": {
+   "x": 0,
+   "y": 1240,
+   "text": "Notes — MJ et joueurs",
+   "kind": "title1",
+   "maxW": 3320,
+   "page": "suivi"
+  },
+  "u1": {
+   "x": 0,
+   "y": -280,
+   "text": "Lister et préparer",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "seances"
+  },
+  "u2": {
+   "x": 0,
+   "y": 1200,
+   "text": "Jouer, clore, consulter",
+   "kind": "title1",
+   "maxW": 4370,
+   "page": "seances"
+  },
+  "u3": {
+   "x": 0,
+   "y": 2620,
+   "text": "Progression par jalons en cours de partie",
+   "kind": "title1",
+   "maxW": 860,
+   "page": "seances"
+  },
+  "v1": {
+   "x": 0,
+   "y": -280,
+   "text": "Tablette paysage (600 à 1023 dp) — deux panneaux",
+   "kind": "title1",
+   "maxW": 3040,
+   "page": "tablette"
+  },
+  "w1": {
+   "x": 0,
+   "y": -280,
+   "text": "Créer une entité",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "editeurs"
+  },
+  "w2": {
+   "x": 0,
+   "y": 1040,
+   "text": "Classe, espèce, don",
+   "kind": "title1",
+   "maxW": 2380,
+   "page": "editeurs"
+  },
+  "w3": {
+   "x": 0,
+   "y": 2960,
+   "text": "Historique et sort",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "editeurs"
+  },
+  "w4": {
+   "x": 0,
+   "y": 4480,
+   "text": "Monstre",
+   "kind": "title1",
+   "maxW": 1440,
+   "page": "editeurs"
+  },
+  "x1": {
+   "x": 0,
+   "y": -280,
+   "text": "Fiche et assistant d’action",
+   "kind": "title1",
+   "maxW": 2380,
+   "page": "complements"
+  },
+  "x2": {
+   "x": 0,
+   "y": 1380,
+   "text": "Table : PNJ, rencontres, configuration",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "complements"
+  },
+  "x3": {
+   "x": 0,
+   "y": 4340,
+   "text": "Écarts comblés après la revue de conformité",
+   "kind": "title1",
+   "maxW": 2850,
+   "page": "complements"
+  },
+  "y1": {
+   "x": 0,
+   "y": -280,
+   "text": "Référence",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "revue"
+  },
+  "y2": {
+   "x": 0,
+   "y": 2120,
+   "text": "Le joueur en combat : vue, effets reçus, jets",
+   "kind": "title1",
+   "maxW": 2740,
+   "page": "revue"
+  },
+  "y3": {
+   "x": 0,
+   "y": 4440,
+   "text": "0 PV, mort et épuisement",
+   "kind": "title1",
+   "maxW": 2270,
+   "page": "revue"
+  },
+  "y4": {
+   "x": 0,
+   "y": 5600,
+   "text": "Proposition du MJ, magie de pacte, multiclassage",
+   "kind": "title1",
+   "maxW": 2850,
+   "page": "revue"
+  },
+  "y5": {
+   "x": 0,
+   "y": 6760,
+   "text": "Pendant la partie, côté joueur",
+   "kind": "title1",
+   "maxW": 3210,
+   "page": "revue"
+  },
+  "q5": {
+   "x": 0,
+   "y": 5240,
+   "text": "Connexion et gestion du compte",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "table"
+  }
+ },
+ "designSystems": []
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fin de rencontre</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 940px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv); padding: 28px 32px 24px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gC12"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gC12)"></rect></svg>
+    <div style="position: relative; flex: 1 1 320px">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">FIN DE RENCONTRE · SÉANCE 12</span>
+      <h1 class="d" style="margin: 2px 0 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Le relais du Sel</h1>
+    </div>
+    <div class="n" style="position: relative; display: flex; gap: 8px">
+      <sc-for list="{{kpis}}" as="k" hint-placeholder-count="3"><div style="min-width: 120px; height: 72px; border-radius: 12px; background: var(--sf-c); padding: 0 16px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 24px; font-weight: 600">{{k.v}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{k.l}}</span></div></sc-for>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 24px 32px; align-items: flex-start">
+    <section aria-label="Points d’expérience" style="flex: 1 1 320px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+      <h2 style="margin: 0; padding: 8px 16px; font-size: 16px; line-height: 24px; font-weight: 500">PX gagnés</h2>
+      <sc-for list="{{xp}}" as="x" hint-placeholder-count="4">
+        <div style="min-height: 56px; padding: 6px 16px; display: flex; align-items: center; gap: 12px">
+          <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{x.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{x.s}}</span></span>
+          <span class="n" style="font-size: 16px; font-weight: 600; color: var(--p)">+750 PX</span>
+        </div>
+      </sc-for>
+      <span class="n" style="display: block; padding: 4px 16px 10px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">3 000 PX pour la rencontre, répartis entre 4 personnages. Modifiable avant de clore.</span>
+    </section>
+
+    <section aria-label="Combattants tombés" style="flex: 1 1 320px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+      <h2 style="margin: 0; padding: 8px 16px; font-size: 16px; line-height: 24px; font-weight: 500">Combattants tombés</h2>
+      <sc-for list="{{fallen}}" as="f" hint-placeholder-count="5">
+        <div style="min-height: 52px; padding: 6px 16px; display: flex; align-items: center; gap: 12px">
+          <span style="width: 28px; height: 28px; flex: none; border-radius: 14px; background: {{f.bg}}; color: {{f.fg}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.d}}"></path></svg></span>
+          <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{f.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{f.s}}</span></span>
+        </div>
+      </sc-for>
+    </section>
+
+    <aside style="flex: 1 1 300px; max-width: 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Moments notés au journal</h2>
+        <sc-for list="{{moments}}" as="m" hint-placeholder-count="3"><span style="font-size: 13px; line-height: 18px"><span class="n" style="color: var(--on-sfv)">{{m.r}} · </span>{{m.t}}</span></sc-for>
+        <a href="#" style="font-size: 13px">Voir les 64 événements</a>
+      </section>
+      <label style="border-radius: 16px; background: var(--sf-c); padding: 12px 16px; display: flex; align-items: center; gap: 14px; cursor: pointer">
+        <span style="width: 18px; height: 18px; flex: none; border-radius: 2px; background: var(--p); color: var(--on-p); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
+        <input type="checkbox" checked aria-label="Garder Varga comme PNJ capturée" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+        <span style="display: flex; flex-direction: column"><span style="font-size: 14px">Garder Varga comme PNJ, capturée</span><span style="font-size: 12px; color: var(--on-sfv)">Attitude Hostile conservée pour la suite</span></span>
+      </label>
+      <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>Repos du groupe : court ou long…</button>
+      <button style="height: 56px; border-radius: 28px; background: var(--p); color: var(--on-p); font-size: 15px; font-weight: 600">Clore et ranger dans la séance 12</button>
+      <button style="height: 40px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Revenir au combat</button>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":940}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const kpis = [{ v: '6', l: 'rounds' }, { v: '3 000', l: 'PX au total' }, { v: '10 / 11', l: 'adversaires tombés' }];
+    const xp = [
+      { n: 'Aldric Varenne', s: 'Guerrier 5 · 6 725 → 7 475 PX' },
+      { n: 'Mira Solen', s: 'Clerc 5 · 6 725 → 7 475 PX' },
+      { n: 'Thalia', s: 'Roublarde 5 · 6 725 → 7 475 PX' },
+      { n: 'Brannoc', s: 'Magicien 5 · 6 725 → 7 475 PX' },
+    ];
+    const X = 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9l6 6 M15 9l-6 6', Z = 'M4 6h6l-6 7h6 M13 13h5l-5 6h5', R = 'M7 11V7a5 5 0 0 1 10 0v4 M5 11h14v10H5z';
+    const fallen = [
+      { n: 'Varga la Balafrée', s: 'Assommée au round 5 (1 PV, Inconsciente) · capturée', d: R, bg: 'var(--tc)', fg: 'var(--on-tc)' },
+      { n: 'Vétérans 1 et 2', s: 'rounds 3 et 4', d: X, bg: 'var(--sf-highest)', fg: 'var(--on-sf)' },
+      { n: 'Ogre', s: 'round 4', d: X, bg: 'var(--sf-highest)', fg: 'var(--on-sf)' },
+      { n: 'Loups sanguinaires 1 à 3, Bandits 1 à 3', s: 'rounds 1 à 5 · Bandit 4 a fui', d: X, bg: 'var(--sf-highest)', fg: 'var(--on-sf)' },
+      { n: 'Brannoc (PJ)', s: '0 PV au round 2 · stabilisé au round 3', d: Z, bg: 'var(--dmg-c)', fg: 'var(--on-dmg-c)' },
+    ];
+    const moments = [
+      { r: 'R2', t: 'Étude de Thalia : 2 informations révélées sur Varga.' },
+      { r: 'R4', t: 'Mira perd sa concentration (Esprits gardiens).' },
+      { r: 'R6', t: 'Influence d’Aldric sur Varga : échec, elle reste Hostile.' },
+    ];
+    return { kpis, xp, fallen, moments };
+  }
+}
+</script>
+</body>
+</html>

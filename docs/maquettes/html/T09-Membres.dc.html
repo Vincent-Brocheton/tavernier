@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Table — membres et invitations</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="position: relative; overflow: hidden; background: #2F4A3E; padding: 16px 32px 0; display: flex; flex-direction: column; gap: 8px">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gT09"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT09)"></rect></svg>
+      <h1 class="d" style="position: relative; margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</h1><span style="position: relative; font-size: 13px; color: var(--on-pc)">Début de campagne · avant la séance 1 (29 mai)</span>
+      <nav aria-label="Sections de la table" style="position: relative; display: flex; overflow-x: auto; margin: 0 -8px">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+          <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 16px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+        </sc-for>
+      </nav>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 24px 32px 32px; align-items: flex-start">
+      <section aria-label="Invitation" style="flex: 1 1 280px; max-width: 320px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Inviter des joueurs</h2>
+        <div role="img" aria-label="QR code d’invitation" style="align-self: center; width: 176px; height: 176px; border-radius: 12px; background: #EDE0D6; padding: 12px; display: grid; grid-template-columns: repeat(21, minmax(0, 1fr)); gap: 0">
+          <sc-for list="{{qr}}" as="q" hint-placeholder-count="441"><span style="aspect-ratio: 1; background: {{q}}"></span></sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="font-size: 12px; color: var(--on-sfv)">Code</span><span class="n" style="font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: 4px">K7Q4ZP</span></div>
+        <div style="display: flex; gap: 8px">
+          <button style="flex: 1; height: 40px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Copier le lien</button>
+          <button style="flex: 1; height: 40px; border-radius: 20px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500">Partager…</button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--on-sfv)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2"></path></svg><span class="n" style="flex: 1">Expire dans 6 jours</span><button style="height: 36px; padding: 0 10px; border-radius: 18px; color: var(--e); font-size: 13px; font-weight: 500">Révoquer</button></div>
+      </section>
+
+      <section aria-label="Membres" style="flex: 1.3 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+          <h2 style="margin: 0; padding: 8px 16px; font-size: 16px; line-height: 24px; font-weight: 500">Membres <span class="n" style="font-weight: 400; color: var(--on-sfv)">5</span></h2>
+          <sc-for list="{{members}}" as="m" hint-placeholder-count="5">
+            <div style="min-height: 64px; padding: 4px 8px 4px 16px; display: flex; align-items: center; gap: 12px">
+              <span style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: {{m.avBg}}; color: {{m.avFg}}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">{{m.i}}</span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 15px">{{m.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{m.s}}</span></span>
+              <sc-if value="{{m.hasMenu}}" hint-placeholder-val="{{true}}"><button aria-label="Actions pour {{m.n}}" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5h.01 M12 12h.01 M12 19h.01"></path></svg></button></sc-if>
+            </div>
+          </sc-for>
+          <span style="display: block; padding: 4px 16px 12px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">Retirer un joueur archive sa fiche, sans la supprimer.</span>
+        </div>
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 4px 16px">
+          <div style="min-height: 64px; display: flex; align-items: center; gap: 12px">
+            <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">Fiches complètes visibles entre joueurs</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Désactivé : chaque joueur voit nom, portrait, classe, niveau et un état de santé qualitatif</span></span>
+            <button role="switch" aria-checked="false" aria-label="Fiches complètes visibles entre joueurs" style="width: 52px; height: 32px; border-radius: 16px; background: var(--sf-highest); border: 2px solid var(--ol); display: flex; align-items: center; padding: 0 6px"><span style="width: 16px; height: 16px; border-radius: 8px; background: var(--ol)"></span></button>
+          </div>
+        </div>
+      </section>
+
+      <aside aria-label="Fiche à valider" style="flex: 1 1 300px; max-width: 380px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--warn); padding: 20px; display: flex; flex-direction: column; gap: 12px">
+        <span style="align-self: flex-start; height: 24px; padding: 0 8px; border-radius: 6px; background: var(--warn-c); color: var(--on-warn-c); font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">Fiche à valider</span>
+        <div style="display: flex; align-items: center; gap: 12px"><span class="d" style="width: 48px; height: 48px; border-radius: 24px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">AV</span><span style="display: flex; flex-direction: column"><span class="d" style="font-size: 18px; font-weight: 600; color: var(--t)">Aldric Varenne</span><span style="font-size: 13px; color: var(--on-sfv)">Guerrier 1 · Soldat · par Hugo</span></span></div>
+        <sc-for list="{{checks}}" as="c" hint-placeholder-count="4">
+          <div style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 18px"><span style="width: 20px; height: 20px; flex: none; border-radius: 10px; background: {{c.bg}}; color: {{c.fg}}; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.d}}"></path></svg></span>{{c.t}}</div>
+        </sc-for>
+        <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 12px; font-size: 13px; line-height: 18px"><span style="color: var(--on-sfv)">Message de Hugo :</span> « Je garde l’épée longue en botte : je compte en acheter une au premier marché. »</div>
+        <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Commentaire (requis pour des corrections)</span><textarea aria-label="Commentaire" rows="3" style="border: 0; outline: 0; background: transparent; font-size: 14px; line-height: 20px; padding: 0; resize: none">Remplace la botte « épée longue » par « épée à deux mains » : il n’y aura pas de marché avant la séance 3.</textarea></label>
+        <div style="display: flex; gap: 8px">
+          <button style="flex: 1; height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Demander des corrections</button>
+          <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Valider</button>
+        </div>
+        <a href="#" style="font-size: 13px">Ouvrir la fiche complète</a>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 1 ? 'page' : 'false', bg: i === 1 ? 'var(--sc)' : 'transparent', fg: i === 1 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 1 ? 700 : 500 }));
+    const tabs = ['Vue d’ensemble', 'Séances', 'Rencontres', 'PNJ', 'Notes', 'Membres', 'Configuration'].map((l, i) => ({ l, cur: i === 5 ? 'page' : 'false', fg: i === 5 ? 'var(--t)' : 'var(--on-pc)', bar: i === 5 ? 'var(--t)' : 'transparent' }));
+    const N = 21, qr = [];
+    const finder = (x, y) => { const f = (ox, oy) => { const dx = x - ox, dy = y - oy; if (dx < 0 || dy < 0 || dx > 6 || dy > 6) return null; return dx === 0 || dy === 0 || dx === 6 || dy === 6 || (dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4); }; return f(0, 0) ?? f(14, 0) ?? f(0, 14); };
+    let s = 7;
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const fz = finder(x, y); s = (s * 1103515245 + 12345) % 2147483648; const on = fz === null ? ((s >> 16) & 1) === 1 : fz; qr.push(on ? '#14110D' : 'transparent'); }
+    const members = [
+      { i: 'C', n: 'Camille', s: 'MJ · vous', avBg: 'var(--pc)', avFg: 'var(--on-pc)', hasMenu: false },
+      { i: 'H', n: 'Hugo', s: 'Joueur · Aldric Varenne (à valider)', avBg: 'var(--sc)', avFg: 'var(--on-sc)', hasMenu: true },
+      { i: 'I', n: 'Inès', s: 'Joueuse · Mira Solen', avBg: 'var(--sc)', avFg: 'var(--on-sc)', hasMenu: true },
+      { i: 'L', n: 'Léo', s: 'Joueur · Thalia', avBg: 'var(--sc)', avFg: 'var(--on-sc)', hasMenu: true },
+      { i: 'S', n: 'Sam', s: 'Joueur · Brannoc (en création)', avBg: 'var(--sc)', avFg: 'var(--on-sc)', hasMenu: true },
+    ];
+    const ok = { bg: 'var(--heal)', fg: '#10380F', d: 'M5 12l5 5L20 7' };
+    const checks = [
+      { t: 'Acquisition par points respectée (27 / 27)', ...ok },
+      { t: 'Packs : uniquement ceux de la table', ...ok },
+      { t: 'Niveau de départ : 1', ...ok },
+      { t: 'Alerte : botte sur une arme absente (épée longue)', bg: 'var(--warn)', fg: '#3A2600', d: 'M12 7v6 M12 17h.01' },
+    ];
+    return { rail, tabs, qr, members, checks };
+  }
+}
+</script>
+</body>
+</html>

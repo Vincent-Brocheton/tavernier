@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rattacher un personnage libre</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 900px; position: relative; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; justify-content: center; align-items: flex-start; padding: 48px 16px">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: #2F4A3E; height: 200px"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.55)"></div>
+
+  <section role="dialog" aria-labelledby="t13t" style="position: relative; width: 100%; max-width: 760px; border-radius: 28px; background: var(--sf-high); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span class="d" style="width: 52px; height: 52px; flex: none; border-radius: 26px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600">K</span>
+      <div style="flex: 1">
+        <h1 id="t13t" style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 400">Léo veut rattacher Kael</h1>
+        <span style="font-size: 14px; color: var(--on-sfv)">Personnage libre · Elfe · Magicien 3 · vers l’emplacement libre des Marches de Brumeval</span>
+      </div>
+    </div>
+    <div style="border-radius: 12px; background: var(--warn-c); color: var(--on-warn-c); padding: 10px 14px; font-size: 14px; line-height: 20px">4 écarts avec la configuration de la table. Acceptez-les avec une dérogation tracée, ou demandez une correction à Léo.</div>
+
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{gaps}}" as="g" hint-placeholder-count="4">
+        <li style="border-radius: 16px; background: var(--sf-c); padding: 12px 12px 12px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+          <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 15px; font-weight: 500">{{g.t}}</span>
+            <span class="n" style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">{{g.s}}</span>
+          </div>
+          <div role="radiogroup" aria-label="Décision : {{g.t}}" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+            <button role="radio" aria-checked="{{g.okOn}}" style="padding: 0 14px; background: {{g.okBg}}; color: {{g.okFg}}; font-size: 13px; font-weight: 500">Dérogation</button>
+            <button role="radio" aria-checked="{{g.fixOn}}" style="padding: 0 14px; border-left: 1px solid var(--ol); background: {{g.fixBg}}; color: {{g.fixFg}}; font-size: 13px; font-weight: 500">Correction</button>
+          </div>
+        </li>
+      </sc-for>
+    </ul>
+
+    <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Message pour Léo</span><textarea aria-label="Message" rows="2" style="border: 0; outline: 0; background: transparent; font-size: 14px; line-height: 20px; padding: 0; resize: none">Niveau et caractéristiques OK, tu nous rejoins en cours de campagne. Remplace juste Sommeil (banni ici) et le sort du pack d’Inès.</textarea></label>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+      <span style="flex: 1 1 240px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">2 dérogations seront inscrites dans l’historique de la fiche. Un personnage n’est rattaché qu’à une table à la fois.</span>
+      <button style="height: 40px; padding: 0 16px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Annuler</button>
+      <button style="height: 40px; padding: 0 20px; border-radius: 20px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Envoyer à Léo (2 corrections)</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dec = (ok) => ({ okOn: ok ? 'true' : 'false', fixOn: ok ? 'false' : 'true', okBg: ok ? 'var(--sc)' : 'transparent', okFg: ok ? 'var(--on-sc)' : 'var(--on-sf)', fixBg: ok ? 'transparent' : 'var(--warn-c)', fixFg: ok ? 'var(--on-sf)' : 'var(--on-warn-c)' });
+    const gaps = [
+      { t: 'Niveau 3 au lieu du niveau de départ 1', s: 'La table démarre au niveau 1.', ...dec(true) },
+      { t: 'Génération aléatoire au lieu d’Acquisition par points', s: 'Valeurs tirées : 16, 15, 14, 12, 11, 9 (coût en points : non applicable).', ...dec(true) },
+      { t: 'Sort banni par la table : Sommeil', s: 'Préparé · 1er niveau · banni dans la configuration SRD de la table.', ...dec(false) },
+      { t: 'Pack non actif : Sorts d’Inès 2.0', s: 'Le sort « Lame d’ombre » vient d’un pack que la table n’a pas activé.', ...dec(false) },
+    ];
+    return { gaps };
+  }
+}
+</script>
+</body>
+</html>

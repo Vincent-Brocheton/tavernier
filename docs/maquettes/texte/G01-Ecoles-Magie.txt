@@ -1,0 +1,26 @@
+Écoles de magie
+Complète le jeu d’icônes des Fondations (15 états, types de dégâts, économie d’actions). Trait 24 dp, toujours accompagné du nom de l’école ; taille réduite à 16 dp dans les puces et listes de sorts.
+Abjuration
+protéger, bloquer
+Abjuration
+Divination
+révéler, savoir
+Divination
+Enchantement
+charmer, influencer
+Enchantement
+Évocation
+énergie, dégâts
+Évocation
+Illusion
+tromper les sens
+Illusion
+Invocation
+faire venir, déplacer
+Invocation
+Nécromancie
+vie et mort
+Nécromancie
+Transmutation
+changer la matière
+Transmutation

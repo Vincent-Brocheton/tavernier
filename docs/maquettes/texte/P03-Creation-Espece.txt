@@ -1,0 +1,38 @@
+Nouveau personnage
+Étape 3 sur 9
+Espèce
+Taille, Vitesse et traits. Aucun bonus de caractéristique : ils viennent de l’Historique.
+Drakéide
+Souffle, résistance aux dégâts, vision dans le noir
+M · 9 m
+Elfe
+Lignage elfique, transe, sens aiguisés
+M · 9 m
+Gnome
+Ruse gnome, vision dans le noir
+P · 9 m
+Goliath
+Ascendance de géant, forme de géant (niv. 5)
+M · 10,50 m
+Halfelin
+Chanceux, brave, agilité halfeline
+P · 9 m
+Humain
+M ou P · 9 m
+Catégorie de taille
+M
+P
+Compétent. maîtrise d’une compétence au choix (étape 6).
+Ingénieux. Inspiration héroïque à la fin de chaque Repos long.
+Polyvalent. un don d’origines au choix (étape 6). Doué est recommandé.
+Nain
+Résistance naine, connaissance de la pierre
+M · 9 m
+Orc
+Endurance implacable, poussée d’adrénaline
+M · 9 m
+Tieffelin
+Héritage fiélon, présence d’outre-monde
+M ou P · 9 m
+Précédent
+Suivant

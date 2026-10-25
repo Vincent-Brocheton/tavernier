@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Détail d’un monstre en combat</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 960px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv)">
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Le relais du Sel · séance 13</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Round 4 · tour du Capitaine des Marches</h1></div>
+    <button style="height: 40px; padding: 0 16px 0 12px; border-radius: 20px; border: 1px solid var(--ol); display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5 M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg>Annuler</button>
+    <button style="height: 48px; padding: 0 24px 0 16px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5l10 7-10 7z M17 5h2.5v14H17z"></path></svg>Tour suivant</button>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <main style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; box-shadow: inset 0 0 0 2px var(--p)">
+        <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><h2 class="d" style="margin: 0; font-size: 26px; line-height: 34px; font-weight: 600; color: var(--t)">Capitaine des Marches</h2><span style="height: 22px; padding: 0 8px; border-radius: 11px; background: var(--p); color: var(--on-p); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">En cours</span></div>
+          <span style="font-size: 13px; color: var(--on-sfv)">Humanoïde de taille M · FP 5 (1 800 PX)</span>
+          <span style="align-self: flex-start; margin-top: 4px; height: 22px; padding: 0 8px; border-radius: 6px; background: var(--tc); color: var(--on-tc); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">Bestiaire des Marches · v1.3</span>
+        </div>
+        <div class="n" style="display: flex; gap: 8px">
+          <div style="min-width: 72px; height: 64px; border-radius: 12px; background: var(--sf-high); display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 22px; font-weight: 600">17</span><span style="font-size: 11px; color: var(--on-sfv)">CA</span></div>
+          <div style="min-width: 120px; height: 64px; border-radius: 12px; background: var(--sf-high); padding: 0 12px; display: flex; flex-direction: column; justify-content: center; gap: 4px"><span style="font-size: 18px; font-weight: 600">74 <span style="font-weight: 400; color: var(--on-sfv)">/ 97 PV</span></span><div style="height: 6px; border-radius: 3px; background: var(--sf-highest); overflow: hidden"><div style="width: 76%; height: 100%; background: var(--heal)"></div></div></div>
+        </div>
+      </section>
+
+      <section aria-label="Actions" style="border-radius: 16px; background: var(--sf-c); padding: 16px 20px; display: flex; flex-direction: column; gap: 10px">
+        <h3 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--t)">Actions</h3>
+        <sc-for list="{{actions}}" as="a" hint-placeholder-count="3">
+          <div style="display: flex; gap: 12px; align-items: flex-start">
+            <p style="margin: 0; flex: 1; font-size: 14px; line-height: 20px"><strong style="font-weight: 600; font-style: italic">{{a.k}}.</strong> {{a.v}}</p>
+            <sc-if value="{{a.hasState}}" hint-placeholder-val="{{false}}"><span style="height: 26px; padding: 0 8px; border-radius: 6px; background: {{a.sBg}}; color: {{a.sFg}}; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{a.state}}</span></sc-if>
+          </div>
+        </sc-for>
+        <h3 style="margin: 6px 0 0; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--t)">Actions légendaires</h3>
+        <sc-for list="{{legend}}" as="a" hint-placeholder-count="2">
+          <p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600; font-style: italic">{{a.k}}.</strong> {{a.v}}</p>
+        </sc-for>
+      </section>
+    </main>
+
+    <aside aria-label="Compteurs" style="flex: 1 1 300px; max-width: 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <div role="status" style="border-radius: 16px; background: var(--warn-c); color: var(--on-warn-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 14px; line-height: 20px"><strong>Début de son tour :</strong> lancez 1d6 pour Cri de ralliement (recharge sur 5–6).</span>
+        <div style="display: flex; gap: 8px"><button style="height: 40px; padding: 0 14px; border-radius: 20px; background: var(--warn); color: #3A2600; font-size: 14px; font-weight: 600">Lancer 1d6</button><button style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid var(--warn); font-size: 14px; font-weight: 500">Rechargé</button></div>
+      </div>
+      <sc-for list="{{counters}}" as="c" hint-placeholder-count="4">
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">{{c.l}}</span><span class="n" style="font-size: 13px; color: var(--on-sfv)">{{c.t}}</span></div>
+          <div style="display: flex; gap: 8px" aria-label="{{c.aria}}">
+            <sc-for list="{{c.pips}}" as="p" hint-placeholder-count="3"><button aria-pressed="{{p.on}}" style="width: 44px; height: 44px; border-radius: {{c.r}}; border: 2px solid var(--p); background: {{p.bg}}; color: var(--on-p); display: flex; align-items: center; justify-content: center"><sc-if value="{{p.used}}" hint-placeholder-val="{{false}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9C8E82" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path></svg></sc-if></button></sc-for>
+          </div>
+          <span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span>
+        </div>
+      </sc-for>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const actions = [
+      { k: 'Attaques multiples', v: 'Trois attaques d’Épée longue.', hasState: false },
+      { k: 'Épée longue', v: 'Corps à corps : +7, allonge 1,50 m. Touché : 8 (1d8 + 4) dégâts tranchants.', hasState: false },
+      { k: 'Cri de ralliement (Recharge 5–6)', v: 'Chaque allié à 9 m ou moins gagne 10 PV temporaires et peut se déplacer de la moitié de sa Vitesse.', hasState: true, state: 'Utilisé', sBg: 'var(--sf-highest)', sFg: 'var(--on-sfv)' },
+    ];
+    const legend = [
+      { k: 'Ordre (coûte 1 action)', v: 'Un allié qui voit le capitaine peut utiliser sa Réaction pour effectuer une attaque.' },
+      { k: 'Charge (coûte 2 actions)', v: 'Le capitaine se déplace de sa Vitesse et effectue une attaque d’Épée longue.' },
+    ];
+    const pips = (n, left) => Array.from({ length: n }, (_, i) => ({ on: i < left ? 'true' : 'false', used: i >= left, bg: i < left ? 'var(--p)' : 'transparent' }));
+    const counters = [
+      { l: 'Actions légendaires', t: '3 / 3', pips: pips(3, 3), r: '22px', s: 'Toutes récupérées : son tour vient de commencer.', aria: '3 actions légendaires restantes sur 3' },
+      { l: 'Résistance légendaire', t: '2 / 3 par jour', pips: pips(3, 2), r: '8px', s: 'Ne se récupère pas pendant la rencontre.', aria: '2 résistances légendaires restantes sur 3' },
+      { l: 'Réaction · Parade', t: 'Disponible', pips: pips(1, 1), r: '22px', s: 'Réinitialisée au début de son tour.', aria: 'Réaction disponible' },
+    ];
+    return { actions, legend, counters };
+  }
+}
+</script>
+</body>
+</html>

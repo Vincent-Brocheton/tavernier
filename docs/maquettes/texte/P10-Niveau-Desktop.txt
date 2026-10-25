@@ -1,0 +1,85 @@
+Aldric Varenne · Les Marches de Brumeval
+MONTÉE DE NIVEAU
+Guerrier 5 → 6
+✓
+Points de vie
+✓
+Aptitudes
+3
+Don
+4
+Récapitulatif
+Points de vie : +9
+6 (moyenne d10) + 3 CON · réglage de table : moyenne fixe, jet désactivé
+Aptitude gagnée
+Amélioration de caractéristique (Guerrier 6)
+Amélioration de caractéristique ou autre don
+Seuls les dons dont vous remplissez les conditions sont sélectionnables.
+Suggérer
+Suggestion appliquée, modifiable : Amélioration de caractéristique, Force 18 → 20. L’Épée longue et l’Athlétisme d’Aldric utilisent la Force.
+Amélioration de caractéristique
+Général
++2 à une valeur ou +1 à deux, maximum 20
+Empoigneur
+Général
+FOR 13+ ✓ · +1 FOR ou DEX, Avantage contre une cible Agrippée
+Doué
+Origines
+Trois maîtrises de compétences ou d’outils
+Initié à la magie
+Origines
+Répétable · 2 sorts mineurs, 1 sort du 1er niveau
+Vigilant
+Origines
+Déjà obtenu (Humain, Polyvalent) · non répétable
+Sauvagerie martiale
+Origines
+Déjà obtenu (Soldat) · non répétable
+Répartition
++2 à une
++1 à deux
+FOR
+18 → 20
++2 · plafond
+DEX
+13
+CON
+16
+INT
+8
+SAG
+12
+CHA
+10
+Force atteint 20, le plafond : aucune autre augmentation de Force ne sera proposée ensuite.
+Précédent
+Suivant : récapitulatif
+Ce qui change
+PV max
+49
+58
+Force
+18 (+4)
+20 (+5)
+Épée longue, attaque
++7
++8
+Épée longue, dégâts
+1d8 + 4
+1d8 + 5
+JS Force
++7
++8
+Athlétisme
++7
++8
+Dés de vie
+5 d10
+6 d10
+Bonus de maîtrise
++3
++3
+Bottes d’armes
+4
+4
+La montée de niveau est tracée dans l’historique de la fiche, consultable par le MJ.

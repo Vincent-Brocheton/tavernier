@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Mot de passe oublié — lien envoyé</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column"><header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px"><button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button><h1 style="margin: 0; flex: 1; font-size: 22px; line-height: 28px; font-weight: 400">Mot de passe oublié</h1></header>
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+    <span style="font-size: 14px; line-height: 20px; color: var(--on-sfv)">Indiquez l’e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.</span>
+    <div style="display: flex; flex-direction: column; gap: 4px"><label style="min-height: 56px; border-radius: 4px; border: 1px solid rgba(237,224,214,0.12); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: rgba(237,224,214,0.38)">E-mail</span><input aria-label="E-mail" type="email" value="hugo@exemple.fr" disabled style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; color: rgba(237,224,214,0.38)"></span></label></div>
+    <div role="status" style="border-radius: 12px; background: var(--heal-c); color: var(--on-heal-c); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 18px; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 6h18v12H3z M3 7l9 6 9-6"></path></svg><span><strong style="display: block; font-weight: 600">Vérifiez votre boîte mail</strong>Si un compte existe pour hugo@exemple.fr, un lien vient d’y être envoyé. Il est valable 1 heure. Pensez à regarder dans les courriers indésirables.</span></div>
+    <button aria-disabled="true" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; background: rgba(237,224,214,0.12); color: rgba(237,224,214,0.5); font-weight: 500; cursor: not-allowed; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Renvoyer le lien dans 0:42</button>
+    <button style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; color: var(--p); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Revenir à la connexion</button>
+    <div style="flex: 1"></div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 12px 14px; display: flex; gap: 10px; font-size: 13px; line-height: 18px; color: var(--on-sfv)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 11v5 M12 8h.01"></path></svg><span>Compte créé avec Google ou Apple : pas de mot de passe à réinitialiser, utilisez le même bouton qu’à l’inscription.</span></div>
+  </div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

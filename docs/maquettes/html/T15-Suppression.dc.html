@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Suppression du compte</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--e:#FFB4AB;--on-e:#690005;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div role="dialog" aria-labelledby="t15t" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf-low); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px">
+    <button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    <h1 id="t15t" style="margin: 0; flex: 1; font-size: 22px; line-height: 28px; font-weight: 400">Supprimer le compte</h1>
+  </header>
+
+  <div style="flex: 1; padding: 8px 24px; display: flex; flex-direction: column; gap: 20px">
+    <section style="border-radius: 16px; background: var(--pc); color: var(--on-pc); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 15px; font-weight: 600">D’abord, gardez une copie</span>
+      <span style="font-size: 13px; line-height: 18px">Fiches, tables, packs et notes, dans un fichier JSON que vous pourrez réimporter.</span>
+      <button style="align-self: flex-start; height: 40px; padding: 0 16px 0 12px; border-radius: 20px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12 M7 10l5 5 5-5 M5 21h14"></path></svg>Exporter mes données</button>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Ce qui va se passer</h2>
+      <sc-for list="{{facts}}" as="f" hint-placeholder-count="3">
+        <div style="display: flex; gap: 12px; font-size: 14px; line-height: 20px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="{{f.d}}"></path></svg><span>{{f.t}}</span></div>
+      </sc-for>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label style="height: 56px; border-radius: 4px; border: 2px solid var(--e); padding: 4px 16px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--e)">Tapez SUPPRIMER pour confirmer</span><input aria-label="Confirmation" value="SUPPR" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; letter-spacing: 1px"></label>
+      <span style="padding: 0 16px; font-size: 12px; color: var(--on-sfv)">La suppression est définitive.</span>
+    </div>
+  </div>
+
+  <div style="flex: none; padding: 12px 24px 24px; display: flex; gap: 8px">
+    <button style="flex: 1; height: 48px; border-radius: 24px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500; color: var(--p)">Annuler</button>
+    <button aria-disabled="true" style="flex: 1.4; height: 48px; border-radius: 24px; background: rgba(237,224,214,0.12); color: rgba(237,224,214,0.5); font-size: 14px; font-weight: 500; cursor: not-allowed">Supprimer définitivement</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { facts: [
+      { t: 'Vos personnages sont retirés des tables où ils jouent.', d: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0' },
+      { t: 'Les tables dont vous êtes MJ restent en place pour leurs joueurs, mais sans MJ.', d: 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16' },
+      { t: 'Les packs que vous avez publiés restent disponibles, attribués à « auteur supprimé ».', d: 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3' },
+      { t: 'Le compte et ses données sont effacés des serveurs sous 30 jours.', d: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2' },
+    ] };
+  }
+}
+</script>
+</body>
+</html>

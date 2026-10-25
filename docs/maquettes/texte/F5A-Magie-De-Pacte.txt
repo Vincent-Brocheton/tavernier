@@ -1,0 +1,21 @@
+Sélène
+Occultiste 5 · fiche de test
+Magie de pacte
+2 emplacements du 3e niveau · 1 restant
+Récupérés au repos court. Un sort d’Occultiste se lance toujours au niveau de pacte (3e).
+Repos court
+15
+DD (CHA)
++7
+Attaque de sort
+SORTS PRÉPARÉS · 6
+Maléfice
+1er niveau · lancé au 3e : 8 heures
+Lancer au 3e
+Foulée brumeuse
+2e niveau · lancé au 3e
+Lancer au 3e
+Contresort
+3e niveau
+Lancer au 3e
++ 3 autres sorts préparés · 3 sorts mineurs

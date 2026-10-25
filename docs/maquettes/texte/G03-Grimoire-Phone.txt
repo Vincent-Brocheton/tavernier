@@ -1,0 +1,55 @@
+Brannoc
+Magicien 5
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Préparés
+9 / 9
+Grimoire
+14
+Emplacements
+1er 
+2e 
+3e 
+1ER NIVEAU · 7
+Armure du mage
+Abjuration
+Bouclier
+Abjuration
+Compréhension des langues
+Divination
+lançable en rituel sans préparation
+R
+Détection de la magie
+Divination
+lançable en rituel sans préparation
+R
+C
+Feuille morte
+Transmutation
+Graisse
+Invocation
+Projectile magique
+Évocation
+2E NIVEAU · 4
+Foulée brumeuse
+Invocation
+Fracassement
+Évocation
+Image miroir
+Illusion
+Toile d’araignée
+Invocation
+C
+3E NIVEAU · 3
+Boule de feu
+Évocation
+Contresort
+Abjuration
+Vol
+Transmutation
+C
+Le grimoire contient tous les sorts appris ; vous en préparez 9 après un repos long. Copier un sort trouvé : 2 heures et 50 po par niveau de sort.
+Copier un sort

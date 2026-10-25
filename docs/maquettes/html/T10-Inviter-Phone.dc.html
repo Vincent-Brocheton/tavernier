@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Inviter — téléphone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column">
+    <div style="height: 150px; background: #2F4A3E; padding: 72px 16px 0"><span class="d" style="font-size: 24px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</span></div>
+    <div style="margin: 16px; height: 72px; border-radius: 12px; background: var(--sf-c)"></div>
+    <div style="margin: 0 16px; height: 72px; border-radius: 12px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-label="Inviter des joueurs" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+    <div style="height: 22px; display: flex; align-items: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <h2 style="margin: 0; align-self: stretch; font-size: 22px; line-height: 28px; font-weight: 400">Inviter des joueurs</h2>
+    <p style="margin: 0; align-self: stretch; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Faites scanner le QR à la table, ou envoyez le lien. Le joueur a besoin du réseau pour rejoindre.</p>
+    <div role="img" aria-label="QR code d’invitation" style="width: 208px; height: 208px; border-radius: 16px; background: #EDE0D6; padding: 14px; display: grid; grid-template-columns: repeat(21, minmax(0, 1fr))">
+      <sc-for list="{{qr}}" as="q" hint-placeholder-count="441"><span style="aspect-ratio: 1; background: {{q}}"></span></sc-for>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px"><span class="n" style="font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: 6px">K7Q4ZP</span><button aria-label="Copier le code" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z M5 15H4V4h11v1"></path></svg></button></div>
+    <span class="n" style="font-size: 12px; color: var(--on-sfv)">Valable 7 jours · expire le 31 oct.</span>
+    <button style="align-self: stretch; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a3 3 0 1 0 0-.01 M6 15a3 3 0 1 0 0-.01 M18 22a3 3 0 1 0 0-.01 M8.6 13.5l6.8 4 M15.4 6.5l-6.8 4"></path></svg>Partager le lien</button>
+    <button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--e); font-size: 14px; font-weight: 500">Révoquer cette invitation</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const N = 21, qr = [];
+    const finder = (x, y) => { const f = (ox, oy) => { const dx = x - ox, dy = y - oy; if (dx < 0 || dy < 0 || dx > 6 || dy > 6) return null; return dx === 0 || dy === 0 || dx === 6 || dy === 6 || (dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4); }; return f(0, 0) ?? f(14, 0) ?? f(0, 14); };
+    let s = 7;
+    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) { const fz = finder(x, y); s = (s * 1103515245 + 12345) % 2147483648; const on = fz === null ? ((s >> 16) & 1) === 1 : fz; qr.push(on ? '#14110D' : 'transparent'); }
+    return { qr };
+  }
+}
+</script>
+</body>
+</html>

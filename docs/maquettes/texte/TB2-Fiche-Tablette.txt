@@ -1,0 +1,92 @@
+Accueil
+Tables
+Personnages
+Compendium
+AV
+Aldric Varenne
+Humain · Guerrier 5 (Champion) · Soldat
+41
+/ 49
++5 temp.
+DV 3/5 d10
+Dégâts
+Soins
+PV temp.
+19
+CA
++4
+Initiative
+9 m
+Vitesse
++3
+Maîtrise
+14
+Perc. passive
+—
+Inspiration
+FOR
++4
+18
+DEX
++1
+13
+CON
++3
+16
+INT
+−1
+8
+SAG
++1
+12
+CHA
++0
+10
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+FORCE
+Athlétisme
+Avantage
++7
+DEXTÉRITÉ
+Acrobaties
++1
+Discrétion
++1
+Escamotage
++1
+INTELLIGENCE
+Arcanes
+−1
+Histoire
+−1
+Investigation
+−1
+Nature
+−1
+Religion
+−1
+SAGESSE
+Dressage
++1
+Intuition
++4
+Médecine
++1
+Perception
++4
+Survie
++4
+CHARISME
+Intimidation
++3
+Persuasion
++0
+Représentation
++0
+Tromperie
++0

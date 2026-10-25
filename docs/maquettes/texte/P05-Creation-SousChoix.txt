@@ -1,0 +1,92 @@
+Nouveau personnage · Les Marches de Brumeval · niveau 1
+ÉTAPE 6 SUR 9
+Sous-choix
+
+Les choix laissés ouverts par votre classe, votre Historique et votre espèce. Les options impossibles sont grisées, avec la règle qui les bloque.
+
+✓
+Classe
+✓
+Historique
+✓
+Espèce
+✓
+Langues
+✓
+Caractéristiques
+6
+Sous-choix
+7
+Équipement
+8
+Détails
+9
+Récapitulatif
+Compétences de Guerrier
+1 / 2
+Acrobaties
+Athlétisme
+Dressage
+Histoire
+Intimidation
+Intuition
+Perception
+Persuasion
+Survie
+Athlétisme et Intimidation viennent déjà de l’Historique Soldat : une maîtrise ne se prend pas deux fois.
+Style de combat
+Archerie
++2 aux attaques à distance
+Armes à deux mains
+1 et 2 aux dégâts comptent comme 3
+Combat à deux armes
+Modificateur aux dégâts de l’attaque supplémentaire
+Défense
++1 à la CA en armure
+Don d’origines · Humain (Polyvalent)
+Doué
+Trois maîtrises de compétences ou d’outils au choix
+Initié à la magie
+Répétable · 2 sorts mineurs et 1 sort du 1er niveau
+Sauvagerie martiale
+Déjà obtenu par l’Historique Soldat · non répétable
+Vigilant
+Maîtrise ajoutée à l’Initiative, échange d’Initiative
+Bottes d’armes
+3 / 3
+Bâton de combat
+Renversement
+Dague
+Coup double
+Épée à deux mains
+Écorchure
+Épée longue
+Sape
+Hache d’armes
+Renversement
+Hachette
+Ouverture
+Javeline
+Ralentissement
+Marteau de guerre
+Poussée
+Rapière
+Ouverture
+Une arme par type, parmi celles que vous maîtrisez. Modifiable après chaque Repos long.
+Compétence · Humain (Compétent)
+Compétence au choix
+Intuition
+La liste exclut les compétences déjà maîtrisées.
+Précédent : Caractéristiques
+Suivant : Équipement
+À compléter
+Compétences de Guerrier
+Choisissez encore 1 compétence
+Style de combat
+Défense
+Don d’origines
+Vigilant
+Bottes d’armes
+Épée longue, Javeline, Hache d’armes
+Compétence (Compétent)
+Intuition

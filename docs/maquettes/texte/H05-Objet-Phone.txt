@@ -1,0 +1,22 @@
+Nouvel objet
+Gardiens des Marches
+Variante de Hache d’armes (SRD) · l’original n’est pas modifié
+Nom *
+Type
+Arme de guerre
+Rareté
+Peu commune
+Dégâts
+1d8 tranchants
+Propriétés
+Polyvalente (1d10)
+Botte d’arme *
+Aucune
+Règle 2024 : une arme a toujours une botte d’arme.
+Reprendre celle de la hache d’armes : Renversement
+Effets
++1 aux jets d’attaque et de dégâts
+Modifier
+Harmonisation requise
+Tester
+Enregistrer

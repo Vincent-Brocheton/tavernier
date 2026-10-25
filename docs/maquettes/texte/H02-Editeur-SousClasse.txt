@@ -1,0 +1,48 @@
+Gardiens des Marches · v0.1.0 · brouillon
+Sous-classe de Guerrier
+Enregistré sur l’appareil
+Tester sur un personnage
+SOUS-CLASSES
+Gardien du rempart
+1
+OBJETS
+Bouclier de Brumeval
+Ajouter une entité
+Nom *
+Classe parente *
+Guerrier · SRD 5.2.1
+Description
+Aptitudes par niveau
+Niveaux du Guerrier : 3, 7, 10, 15, 18
+3
+Rempart vivant
+2 effets · +1 CA avec bouclier, Réaction pour protéger un allié
+Modifier
+Serment de garde
+1 effet · maîtrise de l’Intuition
+Modifier
+4
+Bouclier relevé
+Le Guerrier n’accorde pas d’aptitude de sous-classe au niveau 4. Choisissez l’un des niveaux 3, 7, 10, 15 ou 18.
+Déplacer au niveau 7
+Autre niveau…
+7
+Pas de la sentinelle
+1 effet · ignorer le terrain difficile sur 3 m
+Modifier
+10
+Ajouter une aptitude au niveau 10
+15
+Ajouter une aptitude au niveau 15
+18
+Ajouter une aptitude au niveau 18
+Vérification
+Classe parente définie
+Guerrier
+Niveaux alignés sur le Guerrier
+1 aptitude au niveau 4
+Progression complète
+Niveaux 10, 15 et 18 vides : requis pour publier, pas pour tester
+Effets valides
+4 effets, tous dans la liste autorisée
+Les mêmes contrôles que pour le SRD : une entité qui ne passe pas ne peut pas être publiée, ni casser une fiche.

@@ -1,0 +1,89 @@
+Nouveau personnage · Les Marches de Brumeval · niveau 1
+ÉTAPE 2 SUR 9 · ORIGINE
+Historique
+
+Ce que faisait votre personnage avant l’aventure. L’Historique donne trois caractéristiques à augmenter, un don d’origines, deux compétences et un outil.
+
+✓
+Classe
+Guerrier
+2
+Historique
+Soldat
+3
+Espèce
+À choisir
+4
+Langues
+Commun + 2
+5
+Caractéristiques
+Acquisition par points
+6
+Sous-choix
+Compétences, bottes, don
+7
+Équipement
+Pack ou or
+8
+Détails
+Nom, apparence
+9
+Récapitulatif
+Envoi au MJ
+Acolyte
+Intelligence, Sagesse, Charisme
+Don : Initié à la magie (Clerc)
+SRD 5.2.1
+Criminel
+Dextérité, Constitution, Intelligence
+Don : Vigilant
+SRD 5.2.1
+Sage
+Constitution, Intelligence, Sagesse
+Don : Initié à la magie (Magicien)
+SRD 5.2.1
+Soldat
+Force, Dextérité, Constitution
+Don : Sauvagerie martiale
+SRD 5.2.1
+Garde-frontière
+Force, Constitution, Sagesse
+Don : Vigilant
+Les Marches v1.3
+Soldat
+SRD 5.2.1
+Caractéristiques éligibles
+Force
+Dextérité
+Constitution
++2 / +1 ou +1 / +1 / +1, répartis à l’étape 5.
+Don d’origines
+Sauvagerie martiale
+Une fois par tour, quand vous touchez avec une arme, lancez deux fois les dés de dégâts et gardez le résultat de votre choix.
+Compétences
+Athlétisme
+Intimidation
+Outil : boîte de jeux (au choix)
+Type
+Dés
+Cartes à jouer, dés, échecs coniques, jeu des dragons
+Équipement (détaillé à l’étape 7)
+A · Arc court + 20 flèches, carquois, lance, boîte de jeux, trousse de soins, tenue de voyage, 14 po
+B · 50 po
+Précédent : Classe
+Suivant : Espèce
+Aperçu
+Sans nom
+Guerrier 1 · Soldat
+Jets de sauvegarde
+Force, Constitution
+Compétences
+Athlétisme, Intimidation · +2 de classe à l’étape 6
+Don
+Sauvagerie martiale
+Outils
+Boîte de jeux (dés)
+Armes et armures
+Courantes, de guerre · toutes armures, boucliers
+Bon accord : Soldat augmente Force et Constitution, les deux caractéristiques clés d’un Guerrier en armure lourde.

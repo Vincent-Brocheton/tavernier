@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche d’état</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; padding: 72px 16px 0; display: flex; flex-direction: column; gap: 8px">
+    <div style="height: 76px; border-radius: 12px; background: var(--sf-c)"></div>
+    <div style="height: 104px; border-radius: 12px; background: var(--pc)"></div>
+    <div style="height: 76px; border-radius: 12px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-labelledby="k04t" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <span style="width: 52px; height: 52px; flex: none; border-radius: 26px; background: var(--sf-highest); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1"></path></svg></span>
+      <div style="flex: 1"><h2 id="k04t" style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Entravé</h2><span style="font-size: 13px; color: var(--on-sfv)">État · SRD 5.2.1</span></div>
+    </div>
+    <sc-for list="{{rules}}" as="r" hint-placeholder-count="3"><p style="margin: 0; font-size: 15px; line-height: 22px"><strong style="font-weight: 600">{{r.k}}.</strong> {{r.v}}</p></sc-for>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 13px; color: var(--on-sfv)">Dans ce combat</span>
+      <span class="n" style="font-size: 14px; line-height: 20px">Loup sanguinaire 2 · jusqu’à réussite d’un JS de Force DD 13, refait à la fin de chacun de ses tours</span>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button style="flex: 1; height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--e); font-size: 14px; font-weight: 500">Retirer l’état</button>
+      <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Fermer</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { rules: [
+      { k: 'Vitesse 0', v: 'Votre Vitesse est de 0 et ne peut pas augmenter.' },
+      { k: 'Effet sur les attaques', v: 'Les jets d’attaque contre vous ont l’Avantage, et vos jets d’attaque subissent le Désavantage.' },
+      { k: 'Effet sur les jets de sauvegarde', v: 'Vous subissez le Désavantage aux jets de sauvegarde de Dextérité.' },
+    ] };
+  }
+}
+</script>
+</body>
+</html>

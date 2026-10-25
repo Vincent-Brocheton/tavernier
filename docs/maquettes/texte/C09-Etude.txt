@@ -1,0 +1,39 @@
+Action de Thalia
+Étude
+INT
+Influence
+CHA / SAG
+Observation
+SAG
+Cible
+Varga la Balafrée · Humanoïde
+Test d’Intelligence
+Arcanes
++1
+Histoire
++1
+Investigation
++4
+Nature
++1
+Religion
++1
+Suggérée : Histoire, le domaine des Humanoïdes et des Géants.
+Résultat
+d20 15 + Histoire +1
+Informations préparées
+DD
+10
+Ancienne sergente de la garde de Brumeval.
+Atteint : sera révélée
+DD
+15
+Porte le sceau de la Guilde du Sel.
+Atteint : sera révélée
+DD
+20
+Est la sœur cadette du bourgmestre Hesse.
+Non atteint : reste cachée
+Les paliers révélés sont ajoutés au journal et marqués sur la fiche du PNJ, visibles du MJ seul : annoncez-les à la table.
+Annuler
+Révéler 2 informations

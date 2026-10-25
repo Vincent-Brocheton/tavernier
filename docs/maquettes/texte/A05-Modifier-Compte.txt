@@ -1,0 +1,16 @@
+Modifier le compte
+Enregistrer
+Profil
+H
+Avatar
+Image carrée, compressée à 200 Ko. Visible des membres de vos tables.
+Pseudonyme affiché
+Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.
+E-mail
+E-mail
+Un lien de confirmation sera envoyé à la nouvelle adresse. hugo@exemple.fr reste active jusqu’à la confirmation, et sera prévenue du changement.
+Changer le mot de passe
+Modifié il y a 4 mois
+Mot de passe actuel
+Nouveau mot de passe
+L’e-mail et le mot de passe demandent le réseau : ils sont vérifiés par le serveur.

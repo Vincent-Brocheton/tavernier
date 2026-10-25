@@ -1,0 +1,110 @@
+Nouveau personnage · Les Marches de Brumeval · niveau 1
+AV
+ÉTAPE 9 SUR 9 · RÉCAPITULATIF
+Aldric Varenne
+Humain · Guerrier 1 · Soldat · Loyal Bon
+✓
+Classe
+✓
+Historique
+✓
+Espèce
+✓
+Langues
+✓
+Caractéristiques
+✓
+Sous-choix
+✓
+Équipement
+✓
+Détails
+9
+Récapitulatif
+FOR
++3
+17
+JS +5
+DEX
++1
+13
+JS +1
+CON
++2
+15
+JS +4
+INT
+−1
+8
+JS −1
+SAG
++1
+12
+JS +1
+CHA
++0
+10
+JS +0
+12
+PV max
+17
+CA
++3
+Initiative
+9 m
+Vitesse
++2
+Maîtrise
+13
+Percep. passive
+Maîtrises
+Compétences
+Athlétisme +5, Intimidation +2, Intuition +3, Perception +3, Survie +3
+Outils
+Dés
+Armes
+Courantes et de guerre
+Armures
+Toutes, boucliers
+Langues
+Commun, Nain, Orc
+Attaques
+Épée à deux mains
+2d6 + 3 tranchants
+Sans botte
++5
+Fléau d’armes
+1d8 + 3 contondants
+Sans botte
++5
+Javeline
+1d6 + 3 perforants · 9/36 m
+Ralentissement
++5
+Aptitudes et dons
+Style de combat : Défense
+Guerrier
+Second souffle (2)
+Guerrier
+Bottes d’armes (3)
+Guerrier
+Sauvagerie martiale
+Soldat
+Vigilant
+Humain
+Ingénieux, Compétent
+Humain
+Équipement
+Cotte de mailles (portée), épée à deux mains, fléau d’armes, 8 javelines, arc court + 20 flèches, carquois, lance, dés, trousse de soins, tenue de voyage, paquetage d’exploration souterraine
+18 po
+Vérification des règles
+Botte sur une arme absente. Vous avez une botte pour l’épée longue et la hache d’armes, mais aucune des deux. L’épée à deux mains et le fléau n’ont pas de botte.
+Revoir les sous-choix
+Acquisition par points : 27 / 27
+Bonus d’Historique : +2 FOR, +1 CON
+Compétences sans doublon
+Packs : uniquement SRD 5.2.1
+Envoyer au MJ
+Camille valide la fiche ou demande des corrections. Les alertes ne bloquent pas l’envoi.
+Message (optionnel)
+Envoyer pour validation

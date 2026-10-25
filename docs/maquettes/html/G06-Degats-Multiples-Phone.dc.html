@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dégâts sur plusieurs cibles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 900px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+  <section role="dialog" aria-label="Dégâts sur plusieurs cibles" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 20px; display: flex; flex-direction: column; gap: 10px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; align-items: center; gap: 8px"><div style="flex: 1"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Dégâts · 4 cibles</h2><span style="font-size: 13px; color: var(--on-sfv)">Boule de feu de Brannoc · JS de Dextérité DD 15</span></div><button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></div>
+    <div style="display: flex; align-items: center; height: 64px; padding: 0 16px; border-radius: 16px; background: var(--sf-c); gap: 10px"><span class="n" style="font-size: 44px; line-height: 52px; font-weight: 500; color: var(--dmg-c); color: #FF9F8F">28</span><span style="font-size: 16px; color: var(--on-sfv)">feu</span><span style="flex: 1"></span><span style="font-size: 12px; color: var(--on-sfv)">8d6</span></div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">Chef de bande</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--heal-c); color: var(--on-heal-c); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">JS réussi · moitié</span></div><div class="n" style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="color: var(--on-sfv)">31</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><strong>17 / 52</strong></div><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">28 → 14 (moitié)</span></div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">Bandit 1</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">JS raté</span></div><div class="n" style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="color: var(--on-sfv)">11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><strong>0 / 11</strong><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">Hors de combat</span></div><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">28</span></div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">Loup 2</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">JS raté</span></div><div class="n" style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="color: var(--on-sfv)">6</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><strong>0 / 11</strong><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">Hors de combat</span></div><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">28</span></div>
+    <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; align-items: center; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">Aldric Varenne</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--heal-c); color: var(--on-heal-c); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">JS réussi · moitié</span></div><div class="n" style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="color: var(--on-sfv)">41 + 5 temp.</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg><strong>39 / 49</strong></div><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">28 → 14 (moitié) → 7 : résistance au feu (Potion de résistance)</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Les 5 PV temporaires absorbent d’abord 5, puis 2 sur les PV</span></div>
+    <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Touchez un résultat de JS pour l’inverser. Résistances, vulnérabilités et immunités sont appliquées d’après chaque fiche.</span>
+    <button style="height: 56px; border-radius: 28px; background: #FF9F8F; color: #3B0905; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg>Appliquer à 4 cibles</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

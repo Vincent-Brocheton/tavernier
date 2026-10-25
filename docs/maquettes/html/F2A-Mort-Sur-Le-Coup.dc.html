@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>0 PV — mort sur le coup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column; gap: 8px; padding: 0 16px"><div style="height: 64px; display: flex; align-items: center; font-size: 20px; padding-left: 52px">Le relais du Sel</div><div style="height: 120px; border-radius: 16px; background: var(--sf-c)"></div><div style="height: 64px; border-radius: 12px; background: var(--sf-c)"></div><div style="height: 64px; border-radius: 12px; background: var(--sf-c)"></div></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+  <section role="dialog" aria-label="Dégâts" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 20px; display: flex; flex-direction: column; gap: 12px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Dégâts</h2><span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Le relais du Sel · round 2</span></div><button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></div>
+    <div style="display: flex; gap: 6px; align-items: center"><span style="height: 24px; padding: 0 8px 0 8px; border-radius: 6px; background: var(--pc); color: var(--on-pc); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap">Brannoc</span><span style="font-size: 12px; color: var(--on-sfv)">par Ogre · massue</span></div>
+  <div style="display: flex; align-items: baseline; gap: 10px; height: 64px; padding: 0 16px; border-radius: 16px; background: var(--sf-c)"><span class="n" style="font-size: 48px; line-height: 64px; font-weight: 500; color: #FF9F8F">30</span><span style="font-size: 16px; color: var(--on-sfv)">contondants</span></div>
+  <div style="min-height: 52px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">Coup critique</span><span style="font-size: 12px; color: var(--on-sfv)">Ne change pas le montant ; à 0 PV, deux échecs</span></span><span role="switch" aria-checked="true" aria-label="Coup critique" style="width: 52px; height: 32px; flex: none; border-radius: 16px; background: var(--p); border: 2px solid var(--p); display: flex; align-items: center; justify-content: flex-end; padding: 0 4px"><span style="width: 24px; height: 24px; border-radius: 12px; background: var(--on-p)"></span></span></div>
+  <div role="alert" style="border-radius: 12px; background: var(--ec); color: var(--on-ec); box-shadow: inset 0 0 0 1px var(--e); padding: 12px 14px; display: flex; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a7 7 0 0 0-7 7v4l2 2v3h10v-3l2-2v-4a7 7 0 0 0-7-7z M9 11h.01 M15 11h.01 M10 16h4"></path></svg><div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 600">Mort sur le coup</span><span class="n" style="font-size: 13px; line-height: 18px">3 PV → 0 · excédent 27 ≥ PV max 27 (règle des dégâts massifs).</span><span style="font-size: 12px; line-height: 16px">Vérifiez le montant avant de valider (ici, une faute de frappe : 30 au lieu de 13). L’action reste annulable depuis le journal.</span></div></div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px"><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">7</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">8</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">9</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">+</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">4</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">5</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">6</span><span class="n" style="height: 40px; border-radius: 12px; background: var(--sf-high); display: flex; align-items: center; justify-content: center; font-size: 18px">−</span></div>
+  <div style="display: flex; gap: 8px"><button style="height: 52px; padding: 0 16px 0 16px; border-radius: 26px; border: 1px solid var(--ol); color: var(--p); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 1">Corriger</button><button style="height: 52px; padding: 0 16px 0 16px; border-radius: 26px; color: var(--p); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 1.4; background: var(--e); color: var(--ec); font-weight: 600">Appliquer : Brannoc meurt</button></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

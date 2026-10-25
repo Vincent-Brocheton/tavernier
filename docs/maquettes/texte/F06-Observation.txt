@@ -1,0 +1,33 @@
+Action d’Aldric
+Étude
+INT
+Influence
+CHA / SAG
+Observation
+SAG
+Ce qui est cherché
+Des traces autour de l’écurie du relais
+Test de Sagesse
+Intuition
++4
+Médecine
++1
+Perception
++4
+Survie
++4
+Perception pour repérer, Survie pour suivre une piste, Intuition pour une intention, Médecine pour un corps.
+Résultat
+17
+d20 13 + Perception +4
+DD (MJ)
+15
+Réussite
+Ce qui est découvert
+Des ornières de chariots lourds partent vers le gué. Dans la paille, un sceau de cire brisé aux trois vagues.
+Pas d’informations préparées pour une Observation : vous consignez ce que le personnage découvre.
+Lier au PNJ : Varga la Balafrée
+Créer une note
+Consigné au journal, visible du MJ seul : annoncez la découverte à la table.
+Annuler
+Consigner

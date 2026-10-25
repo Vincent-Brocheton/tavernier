@@ -1,0 +1,47 @@
+Aldric Varenne
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+Tout
+Avec utilisations
+Dons
+GUERRIER 5
+SRD 5.2.1
+Style de combat : Défense
++1 à la CA en armure
+Second souffle
+Action Bonus : 1d10 + 5 PV
+repos court : +1
+Fougue
+Une action supplémentaire à votre tour
+repos court
+Sens tactique
+Dépenser un Second souffle pour ajouter 1d10 à un test raté
+Attaque supplémentaire
+Deux attaques par action Attaque
+Décalage tactique
+Avec Second souffle : moitié de la Vitesse sans attaque d’opportunité
+CHAMPION
+SRD 5.2.1
+Critique amélioré
+Coup critique sur 19 ou 20
+Athlète accompli
+Avantage à l’Initiative et aux tests de Force (Athlétisme)
+HUMAIN
+SRD 5.2.1
+Ingénieux
+Inspiration héroïque à chaque repos long
+Compétent
+Maîtrise : Intuition
+Polyvalent
+Don d’origine : Vigilant
+DONS
+SRD 5.2.1
+Vigilant
+Origine · maîtrise ajoutée à l’Initiative
+Sauvagerie martiale
+Origine, Soldat · une fois par tour, lancer deux fois les dés de dégâts et garder le meilleur
+Amélioration de caractéristique
+Niveau 4 · Force +1, Constitution +1

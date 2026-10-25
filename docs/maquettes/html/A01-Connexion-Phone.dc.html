@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Connexion — téléphone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column"><header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low); padding: 40px 24px 20px; display: flex; flex-direction: column; gap: 4px">
+    <svg aria-hidden="true" width="390" height="140" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gA1"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gA1)"></rect></svg>
+    <h1 class="d" style="position: relative; margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Bienvenue</h1>
+    <span style="position: relative; font-size: 14px; color: var(--on-sfv)">Un compte sert à rejoindre des tables et à synchroniser vos fiches.</span>
+  </header>
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div role="tablist" aria-label="Mode" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden; flex: none">
+      <button role="tab" aria-selected="true" style="flex: 1; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Connexion</button>
+      <button role="tab" aria-selected="false" style="flex: 1; border-left: 1px solid var(--ol);  font-size: 14px; font-weight: 500">Inscription</button>
+    </div>
+    <div role="alert" style="border-radius: 12px; background: var(--ec); color: var(--on-ec); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 18px; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v5 M12 16h.01"></path></svg><span>E-mail ou mot de passe incorrect. Vérifiez la saisie, ou réinitialisez votre mot de passe.</span></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><label style="min-height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">E-mail</span><input aria-label="E-mail" type="email" value="hugo@exemple.fr" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; color: var(--on-sf)"></span></label></div>
+    <div style="display: flex; flex-direction: column; gap: 4px"><label style="min-height: 56px; border-radius: 4px; border: 2px solid var(--p); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--p)">Mot de passe</span><input aria-label="Mot de passe" type="password" value="motdepasse" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; color: var(--on-sf)"></span><button aria-label="Afficher le mot de passe" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-right: -12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg></button></label></div>
+    <a href="#" style="align-self: flex-end; min-height: 32px; display: inline-flex; align-items: center; font-size: 14px; font-weight: 500">Mot de passe oublié ?</a>
+    <button style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; background: var(--p); color: var(--on-p); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Se connecter</button>
+    <div style="display: flex; align-items: center; gap: 12px; color: var(--on-sfv); font-size: 12px; flex: none"><span style="flex: 1; height: 1px; background: var(--olv)"></span>ou<span style="flex: 1; height: 1px; background: var(--olv)"></span></div>
+    <button style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; border: 1px solid var(--ol); color: var(--on-sf); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M19.6 10.5H12v3h4.3A4.8 4.8 0 1 1 15.4 8.6l2.2-2.2A7.9 7.9 0 1 0 20 12c0-.5 0-1-.1-1.5z"></path></svg>Continuer avec Google</button><button style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; border: 1px solid var(--ol); color: var(--on-sf); font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M16 3c0 1.5-1.2 3-2.8 3 0-1.6 1.3-3 2.8-3z M12.2 7.3c1 0 2-.7 3.3-.7 1 0 2.4.5 3.3 1.8-2.9 1.6-2.4 5.8.4 6.9-.6 1.6-1.9 4.2-3.5 4.2-1.2 0-1.5-.7-3-.7s-1.9.7-3 .7C7.8 19.5 5 15.6 5 12c0-3 1.9-4.7 3.8-4.7 1.3 0 2.4.9 3.4 0z"></path></svg>Continuer avec Apple</button>
+  </div>
+  <p style="flex: none; margin: 0; padding: 0 24px 24px; font-size: 12px; line-height: 16px; color: var(--on-sfv); text-align: center">La première connexion demande le réseau, ensuite tout fonctionne hors-ligne. <a href="#">Politique de confidentialité</a></p></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+Ajouter une entité
+Pack « Peuples de la frontière » · v0.2.0 · brouillon
+Partir de zéro
+Dériver d’une entité du SRD
+Classe
+1 dans le pack
+Progression 1 à 20, sous-classe au niveau 3
+Sous-classe
+0 dans le pack
+Niveaux alignés sur la classe parente
+Espèce
+1 dans le pack
+Taille, vitesse, traits ; aucun bonus de caractéristique
+Historique
+1 dans le pack
+Exactement 3 caractéristiques, 1 don d’origine
+Don
+1 dans le pack
+Catégorie obligatoire
+Sort
+0 dans le pack
+Niveau, école, composantes, listes de classes
+Objet
+0 dans le pack
+Une arme a toujours une botte
+Monstre
+0 dans le pack
+Bloc complet ; Intelligence obligatoire
+L’éditeur applique les contraintes 2024 de chaque type au fil de la saisie. Les effets mécaniques se composent à partir d’une liste fermée d’opérations : aucun code ni formule libre.
+Annuler
+Créer une espèce

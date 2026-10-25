@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche — tablette paysage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--thp-c:#1C4778;--on-thp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+</style>
+</helmet>
+<div style="width: 960px; height: 600px; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <aside aria-label="Résumé du personnage" style="flex: 0 0 320px; display: flex; flex-direction: column; gap: 10px; padding: 0 0 12px; background: var(--sf-low); border-right: 1px solid var(--olv); overflow: hidden">
+    <div style="position: relative; overflow: hidden; padding: 14px 16px 6px; display: flex; gap: 12px; align-items: center">
+      <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gTB2"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gTB2)"></rect></svg>
+      <div class="d" style="position: relative; width: 48px; height: 48px; flex: none; border-radius: 24px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600">AV</div>
+      <div style="position: relative; flex: 1; min-width: 0"><h1 class="d" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 600; color: var(--t)">Aldric Varenne</h1><span style="font-size: 12px; color: var(--on-sfv)">Humain · Guerrier 5 (Champion) · Soldat</span></div>
+    </div>
+    <section aria-label="Points de vie" style="margin: 0 12px; border-radius: 14px; background: var(--sf-c); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 6px"><span class="n" style="font-size: 28px; line-height: 32px; font-weight: 500">41</span><span class="n" style="font-size: 15px; color: var(--on-sfv)">/ 49</span><span class="n" style="height: 24px; padding: 0 6px; border-radius: 6px; background: var(--thp-c); color: var(--on-thp-c); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center">+5 temp.</span><span style="flex: 1"></span><span class="n" style="font-size: 12px; color: var(--on-sfv)">DV 3/5 d10</span></div>
+      <div style="height: 6px; border-radius: 3px; background: var(--sf-highest); overflow: hidden"><div style="width: 84%; height: 100%; background: var(--heal)"></div></div>
+      <div style="display: flex; gap: 6px">
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 14px; font-weight: 500">Dégâts</button>
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--heal-c); color: var(--on-heal-c); font-size: 14px; font-weight: 500">Soins</button>
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--thp-c); color: var(--on-thp-c); font-size: 14px; font-weight: 500">PV temp.</button>
+      </div>
+    </section>
+    <div class="n" style="margin: 0 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{vitals}}" as="v" hint-placeholder-count="6"><button style="height: 56px; border-radius: 10px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 18px; font-weight: 600">{{v.v}}</span><span style="font-size: 11px; color: var(--on-sfv)">{{v.l}}</span></button></sc-for>
+    </div>
+    <div class="n" style="margin: 0 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{abil}}" as="a" hint-placeholder-count="6"><button style="height: 64px; border-radius: 10px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px"><span style="font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{a.k}}</span><span style="font-size: 20px; line-height: 24px; font-weight: 600">{{a.m}}</span><span style="font-size: 11px; color: var(--on-sfv)">{{a.v}}</span></button></sc-for>
+    </div>
+  </aside>
+
+  <main style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+    <nav aria-label="Onglets de la fiche" style="flex: none; height: 48px; display: flex; border-bottom: 1px solid var(--olv); padding: 0 4px; overflow: hidden">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+        <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 11px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+      </sc-for>
+    </nav>
+    <div style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start">
+      <sc-for list="{{cols}}" as="col" hint-placeholder-count="2">
+        <div style="border-radius: 14px; background: var(--sf-c); padding: 4px 0">
+          <sc-for list="{{col.rows}}" as="r" hint-placeholder-count="9">
+            <sc-if value="{{r.head}}" hint-placeholder-val="{{false}}"><div style="padding: 8px 14px 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{r.l}}</div></sc-if>
+            <sc-if value="{{r.item}}" hint-placeholder-val="{{true}}"><button style="width: 100%; height: 48px; padding: 0 14px; display: flex; align-items: center; gap: 10px; text-align: left"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{r.dot}}; border: 1.5px solid {{r.bd}}"></span><span style="flex: 1; font-size: 14px; color: {{r.fg}}">{{r.l}}</span><sc-if value="{{r.adv}}" hint-placeholder-val="{{false}}"><span style="height: 20px; padding: 0 6px; border-radius: 5px; background: var(--pc); color: var(--on-pc); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center">Avantage</span></sc-if><span class="n" style="width: 28px; text-align: right; font-size: 14px; font-weight: 600; color: {{r.fg}}">{{r.v}}</span></button></sc-if>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":960,"height":600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const R = [['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'], ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'], ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'], ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z']];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 2 ? 'page' : 'false', bg: i === 2 ? 'var(--sc)' : 'transparent', fg: i === 2 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 2 ? 700 : 500 }));
+    const vitals = [{ l: 'CA', v: '19' }, { l: 'Initiative', v: '+4' }, { l: 'Vitesse', v: '9 m' }, { l: 'Maîtrise', v: '+3' }, { l: 'Perc. passive', v: '14' }, { l: 'Inspiration', v: '—' }];
+    const S = { FOR: 18, DEX: 13, CON: 16, INT: 8, SAG: 12, CHA: 10 };
+    const sgn = (m) => (m >= 0 ? '+' : '−') + Math.abs(m);
+    const mod = (v) => Math.floor((v - 10) / 2);
+    const abil = Object.entries(S).map(([k, v]) => ({ k, v, m: sgn(mod(v)) }));
+    // L’onglet Principal est porté par le panneau de gauche : il disparaît des onglets sur tablette.
+    const tabs = ['Compétences', 'Combat', 'Sorts', 'Inventaire', 'Aptitudes', 'Notes'].map((l, i) => ({ l, cur: i === 0 ? 'page' : 'false', fg: i === 0 ? 'var(--p)' : 'var(--on-sfv)', bar: i === 0 ? 'var(--p)' : 'transparent' }));
+    const G = [
+      ['FORCE', 'FOR', [['Athlétisme', 1, 1]]],
+      ['DEXTÉRITÉ', 'DEX', [['Acrobaties'], ['Discrétion'], ['Escamotage']]],
+      ['INTELLIGENCE', 'INT', [['Arcanes'], ['Histoire'], ['Investigation'], ['Nature'], ['Religion']]],
+      ['SAGESSE', 'SAG', [['Dressage'], ['Intuition', 1], ['Médecine'], ['Perception', 1], ['Survie', 1]]],
+      ['CHARISME', 'CHA', [['Intimidation', 1], ['Persuasion'], ['Représentation'], ['Tromperie']]],
+    ];
+    const build = (groups) => { const rows = []; groups.forEach(([h, k, list]) => { rows.push({ head: true, item: false, l: h }); list.forEach(([l, p, adv]) => rows.push({ head: false, item: true, l, adv: !!adv, v: sgn(mod(S[k]) + (p ? 3 : 0)), dot: p ? 'var(--p)' : 'transparent', bd: p ? 'var(--p)' : 'var(--ol)', fg: p ? 'var(--on-sf)' : 'var(--on-sfv)' })); }); return rows; };
+    const cols = [{ rows: build(G.slice(0, 3)) }, { rows: build(G.slice(3)) }];
+    return { rail, vitals, abil, tabs, cols };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Pavé dégâts — téléphone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--warn:#FFC266;--conc:#D4BBFF;--conc-c:#523A7E;--on-conc-c:#EBDCFF}
+*{box-sizing:border-box}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+
+  <div aria-hidden="true" style="position: absolute; inset: 0; display: flex; flex-direction: column; gap: 8px; padding: 0 16px">
+    <div style="height: 64px; display: flex; align-items: center; font-size: 22px; padding-left: 52px">Embuscade sur la route</div>
+    <div style="height: 76px; border-radius: 12px; background: var(--pc)"></div>
+    <div style="height: 64px; border-radius: 12px; background: var(--sf-c)"></div>
+    <div style="height: 64px; border-radius: 12px; background: var(--sf-c)"></div>
+    <div style="height: 64px; border-radius: 12px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-label="Infliger des dégâts" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 20px; display: flex; flex-direction: column; gap: 12px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+
+    <div style="display: flex; align-items: center; gap: 8px">
+      <h2 style="margin: 0; flex: 1; font-size: 22px; line-height: 28px; font-weight: 400">Dégâts</h2>
+      <a href="Combat-Phone.dc.html" aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: var(--on-sf)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+      <span style="font-size: 12px; font-weight: 500; color: var(--on-sfv)">Cibles</span>
+      <span style="height: 32px; padding: 0 4px 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 500">Mira Solen<button aria-label="Retirer Mira Solen" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></span>
+      <button style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; border: 1px solid var(--ol); display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg>Cible</button>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 4px 0 16px; border-radius: 16px; background: var(--sf-c)">
+      <div style="display: flex; align-items: baseline; gap: 10px"><span class="n" style="font-size: 57px; line-height: 64px; font-weight: 500; color: var(--dmg)">12</span><span style="font-size: 16px; color: var(--on-sfv)">tranchants</span></div>
+      <button aria-label="Effacer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 5H9l-6 7 6 7h12z M17 9l-6 6 M11 9l6 6"></path></svg></button>
+    </div>
+
+    <div style="display: flex; gap: 8px; overflow: hidden; margin-right: -16px" role="radiogroup" aria-label="Type de dégâts">
+      <sc-for list="{{types}}" as="t" hint-placeholder-count="5">
+        <button role="radio" aria-checked="{{t.on}}" style="flex: none; height: 32px; padding: 0 12px 0 8px; border-radius: 8px; background: {{t.bg}}; color: {{t.fg}}; border: {{t.bd}}; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>{{t.l}}</button>
+      </sc-for>
+    </div>
+
+    <div style="border-radius: 16px; background: var(--sf-c); padding: 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; gap: 8px">
+        <span style="flex: 1; font-size: 14px; font-weight: 500">Mira Solen</span>
+        <span class="n" style="font-size: 14px; color: var(--on-sfv)">22</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg>
+        <span class="n" style="font-size: 14px; font-weight: 700">10 / 38 PV</span>
+      </div>
+      <div style="height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden; display: flex"><div style="width: 26%; background: var(--dmg)"></div><div style="width: 32%; background: repeating-linear-gradient(45deg, #73241B 0 4px, #3D3732 4px 8px)"></div></div>
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 8px; background: var(--conc-c); color: var(--on-conc-c); font-size: 12px; line-height: 16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1"></path></svg><span>Concentrée sur Bénédiction : JS de Constitution <strong class="n">DD 10</strong> demandé juste après.</span></div>
+    </div>
+
+    <div style="min-height: 48px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">Coup critique</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Ne change pas le montant saisi ; sur un PJ à 0 PV, compte deux échecs.</span></span><span role="switch" aria-checked="false" aria-label="Coup critique" style="width: 52px; height: 32px; flex: none; border-radius: 16px; background: var(--sf-highest); border: 2px solid var(--ol); display: flex; align-items: center; padding: 0 6px"><span style="width: 16px; height: 16px; border-radius: 8px; background: var(--ol)"></span></span></div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+        <button aria-label="{{k.aria}}" class="n" style="height: 52px; border-radius: 14px; background: {{k.bg}}; color: {{k.fg}}; font-size: {{k.fs}}; line-height: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 4px">{{k.l}}</button>
+      </sc-for>
+    </div>
+
+    <button style="height: 56px; border-radius: 28px; background: var(--dmg); color: #3B0905; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Appliquer 12 dégâts tranchants</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sel = { bg: 'var(--sc)', fg: 'var(--on-sc)', bd: '1px solid transparent', on: 'true' };
+    const off = { bg: 'transparent', fg: 'var(--on-sf)', bd: '1px solid var(--ol)', on: 'false' };
+    const types = [
+      { l: 'Tranchants', d: 'M5 19L19 5 M9 20L20 9 M4 15L15 4', ...sel },
+      { l: 'Perforants', d: 'M4 20L20 4 M14 4h6v6', ...off },
+      { l: 'Contondants', d: 'M15 4l5 5-3 3-5-5z M12 7l-8 8a1.4 1.4 0 0 0 2 2l8-8', ...off },
+      { l: 'Feu', d: 'M12 22a7 7 0 0 0 7-7c0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8a7 7 0 0 0 7 7z', ...off },
+      { l: 'Froid', d: 'M12 2v20 M3.3 7l17.4 10 M3.3 17L20.7 7', ...off },
+    ];
+    const k = (l, o) => ({ l, aria: l, bg: 'var(--sf-high)', fg: 'var(--on-sf)', fs: '22px', ...(o || {}) });
+    const keys = [
+      k('7'), k('8'), k('9'), k('Vulnérabilité ×2', { aria: 'Vulnérabilité : doubler (correction manuelle)', bg: 'var(--sc)', fg: 'var(--on-sc)', fs: '11px' }),
+      k('4'), k('5'), k('6'), k('Résistance ½', { aria: 'Résistance : moitié (correction manuelle)', bg: 'var(--sc)', fg: 'var(--on-sc)', fs: '11px' }),
+      k('1'), k('2'), k('3'), k('PV temp.', { aria: 'Basculer en PV temporaires', bg: 'var(--sc)', fg: 'var(--on-sc)', fs: '13px' }),
+      k('0', { }), k('+', { aria: 'Additionner un second jet' }), k('−', { aria: 'Soustraire' }), k('Soins', { aria: 'Basculer en soins', bg: 'var(--sc)', fg: 'var(--on-sc)', fs: '13px' }),
+    ];
+    return { types, keys };
+  }
+}
+</script>
+</body>
+</html>

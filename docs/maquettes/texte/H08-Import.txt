@@ -1,0 +1,40 @@
+sorts-ines-2.2.0.dndpack · 2,4 Mo
+Importer un pack
+Sorts d’Inès
+par Inès · CC-BY-4.0 · dépend de SRD 5.2.1
+installée : 2.0.0
+2.2.0
+Contenu 20 entités
+NOUVEAU
+Bouclier de givre
+Sort · Abjuration du 2e niveau
+NOUVEAU
+Brume d’encre
+Sort · Illusion du 1er niveau
+NOUVEAU
+Marque glacée
+Sort mineur · Évocation
+MODIFIÉ
+Lame d’ombre
+Sort · dégâts 2d8 → 3d6 psychiques
+MODIFIÉ
+Sous-classe Lame d’ombre
+Niveau 10 : texte précisé
+Voir les 15 entités inchangées
+Nom déjà utilisé : « Bouclier de givre »
+Votre pack Bestiaire des Marches contient un objet du même nom. Le nouveau est un sort.
+Garder les deux
+Chacun s’affiche avec le badge de son pack
+Renommer le nouveau sort…
+Seulement dans votre bibliothèque
+Vérifications
+Taille : 2,4 Mo (max. 20 Mo)
+Signature : Inès
+Même auteur que la version installée, donc c’est une mise à jour
+Format et contenu valides
+20 entités, aucune donnée exécutable
+Dépendances résolues
+SRD 5.2.1
+Vos tables restent figées sur la version 2.0.0. Vous pourrez passer chaque table à la 2.2.0 depuis sa configuration.
+Importer la mise à jour
+Annuler

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>PNJ — profil de jeu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--dmg-c:#73241B;--on-dmg-c:#FFDAD3}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 980px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <span style="flex: 1; font-size: 16px; font-weight: 500">PNJ <span style="color: var(--on-sfv); font-weight: 400">· Les Marches de Brumeval</span></span>
+    <button style="height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Dupliquer</button>
+    <button style="height: 40px; padding: 0 16px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Modifier</button>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <nav aria-label="Dossiers de PNJ" style="flex: 0 1 240px; min-width: 200px; border-radius: 16px; background: var(--sf-low); padding: 8px">
+      <sc-for list="{{folders}}" as="f" hint-placeholder-count="4">
+        <div style="padding: 10px 12px 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{f.l}}</div>
+        <sc-for list="{{f.items}}" as="i" hint-placeholder-count="2">
+          <a href="#" aria-current="{{i.cur}}" style="height: 44px; padding: 0 12px; border-radius: 22px; background: {{i.bg}}; color: {{i.fg}}; display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 14px; font-weight: {{i.w}}">{{i.n}}</a>
+        </sc-for>
+      </sc-for>
+    </nav>
+
+    <main aria-label="Profil de jeu" style="flex: 2 1 480px; min-width: 0; position: relative; overflow: hidden; border-radius: 16px; background: var(--sf-c); padding: 20px 24px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap">
+        <div style="flex: 1">
+          <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Varga la Balafrée</h1>
+          <span style="font-size: 14px; color: var(--on-sfv); font-style: italic">Humanoïde de taille M, Neutre</span>
+        </div>
+        <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Variante de « Chef de bande » · SRD 5.2.1</span>
+      </div>
+      <div class="n" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{top}}" as="s" hint-placeholder-count="4"><span style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--sf-high); display: inline-flex; align-items: center; gap: 6px; font-size: 14px"><span style="color: var(--on-sfv)">{{s.k}}</span><strong style="font-weight: 600">{{s.v}}</strong></span></sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{abil}}" as="a" hint-placeholder-count="6">
+          <div class="n" style="border-radius: 10px; background: var(--sf-high); padding: 8px 4px; display: flex; flex-direction: column; align-items: center"><span style="font-size: 11px; font-weight: 600; color: var(--on-sfv)">{{a.k}} {{a.v}}</span><span style="font-size: 16px; font-weight: 600">{{a.m}}</span><span style="font-size: 11px; color: var(--on-sfv)">JS {{a.s}}</span></div>
+        </sc-for>
+      </div>
+      <dl style="margin: 0; display: grid; grid-template-columns: 120px 1fr; row-gap: 6px; column-gap: 12px; font-size: 14px; line-height: 20px">
+        <dt style="color: var(--on-sfv)">Compétences</dt><dd style="margin: 0">Athlétisme +4, Tromperie +4</dd>
+        <dt style="color: var(--on-sfv)">Équipement</dt><dd style="margin: 0">Armure de cuir clouté, cimeterre, pistolet</dd>
+        <dt style="color: var(--on-sfv)">Sens</dt><dd style="margin: 0">Perception passive 10</dd>
+        <dt style="color: var(--on-sfv)">Langues</dt><dd style="margin: 0">Argot des voleurs, commun</dd>
+        <dt style="color: var(--on-sfv)">FP</dt><dd class="n" style="margin: 0">2 (450 PX ; BM +2)</dd>
+      </dl>
+      <div style="height: 1px; background: var(--olv)"></div>
+      <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--t)">Actions</h2>
+      <sc-for list="{{actions}}" as="a" hint-placeholder-count="3"><p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600; font-style: italic">{{a.k}}.</strong> {{a.v}}</p></sc-for>
+      <h2 style="margin: 4px 0 0; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--t)">Réactions</h2>
+      <p style="margin: 0; font-size: 14px; line-height: 20px"><strong style="font-weight: 600; font-style: italic">Parade.</strong> Déclencheur : touchée par une attaque de corps à corps alors qu’elle tient une arme. Conséquences : +2 à la CA contre cette attaque.</p>
+    </main>
+
+    <aside style="flex: 1 1 300px; max-width: 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section aria-label="Attitude" style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Attitude envers le groupe</h2>
+        <div role="radiogroup" aria-label="Attitude" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+          <button role="radio" aria-checked="false" style="flex: 1; font-size: 13px; font-weight: 500">Amicale</button>
+          <button role="radio" aria-checked="false" style="flex: 1; border-left: 1px solid var(--ol); font-size: 13px; font-weight: 500">Indifférente</button>
+          <button role="radio" aria-checked="true" style="flex: 1; border-left: 1px solid var(--ol); background: var(--dmg-c); color: var(--on-dmg-c); font-size: 13px; font-weight: 500">Hostile</button>
+        </div>
+        <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Depuis la séance 12. Désavantage aux tests d’Influence contre elle. Conservée entre les séances.</span>
+      </section>
+
+      <section aria-label="Informations cachées" style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center"><h2 style="margin: 0; flex: 1; font-size: 15px; line-height: 22px; font-weight: 500">Informations cachées</h2><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--sf-highest); color: var(--on-sfv); font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Révélées par l’Étude</span></div>
+        <sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
+          <div style="border-radius: 12px; background: var(--sf-high); padding: 10px 12px; display: flex; gap: 12px; align-items: flex-start">
+            <span class="n" style="height: 28px; min-width: 56px; padding: 0 8px; border-radius: 8px; background: {{t.bg}}; color: {{t.fg}}; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center">DD {{t.dd}}</span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; line-height: 20px">{{t.t}}</span><span style="font-size: 12px; color: {{t.sFg}}; display: inline-flex; align-items: center; gap: 4px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.icon}}"></path></svg>{{t.s}}</span></span>
+          </div>
+        </sc-for>
+        <button style="align-self: flex-start; height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Ajouter un palier</button>
+      </section>
+
+      <section aria-label="Rencontres" style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Utilisée dans</h2>
+        <a href="#" style="font-size: 14px">Embuscade sur la route · séance 12</a>
+        <a href="#" style="font-size: 14px">Le relais du Sel · séance 12</a>
+      </section>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const it = (n, cur) => ({ n, cur: cur ? 'page' : 'false', bg: cur ? 'var(--sc)' : 'transparent', fg: cur ? 'var(--on-sc)' : 'var(--on-sf)', w: cur ? 700 : 500 });
+    const folders = [
+      { l: 'GUILDE DU SEL', items: [it('Varga la Balafrée', true), it('Le Notaire')] },
+      { l: 'RELAIS DU SEL', items: [it('Maître Odran, aubergiste'), it('Garde du relais')] },
+      { l: 'BRUMEVAL', items: [it('Bourgmestre Hesse')] },
+    ];
+    const top = [{ k: 'CA', v: '15' }, { k: 'Initiative', v: '+3 (13)' }, { k: 'PV', v: '52 (8d8 + 16)' }, { k: 'Vitesse', v: '9 m' }];
+    const abil = [['FOR', 15, '+2', '+4'], ['DEX', 16, '+3', '+5'], ['CON', 14, '+2', '+2'], ['INT', 14, '+2', '+2'], ['SAG', 11, '+0', '+2'], ['CHA', 14, '+2', '+2']].map(([k, v, m, s]) => ({ k, v, m, s }));
+    const actions = [
+      { k: 'Attaques multiples', v: 'Deux attaques, réparties entre Cimeterre et Pistolet.' },
+      { k: 'Cimeterre', v: 'Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts tranchants.' },
+      { k: 'Pistolet', v: 'À distance : +5, portée 9/27 m. Touché : 8 (1d10 + 3) dégâts perforants.' },
+    ];
+    const OPEN = 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z', LOCK = 'M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4';
+    const tiers = [
+      { dd: 10, t: 'Ancienne sergente de la garde de Brumeval.', s: 'Révélée séance 12 · Thalia, Histoire 16', icon: OPEN, bg: 'var(--heal-c)', fg: 'var(--on-heal-c)', sFg: 'var(--heal)' },
+      { dd: 15, t: 'Porte le sceau de la Guilde du Sel.', s: 'Révélée séance 12 · Thalia, Histoire 16', icon: OPEN, bg: 'var(--heal-c)', fg: 'var(--on-heal-c)', sFg: 'var(--heal)' },
+      { dd: 20, t: 'Est la sœur cadette du bourgmestre Hesse.', s: 'Cachée', icon: LOCK, bg: 'var(--sf-highest)', fg: 'var(--on-sf)', sFg: 'var(--on-sfv)' },
+    ];
+    return { folders, top, abil, actions, tiers };
+  }
+}
+</script>
+</body>
+</html>

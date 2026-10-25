@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Combat — tablette paysage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--s:#D8C4AE;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--thp:#A7C8FF;--thp-c:#1C4778;--on-thp-c:#D5E3FF;--conc:#D4BBFF;--conc-c:#523A7E;--on-conc-c:#EBDCFF;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+</style>
+</helmet>
+<div style="width: 960px; height: 600px; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <section aria-label="Ordre d’initiative" style="flex: 0 0 360px; display: flex; flex-direction: column; border-right: 1px solid var(--olv); min-height: 0">
+    <div style="flex: none; padding: 10px 8px 10px 16px; display: flex; align-items: center; gap: 4px; background: var(--sf-low)">
+      <span style="flex: 1; display: flex; flex-direction: column"><span class="n" style="font-size: 12px; color: var(--on-sfv)">Séance 12 · round 3</span><span style="font-size: 16px; font-weight: 500">Tour du Chef de bande</span></span>
+      <button aria-label="Annuler la dernière action" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5 M4 9h11a5 5 0 0 1 0 10h-3"></path></svg></button>
+      <button style="height: 40px; padding: 0 16px; border-radius: 20px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Tour suivant</button>
+    </div>
+    <div style="flex: 1; min-height: 0; overflow: hidden; padding: 8px; display: flex; flex-direction: column; gap: 3px">
+      <sc-for list="{{rows}}" as="c" hint-placeholder-count="10">
+        <button style="width: 100%; min-height: 48px; border-radius: 12px; background: {{c.bg}}; box-shadow: {{c.ring}}; opacity: {{c.op}}; padding: 4px 10px 4px 6px; display: flex; align-items: center; gap: 10px; text-align: left">
+          <span class="n" style="width: 32px; height: 32px; flex: none; border-radius: 16px; background: {{c.initBg}}; color: {{c.initFg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">{{c.init}}</span>
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+            <span style="display: flex; align-items: center; gap: 6px"><span style="flex: 1; min-width: 0; font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</span>
+              <sc-for list="{{c.chips}}" as="h" hint-placeholder-count="1"><span aria-label="{{h.l}}" title="{{h.l}}" style="width: 22px; height: 22px; border-radius: 6px; background: {{h.bg}}; color: {{h.fg}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{h.d}}"></path></svg></span></sc-for>
+              <span class="n" style="font-size: 13px; font-weight: 600">{{c.hp}}</span><span class="n" style="font-size: 11px; color: var(--on-sfv)">/{{c.max}}</span></span>
+            <span style="height: 4px; border-radius: 2px; background: var(--sf-highest); overflow: hidden"><span style="display: block; height: 100%; width: {{c.pct}}; background: {{c.hpColor}}"></span></span>
+          </span>
+          <span class="n" aria-label="Classe d’armure {{c.ca}}" style="width: 30px; text-align: center; font-size: 12px; color: var(--on-sfv)">CA<br><strong style="font-size: 14px; color: var(--on-sf)">{{c.ca}}</strong></span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-label="Détail" style="flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0">
+    <div style="flex: none; padding: 10px 16px 0; display: flex; align-items: center; gap: 12px">
+      <div role="tablist" aria-label="Panneau de détail" style="display: flex; height: 40px; border: 1px solid var(--ol); border-radius: 20px; overflow: hidden">
+        <span role="tab" aria-selected="true" style="padding: 0 16px; display: flex; align-items: center; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Combattant</span>
+        <span role="tab" aria-selected="false" style="padding: 0 16px; display: flex; align-items: center; border-left: 1px solid var(--ol); font-size: 14px; font-weight: 500">Journal <span class="n" style="margin-left: 6px; font-size: 12px; color: var(--on-sfv)">24</span></span>
+      </div>
+      <span style="flex: 1"></span>
+      <span style="font-size: 12px; color: var(--on-sfv)">Le journal remplace le détail sur cette largeur</span>
+    </div>
+    <div style="flex: 1; min-height: 0; overflow: hidden; padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: flex-start; gap: 12px">
+        <div style="flex: 1"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 500">Mira Solen</h2><span style="font-size: 13px; color: var(--on-sfv)">PJ · Clerc 5 · joueuse : Inès</span></div>
+        <div class="n" style="display: flex; gap: 6px"><sc-for list="{{stats}}" as="s" hint-placeholder-count="3"><span style="min-width: 64px; height: 52px; border-radius: 10px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 17px; font-weight: 600">{{s.v}}</span><span style="font-size: 11px; color: var(--on-sfv)">{{s.l}}</span></span></sc-for></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; align-items: baseline; gap: 6px"><span class="n" style="font-size: 30px; line-height: 36px; font-weight: 500">10</span><span class="n" style="font-size: 16px; color: var(--on-sfv)">/ 38 PV</span><span style="flex: 1"></span><span style="font-size: 12px; color: var(--dmg)">Gravement blessée</span></div>
+        <div role="meter" aria-label="10 PV sur 38" style="height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><div style="width: 26%; height: 100%; background: var(--warn)"></div></div>
+      </div>
+      <div role="alert" style="border-radius: 12px; background: var(--conc-c); color: var(--on-conc-c); padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1"></path></svg>
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Concentration : JS de Constitution DD 10</span><span style="font-size: 13px">12 dégâts subis · Bénédiction (Aldric, Thalia, Brannoc)</span></span>
+        <button style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid var(--conc); font-size: 14px; font-weight: 500">Échoué</button>
+        <button style="height: 40px; padding: 0 14px; border-radius: 20px; background: var(--conc); color: #2A1450; font-size: 14px; font-weight: 600">Réussi</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px">
+        <span style="height: 32px; padding: 0 10px 0 8px; border-radius: 8px; background: var(--conc-c); color: var(--on-conc-c); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1"></path></svg>Concentration · Bénédiction</span>
+        <button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px dashed var(--ol); color: var(--p); font-size: 13px; font-weight: 500">+ État</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12px; color: var(--on-sfv)">Jets de sauvegarde</span>
+        <div class="n" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px"><sc-for list="{{saves}}" as="v" hint-placeholder-count="6"><span style="height: 40px; border-radius: 8px; background: {{v.bg}}; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px"><span style="color: var(--on-sfv)">{{v.l}}</span><strong>{{v.v}}</strong></span></sc-for></div>
+      </div>
+      <span style="flex: 1"></span>
+      <div style="display: flex; gap: 8px">
+        <button style="flex: 1; height: 56px; border-radius: 28px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 15px; font-weight: 500">Dégâts</button>
+        <button style="flex: 1; height: 56px; border-radius: 28px; background: var(--heal-c); color: var(--on-heal-c); font-size: 15px; font-weight: 500">Soins</button>
+        <button style="flex: 1; height: 56px; border-radius: 28px; background: var(--thp-c); color: var(--on-thp-c); font-size: 15px; font-weight: 500">PV temp.</button>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":960,"height":600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const C = {
+      prone: 'M3 19h18 M5 15h9l4-2 M8 15l2-3h4 M18.5 9.5a2 2 0 1 0 0 .01',
+      frightened: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9.5h.01 M15 9.5h.01 M8 16c1-1 2-1 2.7 0s1.9 1 2.6 0 2-1 2.7 0',
+      poisoned: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z M10 12.5l4 4 M14 12.5l-4 4',
+      unconscious: 'M4 6h6l-6 7h6 M13 13h5l-5 6h5',
+      conc: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5v1',
+      thp: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',
+    };
+    const N = { bg: 'var(--sf-highest)', fg: 'var(--on-sf)' };
+    const hpColor = (hp, max) => { const r = hp / max; return r > 0.5 ? 'var(--heal)' : r > 0.25 ? 'var(--warn)' : 'var(--dmg)'; };
+    const card = (o) => ({ bg: 'var(--sf-c)', ring: 'none', op: 1, initBg: 'var(--sf-highest)', initFg: 'var(--on-sf)', chips: [], ...o, pct: Math.round((o.hp / o.max) * 100) + '%', hpColor: hpColor(o.hp, o.max) });
+    const rows = [
+      card({ name: 'Thalia', init: 22, ca: 15, hp: 33, max: 33 }),
+      card({ name: 'Chef de bande', init: 18, ca: 15, hp: 31, max: 52, bg: 'var(--pc)', ring: 'inset 0 0 0 2px var(--p)', initBg: 'var(--p)', initFg: 'var(--on-p)', chips: [{ l: 'Empoisonné, expire en fin de tour', d: C.poisoned, ...N }] }),
+      card({ name: 'Loup 1 · hors de combat', init: 15, ca: 12, hp: 0, max: 11, op: 0.55, bg: 'var(--sf-low)' }),
+      card({ name: 'Loup 2', init: 15, ca: 12, hp: 6, max: 11, chips: [{ l: 'À terre', d: C.prone, ...N }] }),
+      card({ name: 'Aldric Varenne', init: 14, ca: 19, hp: 41, max: 49, chips: [{ l: '5 PV temporaires', d: C.thp, bg: 'var(--thp-c)', fg: 'var(--on-thp-c)' }] }),
+      card({ name: 'Bandit 1', init: 12, ca: 12, hp: 11, max: 11 }),
+      card({ name: 'Bandit 2', init: 12, ca: 12, hp: 4, max: 11, chips: [{ l: 'Effrayé', d: C.frightened, ...N }] }),
+      card({ name: 'Bandit 3 · hors de combat', init: 12, ca: 12, hp: 0, max: 11, op: 0.55, bg: 'var(--sf-low)' }),
+      card({ name: 'Mira Solen', init: 9, ca: 18, hp: 10, max: 38, bg: 'var(--sf-high)', ring: 'inset 0 0 0 2px var(--s)', chips: [{ l: 'Concentration : Bénédiction', d: C.conc, bg: 'var(--conc-c)', fg: 'var(--on-conc-c)' }] }),
+      card({ name: 'Brannoc', init: 6, ca: 12, hp: 0, max: 27, ring: 'inset 0 0 0 1px var(--dmg)', chips: [{ l: 'Inconscient, 1 réussite, 1 échec', d: C.unconscious, bg: 'var(--dmg-c)', fg: 'var(--on-dmg-c)' }] }),
+    ];
+    const R = [['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'], ['Table', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'], ['Combat', 'M14.5 17.5L3 6V3h3l11.5 11.5 M13 19l6-6 M16 16l4 4 M19 21l2-2'], ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z']];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 2 ? 'page' : 'false', bg: i === 2 ? 'var(--sc)' : 'transparent', fg: i === 2 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 2 ? 700 : 500 }));
+    const stats = [{ l: 'CA', v: '18' }, { l: 'Init.', v: '+0' }, { l: 'Vitesse', v: '9 m' }];
+    const saves = [['FOR', '+1', 0], ['DEX', '+0', 0], ['CON', '+2', 0], ['INT', '+0', 0], ['SAG', '+6', 1], ['CHA', '+5', 1]].map(([l, v, p]) => ({ l, v, bg: p ? 'var(--sc)' : 'var(--sf-high)' }));
+    return { rows, rail, stats, saves };
+  }
+}
+</script>
+</body>
+</html>

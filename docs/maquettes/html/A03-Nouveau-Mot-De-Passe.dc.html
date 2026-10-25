@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Nouveau mot de passe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column"><header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px"><button aria-label="Annuler" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button><h1 style="margin: 0; flex: 1; font-size: 22px; line-height: 28px; font-weight: 400">Nouveau mot de passe</h1></header>
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+    <span style="font-size: 14px; line-height: 20px; color: var(--on-sfv)">Compte <strong style="color: var(--on-sf); font-weight: 500">hugo@exemple.fr</strong> · lien valable encore 48 min.</span>
+    <div style="display: flex; flex-direction: column; gap: 4px"><label style="min-height: 56px; border-radius: 4px; border: 2px solid var(--p); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--p)">Nouveau mot de passe</span><input aria-label="Nouveau mot de passe" type="password" value="brumeval-relais" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; color: var(--on-sf)"></span><button aria-label="Afficher le mot de passe" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-right: -12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg></button></label></div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div role="meter" aria-label="Robustesse : correcte" aria-valuemin="0" aria-valuemax="4" aria-valuenow="3" style="display: flex; gap: 4px"><span style="flex: 1; height: 4px; border-radius: 2px; background: var(--heal)"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: var(--heal)"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: var(--heal)"></span><span style="flex: 1; height: 4px; border-radius: 2px; background: var(--sf-highest)"></span></div>
+      <span style="font-size: 12px; color: var(--on-sfv)">Robustesse : correcte</span>
+    </div>
+    <ul aria-label="Règles du mot de passe" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; position: relative">
+      <li style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--heal)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg><span>10 caractères au moins<span style="position: absolute; left: -9999px"> · Respecté</span></span></li>
+      <li style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--heal)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg><span>Différent de votre e-mail et de votre pseudo<span style="position: absolute; left: -9999px"> · Respecté</span></span></li>
+      <li style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--heal)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg><span>Absent des listes de mots de passe divulgués<span style="position: absolute; left: -9999px"> · Respecté</span></span></li>
+    </ul>
+    <div style="display: flex; flex-direction: column; gap: 4px"><label style="min-height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Confirmer le mot de passe</span><input aria-label="Confirmer le mot de passe" type="password" value="brumeval-relais" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0; color: var(--on-sf)"></span><button aria-label="Afficher le mot de passe" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; margin-right: -12px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg></button></label></div>
+    <label style="min-height: 48px; display: flex; align-items: center; gap: 14px; cursor: pointer">
+      <span style="width: 18px; height: 18px; flex: none; border-radius: 2px; background: var(--p); color: var(--on-p); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M5 12l5 5L20 7"></path></svg></span>
+      <input type="checkbox" checked aria-label="Déconnecter mes autres appareils" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+      <span style="display: flex; flex-direction: column"><span style="font-size: 15px">Déconnecter mes autres appareils</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Leurs données locales sont conservées ; il faudra se reconnecter pour synchroniser.</span></span>
+    </label>
+    <div style="flex: 1"></div>
+    <button style="width: 100%; height: 48px; padding: 0 20px; border-radius: 24px; background: var(--p); color: var(--on-p); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Enregistrer et se connecter</button>
+  </div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

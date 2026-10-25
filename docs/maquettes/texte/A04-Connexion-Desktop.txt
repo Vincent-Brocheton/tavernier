@@ -1,0 +1,19 @@
+Votre table, même sans réseau
+
+Fiches de personnage, combats et notes de séance, compatibles avec la cinquième édition. Une fois connecté, tout fonctionne hors-ligne.
+
+Connexion
+Un compte sert à rejoindre des tables et à synchroniser vos fiches.
+Connexion
+Inscription
+Pas de connexion internet
+La première connexion sur cet appareil demande le réseau. Le bouton se réactive dès que la connexion revient ; rien n’est enregistré en attendant.
+E-mail
+Mot de passe
+Mot de passe oublié ?
+Se connecter
+ou
+Continuer avec Google
+Continuer avec Apple
+
+Déjà connecté sur cet appareil ? Vos données s’ouvrent sans réseau. Politique de confidentialité

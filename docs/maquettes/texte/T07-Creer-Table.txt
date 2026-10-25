@@ -1,0 +1,54 @@
+Nouvelle table
+Créer la table
+Nom de la table *
+Description
+Niveau de départ des personnages
+1
+Image de couverture
+(optionnelle)
+Méthode de caractéristiques
+Imposée à toutes les créations de personnage de la table.
+Valeurs standard
+15, 14, 13, 12, 10, 8 à répartir
+Acquisition par points
+27 points, valeurs de 8 à 15
+Génération aléatoire
+4d6, on retire le plus faible, six fois
+Repos long
+Récupération totale des PV
+Règle de base du SRD
+Récupération par dés de vie
+Les PV ne remontent qu’en dépensant des dés de vie
+PV à la montée de niveau
+Moyenne fixe
+Jet de dé
+Exemple Guerrier : 6 + modificateur de CON à chaque niveau.
+Progression des personnages
+Points d’expérience
+Jalons
+Les PX des rencontres s’ajoutent aux fiches à la clôture de chaque séance ; le niveau suit les seuils du SRD.
+Packs actifs
+La version est figée pour la table ; les joueurs reçoivent les packs par la synchronisation.
+SRD 5.2.1
+Toujours actif · désactivable entité par entité
+Bannir des entités…
+Bestiaire des Marches
+Homebrew · le mien · 42 monstres
+Version figée 1.3
+Sorts d’Inès
+Importé · 18 sorts, 1 sous-classe
+Aperçu de la carte
+Les Marches de Brumeval
+Niveau de départ
+1
+Caractéristiques
+Acquisition par points
+Repos long
+Récupération totale
+PV par niveau
+Moyenne fixe
+Progression
+Points d’expérience
+Packs
+SRD 5.2.1, Bestiaire des Marches 1.3
+Tout reste modifiable dans Configuration. Étape suivante : inviter les joueurs.

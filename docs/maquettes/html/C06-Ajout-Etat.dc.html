@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Ajouter un état</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+  <section role="dialog" aria-label="Ajouter un état" style="position: absolute; left: 0; right: 0; bottom: 0; top: 16px; background: var(--sf-low); border-radius: 28px 28px 0 0; padding: 0 16px 20px; display: flex; flex-direction: column; gap: 12px">
+    <div style="height: 22px; display: flex; align-items: center; justify-content: center"><span style="width: 32px; height: 4px; border-radius: 2px; background: var(--ol)"></span></div>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <div style="flex: 1"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Ajouter un état</h2><span style="font-size: 13px; color: var(--on-sfv)">Cible : Loup sanguinaire 2</span></div>
+      <button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    </div>
+
+    <div role="radiogroup" aria-label="État" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+      <sc-for list="{{conds}}" as="k" hint-placeholder-count="15">
+        <button role="radio" aria-checked="{{k.on}}" style="height: 50px; border-radius: 12px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: {{k.ring}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{k.d}}"></path></svg>
+          <span style="font-size: 11px; font-weight: 500">{{k.l}}</span>
+        </button>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-size: 12px; line-height: 16px; color: var(--on-sfv)"><strong style="color: var(--on-sf)">Entravé :</strong> Vitesse 0 ; Désavantage à ses attaques et aux JS de Dextérité ; Avantage aux attaques contre lui.</p>
+
+    <div role="radiogroup" aria-label="Durée" style="border-radius: 16px; background: var(--sf-c); padding: 4px 0">
+      <sc-for list="{{durations}}" as="d" hint-placeholder-count="5">
+        <div style="padding: 0 14px; background: {{d.bg}}">
+          <button role="radio" aria-checked="{{d.on}}" style="width: 100%; min-height: 44px; display: flex; align-items: center; gap: 12px; text-align: left">
+            <span style="width: 20px; height: 20px; flex: none; border-radius: 10px; border: 2px solid {{d.rc}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{d.dot}}"></span></span>
+            <span style="flex: 1; font-size: 14px">{{d.l}}</span>
+            <span class="n" style="font-size: 13px; color: var(--on-sfv)">{{d.v}}</span>
+          </button>
+          <sc-if value="{{d.sel}}" hint-placeholder-val="{{false}}">
+            <div style="display: flex; gap: 8px; padding: 0 0 12px 32px">
+              <div style="flex: 1; height: 48px; border-radius: 4px; border: 1px solid var(--ol); padding: 2px 10px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 11px; line-height: 13px; color: var(--on-sfv)">DD</span><span class="n" style="font-size: 16px">13</span></div>
+              <div style="flex: 2; height: 48px; border-radius: 4px; border: 1px solid var(--ol); padding: 2px 10px; display: flex; align-items: center; gap: 6px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 11px; line-height: 13px; color: var(--on-sfv)">Sauvegarde</span><span style="font-size: 16px">Force</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+            </div>
+            <span style="display: block; padding: 0 0 12px 32px; font-size: 12px; color: var(--on-sfv)">Rappel à la fin de chacun de ses tours.</span>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="height: 48px; border-radius: 4px; border: 1px solid var(--ol); padding: 2px 12px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 11px; line-height: 13px; color: var(--on-sfv)">Lié à un sort de concentration</span><span style="font-size: 15px">Aucun</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></div>
+
+    <button style="margin-top: auto; height: 56px; border-radius: 28px; background: var(--p); color: var(--on-p); font-size: 16px; font-weight: 600">Ajouter Entravé</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const C = [
+      ['À terre', 'M3 19h18 M5 15h9l4-2 M8 15l2-3h4 M18.5 9.5a2 2 0 1 0 0 .01'],
+      ['Agrippé', 'M7 11V6a1.5 1.5 0 0 1 3 0v4 M10 9V5a1.5 1.5 0 0 1 3 0v5 M13 9V6a1.5 1.5 0 0 1 3 0v6 M16 11a1.5 1.5 0 0 1 3 0v3a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-3l-2.5-4a1.5 1.5 0 0 1 2.6-1.5L7 14'],
+      ['Assourdi', 'M6 8.5a6 6 0 0 1 12 0c0 3.5-3 4.5-3 7.5a3 3 0 0 1-5.5 1.6 M3 3l18 18'],
+      ['Aveuglé', 'M3 3l18 18 M10.6 5.1A10 10 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3 3.8 M6.6 6.6C3.9 8.4 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6'],
+      ['Charmé', 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z M19 2v4 M17 4h4'],
+      ['Effrayé', 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9.5h.01 M15 9.5h.01 M8 16c1-1 2-1 2.7 0s1.9 1 2.6 0 2-1 2.7 0'],
+      ['Empoisonné', 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z M10 12.5l4 4 M14 12.5l-4 4'],
+      ['Entravé', 'M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1'],
+      ['Épuisement', 'M3 8h15v8H3z M21 11v2 M6 11v2'],
+      ['Étourdi', 'M5 3l1 2 2 1-2 1-1 2-1-2-2-1 2-1z M18 3l.7 1.5L20 5l-1.3.5L18 7l-.7-1.5L16 5l1.3-.5z M4 14a8 3 0 1 0 16 0 8 3 0 1 0-16 0'],
+      ['Inconscient', 'M4 6h6l-6 7h6 M13 13h5l-5 6h5'],
+      ['Invisible', 'M5 21V10a7 7 0 0 1 14 0v11l-2.3-2-2.3 2-2.4-2-2.3 2-2.4-2z M9.5 10h.01 M14.5 10h.01'],
+      ['Neutralisé', 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M5.6 5.6l12.8 12.8'],
+      ['Paralysé', 'M12 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z M12 9v6 M8 21l4-6 4 6 M6 11h12'],
+      ['Pétrifié', 'M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 12l8-4.5 M12 12v9 M12 12L4 7.5'],
+    ];
+    const conds = C.map(([l, d]) => { const on = l === 'Entravé'; return { l, d, on: on ? 'true' : 'false', bg: on ? 'var(--pc)' : 'var(--sf-c)', fg: on ? 'var(--on-pc)' : 'var(--on-sf)', ring: on ? 'inset 0 0 0 2px var(--p)' : 'none' }; });
+    const D = [['Nombre de rounds', '1'], ['Jusqu’au début du tour de…', 'Aldric'], ['Jusqu’à la fin du tour de…', 'Aldric'], ['Jusqu’à réussite d’une sauvegarde', ''], ['Indéfinie', '']];
+    const durations = D.map(([l, v], i) => { const sel = i === 3; return { l, v, sel, on: sel ? 'true' : 'false', rc: sel ? 'var(--p)' : 'var(--ol)', dot: sel ? 'var(--p)' : 'transparent', bg: sel ? 'var(--sf-high)' : 'transparent' }; });
+    return { conds, durations };
+  }
+}
+</script>
+</body>
+</html>

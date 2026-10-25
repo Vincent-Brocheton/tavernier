@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Initiative — joueur</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low); padding: 8px 4px 20px">
+    <svg aria-hidden="true" width="390" height="170" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gC05"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gC05)"></rect></svg>
+    <div style="position: relative; height: 48px; display: flex; align-items: center"><button aria-label="Plus tard" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button></div>
+    <div style="position: relative; padding: 0 20px; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 13px; color: var(--on-sfv)">Camille lance le combat · Le relais du Sel</span>
+      <h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Initiative</h1>
+    </div>
+  </header>
+
+  <div style="flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+      <span class="d" style="width: 44px; height: 44px; border-radius: 22px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">AV</span>
+      <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">Aldric Varenne</span><span class="n" style="font-size: 13px; color: var(--on-sfv)">Bonus +4 (DEX +1, Vigilant +3)</span></span>
+      <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--pc); color: var(--on-pc); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center">Avantage</span>
+    </div>
+    <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Avantage grâce à Athlète accompli : lancez deux d20 et gardez le meilleur.</span>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 14px; font-weight: 500">J’ai lancé mes dés</span>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <label style="flex: 1; height: 64px; border-radius: 8px; border: 2px solid var(--p); padding: 4px 12px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--p)">d20 n° 1</span><input class="n" aria-label="Premier d20" value="15" style="border: 0; outline: 0; background: transparent; font-size: 24px; font-weight: 600; padding: 0"></label>
+        <label style="flex: 1; height: 64px; border-radius: 8px; border: 1px solid var(--ol); padding: 4px 12px; display: flex; flex-direction: column; justify-content: center; opacity: 0.7"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">d20 n° 2</span><input class="n" aria-label="Second d20" value="11" style="border: 0; outline: 0; background: transparent; font-size: 24px; font-weight: 600; padding: 0; text-decoration: line-through"></label>
+      </div>
+      <div style="border-radius: 16px; background: var(--pc); color: var(--on-pc); padding: 14px 16px; display: flex; align-items: baseline; gap: 10px">
+        <span style="flex: 1; font-size: 14px" class="n">15 (meilleur dé) + 4</span>
+        <span class="n" style="font-size: 36px; line-height: 44px; font-weight: 600">19</span>
+      </div>
+    </div>
+
+    <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z M12 2v20 M3.3 7l17.4 10 M20.7 7L3.3 17"></path></svg>Laisser l’application lancer</button>
+  </div>
+
+  <div style="flex: none; padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 8px">
+    <button style="height: 56px; border-radius: 28px; background: var(--p); color: var(--on-p); font-size: 16px; font-weight: 600">Envoyer 19 à Camille</button>
+    <span style="text-align: center; font-size: 12px; color: var(--on-sfv)">Sans réseau, dites votre résultat à voix haute : le MJ peut le saisir.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Montée de niveau — desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--warn:#FFC266}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 960px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP10"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP10)"></rect></svg>
+    <div style="position: relative; height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px">
+      <button aria-label="Fermer" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Aldric Varenne <span style="color: var(--on-sfv); font-weight: 400">· Les Marches de Brumeval</span></span>
+    </div>
+    <div style="position: relative; padding: 4px 32px 24px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px">
+      <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: var(--on-sfv)">MONTÉE DE NIVEAU</span>
+        <h1 class="d" style="margin: 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Guerrier 5 → 6</h1>
+      </div>
+      <ol aria-label="Étapes" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap">
+        <sc-for list="{{sub}}" as="s" hint-placeholder-count="4">
+          <li style="height: 40px; padding: 0 14px 0 8px; border-radius: 20px; background: {{s.bg}}; color: {{s.fg}}; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500"><span class="n" style="width: 24px; height: 24px; border-radius: 12px; background: {{s.dBg}}; color: {{s.dFg}}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">{{s.mark}}</span>{{s.l}}</li>
+        </sc-for>
+      </ol>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 32px; align-items: flex-start">
+    <main style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; gap: 12px; align-items: center">
+          <span style="width: 32px; height: 32px; flex: none; border-radius: 16px; background: var(--heal); color: #10380F; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
+          <div style="flex: 1"><div style="font-size: 14px; font-weight: 500">Points de vie : <span class="n">+9</span></div><div class="n" style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">6 (moyenne d10) + 3 CON · réglage de table : moyenne fixe, jet désactivé</div></div>
+        </div>
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; gap: 12px; align-items: center">
+          <span style="width: 32px; height: 32px; flex: none; border-radius: 16px; background: var(--heal); color: #10380F; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>
+          <div style="flex: 1"><div style="font-size: 14px; font-weight: 500">Aptitude gagnée</div><div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Amélioration de caractéristique (Guerrier 6)</div></div>
+        </div>
+      </div>
+
+      <section aria-label="Choix du don" style="border-radius: 16px; background: var(--sf-c); padding: 20px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px"><div style="flex: 1 1 300px"><h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Amélioration de caractéristique ou autre don</h2><span style="font-size: 13px; color: var(--on-sfv)">Seuls les dons dont vous remplissez les conditions sont sélectionnables.</span></div><button style="height: 40px; padding: 0 16px 0 12px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"></path></svg>Suggérer</button></div>
+        <div role="status" style="border-radius: 12px; background: var(--pc); color: var(--on-pc); padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"></path></svg><span><strong style="font-weight: 600">Suggestion appliquée, modifiable :</strong> Amélioration de caractéristique, Force 18 → 20. L’Épée longue et l’Athlétisme d’Aldric utilisent la Force.</span></div>
+        <div role="radiogroup" aria-label="Don" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px">
+          <sc-for list="{{feats}}" as="f" hint-placeholder-count="6">
+            <button role="radio" aria-checked="{{f.on}}" aria-disabled="{{f.dis}}" style="text-align: left; min-height: 96px; border-radius: 12px; background: {{f.bg}}; box-shadow: {{f.ring}}; border: {{f.bd}}; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; opacity: {{f.op}}; cursor: {{f.cur}}">
+              <span style="display: flex; align-items: center; gap: 6px"><span style="flex: 1; font-size: 15px; font-weight: 600">{{f.l}}</span><span style="height: 20px; padding: 0 6px; border-radius: 5px; background: var(--sf-highest); color: var(--on-sfv); font-size: 10px; font-weight: 600; display: inline-flex; align-items: center">{{f.cat}}</span></span>
+              <span style="font-size: 12px; line-height: 16px; color: {{f.sFg}}">{{f.s}}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <div style="border-radius: 12px; border: 1px solid var(--olv); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+            <span style="flex: 1; font-size: 14px; font-weight: 500">Répartition</span>
+            <div role="radiogroup" aria-label="Mode" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+              <button role="radio" aria-checked="true" class="n" style="padding: 0 16px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">+2 à une</button>
+              <button role="radio" aria-checked="false" class="n" style="padding: 0 16px; border-left: 1px solid var(--ol); font-size: 14px; font-weight: 500">+1 à deux</button>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{abil}}" as="a" hint-placeholder-count="6">
+              <button aria-pressed="{{a.on}}" style="height: 72px; border-radius: 12px; background: {{a.bg}}; color: {{a.fg}}; box-shadow: {{a.ring}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+                <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px">{{a.k}}</span>
+                <span class="n" style="font-size: 18px; font-weight: 600">{{a.v}}</span>
+                <span class="n" style="font-size: 11px; opacity: 0.85">{{a.note}}</span>
+              </button>
+            </sc-for>
+          </div>
+          <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Force atteint 20, le plafond : aucune autre augmentation de Force ne sera proposée ensuite.</span>
+        </div>
+      </section>
+
+      <div style="display: flex; justify-content: space-between; gap: 8px">
+        <button style="height: 48px; padding: 0 24px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Précédent</button>
+        <button style="height: 48px; padding: 0 24px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Suivant : récapitulatif</button>
+      </div>
+    </main>
+
+    <aside aria-label="Avant et après" style="flex: 1 1 300px; max-width: 360px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 20px; display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0 0 4px; font-size: 16px; line-height: 24px; font-weight: 500">Ce qui change</h2>
+      <sc-for list="{{diff}}" as="d" hint-placeholder-count="7">
+        <div style="min-height: 36px; display: flex; align-items: center; gap: 8px; font-size: 14px; border-bottom: 1px solid var(--olv)">
+          <span style="flex: 1; color: var(--on-sfv)">{{d.k}}</span>
+          <span class="n" style="color: var(--on-sfv)">{{d.a}}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14 M13 6l6 6-6 6"></path></svg>
+          <span class="n" style="min-width: 36px; text-align: right; font-weight: 700; color: {{d.fg}}">{{d.b}}</span>
+        </div>
+      </sc-for>
+      <span style="margin-top: 6px; font-size: 12px; line-height: 16px; color: var(--on-sfv)">La montée de niveau est tracée dans l’historique de la fiche, consultable par le MJ.</span>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sub = [['Points de vie', 'done'], ['Aptitudes', 'done'], ['Don', 'cur'], ['Récapitulatif', 'todo']].map(([l, s], i) => ({ l,
+      mark: s === 'done' ? '✓' : String(i + 1), bg: s === 'cur' ? 'var(--sc)' : 'transparent', fg: s === 'todo' ? 'var(--on-sfv)' : s === 'cur' ? 'var(--on-sc)' : 'var(--on-sf)',
+      dBg: s === 'done' ? 'var(--p)' : s === 'cur' ? 'var(--on-sc)' : 'var(--sf-highest)', dFg: s === 'done' ? 'var(--on-p)' : s === 'cur' ? 'var(--sc)' : 'var(--on-sfv)' }));
+    const F = [
+      ['Amélioration de caractéristique', 'Général', '+2 à une valeur ou +1 à deux, maximum 20', 'ok', true],
+      ['Empoigneur', 'Général', 'FOR 13+ ✓ · +1 FOR ou DEX, Avantage contre une cible Agrippée', 'ok', false],
+      ['Doué', 'Origines', 'Trois maîtrises de compétences ou d’outils', 'ok', false],
+      ['Initié à la magie', 'Origines', 'Répétable · 2 sorts mineurs, 1 sort du 1er niveau', 'ok', false],
+      ['Vigilant', 'Origines', 'Déjà obtenu (Humain, Polyvalent) · non répétable', 'ko', false],
+      ['Sauvagerie martiale', 'Origines', 'Déjà obtenu (Soldat) · non répétable', 'ko', false],
+    ];
+    const feats = F.map(([l, cat, s, st, sel]) => {
+      const ko = st === 'ko';
+      return { l, cat, s, on: sel ? 'true' : 'false', dis: ko ? 'true' : 'false', op: ko ? 0.6 : 1, cur: ko ? 'not-allowed' : 'pointer',
+        bg: sel ? 'var(--pc)' : ko ? 'transparent' : 'var(--sf-high)', ring: sel ? 'inset 0 0 0 2px var(--p)' : 'none', bd: ko ? '1px dashed rgba(237,224,214,0.25)' : '1px solid transparent', sFg: ko ? 'var(--e)' : 'var(--on-sfv)' };
+    });
+    const abil = [['FOR', '18 → 20', '+2 · plafond', true], ['DEX', '13', '', false], ['CON', '16', '', false], ['INT', '8', '', false], ['SAG', '12', '', false], ['CHA', '10', '', false]].map(([k, v, note, on]) => ({ k, v, note, on: on ? 'true' : 'false', bg: on ? 'var(--p)' : 'var(--sf-high)', fg: on ? 'var(--on-p)' : 'var(--on-sf)', ring: 'none' }));
+    const up = 'var(--p)', same = 'var(--on-sf)';
+    const diff = [
+      { k: 'PV max', a: '49', b: '58', fg: up }, { k: 'Force', a: '18 (+4)', b: '20 (+5)', fg: up }, { k: 'Épée longue, attaque', a: '+7', b: '+8', fg: up },
+      { k: 'Épée longue, dégâts', a: '1d8 + 4', b: '1d8 + 5', fg: up }, { k: 'JS Force', a: '+7', b: '+8', fg: up }, { k: 'Athlétisme', a: '+7', b: '+8', fg: up },
+      { k: 'Dés de vie', a: '5 d10', b: '6 d10', fg: up }, { k: 'Bonus de maîtrise', a: '+3', b: '+3', fg: same }, { k: 'Bottes d’armes', a: '4', b: '4', fg: same },
+    ];
+    return { sub, feats, abil, diff };
+  }
+}
+</script>
+</body>
+</html>

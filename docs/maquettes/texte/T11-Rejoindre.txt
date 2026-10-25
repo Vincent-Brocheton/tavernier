@@ -1,0 +1,12 @@
+Rejoindre une table
+Pas de réseau. Rejoindre une table demande une connexion, une seule fois. Le code est gardé : la demande partira dès que le réseau revient.
+Scanner le QR du MJ
+ou saisir le code
+K
+7
+Q
+4
+Z
+P
+En attente du réseau…
+En attendant, vous pouvez créer un personnage libre.

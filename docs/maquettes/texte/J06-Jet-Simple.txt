@@ -1,0 +1,18 @@
+Brannoc
+Jet contre la mort
+Brannoc · lancé par l’application
+8
++
+3
+1d4 Béni
+=
+11
+d20 8 + Béni 1d4 (3) = 11 · Réussite (10 ou plus)
+Jets contre la mort
+Réussites 
+Échecs 
+Résultat du d20 (modifiable avant validation)
+8
+Relancer
+Valider
+Jet simple au MVP : l’application connaît la formule et les effets reçus. Avec Avantage ou Désavantage, les deux d20 s’affichent et le dé écarté est barré.

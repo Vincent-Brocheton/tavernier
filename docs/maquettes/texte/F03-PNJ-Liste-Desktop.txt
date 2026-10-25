@@ -1,0 +1,73 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+VOUS ÊTES MJ
+Les Marches de Brumeval
+Nouveau PNJ
+Vue d’ensemble
+Séances
+Rencontres
+PNJ
+Notes
+Membres
+Configuration
+Tous · 4
+Hostiles · 1
+Amicaux · 1
+Pas encore rencontrés · 1
+V
+Varga la Balafrée
+Chef de bande · FP 2 · SRD
+Rencontrée séance 12 · 2 informations révélées sur 3
+Hostile
+Capturée
+B
+Brug, l’ogre du moulin
+Ogre · FP 2 · SRD
+Rencontré séance 10 · ne parle que le géant
+Amical
+S
+Sergent Varel
+Vétéran · FP 3 · SRD
+Rencontré séance 8
+Indifférent
+B
+Bourgmestre Hesse
+Roturier · FP 0 · SRD
+Préparé pour la séance 13
+Indifférent
+Jamais rencontré
+Varga la Balafrée
+Bloc : Chef de bande (SRD 5.2.1) · CA 15 · 52 PV · INT 14
+Ajouter à une rencontre
+Ouvrir la fiche
+Attitude
+Hostile
+Désavantage aux tests d’Influence
+DD d’Influence
+15
+15, ou son INT si plus élevée
+Statut
+Capturée
+Depuis la séance 12
+Informations d’Étude
+DD 10
+Ancienne sergente de la garde de Brumeval.
+révélée · séance 12
+DD 15
+Porte le sceau de la Guilde du Sel.
+révélée · séance 12
+DD 20
+Est la sœur cadette du bourgmestre Hesse.
+Tentatives d’Influence mémorisées
+Échec
+Aldric · persuader de livrer ses complices
+séance 12 · une même tentative sera signalée
+Notes liées
+Varga la Balafrée (privée)
+Préparation de la séance 12
+Rencontres
+Le relais du Sel · séance 12
+Les chiens de Varga · séance 13

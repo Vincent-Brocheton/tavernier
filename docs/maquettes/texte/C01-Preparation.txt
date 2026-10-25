@@ -1,0 +1,76 @@
+Les Marches de Brumeval · Séance 12
+Le relais du Sel
+Dupliquer
+Lancer la rencontre
+Difficulté
+Modérée
+Faible
+2 000
+Modérée
+3 000
+Élevée
+4 400
+3 000 PX
+4 PJ de niveau 5
+Monstres
+PNJ
+FP 1 à 5
+Bandit
+Humanoïde · FP 1/8 · 25 PX
+SRD
+Loup
+Bête · FP 1/4 · 50 PX
+SRD
+Combattant hobgobelin
+Fée · FP 1/2 · 100 PX
+SRD
+Loup sanguinaire
+Bête · FP 1 · 200 PX
+SRD
+Chef de bande
+Humanoïde · FP 2 · 450 PX
+SRD
+Ogre
+Géant · FP 2 · 450 PX
+SRD
+Vétéran
+Humanoïde · FP 3 · 700 PX
+SRD
+Capitaine des Marches
+Humanoïde · FP 5 · 1 800 PX
+Marches 1.3
+Personnages présents
+Aldric · Guerrier 5
+Mira · Clerc 5
+Thalia · Roublarde 5
+Brannoc · Magicien 5
+Adversaires
+PV des monstres
+Moyenne
+Jet au lancement
+Vétéran
+FP 3 · numérotés Vétéran 1 à 2
+Initiative commune
+2
+1 400 PX
+Ogre
+FP 2 · unique
+Initiative commune
+1
+450 PX
+Chef de bande
+FP 2 · unique
+Initiative commune
+1
+450 PX
+Loup sanguinaire
+FP 1 · numérotés Loup sanguinaire 1 à 3
+Initiative commune
+3
+600 PX
+Bandit
+FP 1/8 · numérotés Bandit 1 à 4
+Initiative commune
+4
+100 PX
+Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.

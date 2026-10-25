@@ -1,0 +1,85 @@
+PNJ · Les Marches de Brumeval
+Dupliquer
+Modifier
+GUILDE DU SEL
+Varga la Balafrée
+Le Notaire
+RELAIS DU SEL
+Maître Odran, aubergiste
+Garde du relais
+BRUMEVAL
+Bourgmestre Hesse
+Varga la Balafrée
+Humanoïde de taille M, Neutre
+Variante de « Chef de bande » · SRD 5.2.1
+CA
+15
+Initiative
++3 (13)
+PV
+52 (8d8 + 16)
+Vitesse
+9 m
+FOR 15
++2
+JS +4
+DEX 16
++3
+JS +5
+CON 14
++2
+JS +2
+INT 14
++2
+JS +2
+SAG 11
++0
+JS +2
+CHA 14
++2
+JS +2
+Compétences
+Athlétisme +4, Tromperie +4
+Équipement
+Armure de cuir clouté, cimeterre, pistolet
+Sens
+Perception passive 10
+Langues
+Argot des voleurs, commun
+FP
+2 (450 PX ; BM +2)
+Actions
+
+Attaques multiples. Deux attaques, réparties entre Cimeterre et Pistolet.
+
+Cimeterre. Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts tranchants.
+
+Pistolet. À distance : +5, portée 9/27 m. Touché : 8 (1d10 + 3) dégâts perforants.
+
+Réactions
+
+Parade. Déclencheur : touchée par une attaque de corps à corps alors qu’elle tient une arme. Conséquences : +2 à la CA contre cette attaque.
+
+Attitude envers le groupe
+Amicale
+Indifférente
+Hostile
+Depuis la séance 12. Désavantage aux tests d’Influence contre elle. Conservée entre les séances.
+Informations cachées
+Révélées par l’Étude
+DD
+10
+Ancienne sergente de la garde de Brumeval.
+Révélée séance 12 · Thalia, Histoire 16
+DD
+15
+Porte le sceau de la Guilde du Sel.
+Révélée séance 12 · Thalia, Histoire 16
+DD
+20
+Est la sœur cadette du bourgmestre Hesse.
+Cachée
+Ajouter un palier
+Utilisée dans
+Embuscade sur la route · séance 12
+Le relais du Sel · séance 12

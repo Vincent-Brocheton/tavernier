@@ -1,0 +1,23 @@
+Gardiens des Marches · brouillon
+Tester « Gardien du rempart »
+Bac à sable : aucune fiche réelle n’est modifiée
+Personnage de test
+Base
+Guerrier prétiré (Humain, Soldat)
+Niveau
+7
+3
+20
+Porte un bouclier
+Changez le niveau ou l’équipement pour vérifier chaque aptitude et ses conditions.
+Valeur	Sans la sous-classe	Avec Gardien du rempart	Source
+Classe d’armure	19	20	+1 Rempart vivant (bouclier porté)
+Réactions	Attaque d’opportunité	+ Rempart vivant · 3 / Repos long	Rempart vivant (bonus de maîtrise +3)
+Intuition	+1	+4	Serment de garde (maîtrise)
+Déplacement	Terrain difficile normal	Ignore 3 m de terrain difficile	Pas de la sentinelle (niveau 7)
+PV max	67	67	—
+Attaque, épée longue	+7 · 1d8 + 4	+7 · 1d8 + 4	—
+Résultat du test
+Toutes les valeurs se calculent sans erreur au niveau 7. Le bonus de CA disparaît bien quand le bouclier est retiré.
+Reste à corriger : l’aptitude placée au niveau 4.
+Retour à l’éditeur

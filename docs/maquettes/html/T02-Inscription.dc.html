@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Inscription</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="flex: none; position: relative; overflow: hidden; background: var(--sf-low); padding: 40px 24px 20px; display: flex; flex-direction: column; gap: 4px">
+    <svg aria-hidden="true" width="390" height="140" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gT02"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT02)"></rect></svg>
+    <h1 class="d" style="position: relative; margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Bienvenue</h1>
+    <span style="position: relative; font-size: 14px; color: var(--on-sfv)">Un compte sert à rejoindre des tables et à synchroniser vos fiches.</span>
+  </header>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px 24px; display: flex; flex-direction: column; gap: 14px">
+    <div role="tablist" aria-label="Mode" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+      <button role="tab" aria-selected="false" style="flex: 1; font-size: 14px; font-weight: 500">Connexion</button>
+      <button role="tab" aria-selected="true" style="flex: 1; border-left: 1px solid var(--ol); background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500">Inscription</button>
+    </div>
+
+    <label style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 16px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Pseudonyme affiché</span><input aria-label="Pseudonyme" value="Hugo" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+    <label style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 16px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">E-mail</span><input aria-label="E-mail" value="hugo@exemple.fr" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+    <label style="height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 4px 4px 4px 16px; display: flex; align-items: center"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Mot de passe</span><input aria-label="Mot de passe" type="password" value="motdepasse" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></span><button aria-label="Afficher le mot de passe" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg></button></label>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label style="height: 56px; border-radius: 4px; border: 2px solid var(--e); padding: 4px 16px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; line-height: 14px; color: var(--e)">Date de naissance</span><input class="n" aria-label="Date de naissance" aria-invalid="true" aria-describedby="t02err" value="12/03/2013" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFB4AB" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v5 M12 16h.01"></path></svg></label>
+      <span id="t02err" style="padding: 0 16px; font-size: 12px; line-height: 16px; color: var(--e)">Il faut avoir au moins 15 ans pour créer un compte.</span>
+    </div>
+
+    <button aria-disabled="true" style="height: 48px; border-radius: 24px; background: rgba(237,224,214,0.12); color: rgba(237,224,214,0.5); font-size: 14px; font-weight: 500; cursor: not-allowed">Créer le compte</button>
+
+    <div style="display: flex; align-items: center; gap: 12px; color: var(--on-sfv); font-size: 12px"><span style="flex: 1; height: 1px; background: var(--olv)"></span>ou<span style="flex: 1; height: 1px; background: var(--olv)"></span></div>
+    <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500">Continuer avec Google</button>
+    <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500">Continuer avec Apple</button>
+  </div>
+
+  <p style="flex: none; margin: 0; padding: 0 24px 24px; font-size: 12px; line-height: 16px; color: var(--on-sfv); text-align: center">La première connexion demande le réseau, ensuite tout fonctionne hors-ligne. <a href="#">Politique de confidentialité</a></p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

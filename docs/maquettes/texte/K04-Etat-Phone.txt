@@ -1,0 +1,13 @@
+Entravé
+État · SRD 5.2.1
+
+Vitesse 0. Votre Vitesse est de 0 et ne peut pas augmenter.
+
+Effet sur les attaques. Les jets d’attaque contre vous ont l’Avantage, et vos jets d’attaque subissent le Désavantage.
+
+Effet sur les jets de sauvegarde. Vous subissez le Désavantage aux jets de sauvegarde de Dextérité.
+
+Dans ce combat
+Loup sanguinaire 2 · jusqu’à réussite d’un JS de Force DD 13, refait à la fin de chacun de ses tours
+Retirer l’état
+Fermer

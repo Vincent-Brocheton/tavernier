@@ -1,0 +1,16 @@
+Le relais du Sel · round 3
+Combat (MJ)
+8
+Brannoc
+0
+/ 27
+Stabilisé
+Inconscient
+Stabilisé au round 3 par Mira (Soutien, Sagesse (Médecine) 14 contre DD 10). Plus de jets contre la mort. Le moindre dégât relance les jets ; un soin le réveille.
+CE QUE L’APPLICATION FAIT SEULE
+• À 0 PV : état Inconscient, jets contre la mort.
+• Concentration : prend fin si le lanceur devient Inconscient ou Neutralisé, ou meurt ; effets liés retirés après confirmation.
+• Dégâts à 0 PV : un échec, deux sur un coup critique ; mort si les dégâts atteignent les PV max.
+• Soins à 0 PV : Inconscient retiré, compteurs remis à zéro.
+• Trois réussites ou Soutien réussi : Stabilisé.
+Chaque automatisme est inscrit au journal et annulable.

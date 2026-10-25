@@ -1,0 +1,187 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+AV
+Aldric Varenne
+Humain · Guerrier 5 (Champion) · Historique Soldat · Loyal Bon
+Validée par le MJ
+Table : Les Marches de Brumeval
+Synchronisé
+Historique
+Repos
+7 475 / 14 000 PX · niveau 6 au seuil
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+Caractéristiques
+Valeur
+Mod.
+JS
+FOR Force
+18
++4
++7
+DEX Dextérité
+13
++1
++1
+CON Constitution
+16
++3
++6
+INT Intelligence
+8
+−1
+−1
+SAG Sagesse
+12
++1
++1
+CHA Charisme
+10
++0
++0
+Compétences
+● maîtrise · A avantage
+Acrobaties DEX
++1
+Arcanes INT
+−1
+Athlétisme FOR
+A
++7
+Discrétion DEX
++1
+Dressage SAG
++1
+Escamotage DEX
++1
+Histoire INT
+−1
+Intimidation CHA
++3
+Intuition SAG
++4
+Investigation INT
+−1
+Médecine SAG
++1
+Nature INT
+−1
+Perception SAG
++4
+Persuasion CHA
++0
+Religion INT
+−1
+Représentation CHA
++0
+Survie SAG
++4
+Tromperie CHA
++0
+19
+Classe d’armure
++4
+Initiative · A
+9 m
+Vitesse
++3
+Maîtrise
+14
+Perception passive
+★
+Inspiration héroïque
+Classe d’armure 19
+16
+Cotte de mailles · armure lourde, sans DEX
++2
+Bouclier
++1
+Style de combat : Défense
+Voir l’équipement
+Points de vie
+41
+/ 49
++5 temp.
+Dégâts
+Soins
+PV temp.
+Attaques
+Attaque supplémentaire : 2 attaques par action · critique sur 19–20
+Arme	Attaque	Dégâts	Botte d’arme
+
+Épée longue
+Polyvalente · 1,50 m
+	
++7
+	1d8 + 4 tranchants (1d10 à deux mains)	Sape
+Désavantage à son prochain jet d’attaque
+
+
+Javeline ×4
+Lancer · 9/36 m
+	
++7
+	1d6 + 4 perforants	Ralentissement
+Vitesse −3 m jusqu’à votre tour suivant
+
+
+Mains nues
+1,50 m
+	
++7
+	5 contondants	—
+Bottes d’armes 4 / 4
+Modifier (après repos long)
+Épée longue
+Sape
+Javeline
+Ralentissement
+Hache d’armes
+Renversement
+Épée à deux mains
+Écorchure
+Ressources
+Second souffle
+Action Bonus · 1d10 + 5 PV
+Fougue
+Repos court ou long
+Dés de vie
+d10 · 3 restants sur 5
+États
+Aucun état actif
+Ajouter
+Épuisement
+0 / 6
+Aptitudes et dons
+Style de combat : Défense
+Guerrier 1 · +1 CA en armure
+SRD 5.2.1
+Sens tactique
+Guerrier 2
+SRD 5.2.1
+Critique amélioré
+Champion 3 · critique sur 19–20
+SRD 5.2.1
+Athlète accompli
+Champion 3 · Avantage Initiative et Athlétisme
+SRD 5.2.1
+Attaque supplémentaire
+Guerrier 5
+SRD 5.2.1
+Décalage tactique
+Guerrier 5
+SRD 5.2.1
+Sauvagerie martiale
+Don d’origines · Historique Soldat
+SRD 5.2.1
+Vigilant
+Don d’origines · Humain, Polyvalent
+SRD 5.2.1

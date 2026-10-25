@@ -1,0 +1,87 @@
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew
+Aldric Varenne · Guerrier 5 · Les Marches de Brumeval
+Historique des modifications
+Consultable par Hugo et Camille (MJ)
+Tout
+8
+Combat
+2
+Soin
+1
+Progression
+2
+Repos
+1
+Dérogation MJ
+1
+Synchronisation
+1
+Homebrew
+0
+Tous
+Moi
+MJ
+Système
+AUJOURD’HUI
+samedi 24 octobre
+09:12
+Conflit résolu : la valeur du MJ en combat est conservée
+Système · Synchronisation
+Conflit résolu
+PV 34
+VENDREDI 23 OCTOBRE
+Séance 11
+22:58
+Soin +5 (saisi hors-ligne)
+Hugo (vous) · Soin
+Remplacé
++5
+22:41
+7 dégâts perforants · Loup sanguinaire 2
+Camille (MJ) · Combat
+−7
+22:37
+8 dégâts perforants · Loup sanguinaire 1
+Camille (MJ) · Combat
+−8
+20:15
+Ajustement manuel : langue Géant ajoutée
+Camille (MJ) · Dérogation MJ
+Non notifiée
+VENDREDI 16 OCTOBRE
+Séance 10
+23:10
+Repos long
+Hugo (vous) · Repos
+PV 49
+21:52
+Montée de niveau 4 → 5
+Hugo (vous) · Progression
+Niv. 5
+21:48
+Proposition du MJ acceptée : passage au niveau 5
+Camille (MJ) · Progression
+Acceptée
+Afficher les 41 entrées plus anciennes
+Ajustement manuel : langue Géant ajoutée
+Dérogation MJ
+Qui
+Camille (MJ)
+Quand
+ven. 23 oct. 2026, 20:15
+Où
+Hors combat · onglet Principal
+Valeur
+Avant
+Après
+Langues
+3
+4
+Motif saisi par le MJ
+« Appris auprès de l’ogre Brug pendant la captivité (séance 10). »
+Dérogation à la règle de création (Commune + 2 langues courantes). Elle n’envoie pas de notification : elle est seulement inscrite ici et visible du joueur.
+L’historique est en lecture seule. Une correction se fait par une nouvelle modification, elle-même inscrite ici.

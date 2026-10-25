@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Préparer une séance (desktop)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg:#FF9F8F;--tmp:#A7C8FF;--tmp-c:#1C4778;--on-tmp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-wrap: wrap">
+  <nav aria-label="Navigation principale" style="flex: 0 0 80px; padding: 12px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; border-right: 1px solid var(--olv)">
+    <sc-for list="{{rail}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="width: 72px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 56px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <header style="background: var(--sf-low); padding: 16px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--olv)">
+      <button aria-label="Retour aux séances" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+      <div style="flex: 1 1 240px"><span style="font-size: 13px; color: var(--on-sfv)">Les Marches de Brumeval · Séance 12</span><h1 class="d" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; color: var(--t)">Préparer la séance</h1></div>
+      <span style="font-size: 13px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.5-9.98A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z M9 13l2 2 4-4"></path></svg>Enregistrée</span>
+      <button style="height: 48px; padding: 0 24px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Ouvrir la séance</button>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 32px 32px; align-items: flex-start">
+      <section style="flex: 2 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <label style="flex: 2 1 260px; height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 6px 14px; display: flex; flex-direction: column; justify-content: center"><span style="font-size: 12px; color: var(--on-sfv)">Titre</span><input value="Le relais du Sel" style="border: 0; outline: 0; background: transparent; font-size: 16px; padding: 0"></label>
+          <label style="flex: 1 1 200px; height: 56px; border-radius: 4px; border: 1px solid var(--ol); padding: 6px 14px; display: flex; align-items: center; gap: 8px"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 12px; color: var(--on-sfv)">Date</span><span class="n" style="font-size: 16px">vendredi 30/10/2026</span></span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4z M4 10h16 M8 3v4 M16 3v4"></path></svg></label>
+        </div>
+
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 8px 0 12px">
+          <div style="padding: 8px 16px; display: flex; align-items: center; gap: 8px"><h2 style="flex: 1; margin: 0; font-size: 16px; font-weight: 500">Rencontres, dans l’ordre prévu</h2><span class="n" style="font-size: 12px; color: var(--on-sfv)">Budget pour 4 personnages de niveau 5</span></div>
+          <sc-for list="{{enc}}" as="e" hint-placeholder-count="3">
+            <div style="min-height: 76px; padding: 8px 8px 8px 4px; display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--olv)">
+              <span aria-label="Déplacer" style="width: 40px; height: 48px; display: flex; align-items: center; justify-content: center; color: var(--on-sfv); cursor: grab"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5"></circle><circle cx="9" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="9" cy="18" r="1.5"></circle><circle cx="15" cy="18" r="1.5"></circle></svg></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+                <span style="display: flex; align-items: center; gap: 8px"><span style="font-size: 15px; font-weight: 500">{{e.n}}</span><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{e.dBg}}; color: {{e.dFg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center">{{e.d}}</span></span>
+                <span class="n" style="font-size: 12px; color: var(--on-sfv)">{{e.s}}</span>
+                <span style="position: relative; height: 6px; border-radius: 3px; background: var(--sf-highest)"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{e.pct}}; border-radius: 3px; background: {{e.bar}}"></span><sc-for list="{{marks}}" as="m" hint-placeholder-count="3"><span aria-hidden="true" style="position: absolute; top: -3px; width: 2px; height: 12px; background: var(--on-sfv); left: {{m}}"></span></sc-for></span>
+              </span>
+              <button style="height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Modifier</button>
+              <button aria-label="Plus d’actions" style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="12" cy="19" r="1.8"></circle></svg></button>
+            </div>
+          </sc-for>
+          <div style="padding: 8px 16px 0; display: flex; gap: 8px; flex-wrap: wrap">
+            <button style="height: 40px; padding: 0 16px 0 12px; border-radius: 20px; background: var(--sc); color: var(--on-sc); font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg>Nouvelle rencontre</button>
+            <button style="height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Dupliquer une rencontre existante</button>
+          </div>
+        </div>
+
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 16px; font-weight: 500">Notes de séance</h2>
+          <a href="#" style="border-radius: 12px; background: var(--sf-high); padding: 10px 14px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--on-sf)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Privée" style="color: var(--on-sfv)"><path d="M6 11h12v10H6z M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span style="flex: 1; font-size: 14px">Préparation de la séance 12</span><span style="font-size: 12px; color: var(--on-sfv)">liens : Varga la Balafrée, Le relais du Sel</span></a>
+          <button style="align-self: flex-start; height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">+ Note de séance</button>
+        </div>
+      </section>
+
+      <aside style="flex: 1 1 320px; max-width: 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 20px; background: var(--heal-c); color: var(--on-heal-c); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 500">Prête à jouer sans réseau</span><span style="font-size: 12px; color: var(--on-sfv)">Sur cet ordinateur et sur votre téléphone</span></span></div>
+          <sc-for list="{{checks}}" as="c" hint-placeholder-count="5">
+            <div style="display: flex; gap: 10px; font-size: 14px; line-height: 20px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{c.col}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="{{c.aria}}" style="flex: none; margin-top: 1px"><path d="{{c.ic}}"></path></svg><span style="flex: 1; display: flex; flex-direction: column"><span>{{c.t}}</span><span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{c.s}}</span></span></div>
+          </sc-for>
+        </div>
+
+        <div style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+          <div style="padding: 8px 16px; display: flex; flex-direction: column"><h2 style="margin: 0; font-size: 16px; font-weight: 500">Présences prévues</h2><span style="font-size: 12px; color: var(--on-sfv)">Préremplies dans chaque rencontre, pour la difficulté et les PX.</span></div>
+          <sc-for list="{{pcs}}" as="c" hint-placeholder-count="5">
+            <div style="min-height: 52px; padding: 4px 16px; display: flex; align-items: center; gap: 12px">
+              <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">{{c.n}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{c.s}}</span></span>
+              <span role="switch" aria-checked="{{c.on}}" aria-label="{{c.aria}}" style="width: 52px; height: 32px; border-radius: 16px; background: {{c.swBg}}; border: 2px solid {{c.swBd}}; display: flex; align-items: center; padding: 0 4px; justify-content: {{c.swJ}}"><span style="width: {{c.k}}; height: {{c.k}}; border-radius: 12px; background: {{c.kBg}}"></span></span>
+            </div>
+          </sc-for>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const R = [
+      ['Accueil', 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z'],
+      ['Tables', 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16'],
+      ['Personnages', 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0'],
+      ['Compendium', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+      ['Homebrew', 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3'],
+    ];
+    const rail = R.map(([l, d], i) => ({ l, d, cur: i === 1 ? 'page' : 'false', bg: i === 1 ? 'var(--sc)' : 'transparent', fg: i === 1 ? 'var(--on-sc)' : 'var(--on-sfv)', w: i === 1 ? 700 : 500 }));
+    // Budgets 2024 pour 4 personnages de niveau 5 : faible 2 000, modérée 3 000, élevée 4 400. Échelle de la jauge : 0 à 4 400.
+    const MAX = 4400, pct = (x) => Math.min(100, Math.round((x / MAX) * 100)) + '%';
+    const marks = [pct(2000), pct(3000)];
+    const enc = [
+      { n: 'Embuscade sur la route', s: '4 bandits, 4 loups · 300 PX', d: 'SOUS LE BUDGET FAIBLE', dBg: 'var(--sf-highest)', dFg: 'var(--on-sfv)', pct: pct(300), bar: 'var(--heal)' },
+      { n: 'Le relais du Sel', s: 'Varga la Balafrée, 2 vétérans, un ogre, 3 loups sanguinaires, 4 bandits · 3 000 PX', d: 'MODÉRÉE', dBg: 'var(--warn-c)', dFg: 'var(--on-warn-c)', pct: pct(3000), bar: 'var(--warn)' },
+      { n: 'Les chiens de Varga (option)', s: '2 loups sanguinaires · 400 PX · seulement si le groupe fuit', d: 'SOUS LE BUDGET FAIBLE', dBg: 'var(--sf-highest)', dFg: 'var(--on-sfv)', pct: pct(400), bar: 'var(--heal)' },
+    ];
+    const OK = 'M5 12l5 5L20 7', WAIT = 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2';
+    const ok = (t, s) => ({ t, s, ic: OK, col: 'var(--heal)', aria: 'Prêt' });
+    const checks = [
+      ok('3 rencontres et leurs combattants', 'Blocs de stats copiés : SRD 5.2.1, Bestiaire des Marches 1.3'),
+      ok('2 PNJ : Varga la Balafrée, Brug', 'Attitudes conservées (Varga : Hostile)'),
+      ok('Notes de séance et de table', '7 notes, recherche hors-ligne'),
+      ok('Fiches d’Aldric, Mira et Thalia à jour', 'Dernière synchronisation il y a 3 min'),
+      { t: 'Brannoc : modification en attente', s: 'Sam a changé sa fiche hors-ligne. Elle arrivera à sa reconnexion ; sinon la séance part de la version reçue hier à 19:02.', ic: WAIT, col: 'var(--tmp)', aria: 'En attente' },
+    ];
+    const sw = (n, s, on) => ({ n, s, on: on ? 'true' : 'false', aria: 'Présence de ' + n, swBg: on ? 'var(--p)' : 'var(--sf-highest)', swBd: on ? 'var(--p)' : 'var(--ol)', swJ: on ? 'flex-end' : 'flex-start', k: on ? '24px' : '16px', kBg: on ? 'var(--on-p)' : 'var(--ol)' });
+    const pcs = [sw('Aldric Varenne', 'Hugo · Guerrier 5', true), sw('Mira Solen', 'Inès · Clerc 5', true), sw('Thalia', 'Léo · Roublarde 5', true), sw('Brannoc', 'Sam · Magicien 5', true), sw('Kael', 'Léo · Magicien 3 · Léo joue Thalia ce soir', false)];
+    return { rail, enc, marks, checks, pcs };
+  }
+}
+</script>
+</body>
+</html>

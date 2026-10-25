@@ -1,0 +1,24 @@
+K
+Léo veut rattacher Kael
+Personnage libre · Elfe · Magicien 3 · vers l’emplacement libre des Marches de Brumeval
+4 écarts avec la configuration de la table. Acceptez-les avec une dérogation tracée, ou demandez une correction à Léo.
+Niveau 3 au lieu du niveau de départ 1
+La table démarre au niveau 1.
+Dérogation
+Correction
+Génération aléatoire au lieu d’Acquisition par points
+Valeurs tirées : 16, 15, 14, 12, 11, 9 (coût en points : non applicable).
+Dérogation
+Correction
+Sort banni par la table : Sommeil
+Préparé · 1er niveau · banni dans la configuration SRD de la table.
+Dérogation
+Correction
+Pack non actif : Sorts d’Inès 2.0
+Le sort « Lame d’ombre » vient d’un pack que la table n’a pas activé.
+Dérogation
+Correction
+Message pour Léo
+2 dérogations seront inscrites dans l’historique de la fiche. Un personnage n’est rattaché qu’à une table à la fois.
+Annuler
+Envoyer à Léo (2 corrections)

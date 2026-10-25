@@ -1,0 +1,36 @@
+Ajouter un état
+Cible : Loup sanguinaire 2
+À terre
+Agrippé
+Assourdi
+Aveuglé
+Charmé
+Effrayé
+Empoisonné
+Entravé
+Épuisement
+Étourdi
+Inconscient
+Invisible
+Neutralisé
+Paralysé
+Pétrifié
+
+Entravé : Vitesse 0 ; Désavantage à ses attaques et aux JS de Dextérité ; Avantage aux attaques contre lui.
+
+Nombre de rounds
+1
+Jusqu’au début du tour de…
+Aldric
+Jusqu’à la fin du tour de…
+Aldric
+Jusqu’à réussite d’une sauvegarde
+DD
+13
+Sauvegarde
+Force
+Rappel à la fin de chacun de ses tours.
+Indéfinie
+Lié à un sort de concentration
+Aucun
+Ajouter Entravé

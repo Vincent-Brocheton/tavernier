@@ -1,0 +1,98 @@
+Le relais du Sel · lancement
+Initiative
+Tous les jets sont saisis
+Commencer le round 1
+Surprise
+Les combattants surpris ont le Désavantage au jet d’initiative.
+Aldric
+Mira
+Thalia
+Brannoc
+Varga
+Bandits
+Combattant	Bonus	Jet	Total	Origine
+
+Aldric Varenne
+PJ · Hugo
+	+4 
+Avantage
+	15 (11)	19	
+Saisi par Hugo
+
+
+Mira Solen
+PJ · Inès
+	+0	8	8	
+Saisi par Inès
+
+
+Thalia
+PJ · Léo
+	+7	15	22	
+Saisi par Léo
+
+
+Brannoc
+PJ · Sam · surpris
+	+2 
+Désavantage
+	6 (14)	8	
+Saisi par Sam
+
+
+Varga la Balafrée
+PNJ
+	+3	14	17	
+Jet automatique
+
+
+Vétérans 1–2
+Initiative commune
+	+3	12	15	
+Jet automatique
+
+
+Loups sanguinaires 1–3
+Initiative commune
+	+2	13	15	
+Jet automatique
+
+
+Bandits 1–4
+Initiative commune
+	+1	11	12	
+Jet automatique
+
+
+Ogre
+	−1	10	9	
+Jet automatique
+Ordre du tour
+22
+Thalia
+19
+Aldric Varenne
+17
+Varga la Balafrée
+15
+Vétérans 1–2
+Égalité · le MJ décide
+15
+Loups sanguinaires 1–3
+Égalité · le MJ décide
+12
+Bandits 1–4
+9
+Ogre
+8
+Brannoc
+Égalité · Inès et Sam décident
+8
+Mira Solen
+Égalité · Inès et Sam décident
+Égalité à 15 entre deux groupes de monstres : vous choisissez l’ordre. Glissez pour le changer.
+Égalité à 8 entre Brannoc et Mira : Sam et Inès choisissent l’ordre depuis leur téléphone, ou vous le faites pour eux.
+Vigilant · Aldric et Thalia peuvent échanger leur initiative avec un allié consentant, juste après le jet. Impossible si l’un des deux est Neutralisé. Hugo et Léo peuvent aussi le faire depuis leur téléphone.
+Aldric : échanger…
+Thalia : échanger…
+L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.

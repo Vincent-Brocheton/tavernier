@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Préparer une rencontre</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:disabled{cursor:not-allowed}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1000px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Retour à la séance" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Les Marches de Brumeval · Séance 12</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Le relais du Sel</h1></div>
+    <button style="height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Dupliquer</button>
+    <button style="height: 48px; padding: 0 24px 0 16px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l12 8-12 8z"></path></svg>Lancer la rencontre</button>
+  </header>
+
+  <section aria-label="Difficulté" style="padding: 16px 24px; background: var(--sf-low); border-bottom: 1px solid var(--olv); display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+    <div style="display: flex; align-items: center; gap: 12px; min-width: 220px">
+      <span style="width: 44px; height: 44px; border-radius: 22px; background: {{dBg}}; color: {{dFg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{dIcon}}"></path></svg></span>
+      <div style="display: flex; flex-direction: column"><span style="font-size: 12px; color: var(--on-sfv)">Difficulté</span><span aria-live="polite" style="font-size: 22px; line-height: 28px; font-weight: 600">{{dLabel}}</span></div>
+    </div>
+    <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 6px">
+      <div role="meter" aria-label="Budget de PX utilisé" aria-valuemin="0" aria-valuemax="{{max}}" aria-valuenow="{{xp}}" style="position: relative; height: 16px; border-radius: 8px; background: var(--sf-highest); overflow: visible">
+        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{fill}}; border-radius: 8px; background: {{dBar}}"></div>
+        <sc-for list="{{marks}}" as="m" hint-placeholder-count="3"><span aria-hidden="true" style="position: absolute; left: {{m.x}}; top: -4px; width: 2px; height: 24px; background: var(--on-sf)"></span></sc-for>
+      </div>
+      <div style="position: relative; height: 32px">
+        <sc-for list="{{marks}}" as="m" hint-placeholder-count="3"><span class="n" style="position: absolute; left: {{m.x}}; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; font-size: 11px; line-height: 14px; color: var(--on-sfv); white-space: nowrap"><strong style="color: var(--on-sf); font-weight: 600">{{m.l}}</strong>{{m.v}}</span></sc-for>
+      </div>
+    </div>
+    <div class="n" style="display: flex; flex-direction: column; align-items: flex-end; min-width: 180px"><span style="font-size: 22px; font-weight: 600">{{xpLabel}} PX</span><span style="font-size: 12px; color: var(--on-sfv)">{{pcLabel}}</span></div>
+  </section>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <aside aria-label="Bestiaire" style="flex: 1 1 300px; max-width: 360px; min-width: 0; border-radius: 16px; background: var(--sf-c); padding: 12px 0">
+      <div style="padding: 0 12px 8px; display: flex; flex-direction: column; gap: 8px">
+        <label style="height: 44px; border-radius: 22px; background: var(--sf-high); display: flex; align-items: center; gap: 8px; padding: 0 14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M21 21l-5-5"></path></svg><input aria-label="Rechercher dans le bestiaire" placeholder="Bestiaire, PNJ, PJ" style="flex: 1; border: 0; outline: 0; background: transparent; font-size: 14px"></label>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap">
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; background: var(--sc); color: var(--on-sc); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">Monstres</span>
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">PNJ</span>
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--ol); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">FP 1 à 5</span>
+        </div>
+      </div>
+      <sc-for list="{{beasts}}" as="b" hint-placeholder-count="8">
+        <div style="min-height: 56px; padding: 4px 8px 4px 16px; display: flex; align-items: center; gap: 10px">
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 14px">{{b.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{b.s}}</span></span>
+          <span style="height: 22px; padding: 0 6px; border-radius: 6px; background: {{b.srcBg}}; color: {{b.srcFg}}; font-size: 10px; font-weight: 600; display: inline-flex; align-items: center">{{b.src}}</span>
+          <button aria-label="Ajouter {{b.n}}" onClick="{{b.add}}" style="width: 40px; height: 40px; border-radius: 20px; background: var(--sc); color: var(--on-sc); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></button>
+        </div>
+      </sc-for>
+    </aside>
+
+    <main style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section aria-label="Personnages présents" style="border-radius: 16px; background: var(--sf-c); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+        <h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Personnages présents</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{pcs}}" as="c" hint-placeholder-count="4">
+            <button aria-pressed="{{c.on}}" onClick="{{c.toggle}}" style="height: 40px; padding: 0 14px 0 10px; border-radius: 8px; background: {{c.bg}}; color: {{c.fg}}; border: {{c.bd}}; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>{{c.n}}</button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section aria-label="Adversaires" style="border-radius: 16px; background: var(--sf-c); padding: 8px 0">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; flex-wrap: wrap">
+          <h2 style="margin: 0; flex: 1; font-size: 15px; line-height: 22px; font-weight: 500">Adversaires</h2>
+          <span style="font-size: 13px; color: var(--on-sfv)">PV des monstres</span>
+          <div role="radiogroup" aria-label="PV des monstres" style="display: flex; height: 36px; border-radius: 18px; border: 1px solid var(--ol); overflow: hidden">
+            <button role="radio" aria-checked="true" style="padding: 0 14px; background: var(--sc); color: var(--on-sc); font-size: 13px; font-weight: 500">Moyenne</button>
+            <button role="radio" aria-checked="false" style="padding: 0 14px; border-left: 1px solid var(--ol); font-size: 13px; font-weight: 500">Jet au lancement</button>
+          </div>
+        </div>
+        <sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div style="padding: 24px 16px; text-align: center; font-size: 14px; color: var(--on-sfv)">Aucun adversaire. Ajoutez-en depuis le bestiaire.</div></sc-if>
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+          <div style="min-height: 64px; padding: 6px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border-top: 1px solid var(--olv)">
+            <span style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">{{r.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{r.s}}</span></span>
+            <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--on-sfv)"><span style="width: 18px; height: 18px; border-radius: 2px; border: 2px solid {{r.cbBd}}; background: {{r.cbBg}}"></span>Initiative commune</label>
+            <div style="display: flex; align-items: center; gap: 6px">
+              <button aria-label="Retirer un {{r.n}}" onClick="{{r.dec}}" style="width: 40px; height: 40px; border-radius: 20px; border: 1px solid var(--ol); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+              <span class="n" aria-live="polite" style="width: 28px; text-align: center; font-size: 18px; font-weight: 600">{{r.q}}</span>
+              <button aria-label="Ajouter un {{r.n}}" onClick="{{r.inc}}" style="width: 40px; height: 40px; border-radius: 20px; border: 1px solid var(--ol); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></button>
+            </div>
+            <span class="n" style="width: 80px; text-align: right; font-size: 14px; font-weight: 600">{{r.xp}} PX</span>
+          </div>
+        </sc-for>
+      </section>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.</span>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: { 'Vétéran': 2, 'Ogre': 1, 'Chef de bande': 1, 'Loup sanguinaire': 3, 'Bandit': 4 }, pcs: { 'Aldric': true, 'Mira': true, 'Thalia': true, 'Brannoc': true } };
+  }
+  renderVals() {
+    const { q, pcs } = this.state;
+    const fmt = (n) => n.toLocaleString('fr-FR');
+    const B = [
+      ['Bandit', 'Humanoïde', '1/8', 25, 'SRD'], ['Loup', 'Bête', '1/4', 50, 'SRD'], ['Combattant hobgobelin', 'Fée', '1/2', 100, 'SRD'],
+      ['Loup sanguinaire', 'Bête', '1', 200, 'SRD'], ['Chef de bande', 'Humanoïde', '2', 450, 'SRD'], ['Ogre', 'Géant', '2', 450, 'SRD'],
+      ['Vétéran', 'Humanoïde', '3', 700, 'SRD'], ['Capitaine des Marches', 'Humanoïde', '5', 1800, 'Marches 1.3'],
+    ];
+    const setQ = (n, v) => this.setState({ q: { ...q, [n]: Math.max(0, v) } });
+    const beasts = B.map(([n, type, fp, xp, src]) => ({ n, s: type + ' · FP ' + fp + ' · ' + fmt(xp) + ' PX', src, srcBg: src === 'SRD' ? 'var(--sf-highest)' : 'var(--tc)', srcFg: src === 'SRD' ? 'var(--on-sfv)' : 'var(--on-tc)', add: () => setQ(n, (q[n] || 0) + 1) }));
+    const xpOf = Object.fromEntries(B.map(([n, , fp, xp]) => [n, xp]));
+    const fpOf = Object.fromEntries(B.map(([n, , fp]) => [n, fp]));
+    const rows = Object.keys(q).filter((n) => q[n] > 0).map((n) => ({
+      n, q: q[n], xp: fmt(q[n] * xpOf[n]),
+      s: 'FP ' + fpOf[n] + ' · ' + (q[n] > 1 ? 'numérotés ' + n + ' 1 à ' + q[n] : 'unique'),
+      cbBd: q[n] > 1 ? 'var(--p)' : 'var(--ol)', cbBg: q[n] > 1 ? 'var(--p)' : 'transparent',
+      inc: () => setQ(n, q[n] + 1), dec: () => setQ(n, q[n] - 1),
+    }));
+    const xp = Object.keys(q).reduce((s, n) => s + q[n] * xpOf[n], 0);
+    const nPc = Object.values(pcs).filter(Boolean).length;
+    const low = 500 * nPc, mod = 750 * nPc, high = 1100 * nPc;
+    const max = Math.max(high * 1.25, xp, 1);
+    const pct = (v) => Math.min(100, (v / max) * 100).toFixed(1) + '%';
+    let dLabel, dBar, dBg, dFg, dIcon;
+    const ICON_OK = 'M5 12l5 5L20 7', ICON_W = 'M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z';
+    if (nPc === 0) { dLabel = 'Aucun personnage'; dBar = 'var(--ol)'; dBg = 'var(--sf-highest)'; dFg = 'var(--on-sf)'; dIcon = ICON_W; }
+    else if (xp < low) { dLabel = 'Sous le seuil Faible'; dBar = 'var(--ol)'; dBg = 'var(--sf-highest)'; dFg = 'var(--on-sf)'; dIcon = 'M5 12h14'; }
+    else if (xp < mod) { dLabel = 'Faible'; dBar = 'var(--heal)'; dBg = 'var(--heal-c)'; dFg = 'var(--on-heal-c)'; dIcon = ICON_OK; }
+    else if (xp < high) { dLabel = 'Modérée'; dBar = 'var(--warn)'; dBg = 'var(--warn-c)'; dFg = 'var(--on-warn-c)'; dIcon = ICON_W; }
+    else if (xp <= high) { dLabel = 'Élevée'; dBar = 'var(--dmg)'; dBg = 'var(--dmg-c)'; dFg = 'var(--on-dmg-c)'; dIcon = ICON_W; }
+    else { dLabel = 'Au-delà d’Élevée'; dBar = 'var(--dmg)'; dBg = 'var(--dmg-c)'; dFg = 'var(--on-dmg-c)'; dIcon = ICON_W; }
+    if (nPc > 0 && xp === high) dLabel = 'Élevée';
+    const marks = [['Faible', low], ['Modérée', mod], ['Élevée', high]].map(([l, v]) => ({ l, v: fmt(v), x: pct(v) }));
+    const PC = [['Aldric', 'Guerrier 5'], ['Mira', 'Clerc 5'], ['Thalia', 'Roublarde 5'], ['Brannoc', 'Magicien 5']];
+    const pcList = PC.map(([n, c]) => { const on = !!pcs[n]; return { n: n + ' · ' + c, on: on ? 'true' : 'false', icon: on ? ICON_OK : 'M12 5v14 M5 12h14', bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sfv)', bd: on ? '1px solid var(--sc)' : '1px dashed var(--ol)', toggle: () => this.setState({ pcs: { ...pcs, [n]: !on } }) }; });
+    return { beasts, rows, empty: rows.length === 0, pcs: pcList, xp, max: Math.round(max), xpLabel: fmt(xp), pcLabel: nPc + ' PJ de niveau 5', fill: pct(xp), marks, dLabel, dBar, dBg, dFg, dIcon };
+  }
+}
+</script>
+</body>
+</html>

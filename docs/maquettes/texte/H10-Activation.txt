@@ -1,0 +1,28 @@
+Les Marches de Brumeval
+Règles
+Packs
+Membres
+Archivage
+SRD 5.2.1
+Toujours actif · désactivable entité par entité
+Entités bannies pour cette table :
+Sommeil
+Invisibilité
+Bannir une entité
+Bestiaire des Marches
+figé 1.3.0
+par Camille · 42 monstres
+Version 1.4.0 reçue : 6 monstres ajoutés, aucun modifié.
+Voir les changements
+Passer en 1.4.0
+Sorts d’Inès
+figé 2.0.0
+par Inès · 20 entités
+Version 2.2.0 importée : 3 ajouts, 2 modifications.
+Voir les changements
+Passer en 2.2.0
+Sorts d’Inès (Karl)
+par Karl · pack distinct · inactif
+Comment ça marche
+Chaque pack actif est figé à une version : rien ne change pour la table sans votre accord. Les joueurs reçoivent les packs actifs à leur prochaine synchronisation.
+Passer « Sorts d’Inès » en 2.2.0 touche 2 fiches (Lame d’ombre modifiée). Leurs joueurs choisiront de migrer ou de garder l’ancienne version.

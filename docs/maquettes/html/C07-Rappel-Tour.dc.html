@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rappel de fin de tour</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; inset: 0; padding: 72px 16px 0; display: flex; flex-direction: column; gap: 8px">
+    <div style="height: 76px; border-radius: 12px; background: var(--sf-c)"></div>
+    <div style="height: 92px; border-radius: 12px; background: var(--pc)"></div>
+    <div style="height: 76px; border-radius: 12px; background: var(--sf-c)"></div>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="alertdialog" aria-labelledby="c07t" style="position: absolute; left: 20px; right: 20px; top: 120px; border-radius: 28px; background: var(--sf-high); padding: 24px 20px 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFC266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2"></path></svg>
+      <h2 id="c07t" style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Fin du tour · Loup sanguinaire 2</h2>
+      <span class="n" style="font-size: 13px; color: var(--on-sfv)">Round 2</span>
+    </div>
+
+    <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15l6-6 M10 6l1-1a4 4 0 0 1 5.7 5.7l-1 1 M14 18l-1 1a4 4 0 0 1-5.7-5.7l1-1"></path></svg>
+        <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">Entravé · sauvegarde à refaire</span><span class="n" style="font-size: 13px; color: var(--on-sfv)">JS de Force DD 13 · bonus +3</span></span>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button style="flex: 1; height: 44px; border-radius: 22px; border: 1px solid var(--ol); font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z M12 2v20 M3.3 7l17.4 10 M20.7 7L3.3 17"></path></svg>Lancer</button>
+        <button style="flex: 1; height: 44px; border-radius: 22px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 14px; font-weight: 500">Échec</button>
+        <button style="flex: 1; height: 44px; border-radius: 22px; background: var(--heal-c); color: var(--on-heal-c); font-size: 14px; font-weight: 500">Réussite</button>
+      </div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">Réussite : l’état Entravé est retiré.</span>
+    </div>
+
+    <div style="border-radius: 16px; background: var(--sf-c); padding: 12px 14px; display: flex; align-items: center; gap: 10px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M9 9.5h.01 M15 9.5h.01 M8 16c1-1 2-1 2.7 0s1.9 1 2.6 0 2-1 2.7 0"></path></svg>
+      <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 500">Effrayé · expire</span><span style="font-size: 13px; color: var(--on-sfv)">Durée : jusqu’à la fin de son tour</span></span>
+      <span style="height: 24px; padding: 0 8px; border-radius: 6px; background: var(--sf-highest); font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">Retiré</span>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 8px; padding-top: 4px">
+      <button style="height: 40px; padding: 0 14px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Plus tard</button>
+      <button style="height: 40px; padding: 0 14px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 600">Tour suivant : Bandits</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

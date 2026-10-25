@@ -1,0 +1,14 @@
+Nouveau mot de passe
+Compte hugo@exemple.fr · lien valable encore 48 min.
+Nouveau mot de passe
+Robustesse : correcte
+10 caractères au moins
+· Respecté
+Différent de votre e-mail et de votre pseudo
+· Respecté
+Absent des listes de mots de passe divulgués
+· Respecté
+Confirmer le mot de passe
+Déconnecter mes autres appareils
+Leurs données locales sont conservées ; il faudra se reconnecter pour synchroniser.
+Enregistrer et se connecter

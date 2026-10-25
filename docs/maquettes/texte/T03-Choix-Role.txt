@@ -1,0 +1,11 @@
+Passer
+Bonjour Hugo
+
+Que voulez-vous faire en premier ? Ce choix règle seulement l’accueil : votre rôle se décide table par table.
+
+Je joue un personnage
+Créer une fiche guidée, rejoindre la table de mon MJ par lien, code ou QR.
+Je mène des parties
+Créer une table, inviter les joueurs, préparer rencontres et PNJ.
+Les deux sont possibles : MJ d’une table, joueur d’une autre.
+Continuer

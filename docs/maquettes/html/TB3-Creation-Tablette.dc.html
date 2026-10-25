@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création, Caractéristiques — tablette</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:disabled{cursor:not-allowed}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 960px; height: 600px; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; flex: none; height: 64px; background: var(--sf-low); border-bottom: 1px solid var(--olv); display: flex; align-items: center; gap: 8px; padding: 0 16px 0 8px">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="grainTB3"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#grainTB3)"></rect></svg>
+    <button aria-label="Quitter la création" style="position: relative; width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    <div style="position: relative; flex: 1; display: flex; flex-direction: column"><span class="n" style="font-size: 12px; color: var(--on-sfv)">Nouveau personnage · étape 5 sur 9</span><span class="d" style="font-size: 22px; line-height: 28px; font-weight: 600; color: var(--t)">Caractéristiques</span></div>
+    <span style="position: relative; font-size: 12px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ED98C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Brouillon enregistré</span>
+  </header>
+
+  <div style="flex: 1; min-height: 0; display: flex">
+    <nav aria-label="Étapes de création" style="flex: 0 0 232px; padding: 8px; background: var(--sf-low); border-right: 1px solid var(--olv); overflow: hidden">
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="9">
+          <li><a href="#" aria-current="{{s.cur}}" style="height: 54px; padding: 0 12px; border-radius: 27px; background: {{s.bg}}; color: {{s.fg}}; display: flex; align-items: center; gap: 12px; text-decoration: none">
+            <span class="n" style="width: 24px; height: 24px; flex: none; border-radius: 12px; background: {{s.dotBg}}; color: {{s.dotFg}}; border: {{s.dotBd}}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{s.mark}}</span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 14px; line-height: 18px; font-weight: {{s.w}}">{{s.l}}</span><span style="font-size: 11px; line-height: 14px; color: var(--on-sfv); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{s.v}}</span></span>
+          </a></li>
+        </sc-for>
+      </ol>
+    </nav>
+
+    <main style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+      <div style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <div role="progressbar" aria-label="Points dépensés" aria-valuemin="0" aria-valuemax="27" aria-valuenow="{{spent}}" style="flex: 1; height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><div style="height: 100%; width: {{spentPct}}; background: var(--p); border-radius: 4px"></div></div>
+          <span class="n" style="font-size: 14px; font-weight: 600; white-space: nowrap">{{spent}} / 27 points</span>
+          <div role="radiogroup" aria-label="Bonus d’Historique Soldat : Force, Dextérité ou Constitution, plafond 20" style="display: flex; height: 40px; border-radius: 20px; border: 1px solid var(--ol); overflow: hidden">
+            <button role="radio" aria-checked="{{m21.on}}" onClick="{{m21.pick}}" style="padding: 0 14px; background: {{m21.bg}}; color: {{m21.fg}}; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px"><sc-if value="{{m21.sel}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if><span class="n">+2 et +1</span></button>
+            <button role="radio" aria-checked="{{m111.on}}" onClick="{{m111.pick}}" style="padding: 0 14px; border-left: 1px solid var(--ol); background: {{m111.bg}}; color: {{m111.fg}}; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px"><sc-if value="{{m111.sel}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if><span class="n">+1, +1, +1</span></button>
+          </div>
+        </div>
+
+        <div role="table" aria-label="Valeurs et bonus" style="border-radius: 12px; background: var(--sf-c); overflow: hidden">
+          <div role="row" class="n" style="height: 32px; display: grid; grid-template-columns: minmax(0, 1fr) 136px 64px 64px 56px; align-items: center; padding: 0 12px; background: var(--sf-high); font-size: 12px; color: var(--on-sfv)">
+            <span role="columnheader">Caractéristique</span><span role="columnheader" style="text-align: center">Base (coût)</span><span role="columnheader" style="text-align: center">+2</span><span role="columnheader" style="text-align: center">+1</span><span role="columnheader" style="text-align: right">Total</span>
+          </div>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+            <div role="row" style="min-height: 52px; display: grid; grid-template-columns: minmax(0, 1fr) 136px 64px 64px 56px; align-items: center; padding: 0 12px; border-top: 1px solid var(--olv)">
+              <span role="cell" style="display: flex; flex-direction: column; min-width: 0"><span style="font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px">{{r.name}}<sc-if value="{{r.locked}}" hint-placeholder-val="{{false}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D3C4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Non éligible" role="img"><path d="M5 11h14v10H5z M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if></span><span style="font-size: 11px; line-height: 14px; color: var(--on-sfv)">{{r.rule}}</span></span>
+              <span role="cell" style="display: flex; align-items: center; justify-content: center; gap: 2px">
+                <button aria-label="Diminuer {{r.name}}" disabled="{{r.decDis}}" onClick="{{r.dec}}" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 18px; border: 1px solid {{r.decBd}}; color: {{r.decFg}}; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span></button>
+                <span class="n" style="width: 34px; display: flex; flex-direction: column; align-items: center" aria-live="polite"><span style="font-size: 18px; line-height: 22px; font-weight: 600">{{r.v}}</span><span style="font-size: 10px; line-height: 12px; color: var(--on-sfv)">{{r.cost}} pt</span></span>
+                <button aria-label="Augmenter {{r.name}}" disabled="{{r.incDis}}" onClick="{{r.inc}}" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 18px; border: 1px solid {{r.incBd}}; color: {{r.incFg}}; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14"></path></svg></span></button>
+              </span>
+              <span role="cell" style="display: flex; justify-content: center"><button aria-pressed="{{r.p2}}" aria-label="+2 en {{r.name}}" disabled="{{r.dis2}}" onClick="{{r.set2}}" style="width: 56px; height: 48px; display: flex; align-items: center; justify-content: center"><span class="n" style="width: 48px; height: 32px; border-radius: 8px; background: {{r.b2bg}}; color: {{r.b2fg}}; border: {{r.b2bd}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{r.b2l}}</span></button></span>
+              <span role="cell" style="display: flex; justify-content: center"><button aria-pressed="{{r.p1}}" aria-label="+1 en {{r.name}}" disabled="{{r.dis1}}" onClick="{{r.set1}}" style="width: 56px; height: 48px; display: flex; align-items: center; justify-content: center"><span class="n" style="width: 48px; height: 32px; border-radius: 8px; background: {{r.b1bg}}; color: {{r.b1fg}}; border: {{r.b1bd}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{r.b1l}}</span></button></span>
+              <span role="cell" style="display: flex; flex-direction: column; align-items: flex-end"><span class="n" style="font-size: 18px; font-weight: 700; color: {{r.totFg}}">{{r.total}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{r.mod}}</span></span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{hasMsg}}" hint-placeholder-val="{{false}}">
+          <div role="status" style="border-radius: 12px; background: {{msgBg}}; color: {{msgFg}}; padding: 8px 12px; display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 18px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8v5 M12 16h.01"></path></svg>{{msg}}</div>
+        </sc-if>
+      </div>
+      <div style="flex: none; padding: 8px 16px 12px; display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--olv); background: var(--sf-low)">
+        <span class="n" style="flex: 1; font-size: 12px; color: var(--on-sfv)">PV niveau 1 : {{hp}} · Attaque {{atk}} · Initiative {{init}}</span>
+        <button style="height: 48px; padding: 0 20px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Précédent</button>
+        <button disabled="{{nextDis}}" style="height: 48px; padding: 0 24px; border-radius: 24px; background: {{nextBg}}; color: {{nextFg}}; font-size: 14px; font-weight: 600">Suivant : Sous-choix</button>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":960,"height":600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { scores: { FOR: 15, DEX: 13, CON: 14, INT: 8, SAG: 12, CHA: 10 }, mode: '21', plus2: 'FOR', plus1: 'CON' };
+  }
+  renderVals() {
+    const COST = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };
+    const K = [['FOR', 'Force'], ['DEX', 'Dextérité'], ['CON', 'Constitution'], ['INT', 'Intelligence'], ['SAG', 'Sagesse'], ['CHA', 'Charisme']];
+    const ELIG = ['FOR', 'DEX', 'CON'];
+    const { scores, mode, plus2, plus1 } = this.state;
+    const spent = K.reduce((s, [k]) => s + COST[scores[k]], 0);
+    const sgn = (m) => (m >= 0 ? '+' : '−') + Math.abs(m);
+    const setScore = (k, v) => this.setState({ scores: { ...scores, [k]: v } });
+    const bonusOf = (k) => mode === '111' ? (ELIG.includes(k) ? 1 : 0) : (plus2 === k ? 2 : 0) + (plus1 === k ? 1 : 0);
+    const on = { bg: 'var(--p)', fg: 'var(--on-p)', bd: '1px solid var(--p)' };
+    const off = { bg: 'transparent', fg: 'var(--on-sf)', bd: '1px solid var(--ol)' };
+    const dis = { bg: 'transparent', fg: 'rgba(237,224,214,0.38)', bd: '1px dashed rgba(237,224,214,0.25)' };
+    const fixed = { bg: 'var(--sc)', fg: 'var(--on-sc)', bd: '1px solid var(--sc)' };
+    const rows = K.map(([k, name]) => {
+      const v = scores[k];
+      const canInc = v < 15 && spent - COST[v] + COST[v + 1] <= 27;
+      const canDec = v > 8;
+      const elig = ELIG.includes(k);
+      const b = bonusOf(k);
+      const total = v + b;
+      let s2 = dis, s1 = dis, l2 = '—', l1 = '—', d2 = true, d1 = true, rule = 'Non éligible pour Soldat';
+      if (elig && mode === '21') {
+        const cap2 = v + 2 + (plus1 === k ? 1 : 0) > 20;
+        const cap1 = v + 1 + (plus2 === k ? 2 : 0) > 20;
+        if (plus2 === k) { s2 = on; l2 = '+2'; d2 = false; } else if (plus1 === k || cap2) { s2 = dis; l2 = '+2'; } else { s2 = off; l2 = '+2'; d2 = false; }
+        if (plus1 === k) { s1 = on; l1 = '+1'; d1 = false; } else if (plus2 === k || cap1) { s1 = dis; l1 = '+1'; } else { s1 = off; l1 = '+1'; d1 = false; }
+        rule = plus2 === k ? 'Le +1 doit aller ailleurs' : plus1 === k ? 'Le +2 doit aller ailleurs' : 'Éligible';
+      } else if (elig && mode === '111') {
+        s1 = fixed; l1 = '+1'; l2 = '—'; rule = '+1 automatique';
+      }
+      const incDis = !canInc, decDis = !canDec;
+      return {
+        k, name, v, cost: COST[v], hint: elig ? 'éligible' : 'sans bonus',
+        inc: () => canInc && setScore(k, v + 1), dec: () => canDec && setScore(k, v - 1),
+        incDis, decDis, incBd: incDis ? 'rgba(237,224,214,0.12)' : 'var(--ol)', incFg: incDis ? 'rgba(237,224,214,0.38)' : 'var(--on-sf)',
+        decBd: decDis ? 'rgba(237,224,214,0.12)' : 'var(--ol)', decFg: decDis ? 'rgba(237,224,214,0.38)' : 'var(--on-sf)',
+        locked: !elig,
+        b2bg: s2.bg, b2fg: s2.fg, b2bd: s2.bd, b2l: l2, dis2: d2, p2: plus2 === k && mode === '21' ? 'true' : 'false',
+        b1bg: s1.bg, b1fg: s1.fg, b1bd: s1.bd, b1l: l1, dis1: d1, p1: (plus1 === k && mode === '21') || (mode === '111' && elig) ? 'true' : 'false',
+        set2: () => this.setState({ plus2: plus2 === k ? null : k }),
+        set1: () => this.setState({ plus1: plus1 === k ? null : k }),
+        rule, total, mod: sgn(Math.floor((total - 10) / 2)), totFg: b > 0 ? 'var(--p)' : 'var(--on-sfv)',
+      };
+    });
+    const valid = mode === '111' || (plus2 && plus1);
+    let msg = '', msgBg = 'var(--warn-c)', msgFg = 'var(--on-warn-c)';
+    if (mode === '21' && !plus2 && !plus1) { msg = 'Choisissez où placer le +2 et le +1 (deux caractéristiques différentes parmi Force, Dextérité, Constitution).'; msgBg = 'var(--ec)'; msgFg = 'var(--on-ec)'; }
+    else if (mode === '21' && !plus2) { msg = 'Placez le +2 sur Force, Dextérité ou Constitution, autre que celle qui reçoit le +1.'; msgBg = 'var(--ec)'; msgFg = 'var(--on-ec)'; }
+    else if (mode === '21' && !plus1) { msg = 'Placez le +1 sur une autre caractéristique éligible que celle qui reçoit le +2.'; msgBg = 'var(--ec)'; msgFg = 'var(--on-ec)'; }
+    else if (spent < 27) { msg = 'Il vous reste ' + (27 - spent) + ' point' + (27 - spent > 1 ? 's' : '') + ' à dépenser. Vous pouvez continuer, mais ils seront perdus.'; }
+    const byK = Object.fromEntries(rows.map((r) => [r.k, r]));
+    const decomp = rows.filter((r) => r.total !== r.v).map((r) => r.k + ' ' + r.total + ' = ' + r.v + ' base + ' + (r.total - r.v) + ' Historique Soldat');
+    const mCon = Math.floor((byK.CON.total - 10) / 2), mFor = Math.floor((byK.FOR.total - 10) / 2), mDex = Math.floor((byK.DEX.total - 10) / 2);
+    const m21 = { on: mode === '21' ? 'true' : 'false', sel: mode === '21', bg: mode === '21' ? 'var(--sc)' : 'transparent', fg: mode === '21' ? 'var(--on-sc)' : 'var(--on-sf)', pick: () => this.setState({ mode: '21' }) };
+    const m111 = { on: mode === '111' ? 'true' : 'false', sel: mode === '111', bg: mode === '111' ? 'var(--sc)' : 'transparent', fg: mode === '111' ? 'var(--on-sc)' : 'var(--on-sf)', pick: () => this.setState({ mode: '111' }) };
+    const st = (l, v, i) => {
+      const done = i < 4, cur = i === 4;
+      return { l, v, cur: cur ? 'step' : 'false', bg: cur ? 'var(--sc)' : 'transparent', fg: cur ? 'var(--on-sc)' : 'var(--on-sf)', w: cur ? 700 : 500,
+        mark: done ? '✓' : String(i + 1), dotBg: done ? 'var(--p)' : cur ? 'var(--on-sc)' : 'transparent', dotFg: done ? 'var(--on-p)' : cur ? 'var(--sc)' : 'var(--on-sfv)', dotBd: done || cur ? 'none' : '1px solid var(--ol)' };
+    };
+    const steps = [['Classe', 'Guerrier'], ['Historique', 'Soldat'], ['Espèce', 'Humain'], ['Langues', 'Commun, Nain, Orc'], ['Caractéristiques', 'En cours'], ['Sous-choix', 'Compétences, bottes, don'], ['Équipement', 'Pack ou or'], ['Détails', 'Nom, apparence'], ['Récapitulatif', 'Envoi au MJ']].map(([l, v], i) => st(l, v, i));
+    return {
+      steps, rows, spent, spentPct: Math.round((spent / 27) * 100) + '%', m21, m111,
+      hasMsg: !!msg, msg, msgBg, msgFg,
+      nextDis: !valid, nextBg: valid ? 'var(--p)' : 'rgba(237,224,214,0.12)', nextFg: valid ? 'var(--on-p)' : 'rgba(237,224,214,0.5)',
+      decomp: decomp.length ? decomp : ['Aucun bonus appliqué pour l’instant'],
+      hp: 10 + mCon + ' (10 + CON ' + sgn(mCon) + ')', atk: sgn(mFor + 2), init: sgn(mDex + 2),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Initiative</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--thp:#A7C8FF;--thp-c:#1C4778;--on-thp-c:#D5E3FF;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 920px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 8px 24px; border-bottom: 1px solid var(--olv); background: var(--sf-low)">
+    <button aria-label="Annuler le lancement" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+    <div style="flex: 1 1 260px"><div style="font-size: 12px; color: var(--on-sfv)">Le relais du Sel · lancement</div><h1 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 400">Initiative</h1></div>
+    <span style="font-size: 13px; color: var(--on-sfv)">Tous les jets sont saisis</span>
+    <button style="height: 48px; padding: 0 24px 0 16px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l12 8-12 8z"></path></svg>Commencer le round 1</button>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px; align-items: flex-start">
+    <main style="flex: 2 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section aria-label="Surprise" style="border-radius: 16px; background: var(--sf-c); padding: 14px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+        <div style="flex: 1 1 240px"><h2 style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 500">Surprise</h2><span style="font-size: 12px; color: var(--on-sfv)">Les combattants surpris ont le Désavantage au jet d’initiative.</span></div>
+        <sc-for list="{{surprise}}" as="s" hint-placeholder-count="6">
+          <button aria-pressed="{{s.on}}" style="height: 36px; padding: 0 12px 0 8px; border-radius: 8px; background: {{s.bg}}; color: {{s.fg}}; border: {{s.bd}}; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"></path></svg>{{s.l}}</button>
+        </sc-for>
+      </section>
+
+      <section aria-label="Jets d’initiative" style="border-radius: 16px; background: var(--sf-c); padding: 8px 0; overflow-x: auto">
+        <table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+          <thead><tr style="text-align: left; font-size: 12px; color: var(--on-sfv)"><th style="padding: 8px 16px; font-weight: 500">Combattant</th><th style="padding: 8px; font-weight: 500">Bonus</th><th style="padding: 8px; font-weight: 500">Jet</th><th style="padding: 8px; font-weight: 500">Total</th><th style="padding: 8px 16px 8px 8px; font-weight: 500">Origine</th></tr></thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="9">
+              <tr style="border-top: 1px solid var(--olv); background: {{r.rowBg}}">
+                <td style="padding: 10px 16px"><div style="font-weight: 500">{{r.n}}</div><div style="font-size: 12px; color: var(--on-sfv)">{{r.s}}</div></td>
+                <td class="n" style="padding: 10px 8px">{{r.b}}<sc-if value="{{r.hasMod}}" hint-placeholder-val="{{false}}"> <span style="height: 20px; padding: 0 6px; border-radius: 5px; background: {{r.modBg}}; color: {{r.modFg}}; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center">{{r.mod}}</span></sc-if></td>
+                <td style="padding: 10px 8px"><sc-if value="{{r.pending}}" hint-placeholder-val="{{false}}"><label style="width: 72px; height: 40px; border-radius: 4px; border: 2px solid var(--p); display: flex; align-items: center; padding: 0 10px"><input class="n" aria-label="Jet de {{r.n}}" placeholder="d20" style="width: 100%; border: 0; outline: 0; background: transparent; font-size: 16px"></label></sc-if><sc-if value="{{r.done}}" hint-placeholder-val="{{true}}"><span class="n" style="color: var(--on-sfv)">{{r.roll}}</span></sc-if></td>
+                <td style="padding: 10px 8px"><span class="n" style="font-size: 18px; font-weight: 700">{{r.total}}</span></td>
+                <td style="padding: 10px 16px 10px 8px"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: {{r.oFg}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.oIcon}}"></path></svg>{{r.o}}</span></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <aside aria-label="Ordre du tour" style="flex: 1 1 300px; max-width: 380px; min-width: 0; border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0 0 4px; font-size: 15px; line-height: 22px; font-weight: 500">Ordre du tour</h2>
+      <sc-for list="{{order}}" as="o" hint-placeholder-count="8">
+        <div style="min-height: 48px; border-radius: 12px; background: var(--sf-c); padding: 4px 8px 4px 4px; display: flex; align-items: center; gap: 8px">
+          <span aria-hidden="true" style="width: 20px; display: flex; justify-content: center; color: var(--ol)"><svg width="12" height="20" viewBox="0 0 12 20" fill="currentColor"><circle cx="3" cy="4" r="1.5"></circle><circle cx="9" cy="4" r="1.5"></circle><circle cx="3" cy="10" r="1.5"></circle><circle cx="9" cy="10" r="1.5"></circle><circle cx="3" cy="16" r="1.5"></circle><circle cx="9" cy="16" r="1.5"></circle></svg></span>
+          <span class="n" style="width: 32px; height: 32px; border-radius: 16px; background: var(--sf-highest); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">{{o.v}}</span>
+          <span style="flex: 1; font-size: 14px">{{o.n}}</span>
+          <sc-if value="{{o.tie}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 6px; border-radius: 6px; background: var(--warn-c); color: var(--on-warn-c); font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap">{{o.tieL}}</span></sc-if>
+        </div>
+      </sc-for>
+      <div style="border-radius: 12px; background: var(--warn-c); color: var(--on-warn-c); padding: 10px 12px; font-size: 13px; line-height: 18px">Égalité à 15 entre deux groupes de monstres : vous choisissez l’ordre. Glissez pour le changer.</div>
+      <div style="border-radius: 12px; background: var(--warn-c); color: var(--on-warn-c); padding: 10px 12px; font-size: 13px; line-height: 18px">Égalité à 8 entre Brannoc et Mira : Sam et Inès choisissent l’ordre depuis leur téléphone, ou vous le faites pour eux.</div>
+      <div style="border-radius: 12px; background: var(--sf-c); border: 1px solid var(--olv); padding: 10px 12px; font-size: 13px; line-height: 18px"><strong style="font-weight: 600">Vigilant</strong> · Aldric et Thalia peuvent échanger leur initiative avec un allié consentant, juste après le jet. Impossible si l’un des deux est Neutralisé. Hugo et Léo peuvent aussi le faire depuis leur téléphone.<div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px"><button style="height: 40px; padding: 0 14px 0 10px; border-radius: 20px; border: 1px solid var(--ol); color: var(--p); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4 M3 8h14 M17 20l4-4-4-4 M21 16H7"></path></svg>Aldric : échanger…</button><button style="height: 40px; padding: 0 14px 0 10px; border-radius: 20px; border: 1px solid var(--ol); color: var(--p); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4 M3 8h14 M17 20l4-4-4-4 M21 16H7"></path></svg>Thalia : échanger…</button></div></div>
+      <span style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.</span>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const CHECK = 'M5 12l5 5L20 7', PLUS = 'M12 5v14 M5 12h14';
+    const surprise = ['Aldric', 'Mira', 'Thalia', 'Brannoc', 'Varga', 'Bandits'].map((l) => { const on = l === 'Brannoc'; return { l, on: on ? 'true' : 'false', icon: on ? CHECK : PLUS, bg: on ? 'var(--sc)' : 'transparent', fg: on ? 'var(--on-sc)' : 'var(--on-sf)', bd: on ? '1px solid var(--sc)' : '1px solid var(--ol)' }; });
+    const PHONE = 'M7 2h10v20H7z M11 18h2', DICE = 'M12 2l8.7 5v10L12 22l-8.7-5V7z M12 2v20 M3.3 7l17.4 10 M20.7 7L3.3 17', WAIT = 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 7v5l3 2';
+    const r = (n, s, b, roll, total, o, oIcon, oFg, extra) => ({ n, s, b, roll, total, o, oIcon, oFg, pending: false, done: true, hasMod: false, mod: '', modBg: '', modFg: '', rowBg: 'transparent', ...(extra || {}) });
+    const adv = { hasMod: true, mod: 'Avantage', modBg: 'var(--pc)', modFg: 'var(--on-pc)' };
+    const dis = { hasMod: true, mod: 'Désavantage', modBg: 'var(--warn-c)', modFg: 'var(--on-warn-c)' };
+    const rows = [
+      r('Aldric Varenne', 'PJ · Hugo', '+4', '15 (11)', '19', 'Saisi par Hugo', PHONE, 'var(--heal)', adv),
+      r('Mira Solen', 'PJ · Inès', '+0', '8', '8', 'Saisi par Inès', PHONE, 'var(--heal)'),
+      r('Thalia', 'PJ · Léo', '+7', '15', '22', 'Saisi par Léo', PHONE, 'var(--heal)'),
+      r('Brannoc', 'PJ · Sam · surpris', '+2', '6 (14)', '8', 'Saisi par Sam', PHONE, 'var(--heal)', dis),
+      r('Varga la Balafrée', 'PNJ', '+3', '14', '17', 'Jet automatique', DICE, 'var(--on-sfv)'),
+      r('Vétérans 1–2', 'Initiative commune', '+3', '12', '15', 'Jet automatique', DICE, 'var(--on-sfv)'),
+      r('Loups sanguinaires 1–3', 'Initiative commune', '+2', '13', '15', 'Jet automatique', DICE, 'var(--on-sfv)'),
+      r('Bandits 1–4', 'Initiative commune', '+1', '11', '12', 'Jet automatique', DICE, 'var(--on-sfv)'),
+      r('Ogre', '', '−1', '10', '9', 'Jet automatique', DICE, 'var(--on-sfv)'),
+    ];
+    const PJ = 'Égalité · Inès et Sam décident', MJ = 'Égalité · le MJ décide';
+    const order = [['22', 'Thalia'], ['19', 'Aldric Varenne'], ['17', 'Varga la Balafrée'], ['15', 'Vétérans 1–2', MJ], ['15', 'Loups sanguinaires 1–3', MJ], ['12', 'Bandits 1–4'], ['9', 'Ogre'], ['8', 'Brannoc', PJ], ['8', 'Mira Solen', PJ]].map(([v, n, tie]) => ({ v, n, tie: !!tie, tieL: tie || '' }));
+    return { surprise, rows, order };
+  }
+}
+</script>
+</body>
+</html>

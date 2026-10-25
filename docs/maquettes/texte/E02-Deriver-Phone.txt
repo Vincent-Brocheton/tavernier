@@ -1,0 +1,20 @@
+Dériver du SRD
+Monstres · recherche hors-ligne
+Loup sanguinaire
+Monstre · Bête · FP 1 (200 PX)
+SRD
+Loup
+Monstre · Bête · FP 1/4 (50 PX)
+SRD
+Loup arctique
+Monstre · Monstruosité · FP 3 (700 PX)
+SRD
+Nom de la variante *
+Loup des brumes
+Pack de destination
+Bestiaire des Marches · v1.4.0 brouillon
+Ce qui est copié
+Bloc de stats, actions et traits du Loup sanguinaire. Les informations d’Étude sont à écrire.
+Le SRD n’est pas modifié. La variante garde le lien « dérivé de Loup sanguinaire » visible dans le compendium.
+Annuler
+Créer la variante

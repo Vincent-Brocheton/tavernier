@@ -1,0 +1,89 @@
+Nouveau personnage · étape 5 sur 9
+Caractéristiques
+Brouillon enregistré
+✓
+Classe
+Guerrier
+✓
+Historique
+Soldat
+✓
+Espèce
+Humain
+✓
+Langues
+Commun, Nain, Orc
+5
+Caractéristiques
+En cours
+6
+Sous-choix
+Compétences, bottes, don
+7
+Équipement
+Pack ou or
+8
+Détails
+Nom, apparence
+9
+Récapitulatif
+Envoi au MJ
+27 / 27 points
++2 et +1
++1, +1, +1
+Caractéristique
+Base (coût)
++2
++1
+Total
+Force
+Le +1 doit aller ailleurs
+15
+9 pt
++2
++1
+17
++3
+Dextérité
+Éligible
+13
+5 pt
++2
++1
+13
++1
+Constitution
+Le +2 doit aller ailleurs
+14
+7 pt
++2
++1
+15
++2
+Intelligence
+Non éligible pour Soldat
+8
+0 pt
+—
+—
+8
+−1
+Sagesse
+Non éligible pour Soldat
+12
+4 pt
+—
+—
+12
++1
+Charisme
+Non éligible pour Soldat
+10
+2 pt
+—
+—
+10
++0
+PV niveau 1 : 12 (10 + CON +2) · Attaque +5 · Initiative +3
+Précédent
+Suivant : Sous-choix

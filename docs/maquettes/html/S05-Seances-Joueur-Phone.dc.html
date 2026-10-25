@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Séances — vue joueur (téléphone)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; flex: none; background: #2F4A3E; padding: 8px 4px 0; display: flex; flex-direction: column">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.16; pointer-events: none"><filter id="gS05"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gS05)"></rect></svg>
+    <div style="position: relative; display: flex; align-items: center; gap: 4px"><button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button><span class="d" style="flex: 1; font-size: 20px; font-weight: 600; color: var(--t)">Les Marches de Brumeval</span></div>
+    <nav aria-label="Sections" style="position: relative; display: flex; padding-left: 8px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4"><a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 14px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a></sc-for>
+    </nav>
+  </header>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; gap: 14px; align-items: center">
+      <span class="n" style="width: 56px; flex: none; display: flex; flex-direction: column; align-items: center; border-radius: 12px; background: var(--pc); color: var(--on-pc); padding: 8px 0"><span style="font-size: 11px; font-weight: 600">NOV.</span><span style="font-size: 24px; line-height: 28px; font-weight: 600">13</span></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: var(--on-sfv)">Prochaine séance · séance 13</span><span style="font-size: 17px; font-weight: 500">vendredi 13 novembre</span><span style="font-size: 12px; color: var(--on-sfv)">Personnage attendu : Aldric Varenne</span></span>
+    </div>
+
+    <div style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div><span class="n" style="font-size: 12px; color: var(--on-sfv)">Séance 12 · vendredi 30 octobre · close</span><h2 style="margin: 2px 0 0; font-size: 20px; line-height: 26px; font-weight: 500">Le relais du Sel</h2></div>
+      <div style="display: flex; align-items: baseline; gap: 8px"><span class="n" style="font-size: 28px; font-weight: 600; color: var(--heal)">+825 PX</span><span style="font-size: 13px; color: var(--on-sfv)">pour Aldric</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="position: relative; height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: 13%; background: var(--p)"></span></span><span class="n" style="font-size: 12px; color: var(--on-sfv)">7 475 / 14 000 PX · niveau 6 à 14 000</span></div>
+      <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">2 rencontres jouées. Les PX sont ajoutés à votre fiche et inscrits dans son historique.</span>
+    </div>
+
+    <span style="padding: 4px 4px 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">NOTES DE CETTE SÉANCE</span>
+    <sc-for list="{{notes}}" as="n" hint-placeholder-count="2">
+      <a href="#" style="border-radius: 12px; background: var(--sf-c); padding: 12px 14px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--on-sf)"><span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px">{{n.t}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{n.s}}</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--on-sfv)"><path d="M9 6l6 6-6 6"></path></svg></a>
+    </sc-for>
+    <button style="align-self: flex-start; height: 40px; padding: 0 12px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">+ Note pour cette séance</button>
+    <button style="height: 40px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Séances précédentes (11)</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tabs = ['Groupe', 'Séances', 'Notes', 'Membres'].map((l, i) => ({ l, cur: i === 1 ? 'page' : 'false', fg: i === 1 ? 'var(--t)' : 'var(--on-pc)', bar: i === 1 ? 'var(--t)' : 'transparent' }));
+    const notes = [
+      { t: 'Ce que Varga a avoué', s: 'Votre note · privée' },
+      { t: 'Calendrier et factions', s: 'Partagée par Camille (MJ)' },
+    ];
+    return { tabs, notes };
+  }
+}
+</script>
+</body>
+</html>

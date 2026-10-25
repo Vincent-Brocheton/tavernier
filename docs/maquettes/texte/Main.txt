@@ -1,0 +1,188 @@
+Gestion de personnage compatible 5E · Brief §9
+Langage visuel
+
+Outil de travail sobre et dense. Fond sombre chaud, un accent (vert-de-gris), cinq couleurs sémantiques réservées. Fantasy limitée aux titres et à un grain discret sur les en-têtes.
+
+Material 3
+Sombre par défaut
+Tokens clair : V1.5
+Couleurs — rôles M3
+Primary
+#84D5C4
+Tour suivant, action principale
+Primary container
+#1F5047
+Combattant actif, sélection
+Secondary container
+#54463A
+Boutons tonaux, filtres
+Tertiary
+#E7C28A
+Titres Cinzel, homebrew
+Error
+#FFB4AB
+Règle non respectée
+Outline
+#9C8E82
+Bordures actives, champs
+Surfaces (élévation tonale, pas d’ombre en sombre)
+Lowest
+#14110D
+Surface
+#1A1612
+Low
+#221E1A
+Container
+#27221E
+High
+#322C28
+Highest
+#3D3732
+Outline var.
+#4F453C
+On surface
+#EDE0D6
+Sémantiques réservées — toujours doublées d’une icône et d’un libellé
+Dégâts
+#FF9F8F / #73241B
+Pavé dégâts, perte de PV, échec
+Soins
+#9ED98C / #24501C
+Soins, réussite, PV > 50 %
+PV temporaires
+#A7C8FF / #1C4778
+Gain, réserve consommée en premier
+Concentration
+#D4BBFF / #523A7E
+Sort actif, effets liés, jet de DD
+Alerte
+#FFC266 / #634000
+Rappels de tour, expirations
+Typographie
+Display S · Cinzel
+Brumeval
+Headline S · Cinzel
+Caractéristiques
+Title L · Roboto Flex
+Embuscade sur la route
+Title M · 500
+Chef de bande
+Body M
+Si vous touchez, la cible subit le Désavantage à son prochain jet d’attaque.
+Label M · 500
+ROUND 3 · TOUR EN COURS
+Chiffres tabulaires
+PV 41/49
+CA 19
+Init +4
+PV 11/11
+CA 12
+Init +1
+
+Règle : Cinzel uniquement en Display et Headline (titres d’écran évocateurs, nom de personnage). Tout le reste en Roboto Flex. Échelle M3 inchangée ; texte réglable de 85 % à 200 %.
+
+Carte de combattant compacte — états
+Ordre de lecture : initiative · nom · CA · PV (barre + chiffres) · états · concentration
+Standard · PV temporaires
+14
+Aldric Varenne
+PJ · Guerrier 5
+19
+41 / 49
++
+5
+Combattant actif
+18
+Chef de bande
+En cours
+Humanoïde · FP 2
+15
+31 / 52
+Empoisonné
+· 1 rd
+Concentré
+9
+Mira Solen
+PJ · Clerc 5
+18
+22 / 38
+Concentration · Bénédiction
+Sous plusieurs états
+15
+Loup 2
+Bête · FP 1/4
+12
+3 / 11
+À terre
+Agrippé
+· DD 13
+Effrayé
+· fin tour Mira
+À 0 PV — PJ
+6
+Brannoc
+PJ · Magicien 5
+12
+0 / 27
+Inconscient
+Jets contre la mort
+Hors de combat — monstre
+15
+Loup 1
+Bête · conservé par le MJ
+12
+0 / 11
+Hors de combat
+Les 15 états · icône + libellé
+À terre
+Agrippé
+Assourdi
+Aveuglé
+Charmé
+Effrayé
+Empoisonné
+Entravé
+Épuisement
+Étourdi
+Inconscient
+Invisible
+Neutralisé
+Paralysé
+Pétrifié
+Au toucher : résumé de la règle du SRD dans une infobulle riche (desktop) ou une feuille modale (téléphone).
+Types de dégâts
+Acide
+Contondants
+Feu
+Force
+Foudre
+Froid
+Nécrotiques
+Perforants
+Poison
+Psychiques
+Radiants
+Tonnerre
+Tranchants
+Économie d’actions
+Action
+Action Bonus
+Réaction
+Puce d’état avec durée
+Empoisonné
+2 rounds
+Effrayé
+fin du tour de Mira
+Entravé
+JS FOR DD 13
+Charmé
+indéfinie
+Badge de source
+SRD 5.2.1
+Bestiaire des Marches · v1.3
+Contenu modifié · v1.4 dispo
+Indicateur de synchronisation
+Synchronisé
+3 modifications en attente
+Hors-ligne — tout reste disponible
+Conflit résolu — voir le détail

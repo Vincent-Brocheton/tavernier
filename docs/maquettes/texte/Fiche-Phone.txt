@@ -1,0 +1,89 @@
+Fiche
+AV
+Aldric Varenne
+Humain · Guerrier 5 (Champion) · Soldat
+Validée par le MJ
+Principal
+Compétences
+Combat
+Sorts
+Inventaire
+Aptitudes
+Notes
+Points de vie
+Dés de vie 3 / 5 d10
+41
+/ 49
++5 temp.
+Dégâts
+Soins
+PV temp.
+CA
+19
+Initiative
++4
+Vitesse
+9 m
+Maîtrise
++3
+Percep. passive
+14
+Inspiration
+Oui
+Caractéristiques
+Touchez une valeur : décomposition
+FOR
++4
+18
+JS
++7
+DEX
++1
+13
+JS
++1
+CON
++3
+16
+JS
++6
+INT
+−1
+8
+JS
+−1
+SAG
++1
+12
+JS
++1
+CHA
++0
+10
+JS
++0
+Second souffle
+Action Bonus · 1d10 + 5 PV · repos court : +1
+Fougue
+Une action de plus · repos court ou long
+Bottes d’armes 4 / 4
+Modifiables après un repos long
+Épée longue
+Sape
+Javeline
+Ralentissement
+Hache d’armes
+Renversement
+Épée à deux mains
+Écorchure
+Épée longue
+1d8 + 4 tranchants · Polyvalente 1d10 · botte Sape
++7
+Javeline
+1d6 + 4 perforants · 9/36 m · botte Ralentissement
++7
+Accueil
+Tables
+Personnages
+Compendium
+Homebrew

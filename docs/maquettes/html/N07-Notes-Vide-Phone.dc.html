@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche — Notes, premier usage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+a{color:#84D5C4}
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px; background: var(--sf-low)">
+    <button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <span class="d" style="flex: 1; font-size: 20px; font-weight: 600; color: var(--t)">Mira Solen</span>
+  </header>
+  <nav aria-label="Onglets de la fiche" style="flex: none; height: 48px; display: flex; justify-content: flex-end; background: var(--sf-low); border-bottom: 1px solid var(--olv); overflow: hidden; padding-right: 8px">
+    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+      <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 14px; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+    </sc-for>
+  </nav>
+  <div style="flex: 1; padding: 40px 32px 24px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+    <div aria-hidden="true" style="width: 96px; height: 96px; border-radius: 48px; background: var(--sf-c); display: flex; align-items: center; justify-content: center; color: var(--t)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z M14 3v6h6 M8 13h8 M8 17h5"></path></svg></div>
+    <h1 class="d" style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 600; color: var(--t)">Aucune note personnelle</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Notez ce que vous apprenez en jeu : un nom, un indice, une promesse. Vos notes sont privées par défaut, partageables avec la table, et consultables hors-ligne.</p>
+    <div style="display: flex; flex-direction: column; gap: 8px; align-self: stretch; margin-top: 12px">
+      <button style="height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Noter pour la séance 12</button>
+      <button style="height: 48px; border-radius: 24px; border: 1px solid var(--ol); color: var(--p); font-size: 14px; font-weight: 500">Nouvelle note libre (table)</button>
+    </div>
+    <div style="align-self: stretch; text-align: left; margin-top: 16px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">PARTAGÉES AVEC LA TABLE · 1</span>
+      <a href="#" style="border-radius: 12px; background: var(--sf-c); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="display: flex; gap: 8px"><span style="flex: 1; font-size: 15px; font-weight: 500">Calendrier et factions</span><span style="font-size: 12px; color: var(--on-sfv)">12 oct.</span></span><span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">La Guilde du Sel contrôle les péages du fleuve depuis l’hiver dernier.</span><span style="align-self: flex-start; height: 22px; padding: 0 6px; border-radius: 6px; background: #5D4200; color: #FFDEA8; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center">Camille (MJ) · lecture seule</span></a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tabs = ['Combat', 'Sorts', 'Inventaire', 'Aptitudes', 'Notes'].map((l, i) => ({ l, cur: i === 4 ? 'page' : 'false', fg: i === 4 ? 'var(--p)' : 'var(--on-sfv)', bar: i === 4 ? 'var(--p)' : 'transparent' }));
+    return { tabs };
+  }
+}
+</script>
+</body>
+</html>

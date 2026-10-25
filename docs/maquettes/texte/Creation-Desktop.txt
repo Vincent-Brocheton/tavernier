@@ -1,0 +1,141 @@
+Nouveau personnage · Les Marches de Brumeval · niveau 1
+Brouillon enregistré sur l’appareil
+ÉTAPE 5 SUR 9
+Caractéristiques
+
+Répartissez vos 27 points selon la méthode choisie par votre MJ, puis appliquez les bonus de votre Historique.
+
+✓
+Classe
+Guerrier
+✓
+Historique
+Soldat
+✓
+Espèce
+Humain
+✓
+Langues
+Commun, Nain, Orc
+5
+Caractéristiques
+En cours
+6
+Sous-choix
+Compétences, bottes, don
+7
+Équipement
+Pack ou or
+8
+Détails
+Nom, apparence
+9
+Récapitulatif
+Envoi au MJ
+Acquisition par points
+Méthode imposée par la table
+27 / 27 points
+Force
+coût 9 · éligible
+15
+Dextérité
+coût 5 · éligible
+13
+Constitution
+coût 7 · éligible
+14
+Intelligence
+coût 0 · sans bonus
+8
+Sagesse
+coût 4 · sans bonus
+12
+Charisme
+coût 2 · sans bonus
+10
+Coûts : 8 → 0 · 9 → 1 · 10 → 2 · 11 → 3 · 12 → 4 · 13 → 5 · 14 → 7 · 15 → 9. Valeur entre 8 et 15 avant bonus.
+Bonus d’Historique · Soldat
+Force, Dextérité ou Constitution · plafond 20
++2 et +1
++1, +1 et +1
+Caractéristique
+Base
++2
++1
+Règle
+Total
+Force
+15
++2
++1
+Le +1 doit aller ailleurs
+17
++3
+Dextérité
+13
++2
++1
+Éligible
+13
++1
+Constitution
+14
++2
++1
+Le +2 doit aller ailleurs
+15
++2
+Intelligence
+8
+—
+—
+Non éligible pour Soldat
+8
+−1
+Sagesse
+12
+—
+—
+Non éligible pour Soldat
+12
++1
+Charisme
+10
+—
+—
+Non éligible pour Soldat
+10
++0
+Précédent : Langues
+Suivant : Sous-choix
+Aperçu
+Sans nom
+Humain · Guerrier 1 · Soldat
+FOR
++3
+17
+DEX
++1
+13
+CON
++2
+15
+INT
+−1
+8
+SAG
++1
+12
+CHA
++0
+10
+Décomposition
+FOR 17 = 15 base + 2 Historique Soldat
+CON 15 = 14 base + 1 Historique Soldat
+PV au niveau 1
+12 (10 + CON +2)
+Attaque Épée longue
++5
+Initiative (Vigilant)
++3
+Guerrier : caractéristique principale Force ou Dextérité. Une valeur paire donne un modificateur entier : 17 et 16 ont le même modificateur.

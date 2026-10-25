@@ -1,0 +1,30 @@
+Influence · Aldric
+Cible : Varga la Balafrée
+Hostile
+1 · Comment Varga reçoit la demande ?
+Disposée
+Réticente
+Hésitante
+Hésitante : un test est nécessaire.
+2 · Façon d’interagir
+Intimider
+Charisme (Intimidation)
++3
+Convaincre
+Échec d’Aldric il y a 2 h : attendre 24 h pour la même approche
++0
+Tromper
+Charisme (Tromperie)
++0
+Amuser
+Charisme (Représentation)
++0
+DD
+15
+Désavantage · Hostile
+DD : 15, ou l’Intelligence de la cible si elle est plus élevée (ici 14).
+d20 17 · 9 + 3 = 12
+Échec
+Attitude après l’échange
+Reste Hostile
+Enregistrer dans le journal

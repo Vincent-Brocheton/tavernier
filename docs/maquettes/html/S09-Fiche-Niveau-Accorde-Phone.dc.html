@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fiche — niveau accordé (jalon)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--dmg:#FF9F8F;--dmg-c:#73241B;--on-dmg-c:#FFDAD3;--heal:#9ED98C;--heal-c:#24501C;--on-heal-c:#BAF5A6;--thp:#A7C8FF;--thp-c:#1C4778;--on-thp-c:#D5E3FF}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+
+  <header style="height: 64px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 4px; background: var(--sf-low)">
+    <button aria-label="Retour" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5 M12 19l-7-7 7-7"></path></svg></button>
+    <span style="flex: 1; font-size: 16px; font-weight: 500">Fiche</span>
+    <span aria-label="Synchronisé" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9ED98C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.5-9.98A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z M9.5 13.5l2 2 3.5-3.5"></path></svg></span>
+    <button aria-label="Plus d’options : repos, montée de niveau, historique" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5h.01 M12 12h.01 M12 19h.01"></path></svg></button>
+  </header>
+
+  <div style="position: relative; overflow: hidden; flex: none; background: var(--sf-low); padding: 4px 16px 16px; display: flex; gap: 14px; align-items: center">
+    <svg aria-hidden="true" width="390" height="120" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="grainFP"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#grainFP)"></rect></svg>
+    <div class="d" style="position: relative; width: 64px; height: 64px; flex: none; border-radius: 32px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600">AV</div>
+    <div style="position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+      <h1 class="d" style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600; color: var(--t)">Aldric Varenne</h1>
+      <span style="font-size: 14px; line-height: 20px; color: var(--on-sfv)">Humain · Guerrier 5 (Champion) · Soldat</span>
+      <span style="align-self: flex-start; height: 24px; padding: 0 8px 0 6px; border-radius: 6px; background: var(--heal-c); color: var(--on-heal-c); display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>Validée par le MJ</span>
+    </div>
+  </div>
+
+  <nav aria-label="Onglets de la fiche" style="flex: none; height: 48px; display: flex; background: var(--sf-low); border-bottom: 1px solid var(--olv); overflow: hidden; padding-left: 8px">
+    <sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+      <a href="#" aria-current="{{t.cur}}" style="flex: none; height: 48px; padding: 0 14px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-decoration: none; color: {{t.fg}}; font-size: 14px; font-weight: 500"><span style="flex: 1; display: flex; align-items: center">{{t.l}}</span><span style="height: 3px; width: 100%; border-radius: 3px 3px 0 0; background: {{t.bar}}"></span></a>
+    </sc-for>
+  </nav>
+
+  <div style="flex: 1; min-height: 0; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+
+    <section role="status" aria-label="Niveau accordé" style="border-radius: 16px; background: var(--pc); color: var(--on-pc); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; gap: 12px; align-items: flex-start">
+        <span aria-hidden="true" style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: var(--p); color: var(--on-p); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5 M5 12l7-7 7 7"></path></svg></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; line-height: 22px; font-weight: 600">Niveau 6 accordé par Camille</span><span style="font-size: 13px; line-height: 18px">Jalon : « Varga capturée, le relais du Sel libéré » · séance 12</span></span>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: flex-end">
+        <button style="height: 40px; padding: 0 14px; border-radius: 20px; color: var(--on-pc); font-size: 14px; font-weight: 500">Plus tard</button>
+        <button style="height: 40px; padding: 0 18px; border-radius: 20px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600">Monter au niveau 6</button>
+      </div>
+    </section>
+
+    <section aria-label="Points de vie" style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-size: 12px; font-weight: 500; color: var(--on-sfv); flex: 1">Points de vie</span>
+        <span style="font-size: 12px; color: var(--on-sfv)">Dés de vie <strong class="n" style="color: var(--on-sf); font-weight: 600">3 / 5</strong> d10</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span class="n" style="font-size: 36px; line-height: 44px; font-weight: 500">41</span><span class="n" style="font-size: 20px; color: var(--on-sfv)">/ 49</span>
+        <span class="n" style="height: 28px; padding: 0 8px 0 6px; border-radius: 8px; background: var(--thp-c); color: var(--on-thp-c); display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z M12 8v8 M8 12h8"></path></svg>+5 temp.</span>
+      </div>
+      <div style="height: 8px; border-radius: 4px; background: var(--sf-highest); overflow: hidden"><div style="width: 84%; height: 100%; background: var(--heal); border-radius: 4px"></div></div>
+      <div style="display: flex; gap: 8px">
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--dmg-c); color: var(--on-dmg-c); font-size: 14px; font-weight: 500">Dégâts</button>
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--heal-c); color: var(--on-heal-c); font-size: 14px; font-weight: 500">Soins</button>
+        <button style="flex: 1; height: 48px; border-radius: 24px; background: var(--thp-c); color: var(--on-thp-c); font-size: 14px; font-weight: 500">PV temp.</button>
+      </div>
+    </section>
+
+    <section aria-label="Valeurs de combat" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{vitals}}" as="v" hint-placeholder-count="6">
+        <button style="height: 72px; border-radius: 12px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+          <span style="display: flex; align-items: center; gap: 4px; color: var(--on-sfv)"><svg width="14" height="14" viewBox="0 0 24 24" fill="{{v.fill}}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{v.d}}"></path></svg><span style="font-size: 11px; line-height: 14px">{{v.l}}</span></span>
+          <span class="n" style="font-size: 22px; line-height: 28px; font-weight: 600; color: {{v.fg}}">{{v.v}}</span>
+        </button>
+      </sc-for>
+    </section>
+
+    <section aria-label="Caractéristiques" style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; gap: 6px">
+        <h2 style="margin: 0; flex: 1; font-size: 14px; line-height: 20px; font-weight: 500">Caractéristiques</h2>
+        <span style="font-size: 11px; color: var(--on-sfv); display: inline-flex; align-items: center; gap: 4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 16v-4 M12 8h.01"></path></svg>Touchez une valeur : décomposition</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{abil}}" as="a" hint-placeholder-count="6">
+          <a href="{{a.href}}" style="border-radius: 12px; background: var(--sf-c); padding: 10px 8px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--on-sf)">
+            <span style="font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{a.k}}</span>
+            <span class="n" style="font-size: 28px; line-height: 34px; font-weight: 600">{{a.mod}}</span>
+            <span class="n" style="height: 22px; min-width: 34px; padding: 0 8px; border-radius: 11px; background: var(--sf-highest); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center">{{a.score}}</span>
+            <span class="n" style="margin-top: 6px; font-size: 11px; line-height: 16px; color: {{a.saveFg}}; display: inline-flex; align-items: center; gap: 4px"><span style="width: 8px; height: 8px; border-radius: 4px; background: {{a.dot}}; border: 1.5px solid {{a.saveFg}}"></span>JS {{a.save}}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Ressources de classe" style="border-radius: 16px; background: var(--sf-c); padding: 4px 0">
+      <sc-for list="{{res}}" as="r" hint-placeholder-count="2">
+        <div style="min-height: 56px; padding: 8px 16px; display: flex; align-items: center; gap: 12px">
+          <div style="flex: 1; min-width: 0"><div style="font-size: 16px; line-height: 24px">{{r.l}}</div><div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{r.s}}</div></div>
+          <div style="display: flex; gap: 6px" aria-label="{{r.aria}}"><sc-for list="{{r.pips}}" as="p" hint-placeholder-count="3"><span style="width: 18px; height: 18px; border-radius: 9px; border: 2px solid var(--p); background: {{p.bg}}"></span></sc-for></div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-label="Bottes d’armes" style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 6px"><h2 style="margin: 0; flex: 1; font-size: 14px; line-height: 20px; font-weight: 500">Bottes d’armes <span class="n" style="color: var(--on-sfv); font-weight: 400">4 / 4</span></h2><span style="font-size: 11px; color: var(--on-sfv)">Modifiables après un repos long</span></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{masteries}}" as="m" hint-placeholder-count="4">
+          <span style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--olv); background: var(--sf-c); display: inline-flex; align-items: center; gap: 6px; font-size: 13px">{{m.w}}<span style="color: var(--p); font-weight: 600">{{m.b}}</span></span>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Attaques" style="border-radius: 16px; background: var(--sf-c); padding: 4px 0">
+      <sc-for list="{{attacks}}" as="k" hint-placeholder-count="2">
+        <div style="min-height: 64px; padding: 8px 16px; display: flex; align-items: center; gap: 12px">
+          <div style="flex: 1; min-width: 0"><div style="font-size: 16px; line-height: 24px">{{k.n}}</div><div style="font-size: 12px; line-height: 16px; color: var(--on-sfv)">{{k.s}}</div></div>
+          <span class="n" style="height: 40px; min-width: 56px; padding: 0 12px; border-radius: 20px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">{{k.b}}</span>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+
+  <nav aria-label="Navigation principale" style="flex: none; height: 80px; background: var(--sf-c); display: flex; padding: 12px 0 16px">
+    <sc-for list="{{nav}}" as="r" hint-placeholder-count="5">
+      <a href="#" aria-current="{{r.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--on-sf)"><span style="width: 64px; height: 32px; border-radius: 16px; background: {{r.bg}}; color: {{r.fg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg></span><span style="font-size: 12px; line-height: 16px; font-weight: {{r.w}}">{{r.l}}</span></a>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tabs = ['Principal', 'Compétences', 'Combat', 'Sorts', 'Inventaire', 'Aptitudes', 'Notes'].map((l, i) => ({ l, cur: i === 0 ? 'page' : 'false', fg: i === 0 ? 'var(--p)' : 'var(--on-sfv)', bar: i === 0 ? 'var(--p)' : 'transparent' }));
+    const vitals = [
+      { l: 'CA', v: '19', d: 'M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z', fill: 'none', fg: 'var(--on-sf)' },
+      { l: 'Initiative', v: '+4', d: 'M13 2L4 14h7l-1 8 9-12h-7z', fill: 'none', fg: 'var(--on-sf)' },
+      { l: 'Vitesse', v: '9 m', d: 'M3 12h10 M5 8h8 M5 16h8 M15 6l6 6-6 6', fill: 'none', fg: 'var(--on-sf)' },
+      { l: 'Maîtrise', v: '+3', d: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z', fill: 'none', fg: 'var(--on-sf)' },
+      { l: 'Percep. passive', v: '14', d: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z', fill: 'none', fg: 'var(--on-sf)' },
+      { l: 'Inspiration', v: 'Oui', d: 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z', fill: 'currentColor', fg: 'var(--t)' },
+    ];
+    const ab = (k, score, save, prof) => {
+      const m = Math.floor((score - 10) / 2);
+      return { k, score, mod: (m >= 0 ? '+' : '−') + Math.abs(m), save, dot: prof ? 'var(--p)' : 'transparent', saveFg: prof ? 'var(--p)' : 'var(--on-sfv)', href: k === 'FOR' ? 'Fiche-Phone-Decomposition.dc.html' : '#' };
+    };
+    const abil = [ab('FOR', 18, '+7', true), ab('DEX', 13, '+1', false), ab('CON', 16, '+6', true), ab('INT', 8, '−1', false), ab('SAG', 12, '+1', false), ab('CHA', 10, '+0', false)];
+    const pips = (n, left) => Array.from({ length: n }, (_, i) => ({ bg: i < left ? 'var(--p)' : 'transparent' }));
+    const res = [
+      { l: 'Second souffle', s: 'Action Bonus · 1d10 + 5 PV · repos court : +1', pips: pips(3, 2), aria: '2 utilisations sur 3' },
+      { l: 'Fougue', s: 'Une action de plus · repos court ou long', pips: pips(1, 1), aria: '1 utilisation sur 1' },
+    ];
+    const masteries = [
+      { w: 'Épée longue', b: 'Sape' }, { w: 'Javeline', b: 'Ralentissement' }, { w: 'Hache d’armes', b: 'Renversement' }, { w: 'Épée à deux mains', b: 'Écorchure' },
+    ];
+    const attacks = [
+      { n: 'Épée longue', s: '1d8 + 4 tranchants · Polyvalente 1d10 · botte Sape', b: '+7' },
+      { n: 'Javeline', s: '1d6 + 4 perforants · 9/36 m · botte Ralentissement', b: '+7' },
+    ];
+    const nav = [
+      { l: 'Accueil', d: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z', bg: 'transparent', fg: 'var(--on-sfv)', w: 500, cur: 'false' },
+      { l: 'Tables', d: 'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16', bg: 'transparent', fg: 'var(--on-sfv)', w: 500, cur: 'false' },
+      { l: 'Personnages', d: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0', bg: 'var(--sc)', fg: 'var(--on-sc)', w: 700, cur: 'page' },
+      { l: 'Compendium', d: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z', bg: 'transparent', fg: 'var(--on-sfv)', w: 500, cur: 'false' },
+      { l: 'Homebrew', d: 'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3', bg: 'transparent', fg: 'var(--on-sfv)', w: 500, cur: 'false' },
+    ];
+    return { tabs, vitals, abil, res, masteries, attacks, nav };
+  }
+}
+</script>
+</body>
+</html>

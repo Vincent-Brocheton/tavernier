@@ -1,0 +1,11 @@
+Gestion de personnage
+COMPATIBLE 5E
+Envoyer les rapports de plantage ?
+
+Si l’application plante, un rapport technique nous aide à corriger le problème.
+
+Aucune donnée de jeu, aucune fiche, aucun contenu personnel.
+Aucune mesure d’usage.
+Modifiable à tout moment dans Réglages.
+Refuser
+Accepter

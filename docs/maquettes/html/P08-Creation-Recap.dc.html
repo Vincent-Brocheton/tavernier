@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Création 9 — Récapitulatif</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--tc:#5D4200;--on-tc:#FFDEA8;--e:#FFB4AB;--ec:#93000A;--on-ec:#FFDAD6;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C;--warn:#FFC266;--warn-c:#634000;--on-warn-c:#FFDDB0;--heal:#9ED98C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+.n{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+textarea{font:inherit;color:inherit}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1040px; background: var(--sf); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="position: relative; overflow: hidden; background: var(--sf-low); border-bottom: 1px solid var(--olv)">
+    <svg aria-hidden="true" width="100%" height="100%" style="position: absolute; inset: 0; opacity: 0.07; pointer-events: none"><filter id="gP08"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gP08)"></rect></svg>
+    <div style="position: relative; height: 64px; display: flex; align-items: center; gap: 8px; padding: 0 16px">
+      <button aria-label="Quitter la création" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12 M18 6L6 18"></path></svg></button>
+      <span style="flex: 1; font-size: 16px; font-weight: 500">Nouveau personnage <span style="color: var(--on-sfv); font-weight: 400">· Les Marches de Brumeval · niveau 1</span></span>
+    </div>
+    <div style="position: relative; padding: 8px 32px 24px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px">
+      <div class="d" style="width: 72px; height: 72px; border-radius: 36px; background: var(--sc); color: var(--t); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 600">AV</div>
+      <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 4px">
+        <span class="n" style="font-size: 12px; font-weight: 500; letter-spacing: 0.5px; color: var(--on-sfv)">ÉTAPE 9 SUR 9 · RÉCAPITULATIF</span>
+        <h1 class="d" style="margin: 0; font-size: 36px; line-height: 44px; font-weight: 600; color: var(--t)">Aldric Varenne</h1>
+        <span style="font-size: 16px; color: var(--on-sfv)">Humain · Guerrier 1 · Soldat · Loyal Bon</span>
+      </div>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px 32px; align-items: flex-start">
+    <nav aria-label="Étapes de création" style="flex: 0 1 220px; min-width: 200px; border-radius: 16px; background: var(--sf-low); padding: 8px">
+      <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="9">
+          <li><a href="#" aria-current="{{s.cur}}" style="height: 48px; padding: 0 12px; border-radius: 24px; background: {{s.bg}}; color: {{s.fg}}; display: flex; align-items: center; gap: 12px; text-decoration: none">
+            <span class="n" style="width: 24px; height: 24px; border-radius: 12px; background: {{s.dotBg}}; color: {{s.dotFg}}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{s.mark}}</span>
+            <span style="flex: 1; font-size: 14px; line-height: 18px; font-weight: {{s.w}}">{{s.l}}</span>
+            <sc-if value="{{s.warn}}" hint-placeholder-val="{{false}}"><span aria-label="Alerte" style="width: 8px; height: 8px; border-radius: 4px; background: var(--warn)"></span></sc-if>
+          </a></li>
+        </sc-for>
+      </ol>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{abil}}" as="a" hint-placeholder-count="6">
+          <div style="border-radius: 12px; background: var(--sf-c); padding: 10px 6px; display: flex; flex-direction: column; align-items: center; gap: 2px">
+            <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: var(--on-sfv)">{{a.k}}</span>
+            <span class="n" style="font-size: 26px; line-height: 32px; font-weight: 600">{{a.mod}}</span>
+            <span class="n" style="height: 22px; min-width: 34px; padding: 0 8px; border-radius: 11px; background: var(--sf-highest); font-size: 13px; display: inline-flex; align-items: center; justify-content: center">{{a.v}}</span>
+            <span class="n" style="margin-top: 4px; font-size: 11px; color: {{a.sFg}}">JS {{a.s}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{vitals}}" as="v" hint-placeholder-count="6">
+          <div style="height: 72px; border-radius: 12px; background: var(--sf-c); display: flex; flex-direction: column; align-items: center; justify-content: center"><span class="n" style="font-size: 22px; font-weight: 600">{{v.v}}</span><span style="font-size: 11px; color: var(--on-sfv); text-align: center">{{v.l}}</span></div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+        <section style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Maîtrises</h2>
+          <sc-for list="{{profs}}" as="p" hint-placeholder-count="5">
+            <div style="display: flex; gap: 12px; font-size: 14px; line-height: 20px"><span style="width: 96px; flex: none; color: var(--on-sfv)">{{p.k}}</span><span>{{p.v}}</span></div>
+          </sc-for>
+        </section>
+        <section style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Attaques</h2>
+          <sc-for list="{{attacks}}" as="k" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 12px; min-height: 40px">
+              <span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 14px">{{k.n}}</span><span class="n" style="font-size: 12px; color: var(--on-sfv)">{{k.d}}</span></span>
+              <span style="font-size: 12px; font-weight: 600; color: {{k.mFg}}">{{k.m}}</span>
+              <span class="n" style="height: 32px; min-width: 48px; padding: 0 10px; border-radius: 16px; background: var(--sc); color: var(--on-sc); display: inline-flex; align-items: center; justify-content: center; font-weight: 600">{{k.b}}</span>
+            </div>
+          </sc-for>
+        </section>
+        <section style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Aptitudes et dons</h2>
+          <sc-for list="{{feats}}" as="f" hint-placeholder-count="5">
+            <div style="display: flex; gap: 8px; align-items: center; font-size: 14px; line-height: 20px"><span style="flex: 1">{{f.l}}</span><span style="font-size: 12px; color: var(--on-sfv)">{{f.s}}</span></div>
+          </sc-for>
+        </section>
+        <section style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 8px">
+          <h2 style="margin: 0; font-size: 14px; line-height: 20px; font-weight: 500">Équipement</h2>
+          <span style="font-size: 14px; line-height: 20px">Cotte de mailles (portée), épée à deux mains, fléau d’armes, 8 javelines, arc court + 20 flèches, carquois, lance, dés, trousse de soins, tenue de voyage, paquetage d’exploration souterraine</span>
+          <span class="n" style="font-size: 14px"><strong>18 po</strong></span>
+        </section>
+      </div>
+    </main>
+
+    <aside aria-label="Validation et envoi" style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <section style="border-radius: 16px; background: var(--sf-low); border: 1px solid var(--olv); padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Vérification des règles</h2>
+        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 12px; background: var(--warn-c); color: var(--on-warn-c)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 9v4 M12 17h.01 M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+          <span style="font-size: 13px; line-height: 18px"><strong>Botte sur une arme absente.</strong> Vous avez une botte pour l’épée longue et la hache d’armes, mais aucune des deux. L’épée à deux mains et le fléau n’ont pas de botte.<br><a href="#" style="color: var(--warn); font-weight: 600">Revoir les sous-choix</a></span>
+        </div>
+        <sc-for list="{{oks}}" as="o" hint-placeholder-count="4">
+          <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; line-height: 18px"><span style="width: 20px; height: 20px; flex: none; border-radius: 10px; background: var(--heal); color: #10380F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></span>{{o}}</div>
+        </sc-for>
+      </section>
+      <section style="border-radius: 16px; background: var(--sf-c); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 500">Envoyer au MJ</h2>
+        <span style="font-size: 13px; line-height: 18px; color: var(--on-sfv)">Camille valide la fiche ou demande des corrections. Les alertes ne bloquent pas l’envoi.</span>
+        <label style="border-radius: 4px; border: 1px solid var(--ol); padding: 8px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 14px; color: var(--on-sfv)">Message (optionnel)</span><textarea aria-label="Message pour le MJ" rows="3" style="border: 0; outline: 0; background: transparent; font-size: 15px; line-height: 20px; padding: 0; resize: none">Je garde l’épée longue en botte : je compte en acheter une au premier marché.</textarea></label>
+        <button style="height: 48px; border-radius: 24px; background: var(--p); color: var(--on-p); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13 M22 2l-7 20-4-9-9-4z"></path></svg>Envoyer pour validation</button>
+      </section>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const steps = ['Classe', 'Historique', 'Espèce', 'Langues', 'Caractéristiques', 'Sous-choix', 'Équipement', 'Détails', 'Récapitulatif'].map((l, i) => {
+      const c = i === 8;
+      return { l, warn: i === 5, cur: c ? 'step' : 'false', bg: c ? 'var(--sc)' : 'transparent', fg: c ? 'var(--on-sc)' : 'var(--on-sf)', w: c ? 700 : 500, mark: c ? '9' : '✓', dotBg: c ? 'var(--on-sc)' : 'var(--p)', dotFg: c ? 'var(--sc)' : 'var(--on-p)' };
+    });
+    const sgn = (m) => (m >= 0 ? '+' : '−') + Math.abs(m);
+    const abil = [['FOR', 17, true], ['DEX', 13], ['CON', 15, true], ['INT', 8], ['SAG', 12], ['CHA', 10]].map(([k, v, p]) => { const m = Math.floor((v - 10) / 2); return { k, v, mod: sgn(m), s: sgn(m + (p ? 2 : 0)), sFg: p ? 'var(--p)' : 'var(--on-sfv)' }; });
+    const vitals = [{ l: 'PV max', v: '12' }, { l: 'CA', v: '17' }, { l: 'Initiative', v: '+3' }, { l: 'Vitesse', v: '9 m' }, { l: 'Maîtrise', v: '+2' }, { l: 'Percep. passive', v: '13' }];
+    const profs = [
+      { k: 'Compétences', v: 'Athlétisme +5, Intimidation +2, Intuition +3, Perception +3, Survie +3' },
+      { k: 'Outils', v: 'Dés' },
+      { k: 'Armes', v: 'Courantes et de guerre' },
+      { k: 'Armures', v: 'Toutes, boucliers' },
+      { k: 'Langues', v: 'Commun, Nain, Orc' },
+    ];
+    const attacks = [
+      { n: 'Épée à deux mains', d: '2d6 + 3 tranchants', m: 'Sans botte', mFg: 'var(--warn)', b: '+5' },
+      { n: 'Fléau d’armes', d: '1d8 + 3 contondants', m: 'Sans botte', mFg: 'var(--warn)', b: '+5' },
+      { n: 'Javeline', d: '1d6 + 3 perforants · 9/36 m', m: 'Ralentissement', mFg: 'var(--p)', b: '+5' },
+    ];
+    const feats = [
+      { l: 'Style de combat : Défense', s: 'Guerrier' }, { l: 'Second souffle (2)', s: 'Guerrier' }, { l: 'Bottes d’armes (3)', s: 'Guerrier' },
+      { l: 'Sauvagerie martiale', s: 'Soldat' }, { l: 'Vigilant', s: 'Humain' }, { l: 'Ingénieux, Compétent', s: 'Humain' },
+    ];
+    const oks = ['Acquisition par points : 27 / 27', 'Bonus d’Historique : +2 FOR, +1 CON', 'Compétences sans doublon', 'Packs : uniquement SRD 5.2.1'];
+    return { steps, abil, vitals, profs, attacks, feats, oks };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Fiche
+
+Ouverture du pack « Les Marches v1.3 » et calcul des valeurs…
+Ensuite, tout fonctionne sans réseau.

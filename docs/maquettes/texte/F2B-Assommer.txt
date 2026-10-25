@@ -1,0 +1,14 @@
+Le relais du Sel
+Dégâts
+Le relais du Sel · round 5
+Varga la Balafrée
+par Aldric · épée longue, corps à corps
+9
+tranchants
+7 → 0 PV
+Cette attaque de corps à corps fait tomber Varga à 0 PV
+Assommer
+Varga reste à 1 PV avec l’état Inconscient. Elle pourra être capturée.
+Hors de combat
+0 PV. Vous pouvez la garder comme PNJ ensuite.
+Appliquer : Varga assommée

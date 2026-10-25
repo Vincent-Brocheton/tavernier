@@ -1,0 +1,65 @@
+Peuples de la frontière · v0.2.0 · brouillon
+Historique
+Enregistré sur l’appareil
+Tester sur un personnage
+Enregistrer
+CLASSES
+Sentinelle des Marches
+ESPÈCES
+Brumelin
+HISTORIQUES
+Garde-frontière
+1
+DONS
+Garde du pont
+Ajouter une entité
+Identité
+Nom *
+Garde-frontière
+Caractéristiques
+Exactement 3 *
+4 / 3
+Force
+Dextérité
+Constitution
+Intelligence
+Sagesse
+Charisme
+4 caractéristiques choisies
+Un Historique propose exactement 3 caractéristiques : le joueur y répartira +2 et +1, ou +1 partout. Retirez-en une.
+Retirer Sagesse
+Retirer Dextérité
+Don, compétences, outil
+Don d’origine *
+Vigilant · Origine
+Outil *
+Outils de cartographe
+Seuls les dons de catégorie Origine sont proposés : Empoigneur (Général) n’apparaît pas dans la liste.
+Compétences * 2 / 2
+Perception
+Survie
+Athlétisme
+Discrétion
+Nature
+Intuition
+Équipement de départ
+Le joueur choisit l’une ou l’autre à la création.
+Option A
+Lance, arc court, 20 flèches, outils de cartographe, carquois, tenue de voyageur, 14 po
+Option B
+50 po
+Vérification
+3 caractéristiques
+4 sont cochées
+1 don de catégorie Origine
+Vigilant
+2 compétences, 1 outil
+Perception, Survie · outils de cartographe
+Équipement
+Option A ou 50 po
+Une entité qui ne passe pas ces contrôles ne peut pas être publiée ; elle reste testable.
+Ce que verra le joueur
+Garde-frontière
+Caractéristiques : Force, Dextérité, Constitution, Sagesse
+Don : Vigilant · Compétences : Perception, Survie
+Outil : outils de cartographe

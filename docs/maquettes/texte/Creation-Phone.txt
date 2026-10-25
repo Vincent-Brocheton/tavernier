@@ -1,0 +1,52 @@
+Nouveau personnage
+Étape 5 sur 9
+Caractéristiques
+Acquisition par points (imposée par la table) · 27 / 27 points
+Historique modifié : Soldat → Sage. Le +2 placé sur Force n’est plus valide. Sage n’autorise les bonus que sur Constitution, Intelligence et Sagesse.
+Bonus d’Historique · Sage
++2 et +1
++1, +1 et +1
+Caractéristique
+Base
++2
++1
+Total
+Force
+Non éligible pour Sage
+15
++2
+—
+17
+Dextérité
+Non éligible
+13
+—
+—
+13
+Constitution
++1 conservé
+14
++2
++1
+15
+Intelligence
+Éligible
+8
++2
++1
+8
+Sagesse
+Éligible
+12
++2
++1
+12
+Charisme
+Non éligible
+10
+—
+—
+10
+Placez le +2 sur une caractéristique éligible pour continuer.
+Précédent
+Suivant

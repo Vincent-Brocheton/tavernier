@@ -1,0 +1,113 @@
+Nouveau personnage · Les Marches de Brumeval · niveau 1
+Packs actifs : SRD 5.2.1 · Les Marches v1.3
+ÉTAPE 1 SUR 9
+Classe
+
+Votre classe décide de vos talents au combat, de vos dés de vie et de vos maîtrises. Vous pourrez revenir sur ce choix.
+
+1
+Classe
+Guerrier
+2
+Historique
+À choisir
+3
+Espèce
+À choisir
+4
+Langues
+Commun + 2
+5
+Caractéristiques
+Acquisition par points
+6
+Sous-choix
+Compétences, bottes, don
+7
+Équipement
+Pack ou or
+8
+Détails
+Nom, apparence
+9
+Récapitulatif
+Envoi au MJ
+Toutes
+Martiales
+Lanceurs de sorts
+Homebrew
+Barbare
+Principale : Force
+Dé de vie d12
+SRD 5.2.1
+Barde
+Principale : Charisme
+Dé de vie d8
+SRD 5.2.1
+Clerc
+Principale : Sagesse
+Dé de vie d8
+SRD 5.2.1
+Druide
+Principale : Sagesse
+Dé de vie d8
+SRD 5.2.1
+Ensorceleur
+Principale : Charisme
+Dé de vie d6
+SRD 5.2.1
+Guerrier
+Principale : Force ou Dextérité
+Dé de vie d10
+SRD 5.2.1
+Magicien
+Principale : Intelligence
+Dé de vie d6
+SRD 5.2.1
+Moine
+Principale : Dextérité et Sagesse
+Dé de vie d8
+SRD 5.2.1
+Occultiste
+Principale : Charisme
+Dé de vie d8
+SRD 5.2.1
+Paladin
+Principale : Force et Charisme
+Dé de vie d10
+SRD 5.2.1
+Rôdeur
+Principale : Dextérité et Sagesse
+Dé de vie d10
+SRD 5.2.1
+Roublard
+Principale : Dextérité
+Dé de vie d8
+SRD 5.2.1
+Lame-runique
+Principale : Force et Intelligence
+Dé de vie d10
+Les Marches v1.3
+Suivant : Historique
+Guerrier
+SRD 5.2.1
+
+Maître des armes et des armures, le Guerrier tient la ligne et frappe plusieurs fois par tour dès le niveau 5.
+
+Principale
+Force ou Dextérité
+Dé de vie
+d10 par niveau
+Jets de sauvegarde
+Force et Constitution
+Compétences
+2 parmi Acrobaties, Athlétisme, Dressage, Histoire, Intimidation, Intuition, Perception, Persuasion, Survie
+Armes
+Courantes et de guerre
+Armures
+Légères, intermédiaires, lourdes, boucliers
+Au niveau 1
+Bottes d’armes · 3
+Second souffle · 2
+Style de combat
+Voir la progression 1 à 20

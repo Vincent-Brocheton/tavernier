@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Premier lancement — consentement</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&amp;display=swap">
+<style>
+body{margin:0;background:#1A1612}
+:root{--p:#84D5C4;--on-p:#00382F;--pc:#1F5047;--on-pc:#A6F2E0;--sc:#54463A;--on-sc:#F5E0C9;--t:#E7C28A;--sf:#1A1612;--sf-low:#221E1A;--sf-c:#27221E;--sf-high:#322C28;--sf-highest:#3D3732;--on-sf:#EDE0D6;--on-sfv:#D3C4B6;--ol:#9C8E82;--olv:#4F453C}
+*{box-sizing:border-box}
+.d{font-family:'Cinzel',Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:#84D5C4}a:hover{color:#A6F2E0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--sf-low); color: var(--on-sf); font-family: 'Roboto Flex', system-ui, sans-serif">
+  <svg aria-hidden="true" width="390" height="844" style="position: absolute; inset: 0; opacity: 0.08; pointer-events: none"><filter id="gT01"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#gT01)"></rect></svg>
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 120px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; padding: 0 32px">
+    <span class="d" style="font-size: 30px; line-height: 38px; font-weight: 600; color: var(--t)">Gestion de personnage</span>
+    <span style="font-size: 14px; letter-spacing: 1px; color: var(--on-sfv)">COMPATIBLE 5E</span>
+  </div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5)"></div>
+
+  <section role="dialog" aria-labelledby="t01title" style="position: absolute; left: 24px; right: 24px; top: 236px; border-radius: 28px; background: var(--sf-high); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84D5C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z M9 12l2 2 4-4"></path></svg>
+      <h1 id="t01title" style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 400">Envoyer les rapports de plantage ?</h1>
+    </div>
+    <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--on-sfv)">Si l’application plante, un rapport technique nous aide à corriger le problème.</p>
+    <ul style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px; color: var(--on-sfv)">
+      <li>Aucune donnée de jeu, aucune fiche, aucun contenu personnel.</li>
+      <li>Aucune mesure d’usage.</li>
+      <li>Modifiable à tout moment dans Réglages.</li>
+    </ul>
+    <div style="display: flex; justify-content: flex-end; gap: 8px; padding-top: 8px">
+      <button style="height: 40px; padding: 0 16px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Refuser</button>
+      <button style="height: 40px; padding: 0 16px; border-radius: 20px; color: var(--p); font-size: 14px; font-weight: 500">Accepter</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
