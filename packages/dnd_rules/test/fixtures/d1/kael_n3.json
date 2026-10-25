@@ -1,0 +1,65 @@
+{
+  "fixture": "kael_n3",
+  "status": "pending_content",
+  "board": "D1",
+  "note": "Personnage libre rattaché, avec dérogations (niveau 3 au lieu de 1, génération aléatoire) accordées le 23 oct. Magicien absent de l'échantillon M0 : testé en M1.",
+  "srd_refs": {
+    "generation_aleatoire": "p. 22, 4d6 en gardant les 3 meilleurs, six fois",
+    "magicien": "p. 59, d6, niv. 3 ; p. 60, Érudition niv. 2",
+    "elfe": "p. 88, Sens aiguisés (Intuition, Perception ou Survie), lignage haut-elfe",
+    "pv_fixes": "p. 25, Magicien 4 + modificateur de Con"
+  },
+  "input": {
+    "name": "Kael",
+    "player": "Léo",
+    "kind": "pc",
+    "species_id": "srd:species:elf",
+    "species_choices": {
+      "lineage": "high-elf", "lineage_ability": "int",
+      "keen_senses_skill": "srd:skill:insight"
+    },
+    "background_id": "srd:background:sage",
+    "base_scores": {
+      "method": "random", "rolls": [16, 15, 14, 12, 11, 9],
+      "str": 9, "dex": 14, "con": 12, "int": 16, "wis": 15, "cha": 11
+    },
+    "background_choice": { "distribution": "2-1", "bonuses": { "int": 2, "con": 1 } },
+    "class_levels": [
+      {
+        "class_id": "srd:class:wizard", "level": 3, "subclass_id": null, "hp_roll": null,
+        "skill_choices": ["srd:skill:investigation", "srd:skill:nature"],
+        "expertise": ["srd:skill:arcana"]
+      }
+    ],
+    "feats": [
+      {
+        "feat_id": "srd:feat:magic-initiate", "source_type": "background", "source_ref": "srd:background:sage",
+        "choices": { "spell_list": "srd:class:wizard", "ability": "int" }
+      }
+    ],
+    "overrides": [
+      { "kind": "starting_level", "value": 3, "date": "2026-10-23" },
+      { "kind": "stat_method", "value": "random", "date": "2026-10-23" }
+    ],
+    "items": [],
+    "xp": 2100
+  },
+  "expected": {
+    "level": 3,
+    "proficiency_bonus": 2,
+    "abilities": {
+      "str": { "score": 9, "modifier": -1 },
+      "dex": { "score": 14, "modifier": 2 },
+      "con": { "score": 13, "modifier": 1 },
+      "int": { "score": 18, "modifier": 4 },
+      "wis": { "score": 15, "modifier": 2 },
+      "cha": { "score": 11, "modifier": 0 }
+    },
+    "hit_points_max": 17,
+    "armor_class": 12,
+    "darkvision_feet": 60,
+    "skill_proficiencies": ["arcana", "history", "insight", "investigation", "nature"],
+    "expertise": ["arcana"],
+    "species_spells": ["srd:spell:prestidigitation", "srd:spell:detect-magic"]
+  }
+}
