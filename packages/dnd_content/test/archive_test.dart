@@ -65,6 +65,14 @@ void main() {
       final manifest =
           jsonDecode(good['manifest.json']!) as Map<String, Object?>;
       manifest['checksum'] = sha256Checksum(utf8.encode(body));
+      // Garde le manifeste cohérent quand le corps est une liste lisible.
+      try {
+        if (jsonDecode(body) case final List<Object?> list) {
+          manifest['entity_count'] = list.length;
+        }
+      } on FormatException {
+        // corps volontairement illisible : rien à recompter
+      }
       return _zip({
         'manifest.json': jsonEncode(manifest),
         'entities.json': body,
@@ -94,6 +102,25 @@ void main() {
           ),
         }),
         'somme de contrôle',
+      );
+    });
+    test('fichier décompressé de plus de 20 Mo (bombe zip)', () {
+      expectRejected(withEntities(' ' * (maxPackBytes + 1)), 'décompressé');
+    });
+    test('nombre d’entités différent du manifeste', () {
+      final manifest =
+          jsonDecode(good['manifest.json']!) as Map<String, Object?>;
+      manifest['entity_count'] = 99;
+      expectRejected(
+        _zip({...good, 'manifest.json': jsonEncode(manifest)}),
+        'entity_count',
+      );
+    });
+    test('identifiant en double dans l’archive', () {
+      final entities = jsonDecode(good['entities.json']!) as List<Object?>;
+      expectRejected(
+        withEntities(jsonEncode([...entities, entities.first])),
+        'en double',
       );
     });
     test('entities.json absent', () {

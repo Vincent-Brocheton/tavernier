@@ -122,7 +122,9 @@ final class ContentEntity {
 
   final text = json['text'];
   String? textFr;
-  if (text is Map<String, Object?> && text.keys.every((k) => k == 'fr')) {
+  if (text is Map<String, Object?> &&
+      text.keys.every((k) => k == 'fr') &&
+      text['fr'] is String?) {
     textFr = text['fr'] as String?;
   } else if (text != null) {
     issues.add(ContentIssue('$path.text', 'objet { "fr": texte } attendu'));

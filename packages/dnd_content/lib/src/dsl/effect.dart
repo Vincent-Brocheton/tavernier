@@ -29,6 +29,17 @@ final class Effect {
 
 final _schemas = opSchemas(listField(validateEffect));
 
+/// Le DSL désigne les caractéristiques par un code ; voici l'entité de
+/// contenu de chacun (pack SRD).
+const abilityIdByCode = {
+  'str': 'srd:ability:strength',
+  'dex': 'srd:ability:dexterity',
+  'con': 'srd:ability:constitution',
+  'int': 'srd:ability:intelligence',
+  'wis': 'srd:ability:wisdom',
+  'cha': 'srd:ability:charisma',
+};
+
 /// Les 22 opérations du DSL v1.
 final Set<String> dslV1Ops = Set.unmodifiable(_schemas.keys);
 

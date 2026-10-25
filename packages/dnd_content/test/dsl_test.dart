@@ -42,6 +42,17 @@ void main() {
     });
   });
 
+  test('chaque code de caractéristique a son identifiant de contenu', () {
+    expect(abilityIdByCode, {
+      'str': 'srd:ability:strength',
+      'dex': 'srd:ability:dexterity',
+      'con': 'srd:ability:constitution',
+      'int': 'srd:ability:intelligence',
+      'wis': 'srd:ability:wisdom',
+      'cha': 'srd:ability:charisma',
+    });
+  });
+
   group('effets valides', () {
     final valid = <String, Map<String, Object?>>{
       'Défense': {

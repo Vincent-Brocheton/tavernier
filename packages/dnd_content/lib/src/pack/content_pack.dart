@@ -82,12 +82,11 @@ List<ContentIssue> validatePack(
     );
   }
 
-  final known = <String, ContentEntity>{};
-  for (final entity in [...dependencies, ...pack.entities]) {
+  final known = {for (final e in dependencies) '${e.id}': e};
+  final own = <String>{};
+  for (final entity in pack.entities) {
     final key = '${entity.id}';
-    if (pack.entities.contains(entity) && known.containsKey(key)) {
-      issues.add(ContentIssue(key, 'identifiant en double'));
-    }
+    if (!own.add(key)) issues.add(ContentIssue(key, 'identifiant en double'));
     known[key] = entity;
   }
 

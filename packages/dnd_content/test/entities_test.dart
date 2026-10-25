@@ -169,6 +169,15 @@ void main() {
         contains('weapon/longsword.json.effects[0].op'),
       );
     });
+    test('texte non textuel', () {
+      expect(
+        _issuePaths({
+          ..._longsword(),
+          'text': {'fr': 5},
+        }),
+        contains('weapon/longsword.json.text'),
+      );
+    });
     test('nom vide', () {
       expect(
         _issuePaths({..._longsword(), 'name': ''}),

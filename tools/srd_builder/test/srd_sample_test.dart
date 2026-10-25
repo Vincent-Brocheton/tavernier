@@ -115,6 +115,13 @@ void main() {
     },
   );
 
+  test('chaque code de caractéristique du DSL désigne une entité du pack', () {
+    expect(
+      abilityIdByCode.values.where((id) => !byId.containsKey(id)),
+      isEmpty,
+    );
+  });
+
   test('table du Guerrier : Second souffle et Bottes d\'arme (p. 56)', () {
     final fighter = byId['srd:class:fighter']!.data as ClassData;
     expect(fighter.hitDie, 10);

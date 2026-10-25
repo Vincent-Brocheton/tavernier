@@ -71,9 +71,16 @@ ContentPack readDndpack(List<int> bytes) {
   } on Object {
     throw const DndpackException('archive zip illisible');
   }
-  List<int> file(String name) =>
-      archive.findFile(name)?.content as List<int>? ??
-      (throw DndpackException('fichier $name absent de l\'archive'));
+  List<int> file(String name) {
+    final entry =
+        archive.findFile(name) ??
+        (throw DndpackException('fichier $name absent de l\'archive'));
+    // Taille annoncée par le zip, vérifiée avant toute décompression.
+    if (entry.size > maxPackBytes) {
+      throw DndpackException('$name décompressé dépasse 20 Mo');
+    }
+    return entry.content as List<int>;
+  }
 
   final manifestResult = PackManifest.parse(
     _decode(file(_manifestFile), _manifestFile),
@@ -97,14 +104,28 @@ ContentPack readDndpack(List<int> bytes) {
   if (raw.length > maxPackEntities) {
     throw const DndpackException('plus de $maxPackEntities entités');
   }
+  if (raw.length != manifest.entityCount) {
+    throw DndpackException(
+      'entity_count du manifeste (${manifest.entityCount}) différent du '
+      'nombre d\'entités (${raw.length})',
+    );
+  }
   final entities = <ContentEntity>[];
+  final ids = <String>{};
   for (var i = 0; i < raw.length; i++) {
     final result = parseEntity(raw[i], '$_entitiesFile[$i]');
-    if (result.entity == null) {
-      throw DndpackException('entité invalide : ${result.issues.join(' ; ')}');
+    final entity =
+        result.entity ??
+        (throw DndpackException(
+          'entité invalide : ${result.issues.join(' ; ')}',
+        ));
+    if (!ids.add('${entity.id}')) {
+      throw DndpackException('identifiant en double : ${entity.id}');
     }
-    entities.add(result.entity!);
+    entities.add(entity);
   }
+  // Les références se vérifient à l'import, avec les dépendances :
+  // validatePack(pack, dependencies: …).
   return ContentPack(manifest: manifest, entities: entities);
 }
 
