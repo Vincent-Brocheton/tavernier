@@ -84,6 +84,7 @@ Le tableau https://trello.com/b/IwARjheH/application-compatible-5e est la seule 
 - **Égalités d'initiative** (SRD) : le MJ ordonne les monstres, les joueurs leurs PJ, le MJ tranche entre monstre et PJ. L'ordre par défaut n'est qu'une commodité.
 - **Progression** en PX ou en jalons, choisie par table. En jalons, aucun PX n'est affiché aux joueurs.
 - **MJ qui supprime son compte** : la table continue d'exister sans MJ ; ses fiches passent en lecture seule ; pas de transfert de MJ ; un joueur ne peut pas en retirer son PJ.
+- **Écarts volontaires au SRD (25 oct. 2026)** : la langue des géants se nomme « Géant » (le SRD français dit « Gigant ») ; l'objet « bourse » du Criminel est la « Sacoche » de la table d'équipement.
 - **Conflits** : sur les fiches, dernier écrit gagnant champ par champ ; en combat, le MJ prime. Tout écrasement d'une donnée joueur est notifié.
 
 ## Commandes
