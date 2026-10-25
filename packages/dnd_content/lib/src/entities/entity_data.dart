@@ -89,7 +89,7 @@ abstract class WeaponData with _$WeaponData implements EntityData {
     String? versatileDamage,
     List<int>? rangeFeet,
     @ContentIdConverter() required ContentId mastery,
-    required double weightKg,
+    double? weightKg,
     required int costCp,
   }) = _WeaponData;
 
@@ -128,12 +128,13 @@ abstract class ToolData with _$ToolData implements EntityData {
       _$ToolDataFromJson(json);
 }
 
+/// Objet d'équipement courant (cahier §11.1 `item`).
 @freezed
-abstract class GearData with _$GearData implements EntityData {
-  const factory GearData({double? weightKg, int? costCp}) = _GearData;
+abstract class ItemData with _$ItemData implements EntityData {
+  const factory ItemData({double? weightKg, int? costCp}) = _ItemData;
 
-  factory GearData.fromJson(Map<String, dynamic> json) =>
-      _$GearDataFromJson(json);
+  factory ItemData.fromJson(Map<String, dynamic> json) =>
+      _$ItemDataFromJson(json);
 }
 
 @freezed
@@ -274,7 +275,7 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'weapon': WeaponData.fromJson,
   'armor': ArmorData.fromJson,
   'tool': ToolData.fromJson,
-  'gear': GearData.fromJson,
+  'item': ItemData.fromJson,
   'background': BackgroundData.fromJson,
   'species': SpeciesData.fromJson,
   'feat': FeatData.fromJson,

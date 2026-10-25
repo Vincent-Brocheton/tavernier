@@ -1024,7 +1024,7 @@ String toString() {
 /// @nodoc
 mixin _$WeaponData {
 
- WeaponCategory get category; WeaponKind get kind; String get damage;@ContentIdConverter() ContentId get damageType; List<String> get properties; String? get versatileDamage; List<int>? get rangeFeet;@ContentIdConverter() ContentId get mastery; double get weightKg; int get costCp;
+ WeaponCategory get category; WeaponKind get kind; String get damage;@ContentIdConverter() ContentId get damageType; List<String> get properties; String? get versatileDamage; List<int>? get rangeFeet;@ContentIdConverter() ContentId get mastery; double? get weightKg; int get costCp;
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1062,7 +1062,7 @@ abstract mixin class $WeaponDataCopyWith<$Res>  {
   factory $WeaponDataCopyWith(WeaponData value, $Res Function(WeaponData) _then) = _$WeaponDataCopyWithImpl;
 @useResult
 $Res call({
- WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double weightKg, int costCp
+ WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp
 });
 
 
@@ -1079,7 +1079,7 @@ class _$WeaponDataCopyWithImpl<$Res>
 
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = null,Object? costCp = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,}) {
   return _then(WeaponData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as WeaponCategory,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
@@ -1089,8 +1089,8 @@ as ContentId,properties: null == properties ? _self.properties : properties // i
 as List<String>,versatileDamage: freezed == versatileDamage ? _self.versatileDamage : versatileDamage // ignore: cast_nullable_to_non_nullable
 as String?,rangeFeet: freezed == rangeFeet ? _self.rangeFeet : rangeFeet // ignore: cast_nullable_to_non_nullable
 as List<int>?,mastery: null == mastery ? _self.mastery : mastery // ignore: cast_nullable_to_non_nullable
-as ContentId,weightKg: null == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
-as double,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
+as ContentId,weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
+as double?,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1176,7 +1176,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double weightKg,  int costCp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeaponData() when $default != null:
 return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
@@ -1197,7 +1197,7 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double weightKg,  int costCp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)  $default,) {final _that = this;
 switch (_that) {
 case _WeaponData():
 return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
@@ -1217,7 +1217,7 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double weightKg,  int costCp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)?  $default,) {final _that = this;
 switch (_that) {
 case _WeaponData() when $default != null:
 return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
@@ -1232,7 +1232,7 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 @JsonSerializable()
 
 class _WeaponData implements WeaponData {
-  const _WeaponData({required this.category, required this.kind, required this.damage, @ContentIdConverter() required this.damageType,  List<String> properties = const <String>[], this.versatileDamage,  List<int>? rangeFeet, @ContentIdConverter() required this.mastery, required this.weightKg, required this.costCp}): _properties = properties,_rangeFeet = rangeFeet;
+  const _WeaponData({required this.category, required this.kind, required this.damage, @ContentIdConverter() required this.damageType,  List<String> properties = const <String>[], this.versatileDamage,  List<int>? rangeFeet, @ContentIdConverter() required this.mastery, this.weightKg, required this.costCp}): _properties = properties,_rangeFeet = rangeFeet;
   factory _WeaponData.fromJson(Map<String, dynamic> json) => _$WeaponDataFromJson(json);
 
 @override final  WeaponCategory category;
@@ -1257,7 +1257,7 @@ class _WeaponData implements WeaponData {
 }
 
 @override@ContentIdConverter() final  ContentId mastery;
-@override final  double weightKg;
+@override final  double? weightKg;
 @override final  int costCp;
 
 /// Create a copy of WeaponData
@@ -1295,7 +1295,7 @@ abstract mixin class _$WeaponDataCopyWith<$Res> implements $WeaponDataCopyWith<$
   factory _$WeaponDataCopyWith(_WeaponData value, $Res Function(_WeaponData) _then) = __$WeaponDataCopyWithImpl;
 @override @useResult
 $Res call({
- WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double weightKg, int costCp
+ WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp
 });
 
 
@@ -1312,7 +1312,7 @@ class __$WeaponDataCopyWithImpl<$Res>
 
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = null,Object? costCp = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,}) {
   return _then(_WeaponData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as WeaponCategory,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
@@ -1322,8 +1322,8 @@ as ContentId,properties: null == properties ? _self._properties : properties // 
 as List<String>,versatileDamage: freezed == versatileDamage ? _self.versatileDamage : versatileDamage // ignore: cast_nullable_to_non_nullable
 as String?,rangeFeet: freezed == rangeFeet ? _self._rangeFeet : rangeFeet // ignore: cast_nullable_to_non_nullable
 as List<int>?,mastery: null == mastery ? _self.mastery : mastery // ignore: cast_nullable_to_non_nullable
-as ContentId,weightKg: null == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
-as double,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
+as ContentId,weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
+as double?,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1902,44 +1902,44 @@ as int,
 
 
 /// @nodoc
-mixin _$GearData {
+mixin _$ItemData {
 
  double? get weightKg; int? get costCp;
-/// Create a copy of GearData
+/// Create a copy of ItemData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$GearDataCopyWith<GearData> get copyWith => _$GearDataCopyWithImpl<GearData>(this as GearData, _$identity);
+$ItemDataCopyWith<ItemData> get copyWith => _$ItemDataCopyWithImpl<ItemData>(this as ItemData, _$identity);
 
-  /// Serializes this GearData to a JSON map.
+  /// Serializes this ItemData to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as GearData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GearData&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp));
+  final _this = this as ItemData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ItemData&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-  final _this = this as GearData;
+  final _this = this as ItemData;
   return Object.hash(runtimeType,_this.weightKg,_this.costCp);
 }
 
 @override
 String toString() {
-  final _this = this as GearData;
-  return 'GearData(weightKg: ${_this.weightKg}, costCp: ${_this.costCp})';
+  final _this = this as ItemData;
+  return 'ItemData(weightKg: ${_this.weightKg}, costCp: ${_this.costCp})';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $GearDataCopyWith<$Res>  {
-  factory $GearDataCopyWith(GearData value, $Res Function(GearData) _then) = _$GearDataCopyWithImpl;
+abstract mixin class $ItemDataCopyWith<$Res>  {
+  factory $ItemDataCopyWith(ItemData value, $Res Function(ItemData) _then) = _$ItemDataCopyWithImpl;
 @useResult
 $Res call({
  double? weightKg, int? costCp
@@ -1950,17 +1950,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$GearDataCopyWithImpl<$Res>
-    implements $GearDataCopyWith<$Res> {
-  _$GearDataCopyWithImpl(this._self, this._then);
+class _$ItemDataCopyWithImpl<$Res>
+    implements $ItemDataCopyWith<$Res> {
+  _$ItemDataCopyWithImpl(this._self, this._then);
 
-  final GearData _self;
-  final $Res Function(GearData) _then;
+  final ItemData _self;
+  final $Res Function(ItemData) _then;
 
-/// Create a copy of GearData
+/// Create a copy of ItemData
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? weightKg = freezed,Object? costCp = freezed,}) {
-  return _then(GearData(
+  return _then(ItemData(
 weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double?,costCp: freezed == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
 as int?,
@@ -1970,8 +1970,8 @@ as int?,
 }
 
 
-/// Adds pattern-matching-related methods to [GearData].
-extension GearDataPatterns on GearData {
+/// Adds pattern-matching-related methods to [ItemData].
+extension ItemDataPatterns on ItemData {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -1984,10 +1984,10 @@ extension GearDataPatterns on GearData {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GearData value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ItemData value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GearData() when $default != null:
+case _ItemData() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -2006,10 +2006,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GearData value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ItemData value)  $default,){
 final _that = this;
 switch (_that) {
-case _GearData():
+case _ItemData():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -2027,10 +2027,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GearData value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ItemData value)?  $default,){
 final _that = this;
 switch (_that) {
-case _GearData() when $default != null:
+case _ItemData() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -2050,7 +2050,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double? weightKg,  int? costCp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GearData() when $default != null:
+case _ItemData() when $default != null:
 return $default(_that.weightKg,_that.costCp);case _:
   return orElse();
 
@@ -2071,7 +2071,7 @@ return $default(_that.weightKg,_that.costCp);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double? weightKg,  int? costCp)  $default,) {final _that = this;
 switch (_that) {
-case _GearData():
+case _ItemData():
 return $default(_that.weightKg,_that.costCp);case _:
   throw StateError('Unexpected subclass');
 
@@ -2091,7 +2091,7 @@ return $default(_that.weightKg,_that.costCp);case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double? weightKg,  int? costCp)?  $default,) {final _that = this;
 switch (_that) {
-case _GearData() when $default != null:
+case _ItemData() when $default != null:
 return $default(_that.weightKg,_that.costCp);case _:
   return null;
 
@@ -2103,27 +2103,27 @@ return $default(_that.weightKg,_that.costCp);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _GearData implements GearData {
-  const _GearData({this.weightKg, this.costCp});
-  factory _GearData.fromJson(Map<String, dynamic> json) => _$GearDataFromJson(json);
+class _ItemData implements ItemData {
+  const _ItemData({this.weightKg, this.costCp});
+  factory _ItemData.fromJson(Map<String, dynamic> json) => _$ItemDataFromJson(json);
 
 @override final  double? weightKg;
 @override final  int? costCp;
 
-/// Create a copy of GearData
+/// Create a copy of ItemData
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$GearDataCopyWith<_GearData> get copyWith => __$GearDataCopyWithImpl<_GearData>(this, _$identity);
+_$ItemDataCopyWith<_ItemData> get copyWith => __$ItemDataCopyWithImpl<_ItemData>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$GearDataToJson(this, );
+  return _$ItemDataToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GearData&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ItemData&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2134,15 +2134,15 @@ int get hashCode {
 
 @override
 String toString() {
-    return 'GearData(weightKg: $weightKg, costCp: $costCp)';
+    return 'ItemData(weightKg: $weightKg, costCp: $costCp)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$GearDataCopyWith<$Res> implements $GearDataCopyWith<$Res> {
-  factory _$GearDataCopyWith(_GearData value, $Res Function(_GearData) _then) = __$GearDataCopyWithImpl;
+abstract mixin class _$ItemDataCopyWith<$Res> implements $ItemDataCopyWith<$Res> {
+  factory _$ItemDataCopyWith(_ItemData value, $Res Function(_ItemData) _then) = __$ItemDataCopyWithImpl;
 @override @useResult
 $Res call({
  double? weightKg, int? costCp
@@ -2153,17 +2153,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$GearDataCopyWithImpl<$Res>
-    implements _$GearDataCopyWith<$Res> {
-  __$GearDataCopyWithImpl(this._self, this._then);
+class __$ItemDataCopyWithImpl<$Res>
+    implements _$ItemDataCopyWith<$Res> {
+  __$ItemDataCopyWithImpl(this._self, this._then);
 
-  final _GearData _self;
-  final $Res Function(_GearData) _then;
+  final _ItemData _self;
+  final $Res Function(_ItemData) _then;
 
-/// Create a copy of GearData
+/// Create a copy of ItemData
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? weightKg = freezed,Object? costCp = freezed,}) {
-  return _then(_GearData(
+  return _then(_ItemData(
 weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double?,costCp: freezed == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
 as int?,

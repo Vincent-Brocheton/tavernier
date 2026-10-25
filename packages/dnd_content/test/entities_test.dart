@@ -87,6 +87,14 @@ void main() {
     }
   });
 
+  test('le poids d\'une arme est facultatif (« — » dans le SRD)', () {
+    final json = _longsword();
+    (json['data']! as Map<String, Object?>).remove('weight_kg');
+    final result = parseEntity(json, 'weapon/longsword.json');
+    expect(result.issues, isEmpty);
+    expect((result.entity!.data as WeaponData).weightKg, isNull);
+  });
+
   test('une valeur d\'énumération inconnue est refusée', () {
     final json = _longsword();
     (json['data']! as Map<String, Object?>)['category'] = 'exotic';
@@ -241,8 +249,8 @@ final _oneOfEachType = <Map<String, Object?>>[
     },
   },
   {
-    'id': 'srd:gear:healers-kit',
-    'type': 'gear',
+    'id': 'srd:item:healers-kit',
+    'type': 'item',
     'name': 'Trousse de soins',
     'data': {'weight_kg': 1.5, 'cost_cp': 500},
   },

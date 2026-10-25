@@ -112,7 +112,7 @@ _WeaponData _$WeaponDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'mastery',
         (v) => const ContentIdConverter().fromJson(v as String),
       ),
-      weightKg: $checkedConvert('weight_kg', (v) => (v as num).toDouble()),
+      weightKg: $checkedConvert('weight_kg', (v) => (v as num?)?.toDouble()),
       costCp: $checkedConvert('cost_cp', (v) => (v as num).toInt()),
     );
     return val;
@@ -136,7 +136,7 @@ Map<String, dynamic> _$WeaponDataToJson(_WeaponData instance) =>
       'versatile_damage': ?instance.versatileDamage,
       'range_feet': ?instance.rangeFeet,
       'mastery': const ContentIdConverter().toJson(instance.mastery),
-      'weight_kg': instance.weightKg,
+      'weight_kg': ?instance.weightKg,
       'cost_cp': instance.costCp,
     };
 
@@ -265,17 +265,17 @@ Json? _$JsonConverterToJson<Json, Value>(
   Json? Function(Value value) toJson,
 ) => value == null ? null : toJson(value);
 
-_GearData _$GearDataFromJson(Map<String, dynamic> json) =>
-    $checkedCreate('_GearData', json, ($checkedConvert) {
+_ItemData _$ItemDataFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_ItemData', json, ($checkedConvert) {
       $checkKeys(json, allowedKeys: const ['weight_kg', 'cost_cp']);
-      final val = _GearData(
+      final val = _ItemData(
         weightKg: $checkedConvert('weight_kg', (v) => (v as num?)?.toDouble()),
         costCp: $checkedConvert('cost_cp', (v) => (v as num?)?.toInt()),
       );
       return val;
     }, fieldKeyMap: const {'weightKg': 'weight_kg', 'costCp': 'cost_cp'});
 
-Map<String, dynamic> _$GearDataToJson(_GearData instance) => <String, dynamic>{
+Map<String, dynamic> _$ItemDataToJson(_ItemData instance) => <String, dynamic>{
   'weight_kg': ?instance.weightKg,
   'cost_cp': ?instance.costCp,
 };

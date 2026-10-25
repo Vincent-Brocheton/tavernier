@@ -28,7 +28,7 @@ const _referenceTypes = <String, Set<String>>{
   'traits': {'feature'},
   'features': {'feature'},
   'parent_class': {'class'},
-  'item': {'weapon', 'armor', 'tool', 'gear'},
+  'item': {'weapon', 'armor', 'tool', 'item'},
   'source': {'class', 'subclass', 'species', 'feat'},
 };
 
