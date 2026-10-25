@@ -53,7 +53,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 
 | Niv. | Aptitude | Type | Opérations |
 |---|---|---|---|
-| 1 | Ordre divin | C | `choice` Protecteur (`grant_proficiency` armes de guerre, armures lourdes) / Thaumaturge (+1 sort mineur ; `modify_check` Arcanes et Religion + SAG min 1) |
+| 1 | Ordre divin | C | `choice` Protecteur (`grant_proficiency` armes de guerre, armures lourdes) / Thaumaturge (`grant_spell_list_access` Clerc, 1, `max_level: 0` ; `modify_check` Arcanes et Religion + SAG min 1) |
 | 2 | Conduit divin | R+D | `grant_resource` `by_level` (colonne Conduit divin), repos court (1) / long (tout) |
 | 5 | Calcination de Mort-vivant | D | |
 | 7 | Impacts bénis | C+D | `choice` Impact divin (D) / Incantation puissante (`modify_damage` sorts mineurs de Clerc + SAG) |
@@ -71,7 +71,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | Niv. | Aptitude | Type | Opérations |
 |---|---|---|---|
 | 1 | Druidique | C | `grant_proficiency` langue druidique ; `grant_spell` communication avec les animaux `always_prepared` |
-| 1 | Ordre primitif | C | `choice` Mage (+1 sort mineur ; `modify_check` Arcanes et Nature + SAG min 1) / Gardien (`grant_proficiency` armes de guerre, armures intermédiaires) |
+| 1 | Ordre primitif | C | `choice` Mage (`grant_spell_list_access` Druide, 1, `max_level: 0` ; `modify_check` Arcanes et Nature + SAG min 1) / Gardien (`grant_proficiency` armes de guerre, armures intermédiaires) |
 | 2 | Forme sauvage | R+D | `grant_resource` `by_level` (colonne Forme sauvage), repos court (1) / long (tout) |
 | 2 | Compagnon sauvage | D | |
 | 5 | Regain sauvage | R+D | `grant_resource` 1 / repos long (emplacement contre Forme sauvage) |
@@ -147,7 +147,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | 1 | Arts martiaux | C+D | dé d'Arts martiaux `by_level` (colonne Arts martiaux) ; DEX pour armes de Moine et mains nues ; action Bonus → D |
 | 1 | Défense sans armure | C | `ac_formula` 10 + DEX + SAG, sans bouclier, `when.armor: none` |
 | 2 | Credo du Moine | R+D | `grant_resource` points de Credo (= niveau de Moine), repos court |
-| 2 | Déplacement sans armure | C | `modify_speed` walk `by_level` (colonne Déplacement sans armure), `when.armor: none`, `shield: false` |
+| 2 | Déplacement sans armure | C | `modify_speed` walk `by_level` (colonne Déplacement sans armure), `when: {armor: none, shield: false}` |
 | 2 | Métabolisme surnaturel | R | `grant_resource` 1 / repos long |
 | 3 | Déviation d'assaut | D | |
 | 4 | Chute ralentie | D | |
@@ -187,14 +187,14 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 
 | Niv. | Aptitude | Type | Opérations |
 |---|---|---|---|
-| 1 | Imposition des mains | R | `grant_resource` réserve = 5 × niveau de Paladin, repos long |
+| 1 | Imposition des mains | R | `grant_resource` `max: {ref: class_level, times: 5}`, repos long |
 | 1 | Bottes d'arme | C | `grant_mastery_slots` 2 |
 | 2 | Style de combat | C | `choice` `grant_feat` `fighting_style` / Combattant béni (2 sorts mineurs de Clerc) |
 | 2 | Châtiment de paladin | C+R | `grant_spell` châtiment divin `always_prepared`, `free_casts` 1 / repos long |
 | 3 | Conduit divin | R+D | `grant_resource` `by_level` (colonne Conduit divin), repos court (1) / long (tout) |
 | 5 | Attaque supplémentaire | C | `set_attacks_per_action` 2 |
 | 5 | Fidèle destrier | C+R | `grant_spell` appel de destrier `always_prepared`, `free_casts` 1 / repos long |
-| 6 | Aura de protection | C+D | `modify_check` jets de sauvegarde + CHA min 1 (sur soi) ; aura sur les alliés → D |
+| 6 | Aura de protection | C+D | `modify_check` `saving_throws` + CHA min 1 (sur soi) ; aura sur les alliés → D |
 | 9 | Abjuration d'ennemis | D | dépense de Conduit divin |
 | 10 | Aura de courage | D | |
 | 11 | Frappes radiantes | C | `modify_damage` `melee_weapon` et `unarmed` +1d8 radiants |
@@ -271,7 +271,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | Drakéide | Vision dans le noir | C | `grant_sense` darkvision 60 |
 | Drakéide | Vol draconique (niv. 5) | R+D | `grant_resource` 1 / repos long |
 | Elfe | Ascendance féerique | C | `grant_advantage` JS contre Charmé |
-| Elfe | Lignage elfique | C+R | `choice` drow / sylvestre / haut-elfe → `grant_spell` niv. 1, 3, 5, `free_casts` 1 / repos long ; sylvestre `modify_speed` walk 35 ; drow `grant_sense` 120 |
+| Elfe | Lignage elfique | C+R | `choice` drow / sylvestre / haut-elfe → `grant_spell` niv. 1, 3, 5, `free_casts` 1 / repos long ; sylvestre `modify_speed` walk +5 (30 → 35 pieds) ; drow `grant_sense` 120 |
 | Elfe | Sens aiguisés | C | `choice` `grant_proficiency` Intuition / Perception / Survie |
 | Elfe | Transe | D | |
 | Elfe | Vision dans le noir | C | `grant_sense` darkvision 60 |
@@ -329,8 +329,8 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | Faveur épique | Faveur de Vision lucide | C | idem ; `grant_sense` truesight 60 |
 | Faveur épique | Faveur du destin | C+R | idem ; `grant_resource` 1 / repos court ou long |
 
-## Points à trancher pour le DSL
+## Points tranchés le 25 octobre 2026 (voir DSL_V1.md)
 
-1. **Archerie** (+2 au toucher à distance) : la proposition l'exprime avec `modify_check` `scope: ranged_weapon_attack`. Alternative : une opération dédiée `modify_attack`. Choix proposé : élargir `modify_check` aux jets d'attaque (scopes `ranged_weapon_attack`, `melee_weapon_attack`), pour garder la liste courte.
-2. **Bonus de Rage, Sorcellerie innée, Arme sacrée** : conditionnés à un état de combat, ils restent descriptifs en v1 (principe 4). La vue combat (M3) pourra les promouvoir via une v2 avec `when.state`.
-3. **Disciple de la Vie, Arts martiaux, Attaque sournoise** : ce sont des valeurs affichées (soins, dé, dégâts) plus que des modificateurs de la fiche. Proposition : les porter par `class_level` (colonnes Attaque sournoise, dé d'Arts martiaux) et par un champ `healing_bonus` de la sous-classe, sans nouvelle opération.
+1. **Archerie** (+2 au toucher à distance) : la proposition l'exprime avec `modify_check` `scope: ranged_weapon_attack`. Alternative : une opération dédiée `modify_attack`. Retenu : élargir `modify_check` aux jets d'attaque (scopes `ranged_weapon_attack`, `melee_weapon_attack`), pour garder la liste courte.
+2. **Bonus de Rage, Sorcellerie innée, Arme sacrée** : conditionnés à un état de combat, ils restent descriptifs en v1 (principe 4). Retenu. La vue combat (M3) pourra les promouvoir via une v2 avec `when.state`.
+3. **Disciple de la Vie, Arts martiaux, Attaque sournoise** : ce sont des valeurs affichées (soins, dé, dégâts) plus que des modificateurs de la fiche. Retenu : les porter par `class_level` (colonnes Attaque sournoise, dé d'Arts martiaux) et par un champ `healing_bonus` de la sous-classe, sans nouvelle opération.

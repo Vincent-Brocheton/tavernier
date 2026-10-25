@@ -1,6 +1,6 @@
 # DSL d'effets — version 1 (proposition)
 
-Statut : **proposition à valider** par le porteur de projet (T-02). Elle fixe une partie du format des packs (`dsl_version: 1` dans le manifeste) ; une fois un pack publié, une opération ne change plus de sens, on en ajoute.
+Statut : **validé** par le porteur de projet le 25 octobre 2026 (T-02), avec les trois choix listés en fin de document. Il fixe une partie du format des packs (`dsl_version: 1` dans le manifeste) ; une fois un pack publié, une opération ne change plus de sens, on en ajoute.
 
 Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide), §14.1 (calculable / compteur / descriptif), inventaire `INVENTAIRE_APTITUDES.md`.
 
@@ -14,7 +14,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
    Une aptitude peut combiner les trois (ex. Second souffle : compteur + texte).
 3. **Sources tracées.** Chaque effet appliqué ajoute une contribution `{source, valeur}` à la valeur touchée : c'est la décomposition d'EF-PJ-03. La source est l'entité porteuse (`srd:feat:defense`, `srd:class:fighter`…).
 4. **Conditions statiques seulement.** Un effet peut dépendre de l'équipement porté (`armor`, `shield`) ; jamais d'un état de combat (Rage active, sort lancé). Ces bonus conditionnels restent descriptifs en v1 et sont signalés comme tels sur la fiche.
-5. **Valeurs** : un entier, ou une expression fermée parmi `{"ref": "proficiency_bonus"}`, `{"ref": "class_level", "class": id}`, `{"ref": "character_level"}`, `{"ref": "ability_mod", "ability": a, "min": n}`, ou une table par niveau `{"by_level": {"1": 2, "4": 3}}` (dernier palier atteint).
+5. **Valeurs** : un entier, ou une expression fermée parmi `{"ref": "proficiency_bonus"}`, `{"ref": "class_level", "class": id}` (toute référence accepte un multiplicateur entier `times`, ex. Imposition des mains : `{"ref": "class_level", "class": "srd:class:paladin", "times": 5}`), `{"ref": "character_level"}`, `{"ref": "ability_mod", "ability": a, "min": n}`, ou une table par niveau `{"by_level": {"1": 2, "4": 3}}` (dernier palier atteint).
 
 ## Enveloppe
 
@@ -41,7 +41,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 |---|---|---|
 | `modify_ac` | `value` | Défense : +1, `when.armor: any` |
 | `ac_formula` | `base`, `abilities[]`, `allows_shield` | Défense sans armure (Barbare) : 10 + DEX + CON, bouclier permis |
-| `modify_speed` | `mode` (`walk`, `climb`, `swim`, `fly`), `value` (pieds) ou `equal_to: walk` | Déplacement rapide : +10 ; Monte-en-l'air : escalade = vitesse |
+| `modify_speed` | `mode` (`walk`, `climb`, `swim`, `fly`), `value` (**bonus** en pieds, jamais une valeur absolue) ou `equal_to: walk` (vitesse égale à la vitesse au sol) | Déplacement rapide : +10 ; Monte-en-l'air : escalade = vitesse |
 | `modify_hp_max` | `per_level` et/ou `flat` | Ténacité naine : +1 par niveau ; Résistance draconique : +3 puis +1 par niveau |
 | `grant_sense` | `sense` (`darkvision`, `blindsight`, `tremorsense`, `truesight`), `range` (pieds) | Nain : Vision dans le noir 120 |
 | `grant_defense` | `kind` (`resistance`, `immunity`), `damage_type` ou `condition` | Résistance naine : poison ; Protégé de dame Nature : immunité Empoisonné |
@@ -52,7 +52,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 |---|---|---|
 | `modify_initiative` | `add` (valeur), `advantage` | Vigilant : `add: {ref: proficiency_bonus}` ; Athlète accompli : `advantage: true` |
 | `grant_advantage` | `on` (`saving_throw:<a>`, `skill:<s>`, `initiative`, `death_saves`), `except_condition` | Sens du danger : JS DEX, sauf état Neutralisé |
-| `modify_check` | `scope` (`unproficient_ability_checks`, `skill:<s>`), `add` | Touche-à-tout : moitié de la maîtrise ; Ordre divin Thaumaturge : SAG à Arcanes et Religion |
+| `modify_check` | `scope` (`unproficient_ability_checks`, `skill:<s>`, `saving_throws`, `saving_throw:<a>`, `melee_weapon_attack`, `ranged_weapon_attack`, `spell_attack`), `add` | Touche-à-tout : moitié de la maîtrise ; Thaumaturge : SAG à Arcanes et Religion ; Archerie : +2 `ranged_weapon_attack` ; Aura de protection : CHA aux `saving_throws` |
 | `set_attacks_per_action` | `count` | Attaque supplémentaire : 2 |
 | `set_crit_range` | `min` | Critique amélioré : 19 |
 | `grant_mastery_slots` | `count` (souvent `by_level`) | Guerrier : 3, puis 4 au niv. 4… |
@@ -62,9 +62,9 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 
 | op | Champs | Exemple SRD |
 |---|---|---|
-| `grant_resource` | `id`, `max` (valeur), `recharge` (`short_rest`, `long_rest`, `short_rest_partial`, `initiative`, `dawn`), `die` facultatif | Second souffle : `by_level {1:2, 4:3, 10:4}`, repos court (1) / long (tout) |
+| `grant_resource` | `id`, `max` (valeur), `recharge` : liste de `{on, amount, up_to?}` avec `on` ∈ `short_rest`, `long_rest`, `initiative`, `dawn`, `amount` = entier ou `all`, `up_to` = plafond facultatif ; `die` facultatif | Second souffle : `max by_level {1:2, 4:3, 10:4}`, `recharge [{on: short_rest, amount: 1}, {on: long_rest, amount: all}]` ; Inspiration supérieure : `{on: initiative, amount: all, up_to: 2}` |
 | `grant_spell` | `spell`, `always_prepared`, `free_casts` `{count, recharge}`, `ability` | Initié à la magie ; Châtiment de paladin ; lignage haut-elfe |
-| `grant_spell_list_access` | `class_lists[]`, `count`, `max_level` | Secrets magiques, Découvertes magiques |
+| `grant_spell_list_access` | `class_lists[]`, `count`, `max_level` (0 = sorts mineurs) | Secrets magiques, Découvertes magiques ; Thaumaturge et Mage : 1 sort mineur supplémentaire (`max_level: 0`) |
 | `modify_attunement_slots` | `value` | Utilisation d'objets magiques : 4 |
 
 ### Choix
@@ -74,6 +74,12 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 | `choice` | `id`, `count`, `options[]` (chaque option est une liste d'effets ou une référence), `replaceable_on` (`level_up`, `long_rest`, `short_rest`) | Compétent (1 compétence), Sens aiguisés, Ordre divin, Proie du chasseur |
 
 Les incantations de classe (emplacements, sorts mineurs, préparés, magie de pacte, niveau de lanceur en multiclassage) ne passent **pas** par le DSL : ce sont des colonnes de `class_level` (cahier §11.1), calculées par le moteur.
+
+## Décisions du 25 octobre 2026
+
+1. **Archerie** : `modify_check` couvre aussi les jets d'attaque (scopes `melee_weapon_attack`, `ranged_weapon_attack`, `spell_attack`) ; pas d'opération `modify_attack`.
+2. **Bonus liés à un état de combat** (Rage, Sorcellerie innée, Arme sacrée) : descriptifs en v1.
+3. **Disciple de la Vie, dé d'Arts martiaux, dés d'Attaque sournoise** : portés par la table de classe (`class_level`) ou un champ `healing_bonus` de la sous-classe, sans opération.
 
 ## Hors v1 (descriptif, candidats v2)
 
