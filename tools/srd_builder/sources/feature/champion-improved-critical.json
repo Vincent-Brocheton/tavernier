@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:champion-improved-critical",
+  "type": "feature",
+  "name": "Critique amélioré",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "set_crit_range",
+      "min": 19
+    }
+  ],
+  "text": {
+    "fr": "Vos jets d’attaque avec des armes et à mains nues obtiennent un Coup critique sur un résultat de 19 ou 20 sur le d20."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "srd:weapon:dart",
+  "type": "weapon",
+  "name": "Fléchette",
+  "data": {
+    "category": "simple",
+    "kind": "ranged",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "finesse",
+      "thrown"
+    ],
+    "range_feet": [
+      20,
+      60
+    ],
+    "mastery": "srd:mastery:vex",
+    "weight_kg": 0.125,
+    "cost_cp": 5
+  }
+}

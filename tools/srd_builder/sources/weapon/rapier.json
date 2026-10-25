@@ -1,0 +1,17 @@
+{
+  "id": "srd:weapon:rapier",
+  "type": "weapon",
+  "name": "Rapière",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "finesse"
+    ],
+    "mastery": "srd:mastery:vex",
+    "weight_kg": 1.0,
+    "cost_cp": 2500
+  }
+}

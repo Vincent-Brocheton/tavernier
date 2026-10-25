@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:common-sign-language",
+  "type": "language",
+  "name": "Langue multiverselle des signes",
+  "data": {
+    "category": "standard"
+  }
+}

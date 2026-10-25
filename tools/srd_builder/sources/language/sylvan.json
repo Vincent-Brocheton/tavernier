@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:sylvan",
+  "type": "language",
+  "name": "Sylvestre",
+  "data": {
+    "category": "rare"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "id": "srd:feat:ability-score-improvement",
+  "type": "feat",
+  "name": "Amélioration de caractéristique",
+  "data": {
+    "category": "general",
+    "prerequisites": {
+      "min_level": 4
+    },
+    "repeatable": true
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "ability-score-improvement",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 2,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 20
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 20
+          },
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 20
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Augmentez de 2 la valeur de caractéristique de votre choix, ou augmentez de 1 deux valeurs de caractéristique de votre choix. Ce don ne peut pas porter une valeur de caractéristique au-delà de 20.\nRépétable. Vous pouvez sélectionner ce don plus d’une fois."
+  }
+}

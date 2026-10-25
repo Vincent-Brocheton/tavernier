@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:perception",
+  "type": "skill",
+  "name": "Perception",
+  "data": {
+    "ability": "srd:ability:wisdom"
+  }
+}

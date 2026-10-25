@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:nature",
+  "type": "skill",
+  "name": "Nature",
+  "data": {
+    "ability": "srd:ability:intelligence"
+  }
+}

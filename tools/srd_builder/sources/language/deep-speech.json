@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:deep-speech",
+  "type": "language",
+  "name": "Profond",
+  "data": {
+    "category": "rare"
+  }
+}

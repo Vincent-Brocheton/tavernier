@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:poisoned",
+  "type": "condition",
+  "name": "Empoisonné",
+  "text": {
+    "fr": "Tant que vous avez l’état Empoisonné, vous subissez l’effet suivant.\nEffet sur les attaques et les tests de caractéristique. Vous subissez le Désavantage aux jets d’attaque et aux tests de caractéristique."
+  }
+}

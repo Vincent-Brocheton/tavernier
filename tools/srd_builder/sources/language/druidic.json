@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:druidic",
+  "type": "language",
+  "name": "Druidique",
+  "data": {
+    "category": "rare"
+  }
+}

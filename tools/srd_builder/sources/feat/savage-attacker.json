@@ -1,0 +1,11 @@
+{
+  "id": "srd:feat:savage-attacker",
+  "type": "feat",
+  "name": "Sauvagerie martiale",
+  "data": {
+    "category": "origin"
+  },
+  "text": {
+    "fr": "Vous êtes formé à porter des coups dévastateurs. Une fois par tour, lorsque vous touchez une cible avec une arme, vous pouvez lancer deux fois les dés de dégâts de l’arme et utiliser l’un ou l’autre résultat contre la cible."
+  }
+}

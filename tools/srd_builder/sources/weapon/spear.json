@@ -1,0 +1,23 @@
+{
+  "id": "srd:weapon:spear",
+  "type": "weapon",
+  "name": "Lance",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d6",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "thrown",
+      "versatile"
+    ],
+    "versatile_damage": "1d8",
+    "range_feet": [
+      20,
+      60
+    ],
+    "mastery": "srd:mastery:sap",
+    "weight_kg": 1.5,
+    "cost_cp": 100
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "srd:subclass:champion",
+  "type": "subclass",
+  "name": "Champion",
+  "data": {
+    "parent_class": "srd:class:fighter",
+    "features": [
+      "srd:feature:champion-improved-critical",
+      "srd:feature:champion-remarkable-athlete",
+      "srd:feature:champion-additional-fighting-style",
+      "srd:feature:champion-heroic-warrior",
+      "srd:feature:champion-superior-critical",
+      "srd:feature:champion-survivor"
+    ]
+  }
+}

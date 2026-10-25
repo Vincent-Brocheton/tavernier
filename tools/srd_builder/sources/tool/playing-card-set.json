@@ -1,0 +1,10 @@
+{
+  "id": "srd:tool:playing-card-set",
+  "type": "tool",
+  "name": "Boîte de jeux : cartes à jouer",
+  "data": {
+    "category": "gaming_set",
+    "ability": "srd:ability:wisdom",
+    "cost_cp": 50
+  }
+}

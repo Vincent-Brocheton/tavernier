@@ -1,0 +1,5 @@
+{
+  "id": "srd:damage-type:force",
+  "type": "damage-type",
+  "name": "Force"
+}

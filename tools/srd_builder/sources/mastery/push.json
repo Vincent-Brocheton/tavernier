@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:push",
+  "type": "mastery",
+  "name": "Poussée",
+  "text": {
+    "fr": "Si vous touchez une créature avec cette arme, vous pouvez la repousser d’un maximum de 3 m en ligne droite pour peu qu’elle soit de taille G ou inférieure."
+  }
+}

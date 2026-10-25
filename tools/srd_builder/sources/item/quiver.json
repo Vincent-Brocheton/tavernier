@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:quiver",
+  "type": "item",
+  "name": "Carquois",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 100
+  }
+}

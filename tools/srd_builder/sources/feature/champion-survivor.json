@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:champion-survivor",
+  "type": "feature",
+  "name": "Survivant",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 18
+  },
+  "effects": [
+    {
+      "op": "grant_advantage",
+      "on": "death_saves"
+    }
+  ],
+  "text": {
+    "fr": "Vous atteignez le summum de l’endurance martiale, ce qui vous octroie ces bénéfices.\nTrompe-la-mort. Vous avez l’Avantage aux jets de sauvegarde contre la mort. De plus, lorsque vous obtenez un jet de 18 ou 19 à un JS contre la mort, vous en retirez les mêmes bénéfices que si vous aviez obtenu un 20.\nRésilience héroïque. Au début de chacun de vos tours, si vous êtes En péril et doté d’au moins 1 point de vie, vous récupérez un nombre de pv égal à 5 + votre modificateur de Constitution."
+  }
+}

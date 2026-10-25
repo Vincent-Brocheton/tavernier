@@ -1,0 +1,19 @@
+{
+  "id": "srd:feat:alert",
+  "type": "feat",
+  "name": "Vigilant",
+  "data": {
+    "category": "origin"
+  },
+  "effects": [
+    {
+      "op": "modify_initiative",
+      "add": {
+        "ref": "proficiency_bonus"
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Maîtrise de l’Initiative. Lorsque vous jouez l’Initiative, ajoutez votre bonus de maîtrise au jet. Échange d’Initiative. Aussitôt après avoir joué l’Initiative, vous pouvez échanger votre Initiative avec celle d’un allié volontaire pour le combat à venir. Un tel échange est impossible si vous-même ou l’allié désigné subissez l’état Neutralisé."
+  }
+}

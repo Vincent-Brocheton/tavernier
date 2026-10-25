@@ -1,0 +1,12 @@
+{
+  "id": "srd:armor:hide",
+  "type": "armor",
+  "name": "Armure de peaux",
+  "data": {
+    "category": "medium",
+    "base_ac": 12,
+    "dex_cap": 2,
+    "weight_kg": 6.0,
+    "cost_cp": 1000
+  }
+}

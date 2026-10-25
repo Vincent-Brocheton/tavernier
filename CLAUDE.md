@@ -101,13 +101,16 @@ fvm exec melos run analyze         # flutter analyze --fatal-infos (lints strict
 fvm exec melos run test            # dart test (packages Dart) puis flutter test (packages Flutter)
 fvm exec melos run coverage        # lcov ; échoue sous 95 % (dnd_rules) ou 90 % (dnd_content)
 fvm dart format .                  # corriger le formatage
-fvm dart run tools/srd_builder/bin/srd_builder.dart build   # pack SRD (US-02)
+fvm dart run tools/srd_builder/bin/srd_builder.dart build   # pack SRD → build/srd-5.2.1-fr.dndpack
+                                   # options : --sources <dossier> --out <fichier>
 fvm flutter run -d chrome          # depuis apps/game_table
 ```
 
 - **CI** : `.github/workflows/ci.yml` lance format, analyze, test et coverage sur chaque pull request et sur `main`, avec la version de `.fvmrc`.
 - **Lints** : `analysis_options.yaml` racine, commun à tous les packages (strict-casts, strict-inference, strict-raw-types). Pas d'`analysis_options.yaml` par package.
 - **Chaînes d'interface** : `apps/game_table/lib/l10n/app_fr.arb`, code généré par `flutter gen-l10n` (automatique au `pub get`).
+- **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
+- **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Pull requests** : `gh` est installé dans `C:\Program Files\GitHub CLI\gh.exe` (pas toujours dans le PATH du shell).
 
 ## Manques connus du pack de départ

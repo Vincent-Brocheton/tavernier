@@ -1,0 +1,22 @@
+{
+  "id": "srd:weapon:pistol",
+  "type": "weapon",
+  "name": "Pistolet",
+  "data": {
+    "category": "martial",
+    "kind": "ranged",
+    "damage": "1d10",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "loading",
+      "ammunition"
+    ],
+    "range_feet": [
+      30,
+      90
+    ],
+    "mastery": "srd:mastery:vex",
+    "weight_kg": 1.5,
+    "cost_cp": 25000
+  }
+}

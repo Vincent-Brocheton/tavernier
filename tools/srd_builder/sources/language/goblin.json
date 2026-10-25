@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:goblin",
+  "type": "language",
+  "name": "Gobelin",
+  "data": {
+    "category": "standard"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:champion-additional-fighting-style",
+  "type": "feature",
+  "name": "Style de combat supplémentaire",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 7
+  },
+  "effects": [
+    {
+      "op": "grant_feat",
+      "category": "fighting_style"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez un autre don de Style de combat de votre choix."
+  }
+}

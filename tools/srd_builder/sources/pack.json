@@ -1,0 +1,13 @@
+{
+  "id": "377190b6-2dfa-4b38-83be-1c4c6d0cf55d",
+  "namespace": "srd",
+  "name": "Document de Référence du Système 5.2.1 (FR)",
+  "version": "1.0.0",
+  "origin": "srd",
+  "author": "Wizards of the Coast LLC",
+  "licence": "CC-BY-4.0",
+  "attribution": "Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 (« SRD 5.2.1 ») de Wizards of the Coast LLC, disponible à l'adresse https://www.dndbeyond.com/srd. Le SRD 5.2.1 est régi par la Licence Creative Commons Attribution 4.0 International, disponible à l'adresse https://creativecommons.org/licenses/by/4.0/legalcode.",
+  "dsl_version": 1,
+  "locale": "fr",
+  "dependencies": []
+}

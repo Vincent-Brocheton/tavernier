@@ -1,0 +1,5 @@
+{
+  "id": "srd:damage-type:poison",
+  "type": "damage-type",
+  "name": "Poison"
+}

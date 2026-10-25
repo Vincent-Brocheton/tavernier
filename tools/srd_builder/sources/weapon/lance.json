@@ -1,0 +1,19 @@
+{
+  "id": "srd:weapon:lance",
+  "type": "weapon",
+  "name": "Lance d’arçon",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d10",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "reach",
+      "two_handed_unless_mounted",
+      "heavy"
+    ],
+    "mastery": "srd:mastery:topple",
+    "weight_kg": 3.0,
+    "cost_cp": 1000
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:healers-kit",
+  "type": "item",
+  "name": "Trousse de soins",
+  "data": {
+    "weight_kg": 1.5,
+    "cost_cp": 500
+  }
+}

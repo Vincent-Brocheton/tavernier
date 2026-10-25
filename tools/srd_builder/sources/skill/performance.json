@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:performance",
+  "type": "skill",
+  "name": "Représentation",
+  "data": {
+    "ability": "srd:ability:charisma"
+  }
+}

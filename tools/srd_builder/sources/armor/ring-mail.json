@@ -1,0 +1,13 @@
+{
+  "id": "srd:armor:ring-mail",
+  "type": "armor",
+  "name": "Broigne",
+  "data": {
+    "category": "heavy",
+    "base_ac": 14,
+    "dex_cap": 0,
+    "stealth_disadvantage": true,
+    "weight_kg": 20.0,
+    "cost_cp": 3000
+  }
+}

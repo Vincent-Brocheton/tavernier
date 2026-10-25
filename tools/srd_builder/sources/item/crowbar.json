@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:crowbar",
+  "type": "item",
+  "name": "Pied-de-biche",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 200
+  }
+}

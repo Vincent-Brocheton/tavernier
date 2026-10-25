@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:frightened",
+  "type": "condition",
+  "name": "Effrayé",
+  "text": {
+    "fr": "Tant que vous avez l’état Effrayé, vous subissez les effets suivants.\nEffet sur les attaques et les tests de caractéristique. Vous subissez le Désavantage aux tests de caractéristique et aux jets d’attaque tant que la source de votre effroi est dans votre champ de vision.\nImpossible d’approcher. Vous ne pouvez pas vous rapprocher volontairement de la source de votre effroi."
+  }
+}

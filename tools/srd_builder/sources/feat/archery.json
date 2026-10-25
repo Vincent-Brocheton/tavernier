@@ -1,0 +1,21 @@
+{
+  "id": "srd:feat:archery",
+  "type": "feat",
+  "name": "Archerie",
+  "data": {
+    "category": "fighting_style",
+    "prerequisites": {
+      "feature": "fighting_style"
+    }
+  },
+  "effects": [
+    {
+      "op": "modify_check",
+      "scope": "ranged_weapon_attack",
+      "add": 2
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez un bonus de +2 aux jets d’attaque effectués avec des armes à distance."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:human-versatile",
+  "type": "feature",
+  "name": "Polyvalent",
+  "data": {
+    "source": "srd:species:human",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_feat",
+      "category": "origin"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez le don d’origines de votre choix (cf. « Dons »). Doué est recommandé."
+  }
+}

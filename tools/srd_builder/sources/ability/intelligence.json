@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:intelligence",
+  "type": "ability",
+  "name": "Intelligence",
+  "data": {
+    "abbreviation": "INT"
+  }
+}

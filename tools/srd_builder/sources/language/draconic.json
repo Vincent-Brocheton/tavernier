@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:draconic",
+  "type": "language",
+  "name": "Draconique",
+  "data": {
+    "category": "standard"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:religion",
+  "type": "skill",
+  "name": "Religion",
+  "data": {
+    "ability": "srd:ability:intelligence"
+  }
+}

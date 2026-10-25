@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:halfling",
+  "type": "language",
+  "name": "Halfelin",
+  "data": {
+    "category": "standard"
+  }
+}

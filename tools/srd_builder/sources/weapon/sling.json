@@ -1,0 +1,20 @@
+{
+  "id": "srd:weapon:sling",
+  "type": "weapon",
+  "name": "Fronde",
+  "data": {
+    "category": "simple",
+    "kind": "ranged",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "ammunition"
+    ],
+    "range_feet": [
+      30,
+      120
+    ],
+    "mastery": "srd:mastery:slow",
+    "cost_cp": 10
+  }
+}

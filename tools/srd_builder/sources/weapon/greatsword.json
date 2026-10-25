@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:greatsword",
+  "type": "weapon",
+  "name": "Épée à deux mains",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "2d6",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "two_handed",
+      "heavy"
+    ],
+    "mastery": "srd:mastery:graze",
+    "weight_kg": 3.0,
+    "cost_cp": 5000
+  }
+}

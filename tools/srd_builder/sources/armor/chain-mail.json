@@ -1,0 +1,14 @@
+{
+  "id": "srd:armor:chain-mail",
+  "type": "armor",
+  "name": "Cotte de mailles",
+  "data": {
+    "category": "heavy",
+    "base_ac": 16,
+    "dex_cap": 0,
+    "str_requirement": 13,
+    "stealth_disadvantage": true,
+    "weight_kg": 27.5,
+    "cost_cp": 7500
+  }
+}

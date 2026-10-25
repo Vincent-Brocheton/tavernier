@@ -1,0 +1,11 @@
+{
+  "id": "srd:tool:herbalism-kit",
+  "type": "tool",
+  "name": "Matériel d’herboriste",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 1.5,
+    "cost_cp": 500
+  }
+}

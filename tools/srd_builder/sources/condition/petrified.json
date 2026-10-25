@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:petrified",
+  "type": "condition",
+  "name": "Pétrifié",
+  "text": {
+    "fr": "Tant que vous avez l’état Pétrifié, vous subissez les effets suivants.\nTransformé en substance inanimée. Vous êtes transformé, ainsi que les objets non magiques que vous portez, en une substance inanimée et dense (généralement de la pierre). Votre poids est décuplé et vous n’êtes plus soumis au vieillissement.\nNeutralisé. Vous subissez l’état Neutralisé. Vitesse 0. Votre Vitesse est de 0 et ne peut pas augmenter. Effet sur les attaques. Les jets d’attaque contre vous ont l’Avantage.\nEffet sur les jets de sauvegarde. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.\nRésistance aux dégâts. Vous avez la Résistance à tous les dégâts.\nImmunité contre le poison. Vous avez l’Immunité contre l’état Empoisonné."
+  }
+}

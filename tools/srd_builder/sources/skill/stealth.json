@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:stealth",
+  "type": "skill",
+  "name": "Discrétion",
+  "data": {
+    "ability": "srd:ability:dexterity"
+  }
+}

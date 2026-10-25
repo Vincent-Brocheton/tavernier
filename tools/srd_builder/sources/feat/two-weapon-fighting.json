@@ -1,0 +1,14 @@
+{
+  "id": "srd:feat:two-weapon-fighting",
+  "type": "feat",
+  "name": "Combat à deux armes",
+  "data": {
+    "category": "fighting_style",
+    "prerequisites": {
+      "feature": "fighting_style"
+    }
+  },
+  "text": {
+    "fr": "Lorsque vous effectuez une attaque supplémentaire résultant de l’emploi d’une arme avec la propriété Légère, vous pouvez ajouter votre modificateur de caractéristique aux dégâts de cette attaque si vous ne l’ajoutiez pas déjà."
+  }
+}

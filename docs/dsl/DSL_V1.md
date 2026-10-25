@@ -51,7 +51,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 | op | Champs | Exemple SRD |
 |---|---|---|
 | `modify_initiative` | `add` (valeur), `advantage` | Vigilant : `add: {ref: proficiency_bonus}` ; Athlète accompli : `advantage: true` |
-| `grant_advantage` | `on` (`saving_throw:<a>`, `skill:<s>`, `initiative`, `death_saves`), `except_condition` | Sens du danger : JS DEX, sauf état Neutralisé |
+| `grant_advantage` | `on` (`saving_throw:<a>`, `saving_throw_vs:<état>`, `skill:<s>`, `initiative`, `death_saves`), `except_condition` | Sens du danger : JS DEX, sauf état Neutralisé |
 | `modify_check` | `scope` (`unproficient_ability_checks`, `skill:<s>`, `saving_throws`, `saving_throw:<a>`, `melee_weapon_attack`, `ranged_weapon_attack`, `spell_attack`), `add` | Touche-à-tout : moitié de la maîtrise ; Thaumaturge : SAG à Arcanes et Religion ; Archerie : +2 `ranged_weapon_attack` ; Aura de protection : CHA aux `saving_throws` |
 | `set_attacks_per_action` | `count` | Attaque supplémentaire : 2 |
 | `set_crit_range` | `min` | Critique amélioré : 19 |

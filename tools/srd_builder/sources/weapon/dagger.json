@@ -1,0 +1,23 @@
+{
+  "id": "srd:weapon:dagger",
+  "type": "weapon",
+  "name": "Dague",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "finesse",
+      "thrown",
+      "light"
+    ],
+    "range_feet": [
+      20,
+      60
+    ],
+    "mastery": "srd:mastery:nick",
+    "weight_kg": 0.5,
+    "cost_cp": 200
+  }
+}

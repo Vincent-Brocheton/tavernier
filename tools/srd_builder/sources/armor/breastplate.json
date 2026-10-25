@@ -1,0 +1,12 @@
+{
+  "id": "srd:armor:breastplate",
+  "type": "armor",
+  "name": "Cuirasse",
+  "data": {
+    "category": "medium",
+    "base_ac": 14,
+    "dex_cap": 2,
+    "weight_kg": 10.0,
+    "cost_cp": 40000
+  }
+}

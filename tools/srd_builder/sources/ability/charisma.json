@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:charisma",
+  "type": "ability",
+  "name": "Charisme",
+  "data": {
+    "abbreviation": "CHA"
+  }
+}

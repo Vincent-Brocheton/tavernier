@@ -13,3 +13,6 @@ pubspec_overrides.yaml
 *.iml
 .idea/
 .DS_Store
+
+# superpowers (espace de travail des plans)
+.superpowers/

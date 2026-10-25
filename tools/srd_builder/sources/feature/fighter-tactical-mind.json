@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fighter-tactical-mind",
+  "type": "feature",
+  "name": "Sens tactique",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 2
+  },
+  "text": {
+    "fr": "Vous faites preuve de talent tactique, aussi bien sur le champ d’honneur qu’en dehors. Lorsque vous ratez un test de caractéristique, vous pouvez dépenser une utilisation de Second souffle pour forcer le destin. Plutôt que de récupérer des points de vie, vous lancez 1d10 pour en ajouter le résultat à votre test de caractéristique, ce qui peut le convertir en réussite. Si le test rate malgré tout, cette utilisation de Second souffle n’est pas dépensée."
+  }
+}

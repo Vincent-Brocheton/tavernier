@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:pouch",
+  "type": "item",
+  "name": "Sacoche",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 50
+  }
+}

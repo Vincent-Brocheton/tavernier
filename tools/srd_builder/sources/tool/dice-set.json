@@ -1,0 +1,10 @@
+{
+  "id": "srd:tool:dice-set",
+  "type": "tool",
+  "name": "Boîte de jeux : dés",
+  "data": {
+    "category": "gaming_set",
+    "ability": "srd:ability:wisdom",
+    "cost_cp": 10
+  }
+}

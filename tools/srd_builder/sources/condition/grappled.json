@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:grappled",
+  "type": "condition",
+  "name": "Agrippé",
+  "text": {
+    "fr": "Tant que vous avez l’état Agrippé, vous subissez les effets suivants.\nVitesse 0. Votre Vitesse est de 0 et ne peut pas augmenter.\nEffet sur les attaques. Vous subissez le Désavantage aux jets d’attaque contre toute cible hormis l’agrippeur.\nDéplaçable. L’agrippeur peut vous tirer ou vous porter lorsqu’il se déplace, mais ses coûts de déplacement sont doublés, sauf si vous êtes de taille TP ou que votre catégorie de taille est inférieure d’au moins deux crans à la sienne."
+  }
+}

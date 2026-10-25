@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:sap",
+  "type": "mastery",
+  "name": "Sape",
+  "text": {
+    "fr": "Si vous touchez une créature avec cette arme, cette créature subit le Désavantage à son prochain jet d’attaque avant le début de votre tour suivant."
+  }
+}

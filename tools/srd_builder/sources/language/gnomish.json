@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:gnomish",
+  "type": "language",
+  "name": "Gnome",
+  "data": {
+    "category": "standard"
+  }
+}

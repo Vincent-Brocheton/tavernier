@@ -1,5 +1,11 @@
 /// Modèles et validateurs des entités de contenu, format .dndpack.
 library;
 
-/// Nom du package, utilisé par les tests de fumée du monorepo.
-const packageName = 'dnd_content';
+export 'src/content_id.dart';
+export 'src/content_issue.dart';
+export 'src/dsl/effect.dart';
+export 'src/entities/content_entity.dart';
+export 'src/entities/entity_data.dart';
+export 'src/pack/content_pack.dart';
+export 'src/pack/dndpack_archive.dart';
+export 'src/pack/manifest.dart';

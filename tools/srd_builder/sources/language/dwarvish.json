@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:dwarvish",
+  "type": "language",
+  "name": "Nain",
+  "data": {
+    "category": "standard"
+  }
+}

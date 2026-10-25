@@ -1,0 +1,18 @@
+{
+  "id": "srd:species:human",
+  "type": "species",
+  "name": "Humain",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M",
+      "P"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:human-resourceful",
+      "srd:feature:human-skillful",
+      "srd:feature:human-versatile"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fighter-subclass",
+  "type": "feature",
+  "name": "Sous-classe de Guerrier",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe de Guerrier de votre choix. La sous-classe Champion est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux de Guerrier. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel de Guerrier."
+  }
+}

@@ -15,9 +15,14 @@ void main(List<String> args) {
     exit(66);
   }
 
+  // Le code généré (freezed, json_serializable) n'entre pas dans le calcul.
+  final generated = RegExp(r'\.(g|freezed)\.dart$');
+  var skip = false;
   var found = 0;
   var hit = 0;
   for (final line in file.readAsLinesSync()) {
+    if (line.startsWith('SF:')) skip = generated.hasMatch(line);
+    if (skip) continue;
     if (line.startsWith('LF:')) found += int.parse(line.substring(3));
     if (line.startsWith('LH:')) hit += int.parse(line.substring(3));
   }

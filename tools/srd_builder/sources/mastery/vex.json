@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:vex",
+  "type": "mastery",
+  "name": "Ouverture",
+  "text": {
+    "fr": "Si vous touchez une créature avec cette arme et lui infligez des dégâts, vous avez l’Avantage à votre prochain jet d’attaque contre cette créature avant la fin de votre tour suivant."
+  }
+}

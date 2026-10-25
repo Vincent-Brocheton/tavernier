@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:undercommon",
+  "type": "language",
+  "name": "Commun des profondeurs",
+  "data": {
+    "category": "rare"
+  }
+}

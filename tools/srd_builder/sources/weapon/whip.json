@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:whip",
+  "type": "weapon",
+  "name": "Fouet",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "reach",
+      "finesse"
+    ],
+    "mastery": "srd:mastery:slow",
+    "weight_kg": 1.5,
+    "cost_cp": 200
+  }
+}

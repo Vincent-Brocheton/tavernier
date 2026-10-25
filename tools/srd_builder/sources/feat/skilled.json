@@ -1,0 +1,196 @@
+{
+  "id": "srd:feat:skilled",
+  "type": "feat",
+  "name": "Doué",
+  "data": {
+    "category": "origin",
+    "repeatable": true
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "skilled",
+      "count": 3,
+      "options": [
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:acrobatics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:arcana"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:athletics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:stealth"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:animal-handling"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:sleight-of-hand"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:history"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:intimidation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:investigation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:medicine"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:persuasion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:religion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:performance"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:survival"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:deception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:calligraphers-supplies"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:thieves-tools"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:herbalism-kit"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:dice-set"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:playing-card-set"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:dragonchess-set"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "tool",
+            "ref": "srd:tool:three-dragon-ante-set"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez la maîtrise d’une combinaison au choix de trois compétences ou outils.\nRépétable. Vous pouvez sélectionner ce don plus d’une fois."
+  }
+}

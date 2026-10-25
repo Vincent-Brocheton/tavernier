@@ -1,0 +1,48 @@
+{
+  "id": "srd:background:sage",
+  "type": "background",
+  "name": "Sage",
+  "data": {
+    "abilities": [
+      "srd:ability:constitution",
+      "srd:ability:intelligence",
+      "srd:ability:wisdom"
+    ],
+    "origin_feat": "srd:feat:magic-initiate",
+    "origin_feat_choices": {
+      "spell_list": "wizard"
+    },
+    "skill_proficiencies": [
+      "srd:skill:arcana",
+      "srd:skill:history"
+    ],
+    "tool_proficiency": "srd:tool:calligraphers-supplies",
+    "equipment_a": [
+      {
+        "item": "srd:weapon:quarterstaff",
+        "quantity": 1
+      },
+      {
+        "item": "srd:tool:calligraphers-supplies",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:book",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:parchment",
+        "quantity": 8
+      },
+      {
+        "item": "srd:item:robe",
+        "quantity": 1
+      }
+    ],
+    "gold_a": 8,
+    "gold_b": 50
+  },
+  "text": {
+    "fr": "Valeurs de caractéristique : Constitution, Intelligence, Sagesse\nDon : Initié à la magie (Magicien) (cf. « Dons »)\nMaîtrises de compétence : Arcanes et Histoire\nMaîtrise d’outils : matériel de calligraphe\nÉquipement : Choisissez A ou B : (A) Bâton de combat, matériel de calligraphe, livre (d’histoire), parchemin (8 feuilles), robe, 8 po ; ou (B) 50 po"
+  }
+}

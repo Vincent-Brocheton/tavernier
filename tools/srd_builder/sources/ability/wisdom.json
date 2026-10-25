@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:wisdom",
+  "type": "ability",
+  "name": "Sagesse",
+  "data": {
+    "abbreviation": "SAG"
+  }
+}

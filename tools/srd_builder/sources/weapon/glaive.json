@@ -1,0 +1,19 @@
+{
+  "id": "srd:weapon:glaive",
+  "type": "weapon",
+  "name": "Coutille",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d10",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "reach",
+      "two_handed",
+      "heavy"
+    ],
+    "mastery": "srd:mastery:graze",
+    "weight_kg": 3.0,
+    "cost_cp": 2000
+  }
+}

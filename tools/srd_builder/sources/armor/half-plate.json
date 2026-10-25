@@ -1,0 +1,13 @@
+{
+  "id": "srd:armor:half-plate",
+  "type": "armor",
+  "name": "Demi-plate",
+  "data": {
+    "category": "medium",
+    "base_ac": 15,
+    "dex_cap": 2,
+    "stealth_disadvantage": true,
+    "weight_kg": 20.0,
+    "cost_cp": 75000
+  }
+}

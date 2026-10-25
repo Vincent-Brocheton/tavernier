@@ -1,0 +1,35 @@
+{
+  "id": "srd:feature:fighter-second-wind",
+  "type": "feature",
+  "name": "Second souffle",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:second-wind",
+      "max": {
+        "by_level": {
+          "1": 2,
+          "4": 3,
+          "10": 4
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": 1
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous disposez d’une réserve limitée d’endurance mentale et physique dans laquelle puiser. Par une action Bonus, vous pouvez y recourir pour récupérer des points de vie égaux à 1d10 + votre niveau de Guerrier.\nVous pouvez recourir deux fois à cette aptitude. Vous en regagnez une utilisation lorsque vous terminez un Repos court, et récupérez tout le quota en terminant un Repos long.\nLorsque vous atteignez certains niveaux de Guerrier, vous recevez d’autres utilisations de cette aptitude, comme indiqué à la colonne Second souffle de la table « Aptitudes du Guerrier »."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "srd:weapon:blowgun",
+  "type": "weapon",
+  "name": "Sarbacane",
+  "data": {
+    "category": "martial",
+    "kind": "ranged",
+    "damage": "1",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "loading",
+      "ammunition"
+    ],
+    "range_feet": [
+      25,
+      100
+    ],
+    "mastery": "srd:mastery:vex",
+    "weight_kg": 0.5,
+    "cost_cp": 1000
+  }
+}

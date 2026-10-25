@@ -1,0 +1,23 @@
+{
+  "id": "srd:weapon:light-crossbow",
+  "type": "weapon",
+  "name": "Arbalète légère",
+  "data": {
+    "category": "simple",
+    "kind": "ranged",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "loading",
+      "two_handed",
+      "ammunition"
+    ],
+    "range_feet": [
+      80,
+      320
+    ],
+    "mastery": "srd:mastery:slow",
+    "weight_kg": 2.5,
+    "cost_cp": 2500
+  }
+}

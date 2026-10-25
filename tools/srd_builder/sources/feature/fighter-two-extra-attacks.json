@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:fighter-two-extra-attacks",
+  "type": "feature",
+  "name": "Double attaque supplémentaire",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 11
+  },
+  "effects": [
+    {
+      "op": "set_attacks_per_action",
+      "count": 3
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez attaquer trois fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour."
+  }
+}

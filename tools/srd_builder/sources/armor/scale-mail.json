@@ -1,0 +1,13 @@
+{
+  "id": "srd:armor:scale-mail",
+  "type": "armor",
+  "name": "Armure d’écailles",
+  "data": {
+    "category": "medium",
+    "base_ac": 14,
+    "dex_cap": 2,
+    "stealth_disadvantage": true,
+    "weight_kg": 22.5,
+    "cost_cp": 5000
+  }
+}

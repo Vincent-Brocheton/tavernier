@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:human-resourceful",
+  "type": "feature",
+  "name": "Ingénieux",
+  "data": {
+    "source": "srd:species:human",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:heroic-inspiration",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez l’Inspiration héroïque chaque fois que vous terminez un Repos long."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:thieves-cant",
+  "type": "language",
+  "name": "Argot des voleurs",
+  "data": {
+    "category": "rare"
+  }
+}

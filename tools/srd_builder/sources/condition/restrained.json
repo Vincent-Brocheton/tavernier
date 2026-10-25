@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:restrained",
+  "type": "condition",
+  "name": "Entravé",
+  "text": {
+    "fr": "Tant que vous avez l’état Entravé, vous subissez les effets suivants.\nVitesse 0. Votre Vitesse est de 0 et ne peut pas augmenter.\nEffet sur les attaques. Les jets d’attaque contre vous ont l’Avantage, et vos jets d’attaque subissent le Désavantage.\nEffet sur les jets de sauvegarde. Vous subissez le Désavantage aux jets de sauvegarde de Dextérité."
+  }
+}

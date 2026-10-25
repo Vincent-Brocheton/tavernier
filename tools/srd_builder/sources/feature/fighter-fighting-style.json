@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:fighter-fighting-style",
+  "type": "feature",
+  "name": "Style de combat",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_feat",
+      "category": "fighting_style",
+      "replaceable_on": "level_up"
+    }
+  ],
+  "text": {
+    "fr": "Vous avez affûté vos techniques martiales et recevez le don de Style de combat de votre choix (cf. « Dons »). Défense est recommandé.\nChaque fois que vous recevez un niveau de Guerrier, vous pouvez remplacer le don choisi par un don différent de Style de combat."
+  }
+}

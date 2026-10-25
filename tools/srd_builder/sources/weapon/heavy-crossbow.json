@@ -1,0 +1,24 @@
+{
+  "id": "srd:weapon:heavy-crossbow",
+  "type": "weapon",
+  "name": "Arbalète lourde",
+  "data": {
+    "category": "martial",
+    "kind": "ranged",
+    "damage": "1d10",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "loading",
+      "two_handed",
+      "heavy",
+      "ammunition"
+    ],
+    "range_feet": [
+      100,
+      400
+    ],
+    "mastery": "srd:mastery:push",
+    "weight_kg": 9.0,
+    "cost_cp": 5000
+  }
+}
