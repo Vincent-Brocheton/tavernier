@@ -1,0 +1,58 @@
+name: tavernier_workspace
+description: Monorepo de Tavernier, gestion de personnage compatible 5e.
+publish_to: none
+
+environment:
+  sdk: ^3.13.0
+
+workspace:
+  - packages/dnd_rules
+  - packages/dnd_content
+  - packages/dnd_data
+  - packages/dnd_ui_kit
+  - apps/game_table
+  - tools/srd_builder
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  melos: ^8.9.0
+
+melos:
+  scripts:
+    format:
+      description: Vérifie le formatage (échoue si un fichier change).
+      run: dart format --set-exit-if-changed .
+
+    analyze:
+      description: Analyse statique de tous les packages, infos comprises.
+      run: flutter analyze --fatal-infos
+
+    test:
+      description: Tests unitaires (Dart) puis tests de widgets (Flutter).
+      run: melos run test:dart --no-select && melos run test:flutter --no-select
+
+    test:dart:
+      description: Tests des packages Dart purs.
+      exec:
+        command: dart test
+        concurrency: 1
+      packageFilters:
+        flutter: false
+        dirExists: test
+
+    test:flutter:
+      description: Tests des packages Flutter.
+      exec:
+        command: flutter test
+        concurrency: 1
+      packageFilters:
+        flutter: true
+        dirExists: test
+
+    coverage:
+      description: Couverture de dnd_rules (≥ 95 %) et dnd_content (≥ 90 %).
+      run: >-
+        cd packages/dnd_rules && dart run coverage:test_with_coverage && cd ../.. &&
+        cd packages/dnd_content && dart run coverage:test_with_coverage && cd ../.. &&
+        dart run tool/check_coverage.dart packages/dnd_rules/coverage/lcov.info 95 &&
+        dart run tool/check_coverage.dart packages/dnd_content/coverage/lcov.info 90

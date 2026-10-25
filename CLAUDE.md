@@ -88,16 +88,27 @@ Le tableau https://trello.com/b/IwARjheH/application-compatible-5e est la seule 
 
 ## Commandes
 
-À compléter dans US-01 dès que le monorepo existe. Prévu :
+Le dépôt s'appelle **Tavernier** (https://github.com/Vincent-Brocheton/tavernier). Flutter est épinglé par **fvm** (`.fvmrc`, Flutter 3.47.7 / Dart 3.13) ; le Flutter global de la machine n'est pas celui du projet. Le monorepo est un **workspace pub** piloté par **Melos 8** (configuration sous la clé `melos:` du `pubspec.yaml` racine, plus de `melos.yaml`).
+
+Installation, une fois : `fvm install` puis `fvm dart pub global activate melos`.
+
+Toujours lancer Melos à travers fvm, pour que `flutter` et `dart` soient ceux du projet :
 
 ```
-melos bootstrap
-melos run analyze        # flutter analyze, lints stricts
-melos run test           # tests unitaires et de widgets
-melos run coverage       # couverture (dnd_rules ≥ 95 %)
-dart format --set-exit-if-changed .
-dart run tools/srd_builder/bin/srd_builder.dart build   # pack SRD
+fvm exec melos bootstrap           # flutter pub get sur tout le workspace
+fvm exec melos run format          # dart format --set-exit-if-changed .
+fvm exec melos run analyze         # flutter analyze --fatal-infos (lints stricts)
+fvm exec melos run test            # dart test (packages Dart) puis flutter test (packages Flutter)
+fvm exec melos run coverage        # lcov ; échoue sous 95 % (dnd_rules) ou 90 % (dnd_content)
+fvm dart format .                  # corriger le formatage
+fvm dart run tools/srd_builder/bin/srd_builder.dart build   # pack SRD (US-02)
+fvm flutter run -d chrome          # depuis apps/game_table
 ```
+
+- **CI** : `.github/workflows/ci.yml` lance format, analyze, test et coverage sur chaque pull request et sur `main`, avec la version de `.fvmrc`.
+- **Lints** : `analysis_options.yaml` racine, commun à tous les packages (strict-casts, strict-inference, strict-raw-types). Pas d'`analysis_options.yaml` par package.
+- **Chaînes d'interface** : `apps/game_table/lib/l10n/app_fr.arb`, code généré par `flutter gen-l10n` (automatique au `pub get`).
+- **Pull requests** : `gh` est installé dans `C:\Program Files\GitHub CLI\gh.exe` (pas toujours dans le PATH du shell).
 
 ## Manques connus du pack de départ
 

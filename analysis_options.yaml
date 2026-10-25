@@ -1,0 +1,37 @@
+# Lints stricts communs à tout le monorepo (cahier §12.2).
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    missing_required_param: error
+    body_might_complete_normally: error
+    todo: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/build/**"
+    - "docs/**"
+
+linter:
+  rules:
+    always_declare_return_types: true
+    avoid_dynamic_calls: true
+    avoid_print: true
+    avoid_relative_lib_imports: true
+    avoid_slow_async_io: true
+    cancel_subscriptions: true
+    directives_ordering: true
+    only_throw_errors: true
+    prefer_const_constructors: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_single_quotes: true
+    throw_in_finally: true
+    unawaited_futures: true
+    unnecessary_lambdas: true
+    unnecessary_statements: true
+    use_super_parameters: true

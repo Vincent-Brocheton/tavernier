@@ -1,0 +1,11 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Tavernier",
+  "@appTitle": {
+    "description": "Nom de l'application."
+  },
+  "appTagline": "Gestion de personnage compatible 5e",
+  "@appTagline": {
+    "description": "Sous-titre affiché sous le nom de l'application."
+  }
+}

@@ -1,0 +1,11 @@
+name: dnd_data
+description: "Base locale Drift : tables, DAO, migrations, import/export."
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+
+dev_dependencies:
+  coverage: ^1.15.0
+  test: ^1.25.6

@@ -1,0 +1,11 @@
+name: dnd_rules
+description: "Moteur de règles pur Dart : computeSheet(), validations, DSL d'effets."
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.0
+
+dev_dependencies:
+  coverage: ^1.15.0
+  test: ^1.25.6
