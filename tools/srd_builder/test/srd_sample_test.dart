@@ -122,6 +122,13 @@ void main() {
     );
   });
 
+  test(
+    'la langue des géants se nomme « Géant » (décision du 25 oct. 2026)',
+    () {
+      expect(byId['srd:language:giant']!.name, 'Géant');
+    },
+  );
+
   test('table du Guerrier : Second souffle et Bottes d\'arme (p. 56)', () {
     final fighter = byId['srd:class:fighter']!.data as ClassData;
     expect(fighter.hitDie, 10);
