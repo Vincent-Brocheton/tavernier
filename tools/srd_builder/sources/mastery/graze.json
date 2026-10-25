@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:graze",
+  "type": "mastery",
+  "name": "Écorchure",
+  "text": {
+    "fr": "Si votre jet d’attaque avec cette arme rate une créature, vous pouvez lui infliger des dégâts égaux au modificateur de la caractéristique utilisée pour effectuer le jet d’attaque. Ces dégâts sont du même type que ceux infligés par l’arme, et ne peuvent être augmentés qu’en augmentant le modificateur de caractéristique."
+  }
+}

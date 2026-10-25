@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:stunned",
+  "type": "condition",
+  "name": "Étourdi",
+  "text": {
+    "fr": "Tant que vous avez l’état Étourdi, vous subissez les effets suivants.\nNeutralisé. Vous subissez l’état Neutralisé. Effet sur les jets de sauvegarde. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité. Effet sur les attaques. Les jets d’attaque contre vous ont l’Avantage."
+  }
+}

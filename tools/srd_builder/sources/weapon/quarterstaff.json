@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:quarterstaff",
+  "type": "weapon",
+  "name": "Bâton de combat",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d6",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "versatile"
+    ],
+    "versatile_damage": "1d8",
+    "mastery": "srd:mastery:topple",
+    "weight_kg": 2.0,
+    "cost_cp": 20
+  }
+}

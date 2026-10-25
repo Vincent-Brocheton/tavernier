@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:maul",
+  "type": "weapon",
+  "name": "Maillet d’armes",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "2d6",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "two_handed",
+      "heavy"
+    ],
+    "mastery": "srd:mastery:topple",
+    "weight_kg": 5.0,
+    "cost_cp": 1000
+  }
+}

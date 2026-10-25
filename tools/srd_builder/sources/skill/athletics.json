@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:athletics",
+  "type": "skill",
+  "name": "Athlétisme",
+  "data": {
+    "ability": "srd:ability:strength"
+  }
+}

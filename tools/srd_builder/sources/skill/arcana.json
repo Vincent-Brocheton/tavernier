@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:arcana",
+  "type": "skill",
+  "name": "Arcanes",
+  "data": {
+    "ability": "srd:ability:intelligence"
+  }
+}

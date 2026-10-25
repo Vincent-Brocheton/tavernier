@@ -1,0 +1,11 @@
+{
+  "id": "srd:armor:studded-leather",
+  "type": "armor",
+  "name": "Armure de cuir clouté",
+  "data": {
+    "category": "light",
+    "base_ac": 12,
+    "weight_kg": 6.5,
+    "cost_cp": 4500
+  }
+}

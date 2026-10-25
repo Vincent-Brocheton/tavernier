@@ -1,0 +1,11 @@
+{
+  "id": "srd:tool:thieves-tools",
+  "type": "tool",
+  "name": "Outils de voleur",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 0.5,
+    "cost_cp": 2500
+  }
+}

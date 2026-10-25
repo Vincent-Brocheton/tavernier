@@ -1,0 +1,17 @@
+{
+  "id": "srd:weapon:greatclub",
+  "type": "weapon",
+  "name": "Massue",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "two_handed"
+    ],
+    "mastery": "srd:mastery:push",
+    "weight_kg": 5.0,
+    "cost_cp": 20
+  }
+}

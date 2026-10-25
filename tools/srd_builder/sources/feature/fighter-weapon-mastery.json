@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:fighter-weapon-mastery",
+  "type": "feature",
+  "name": "Bottes d’arme",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_mastery_slots",
+      "count": {
+        "by_level": {
+          "1": 3,
+          "4": 4,
+          "10": 5,
+          "16": 6
+        }
+      }
+    }
+  ],
+  "text": {
+    "fr": "Votre entraînement martial vous permet de recourir à la botte de trois types d’arme courante ou de guerre de votre choix. Chaque fois que vous terminez un Repos long, vous pouvez accomplir des exercices martiaux pour changer l’un de ces choix.\nLorsque vous atteignez certains niveaux de Guerrier, vous recevez la faculté de recourir à la botte d’autres types d’arme, comme indiqué à la colonne Bottes d’arme de la table « Aptitudes du Guerrier »."
+  }
+}

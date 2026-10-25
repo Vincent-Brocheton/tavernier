@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:deafened",
+  "type": "condition",
+  "name": "Assourdi",
+  "text": {
+    "fr": "Tant que vous avez l’état Assourdi, vous subissez les effets suivants.\nIncapable d’entendre. Vous n’entendez rien et ratez automatiquement tous les tests de caractéristique qui reposent sur l’ouïe."
+  }
+}

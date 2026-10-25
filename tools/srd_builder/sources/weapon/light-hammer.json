@@ -1,0 +1,22 @@
+{
+  "id": "srd:weapon:light-hammer",
+  "type": "weapon",
+  "name": "Marteau léger",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "thrown",
+      "light"
+    ],
+    "range_feet": [
+      20,
+      60
+    ],
+    "mastery": "srd:mastery:nick",
+    "weight_kg": 1.0,
+    "cost_cp": 200
+  }
+}

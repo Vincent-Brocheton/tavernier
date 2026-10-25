@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:history",
+  "type": "skill",
+  "name": "Histoire",
+  "data": {
+    "ability": "srd:ability:intelligence"
+  }
+}

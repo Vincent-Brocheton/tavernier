@@ -1,0 +1,147 @@
+{
+  "id": "srd:feature:human-skillful",
+  "type": "feature",
+  "name": "Compétent",
+  "data": {
+    "source": "srd:species:human",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "skillful",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:acrobatics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:arcana"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:athletics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:stealth"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:animal-handling"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:sleight-of-hand"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:history"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:intimidation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:investigation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:medicine"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:persuasion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:religion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:performance"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:survival"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:deception"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez la maîtrise d’une compétence de votre choix."
+  }
+}

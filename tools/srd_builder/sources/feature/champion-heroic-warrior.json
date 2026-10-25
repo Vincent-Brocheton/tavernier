@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:champion-heroic-warrior",
+  "type": "feature",
+  "name": "Héros du champ d’honneur",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 10
+  },
+  "text": {
+    "fr": "Le frisson des batailles vous porte vers la victoire. En combat, vous pouvez vous octroyer l’Inspiration héroïque chaque fois que vous commencez votre tour sans en disposer."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:insight",
+  "type": "skill",
+  "name": "Intuition",
+  "data": {
+    "ability": "srd:ability:wisdom"
+  }
+}

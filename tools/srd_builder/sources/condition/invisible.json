@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:invisible",
+  "type": "condition",
+  "name": "Invisible",
+  "text": {
+    "fr": "Tant que vous avez l’état Invisible, vous subissez les effets suivants.\nSurprise. Si vous êtes Invisible au moment de jouer l’Initiative, vous avez l’Avantage à ce jet.\nDissimulé. Vous n’êtes pas affecté par les effets qui exigent que la cible soit vue, sauf si le créateur de l’effet vous « voit » par un biais ou un autre. Tout l’équipement que vous portez est lui aussi dissimulé.\nEffet sur les attaques. Les jets d’attaque contre vous subissent le Désavantage, et vos jets d’attaque ont l’Avantage. Si une créature vous voit par un biais ou un autre, vous ne recevez pas ce bénéfice contre elle."
+  }
+}

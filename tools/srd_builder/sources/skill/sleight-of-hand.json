@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:sleight-of-hand",
+  "type": "skill",
+  "name": "Escamotage",
+  "data": {
+    "ability": "srd:ability:dexterity"
+  }
+}

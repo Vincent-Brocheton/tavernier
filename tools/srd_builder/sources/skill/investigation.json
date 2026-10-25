@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:investigation",
+  "type": "skill",
+  "name": "Investigation",
+  "data": {
+    "ability": "srd:ability:intelligence"
+  }
+}

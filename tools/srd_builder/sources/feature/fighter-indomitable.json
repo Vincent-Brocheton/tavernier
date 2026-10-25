@@ -1,0 +1,31 @@
+{
+  "id": "srd:feature:fighter-indomitable",
+  "type": "feature",
+  "name": "Inflexible",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 9
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:indomitable",
+      "max": {
+        "by_level": {
+          "9": 1,
+          "13": 2,
+          "17": 3
+        }
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Si vous ratez un jet de sauvegarde, vous pouvez le rejouer avec un bonus égal à votre niveau de Guerrier. Dans ce cas, c’est forcément le nouveau jet qui s’applique et vous devez ensuite terminer un Repos long avant de pouvoir recourir de nouveau à cette aptitude.\nVous pouvez recourir deux fois à cette aptitude avant un Repos long à partir du niveau 13, puis trois fois à partir du niveau 17."
+  }
+}

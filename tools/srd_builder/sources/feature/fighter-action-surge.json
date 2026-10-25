@@ -1,0 +1,34 @@
+{
+  "id": "srd:feature:fighter-action-surge",
+  "type": "feature",
+  "name": "Fougue",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:action-surge",
+      "max": {
+        "by_level": {
+          "2": 1,
+          "17": 2
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez vous surpasser pendant quelques instants. À votre tour, vous pouvez entreprendre une action supplémentaire, hormis l’action Magie.\nUne fois cette aptitude utilisée, vous devez terminer un Repos court ou long pour pouvoir y recourir de nouveau. À partir du niveau 17, vous pouvez y recourir deux fois avant un Repos, mais seulement une fois par tour."
+  }
+}

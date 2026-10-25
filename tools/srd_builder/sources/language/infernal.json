@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:infernal",
+  "type": "language",
+  "name": "Infernal",
+  "data": {
+    "category": "rare"
+  }
+}

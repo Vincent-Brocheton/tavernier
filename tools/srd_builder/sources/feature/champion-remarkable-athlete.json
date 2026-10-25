@@ -1,0 +1,22 @@
+{
+  "id": "srd:feature:champion-remarkable-athlete",
+  "type": "feature",
+  "name": "Athlète accompli",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "modify_initiative",
+      "advantage": true
+    },
+    {
+      "op": "grant_advantage",
+      "on": "skill:athletics"
+    }
+  ],
+  "text": {
+    "fr": "Grâce à vos qualités athlétiques, vous avez l’Avantage aux jets d’Initiative et aux tests de Force (Athlétisme).\nDe plus, aussitôt après avoir obtenu un Coup critique, vous pouvez vous déplacer à concurrence de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité."
+  }
+}

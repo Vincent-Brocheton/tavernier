@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:giant",
+  "type": "language",
+  "name": "Gigant",
+  "data": {
+    "category": "standard"
+  }
+}

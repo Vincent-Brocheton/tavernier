@@ -1,0 +1,45 @@
+{
+  "id": "srd:background:criminal",
+  "type": "background",
+  "name": "Criminel",
+  "data": {
+    "abilities": [
+      "srd:ability:dexterity",
+      "srd:ability:constitution",
+      "srd:ability:intelligence"
+    ],
+    "origin_feat": "srd:feat:alert",
+    "skill_proficiencies": [
+      "srd:skill:stealth",
+      "srd:skill:sleight-of-hand"
+    ],
+    "tool_proficiency": "srd:tool:thieves-tools",
+    "equipment_a": [
+      {
+        "item": "srd:weapon:dagger",
+        "quantity": 2
+      },
+      {
+        "item": "srd:tool:thieves-tools",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:pouch",
+        "quantity": 2
+      },
+      {
+        "item": "srd:item:crowbar",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:travelers-clothes",
+        "quantity": 1
+      }
+    ],
+    "gold_a": 16,
+    "gold_b": 50
+  },
+  "text": {
+    "fr": "Valeurs de caractéristique : Dextérité, Constitution, Intelligence\nDon : Vigilant (cf. « Dons »)\nMaîtrises de compétence : Discrétion et Escamotage\nMaîtrise d’outils : outils de voleur\nÉquipement : Choisissez A ou B : (A) 2 dagues, outils de voleur, 2 bourses, pied-de-biche, tenue de voyage, 16 po ; ou (B) 50 po"
+  }
+}

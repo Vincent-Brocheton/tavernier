@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:scimitar",
+  "type": "weapon",
+  "name": "Cimeterre",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d6",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "finesse",
+      "light"
+    ],
+    "mastery": "srd:mastery:nick",
+    "weight_kg": 1.5,
+    "cost_cp": 2500
+  }
+}

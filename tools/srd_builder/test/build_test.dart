@@ -128,6 +128,14 @@ void main() {
     expect(result.err, contains('skill/str.json'));
   });
 
+  test('un slug réservé par Windows (con, aux, nul…) est refusé', () {
+    final result = _build(
+      _sources({'pack.json': _pack, 'ability/con.json': _ability('con')}),
+    );
+    expect(result.code, 1);
+    expect(result.err, contains('réservé'));
+  });
+
   test('pack.json absent fait échouer le build', () {
     final result = _build(_sources({'ability/str.json': _ability('str')}));
     expect(result.code, 1);

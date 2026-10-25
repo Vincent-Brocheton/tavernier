@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:warhammer",
+  "type": "weapon",
+  "name": "Marteau de guerre",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "versatile"
+    ],
+    "versatile_damage": "1d10",
+    "mastery": "srd:mastery:push",
+    "weight_kg": 2.5,
+    "cost_cp": 1500
+  }
+}

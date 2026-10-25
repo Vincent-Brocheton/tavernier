@@ -1,0 +1,49 @@
+{
+  "id": "srd:background:soldier",
+  "type": "background",
+  "name": "Soldat",
+  "data": {
+    "abilities": [
+      "srd:ability:strength",
+      "srd:ability:dexterity",
+      "srd:ability:constitution"
+    ],
+    "origin_feat": "srd:feat:savage-attacker",
+    "skill_proficiencies": [
+      "srd:skill:athletics",
+      "srd:skill:intimidation"
+    ],
+    "tool_choice_category": "gaming_set",
+    "equipment_a": [
+      {
+        "item": "srd:weapon:shortbow",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:arrows",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:quiver",
+        "quantity": 1
+      },
+      {
+        "item": "srd:weapon:spear",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:healers-kit",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:travelers-clothes",
+        "quantity": 1
+      }
+    ],
+    "gold_a": 14,
+    "gold_b": 50
+  },
+  "text": {
+    "fr": "Valeurs de caractéristique : Force, Dextérité, Constitution\nDon : Sauvagerie martiale (cf. « Dons »)\nMaîtrises de compétence : Athlétisme et Intimidation\nMaîtrise d’outils : Choisissez un type de boîte de jeux (cf. « Équipement »)\nÉquipement : Choisissez A ou B : (A) Arc court + 20 flèches, carquois, lance, boîte de jeux (du même type que ci-dessus), trousse de soins, tenue de voyage, 14 po ; ou (B) 50 po"
+  }
+}

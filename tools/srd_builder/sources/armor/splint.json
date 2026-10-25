@@ -1,0 +1,14 @@
+{
+  "id": "srd:armor:splint",
+  "type": "armor",
+  "name": "Clibanion",
+  "data": {
+    "category": "heavy",
+    "base_ac": 17,
+    "dex_cap": 0,
+    "str_requirement": 15,
+    "stealth_disadvantage": true,
+    "weight_kg": 30.0,
+    "cost_cp": 20000
+  }
+}

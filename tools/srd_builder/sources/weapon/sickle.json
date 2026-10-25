@@ -1,0 +1,17 @@
+{
+  "id": "srd:weapon:sickle",
+  "type": "weapon",
+  "name": "Serpe",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "light"
+    ],
+    "mastery": "srd:mastery:nick",
+    "weight_kg": 1.0,
+    "cost_cp": 100
+  }
+}

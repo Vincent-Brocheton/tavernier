@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:battleaxe",
+  "type": "weapon",
+  "name": "Hache d’armes",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "versatile"
+    ],
+    "versatile_damage": "1d10",
+    "mastery": "srd:mastery:topple",
+    "weight_kg": 2.0,
+    "cost_cp": 1000
+  }
+}

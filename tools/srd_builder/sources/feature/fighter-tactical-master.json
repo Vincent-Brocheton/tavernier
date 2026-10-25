@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fighter-tactical-master",
+  "type": "feature",
+  "name": "Botte tactique",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 9
+  },
+  "text": {
+    "fr": "Lorsque vous attaquez avec une arme dont vous pouvez exploiter la botte, vous pouvez remplacer cette botte par Poussée, Ralentissement ou Sape pour cette attaque."
+  }
+}

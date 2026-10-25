@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:charmed",
+  "type": "condition",
+  "name": "Charmé",
+  "text": {
+    "fr": "Tant que vous avez l’état Charmé, vous subissez les effets suivants.\nNe pas nuire au charmeur. Vous ne pouvez pas attaquer votre « charmeur » ni le cibler avec des aptitudes ou effets magiques qui infligent des dégâts.\nInteraction avec Avantage. Le charmeur a l’Avantage aux tests de caractéristique d’interaction sociale avec vous."
+  }
+}

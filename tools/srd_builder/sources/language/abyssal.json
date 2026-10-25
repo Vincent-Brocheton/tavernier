@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:abyssal",
+  "type": "language",
+  "name": "Abyssal",
+  "data": {
+    "category": "rare"
+  }
+}

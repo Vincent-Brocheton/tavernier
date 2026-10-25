@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:paralyzed",
+  "type": "condition",
+  "name": "Paralysé",
+  "text": {
+    "fr": "Tant que vous avez l’état Paralysé, vous subissez les effets suivants.\nNeutralisé. Vous subissez l’état Neutralisé.\nVitesse 0. Votre Vitesse est de 0 et ne peut pas augmenter.\nEffet sur les jets de sauvegarde. Vous ratez automatiquement vos jets de sauvegarde de Force et de Dextérité.\nEffet sur les attaques. Les jets d’attaque contre vous ont l’Avantage.\nCoups critiques automatiques. Tout jet d’attaque qui vous touche est un Coup critique si l’assaillant qui la porte se trouve dans un rayon de 1,50 m."
+  }
+}

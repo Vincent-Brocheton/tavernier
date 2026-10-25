@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:primordial",
+  "type": "language",
+  "name": "Primordial",
+  "data": {
+    "category": "rare"
+  }
+}

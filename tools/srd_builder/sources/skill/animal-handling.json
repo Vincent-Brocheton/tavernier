@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:animal-handling",
+  "type": "skill",
+  "name": "Dressage",
+  "data": {
+    "ability": "srd:ability:wisdom"
+  }
+}

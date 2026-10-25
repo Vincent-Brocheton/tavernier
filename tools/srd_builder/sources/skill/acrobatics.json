@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:acrobatics",
+  "type": "skill",
+  "name": "Acrobaties",
+  "data": {
+    "ability": "srd:ability:dexterity"
+  }
+}

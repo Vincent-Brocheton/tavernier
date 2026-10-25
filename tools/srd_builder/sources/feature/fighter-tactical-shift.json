@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fighter-tactical-shift",
+  "type": "feature",
+  "name": "Décalage tactique",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 5
+  },
+  "text": {
+    "fr": "Chaque fois que vous activez votre Second souffle par une action Bonus, vous pouvez vous déplacer à concurrence de la moitié de votre Vitesse, sans provoquer d’attaques d’Opportunité."
+  }
+}

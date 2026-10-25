@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:orc",
+  "type": "language",
+  "name": "Orc",
+  "data": {
+    "category": "standard"
+  }
+}

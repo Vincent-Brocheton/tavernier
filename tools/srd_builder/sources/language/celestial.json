@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:celestial",
+  "type": "language",
+  "name": "Céleste",
+  "data": {
+    "category": "rare"
+  }
+}

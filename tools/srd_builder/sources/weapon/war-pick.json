@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:war-pick",
+  "type": "weapon",
+  "name": "Pic de guerre",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "versatile"
+    ],
+    "versatile_damage": "1d10",
+    "mastery": "srd:mastery:sap",
+    "weight_kg": 1.0,
+    "cost_cp": 500
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "srd:background:acolyte",
+  "type": "background",
+  "name": "Acolyte",
+  "data": {
+    "abilities": [
+      "srd:ability:intelligence",
+      "srd:ability:wisdom",
+      "srd:ability:charisma"
+    ],
+    "origin_feat": "srd:feat:magic-initiate",
+    "origin_feat_choices": {
+      "spell_list": "cleric"
+    },
+    "skill_proficiencies": [
+      "srd:skill:insight",
+      "srd:skill:religion"
+    ],
+    "tool_proficiency": "srd:tool:calligraphers-supplies",
+    "equipment_a": [
+      {
+        "item": "srd:tool:calligraphers-supplies",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:book",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:holy-symbol",
+        "quantity": 1
+      },
+      {
+        "item": "srd:item:parchment",
+        "quantity": 10
+      },
+      {
+        "item": "srd:item:robe",
+        "quantity": 1
+      }
+    ],
+    "gold_a": 8,
+    "gold_b": 50
+  },
+  "text": {
+    "fr": "Valeurs de caractéristique : Intelligence, Sagesse, Charisme\nDon : Initié à la magie (Clerc) (cf. « Dons »)\nMaîtrises de compétence : Intuition et Religion\nMaîtrise d’outils : matériel de calligraphe\nÉquipement : Choisissez A ou B : (A) Matériel de calligraphe, livre (de prières), symbole sacré, parchemin (10 feuilles), robe, 8 po ; ou (B) 50 po"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:survival",
+  "type": "skill",
+  "name": "Survie",
+  "data": {
+    "ability": "srd:ability:wisdom"
+  }
+}

@@ -59,6 +59,15 @@ LoadedSources loadSources(Directory dir) {
     final entity = result.entity;
     if (entity == null) continue;
 
+    if (_windowsReserved.hasMatch(entity.id.slug)) {
+      issues.add(
+        ContentIssue(
+          relative,
+          'slug « ${entity.id.slug} » réservé par Windows',
+        ),
+      );
+      continue;
+    }
     final expected = '${entity.type}/${entity.id.slug}.json';
     if (relative != expected) {
       issues.add(
@@ -86,6 +95,10 @@ LoadedSources loadSources(Directory dir) {
   }
   return (pack: issues.isEmpty ? pack : null, issues: issues);
 }
+
+/// Noms de fichiers interdits sous Windows : une source doit rester
+/// lisible et versionnable sur toutes les machines.
+final _windowsReserved = RegExp(r'^(con|prn|aux|nul|com[1-9]|lpt[1-9])$');
 
 Object? _readJson(File file, String name, List<ContentIssue> issues) {
   try {

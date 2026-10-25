@@ -1,0 +1,11 @@
+{
+  "id": "srd:armor:leather",
+  "type": "armor",
+  "name": "Armure de cuir",
+  "data": {
+    "category": "light",
+    "base_ac": 11,
+    "weight_kg": 5.0,
+    "cost_cp": 1000
+  }
+}

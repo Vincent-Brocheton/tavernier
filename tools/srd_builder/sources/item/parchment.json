@@ -1,0 +1,8 @@
+{
+  "id": "srd:item:parchment",
+  "type": "item",
+  "name": "Parchemin",
+  "data": {
+    "cost_cp": 10
+  }
+}

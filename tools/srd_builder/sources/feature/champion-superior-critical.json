@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:champion-superior-critical",
+  "type": "feature",
+  "name": "Critique supérieur",
+  "data": {
+    "source": "srd:subclass:champion",
+    "level": 15
+  },
+  "effects": [
+    {
+      "op": "set_crit_range",
+      "min": 18
+    }
+  ],
+  "text": {
+    "fr": "Vos jets d’attaque avec des armes et à mains nues obtiennent un Coup critique sur un résultat de 18, 19 ou 20 sur le d20."
+  }
+}

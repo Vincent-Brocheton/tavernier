@@ -1,0 +1,8 @@
+{
+  "id": "srd:language:elvish",
+  "type": "language",
+  "name": "Elfique",
+  "data": {
+    "category": "standard"
+  }
+}

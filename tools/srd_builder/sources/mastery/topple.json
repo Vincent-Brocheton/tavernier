@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:topple",
+  "type": "mastery",
+  "name": "Renversement",
+  "text": {
+    "fr": "Si vous touchez une créature avec cette arme, vous pouvez la contraindre à effectuer un jet de sauvegarde de Constitution (DD égal à 8 + le modificateur de caractéristique utilisé pour le jet d’attaque + votre bonus de maîtrise). En cas d’échec, la créature subit l’état À terre."
+  }
+}

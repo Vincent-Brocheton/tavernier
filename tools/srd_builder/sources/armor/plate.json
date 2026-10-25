@@ -1,0 +1,14 @@
+{
+  "id": "srd:armor:plate",
+  "type": "armor",
+  "name": "Harnois",
+  "data": {
+    "category": "heavy",
+    "base_ac": 18,
+    "dex_cap": 0,
+    "str_requirement": 15,
+    "stealth_disadvantage": true,
+    "weight_kg": 32.5,
+    "cost_cp": 150000
+  }
+}

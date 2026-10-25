@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:medicine",
+  "type": "skill",
+  "name": "Médecine",
+  "data": {
+    "ability": "srd:ability:wisdom"
+  }
+}

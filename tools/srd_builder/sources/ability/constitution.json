@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:constitution",
+  "type": "ability",
+  "name": "Constitution",
+  "data": {
+    "abbreviation": "CON"
+  }
+}

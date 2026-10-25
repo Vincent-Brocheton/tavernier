@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:dexterity",
+  "type": "ability",
+  "name": "Dextérité",
+  "data": {
+    "abbreviation": "DEX"
+  }
+}

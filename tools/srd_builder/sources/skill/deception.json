@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:deception",
+  "type": "skill",
+  "name": "Tromperie",
+  "data": {
+    "ability": "srd:ability:charisma"
+  }
+}

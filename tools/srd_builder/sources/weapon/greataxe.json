@@ -1,0 +1,18 @@
+{
+  "id": "srd:weapon:greataxe",
+  "type": "weapon",
+  "name": "Hache à deux mains",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d12",
+    "damage_type": "srd:damage-type:slashing",
+    "properties": [
+      "two_handed",
+      "heavy"
+    ],
+    "mastery": "srd:mastery:cleave",
+    "weight_kg": 3.5,
+    "cost_cp": 3000
+  }
+}

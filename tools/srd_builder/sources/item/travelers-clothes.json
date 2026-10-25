@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:travelers-clothes",
+  "type": "item",
+  "name": "Tenue de voyage",
+  "data": {
+    "weight_kg": 2.0,
+    "cost_cp": 200
+  }
+}

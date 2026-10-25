@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fighter-studied-attacks",
+  "type": "feature",
+  "name": "Attaques avisées",
+  "data": {
+    "source": "srd:class:fighter",
+    "level": 13
+  },
+  "text": {
+    "fr": "Vous savez étudier la défense de l’adversaire au fil de vos attaques. Si vous effectuez un jet d’attaque contre une créature et que vous ratez, vous avez l’Avantage à votre prochain jet d’attaque contre elle intervenant avant la fin de votre tour suivant."
+  }
+}

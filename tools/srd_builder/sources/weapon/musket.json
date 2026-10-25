@@ -1,0 +1,23 @@
+{
+  "id": "srd:weapon:musket",
+  "type": "weapon",
+  "name": "Mousquet",
+  "data": {
+    "category": "martial",
+    "kind": "ranged",
+    "damage": "1d12",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "loading",
+      "two_handed",
+      "ammunition"
+    ],
+    "range_feet": [
+      40,
+      120
+    ],
+    "mastery": "srd:mastery:slow",
+    "weight_kg": 5.0,
+    "cost_cp": 50000
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:blinded",
+  "type": "condition",
+  "name": "Aveuglé",
+  "text": {
+    "fr": "Tant que vous avez l’état Aveuglé, vous subissez les effets suivants.\nIncapable de voir. Vous ne voyez rien et ratez automatiquement tout test de caractéristique reposant sur la vue.\nEffet sur les attaques. Les jets d’attaque contre vous ont l’Avantage, et vos jets d’attaque subissent le Désavantage."
+  }
+}

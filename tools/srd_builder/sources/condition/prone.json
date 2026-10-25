@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:prone",
+  "type": "condition",
+  "name": "À terre",
+  "text": {
+    "fr": "Tant que vous avez l’état À terre, vous subissez les effets suivants.\nDéplacement limité. Vos seules possibilités de déplacement sont ramper ou vous relever en dépensant la moitié de votre Vitesse (arrondie à l’inférieur), ce qui met un terme à l’état. Si votre Vitesse est de 0, vous ne pouvez pas vous relever.\nEffet sur les attaques. Vous subissez le Désavantage aux jets d’attaque. Un jet d’attaque contre vous reçoit l’Avantage si l’assaillant se trouve dans un rayon de 1,50 m de vous. Sans cela, ce jet d’attaque subit le Désavantage."
+  }
+}

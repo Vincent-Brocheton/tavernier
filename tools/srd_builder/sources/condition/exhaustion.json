@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:exhaustion",
+  "type": "condition",
+  "name": "Épuisement",
+  "text": {
+    "fr": "Tant que vous avez l’état Épuisement, vous subissez les effets suivants.\nNiveaux d’Épuisement. Cet état est cumulatif. Chaque fois que vous le recevez, vous subissez 1 niveau d’Épuisement. Vous mourez quand votre niveau d’Épuisement atteint 6.\nTests d20 affectés. Lorsque vous effectuez un Test d20, le résultat est réduit de 2 fois votre niveau actuel d’Épuisement.\nVitesse réduite. Votre Vitesse est réduite de 1,50 m x votre niveau actuel d’Épuisement.\nSuppression des niveaux d’Épuisement. Terminer un Repos long dissipe 1 niveau d’Épuisement. Lorsque votre niveau d’Épuisement atteint 0, l’état prend fin pour vous."
+  }
+}

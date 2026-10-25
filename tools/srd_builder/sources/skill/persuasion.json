@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:persuasion",
+  "type": "skill",
+  "name": "Persuasion",
+  "data": {
+    "ability": "srd:ability:charisma"
+  }
+}

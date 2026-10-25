@@ -1,0 +1,17 @@
+{
+  "id": "srd:weapon:club",
+  "type": "weapon",
+  "name": "Gourdin",
+  "data": {
+    "category": "simple",
+    "kind": "melee",
+    "damage": "1d4",
+    "damage_type": "srd:damage-type:bludgeoning",
+    "properties": [
+      "light"
+    ],
+    "mastery": "srd:mastery:slow",
+    "weight_kg": 1.0,
+    "cost_cp": 10
+  }
+}

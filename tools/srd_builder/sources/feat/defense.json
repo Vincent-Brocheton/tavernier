@@ -1,0 +1,23 @@
+{
+  "id": "srd:feat:defense",
+  "type": "feat",
+  "name": "Défense",
+  "data": {
+    "category": "fighting_style",
+    "prerequisites": {
+      "feature": "fighting_style"
+    }
+  },
+  "effects": [
+    {
+      "op": "modify_ac",
+      "value": 1,
+      "when": {
+        "armor": "any"
+      }
+    }
+  ],
+  "text": {
+    "fr": "Tant que vous portez une armure légère, intermédiaire ou lourde, vous recevez un bonus de +1 à la Classe d’armure."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:skill:intimidation",
+  "type": "skill",
+  "name": "Intimidation",
+  "data": {
+    "ability": "srd:ability:charisma"
+  }
+}

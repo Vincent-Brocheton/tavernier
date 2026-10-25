@@ -1,0 +1,12 @@
+{
+  "id": "srd:armor:padded",
+  "type": "armor",
+  "name": "Armure matelassée",
+  "data": {
+    "category": "light",
+    "base_ac": 11,
+    "stealth_disadvantage": true,
+    "weight_kg": 4.0,
+    "cost_cp": 500
+  }
+}

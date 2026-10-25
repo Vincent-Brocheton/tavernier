@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:nick",
+  "type": "mastery",
+  "name": "Coup double",
+  "text": {
+    "fr": "Lorsque vous effectuez l’attaque supplémentaire de la propriété Légère de l’arme, vous pouvez l’effectuer dans le cadre de l’action Attaque au lieu de devoir y consacrer votre action Bonus. Vous ne pouvez effectuer cette attaque supplémentaire qu’une seule fois par tour."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "srd:armor:shield",
+  "type": "armor",
+  "name": "Bouclier",
+  "data": {
+    "category": "shield",
+    "base_ac": 2,
+    "weight_kg": 3.0,
+    "cost_cp": 1000
+  }
+}

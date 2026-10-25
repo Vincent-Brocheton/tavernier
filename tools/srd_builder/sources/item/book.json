@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:book",
+  "type": "item",
+  "name": "Livre",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 2500
+  }
+}

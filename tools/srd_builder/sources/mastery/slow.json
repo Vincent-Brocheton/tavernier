@@ -1,0 +1,8 @@
+{
+  "id": "srd:mastery:slow",
+  "type": "mastery",
+  "name": "Ralentissement",
+  "text": {
+    "fr": "Si vous touchez une créature avec cette arme et lui infligez des dégâts, vous pouvez réduire sa Vitesse de 3 m jusqu’au début de votre tour suivant. Si la créature est touchée plus d’une fois par des armes dotées de cette propriété, la réduction de sa Vitesse n’excède pas 3 m."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "srd:ability:strength",
+  "type": "ability",
+  "name": "Force",
+  "data": {
+    "abbreviation": "FOR"
+  }
+}

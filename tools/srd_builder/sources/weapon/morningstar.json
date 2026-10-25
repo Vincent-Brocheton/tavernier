@@ -1,0 +1,15 @@
+{
+  "id": "srd:weapon:morningstar",
+  "type": "weapon",
+  "name": "Morgenstern",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [],
+    "mastery": "srd:mastery:sap",
+    "weight_kg": 2.0,
+    "cost_cp": 1500
+  }
+}

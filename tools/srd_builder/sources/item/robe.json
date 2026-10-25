@@ -1,0 +1,9 @@
+{
+  "id": "srd:item:robe",
+  "type": "item",
+  "name": "Robe",
+  "data": {
+    "weight_kg": 2.0,
+    "cost_cp": 100
+  }
+}

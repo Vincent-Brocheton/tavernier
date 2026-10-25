@@ -1,0 +1,14 @@
+{
+  "id": "srd:feat:great-weapon-fighting",
+  "type": "feat",
+  "name": "Armes à deux mains",
+  "data": {
+    "category": "fighting_style",
+    "prerequisites": {
+      "feature": "fighting_style"
+    }
+  },
+  "text": {
+    "fr": "Lorsque vous lancez les dégâts d’une attaque effectuée avec une arme de corps à corps tenue à deux mains, vous pouvez considérer tous les 1 et 2 obtenus aux dés de dégâts comme des 3. Pour que vous puissiez recevoir ce bénéfice, l’arme doit afficher la propriété Deux mains ou Polyvalente."
+  }
+}

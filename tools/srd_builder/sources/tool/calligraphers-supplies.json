@@ -1,0 +1,11 @@
+{
+  "id": "srd:tool:calligraphers-supplies",
+  "type": "tool",
+  "name": "Matériel de calligraphe",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 1000
+  }
+}

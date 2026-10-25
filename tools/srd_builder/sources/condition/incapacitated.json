@@ -1,0 +1,8 @@
+{
+  "id": "srd:condition:incapacitated",
+  "type": "condition",
+  "name": "Neutralisé",
+  "text": {
+    "fr": "Tant que vous avez l’état Neutralisé, vous subissez les effets suivants.\nInactif. Vous ne pouvez entreprendre ni action, ni action Bonus ni Réaction.\nConcentration brisée. Votre Concentration est brisée. Sans voix. Vous ne pouvez pas parler. Surpris. Si vous êtes Neutralisé au moment de jouer l’Initiative, vous subissez le Désavantage à ce jet."
+  }
+}

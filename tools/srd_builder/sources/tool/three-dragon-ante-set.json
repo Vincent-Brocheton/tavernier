@@ -1,0 +1,10 @@
+{
+  "id": "srd:tool:three-dragon-ante-set",
+  "type": "tool",
+  "name": "Boîte de jeux : jeu des dragons",
+  "data": {
+    "category": "gaming_set",
+    "ability": "srd:ability:wisdom",
+    "cost_cp": 100
+  }
+}

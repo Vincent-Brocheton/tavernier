@@ -1,0 +1,23 @@
+{
+  "id": "srd:weapon:trident",
+  "type": "weapon",
+  "name": "Trident",
+  "data": {
+    "category": "martial",
+    "kind": "melee",
+    "damage": "1d8",
+    "damage_type": "srd:damage-type:piercing",
+    "properties": [
+      "thrown",
+      "versatile"
+    ],
+    "versatile_damage": "1d10",
+    "range_feet": [
+      20,
+      60
+    ],
+    "mastery": "srd:mastery:topple",
+    "weight_kg": 2.0,
+    "cost_cp": 500
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:armor:chain-shirt",
+  "type": "armor",
+  "name": "Chemise de mailles",
+  "data": {
+    "category": "medium",
+    "base_ac": 13,
+    "dex_cap": 2,
+    "weight_kg": 10.0,
+    "cost_cp": 5000
+  }
+}
