@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   args: ^2.7.0
+  dnd_content:
+  path: ^1.9.0
 
 dev_dependencies:
   test: ^1.25.6
