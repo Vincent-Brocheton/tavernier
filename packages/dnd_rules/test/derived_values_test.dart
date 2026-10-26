@@ -127,8 +127,9 @@ void main() {
     test('armure de cuir : 11 + DEX sans plafond', () {
       final ac = _sheet((json) {
         final items = _list(json, 'items').cast<Map<String, Object?>>();
-        items.firstWhere((i) => i['item_id'] == 'srd:armor:chain-mail')
-          ..['item_id'] = 'srd:armor:leather';
+        items.firstWhere(
+          (i) => i['item_id'] == 'srd:armor:chain-mail',
+        )['item_id'] = 'srd:armor:leather';
       }).armorClass;
       expect(ac.value, 11 + 1 + 2 + 1);
     });
