@@ -8,6 +8,8 @@ import 'database.dart';
 /// Résultat de recherche dans le compendium.
 typedef SearchHit = ({String id, String type, String name});
 
+typedef _Statement = (String sql, List<Object?> args);
+
 /// Table de chaque type d'entité (cahier §11.1).
 const _tableOf = {
   'ability': 'ability',
@@ -35,14 +37,31 @@ final class PackStore {
 
   final TavernierDatabase _db;
 
-  /// Remplace le pack et toutes ses entités, dans une transaction.
+  /// Remplace le pack et toutes ses entités, dans une transaction. Lève
+  /// [StateError] si un identifiant d'entité appartient déjà à un autre pack.
   Future<void> importPack(ContentPack pack) => _db.transaction(() async {
     final m = pack.manifest;
-    await _db.customStatement('DELETE FROM content_search WHERE pack_id = ?', [
-      m.id,
-    ]);
-    await _db.customStatement('DELETE FROM content_pack WHERE id = ?', [m.id]);
-    await _insert('content_pack', {
+    final ids = {for (final e in pack.entities) '${e.id}'};
+    final taken = [
+      for (final row in await _select(
+        'SELECT entity_id FROM content_search WHERE pack_id <> ?',
+        [m.id],
+      ))
+        if (ids.contains(row['entity_id'])) row['entity_id']! as String,
+    ];
+    if (taken.isNotEmpty) {
+      throw StateError(
+        'identifiants déjà fournis par un autre pack : ${taken.join(', ')}',
+      );
+    }
+    final statements = <_Statement>[
+      ('DELETE FROM content_search WHERE pack_id = ?', [m.id]),
+      ('DELETE FROM content_pack WHERE id = ?', [m.id]),
+    ];
+    void insert(String table, Map<String, Object?> row) =>
+        statements.add(_insert(table, row));
+
+    insert('content_pack', {
       'id': m.id,
       'namespace': m.namespace,
       'name': m.name,
@@ -57,21 +76,31 @@ final class PackStore {
       'checksum': m.checksum,
     });
     for (final d in m.dependencies) {
-      await _insert('pack_dependency', {
+      insert('pack_dependency', {
         'pack_id': m.id,
         'depends_on_pack_id': d.id,
         'version_range': d.versionRange,
       });
     }
     for (final entity in pack.entities) {
-      await _importEntity(m.id, entity);
+      _importEntity(m.id, entity, insert);
     }
+    // Un seul aller-retour vers la base (worker sur le Web).
+    await _db.batch((b) {
+      for (final (sql, args) in statements) {
+        b.customStatement(sql, args);
+      }
+    });
   });
 
-  Future<void> _importEntity(String packId, ContentEntity entity) async {
+  void _importEntity(
+    String packId,
+    ContentEntity entity,
+    void Function(String table, Map<String, Object?> row) insert,
+  ) {
     final id = '${entity.id}';
-    Future<void> child(String table, Map<String, Object?> row) =>
-        _insert(table, {'pack_id': packId, ...row});
+    void child(String table, Map<String, Object?> row) =>
+        insert(table, {'pack_id': packId, ...row});
 
     final row = <String, Object?>{
       'id': id,
@@ -167,13 +196,13 @@ final class PackStore {
       case FeatureData(:final source, :final level):
         row.addAll({'source_id': '$source', 'level': level});
     }
-    await _insert(_tableOf[entity.type]!, row);
+    insert(_tableOf[entity.type]!, row);
 
     // Lignes rattachées : listes ordonnées des Historiques, espèces, classes.
     switch (entity.data) {
       case final BackgroundData b:
         for (final (i, ability) in b.abilities.indexed) {
-          await child('background_ability', {
+          child('background_ability', {
             'background_id': id,
             'position': i,
             'ability_id': '$ability',
@@ -184,21 +213,21 @@ final class PackStore {
           if (b.toolProficiency case final tool?) ('tool', '$tool'),
         ];
         for (final (i, (type, ref)) in proficiencies.indexed) {
-          await child('background_proficiency', {
+          child('background_proficiency', {
             'background_id': id,
             'position': i,
             'type': type,
             'ref_id': ref,
           });
         }
-        await child('background_equipment_option', {
+        child('background_equipment_option', {
           'background_id': id,
           'option': 'A',
           'items': jsonEncode([for (final q in b.equipmentA) q.toJson()]),
         });
       case final SpeciesData s:
         for (final (i, trait) in s.traits.indexed) {
-          await child('species_trait', {
+          child('species_trait', {
             'species_id': id,
             'position': i,
             'feature_id': '$trait',
@@ -206,7 +235,7 @@ final class PackStore {
         }
       case final ClassData c:
         for (final l in c.levels) {
-          await child('class_level', {
+          child('class_level', {
             'class_id': id,
             'level': l.level,
             'prof_bonus': l.proficiencyBonus,
@@ -216,7 +245,7 @@ final class PackStore {
         }
       case final SubclassData s:
         for (final (i, feature) in s.features.indexed) {
-          await child('subclass_feature', {
+          child('subclass_feature', {
             'subclass_id': id,
             'position': i,
             'feature_id': '$feature',
@@ -226,7 +255,7 @@ final class PackStore {
         break;
     }
     for (final (i, effect) in entity.effects.indexed) {
-      await child('effect', {
+      child('effect', {
         'owner_id': id,
         'owner_type': entity.type,
         'position': i,
@@ -234,13 +263,13 @@ final class PackStore {
       });
     }
     if (entity.textFr case final text?) {
-      await child('entity_text', {
+      child('entity_text', {
         'entity_id': id,
         'locale': 'fr',
         'description': text,
       });
     }
-    await _insert('content_search', {
+    insert('content_search', {
       'entity_id': id,
       'type': entity.type,
       'pack_id': packId,
@@ -478,12 +507,9 @@ final class PackStore {
     ];
   }
 
-  Future<void> _insert(
-    String table,
-    Map<String, Object?> row,
-  ) => _db.customStatement(
+  _Statement _insert(String table, Map<String, Object?> row) => (
     'INSERT INTO $table (${row.keys.join(', ')}) '
-    'VALUES (${List.filled(row.length, '?').join(', ')})',
+        'VALUES (${List.filled(row.length, '?').join(', ')})',
     [for (final value in row.values) value is bool ? (value ? 1 : 0) : value],
   );
 

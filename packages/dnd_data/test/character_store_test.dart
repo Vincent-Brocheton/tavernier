@@ -76,4 +76,16 @@ void main() {
     await store.save('c2', random);
     expect(await store.load('c2'), random);
   });
+
+  test(
+    'une entrée non validée (langue en double) est gardée telle quelle',
+    () async {
+      final aldric = CharacterInput.fromJson(_aldricJson());
+      final draft = aldric.copyWith(
+        languages: [...aldric.languages, aldric.languages.first],
+      );
+      await store.save('c1', draft);
+      expect(await store.load('c1'), draft);
+    },
+  );
 }

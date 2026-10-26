@@ -95,6 +95,10 @@ jobs:
       - name: Démarrer un simulateur iPhone
         run: |
           UDID=$(xcrun simctl list devices available -j             | jq -r '[.devices[][] | select(.name | startswith("iPhone"))][0].udid')
+          if [ -z "$UDID" ] || [ "$UDID" = null ]; then
+            echo "::error::Aucun simulateur iPhone disponible sur ce runner"
+            exit 1
+          fi
           xcrun simctl boot "$UDID"
           echo "SIMULATOR=$UDID" >> "$GITHUB_ENV"
       - name: Test d'intégration

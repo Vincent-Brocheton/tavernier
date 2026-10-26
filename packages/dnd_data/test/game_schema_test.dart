@@ -58,6 +58,27 @@ void main() {
     );
   });
 
+  test('supprimer une table de jeu supprime ses rencontres', () async {
+    await db.customStatement(
+      'INSERT INTO game_table (id, name, stat_method, long_rest_rule, '
+      "hp_on_level_rule, progression_mode) VALUES ('t1', 'Brumeval', "
+      "'point_buy', 'srd', 'average', 'xp')",
+    );
+    await db.customStatement(
+      'INSERT INTO session (id, table_id, date, title) '
+      "VALUES ('s1', 't1', 0, 'Séance 1')",
+    );
+    await db.customStatement(
+      'INSERT INTO encounter (id, session_id, status, hp_mode) '
+      "VALUES ('e1', 's1', 'draft', 'average')",
+    );
+    await db.customStatement("DELETE FROM game_table WHERE id = 't1'");
+    final count = await db
+        .customSelect('SELECT count(*) AS n FROM encounter')
+        .getSingle();
+    expect(count.read<int>('n'), 0);
+  });
+
   test('supprimer un personnage supprime ses données', () async {
     await insertCharacter();
     await db.customStatement(

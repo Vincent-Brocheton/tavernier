@@ -19320,10 +19320,6 @@ class $CharacterWeaponMasteriesTable extends CharacterWeaponMasteries
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  List<Set<GeneratedColumn>> get uniqueKeys => [
-    {characterId, slotIndex},
-  ];
-  @override
   CharacterWeaponMasteryRow map(
     Map<String, dynamic> data, {
     String? tablePrefix,
@@ -21990,10 +21986,6 @@ class $CharacterLanguagesTable extends CharacterLanguages
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  List<Set<GeneratedColumn>> get uniqueKeys => [
-    {characterId, languageId},
-  ];
-  @override
   CharacterLanguageRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return CharacterLanguageRow(
@@ -23297,7 +23289,7 @@ class $EncountersTable extends Encounters
     type: DriftSqlType.string,
     requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES session (id) ON DELETE SET NULL',
+      'REFERENCES session (id) ON DELETE CASCADE',
     ),
   );
   static const VerificationMeta _statusMeta = const VerificationMeta('status');
@@ -23422,6 +23414,8 @@ class $EncountersTable extends Encounters
 
 class EncounterRow extends DataClass implements Insertable<EncounterRow> {
   final String id;
+
+  /// Supprimée avec sa séance (donc avec sa table de jeu).
   final String? sessionId;
   final String status;
   final String? difficulty;
@@ -25944,7 +25938,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         'session',
         limitUpdateKind: UpdateKind.delete,
       ),
-      result: [TableUpdate('encounter', kind: UpdateKind.update)],
+      result: [TableUpdate('encounter', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(

@@ -2,7 +2,9 @@
 // `character_choice` pour stocker tout CharacterInput. Chaque table a une
 // clé primaire `id` textuelle (UUID v7 en M1), exigée par PowerSync (M2) ;
 // les tables de liaison gardent leurs colonnes de liaison sous un index
-// d'unicité. Colonnes JSON en texte.
+// d'unicité. Les listes d'un CharacterInput (langues, bottes…) n'en ont pas :
+// une entrée non encore validée se stocke telle quelle, dnd_rules signale
+// les doublons. Colonnes JSON en texte.
 import 'package:drift/drift.dart';
 
 /// Clé primaire `id` commune.
@@ -197,11 +199,6 @@ class CharacterWeaponMasteries extends Table with IdKey, CharacterOwned {
   String get tableName => 'character_weapon_mastery';
   TextColumn get weaponId => text()();
   IntColumn get slotIndex => integer()();
-
-  @override
-  List<Set<Column<Object>>> get uniqueKeys => [
-    {characterId, slotIndex},
-  ];
 }
 
 @DataClassName('CharacterSpellRow')
@@ -272,11 +269,6 @@ class CharacterLanguages extends Table with IdKey, CharacterOwned {
   String get tableName => 'character_language';
   TextColumn get languageId => text()();
   IntColumn get position => integer()();
-
-  @override
-  List<Set<Column<Object>>> get uniqueKeys => [
-    {characterId, languageId},
-  ];
 }
 
 @DataClassName('CharacterChoiceRow')
@@ -314,10 +306,12 @@ class Sessions extends Table with IdKey, TableOwned {
 class Encounters extends Table with IdKey {
   @override
   String get tableName => 'encounter';
+
+  /// Supprimée avec sa séance (donc avec sa table de jeu).
   TextColumn get sessionId => text().nullable().references(
     Sessions,
     #id,
-    onDelete: KeyAction.setNull,
+    onDelete: KeyAction.cascade,
   )();
   TextColumn get status => text()();
   TextColumn get difficulty => text().nullable()();

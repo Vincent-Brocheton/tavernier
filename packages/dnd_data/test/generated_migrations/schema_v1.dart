@@ -3927,10 +3927,6 @@ class CharacterWeaponMastery extends Table with TableInfo {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  List<Set<GeneratedColumn>> get uniqueKeys => [
-    {characterId, slotIndex},
-  ];
-  @override
   Never map(Map<String, dynamic> data, {String? tablePrefix}) {
     throw UnsupportedError('TableInfo.map in schema verification code');
   }
@@ -3941,10 +3937,7 @@ class CharacterWeaponMastery extends Table with TableInfo {
   }
 
   @override
-  List<String> get customConstraints => const [
-    'PRIMARY KEY(id)',
-    'UNIQUE(character_id, slot_index)',
-  ];
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
   @override
   bool get dontWriteConstraints => true;
 }
@@ -4474,10 +4467,6 @@ class CharacterLanguage extends Table with TableInfo {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  List<Set<GeneratedColumn>> get uniqueKeys => [
-    {characterId, languageId},
-  ];
-  @override
   Never map(Map<String, dynamic> data, {String? tablePrefix}) {
     throw UnsupportedError('TableInfo.map in schema verification code');
   }
@@ -4488,10 +4477,7 @@ class CharacterLanguage extends Table with TableInfo {
   }
 
   @override
-  List<String> get customConstraints => const [
-    'PRIMARY KEY(id)',
-    'UNIQUE(character_id, language_id)',
-  ];
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
   @override
   bool get dontWriteConstraints => true;
 }
@@ -4736,7 +4722,7 @@ class Encounter extends Table with TableInfo {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    $customConstraints: 'NULL REFERENCES session(id)ON DELETE SET NULL',
+    $customConstraints: 'NULL REFERENCES session(id)ON DELETE CASCADE',
   );
   late final GeneratedColumn<String> status = GeneratedColumn<String>(
     'status',
@@ -5649,7 +5635,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
         'session',
         limitUpdateKind: UpdateKind.delete,
       ),
-      result: [TableUpdate('encounter', kind: UpdateKind.update)],
+      result: [TableUpdate('encounter', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(

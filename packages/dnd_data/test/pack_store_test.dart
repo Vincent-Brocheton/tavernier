@@ -49,6 +49,37 @@ void main() {
       expect(exported!.manifest.toJson(), archived.manifest.toJson());
     });
 
+    test('un identifiant déjà pris par un autre pack est refusé', () async {
+      await store.importPack(srdPack);
+      final copy = ContentPack(
+        manifest: const PackManifest(
+          id: '00000000-0000-0000-0000-000000000001',
+          namespace: 'srd',
+          name: 'Copie',
+          version: '1.0.0',
+          origin: PackOrigin.local,
+          author: 'MJ',
+          licence: 'CC-BY-4.0',
+          locale: 'fr',
+        ),
+        entities: srdPack.entities,
+      );
+      await expectLater(
+        store.importPack(copy),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('srd:feat:alert'),
+          ),
+        ),
+      );
+      expect(
+        (await store.exportPack(srdPack.manifest.id))!.entities,
+        hasLength(188),
+      );
+    });
+
     test('un pack absent donne null', () async {
       expect(
         await store.exportPack('00000000-0000-0000-0000-000000000000'),

@@ -101,8 +101,8 @@ final class CharacterStore {
           'position': i,
         });
       }
-      for (final m in character.weaponMasteries) {
-        await insert('character_weapon_mastery', '${m.slotIndex}', {
+      for (final (i, m) in character.weaponMasteries.indexed) {
+        await insert('character_weapon_mastery', '$i', {
           'weapon_id': m.weaponId,
           'slot_index': m.slotIndex,
         });

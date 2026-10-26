@@ -4409,12 +4409,6 @@
         "constraints": [],
         "explicit_pk": [
           "id"
-        ],
-        "unique_keys": [
-          [
-            "character_id",
-            "slot_index"
-          ]
         ]
       }
     },
@@ -5030,12 +5024,6 @@
         "constraints": [],
         "explicit_pk": [
           "id"
-        ],
-        "unique_keys": [
-          [
-            "character_id",
-            "language_id"
-          ]
         ]
       }
     },
@@ -5316,9 +5304,9 @@
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES session (id) ON DELETE SET NULL",
+            "defaultConstraints": "REFERENCES session (id) ON DELETE CASCADE",
             "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES session (id) ON DELETE SET NULL"
+              "sqlite": "REFERENCES session (id) ON DELETE CASCADE"
             },
             "default_dart": null,
             "default_client_dart": null,
@@ -5331,7 +5319,7 @@
                   },
                   "initially_deferred": false,
                   "on_update": null,
-                  "on_delete": "setNull"
+                  "on_delete": "cascade"
                 }
               }
             ]
@@ -6169,7 +6157,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_weapon_mastery\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"weapon_id\" TEXT NOT NULL, \"slot_index\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"slot_index\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_weapon_mastery\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"weapon_id\" TEXT NOT NULL, \"slot_index\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6223,7 +6211,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_language\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"language_id\" TEXT NOT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"language_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_language\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"language_id\" TEXT NOT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6259,7 +6247,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"session_id\" TEXT NULL REFERENCES session (id) ON DELETE SET NULL, \"status\" TEXT NOT NULL, \"difficulty\" TEXT NULL, \"hp_mode\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"session_id\" TEXT NULL REFERENCES session (id) ON DELETE CASCADE, \"status\" TEXT NOT NULL, \"difficulty\" TEXT NULL, \"hp_mode\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
