@@ -6,7 +6,7 @@
 ## 2. Volume de 10 000 entités
 
 - [x] 2.1 `integration_test/web_storage_test.dart` : pack synthétique de 10 000 dons valides, import, fermeture, réouverture, comptage (10 000), recherche « Aiguille 4242 » trouvée, relecture d'Aldric n1 ; ligne `T01 …` avec les durées. Vérifier qu'il passe sur Chrome (isolé et non isolé) et Edge en local, et sur Android
-- [ ] 2.2 Point d'entrée de développement `tool/t01_persistence.dart` (compteur écrit et incrémenté à chaque lancement) ; vérifier à la main sur Chrome, Edge et Firefox, port 8123, que le compteur survit à la fermeture du navigateur
+- [x] 2.2 Point d'entrée de développement `tool/t01_persistence.dart` (compteur écrit et incrémenté à chaque lancement) ; vérifier à la main sur Chrome, Edge et Firefox, port 8123, que le compteur survit à la fermeture du navigateur
 
 ## 3. CI
 
