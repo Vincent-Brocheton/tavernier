@@ -20,7 +20,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  # Une étiquette autre que « update-goldens » ne lance aucun job : son run
+  # a son propre groupe, pour ne pas annuler le run utile en cours.
+  group: >-
+    ${{ github.event.action == 'labeled' && github.event.label.name != 'update-goldens'
+    && format('ci-etiquette-{0}', github.run_id) || format('ci-{0}', github.ref) }}
   # Sur main, chaque fusion garde son run : on n'annule que les PR.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
