@@ -23,7 +23,7 @@
 
 ## 6. Golden et CI
 
-- [ ] 6.1 Planche golden `test/golden/kit_golden_test.dart` (marquée `golden`, ignorée hors Linux) ; job CI qui l'exécute, déclenchement manuel `update_goldens` qui publie les références en artefact ; références générées en CI et commitées ; vérifier que le job passe
+- [x] 6.1 Planche golden `test/golden/kit_golden_test.dart` (marquée `golden`, ignorée hors Linux) ; job CI qui l'exécute, déclenchement manuel `update_goldens` qui publie les références en artefact ; références générées en CI et commitées ; vérifier que le job passe
 - [x] 6.2 Couverture de `dnd_ui_kit` ≥ 90 % dans `melos run coverage` ; README du kit et CLAUDE.md (polices, tokens, régénération des goldens)
 
 ## 7. Intégration
