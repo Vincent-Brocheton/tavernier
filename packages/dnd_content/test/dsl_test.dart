@@ -192,6 +192,34 @@ void main() {
         },
       }, 'effects[0].count.by_level.un');
     });
+    test('un dé dans by_level hors du champ die', () {
+      _expectIssueAt({
+        'op': 'grant_resource',
+        'id': 'srd:resource:x',
+        'max': {
+          'by_level': {'1': 'd6'},
+        },
+        'recharge': [
+          {'on': 'long_rest', 'amount': 'all'},
+        ],
+      }, 'effects[0].max.by_level.1');
+    });
+    test('un dé dans by_level est accepté pour le champ die', () {
+      expect(
+        validateEffect({
+          'op': 'grant_resource',
+          'id': 'srd:resource:x',
+          'max': 2,
+          'die': {
+            'by_level': {'1': 'd6', '5': 'd8'},
+          },
+          'recharge': [
+            {'on': 'long_rest', 'amount': 'all'},
+          ],
+        }, 'effects[0]'),
+        isEmpty,
+      );
+    });
     test('un effet qui n\'est pas un objet', () {
       _expectIssueAt({'op': 42}, 'effects[0].op');
       expect(validateEffect('modify_ac', 'effects[0]'), isNotEmpty);

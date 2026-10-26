@@ -173,6 +173,21 @@ Les valeurs de base SHALL respecter la méthode déclarée : acquisition par poi
 - **WHEN** des bases en acquisition par points coûtent 29 points
 - **THEN** la fiche signale une erreur de génération des valeurs
 
+### Requirement: Choix conformes
+Chaque effet `choice` actif SHALL recevoir exactement `count` sélections, chacune correspondant à une option. Les choix d'un don SHALL être rangés dans l'instance de ce don, pour qu'un don répétable pris deux fois garde deux sélections distinctes ; les autres choix sont rangés par identifiant de choix.
+
+#### Scenario: Trop de sélections
+- **WHEN** un Humain sélectionne deux compétences pour Compétent
+- **THEN** la fiche signale une erreur de choix et n'accorde aucune des deux maîtrises
+
+#### Scenario: Choix manquant
+- **WHEN** un Humain n'a rien sélectionné pour Compétent
+- **THEN** la fiche signale une erreur de choix
+
+#### Scenario: Don répétable pris deux fois
+- **WHEN** un personnage prend Doué deux fois avec trois compétences différentes à chaque fois
+- **THEN** il maîtrise les six compétences
+
 ### Requirement: Erreurs signalées sans interrompre le calcul
 Un personnage invalide SHALL produire une fiche calculée accompagnée de ses erreurs d'intégrité (règle, chemin, message), jamais une exception. Un identifiant absent du contenu actif SHALL produire une erreur de référence.
 

@@ -84,6 +84,7 @@ enum IntegrityRule {
   featGrant,
   weaponMastery,
   multiclass,
+  choice,
   reference,
 }
 

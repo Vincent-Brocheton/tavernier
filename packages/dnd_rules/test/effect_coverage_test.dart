@@ -28,11 +28,15 @@ final _variants = <String, void Function(Map<String, Object?> json)?>{
     _classFeat(json)['feat_id'] = 'srd:feat:archery';
   },
   'srd:feat:skilled': (json) {
-    _speciesFeat(json)['feat_id'] = 'srd:feat:skilled';
-    json['choices'] = {
-      'skillful': ['srd:skill:insight'],
-      'skilled': ['srd:skill:arcana', 'srd:skill:history', 'srd:skill:nature'],
-    };
+    _speciesFeat(json)
+      ..['feat_id'] = 'srd:feat:skilled'
+      ..['choices'] = {
+        'skilled': [
+          'srd:skill:arcana',
+          'srd:skill:history',
+          'srd:skill:nature',
+        ],
+      };
   },
 };
 

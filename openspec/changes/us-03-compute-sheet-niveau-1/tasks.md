@@ -43,6 +43,12 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 - [x] 8.2 Mettre à jour `packages/dnd_rules/README.md` (point d'entrée, format d'entrée) et le README des fixtures (format `choices`) ; vérifier la relecture des deux fichiers
 - [x] 8.3 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts, couverture de `dnd_rules` ≥ 95 %
 
+## 9. Revue de code de la PR
+
+- [x] 9.1 Le validateur du DSL refuse un dé dans `by_level` hors du champ `die` ; vérifier par un test de `dnd_content`
+- [x] 9.2 « Choix conformes » : nombre de sélections, sélection hors options, choix des dons par instance ; vérifier par les scénarios de la spec
+- [x] 9.3 `when.level` et la référence `class_level` d'une classe nommée sont respectés ; vérifier par un test chacun
+
 ## Workflow follow-up
 
 - Revue `code-review` de la pull request, CI verte, fusion.

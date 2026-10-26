@@ -94,6 +94,65 @@ void main() {
     });
   });
 
+  test('when.level : effet inactif sous le niveau indiqué', () {
+    expect(
+      _sheet([
+        {
+          'op': 'modify_ac',
+          'value': 1,
+          'when': {'level': 5},
+        },
+      ]).armorClass.value,
+      19,
+    );
+  });
+
+  test('class_level désigne le niveau de la classe nommée', () {
+    final second =
+        srdPack.entities
+            .firstWhere((e) => '${e.id}' == 'srd:class:fighter')
+            .toJson()
+          ..['id'] = 'test:class:second';
+    (second['data']! as Map<String, Object?>)
+      ..['primary_abilities'] = ['srd:ability:constitution']
+      ..['levels'] = [
+        {'level': 1, 'proficiency_bonus': 2},
+      ];
+    Map<String, Object?> resource(String id, Map<String, Object?> max) => {
+      'op': 'grant_resource',
+      'id': id,
+      'max': max,
+      'recharge': [
+        {'on': 'long_rest', 'amount': 'all'},
+      ],
+    };
+    final content = ActiveContent([
+      ..._humanWith([
+        resource('test:resource:fighter', {
+          'ref': 'class_level',
+          'class': 'srd:class:fighter',
+          'times': 5,
+        }),
+        resource('test:resource:any', {'ref': 'class_level'}),
+      ]).packs,
+      ContentPack(
+        manifest: srdPack.manifest,
+        entities: [parseEntity(second, 'test').entity!],
+      ),
+    ]);
+    final sheet = computeSheet(
+      aldric(
+        (json) => (json['class_levels']! as List<Object?>).add({
+          'class_id': 'test:class:second',
+          'level': 1,
+        }),
+      ),
+      content,
+    );
+    expect(sheet.resources['test:resource:fighter'], 5);
+    expect(sheet.resources['test:resource:any'], 2);
+  });
+
   test('modify_speed walk ajoute un bonus en pieds', () {
     final sheet = _sheet([
       {
