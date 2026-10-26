@@ -13,4 +13,6 @@ final class ActiveContent {
   final Map<String, ContentEntity> _byId;
 
   ContentEntity? entity(String id) => _byId[id];
+
+  Iterable<ContentEntity> get entities => _byId.values;
 }

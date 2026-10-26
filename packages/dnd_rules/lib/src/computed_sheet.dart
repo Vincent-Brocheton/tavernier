@@ -28,6 +28,13 @@ final class Computed {
   final int value;
 }
 
+/// Initiative : valeur décomposée et Avantage éventuel.
+final class Initiative extends Computed {
+  Initiative(super.sources, {required this.advantage});
+
+  final bool advantage;
+}
+
 /// Valeur de caractéristique et son modificateur (SRD p. 22).
 final class AbilityScore extends Computed {
   AbilityScore(super.sources);
@@ -72,6 +79,17 @@ final class ComputedSheet {
     required this.proficiencyBonus,
     required this.abilities,
     required this.pointBuyCost,
+    required this.savingThrows,
+    required this.savingThrowProficiencies,
+    required this.skills,
+    required this.skillProficiencies,
+    required this.passivePerception,
+    required this.initiative,
+    required this.armorClass,
+    required this.speedFeet,
+    required this.hitPointsMax,
+    required this.hitDice,
+    required this.resources,
     required this.integrityErrors,
   });
 
@@ -83,6 +101,23 @@ final class ComputedSheet {
 
   /// Coût en points, pour la méthode « Acquisition par points ».
   final int? pointBuyCost;
+
+  /// Par code de caractéristique.
+  final Map<String, int> savingThrows;
+  final List<String> savingThrowProficiencies;
+
+  /// Par compétence, clé en snake_case (`animal_handling`).
+  final Map<String, int> skills;
+  final List<String> skillProficiencies;
+  final int passivePerception;
+  final Initiative initiative;
+  final Computed armorClass;
+  final int speedFeet;
+  final Computed hitPointsMax;
+  final ({String die, int total}) hitDice;
+
+  /// Maximum de chaque ressource, par clé (`srd:resource:second-wind`).
+  final Map<String, int> resources;
   final List<IntegrityError> integrityErrors;
 
   Map<String, Object?> toJson() => {
@@ -93,9 +128,31 @@ final class ComputedSheet {
       for (final MapEntry(:key, :value) in abilities.entries)
         key: {'score': value.value, 'modifier': value.modifier},
     },
+    'saving_throws': savingThrows,
+    'saving_throw_proficiencies': savingThrowProficiencies,
+    'skills': skills,
+    'skill_proficiencies': skillProficiencies,
+    'passive_perception': passivePerception,
+    'initiative': {
+      'bonus': initiative.value,
+      'advantage': initiative.advantage,
+    },
+    'armor_class': armorClass.value,
+    'speed_feet': speedFeet,
+    'hit_points_max': hitPointsMax.value,
+    'hit_dice': {'die': hitDice.die, 'total': hitDice.total},
+    'resources': [
+      for (final MapEntry(:key, :value) in resources.entries)
+        {'id': key, 'max': value},
+    ],
     'integrity_errors': [for (final e in integrityErrors) e.toJson()],
     'sources': {
-      for (final MapEntry(:key, :value) in abilities.entries)
+      for (final MapEntry(:key, :value) in {
+        ...abilities,
+        'armor_class': armorClass,
+        'initiative': initiative,
+        'hit_points_max': hitPointsMax,
+      }.entries)
         key: [for (final c in value.sources) c.toJson()],
     },
   };
