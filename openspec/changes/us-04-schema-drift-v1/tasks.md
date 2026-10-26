@@ -22,8 +22,8 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 5. Données de jeu (§11.2)
 
-- [ ] 5.1 Test « Base neuve » étendu aux tables du §11.2 (+ `character_language`, `character_choice`) et test « Tables de liaison » (clé primaire = `id`) ; écrire ces tables avec leurs index d'unicité
-- [ ] 5.2 Tests « Niveau de classe orphelin » et « Suppression d'un personnage » ; clés étrangères et cascades depuis `character`
+- [x] 5.1 Test « Base neuve » étendu aux tables du §11.2 (+ `character_language`, `character_choice`) et test « Tables de liaison » (clé primaire = `id`) ; écrire ces tables avec leurs index d'unicité
+- [x] 5.2 Tests « Niveau de classe orphelin » et « Suppression d'un personnage » ; clés étrangères et cascades depuis `character`
 
 ## 6. Enregistrement d'un personnage
 

@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 
 import 'content_tables.dart';
+import 'game_tables.dart';
 
 part 'database.g.dart';
 
@@ -40,6 +41,32 @@ part 'database.g.dart';
     StudyReveals,
     Effects,
     EntityTexts,
+    Profiles,
+    GameTables,
+    TableMembers,
+    TableInvites,
+    TablePacks,
+    TableBannedEntities,
+    Characters,
+    CharacterBaseScores,
+    CharacterBackgroundChoices,
+    CharacterClassLevels,
+    CharacterFeats,
+    CharacterWeaponMasteries,
+    CharacterSpells,
+    CharacterItems,
+    CharacterStates,
+    CharacterContentRefs,
+    CharacterChangeLogs,
+    CharacterLanguages,
+    CharacterChoices,
+    NpcStatblocks,
+    Sessions,
+    Encounters,
+    Combatants,
+    EncounterEvents,
+    Notes,
+    AuthorIdentities,
   ],
   include: {'content_search.drift'},
 )
