@@ -9,8 +9,8 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 ## 2. Entrée du personnage et contenu actif
 
-- [ ] 2.1 Test : `CharacterInput.fromJson` lit l'entrée de `aldric_n1.json` et refuse un champ inconnu ; aligner la fixture (`choices.skillful`, `srd:resource:heroic-inspiration`) sans toucher aux valeurs attendues ; implémenter `CharacterInput` (freezed)
-- [ ] 2.2 Test : `ActiveContent` retrouve une entité du pack SRD chargé depuis les sources, et renvoie `null` pour un identifiant absent ; implémenter `ActiveContent`
+- [x] 2.1 Test : `CharacterInput.fromJson` lit l'entrée de `aldric_n1.json` et refuse un champ inconnu ; aligner la fixture (`choices.skillful`, `srd:resource:heroic-inspiration`) sans toucher aux valeurs attendues ; implémenter `CharacterInput` (freezed)
+- [x] 2.2 Test : `ActiveContent` retrouve une entité du pack SRD chargé depuis les sources, et renvoie `null` pour un identifiant absent ; implémenter `ActiveContent`
 
 ## 3. Caractéristiques et génération
 
