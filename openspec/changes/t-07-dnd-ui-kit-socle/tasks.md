@@ -10,7 +10,7 @@
 
 ## 3. Icônes
 
-- [ ] 3.1 Tests qui échouent : 15 états, 13 dégâts, 3 actions, 8 écoles, chaque tracé lisible par `path_parsing` ; `GameIcon` rendu à la taille de l'`IconTheme`, libellé sémantique présent ou exclu ; puis `game_icons.dart` (tracés des maquettes, 8 dégâts dessinés et marqués) et `game_icon.dart`
+- [x] 3.1 Tests qui échouent : 15 états, 13 dégâts, 3 actions, 8 écoles, chaque tracé lisible par `path_parsing` ; `GameIcon` rendu à la taille de l'`IconTheme`, libellé sémantique présent ou exclu ; puis `game_icons.dart` (tracés des maquettes, 8 dégâts dessinés et marqués) et `game_icon.dart`
 
 ## 4. Navigation et accessibilité
 
