@@ -52,7 +52,7 @@ void main() {
     final aldric = CharacterInput.fromJson(_aldricJson());
     await store.save('c1', aldric);
     await db.customStatement(
-      "INSERT INTO character_state (id, character_id, hp_current) "
+      'INSERT INTO character_state (id, character_id, hp_current) '
       "VALUES ('s1', 'c1', 34)",
     );
     await store.save('c1', aldric.copyWith(xp: 300));

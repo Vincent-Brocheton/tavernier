@@ -1,7 +1,6 @@
 // Spec local-database : « Migrations versionnées ». Le schéma qu'une base
 // neuve reçoit du code doit être identique à l'instantané de sa version :
 // changer une table sans nouvelle version fait échouer ce test.
-import 'package:dnd_data/dnd_data.dart';
 import 'package:drift_dev/api/migrations_native.dart';
 import 'package:test/test.dart';
 
