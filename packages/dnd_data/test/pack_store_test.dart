@@ -42,6 +42,13 @@ void main() {
       );
     });
 
+    test("un pack lu d'une archive garde tout son manifeste", () async {
+      final archived = readDndpack(writeDndpack(srdPack));
+      await store.importPack(archived);
+      final exported = await store.exportPack(archived.manifest.id);
+      expect(exported!.manifest.toJson(), archived.manifest.toJson());
+    });
+
     test('un pack absent donne null', () async {
       expect(
         await store.exportPack('00000000-0000-0000-0000-000000000000'),

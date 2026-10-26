@@ -24,6 +24,7 @@ void main() {
   late ContentPack pack;
   late Map<String, ContentEntity> byId;
   late StringBuffer err;
+  late List<int> built;
 
   setUpAll(() {
     final out = Directory.systemTemp.createTempSync('srd_sample_');
@@ -42,7 +43,8 @@ void main() {
       err,
     );
     expect(code, 0, reason: '$err');
-    pack = readDndpack(File(target).readAsBytesSync());
+    built = File(target).readAsBytesSync();
+    pack = readDndpack(built);
     byId = {for (final e in pack.entities) '${e.id}': e};
   });
 
@@ -58,6 +60,17 @@ void main() {
       expect(pack.manifest.origin, PackOrigin.srd);
     },
   );
+
+  test("le pack embarqué dans l'app est celui des sources", () {
+    final asset = File(
+      p.join(_repo, 'apps/game_table/assets/packs/srd-5.2.1-fr.dndpack'),
+    );
+    expect(
+      asset.readAsBytesSync(),
+      built,
+      reason: 'régénérer avec srd_builder build --out ${asset.path}',
+    );
+  });
 
   test('l\'échantillon vertical est complet', () {
     expect(byId, contains('srd:class:fighter'));

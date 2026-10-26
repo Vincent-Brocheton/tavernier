@@ -20,6 +20,7 @@ class ContentPacks extends Table {
   TextColumn get attribution => text().nullable()();
   IntColumn get dslVersion => integer()();
   TextColumn get locale => text()();
+  IntColumn get entityCount => integer().nullable()();
   TextColumn get checksum => text().nullable()();
   TextColumn get signature => text().nullable()();
 

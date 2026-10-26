@@ -484,6 +484,17 @@ class $ContentPacksTable extends ContentPacks
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _entityCountMeta = const VerificationMeta(
+    'entityCount',
+  );
+  @override
+  late final GeneratedColumn<int> entityCount = GeneratedColumn<int>(
+    'entity_count',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _checksumMeta = const VerificationMeta(
     'checksum',
   );
@@ -518,6 +529,7 @@ class $ContentPacksTable extends ContentPacks
     attribution,
     dslVersion,
     locale,
+    entityCount,
     checksum,
     signature,
   ];
@@ -611,6 +623,15 @@ class $ContentPacksTable extends ContentPacks
     } else if (isInserting) {
       context.missing(_localeMeta);
     }
+    if (data.containsKey('entity_count')) {
+      context.handle(
+        _entityCountMeta,
+        entityCount.isAcceptableOrUnknown(
+          data['entity_count']!,
+          _entityCountMeta,
+        ),
+      );
+    }
     if (data.containsKey('checksum')) {
       context.handle(
         _checksumMeta,
@@ -672,6 +693,10 @@ class $ContentPacksTable extends ContentPacks
         DriftSqlType.string,
         data['${effectivePrefix}locale'],
       )!,
+      entityCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}entity_count'],
+      ),
       checksum: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}checksum'],
@@ -700,6 +725,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
   final String? attribution;
   final int dslVersion;
   final String locale;
+  final int? entityCount;
   final String? checksum;
   final String? signature;
   const ContentPackRow({
@@ -713,6 +739,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     this.attribution,
     required this.dslVersion,
     required this.locale,
+    this.entityCount,
     this.checksum,
     this.signature,
   });
@@ -731,6 +758,9 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     }
     map['dsl_version'] = Variable<int>(dslVersion);
     map['locale'] = Variable<String>(locale);
+    if (!nullToAbsent || entityCount != null) {
+      map['entity_count'] = Variable<int>(entityCount);
+    }
     if (!nullToAbsent || checksum != null) {
       map['checksum'] = Variable<String>(checksum);
     }
@@ -754,6 +784,9 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           : Value(attribution),
       dslVersion: Value(dslVersion),
       locale: Value(locale),
+      entityCount: entityCount == null && nullToAbsent
+          ? const Value.absent()
+          : Value(entityCount),
       checksum: checksum == null && nullToAbsent
           ? const Value.absent()
           : Value(checksum),
@@ -779,6 +812,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
       attribution: serializer.fromJson<String?>(json['attribution']),
       dslVersion: serializer.fromJson<int>(json['dslVersion']),
       locale: serializer.fromJson<String>(json['locale']),
+      entityCount: serializer.fromJson<int?>(json['entityCount']),
       checksum: serializer.fromJson<String?>(json['checksum']),
       signature: serializer.fromJson<String?>(json['signature']),
     );
@@ -797,6 +831,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
       'attribution': serializer.toJson<String?>(attribution),
       'dslVersion': serializer.toJson<int>(dslVersion),
       'locale': serializer.toJson<String>(locale),
+      'entityCount': serializer.toJson<int?>(entityCount),
       'checksum': serializer.toJson<String?>(checksum),
       'signature': serializer.toJson<String?>(signature),
     };
@@ -813,6 +848,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     Value<String?> attribution = const Value.absent(),
     int? dslVersion,
     String? locale,
+    Value<int?> entityCount = const Value.absent(),
     Value<String?> checksum = const Value.absent(),
     Value<String?> signature = const Value.absent(),
   }) => ContentPackRow(
@@ -826,6 +862,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     attribution: attribution.present ? attribution.value : this.attribution,
     dslVersion: dslVersion ?? this.dslVersion,
     locale: locale ?? this.locale,
+    entityCount: entityCount.present ? entityCount.value : this.entityCount,
     checksum: checksum.present ? checksum.value : this.checksum,
     signature: signature.present ? signature.value : this.signature,
   );
@@ -845,6 +882,9 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           ? data.dslVersion.value
           : this.dslVersion,
       locale: data.locale.present ? data.locale.value : this.locale,
+      entityCount: data.entityCount.present
+          ? data.entityCount.value
+          : this.entityCount,
       checksum: data.checksum.present ? data.checksum.value : this.checksum,
       signature: data.signature.present ? data.signature.value : this.signature,
     );
@@ -863,6 +903,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           ..write('attribution: $attribution, ')
           ..write('dslVersion: $dslVersion, ')
           ..write('locale: $locale, ')
+          ..write('entityCount: $entityCount, ')
           ..write('checksum: $checksum, ')
           ..write('signature: $signature')
           ..write(')'))
@@ -881,6 +922,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     attribution,
     dslVersion,
     locale,
+    entityCount,
     checksum,
     signature,
   );
@@ -898,6 +940,7 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           other.attribution == this.attribution &&
           other.dslVersion == this.dslVersion &&
           other.locale == this.locale &&
+          other.entityCount == this.entityCount &&
           other.checksum == this.checksum &&
           other.signature == this.signature);
 }
@@ -913,6 +956,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
   final Value<String?> attribution;
   final Value<int> dslVersion;
   final Value<String> locale;
+  final Value<int?> entityCount;
   final Value<String?> checksum;
   final Value<String?> signature;
   final Value<int> rowid;
@@ -927,6 +971,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     this.attribution = const Value.absent(),
     this.dslVersion = const Value.absent(),
     this.locale = const Value.absent(),
+    this.entityCount = const Value.absent(),
     this.checksum = const Value.absent(),
     this.signature = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -942,6 +987,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     this.attribution = const Value.absent(),
     required int dslVersion,
     required String locale,
+    this.entityCount = const Value.absent(),
     this.checksum = const Value.absent(),
     this.signature = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -965,6 +1011,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     Expression<String>? attribution,
     Expression<int>? dslVersion,
     Expression<String>? locale,
+    Expression<int>? entityCount,
     Expression<String>? checksum,
     Expression<String>? signature,
     Expression<int>? rowid,
@@ -980,6 +1027,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
       if (attribution != null) 'attribution': attribution,
       if (dslVersion != null) 'dsl_version': dslVersion,
       if (locale != null) 'locale': locale,
+      if (entityCount != null) 'entity_count': entityCount,
       if (checksum != null) 'checksum': checksum,
       if (signature != null) 'signature': signature,
       if (rowid != null) 'rowid': rowid,
@@ -997,6 +1045,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     Value<String?>? attribution,
     Value<int>? dslVersion,
     Value<String>? locale,
+    Value<int?>? entityCount,
     Value<String?>? checksum,
     Value<String?>? signature,
     Value<int>? rowid,
@@ -1012,6 +1061,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
       attribution: attribution ?? this.attribution,
       dslVersion: dslVersion ?? this.dslVersion,
       locale: locale ?? this.locale,
+      entityCount: entityCount ?? this.entityCount,
       checksum: checksum ?? this.checksum,
       signature: signature ?? this.signature,
       rowid: rowid ?? this.rowid,
@@ -1051,6 +1101,9 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     if (locale.present) {
       map['locale'] = Variable<String>(locale.value);
     }
+    if (entityCount.present) {
+      map['entity_count'] = Variable<int>(entityCount.value);
+    }
     if (checksum.present) {
       map['checksum'] = Variable<String>(checksum.value);
     }
@@ -1076,6 +1129,7 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
           ..write('attribution: $attribution, ')
           ..write('dslVersion: $dslVersion, ')
           ..write('locale: $locale, ')
+          ..write('entityCount: $entityCount, ')
           ..write('checksum: $checksum, ')
           ..write('signature: $signature, ')
           ..write('rowid: $rowid')
@@ -26141,6 +26195,7 @@ typedef $$ContentPacksTableCreateCompanionBuilder =
       Value<String?> attribution,
       required int dslVersion,
       required String locale,
+      Value<int?> entityCount,
       Value<String?> checksum,
       Value<String?> signature,
       Value<int> rowid,
@@ -26157,6 +26212,7 @@ typedef $$ContentPacksTableUpdateCompanionBuilder =
       Value<String?> attribution,
       Value<int> dslVersion,
       Value<String> locale,
+      Value<int?> entityCount,
       Value<String?> checksum,
       Value<String?> signature,
       Value<int> rowid,
@@ -26815,6 +26871,11 @@ class $$ContentPacksTableFilterComposer
 
   ColumnFilters<String> get locale => $composableBuilder(
     column: $table.locale,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get entityCount => $composableBuilder(
+    column: $table.entityCount,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -27641,6 +27702,11 @@ class $$ContentPacksTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get entityCount => $composableBuilder(
+    column: $table.entityCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get checksum => $composableBuilder(
     column: $table.checksum,
     builder: (column) => ColumnOrderings(column),
@@ -27694,6 +27760,11 @@ class $$ContentPacksTableAnnotationComposer
 
   GeneratedColumn<String> get locale =>
       $composableBuilder(column: $table.locale, builder: (column) => column);
+
+  GeneratedColumn<int> get entityCount => $composableBuilder(
+    column: $table.entityCount,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get checksum =>
       $composableBuilder(column: $table.checksum, builder: (column) => column);
@@ -28531,6 +28602,7 @@ class $$ContentPacksTableTableManager
                 Value<String?> attribution = const Value.absent(),
                 Value<int> dslVersion = const Value.absent(),
                 Value<String> locale = const Value.absent(),
+                Value<int?> entityCount = const Value.absent(),
                 Value<String?> checksum = const Value.absent(),
                 Value<String?> signature = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -28545,6 +28617,7 @@ class $$ContentPacksTableTableManager
                 attribution: attribution,
                 dslVersion: dslVersion,
                 locale: locale,
+                entityCount: entityCount,
                 checksum: checksum,
                 signature: signature,
                 rowid: rowid,
@@ -28561,6 +28634,7 @@ class $$ContentPacksTableTableManager
                 Value<String?> attribution = const Value.absent(),
                 required int dslVersion,
                 required String locale,
+                Value<int?> entityCount = const Value.absent(),
                 Value<String?> checksum = const Value.absent(),
                 Value<String?> signature = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -28575,6 +28649,7 @@ class $$ContentPacksTableTableManager
                 attribution: attribution,
                 dslVersion: dslVersion,
                 locale: locale,
+                entityCount: entityCount,
                 checksum: checksum,
                 signature: signature,
                 rowid: rowid,

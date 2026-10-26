@@ -53,6 +53,7 @@ final class PackStore {
       'attribution': m.attribution,
       'dsl_version': m.dslVersion,
       'locale': m.locale,
+      'entity_count': m.entityCount,
       'checksum': m.checksum,
     });
     for (final d in m.dependencies) {
@@ -270,6 +271,7 @@ final class PackStore {
       attribution: p['attribution'] as String?,
       dslVersion: p['dsl_version']! as int,
       locale: p['locale']! as String,
+      entityCount: p['entity_count'] as int?,
       checksum: p['checksum'] as String?,
       dependencies: [
         for (final d in deps)

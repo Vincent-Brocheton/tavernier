@@ -36,15 +36,15 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 8. Plateformes
 
-- [ ] 8.1 Ouvrir la base dans `apps/game_table` avec `drift_flutter` ; ajouter `web/sqlite3.wasm` et `web/drift_worker.js` des versions publiées correspondant aux paquets (téléchargement à confirmer avec le porteur de projet) ; vérifier que `fvm flutter build web` réussit
-- [ ] 8.2 Test d'intégration `integration_test/database_test.dart` (créer, importer le pack SRD, rechercher, fermer, rouvrir, relire) ; vérifier qu'il passe sur Chrome (`flutter drive`)
-- [ ] 8.3 Créer un émulateur Android (image système à télécharger, accord du porteur de projet) et vérifier que le test d'intégration y passe
+- [x] 8.1 Ouvrir la base dans `apps/game_table` avec `drift_flutter` ; ajouter `web/sqlite3.wasm` et `web/drift_worker.js` des versions publiées correspondant aux paquets (téléchargement à confirmer avec le porteur de projet) ; vérifier que `fvm flutter build web` réussit
+- [x] 8.2 Test d'intégration `integration_test/database_test.dart` (créer, importer le pack SRD, rechercher, fermer, rouvrir, relire) ; vérifier qu'il passe sur Chrome (`flutter drive`)
+- [x] 8.3 Créer un émulateur Android (image système à télécharger, accord du porteur de projet) et vérifier que le test d'intégration y passe
 - [ ] 8.4 Jobs de CI : test d'intégration Web (Chrome) et iOS (runner macOS, simulateur) ; vérifier qu'ils passent sur la pull request
 
 ## 9. Intégration
 
-- [ ] 9.1 `packages/dnd_data/README.md` (ouverture de la base, import de pack, enregistrement d'un personnage, migrations) et section Commandes de CLAUDE.md (génération Drift, instantané de schéma, test d'intégration) ; vérifier que chaque commande documentée s'exécute
-- [ ] 9.2 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
+- [x] 9.1 `packages/dnd_data/README.md` (ouverture de la base, import de pack, enregistrement d'un personnage, migrations) et section Commandes de CLAUDE.md (génération Drift, instantané de schéma, test d'intégration) ; vérifier que chaque commande documentée s'exécute
+- [x] 9.2 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 

@@ -166,6 +166,14 @@ class ContentPack extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<int> entityCount = GeneratedColumn<int>(
+    'entity_count',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
   late final GeneratedColumn<String> checksum = GeneratedColumn<String>(
     'checksum',
     aliasedName,
@@ -194,6 +202,7 @@ class ContentPack extends Table with TableInfo {
     attribution,
     dslVersion,
     locale,
+    entityCount,
     checksum,
     signature,
   ];

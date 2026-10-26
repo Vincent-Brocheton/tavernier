@@ -118,6 +118,11 @@ fvm dart run tools/srd_builder/bin/srd_builder.dart build   # pack SRD → build
 fvm flutter run -d chrome          # depuis apps/game_table
 ```
 
+- **Base locale (dnd_data)** : après une modification des tables, `cd packages/dnd_data && fvm dart run build_runner build --delete-conflicting-outputs`, puis `fvm dart run drift_dev make-migrations` (instantané `drift_schemas/` et utilitaires de test). Détail dans `packages/dnd_data/README.md`.
+- **Test d'intégration de la base** (depuis `apps/game_table`) : Android `fvm flutter test integration_test/database_test.dart -d <émulateur>` (AVD `Tavernier_API_35`) ; Web `fvm flutter run -d chrome -t integration_test/database_test.dart` (résultat dans la console), ou `flutter drive` avec chromedriver comme en CI. Sous Windows, si Gradle échoue avec « Unable to establish loopback connection », lancer avec un `TEMP` court (ex. `C:\tmp`).
+- **Fichiers Web de la base** : `web/sqlite3.wasm` vient de la release `sqlite3-<version>` de simolus3/sqlite3.dart (même version que le paquet `sqlite3`) ; `web/drift_worker.js` se recompile avec `fvm dart compile js -O4 tool/drift_worker.dart -o web/drift_worker.js`. À refaire à chaque montée de version de drift ou sqlite3.
+- **Pack SRD de l'app** : `apps/game_table/assets/packs/srd-5.2.1-fr.dndpack`, à régénérer après une modification des sources avec `fvm dart run tools/srd_builder/bin/srd_builder.dart build --out apps/game_table/assets/packs/srd-5.2.1-fr.dndpack`.
+
 - **CI** : `.github/workflows/ci.yml` lance format, analyze, test et coverage sur chaque pull request et sur `main`, avec la version de `.fvmrc`.
 - **Lints** : `analysis_options.yaml` racine, commun à tous les packages (strict-casts, strict-inference, strict-raw-types). Pas d'`analysis_options.yaml` par package.
 - **Chaînes d'interface** : `apps/game_table/lib/l10n/app_fr.arb`, code généré par `flutter gen-l10n` (automatique au `pub get`).

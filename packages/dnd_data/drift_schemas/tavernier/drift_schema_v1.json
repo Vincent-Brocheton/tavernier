@@ -181,6 +181,16 @@
             "dsl_features": []
           },
           {
+            "name": "entity_count",
+            "getter_name": "entityCount",
+            "moor_type": "int",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "checksum",
             "getter_name": "checksum",
             "moor_type": "string",
@@ -5781,7 +5791,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"content_pack\" (\"id\" TEXT NOT NULL, \"namespace\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"version\" TEXT NOT NULL, \"origin\" TEXT NOT NULL, \"author\" TEXT NOT NULL, \"licence\" TEXT NOT NULL, \"attribution\" TEXT NULL, \"dsl_version\" INTEGER NOT NULL, \"locale\" TEXT NOT NULL, \"checksum\" TEXT NULL, \"signature\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"content_pack\" (\"id\" TEXT NOT NULL, \"namespace\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"version\" TEXT NOT NULL, \"origin\" TEXT NOT NULL, \"author\" TEXT NOT NULL, \"licence\" TEXT NOT NULL, \"attribution\" TEXT NULL, \"dsl_version\" INTEGER NOT NULL, \"locale\" TEXT NOT NULL, \"entity_count\" INTEGER NULL, \"checksum\" TEXT NULL, \"signature\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
