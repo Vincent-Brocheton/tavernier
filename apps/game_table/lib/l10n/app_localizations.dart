@@ -105,6 +105,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Gestion de personnage compatible 5e'**
   String get appTagline;
+
+  /// Destination de navigation : accueil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accueil'**
+  String get navHome;
+
+  /// Destination de navigation : tables de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tables'**
+  String get navTables;
+
+  /// Destination de navigation : personnages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnages'**
+  String get navCharacters;
+
+  /// Destination de navigation : compendium des règles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compendium'**
+  String get navCompendium;
+
+  /// Destination de navigation : contenu homebrew.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homebrew'**
+  String get navHomebrew;
 }
 
 class _AppLocalizationsDelegate

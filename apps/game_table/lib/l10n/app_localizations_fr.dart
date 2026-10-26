@@ -14,4 +14,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appTagline => 'Gestion de personnage compatible 5e';
+
+  @override
+  String get navHome => 'Accueil';
+
+  @override
+  String get navTables => 'Tables';
+
+  @override
+  String get navCharacters => 'Personnages';
+
+  @override
+  String get navCompendium => 'Compendium';
+
+  @override
+  String get navHomebrew => 'Homebrew';
 }

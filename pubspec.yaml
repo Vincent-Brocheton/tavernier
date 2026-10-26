@@ -50,9 +50,11 @@ melos:
         dirExists: test
 
     coverage:
-      description: Couverture de dnd_rules (≥ 95 %) et dnd_content (≥ 90 %).
+      description: Couverture de dnd_rules (≥ 95 %), dnd_content et dnd_ui_kit (≥ 90 %).
       run: >-
         cd packages/dnd_rules && dart run coverage:test_with_coverage && cd ../.. &&
         cd packages/dnd_content && dart run coverage:test_with_coverage && cd ../.. &&
+        cd packages/dnd_ui_kit && flutter test --coverage && cd ../.. &&
         dart run tool/check_coverage.dart packages/dnd_rules/coverage/lcov.info 95 &&
-        dart run tool/check_coverage.dart packages/dnd_content/coverage/lcov.info 90
+        dart run tool/check_coverage.dart packages/dnd_content/coverage/lcov.info 90 &&
+        dart run tool/check_coverage.dart packages/dnd_ui_kit/coverage/lcov.info 90

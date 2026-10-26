@@ -6,9 +6,9 @@
 // dédié. Chaque lancement incrémente un compteur ; fermer le navigateur,
 // relancer et vérifier que la valeur a augmenté de 1. Protocole complet :
 // docs/spikes/T-01-sqlite-wasm-web.md.
-import 'package:flutter/material.dart';
 import 'package:game_table/database.dart';
 import 'package:game_table/persistent_storage.dart';
+import 'package:material_ui/material_ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
