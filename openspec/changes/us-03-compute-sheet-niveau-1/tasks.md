@@ -4,8 +4,8 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 ## 1. Mise en place
 
-- [ ] 1.1 Ajouter `dnd_content` aux dépendances de `dnd_rules`, `srd_builder` en dépendance de test, freezed/json_serializable/build_runner en dev ; vérifier par `fvm exec melos bootstrap` puis `fvm dart analyze packages/dnd_rules`
-- [ ] 1.2 `tool/check_coverage.dart` échoue sur un rapport sans ligne instrumentée ; vérifier qu'un lcov vide donne le code 1 et le lcov de `dnd_content` le code 0
+- [x] 1.1 Ajouter `dnd_content` aux dépendances de `dnd_rules`, `srd_builder` en dépendance de test, freezed/json_serializable/build_runner en dev ; vérifier par `fvm exec melos bootstrap` puis `fvm dart analyze packages/dnd_rules`
+- [x] 1.2 `tool/check_coverage.dart` échoue sur un rapport sans ligne instrumentée ; vérifier qu'un lcov vide donne le code 1 et le lcov de `dnd_content` le code 0
 
 ## 2. Entrée du personnage et contenu actif
 
