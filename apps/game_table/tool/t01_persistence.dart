@@ -1,8 +1,10 @@
 // Spike T-01 : vérification manuelle de la persistance après fermeture du
-// navigateur. À lancer sur un port fixe (le port fait partie de l'origine) :
-// fvm flutter run -d chrome --web-port=8123 -t tool/t01_persistence.dart
-// Chaque lancement incrémente un compteur ; fermer le navigateur, relancer
-// et vérifier que la valeur a augmenté de 1. Protocole complet :
+// navigateur. `flutter run` ouvre un profil temporaire, qui ne survit pas à
+// la fermeture : compiler avec `fvm flutter build web -t
+// tool/t01_persistence.dart`, servir le dossier sur un port fixe (le port
+// fait partie de l'origine) et l'ouvrir dans un navigateur au profil
+// dédié. Chaque lancement incrémente un compteur ; fermer le navigateur,
+// relancer et vérifier que la valeur a augmenté de 1. Protocole complet :
 // docs/spikes/T-01-sqlite-wasm-web.md.
 import 'package:flutter/material.dart';
 import 'package:game_table/database.dart';
@@ -27,7 +29,10 @@ Future<void> main() async {
     'ON CONFLICT(id) DO UPDATE SET content = excluded.content',
     ['$count'],
   );
-  final persistent = await requestPersistentStorage();
+  // Firefox peut laisser la demande en attente : ne pas bloquer l'affichage.
+  final persistent = await requestPersistentStorage()
+      .then<Object>((g) => g)
+      .timeout(const Duration(seconds: 5), onTimeout: () => 'sans_reponse');
   final line = 'T01 lancement=$count stockage=$storage persistant=$persistent';
   debugPrint(line);
   // Le titre de la page porte aussi la ligne, lisible depuis le titre de la
