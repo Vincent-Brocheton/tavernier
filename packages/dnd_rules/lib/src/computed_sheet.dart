@@ -42,6 +42,41 @@ final class AbilityScore extends Computed {
   int get modifier => ((value - 10) / 2).floor();
 }
 
+/// Une attaque de la fiche (arme portée ou mains nues).
+final class Attack {
+  const Attack({
+    required this.weaponId,
+    required this.attackBonus,
+    required this.damage,
+    required this.damageType,
+    this.rangeFeet,
+    this.mastery,
+  });
+
+  /// Identifiant de l'arme, ou `unarmed`.
+  final String weaponId;
+  final int attackBonus;
+
+  /// Dés et modificateur, ex. `1d8+3` ; un nombre pour les mains nues.
+  final String damage;
+
+  /// Slug du type de dégâts, ex. `slashing`.
+  final String damageType;
+  final List<int>? rangeFeet;
+
+  /// Botte choisie pour cette arme.
+  final String? mastery;
+
+  Map<String, Object?> toJson() => {
+    'weapon_id': weaponId,
+    'attack_bonus': attackBonus,
+    'damage': damage,
+    'damage_type': damageType,
+    if (rangeFeet != null) 'range_feet': rangeFeet,
+    if (mastery != null) 'mastery': mastery,
+  };
+}
+
 /// Règle d'intégrité enfreinte (cahier §11.3 et SRD).
 enum IntegrityRule {
   abilityGeneration,
@@ -90,6 +125,8 @@ final class ComputedSheet {
     required this.hitPointsMax,
     required this.hitDice,
     required this.resources,
+    required this.weaponMasterySlots,
+    required this.attacks,
     required this.integrityErrors,
   });
 
@@ -118,6 +155,8 @@ final class ComputedSheet {
 
   /// Maximum de chaque ressource, par clé (`srd:resource:second-wind`).
   final Map<String, int> resources;
+  final int weaponMasterySlots;
+  final List<Attack> attacks;
   final List<IntegrityError> integrityErrors;
 
   Map<String, Object?> toJson() => {
@@ -145,6 +184,8 @@ final class ComputedSheet {
       for (final MapEntry(:key, :value) in resources.entries)
         {'id': key, 'max': value},
     ],
+    'weapon_mastery_slots': weaponMasterySlots,
+    'attacks': [for (final a in attacks) a.toJson()],
     'integrity_errors': [for (final e in integrityErrors) e.toJson()],
     'sources': {
       for (final MapEntry(:key, :value) in {

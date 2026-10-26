@@ -152,6 +152,98 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     Contribution('con', mod('con') * level),
   ]);
 
+  // Armes maîtrisées : catégories des classes et effets de maîtrise.
+  final weaponCategories = {
+    for (final c in classes) ...?c.data?.weaponProficiencies,
+    for (final a in ofOp('grant_proficiency'))
+      if (a.effect.args['kind'] == 'weapon_category')
+        a.effect.args['ref']! as String,
+  };
+  final weaponIds = {
+    for (final a in ofOp('grant_proficiency'))
+      if (a.effect.args['kind'] == 'weapon') a.effect.args['ref']! as String,
+  };
+  bool proficientWith(ContentEntity weapon) =>
+      weaponIds.contains('${weapon.id}') ||
+      weaponCategories.contains((weapon.data as WeaponData).category.name);
+
+  final masterySlots = [
+    for (final a in ofOp('grant_mastery_slots'))
+      resolve(a.effect.args['count'], a.level),
+  ].fold(0, (sum, v) => sum + v);
+  final masteries = <String>{};
+  if (character.weaponMasteries.length > masterySlots) {
+    errors.add(
+      IntegrityError(
+        IntegrityRule.weaponMastery,
+        'weapon_masteries',
+        '${character.weaponMasteries.length} bottes pour $masterySlots emplacements',
+      ),
+    );
+  }
+  for (final (i, m) in character.weaponMasteries.indexed) {
+    final weapon = content.entity(m.weaponId);
+    if (weapon?.data is! WeaponData) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.reference,
+          'weapon_masteries[$i]',
+          'arme introuvable : ${m.weaponId}',
+        ),
+      );
+    } else if (!proficientWith(weapon!)) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.weaponMastery,
+          'weapon_masteries[$i]',
+          '${m.weaponId} : arme non maîtrisée par les classes du personnage',
+        ),
+      );
+    } else {
+      masteries.add(m.weaponId);
+    }
+  }
+
+  // Attaques (SRD p. 97 et p. 189) ; bonus d'attaque des effets
+  // `modify_check` (Archerie).
+  int attackBonus(String scope) => [
+    for (final a in ofOp('modify_check'))
+      if (a.effect.args['scope'] == scope)
+        resolve(a.effect.args['add'], a.level),
+  ].fold(0, (sum, v) => sum + v);
+  String withMod(String dice, int mod) =>
+      mod == 0 ? dice : '$dice${mod > 0 ? '+' : ''}$mod';
+  final attacks = <Attack>[
+    for (final id in {for (final item in character.items) item.itemId})
+      if (content.entity(id) case final weapon? when weapon.data is WeaponData)
+        () {
+          final w = weapon.data as WeaponData;
+          final ranged = w.kind == WeaponKind.ranged;
+          final abilityMod = w.properties.contains('finesse')
+              ? [mod('str'), mod('dex')].reduce((a, b) => a > b ? a : b)
+              : mod(ranged ? 'dex' : 'str');
+          return Attack(
+            weaponId: id,
+            attackBonus:
+                abilityMod +
+                (proficientWith(weapon) ? pb : 0) +
+                attackBonus(
+                  ranged ? 'ranged_weapon_attack' : 'melee_weapon_attack',
+                ),
+            damage: withMod(w.damage, abilityMod),
+            damageType: w.damageType.slug,
+            rangeFeet: w.rangeFeet,
+            mastery: masteries.contains(id) ? '${w.mastery}' : null,
+          );
+        }(),
+    Attack(
+      weaponId: 'unarmed',
+      attackBonus: mod('str') + pb,
+      damage: '${1 + mod('str')}',
+      damageType: 'bludgeoning',
+    ),
+  ];
+
   errors
     ..addAll(_checkGeneration(character.baseScores))
     ..addAll(_checkBackgroundBonus(character, background, abilities))
@@ -187,6 +279,8 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final a in ofOp('grant_resource'))
         a.effect.args['id']! as String: resolve(a.effect.args['max'], a.level),
     },
+    weaponMasterySlots: masterySlots,
+    attacks: attacks,
     integrityErrors: errors,
   );
 }

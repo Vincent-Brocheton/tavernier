@@ -25,12 +25,12 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 - [x] 5.1 Tests de « Dons accordés conformes » (Polyvalent avec Défense, don d'Historique remplacé) ; implémenter le contrôle `featGrant`
 - [x] 5.2 Tests d'« Initiative », « Classe d'armure » (avec et sans armure), « Vitesse, points de vie et dés de vie » et « Ressources » ; implémenter ces calculs et leurs décompositions
-- [ ] 5.3 Test : chaque opération du DSL accessible à un personnage de niveau 1 de l'échantillon M0 (traits d'espèce, dons d'origine, Style de combat, aptitudes de niveau 1, dont `modify_check` d'Archerie) modifie la fiche d'au moins un personnage de test ; vérifier qu'il échoue si l'on retire l'interprétation d'une opération
+- [x] 5.3 Test : chaque opération du DSL accessible à un personnage de niveau 1 de l'échantillon M0 (traits d'espèce, dons d'origine, Style de combat, aptitudes de niveau 1, dont `modify_check` d'Archerie) modifie la fiche d'au moins un personnage de test ; vérifier qu'il échoue si l'on retire l'interprétation d'une opération
 
 ## 6. Bottes et attaques
 
-- [ ] 6.1 Tests d'« Emplacements de bottes » et de « Bottes choisies conformes » (trop de bottes, arme non maîtrisée) ; implémenter le contrôle `weaponMastery`
-- [ ] 6.2 Tests d'« Attaques » (épée longue, javeline, mains nues, arme Finesse) ; implémenter les attaques
+- [x] 6.1 Tests d'« Emplacements de bottes » et de « Bottes choisies conformes » (trop de bottes, arme non maîtrisée) ; implémenter le contrôle `weaponMastery`
+- [x] 6.2 Tests d'« Attaques » (épée longue, javeline, mains nues, arme Finesse) ; implémenter les attaques
 
 ## 7. Multiclassage et références
 
