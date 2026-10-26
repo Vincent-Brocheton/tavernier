@@ -28,7 +28,7 @@
 
 ## 7. Intégration
 
-- [ ] 7.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
+- [x] 7.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 
