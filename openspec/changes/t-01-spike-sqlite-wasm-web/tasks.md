@@ -1,7 +1,7 @@
 ## 1. Stockage choisi et stockage persistant
 
-- [ ] 1.1 Test d'intégration qui échoue : avec `T01_EXPECTED_STORAGE=opfs`, le stockage remonté par l'ouverture est un stockage OPFS ; puis rappel `onWebResult` dans `openTavernierDatabase`. Vérifier sur Chrome isolé (`--web-header` COOP/COEP) que le stockage est OPFS, et sans isolation que la base fonctionne en IndexedDB
-- [ ] 1.2 Test d'intégration qui échoue : `requestPersistentStorage()` renvoie un booléen sur le Web et `true` sur Android ; puis `lib/persistent_storage.dart` (import conditionnel, paquet `web` en dépendance directe). Vérifier sur Chrome et sur l'émulateur `Tavernier_API_35`
+- [x] 1.1 Test d'intégration qui échoue : avec `T01_EXPECTED_STORAGE=opfs`, le stockage remonté par l'ouverture est un stockage OPFS ; puis rappel `onWebResult` dans `openTavernierDatabase`. Vérifier sur Chrome isolé (`--web-header` COOP/COEP) que le stockage est OPFS, et sans isolation que la base fonctionne en IndexedDB
+- [x] 1.2 Test d'intégration qui échoue : `requestPersistentStorage()` renvoie un booléen sur le Web et `true` sur Android ; puis `lib/persistent_storage.dart` (import conditionnel, paquet `web` en dépendance directe). Vérifier sur Chrome et sur l'émulateur `Tavernier_API_35`
 
 ## 2. Volume de 10 000 entités
 
