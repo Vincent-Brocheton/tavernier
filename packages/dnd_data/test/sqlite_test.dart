@@ -14,6 +14,9 @@ void main() {
       "CREATE VIRTUAL TABLE t USING fts5(name, tokenize = 'unicode61 remove_diacritics 2')",
     );
     db.execute("INSERT INTO t VALUES ('Défense')");
-    expect(db.select("SELECT name FROM t WHERE t MATCH 'defense'"), hasLength(1));
+    expect(
+      db.select("SELECT name FROM t WHERE t MATCH 'defense'"),
+      hasLength(1),
+    );
   });
 }

@@ -13,12 +13,12 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 3. Import et export de pack
 
-- [ ] 3.1 Test « Pack SRD aller-retour » (188 entités, export égal au pack d'origine, entité par entité, via `toJson`) ; implémenter `PackStore.importPack` et `exportPack` avec un `switch` exhaustif sur `EntityData`
-- [ ] 3.2 Test « Réimport » (aucun doublon) ; import transactionnel qui remplace les entités du pack
+- [x] 3.1 Test « Pack SRD aller-retour » (188 entités, export égal au pack d'origine, entité par entité, via `toJson`) ; implémenter `PackStore.importPack` et `exportPack` avec un `switch` exhaustif sur `EntityData`
+- [x] 3.2 Test « Réimport » (aucun doublon) ; import transactionnel qui remplace les entités du pack
 
 ## 4. Recherche plein texte
 
-- [ ] 4.1 Tests « Recherche avec ou sans accent », « Début de mot », « Texte de règles » ; table virtuelle FTS5 `content_search` (`.drift`), alimentée par l'import, et `PackStore.search(query)` qui renvoie id, type et nom
+- [x] 4.1 Tests « Recherche avec ou sans accent », « Début de mot », « Texte de règles » ; table virtuelle FTS5 `content_search` (`.drift`), alimentée par l'import, et `PackStore.search(query)` qui renvoie id, type et nom
 
 ## 5. Données de jeu (§11.2)
 
