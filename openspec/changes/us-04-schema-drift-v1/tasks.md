@@ -4,7 +4,7 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 1. Mise en place
 
-- [ ] 1.1 Ajouter `drift`, `sqlite3`, `dnd_content`, `dnd_rules` à `dnd_data`, et `drift_dev`, `build_runner` en dev ; test : une base `NativeDatabase.memory()` s'ouvre et `pragma compile_options` contient `ENABLE_FTS5` (sinon, ajouter `sqlite3.dll` officiel au chemin des tests et le documenter)
+- [x] 1.1 Ajouter `drift`, `sqlite3`, `dnd_content`, `dnd_rules` à `dnd_data`, et `drift_dev`, `build_runner` en dev ; test : une base `NativeDatabase.memory()` s'ouvre et `pragma compile_options` contient `ENABLE_FTS5` (sinon, ajouter `sqlite3.dll` officiel au chemin des tests et le documenter)
 
 ## 2. Contenu de règles (§11.1)
 
