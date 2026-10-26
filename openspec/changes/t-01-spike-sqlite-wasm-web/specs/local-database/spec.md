@@ -36,8 +36,12 @@ Sur le Web, la base SHALL utiliser OPFS quand la page est isolée (en-têtes `Cr
 Sur le Web, l'application SHALL pouvoir demander au navigateur un stockage persistant et connaître sa réponse (accordé ou refusé), pour avertir l'utilisateur en cas de refus (cahier ENF-07). Hors Web, la demande SHALL répondre « accordé » sans rien faire.
 
 #### Scenario: Demande sur le Web
-- **WHEN** l'application demande un stockage persistant dans un navigateur
+- **WHEN** l'application demande un stockage persistant dans un navigateur qui répond sans demander à l'utilisateur (Chrome, Edge, Safari)
 - **THEN** elle reçoit un booléen, sans erreur, que la demande soit accordée ou non
+
+#### Scenario: Navigateur qui interroge l'utilisateur
+- **WHEN** le navigateur affiche une invite (Firefox) et que l'utilisateur n'y répond pas
+- **THEN** la demande reste en attente sans bloquer la base ni le reste de l'application
 
 #### Scenario: Demande sur mobile
 - **WHEN** l'application demande un stockage persistant sur Android ou iOS

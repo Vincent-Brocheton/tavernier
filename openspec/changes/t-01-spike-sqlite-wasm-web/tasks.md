@@ -10,16 +10,16 @@
 
 ## 3. CI
 
-- [ ] 3.1 Job Web en matrice (Chrome isolé avec `T01_EXPECTED_STORAGE=opfs`, Chrome non isolé, Firefox) et job Safari sur `macos-latest` ; chacun lance `database_test.dart` et `web_storage_test.dart`. Vérifier que tous passent sur la pull request et relever leurs lignes `T01`
+- [x] 3.1 Job Web en matrice (Chrome isolé avec `T01_EXPECTED_STORAGE=opfs`, Chrome non isolé, Firefox) et job Safari sur `macos-latest` ; chacun lance `database_test.dart` et `web_storage_test.dart`. Vérifier que tous passent sur la pull request et relever leurs lignes `T01`
 
 ## 4. Rapport
 
-- [ ] 4.1 `docs/spikes/T-01-sqlite-wasm-web.md` : protocole, tableau des mesures par navigateur et stockage (local et CI), persistance après fermeture, cibles atteintes ou non, recommandation pour M1 (stockage cible, en-têtes à exiger, refus de stockage persistant, piste de base préremplie si besoin), écarts avec le cahier. Vérifier que chaque chiffre du tableau vient d'une ligne `T01` relevée
-- [ ] 4.2 CLAUDE.md, section Commandes : lancer le test de volume en local (Chrome isolé, Edge) et le point d'entrée de persistance ; vérifier que chaque commande documentée s'exécute
+- [x] 4.1 `docs/spikes/T-01-sqlite-wasm-web.md` : protocole, tableau des mesures par navigateur et stockage (local et CI), persistance après fermeture, cibles atteintes ou non, recommandation pour M1 (stockage cible, en-têtes à exiger, refus de stockage persistant, piste de base préremplie si besoin), écarts avec le cahier. Vérifier que chaque chiffre du tableau vient d'une ligne `T01` relevée
+- [x] 4.2 CLAUDE.md, section Commandes : lancer le test de volume en local (Chrome isolé, Edge) et le point d'entrée de persistance ; vérifier que chaque commande documentée s'exécute
 
 ## 5. Intégration
 
-- [ ] 5.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
+- [x] 5.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 
