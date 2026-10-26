@@ -3,8 +3,18 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
   push:
     branches: [main]
+  # Régénérer les images de référence des tests golden (Linux), publiées en
+  # artefact « goldens » à commiter dans packages/dnd_ui_kit/test/golden/goldens.
+  # Sur une pull request : étiquette « update-goldens », à retirer ensuite.
+  workflow_dispatch:
+    inputs:
+      update_goldens:
+        description: Régénérer les références golden
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -37,6 +47,24 @@ jobs:
           echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
 
       - run: melos bootstrap
+
+      - name: Régénérer les références golden
+        if: inputs.update_goldens || contains(github.event.pull_request.labels.*.name, 'update-goldens')
+        working-directory: packages/dnd_ui_kit
+        run: flutter test --update-goldens test/golden
+      - name: Publier les références golden
+        if: inputs.update_goldens || contains(github.event.pull_request.labels.*.name, 'update-goldens')
+        uses: actions/upload-artifact@v4
+        with:
+          name: goldens
+          path: packages/dnd_ui_kit/test/golden/goldens/
+      - name: Publier les écarts golden
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: echecs-golden
+          path: packages/dnd_ui_kit/test/golden/failures/
+          if-no-files-found: ignore
       - run: melos run format
       - run: melos run analyze
       - run: melos run test
