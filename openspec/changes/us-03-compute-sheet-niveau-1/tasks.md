@@ -1,0 +1,57 @@
+# Tasks
+
+Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le test qui échoue (superpowers:test-driven-development) ; vérification de chaque tâche : `cd packages/dnd_rules && fvm dart test` vert.
+
+## 1. Mise en place
+
+- [x] 1.1 Ajouter `dnd_content` aux dépendances de `dnd_rules`, `srd_builder` en dépendance de test, freezed/json_serializable/build_runner en dev ; vérifier par `fvm exec melos bootstrap` puis `fvm dart analyze packages/dnd_rules`
+- [x] 1.2 `tool/check_coverage.dart` échoue sur un rapport sans ligne instrumentée ; vérifier qu'un lcov vide donne le code 1 et le lcov de `dnd_content` le code 0
+
+## 2. Entrée du personnage et contenu actif
+
+- [x] 2.1 Test : `CharacterInput.fromJson` lit l'entrée de `aldric_n1.json` et refuse un champ inconnu ; aligner la fixture (`choices.skillful`, `srd:resource:heroic-inspiration`) sans toucher aux valeurs attendues ; implémenter `CharacterInput` (freezed)
+- [x] 2.2 Test : `ActiveContent` retrouve une entité du pack SRD chargé depuis les sources, et renvoie `null` pour un identifiant absent ; implémenter `ActiveContent`
+
+## 3. Caractéristiques et génération
+
+- [x] 3.1 Tests des exigences « Valeurs de caractéristique », « Bonus de maîtrise » et « Décomposition » (Force d'Aldric) ; implémenter `computeSheet` pour ces valeurs avec `Computed`
+- [x] 3.2 Tests de « Génération des valeurs » (27 points, 29 points, valeurs standard, aléatoire) et de « Bonus d'Historique conformes » (non éligible, 1-1-1, plafond 20) ; implémenter les contrôles `abilityGeneration` et `backgroundBonus`
+
+## 4. Maîtrises, sauvegardes, compétences
+
+- [x] 4.1 Tests de « Jets de sauvegarde » et « Compétences et Perception passive » (y compris Intuition par le choix `skillful`) ; implémenter la collecte des effets actifs et la résolution des choix
+
+## 5. Effets de dons et d'aptitudes
+
+- [x] 5.1 Tests de « Dons accordés conformes » (Polyvalent avec Défense, don d'Historique remplacé) ; implémenter le contrôle `featGrant`
+- [x] 5.2 Tests d'« Initiative », « Classe d'armure » (avec et sans armure), « Vitesse, points de vie et dés de vie » et « Ressources » ; implémenter ces calculs et leurs décompositions
+- [x] 5.3 Test : chaque opération du DSL accessible à un personnage de niveau 1 de l'échantillon M0 (traits d'espèce, dons d'origine, Style de combat, aptitudes de niveau 1, dont `modify_check` d'Archerie) modifie la fiche d'au moins un personnage de test ; vérifier qu'il échoue si l'on retire l'interprétation d'une opération
+
+## 6. Bottes et attaques
+
+- [x] 6.1 Tests d'« Emplacements de bottes » et de « Bottes choisies conformes » (trop de bottes, arme non maîtrisée) ; implémenter le contrôle `weaponMastery`
+- [x] 6.2 Tests d'« Attaques » (épée longue, javeline, mains nues, arme Finesse) ; implémenter les attaques
+
+## 7. Multiclassage et références
+
+- [x] 7.1 Tests de « Prérequis de multiclassage » (remplis, non remplis) avec une seconde classe en mémoire ; implémenter le contrôle `multiclass`
+- [x] 7.2 Tests d'« Erreurs signalées sans interrompre le calcul » (personnage invalide, espèce inconnue) ; implémenter le contrôle `reference`
+
+## 8. Critère de sortie M0 et intégration
+
+- [x] 8.1 Test des fixtures [D1] : chaque fixture `active` est recalculée et chaque clé de `expected` est reproduite ; les autres sont `skip` avec leur statut ; vérifier qu'Aldric niveau 1 passe et qu'une valeur attendue faussée le fait échouer
+- [x] 8.2 Mettre à jour `packages/dnd_rules/README.md` (point d'entrée, format d'entrée) et le README des fixtures (format `choices`) ; vérifier la relecture des deux fichiers
+- [x] 8.3 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts, couverture de `dnd_rules` ≥ 95 %
+
+## 9. Revue de code de la PR
+
+- [x] 9.1 Le validateur du DSL refuse un dé dans `by_level` hors du champ `die` ; vérifier par un test de `dnd_content`
+- [x] 9.2 « Choix conformes » : nombre de sélections, sélection hors options, choix des dons par instance ; vérifier par les scénarios de la spec
+- [x] 9.3 `when.level` et la référence `class_level` d'une classe nommée sont respectés ; vérifier par un test chacun
+
+## Workflow follow-up
+
+- Revue `code-review` de la pull request, CI verte, fusion.
+- Commentaire sur la carte Trello US-03 à l'ouverture de la PR ; carte dans « Fait » après la fusion.
+- `openspec archive us-03-compute-sheet-niveau-1` après la fusion.
+- Vérifier le critère de sortie M0 (cahier §3) dans le bilan du jalon.

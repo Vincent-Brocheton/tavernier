@@ -74,7 +74,7 @@
     "resources": [
       { "id": "srd:resource:second-wind", "max": 3 },
       { "id": "srd:resource:action-surge", "max": 1 },
-      { "id": "heroic_inspiration", "source": "srd:species:human" }
+      { "id": "srd:resource:heroic-inspiration", "max": 1 }
     ],
     "attuned_count": 0,
     "xp_next_level": 14000,

@@ -11,6 +11,8 @@ Chaque fichier `*.json` décrit un personnage :
 Conventions :
 
 - identifiants de contenu `{namespace}:{type}:{slug}`, slugs anglais stables (cahier §10.3) ;
+- choix des effets `choice` du DSL rangés dans `input.choices` par identifiant de choix (ex. `"skillful": ["srd:skill:insight"]`) ; les fixtures `pending_content` gardent leur ancien format jusqu'à l'arrivée de leur contenu en M1 ;
+- ressources nommées par leur clé (`srd:resource:heroic-inspiration`) ;
 - distances en **pieds** (stockage, ENF-13) ; la planche affiche des mètres (30 pieds = 9 m) ;
 - `"status"` :
   - `active` : testé avec `computeSheet()` dès M0 ;

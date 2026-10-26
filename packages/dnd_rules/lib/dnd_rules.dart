@@ -1,5 +1,7 @@
 /// Moteur de règles pur Dart : computeSheet(), validations, DSL d'effets.
 library;
 
-/// Nom du package, utilisé par les tests de fumée du monorepo.
-const packageName = 'dnd_rules';
+export 'src/active_content.dart';
+export 'src/character_input.dart';
+export 'src/compute_sheet.dart';
+export 'src/computed_sheet.dart';

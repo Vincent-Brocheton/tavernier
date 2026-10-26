@@ -86,7 +86,8 @@ List<ContentIssue> checkObject(
 ];
 
 /// Expression de valeur fermée (DSL_V1.md, Principes §5).
-List<ContentIssue> checkValue(Object? value, String path) {
+/// [dice] : une table `by_level` peut aussi donner des dés (champ `die`).
+List<ContentIssue> checkValue(Object? value, String path, {bool dice = false}) {
   if (value is int) return const [];
   if (value is! Map<String, Object?>) {
     return _one(path, 'entier, référence ou table par niveau attendu');
@@ -102,8 +103,12 @@ List<ContentIssue> checkValue(Object? value, String path) {
     return [
       for (final MapEntry(:key, value: entry) in table.entries)
         if (int.tryParse(key) case final level? when level >= 1 && level <= 20)
-          if (entry is! int && !(entry is String && _dice.hasMatch(entry)))
-            ContentIssue('$path.by_level.$key', 'entier ou dé (ex. d8) attendu')
+          if (entry is! int &&
+              !(dice && entry is String && _dice.hasMatch(entry)))
+            ContentIssue(
+              '$path.by_level.$key',
+              dice ? 'entier ou dé (ex. d8) attendu' : 'entier attendu',
+            )
           else
             ...const <ContentIssue>[]
         else
@@ -273,7 +278,7 @@ Map<String, Map<String, FieldSpec>> opSchemas(FieldCheck effects) => {
     'die': FieldSpec(
       (v, p) => v is String
           ? enumField(['d4', 'd6', 'd8', 'd10', 'd12'])(v, p)
-          : checkValue(v, p),
+          : checkValue(v, p, dice: true),
     ),
   },
   'grant_spell': {

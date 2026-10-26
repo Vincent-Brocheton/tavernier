@@ -27,7 +27,11 @@ void main(List<String> args) {
     if (line.startsWith('LH:')) hit += int.parse(line.substring(3));
   }
 
-  final percent = found == 0 ? 100.0 : hit * 100 / found;
+  if (found == 0) {
+    stderr.writeln('ÉCHEC ${args[0]} : aucune ligne instrumentée');
+    exit(1);
+  }
+  final percent = hit * 100 / found;
   final label =
       '${args[0]} : ${percent.toStringAsFixed(1)} % '
       '($hit/$found lignes, seuil $threshold %)';

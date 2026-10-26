@@ -22,7 +22,8 @@
     "player": "Hugo",
     "kind": "pc",
     "species_id": "srd:species:human",
-    "species_choices": { "size": "M", "skillful_skill": "srd:skill:insight" },
+    "species_choices": { "size": "M" },
+    "choices": { "skillful": ["srd:skill:insight"] },
     "background_id": "srd:background:soldier",
     "base_scores": {
       "method": "point_buy",
@@ -97,7 +98,7 @@
     ],
     "resources": [
       { "id": "srd:resource:second-wind", "max": 2 },
-      { "id": "heroic_inspiration", "source": "srd:species:human" }
+      { "id": "srd:resource:heroic-inspiration", "max": 1 }
     ],
     "integrity_errors": [],
     "sources": {
