@@ -130,6 +130,11 @@ fvm flutter run -d chrome          # depuis apps/game_table
 - **Chaînes d'interface** : `apps/game_table/lib/l10n/app_fr.arb`, code généré par `flutter gen-l10n` (automatique au `pub get`).
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
+- **Interface (dnd_ui_kit)** :
+  - Importer `package:material_ui/material_ui.dart`, jamais `package:flutter/material.dart`.
+  - Les valeurs visuelles viennent de `design_tokens.json` via `AppTokens` ; `test/tokens_test.dart` vérifie la concordance.
+  - Les tests du kit chargent les vraies polices (`test/flutter_test_config.dart`).
+  - Les références golden se régénèrent en CI avec l'étiquette `update-goldens` sur la PR (détail dans `packages/dnd_ui_kit/README.md`).
 - **Pull requests** : `gh` est installé dans `C:\Program Files\GitHub CLI\gh.exe` (pas toujours dans le PATH du shell).
 
 ## Manques connus du pack de départ
