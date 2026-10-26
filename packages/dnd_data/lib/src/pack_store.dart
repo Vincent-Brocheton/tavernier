@@ -23,7 +23,7 @@ const _tableOf = {
   'background': 'background',
   'species': 'species',
   'feat': 'feat',
-  'class': 'class',
+  'class': 'player_class',
   'subclass': 'subclass',
   'feature': 'feature',
 };

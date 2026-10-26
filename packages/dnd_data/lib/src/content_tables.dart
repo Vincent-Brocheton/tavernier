@@ -231,7 +231,7 @@ class SpeciesTraits extends Table with PackOwned {
 @DataClassName('ClassRow')
 class Classes extends Table with ContentEntityColumns {
   @override
-  String get tableName => 'class';
+  String get tableName => 'player_class';
   IntColumn get hitDie => integer()();
   TextColumn get primaryAbilities => text()(); // JSON
   TextColumn get savingThrows => text()(); // JSON

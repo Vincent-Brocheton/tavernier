@@ -10,7 +10,12 @@ const contentTables = {
   'condition', 'damage_type', 'mastery_property', 'weapon', 'armor', 'tool',
   'item', 'background', 'background_ability', 'background_proficiency',
   'background_equipment_option', 'feat', 'species', 'species_trait',
-  'class', 'class_level', 'subclass', 'subclass_feature', 'feature', 'spell',
+  'player_class',
+  'class_level',
+  'subclass',
+  'subclass_feature',
+  'feature',
+  'spell',
   'spell_class', 'monster', 'monster_action', 'study_reveal', 'effect',
   'entity_text', 'content_search',
 };

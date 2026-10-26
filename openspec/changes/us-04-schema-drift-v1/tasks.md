@@ -31,8 +31,8 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 7. Migrations
 
-- [ ] 7.1 Produire `drift_schemas/drift_schema_v1.json` (`drift_dev schema dump`) et le test de migration généré ; vérifier qu'il passe, puis qu'ajouter une colonne sans nouvelle version le fait échouer
-- [ ] 7.2 Script Melos `schema:check` (instantané à jour) ajouté à la CI ; vérifier qu'il échoue sur un instantané périmé
+- [x] 7.1 Produire `drift_schemas/tavernier/drift_schema_v1.json` (`drift_dev make-migrations`), les utilitaires de vérification (`drift_dev schema generate`) et un test qui compare la structure d'une base créée depuis l'instantané à celle d'une base neuve du code ; vérifier qu'il passe, puis qu'ajouter une colonne sans nouvelle version le fait échouer
+- [x] 7.2 Le test de 7.1 tourne dans `melos run test`, donc en CI : pas de script séparé ; vérifié qu'il échoue sur un instantané périmé
 
 ## 8. Plateformes
 
@@ -44,7 +44,7 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 ## 9. Intégration
 
 - [ ] 9.1 `packages/dnd_data/README.md` (ouverture de la base, import de pack, enregistrement d'un personnage, migrations) et section Commandes de CLAUDE.md (génération Drift, instantané de schéma, test d'intégration) ; vérifier que chaque commande documentée s'exécute
-- [ ] 9.2 `fvm exec melos run format`, `analyze`, `test`, `coverage` et `schema:check` verts
+- [ ] 9.2 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 

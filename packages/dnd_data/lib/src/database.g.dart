@@ -8983,7 +8983,7 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'class';
+  static const String $name = 'player_class';
   @override
   VerificationContext validateIntegrity(
     Insertable<ClassRow> instance, {
@@ -25669,7 +25669,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         'content_pack',
         limitUpdateKind: UpdateKind.delete,
       ),
-      result: [TableUpdate('class', kind: UpdateKind.delete)],
+      result: [TableUpdate('player_class', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -26535,7 +26535,7 @@ final class $$ContentPacksTableReferences
     _$TavernierDatabase db,
   ) => MultiTypedResultKey.fromTable(
     db.classes,
-    aliasName: 'content_pack__id__class__pack_id',
+    aliasName: 'content_pack__id__player_class__pack_id',
   );
 
   $$ClassesTableProcessedTableManager get classesRefs {
@@ -35594,7 +35594,7 @@ final class $$ClassesTableReferences
   $$ClassesTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
   static $ContentPacksTable _packIdTable(_$TavernierDatabase db) =>
-      db.contentPacks.createAlias('class__pack_id__content_pack__id');
+      db.contentPacks.createAlias('player_class__pack_id__content_pack__id');
 
   $$ContentPacksTableProcessedTableManager get packId {
     final $_column = $_itemColumn<String>('pack_id')!;
