@@ -26,7 +26,7 @@ Le kit SHALL fournir un thème sombre (MVP) et un thème clair (V1.5) Material 3
 Le kit SHALL exposer les cinq couleurs réservées au jeu (dégâts, soins, PV temporaires, concentration, alerte), avec leurs conteneurs, dans chaque thème. La barre de PV SHALL prendre la couleur des soins au-dessus de 50 %, de l'alerte au-dessus de 25 %, et des dégâts sinon (COMPOSANTS §2.2).
 
 #### Scenario: Paliers de la barre de PV
-- **WHEN** on demande la couleur de la barre pour 31/52, 13/52 et 3/11 PV
+- **WHEN** on demande la couleur de la barre pour 31/52, 14/52 et 2/11 PV
 - **THEN** on obtient respectivement soins, alerte et dégâts
 
 ### Requirement: Formats d'écran
