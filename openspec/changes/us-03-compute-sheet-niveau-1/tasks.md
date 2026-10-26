@@ -14,8 +14,8 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 ## 3. Caractéristiques et génération
 
-- [ ] 3.1 Tests des exigences « Valeurs de caractéristique », « Bonus de maîtrise » et « Décomposition » (Force d'Aldric) ; implémenter `computeSheet` pour ces valeurs avec `Computed`
-- [ ] 3.2 Tests de « Génération des valeurs » (27 points, 29 points, valeurs standard, aléatoire) et de « Bonus d'Historique conformes » (non éligible, 1-1-1, plafond 20) ; implémenter les contrôles `abilityGeneration` et `backgroundBonus`
+- [x] 3.1 Tests des exigences « Valeurs de caractéristique », « Bonus de maîtrise » et « Décomposition » (Force d'Aldric) ; implémenter `computeSheet` pour ces valeurs avec `Computed`
+- [x] 3.2 Tests de « Génération des valeurs » (27 points, 29 points, valeurs standard, aléatoire) et de « Bonus d'Historique conformes » (non éligible, 1-1-1, plafond 20) ; implémenter les contrôles `abilityGeneration` et `backgroundBonus`
 
 ## 4. Maîtrises, sauvegardes, compétences
 
@@ -25,7 +25,7 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 - [ ] 5.1 Tests de « Dons accordés conformes » (Polyvalent avec Défense, don d'Historique remplacé) ; implémenter le contrôle `featGrant`
 - [ ] 5.2 Tests d'« Initiative », « Classe d'armure » (avec et sans armure), « Vitesse, points de vie et dés de vie » et « Ressources » ; implémenter ces calculs et leurs décompositions
-- [ ] 5.3 Test : chaque opération du DSL présente dans l'échantillon M0 modifie la fiche d'au moins un personnage de test ; vérifier qu'il échoue si l'on retire l'interprétation d'une opération
+- [ ] 5.3 Test : chaque opération du DSL accessible à un personnage de niveau 1 de l'échantillon M0 (traits d'espèce, dons d'origine, Style de combat, aptitudes de niveau 1, dont `modify_check` d'Archerie) modifie la fiche d'au moins un personnage de test ; vérifier qu'il échoue si l'on retire l'interprétation d'une opération
 
 ## 6. Bottes et attaques
 
