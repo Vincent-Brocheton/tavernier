@@ -39,7 +39,7 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 - [x] 8.1 Ouvrir la base dans `apps/game_table` avec `drift_flutter` ; ajouter `web/sqlite3.wasm` et `web/drift_worker.js` des versions publiées correspondant aux paquets (téléchargement à confirmer avec le porteur de projet) ; vérifier que `fvm flutter build web` réussit
 - [x] 8.2 Test d'intégration `integration_test/database_test.dart` (créer, importer le pack SRD, rechercher, fermer, rouvrir, relire) ; vérifier qu'il passe sur Chrome (`flutter drive`)
 - [x] 8.3 Créer un émulateur Android (image système à télécharger, accord du porteur de projet) et vérifier que le test d'intégration y passe
-- [ ] 8.4 Jobs de CI : test d'intégration Web (Chrome) et iOS (runner macOS, simulateur) ; vérifier qu'ils passent sur la pull request
+- [x] 8.4 Jobs de CI : test d'intégration Web (Chrome) et iOS (runner macOS, simulateur) ; vérifier qu'ils passent sur la pull request
 
 ## 9. Intégration
 
