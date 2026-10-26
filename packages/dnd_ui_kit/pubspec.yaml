@@ -16,3 +16,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter:
+  fonts:
+    - family: Cinzel
+      fonts:
+        - asset: fonts/Cinzel.ttf
+    - family: RobotoFlex
+      fonts:
+        - asset: fonts/RobotoFlex.ttf
+  assets:
+    - fonts/OFL-Cinzel.txt
+    - fonts/OFL-RobotoFlex.txt

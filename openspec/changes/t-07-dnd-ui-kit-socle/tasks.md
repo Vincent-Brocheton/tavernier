@@ -6,7 +6,7 @@
 
 - [x] 2.1 Test qui échoue : `tokens_test.dart` compare chaque jeton de `design_tokens.json` aux constantes ; puis `tokens.dart`. Vérifier qu'une valeur modifiée fait échouer le test en nommant le jeton
 - [x] 2.2 Tests qui échouent : `formFactorOf` (599, 600, 1023, 1024), `AppSpacing.page`, `GameColors.hpBar` (31/52, 14/52, 2/11, et les bornes 50 % et 25 %) ; puis `layout.dart` et `game_colors.dart`
-- [ ] 2.3 Tests qui échouent : `AppTheme.dark` (surface `#1A1612`, `primary`, `surfaceTint` transparent, extension `GameColors`, cible tactile 48 dp mesurée sur un bouton, `headlineSmall` en Cinzel 24, `bodyMedium` en Roboto Flex 14, style numérique `tnum`) ; puis `theme.dart`, polices dans `fonts/` avec licences, `registerFontLicenses()`
+- [x] 2.3 Tests qui échouent : `AppTheme.dark` (surface `#1A1612`, `primary`, `surfaceTint` transparent, extension `GameColors`, cible tactile 48 dp mesurée sur un bouton, `headlineSmall` en Cinzel 24, `bodyMedium` en Roboto Flex 14, style numérique `tnum`) ; puis `theme.dart`, polices dans `fonts/` avec licences, `registerFontLicenses()`
 
 ## 3. Icônes
 

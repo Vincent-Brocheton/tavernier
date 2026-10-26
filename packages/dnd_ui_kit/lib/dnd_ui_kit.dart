@@ -3,4 +3,5 @@ library;
 
 export 'src/game_colors.dart';
 export 'src/layout.dart';
+export 'src/theme.dart';
 export 'src/tokens.dart';
