@@ -7,6 +7,7 @@ environment:
   sdk: ^3.13.0
 
 dev_dependencies:
+  srd_builder:
   build_runner: ^2.16.1
   coverage: ^1.15.0
   drift_dev: ^2.35.2

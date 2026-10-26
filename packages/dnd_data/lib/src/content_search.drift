@@ -1,0 +1,10 @@
+-- Recherche plein texte du compendium (cahier §10.1, FTS5), insensible
+-- aux accents ; alimentée par l'import de pack.
+CREATE VIRTUAL TABLE content_search USING fts5(
+  entity_id UNINDEXED,
+  type UNINDEXED,
+  pack_id UNINDEXED,
+  name,
+  description,
+  tokenize = 'unicode61 remove_diacritics 2'
+);

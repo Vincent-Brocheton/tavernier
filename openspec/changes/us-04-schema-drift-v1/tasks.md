@@ -8,8 +8,8 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 2. Contenu de règles (§11.1)
 
-- [ ] 2.1 Test « Base neuve » (version 1, tables du contenu présentes) ; écrire les tables du contenu (§11.1 + `language`, `tool`, `feature`, `species_trait`) et `TavernierDatabase`
-- [ ] 2.2 Test : supprimer un `content_pack` supprime ses entités, effets et textes (cascade) ; activer `foreign_keys` à l'ouverture
+- [x] 2.1 Test « Base neuve » (version 1, tables du contenu présentes) ; écrire les tables du contenu (§11.1 + `language`, `tool`, `feature`, `species_trait`) et `TavernierDatabase`
+- [x] 2.2 Test : supprimer un `content_pack` supprime ses entités, effets et textes (cascade) ; activer `foreign_keys` à l'ouverture
 
 ## 3. Import et export de pack
 
