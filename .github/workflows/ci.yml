@@ -109,14 +109,25 @@ jobs:
         working-directory: apps/game_table
         run: cat build/integration_response_data.json || true
 
-  # Safari (macOS) : T-01.
+  # Safari (macOS) : T-01. Le stockage n'est pas imposé : le spike relève
+  # celui que Safari choisit, avec et sans isolation.
   safari:
-    name: Intégration Web (Safari)
+    name: Intégration Web (${{ matrix.name }})
     runs-on: macos-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Safari isolé
+            args: >-
+              --web-header=Cross-Origin-Opener-Policy=same-origin
+              --web-header=Cross-Origin-Embedder-Policy=require-corp
+          - name: Safari non isolé
+            args: ""
     env:
       BROWSER: safari
-      DRIVE_ARGS: --no-headless
+      DRIVE_ARGS: --no-headless ${{ matrix.args }}
     steps:
       - uses: actions/checkout@v4
 

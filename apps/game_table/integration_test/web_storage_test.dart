@@ -160,7 +160,11 @@ void main() {
   });
 
   testWidgets('le stockage persistant se demande sans erreur', (_) async {
-    final granted = await requestPersistentStorage();
+    // Un navigateur peut attendre la réponse de l'utilisateur à une invite
+    // (Firefox) : au-delà de 10 s, la demande est notée sans réponse.
+    final granted = await requestPersistentStorage()
+        .then<Object>((g) => g)
+        .timeout(const Duration(seconds: 10), onTimeout: () => 'sans_reponse');
     record({'persistant': granted});
     if (!kIsWeb) expect(granted, isTrue);
   });
@@ -212,5 +216,5 @@ void main() {
     expect(count.read<int>('n'), _volume);
     expect(hits.first.id, 't01:feat:don-4242');
     expect(aldric, _aldric);
-  });
+  }, timeout: const Timeout(Duration(minutes: 3)));
 }
