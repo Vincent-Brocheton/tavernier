@@ -19,7 +19,8 @@ abstract final class AppTypography {
     package: _package,
     fontSize: t.size,
     height: t.lineHeight / t.size,
-    fontWeight: FontWeight.values.firstWhere((w) => w.value == t.weight),
+    // Graisse nommée la plus proche ; l'axe wght porte la valeur exacte.
+    fontWeight: FontWeight.values[(t.weight / 100).round().clamp(1, 9) - 1],
     // Polices variables : l'axe wght porte la graisse réelle.
     fontVariations: [FontVariation('wght', t.weight.toDouble())],
     letterSpacing: t.letterSpacing,

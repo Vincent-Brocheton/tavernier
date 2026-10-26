@@ -132,6 +132,7 @@ fvm flutter run -d chrome          # depuis apps/game_table
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :
   - Importer `package:material_ui/material_ui.dart`, jamais `package:flutter/material.dart`.
+  - Délégués de localisation : `[AppLocalizations.delegate, ...GlobalMaterialLocalizations.delegates]` (ceux de `material_ui`). Ne jamais utiliser `AppLocalizations.localizationsDelegates` : ce getter, généré par gen-l10n, contient les anciens délégués de `flutter_localizations`, que les widgets de `material_ui` ne voient pas.
   - Les valeurs visuelles viennent de `design_tokens.json` via `AppTokens` ; `test/tokens_test.dart` vérifie la concordance.
   - Les tests du kit chargent les vraies polices (`test/flutter_test_config.dart`).
   - Les références golden se régénèrent en CI avec l'étiquette `update-goldens` sur la PR (détail dans `packages/dnd_ui_kit/README.md`).

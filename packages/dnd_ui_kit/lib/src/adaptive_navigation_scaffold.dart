@@ -55,21 +55,25 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          NavigationRail(
-            selectedIndex: selectedIndex,
-            onDestinationSelected: onDestinationSelected,
-            labelType: NavigationRailLabelType.all,
-            destinations: [
-              for (final d in destinations)
-                NavigationRailDestination(
-                  icon: d.icon,
-                  selectedIcon: d.selectedIcon,
-                  label: Text(d.label),
-                  // Libellés longs (« Personnages ») dans 80 dp, comme sur
-                  // les maquettes desktop.
-                  padding: EdgeInsets.zero,
-                ),
-            ],
+          // Le rail longe le bord gauche : il évite l'encoche en paysage.
+          SafeArea(
+            right: false,
+            child: NavigationRail(
+              selectedIndex: selectedIndex,
+              onDestinationSelected: onDestinationSelected,
+              labelType: NavigationRailLabelType.all,
+              destinations: [
+                for (final d in destinations)
+                  NavigationRailDestination(
+                    icon: d.icon,
+                    selectedIcon: d.selectedIcon,
+                    label: Text(d.label),
+                    // Libellés longs (« Personnages ») dans 80 dp, comme sur
+                    // les maquettes desktop.
+                    padding: EdgeInsets.zero,
+                  ),
+              ],
+            ),
           ),
           Expanded(child: body),
         ],

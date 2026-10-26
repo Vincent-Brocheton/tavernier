@@ -27,6 +27,8 @@ concurrency:
 jobs:
   checks:
     name: Format, analyse, tests, couverture
+    # Une étiquette ne relance la CI que si c'est « update-goldens ».
+    if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -82,6 +84,8 @@ jobs:
   # T-01 (stockage OPFS ou IndexedDB, 10 000 entités).
   web:
     name: Intégration Web (${{ matrix.name }})
+    # Une étiquette ne relance la CI que si c'est « update-goldens ».
+    if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -141,6 +145,8 @@ jobs:
   # celui que Safari choisit, avec et sans isolation.
   safari:
     name: Intégration Web (${{ matrix.name }})
+    # Une étiquette ne relance la CI que si c'est « update-goldens ».
+    if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: macos-latest
     timeout-minutes: 30
     strategy:
@@ -190,6 +196,8 @@ jobs:
   # Base locale sur iOS (SQLite natif, simulateur) : spec local-database, US-04.
   ios:
     name: Intégration iOS (simulateur)
+    # Une étiquette ne relance la CI que si c'est « update-goldens ».
+    if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
