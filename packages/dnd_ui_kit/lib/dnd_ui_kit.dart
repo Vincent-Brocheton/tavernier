@@ -1,5 +1,4 @@
-/// Tokens de design, thèmes et composants partagés.
+/// Tokens de design, thèmes, icônes et navigation partagés (cahier §10.2).
 library;
 
-/// Nom du package, utilisé par les tests de fumée du monorepo.
-const packageName = 'dnd_ui_kit';
+export 'src/tokens.dart';
