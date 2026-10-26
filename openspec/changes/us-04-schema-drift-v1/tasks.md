@@ -27,7 +27,7 @@ Branche `feature/us-04-schema-drift-v1`. Chaque tâche commence par le test qui 
 
 ## 6. Enregistrement d'un personnage
 
-- [ ] 6.1 Tests « Aldric aller-retour » (égal à l'entrée de la fixture [D1]) et « Modification » ; implémenter `CharacterStore.save` et `load`
+- [x] 6.1 Tests « Aldric aller-retour » (égal à l'entrée de la fixture [D1]) et « Modification » ; implémenter `CharacterStore.save` et `load`
 
 ## 7. Migrations
 
