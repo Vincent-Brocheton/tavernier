@@ -244,6 +244,48 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     ),
   ];
 
+  // Cahier §11.3, SRD p. 26 : 13 dans une caractéristique principale de la
+  // nouvelle classe et de chaque classe existante.
+  bool meetsPrimary(ClassData cls) => cls.primaryAbilities.any(
+    (id) => (abilities[_codeOf('$id')]?.value ?? 0) >= 13,
+  );
+  for (var i = 1; i < classes.length; i++) {
+    final involved = [for (final c in classes.take(i + 1)) c.data].nonNulls;
+    if (!involved.every(meetsPrimary)) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.multiclass,
+          'class_levels[$i]',
+          'multiclassage : 13 requis dans la caractéristique principale de '
+              'chaque classe',
+        ),
+      );
+    }
+  }
+
+  for (final (i, f) in character.feats.indexed) {
+    if (content.entity(f.featId)?.data is! FeatData) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.reference,
+          'feats[$i].feat_id',
+          'contenu introuvable : ${f.featId}',
+        ),
+      );
+    }
+  }
+  for (final (i, item) in character.items.indexed) {
+    if (content.entity(item.itemId) == null) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.reference,
+          'items[$i].item_id',
+          'contenu introuvable : ${item.itemId}',
+        ),
+      );
+    }
+  }
+
   errors
     ..addAll(_checkGeneration(character.baseScores))
     ..addAll(_checkBackgroundBonus(character, background, abilities))

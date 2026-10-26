@@ -34,8 +34,8 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 ## 7. Multiclassage et références
 
-- [ ] 7.1 Tests de « Prérequis de multiclassage » (remplis, non remplis) avec une seconde classe en mémoire ; implémenter le contrôle `multiclass`
-- [ ] 7.2 Tests d'« Erreurs signalées sans interrompre le calcul » (personnage invalide, espèce inconnue) ; implémenter le contrôle `reference`
+- [x] 7.1 Tests de « Prérequis de multiclassage » (remplis, non remplis) avec une seconde classe en mémoire ; implémenter le contrôle `multiclass`
+- [x] 7.2 Tests d'« Erreurs signalées sans interrompre le calcul » (personnage invalide, espèce inconnue) ; implémenter le contrôle `reference`
 
 ## 8. Critère de sortie M0 et intégration
 
