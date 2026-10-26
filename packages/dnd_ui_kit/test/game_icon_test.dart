@@ -46,6 +46,12 @@ void main() {
     ]);
   });
 
+  test('icônes des 5 destinations', () {
+    expect(GameIcons.navigation.keys, [
+      'home', 'tables', 'characters', 'compendium', 'homebrew', //
+    ]);
+  });
+
   test('chaque tracé est lisible', () {
     for (final icon in GameIcons.all) {
       expect(() => _parse(icon.path), returnsNormally, reason: icon.name);

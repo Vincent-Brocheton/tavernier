@@ -14,7 +14,7 @@
 
 ## 4. Navigation et accessibilité
 
-- [ ] 4.1 Tests qui échouent : barre à 390 dp, rail à 960 et 1440 dp, cinq destinations, sélection au toucher ; puis `adaptive_navigation_scaffold.dart`
+- [x] 4.1 Tests qui échouent : barre à 390 dp, rail à 960 et 1440 dp, cinq destinations, sélection au toucher ; puis `adaptive_navigation_scaffold.dart`
 - [ ] 4.2 Tests qui échouent : texte borné à 200 % pour une demande de 300 % et à 85 % pour 50 % ; `AppMotion` nul si animations réduites ; puis `accessibility.dart`
 
 ## 5. Application

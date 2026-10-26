@@ -203,6 +203,32 @@ abstract final class GameIcons {
     ),
   };
 
+  /// Les 5 destinations principales (rail des maquettes desktop).
+  static const navigation = <String, GameIconData>{
+    'home': GameIconData(
+      'home',
+      'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z',
+    ),
+    'tables': GameIconData(
+      'tables',
+      'M3 21h18 M5 21V8l3-2 3 2v13 M13 21V5l3-2 3 2v16',
+    ),
+    'characters': GameIconData(
+      'characters',
+      'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M4 21a8 8 0 0 1 16 0',
+    ),
+    'compendium': GameIconData(
+      'compendium',
+      'M4 19.5A2.5 2.5 0 0 1 6.5 17H20 M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 '
+          '19.5v-15A2.5 2.5 0 0 1 6.5 2z',
+    ),
+    'homebrew': GameIconData(
+      'homebrew',
+      'M9 3h6 M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 '
+          '9V3',
+    ),
+  };
+
   // Icônes transverses de [0] Fondations.
   static const shield = GameIconData(
     'shield',
@@ -257,6 +283,7 @@ abstract final class GameIcons {
     ...damageTypes.values,
     ...actionEconomy.values,
     ...schools.values,
+    ...navigation.values,
     shield,
     tempHp,
     heal,
