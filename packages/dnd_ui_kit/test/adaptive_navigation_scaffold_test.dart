@@ -65,6 +65,22 @@ void main() {
     });
   }
 
+  for (final width in [375.0, 960.0]) {
+    testWidgets('$width dp : chaque libellé tient sur une ligne', (
+      tester,
+    ) async {
+      await _setWidth(tester, width);
+      await tester.pumpWidget(_app(2, (_) {}));
+      for (final label in _labels) {
+        expect(
+          tester.getSize(find.text(label)).height,
+          lessThanOrEqualTo(16),
+          reason: label,
+        );
+      }
+    });
+  }
+
   testWidgets('destinations : cibles d’au moins 48 dp', (tester) async {
     await _setWidth(tester, 960);
     await tester.pumpWidget(_app(1, (_) {}));

@@ -57,7 +57,7 @@
     - **Plateforme :** le test est marqué `golden` et ignoré hors Linux (`skip: !Platform.isLinux`). Le job « checks » de la CI les exécute.
     - **Références :** elles sont produites par le même job lancé à la main (`workflow_dispatch` avec `update_goldens: true`), qui publie les images en artefact, ensuite commitées dans `test/golden/goldens/`.
     - **Alternative écartée :** comparer sous Windows, où le rendu diffère de Linux et casserait la CI.
-11. **App.** `GameTableApp` utilise `theme: AppTheme.dark`, `themeMode: dark`, `builder: AppTextScale.clamp`, et un `AdaptiveNavigationScaffold` à 5 destinations. Chaque destination affiche une page provisoire (titre, en Headline Cinzel). Les libellés `navHome`, `navTables`, `navCharacters`, `navCompendium` et `navHomebrew` sont dans `app_fr.arb`. Les icônes de navigation sont des icônes Material standard (maison, groupe, personne, livre, flacon), comme sur [0] Fondations.
+11. **App.** `GameTableApp` utilise `theme: AppTheme.dark`, `themeMode: dark`, `builder: AppTextScale.clamp`, et un `AdaptiveNavigationScaffold` à 5 destinations. Chaque destination affiche une page provisoire (titre, en Headline Cinzel). Les libellés `navHome`, `navTables`, `navCharacters`, `navCompendium` et `navHomebrew` sont dans `app_fr.arb`. Les icônes de navigation sont les tracés du rail des maquettes desktop (`GameIcons.navigation`). Les libellés de navigation suivent les maquettes : 12 px, sans espacement des lettres, 500 (700 pour la destination active), sur une ligne à partir de 375 dp.
 12. **Couverture.** `dnd_ui_kit` passe sous `coverage` avec un seuil de 90 % (`flutter test --coverage`). Les tests golden, ignorés sous Windows, ne comptent pas pour le seuil local.
 
 ## Risks / Trade-offs

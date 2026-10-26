@@ -7,5 +7,25 @@
   "appTagline": "Gestion de personnage compatible 5e",
   "@appTagline": {
     "description": "Sous-titre affiché sous le nom de l'application."
+  },
+  "navHome": "Accueil",
+  "@navHome": {
+    "description": "Destination de navigation : accueil."
+  },
+  "navTables": "Tables",
+  "@navTables": {
+    "description": "Destination de navigation : tables de jeu."
+  },
+  "navCharacters": "Personnages",
+  "@navCharacters": {
+    "description": "Destination de navigation : personnages."
+  },
+  "navCompendium": "Compendium",
+  "@navCompendium": {
+    "description": "Destination de navigation : compendium des règles."
+  },
+  "navHomebrew": "Homebrew",
+  "@navHomebrew": {
+    "description": "Destination de navigation : contenu homebrew."
   }
 }

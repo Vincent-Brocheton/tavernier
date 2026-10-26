@@ -19,7 +19,7 @@
 
 ## 5. Application
 
-- [ ] 5.1 Test de widget qui échoue : l'app démarre en thème sombre, affiche les cinq destinations (libellés de l'ARB) et change de page au toucher ; puis thème, navigation et ARB dans `game_table`. Vérifier `flutter build web` et un lancement sur Chrome
+- [x] 5.1 Test de widget qui échoue : l'app démarre en thème sombre, affiche les cinq destinations (libellés de l'ARB) et change de page au toucher ; puis thème, navigation et ARB dans `game_table`. Vérifier `flutter build web` et un lancement sur Chrome
 
 ## 6. Golden et CI
 

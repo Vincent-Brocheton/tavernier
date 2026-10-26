@@ -108,6 +108,18 @@ abstract final class AppTheme {
       // Élévation tonale par les surfaceContainer*, sans teinte (COMPOSANTS §1).
       surfaceTint: const Color(0x00000000),
     );
+    // Libellés de navigation des maquettes : 12 px, sans espacement des
+    // lettres, 500 (700 pour la destination active), sur une ligne.
+    final navLabel = AppTypography.textTheme.labelMedium!.copyWith(
+      letterSpacing: 0,
+    );
+    TextStyle navLabelFor(Set<WidgetState> states) =>
+        states.contains(WidgetState.selected)
+        ? navLabel.copyWith(
+            fontWeight: FontWeight.w700,
+            fontVariations: const [FontVariation('wght', 700)],
+          )
+        : navLabel;
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
@@ -119,11 +131,14 @@ abstract final class AppTheme {
         height: AppSizes.navigationBar,
         backgroundColor: scheme.surfaceContainer,
         indicatorColor: scheme.secondaryContainer,
+        labelTextStyle: WidgetStateProperty.resolveWith(navLabelFor),
       ),
       navigationRailTheme: NavigationRailThemeData(
         minWidth: AppSizes.navigationRail,
         backgroundColor: scheme.surfaceContainerLow,
         indicatorColor: scheme.secondaryContainer,
+        unselectedLabelTextStyle: navLabelFor(const {}),
+        selectedLabelTextStyle: navLabelFor(const {WidgetState.selected}),
       ),
     );
   }
