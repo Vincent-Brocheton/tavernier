@@ -4,7 +4,6 @@ import 'dart:isolate';
 
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
-import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:srd_builder/srd_builder.dart';
 

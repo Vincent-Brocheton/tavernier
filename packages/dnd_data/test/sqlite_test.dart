@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   test('SQLite natif disponible avec FTS5', () {
     final db = sqlite3.openInMemory();
-    addTearDown(db.dispose);
+    addTearDown(db.close);
     final options = db
         .select('PRAGMA compile_options')
         .map((row) => row.values.first)

@@ -32,20 +32,20 @@ void main() {
 
   test('supprimer un pack supprime ses entités, effets et textes', () async {
     await db.customStatement(
-      "INSERT INTO content_pack (id, namespace, name, version, origin, author, "
+      'INSERT INTO content_pack (id, namespace, name, version, origin, author, '
       "licence, dsl_version, locale) VALUES ('p', 'srd', 'SRD', '1.0.0', 'srd', "
       "'a', 'CC-BY-4.0', 1, 'fr')",
     );
     await db.customStatement(
-      "INSERT INTO feat (id, pack_id, name, category, repeatable) "
+      'INSERT INTO feat (id, pack_id, name, category, repeatable) '
       "VALUES ('srd:feat:alert', 'p', 'Vigilant', 'origin', 0)",
     );
     await db.customStatement(
-      "INSERT INTO effect (owner_id, owner_type, position, pack_id, payload) "
+      'INSERT INTO effect (owner_id, owner_type, position, pack_id, payload) '
       "VALUES ('srd:feat:alert', 'feat', 0, 'p', '{}')",
     );
     await db.customStatement(
-      "INSERT INTO entity_text (entity_id, locale, pack_id, description) "
+      'INSERT INTO entity_text (entity_id, locale, pack_id, description) '
       "VALUES ('srd:feat:alert', 'fr', 'p', 'Texte')",
     );
     await db.customStatement("DELETE FROM content_pack WHERE id = 'p'");
