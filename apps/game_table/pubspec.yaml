@@ -21,6 +21,7 @@ dependencies:
   intl: any
   web: ^1.1.1
 dev_dependencies:
+  dnd_rules:
   flutter_test:
     sdk: flutter
   integration_test:
