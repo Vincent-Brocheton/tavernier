@@ -5,11 +5,13 @@ import 'package:dnd_content/dnd_content.dart';
 /// remplace une entité de même identifiant.
 final class ActiveContent {
   ActiveContent(Iterable<ContentPack> packs)
-    : _byId = {
+    : packs = List.unmodifiable(packs),
+      _byId = {
         for (final pack in packs)
           for (final entity in pack.entities) '${entity.id}': entity,
       };
 
+  final List<ContentPack> packs;
   final Map<String, ContentEntity> _byId;
 
   ContentEntity? entity(String id) => _byId[id];

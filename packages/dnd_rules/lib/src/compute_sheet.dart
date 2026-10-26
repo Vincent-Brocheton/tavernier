@@ -472,12 +472,11 @@ List<IntegrityError> _checkFeats(
   return errors;
 }
 
-String _categoryName(FeatCategory category) => switch (category) {
-  FeatCategory.origin => 'origin',
-  FeatCategory.general => 'general',
-  FeatCategory.fightingStyle => 'fighting_style',
-  FeatCategory.epicBoon => 'epic_boon',
-};
+/// Nom JSON d'une catégorie de don (`fighting_style`…).
+String _categoryName(FeatCategory category) => category.name.replaceAllMapped(
+  RegExp('[A-Z]'),
+  (m) => '_${m[0]!.toLowerCase()}',
+);
 
 /// SRD p. 24, « Progression des personnages ».
 int _proficiencyBonus(int level) => 2 + (level - 1) ~/ 4;

@@ -41,7 +41,7 @@ Branche `feature/us-03-compute-sheet-niveau-1`. Chaque tâche commence par le te
 
 - [x] 8.1 Test des fixtures [D1] : chaque fixture `active` est recalculée et chaque clé de `expected` est reproduite ; les autres sont `skip` avec leur statut ; vérifier qu'Aldric niveau 1 passe et qu'une valeur attendue faussée le fait échouer
 - [x] 8.2 Mettre à jour `packages/dnd_rules/README.md` (point d'entrée, format d'entrée) et le README des fixtures (format `choices`) ; vérifier la relecture des deux fichiers
-- [ ] 8.3 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts, couverture de `dnd_rules` ≥ 95 %
+- [x] 8.3 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts, couverture de `dnd_rules` ≥ 95 %
 
 ## Workflow follow-up
 
