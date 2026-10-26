@@ -49,3 +49,58 @@ jobs:
           name: couverture
           path: packages/*/coverage/lcov.info
           if-no-files-found: ignore
+
+  # Base locale sur le Web (SQLite WASM) : spec local-database, US-04.
+  web:
+    name: Intégration Web (Chrome)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version de Flutter (.fvmrc)
+        run: echo "FLUTTER_VERSION=$(jq -r .flutter .fvmrc)" >> "$GITHUB_ENV"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+      - name: Test d'intégration
+        working-directory: apps/game_table
+        run: |
+          chromedriver --port=4444 &
+          flutter drive -d web-server --browser-name=chrome             --driver=test_driver/integration_test.dart             --target=integration_test/database_test.dart
+
+  # Base locale sur iOS (SQLite natif, simulateur) : spec local-database, US-04.
+  ios:
+    name: Intégration iOS (simulateur)
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version de Flutter (.fvmrc)
+        run: echo "FLUTTER_VERSION=$(jq -r .flutter .fvmrc)" >> "$GITHUB_ENV"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+      - name: Démarrer un simulateur iPhone
+        run: |
+          UDID=$(xcrun simctl list devices available -j             | jq -r '[.devices[][] | select(.name | startswith("iPhone"))][0].udid')
+          if [ -z "$UDID" ] || [ "$UDID" = null ]; then
+            echo "::error::Aucun simulateur iPhone disponible sur ce runner"
+            exit 1
+          fi
+          xcrun simctl boot "$UDID"
+          echo "SIMULATOR=$UDID" >> "$GITHUB_ENV"
+      - name: Test d'intégration
+        working-directory: apps/game_table
+        run: flutter test integration_test/database_test.dart -d "$SIMULATOR"
