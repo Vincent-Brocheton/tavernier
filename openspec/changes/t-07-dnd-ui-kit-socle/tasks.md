@@ -1,6 +1,6 @@
 ## 1. Migration Material
 
-- [ ] 1.1 Ajouter `material_ui` au kit et à l'app, migrer les imports (`dart fix --apply --code=migrate_design_widgets`) et les délégués de localisation ; vérifier `flutter analyze` sans erreur, les tests existants verts et `flutter build web` réussi
+- [x] 1.1 Ajouter `material_ui` au kit et à l'app, migrer les imports (`dart fix --apply --code=migrate_design_widgets`) et les délégués de localisation ; vérifier `flutter analyze` sans erreur, les tests existants verts et `flutter build web` réussi
 
 ## 2. Tokens, thème, mise en page
 
