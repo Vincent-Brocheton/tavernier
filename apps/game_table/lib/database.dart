@@ -7,17 +7,22 @@ import 'package:flutter/services.dart';
 const srdPackAsset = 'assets/packs/srd-5.2.1-fr.dndpack';
 
 /// Ouvre la base locale de la plateforme : SQLite natif sur mobile et
-/// bureau, SQLite WASM sur le Web (OPFS, repli IndexedDB).
-TavernierDatabase openTavernierDatabase({String name = 'tavernier'}) =>
-    TavernierDatabase(
-      driftDatabase(
-        name: name,
-        web: DriftWebOptions(
-          sqlite3Wasm: Uri.parse('sqlite3.wasm'),
-          driftWorker: Uri.parse('drift_worker.js'),
-        ),
-      ),
-    );
+/// bureau, SQLite WASM sur le Web (OPFS si la page est isolée, repli
+/// IndexedDB). Sur le Web, [onWebResult] reçoit le stockage choisi et les
+/// fonctions manquantes du navigateur.
+TavernierDatabase openTavernierDatabase({
+  String name = 'tavernier',
+  void Function(WasmDatabaseResult)? onWebResult,
+}) => TavernierDatabase(
+  driftDatabase(
+    name: name,
+    web: DriftWebOptions(
+      sqlite3Wasm: Uri.parse('sqlite3.wasm'),
+      driftWorker: Uri.parse('drift_worker.js'),
+      onResult: onWebResult,
+    ),
+  ),
+);
 
 /// Lit le pack SRD embarqué.
 Future<ContentPack> loadSrdPack() async {
