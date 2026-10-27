@@ -15,6 +15,7 @@
       "somatic": true,
       "material": "au moins 25 000 po de diamants, que le sort détruit"
     },
+    "material_cost_cp": 2500000,
     "material_consumed": true,
     "duration": "instantanée",
     "concentration": false

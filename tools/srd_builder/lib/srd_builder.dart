@@ -122,8 +122,12 @@ int _extractSpells(ArgResults command, StringSink out, StringSink err) {
   final slugs = <String, String>{};
   for (final line in File(command.option('slugs')!).readAsLinesSync()) {
     if (line.trim().isEmpty || line.startsWith('#')) continue;
-    final [name, slug] = line.split('\t');
-    slugs[name] = slug;
+    final columns = line.split('\t');
+    if (columns.length != 2) {
+      err.writeln('ligne de slugs invalide (nom<TAB>slug attendu) : $line');
+      return 1;
+    }
+    slugs[columns[0]] = columns[1];
   }
   final missing = [
     for (final s in spells)

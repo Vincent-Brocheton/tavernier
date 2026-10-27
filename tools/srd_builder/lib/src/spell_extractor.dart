@@ -190,10 +190,19 @@ Map<String, Object?> parseRange(String range) {
   final material = paren < 0
       ? null
       : components.substring(paren + 1, components.lastIndexOf(')'));
+  // « d’une valeur minimale de 500 po », « au moins 25 000 po de diamants »,
+  // « deux bagues … d’une valeur de 50 po chacune ».
   final cost = material == null
       ? null
-      : RegExp(r'valeur minimale de ([\d  ]+) (po|pa|pc)').firstMatch(material);
+      : RegExp(
+          r'(?:valeur (?:minimale )?de|au moins) ([\d\s]+) (po|pa|pc)( chacune)?',
+        ).firstMatch(material);
   final rate = {'po': 100, 'pa': 10, 'pc': 1};
+  const counts = {'deux': 2, 'trois': 3, 'quatre': 4};
+  final each = cost?[3] == null
+      ? 1
+      : counts[material!.split(' ').first] ??
+            (throw FormatException('nombre d’objets illisible : $material'));
   return (
     components: {
       'verbal': letters.contains('V'),
@@ -202,7 +211,9 @@ Map<String, Object?> parseRange(String range) {
     },
     costCp: cost == null
         ? null
-        : int.parse(cost[1]!.replaceAll(RegExp(r'\s'), '')) * rate[cost[2]]!,
+        : int.parse(cost[1]!.replaceAll(RegExp(r'\s'), '')) *
+              rate[cost[2]]! *
+              each,
     consumed:
         material != null &&
         RegExp(r'que le sort (détruit|consume)').hasMatch(material),

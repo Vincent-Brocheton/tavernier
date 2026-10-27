@@ -65,7 +65,7 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 - `spell` :
   - `level` : 0 pour un sort mineur, jusqu'à 9 ;
   - `school` : `abjuration`, `conjuration`, `divination`, `enchantment`, `evocation`, `illusion`, `necromancy` ou `transmutation` ;
-  - `casting_time` et `duration` : texte du SRD ; `ritual` et `concentration` : booléens ;
+  - `casting_time` et `duration` : texte du SRD, recopié tel quel (les distances d'un déclencheur de réaction y restent en mètres, comme dans le texte de règles) ; `ritual` et `concentration` : booléens ;
   - `range` : `{kind: self | touch | feet | sight | unlimited | special, feet}` (`feet` seulement pour `kind: feet`, en pieds) ;
   - `components` : `{verbal, somatic, material?}` ; `material_cost_cp?` ; `material_consumed`.
   - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.

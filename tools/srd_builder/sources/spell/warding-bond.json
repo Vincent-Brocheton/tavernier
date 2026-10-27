@@ -15,6 +15,7 @@
       "somatic": true,
       "material": "deux bagues de platine d’une valeur de 50 po chacune, que la cible et vous devez porter pour toute la durée"
     },
+    "material_cost_cp": 10000,
     "material_consumed": false,
     "duration": "1 heure",
     "concentration": false

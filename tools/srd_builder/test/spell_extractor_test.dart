@@ -110,6 +110,20 @@ void main() {
     expect(spells[0].materialConsumed, isFalse);
   });
 
+  test('coûts : « au moins », et objets « chacun »', () {
+    final diamonds = parseComponents(
+      'V, S, M (au moins 25 000 po de diamants, que le sort détruit)',
+    );
+    expect((diamonds.costCp, diamonds.consumed), (2500000, true));
+    expect(
+      parseComponents(
+        'V, S, M (deux bagues de platine d’une valeur de 50 po chacune, que la '
+        'cible et vous devez porter pour toute la durée)',
+      ).costCp,
+      10000,
+    );
+  });
+
   test('portées converties en pieds', () {
     expect(parseRange('9 m'), {'kind': 'feet', 'feet': 30});
     expect(parseRange('1,50 m'), {'kind': 'feet', 'feet': 5});
