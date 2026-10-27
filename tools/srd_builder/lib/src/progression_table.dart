@@ -42,12 +42,17 @@ List<ProgressionRow> parseProgressionTable(
     ];
     // Exposant (« 7e ») qui repousse les valeurs sur une ligne suivante :
     // la lettre seule est sautée, la ligne de valeurs seules est reprise.
+    // Sans lettre seule, la ligne n'a pas d'exposant : rien n'est repris.
     if (tokens.isEmpty) {
       var j = i + 1;
+      var letter = false;
       while (j < lines.length && RegExp(r'^\s*[a-z]?\s*$').hasMatch(lines[j])) {
+        letter |= lines[j].trim().isNotEmpty;
         j++;
       }
-      if (j < lines.length && RegExp(r'^[\s\d—+d]+$').hasMatch(lines[j])) {
+      if (letter &&
+          j < lines.length &&
+          RegExp(r'^[\s\d—+d]+$').hasMatch(lines[j])) {
         tokens = lines[j].trim().split(RegExp(r'\s+'));
         i = j;
       }

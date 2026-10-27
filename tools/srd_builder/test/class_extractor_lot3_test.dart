@@ -4,11 +4,17 @@ import 'package:srd_builder/src/feature_extractor.dart';
 import 'package:srd_builder/src/progression_table.dart';
 import 'package:test/test.dart';
 
-String _table(String title, List<String> rows) => [
+/// Table de 20 niveaux : [rows], puis des lignes de remplissage portant
+/// les valeurs [filler].
+String _table(
+  String title,
+  List<String> rows, {
+  String filler = '1d6       2       +3 m',
+}) => [
   '     $title',
   ...rows,
   for (var l = rows.length + 1; l <= 20; l++)
-    '        $l         +2       —                       1d6       2       +3 m',
+    '        $l         +2       —                       $filler',
 ].join('\n');
 
 void main() {
@@ -30,11 +36,29 @@ void main() {
     final sneak = parseProgressionTable(
       _table('Aptitudes du Roublard', [
         '        1         +2       Attaque sournoise                      2d6',
-      ]).replaceAll('       2       +3 m', ''),
+      ], filler: '3d6'),
       'Aptitudes du Roublard',
       ['sneak_attack_dice'],
     );
     expect(sneak.first.columns, {'sneak_attack_dice': 2});
+  });
+
+  test('sans lettre d’exposant, une ligne de valeurs n’est pas reprise', () {
+    expect(
+      () => parseProgressionTable(
+        [
+          '     Aptitudes de l’Occultiste',
+          '         1         +2       Magie de pacte',
+          '',
+          '                                                                      8         4',
+          for (var l = 2; l <= 20; l++)
+            '        $l         +2       —                        1         2',
+        ].join('\n'),
+        'Aptitudes de l’Occultiste',
+        ['invocations', 'cantrips'],
+      ),
+      throwsFormatException,
+    );
   });
 
   test('valeurs repoussées par un exposant (« 7e »)', () {

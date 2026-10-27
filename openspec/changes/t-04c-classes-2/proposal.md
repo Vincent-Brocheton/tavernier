@@ -48,7 +48,7 @@ Aucune.
 - Pack SRD régénéré dans l'app (760 entités).
 
 **Choix de modélisation à valider :**
-- **Armes du Moine et du Roublard :** seule une partie des armes de guerre est concernée (« dotées de la propriété Légère », « Finesse ou Légère »). `weapon_proficiencies` reçoit deux valeurs explicites, `martial_light` et `martial_finesse_or_light`. Le moteur les interprétera avec la fiche (US-07) ; d'ici là, ces armes ne comptent pas comme maîtrisées dans le calcul des attaques.
+- **Armes du Moine et du Roublard :** seule une partie des armes de guerre est concernée (« dotées de la propriété Légère », « Finesse ou Légère »). `weapon_proficiencies` reçoit deux valeurs explicites, `martial_light` et `martial_finesse_or_light`. Le moteur les interprète d'après la catégorie et les propriétés de l'arme (`coversWeapon`).
 - **Outils du Moine :** « un type d'outils d'artisan ou d'instrument de musique ». Un choix entre deux catégories n'est pas exprimable : il reste descriptif.
 - **Restent descriptifs** (choix libres, ou entités pas encore modélisées) :
   - Manifestations occultes ;
