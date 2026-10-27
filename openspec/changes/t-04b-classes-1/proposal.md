@@ -47,6 +47,7 @@ Aucune.
 
 **Écarts relevés dans le SRD français, signalés sans être tranchés :**
 - Table « Aptitudes du Barbare », niveau 7 : « Bond agressif », alors que l'aptitude s'intitule « Bond instinctif ». L'aptitude garde le titre de sa section.
+- Quatre sorts citent une classe dans leur en-tête mais manquent dans la « Liste des sorts » de cette classe : Force fantasmagorique (Barde, Ensorceleur, Magicien), Épine mentale (Ensorceleur), Invocation d'élémentaires mineurs (Magicien). L'en-tête du sort fait foi (décision 6) ; un test fige ces quatre cas.
 
 **Hors périmètre :**
 - **Équipement de départ des classes :** il cite des paquetages et objets encore absents du pack. Il arrive avec le lot 4 (équipement), pour toutes les classes.

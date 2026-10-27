@@ -10,7 +10,7 @@ void main() {
   });
 
   test('renvoie null pour un identifiant absent', () {
-    expect(srdContent().entity('srd:class:bard'), isNull);
+    expect(srdContent().entity('srd:class:absente'), isNull);
   });
 
   test('une entité ajoutée par un autre pack est visible', () {

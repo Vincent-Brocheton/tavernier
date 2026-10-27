@@ -67,6 +67,7 @@ List<String> extractClasses({
       tableTitle: c.table,
       appendSections: c.appendSections,
       sidebars: c.sidebars,
+      dropTables: c.dropTables,
     );
     report.writeln('== ${c.name}');
     section.joins.forEach(report.writeln);
@@ -85,26 +86,16 @@ List<String> extractClasses({
         continue;
       }
       if (f.subclass) subclassFeatures.add('srd:feature:$slug');
-      final file = File('$sources/feature/$slug.json');
-      final existing = file.existsSync()
-          ? jsonDecode(file.readAsStringSync()) as Map<String, Object?>
-          : null;
-      if (existing == null) report.writeln('créée : $slug');
-      _write(file, {
-        'id': 'srd:feature:$slug',
-        'type': 'feature',
-        'name': f.name,
-        'data':
-            existing?['data'] ??
-            {
-              'source': f.subclass
-                  ? 'srd:subclass:${c.subclassSlug}'
-                  : 'srd:class:${c.slug}',
-              'level': f.level,
-            },
-        'effects': ?existing?['effects'],
-        'text': {'fr': f.text},
-      });
+      final created = writeFeature(
+        File('$sources/feature/$slug.json'),
+        name: f.name,
+        text: f.text,
+        source: f.subclass
+            ? 'srd:subclass:${c.subclassSlug}'
+            : 'srd:class:${c.slug}',
+        level: f.level,
+      );
+      if (created) report.writeln('créée : $slug');
     }
 
     // Sous-classe : régénérée entièrement.
@@ -159,6 +150,30 @@ List<String> extractClasses({
     _write(classFile, json);
   }
   return problems;
+}
+
+/// Écrit l'aptitude [file] : nom et texte réécrits, `data` et `effects`
+/// saisis à la main gardés. Renvoie `true` si le fichier est nouveau.
+bool writeFeature(
+  File file, {
+  required String name,
+  required String text,
+  required String source,
+  required int level,
+}) {
+  final existing = file.existsSync()
+      ? jsonDecode(file.readAsStringSync()) as Map<String, Object?>
+      : null;
+  final slug = file.uri.pathSegments.last.replaceFirst('.json', '');
+  _write(file, {
+    'id': 'srd:feature:$slug',
+    'type': 'feature',
+    'name': name,
+    'data': existing?['data'] ?? {'source': source, 'level': level},
+    'effects': ?existing?['effects'],
+    'text': {'fr': text},
+  });
+  return existing == null;
 }
 
 /// Classes citées par l'en-tête de chaque sort : nom de classe → slugs.

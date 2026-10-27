@@ -6,14 +6,18 @@ import 'package:test/test.dart';
 
 import 'support.dart';
 
-/// Entités dont les effets s'appliquent au niveau 1 : traits d'espèce, dons
-/// d'origines et de Style de combat, aptitudes de classe de niveau 1.
+/// Entités dont les effets s'appliquent au personnage témoin (Guerrier
+/// humain de niveau 1) : traits de l'Humain, dons d'origines et de Style de
+/// combat, aptitudes de Guerrier de niveau 1. Les autres classes du pack
+/// (T-04) ont leurs propres opérations, calculées avec la fiche (US-07).
 Iterable<ContentEntity> _levelOneEntities() => srdPack.entities.where((e) {
   final data = e.data;
   return switch (data) {
     FeatData(:final category) =>
       category == FeatCategory.origin || category == FeatCategory.fightingStyle,
-    FeatureData(:final level) => (level ?? 1) == 1,
+    FeatureData(:final source, :final level) =>
+      (level ?? 1) == 1 &&
+          {'srd:class:fighter', 'srd:species:human'}.contains('$source'),
     _ => false,
   };
 });

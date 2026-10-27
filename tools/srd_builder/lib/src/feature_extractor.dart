@@ -42,6 +42,7 @@ ClassSection extractClassSection(
   required String tableTitle,
   Map<String, String> appendSections = const {},
   Map<String, ({int lines, String to})> sidebars = const {},
+  List<String> dropTables = const [],
 }) {
   final start = text.indexOf(
     RegExp('^Traits de base d(?:u |e l’)$className\$', multiLine: true),
@@ -53,6 +54,14 @@ ClassSection extractClassSection(
   ).allMatches(text, start + 1).firstOrNull;
   final clean = cleanText(text.substring(start, next?.start ?? text.length));
   var lines = _dropTable(clean.lines, tableTitle);
+  // Tables internes dont les valeurs sont portées par les effets. Des
+  // tables consécutives partent ensemble avec la première.
+  for (final title in dropTables) {
+    if (!clean.lines.contains(title)) {
+      throw FormatException('table introuvable : $title');
+    }
+    lines = _dropTable(lines, title);
+  }
   // Le titre de la classe suivante précède ses « Traits de base ».
   final nextClass = next?[1]?.replaceFirst(
     RegExp(r'^Traits de base d(?:u |e l’)'),

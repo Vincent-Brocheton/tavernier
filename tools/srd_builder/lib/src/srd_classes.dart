@@ -31,6 +31,9 @@ typedef SrdClass = ({
 
   /// Encadrés intercalés par la lecture : nombre de lignes, aptitude cible.
   Map<String, ({int lines, String to})> sidebars,
+
+  /// Tables internes retirées du texte : leurs valeurs sont dans les effets.
+  List<String> dropTables,
 });
 
 const srdClasses = <SrdClass>[
@@ -42,6 +45,7 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'path-of-the-berserker',
     appendSections: {},
     sidebars: {},
+    dropTables: [],
   ),
   (
     name: 'Barde',
@@ -51,6 +55,7 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'college-of-lore',
     appendSections: {},
     sidebars: {},
+    dropTables: [],
   ),
   (
     name: 'Clerc',
@@ -60,6 +65,7 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'life-domain',
     appendSections: {},
     sidebars: {},
+    dropTables: ['Sorts du Domaine de la Vie'],
   ),
   (
     name: 'Druide',
@@ -69,6 +75,13 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'circle-of-the-land',
     appendSections: {},
     sidebars: {},
+    dropTables: [
+      'Terres arides',
+      'Terres polaires',
+      'Terres tempérées',
+      'Terres tropicales',
+      'Protégé de dame Nature',
+    ],
   ),
   (
     name: 'Ensorceleur',
@@ -78,6 +91,7 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'draconic-sorcery',
     appendSections: {'Options de Métamagie': 'Métamagie'},
     sidebars: {},
+    dropTables: ['Sorts draconiques'],
   ),
   (
     name: 'Magicien',
@@ -87,5 +101,6 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'evoker',
     appendSections: {},
     sidebars: {'Étoffer et remplacer son grimoire': (lines: 5, to: 'Sorts')},
+    dropTables: [],
   ),
 ];

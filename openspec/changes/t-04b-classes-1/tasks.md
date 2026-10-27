@@ -5,7 +5,7 @@
 
 ## 2. Extraction des aptitudes
 
-- [ ] 2.1 Tests qui échouent :
+- [x] 2.1 Tests qui échouent :
   - découpage d'un extrait (deux aptitudes de classe, titre de sous-classe, une aptitude de sous-classe) ;
   - même nom à deux niveaux ;
   - fusion qui garde `data` et `effects` d'un fichier existant.
@@ -15,22 +15,22 @@
 
 ## 3. Contenu
 
-- [ ] 3.1 Barbare et Voie du Berserker : classe (traits, table, colonnes), sous-classe, effets des aptitudes selon l'inventaire
-- [ ] 3.2 Barde et Collège du Savoir
-- [ ] 3.3 Clerc et Domaine de la Vie
-- [ ] 3.4 Druide et Cercle de la Terre
-- [ ] 3.5 Ensorceleur et Sorcellerie draconique
-- [ ] 3.6 Magicien et Évocateur
-- [ ] 3.7 Listes de sorts des 5 lanceurs depuis `spell_classes.tsv`
+- [x] 3.1 Barbare et Voie du Berserker : classe (traits, table, colonnes), sous-classe, effets des aptitudes selon l'inventaire
+- [x] 3.2 Barde et Collège du Savoir
+- [x] 3.3 Clerc et Domaine de la Vie
+- [x] 3.4 Druide et Cercle de la Terre
+- [x] 3.5 Ensorceleur et Sorcellerie draconique
+- [x] 3.6 Magicien et Évocateur
+- [x] 3.7 Listes de sorts des 5 lanceurs depuis `spell_classes.tsv`
 
 ## 4. Vérifications
 
-- [ ] 4.1 Tests de contenu par classe, page citée : traits de base, colonnes témoins, emplacements au niveau 20, une aptitude calculable, concordance des listes de sorts avec les en-têtes ; pack régénéré dans l'app
-- [ ] 4.2 `docs/packs/FORMAT_DNDPACK.md` (champs de classe), CLAUDE.md (commande `extract-features`)
+- [x] 4.1 Tests de contenu par classe, page citée : traits de base, colonnes témoins, emplacements au niveau 20, une aptitude calculable, concordance des listes de sorts avec les en-têtes ; pack régénéré dans l'app
+- [x] 4.2 `docs/packs/FORMAT_DNDPACK.md` (champs de classe), CLAUDE.md (commande `extract-features`)
 
 ## 5. Intégration
 
-- [ ] 5.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
+- [x] 5.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 
