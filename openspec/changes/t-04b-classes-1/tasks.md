@@ -1,7 +1,7 @@
 ## 1. Modèle
 
 - [x] 1.1 Tests qui échouent : une classe avec `spell_list` et `spellcasting_ability` se lit et se réécrit ; une classe sans ces champs reste valide ; une liste qui cite une aptitude fait échouer `validatePack` ; puis `ClassData` et `build_runner`
-- [ ] 1.2 Tests qui échouent dans `dnd_data` : aller-retour d'une classe avec liste de sorts, table `spell_class` remplie ; puis `PackStore`
+- [x] 1.2 Tests qui échouent dans `dnd_data` : aller-retour d'une classe avec liste de sorts, table `spell_class` remplie ; puis `PackStore`
 
 ## 2. Extraction des aptitudes
 

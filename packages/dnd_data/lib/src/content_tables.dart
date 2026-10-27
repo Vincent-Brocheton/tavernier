@@ -241,6 +241,7 @@ class Classes extends Table with ContentEntityColumns {
   TextColumn get weaponProficiencies => text()(); // JSON
   TextColumn get armorTraining => text()(); // JSON
   IntColumn get subclassLevel => integer()();
+  TextColumn get spellcastingAbilityId => text().nullable()();
 }
 
 @DataClassName('ClassLevelRow')
