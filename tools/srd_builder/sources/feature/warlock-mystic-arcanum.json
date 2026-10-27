@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:warlock-mystic-arcanum",
+  "type": "feature",
+  "name": "Arcanum mystique",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 11
+  },
+  "text": {
+    "fr": "Votre protecteur vous octroie un secret magique appelé arcanum. Choisissez un sort d’Occultiste du 6e niveau pour cet arcanum.\nVous pouvez lancer ce sort d’arcanum sans dépenser d’emplacement de sort, sachant que vous devez ensuite terminer un Repos long avant de pouvoir le relancer par ce biais.\nComme indiqué dans la table « Aptitudes de l’Occultiste », vous recevez un autre sort d’Occultiste de votre choix qui peut être lancé de cette manière lorsque vous atteignez les niveaux 13 (sort du 7e niveau), 15 (sort du 8e niveau) et 17 (sort du 9e niveau) d’Occultiste. Vous récupérez toutes vos utilisations d’Arcanum mystique en terminant un Repos long.\nChaque fois que vous gagnez un niveau d’Occultiste, vous pouvez remplacer l’un de vos sorts d’arcanum par un autre sort d’Occultiste du même niveau."
+  }
+}

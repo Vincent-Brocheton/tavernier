@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:paladin-extra-attack",
+  "type": "feature",
+  "name": "Attaque supplémentaire",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "set_attacks_per_action",
+      "count": 2
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez attaquer deux fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour."
+  }
+}

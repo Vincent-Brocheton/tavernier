@@ -1,0 +1,29 @@
+{
+  "id": "srd:feature:fiend-dark-ones-own-luck",
+  "type": "feature",
+  "name": "Chance du ténébreux",
+  "data": {
+    "source": "srd:subclass:fiend-patron",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:dark-ones-own-luck",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "cha",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez demander à votre protecteur fiélon qu’il modifie le destin en votre faveur. Lorsque vous effectuez un test de caractéristique ou un jet de sauvegarde, vous pouvez recourir à cette aptitude pour ajouter 1d10 à ce jet. Vous pouvez faire ainsi après avoir effectué le jet, mais avant qu’interviennent ses effets.\nVous pouvez recourir à cette aptitude un nombre de fois égal à votre modificateur de Charisme (une fois au minimum), mais vous ne pouvez pas l’utiliser plus d’une fois par jet. Vous récupérez ce quota en terminant un Repos long."
+  }
+}

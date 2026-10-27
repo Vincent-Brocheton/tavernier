@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:paladin-abjure-foes",
+  "type": "feature",
+  "name": "Abjuration d’ennemis",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 9
+  },
+  "text": {
+    "fr": "Au prix de l’action Magie, vous pouvez dépenser une utilisation de Conduit divin de cette classe afin de vous faire craindre de vos ennemis. Tout en brandissant votre symbole sacré ou votre arme, vous pouvez cibler un nombre de créatures égal à votre modificateur de Charisme (minimum d’une créature) que vous voyez dans un rayon de 18 m. Chaque cible doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Effrayé pendant 1 minute ou jusqu’à ce qu’elle subisse des dégâts. Tant qu’elle subit cet état Effrayé, la cible ne peut faire qu’une seule des choses suivantes à son tour : se déplacer, entreprendre une action ou une action Bonus."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "srd:feature:devotion-oath-spells",
+  "type": "feature",
+  "name": "Sorts du Serment de Dévotion",
+  "data": {
+    "source": "srd:subclass:oath-of-devotion",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:protection-from-evil-and-good",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:shield-of-faith",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:aid",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:zone-of-truth",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:beacon-of-hope",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:dispel-magic",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:freedom-of-movement",
+      "always_prepared": true,
+      "when": {
+        "level": 13
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:guardian-of-faith",
+      "always_prepared": true,
+      "when": {
+        "level": 13
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:commune",
+      "always_prepared": true,
+      "when": {
+        "level": 17
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:flame-strike",
+      "always_prepared": true,
+      "when": {
+        "level": 17
+      }
+    }
+  ],
+  "text": {
+    "fr": "La magie de votre serment vous assure d’avoir certains sorts disponibles en permanence ; lorsque vous atteignez un niveau de Paladin spécifié dans la table « Sorts du Serment de Dévotion », les sorts qui y figurent sont toujours préparés pour vous."
+  }
+}

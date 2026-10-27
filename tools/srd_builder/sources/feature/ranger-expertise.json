@@ -1,0 +1,129 @@
+{
+  "id": "srd:feature:ranger-expertise",
+  "type": "feature",
+  "name": "Expertise",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 9
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "ranger-expertise",
+      "count": 2,
+      "options": [
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:acrobatics"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:animal-handling"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:arcana"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:athletics"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:deception"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:history"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:intimidation"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:investigation"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:medicine"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:performance"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:persuasion"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:religion"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:sleight-of-hand"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:stealth"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:survival"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Choisissez deux de vos maîtrises de compétence ne bénéficiant pas de l’Expertise. Vous recevez l’Expertise dans ces compétences."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "srd:feature:rogue-slippery-mind",
+  "type": "feature",
+  "name": "Esprit fuyant",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 15
+  },
+  "effects": [
+    {
+      "op": "grant_proficiency",
+      "kind": "saving_throw",
+      "ref": "wis"
+    },
+    {
+      "op": "grant_proficiency",
+      "kind": "saving_throw",
+      "ref": "cha"
+    }
+  ],
+  "text": {
+    "fr": "Votre esprit retors est particulièrement difficile à contrôler. Vous recevez la maîtrise des jets de sauvegarde de Sagesse et de Charisme."
+  }
+}

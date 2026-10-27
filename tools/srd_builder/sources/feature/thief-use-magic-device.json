@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:thief-use-magic-device",
+  "type": "feature",
+  "name": "Utilisation d’objets magiques",
+  "data": {
+    "source": "srd:subclass:thief",
+    "level": 13
+  },
+  "effects": [
+    {
+      "op": "modify_attunement_slots",
+      "value": 4
+    }
+  ],
+  "text": {
+    "fr": "Vous avez appris à tirer le meilleur parti des objets magiques, ce qui vous octroie les bénéfices suivants.\nCharges. Chaque fois que vous utilisez une propriété d’objet magique qui dépense des charges, lancez 1d6. Sur un résultat de 6, vous utilisez la propriété sans dépenser la moindre charge.\nHarmonisation. Vous pouvez être harmonisé avec un maximum de quatre objets à la fois.\nParchemins. Vous pouvez utiliser n’importe quel parchemin de sort, en recourant à l’Intelligence comme caractéristique d’incantation pour le sort qui y est inscrit. Si ce sort est un sort mineur ou un sort du 1er niveau, vous le lancez à coup sûr. Si le parchemin contient un sort de niveau supérieur, vous devez au préalable réussir un test d’Intelligence (Arcanes) (DD 10 + le niveau du sort). En cas de réussite, vous lancez le sort inscrit sur le parchemin. En cas d’échec, le parchemin se désintègre."
+  }
+}

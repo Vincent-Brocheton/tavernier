@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-evasion",
+  "type": "feature",
+  "name": "Esquive totale",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 7
+  },
+  "text": {
+    "fr": "Votre agilité vous permet d’esquiver certains dangers. Quand vous êtes soumis à un effet qui vous permet d’effectuer un jet de sauvegarde de Dextérité pour réduire les dégâts de moitié, vous ne subissez aucun dégât en cas de sauvegarde réussie, et seulement la moitié en cas d’échec. Vous ne pouvez pas recourir à cette aptitude si vous subissez l’état Neutralisé."
+  }
+}

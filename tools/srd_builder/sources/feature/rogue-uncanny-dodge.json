@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-uncanny-dodge",
+  "type": "feature",
+  "name": "Esquive instinctive",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 5
+  },
+  "text": {
+    "fr": "Lorsqu’un assaillant que vous voyez vous touche avec un jet d’attaque, vous pouvez jouer votre Réaction pour réduire de moitié les dégâts de cette attaque (arrondir à l’inférieur)."
+  }
+}

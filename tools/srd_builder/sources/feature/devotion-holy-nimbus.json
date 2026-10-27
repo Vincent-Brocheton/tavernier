@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:devotion-holy-nimbus",
+  "type": "feature",
+  "name": "Nimbe sacré",
+  "data": {
+    "source": "srd:subclass:oath-of-devotion",
+    "level": 20
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:holy-nimbus",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Par une action Bonus, votre Aura de protection est renforcée de puissance sacrée, ce qui octroie les bénéfices ci-après pendant 10 minutes ou jusqu’à ce que vous décidiez d’y mettre fin (pas d’action requise). Une fois que vous avez utilisé cette aptitude, vous devez terminer un Repos long pour pouvoir y recourir de nouveau. Vous pouvez également retrouver son usage en dépensant un emplacement de sort du 5e niveau (pas d’action requise).\nDégâts radiants. Chaque fois qu’un ennemi débute son tour dans l’aura, cette créature subit un total de dégâts radiants égal à votre modificateur de Charisme + votre bonus de maîtrise.\nLumière du soleil. L’aura est inondée d’une Lumière vive qui est la lumière du soleil.\nPérimètre sacré. Vous bénéficiez de l’Avantage à tout jet de sauvegarde que vous contraint d’effectuer un Fiélon ou un Mort-vivant."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-steady-aim",
+  "type": "feature",
+  "name": "Visée appliquée",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 3
+  },
+  "text": {
+    "fr": "Par une action Bonus, vous vous octroyez l’Avantage à votre prochain jet d’attaque du tour. Vous ne pouvez recourir à cette aptitude que si vous ne vous êtes pas déplacé à ce tour, et votre Vitesse est réduite à 0 jusqu’à la fin du tour."
+  }
+}

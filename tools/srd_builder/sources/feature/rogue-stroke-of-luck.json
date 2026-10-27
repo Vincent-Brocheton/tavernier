@@ -1,0 +1,29 @@
+{
+  "id": "srd:feature:rogue-stroke-of-luck",
+  "type": "feature",
+  "name": "Coup de chance",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 20
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:stroke-of-luck",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous avez le chic pour réussir quand l’enjeu est de taille. Si vous ratez un Test d20, vous pouvez transformer le résultat du jet en 20.\nUne fois que vous avez utilisé cette aptitude, vous devez terminer un Repos court ou long pour pouvoir y recourir de nouveau."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:hunter",
+  "type": "subclass",
+  "name": "Chasseur",
+  "data": {
+    "parent_class": "srd:class:ranger",
+    "features": [
+      "srd:feature:hunter-hunters-lore",
+      "srd:feature:hunter-hunters-prey",
+      "srd:feature:hunter-defensive-tactics",
+      "srd:feature:hunter-superior-hunters-prey",
+      "srd:feature:hunter-superior-hunters-defense"
+    ]
+  },
+  "text": {
+    "fr": "Protégez la nature et les braves gens de la destruction\nVous traquez des proies en pleine nature ou ailleurs, utilisant vos capacités de chasseur pour protéger la faune, la flore et les braves gens partout où menacent les forces de la destruction."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "srd:feature:ranger-natures-veil",
+  "type": "feature",
+  "name": "Voile de la nature",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 14
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:natures-veil",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "wis",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous invoquez les esprits de la nature afin de vous cacher magiquement. Par une action Bonus, vous pouvez vous octroyer l’état Invisible jusqu’à la fin de votre tour suivant.\nVous pouvez recourir à cette aptitude autant de fois que votre modificateur de Sagesse (minimum d’une fois) et récupérez ce quota en terminant un Repos long."
+  }
+}

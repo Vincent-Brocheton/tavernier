@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:monk-uncanny-metabolism",
+  "type": "feature",
+  "name": "Métabolisme surnaturel",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:uncanny-metabolism",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous jouez l’Initiative, vous pouvez récupérer tous vos points de Credo dépensés. Ce faisant, lancez votre dé d’Arts martiaux et récupérez autant de points de vie que votre niveau de Moine plus le résultat du dé.\nUne fois que vous avez utilisé cette aptitude, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-superior-defense",
+  "type": "feature",
+  "name": "Défense supérieure",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 18
+  },
+  "text": {
+    "fr": "Au début de votre tour, vous pouvez dépenser 3 points de Credo pour consolider votre corps pendant 1 minute (l’effet prend fin si vous subissez l’état Neutralisé). Durant cet intervalle, vous bénéficiez de la Résistance à tous les dégâts hormis ceux de force."
+  }
+}

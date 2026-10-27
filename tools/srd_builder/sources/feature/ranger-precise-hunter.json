@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:ranger-precise-hunter",
+  "type": "feature",
+  "name": "Chasseur précis",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 17
+  },
+  "text": {
+    "fr": "Vous recevez l’Avantage à vos jets d’attaque contre la créature affectée par votre marque du chasseur."
+  }
+}

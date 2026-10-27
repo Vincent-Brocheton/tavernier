@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:hunter-defensive-tactics",
+  "type": "feature",
+  "name": "Tactiques défensives",
+  "data": {
+    "source": "srd:subclass:hunter",
+    "level": 7
+  },
+  "text": {
+    "fr": "Vous recevez l’une des aptitudes suivantes au choix. Chaque fois que vous terminez un Repos court ou long, vous pouvez remplacer l’option choisie par l’autre.\nCauchemar de la horde. Les attaques d’Opportunité contre vous subissent le Désavantage.\nDéfense contre les attaques multiples. Lorsqu’une créature vous touche avec un jet d’attaque, cette créature subit le Désavantage à tous ses autres jets d’attaque contre vous pendant ce tour."
+  }
+}

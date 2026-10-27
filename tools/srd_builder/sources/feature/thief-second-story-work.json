@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:thief-second-story-work",
+  "type": "feature",
+  "name": "Monte-en-l’air",
+  "data": {
+    "source": "srd:subclass:thief",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "modify_speed",
+      "mode": "climb",
+      "equal_to": "walk"
+    }
+  ],
+  "text": {
+    "fr": "Rompu à l’accès aux endroits difficiles, vous recevez les bénéfices ci-après.\nEscaladeur. Vous recevez une Vitesse d’escalade égale à votre Vitesse.\nSauteur. Vous pouvez déterminer votre distance de saut en utilisant votre Dextérité plutôt que votre Force."
+  }
+}

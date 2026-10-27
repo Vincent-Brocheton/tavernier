@@ -1,0 +1,27 @@
+{
+  "id": "srd:feature:monk-unarmored-defense",
+  "type": "feature",
+  "name": "Défense sans armure",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "ac_formula",
+      "base": 10,
+      "abilities": [
+        "dex",
+        "wis"
+      ],
+      "allows_shield": false,
+      "when": {
+        "armor": "none",
+        "shield": false
+      }
+    }
+  ],
+  "text": {
+    "fr": "Tant que vous ne portez ni armure ni bouclier, votre classe d’armure de base est égale à 10 + vos modificateurs de Dextérité et de Sagesse."
+  }
+}

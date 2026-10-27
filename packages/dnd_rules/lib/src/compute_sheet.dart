@@ -183,7 +183,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   };
   bool proficientWith(ContentEntity weapon) =>
       weaponIds.contains('${weapon.id}') ||
-      weaponCategories.contains((weapon.data as WeaponData).category.name);
+      coversWeapon(weaponCategories, weapon.data as WeaponData);
 
   final masterySlots = [
     for (final a in ofOp('grant_mastery_slots'))
@@ -635,4 +635,17 @@ List<IntegrityError> _checkBackgroundBonus(
           'le bonus d\'Historique ne peut pas dépasser 20',
         ),
   ];
+}
+
+/// `true` si les maîtrises d'armes [categories] couvrent [weapon] : une
+/// catégorie entière (`simple`, `martial`), ou une partie des armes de
+/// guerre (`martial_light` du Moine, `martial_finesse_or_light` du
+/// Roublard).
+bool coversWeapon(Set<String> categories, WeaponData weapon) {
+  if (categories.contains(weapon.category.name)) return true;
+  if (weapon.category != WeaponCategory.martial) return false;
+  final light = weapon.properties.contains('light');
+  final finesse = weapon.properties.contains('finesse');
+  return (categories.contains('martial_light') && light) ||
+      (categories.contains('martial_finesse_or_light') && (light || finesse));
 }

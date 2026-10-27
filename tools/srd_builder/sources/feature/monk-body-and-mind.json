@@ -1,0 +1,26 @@
+{
+  "id": "srd:feature:monk-body-and-mind",
+  "type": "feature",
+  "name": "Esprit et corps",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 20
+  },
+  "effects": [
+    {
+      "op": "ability_bonus",
+      "ability": "dex",
+      "value": 4,
+      "max": 25
+    },
+    {
+      "op": "ability_bonus",
+      "ability": "wis",
+      "value": 4,
+      "max": 25
+    }
+  ],
+  "text": {
+    "fr": "Le développement de votre corps et de votre esprit atteint de nouveaux sommets. Vos valeurs de Dextérité et Sagesse augmentent de 4, jusqu’à un maximum de 25."
+  }
+}

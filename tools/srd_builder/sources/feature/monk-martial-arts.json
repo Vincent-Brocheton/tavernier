@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-martial-arts",
+  "type": "feature",
+  "name": "Arts martiaux",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 1
+  },
+  "text": {
+    "fr": "Votre pratique des arts martiaux vous permet de maîtriser des styles de combat axés sur vos attaques à mains nues et vos armes de Moine, à savoir :\n• Les armes courantes de corps à corps • Les armes de guerre de corps à corps dotées de la propriété Légère\nTant que vous combattez à mains nues ou avec des armes de Moine et que vous ne portez ni armure ni bouclier, vous recevez les bénéfices suivants.\nAttaque à mains nues supplémentaire. Vous pouvez effectuer une attaque à mains nues par une action Bonus.\nDé d’Arts martiaux. Vous pouvez lancer 1d6 à la place des dégâts normaux de votre attaque à mains nues et de vos armes de Moine. Ce dé évolue à mesure que vous gagnez des niveaux de Moine, comme indiqué dans la colonne Arts martiaux de la table « Aptitudes du Moine ».\nAttaques lestes. Vous pouvez appliquer votre modificateur de Dextérité au lieu de celui de Force pour les jets d’attaque et de dégâts si vous attaquez à mains nues ou avec des armes de Moine. De plus, lorsque vous recourez à l’option Bousculade ou Lutte de votre attaque à mains nues, vous pouvez appliquer votre modificateur de Dextérité au lieu de celui de Force pour en déterminer le DD de sauvegarde."
+  }
+}

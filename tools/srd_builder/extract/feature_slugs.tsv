@@ -104,3 +104,114 @@ evoker	Sort mineur appuyé	3	evoker-potent-cantrip
 evoker	Façonneur de sorts	6	evoker-sculpt-spells
 evoker	Évocation améliorée	10	evoker-empowered-evocation
 evoker	Surcharge magique	14	evoker-overchannel
+monk	Arts martiaux	1	monk-martial-arts
+monk	Défense sans armure	1	monk-unarmored-defense
+monk	Credo du Moine	2	monk-monks-focus
+monk	Déplacement sans armure	2	monk-unarmored-movement
+monk	Métabolisme surnaturel	2	monk-uncanny-metabolism
+monk	Déviation d’assaut	3	monk-deflect-attacks
+monk	Sous-classe de Moine	3	monk-subclass
+monk	Amélioration de caractéristique	4	monk-ability-score-improvement
+monk	Chute ralentie	4	monk-slow-fall
+monk	Attaque supplémentaire	5	monk-extra-attack
+monk	Frappe étourdissante	5	monk-stunning-strike
+monk	Frappes renforcées	6	monk-empowered-strikes
+monk	Esquive totale	7	monk-evasion
+monk	Mouvement acrobatique	9	monk-acrobatic-movement
+monk	Credo accru	10	monk-heightened-focus
+monk	Autosubsistance	10	monk-self-restoration
+monk	Parade énergétique	13	monk-deflect-energy
+monk	Survivant discipliné	14	monk-disciplined-survivor
+monk	Credo parachevé	15	monk-perfect-focus
+monk	Défense supérieure	18	monk-superior-defense
+monk	Faveur épique	19	monk-epic-boon
+monk	Esprit et corps	20	monk-body-and-mind
+warrior-of-the-open-hand	Technique de la Paume	3	open-hand-technique
+warrior-of-the-open-hand	Plénitude physique	6	open-hand-wholeness-of-body
+warrior-of-the-open-hand	Foulée preste	11	open-hand-fleet-step
+warrior-of-the-open-hand	Paume vibratoire	17	open-hand-quivering-palm
+warlock	Manifestations occultes	1	warlock-eldritch-invocations
+warlock	Magie de pacte	1	warlock-pact-magic
+warlock	Rouerie magique	2	warlock-magical-cunning
+warlock	Sous-classe d’Occultiste	3	warlock-subclass
+warlock	Amélioration de caractéristique	4	warlock-ability-score-improvement
+warlock	Communication avec le protecteur	9	warlock-contact-patron
+warlock	Arcanum mystique	11	warlock-mystic-arcanum
+warlock	Arcanum mystique (sort du 6e niveau)	11	warlock-mystic-arcanum
+warlock	Arcanum mystique (sort du 7 niveau)	13	warlock-mystic-arcanum
+warlock	Arcanum mystique (sort du 8e niveau)	15	warlock-mystic-arcanum
+warlock	Arcanum mystique (sort du 9 niveau)	17	warlock-mystic-arcanum
+warlock	Faveur épique	19	warlock-epic-boon
+warlock	Maître de l’occulte	20	warlock-eldritch-master
+fiend-patron	Bénédiction du ténébreux	3	fiend-dark-ones-blessing
+fiend-patron	Sorts du Fiélon	3	fiend-fiend-spells
+fiend-patron	Chance du ténébreux	6	fiend-dark-ones-own-luck
+fiend-patron	Résistance fiélonne	10	fiend-fiendish-resilience
+fiend-patron	Traversée des enfers	14	fiend-hurl-through-hell
+paladin	Imposition des mains	1	paladin-lay-on-hands
+paladin	Sorts	1	paladin-spellcasting
+paladin	Bottes d’arme	1	paladin-weapon-mastery
+paladin	Style de combat	2	paladin-fighting-style
+paladin	Châtiment de paladin	2	paladin-paladins-smite
+paladin	Conduit divin	3	paladin-channel-divinity
+paladin	Sous-classe de Paladin	3	paladin-subclass
+paladin	Amélioration de caractéristique	4	paladin-ability-score-improvement
+paladin	Attaque supplémentaire	5	paladin-extra-attack
+paladin	Fidèle destrier	5	paladin-faithful-steed
+paladin	Aura de protection	6	paladin-aura-of-protection
+paladin	Abjuration d’ennemis	9	paladin-abjure-foes
+paladin	Aura de courage	10	paladin-aura-of-courage
+paladin	Frappes radiantes	11	paladin-radiant-strikes
+paladin	Toucher réparateur	14	paladin-restoring-touch
+paladin	Aura étendue	18	paladin-aura-expansion
+paladin	Faveur épique	19	paladin-epic-boon
+oath-of-devotion	Sorts du Serment de Dévotion	3	devotion-oath-spells
+oath-of-devotion	Arme sacrée	3	devotion-sacred-weapon
+oath-of-devotion	Aura de dévotion	7	devotion-aura-of-devotion
+oath-of-devotion	Châtiment de protection	15	devotion-smite-of-protection
+oath-of-devotion	Nimbe sacré	20	devotion-holy-nimbus
+ranger	Sorts	1	ranger-spellcasting
+ranger	Ennemi juré	1	ranger-favored-enemy
+ranger	Bottes d’arme	1	ranger-weapon-mastery
+ranger	Fin explorateur	2	ranger-deft-explorer
+ranger	Style de combat	2	ranger-fighting-style
+ranger	Sous-classe de Rôdeur	3	ranger-subclass
+ranger	Amélioration de caractéristique	4	ranger-ability-score-improvement
+ranger	Attaque supplémentaire	5	ranger-extra-attack
+ranger	Arpenteur	6	ranger-roving
+ranger	Expertise	9	ranger-expertise
+ranger	Infatigable	10	ranger-tireless
+ranger	Chasseur implacable	13	ranger-relentless-hunter
+ranger	Voile de la nature	14	ranger-natures-veil
+ranger	Chasseur précis	17	ranger-precise-hunter
+ranger	Sens sauvages	18	ranger-feral-senses
+ranger	Faveur épique	19	ranger-epic-boon
+ranger	Tueur implacable	20	ranger-foe-slayer
+hunter	Savoir du Chasseur	3	hunter-hunters-lore
+hunter	Proie du chasseur	3	hunter-hunters-prey
+hunter	Tactiques défensives	7	hunter-defensive-tactics
+hunter	Proie du chasseur supérieure	11	hunter-superior-hunters-prey
+hunter	Défense de chasseur supérieure	15	hunter-superior-hunters-defense
+rogue	Expertise	1	rogue-expertise
+rogue	Attaque sournoise	1	rogue-sneak-attack
+rogue	Argot des voleurs	1	rogue-thieves-cant
+rogue	Bottes d’arme	1	rogue-weapon-mastery
+rogue	Ruse	2	rogue-cunning-action
+rogue	Sous-classe de Roublard	3	rogue-subclass
+rogue	Visée appliquée	3	rogue-steady-aim
+rogue	Amélioration de caractéristique	4	rogue-ability-score-improvement
+rogue	Frappe malicieuse	5	rogue-cunning-strike
+rogue	Esquive instinctive	5	rogue-uncanny-dodge
+rogue	Esquive totale	7	rogue-evasion
+rogue	Savoir-faire	7	rogue-reliable-talent
+rogue	Frappe malicieuse améliorée	11	rogue-improved-cunning-strike
+rogue	Coups vicieux	14	rogue-devious-strikes
+rogue	Esprit fuyant	15	rogue-slippery-mind
+rogue	Insaisissable	18	rogue-elusive
+rogue	Faveur épique	19	rogue-epic-boon
+rogue	Coup de chance	20	rogue-stroke-of-luck
+thief	Mains lestes	3	thief-fast-hands
+thief	Monte-en-l’air	3	thief-second-story-work
+thief	Furtivité suprême	9	thief-supreme-sneak
+thief	Utilisation d’objets magiques	13	thief-use-magic-device
+thief	Réflexes de voleur	17	thief-thiefs-reflexes

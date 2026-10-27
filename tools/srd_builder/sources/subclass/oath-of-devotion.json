@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:oath-of-devotion",
+  "type": "subclass",
+  "name": "Serment de Dévotion",
+  "data": {
+    "parent_class": "srd:class:paladin",
+    "features": [
+      "srd:feature:devotion-oath-spells",
+      "srd:feature:devotion-sacred-weapon",
+      "srd:feature:devotion-aura-of-devotion",
+      "srd:feature:devotion-smite-of-protection",
+      "srd:feature:devotion-holy-nimbus"
+    ]
+  },
+  "text": {
+    "fr": "Défendez les idéaux d’ordre et de justice\nLe Serment de Dévotion lie les Paladins aux idéaux de justice et d’ordre. Ces Paladins sont la vivante incarnation du preux chevalier en armure rutilante. Ils respectent un code de conduite des plus rigoureux et certains, pour le meilleur ou le pire, imposent au reste du monde cette même rigueur.\nBeaucoup de ceux qui prêtent ce serment sont les fidèles serviteurs d’une divinité Loyale Bonne et mesurent leur propre dévotion à l’aune des préceptes de ce dieu. Certains considèrent les anges comme leur idéal et intègrent des images d’ailes angéliques à leur casque ou à leurs armoiries.\nCes Paladins partagent les préceptes suivants :\n• Faire en sorte que sa parole ait toujours valeur de promesse.\n• Veiller sur les faibles et ne jamais avoir peur d’agir. • Servir d’exemple en accomplissant des actes honorables."
+  }
+}

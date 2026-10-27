@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:ranger-weapon-mastery",
+  "type": "feature",
+  "name": "Bottes d’arme",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_mastery_slots",
+      "count": 2
+    }
+  ],
+  "text": {
+    "fr": "Votre entraînement martial vous permet de recourir à la propriété Botte de deux types d’arme de votre choix parmi celles dont vous avez la maîtrise, par exemple l’arc long et l’épée courte.\nChaque fois que vous terminez un Repos long, vous pouvez changer le type d’arme que vous avez choisi. Vous pourriez par exemple décider d’opter pour les propriétés Bottes du cimeterre et de l’épée longue."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:monk-epic-boon",
+  "type": "feature",
+  "name": "Faveur épique",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 19
+  },
+  "effects": [
+    {
+      "op": "grant_feat",
+      "category": "epic_boon"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez un don de Faveur épique (cf. « Dons ») ou un autre don de votre choix pour lequel vous remplissez les conditions. Faveur d’attaque irrésistible est recommandé."
+  }
+}

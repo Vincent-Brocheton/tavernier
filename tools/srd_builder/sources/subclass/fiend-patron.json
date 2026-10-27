@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:fiend-patron",
+  "type": "subclass",
+  "name": "Protecteur Fiélon",
+  "data": {
+    "parent_class": "srd:class:warlock",
+    "features": [
+      "srd:feature:fiend-dark-ones-blessing",
+      "srd:feature:fiend-fiend-spells",
+      "srd:feature:fiend-dark-ones-own-luck",
+      "srd:feature:fiend-fiendish-resilience",
+      "srd:feature:fiend-hurl-through-hell"
+    ]
+  },
+  "text": {
+    "fr": "Concluez un accord avec les Plans Inférieurs\nCe pacte vous permet de puiser dans les Plans Inférieurs, les royaumes de la perdition. Vous avez conclu un marché avec un seigneur démon, un archidiable ou autre fiélon particulièrement puissant. Les visées de ce protecteur sont maléfiques : corruption ou destruction de toute chose, y compris vous-même, et votre destin personnel peuvent vous opposer à ces mêmes objectifs."
+  }
+}

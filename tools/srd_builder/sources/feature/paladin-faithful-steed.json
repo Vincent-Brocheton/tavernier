@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:paladin-faithful-steed",
+  "type": "feature",
+  "name": "Fidèle destrier",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:find-steed",
+      "always_prepared": true,
+      "free_casts": {
+        "count": 1,
+        "recharge": [
+          {
+            "on": "long_rest",
+            "amount": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez faire appel à un destrier d’outre-monde. Le sort appel de destrier est toujours considéré comme préparé pour vous.\nVous pouvez en outre le lancer une fois sans dépenser d’emplacement de sort et récupérez cette faculté en terminant un Repos long."
+  }
+}

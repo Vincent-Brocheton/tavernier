@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:thief-thiefs-reflexes",
+  "type": "feature",
+  "name": "Réflexes de voleur",
+  "data": {
+    "source": "srd:subclass:thief",
+    "level": 17
+  },
+  "text": {
+    "fr": "Vous avez acquis l’art de tendre une embuscade et d’échapper au danger promptement. Vous pouvez jouer deux tours lors du premier round de chaque combat. Vous jouez votre premier tour à votre rang d’Initiative normal et votre deuxième tour à ce même rang moins 10."
+  }
+}

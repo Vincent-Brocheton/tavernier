@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:open-hand-technique",
+  "type": "feature",
+  "name": "Technique de la Paume",
+  "data": {
+    "source": "srd:subclass:warrior-of-the-open-hand",
+    "level": 3
+  },
+  "text": {
+    "fr": "Chaque fois que vous touchez une créature avec l’une des attaques octroyées par Déluge de coups, vous pouvez imposer l’un des effets suivants à cette cible.\nHésitation. La cible ne peut pas effectuer d’attaque d’Opportunité jusqu’au début de son tour suivant.\nBourrade. La cible doit réussir un jet de sauvegarde de Force sous peine d’être repoussée de vous d’un maximum de 4,50 m.\nRenversement. La cible doit réussir un jet de sauvegarde de Dextérité sous peine de subir l’état À terre."
+  }
+}

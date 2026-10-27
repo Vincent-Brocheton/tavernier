@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-elusive",
+  "type": "feature",
+  "name": "Insaisissable",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 18
+  },
+  "text": {
+    "fr": "Vous êtes tellement agile que vos assaillants ont rarement le dessus sur vous. Aucun jet d’attaque ne peut avoir l’Avantage contre vous si vous ne subissez pas l’état Neutralisé."
+  }
+}

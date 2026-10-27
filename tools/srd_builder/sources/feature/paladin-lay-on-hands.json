@@ -1,0 +1,29 @@
+{
+  "id": "srd:feature:paladin-lay-on-hands",
+  "type": "feature",
+  "name": "Imposition des mains",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:lay-on-hands",
+      "max": {
+        "ref": "class_level",
+        "class": "srd:class:paladin",
+        "times": 5
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Votre contact béni peut soigner les blessures. Vous disposez d’une réserve de puissance curatrice qui se reconstitue lorsque vous terminez un Repos long. Cette réserve vous permet de restituer un total de points de vie égal à cinq fois votre niveau de Paladin.\nPar une action Bonus, vous pouvez puiser tout ou partie de cette réserve et, d’un simple contact, restituer autant de points de vie à une créature (qui peut être vous-même) à concurrence du maximum de cette réserve.\nVous pouvez également dépenser 5 points de vie de la réserve de puissance curatrice pour supprimer l’état Empoisonné affectant la créature ; ces points ne font pas récupérer de pv à la créature."
+  }
+}

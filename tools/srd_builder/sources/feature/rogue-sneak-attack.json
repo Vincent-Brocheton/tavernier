@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-sneak-attack",
+  "type": "feature",
+  "name": "Attaque sournoise",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous savez porter des attaques qui exploitent subtilement les baisses d’attention de l’adversaire. Une fois par tour et à condition que l’attaque soit portée avec une arme dotée de la propriété Finesse ou À distance, vous pouvez infliger 1d6 dégâts supplémentaires à une créature que vous touchez avec un jet d’attaque pour lequel vous avez l’Avantage. Ces dégâts supplémentaires sont du même type que celui de l’arme.\nVous n’avez pas besoin d’avoir l’Avantage au jet d’attaque si au moins l’un de vos alliés se trouve dans un rayon de 1,50 m de la cible, à condition que cet allié ne subisse pas l’état Neutralisé et que vous ne soyez pas désavantagé au jet d’attaque.\nCes dégâts supplémentaires augmentent à mesure que vous gagnez des niveaux de Roublard, comme l’indique la colonne Attaque sournoise de la table « Aptitudes du Roublard »."
+  }
+}

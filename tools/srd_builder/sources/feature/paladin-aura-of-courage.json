@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:paladin-aura-of-courage",
+  "type": "feature",
+  "name": "Aura de courage",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 10
+  },
+  "text": {
+    "fr": "Vous-même et vos alliés jouissez de l’Immunité contre l’état Effrayé au sein de votre Aura de protection. Si un allié Effrayé pénètre dans l’aura, cet état est réprimé sur cet allié tant qu’il s’y trouve."
+  }
+}

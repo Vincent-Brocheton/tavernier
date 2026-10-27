@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:warlock-eldritch-invocations",
+  "type": "feature",
+  "name": "Manifestations occultes",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vos recherches ésotériques vous ont permis de dénicher des Manifestations occultes, fragments de savoir interdit qui vous octroient divers pouvoirs magiques. Vous recevez une manifestation de votre choix, comme Pacte du grimoire. Ces manifestations sont décrites en section « Options de Manifestation occulte », plus loin dans le descriptif de cette classe.\nPrérequis. Si une manifestation s’accompagne d’un prérequis, vous devez le remplir pour pouvoir l’apprendre. Si, par exemple, une manifestation nécessite que vous soyez un Occultiste de niveau 5 ou supérieur, vous ne pourrez choisir cette manifestation qu’une fois atteint le niveau 5 dans cette classe.\nRemplacer et recevoir des manifestations. Chaque fois que vous gagnez un niveau d’Occultiste, vous pouvez remplacer l’une de vos manifestations par une autre pour laquelle vous remplissez les conditions. Vous ne pouvez pas remplacer une manifestation si elle est un prérequis à une autre manifestation dont vous disposez.\nVous en apprendrez d’autres que vous choisirez à plus haut niveau, comme le montre la colonne Manifestations de la table « Aptitudes de l’Occultiste ».\nVous ne pouvez pas choisir la même manifestation plus d’une fois, sauf si sa description précise le contraire."
+  }
+}

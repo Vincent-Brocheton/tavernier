@@ -44,15 +44,33 @@ ClassSection extractClassSection(
   Map<String, ({int lines, String to})> sidebars = const {},
   List<String> dropTables = const [],
 }) {
+  // pdftotext sous Windows termine les lignes par CRLF.
+  text = text.replaceAll('\r\n', '\n');
   final start = text.indexOf(
     RegExp('^Traits de base d(?:u |e l’)$className\$', multiLine: true),
   );
   if (start < 0) throw FormatException('classe introuvable : $className');
   final next = RegExp(
-    r'^(Traits de base d(?:u |e l’)\S+|Origines des personnages)$',
+    // « Origines des / personnages » : titre coupé en deux lignes, souvent
+    // précédé d'un saut de page.
+    r'^\f?(Traits de base d(?:u |e l’)\S+|Origines des\s+personnages)$',
     multiLine: true,
   ).allMatches(text, start + 1).firstOrNull;
-  final clean = cleanText(text.substring(start, next?.start ?? text.length));
+  var end = next?.start ?? text.length;
+  // La section suivante commence à son titre de classe, seul sur sa ligne,
+  // parfois suivi de « Devenir … » avant ses « Traits de base ».
+  final nextName = next?[1]?.replaceFirst(
+    RegExp(r'^Traits de base d(?:u |e l’)'),
+    '',
+  );
+  if (nextName != null && next![1]!.startsWith('Traits')) {
+    final title = text.lastIndexOf(
+      RegExp('\n\f?${RegExp.escape(nextName)}\n'),
+      end,
+    );
+    if (title > start) end = title + 1;
+  }
+  final clean = cleanText(text.substring(start, end));
   var lines = _dropTable(clean.lines, tableTitle);
   // Tables internes dont les valeurs sont portées par les effets. Des
   // tables consécutives partent ensemble avec la première.
@@ -77,7 +95,21 @@ ClassSection extractClassSection(
     if (at < 0) throw FormatException('encadré introuvable : $title');
     final end = at + sidebar.lines;
     moved[sidebar.to] = lines.sublist(at, end);
-    lines = [...lines.sublist(0, at), ...lines.sublist(end)];
+    // Phrase coupée par l'encadré : ses deux moitiés se recollent.
+    final before = at > 0 ? lines[at - 1] : null;
+    final after = end < lines.length ? lines[end] : null;
+    if (before != null &&
+        after != null &&
+        !RegExp(r'[.:!?»)…]$').hasMatch(before) &&
+        RegExp(r'^[a-zàâéèêëîïôöùûüç]').hasMatch(after)) {
+      lines = [
+        ...lines.sublist(0, at - 1),
+        '$before $after',
+        ...lines.sublist(end + 1),
+      ];
+    } else {
+      lines = [...lines.sublist(0, at), ...lines.sublist(end)];
+    }
   }
 
   final features = <ExtractedFeature>[];

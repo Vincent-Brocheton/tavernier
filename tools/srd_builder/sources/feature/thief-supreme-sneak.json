@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:thief-supreme-sneak",
+  "type": "feature",
+  "name": "Furtivité suprême",
+  "data": {
+    "source": "srd:subclass:thief",
+    "level": 9
+  },
+  "text": {
+    "fr": "Vous recevez l’option de Frappe malicieuse suivante. Attaque furtive (coût : 1d6). Si vous jouissez de l’état Invisible consécutif à l’action Furtivité, l’attaque ne met pas fin à cet état à condition que vous terminiez le tour derrière un Abri supérieur ou un Abri total."
+  }
+}

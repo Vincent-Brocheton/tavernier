@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:warlock-eldritch-master",
+  "type": "feature",
+  "name": "Maître de l’occulte",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 20
+  },
+  "text": {
+    "fr": "Lorsque vous utilisez votre aptitude Rouerie magique, vous récupérez tous les emplacements de sort dépensés de Magie de pacte."
+  }
+}

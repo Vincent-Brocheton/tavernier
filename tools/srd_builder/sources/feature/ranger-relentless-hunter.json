@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:ranger-relentless-hunter",
+  "type": "feature",
+  "name": "Chasseur implacable",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 13
+  },
+  "text": {
+    "fr": "Subir des dégâts ne peut pas briser votre Concentration sur marque du chasseur."
+  }
+}

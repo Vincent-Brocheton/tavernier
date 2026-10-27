@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:warlock-subclass",
+  "type": "feature",
+  "name": "Sous-classe d’Occultiste",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe d’Occultiste de votre choix. La sous-classe Protecteur Fiélon est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux d’Occultiste. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel d’Occultiste."
+  }
+}

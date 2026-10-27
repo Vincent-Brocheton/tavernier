@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:fiend-hurl-through-hell",
+  "type": "feature",
+  "name": "Traversée des enfers",
+  "data": {
+    "source": "srd:subclass:fiend-patron",
+    "level": 14
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:hurl-through-hell",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Une fois par tour, quand vous touchez une créature avec un jet d’attaque, vous pouvez tenter de projeter instantanément la cible dans les Plans Inférieurs. La cible doit réussir un jet de sauvegarde de Charisme assorti de votre DD de sauvegarde des sorts, faute de quoi elle disparaît, précipitée dans un paysage de cauchemar. La cible subit 8d10 dégâts psychiques si elle n’est pas un Fiélon et l’état Neutralisé jusqu’à la fin de votre tour suivant, puis elle retourne dans l’espace qu’elle occupait précédemment ou dans l’espace inoccupé le plus proche.\nUne fois cette aptitude utilisée, vous devez terminer un Repos long ou dépenser un emplacement de sort de Magie de pacte (pas d’action requise) pour en récupérer l’usage."
+  }
+}

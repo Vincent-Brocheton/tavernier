@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:open-hand-fleet-step",
+  "type": "feature",
+  "name": "Foulée preste",
+  "data": {
+    "source": "srd:subclass:warrior-of-the-open-hand",
+    "level": 11
+  },
+  "text": {
+    "fr": "Lorsque vous entreprenez une action Bonus autre que Porté par le vent, vous pouvez aussi recourir à Porté par le vent aussitôt après cette action Bonus."
+  }
+}

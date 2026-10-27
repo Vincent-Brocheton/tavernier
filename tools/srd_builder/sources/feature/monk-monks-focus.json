@@ -1,0 +1,32 @@
+{
+  "id": "srd:feature:monk-monks-focus",
+  "type": "feature",
+  "name": "Credo du Moine",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:focus-points",
+      "max": {
+        "ref": "class_level",
+        "class": "srd:class:monk"
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Votre discipline et votre formation martiale vous permettent de puiser dans la source d’énergie extraordinaire qui est en vous. Cette énergie est représentée par les points de Credo. Votre niveau de Moine détermine le nombre de points dont vous disposez, comme indiqué dans la colonne Points de Credo de la table Aptitudes du Moine.\nVous pouvez dépenser ces points pour améliorer ou alimenter certaines aptitudes de Moine. Vous débutez en connaissant trois de ces aptitudes : Déluge de coups, Patience défensive et Porté par le vent, détaillées chacune ci-après.\nLorsque vous dépensez un point de Credo, il n’est plus disponible jusqu’à ce que vous terminiez un Repos court ou long, à l’issue duquel vous récupérez tous vos points dépensés.\nCertaines aptitudes basées sur les points de Credo imposent un jet de sauvegarde à votre cible. Le DD de sauvegarde est égal à 8 plus votre modificateur de Sagesse et votre bonus de maîtrise.\nDéluge de coups. Vous pouvez dépenser 1 point de Credo pour effectuer deux attaques à mains nues par une action Bonus.\nPatience défensive. Vous pouvez entreprendre l’action Désengagement par une action Bonus. Vous avez aussi la possibilité, par une action Bonus et la dépense de 1 point de Credo, d’entreprendre à la fois l’action Désengagement et l’action Esquive.\nPorté par le vent. Vous pouvez entreprendre l’action Pointe par une action Bonus. Vous avez aussi la possibilité, par une action Bonus et la dépense de 1 point de Credo, d’entreprendre à la fois l’action Désengagement et l’action Pointe, et de doubler votre distance de saut pour ce tour."
+  }
+}

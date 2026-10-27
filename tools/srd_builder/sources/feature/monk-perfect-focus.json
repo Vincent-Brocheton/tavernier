@@ -1,0 +1,37 @@
+{
+  "id": "srd:feature:monk-perfect-focus",
+  "type": "feature",
+  "name": "Credo parachevé",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 15
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:focus-points",
+      "max": {
+        "ref": "class_level",
+        "class": "srd:class:monk"
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        },
+        {
+          "on": "initiative",
+          "amount": "all",
+          "up_to": 4
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous jouez l’Initiative, que vous ne recourez pas à Métabolisme surnaturel et qu’il vous reste moins de 4 points de Credo, vous en récupérez jusqu’à en avoir 4."
+  }
+}

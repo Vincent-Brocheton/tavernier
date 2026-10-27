@@ -1,0 +1,23 @@
+{
+  "id": "srd:feature:paladin-aura-of-protection",
+  "type": "feature",
+  "name": "Aura de protection",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "modify_check",
+      "scope": "saving_throws",
+      "add": {
+        "ref": "ability_mod",
+        "ability": "cha",
+        "min": 1
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous diffusez une aura protectrice indiscernable sous forme d’Émanation dans un rayon de 3 m. Cette aura est inactive tant que vous subissez l’état Neutralisé.\nVous-même et vos alliés dans l’aura recevez un bonus aux jets de sauvegarde égal à votre modificateur de Charisme (bonus minimum de +1).\nSi un autre Paladin est présent, une créature ne peut bénéficier que d’une seule Aura de protection à la fois ; la créature choisit l’aura dont elle bénéficie."
+  }
+}

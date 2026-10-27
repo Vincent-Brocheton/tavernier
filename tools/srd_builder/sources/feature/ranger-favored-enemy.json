@@ -1,0 +1,36 @@
+{
+  "id": "srd:feature:ranger-favored-enemy",
+  "type": "feature",
+  "name": "Ennemi juré",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:hunters-mark",
+      "always_prepared": true,
+      "free_casts": {
+        "count": {
+          "by_level": {
+            "1": 2,
+            "5": 3,
+            "9": 4,
+            "13": 5,
+            "17": 6
+          }
+        },
+        "recharge": [
+          {
+            "on": "long_rest",
+            "amount": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "text": {
+    "fr": "Le sort marque du chasseur est toujours préparé pour vous. Vous pouvez le lancer deux fois sans dépenser d’emplacement de sort, et vous récupérez toutes les utilisations de cette aptitude en terminant un Repos long.\nLe nombre de fois où vous pouvez lancer ce sort sans dépenser d’emplacement de sort augmente à mesure que vous gagnez des niveaux de Rôdeur, comme spécifié dans la colonne Ennemi juré de la table « Aptitudes du Rôdeur »."
+  }
+}

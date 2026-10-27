@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-cunning-action",
+  "type": "feature",
+  "name": "Ruse",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 2
+  },
+  "text": {
+    "fr": "Votre esprit vif et votre agilité vous permettent d’agir et de filer promptement. À votre tour, vous pouvez effectuer l’une des actions suivantes par une action Bonus : Désengagement, Furtivité ou Pointe."
+  }
+}

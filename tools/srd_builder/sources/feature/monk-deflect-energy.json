@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-deflect-energy",
+  "type": "feature",
+  "name": "Parade énergétique",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 13
+  },
+  "text": {
+    "fr": "Vous pouvez désormais recourir à l’aptitude Déviation d’assaut contre les attaques qui infligent tout type de dégâts, et non plus seulement contondants, perforants ou tranchants."
+  }
+}

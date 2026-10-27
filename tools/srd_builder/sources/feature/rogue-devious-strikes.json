@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-devious-strikes",
+  "type": "feature",
+  "name": "Coups vicieux",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 14
+  },
+  "text": {
+    "fr": "Vous avez appris de nouveaux coups bas pour « agrémenter » votre Attaque sournoise. Les effets ci-après figurent désormais dans vos options de Frappe malicieuse.\nAssommer (coût : 6d6). La cible doit réussir un jet de sauvegarde de Constitution, faute de quoi elle subit l’état Inconscient pendant 1 minute ou jusqu’à ce qu’elle subisse des dégâts. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l’état Inconscient sur elle-même en cas de réussite.\nAveugler (coût : 3d6). La cible doit réussir un jet de sauvegarde de Dextérité, faute de quoi elle subit l’état Aveuglé jusqu’à la fin de son tour suivant.\nHébéter (coût : 2d6). La cible doit réussir un jet de sauvegarde de Constitution faute de quoi, à son tour suivant, elle ne pourra entreprendre que l’une des actions ci-après : déplacement, action ou action Bonus."
+  }
+}

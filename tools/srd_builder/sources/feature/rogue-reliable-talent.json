@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-reliable-talent",
+  "type": "feature",
+  "name": "Savoir-faire",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 7
+  },
+  "text": {
+    "fr": "Chaque fois que vous effectuez un test de caractéristique qui repose sur une compétence ou un outil dont vous avez la maîtrise, tout résultat inférieur ou égal à 9 sur le d20 est considéré comme un 10."
+  }
+}

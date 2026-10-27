@@ -1,0 +1,34 @@
+{
+  "id": "srd:feature:paladin-channel-divinity",
+  "type": "feature",
+  "name": "Conduit divin",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:channel-divinity",
+      "max": {
+        "by_level": {
+          "3": 2,
+          "11": 3
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": 1
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez canaliser l’énergie divine directement depuis les Plans Extérieurs afin de produire des effets magiques. Vous débutez avec un seul de ces effets : Perception divine, décrite ci-après. D’autres aptitudes de Paladin octroient des effets supplémentaires de Conduit divin. Chaque fois que vous recourez au Conduit divin de cette classe, vous choisissez l’effet associé que vous souhaitez générer.\nVous pouvez utiliser deux fois le Conduit divin de cette classe. Vous en regagnez une utilisation lorsque vous terminez un Repos court, et récupérez toutes ses utilisations en terminant un Repos long. Vous recevez une utilisation supplémentaire en atteignant le niveau 11 de Paladin.\nSi un effet de Conduit divin entraîne un jet de sauvegarde, le DD est égal au DD de sauvegarde des sorts de l’aptitude Sorts de cette classe.\nPerception divine. Par une action Bonus, vous ouvrez votre conscience à la présence de créatures de type Céleste, Fiélon et Mort-vivant. Pendant 10 minutes ou jusqu’à ce que vous subissiez l’état Neutralisé, vous savez où se trouve toute créature des types précités dans un rayon de 18 m, et connaissez son type de créature. Dans ce même rayon, vous détectez en outre la présence de tout lieu ou objet qui a été consacré ou profané, comme avec le sort sanctification."
+  }
+}

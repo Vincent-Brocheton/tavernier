@@ -1,0 +1,106 @@
+{
+  "id": "srd:feature:fiend-fiendish-resilience",
+  "type": "feature",
+  "name": "Résistance fiélonne",
+  "data": {
+    "source": "srd:subclass:fiend-patron",
+    "level": 10
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "fiend-fiendish-resilience",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:acid"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:bludgeoning"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:cold"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:fire"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:lightning"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:necrotic"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:piercing"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:poison"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:psychic"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:radiant"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:slashing"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:thunder"
+          }
+        ]
+      ],
+      "replaceable_on": "short_rest"
+    }
+  ],
+  "text": {
+    "fr": "Choisissez un type de dégâts, autre que Force, chaque fois que vous terminez un Repos court ou long. Vous avez la Résistance à ce type de dégâts jusqu’à ce que vous en choisissiez un autre avec cette aptitude."
+  }
+}

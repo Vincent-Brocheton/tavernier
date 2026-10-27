@@ -1,0 +1,94 @@
+{
+  "id": "srd:feature:fiend-fiend-spells",
+  "type": "feature",
+  "name": "Sorts du Fiélon",
+  "data": {
+    "source": "srd:subclass:fiend-patron",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:burning-hands",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:command",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:scorching-ray",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:suggestion",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:fireball",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:stinking-cloud",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:fire-shield",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:wall-of-fire",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:geas",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:insect-plague",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    }
+  ],
+  "text": {
+    "fr": "La magie de votre protecteur vous assure d’avoir certains sorts disponibles en permanence ; lorsque vous atteignez un niveau d’Occultiste spécifié dans la table « Sorts du Fiélon », les sorts qui y figurent sont toujours préparés pour vous."
+  }
+}
