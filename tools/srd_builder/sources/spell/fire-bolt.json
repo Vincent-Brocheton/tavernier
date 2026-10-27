@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:fire-bolt",
+  "type": "spell",
+  "name": "Trait de feu",
+  "data": {
+    "level": 0,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez un grain enflammé vers une créature ou un objet à portée. Effectuez une attaque de sort à distance contre la cible. Si l’attaque touche, la cible subit 1d10 dégâts de feu. Tout objet inflammable touché par ce sort s’embrase s’il n’est pas porté.\nAmélioration de sort mineur. Les dégâts augmentent de 1d10 lorsque vous atteignez les niveaux 5 (2d10), 11 (3d10) et 17 (4d10)."
+  }
+}

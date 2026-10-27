@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:ray-of-sickness",
+  "type": "spell",
+  "name": "Rayon empoisonné",
+  "data": {
+    "level": 1,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous dardez un rayon verdâtre vers une créature à portée. Effectuez une attaque de sort à distance contre la cible. Si l’attaque touche, la cible subit 2d8 dégâts de poison, ainsi que l’état Empoisonné jusqu’à la fin de votre tour suivant.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 1er."
+  }
+}

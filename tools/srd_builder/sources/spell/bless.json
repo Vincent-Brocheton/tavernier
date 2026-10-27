@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:bless",
+  "type": "spell",
+  "name": "Bénédiction",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un symbole sacré d’une valeur minimale de 5 po"
+    },
+    "material_cost_cp": 500,
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous bénissez jusqu’à trois créatures à portée. Chaque fois qu’une de ces cibles effectue un jet d’attaque ou un jet de sauvegarde avant la fin du sort, elle ajoute 1d4 au résultat correspondant.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

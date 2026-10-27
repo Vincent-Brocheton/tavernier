@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:befuddlement",
+  "type": "spell",
+  "name": "Aliénation",
+  "data": {
+    "level": 8,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "l’anneau seul d’un trousseau de clefs"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous assaillez l’esprit d’une créature que vous voyez à portée. La cible effectue un jet de sauvegarde d’Intelligence.\nEn cas d’échec, elle subit 10d12 dégâts psychiques et ne peut pas lancer de sort ni entreprendre l’action Magie. À l’issue de chaque tranche de 30 jours, la cible réitère le JS et met un terme à l’effet en cas de réussite. Les sorts guérison, restauration suprême et souhait mettent également chacun fin à l’effet.\nEn cas de réussite, la cible subit uniquement la moitié de ces dégâts."
+  }
+}

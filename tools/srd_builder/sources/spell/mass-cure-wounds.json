@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:mass-cure-wounds",
+  "type": "spell",
+  "name": "Soins de groupe",
+  "data": {
+    "level": 5,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une vague d’énergie curative déferle depuis un point que vous voyez à portée. Désignez un maximum de six créatures dans une Sphère de 9 m de rayon centrée sur ce point. Chaque cible récupère autant de points de vie que 5d8 + votre modificateur de caractéristique d’incantation.\nEmplacement de niveau supérieur. Les soins augmentent de 1d8 par niveau d’emplacement au-delà du 5e."
+  }
+}

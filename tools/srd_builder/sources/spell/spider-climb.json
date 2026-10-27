@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:spider-climb",
+  "type": "spell",
+  "name": "Pattes d’araignée",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une goutte de bitume et une araignée"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Jusqu’à la fin du sort, une créature consentante que vous touchez reçoit la capacité de se déplacer dans toutes les directions le long des surfaces verticales, ainsi que sur les plafonds, tout en gardant les mains libres. La cible acquiert en outre une Vitesse d’escalade égale à sa Vitesse.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 2e."
+  }
+}

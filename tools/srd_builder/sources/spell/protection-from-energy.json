@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:protection-from-energy",
+  "type": "spell",
+  "name": "Protection contre l’énergie",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Pour toute la durée, la créature consentante que vous touchez bénéficie de la Résistance à un type de dégâts de votre choix entre : acide, feu, foudre, froid et tonnerre."
+  }
+}

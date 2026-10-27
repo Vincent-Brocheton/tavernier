@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:ensnaring-strike",
+  "type": "spell",
+  "name": "Frappe piégeuse",
+  "data": {
+    "level": 1,
+    "school": "conjuration",
+    "casting_time": "action Bonus, que vous entreprenez aussitôt après avoir touché une créature avec une arme",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Alors que vous touchez la cible, des plantes grimpantes se matérialisent sur elle et elle effectue un jet de sauvegarde de Force. Si la créature est de taille G ou supérieure, elle a l’Avantage au jet. En cas d’échec, elle subit l’état Entravé jusqu’à la fin du sort. En cas de réussite, les plantes disparaissent en se flétrissant et le sort prend fin.\nTant qu’elle est Entravée, la cible subit 1d6 dégâts perforants au début de chacun de ses tours. La cible ou une créature à portée d’allonge de celle-ci peut entreprendre une action pour effectuer un test de Force (Athlétisme) contre votre DD de sauvegarde des sorts. En cas de réussite, le sort prend fin.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 1er."
+  }
+}

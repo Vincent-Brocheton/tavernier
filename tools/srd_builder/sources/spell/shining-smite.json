@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:shining-smite",
+  "type": "spell",
+  "name": "Châtiment de révélation",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action Bonus, que vous entreprenez aussitôt après avoir touché une créature avec une arme de corps à corps ou une attaque à mains nues",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "La cible touchée par l’attaque subit 2d6 dégâts radiants supplémentaires. Jusqu’à la fin du sort, la cible émet une Lumière vive dans un rayon de 1,50 m, les jets d’attaque contre elle ont l’Avantage et elle ne peut pas bénéficier de l’état Invisible.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 2e."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:animate-objects",
+  "type": "spell",
+  "name": "Animation des objets",
+  "data": {
+    "level": 5,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Les objets s’animent selon vos ordres. Choisissez des objets non magiques à portée qui ne sont portés par personne, ne sont fixés à aucune surface et ne sont pas de taille Gig. Le maximum d’objets que vous pouvez animer est égal à votre modificateur de caractéristique d’incantation ; dans ce cadre, une cible de taille M ou inférieure compte pour un objet, une cible de taille G pour deux et une cible de taille TG pour trois.\nChaque cible s’anime, se dote de pattes et devient un Artificiel reprenant le profil de l’objet animé ; la créature reste sous votre contrôle jusqu’à la fin du sort ou qu’elle tombe à 0 point de vie. Chaque créature ainsi créée constitue un allié pour vous et vos alliés. Au combat, elle partage votre rang d’Initiative, mais elle joue son tour juste après vous.\nJusqu’à la fin du sort, vous pouvez par une action Bonus donner des ordres mentaux à toute créature que vous avez créée par ce sort et qui se trouve dans un rayon de 150 m. Vous pouvez ainsi contrôler plusieurs créatures, en les choisissant, à condition de leur intimer le même ordre. Sans instruction de votre part, la créature entreprend l’action Esquive et ne se déplace que pour éviter les dangers. Quand la créature tombe à 0 point de vie, elle retrouve sa forme de départ, tous les dégâts excédentaires étant répercutés sur celle-ci.\nEmplacement de niveau supérieur. Les dégâts de Coup de la créature augmentent de 1d4 (taille M ou inférieure), 1d6 (taille G) ou 1d12 (taille TG) par niveau d’emplacement au-delà du 5e.\nObjet animé\nArtificiel de taille TG ou inférieure, non aligné\nCA 15 Pv 10 (taille M ou inférieure), 20 (G), 40 (TG) Vitesse 9 m\nMOD JS\nMOD JS\nMOD JS\nFor 16 +3 +3 Dex 10 +0 +0 Con 10 +0 +0\nInt 3 −4 −4 Sag 3 −4 −4 Cha 1 −5 −5\nImmunités poison, psychiques ; Charmé, Effrayé, Empoisonné, Épuisement, Paralysé\nSens Vision aveugle 9 m ; Perception passive 6 Langues comprend les langues que vous parlez FP aucun (PX 0 ; BM égal à votre bonus de maîtrise)\nActions\nCoup. Corps à corps : bonus égal à votre modificateur d’attaque des sorts, allonge 1,50 m. Touché : dégâts de force égaux à 1d4 + 3 (taille M ou inférieure), 2d6 + 3 + votre modificateur de caractéristique d’incantation (G), ou 2d12 + 3 + votre modificateur de caractéristique d’incantation (TG)."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:gentle-repose",
+  "type": "spell",
+  "name": "Doux repos",
+  "data": {
+    "level": 2,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "2 pièces de cuivre, que le sort détruit"
+    },
+    "material_consumed": true,
+    "duration": "10 jours",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement un cadavre ou autre dépouille. Pour toute la durée, la cible est protégée contre la putréfaction et rien ne peut en faire un Mort-vivant.\nCe sort prolonge également le délai au-delà duquel la cible ne pourra plus être ramenée d’entre les morts, les jours passés sous l’influence de ce sort n’étant pas décomptés dans le cadre de sorts tels que rappel à la vie."
+  }
+}

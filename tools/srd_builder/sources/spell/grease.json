@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:grease",
+  "type": "spell",
+  "name": "Graisse",
+  "data": {
+    "level": 1,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un peu de couenne de porc ou de beurre"
+    },
+    "material_consumed": false,
+    "duration": "1 minute",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une graisse glissante non inflammable recouvre le sol sur un carré de 3 m de côté centré sur un point à portée, ce qui en fait un Terrain difficile pour toute la durée.\nÀ l’apparition de la graisse, toute créature se tenant debout dans cette zone doit réussir un jet de sauvegarde de Dextérité sous peine de subir l’état À terre. Une créature qui pénètre dans la zone ou qui y termine son tour doit également réussir ce JS sous peine de se retrouver À terre."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:ice-storm",
+  "type": "spell",
+  "name": "Tempête de grêle",
+  "data": {
+    "level": 4,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 300
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une moufle"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "La grêle s’abat au sol dans un Cylindre de 6 m de rayon et 12 m de hauteur centré sur un point à portée. Chaque créature prise dans le Cylindre effectue un jet de sauvegarde de Dextérité. Elle subit 2d10 dégâts contondants et 4d6 dégâts de froid en cas d’échec, la moitié en cas de réussite.\nLes grêlons transforment le sol du Cylindre en Terrain difficile jusqu’à la fin de votre tour suivant.\nEmplacement de niveau supérieur. Les dégâts contondants augmentent de 1d10 par niveau d’emplacement au-delà du 4e."
+  }
+}

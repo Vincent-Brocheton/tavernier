@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:prestidigitation",
+  "type": "spell",
+  "name": "Prestidigitation",
+  "data": {
+    "level": 0,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous produisez un effet magique à portée. Choisissez l’effet parmi les options ci-après. Si vous lancez ce sort plusieurs fois, vous pouvez faire coexister jusqu’à trois de ces effets non instantanés.\nEffet sensoriel. Vous produisez un effet sensoriel instantané et inoffensif, comme une pluie d’étincelles, une petite rafale de vent, quelques notes de musique ou une odeur étrange.\nJeu avec le feu. Vous allumez ou éteignez une bougie, une torche ou un petit feu de camp, en un instant.\nNettoyage ou maculage. Vous nettoyez ou souillez en un instant un objet dont le volume ne dépasse pas 30 litres (ou 0,03 m3).\nSensation mineure. Vous refroidissez, réchauffez ou parfumez de la matière inerte pendant 1 heure, à condition que son volume ne dépasse pas 30 litres (ou 0,03 m3).\nMarque magique. Vous faites apparaître pendant 1 heure, sur un objet ou une surface, une couleur, une petite marque ou un symbole.\nCréation mineure. Vous créez une babiole non magique ou une image illusoire qui tient dans votre main. Elle persiste jusqu’à la fin de votre tour suivant. Une telle babiole ne peut pas infliger de dégâts et n’a aucune valeur monétaire."
+  }
+}

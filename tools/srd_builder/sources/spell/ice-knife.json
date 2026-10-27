@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:ice-knife",
+  "type": "spell",
+  "name": "Couteau de glace",
+  "data": {
+    "level": 1,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": "une goutte d’eau ou un morceau de glace"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous créez un fragment de glace que vous lancez sur une créature à portée. Effectuez une attaque de sort à distance contre la cible. Si l’attaque touche, la cible subit 1d10 dégâts perforants. Que l’attaque touche ou rate, le fragment explose alors. La cible et toutes les créatures situées dans un rayon de 1,50 m d’elle doivent réussir un jet de sauvegarde de Dextérité, sous peine de subir 2d6 dégâts de froid\nEmplacement de niveau supérieur. Les dégâts de froid augmentent de 1d6 par niveau d’emplacement au-delà du 1er."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:flame-blade",
+  "type": "spell",
+  "name": "Lame de feu",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une feuille d’amarante"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous faites apparaître une lame ardente dans votre main libre. La lame est comparable en taille et forme à un cimeterre. Elle persiste pour toute la durée. Si vous la lâchez, la lame disparaît, mais vous pouvez la faire réapparaître par une action Bonus.\nAu prix de l’action Magie, vous pouvez effectuer une attaque de sort avec la lame enflammée. Si l’attaque touche, la cible subit des dégâts de feu : 3d6 plus votre modificateur de caractéristique d’incantation.\nLa lame ardente projette une Lumière vive sur un rayon de 3 m, et une Lumière faible sur 3 m de plus.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 2e."
+  }
+}

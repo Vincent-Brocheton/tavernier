@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:raise-dead",
+  "type": "spell",
+  "name": "Rappel à la vie",
+  "data": {
+    "level": 5,
+    "school": "necromancy",
+    "casting_time": "1 heure",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un diamant d’une valeur minimale de 500 po, que le sort détruit"
+    },
+    "material_cost_cp": 50000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "D’un contact, vous ramenez à la vie une créature qui n’était pas un Mort-vivant quand elle est morte et dont la mort remonte à un maximum de 10 jours.\nLa créature est ramenée à la vie avec 1 point de vie. Ce sort neutralise également tous les poisons qui affectaient la créature au moment de mourir.\nCe sort referme toutes les blessures mortelles, mais ne fait pas repousser l’anatomie manquante. Si la créature a perdu une partie de son anatomie ou des organes essentiels à sa survie ; sa tête par exemple, le sort échoue automatiquement.\nRevenir d’entre les morts demeure une épreuve. La cible subit un malus de –4 aux Tests d20. Chaque fois qu’elle termine un Repos long, ce malus diminue de 1, jusqu’à ce qu’il tombe à 0."
+  }
+}

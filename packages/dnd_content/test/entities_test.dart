@@ -43,7 +43,7 @@ List<String> _issuePaths(Object? json) => parseEntity(
 
 void main() {
   test('les 16 types de l\'échantillon sont connus', () {
-    expect(entityTypes, hasLength(16));
+    expect(entityTypes, hasLength(17));
     expect(
       entityTypes,
       containsAll(['weapon', 'background', 'feature', 'damage-type']),
@@ -326,6 +326,23 @@ final _oneOfEachType = <Map<String, Object?>>[
     'type': 'feature',
     'name': 'Second souffle',
     'data': {'source': 'srd:class:fighter', 'level': 1},
+    'text': {'fr': 'Texte.'},
+  },
+  {
+    'id': 'srd:spell:acid-splash',
+    'type': 'spell',
+    'name': 'Aspersion acide',
+    'data': {
+      'level': 0,
+      'school': 'evocation',
+      'casting_time': 'action',
+      'ritual': false,
+      'range': {'kind': 'feet', 'feet': 60},
+      'components': {'verbal': true, 'somatic': true},
+      'material_consumed': false,
+      'duration': 'instantanée',
+      'concentration': false,
+    },
     'text': {'fr': 'Texte.'},
   },
 ];

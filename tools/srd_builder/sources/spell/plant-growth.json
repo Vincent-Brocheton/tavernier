@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:plant-growth",
+  "type": "spell",
+  "name": "Croissance végétale",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action (Embroussaillement) ou 8 heures (Fertilisation)",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ce sort gorge les plantes de vitalité. La durée d’incantation employée détermine l’effet du sort : Embroussaillement ou Fertilisation, ci-après.\nEmbroussaillement. Choisissez un point à portée. Toutes les plantes normales dans une Sphère d’un rayon de 30 m centré sur ce point grossissent et grandissent. Une créature qui se déplace dans la zone doit dépenser le quadruple de déplacement pour toute distance parcourue. Vous pouvez désigner une ou plusieurs zones de n’importe quelle taille dans la zone d’effet du sort pour qu’elles ne soient pas affectées.\nFertilisation. Toutes les plantes dans un rayon de 750 m d’un point à portée gagnent en fécondité pendant 365 jours. Ces plantes produisent le double des apports alimentaires normaux lors des récoltes. Elles ne peuvent tirer profit de croissance végétale qu’une fois par an."
+  }
+}

@@ -264,6 +264,85 @@ abstract class FeatureData with _$FeatureData implements EntityData {
       _$FeatureDataFromJson(json);
 }
 
+@JsonEnum(fieldRename: FieldRename.snake)
+enum SpellSchool {
+  abjuration,
+  conjuration,
+  divination,
+  enchantment,
+  evocation,
+  illusion,
+  necromancy,
+  transmutation,
+}
+
+/// Genre de portée d'un sort ; `feet` seul porte une distance.
+@JsonEnum(fieldRename: FieldRename.snake)
+enum RangeKind { self, touch, feet, sight, unlimited, special }
+
+/// Portée d'un sort, en pieds (affichée en mètres : 5 pieds = 1,50 m).
+@freezed
+abstract class SpellRange with _$SpellRange {
+  const factory SpellRange({required RangeKind kind, int? feet}) = _SpellRange;
+
+  factory SpellRange.fromJson(Map<String, dynamic> json) =>
+      _$SpellRangeFromJson(json);
+}
+
+SpellRange _spellRange(Map<String, dynamic> json) {
+  final range = SpellRange.fromJson(json);
+  if ((range.kind == RangeKind.feet) != (range.feet != null)) {
+    throw ArgumentError('distance en pieds requise pour « feet » seulement');
+  }
+  return range;
+}
+
+/// Composantes verbale, somatique et matérielle (texte du SRD).
+@freezed
+abstract class SpellComponents with _$SpellComponents {
+  const factory SpellComponents({
+    required bool verbal,
+    required bool somatic,
+    String? material,
+  }) = _SpellComponents;
+
+  factory SpellComponents.fromJson(Map<String, dynamic> json) =>
+      _$SpellComponentsFromJson(json);
+}
+
+int _spellLevel(Object? json) {
+  final level = json! as int;
+  if (level < 0 || level > 9) {
+    throw ArgumentError('niveau de sort entre 0 et 9 attendu');
+  }
+  return level;
+}
+
+/// Sort (cahier §11.1 `spell`). Il ne cite pas ses classes : chaque classe
+/// porte sa liste de sorts.
+@freezed
+abstract class SpellData with _$SpellData implements EntityData {
+  const factory SpellData({
+    @JsonKey(fromJson: _spellLevel) required int level,
+    required SpellSchool school,
+
+    /// Temps d'incantation, tel que dans le SRD (« action », « 1 minute »…).
+    required String castingTime,
+    required bool ritual,
+    @JsonKey(fromJson: _spellRange) required SpellRange range,
+    required SpellComponents components,
+    int? materialCostCp,
+    required bool materialConsumed,
+
+    /// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
+    required String duration,
+    required bool concentration,
+  }) = _SpellData;
+
+  factory SpellData.fromJson(Map<String, dynamic> json) =>
+      _$SpellDataFromJson(json);
+}
+
 /// Lecteur des données de chaque type d'entité.
 final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'ability': AbilityData.fromJson,
@@ -282,4 +361,5 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'class': ClassData.fromJson,
   'subclass': SubclassData.fromJson,
   'feature': FeatureData.fromJson,
+  'spell': SpellData.fromJson,
 };

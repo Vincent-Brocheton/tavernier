@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:continual-flame",
+  "type": "spell",
+  "name": "Flamme éternelle",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre de rubis d’une valeur minimale de 50 po, que le sort détruit"
+    },
+    "material_cost_cp": 5000,
+    "material_consumed": true,
+    "duration": "jusqu’à dissipation",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une flamme jaillit d’un objet que vous touchez physiquement. L’effet produit une Lumière vive sur un rayon de 6 m et une Lumière faible sur 6 m de plus. La flamme paraît ordinaire, mais elle ne produit aucune chaleur et s’alimente d’elle-même. On peut recouvrir ou cacher la flamme, mais ni l’étouffer ni l’éteindre."
+  }
+}

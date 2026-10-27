@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:color-spray",
+  "type": "spell",
+  "name": "Couleurs dansantes",
+  "data": {
+    "level": 1,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une pincée de sable coloré"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez une gerbe éblouissante de lumière colorée. Chaque créature prise dans un Cône de 4,50 m émanant de vous doit réussir un jet de sauvegarde de Constitution sous peine de subir l’état Aveuglé jusqu’à la fin de votre tour suivant."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:mass-heal",
+  "type": "spell",
+  "name": "Guérison de groupe",
+  "data": {
+    "level": 9,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez une vague d’énergie curative vers les créatures qui vous entourent. Vous restituez un maximum de 700 points de vie, répartis à votre guise entre les créatures de votre choix parmi celles que vous voyez à portée. Les créatures soignées par ce sort se débarrassent en outre des états Assourdi, Aveuglé et Empoisonné."
+  }
+}

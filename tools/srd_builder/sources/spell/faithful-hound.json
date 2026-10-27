@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:faithful-hound",
+  "type": "spell",
+  "name": "Chien de garde",
+  "data": {
+    "level": 4,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un sifflet en argent"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous invoquez un chien de garde fantomatique en un espace inoccupé que vous voyez à portée. Le molosse reste pour toute la durée (il disparaît toutefois si vous et lui vous retrouvez éloignés de plus de 90 m).\nEn dehors de vous, personne ne voit le chien de garde, qui est à la fois intangible et invulnérable. Quand une créature de taille S ou supérieure s’approche dans un rayon de 9 m de lui sans prononcer au préalable le mot de passe que vous avez spécifié à l’incantation du sort, le chien se met à aboyer furieusement. Le molosse est doté de la Vision lucide avec une portée de 9 m.\nAu début de chacun de vos tours, le molosse tente de mordre un ennemi situé dans un rayon de 1,50 m de lui. Cet ennemi doit réussir un jet de sauvegarde de Dextérité sous peine de subir 4d8 dégâts de force.\nÀ vos tours suivants, vous pouvez entreprendre l’action Magie pour déplacer le molosse d’un maximum de 9 m."
+  }
+}

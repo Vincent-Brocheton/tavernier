@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:private-sanctum",
+  "type": "spell",
+  "name": "Sanctuaire privé",
+  "data": {
+    "level": 4,
+    "school": "abjuration",
+    "casting_time": "10 minutes",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une feuille de plomb"
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous sécurisez magiquement une zone à portée. La zone est un Cube dont l’arête peut aller de 1,50 m à 30 m. Le sort persiste pour toute la durée.\nÀ l’incantation du sort, vous décidez quel genre de sécurité octroie le sort, en choisissant autant de propriétés souhaitées parmi les suivantes :\n• Les sons ne franchissent pas le périmètre de la zone protégée.\n• Le périmètre de la zone protégée apparaît sombre et brumeux, ce qui empêche de voir au travers (y compris avec la Vision dans le noir).\n• Les capteurs créés par les sorts de Divination ne peuvent ni apparaître à l’intérieur de la zone protégée ni franchir son périmètre.\n• Les créatures de la zone ne peuvent pas être ciblées par les sorts de Divination.\n• Rien ne peut se téléporter dans la zone protégée ou hors d’elle.\n• Le voyage planaire est bloqué au sein de la zone protégée.\nLancer ce sort quotidiennement au même endroit pendant 365 jours fait persister le sort jusqu’à dissipation.\nEmplacement de niveau supérieur. Vous pouvez augmenter l’arête du Cube de 30 m par niveau d’emplacement au-delà du 4e."
+  }
+}

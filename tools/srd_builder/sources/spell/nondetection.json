@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:nondetection",
+  "type": "spell",
+  "name": "Antidétection",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une pincée de poudre de diamant d’une valeur minimale de 25 po, que le sort détruit"
+    },
+    "material_cost_cp": 2500,
+    "material_consumed": true,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Pour toute la durée, vous cachez aux sorts de Divination une cible que vous touchez. La cible doit être une créature consentante, ou un lieu ou objet dont aucune dimension n’excède 3 m. Elle ne peut alors être ciblée par quelque sort de Divination que ce soit, ni perçue par des capteurs de scrutation magique."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:aid",
+  "type": "spell",
+  "name": "Aide",
+  "data": {
+    "level": 2,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une bandelette de tissu blanc"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Choisissez jusqu’à trois créatures à portée. Le maximum de points de vie de chaque cible et ses points de vie actuels augmentent de 5 pour toute la durée.\nEmplacement de niveau supérieur. Les points de vie de chaque cible augmentent de 5 de plus par niveau d’emplacement au-delà du 2e."
+  }
+}

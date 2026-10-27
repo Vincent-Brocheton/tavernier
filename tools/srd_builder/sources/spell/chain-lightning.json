@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:chain-lightning",
+  "type": "spell",
+  "name": "Chaîne d’éclairs",
+  "data": {
+    "level": 6,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "trois broches en argent"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez un trait de foudre vers une cible que vous voyez à portée. Trois éclairs jaillissent alors de cette cible vers un maximum de trois autres cibles, que vous choisissez, distantes de 9 m ou moins de la première. Toutes ces cibles peuvent être des créatures ou des objets, et ne peuvent être ciblées par plus d’un éclair.\nChaque cible effectue un jet de sauvegarde de Dextérité, et subit 10d8 dégâts de foudre en cas d’échec, la moitié en cas de réussite.\nEmplacement de niveau supérieur. Un éclair supplémentaire jaillit de la première cible vers une autre par niveau d’emplacement au-delà du 6e."
+  }
+}

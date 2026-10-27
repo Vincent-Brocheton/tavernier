@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:prayer-of-healing",
+  "type": "spell",
+  "name": "Prière de guérison",
+  "data": {
+    "level": 2,
+    "school": "abjuration",
+    "casting_time": "10 minutes",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Un maximum de cinq créatures que vous choisissez parmi celles qui restent à portée pendant toute l’incantation reçoivent les bénéfices d’un Repos court et récupèrent chacune 2d8 points de vie. Une créature qui profite de ce sort doit terminer un Repos long pour pouvoir en profiter à nouveau.\nEmplacement de niveau supérieur. Les soins augmentent de 1d8 par niveau d’emplacement au-delà du 2e."
+  }
+}

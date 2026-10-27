@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:freedom-of-movement",
+  "type": "spell",
+  "name": "Liberté de mouvement",
+  "data": {
+    "level": 4,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une bandelette de cuir"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez une créature consentante. Pour toute la durée, les déplacements de la cible ne sont pas affectés par le Terrain difficile, et les sorts et effets magiques ne peuvent ni réduire sa Vitesse, ni lui infliger l’état Paralysé ou Entravé. La cible dispose aussi d’une Vitesse de nage égale à sa Vitesse.\nDe plus, la cible peut consacrer 1,50 m de son déplacement à s’extraire automatiquement d’entraves non magiques, comme des menottes ou l’étreinte d’une créature qui lui impose l’état Agrippé.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 4e."
+  }
+}

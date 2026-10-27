@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:true-seeing",
+  "type": "spell",
+  "name": "Vision suprême",
+  "data": {
+    "level": 6,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre de champignon d’une valeur minimale de 25 po, que le sort détruit"
+    },
+    "material_cost_cp": 2500,
+    "material_consumed": true,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Pour toute la durée, une créature consentante que vous touchez physiquement acquiert la Vision lucide sur 36 m."
+  }
+}

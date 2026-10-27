@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:contagion",
+  "type": "spell",
+  "name": "Contagion",
+  "data": {
+    "level": 5,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "7 jours",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Votre contact transmet une maladie magique. La cible doit réussir un jet de sauvegarde de Constitution sous peine de subir 11d8 dégâts nécrotiques, ainsi que l’état Empoisonné. Vous désignez également une caractéristique à l’incantation. Tant que la cible est Empoisonnée, elle subit le Désavantage aux jets de sauvegarde associés à la caractéristique retenue.\nLa cible réitère le jet de sauvegarde à la fin de chacun de ses tours jusqu’à ce qu’elle ait obtenu trois réussites ou trois échecs. Si la cible réussit trois de ces JS, le sort prend fin sur elle. Si elle rate trois de ces JS, le sort persiste sur elle pendant 7 jours.\nChaque fois que la cible Empoisonnée reçoit un effet censé mettre fin à son état Empoisonné, elle doit réussir un jet de sauvegarde de Constitution, sans quoi l’état Empoisonné ne prend pas fin."
+  }
+}

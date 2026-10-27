@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:summon-dragon",
+  "type": "spell",
+  "name": "Convocation de dragon",
+  "data": {
+    "level": 5,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un objet gravé d’une représentation de dragon, d’une valeur minimale de 500 po"
+    },
+    "material_cost_cp": 50000,
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous invoquez un esprit draconique. Il se manifeste en un espace inoccupé que vous voyez à portée en reprenant le profil de l’esprit draconique. La créature disparaît quand le sort prend fin, mais également si elle tombe à 0 point de vie.\nLa créature constitue un allié pour vous et vos alliés.\nAu combat, la créature partage votre rang d’Initiative, mais elle joue son tour juste après vous. Elle obéit à vos instructions verbales (pas d’action requise de votre part). Sans ordre de votre part, elle entreprend l’action Esquive et consacre son déplacement à se mettre à l’abri du danger.\nEmplacement de niveau supérieur. Le niveau de l’emplacement s’applique chaque fois que le profil de jeu y fait référence.\nEsprit draconique\nDragon de taille G, Neutre\nCA 14 + niveau du sort Pv 50 + 10 par niveau du sort au-delà du 5e\nVitesse 9 m, nage 9 m, vol 18 m\nMOD JS\nMOD JS\nMOD JS\nFor 19 +4 +4 Dex 14 +2 +2 Con 17 +3 +3\nInt 10 +0 +0 Sag 14 +2 +2 Cha 14 +2 +2\nRésistances acide, feu, froid, foudre, poison Immunités Charmé, Effrayé, Empoisonné Sens Vision aveugle 9 m, Vision dans le noir 18 m ;\nPerception passive 12 Langues draconique, comprend les langues que vous connaissez FP aucun (PX 0 ; BM égal à votre bonus de maîtrise)\nTraits\nRésistances partagées. Lorsque vous convoquez l’esprit, choisissez l’une de ses Résistances aux dégâts. Vous bénéficiez de la Résistance au type de dégâts choisi jusqu’à la fin du sort.\nActions\nAttaques multiples. L’esprit effectue autant d’attaques de Saignée que la moitié du niveau de ce sort (arrondir à l’inférieur) et il recourt à Souffle.\nSaignée. Corps à corps : Bonus égal à votre modificateur d’attaque des sorts, allonge 3 m. Touché : 1d6 + 4 + le niveau du sort dégâts perforants.\nSouffle. JS Dextérité : DD égal à votre DD de sauvegarde des sorts, chaque créature dans un cône de 9 m. Échec : 2d6 dégâts d’un type auquel l’esprit a la Résistance (vous choisissez à l’incantation du sort). Réussite : 1/2 dégâts."
+  }
+}

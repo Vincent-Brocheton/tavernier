@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:greater-restoration",
+  "type": "spell",
+  "name": "Restauration suprême",
+  "data": {
+    "level": 5,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre de diamant d’une valeur minimale de 100 po, que le sort détruit"
+    },
+    "material_cost_cp": 10000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature pour lui retirer magiquement l’un des effets suivants :\n• 1 niveau d’Épuisement • L’état Charmé ou Pétrifié • Une malédiction, y compris l’Harmonisation éventuelle de la cible avec un objet magique maudit • Toute réduction de l’une des valeurs de caractéristique de la cible • Toute réduction du maximum de points de vie de la cible"
+  }
+}

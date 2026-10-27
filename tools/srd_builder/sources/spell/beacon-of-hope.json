@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:beacon-of-hope",
+  "type": "spell",
+  "name": "Lueur d’espoir",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Choisissez autant de créatures que vous le souhaitez à portée. Pour toute la durée, chaque cible a l’Avantage aux jets de sauvegarde de Sagesse et JS contre la mort, et récupère le maximum possible de points de vie chaque fois qu’on la soigne."
+  }
+}

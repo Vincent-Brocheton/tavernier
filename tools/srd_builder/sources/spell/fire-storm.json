@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:fire-storm",
+  "type": "spell",
+  "name": "Tempête de feu",
+  "data": {
+    "level": 7,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une tempête de flammes éclate à portée. La zone de la tempête consiste en un maximum de 10 Cubes de 3 m, que vous disposez à votre guise. Chaque Cube doit être contigu à au moins un autre Cube. Chaque créature prise dans la zone effectue un jet de sauvegarde de Dextérité et subit 7d10 dégâts de feu en cas d’échec, la moitié en cas de réussite.\nL’explosion embrase les objets inflammables de la zone qui ne sont portés par personne."
+  }
+}

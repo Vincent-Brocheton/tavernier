@@ -15,6 +15,7 @@ const typesWithRequiredText = {
   'feat',
   'mastery',
   'background',
+  'spell',
 };
 
 const _envelopeKeys = {

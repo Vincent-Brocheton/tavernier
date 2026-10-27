@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:speak-with-animals",
+  "type": "spell",
+  "name": "Communication avec les animaux",
+  "data": {
+    "level": 1,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "10 minutes",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Pour toute la durée, vous avez la faculté de comprendre les Bêtes et de communiquer verbalement avec elles, et toutes les options de compétence de l’action Influence vous sont accessibles avec elles.\nLa plupart des Bêtes ont peu à dire au-delà des sujets de survie et d’affection, mais toutes sont capables de vous informer sur les environs et les monstres locaux, notamment ce qu’elles ont perçu au cours de la dernière journée."
+  }
+}

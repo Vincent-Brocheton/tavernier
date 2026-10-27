@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:confusion",
+  "type": "spell",
+  "name": "Confusion",
+  "data": {
+    "level": 4,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 90
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "trois coquilles de noix"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Chaque créature prise dans une Sphère de 3 m de rayon centrée sur un point que vous choisissez à portée doit réussir un jet de sauvegarde de Sagesse, sous peine de ne pas pouvoir jouer de Réaction ni entreprendre d’action Bonus et de devoir jeter 1d10 au début de chacun de ses tours pour savoir comment elle se comporte à ce tour, selon la table ci-après.\n1d10 Comportement du tour\n1 La cible n’entreprend aucune action et consacre tout son déplacement à se déplacer. Lancez 1d4 pour la direction : 1, nord ; 2, est ; 3, sud ; 4, ouest.\n2–6 La cible ne se déplace pas et n’entreprend aucune action.\n7–8 La cible ne se déplace pas et entreprend l’action Attaque pour effectuer une attaque de corps à corps contre une créature aléatoire à portée d’allonge. Si aucune créature n’est à portée d’allonge, la cible n’entreprend aucune action.\n9–10 La cible agit et se déplace à sa guise.\nLa cible affectée réitère le JS à la fin de chacun de ses tours et met un terme au sort sur elle-même en cas de réussite.\nEmplacement de niveau supérieur. Le rayon de la Sphère augmente de 1,50 m par niveau d’emplacement au-delà du 4e."
+  }
+}

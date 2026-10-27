@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:power-word-kill",
+  "type": "spell",
+  "name": "Mot de pouvoir mortel",
+  "data": {
+    "level": 9,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "La mort s’impose à une créature que vous voyez à portée. Si la cible choisie est dotée de 100 points de vie ou moins, elle meurt. Dans le cas contraire, elle subit 12d12 dégâts psychiques."
+  }
+}

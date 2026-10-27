@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:dissonant-whispers",
+  "type": "spell",
+  "name": "Murmures dissonants",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une créature que vous choisissez parmi celles que vous voyez à portée perçoit intérieurement une mélodie discordante. La cible effectue un jet de sauvegarde de Sagesse. Elle subit 3d6 dégâts psychiques en cas d’échec et doit aussitôt jouer sa Réaction si disponible pour s’éloigner de vous autant qu’elle le peut, par le chemin le plus sûr. En cas de réussite, la cible subit uniquement la moitié de ces dégâts.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 1er."
+  }
+}

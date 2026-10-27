@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:shield",
+  "type": "spell",
+  "name": "Bouclier",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "Réaction, que vous jouez lorsqu’un jet d’attaque vous touche ou que le sort projectile magique vous cible",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "1 round",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une barrière imperceptible de force magique vous protège. Jusqu’au début de votre tour suivant, vous recevez un bonus de +5 à la CA, y compris contre l’attaque qui a déclenché le sort, et vous ne subissez aucun dégât de projectile magique."
+  }
+}

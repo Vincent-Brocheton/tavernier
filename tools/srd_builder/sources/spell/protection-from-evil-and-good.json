@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:protection-from-evil-and-good",
+  "type": "spell",
+  "name": "Protection contre le mal et le bien",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une flasque d’eau bénite d’une valeur minimale de 25 po, que le sort détruit"
+    },
+    "material_cost_cp": 2500,
+    "material_consumed": true,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Jusqu’à la fin du sort, une créature consentante que vous touchez physiquement est protégée contre les créatures des types suivants : Aberrations, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants. Cette protection octroie plusieurs bénéfices. Les créatures concernées ont le Désavantage aux jets d’attaque contre la cible. Elles ne peuvent pas posséder la cible, ni lui infliger les états Charmé et Effrayé. Si la cible est déjà Charmée, Effrayée ou possédée par une telle créature, elle a l’Avantage aux nouveaux jets de sauvegarde contre l’effet correspondant."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:stoneskin",
+  "type": "spell",
+  "name": "Peau de pierre",
+  "data": {
+    "level": 4,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre de diamant d’une valeur minimale de 100 po, que le sort détruit"
+    },
+    "material_cost_cp": 10000,
+    "material_consumed": true,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Jusqu’à la fin du sort, une créature consentante que vous touchez physiquement a la Résistance aux dégâts contondants, perforants et tranchants."
+  }
+}

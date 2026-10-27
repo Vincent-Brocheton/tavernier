@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:hex",
+  "type": "spell",
+  "name": "Maléfice",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 90
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un œil pétrifié de triton"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous maudissez une créature que vous voyez à portée. Jusqu’à la fin du sort, vous infligez 1d6 dégâts nécrotiques supplémentaires à la cible chaque fois que vous la touchez avec un jet d’attaque. Vous désignez également une caractéristique à l’incantation. La cible subit le Désavantage aux tests de caractéristique associés à la caractéristique en question.\nSi la cible tombe à 0 point de vie avant la fin du sort, vous pouvez désigner une nouvelle cible à l’un de vos tours suivants, par une action Bonus.\nEmplacement de niveau supérieur. Votre Concentration peut persister plus longtemps avec un emplacement du 2e niveau (jusqu’à 4 heures), du 3e ou 4e (jusqu’à 8 heures), ou du 5e et supérieur (24 heures)."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:command",
+  "type": "spell",
+  "name": "Injonction",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous adressez un simple mot de commande à une créature que vous voyez à portée. La cible doit réussir un jet de sauvegarde de Sagesse sous peine de devoir s’y soumettre à son tour suivant. Choisissez votre ordre parmi les options suivantes :\nApproche. La cible se déplace dans votre direction par le chemin le plus court et direct, et termine son tour si elle se retrouve dans un rayon de 1,50 m de vous.\nFuis. La cible consacre son tour à s’éloigner de vous par le moyen le plus rapide.\nHalte. À son tour, la cible ne se déplace pas, et n’entreprend ni action ni action Bonus.\nLâche. La cible lâche ce qu’elle tient et termine son tour.\nRampe. La cible subit l’état À terre et termine son tour.\nEmplacement de niveau supérieur. Vous pouvez affecter une créature supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

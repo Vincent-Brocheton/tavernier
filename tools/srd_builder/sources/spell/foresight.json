@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:foresight",
+  "type": "spell",
+  "name": "Prémonition",
+  "data": {
+    "level": 9,
+    "school": "divination",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une plume de colibri"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature consentante pour lui octroyer la faculté d’entrevoir l’avenir immédiat. Pour toute la durée, la cible a l’Avantage aux Tests d20 et les autres créatures subissent le Désavantage aux jets d’attaque contre elle. Le sort prend fin prématurément si vous le relancez."
+  }
+}

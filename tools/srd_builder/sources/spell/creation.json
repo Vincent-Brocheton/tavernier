@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:creation",
+  "type": "spell",
+  "name": "Création",
+  "data": {
+    "level": 5,
+    "school": "illusion",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un pinceau"
+    },
+    "material_consumed": false,
+    "duration": "spéciale",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous extrayez des volutes de matière ombreuse issue de Gisombre pour créer un objet à portée. L’objet est soit en matière végétale (textile, corde, bois, etc.) soit en matière minérale (pierre, cristal, métal et autres). L’objet doit rentrer dans un Cube de 1,50 m et sa forme comme sa matière doivent correspondre à quelque chose que vous avez déjà vu.\nLa durée du sort dépend de la matière de l’objet, comme indiqué sur la table Matières. Si l’objet est composé de plusieurs matières, c’est la durée la plus courte qui s’applique. Recourir à un objet créé par ce sort comme composante matérielle d’un autre sort fait échouer celui-ci.\nMatières\nMatière Matière végétale Pierre ou cristal Métal précieux Gemme Adamantium ou mithral\nDurée 24 heures 12 heures 1 heure 10 minutes 1 minute\nEmplacement de niveau supérieur. L’arête du Cube augmente de 1,50 m par niveau d’emplacement au-delà du 5e."
+  }
+}

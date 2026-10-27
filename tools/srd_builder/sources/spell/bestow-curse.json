@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:bestow-curse",
+  "type": "spell",
+  "name": "Malédiction",
+  "data": {
+    "level": 3,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature, qui doit réussir un jet de sauvegarde de Sagesse sous peine d’être maudite pour toute la durée. Jusqu’à la fin de la malédiction, la cible subit l’un des effets suivants, à votre convenance :\n• Choisissez une caractéristique. La cible a le Désavantage aux tests de caractéristique et jets de sauvegarde associés à cette caractéristique.\n• La cible a le Désavantage aux jets d’attaque contre vous.\n• Au combat, la cible doit réussir un jet de sauvegarde de Sagesse au début de chacun de ses tours sous peine de devoir entreprendre l’action Esquive à ce tour.\n• Si vous infligez des dégâts à la cible par un jet d’attaque ou un sort, elle subit 1d8 dégâts nécrotiques supplémentaires.\nEmplacement de niveau supérieur. Si vous lancez ce sort par un emplacement du 4e niveau, vous pouvez maintenir votre Concentration un maximum de 10 minutes. Avec un emplacement du 5e niveau ou supérieur, le sort ne requiert pas de Concentration et la durée passe à 8 heures (5e et 6e niveau) ou 24 heures (7e et 8e niveau). Avec un emplacement du 9e niveau, la durée passe à « jusqu’à dissipation »."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:conjure-elemental",
+  "type": "spell",
+  "name": "Invocation d’élémentaire",
+  "data": {
+    "level": 5,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous invoquez un esprit intangible de taille G issu des Plans Élémentaires, qui apparaît en un espace inoccupé à portée. Choisissez l’élément de l’esprit, qui définit son type de dégâts : air (foudre), eau (froid), feu (feu) ou terre (tonnerre). L’esprit persiste pour toute la durée.\nChaque fois qu’une créature que vous voyez pénètre dans l’espace de l’esprit ou commence son tour dans un rayon de 1,50 m de celui-ci, vous pouvez la contraindre à un jet de sauvegarde de Dextérité si l’esprit n’a pas de créature Entravée. En cas d’échec, la cible subit 8d8 dégâts du type associé à l’esprit, ainsi que l’état Entravé jusqu’à la fin du sort. Au début de chacun de ses tours, la cible Entravée réitère le JS. En cas d’échec, elle subit 4d8 dégâts du type de l’esprit. En cas de réussite, elle n’est plus Entravée par l’esprit.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 5e."
+  }
+}

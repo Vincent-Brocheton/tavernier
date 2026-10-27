@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:insect-plague",
+  "type": "spell",
+  "name": "Fléau d’insectes",
+  "data": {
+    "level": 5,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 300
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un criquet"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Des nuées grouillantes de criquets emplissent une Sphère de 6 m de rayon centrée sur un point que vous choisissez à portée. La Sphère persiste pour toute la durée, et sa zone est à Visibilité réduite et constitue un Terrain difficile.\nChaque créature prise dans la nuée à son apparition effectue un jet de sauvegarde de Constitution, et subit 4d10 dégâts perforants en cas d’échec, la moitié en cas de réussite. Une créature effectue aussi ce JS lorsqu’elle pénètre dans la zone du sort pour la première fois d’un tour ou qu’elle y termine son tour. Une même créature n’effectue en aucun cas ce JS plus d’une fois par tour.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d10 par niveau d’emplacement au-delà du 5e."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:animal-friendship",
+  "type": "spell",
+  "name": "Amitié avec les animaux",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un peu de nourriture"
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ciblez une Bête que vous voyez à portée. La cible doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Charmé pour toute la durée du sort. Si vous ou l’un de vos alliés infligez des dégâts à la cible, le sort prend fin.\nEmplacement de niveau supérieur. Vous pouvez affecter une Bête supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

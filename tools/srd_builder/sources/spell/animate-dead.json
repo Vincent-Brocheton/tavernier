@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:animate-dead",
+  "type": "spell",
+  "name": "Animation des morts",
+  "data": {
+    "level": 3,
+    "school": "necromancy",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une goutte de sang, un morceau de chair et une pincée de poudre d’os"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Choisissez un tas d’os ou un cadavre à portée, tiré d’un Humanoïde de taille M ou P. La cible devient un Mortvivant : un squelette si vous avez opté pour des os ou un zombi si vous avez choisi un cadavre (profil de la créature à « Monstres »).\nÀ chacun de vos tours, vous pouvez consacrer une action Bonus à donner des ordres mentaux à toute créature que vous avez créée par ce sort et qui se trouve dans un rayon de 18 m. Vous pouvez ainsi contrôler plusieurs créatures, en les choisissant, à condition de leur intimer le même ordre. Vous décidez quelle action la créature va entreprendre et où elle se déplacera à son tour suivant, ou pouvez vous contenter de donner une instruction générale, comme garder une salle ou un couloir. Sans instruction de votre part, la créature entreprend l’action Esquive et ne se déplace que pour éviter les dangers. Une fois qu’elle a reçu un ordre, la créature s’y soumet jusqu’à ce que la tâche soit accomplie.\nLa créature reste sous votre contrôle pendant 24 heures, après quoi elle cesse d’obéir aux ordres que vous lui avez donnés. Pour en garder le contrôle pendant 24 heures de plus, vous devez relancer ce sort sur lui avant la fin des 24 heures en cours. Relancer le sort ainsi réaffirme votre emprise sur un maximum de quatre créatures que vous avez animées par ce sort, au lieu d’en animer une nouvelle.\nEmplacement de niveau supérieur. Vous prenez ou prolongez le contrôle de deux Morts-vivants supplémentaires par niveau d’emplacement au-delà du 3e. Chacune de ces créatures doit être issue d’un tas d’os ou cadavre différent."
+  }
+}

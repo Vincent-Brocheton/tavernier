@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:dispel-magic",
+  "type": "spell",
+  "name": "Dissipation de la magie",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Choisissez une créature, un objet ou un effet magique à portée. Tout sort du 3e niveau ou inférieur affectant la cible prend fin. Pour chaque sort du 4e niveau ou supérieur affectant la cible, effectuez un test de caractéristique d’incantation (DD 10 plus le niveau du sort concerné). En cas de réussite, le sort prend fin.\nEmplacement de niveau supérieur. Vous mettez automatiquement un terme aux sorts qui affectent la cible et sont d’un niveau qui ne dépasse pas celui de votre emplacement de sort."
+  }
+}

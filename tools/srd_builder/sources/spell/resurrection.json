@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:resurrection",
+  "type": "spell",
+  "name": "Résurrection",
+  "data": {
+    "level": 7,
+    "school": "necromancy",
+    "casting_time": "1 heure",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un diamant d’une valeur minimale de 1 000 po, que le sort détruit"
+    },
+    "material_cost_cp": 100000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "D’un contact, vous ramenez à la vie une créature dont la mort ne remonte pas à plus d’un siècle, qui n’est pas morte de vieillesse et n’était pas un Mort-vivant au moment de mourir.\nLa créature revient à la vie avec tous ses points de vie. Ce sort neutralise également tous les poisons qui affectaient la créature au moment de mourir. Ce sort referme toutes les blessures mortelles et restitue l’anatomie manquante.\nRevenir d’entre les morts demeure une épreuve. La cible subit un malus de –4 aux Tests d20. Chaque fois qu’elle termine un Repos long, ce malus diminue de 1, jusqu’à ce qu’il tombe à 0.\nL’incantation de ce sort s’avère éreintante lorsqu’il s’agit de ramener à la vie une créature morte depuis 365 jours ou plus. Tant que vous n’avez pas terminé de Repos long, vous ne pouvez plus lancer de sort et vous subissez le Désavantage aux Tests d20."
+  }
+}

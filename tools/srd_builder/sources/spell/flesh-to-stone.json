@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:flesh-to-stone",
+  "type": "spell",
+  "name": "Pétrification",
+  "data": {
+    "level": 6,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une plume de cockatrice"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous tentez de transformer en pierre une créature que vous voyez à portée. La cible effectue un jet de sauvegarde de Constitution. En cas d’échec, elle subit l’état Entravé pour toute la durée. En cas de réussite, sa vitesse tombe à 0 jusqu’au début de votre tour suivant. Les Artificiels réussissent automatiquement ce JS.\nUne créature ainsi Entravée réitère le jet de sauvegarde de Constitution à la fin de chacun de ses tours. Si elle se sauvegarde trois fois contre le sort, celui-ci prend fin. Si elle rate son JS trois fois, elle se transforme en pierre et reste soumise à l’état Pétrifié pour toute la durée. Ces réussites et échecs n’ont pas besoin d’être consécutifs ; notez-les quelque part, jusqu’à ce que la cible atteigne un total de trois pour l’un ou l’autre.\nSi vous maintenez votre Concentration sur ce sort pendant toute la durée possible, la cible est Pétrifiée jusqu’à ce que l’état soit éliminé par restauration suprême ou une magie équivalente."
+  }
+}

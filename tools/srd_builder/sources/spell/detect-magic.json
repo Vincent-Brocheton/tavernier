@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:detect-magic",
+  "type": "spell",
+  "name": "Détection de la magie",
+  "data": {
+    "level": 1,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Pour toute la durée, vous percevez la présence des effets magiques dans un rayon de 9 m. Si vous percevez de tels effets, vous pouvez entreprendre l’action Magie pour voir une faible aura autour de chaque créature et objet visibles et porteurs de magie de la zone, et vous apprenez l’école de magie correspondante dans le cas d’un effet produit par un sort.\nLe sort est bloqué par 30 cm de pierre, de terre ou de bois, par 2,5 cm de métal (une simple feuille dans le cas du plomb)."
+  }
+}

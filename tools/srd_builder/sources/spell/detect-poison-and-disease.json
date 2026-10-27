@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:detect-poison-and-disease",
+  "type": "spell",
+  "name": "Détection du poison et des maladies",
+  "data": {
+    "level": 1,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une feuille d’if"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Pour toute la durée, vous percevez la position de tous les poisons, créatures venimeuses et vénéneuses, et maladies magiques dans un rayon de 9 m. Vous percevez dans chaque cas de quel genre de poison, créature ou maladie il s’agit.\nLe sort est bloqué par 30 cm de pierre, de terre ou de bois, par 2,5 cm de métal (une simple feuille dans le cas du plomb)."
+  }
+}

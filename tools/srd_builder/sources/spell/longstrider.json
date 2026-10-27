@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:longstrider",
+  "type": "spell",
+  "name": "Grande foulée",
+  "data": {
+    "level": 1,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une pincée de terre"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez une créature. La Vitesse de la cible augmente de 3 m jusqu’à la fin du sort.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

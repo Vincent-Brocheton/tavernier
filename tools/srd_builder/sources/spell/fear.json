@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:fear",
+  "type": "spell",
+  "name": "Terreur",
+  "data": {
+    "level": 3,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une plume blanche"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Chaque créature prise dans un Cône de 9 m doit réussir un jet de sauvegarde de Sagesse sous peine de lâcher ce qu’elle tient, et de subir l’état Effrayé pour toute la durée.\nAinsi Effrayée, la créature entreprend à chacun de ses tours l’action Pointe pour s’éloigner de vous par le chemin le plus sûr, sauf si elle n’a nulle part où aller. Si la créature termine son tour en un espace d’où elle ne vous a plus dans son champ de vision, elle effectue un jet de sauvegarde de Sagesse. En cas de réussite, le sort prend fin pour elle."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:expeditious-retreat",
+  "type": "spell",
+  "name": "Repli expéditif",
+  "data": {
+    "level": 1,
+    "school": "transmutation",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous entreprenez l’action Pointe et, jusqu’à la fin du sort, vous pouvez entreprendre cette même action par une action Bonus."
+  }
+}

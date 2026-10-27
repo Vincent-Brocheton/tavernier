@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:augury",
+  "type": "spell",
+  "name": "Augure",
+  "data": {
+    "level": 2,
+    "school": "divination",
+    "casting_time": "1 minute",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "cartes, os ou bâtonnets gravés spécialement, ou objets divinatoires comparables, d’une valeur minimale de 25 po"
+    },
+    "material_cost_cp": 2500,
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous recevez un présage d’une entité surnaturelle vous renseignant sur l’issue d’une opération que vous comptez mener dans les 30 minutes. Le MJ choisit une option de la table Présages :\nPrésages\nPrésage Fortune Misère Fortune et misère Indifférence\nPour une issue qui s’annonce… favorable défavorable favorable et défavorable ni favorable ni défavorable\nLe sort ne tient pas compte des conjonctures qui pourraient peser dans la balance, comme l’incantation de nouveaux sorts.\nSi vous lancez le sort plus d’une fois avant de terminer votre prochain Repos long, vous courez dès la deuxième incantation 25 % de risques cumulatifs qu’il ne vous livre aucune réponse."
+  }
+}

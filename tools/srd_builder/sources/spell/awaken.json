@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:awaken",
+  "type": "spell",
+  "name": "Éveil",
+  "data": {
+    "level": 5,
+    "school": "transmutation",
+    "casting_time": "8 heures",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une agate d’une valeur minimale de 1 000 po, que le sort détruit"
+    },
+    "material_cost_cp": 100000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous consacrez le temps d’incantation à tracer des voies magiques à l’intérieur d’une gemme, puis touchez la cible. Celle-ci doit être une créature de type Bête ou Plante dotée d’une Intelligence inférieure à 4, ou une plante naturelle qui n’est pas une créature. La cible reçoit une Intelligence de 10 et la faculté de parler une langue que vous connaissez. Si la cible est une plante naturelle, elle devient une créature de type Plante et reçoit la capacité de se déplacer sur ses racines, pédoncules, lianes ou autres appendices, et bénéficie de sens comparables à ceux d’un humain. Votre MJ choisit un profil adapté à la Plante éveillée, comme le profil de l’arbuste éveillé ou de l’arbre éveillé (cf. « Monstres »).\nLa cible éveillée subit l’état Charmé pendant 30 jours, sauf si vous-même ou l’un de vos compagnons lui infligez des dégâts. Quand cet état prend fin, la créature éveillée choisit l’attitude qu’elle adopte à votre égard."
+  }
+}

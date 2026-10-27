@@ -686,3 +686,126 @@ Map<String, dynamic> _$FeatureDataToJson(_FeatureData instance) =>
       'source': const ContentIdConverter().toJson(instance.source),
       'level': ?instance.level,
     };
+
+_SpellRange _$SpellRangeFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_SpellRange',
+  json,
+  ($checkedConvert) {
+    $checkKeys(json, allowedKeys: const ['kind', 'feet']);
+    final val = _SpellRange(
+      kind: $checkedConvert('kind', (v) => $enumDecode(_$RangeKindEnumMap, v)),
+      feet: $checkedConvert('feet', (v) => (v as num?)?.toInt()),
+    );
+    return val;
+  },
+);
+
+Map<String, dynamic> _$SpellRangeToJson(_SpellRange instance) =>
+    <String, dynamic>{
+      'kind': _$RangeKindEnumMap[instance.kind]!,
+      'feet': ?instance.feet,
+    };
+
+const _$RangeKindEnumMap = {
+  RangeKind.self: 'self',
+  RangeKind.touch: 'touch',
+  RangeKind.feet: 'feet',
+  RangeKind.sight: 'sight',
+  RangeKind.unlimited: 'unlimited',
+  RangeKind.special: 'special',
+};
+
+_SpellComponents _$SpellComponentsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_SpellComponents', json, ($checkedConvert) {
+      $checkKeys(json, allowedKeys: const ['verbal', 'somatic', 'material']);
+      final val = _SpellComponents(
+        verbal: $checkedConvert('verbal', (v) => v as bool),
+        somatic: $checkedConvert('somatic', (v) => v as bool),
+        material: $checkedConvert('material', (v) => v as String?),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$SpellComponentsToJson(_SpellComponents instance) =>
+    <String, dynamic>{
+      'verbal': instance.verbal,
+      'somatic': instance.somatic,
+      'material': ?instance.material,
+    };
+
+_SpellData _$SpellDataFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_SpellData',
+  json,
+  ($checkedConvert) {
+    $checkKeys(
+      json,
+      allowedKeys: const [
+        'level',
+        'school',
+        'casting_time',
+        'ritual',
+        'range',
+        'components',
+        'material_cost_cp',
+        'material_consumed',
+        'duration',
+        'concentration',
+      ],
+    );
+    final val = _SpellData(
+      level: $checkedConvert('level', (v) => _spellLevel(v)),
+      school: $checkedConvert(
+        'school',
+        (v) => $enumDecode(_$SpellSchoolEnumMap, v),
+      ),
+      castingTime: $checkedConvert('casting_time', (v) => v as String),
+      ritual: $checkedConvert('ritual', (v) => v as bool),
+      range: $checkedConvert(
+        'range',
+        (v) => _spellRange(v as Map<String, dynamic>),
+      ),
+      components: $checkedConvert(
+        'components',
+        (v) => SpellComponents.fromJson(v as Map<String, dynamic>),
+      ),
+      materialCostCp: $checkedConvert(
+        'material_cost_cp',
+        (v) => (v as num?)?.toInt(),
+      ),
+      materialConsumed: $checkedConvert('material_consumed', (v) => v as bool),
+      duration: $checkedConvert('duration', (v) => v as String),
+      concentration: $checkedConvert('concentration', (v) => v as bool),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'castingTime': 'casting_time',
+    'materialCostCp': 'material_cost_cp',
+    'materialConsumed': 'material_consumed',
+  },
+);
+
+Map<String, dynamic> _$SpellDataToJson(_SpellData instance) =>
+    <String, dynamic>{
+      'level': instance.level,
+      'school': _$SpellSchoolEnumMap[instance.school]!,
+      'casting_time': instance.castingTime,
+      'ritual': instance.ritual,
+      'range': instance.range.toJson(),
+      'components': instance.components.toJson(),
+      'material_cost_cp': ?instance.materialCostCp,
+      'material_consumed': instance.materialConsumed,
+      'duration': instance.duration,
+      'concentration': instance.concentration,
+    };
+
+const _$SpellSchoolEnumMap = {
+  SpellSchool.abjuration: 'abjuration',
+  SpellSchool.conjuration: 'conjuration',
+  SpellSchool.divination: 'divination',
+  SpellSchool.enchantment: 'enchantment',
+  SpellSchool.evocation: 'evocation',
+  SpellSchool.illusion: 'illusion',
+  SpellSchool.necromancy: 'necromancy',
+  SpellSchool.transmutation: 'transmutation',
+};

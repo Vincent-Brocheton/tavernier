@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:arcanists-magic-aura",
+  "type": "spell",
+  "name": "Aura magique de l’arcaniste",
+  "data": {
+    "level": 2,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un petit carré de soie"
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "D’un contact, vous placez une illusion sur une créature consentante ou un objet qui n’est porté par personne. Une créature reçoit l’effet Masque, tandis qu’un objet reçoit l’effet Aura factice (voir plus loin). Les effets persistent pour toute la durée. Si vous lancez ce sort sur une même créature ou un même objet pendant 30 jours consécutifs, l’illusion persiste jusqu’à dissipation.\nMasque (créature). Choisissez un type de créature autre que celui de la cible. Les sorts et effets magiques considèrent désormais la cible comme du type retenu.\nAura factice (objet). Vous altérez la manière dont la cible se dévoile au gré de sorts et effets magiques qui perçoivent les auras magiques, tels que détection de la magie. Vous pouvez ainsi faire qu’un objet ordinaire paraisse magique, qu’un objet magique paraisse ordinaire, ou modifier l’aura magique d’un objet pour qu’elle soit associée à l’école de magie de votre choix."
+  }
+}

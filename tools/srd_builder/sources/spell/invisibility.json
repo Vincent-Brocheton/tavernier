@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:invisibility",
+  "type": "spell",
+  "name": "Invisibilité",
+  "data": {
+    "level": 2,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un cil dans de la sève"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "La créature que vous touchez physiquement reçoit l’état Invisible jusqu’à la fin du sort. Le sort prend fin prématurément si la cible effectue un jet d’attaque, inflige des dégâts ou lance un sort.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 2e."
+  }
+}

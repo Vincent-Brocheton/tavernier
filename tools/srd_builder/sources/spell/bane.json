@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:bane",
+  "type": "spell",
+  "name": "Imprécation",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une goutte de sang"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Un maximum de trois créatures de votre choix parmi celles que vous voyez à portée effectuent un jet de sauvegarde de Charisme. Chaque fois qu’une créature ayant raté ce JS effectue un jet d’attaque ou un jet de sauvegarde avant la fin du sort, elle soustrait 1d4 au résultat correspondant.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

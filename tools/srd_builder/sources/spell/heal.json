@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:heal",
+  "type": "spell",
+  "name": "Guérison",
+  "data": {
+    "level": 6,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Choisissez une créature que vous voyez à portée. Une vague d’énergie positive baigne la créature, qui récupère 70 points de vie. Ce sort met également fin aux éventuels états Assourdi, Aveuglé et Empoisonné de la cible.\nEmplacement de niveau supérieur. Les soins augmentent de 10 par niveau d’emplacement au-delà du 6e."
+  }
+}

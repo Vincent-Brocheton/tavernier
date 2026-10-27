@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:sequester",
+  "type": "spell",
+  "name": "Dissimulation suprême",
+  "data": {
+    "level": 7,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre de gemme d’une valeur minimale de 5 000 po, que le sort détruit"
+    },
+    "material_cost_cp": 500000,
+    "material_consumed": true,
+    "duration": "jusqu’à dissipation",
+    "concentration": false
+  },
+  "text": {
+    "fr": "D’un contact, vous isolez magiquement un objet ou une créature consentante. Pour toute la durée, la cible a l’état Invisible et les sorts de Divination ne peuvent pas la cibler, aucune magie ne peut la détecter ni l’observer à distance.\nSi la cible est une créature, elle sombre dans un état d’animation suspendue ; elle subit l’état Inconscient, ne vieillit pas et se passe de nourriture, d’eau et d’air.\nVous pouvez fixer une condition qui mettra un terme prématuré au sort. Vous êtes libre de choisir n’importe quelle condition, mais elle doit intervenir ou être visible dans un rayon de 1,5 km de la cible. Ce peut être « au bout de 1 000 ans » ou « lorsque la tarasque s’éveillera », par exemple. Le sort prend également fin si la cible subit des dégâts."
+  }
+}

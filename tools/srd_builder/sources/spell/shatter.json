@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:shatter",
+  "type": "spell",
+  "name": "Fracassement",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un fragment de mica"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Un vacarme éclate en un point que vous choisissez à portée. Chaque créature prise dans une Sphère de 3 m de rayon centrée sur ce point effectue un jet de sauvegarde de Constitution et subit 3d8 dégâts de tonnerre en cas d’échec, la moitié en cas de réussite. Un Artificiel a le Désavantage à ce JS.\nUn objet non magique qui n’est porté par personne subit lui aussi les dégâts s’il est dans la zone d’effet du sort.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 2e."
+  }
+}

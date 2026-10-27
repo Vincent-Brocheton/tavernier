@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:guardian-of-faith",
+  "type": "spell",
+  "name": "Gardien de la foi",
+  "data": {
+    "level": 4,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Un gardien spectral de taille G apparaît pour toute la durée et flotte en un espace inoccupé que vous voyez à portée. Le gardien, invulnérable, occupe cet espace et se présente sous une forme adaptée à votre divinité ou panthéon.\nTout ennemi qui se déplace dans un espace à 3 m ou moins du gardien pour la première fois d’un tour ou qui y commence son tour effectue un jet de sauvegarde de Dextérité et subit 20 dégâts radiants en cas d’échec, la moitié en cas de réussite. Le gardien disparaît après avoir infligé un total de 60 dégâts."
+  }
+}

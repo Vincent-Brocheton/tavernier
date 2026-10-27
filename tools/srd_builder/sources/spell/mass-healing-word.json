@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:mass-healing-word",
+  "type": "spell",
+  "name": "Mot de guérison de groupe",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Un maximum de six créatures de votre choix parmi celles que vous voyez à portée récupèrent des points de vie : 2d4 + votre modificateur de caractéristique d’incantation.\nEmplacement de niveau supérieur. Les soins augmentent de 1d4 par niveau d’emplacement au-delà du 3e."
+  }
+}

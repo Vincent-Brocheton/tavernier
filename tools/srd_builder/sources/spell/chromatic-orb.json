@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:chromatic-orb",
+  "type": "spell",
+  "name": "Orbe chromatique",
+  "data": {
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 90
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un diamant d’une valeur minimale de 50 po"
+    },
+    "material_cost_cp": 5000,
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez un orbe d’énergie sur une cible à portée. Choisissez une énergie entre acide, feu, foudre, froid, poison et tonnerre pour composer l’orbe, puis effectuez un jet d’attaque de sort à distance contre la cible. Si l’attaque touche, la cible subit 3d8 dégâts du type retenu.\nSi vous obtenez le même nombre sur au moins deux des d8, l’orbe rebondit vers une autre cible de votre choix dans un rayon de 9 m de la cible. Effectuez un jet d’attaque contre la nouvelle cible et un nouveau jet de dégâts. L’orbe ne rebondit pas une deuxième fois, sauf si vous avez lancé le sort par un emplacement du 2e niveau ou supérieur.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 1er. L’orbe est susceptible de rebondir autant de fois que le niveau de l’emplacement dépensé, une même créature ne pouvant être ciblée qu’une fois par incantation du sort."
+  }
+}

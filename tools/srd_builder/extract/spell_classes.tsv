@@ -1,0 +1,340 @@
+# sort	classes (en-tête du SRD)
+enlarge-reduce	Barde, Druide, Ensorceleur, Magicien
+aid	Barde, Clerc, Druide, Paladin, Rôdeur
+alarm	Magicien, Rôdeur
+befuddlement	Barde, Druide, Magicien, Occultiste
+planar-ally	Clerc
+enhance-ability	Barde, Clerc, Druide, Ensorceleur, Magicien, Rôdeur
+animal-friendship	Barde, Druide, Rôdeur
+animate-dead	Clerc, Magicien
+animate-objects	Barde, Ensorceleur, Magicien
+nondetection	Barde, Magicien, Rôdeur
+calm-emotions	Barde, Clerc
+seeming	Barde, Ensorceleur, Magicien
+find-steed	Paladin
+find-familiar	Magicien
+call-lightning	Druide
+magic-weapon	Ensorceleur, Magicien, Paladin, Rôdeur
+spiritual-weapon	Clerc
+mage-armor	Ensorceleur, Magicien
+time-stop	Ensorceleur, Magicien
+acid-splash	Ensorceleur, Magicien
+phantasmal-killer	Barde, Magicien
+guidance	Clerc, Druide
+augury	Clerc, Druide, Magicien
+aura-of-life	Clerc, Paladin
+arcanists-magic-aura	Magicien
+holy-aura	Clerc
+antipathy-sympathy	Barde, Druide, Magicien
+glibness	Barde, Occultiste
+goodberry	Druide, Rôdeur
+banishment	Clerc, Ensorceleur, Magicien, Occultiste, Paladin
+blade-barrier	Clerc
+bless	Clerc, Paladin
+inflict-wounds	Clerc
+magic-mouth	Barde, Magicien
+shield	Ensorceleur, Magicien
+fire-shield	Druide, Ensorceleur, Magicien
+shield-of-faith	Clerc, Paladin
+poison-spray	Druide, Ensorceleur, Magicien, Occultiste
+fireball	Ensorceleur, Magicien
+delayed-blast-fireball	Ensorceleur, Magicien
+gust-of-wind	Druide, Ensorceleur, Magicien, Rôdeur
+cloudkill	Ensorceleur, Magicien
+forcecage	Barde, Magicien, Occultiste
+vampiric-touch	Ensorceleur, Magicien, Occultiste
+blindness-deafness	Barde, Clerc, Ensorceleur, Magicien
+circle-of-death	Ensorceleur, Magicien, Occultiste
+teleportation-circle	Barde, Ensorceleur, Magicien, Occultiste
+magic-circle	Clerc, Magicien, Occultiste, Paladin
+chain-lightning	Ensorceleur, Magicien
+charm-monster	Barde, Druide, Ensorceleur, Magicien, Occultiste
+charm-person	Barde, Druide, Ensorceleur, Magicien, Occultiste
+antimagic-field	Clerc, Magicien
+shapechange	Druide, Magicien
+plane-shift	Clerc, Druide, Ensorceleur, Magicien, Occultiste
+searing-smite	Paladin
+shining-smite	Paladin
+divine-smite	Paladin
+faithful-hound	Magicien
+clairvoyance	Barde, Clerc, Ensorceleur, Magicien
+blink	Ensorceleur, Magicien
+clone	Magicien
+secret-chest	Magicien
+flame-strike	Clerc
+speak-with-animals	Barde, Druide, Occultiste, Rôdeur
+sending	Barde, Clerc, Magicien
+speak-with-dead	Barde, Clerc, Magicien
+speak-with-plants	Barde, Druide, Rôdeur
+commune	Clerc
+commune-with-nature	Druide, Rôdeur
+comprehend-languages	Barde, Ensorceleur, Magicien, Occultiste
+compulsion	Barde
+cone-of-cold	Druide, Ensorceleur, Magicien
+confusion	Barde, Druide, Ensorceleur, Magicien
+contact-other-plane	Magicien, Occultiste
+chill-touch	Ensorceleur, Magicien, Occultiste
+contagion	Clerc, Druide
+harm	Clerc
+counterspell	Ensorceleur, Magicien, Occultiste
+control-water	Clerc, Druide, Magicien
+control-weather	Clerc, Druide, Magicien
+summon-dragon	Magicien
+instant-summons	Magicien
+antilife-shell	Druide
+rope-trick	Magicien
+color-spray	Barde, Ensorceleur, Magicien
+true-strike	Barde, Ensorceleur, Magicien, Occultiste
+ice-knife	Druide, Ensorceleur, Magicien
+creation	Ensorceleur, Magicien
+create-undead	Clerc, Magicien, Occultiste
+create-food-and-water	Clerc, Paladin
+create-or-destroy-water	Clerc, Druide
+spike-growth	Druide, Rôdeur
+plant-growth	Barde, Druide, Rôdeur
+shillelagh	Druide
+irresistible-dance	Barde, Magicien
+knock	Barde, Ensorceleur, Magicien
+eldritch-blast	Occultiste
+maze	Magicien
+disguise-self	Barde, Ensorceleur, Magicien
+remove-curse	Clerc, Magicien, Occultiste, Paladin
+demiplane	Ensorceleur, Magicien, Occultiste
+disintegrate	Ensorceleur, Magicien
+see-invisibility	Barde, Ensorceleur, Magicien
+detect-magic	Barde, Clerc, Druide, Ensorceleur, Magicien, Occultiste, Paladin, Rôdeur
+detect-thoughts	Barde, Ensorceleur, Magicien
+find-traps	Clerc, Druide, Rôdeur
+detect-evil-and-good	Clerc, Paladin
+detect-poison-and-disease	Clerc, Druide, Paladin, Rôdeur
+enthrall	Barde, Occultiste
+floating-disk	Magicien
+sequester	Magicien
+dispel-magic	Barde, Clerc, Druide, Ensorceleur, Magicien, Occultiste, Paladin, Rôdeur
+dispel-evil-and-good	Clerc, Paladin
+divination	Clerc, Druide, Magicien
+finger-of-death	Ensorceleur, Magicien, Occultiste
+dominate-beast	Druide, Ensorceleur, Rôdeur
+dominate-monster	Barde, Ensorceleur, Magicien, Occultiste
+dominate-person	Barde, Ensorceleur, Magicien
+tongues	Barde, Clerc, Ensorceleur, Magicien, Occultiste
+mislead	Barde, Magicien, Occultiste
+gentle-repose	Clerc, Magicien, Paladin
+druidcraft	Druide
+lightning-bolt	Ensorceleur, Magicien
+sunburst	Clerc, Druide, Ensorceleur, Magicien
+elementalism	Druide, Ensorceleur, Magicien
+prismatic-spray	Barde, Ensorceleur, Magicien
+imprisonment	Magicien, Occultiste
+entangle	Druide, Rôdeur
+weird	Magicien, Occultiste
+planar-binding	Barde, Clerc, Druide, Magicien, Occultiste
+arcane-sword	Barde, Magicien
+mind-spike	Ensorceleur, Magicien, Occultiste
+sorcerous-burst	Ensorceleur
+mind-blank	Barde, Magicien
+spirit-guardians	Clerc
+awaken	Barde, Druide
+fabricate	Magicien
+stone-shape	Clerc, Druide, Magicien
+divine-favor	Paladin
+heroes-feast	Barde, Clerc, Druide
+feather-fall	Barde, Ensorceleur, Magicien
+continual-flame	Clerc, Druide, Magicien
+sacred-flame	Clerc
+produce-flame	Druide
+insect-plague	Clerc, Druide, Ensorceleur
+acid-arrow	Magicien
+blight	Druide, Ensorceleur, Magicien, Occultiste
+blur	Ensorceleur, Magicien
+phantasmal-force	Barde, Ensorceleur, Magicien
+etherealness	Barde, Clerc, Ensorceleur, Magicien, Occultiste
+gaseous-form	Ensorceleur, Magicien, Occultiste
+hideous-laughter	Barde, Magicien, Occultiste
+misty-step	Ensorceleur, Magicien, Occultiste
+shatter	Barde, Ensorceleur, Magicien
+ensnaring-strike	Rôdeur
+meld-into-stone	Clerc, Druide, Rôdeur
+guardian-of-faith	Clerc
+move-earth	Druide, Ensorceleur, Magicien
+globe-of-invulnerability	Ensorceleur, Magicien
+glyph-of-warding	Barde, Clerc, Magicien
+grease	Ensorceleur, Magicien
+longstrider	Barde, Druide, Magicien, Rôdeur
+heal	Clerc, Druide
+mass-heal	Clerc
+haste	Ensorceleur, Magicien
+heroism	Barde, Paladin
+identify	Barde, Magicien
+minor-illusion	Barde, Ensorceleur, Magicien, Occultiste
+programmed-illusion	Barde, Magicien
+major-image	Barde, Ensorceleur, Magicien, Occultiste
+mirror-image	Barde, Ensorceleur, Magicien, Occultiste
+project-image	Barde, Magicien
+silent-image	Barde, Ensorceleur, Magicien
+hold-monster	Barde, Ensorceleur, Magicien, Occultiste
+hold-person	Barde, Clerc, Druide, Ensorceleur, Magicien, Occultiste
+bane	Barde, Clerc, Occultiste
+command	Barde, Clerc, Paladin
+giant-insect	Druide
+forbiddance	Clerc
+reverse-gravity	Druide, Ensorceleur, Magicien
+invisibility	Barde, Ensorceleur, Magicien, Occultiste
+greater-invisibility	Barde, Ensorceleur, Magicien
+conjure-animals	Druide, Rôdeur
+conjure-elemental	Druide, Magicien
+conjure-minor-elementals	Druide, Magicien
+conjure-woodland-beings	Druide, Rôdeur
+conjure-celestial	Clerc
+conjure-fey	Druide
+flame-blade	Druide, Ensorceleur
+slow	Barde, Ensorceleur, Magicien
+levitate	Ensorceleur, Magicien
+freedom-of-movement	Barde, Clerc, Druide, Rôdeur
+warding-bond	Clerc, Paladin
+telepathic-bond	Barde, Magicien
+locate-animals-or-plants	Barde, Druide, Rôdeur
+locate-object	Barde, Clerc, Druide, Magicien, Paladin, Rôdeur
+locate-creature	Barde, Clerc, Druide, Magicien, Paladin, Rôdeur
+beacon-of-hope	Clerc
+faerie-fire	Barde, Druide
+light	Barde, Clerc, Ensorceleur, Magicien
+daylight	Clerc, Druide, Ensorceleur, Paladin, Rôdeur
+dancing-lights	Barde, Ensorceleur, Magicien
+arcane-hand	Ensorceleur, Magicien
+mage-hand	Barde, Ensorceleur, Magicien, Occultiste
+burning-hands	Ensorceleur, Magicien
+bestow-curse	Barde, Clerc, Magicien
+hex	Occultiste
+magnificent-mansion	Barde, Magicien
+water-walk	Clerc, Druide, Ensorceleur, Rôdeur
+hunters-mark	Rôdeur
+eyebite	Barde, Ensorceleur, Magicien, Occultiste
+message	Barde, Druide, Ensorceleur, Magicien
+animal-messenger	Barde, Druide, Rôdeur
+heat-metal	Barde, Druide
+polymorph	Barde, Druide, Ensorceleur, Magicien
+animal-shapes	Druide
+true-polymorph	Barde, Magicien, Occultiste
+mirage-arcane	Barde, Druide, Magicien
+alter-self	Ensorceleur, Magicien
+modify-memory	Barde, Magicien
+phantom-steed	Magicien
+vicious-mockery	Barde
+healing-word	Barde, Clerc, Druide
+mass-healing-word	Barde, Clerc
+power-word-stun	Barde, Ensorceleur, Magicien, Occultiste
+power-word-heal	Barde, Clerc
+power-word-kill	Barde, Ensorceleur, Magicien, Occultiste
+word-of-recall	Clerc
+hypnotic-pattern	Barde, Ensorceleur, Magicien, Occultiste
+wall-of-thorns	Druide
+wall-of-fire	Druide, Ensorceleur, Magicien
+wall-of-force	Magicien
+wall-of-ice	Magicien
+wall-of-stone	Druide, Ensorceleur, Magicien
+wind-wall	Druide, Rôdeur
+prismatic-wall	Barde, Magicien
+dissonant-whispers	Barde
+legend-lore	Barde, Clerc, Magicien
+fog-cloud	Druide, Ensorceleur, Magicien, Rôdeur
+incendiary-cloud	Druide, Ensorceleur, Magicien
+stinking-cloud	Barde, Ensorceleur, Magicien
+meteor-swarm	Ensorceleur, Magicien
+arcane-eye	Magicien
+chromatic-orb	Ensorceleur, Magicien
+find-the-path	Barde, Clerc, Druide
+divine-word	Clerc
+tree-stride	Druide, Rôdeur
+pass-without-trace	Druide, Rôdeur
+passwall	Magicien
+spider-climb	Ensorceleur, Magicien, Occultiste
+barkskin	Druide, Rôdeur
+stoneskin	Druide, Ensorceleur, Magicien, Rôdeur
+tiny-hut	Barde, Magicien
+flesh-to-stone	Druide, Ensorceleur, Magicien
+shocking-grasp	Ensorceleur, Magicien
+gate	Clerc, Ensorceleur, Magicien, Occultiste
+dimension-door	Barde, Ensorceleur, Magicien, Occultiste
+magic-jar	Magicien
+starry-wisp	Barde, Druide
+contingency	Magicien
+foresight	Barde, Druide, Magicien, Occultiste
+prestidigitation	Barde, Ensorceleur, Magicien, Occultiste
+prayer-of-healing	Clerc, Paladin
+magic-missile	Ensorceleur, Magicien
+astral-projection	Clerc, Magicien, Occultiste
+protection-from-energy	Clerc, Druide, Ensorceleur, Magicien, Rôdeur
+death-ward	Clerc, Paladin
+protection-from-evil-and-good	Clerc, Druide, Magicien, Occultiste, Paladin
+protection-from-poison	Clerc, Druide, Paladin, Rôdeur
+guards-and-wards	Barde, Magicien
+purify-food-and-drink	Clerc, Druide, Paladin
+geas	Barde, Clerc, Druide, Magicien, Paladin
+raise-dead	Barde, Clerc, Paladin
+ray-of-enfeeblement	Magicien, Occultiste
+scorching-ray	Ensorceleur, Magicien
+ray-of-frost	Ensorceleur, Magicien
+moonbeam	Druide
+sunbeam	Clerc, Druide, Ensorceleur, Magicien
+ray-of-sickness	Ensorceleur, Magicien
+guiding-bolt	Clerc
+regenerate	Barde, Clerc, Druide
+reincarnate	Druide
+mending	Barde, Clerc, Druide, Ensorceleur, Magicien
+expeditious-retreat	Ensorceleur, Magicien, Occultiste
+hellish-rebuke	Occultiste
+resistance	Clerc, Druide
+water-breathing	Druide, Ensorceleur, Magicien, Rôdeur
+lesser-restoration	Barde, Clerc, Druide, Paladin, Rôdeur
+greater-restoration	Barde, Clerc, Druide, Paladin, Rôdeur
+resurrection	Barde, Clerc
+true-resurrection	Clerc, Druide
+revivify	Clerc, Druide, Paladin, Rôdeur
+hallow	Clerc
+sanctuary	Clerc
+private-sanctum	Magicien
+jump	Druide, Ensorceleur, Magicien, Rôdeur
+scrying	Barde, Clerc, Druide, Magicien, Occultiste
+unseen-servant	Barde, Magicien, Occultiste
+silence	Barde, Clerc, Rôdeur
+simulacrum	Magicien
+false-life	Ensorceleur, Magicien
+cure-wounds	Barde, Clerc, Druide, Paladin, Rôdeur
+mass-cure-wounds	Barde, Clerc, Druide
+sleep	Barde, Ensorceleur, Magicien
+dream	Barde, Magicien, Occultiste
+dragons-breath	Ensorceleur, Magicien
+wish	Ensorceleur, Magicien
+flaming-sphere	Druide, Ensorceleur, Magicien
+vitriolic-sphere	Ensorceleur, Magicien
+freezing-sphere	Ensorceleur, Magicien
+resilient-sphere	Magicien
+spare-the-dying	Clerc, Druide
+suggestion	Barde, Ensorceleur, Magicien, Occultiste
+mass-suggestion	Barde, Ensorceleur, Magicien
+symbol	Barde, Clerc, Druide, Magicien
+telekinesis	Ensorceleur, Magicien
+teleport	Barde, Ensorceleur, Magicien
+fire-storm	Clerc, Druide, Ensorceleur
+ice-storm	Druide, Ensorceleur, Magicien
+sleet-storm	Druide, Ensorceleur, Magicien
+storm-of-vengeance	Druide
+darkness	Ensorceleur, Magicien, Occultiste
+black-tentacles	Magicien
+hallucinatory-terrain	Barde, Druide, Magicien, Occultiste
+fear	Barde, Ensorceleur, Magicien, Occultiste
+illusory-script	Barde, Magicien, Occultiste
+thaumaturgy	Clerc
+web	Ensorceleur, Magicien
+fire-bolt	Ensorceleur, Magicien
+earthquake	Clerc, Druide, Ensorceleur
+tsunami	Druide
+thunderwave	Barde, Druide, Ensorceleur, Magicien
+wind-walk	Druide
+arcane-lock	Magicien
+darkvision	Druide, Ensorceleur, Magicien, Rôdeur
+true-seeing	Barde, Clerc, Ensorceleur, Magicien, Occultiste
+transport-via-plants	Druide
+fly	Ensorceleur, Magicien, Occultiste
+zone-of-truth	Barde, Clerc, Paladin

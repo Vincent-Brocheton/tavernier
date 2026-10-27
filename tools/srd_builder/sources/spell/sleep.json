@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:sleep",
+  "type": "spell",
+  "name": "Sommeil",
+  "data": {
+    "level": 1,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un pincée de sable ou des pétales de rose"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Chaque créature que vous choisissez dans une Sphère de 1,50 m centrée sur un point à portée doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Neutralisé jusqu’à la fin de son tour suivant et de réitérer le JS à la fin de cet intervalle. Si la cible rate ce second JS, elle subit l’état Inconscient pour toute la durée. Le sort prend fin sur toute cible qui subit des dégâts ou qui reçoit une secousse énergique d’une autre créature située dans un rayon de 1,50 m d’elle.\nLes créatures qui ne dorment pas, comme les elfes, et celles qui ont l’Immunité contre l’Épuisement, réussissent automatiquement leur JS contre ce sort."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:pass-without-trace",
+  "type": "spell",
+  "name": "Passage sans trace",
+  "data": {
+    "level": 2,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "les cendres d’une feuille de gui calcinée"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous projetez pour toute la durée une aura de camouflage sous forme d’une Émanation de 9 m. Pour toute la durée, chaque créature que vous désignez dans un rayon de 9 m (y compris vous) bénéficie d’un bonus de +10 aux tests de Dextérité (Discrétion) et ne laisse pas de traces."
+  }
+}

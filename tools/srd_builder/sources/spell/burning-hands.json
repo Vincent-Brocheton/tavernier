@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:burning-hands",
+  "type": "spell",
+  "name": "Mains brûlantes",
+  "data": {
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une fine nappe de flammes jaillit de vous. Chaque créature prise dans un Cône de 4,50 m effectue un jet de sauvegarde de Dextérité et subit 3d6 dégâts de feu en cas d’échec, la moitié en cas de réussite.\nLes objets inflammables pris dans le Cône s’embrasent s’ils ne sont portés par personne.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 1er."
+  }
+}

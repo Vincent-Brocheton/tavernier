@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:druidcraft",
+  "type": "spell",
+  "name": "Druidisme",
+  "data": {
+    "level": 0,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous murmurez aux esprits de la nature pour créer l’un des effets suivants à portée :\nCapteur climatique. Vous produisez un effet sensoriel inoffensif de taille TP qui prédit le temps qu’il fera où vous vous trouvez dans les 24 prochaines heures. L’effet peut se manifester sous forme d’un globe doré pour un ciel dégagé, d’un nuage pour la pluie, de flocons qui tombent pour la neige, etc. Cet effet persiste pendant 1 round.\nFloraison. Vous faites instantanément s’épanouir une fleur, s’ouvrir une cosse de graines ou fleurir un bourgeon.\nEffet sensoriel. Vous créez un effet sensoriel inoffensif ; feuilles qui tombent, petites fées spectrales qui dansent, douce brise, bruit animal, vague odeur de sconse, etc. L’effet doit tenir dans un Cube de 1,50 m.\nJeu avec le feu. Vous allumez ou éteignez une bougie, une torche ou un petit feu de camp."
+  }
+}

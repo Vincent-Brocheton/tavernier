@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:silence",
+  "type": "spell",
+  "name": "Silence",
+  "data": {
+    "level": 2,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Pour toute la durée, nul son ne peut être produit dans une Sphère de 6 m de rayon centrée sur un point que vous choisissez à portée. Les créatures et objets entièrement compris dans la Sphère ont l’Immunité contre les dégâts de tonnerre ; les créatures y subissent l’état Assourdi. Il est impossible de lancer un sort doté d’une composante verbale depuis l’intérieur de cette Sphère."
+  }
+}
