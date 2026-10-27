@@ -28,6 +28,7 @@ const _tableOf = {
   'class': 'player_class',
   'subclass': 'subclass',
   'feature': 'feature',
+  'spell': 'spell',
 };
 
 /// Écrit et relit les packs dans les tables normalisées, et cherche dans le
@@ -195,6 +196,20 @@ final class PackStore {
         row['parent_class_id'] = '$parentClass';
       case FeatureData(:final source, :final level):
         row.addAll({'source_id': '$source', 'level': level});
+      case final SpellData sp:
+        final json = sp.toJson();
+        row.addAll({
+          'level': sp.level,
+          'school': json['school'],
+          'casting_time': sp.castingTime,
+          'range': jsonEncode(json['range']),
+          'components': jsonEncode(json['components']),
+          'material_cost_cp': sp.materialCostCp,
+          'material_consumed': sp.materialConsumed,
+          'duration': sp.duration,
+          'concentration': sp.concentration,
+          'ritual': sp.ritual,
+        });
     }
     insert(_tableOf[entity.type]!, row);
 
@@ -459,6 +474,18 @@ final class PackStore {
               'features': [for (final r in of(subFeatures)) r['feature_id']],
             },
             'feature' => {'source': row['source_id'], 'level': row['level']},
+            'spell' => {
+              'level': row['level'],
+              'school': row['school'],
+              'casting_time': row['casting_time'],
+              'ritual': row['ritual'] == 1,
+              'range': jsonDecode(row['range']! as String),
+              'components': jsonDecode(row['components']! as String),
+              'material_cost_cp': row['material_cost_cp'],
+              'material_consumed': row['material_consumed'] == 1,
+              'duration': row['duration'],
+              'concentration': row['concentration'] == 1,
+            },
             _ => const <String, Object?>{},
           },
         }..removeWhere((_, value) => value == null);
