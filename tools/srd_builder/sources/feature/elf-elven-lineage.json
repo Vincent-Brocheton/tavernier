@@ -1,0 +1,151 @@
+{
+  "id": "srd:feature:elf-elven-lineage",
+  "type": "feature",
+  "name": "Lignage elfique",
+  "data": {
+    "source": "srd:species:elf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "elven-lineage",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_sense",
+            "sense": "darkvision",
+            "range": 120
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:dancing-lights"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:faerie-fire",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:darkness",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ],
+        [
+          {
+            "op": "modify_speed",
+            "mode": "walk",
+            "value": 5
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:druidcraft"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:longstrider",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:pass-without-trace",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:prestidigitation"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:detect-magic",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:misty-step",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous appartenez à un lignage qui vous octroie des aptitudes surnaturelles. Choisissez-en un dans la table « Lignages elfiques ». Vous recevez le bénéfice du niveau 1 de ce lignage.\nLorsque vous atteignez les niveaux de personnage 3 et 5, vous apprenez un sort de niveau supérieur, comme indiqué sur la table. Ce sort est toujours considéré comme préparé pour vous. Vous pouvez le lancer une fois sans dépenser d’emplacement de sort et récupérez cette aptitude en terminant un Repos long. Vous pouvez également le lancer avec vos éventuels emplacements de sort de niveau adéquat.\nL’Intelligence, la Sagesse ou le Charisme est votre caractéristique d’incantation pour les sorts que vous lancez avec ce trait (décidez de la caractéristique lors de la sélection du lignage).\nLignages elfiques\nLignage | Niveau 1 | Niveau 3 | Niveau 5\nDrow | La portée de votre Vision dans le noir passe à 36 m. Vous connaissez également le sort mineur lumières dansantes. | lueurs féeriques | ténèbres\nElfe sylvestre | Votre Vitesse passe à 10,50 m. Vous connaissez également le sort mineur druidisme. | grande foulée | passage sans trace\nHaut-elfe | Vous connaissez le sort mineur prestidigitation. Chaque fois que vous terminez un Repos long, vous pouvez remplacer ce sort mineur par un autre sort mineur de la liste de sorts du Magicien. | détection de la magie | foulée brumeuse"
+  }
+}

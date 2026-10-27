@@ -278,7 +278,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | Gnome | Ruse gnome | C | `grant_advantage` JS INT, SAG, CHA |
 | Gnome | Lignage gnome | C+R | `choice` → `grant_spell` |
 | Gnome | Vision dans le noir | C | `grant_sense` darkvision 60 |
-| Goliath | Ascendance de géant | R+D | `choice` ; `grant_resource` `proficiency_bonus` / repos long |
+| Goliath | Ascendance gigante | R+D | choix descriptif ; `grant_resource` `proficiency_bonus` / repos long |
 | Goliath | Forme de géant (niv. 5) | R+D | `grant_resource` 1 / repos long |
 | Goliath | Forte carrure | D | capacité de charge hors MVP |
 | Halfelin | Brave | C | `grant_advantage` JS contre Effrayé |
@@ -325,7 +325,7 @@ Ne sont pas listées comme aptitudes : « Sorts » / « Magie de pacte » (colon
 | Faveur épique | Faveur de déplacement dimensionnel | C+D | idem |
 | Faveur épique | Faveur de l'esprit nocturne | C+D | idem |
 | Faveur épique | Faveur de prouesse martiale | C+D | idem |
-| Faveur épique | Faveur de mémoire magique | C+R | idem ; `grant_resource` 1 / repos long |
+| Faveur épique | Faveur de mémoire magique | C+D | idem ; Incantation gratuite sans limite (SRD p. 93) → D |
 | Faveur épique | Faveur de Vision lucide | C | idem ; `grant_sense` truesight 60 |
 | Faveur épique | Faveur du destin | C+R | idem ; `grant_resource` 1 / repos court ou long |
 

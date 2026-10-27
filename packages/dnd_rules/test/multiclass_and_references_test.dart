@@ -86,7 +86,7 @@ void main() {
 
     test('une espèce absente du contenu est une erreur de référence', () {
       final sheet = computeSheet(
-        aldric((json) => json['species_id'] = 'srd:species:elf'),
+        aldric((json) => json['species_id'] = 'srd:species:absente'),
         srdContent(),
       );
       expect(
@@ -94,7 +94,11 @@ void main() {
         [
           isA<IntegrityError>()
               .having((e) => e.path, 'path', 'species_id')
-              .having((e) => e.message, 'message', contains('srd:species:elf')),
+              .having(
+                (e) => e.message,
+                'message',
+                contains('srd:species:absente'),
+              ),
         ],
       );
       expect(sheet.abilities['str']!.value, 17);

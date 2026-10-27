@@ -1,0 +1,26 @@
+{
+  "id": "srd:feature:gnome-gnomish-cunning",
+  "type": "feature",
+  "name": "Ruse gnome",
+  "data": {
+    "source": "srd:species:gnome",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw:int"
+    },
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw:wis"
+    },
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw:cha"
+    }
+  ],
+  "text": {
+    "fr": "Vous avez l’Avantage aux jets de sauvegarde d’Intelligence, de Sagesse et de Charisme."
+  }
+}

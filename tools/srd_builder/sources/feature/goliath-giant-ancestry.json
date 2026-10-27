@@ -1,0 +1,27 @@
+{
+  "id": "srd:feature:goliath-giant-ancestry",
+  "type": "feature",
+  "name": "Ascendance gigante",
+  "data": {
+    "source": "srd:species:goliath",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:giant-ancestry",
+      "max": {
+        "ref": "proficiency_bonus"
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous êtes un lointain descendant des géants. Choisissez l’un des bénéfices ci-après, une faveur surnaturelle liée à vos ancêtres ; vous pouvez recourir à ce bénéfice autant de fois que votre bonus de maîtrise et récupérez ce quota en terminant un Repos long :\nBrûlure ignée (géants du feu). Lorsque vous touchez une cible avec un jet d’attaque et lui infligez des dégâts, vous pouvez infliger 1d10 dégâts de feu supplémentaires à cette cible.\nEndurance de la pierre (géants des pierres). Lorsque vous subissez des dégâts, vous pouvez jouer votre Réaction pour lancer 1d12. Ajoutez votre modificateur de Constitution au résultat du dé et réduisez les dégâts de la somme obtenue.\nFroid mordant (géants du givre). Lorsque vous touchez une cible avec un jet d’attaque et lui infligez des dégâts, vous pouvez infliger 1d6 dégâts de froid supplémentaires à cette cible et réduire sa vitesse de 3 m jusqu’au début de votre tour suivant.\nRenversement des coteaux (géants des collines). Lorsque vous touchez une créature de taille G ou inférieure avec un jet d’attaque et lui infligez des dégâts, vous pouvez faire subir à cette cible l’état À terre.\nSaut des nuées (géants des nuages). Par une action Bonus, vous pouvez vous téléporter magiquement d’un maximum de 9 m dans un espace inoccupé que vous voyez.\nTonnerre des cieux (géants des tempêtes). Lorsque vous subissez des dégâts de la part d’une créature dans un rayon de 18 m, vous pouvez jouer votre Réaction pour lui infliger 1d8 dégâts de tonnerre."
+  }
+}

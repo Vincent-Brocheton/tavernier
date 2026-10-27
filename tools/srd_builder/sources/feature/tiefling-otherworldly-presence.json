@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:tiefling-otherworldly-presence",
+  "type": "feature",
+  "name": "Présence d’outre-monde",
+  "data": {
+    "source": "srd:species:tiefling",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:thaumaturgy"
+    }
+  ],
+  "text": {
+    "fr": "Vous connaissez le sort mineur thaumaturgie. Lorsque vous le lancez avec ce trait, le sort utilise la même caractéristique d’incantation que celle du trait Héritage fiélon."
+  }
+}

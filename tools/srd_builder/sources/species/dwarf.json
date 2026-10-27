@@ -1,0 +1,18 @@
+{
+  "id": "srd:species:dwarf",
+  "type": "species",
+  "name": "Nain",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:dwarf-stonecunning",
+      "srd:feature:dwarf-dwarven-resilience",
+      "srd:feature:dwarf-dwarven-toughness",
+      "srd:feature:dwarf-darkvision"
+    ]
+  }
+}

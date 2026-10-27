@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:dragonborn-damage-resistance",
+  "type": "feature",
+  "name": "Résistance aux dégâts",
+  "data": {
+    "source": "srd:species:dragonborn",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous bénéficiez de la résistance au type de dégâts déterminé par votre trait Ascendance draconique."
+  }
+}

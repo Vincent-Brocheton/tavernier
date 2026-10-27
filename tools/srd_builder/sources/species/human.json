@@ -10,8 +10,8 @@
     ],
     "speed_feet": 30,
     "traits": [
-      "srd:feature:human-resourceful",
       "srd:feature:human-skillful",
+      "srd:feature:human-resourceful",
       "srd:feature:human-versatile"
     ]
   }

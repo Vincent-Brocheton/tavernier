@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:elf-trance",
+  "type": "feature",
+  "name": "Transe",
+  "data": {
+    "source": "srd:species:elf",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous vous passez de sommeil et la magie ne peut pas vous endormir. Vous pouvez terminer un Repos long en 4 heures si vous les passez en transe méditative durant laquelle vous restez en éveil."
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "id": "srd:feat:boon-of-fate",
+  "type": "feat",
+  "name": "Faveur du destin",
+  "data": {
+    "category": "epic_boon",
+    "prerequisites": {
+      "min_level": 19
+    }
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "boon-of-fate",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 30
+          }
+        ]
+      ]
+    },
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:boon-of-fate",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "initiative",
+          "amount": "all"
+        },
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Augmentation de caractéristique. Une valeur de caractéristique de votre choix augmente de 1, jusqu’à un maximum de 30.\nDestin aiguillé. Lorsque vous-même ou une autre créature dans un rayon de 18 m réussissez ou échouez à un Test d20, vous pouvez lancer 2d4 et appliquer le total obtenu comme bonus ou malus au résultat du d20. Une fois ce bénéfice utilisé, vous devez jouer l’Initiative ou terminer un Repos court ou long pour pouvoir y recourir de nouveau."
+  }
+}

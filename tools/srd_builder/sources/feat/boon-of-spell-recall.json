@@ -1,0 +1,48 @@
+{
+  "id": "srd:feat:boon-of-spell-recall",
+  "type": "feat",
+  "name": "Faveur de mémoire magique",
+  "data": {
+    "category": "epic_boon",
+    "prerequisites": {
+      "min_level": 19,
+      "feature": "spellcasting"
+    }
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "boon-of-spell-recall",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 30
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Augmentation de caractéristique. Votre valeur d’Intelligence, de Sagesse ou de Charisme augmente de 1, jusqu’à un maximum de 30.\nIncantation gratuite. Chaque fois que vous lancez un sort avec un emplacement de sort du 1er au 4e niveau, lancez 1d4. Si le résultat obtenu est égal au niveau de l’emplacement, celui-ci n’est pas dépensé."
+  }
+}

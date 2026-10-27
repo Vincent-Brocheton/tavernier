@@ -1,0 +1,17 @@
+{
+  "id": "srd:species:gnome",
+  "type": "species",
+  "name": "Gnome",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "P"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:gnome-gnomish-lineage",
+      "srd:feature:gnome-gnomish-cunning",
+      "srd:feature:gnome-darkvision"
+    ]
+  }
+}

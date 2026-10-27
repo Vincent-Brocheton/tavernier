@@ -1,0 +1,19 @@
+{
+  "id": "srd:species:dragonborn",
+  "type": "species",
+  "name": "Drakéide",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:dragonborn-draconic-ancestry",
+      "srd:feature:dragonborn-damage-resistance",
+      "srd:feature:dragonborn-breath-weapon",
+      "srd:feature:dragonborn-darkvision",
+      "srd:feature:dragonborn-draconic-flight"
+    ]
+  }
+}

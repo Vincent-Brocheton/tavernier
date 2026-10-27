@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:orc-darkvision",
+  "type": "feature",
+  "name": "Vision dans le noir",
+  "data": {
+    "source": "srd:species:orc",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_sense",
+      "sense": "darkvision",
+      "range": 120
+    }
+  ],
+  "text": {
+    "fr": "Vous disposez de la Vision dans le noir sur 36 m."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "srd:feature:dragonborn-breath-weapon",
+  "type": "feature",
+  "name": "Souffle",
+  "data": {
+    "source": "srd:species:dragonborn",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:breath-weapon",
+      "max": {
+        "ref": "proficiency_bonus"
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous entreprenez l’action Attaque à votre tour, vous pouvez remplacer l’une de vos attaques par une expiration d’énergie magique sous la forme d’un Cône de 4,50 m ou d’une Ligne de 9 m de long et 1,50 m de large (choisissez la forme à chaque fois). Chaque créature prise dans la zone effectue un jet de sauvegarde de Dextérité (DD 8 + votre modificateur de Constitution + votre bonus de maîtrise). En cas d’échec, la créature subit 1d10 dégâts du type déterminé par votre trait Ascendance draconique. En cas de réussite, elle ne subit que la moitié de ces dégâts. Les dégâts augmentent de 1d10 lorsque vous atteignez les niveaux de personnage 5 (2d10), 11 (3d10) et 17 (4d10).\nVous pouvez recourir à ce Souffle autant de fois que votre bonus de maîtrise, et récupérez ce quota en terminant un Repos long."
+  }
+}

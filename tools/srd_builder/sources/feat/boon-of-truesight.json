@@ -1,0 +1,76 @@
+{
+  "id": "srd:feat:boon-of-truesight",
+  "type": "feat",
+  "name": "Faveur de Vision lucide",
+  "data": {
+    "category": "epic_boon",
+    "prerequisites": {
+      "min_level": 19
+    }
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "boon-of-truesight",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 30
+          }
+        ]
+      ]
+    },
+    {
+      "op": "grant_sense",
+      "sense": "truesight",
+      "range": 60
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Augmentation de caractéristique. Une valeur de caractéristique de votre choix augmente de 1, jusqu’à un maximum de 30.\nVision lucide. Vous disposez de la Vision lucide sur 18 m."
+  }
+}

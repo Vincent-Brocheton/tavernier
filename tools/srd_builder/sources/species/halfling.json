@@ -1,0 +1,18 @@
+{
+  "id": "srd:species:halfling",
+  "type": "species",
+  "name": "Halfelin",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "P"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:halfling-halfling-nimbleness",
+      "srd:feature:halfling-brave",
+      "srd:feature:halfling-luck",
+      "srd:feature:halfling-naturally-stealthy"
+    ]
+  }
+}

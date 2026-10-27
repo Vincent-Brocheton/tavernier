@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:halfling-halfling-nimbleness",
+  "type": "feature",
+  "name": "Agilité halfeline",
+  "data": {
+    "source": "srd:species:halfling",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous pouvez vous déplacer dans l’espace de toute créature d’une catégorie de taille supérieure à la vôtre, mais ne pouvez pas vous arrêter dans le même espace que celle-ci."
+  }
+}

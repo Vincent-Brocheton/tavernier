@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:halfling-luck",
+  "type": "feature",
+  "name": "Chance",
+  "data": {
+    "source": "srd:species:halfling",
+    "level": 1
+  },
+  "text": {
+    "fr": "Lorsque vous obtenez un 1 au d20 d’un Test d20, vous pouvez relancer le dé, mais devez utiliser le nouveau résultat."
+  }
+}

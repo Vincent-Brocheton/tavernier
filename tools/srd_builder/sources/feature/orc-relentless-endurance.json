@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:orc-relentless-endurance",
+  "type": "feature",
+  "name": "Acharnement",
+  "data": {
+    "source": "srd:species:orc",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:relentless-endurance",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Si vous tombez à 0 point de vie sans être tué sur le coup, vous pouvez en fait vous retrouver à 1 point de vie. Une fois ce trait utilisé, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

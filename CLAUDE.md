@@ -141,6 +141,10 @@ fvm flutter run -d chrome          # depuis apps/game_table
     - la liste de sorts.
   - **Ce qu'il garde :** les traits de base de la classe et les `data` et `effects` des aptitudes, saisis à la main.
   - **Configuration :** la mise en page de chaque classe est décrite dans `lib/src/srd_classes.dart`, et les slugs dans `extract/feature_slugs.tsv`.
+- **Extraction des espèces et des dons du SRD** (T-04) : `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-origins --text <fichier pdftotext>`, depuis la racine du dépôt.
+  - **Ce que l'outil réécrit :** l'en-tête des espèces (type, tailles, Vitesse) et la liste de leurs traits ; le nom et le texte des traits ; le nom, le texte et les données des dons (catégorie, prérequis, « Répétable »).
+  - **Ce qu'il garde :** les `effects`, saisis à la main, et les `data` d'un trait existant.
+  - **Configuration :** `lib/src/srd_origins.dart` (slugs, lignes recopiées des tables de trait, vérifiées contre `docs/srd/FR_SRD_CC_v5.2.1.txt` par un test).
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

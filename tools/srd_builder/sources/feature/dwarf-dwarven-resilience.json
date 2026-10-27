@@ -1,0 +1,23 @@
+{
+  "id": "srd:feature:dwarf-dwarven-resilience",
+  "type": "feature",
+  "name": "Résistance naine",
+  "data": {
+    "source": "srd:species:dwarf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_defense",
+      "kind": "resistance",
+      "damage_type": "srd:damage-type:poison"
+    },
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw_vs:poisoned"
+    }
+  ],
+  "text": {
+    "fr": "Vous bénéficiez de la Résistance aux dégâts de poison. Vous avez en outre l’Avantage aux jets de sauvegarde visant à éviter l’état Empoisonné ou à y mettre un terme sur vous-même."
+  }
+}

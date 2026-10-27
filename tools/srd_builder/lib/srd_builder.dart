@@ -8,6 +8,7 @@ import 'package:args/args.dart';
 import 'package:dnd_content/dnd_content.dart';
 
 import 'src/class_extractor.dart';
+import 'src/origin_extractor.dart';
 import 'src/source_loader.dart';
 import 'src/spell_extractor.dart';
 
@@ -61,6 +62,25 @@ int run(List<String> arguments, StringSink out, StringSink err) {
     ..addCommand('build', build)
     ..addCommand('extract-spells', extractSpells)
     ..addCommand(
+      'extract-origins',
+      ArgParser()
+        ..addOption(
+          'text',
+          mandatory: true,
+          help: 'Texte du PDF en ordre de lecture (pdftotext -enc UTF-8).',
+        )
+        ..addOption(
+          'sources',
+          defaultsTo: defaultSources,
+          help: 'Dossier des sources JSON.',
+        )
+        ..addOption(
+          'report',
+          defaultsTo: 'build/extract-origins.txt',
+          help: 'Traits et dons créés, raccords, à relire.',
+        ),
+    )
+    ..addCommand(
       'extract-classes',
       ArgParser()
         ..addOption(
@@ -106,6 +126,20 @@ int run(List<String> arguments, StringSink out, StringSink err) {
       ..writeln('       srd_builder extract-spells --text <fichier>')
       ..writeln(extractSpells.usage);
     return 0;
+  }
+  if (command.name == 'extract-origins') {
+    final report = StringBuffer();
+    final problems = extractOrigins(
+      readingOrder: File(command.option('text')!).readAsStringSync(),
+      sources: command.option('sources')!,
+      report: report,
+    );
+    File(command.option('report')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(report.toString());
+    problems.forEach(err.writeln);
+    out.writeln('Rapport : ${command.option('report')}.');
+    return problems.isEmpty ? 0 : 1;
   }
   if (command.name == 'extract-classes') {
     final report = StringBuffer();

@@ -1,0 +1,71 @@
+{
+  "id": "srd:feat:boon-of-the-night-spirit",
+  "type": "feat",
+  "name": "Faveur de l’esprit nocturne",
+  "data": {
+    "category": "epic_boon",
+    "prerequisites": {
+      "min_level": 19
+    }
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "boon-of-the-night-spirit",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "con",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "int",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "wis",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "cha",
+            "value": 1,
+            "max": 30
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Augmentation de caractéristique. Une valeur de caractéristique de votre choix augmente de 1, jusqu’à un maximum de 30.\nFusion avec l’ombre. Tant vous êtes dans une zone de Lumière faible ou de Ténèbres, vous pouvez vous octroyer l’état Invisible par une action Bonus. Cet état prend fin aussitôt après que vous avez entrepris une action, une action Bonus ou joué votre Réaction.\nForme ombreuse. Tant que vous êtes dans une zone de Lumière faible ou de Ténèbres, vous avez la Résistance à tous les dégâts hormis les dégâts psychiques et radiants."
+  }
+}
