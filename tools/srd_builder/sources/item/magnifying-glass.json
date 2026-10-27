@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:magnifying-glass",
+  "type": "item",
+  "name": "Loupe",
+  "data": {
+    "cost_cp": 10000
+  },
+  "text": {
+    "fr": "Une loupe octroie l’Avantage à tout test de caractéristique visant à inspecter ou estimer la valeur d’un objet très détaillé. Démarrer un feu avec une loupe nécessite une lumière aussi vive que celle du soleil, que la lentille concentre sur de l’amadou, lequel s’enflamme au bout d’environ 5 minutes."
+  }
+}

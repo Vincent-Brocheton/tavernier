@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:druidic-focus-sprig-of-mistletoe",
+  "type": "item",
+  "name": "Focaliseur druidique (branche de houx)",
+  "data": {
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Un focaliseur druidique prend l’une des formes proposées dans la table « Focaliseurs druidiques » et il est sculpté, attaché avec un ruban ou peint de façon à canaliser la magie primitive. Un Druide ou un Rôdeur peut se servir d’un tel objet comme focaliseur d’incantation."
+  }
+}

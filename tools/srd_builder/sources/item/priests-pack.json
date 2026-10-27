@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:priests-pack",
+  "type": "item",
+  "name": "Paquetage d’ecclésiastique",
+  "data": {
+    "weight_kg": 14.5,
+    "cost_cp": 3300
+  },
+  "text": {
+    "fr": "Le paquetage d’ecclésiastique contient les objets suivants : sac à dos, boîte à amadou, couverture, eau bénite, lampe, 7 jours de rations, robe."
+  }
+}

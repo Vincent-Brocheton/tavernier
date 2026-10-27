@@ -6,5 +6,8 @@
     "category": "gaming_set",
     "ability": "srd:ability:wisdom",
     "cost_cp": 50
+  },
+  "text": {
+    "fr": "Caractéristique : Sagesse\nPoids : —\nUtilisation : déterminer si quelqu’un triche (DD 10), gagner la partie (DD 20)\nVariantes : cartes à jouer (5 pa), dés (1 pa), échecs draconiques (1 po), jeu des dragons (1 po)"
   }
 }

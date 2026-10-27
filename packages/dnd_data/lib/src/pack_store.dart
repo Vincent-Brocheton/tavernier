@@ -256,6 +256,16 @@ final class PackStore {
         for (final spell in c.spellList) {
           child('spell_class', {'spell_id': '$spell', 'class_id': id});
         }
+        for (final (i, o) in c.startingEquipment.indexed) {
+          final json = o.toJson();
+          child('class_equipment_option', {
+            'class_id': id,
+            'option': String.fromCharCode(0x41 + i),
+            'items': jsonEncode(json['items']),
+            'tool_choice': jsonEncode(json['tool_choice']),
+            'gold': o.gold,
+          });
+        }
         for (final l in c.levels) {
           child('class_level', {
             'class_id': id,
@@ -368,6 +378,11 @@ final class PackStore {
     final traits = await grouped('species_trait', 'species_id', 'position');
     final levels = await grouped('class_level', 'class_id', 'level');
     final spellLists = await grouped('spell_class', 'class_id', 'spell_id');
+    final classEquipment = await grouped(
+      'class_equipment_option',
+      'class_id',
+      'option',
+    );
     final subFeatures = await grouped(
       'subclass_feature',
       'subclass_id',
@@ -474,6 +489,14 @@ final class PackStore {
               ),
               'tool_choice_count': row['tool_choice_count'],
               'tool_choice_category': row['tool_choice_category'],
+              'starting_equipment': [
+                for (final o in of(classEquipment))
+                  {
+                    'items': jsonDecode(o['items']! as String),
+                    'tool_choice': jsonDecode(o['tool_choice']! as String),
+                    'gold': o['gold'],
+                  },
+              ],
               'levels': [
                 for (final l in of(levels))
                   {

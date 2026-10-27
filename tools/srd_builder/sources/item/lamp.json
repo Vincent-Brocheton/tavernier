@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:lamp",
+  "type": "item",
+  "name": "Lampe",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 50
+  },
+  "text": {
+    "fr": "Une lampe brûle de l’huile comme combustible et produit une Lumière vive sur un rayon de 4,50 m, ainsi qu’une Lumière faible sur 9 m de plus."
+  }
+}

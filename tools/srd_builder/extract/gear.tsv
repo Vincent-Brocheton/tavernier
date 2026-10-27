@@ -1,0 +1,104 @@
+# Matériel d'aventurier du SRD 5.2.1 (FR), p. 100-105 (change t-04e-equipement).
+# slug	nom	libellé du tableau	poids	prix	description
+# Le libellé, le poids et le prix sont recopiés du tableau en mise en page
+# (docs/srd/FR_SRD_CC_v5.2.1.txt) ; un test les y retrouve sur une même ligne.
+# La description est le titre « Nom (prix) » dont l'objet reçoit le texte.
+acid	Acide	Acide	0,5 kg	25 po	Acide
+antitoxin	Antidote	Antidote	—	50 po	Antidote
+fine-clothes	Beaux habits	Beaux habits	3 kg	15 po	Beaux habits
+portable-ram	Bélier portable	Bélier portable	17,5 kg	4 po	Bélier portable
+ball-bearings	Billes	Billes	1 kg	1 po	Billes
+tinderbox	Boîte à amadou	Boîte à amadou	0,5 kg	5 pa	Boîte à amadou
+candle	Bougie	Bougie	—	1 pc	Bougie
+glass-bottle	Bouteille, verre	Bouteille, verre	1 kg	2 po	Bouteille, verre
+lock	Cadenas	Cadenas	0,5 kg	10 po	Cadenas
+quiver	Carquois	Carquois	0,5 kg	1 po	Carquois
+map	Carte	Carte	—	1 po	Carte
+chain	Chaîne	Chaîne	5 kg	5 po	Chaîne
+caltrops	Chausse-trappes	Chausse-trappes	1 kg	1 po	Chausse-trappes
+bell	Cloche	Cloche	—	1 po	Cloche
+chest	Coffre	Coffre	12,5 kg	5 po	Coffre
+rope	Corde	Corde	2,5 kg	1 po	Corde
+costume	Costume	Costume	2 kg	5 po	Costume
+blanket	Couverture	Couverture	1,5 kg	5 pa	Couverture
+jug	Cruche	Cruche	2 kg	2 pc	Cruche
+holy-water	Eau bénite	Eau bénite	0,5 kg	25 po	Eau bénite
+ladder	Échelle	Échelle	12,5 kg	1 pa	Échelle
+ink	Encre	Encre	—	10 po	Encre
+map-or-scroll-case	Étui à cartes ou à parchemins	Étui à cartes ou à parchemins	0,5 kg	1 po	Étui à cartes ou à parchemins
+crossbow-bolt-case	Étui pour carreaux d’arbalète	Étui pour carreaux d’arbalète	0,5 kg	1 po	Étui pour carreaux d’arbalète
+alchemists-fire	Feu grégeois	Feu grégeois	0,5 kg	50 po	Feu grégeois
+string	Ficelle	Ficelle	—	1 pa	Ficelle
+net	Filet	Filet	1,5 kg	1 po	Filet
+vial	Fiole	Fiole	—	1 po	Fiole
+flask	Flasque	Flasque	0,5 kg	2 pc	Flasque
+grappling-hook	Grappin	Grappin	2 kg	2 po	Grappin
+oil	Huile	Huile	0,5 kg	1 pa	Huile
+lamp	Lampe	Lampe	0,5 kg	5 pa	Lampe
+hooded-lantern	Lanterne à capote	Lanterne à capote	1 kg	5 po	Lanterne à capote
+bullseye-lantern	Lanterne sourde	Lanterne sourde	1 kg	10 po	Lanterne sourde
+book	Livre	Livre	2,5 kg	25 po	Livre
+spyglass	Longue-vue	Longue-vue	0,5 kg	1 000 po	Longue-vue
+magnifying-glass	Loupe	Loupe	—	100 po	Loupe
+climbers-kit	Matériel d’escalade	Matériel d’escalade	6 kg	25 po	Matériel d’escalade
+manacles	Menottes	Menottes	3 kg	2 po	Menottes
+mirror	Miroir	Miroir	250 g	5 po	Miroir
+waterskin	Outre	Outre	2,5 kg	2 pa	Outre
+block-and-tackle	Palan	Palan	2,5 kg	1 po	Palan
+basket	Panier	Panier	1 kg	4 pa	Panier
+paper	Papier	Papier	—	2 pa	Papier
+entertainers-pack	Paquetage d’artiste	Paquetage d’artiste	29 kg	40 po	Paquetage d’artiste
+priests-pack	Paquetage d’ecclésiastique	Paquetage d’ecclésiastique	14,5 kg	33 po	Paquetage d’ecclésiastique
+scholars-pack	Paquetage d’érudit	Paquetage d’érudit	11 kg	40 po	Paquetage d’érudit
+explorers-pack	Paquetage d’explorateur	Paquetage d’explorateur	27,5 kg	10 po	Paquetage d’explorateur
+dungeoneers-pack	Paquetage d’exploration souterraine	Paquetage d’exploration	27,5 kg	12 po	Paquetage d’exploration souterraine
+burglars-pack	Paquetage de cambrioleur	Paquetage de cambrioleur	21 kg	16 po	Paquetage de cambrioleur
+diplomats-pack	Paquetage de diplomate	Paquetage de diplomate	19,5 kg	39 po	Paquetage de diplomate
+parchment	Parchemin	Parchemin	—	1 pa	Parchemin
+spell-scroll-level-1	Parchemin de sort (1er niveau)	Parchemin de sort (1 niveau)	—	50 po	Parchemin de sort
+spell-scroll-cantrip	Parchemin de sort (sort mineur)	Parchemin de sort (sort mineur)	—	30 po	Parchemin de sort
+perfume	Parfum	Parfum	—	5 po	Parfum
+shovel	Pelle	Pelle	2,5 kg	2 po	Pelle
+pole	Perche	Perche	3,5 kg	5 pc	Perche
+crowbar	Pied-de-biche	Pied-de-biche	2,5 kg	2 po	Pied-de-biche
+hunting-trap	Piège à mâchoires	Piège à mâchoires	12,5 kg	5 po	Piège à mâchoires
+iron-spikes	Pointes en fer	Pointes en fer	2,5 kg	1 po	Pointes en fer
+basic-poison	Poison standard	Poison standard	—	100 po	Poison standard
+ink-pen	Porte-plume	Porte-plume	—	2 pc	Porte-plume
+iron-pot	Pot en fer	Pot en fer	5 kg	2 po	Pot en fer
+potion-of-healing	Potion de guérison	Potion de guérison	250 g	50 po	Potion de guérison
+rations	Rations	Rations	1 kg	5 pa	Rations
+robe	Robe	Robe	2 kg	1 po	Robe
+sack	Sac	Sac	250 g	1 pc	Sac
+backpack	Sac à dos	Sac à dos	2,5 kg	2 po	Sac à dos
+bedroll	Sac de couchage	Sac de couchage	3,5 kg	1 po	Sac de couchage
+pouch	Sacoche	Sacoche	0,5 kg	5 pa	Sacoche
+component-pouch	Sacoche à composantes	Sacoche à composantes	1 kg	25 po	Sacoche à composantes
+bucket	Seau	Seau	1 kg	5 pc	Seau
+signal-whistle	Sifflet	Sifflet	—	5 pc	Sifflet
+holy-symbol	Symbole sacré	Symbole sacré	Variable	Variable	Symbole sacré
+tent	Tente	Tente	10 kg	2 po	Tente
+travelers-clothes	Tenue de voyage	Tenue de voyage	2 kg	2 po	Tenue de voyage
+barrel	Tonneau	Tonneau	35 kg	2 po	Tonneau
+torch	Torche	Torche	0,5 kg	1 pc	Torche
+healers-kit	Trousse de soins	Trousse de soins	1,5 kg	5 po	Trousse de soins
+# Munitions (p. 103)
+firearm-bullets	Balles d’arme à feu (10)	Balles d’arme	1 kg	3 po	Munitions
+sling-bullets	Billes de fronde (20)	Billes de	750 g	4 pc	Munitions
+crossbow-bolts	Carreaux (20)	Carreaux	750 g	1 po	Munitions
+blowgun-needles	Dards (50)	Dards	0,5 kg	1 po	Munitions
+arrows	Flèches (20)	Flèches	0,5 kg	1 po	Munitions
+# Focaliseurs arcaniques (p. 102)
+arcane-focus-wand	Focaliseur arcanique (baguette)	Baguette	0,5 kg	10 po	Focaliseur arcanique
+arcane-focus-staff	Focaliseur arcanique (bâton)	Bâton (également bâton de combat)	2 kg	5 po	Focaliseur arcanique
+arcane-focus-crystal	Focaliseur arcanique (cristal)	Cristal	0,5 kg	10 po	Focaliseur arcanique
+arcane-focus-orb	Focaliseur arcanique (orbe)	Orbe	1,5 kg	20 po	Focaliseur arcanique
+arcane-focus-rod	Focaliseur arcanique (sceptre)	Sceptre	1 kg	10 po	Focaliseur arcanique
+# Focaliseurs druidiques (p. 102)
+druidic-focus-yew-wand	Focaliseur druidique (baguette d’if)	Baguette d’if	0,5 kg	10 po	Focaliseur druidique
+druidic-focus-wooden-staff	Focaliseur druidique (bâton en bois)	Bâton en bois (également bâton de	2 kg	5 po	Focaliseur druidique
+druidic-focus-sprig-of-mistletoe	Focaliseur druidique (branche de houx)	Branche de houx	—	1 po	Focaliseur druidique
+# Symboles sacrés (p. 105)
+holy-symbol-amulet	Symbole sacré (amulette)	Amulette (portée ou tenue)	0,5 kg	5 po	Symbole sacré
+holy-symbol-emblem	Symbole sacré (emblème)	Emblème (cousu sur une étoffe ou	—	5 po	Symbole sacré
+holy-symbol-reliquary	Symbole sacré (reliquaire)	Reliquaire (tenu)	1 kg	5 po	Symbole sacré

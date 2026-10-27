@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:candle",
+  "type": "item",
+  "name": "Bougie",
+  "data": {
+    "cost_cp": 1
+  },
+  "text": {
+    "fr": "Après allumage et pendant 1 heure, une bougie produit une Lumière vive sur un rayon de 1,50 m et une Lumière faible sur 1,50 m de plus."
+  }
+}

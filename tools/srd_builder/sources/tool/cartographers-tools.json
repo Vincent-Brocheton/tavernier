@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:cartographers-tools",
+  "type": "tool",
+  "name": "Outils de cartographe",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:wisdom",
+    "weight_kg": 3.0,
+    "cost_cp": 1500
+  },
+  "text": {
+    "fr": "Caractéristique : Sagesse\nPoids : 3 kg\nUtilisation : cartographier une petite région (DD 15)\nArtisanat : carte"
+  }
+}

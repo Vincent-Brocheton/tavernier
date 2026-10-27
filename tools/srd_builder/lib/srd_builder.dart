@@ -8,6 +8,7 @@ import 'package:args/args.dart';
 import 'package:dnd_content/dnd_content.dart';
 
 import 'src/class_extractor.dart';
+import 'src/equipment_extractor.dart';
 import 'src/origin_extractor.dart';
 import 'src/source_loader.dart';
 import 'src/spell_extractor.dart';
@@ -61,6 +62,30 @@ int run(List<String> arguments, StringSink out, StringSink err) {
     ..addFlag('help', abbr: 'h', negatable: false, help: "Affiche l'aide.")
     ..addCommand('build', build)
     ..addCommand('extract-spells', extractSpells)
+    ..addCommand(
+      'extract-equipment',
+      ArgParser()
+        ..addOption(
+          'text',
+          mandatory: true,
+          help: 'Texte du PDF en ordre de lecture (pdftotext -enc UTF-8).',
+        )
+        ..addOption(
+          'gear',
+          defaultsTo: 'tools/srd_builder/extract/gear.tsv',
+          help: 'Objets : slug, nom, libellé, poids et prix du tableau.',
+        )
+        ..addOption(
+          'sources',
+          defaultsTo: defaultSources,
+          help: 'Dossier des sources JSON.',
+        )
+        ..addOption(
+          'report',
+          defaultsTo: 'build/extract-equipment.txt',
+          help: 'Outils et objets créés, à relire.',
+        ),
+    )
     ..addCommand(
       'extract-origins',
       ArgParser()
@@ -125,6 +150,20 @@ int run(List<String> arguments, StringSink out, StringSink err) {
       ..writeln(build.usage)
       ..writeln('       srd_builder extract-spells --text <fichier>')
       ..writeln(extractSpells.usage);
+    return 0;
+  }
+  if (command.name == 'extract-equipment') {
+    final report = StringBuffer();
+    extractEquipment(
+      readingOrder: File(command.option('text')!).readAsStringSync(),
+      gear: readGear(File(command.option('gear')!)),
+      sources: command.option('sources')!,
+      report: report,
+    );
+    File(command.option('report')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(report.toString());
+    out.writeln('Rapport : ${command.option('report')}.');
     return 0;
   }
   if (command.name == 'extract-origins') {

@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:crossbow-bolt-case",
+  "type": "item",
+  "name": "Étui pour carreaux d’arbalète",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Cet étui peut contenir 20 carreaux d’arbalète."
+  }
+}

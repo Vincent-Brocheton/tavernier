@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:poisoners-kit",
+  "type": "tool",
+  "name": "Matériel d’empoisonneur",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 1.0,
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 1 kg\nUtilisation : déterminer qu’un objet est empoisonné (DD 10)\nArtisanat : poison standard"
+  }
+}

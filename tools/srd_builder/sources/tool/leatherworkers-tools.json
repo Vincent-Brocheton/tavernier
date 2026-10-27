@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:leatherworkers-tools",
+  "type": "tool",
+  "name": "Outils de tanneur",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : ajouter un motif à un objet en cuir (DD 10)\nArtisanat : fouet, fronde, armure de cuir, armure de cuir clouté, armure de peaux, carquois, étui à carreaux d’arbalète, étui à cartes ou à parchemins, outre, parchemin, sacoche, sac à dos"
+  }
+}

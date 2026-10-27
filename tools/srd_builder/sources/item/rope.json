@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:rope",
+  "type": "item",
+  "name": "Corde",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous pouvez nouer la corde à condition de réussir un test de Dextérité (Escamotage) DD 10. Rompre la corde nécessite de réussir un test de Force (Athlétisme) DD 20.\nAttacher une créature non consentante avec la corde nécessite que celle-ci subisse l’état Agrippé, Entravé ou Neutralisé. Si la créature a les jambes attachées, elle subit l’état Entravé jusqu’à ce qu’elle se libère. Se libérer de la corde nécessite que la créature réussisse un test de Dextérité (Acrobaties) DD 15 au prix d’une action."
+  }
+}

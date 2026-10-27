@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 2.0,
     "cost_cp": 100
+  },
+  "text": {
+    "fr": "Une robe a une signification professionnelle ou cérémonielle. Certains événements et lieux n’admettent que les personnes vêtues d’une robe d’une couleur donnée ou arborant certains symboles."
   }
 }

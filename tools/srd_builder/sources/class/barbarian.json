@@ -271,6 +271,31 @@
           "weapon_mastery": 4
         }
       }
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:weapon:greataxe",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:handaxe",
+            "quantity": 4
+          },
+          {
+            "item": "srd:item:explorers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 15
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 75
+      }
     ]
   }
 }

@@ -2448,6 +2448,302 @@ as int,
 
 
 /// @nodoc
+mixin _$StartingEquipmentOption {
+
+ List<ItemQuantity> get items;/// Un outil à choisir parmi ces catégories (« instrument de musique de
+/// votre choix »).
+ List<ToolCategory> get toolChoice;/// Pièces d'or.
+ int get gold;
+/// Create a copy of StartingEquipmentOption
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StartingEquipmentOptionCopyWith<StartingEquipmentOption> get copyWith => _$StartingEquipmentOptionCopyWithImpl<StartingEquipmentOption>(this as StartingEquipmentOption, _$identity);
+
+  /// Serializes this StartingEquipmentOption to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as StartingEquipmentOption;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StartingEquipmentOption&&const DeepCollectionEquality().equals(other.items, _this.items)&&const DeepCollectionEquality().equals(other.toolChoice, _this.toolChoice)&&(identical(other.gold, _this.gold) || other.gold == _this.gold));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as StartingEquipmentOption;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.items),const DeepCollectionEquality().hash(_this.toolChoice),_this.gold);
+}
+
+@override
+String toString() {
+  final _this = this as StartingEquipmentOption;
+  return 'StartingEquipmentOption(items: ${_this.items}, toolChoice: ${_this.toolChoice}, gold: ${_this.gold})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $StartingEquipmentOptionCopyWith<$Res>  {
+  factory $StartingEquipmentOptionCopyWith(StartingEquipmentOption value, $Res Function(StartingEquipmentOption) _then) = _$StartingEquipmentOptionCopyWithImpl;
+@useResult
+$Res call({
+ List<ItemQuantity> items, List<ToolCategory> toolChoice, int gold
+});
+
+
+
+
+}
+/// @nodoc
+class _$StartingEquipmentOptionCopyWithImpl<$Res>
+    implements $StartingEquipmentOptionCopyWith<$Res> {
+  _$StartingEquipmentOptionCopyWithImpl(this._self, this._then);
+
+  final StartingEquipmentOption _self;
+  final $Res Function(StartingEquipmentOption) _then;
+
+/// Create a copy of StartingEquipmentOption
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? toolChoice = null,Object? gold = null,}) {
+  return _then(StartingEquipmentOption(
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemQuantity>,toolChoice: null == toolChoice ? _self.toolChoice : toolChoice // ignore: cast_nullable_to_non_nullable
+as List<ToolCategory>,gold: null == gold ? _self.gold : gold // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [StartingEquipmentOption].
+extension StartingEquipmentOptionPatterns on StartingEquipmentOption {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StartingEquipmentOption value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StartingEquipmentOption() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StartingEquipmentOption value)  $default,){
+final _that = this;
+switch (_that) {
+case _StartingEquipmentOption():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StartingEquipmentOption value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StartingEquipmentOption() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ItemQuantity> items,  List<ToolCategory> toolChoice,  int gold)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StartingEquipmentOption() when $default != null:
+return $default(_that.items,_that.toolChoice,_that.gold);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ItemQuantity> items,  List<ToolCategory> toolChoice,  int gold)  $default,) {final _that = this;
+switch (_that) {
+case _StartingEquipmentOption():
+return $default(_that.items,_that.toolChoice,_that.gold);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ItemQuantity> items,  List<ToolCategory> toolChoice,  int gold)?  $default,) {final _that = this;
+switch (_that) {
+case _StartingEquipmentOption() when $default != null:
+return $default(_that.items,_that.toolChoice,_that.gold);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _StartingEquipmentOption implements StartingEquipmentOption {
+  const _StartingEquipmentOption({ List<ItemQuantity> items = const <ItemQuantity>[],  List<ToolCategory> toolChoice = const <ToolCategory>[], required this.gold}): _items = items,_toolChoice = toolChoice;
+  factory _StartingEquipmentOption.fromJson(Map<String, dynamic> json) => _$StartingEquipmentOptionFromJson(json);
+
+ final  List<ItemQuantity> _items;
+@override@JsonKey() List<ItemQuantity> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
+/// Un outil à choisir parmi ces catégories (« instrument de musique de
+/// votre choix »).
+ final  List<ToolCategory> _toolChoice;
+/// Un outil à choisir parmi ces catégories (« instrument de musique de
+/// votre choix »).
+@override@JsonKey() List<ToolCategory> get toolChoice {
+  if (_toolChoice is EqualUnmodifiableListView) return _toolChoice;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_toolChoice);
+}
+
+/// Pièces d'or.
+@override final  int gold;
+
+/// Create a copy of StartingEquipmentOption
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StartingEquipmentOptionCopyWith<_StartingEquipmentOption> get copyWith => __$StartingEquipmentOptionCopyWithImpl<_StartingEquipmentOption>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StartingEquipmentOptionToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _StartingEquipmentOption&&const DeepCollectionEquality().equals(other.items, _items)&&const DeepCollectionEquality().equals(other.toolChoice, _toolChoice)&&(identical(other.gold, gold) || other.gold == gold));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),const DeepCollectionEquality().hash(_toolChoice),gold);
+}
+
+@override
+String toString() {
+    return 'StartingEquipmentOption(items: $items, toolChoice: $toolChoice, gold: $gold)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StartingEquipmentOptionCopyWith<$Res> implements $StartingEquipmentOptionCopyWith<$Res> {
+  factory _$StartingEquipmentOptionCopyWith(_StartingEquipmentOption value, $Res Function(_StartingEquipmentOption) _then) = __$StartingEquipmentOptionCopyWithImpl;
+@override @useResult
+$Res call({
+ List<ItemQuantity> items, List<ToolCategory> toolChoice, int gold
+});
+
+
+
+
+}
+/// @nodoc
+class __$StartingEquipmentOptionCopyWithImpl<$Res>
+    implements _$StartingEquipmentOptionCopyWith<$Res> {
+  __$StartingEquipmentOptionCopyWithImpl(this._self, this._then);
+
+  final _StartingEquipmentOption _self;
+  final $Res Function(_StartingEquipmentOption) _then;
+
+/// Create a copy of StartingEquipmentOption
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? toolChoice = null,Object? gold = null,}) {
+  return _then(_StartingEquipmentOption(
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<ItemQuantity>,toolChoice: null == toolChoice ? _self._toolChoice : toolChoice // ignore: cast_nullable_to_non_nullable
+as List<ToolCategory>,gold: null == gold ? _self.gold : gold // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$BackgroundData {
 
 @ContentIdConverter() List<ContentId> get abilities;@ContentIdConverter() ContentId get originFeat;/// Sous-choix imposé du don d'origine, ex. `{"spell_list": "cleric"}`.
@@ -3951,7 +4247,8 @@ mixin _$ClassData {
 @ContentIdConverter() List<ContentId> get spellList;/// Caractéristique d'incantation des sorts de la classe.
 @ContentIdConverter() ContentId? get spellcastingAbility;/// Outils maîtrisés d'office (Druide : matériel d'herboriste).
 @ContentIdConverter() List<ContentId> get toolProficiencies;/// Outils à choisir dans une catégorie (Barde : 3 instruments).
- int get toolChoiceCount; ToolCategory? get toolChoiceCategory;
+ int get toolChoiceCount; ToolCategory? get toolChoiceCategory;/// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
+ List<StartingEquipmentOption> get startingEquipment;
 /// Create a copy of ClassData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3965,20 +4262,20 @@ $ClassDataCopyWith<ClassData> get copyWith => _$ClassDataCopyWithImpl<ClassData>
 @override
 bool operator ==(Object other) {
   final _this = this as ClassData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClassData&&const DeepCollectionEquality().equals(other.primaryAbilities, _this.primaryAbilities)&&(identical(other.hitDie, _this.hitDie) || other.hitDie == _this.hitDie)&&const DeepCollectionEquality().equals(other.savingThrows, _this.savingThrows)&&(identical(other.skillChoiceCount, _this.skillChoiceCount) || other.skillChoiceCount == _this.skillChoiceCount)&&const DeepCollectionEquality().equals(other.skillChoices, _this.skillChoices)&&const DeepCollectionEquality().equals(other.weaponProficiencies, _this.weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _this.armorTraining)&&(identical(other.subclassLevel, _this.subclassLevel) || other.subclassLevel == _this.subclassLevel)&&const DeepCollectionEquality().equals(other.levels, _this.levels)&&const DeepCollectionEquality().equals(other.spellList, _this.spellList)&&(identical(other.spellcastingAbility, _this.spellcastingAbility) || other.spellcastingAbility == _this.spellcastingAbility)&&const DeepCollectionEquality().equals(other.toolProficiencies, _this.toolProficiencies)&&(identical(other.toolChoiceCount, _this.toolChoiceCount) || other.toolChoiceCount == _this.toolChoiceCount)&&(identical(other.toolChoiceCategory, _this.toolChoiceCategory) || other.toolChoiceCategory == _this.toolChoiceCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ClassData&&const DeepCollectionEquality().equals(other.primaryAbilities, _this.primaryAbilities)&&(identical(other.hitDie, _this.hitDie) || other.hitDie == _this.hitDie)&&const DeepCollectionEquality().equals(other.savingThrows, _this.savingThrows)&&(identical(other.skillChoiceCount, _this.skillChoiceCount) || other.skillChoiceCount == _this.skillChoiceCount)&&const DeepCollectionEquality().equals(other.skillChoices, _this.skillChoices)&&const DeepCollectionEquality().equals(other.weaponProficiencies, _this.weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _this.armorTraining)&&(identical(other.subclassLevel, _this.subclassLevel) || other.subclassLevel == _this.subclassLevel)&&const DeepCollectionEquality().equals(other.levels, _this.levels)&&const DeepCollectionEquality().equals(other.spellList, _this.spellList)&&(identical(other.spellcastingAbility, _this.spellcastingAbility) || other.spellcastingAbility == _this.spellcastingAbility)&&const DeepCollectionEquality().equals(other.toolProficiencies, _this.toolProficiencies)&&(identical(other.toolChoiceCount, _this.toolChoiceCount) || other.toolChoiceCount == _this.toolChoiceCount)&&(identical(other.toolChoiceCategory, _this.toolChoiceCategory) || other.toolChoiceCategory == _this.toolChoiceCategory)&&const DeepCollectionEquality().equals(other.startingEquipment, _this.startingEquipment));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as ClassData;
-  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.primaryAbilities),_this.hitDie,const DeepCollectionEquality().hash(_this.savingThrows),_this.skillChoiceCount,const DeepCollectionEquality().hash(_this.skillChoices),const DeepCollectionEquality().hash(_this.weaponProficiencies),const DeepCollectionEquality().hash(_this.armorTraining),_this.subclassLevel,const DeepCollectionEquality().hash(_this.levels),const DeepCollectionEquality().hash(_this.spellList),_this.spellcastingAbility,const DeepCollectionEquality().hash(_this.toolProficiencies),_this.toolChoiceCount,_this.toolChoiceCategory);
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.primaryAbilities),_this.hitDie,const DeepCollectionEquality().hash(_this.savingThrows),_this.skillChoiceCount,const DeepCollectionEquality().hash(_this.skillChoices),const DeepCollectionEquality().hash(_this.weaponProficiencies),const DeepCollectionEquality().hash(_this.armorTraining),_this.subclassLevel,const DeepCollectionEquality().hash(_this.levels),const DeepCollectionEquality().hash(_this.spellList),_this.spellcastingAbility,const DeepCollectionEquality().hash(_this.toolProficiencies),_this.toolChoiceCount,_this.toolChoiceCategory,const DeepCollectionEquality().hash(_this.startingEquipment));
 }
 
 @override
 String toString() {
   final _this = this as ClassData;
-  return 'ClassData(primaryAbilities: ${_this.primaryAbilities}, hitDie: ${_this.hitDie}, savingThrows: ${_this.savingThrows}, skillChoiceCount: ${_this.skillChoiceCount}, skillChoices: ${_this.skillChoices}, weaponProficiencies: ${_this.weaponProficiencies}, armorTraining: ${_this.armorTraining}, subclassLevel: ${_this.subclassLevel}, levels: ${_this.levels}, spellList: ${_this.spellList}, spellcastingAbility: ${_this.spellcastingAbility}, toolProficiencies: ${_this.toolProficiencies}, toolChoiceCount: ${_this.toolChoiceCount}, toolChoiceCategory: ${_this.toolChoiceCategory})';
+  return 'ClassData(primaryAbilities: ${_this.primaryAbilities}, hitDie: ${_this.hitDie}, savingThrows: ${_this.savingThrows}, skillChoiceCount: ${_this.skillChoiceCount}, skillChoices: ${_this.skillChoices}, weaponProficiencies: ${_this.weaponProficiencies}, armorTraining: ${_this.armorTraining}, subclassLevel: ${_this.subclassLevel}, levels: ${_this.levels}, spellList: ${_this.spellList}, spellcastingAbility: ${_this.spellcastingAbility}, toolProficiencies: ${_this.toolProficiencies}, toolChoiceCount: ${_this.toolChoiceCount}, toolChoiceCategory: ${_this.toolChoiceCategory}, startingEquipment: ${_this.startingEquipment})';
 }
 
 
@@ -3989,7 +4286,7 @@ abstract mixin class $ClassDataCopyWith<$Res>  {
   factory $ClassDataCopyWith(ClassData value, $Res Function(ClassData) _then) = _$ClassDataCopyWithImpl;
 @useResult
 $Res call({
-@ContentIdConverter() List<ContentId> primaryAbilities, int hitDie,@ContentIdConverter() List<ContentId> savingThrows, int skillChoiceCount,@ContentIdConverter() List<ContentId> skillChoices, List<String> weaponProficiencies, List<String> armorTraining, int subclassLevel, List<ClassLevelData> levels,@ContentIdConverter() List<ContentId> spellList,@ContentIdConverter() ContentId? spellcastingAbility,@ContentIdConverter() List<ContentId> toolProficiencies, int toolChoiceCount, ToolCategory? toolChoiceCategory
+@ContentIdConverter() List<ContentId> primaryAbilities, int hitDie,@ContentIdConverter() List<ContentId> savingThrows, int skillChoiceCount,@ContentIdConverter() List<ContentId> skillChoices, List<String> weaponProficiencies, List<String> armorTraining, int subclassLevel, List<ClassLevelData> levels,@ContentIdConverter() List<ContentId> spellList,@ContentIdConverter() ContentId? spellcastingAbility,@ContentIdConverter() List<ContentId> toolProficiencies, int toolChoiceCount, ToolCategory? toolChoiceCategory, List<StartingEquipmentOption> startingEquipment
 });
 
 
@@ -4006,7 +4303,7 @@ class _$ClassDataCopyWithImpl<$Res>
 
 /// Create a copy of ClassData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? primaryAbilities = null,Object? hitDie = null,Object? savingThrows = null,Object? skillChoiceCount = null,Object? skillChoices = null,Object? weaponProficiencies = null,Object? armorTraining = null,Object? subclassLevel = null,Object? levels = null,Object? spellList = null,Object? spellcastingAbility = freezed,Object? toolProficiencies = null,Object? toolChoiceCount = null,Object? toolChoiceCategory = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? primaryAbilities = null,Object? hitDie = null,Object? savingThrows = null,Object? skillChoiceCount = null,Object? skillChoices = null,Object? weaponProficiencies = null,Object? armorTraining = null,Object? subclassLevel = null,Object? levels = null,Object? spellList = null,Object? spellcastingAbility = freezed,Object? toolProficiencies = null,Object? toolChoiceCount = null,Object? toolChoiceCategory = freezed,Object? startingEquipment = null,}) {
   return _then(ClassData(
 primaryAbilities: null == primaryAbilities ? _self.primaryAbilities : primaryAbilities // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,hitDie: null == hitDie ? _self.hitDie : hitDie // ignore: cast_nullable_to_non_nullable
@@ -4022,7 +4319,8 @@ as List<ContentId>,spellcastingAbility: freezed == spellcastingAbility ? _self.s
 as ContentId?,toolProficiencies: null == toolProficiencies ? _self.toolProficiencies : toolProficiencies // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,toolChoiceCount: null == toolChoiceCount ? _self.toolChoiceCount : toolChoiceCount // ignore: cast_nullable_to_non_nullable
 as int,toolChoiceCategory: freezed == toolChoiceCategory ? _self.toolChoiceCategory : toolChoiceCategory // ignore: cast_nullable_to_non_nullable
-as ToolCategory?,
+as ToolCategory?,startingEquipment: null == startingEquipment ? _self.startingEquipment : startingEquipment // ignore: cast_nullable_to_non_nullable
+as List<StartingEquipmentOption>,
   ));
 }
 
@@ -4107,10 +4405,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory,  List<StartingEquipmentOption> startingEquipment)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ClassData() when $default != null:
-return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory);case _:
+return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory,_that.startingEquipment);case _:
   return orElse();
 
 }
@@ -4128,10 +4426,10 @@ return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.ski
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory,  List<StartingEquipmentOption> startingEquipment)  $default,) {final _that = this;
 switch (_that) {
 case _ClassData():
-return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory);case _:
+return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory,_that.startingEquipment);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -4148,10 +4446,10 @@ return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.ski
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ContentIdConverter()  List<ContentId> primaryAbilities,  int hitDie, @ContentIdConverter()  List<ContentId> savingThrows,  int skillChoiceCount, @ContentIdConverter()  List<ContentId> skillChoices,  List<String> weaponProficiencies,  List<String> armorTraining,  int subclassLevel,  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList, @ContentIdConverter()  ContentId? spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies,  int toolChoiceCount,  ToolCategory? toolChoiceCategory,  List<StartingEquipmentOption> startingEquipment)?  $default,) {final _that = this;
 switch (_that) {
 case _ClassData() when $default != null:
-return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory);case _:
+return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.skillChoiceCount,_that.skillChoices,_that.weaponProficiencies,_that.armorTraining,_that.subclassLevel,_that.levels,_that.spellList,_that.spellcastingAbility,_that.toolProficiencies,_that.toolChoiceCount,_that.toolChoiceCategory,_that.startingEquipment);case _:
   return null;
 
 }
@@ -4163,7 +4461,7 @@ return $default(_that.primaryAbilities,_that.hitDie,_that.savingThrows,_that.ski
 @JsonSerializable()
 
 class _ClassData implements ClassData {
-  const _ClassData({@ContentIdConverter() required  List<ContentId> primaryAbilities, required this.hitDie, @ContentIdConverter() required  List<ContentId> savingThrows, required this.skillChoiceCount, @ContentIdConverter() required  List<ContentId> skillChoices, required  List<String> weaponProficiencies, required  List<String> armorTraining, required this.subclassLevel, required  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList = const <ContentId>[], @ContentIdConverter() this.spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies = const <ContentId>[], this.toolChoiceCount = 0, this.toolChoiceCategory}): _primaryAbilities = primaryAbilities,_savingThrows = savingThrows,_skillChoices = skillChoices,_weaponProficiencies = weaponProficiencies,_armorTraining = armorTraining,_levels = levels,_spellList = spellList,_toolProficiencies = toolProficiencies;
+  const _ClassData({@ContentIdConverter() required  List<ContentId> primaryAbilities, required this.hitDie, @ContentIdConverter() required  List<ContentId> savingThrows, required this.skillChoiceCount, @ContentIdConverter() required  List<ContentId> skillChoices, required  List<String> weaponProficiencies, required  List<String> armorTraining, required this.subclassLevel, required  List<ClassLevelData> levels, @ContentIdConverter()  List<ContentId> spellList = const <ContentId>[], @ContentIdConverter() this.spellcastingAbility, @ContentIdConverter()  List<ContentId> toolProficiencies = const <ContentId>[], this.toolChoiceCount = 0, this.toolChoiceCategory,  List<StartingEquipmentOption> startingEquipment = const <StartingEquipmentOption>[]}): _primaryAbilities = primaryAbilities,_savingThrows = savingThrows,_skillChoices = skillChoices,_weaponProficiencies = weaponProficiencies,_armorTraining = armorTraining,_levels = levels,_spellList = spellList,_toolProficiencies = toolProficiencies,_startingEquipment = startingEquipment;
   factory _ClassData.fromJson(Map<String, dynamic> json) => _$ClassDataFromJson(json);
 
  final  List<ContentId> _primaryAbilities;
@@ -4234,6 +4532,15 @@ class _ClassData implements ClassData {
 /// Outils à choisir dans une catégorie (Barde : 3 instruments).
 @override@JsonKey() final  int toolChoiceCount;
 @override final  ToolCategory? toolChoiceCategory;
+/// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
+ final  List<StartingEquipmentOption> _startingEquipment;
+/// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
+@override@JsonKey() List<StartingEquipmentOption> get startingEquipment {
+  if (_startingEquipment is EqualUnmodifiableListView) return _startingEquipment;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_startingEquipment);
+}
+
 
 /// Create a copy of ClassData
 /// with the given fields replaced by the non-null parameter values.
@@ -4248,18 +4555,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClassData&&const DeepCollectionEquality().equals(other.primaryAbilities, _primaryAbilities)&&(identical(other.hitDie, hitDie) || other.hitDie == hitDie)&&const DeepCollectionEquality().equals(other.savingThrows, _savingThrows)&&(identical(other.skillChoiceCount, skillChoiceCount) || other.skillChoiceCount == skillChoiceCount)&&const DeepCollectionEquality().equals(other.skillChoices, _skillChoices)&&const DeepCollectionEquality().equals(other.weaponProficiencies, _weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _armorTraining)&&(identical(other.subclassLevel, subclassLevel) || other.subclassLevel == subclassLevel)&&const DeepCollectionEquality().equals(other.levels, _levels)&&const DeepCollectionEquality().equals(other.spellList, _spellList)&&(identical(other.spellcastingAbility, spellcastingAbility) || other.spellcastingAbility == spellcastingAbility)&&const DeepCollectionEquality().equals(other.toolProficiencies, _toolProficiencies)&&(identical(other.toolChoiceCount, toolChoiceCount) || other.toolChoiceCount == toolChoiceCount)&&(identical(other.toolChoiceCategory, toolChoiceCategory) || other.toolChoiceCategory == toolChoiceCategory));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ClassData&&const DeepCollectionEquality().equals(other.primaryAbilities, _primaryAbilities)&&(identical(other.hitDie, hitDie) || other.hitDie == hitDie)&&const DeepCollectionEquality().equals(other.savingThrows, _savingThrows)&&(identical(other.skillChoiceCount, skillChoiceCount) || other.skillChoiceCount == skillChoiceCount)&&const DeepCollectionEquality().equals(other.skillChoices, _skillChoices)&&const DeepCollectionEquality().equals(other.weaponProficiencies, _weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _armorTraining)&&(identical(other.subclassLevel, subclassLevel) || other.subclassLevel == subclassLevel)&&const DeepCollectionEquality().equals(other.levels, _levels)&&const DeepCollectionEquality().equals(other.spellList, _spellList)&&(identical(other.spellcastingAbility, spellcastingAbility) || other.spellcastingAbility == spellcastingAbility)&&const DeepCollectionEquality().equals(other.toolProficiencies, _toolProficiencies)&&(identical(other.toolChoiceCount, toolChoiceCount) || other.toolChoiceCount == toolChoiceCount)&&(identical(other.toolChoiceCategory, toolChoiceCategory) || other.toolChoiceCategory == toolChoiceCategory)&&const DeepCollectionEquality().equals(other.startingEquipment, _startingEquipment));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_primaryAbilities),hitDie,const DeepCollectionEquality().hash(_savingThrows),skillChoiceCount,const DeepCollectionEquality().hash(_skillChoices),const DeepCollectionEquality().hash(_weaponProficiencies),const DeepCollectionEquality().hash(_armorTraining),subclassLevel,const DeepCollectionEquality().hash(_levels),const DeepCollectionEquality().hash(_spellList),spellcastingAbility,const DeepCollectionEquality().hash(_toolProficiencies),toolChoiceCount,toolChoiceCategory);
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_primaryAbilities),hitDie,const DeepCollectionEquality().hash(_savingThrows),skillChoiceCount,const DeepCollectionEquality().hash(_skillChoices),const DeepCollectionEquality().hash(_weaponProficiencies),const DeepCollectionEquality().hash(_armorTraining),subclassLevel,const DeepCollectionEquality().hash(_levels),const DeepCollectionEquality().hash(_spellList),spellcastingAbility,const DeepCollectionEquality().hash(_toolProficiencies),toolChoiceCount,toolChoiceCategory,const DeepCollectionEquality().hash(_startingEquipment));
 }
 
 @override
 String toString() {
-    return 'ClassData(primaryAbilities: $primaryAbilities, hitDie: $hitDie, savingThrows: $savingThrows, skillChoiceCount: $skillChoiceCount, skillChoices: $skillChoices, weaponProficiencies: $weaponProficiencies, armorTraining: $armorTraining, subclassLevel: $subclassLevel, levels: $levels, spellList: $spellList, spellcastingAbility: $spellcastingAbility, toolProficiencies: $toolProficiencies, toolChoiceCount: $toolChoiceCount, toolChoiceCategory: $toolChoiceCategory)';
+    return 'ClassData(primaryAbilities: $primaryAbilities, hitDie: $hitDie, savingThrows: $savingThrows, skillChoiceCount: $skillChoiceCount, skillChoices: $skillChoices, weaponProficiencies: $weaponProficiencies, armorTraining: $armorTraining, subclassLevel: $subclassLevel, levels: $levels, spellList: $spellList, spellcastingAbility: $spellcastingAbility, toolProficiencies: $toolProficiencies, toolChoiceCount: $toolChoiceCount, toolChoiceCategory: $toolChoiceCategory, startingEquipment: $startingEquipment)';
 }
 
 
@@ -4270,7 +4577,7 @@ abstract mixin class _$ClassDataCopyWith<$Res> implements $ClassDataCopyWith<$Re
   factory _$ClassDataCopyWith(_ClassData value, $Res Function(_ClassData) _then) = __$ClassDataCopyWithImpl;
 @override @useResult
 $Res call({
-@ContentIdConverter() List<ContentId> primaryAbilities, int hitDie,@ContentIdConverter() List<ContentId> savingThrows, int skillChoiceCount,@ContentIdConverter() List<ContentId> skillChoices, List<String> weaponProficiencies, List<String> armorTraining, int subclassLevel, List<ClassLevelData> levels,@ContentIdConverter() List<ContentId> spellList,@ContentIdConverter() ContentId? spellcastingAbility,@ContentIdConverter() List<ContentId> toolProficiencies, int toolChoiceCount, ToolCategory? toolChoiceCategory
+@ContentIdConverter() List<ContentId> primaryAbilities, int hitDie,@ContentIdConverter() List<ContentId> savingThrows, int skillChoiceCount,@ContentIdConverter() List<ContentId> skillChoices, List<String> weaponProficiencies, List<String> armorTraining, int subclassLevel, List<ClassLevelData> levels,@ContentIdConverter() List<ContentId> spellList,@ContentIdConverter() ContentId? spellcastingAbility,@ContentIdConverter() List<ContentId> toolProficiencies, int toolChoiceCount, ToolCategory? toolChoiceCategory, List<StartingEquipmentOption> startingEquipment
 });
 
 
@@ -4287,7 +4594,7 @@ class __$ClassDataCopyWithImpl<$Res>
 
 /// Create a copy of ClassData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? primaryAbilities = null,Object? hitDie = null,Object? savingThrows = null,Object? skillChoiceCount = null,Object? skillChoices = null,Object? weaponProficiencies = null,Object? armorTraining = null,Object? subclassLevel = null,Object? levels = null,Object? spellList = null,Object? spellcastingAbility = freezed,Object? toolProficiencies = null,Object? toolChoiceCount = null,Object? toolChoiceCategory = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? primaryAbilities = null,Object? hitDie = null,Object? savingThrows = null,Object? skillChoiceCount = null,Object? skillChoices = null,Object? weaponProficiencies = null,Object? armorTraining = null,Object? subclassLevel = null,Object? levels = null,Object? spellList = null,Object? spellcastingAbility = freezed,Object? toolProficiencies = null,Object? toolChoiceCount = null,Object? toolChoiceCategory = freezed,Object? startingEquipment = null,}) {
   return _then(_ClassData(
 primaryAbilities: null == primaryAbilities ? _self._primaryAbilities : primaryAbilities // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,hitDie: null == hitDie ? _self.hitDie : hitDie // ignore: cast_nullable_to_non_nullable
@@ -4303,7 +4610,8 @@ as List<ContentId>,spellcastingAbility: freezed == spellcastingAbility ? _self.s
 as ContentId?,toolProficiencies: null == toolProficiencies ? _self._toolProficiencies : toolProficiencies // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,toolChoiceCount: null == toolChoiceCount ? _self.toolChoiceCount : toolChoiceCount // ignore: cast_nullable_to_non_nullable
 as int,toolChoiceCategory: freezed == toolChoiceCategory ? _self.toolChoiceCategory : toolChoiceCategory // ignore: cast_nullable_to_non_nullable
-as ToolCategory?,
+as ToolCategory?,startingEquipment: null == startingEquipment ? _self._startingEquipment : startingEquipment // ignore: cast_nullable_to_non_nullable
+as List<StartingEquipmentOption>,
   ));
 }
 

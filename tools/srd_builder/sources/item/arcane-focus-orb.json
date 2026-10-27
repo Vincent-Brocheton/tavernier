@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:arcane-focus-orb",
+  "type": "item",
+  "name": "Focaliseur arcanique (orbe)",
+  "data": {
+    "weight_kg": 1.5,
+    "cost_cp": 2000
+  },
+  "text": {
+    "fr": "Un focaliseur arcanique prend l’une des formes de la table « Focaliseurs arcaniques » et il est incrusté de pierreries ou sculpté afin de canaliser la magie arcanique. Un personnage Ensorceleur, Magicien ou Occultiste peut se servir d’un tel objet comme focaliseur d’incantation."
+  }
+}

@@ -138,7 +138,7 @@ final _abilityMin = RegExp(
 /// Paragraphes de [lines] : dans un trait ou un don, une ligne qui ne
 /// termine pas sa phrase se poursuit à la suivante, même quand celle-ci
 /// commence par une majuscule (« Votre valeur de / Force »).
-String _paragraphs(List<String> lines) {
+String paragraphs(List<String> lines) {
   final out = <String>[];
   for (final line in lines) {
     if (out.isNotEmpty && !endsSentence.hasMatch(out.last)) {
@@ -151,7 +151,7 @@ String _paragraphs(List<String> lines) {
 }
 
 /// Section de [text] entre la ligne [from] et la ligne [to] qui la suit.
-CleanText _section(String text, String from, String to) {
+CleanText srdSection(String text, String from, String to) {
   text = text.replaceAll('\r\n', '\n');
   final start = text.indexOf(RegExp('^$from\$', multiLine: true));
   if (start < 0) throw FormatException('section introuvable : $from');
@@ -169,7 +169,7 @@ List<ExtractedSpecies> extractSpecies(
   List<SrdSpecies> config, {
   List<String>? joins,
 }) {
-  final clean = _section(text, 'Description des espèces', 'Dons');
+  final clean = srdSection(text, 'Description des espèces', 'Dons');
   joins?.addAll(clean.joins);
   final lines = clean.lines;
   // Une espèce commence à son nom seul sur sa ligne, suivi de son en-tête.
@@ -248,7 +248,7 @@ ExtractedSpecies _species(SrdSpecies config, List<String> lines) {
             name: name,
             slug: slug,
             level: int.parse(_traitLevel.firstMatch(lines.first)?[1] ?? '1'),
-            text: [_paragraphs(lines), ...?tables[name]].join('\n'),
+            text: [paragraphs(lines), ...?tables[name]].join('\n'),
           )
         else
           throw FormatException('trait introuvable : ${config.name}, $name'),
@@ -260,7 +260,7 @@ ExtractedSpecies _species(SrdSpecies config, List<String> lines) {
 /// « Équipement » : un don commence au titre qui précède sa ligne de
 /// catégorie.
 List<ExtractedFeat> extractFeats(String text) {
-  final lines = _section(text, 'Description des dons', 'Équipement').lines;
+  final lines = srdSection(text, 'Description des dons', 'Équipement').lines;
   final starts = [
     for (var i = 1; i < lines.length; i++)
       if (_featCategory.hasMatch(lines[i])) i - 1,
@@ -299,7 +299,7 @@ ExtractedFeat _feat(String name, RegExpMatch category, List<String> lines) {
       if (prerequisites.isNotEmpty) 'prerequisites': prerequisites,
       if (lines.any((l) => l.startsWith('Répétable.'))) 'repeatable': true,
     },
-    text: _paragraphs(lines),
+    text: paragraphs(lines),
   );
 }
 

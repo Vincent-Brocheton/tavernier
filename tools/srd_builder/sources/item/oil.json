@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:oil",
+  "type": "item",
+  "name": "Huile",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 10
+  },
+  "text": {
+    "fr": "Vous pouvez asperger une créature, un objet ou un espace avec de l’huile ou l’utiliser comme combustible, comme détaillé ci-dessous.\nAsperger une créature ou un objet. Lorsque vous effectuez l’action Attaque, vous pouvez remplacer l’une de vos attaques par le jet d’une flasque d’huile. Ciblez une créature ou un objet à une distance maximale de 6 m. La cible doit réussir un jet de sauvegarde de Dextérité (DD égal à 8 + votre modificateur de Dextérité + votre bonus de maîtrise) sous peine d’être couverte d’huile. Si elle subit des dégâts de feu avant que l’huile ait séché (ce qui demande 1 minute), la cible subit 5 dégâts de feu supplémentaires, provoqués par l’embrasement de l’huile.\nAsperger un espace. Entreprendre l’action Utilisation permet d’étaler le contenu d’une flasque d’huile sur un sol plan et de couvrir une zone de 1,50 m de côté dans un rayon de 1,50 m. Embrasée, l’huile brûle jusqu’à la fin du tour 2 rounds après son allumage (soit pendant 12 secondes) et inflige 5 dégâts de feu à toute créature qui pénètre dans la zone ou y termine son tour. Une même créature ne peut subir ces dégâts qu’une fois par tour.\nCombustible. L’huile sert de combustible pour les lampes et les lanternes. Le contenu d’une flasque d’huile embrasée brûle pendant 6 heures dans une lampe ou une lanterne. Cette durée n’est pas nécessairement consécutive ; vous pouvez éteindre l’huile (par une action Utilisation) et la rallumer jusqu’à ce qu’elle ait brûlé pendant un total de 6 heures."
+  }
+}

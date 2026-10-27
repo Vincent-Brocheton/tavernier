@@ -26,6 +26,7 @@ part 'database.g.dart';
     BackgroundAbilities,
     BackgroundProficiencies,
     BackgroundEquipmentOptions,
+    ClassEquipmentOptions,
     Feats,
     SpeciesTable,
     SpeciesTraits,

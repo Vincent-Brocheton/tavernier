@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:chest",
+  "type": "item",
+  "name": "Coffre",
+  "data": {
+    "weight_kg": 12.5,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Un coffre contient jusqu’à 0,36 m3."
+  }
+}

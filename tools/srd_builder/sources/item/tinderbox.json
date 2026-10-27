@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:tinderbox",
+  "type": "item",
+  "name": "Boîte à amadou",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 50
+  },
+  "text": {
+    "fr": "Ce petit conteneur renferme silex, pierre à briquet et amorce (généralement un morceau de tissu imbibé d’huile), soit de quoi allumer un feu. L’utiliser pour allumer une bougie, une lampe, une lanterne ou une torche, ou tout autre objet dont le combustible est exposé, s’effectue par une action Bonus. Produire un autre type de flammes demande 1 minute."
+  }
+}

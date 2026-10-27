@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:dungeoneers-pack",
+  "type": "item",
+  "name": "Paquetage d’exploration souterraine",
+  "data": {
+    "weight_kg": 27.5,
+    "cost_cp": 1200
+  },
+  "text": {
+    "fr": "Le paquetage d’exploration souterraine contient les objets suivants : sac à dos, boîte à amadou, chaussetrappes, corde, 2 flasques d’huile, 10 jours de rations, outre, pied-de-biche, 10 torches."
+  }
+}

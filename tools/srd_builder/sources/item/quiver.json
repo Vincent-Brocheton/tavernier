@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 0.5,
     "cost_cp": 100
+  },
+  "text": {
+    "fr": "Un carquois peut contenir jusqu’à 20 flèches."
   }
 }

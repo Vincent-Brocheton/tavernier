@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:manacles",
+  "type": "item",
+  "name": "Menottes",
+  "data": {
+    "weight_kg": 3.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous menottez une créature non consentante de taille P ou de taille M située dans un rayon de 1,50 m et qui subit l’état Agrippé, Entravé ou Neutralisé à condition de réussir un test de Dextérité (Escamotage) DD 13. Tant qu’elle est menottée, la créature subit le Désavantage aux jets d’attaque, ainsi que l’état Entravé si les menottes sont attachées à une chaîne ou à un crochet fixe. Se libérer des menottes nécessite de réussir un test de Dextérité (Escamotage) DD 20 au prix d’une action. Les briser nécessite de réussir un test de Force (Athlétisme) DD 25 au prix d’une action.\nChaque paire de menottes est fournie avec une clef. Sans cette clef, une créature peut crocheter la serrure des menottes à condition de réussir un test de Dextérité (Escamotage) DD 15 avec des outils de voleur."
+  }
+}

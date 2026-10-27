@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:torch",
+  "type": "item",
+  "name": "Torche",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 1
+  },
+  "text": {
+    "fr": "Une torche brûle pendant 1 heure, produit une Lumière vive sur un rayon de 6 m et une Lumière faible sur 6 m de plus. Dans le cadre de l’action Attaque, vous pouvez attaquer avec la torche, en considérant celle-ci comme une arme courante de corps à corps. Si l’attaque touche, la cible subit 1 dégât de feu."
+  }
+}

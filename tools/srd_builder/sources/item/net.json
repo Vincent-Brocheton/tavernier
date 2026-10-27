@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:net",
+  "type": "item",
+  "name": "Filet",
+  "data": {
+    "weight_kg": 1.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Lorsque vous effectuez l’action Attaque, vous pouvez remplacer l’une de vos attaques par le lancer d’un filet. Ciblez une créature que vous voyez à une distance maximale de 4,50 m. La cible doit réussir un jet de sauvegarde de Dextérité (DD égal à 8 + votre modificateur de Dextérité + votre bonus de maîtrise) sous peine de subir l’état Entravé jusqu’à sa libération. La cible réussit automatiquement si elle est de taille TG ou supérieure.\nPour être libérée, la cible (ou une créature dans un rayon de 1,50 m d’elle) doit entreprendre une action et effectuer un test de Force (Athlétisme) DD 10, libérant la créature Entravée en cas de réussite. La destruction du filet (CA 10 ; 5 pv ; Immunité aux dégâts contondants, psychiques et de poison) libère également la cible, mettant un terme à l’effet Entravé."
+  }
+}

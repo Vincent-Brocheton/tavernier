@@ -475,6 +475,39 @@
       "srd:spell:water-walk",
       "srd:spell:word-of-recall",
       "srd:spell:zone-of-truth"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:chain-shirt",
+            "quantity": 1
+          },
+          {
+            "item": "srd:armor:shield",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:mace",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:holy-symbol",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:priests-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 7
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 110
+      }
     ]
   }
 }

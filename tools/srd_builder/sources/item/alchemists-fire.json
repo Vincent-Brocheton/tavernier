@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:alchemists-fire",
+  "type": "item",
+  "name": "Feu grégeois",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Lorsque vous effectuez l’action Attaque, vous pouvez remplacer l’une de vos attaques par le jet d’une flasque de feu grégeois. Ciblez une créature ou un objet que vous voyez dans un rayon de 6 m. La cible doit réussir un jet de sauvegarde de Dextérité (DD égal à 8 + votre modificateur de Dextérité + votre bonus de maîtrise) sous peine de subir 1d4 dégâts de feu et de prendre feu (cf. « Glossaire de règles »)."
+  }
+}
