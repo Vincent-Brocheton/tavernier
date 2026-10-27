@@ -236,6 +236,12 @@ abstract class ClassData with _$ClassData implements EntityData {
     required List<String> armorTraining,
     required int subclassLevel,
     required List<ClassLevelData> levels,
+
+    /// Liste de sorts de la classe (le sort ne cite pas ses classes).
+    @ContentIdConverter() @Default(<ContentId>[]) List<ContentId> spellList,
+
+    /// Caractéristique d'incantation des sorts de la classe.
+    @ContentIdConverter() ContentId? spellcastingAbility,
   }) = _ClassData;
 
   factory ClassData.fromJson(Map<String, dynamic> json) =>

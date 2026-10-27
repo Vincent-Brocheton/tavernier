@@ -28,6 +28,8 @@ const _referenceTypes = <String, Set<String>>{
   'traits': {'feature'},
   'features': {'feature'},
   'parent_class': {'class'},
+  'spell_list': {'spell'},
+  'spellcasting_ability': {'ability'},
   'item': {'weapon', 'armor', 'tool', 'item'},
   'source': {'class', 'subclass', 'species', 'feat'},
 };
