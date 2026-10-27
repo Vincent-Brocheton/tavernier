@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:cleric-divine-intervention",
+  "type": "feature",
+  "name": "Intervention divine",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 10
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:divine-intervention",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez faire appel à votre divinité ou votre panthéon pour intercéder en votre faveur. Au prix de l’action Magie, choisissez un sort de Clerc du 5e niveau ou inférieur dont l’incantation ne demande pas une Réaction. Dans le cadre de cette même action, vous lancez le sort sans dépenser d’emplacement en vous passant de composantes matérielles. Une fois que vous avez utilisé cette aptitude, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

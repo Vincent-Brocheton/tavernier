@@ -133,6 +133,14 @@ fvm flutter run -d chrome          # depuis apps/game_table
   2. `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-spells --text <fichier>`.
 
   L'outil réécrit `sources/spell/*.json` et `extract/spell_classes.tsv`. Les slugs anglais viennent de `extract/spell_slugs.tsv`. Les raccords de lignes à relire sont dans `build/extract-spells.txt`. Ne jamais retoucher un fichier de sort à la main : corriger l'extracteur et relancer.
+- **Extraction des classes du SRD** (T-04) : `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-classes --text <fichier pdftotext>` (option `--class <slug>`).
+  - **Ce que l'outil réécrit :**
+    - le nom et le texte des aptitudes ;
+    - la sous-classe ;
+    - les niveaux de la classe, lus dans la table en mise en page de `docs/srd/FR_SRD_CC_v5.2.1.txt` ;
+    - la liste de sorts.
+  - **Ce qu'il garde :** les traits de base de la classe et les `data` et `effects` des aptitudes, saisis à la main.
+  - **Configuration :** la mise en page de chaque classe est décrite dans `lib/src/srd_classes.dart`, et les slugs dans `extract/feature_slugs.tsv`.
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

@@ -25,9 +25,12 @@ const _referenceTypes = <String, Set<String>>{
   'skill_proficiencies': {'skill'},
   'skill_choices': {'skill'},
   'tool_proficiency': {'tool'},
+  'tool_proficiencies': {'tool'},
   'traits': {'feature'},
   'features': {'feature'},
   'parent_class': {'class'},
+  'spell_list': {'spell'},
+  'spellcasting_ability': {'ability'},
   'item': {'weapon', 'armor', 'tool', 'item'},
   'source': {'class', 'subclass', 'species', 'feat'},
 };

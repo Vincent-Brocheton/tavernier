@@ -71,6 +71,13 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
+- `class` (champs ajoutés par T-04) :
+  - `spell_list` : identifiants des sorts de la classe ;
+  - `spellcasting_ability` : caractéristique d'incantation ;
+  - `tool_proficiencies` : outils maîtrisés d'office ;
+  - `tool_choice_count` et `tool_choice_category` : outils à choisir dans une catégorie.
+
+  Dans `levels[].columns`, toutes les valeurs sont des entiers. Un dé est noté par son nombre de faces (`bardic_die: 8`), un bonus par sa valeur (`rage_damage: 2`). Les emplacements de sort sont `slot_1` à `slot_9`, avec `cantrips` et `prepared_spells`. Une case « — » de la table n'est pas écrite.
 - `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`, `spell`.
 - Le type `resource` est réservé aux clés de ressources (`srd:resource:second-wind`) : ce n'est jamais une entité.
 

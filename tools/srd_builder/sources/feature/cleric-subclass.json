@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:cleric-subclass",
+  "type": "feature",
+  "name": "Sous-classe de Clerc",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe de Clerc de votre choix. La sous-classe Domaine de la Vie est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux de Clerc. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel de Clerc."
+  }
+}

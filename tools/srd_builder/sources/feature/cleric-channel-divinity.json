@@ -1,0 +1,35 @@
+{
+  "id": "srd:feature:cleric-channel-divinity",
+  "type": "feature",
+  "name": "Conduit divin",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:channel-divinity",
+      "max": {
+        "by_level": {
+          "2": 2,
+          "6": 3,
+          "18": 4
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": 1
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez canaliser l’énergie divine directement depuis les Plans Extérieurs afin de produire des effets magiques. Vous débutez avec deux effets de ce type : Étincelle divine et Renvoi des morts-vivants, décrits ci-après. Chaque fois que vous recourez au Conduit divin de cette classe, vous choisissez l’effet associé que vous souhaitez générer. Vous recevez de nouvelles options à plus haut niveau de Clerc.\nVous pouvez utiliser deux fois le Conduit divin de cette classe. Vous en regagnez une utilisation lorsque vous terminez un Repos court, et récupérez tout le quota en terminant un Repos long. Vous recevrez des utilisations supplémentaires en atteignant certains niveaux de Clerc, comme indiqué en colonne Conduit divin de la table « Aptitudes du Clerc ».\nSi un effet de Conduit divin entraîne un jet de sauvegarde, le DD est égal au DD de sauvegarde des sorts de l’aptitude Sorts de cette classe.\nÉtincelle divine. Au prix de l’action Magie, vous pointez votre symbole sacré vers une autre créature que vous voyez dans un rayon de 9 m pour concentrer vers elle les énergies divines. Lancez 1d8 et ajoutez-y votre modificateur de Sagesse. Soit vous restituez à la créature autant de points de vie que le total obtenu, soit vous la contraignez à effectuer un jet de sauvegarde de Constitution. Si elle rate ce JS, la créature subit autant de dégâts nécrotiques ou radiants (vous choisissez) que le total obtenu par votre jet. En cas de réussite, la créature subit la moitié de ces dégâts.\nVous ajoutez un d8 lorsque vous atteignez les niveaux 7 (2d8), 13 (3d8) et 18 (4d8) de Clerc.\nRenvoi des morts-vivants. Au prix de l’action Magie, vous brandissez votre symbole sacré pour condamner les Morts-vivants. Chaque Mort-vivant de votre choix dans un rayon de 9 m effectue un jet de sauvegarde de Sagesse. En cas d’échec, la créature subit les états Effrayé et Neutralisé pendant 1 minute. Pour toute la durée, elle s’efforce de s’éloigner de vous autant que possible à chacun de ses tours. Cet effet prend fin prématurément si la créature subit des dégâts, si vous subissez l’état Neutralisé ou si vous mourez."
+  }
+}

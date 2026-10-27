@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:barbarian-danger-sense",
+  "type": "feature",
+  "name": "Sens du danger",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw:dex",
+      "except_condition": "srd:condition:incapacitated"
+    }
+  ],
+  "text": {
+    "fr": "Vous acquérez un talent surnaturel qui vous permet d’esquiver plus aisément les dangers que d’autres remarqueraient trop tard. Vous avez l’Avantage aux jets de sauvegarde de Dextérité, sauf si vous subissez l’état Neutralisé."
+  }
+}

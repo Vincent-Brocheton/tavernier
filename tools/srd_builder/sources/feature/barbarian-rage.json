@@ -1,0 +1,37 @@
+{
+  "id": "srd:feature:barbarian-rage",
+  "type": "feature",
+  "name": "Rage",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:rage",
+      "max": {
+        "by_level": {
+          "1": 2,
+          "3": 3,
+          "6": 4,
+          "12": 5,
+          "17": 6
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": 1
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez vous animer d’une force primitive appelée Rage, qui vous investit d’une puissance et d’une résistance accrues. Vous pouvez entrer en Rage, par une action Bonus, si vous ne portez pas d’armure lourde.\nVous pouvez entrer en Rage autant de fois par jour qu’indiqué dans la colonne Rages de la table Aptitudes du Barbare, pour votre niveau de Barbare. Vous en regagnez une utilisation lorsque vous terminez un Repos court, et récupérez tout le quota en terminant un Repos long.\nTant que votre Rage est active, les règles suivantes s’appliquent.\nRésistance aux dégâts. Vous bénéficiez de la Résistance aux dégâts contondants, perforants et tranchants.\nDégâts de Rage. Lorsque vous effectuez une attaque basée sur la Force, que ce soit avec une arme ou à mains nues, et que vous infligez des dégâts à la cible, vous bénéficiez pour ces dégâts d’un bonus qui augmente lorsque vous gagnez des niveaux de Barbare, comme indiqué à la colonne Dégâts de Rage de la table Aptitudes du Barbare.\nAvantage en Force. Vous avez l’Avantage aux tests de Force et aux jets de sauvegarde de Force.\nNi Concentration ni sorts. Vous ne pouvez pas maintenir votre Concentration ni lancer de sorts.\nDurée. La Rage persiste jusqu’à la fin de votre tour suivant, mais se termine prématurément si vous enfilez une armure lourde ou subissez l’état Neutralisé. Si votre Rage est encore active lorsque votre tour suivant intervient, vous pouvez la prolonger d’un round par n’importe laquelle des choses suivantes :\n• Effectuer un jet d’attaque contre un ennemi. • Contraindre un ennemi à effectuer un jet de sauvegarde. • Entreprendre une action Bonus pour prolonger votre Rage.\nChaque fois que la Rage est prolongée, elle persiste jusqu’à la fin de votre tour suivant. Vous pouvez maintenir votre Rage pendant un maximum de 10 minutes."
+  }
+}

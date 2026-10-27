@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:cleric-greater-divine-intervention",
+  "type": "feature",
+  "name": "Intervention divine suprême",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 20
+  },
+  "text": {
+    "fr": "Vous pouvez invoquer une intervention divine encore plus radicale. Lorsque vous recourez à l’aptitude Intervention divine, vous pouvez opter pour souhait comme choix de sort. Dans un tel cas, vous devez terminer 2d4 Repos longs avant de pouvoir réutiliser Intervention divine."
+  }
+}

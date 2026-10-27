@@ -1,0 +1,27 @@
+{
+  "id": "srd:feature:draconic-dragon-companion",
+  "type": "feature",
+  "name": "Compagnon draconique",
+  "data": {
+    "source": "srd:subclass:draconic-sorcery",
+    "level": 18
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:summon-dragon",
+      "free_casts": {
+        "count": 1,
+        "recharge": [
+          {
+            "on": "long_rest",
+            "amount": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez lancer convocation de dragon sans composante matérielle. Vous pouvez aussi le lancer une fois sans dépenser d’emplacement de sort et récupérez cette aptitude en terminant un Repos long.\nChaque fois que vous commencez à lancer ce sort, vous pouvez en modifier l’incantation afin qu’elle ne nécessite pas la Concentration. Ce faisant, la durée du sort passe à 1 minute pour cette incantation."
+  }
+}

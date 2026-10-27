@@ -2131,6 +2131,46 @@
             "default_dart": null,
             "default_client_dart": null,
             "dsl_features": []
+          },
+          {
+            "name": "spellcasting_ability_id",
+            "getter_name": "spellcastingAbilityId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tool_proficiencies",
+            "getter_name": "toolProficiencies",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'[]\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tool_choice_count",
+            "getter_name": "toolChoiceCount",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tool_choice_category",
+            "getter_name": "toolChoiceCategory",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
           }
         ],
         "is_virtual": false,
@@ -5950,7 +5990,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"player_class\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, \"hit_die\" INTEGER NOT NULL, \"primary_abilities\" TEXT NOT NULL, \"saving_throws\" TEXT NOT NULL, \"skill_choice_count\" INTEGER NOT NULL, \"skill_choices\" TEXT NOT NULL, \"weapon_proficiencies\" TEXT NOT NULL, \"armor_training\" TEXT NOT NULL, \"subclass_level\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"player_class\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, \"hit_die\" INTEGER NOT NULL, \"primary_abilities\" TEXT NOT NULL, \"saving_throws\" TEXT NOT NULL, \"skill_choice_count\" INTEGER NOT NULL, \"skill_choices\" TEXT NOT NULL, \"weapon_proficiencies\" TEXT NOT NULL, \"armor_training\" TEXT NOT NULL, \"subclass_level\" INTEGER NOT NULL, \"spellcasting_ability_id\" TEXT NULL, \"tool_proficiencies\" TEXT NOT NULL DEFAULT '[]', \"tool_choice_count\" INTEGER NOT NULL DEFAULT 0, \"tool_choice_category\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

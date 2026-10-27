@@ -1,0 +1,32 @@
+{
+  "id": "srd:feature:cleric-blessed-strikes",
+  "type": "feature",
+  "name": "Impacts bénis",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 7
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "cleric-blessed-strikes",
+      "count": 1,
+      "options": [
+        [],
+        [
+          {
+            "op": "modify_damage",
+            "scope": "cantrip:cleric",
+            "value": {
+              "ref": "ability_mod",
+              "ability": "wis"
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "La puissance divine vous anime au combat. Vous recevez l’une des options suivantes de votre choix (si vous avez obtenu une de ces options par une sous-classe de Clerc issue d’un ouvrage plus ancien, ne retenez que l’option choisie par la présente aptitude).\nImpact divin. Une fois à chacun de vos tours, lorsque vous touchez une créature par un jet d’attaque avec une arme, vous pouvez lui infliger 1d8 dégâts supplémentaires du type que vous choisissez entre nécrotiques et radiants.\nIncantation puissante. Ajoutez votre modificateur de Sagesse aux dégâts que vous infligez par tout sort mineur de Clerc."
+  }
+}

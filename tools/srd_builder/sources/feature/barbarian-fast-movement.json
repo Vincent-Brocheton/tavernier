@@ -1,0 +1,22 @@
+{
+  "id": "srd:feature:barbarian-fast-movement",
+  "type": "feature",
+  "name": "Déplacement rapide",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "modify_speed",
+      "mode": "walk",
+      "value": 10,
+      "when": {
+        "armor": "not_heavy"
+      }
+    }
+  ],
+  "text": {
+    "fr": "Votre Vitesse augmente de 3 m tant que vous ne portez pas d’armure lourde."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:feature:barbarian-primal-champion",
+  "type": "feature",
+  "name": "Champion primitif",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 20
+  },
+  "effects": [
+    {
+      "op": "ability_bonus",
+      "ability": "str",
+      "value": 4,
+      "max": 25
+    },
+    {
+      "op": "ability_bonus",
+      "ability": "con",
+      "value": 4,
+      "max": 25
+    }
+  ],
+  "text": {
+    "fr": "Vous incarnez la puissance primitive. Vos valeurs de Force et de Constitution augmentent de 4, jusqu’à un maximum de 25."
+  }
+}

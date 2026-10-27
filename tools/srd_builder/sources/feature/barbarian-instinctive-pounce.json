@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-instinctive-pounce",
+  "type": "feature",
+  "name": "Bond instinctif",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 7
+  },
+  "text": {
+    "fr": "Dans le cadre de l’action Bonus entreprise pour entrer en Rage, vous pouvez vous déplacer à concurrence de la moitié de votre Vitesse."
+  }
+}

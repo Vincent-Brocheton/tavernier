@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:land-natural-recovery",
+  "type": "feature",
+  "name": "Ressourcement",
+  "data": {
+    "source": "srd:subclass:circle-of-the-land",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:natural-recovery",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez lancer l’un des sorts du 1er niveau ou supérieur préparés par le biais de l’aptitude Sorts de cercle sans dépenser d’emplacement, après quoi il vous faut terminer un Repos long pour pouvoir le relancer ainsi.\nEn outre, quand vous terminez un Repos court, vous pouvez désigner des emplacements de sort dépensés que vous souhaitez récupérer. La somme des niveaux de ces emplacements dépensés ne doit pas excéder la moitié de votre niveau de Druide (arrondie au supérieur), et aucun d’eux ne doit être du 6e niveau ou supérieur. Exemple : si vous êtes Druide de niveau 6, vous pouvez récupérer un maximum de trois niveaux d’emplacements de sort. Vous pouvez ainsi récupérer un emplacement du 3e niveau, un emplacement du 2e et un du 1er, ou trois emplacements du 1er. Une fois que vous avez récupéré des emplacements par cette aptitude, vous devez terminer un Repos long pour pouvoir le refaire."
+  }
+}

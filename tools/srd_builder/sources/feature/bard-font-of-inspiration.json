@@ -1,0 +1,41 @@
+{
+  "id": "srd:feature:bard-font-of-inspiration",
+  "type": "feature",
+  "name": "Source d’inspiration",
+  "data": {
+    "source": "srd:class:bard",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:bardic-inspiration",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "cha",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ],
+      "die": {
+        "by_level": {
+          "1": "d6",
+          "5": "d8",
+          "10": "d10",
+          "15": "d12"
+        }
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous récupérez désormais tout votre quota d’Inspiration bardique lorsque vous terminez un Repos court ou long.\nDe plus, vous pouvez dépenser un emplacement de sort (pas d’action requise) pour récupérer une utilisation d’Inspiration bardique."
+  }
+}

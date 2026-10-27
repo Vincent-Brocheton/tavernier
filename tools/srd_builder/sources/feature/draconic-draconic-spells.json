@@ -1,0 +1,94 @@
+{
+  "id": "srd:feature:draconic-draconic-spells",
+  "type": "feature",
+  "name": "Sorts draconiques",
+  "data": {
+    "source": "srd:subclass:draconic-sorcery",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:alter-self",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:chromatic-orb",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:command",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:dragons-breath",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:fear",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:fly",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:arcane-eye",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:charm-monster",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:legend-lore",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:summon-dragon",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous atteignez un niveau d’Ensorceleur spécifié dans la table « Sorts draconiques », les sorts qui y figurent sont toujours préparés pour vous."
+  }
+}

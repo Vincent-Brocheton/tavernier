@@ -1,0 +1,502 @@
+{
+  "id": "srd:class:druid",
+  "type": "class",
+  "name": "Druide",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:wisdom"
+    ],
+    "hit_die": 8,
+    "saving_throws": [
+      "srd:ability:intelligence",
+      "srd:ability:wisdom"
+    ],
+    "skill_choice_count": 2,
+    "skill_choices": [
+      "srd:skill:arcana",
+      "srd:skill:animal-handling",
+      "srd:skill:insight",
+      "srd:skill:medicine",
+      "srd:skill:nature",
+      "srd:skill:perception",
+      "srd:skill:religion",
+      "srd:skill:survival"
+    ],
+    "weapon_proficiencies": [
+      "simple"
+    ],
+    "armor_training": [
+      "light",
+      "shield"
+    ],
+    "subclass_level": 3,
+    "tool_proficiencies": [
+      "srd:tool:herbalism-kit"
+    ],
+    "spellcasting_ability": "srd:ability:wisdom",
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:druid-spellcasting",
+          "srd:feature:druid-druidic",
+          "srd:feature:druid-primal-order"
+        ],
+        "columns": {
+          "cantrips": 2,
+          "prepared_spells": 4,
+          "slot_1": 2
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:druid-wild-companion",
+          "srd:feature:druid-wild-shape"
+        ],
+        "columns": {
+          "wild_shape": 2,
+          "cantrips": 2,
+          "prepared_spells": 5,
+          "slot_1": 3
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:druid-subclass"
+        ],
+        "columns": {
+          "wild_shape": 2,
+          "cantrips": 2,
+          "prepared_spells": 6,
+          "slot_1": 4,
+          "slot_2": 2
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:druid-ability-score-improvement"
+        ],
+        "columns": {
+          "wild_shape": 2,
+          "cantrips": 3,
+          "prepared_spells": 7,
+          "slot_1": 4,
+          "slot_2": 3
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:druid-wild-resurgence"
+        ],
+        "columns": {
+          "wild_shape": 2,
+          "cantrips": 3,
+          "prepared_spells": 9,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 2
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 3,
+          "prepared_spells": 10,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:druid-elemental-fury"
+        ],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 3,
+          "prepared_spells": 11,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 1
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:druid-ability-score-improvement"
+        ],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 3,
+          "prepared_spells": 12,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 2
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 3,
+          "prepared_spells": 14,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 1
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 15,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:druid-ability-score-improvement"
+        ],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 17,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 17,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:druid-improved-elemental-fury"
+        ],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 18,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:druid-ability-score-improvement"
+        ],
+        "columns": {
+          "wild_shape": 3,
+          "cantrips": 4,
+          "prepared_spells": 18,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "wild_shape": 4,
+          "cantrips": 4,
+          "prepared_spells": 19,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:druid-beast-spells"
+        ],
+        "columns": {
+          "wild_shape": 4,
+          "cantrips": 4,
+          "prepared_spells": 20,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:druid-epic-boon"
+        ],
+        "columns": {
+          "wild_shape": 4,
+          "cantrips": 4,
+          "prepared_spells": 21,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:druid-archdruid"
+        ],
+        "columns": {
+          "wild_shape": 4,
+          "cantrips": 4,
+          "prepared_spells": 22,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 2,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      }
+    ],
+    "spell_list": [
+      "srd:spell:aid",
+      "srd:spell:animal-friendship",
+      "srd:spell:animal-messenger",
+      "srd:spell:animal-shapes",
+      "srd:spell:antilife-shell",
+      "srd:spell:antipathy-sympathy",
+      "srd:spell:augury",
+      "srd:spell:awaken",
+      "srd:spell:barkskin",
+      "srd:spell:befuddlement",
+      "srd:spell:blight",
+      "srd:spell:call-lightning",
+      "srd:spell:charm-monster",
+      "srd:spell:charm-person",
+      "srd:spell:commune-with-nature",
+      "srd:spell:cone-of-cold",
+      "srd:spell:confusion",
+      "srd:spell:conjure-animals",
+      "srd:spell:conjure-elemental",
+      "srd:spell:conjure-fey",
+      "srd:spell:conjure-minor-elementals",
+      "srd:spell:conjure-woodland-beings",
+      "srd:spell:contagion",
+      "srd:spell:continual-flame",
+      "srd:spell:control-water",
+      "srd:spell:control-weather",
+      "srd:spell:create-or-destroy-water",
+      "srd:spell:cure-wounds",
+      "srd:spell:darkvision",
+      "srd:spell:daylight",
+      "srd:spell:detect-magic",
+      "srd:spell:detect-poison-and-disease",
+      "srd:spell:dispel-magic",
+      "srd:spell:divination",
+      "srd:spell:dominate-beast",
+      "srd:spell:druidcraft",
+      "srd:spell:earthquake",
+      "srd:spell:elementalism",
+      "srd:spell:enhance-ability",
+      "srd:spell:enlarge-reduce",
+      "srd:spell:entangle",
+      "srd:spell:faerie-fire",
+      "srd:spell:find-the-path",
+      "srd:spell:find-traps",
+      "srd:spell:fire-shield",
+      "srd:spell:fire-storm",
+      "srd:spell:flame-blade",
+      "srd:spell:flaming-sphere",
+      "srd:spell:flesh-to-stone",
+      "srd:spell:fog-cloud",
+      "srd:spell:foresight",
+      "srd:spell:freedom-of-movement",
+      "srd:spell:geas",
+      "srd:spell:giant-insect",
+      "srd:spell:goodberry",
+      "srd:spell:greater-restoration",
+      "srd:spell:guidance",
+      "srd:spell:gust-of-wind",
+      "srd:spell:hallucinatory-terrain",
+      "srd:spell:heal",
+      "srd:spell:healing-word",
+      "srd:spell:heat-metal",
+      "srd:spell:heroes-feast",
+      "srd:spell:hold-person",
+      "srd:spell:ice-knife",
+      "srd:spell:ice-storm",
+      "srd:spell:incendiary-cloud",
+      "srd:spell:insect-plague",
+      "srd:spell:jump",
+      "srd:spell:lesser-restoration",
+      "srd:spell:locate-animals-or-plants",
+      "srd:spell:locate-creature",
+      "srd:spell:locate-object",
+      "srd:spell:longstrider",
+      "srd:spell:mass-cure-wounds",
+      "srd:spell:meld-into-stone",
+      "srd:spell:mending",
+      "srd:spell:message",
+      "srd:spell:mirage-arcane",
+      "srd:spell:moonbeam",
+      "srd:spell:move-earth",
+      "srd:spell:pass-without-trace",
+      "srd:spell:planar-binding",
+      "srd:spell:plane-shift",
+      "srd:spell:plant-growth",
+      "srd:spell:poison-spray",
+      "srd:spell:polymorph",
+      "srd:spell:produce-flame",
+      "srd:spell:protection-from-energy",
+      "srd:spell:protection-from-evil-and-good",
+      "srd:spell:protection-from-poison",
+      "srd:spell:purify-food-and-drink",
+      "srd:spell:regenerate",
+      "srd:spell:reincarnate",
+      "srd:spell:resistance",
+      "srd:spell:reverse-gravity",
+      "srd:spell:revivify",
+      "srd:spell:scrying",
+      "srd:spell:shapechange",
+      "srd:spell:shillelagh",
+      "srd:spell:sleet-storm",
+      "srd:spell:spare-the-dying",
+      "srd:spell:speak-with-animals",
+      "srd:spell:speak-with-plants",
+      "srd:spell:spike-growth",
+      "srd:spell:starry-wisp",
+      "srd:spell:stone-shape",
+      "srd:spell:stoneskin",
+      "srd:spell:storm-of-vengeance",
+      "srd:spell:sunbeam",
+      "srd:spell:sunburst",
+      "srd:spell:symbol",
+      "srd:spell:thunderwave",
+      "srd:spell:transport-via-plants",
+      "srd:spell:tree-stride",
+      "srd:spell:true-resurrection",
+      "srd:spell:tsunami",
+      "srd:spell:wall-of-fire",
+      "srd:spell:wall-of-stone",
+      "srd:spell:wall-of-thorns",
+      "srd:spell:water-breathing",
+      "srd:spell:water-walk",
+      "srd:spell:wind-walk",
+      "srd:spell:wind-wall"
+    ]
+  }
+}

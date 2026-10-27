@@ -191,6 +191,10 @@ final class PackStore {
           'hit_die': c.hitDie,
           'skill_choice_count': c.skillChoiceCount,
           'subclass_level': c.subclassLevel,
+          'spellcasting_ability_id': c.spellcastingAbility?.toString(),
+          'tool_proficiencies': jsonEncode(json['tool_proficiencies']),
+          'tool_choice_count': c.toolChoiceCount,
+          'tool_choice_category': json['tool_choice_category'],
         });
       case SubclassData(:final parentClass):
         row['parent_class_id'] = '$parentClass';
@@ -249,6 +253,9 @@ final class PackStore {
           });
         }
       case final ClassData c:
+        for (final spell in c.spellList) {
+          child('spell_class', {'spell_id': '$spell', 'class_id': id});
+        }
         for (final l in c.levels) {
           child('class_level', {
             'class_id': id,
@@ -360,6 +367,7 @@ final class PackStore {
     );
     final traits = await grouped('species_trait', 'species_id', 'position');
     final levels = await grouped('class_level', 'class_id', 'level');
+    final spellLists = await grouped('spell_class', 'class_id', 'spell_id');
     final subFeatures = await grouped(
       'subclass_feature',
       'subclass_id',
@@ -459,6 +467,13 @@ final class PackStore {
               'hit_die': row['hit_die'],
               'skill_choice_count': row['skill_choice_count'],
               'subclass_level': row['subclass_level'],
+              'spell_list': [for (final r in of(spellLists)) r['spell_id']],
+              'spellcasting_ability': row['spellcasting_ability_id'],
+              'tool_proficiencies': jsonDecode(
+                row['tool_proficiencies']! as String,
+              ),
+              'tool_choice_count': row['tool_choice_count'],
+              'tool_choice_category': row['tool_choice_category'],
               'levels': [
                 for (final l in of(levels))
                   {

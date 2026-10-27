@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:druid-improved-elemental-fury",
+  "type": "feature",
+  "name": "Fureur élémentaire améliorée",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 15
+  },
+  "text": {
+    "fr": "L’option retenue pour votre Fureur élémentaire se renforce, comme suit.\nIncantation puissante. Lorsque vous lancez un sort mineur de Druide avec une portée de 3 m ou plus, cette portée augmente de 90 m.\nAttaques primitives. Les dégâts supplémentaires d’Attaques primitives passent à 2d8."
+  }
+}

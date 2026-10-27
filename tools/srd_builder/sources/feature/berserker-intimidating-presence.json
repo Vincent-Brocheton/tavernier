@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:berserker-intimidating-presence",
+  "type": "feature",
+  "name": "Présence intimidante",
+  "data": {
+    "source": "srd:subclass:path-of-the-berserker",
+    "level": 14
+  },
+  "text": {
+    "fr": "Par une action Bonus, vous pouvez inspirer la terreur chez autrui grâce à votre présence et votre puissance primale. Ce faisant, chaque créature de votre choix dans une Émanation de 9 m centrée sur vous effectue un jet de sauvegarde de Sagesse (DD 8 plus votre modificateur de Force et votre bonus de maîtrise). En cas d’échec, la créature subit l’état Effrayé pendant 1 minute. À la fin de chacun des tours d’une créature Effrayée, celle-ci réitère le JS et met un terme à l’effet sur elle-même en cas de réussite.\nUne fois cette aptitude utilisée, vous devez terminer un Repos long ou dépenser une utilisation de votre Rage (pas d’action requise) pour en récupérer l’usage."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:evoker",
+  "type": "subclass",
+  "name": "Évocateur",
+  "data": {
+    "parent_class": "srd:class:wizard",
+    "features": [
+      "srd:feature:evoker-evocation-savant",
+      "srd:feature:evoker-potent-cantrip",
+      "srd:feature:evoker-sculpt-spells",
+      "srd:feature:evoker-empowered-evocation",
+      "srd:feature:evoker-overchannel"
+    ]
+  },
+  "text": {
+    "fr": "Créez des effets élémentaires détonants\nVos études magiques ont essentiellement porté sur les effets élémentaires les plus puissants : gel intense, flammes ardentes, tonnerre roulant, crépitements de la foudre et corrosions de l’acide. Certains évocateurs œuvrent au service d’armées comme artilleurs spécialisés. D’autres utilisent leur pouvoir pour protéger autrui, tandis que d’autres encore cherchent avant tout à briller."
+  }
+}

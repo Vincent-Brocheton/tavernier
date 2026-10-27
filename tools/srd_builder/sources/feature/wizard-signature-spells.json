@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:wizard-signature-spells",
+  "type": "feature",
+  "name": "Sorts de prédilection",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 20
+  },
+  "text": {
+    "fr": "Choisissez deux sorts de Magicien du 3e niveau de votre grimoire comme sorts de prédilection. Ces sorts sont considérés comme toujours préparés pour vous, et vous pouvez les lancer une fois chacun au 3e niveau sans dépenser d’emplacement de sort. Après cela, vous devez terminer un Repos court ou long avant de pouvoir les relancer sans emplacement. Si vous souhaitez les lancer à un niveau supérieur, vous devez toutefois dépenser un emplacement de sort."
+  }
+}

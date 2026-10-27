@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:evoker-potent-cantrip",
+  "type": "feature",
+  "name": "Sort mineur appuyé",
+  "data": {
+    "source": "srd:subclass:evoker",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vos sorts mineurs restent redoutables pour les créatures qui croyaient s’y soustraire. Lorsque vous lancez un sort mineur sur une créature et que vous ratez votre jet d’attaque ou que la cible réussit son jet de sauvegarde, celle-ci subit la moitié des dégâts éventuels du sort mineur mais aucun effet supplémentaire de ce dernier."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:wizard-ritual-adept",
+  "type": "feature",
+  "name": "Savoir rituel",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous pouvez lancer comme rituel un sort qui porte la mention « rituel » et figure dans votre grimoire. Il n’est pas nécessaire d’avoir préparé ce sort, mais vous devez le lire depuis votre grimoire pour lancer un sort ainsi."
+  }
+}

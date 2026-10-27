@@ -1,0 +1,17 @@
+{
+  "id": "srd:subclass:college-of-lore",
+  "type": "subclass",
+  "name": "Collège du Savoir",
+  "data": {
+    "parent_class": "srd:class:bard",
+    "features": [
+      "srd:feature:lore-bonus-proficiencies",
+      "srd:feature:lore-cutting-words",
+      "srd:feature:lore-magical-discoveries",
+      "srd:feature:lore-peerless-skill"
+    ]
+  },
+  "text": {
+    "fr": "Sondez les profondeurs du savoir magique\nLes Bardes du Collège du Savoir récoltent leurs sorts et secrets de sources aussi diverses que les tomes académiques, les rites mystiques et les contes paysans. Les membres du collège se réunissent au sein de bibliothèques et universités pour s’échanger leurs trésors de sapience. Ils se rencontrent aussi à l’occasion de festivals ou lors d’une réunion entre gens de pouvoir, où il leur est loisible de dénoncer la corruption, de démêler les mensonges et de railler ces figures d’autorité gonflées d’importance."
+  }
+}

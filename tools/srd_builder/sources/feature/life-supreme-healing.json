@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:life-supreme-healing",
+  "type": "feature",
+  "name": "Guérison suprême",
+  "data": {
+    "source": "srd:subclass:life-domain",
+    "level": 17
+  },
+  "text": {
+    "fr": "Quand vous êtes censé lancer un ou plusieurs dés pour restituer des points de vie à une créature par le biais d’un sort ou d’un Conduit divin, ne lancez pas les dés pour les soins ; au lieu de cela, prenez la valeur maximale pour chaque dé. Au lieu de rendre 2d6 points de vie à une créature, par exemple, vous lui en restituez 12."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:land-natures-sanctuary",
+  "type": "feature",
+  "name": "Sanctuaire de dame Nature",
+  "data": {
+    "source": "srd:subclass:circle-of-the-land",
+    "level": 14
+  },
+  "text": {
+    "fr": "Au prix de l’action Magie, vous pouvez dépenser une utilisation de Forme sauvage pour faire apparaître au sol des plantes grimpantes et arbres spectraux dans un Cube de 4,50 m, dans un rayon de 36 m de vous. Ces végétaux spectraux persistent pendant 1 minute, mais disparaissent prématurément si vous subissez l’état Neutralisé ou mourez. Vous et vos alliés bénéficiez d’un Abri partiel dans la zone et vos alliés reçoivent la Résistance que vous octroie actuellement Protégé de dame Nature tant qu’ils restent dans la zone.\nPar une action Bonus, vous pouvez déplacer au sol le Cube d’un maximum de 18 m, à condition qu’il reste dans un rayon de 36 m de vous."
+  }
+}

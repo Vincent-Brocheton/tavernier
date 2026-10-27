@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:sorcerer-arcane-apotheosis",
+  "type": "feature",
+  "name": "Apothéose arcanique",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 20
+  },
+  "text": {
+    "fr": "Tant que votre aptitude Sorcellerie innée est active, vous pouvez recourir à une option de Métamagie à chacun de vos tours sans dépenser de points de Sorcellerie."
+  }
+}

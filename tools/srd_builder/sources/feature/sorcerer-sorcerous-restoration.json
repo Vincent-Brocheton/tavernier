@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:sorcerer-sorcerous-restoration",
+  "type": "feature",
+  "name": "Restauration ensorcelée",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:sorcerous-restoration",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "En terminant un Repos court, vous récupérez les points de Sorcellerie dépensés à concurrence de la moitié de votre niveau d’Ensorceleur (arrondir à l’inférieur). Une fois cette aptitude utilisée, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

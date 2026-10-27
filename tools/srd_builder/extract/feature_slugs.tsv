@@ -1,0 +1,106 @@
+# classe ou sous-classe	nom français (section ou table)	niveau	slug du nom officiel anglais
+barbarian	Rage	1	barbarian-rage
+barbarian	Défense sans armure	1	barbarian-unarmored-defense
+barbarian	Bottes d’arme	1	barbarian-weapon-mastery
+barbarian	Sens du danger	2	barbarian-danger-sense
+barbarian	Témérité	2	barbarian-reckless-attack
+barbarian	Sous-classe de Barbare	3	barbarian-subclass
+barbarian	Savoir primal	3	barbarian-primal-knowledge
+barbarian	Amélioration de caractéristique	4	barbarian-ability-score-improvement
+barbarian	Attaque supplémentaire	5	barbarian-extra-attack
+barbarian	Déplacement rapide	5	barbarian-fast-movement
+barbarian	Instinct sauvage	7	barbarian-feral-instinct
+barbarian	Bond instinctif	7	barbarian-instinctive-pounce
+barbarian	Bond agressif	7	barbarian-instinctive-pounce
+barbarian	Coup brutal	9	barbarian-brutal-strike
+barbarian	Rage implacable	11	barbarian-relentless-rage
+barbarian	Coup brutal amélioré	13	barbarian-improved-brutal-strike-13
+barbarian	Rage persistante	15	barbarian-persistent-rage
+barbarian	Coup brutal amélioré	17	barbarian-improved-brutal-strike-17
+barbarian	Puissance indomptable	18	barbarian-indomitable-might
+barbarian	Faveur épique	19	barbarian-epic-boon
+barbarian	Champion primitif	20	barbarian-primal-champion
+path-of-the-berserker	Frénésie	3	berserker-frenzy
+path-of-the-berserker	Rage aveugle	6	berserker-mindless-rage
+path-of-the-berserker	Représailles	10	berserker-retaliation
+path-of-the-berserker	Présence intimidante	14	berserker-intimidating-presence
+bard	Inspiration bardique	1	bard-bardic-inspiration
+bard	Sorts	1	bard-spellcasting
+bard	Expertise	2	bard-expertise
+bard	Touche-à-tout	2	bard-jack-of-all-trades
+bard	Sous-classe de Barde	3	bard-subclass
+bard	Amélioration de caractéristique	4	bard-ability-score-improvement
+bard	Source d’inspiration	5	bard-font-of-inspiration
+bard	Contre-charme	7	bard-countercharm
+bard	Secrets magiques	10	bard-magical-secrets
+bard	Inspiration supérieure	18	bard-superior-inspiration
+bard	Faveur épique	19	bard-epic-boon
+bard	Verbe de la création	20	bard-words-of-creation
+college-of-lore	Maîtrises supplémentaires	3	lore-bonus-proficiencies
+college-of-lore	Mots cinglants	3	lore-cutting-words
+college-of-lore	Découvertes magiques	6	lore-magical-discoveries
+college-of-lore	Compétence hors pair	14	lore-peerless-skill
+cleric	Sorts	1	cleric-spellcasting
+cleric	Ordre divin	1	cleric-divine-order
+cleric	Conduit divin	2	cleric-channel-divinity
+cleric	Sous-classe de Clerc	3	cleric-subclass
+cleric	Amélioration de caractéristique	4	cleric-ability-score-improvement
+cleric	Calcination de Mort-vivant	5	cleric-sear-undead
+cleric	Impacts bénis	7	cleric-blessed-strikes
+cleric	Intervention divine	10	cleric-divine-intervention
+cleric	Impacts bénis améliorés	14	cleric-improved-blessed-strikes
+cleric	Faveur épique	19	cleric-epic-boon
+cleric	Intervention divine suprême	20	cleric-greater-divine-intervention
+life-domain	Disciple de la Vie	3	life-disciple-of-life
+life-domain	Sorts du Domaine de la Vie	3	life-domain-spells
+life-domain	Survivance	3	life-preserve-life
+life-domain	Guérisseur béni	6	life-blessed-healer
+life-domain	Guérison suprême	17	life-supreme-healing
+druid	Sorts	1	druid-spellcasting
+druid	Druidique	1	druid-druidic
+druid	Ordre primitif	1	druid-primal-order
+druid	Forme sauvage	2	druid-wild-shape
+druid	Compagnon sauvage	2	druid-wild-companion
+druid	Sous-classe de Druide	3	druid-subclass
+druid	Amélioration de caractéristique	4	druid-ability-score-improvement
+druid	Regain sauvage	5	druid-wild-resurgence
+druid	Fureur élémentaire	7	druid-elemental-fury
+druid	Fureur élémentaire améliorée	15	druid-improved-elemental-fury
+druid	Incantation animale	18	druid-beast-spells
+druid	Faveur épique	19	druid-epic-boon
+druid	Archidruide	20	druid-archdruid
+circle-of-the-land	Sorts du Cercle de la Terre	3	land-circle-spells
+circle-of-the-land	Aval de la terre	3	land-lands-aid
+circle-of-the-land	Ressourcement	6	land-natural-recovery
+circle-of-the-land	Protégé de dame Nature	10	land-natures-ward
+circle-of-the-land	Sanctuaire de dame Nature	14	land-natures-sanctuary
+sorcerer	Sorts	1	sorcerer-spellcasting
+sorcerer	Sorcellerie innée	1	sorcerer-innate-sorcery
+sorcerer	Réserve arcanique	2	sorcerer-font-of-magic
+sorcerer	Métamagie	2	sorcerer-metamagic
+sorcerer	Sous-classe d’Ensorceleur	3	sorcerer-subclass
+sorcerer	Amélioration de caractéristique	4	sorcerer-ability-score-improvement
+sorcerer	Restauration ensorcelée	5	sorcerer-sorcerous-restoration
+sorcerer	Sorcellerie incarnée	7	sorcerer-sorcery-incarnate
+sorcerer	Faveur épique	19	sorcerer-epic-boon
+sorcerer	Apothéose arcanique	20	sorcerer-arcane-apotheosis
+draconic-sorcery	Résistance draconique	3	draconic-draconic-resilience
+draconic-sorcery	Sorts draconiques	3	draconic-draconic-spells
+draconic-sorcery	Affinité élémentaire	6	draconic-elemental-affinity
+draconic-sorcery	Ailes draconiques	14	draconic-dragon-wings
+draconic-sorcery	Compagnon draconique	18	draconic-dragon-companion
+wizard	Sorts	1	wizard-spellcasting
+wizard	Savoir rituel	1	wizard-ritual-adept
+wizard	Restauration magique	1	wizard-arcane-recovery
+wizard	Érudition	2	wizard-scholar
+wizard	Sous-classe de Magicien	3	wizard-subclass
+wizard	Amélioration de caractéristique	4	wizard-ability-score-improvement
+wizard	Mémorisation de sort	5	wizard-memorize-spell
+wizard	Maîtrise des sorts	18	wizard-spell-mastery
+wizard	Faveur épique	19	wizard-epic-boon
+wizard	Sorts de prédilection	20	wizard-signature-spells
+evoker	Évocateur érudit	3	evoker-evocation-savant
+evoker	Sort mineur appuyé	3	evoker-potent-cantrip
+evoker	Façonneur de sorts	6	evoker-sculpt-spells
+evoker	Évocation améliorée	10	evoker-empowered-evocation
+evoker	Surcharge magique	14	evoker-overchannel

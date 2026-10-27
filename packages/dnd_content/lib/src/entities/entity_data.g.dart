@@ -565,6 +565,11 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'armor_training',
         'subclass_level',
         'levels',
+        'spell_list',
+        'spellcasting_ability',
+        'tool_proficiencies',
+        'tool_choice_count',
+        'tool_choice_category',
       ],
     );
     final val = _ClassData(
@@ -609,6 +614,37 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
             .map((e) => ClassLevelData.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
+      spellList: $checkedConvert(
+        'spell_list',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      spellcastingAbility: $checkedConvert(
+        'spellcasting_ability',
+        (v) => _$JsonConverterFromJson<String, ContentId>(
+          v,
+          const ContentIdConverter().fromJson,
+        ),
+      ),
+      toolProficiencies: $checkedConvert(
+        'tool_proficiencies',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      toolChoiceCount: $checkedConvert(
+        'tool_choice_count',
+        (v) => (v as num?)?.toInt() ?? 0,
+      ),
+      toolChoiceCategory: $checkedConvert(
+        'tool_choice_category',
+        (v) => $enumDecodeNullable(_$ToolCategoryEnumMap, v),
+      ),
     );
     return val;
   },
@@ -621,27 +657,45 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     'weaponProficiencies': 'weapon_proficiencies',
     'armorTraining': 'armor_training',
     'subclassLevel': 'subclass_level',
+    'spellList': 'spell_list',
+    'spellcastingAbility': 'spellcasting_ability',
+    'toolProficiencies': 'tool_proficiencies',
+    'toolChoiceCount': 'tool_choice_count',
+    'toolChoiceCategory': 'tool_choice_category',
   },
 );
 
-Map<String, dynamic> _$ClassDataToJson(_ClassData instance) =>
-    <String, dynamic>{
-      'primary_abilities': instance.primaryAbilities
-          .map(const ContentIdConverter().toJson)
-          .toList(),
-      'hit_die': instance.hitDie,
-      'saving_throws': instance.savingThrows
-          .map(const ContentIdConverter().toJson)
-          .toList(),
-      'skill_choice_count': instance.skillChoiceCount,
-      'skill_choices': instance.skillChoices
-          .map(const ContentIdConverter().toJson)
-          .toList(),
-      'weapon_proficiencies': instance.weaponProficiencies,
-      'armor_training': instance.armorTraining,
-      'subclass_level': instance.subclassLevel,
-      'levels': instance.levels.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$ClassDataToJson(
+  _ClassData instance,
+) => <String, dynamic>{
+  'primary_abilities': instance.primaryAbilities
+      .map(const ContentIdConverter().toJson)
+      .toList(),
+  'hit_die': instance.hitDie,
+  'saving_throws': instance.savingThrows
+      .map(const ContentIdConverter().toJson)
+      .toList(),
+  'skill_choice_count': instance.skillChoiceCount,
+  'skill_choices': instance.skillChoices
+      .map(const ContentIdConverter().toJson)
+      .toList(),
+  'weapon_proficiencies': instance.weaponProficiencies,
+  'armor_training': instance.armorTraining,
+  'subclass_level': instance.subclassLevel,
+  'levels': instance.levels.map((e) => e.toJson()).toList(),
+  'spell_list': instance.spellList
+      .map(const ContentIdConverter().toJson)
+      .toList(),
+  'spellcasting_ability': ?_$JsonConverterToJson<String, ContentId>(
+    instance.spellcastingAbility,
+    const ContentIdConverter().toJson,
+  ),
+  'tool_proficiencies': instance.toolProficiencies
+      .map(const ContentIdConverter().toJson)
+      .toList(),
+  'tool_choice_count': instance.toolChoiceCount,
+  'tool_choice_category': ?_$ToolCategoryEnumMap[instance.toolChoiceCategory],
+};
 
 _SubclassData _$SubclassDataFromJson(Map<String, dynamic> json) =>
     $checkedCreate('_SubclassData', json, ($checkedConvert) {

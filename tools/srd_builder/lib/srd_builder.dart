@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:dnd_content/dnd_content.dart';
 
+import 'src/class_extractor.dart';
 import 'src/source_loader.dart';
 import 'src/spell_extractor.dart';
 
@@ -58,7 +59,32 @@ int run(List<String> arguments, StringSink out, StringSink err) {
   final parser = ArgParser()
     ..addFlag('help', abbr: 'h', negatable: false, help: "Affiche l'aide.")
     ..addCommand('build', build)
-    ..addCommand('extract-spells', extractSpells);
+    ..addCommand('extract-spells', extractSpells)
+    ..addCommand(
+      'extract-classes',
+      ArgParser()
+        ..addOption(
+          'text',
+          mandatory: true,
+          help: 'Texte du PDF en ordre de lecture (pdftotext -enc UTF-8).',
+        )
+        ..addOption(
+          'layout',
+          defaultsTo: 'docs/srd/FR_SRD_CC_v5.2.1.txt',
+          help: 'Texte du PDF en mise en page (tables de progression).',
+        )
+        ..addMultiOption('class', help: 'Slug de classe (toutes si absent).')
+        ..addOption(
+          'sources',
+          defaultsTo: defaultSources,
+          help: 'Dossier des sources JSON.',
+        )
+        ..addOption(
+          'report',
+          defaultsTo: 'build/extract-classes.txt',
+          help: 'Aptitudes créées et raccords, à relire.',
+        ),
+    );
 
   final ArgResults results;
   try {
@@ -80,6 +106,28 @@ int run(List<String> arguments, StringSink out, StringSink err) {
       ..writeln('       srd_builder extract-spells --text <fichier>')
       ..writeln(extractSpells.usage);
     return 0;
+  }
+  if (command.name == 'extract-classes') {
+    final report = StringBuffer();
+    final problems = extractClasses(
+      readingOrder: File(command.option('text')!).readAsStringSync(),
+      layout: File(command.option('layout')!).readAsStringSync(),
+      slugs: readFeatureSlugs(
+        File('tools/srd_builder/extract/feature_slugs.tsv'),
+      ),
+      spellClasses: readSpellClasses(
+        File('tools/srd_builder/extract/spell_classes.tsv'),
+      ),
+      sources: command.option('sources')!,
+      report: report,
+      only: command.multiOption('class').toSet(),
+    );
+    File(command.option('report')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(report.toString());
+    problems.forEach(err.writeln);
+    out.writeln('Rapport : ${command.option('report')}.');
+    return problems.isEmpty ? 0 : 1;
   }
   if (command.name == 'extract-spells') {
     return _extractSpells(command, out, err);

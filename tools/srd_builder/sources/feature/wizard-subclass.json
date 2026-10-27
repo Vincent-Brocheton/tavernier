@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:wizard-subclass",
+  "type": "feature",
+  "name": "Sous-classe de Magicien",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe de Magicien de votre choix. La sous-classe Évocateur est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux de Magicien. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel de Magicien."
+  }
+}

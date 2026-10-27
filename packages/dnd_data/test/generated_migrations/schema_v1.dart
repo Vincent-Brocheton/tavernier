@@ -1881,6 +1881,43 @@ class PlayerClass extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> spellcastingAbilityId =
+      GeneratedColumn<String>(
+        'spellcasting_ability_id',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        $customConstraints: 'NULL',
+      );
+  late final GeneratedColumn<String> toolProficiencies =
+      GeneratedColumn<String>(
+        'tool_proficiencies',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        $customConstraints: 'NOT NULL DEFAULT \'[]\'',
+        defaultValue: const CustomExpression('\'[]\''),
+      );
+  late final GeneratedColumn<int> toolChoiceCount = GeneratedColumn<int>(
+    'tool_choice_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  late final GeneratedColumn<String> toolChoiceCategory =
+      GeneratedColumn<String>(
+        'tool_choice_category',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        $customConstraints: 'NULL',
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1895,6 +1932,10 @@ class PlayerClass extends Table with TableInfo {
     weaponProficiencies,
     armorTraining,
     subclassLevel,
+    spellcastingAbilityId,
+    toolProficiencies,
+    toolChoiceCount,
+    toolChoiceCategory,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;

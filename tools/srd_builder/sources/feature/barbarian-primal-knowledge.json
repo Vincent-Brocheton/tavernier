@@ -1,0 +1,63 @@
+{
+  "id": "srd:feature:barbarian-primal-knowledge",
+  "type": "feature",
+  "name": "Savoir primal",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "barbarian-primal-knowledge",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:animal-handling"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:athletics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:intimidation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:survival"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez la maîtrise d’une autre compétence de votre choix dans la liste de compétences disponibles aux Barbares de niveau 1.\nDe plus, tant que votre Rage est active, vous pouvez canaliser les énergies primales lorsque vous tentez certaines tâches ; chaque fois que vous effectuez un test de caractéristique avec l’une des compétences suivantes, vous pouvez en faire un test de Force même s’il s’agit normalement d’une autre caractéristique : Acrobaties, Discrétion, Intimidation, Perception et Survie. Lorsque vous recourez à cette aptitude, votre Force illustre les énergies primales qui vous animent, et affûtent vos sens, votre aplomb et votre agilité."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-indomitable-might",
+  "type": "feature",
+  "name": "Puissance indomptable",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 18
+  },
+  "text": {
+    "fr": "Si le total que vous obtenez lors d’un test ou jet de sauvegarde de Force est inférieur à votre valeur de Force, vous pouvez utiliser celle-ci à la place du total obtenu."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "srd:subclass:path-of-the-berserker",
+  "type": "subclass",
+  "name": "Voie du Berserker",
+  "data": {
+    "parent_class": "srd:class:barbarian",
+    "features": [
+      "srd:feature:berserker-frenzy",
+      "srd:feature:berserker-mindless-rage",
+      "srd:feature:berserker-retaliation",
+      "srd:feature:berserker-intimidating-presence"
+    ]
+  },
+  "text": {
+    "fr": "Convertissez la Rage en déchaînement de violence\nLes Barbares qui empruntent la Voie du Berserker transforment l’essentiel de leur Rage en violence. C’est la voie de la fureur débridée, dans laquelle on se laisse dominer et animer par la Rage pour s’abandonner dans le chaos des batailles."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "srd:feature:life-domain-spells",
+  "type": "feature",
+  "name": "Sorts du Domaine de la Vie",
+  "data": {
+    "source": "srd:subclass:life-domain",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:aid",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:bless",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:cure-wounds",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:lesser-restoration",
+      "always_prepared": true,
+      "when": {
+        "level": 3
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:mass-healing-word",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:revivify",
+      "always_prepared": true,
+      "when": {
+        "level": 5
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:aura-of-life",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:death-ward",
+      "always_prepared": true,
+      "when": {
+        "level": 7
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:greater-restoration",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:mass-cure-wounds",
+      "always_prepared": true,
+      "when": {
+        "level": 9
+      }
+    }
+  ],
+  "text": {
+    "fr": "Votre lien au domaine divin veille à ce que certains de vos sorts soient toujours préparés. Lorsque vous atteignez un niveau de clerc spécifié dans la table Sorts du Domaine de la Vie, les sorts qui y figurent sont toujours préparés pour vous."
+  }
+}

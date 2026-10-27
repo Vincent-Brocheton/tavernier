@@ -1,0 +1,24 @@
+{
+  "id": "srd:feature:lore-magical-discoveries",
+  "type": "feature",
+  "name": "Découvertes magiques",
+  "data": {
+    "source": "srd:subclass:college-of-lore",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "grant_spell_list_access",
+      "class_lists": [
+        "srd:class:cleric",
+        "srd:class:druid",
+        "srd:class:wizard"
+      ],
+      "count": 2,
+      "max_level": 9
+    }
+  ],
+  "text": {
+    "fr": "Vous apprenez deux sorts de votre choix. Chacun de ces sorts peut être issu de la liste du Clerc, du Druide ou du Magicien (ces listes se trouvent chacune dans la section de chaque classe correspondante). Chaque sort retenu doit être un sort mineur ou d’un niveau pour lequel vous disposez d’au moins un emplacement, comme indiqué dans la table Aptitudes du Barde.\nCes sorts sont toujours préparés en ce qui vous concerne. Chaque fois que vous gagnez un niveau de Barde, vous pouvez remplacer l’un des sorts par un autre sort remplissant ces conditions."
+  }
+}
