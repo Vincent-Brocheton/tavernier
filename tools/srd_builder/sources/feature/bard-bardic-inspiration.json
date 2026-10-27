@@ -1,0 +1,37 @@
+{
+  "id": "srd:feature:bard-bardic-inspiration",
+  "type": "feature",
+  "name": "Inspiration bardique",
+  "data": {
+    "source": "srd:class:bard",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:bardic-inspiration",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "cha",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ],
+      "die": {
+        "by_level": {
+          "1": "d6",
+          "5": "d8",
+          "10": "d10",
+          "15": "d12"
+        }
+      }
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez inspirer autrui, surnaturellement, par vos paroles, votre musique ou vos danses. Cette inspiration est représentée par votre dé d’Inspiration bardique, un d6.\nUtilisation de l’Inspiration bardique. Par une action Bonus, vous pouvez inspirer une autre créature qui vous voit ou vous entend dans un rayon de 18 m. Cette créature reçoit l’un de vos dés d’Inspiration bardique. Une même créature ne peut pas disposer de plus d’un dé d’Inspiration bardique à la fois.\nUne fois au cours de l’heure à venir, lorsque la créature rate un Test d20, elle peut lancer le dé d’Inspiration bardique pour en ajouter le résultat au Test d20, ce qui peut convertir l’échec en réussite. Le dé d’Inspiration bardique est dépensé dès qu’il est lancé.\nNombre d’utilisations. Vous pouvez conférer l’Inspiration bardique autant de fois que votre modificateur de Charisme (minimum d’une fois) et vous récupérez ce quota en terminant un Repos long.\nÀ plus haut niveau. Votre dé d’Inspiration bardique change lorsque vous atteignez certains niveaux de Barde, comme indiqué à la colonne Dé d’inspiration de la table « Aptitudes du Barde ». Le dé devient un d8 au niveau 5, un d10 au niveau 10 et un d12 au niveau 15."
+  }
+}

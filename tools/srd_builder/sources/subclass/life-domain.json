@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:life-domain",
+  "type": "subclass",
+  "name": "Domaine de la Vie",
+  "data": {
+    "parent_class": "srd:class:cleric",
+    "features": [
+      "srd:feature:life-disciple-of-life",
+      "srd:feature:life-domain-spells",
+      "srd:feature:life-preserve-life",
+      "srd:feature:life-blessed-healer",
+      "srd:feature:life-supreme-healing"
+    ]
+  },
+  "text": {
+    "fr": "Apaisez les peines de ce monde\nLe Domaine de la Vie se concentre sur les énergies positives qui préservent toute vie à travers le multivers. Les Clercs qui puisent dans ce domaine excellent en guérison, en profitant de cette force vitale pour soigner de nombreuses blessures.\nL’existence même compte sur les énergies positives associées à ce domaine, si bien que tout Clerc, quelle que soit sa confession, peut le choisir. Ce domaine est grandement associé aux divinités agricoles, aux dieux de la guérison ou de l’endurance, du foyer et de la communauté. Les ordres religieux dévoués aux soins prisent aussi la magie de ce domaine."
+  }
+}

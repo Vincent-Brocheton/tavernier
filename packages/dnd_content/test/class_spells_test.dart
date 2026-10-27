@@ -17,6 +17,9 @@ Map<String, Object?> _wizard({Map<String, Object?> data = const {}}) => {
     'weapon_proficiencies': ['simple'],
     'armor_training': <String>[],
     'subclass_level': 3,
+    'tool_proficiencies': <String>[],
+    'tool_choice_count': 0,
+    'spell_list': <String>[],
     'levels': [
       {
         'level': 1,
@@ -64,6 +67,26 @@ void main() {
     final data = entity.data as ClassData;
     expect(data.spellList, [ContentId.tryParse('srd:spell:fireball')]);
     expect(data.spellcastingAbility, ContentId.tryParse('srd:ability:int'));
+    expect(entity.toJson(), json);
+  });
+
+  test('maîtrises et choix d’outils (Druide, Barde)', () {
+    final json = _wizard(
+      data: {
+        'tool_proficiencies': ['srd:tool:herbalism-kit'],
+        'tool_choice_count': 3,
+        'tool_choice_category': 'musical_instrument',
+      },
+    );
+    final entity = parseEntity(json, 'class/x.json').entity!;
+    final data = entity.data as ClassData;
+    expect(data.toolProficiencies, [
+      ContentId.tryParse('srd:tool:herbalism-kit'),
+    ]);
+    expect(
+      (data.toolChoiceCount, data.toolChoiceCategory),
+      (3, ToolCategory.musicalInstrument),
+    );
     expect(entity.toJson(), json);
   });
 

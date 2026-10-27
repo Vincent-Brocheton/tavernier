@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-improved-brutal-strike-13",
+  "type": "feature",
+  "name": "Coup brutal amélioré",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 13
+  },
+  "text": {
+    "fr": "Vous avez développé de nouveaux coups féroces. Les effets ci-après figurent désormais dans vos options de Coup brutal.\nCoup stupéfiant. La cible a le Désavantage à son prochain jet de sauvegarde et ne peut pas effectuer d’attaque d’Opportunité jusqu’au début de votre tour suivant.\nCoup déchirant. Le prochain jet d’attaque effectué avant le début de votre tour suivant par une autre créature contre la cible bénéficie d’un bonus de +5. Un même jet d’attaque ne peut bénéficier que d’un seul bonus de Coup déchirant."
+  }
+}

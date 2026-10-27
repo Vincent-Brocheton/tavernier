@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:sorcerer-font-of-magic",
+  "type": "feature",
+  "name": "Réserve arcanique",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:sorcery-points",
+      "max": {
+        "ref": "class_level",
+        "class": "srd:class:sorcerer"
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez puiser dans la réserve de magie qui sommeille en vous. Cette réserve est figurée par des points de Sorcellerie, qui vous permettent de créer une variété d’effets magiques.\nVous disposez de 2 points de Sorcellerie et en recevez davantage à mesure que vous atteignez des niveaux plus élevés, comme indiqué en colonne Points de sorcellerie de la table « Aptitudes de l’Ensorceleur ». Vous ne pouvez pas avoir plus de points de Sorcellerie que ce qui est indiqué sur la table à votre niveau. Vous récupérez tous les points de Sorcellerie dépensés en terminant un Repos long.\nVous pouvez utiliser vos points de Sorcellerie pour alimenter les options ci-dessous, ainsi que d’autres aptitudes comme Métamagie, qui recourent à ces points.\nConversion d’emplacements de sort en points de Sorcellerie. Dépenser un emplacement de sort vous permet de recevoir un nombre de points de Sorcellerie égal au niveau de l’emplacement (pas d’action requise).\nCréation d’emplacements de sort. Par une action Bonus, vous pouvez transformer des points de Sorcellerie non dépensés en un emplacement de sort. La table « Création d’emplacements de sort » indique le coût de création d’un emplacement de sort selon son niveau, ainsi que le niveau minimum d’Ensorceleur requis pour créer un tel emplacement. Vous ne pouvez pas créer un emplacement de sort au-dessus du 5e niveau.\nTout emplacement de sort créé avec cette aptitude disparaît quand vous terminez un Repos long.\nCréation d’emplacements de sort\nNiveau d’emplacement de sort\nCoût en points de Sorcellerie\nNiveau d’Ensorceleur minimum"
+  }
+}

@@ -11,7 +11,7 @@
   - fusion qui garde `data` et `effects` d'un fichier existant.
 
   Puis la commande `extract-features`.
-- [ ] 2.2 `extract/feature_slugs.tsv` pour les 6 classes et sous-classes ; extraction des textes, relecture du rapport de raccords
+- [x] 2.2 `extract/feature_slugs.tsv` pour les 6 classes et sous-classes ; extraction des textes, relecture du rapport de raccords
 
 ## 3. Contenu
 

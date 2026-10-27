@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-relentless-rage",
+  "type": "feature",
+  "name": "Rage implacable",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 11
+  },
+  "text": {
+    "fr": "Votre Rage vous permet de continuer à combattre malgré les pires blessures. Si vous tombez à 0 point de vie alors que votre Rage est active et que vous ne mourez pas sur le coup, vous pouvez effectuer un jet de sauvegarde de Constitution DD 10. En cas de réussite, vos points de vie se retrouvent en fait au double de votre niveau de Barbare.\nPar la suite et chaque fois que vous réutilisez cette aptitude, le DD augmente de 5. Lorsque vous terminez un Repos court ou long, le DD retombe à 10."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:barbarian-persistent-rage",
+  "type": "feature",
+  "name": "Rage persistante",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 15
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:persistent-rage",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous jouez l’Initiative, vous pouvez récupérer toutes vos utilisations de Rage. Après avoir récupéré ainsi vos utilisations de Rage, vous devez terminer un Repos long pour pouvoir le refaire.\nDe plus, votre Rage est si féroce qu’elle persiste désormais 10 minutes sans vous demander de la prolonger activement de round en round. Votre Rage prend fin prématurément si vous subissez l’état Inconscient (l’état Neutralisé seul n’y met plus fin) ou si vous enfilez une armure lourde."
+  }
+}

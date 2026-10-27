@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-brutal-strike",
+  "type": "feature",
+  "name": "Coup brutal",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 9
+  },
+  "text": {
+    "fr": "Si vous recourez à Témérité, vous pouvez renoncer à l’Avantage pour un jet d’attaque basé sur la Force, de votre choix et à votre tour. Le jet d’attaque retenu ne doit pas avoir le Désavantage. Si ce jet d’attaque touche, la cible subit 1d10 dégâts supplémentaires du même type qu’infligé par l’arme ou à mains nues, et vous pouvez lui imposer l’effet de Coup brutal de votre choix. Vous disposez des options d’effet suivantes.\nCoup appuyé. La cible est repoussée de vous de 4,50 m, en ligne droite. Vous pouvez alors vous déplacer en ligne droite vers la cible à concurrence de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité.\nCoup au jarret. La Vitesse de la cible est réduite de 4,50 m jusqu’au début de votre tour suivant. Une même cible ne peut être affectée que par un seul Coup au jarret à la fois ; le plus récent."
+  }
+}

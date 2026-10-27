@@ -1,0 +1,22 @@
+{
+  "id": "srd:feature:evoker-empowered-evocation",
+  "type": "feature",
+  "name": "Évocation améliorée",
+  "data": {
+    "source": "srd:subclass:evoker",
+    "level": 10
+  },
+  "effects": [
+    {
+      "op": "modify_damage",
+      "scope": "spell_school:evocation",
+      "value": {
+        "ref": "ability_mod",
+        "ability": "int"
+      }
+    }
+  ],
+  "text": {
+    "fr": "Chaque fois que vous lancez un sort de Magicien de l’école de l’Évocation, vous pouvez ajouter votre modificateur d’Intelligence à un jet de dégâts de ce sort."
+  }
+}

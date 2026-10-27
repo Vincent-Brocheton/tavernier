@@ -1,0 +1,509 @@
+{
+  "id": "srd:class:sorcerer",
+  "type": "class",
+  "name": "Ensorceleur",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:charisma"
+    ],
+    "hit_die": 6,
+    "saving_throws": [
+      "srd:ability:constitution",
+      "srd:ability:charisma"
+    ],
+    "skill_choice_count": 2,
+    "skill_choices": [
+      "srd:skill:arcana",
+      "srd:skill:deception",
+      "srd:skill:insight",
+      "srd:skill:intimidation",
+      "srd:skill:persuasion",
+      "srd:skill:religion"
+    ],
+    "weapon_proficiencies": [
+      "simple"
+    ],
+    "armor_training": [],
+    "subclass_level": 3,
+    "spellcasting_ability": "srd:ability:charisma",
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:sorcerer-spellcasting",
+          "srd:feature:sorcerer-innate-sorcery"
+        ],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 2,
+          "slot_1": 2
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:sorcerer-font-of-magic",
+          "srd:feature:sorcerer-metamagic"
+        ],
+        "columns": {
+          "sorcery_points": 2,
+          "cantrips": 4,
+          "prepared_spells": 4,
+          "slot_1": 3
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:sorcerer-subclass"
+        ],
+        "columns": {
+          "sorcery_points": 3,
+          "cantrips": 4,
+          "prepared_spells": 6,
+          "slot_1": 4,
+          "slot_2": 2
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:sorcerer-ability-score-improvement"
+        ],
+        "columns": {
+          "sorcery_points": 4,
+          "cantrips": 5,
+          "prepared_spells": 7,
+          "slot_1": 4,
+          "slot_2": 3
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:sorcerer-sorcerous-restoration"
+        ],
+        "columns": {
+          "sorcery_points": 5,
+          "cantrips": 5,
+          "prepared_spells": 9,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 2
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "sorcery_points": 6,
+          "cantrips": 5,
+          "prepared_spells": 10,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:sorcerer-sorcery-incarnate"
+        ],
+        "columns": {
+          "sorcery_points": 7,
+          "cantrips": 5,
+          "prepared_spells": 11,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 1
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:sorcerer-ability-score-improvement"
+        ],
+        "columns": {
+          "sorcery_points": 8,
+          "cantrips": 5,
+          "prepared_spells": 12,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 2
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "sorcery_points": 9,
+          "cantrips": 5,
+          "prepared_spells": 14,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 1
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:sorcerer-metamagic"
+        ],
+        "columns": {
+          "sorcery_points": 10,
+          "cantrips": 6,
+          "prepared_spells": 15,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "sorcery_points": 11,
+          "cantrips": 6,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:sorcerer-ability-score-improvement"
+        ],
+        "columns": {
+          "sorcery_points": 12,
+          "cantrips": 6,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "sorcery_points": 13,
+          "cantrips": 6,
+          "prepared_spells": 17,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "sorcery_points": 14,
+          "cantrips": 6,
+          "prepared_spells": 17,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "sorcery_points": 15,
+          "cantrips": 6,
+          "prepared_spells": 18,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:sorcerer-ability-score-improvement"
+        ],
+        "columns": {
+          "sorcery_points": 16,
+          "cantrips": 6,
+          "prepared_spells": 18,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:sorcerer-metamagic"
+        ],
+        "columns": {
+          "sorcery_points": 17,
+          "cantrips": 6,
+          "prepared_spells": 19,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "sorcery_points": 18,
+          "cantrips": 6,
+          "prepared_spells": 20,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:sorcerer-epic-boon"
+        ],
+        "columns": {
+          "sorcery_points": 19,
+          "cantrips": 6,
+          "prepared_spells": 21,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:sorcerer-arcane-apotheosis"
+        ],
+        "columns": {
+          "sorcery_points": 20,
+          "cantrips": 6,
+          "prepared_spells": 22,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 2,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      }
+    ],
+    "spell_list": [
+      "srd:spell:acid-splash",
+      "srd:spell:alter-self",
+      "srd:spell:animate-objects",
+      "srd:spell:arcane-hand",
+      "srd:spell:banishment",
+      "srd:spell:blight",
+      "srd:spell:blindness-deafness",
+      "srd:spell:blink",
+      "srd:spell:blur",
+      "srd:spell:burning-hands",
+      "srd:spell:chain-lightning",
+      "srd:spell:charm-monster",
+      "srd:spell:charm-person",
+      "srd:spell:chill-touch",
+      "srd:spell:chromatic-orb",
+      "srd:spell:circle-of-death",
+      "srd:spell:clairvoyance",
+      "srd:spell:cloudkill",
+      "srd:spell:color-spray",
+      "srd:spell:comprehend-languages",
+      "srd:spell:cone-of-cold",
+      "srd:spell:confusion",
+      "srd:spell:counterspell",
+      "srd:spell:creation",
+      "srd:spell:dancing-lights",
+      "srd:spell:darkness",
+      "srd:spell:darkvision",
+      "srd:spell:daylight",
+      "srd:spell:delayed-blast-fireball",
+      "srd:spell:demiplane",
+      "srd:spell:detect-magic",
+      "srd:spell:detect-thoughts",
+      "srd:spell:dimension-door",
+      "srd:spell:disguise-self",
+      "srd:spell:disintegrate",
+      "srd:spell:dispel-magic",
+      "srd:spell:dominate-beast",
+      "srd:spell:dominate-monster",
+      "srd:spell:dominate-person",
+      "srd:spell:dragons-breath",
+      "srd:spell:earthquake",
+      "srd:spell:elementalism",
+      "srd:spell:enhance-ability",
+      "srd:spell:enlarge-reduce",
+      "srd:spell:etherealness",
+      "srd:spell:expeditious-retreat",
+      "srd:spell:eyebite",
+      "srd:spell:false-life",
+      "srd:spell:fear",
+      "srd:spell:feather-fall",
+      "srd:spell:finger-of-death",
+      "srd:spell:fire-bolt",
+      "srd:spell:fire-shield",
+      "srd:spell:fire-storm",
+      "srd:spell:fireball",
+      "srd:spell:flame-blade",
+      "srd:spell:flaming-sphere",
+      "srd:spell:flesh-to-stone",
+      "srd:spell:fly",
+      "srd:spell:fog-cloud",
+      "srd:spell:freezing-sphere",
+      "srd:spell:gaseous-form",
+      "srd:spell:gate",
+      "srd:spell:globe-of-invulnerability",
+      "srd:spell:grease",
+      "srd:spell:greater-invisibility",
+      "srd:spell:gust-of-wind",
+      "srd:spell:haste",
+      "srd:spell:hold-monster",
+      "srd:spell:hold-person",
+      "srd:spell:hypnotic-pattern",
+      "srd:spell:ice-knife",
+      "srd:spell:ice-storm",
+      "srd:spell:incendiary-cloud",
+      "srd:spell:insect-plague",
+      "srd:spell:invisibility",
+      "srd:spell:jump",
+      "srd:spell:knock",
+      "srd:spell:levitate",
+      "srd:spell:light",
+      "srd:spell:lightning-bolt",
+      "srd:spell:mage-armor",
+      "srd:spell:mage-hand",
+      "srd:spell:magic-missile",
+      "srd:spell:magic-weapon",
+      "srd:spell:major-image",
+      "srd:spell:mass-suggestion",
+      "srd:spell:mending",
+      "srd:spell:message",
+      "srd:spell:meteor-swarm",
+      "srd:spell:mind-spike",
+      "srd:spell:minor-illusion",
+      "srd:spell:mirror-image",
+      "srd:spell:misty-step",
+      "srd:spell:move-earth",
+      "srd:spell:phantasmal-force",
+      "srd:spell:plane-shift",
+      "srd:spell:poison-spray",
+      "srd:spell:polymorph",
+      "srd:spell:power-word-kill",
+      "srd:spell:power-word-stun",
+      "srd:spell:prestidigitation",
+      "srd:spell:prismatic-spray",
+      "srd:spell:protection-from-energy",
+      "srd:spell:ray-of-frost",
+      "srd:spell:ray-of-sickness",
+      "srd:spell:reverse-gravity",
+      "srd:spell:scorching-ray",
+      "srd:spell:see-invisibility",
+      "srd:spell:seeming",
+      "srd:spell:shatter",
+      "srd:spell:shield",
+      "srd:spell:shocking-grasp",
+      "srd:spell:silent-image",
+      "srd:spell:sleep",
+      "srd:spell:sleet-storm",
+      "srd:spell:slow",
+      "srd:spell:sorcerous-burst",
+      "srd:spell:spider-climb",
+      "srd:spell:stinking-cloud",
+      "srd:spell:stoneskin",
+      "srd:spell:suggestion",
+      "srd:spell:sunbeam",
+      "srd:spell:sunburst",
+      "srd:spell:telekinesis",
+      "srd:spell:teleport",
+      "srd:spell:teleportation-circle",
+      "srd:spell:thunderwave",
+      "srd:spell:time-stop",
+      "srd:spell:tongues",
+      "srd:spell:true-seeing",
+      "srd:spell:true-strike",
+      "srd:spell:vampiric-touch",
+      "srd:spell:vitriolic-sphere",
+      "srd:spell:wall-of-fire",
+      "srd:spell:wall-of-stone",
+      "srd:spell:water-breathing",
+      "srd:spell:water-walk",
+      "srd:spell:web",
+      "srd:spell:wish"
+    ]
+  }
+}

@@ -242,6 +242,15 @@ abstract class ClassData with _$ClassData implements EntityData {
 
     /// Caractéristique d'incantation des sorts de la classe.
     @ContentIdConverter() ContentId? spellcastingAbility,
+
+    /// Outils maîtrisés d'office (Druide : matériel d'herboriste).
+    @ContentIdConverter()
+    @Default(<ContentId>[])
+    List<ContentId> toolProficiencies,
+
+    /// Outils à choisir dans une catégorie (Barde : 3 instruments).
+    @Default(0) int toolChoiceCount,
+    ToolCategory? toolChoiceCategory,
   }) = _ClassData;
 
   factory ClassData.fromJson(Map<String, dynamic> json) =>

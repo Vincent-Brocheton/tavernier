@@ -1,0 +1,254 @@
+{
+  "id": "srd:feature:land-circle-spells",
+  "type": "feature",
+  "name": "Sorts du Cercle de la Terre",
+  "data": {
+    "source": "srd:subclass:circle-of-the-land",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "land-circle-spells",
+      "count": 1,
+      "replaceable_on": "long_rest",
+      "options": [
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:blur",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:burning-hands",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:fire-bolt",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:fireball",
+            "always_prepared": true,
+            "when": {
+              "level": 5
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:blight",
+            "always_prepared": true,
+            "when": {
+              "level": 7
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:wall-of-stone",
+            "always_prepared": true,
+            "when": {
+              "level": 9
+            }
+          },
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:fire",
+            "when": {
+              "level": 10
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:fog-cloud",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:hold-person",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:ray-of-frost",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:sleet-storm",
+            "always_prepared": true,
+            "when": {
+              "level": 5
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:ice-storm",
+            "always_prepared": true,
+            "when": {
+              "level": 7
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:cone-of-cold",
+            "always_prepared": true,
+            "when": {
+              "level": 9
+            }
+          },
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:cold",
+            "when": {
+              "level": 10
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:misty-step",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:shocking-grasp",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:sleep",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:lightning-bolt",
+            "always_prepared": true,
+            "when": {
+              "level": 5
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:freedom-of-movement",
+            "always_prepared": true,
+            "when": {
+              "level": 7
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:tree-stride",
+            "always_prepared": true,
+            "when": {
+              "level": 9
+            }
+          },
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:lightning",
+            "when": {
+              "level": 10
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:acid-splash",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:ray-of-sickness",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:web",
+            "always_prepared": true,
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:stinking-cloud",
+            "always_prepared": true,
+            "when": {
+              "level": 5
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:polymorph",
+            "always_prepared": true,
+            "when": {
+              "level": 7
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:insect-plague",
+            "always_prepared": true,
+            "when": {
+              "level": 9
+            }
+          },
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:poison",
+            "when": {
+              "level": 10
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Chaque fois que vous terminez un Repos long, choisissez un type d’environnement entre : aride, polaire, tempéré et tropical. Consultez parmi les tables ci-après celle qui correspond au type retenu ; les sorts énumérés pour votre niveau de druide et les niveaux inférieurs sont préparés en ce qui vous concerne.\nTerres arides\nNiveau de Druide Sorts de cercle flou, mains brûlantes, trait de feu boule de feu flétrissement mur de pierre\nTerres polaires\nNiveau de Druide Sorts de cercle immobilisation de personne, nappe de brouillard, rayon de givre tempête de neige tempête de grêle cône de froid\nTerres tempérées\nNiveau de\nDruide\nSorts de cercle foulée brumeuse, poigne électrique, sommeil éclair liberté de mouvement passage par les arbres\nTerres tropicales\nNiveau de Druide\nSorts de cercle aspersion acide, rayon empoisonné, toile d’araignée nuage nauséabond métamorphose fléau d’insectes"
+  }
+}

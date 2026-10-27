@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:sorcerer-spellcasting",
+  "type": "feature",
+  "name": "Sorts",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 1
+  },
+  "text": {
+    "fr": "C’est en puisant dans votre magie innée que vous lancez vos sorts. Reportez-vous à la section « Sorts » pour les règles d’incantation. Les informations ci-après expliquent comment utiliser ces règles avec les sorts d’Ensorceleur, qui figurent dans la liste Sorts d’Ensorceleur, plus loin dans le descriptif de la classe.\nSorts mineurs. Vous connaissez quatre sorts mineurs d’Ensorceleur de votre choix. Éruption ensorcelée, lumière, poigne électrique et prestidigitation sont recommandés. Chaque fois que vous gagnez un niveau d’Ensorceleur, vous pouvez remplacer l’un de vos sorts\n1er niveau. Détection de la magie et mains brûlantes sont recommandés.\nLe nombre de sorts de votre liste augmente à mesure que vous recevez des niveaux d’Ensorceleur, comme l’indique la colonne Sorts préparés de la table « Aptitudes de l’Ensorceleur ». Chaque fois que ce nombre augmente, choisissez des sorts d’Ensorceleur supplémentaires jusqu’à ce que le nombre de sorts de votre liste corresponde au nombre indiqué dans la table « Aptitudes de l’Ensorceleur ». Ces sorts doivent être d’un niveau pour lequel vous disposez d’emplacements de sort. Si, par exemple, vous êtes un\nEnsorceleur de niveau 3, votre liste de sorts préparés peut inclure six sorts d’Ensorceleur du 1er ou 2e niveau, répartis à votre guise.\nSi une autre aptitude d’Ensorceleur vous octroie des sorts toujours préparés, ces sorts ne sont pas décomptés du nombre de sorts que vous pouvez préparer avec la présente aptitude, mais ils sont considérés pour vous comme des sorts d’Ensorceleur.\nModification des sorts préparés. Chaque fois que vous gagnez un niveau d’Ensorceleur, vous pouvez remplacer un sort de votre liste par un autre sort d’Ensorceleur pour lequel vous disposez d’au moins un emplacement.\nCaractéristique d’incantation. Le Charisme est la caractéristique d’incantation de vos sorts d’Ensorceleur.\nFocaliseur d’incantation. Vous pouvez vous servir d’un focaliseur arcanique comme focaliseur d’incantation de vos sorts d’Ensorceleur."
+  }
+}

@@ -192,6 +192,9 @@ final class PackStore {
           'skill_choice_count': c.skillChoiceCount,
           'subclass_level': c.subclassLevel,
           'spellcasting_ability_id': c.spellcastingAbility?.toString(),
+          'tool_proficiencies': jsonEncode(json['tool_proficiencies']),
+          'tool_choice_count': c.toolChoiceCount,
+          'tool_choice_category': json['tool_choice_category'],
         });
       case SubclassData(:final parentClass):
         row['parent_class_id'] = '$parentClass';
@@ -466,6 +469,11 @@ final class PackStore {
               'subclass_level': row['subclass_level'],
               'spell_list': [for (final r in of(spellLists)) r['spell_id']],
               'spellcasting_ability': row['spellcasting_ability_id'],
+              'tool_proficiencies': jsonDecode(
+                row['tool_proficiencies']! as String,
+              ),
+              'tool_choice_count': row['tool_choice_count'],
+              'tool_choice_category': row['tool_choice_category'],
               'levels': [
                 for (final l in of(levels))
                   {

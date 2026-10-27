@@ -1,0 +1,31 @@
+{
+  "id": "srd:feature:draconic-draconic-resilience",
+  "type": "feature",
+  "name": "Résistance draconique",
+  "data": {
+    "source": "srd:subclass:draconic-sorcery",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "modify_hp_max",
+      "flat": 3,
+      "per_level": 1
+    },
+    {
+      "op": "ac_formula",
+      "base": 10,
+      "abilities": [
+        "dex",
+        "cha"
+      ],
+      "allows_shield": true,
+      "when": {
+        "armor": "none"
+      }
+    }
+  ],
+  "text": {
+    "fr": "La magie qui vous habite se manifeste sous la forme de traits propres à votre don draconique. Votre maximum de points de vie initial augmente de 3, puis de 1 chaque fois que vous gagnez un niveau supplémentaire d’Ensorceleur.\nCertaines parties de votre corps sont en outre couvertes d’écailles rappelant celles d’un dragon. Tant que vous ne portez pas d’armure, votre classe d’armure de base est égale à 10 + vos modificateurs de Dextérité et de Charisme."
+  }
+}

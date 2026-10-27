@@ -44,6 +44,9 @@ final _wizard = parseEntity({
       },
     ],
     'spell_list': ['srd:spell:fireball', 'srd:spell:raise-dead'],
+    'tool_proficiencies': ['srd:tool:herbalism-kit'],
+    'tool_choice_count': 3,
+    'tool_choice_category': 'musical_instrument',
     'spellcasting_ability': 'srd:ability:intelligence',
   },
 }, 'wizard').entity!;

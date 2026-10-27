@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:lore-cutting-words",
+  "type": "feature",
+  "name": "Mots cinglants",
+  "data": {
+    "source": "srd:subclass:college-of-lore",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous apprenez à déconcentrer, perturber et décourager autrui par votre sens surnaturel de la répartie. Lorsqu’une créature que vous voyez dans un rayon de 18 m effectue un jet de dégâts, ou bien réussit un test de caractéristique ou un jet d’attaque, vous pouvez jouer votre Réaction pour dépenser une utilisation de votre Inspiration bardique ; lancez votre dé d’Inspiration bardique que vous soustrayez au jet de la créature, afin de réduire les dégâts ou, éventuellement, de convertir sa réussite en échec."
+  }
+}

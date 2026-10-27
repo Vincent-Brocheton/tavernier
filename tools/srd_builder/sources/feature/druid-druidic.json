@@ -1,0 +1,24 @@
+{
+  "id": "srd:feature:druid-druidic",
+  "type": "feature",
+  "name": "Druidique",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_proficiency",
+      "kind": "language",
+      "ref": "srd:language:druidic"
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:speak-with-animals",
+      "always_prepared": true
+    }
+  ],
+  "text": {
+    "fr": "Vous connaissez le druidique, la langue secrète des Druides. En apprenant cette langue ancestrale, vous avez aussi percé les mystères magiques de la conversation animale ; le sort communication avec les animaux est toujours préparé en ce qui vous concerne.\nVous pouvez recourir au druidique pour laisser des messages cachés. Vous et tous ceux qui connaissent cet idiome repérez automatiquement de tels messages. D’autres peuvent aussi détecter la présence de tels signes en réussissant un test d’Intelligence (Investigation) DD 15, mais sont incapables d’en déchiffrer le sens."
+  }
+}

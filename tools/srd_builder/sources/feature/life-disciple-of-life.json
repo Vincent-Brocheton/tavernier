@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:life-disciple-of-life",
+  "type": "feature",
+  "name": "Disciple de la Vie",
+  "data": {
+    "source": "srd:subclass:life-domain",
+    "level": 3
+  },
+  "text": {
+    "fr": "Lorsqu’un sort que vous lancez par un emplacement restitue des points de vie à une créature, celle-ci récupère des points de vie supplémentaires au tour où vous lancez le sort. Ces points de vie supplémentaires sont égaux à 2 plus le niveau de l’emplacement de sort."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:sorcerer-sorcery-incarnate",
+  "type": "feature",
+  "name": "Sorcellerie incarnée",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 7
+  },
+  "text": {
+    "fr": "S’il ne vous reste aucune utilisation de Sorcellerie innée, vous pouvez y recourir en dépensant 2 points de Sorcellerie et l’activez par une action Bonus.\nEn outre et tant que votre aptitude Sorcellerie innée est active, vous pouvez utiliser jusqu’à deux de vos options de Métamagie pour chaque sort que vous lancez."
+  }
+}

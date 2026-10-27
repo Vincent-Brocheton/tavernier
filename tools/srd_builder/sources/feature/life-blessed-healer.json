@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:life-blessed-healer",
+  "type": "feature",
+  "name": "Guérisseur béni",
+  "data": {
+    "source": "srd:subclass:life-domain",
+    "level": 6
+  },
+  "text": {
+    "fr": "Les sorts de guérison que vous lancez sur autrui vous soignent également. Aussitôt après avoir lancé par un emplacement un sort qui restitue des points de vie à une ou plusieurs créatures autres que vous, vous récupérez un nombre de points de vie égal à 2 plus le niveau de l’emplacement."
+  }
+}

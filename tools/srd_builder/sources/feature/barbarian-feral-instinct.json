@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:barbarian-feral-instinct",
+  "type": "feature",
+  "name": "Instinct sauvage",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 7
+  },
+  "effects": [
+    {
+      "op": "modify_initiative",
+      "advantage": true
+    }
+  ],
+  "text": {
+    "fr": "Votre instinct s’est affûté au point que vous avez l’Avantage aux jets d’Initiative."
+  }
+}

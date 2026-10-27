@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:druid-archdruid",
+  "type": "feature",
+  "name": "Archidruide",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 20
+  },
+  "text": {
+    "fr": "La vitalité de la nature s’épanouit en vous, ce qui vous octroie les bénéfices suivants.\nForme sauvage immarcescible. Chaque fois que vous jouez l’Initiative alors que vous n’avez plus d’utilisation de Forme sauvage, vous en récupérez une utilisation.\nMage de dame Nature. Vous pouvez convertir des utilisations de Forme sauvage en emplacement de sort unique (pas d’action requise). Convertissez un certain nombre d’utilisations non dépensées de Forme sauvage en un seul emplacement de sort, chaque utilisation contribuant à 2 niveaux d’emplacement. Exemple : si vous convertissez deux utilisations de Forme sauvage, vous produisez un emplacement du 4e niveau. Une fois que vous avez utilisé ce bénéfice, vous devez terminer un Repos long pour pouvoir y recourir de nouveau.\nLongévité. La magie primitive que vous pratiquez ralentit votre vieillissement. Votre corps ne vieillit que d’un an par décennie."
+  }
+}

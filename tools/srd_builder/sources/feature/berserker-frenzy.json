@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:berserker-frenzy",
+  "type": "feature",
+  "name": "Frénésie",
+  "data": {
+    "source": "srd:subclass:path-of-the-berserker",
+    "level": 3
+  },
+  "text": {
+    "fr": "Si vous recourez à Témérité alors que votre Rage est active, vous infligez des dégâts supplémentaires à la première cible que vous touchez à votre tour avec une attaque basée sur la Force. Pour déterminer ces dégâts supplémentaires, lancez autant de d6 que votre bonus de Rage aux dégâts et faites-en la somme. Ces dégâts sont du même type que ceux de l’arme ou l’attaque à mains nues employée pour l’attaque."
+  }
+}

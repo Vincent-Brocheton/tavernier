@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:wizard-spell-mastery",
+  "type": "feature",
+  "name": "Maîtrise des sorts",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 18
+  },
+  "text": {
+    "fr": "Vous avez atteint une telle maîtrise de certains sorts que vous pouvez désormais les lancer à volonté. Choisissez un sort du 1er niveau et un sort du 2e niveau dans votre grimoire, dont le temps d’incantation est d’une action. Ces sorts sont considérés comme toujours préparés pour vous, et vous pouvez les lancer à leur niveau le plus bas sans dépenser d’emplacement de sort. Si vous souhaitez les lancer à un niveau supérieur, vous devez toutefois dépenser un emplacement de sort.\nChaque fois que vous terminez un Repos long, vous pouvez étudier votre grimoire et remplacer l’un de ces sorts par un sort conforme du même niveau tiré du grimoire."
+  }
+}

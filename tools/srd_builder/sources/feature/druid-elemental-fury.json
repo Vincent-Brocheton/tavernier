@@ -1,0 +1,32 @@
+{
+  "id": "srd:feature:druid-elemental-fury",
+  "type": "feature",
+  "name": "Fureur élémentaire",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 7
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "druid-elemental-fury",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "modify_damage",
+            "scope": "cantrip:druid",
+            "value": {
+              "ref": "ability_mod",
+              "ability": "wis"
+            }
+          }
+        ],
+        []
+      ]
+    }
+  ],
+  "text": {
+    "fr": "La puissance des éléments coule en vous. Vous recevez l’une des options suivantes, au choix.\nIncantation puissante. Ajoutez votre modificateur de Sagesse aux dégâts que vous infligez par tout sort mineur de Druide.\nAttaques primitives. Une fois à chacun de vos tours, lorsque vous touchez une créature par un jet d’attaque avec une arme ou une attaque de Bête sous Forme sauvage, vous pouvez infliger à la cible 1d8 dégâts de feu, foudre, froid ou tonnerre (choisissez quand vous touchez)."
+  }
+}

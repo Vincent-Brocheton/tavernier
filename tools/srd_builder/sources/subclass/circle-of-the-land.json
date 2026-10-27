@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:circle-of-the-land",
+  "type": "subclass",
+  "name": "Cercle de la Terre",
+  "data": {
+    "parent_class": "srd:class:druid",
+    "features": [
+      "srd:feature:land-circle-spells",
+      "srd:feature:land-lands-aid",
+      "srd:feature:land-natural-recovery",
+      "srd:feature:land-natures-ward",
+      "srd:feature:land-natures-sanctuary"
+    ]
+  },
+  "text": {
+    "fr": "Glorifiez le lien avec le monde naturel\nLe Cercle de la Terre accueille les mystes et les sages qui veillent sur les rites et savoirs ancestraux. Ces Druides se rassemblent dans des cercles sacrés faits d’arbres ou de menhirs pour se murmurer des secrets primitifs en langue druidique. Les membres les plus sagaces du cercle officient comme grands prêtres de leur communauté."
+  }
+}

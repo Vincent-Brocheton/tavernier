@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:berserker-mindless-rage",
+  "type": "feature",
+  "name": "Rage aveugle",
+  "data": {
+    "source": "srd:subclass:path-of-the-berserker",
+    "level": 6
+  },
+  "text": {
+    "fr": "Vous avez l’Immunité contre les états Charmé et Effrayé tant que votre Rage est active. Si vous subissez déjà l’état Charmé ou Effrayé au moment où vous entrez en Rage, l’état en question prend fin sur vous."
+  }
+}

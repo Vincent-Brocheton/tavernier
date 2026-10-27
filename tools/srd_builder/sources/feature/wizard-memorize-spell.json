@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:wizard-memorize-spell",
+  "type": "feature",
+  "name": "Mémorisation de sort",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 5
+  },
+  "text": {
+    "fr": "Chaque fois que vous terminez un Repos court, vous pouvez étudier votre grimoire et remplacer l’un des sorts de Magicien du 1er niveau ou supérieur préparé dans le cadre de l’aptitude Sorts par un autre sort du 1er niveau ou plus tiré du grimoire."
+  }
+}

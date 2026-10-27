@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:druid-wild-companion",
+  "type": "feature",
+  "name": "Compagnon sauvage",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 2
+  },
+  "text": {
+    "fr": "Vous pouvez convoquer un esprit de la nature qui adopte une forme animale pour vous assister. Au prix de l’action Magie, vous pouvez dépenser un emplacement ou une utilisation de Forme sauvage pour lancer le sort appel de familier sans composantes matérielles.\nLorsque vous lancez ainsi le sort, le familier est une Fée et disparaît lorsque vous terminez un Repos long."
+  }
+}

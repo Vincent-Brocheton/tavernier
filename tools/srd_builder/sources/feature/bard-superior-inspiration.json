@@ -1,0 +1,46 @@
+{
+  "id": "srd:feature:bard-superior-inspiration",
+  "type": "feature",
+  "name": "Inspiration supérieure",
+  "data": {
+    "source": "srd:class:bard",
+    "level": 18
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:bardic-inspiration",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "cha",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        },
+        {
+          "on": "initiative",
+          "amount": "all",
+          "up_to": 2
+        }
+      ],
+      "die": {
+        "by_level": {
+          "1": "d6",
+          "5": "d8",
+          "10": "d10",
+          "15": "d12"
+        }
+      }
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous lancez l’Initiative, vous récupérez des utilisations d’Inspiration bardique s’il vous en reste une ou moins, jusqu’à en avoir deux."
+  }
+}

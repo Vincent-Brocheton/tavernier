@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:land-lands-aid",
+  "type": "feature",
+  "name": "Aval de la terre",
+  "data": {
+    "source": "srd:subclass:circle-of-the-land",
+    "level": 3
+  },
+  "text": {
+    "fr": "Au prix de l’action Magie, vous pouvez dépenser une utilisation de Forme sauvage en choisissant un point dans un rayon de 18 m. Des fleurs nourricières et des ronces vampiriques se manifestent quelques instants dans une Sphère de 3 m de rayon centrée sur ce point. Chaque créature que vous choisissez dans la Sphère effectue un jet de sauvegarde de Constitution assorti de votre DD de sauvegarde des sorts, et subit 2d6 dégâts nécrotiques en cas d’échec, la moitié en cas de réussite. Une créature de votre choix dans cette zone récupère 2d6 points de vie.\nLes dégâts et les soins augmentent de 1d6 lorsque vous atteignez les niveaux 10 (3d6) et 14 (4d6) de Druide."
+  }
+}

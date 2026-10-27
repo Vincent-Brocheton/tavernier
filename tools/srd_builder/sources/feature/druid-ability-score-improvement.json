@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:druid-ability-score-improvement",
+  "type": "feature",
+  "name": "Amélioration de caractéristique",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 4
+  },
+  "effects": [
+    {
+      "op": "grant_feat",
+      "category": "general"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez le don Amélioration de caractéristique (cf. « Dons ») ou un autre don de votre choix pour lequel vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux de Druide 8, 12 et 16."
+  }
+}

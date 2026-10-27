@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:evoker-evocation-savant",
+  "type": "feature",
+  "name": "Évocateur érudit",
+  "data": {
+    "source": "srd:subclass:evoker",
+    "level": 3
+  },
+  "text": {
+    "fr": "Choisissez deux sorts de Magicien de l’école de l’Évocation, chacun du 2e niveau au maximum, et ajoutez-les gratuitement à votre grimoire.\nEn outre, chaque fois que vous recevez l’accès à un nouveau niveau d’emplacements de sort dans cette classe, vous pouvez ajouter gratuitement à votre grimoire un sort de Magicien de l’école de l’Évocation. Le sort choisi doit être d’un niveau pour lequel vous disposez d’emplacements de sort."
+  }
+}

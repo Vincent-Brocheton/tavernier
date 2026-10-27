@@ -9029,6 +9029,42 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         type: DriftSqlType.string,
         requiredDuringInsert: false,
       );
+  static const VerificationMeta _toolProficienciesMeta = const VerificationMeta(
+    'toolProficiencies',
+  );
+  @override
+  late final GeneratedColumn<String> toolProficiencies =
+      GeneratedColumn<String>(
+        'tool_proficiencies',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('[]'),
+      );
+  static const VerificationMeta _toolChoiceCountMeta = const VerificationMeta(
+    'toolChoiceCount',
+  );
+  @override
+  late final GeneratedColumn<int> toolChoiceCount = GeneratedColumn<int>(
+    'tool_choice_count',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _toolChoiceCategoryMeta =
+      const VerificationMeta('toolChoiceCategory');
+  @override
+  late final GeneratedColumn<String> toolChoiceCategory =
+      GeneratedColumn<String>(
+        'tool_choice_category',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -9044,6 +9080,9 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     armorTraining,
     subclassLevel,
     spellcastingAbilityId,
+    toolProficiencies,
+    toolChoiceCount,
+    toolChoiceCategory,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -9178,6 +9217,33 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         ),
       );
     }
+    if (data.containsKey('tool_proficiencies')) {
+      context.handle(
+        _toolProficienciesMeta,
+        toolProficiencies.isAcceptableOrUnknown(
+          data['tool_proficiencies']!,
+          _toolProficienciesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tool_choice_count')) {
+      context.handle(
+        _toolChoiceCountMeta,
+        toolChoiceCount.isAcceptableOrUnknown(
+          data['tool_choice_count']!,
+          _toolChoiceCountMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tool_choice_category')) {
+      context.handle(
+        _toolChoiceCategoryMeta,
+        toolChoiceCategory.isAcceptableOrUnknown(
+          data['tool_choice_category']!,
+          _toolChoiceCategoryMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -9239,6 +9305,18 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         DriftSqlType.string,
         data['${effectivePrefix}spellcasting_ability_id'],
       ),
+      toolProficiencies: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}tool_proficiencies'],
+      )!,
+      toolChoiceCount: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}tool_choice_count'],
+      )!,
+      toolChoiceCategory: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}tool_choice_category'],
+      ),
     );
   }
 
@@ -9262,6 +9340,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
   final String armorTraining;
   final int subclassLevel;
   final String? spellcastingAbilityId;
+  final String toolProficiencies;
+  final int toolChoiceCount;
+  final String? toolChoiceCategory;
   const ClassRow({
     required this.id,
     required this.packId,
@@ -9276,6 +9357,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     required this.armorTraining,
     required this.subclassLevel,
     this.spellcastingAbilityId,
+    required this.toolProficiencies,
+    required this.toolChoiceCount,
+    this.toolChoiceCategory,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -9296,6 +9380,11 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     map['subclass_level'] = Variable<int>(subclassLevel);
     if (!nullToAbsent || spellcastingAbilityId != null) {
       map['spellcasting_ability_id'] = Variable<String>(spellcastingAbilityId);
+    }
+    map['tool_proficiencies'] = Variable<String>(toolProficiencies);
+    map['tool_choice_count'] = Variable<int>(toolChoiceCount);
+    if (!nullToAbsent || toolChoiceCategory != null) {
+      map['tool_choice_category'] = Variable<String>(toolChoiceCategory);
     }
     return map;
   }
@@ -9319,6 +9408,11 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       spellcastingAbilityId: spellcastingAbilityId == null && nullToAbsent
           ? const Value.absent()
           : Value(spellcastingAbilityId),
+      toolProficiencies: Value(toolProficiencies),
+      toolChoiceCount: Value(toolChoiceCount),
+      toolChoiceCategory: toolChoiceCategory == null && nullToAbsent
+          ? const Value.absent()
+          : Value(toolChoiceCategory),
     );
   }
 
@@ -9345,6 +9439,11 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       spellcastingAbilityId: serializer.fromJson<String?>(
         json['spellcastingAbilityId'],
       ),
+      toolProficiencies: serializer.fromJson<String>(json['toolProficiencies']),
+      toolChoiceCount: serializer.fromJson<int>(json['toolChoiceCount']),
+      toolChoiceCategory: serializer.fromJson<String?>(
+        json['toolChoiceCategory'],
+      ),
     );
   }
   @override
@@ -9366,6 +9465,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       'spellcastingAbilityId': serializer.toJson<String?>(
         spellcastingAbilityId,
       ),
+      'toolProficiencies': serializer.toJson<String>(toolProficiencies),
+      'toolChoiceCount': serializer.toJson<int>(toolChoiceCount),
+      'toolChoiceCategory': serializer.toJson<String?>(toolChoiceCategory),
     };
   }
 
@@ -9383,6 +9485,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     String? armorTraining,
     int? subclassLevel,
     Value<String?> spellcastingAbilityId = const Value.absent(),
+    String? toolProficiencies,
+    int? toolChoiceCount,
+    Value<String?> toolChoiceCategory = const Value.absent(),
   }) => ClassRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
@@ -9399,6 +9504,11 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     spellcastingAbilityId: spellcastingAbilityId.present
         ? spellcastingAbilityId.value
         : this.spellcastingAbilityId,
+    toolProficiencies: toolProficiencies ?? this.toolProficiencies,
+    toolChoiceCount: toolChoiceCount ?? this.toolChoiceCount,
+    toolChoiceCategory: toolChoiceCategory.present
+        ? toolChoiceCategory.value
+        : this.toolChoiceCategory,
   );
   ClassRow copyWithCompanion(ClassesCompanion data) {
     return ClassRow(
@@ -9431,6 +9541,15 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       spellcastingAbilityId: data.spellcastingAbilityId.present
           ? data.spellcastingAbilityId.value
           : this.spellcastingAbilityId,
+      toolProficiencies: data.toolProficiencies.present
+          ? data.toolProficiencies.value
+          : this.toolProficiencies,
+      toolChoiceCount: data.toolChoiceCount.present
+          ? data.toolChoiceCount.value
+          : this.toolChoiceCount,
+      toolChoiceCategory: data.toolChoiceCategory.present
+          ? data.toolChoiceCategory.value
+          : this.toolChoiceCategory,
     );
   }
 
@@ -9449,7 +9568,10 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           ..write('weaponProficiencies: $weaponProficiencies, ')
           ..write('armorTraining: $armorTraining, ')
           ..write('subclassLevel: $subclassLevel, ')
-          ..write('spellcastingAbilityId: $spellcastingAbilityId')
+          ..write('spellcastingAbilityId: $spellcastingAbilityId, ')
+          ..write('toolProficiencies: $toolProficiencies, ')
+          ..write('toolChoiceCount: $toolChoiceCount, ')
+          ..write('toolChoiceCategory: $toolChoiceCategory')
           ..write(')'))
         .toString();
   }
@@ -9469,6 +9591,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     armorTraining,
     subclassLevel,
     spellcastingAbilityId,
+    toolProficiencies,
+    toolChoiceCount,
+    toolChoiceCategory,
   );
   @override
   bool operator ==(Object other) =>
@@ -9486,7 +9611,10 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           other.weaponProficiencies == this.weaponProficiencies &&
           other.armorTraining == this.armorTraining &&
           other.subclassLevel == this.subclassLevel &&
-          other.spellcastingAbilityId == this.spellcastingAbilityId);
+          other.spellcastingAbilityId == this.spellcastingAbilityId &&
+          other.toolProficiencies == this.toolProficiencies &&
+          other.toolChoiceCount == this.toolChoiceCount &&
+          other.toolChoiceCategory == this.toolChoiceCategory);
 }
 
 class ClassesCompanion extends UpdateCompanion<ClassRow> {
@@ -9503,6 +9631,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
   final Value<String> armorTraining;
   final Value<int> subclassLevel;
   final Value<String?> spellcastingAbilityId;
+  final Value<String> toolProficiencies;
+  final Value<int> toolChoiceCount;
+  final Value<String?> toolChoiceCategory;
   final Value<int> rowid;
   const ClassesCompanion({
     this.id = const Value.absent(),
@@ -9518,6 +9649,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.armorTraining = const Value.absent(),
     this.subclassLevel = const Value.absent(),
     this.spellcastingAbilityId = const Value.absent(),
+    this.toolProficiencies = const Value.absent(),
+    this.toolChoiceCount = const Value.absent(),
+    this.toolChoiceCategory = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ClassesCompanion.insert({
@@ -9534,6 +9668,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     required String armorTraining,
     required int subclassLevel,
     this.spellcastingAbilityId = const Value.absent(),
+    this.toolProficiencies = const Value.absent(),
+    this.toolChoiceCount = const Value.absent(),
+    this.toolChoiceCategory = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -9560,6 +9697,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Expression<String>? armorTraining,
     Expression<int>? subclassLevel,
     Expression<String>? spellcastingAbilityId,
+    Expression<String>? toolProficiencies,
+    Expression<int>? toolChoiceCount,
+    Expression<String>? toolChoiceCategory,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -9578,6 +9718,10 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       if (subclassLevel != null) 'subclass_level': subclassLevel,
       if (spellcastingAbilityId != null)
         'spellcasting_ability_id': spellcastingAbilityId,
+      if (toolProficiencies != null) 'tool_proficiencies': toolProficiencies,
+      if (toolChoiceCount != null) 'tool_choice_count': toolChoiceCount,
+      if (toolChoiceCategory != null)
+        'tool_choice_category': toolChoiceCategory,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -9596,6 +9740,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Value<String>? armorTraining,
     Value<int>? subclassLevel,
     Value<String?>? spellcastingAbilityId,
+    Value<String>? toolProficiencies,
+    Value<int>? toolChoiceCount,
+    Value<String?>? toolChoiceCategory,
     Value<int>? rowid,
   }) {
     return ClassesCompanion(
@@ -9613,6 +9760,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       subclassLevel: subclassLevel ?? this.subclassLevel,
       spellcastingAbilityId:
           spellcastingAbilityId ?? this.spellcastingAbilityId,
+      toolProficiencies: toolProficiencies ?? this.toolProficiencies,
+      toolChoiceCount: toolChoiceCount ?? this.toolChoiceCount,
+      toolChoiceCategory: toolChoiceCategory ?? this.toolChoiceCategory,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -9661,6 +9811,15 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
         spellcastingAbilityId.value,
       );
     }
+    if (toolProficiencies.present) {
+      map['tool_proficiencies'] = Variable<String>(toolProficiencies.value);
+    }
+    if (toolChoiceCount.present) {
+      map['tool_choice_count'] = Variable<int>(toolChoiceCount.value);
+    }
+    if (toolChoiceCategory.present) {
+      map['tool_choice_category'] = Variable<String>(toolChoiceCategory.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -9683,6 +9842,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
           ..write('armorTraining: $armorTraining, ')
           ..write('subclassLevel: $subclassLevel, ')
           ..write('spellcastingAbilityId: $spellcastingAbilityId, ')
+          ..write('toolProficiencies: $toolProficiencies, ')
+          ..write('toolChoiceCount: $toolChoiceCount, ')
+          ..write('toolChoiceCategory: $toolChoiceCategory, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -35705,6 +35867,9 @@ typedef $$ClassesTableCreateCompanionBuilder = ClassesCompanion Function({
   required String armorTraining,
   required int subclassLevel,
   Value<String?> spellcastingAbilityId,
+  Value<String> toolProficiencies,
+  Value<int> toolChoiceCount,
+  Value<String?> toolChoiceCategory,
   Value<int> rowid,
 });
 typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
@@ -35721,6 +35886,9 @@ typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
   Value<String> armorTraining,
   Value<int> subclassLevel,
   Value<String?> spellcastingAbilityId,
+  Value<String> toolProficiencies,
+  Value<int> toolChoiceCount,
+  Value<String?> toolChoiceCategory,
   Value<int> rowid,
 });
 
@@ -35812,6 +35980,21 @@ class $$ClassesTableFilterComposer
 
   ColumnFilters<String> get spellcastingAbilityId => $composableBuilder(
     column: $table.spellcastingAbilityId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get toolProficiencies => $composableBuilder(
+    column: $table.toolProficiencies,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get toolChoiceCount => $composableBuilder(
+    column: $table.toolChoiceCount,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get toolChoiceCategory => $composableBuilder(
+    column: $table.toolChoiceCategory,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -35908,6 +36091,21 @@ class $$ClassesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get toolProficiencies => $composableBuilder(
+    column: $table.toolProficiencies,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get toolChoiceCount => $composableBuilder(
+    column: $table.toolChoiceCount,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get toolChoiceCategory => $composableBuilder(
+    column: $table.toolChoiceCategory,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -35993,6 +36191,21 @@ class $$ClassesTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get toolProficiencies => $composableBuilder(
+    column: $table.toolProficiencies,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get toolChoiceCount => $composableBuilder(
+    column: $table.toolChoiceCount,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get toolChoiceCategory => $composableBuilder(
+    column: $table.toolChoiceCategory,
+    builder: (column) => column,
+  );
+
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -36058,6 +36271,9 @@ class $$ClassesTableTableManager
                 Value<String> armorTraining = const Value.absent(),
                 Value<int> subclassLevel = const Value.absent(),
                 Value<String?> spellcastingAbilityId = const Value.absent(),
+                Value<String> toolProficiencies = const Value.absent(),
+                Value<int> toolChoiceCount = const Value.absent(),
+                Value<String?> toolChoiceCategory = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ClassesCompanion(
                 id: id,
@@ -36073,6 +36289,9 @@ class $$ClassesTableTableManager
                 armorTraining: armorTraining,
                 subclassLevel: subclassLevel,
                 spellcastingAbilityId: spellcastingAbilityId,
+                toolProficiencies: toolProficiencies,
+                toolChoiceCount: toolChoiceCount,
+                toolChoiceCategory: toolChoiceCategory,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -36090,6 +36309,9 @@ class $$ClassesTableTableManager
                 required String armorTraining,
                 required int subclassLevel,
                 Value<String?> spellcastingAbilityId = const Value.absent(),
+                Value<String> toolProficiencies = const Value.absent(),
+                Value<int> toolChoiceCount = const Value.absent(),
+                Value<String?> toolChoiceCategory = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ClassesCompanion.insert(
                 id: id,
@@ -36105,6 +36327,9 @@ class $$ClassesTableTableManager
                 armorTraining: armorTraining,
                 subclassLevel: subclassLevel,
                 spellcastingAbilityId: spellcastingAbilityId,
+                toolProficiencies: toolProficiencies,
+                toolChoiceCount: toolChoiceCount,
+                toolChoiceCategory: toolChoiceCategory,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

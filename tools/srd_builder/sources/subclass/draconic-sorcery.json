@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:draconic-sorcery",
+  "type": "subclass",
+  "name": "Sorcellerie draconique",
+  "data": {
+    "parent_class": "srd:class:sorcerer",
+    "features": [
+      "srd:feature:draconic-draconic-resilience",
+      "srd:feature:draconic-draconic-spells",
+      "srd:feature:draconic-elemental-affinity",
+      "srd:feature:draconic-dragon-wings",
+      "srd:feature:draconic-dragon-companion"
+    ]
+  },
+  "text": {
+    "fr": "Respirez la magie des dragons\nVotre magie innée est le cadeau d’un dragon. Il se peut qu’un dragon vénérable, sentant la mort arriver, vous ait légué, à vous-même ou à un ancêtre, une partie de son pouvoir magique. Vous pourriez aussi avoir absorbé de la magie en un lieu imprégné de puissance draconique. À moins que vous ayez manipulé par mégarde un trésor provenant de l’antre d’un dragon, nimbé de pouvoir draconique. Vous pouvez enfin avoir un dragon comme ancêtre."
+  }
+}

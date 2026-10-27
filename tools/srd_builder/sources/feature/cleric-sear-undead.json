@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:cleric-sear-undead",
+  "type": "feature",
+  "name": "Calcination de Mort-vivant",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 5
+  },
+  "text": {
+    "fr": "Chaque fois que vous recourez à Renvoi des morts-vivants, vous pouvez lancer autant de d8 que votre modificateur de Sagesse (minimum 1d8) et les ajouter. Chaque Mort-vivant qui rate son JS contre cette utilisation de Renvoi des morts-vivants subit autant de dégâts radiants que le total de ces dés. Ces dégâts ne mettent pas fin aux effets du renvoi."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "srd:feature:barbarian-weapon-mastery",
+  "type": "feature",
+  "name": "Bottes d’arme",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_mastery_slots",
+      "count": {
+        "by_level": {
+          "1": 2,
+          "4": 3,
+          "10": 4
+        }
+      }
+    }
+  ],
+  "text": {
+    "fr": "Votre entraînement martial vous permet de recourir à la botte de deux types d’arme de corps à corps courante ou de guerre de votre choix, par exemple la hache à deux mains et la hachette. Chaque fois que vous terminez un Repos long, vous pouvez accomplir des exercices martiaux pour changer l’un de ces choix.\nLorsque vous atteignez certains niveaux de Barbare, vous recevez la faculté de recourir à la botte d’autres types d’arme, comme indiqué à la colonne Bottes d’arme de la table Aptitudes du Barbare."
+  }
+}

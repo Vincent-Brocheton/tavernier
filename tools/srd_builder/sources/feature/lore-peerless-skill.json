@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:lore-peerless-skill",
+  "type": "feature",
+  "name": "Compétence hors pair",
+  "data": {
+    "source": "srd:subclass:college-of-lore",
+    "level": 14
+  },
+  "text": {
+    "fr": "Lorsque vous effectuez un test de caractéristique ou un jet d’attaque et que vous le ratez, vous pouvez dépenser une utilisation d’Inspiration bardique ; lancez le dé d’Inspiration bardique et ajoutez-en le résultat au Test d20 concerné, ce qui peut convertir l’échec en réussite. En cas d’échec final, l’Inspiration bardique n’est pas dépensée."
+  }
+}

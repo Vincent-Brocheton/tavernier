@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:sorcerer-innate-sorcery",
+  "type": "feature",
+  "name": "Sorcellerie innée",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:innate-sorcery",
+      "max": 2,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Un événement de votre passé a laissé une marque indélébile sur vous, faisant éclore une magie bouillonnante. Par une action Bonus, vous pouvez libérer cette magie pendant 1 minute, au cours de laquelle vous recevez les bénéfices suivants :\n• Le DD de sauvegarde de vos sorts d’Ensorceleur augmente de 1.\n• Vous avez l’Avantage aux jets d’attaque des sorts d’Ensorceleur que vous lancez.\nVous pouvez recourir à cette aptitude deux fois, et récupérez ce quota en terminant un Repos long."
+  }
+}

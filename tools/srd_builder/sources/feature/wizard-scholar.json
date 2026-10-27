@@ -1,0 +1,63 @@
+{
+  "id": "srd:feature:wizard-scholar",
+  "type": "feature",
+  "name": "Érudition",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "wizard-scholar",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:arcana"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:history"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:investigation"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:medicine"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_expertise",
+            "ref": "srd:skill:religion"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Tout en étudiant la magie, vous vous êtes spécialisé dans un autre domaine. Choisissez l’une des compétences ci-après dont vous avez la maîtrise : Arcanes, Histoire, Intuition, Investigation, Médecine, Nature ou Religion. Vous avez l’Expertise dans la compétence choisie."
+  }
+}

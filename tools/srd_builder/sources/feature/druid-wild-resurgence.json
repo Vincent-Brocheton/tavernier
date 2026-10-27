@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:druid-wild-resurgence",
+  "type": "feature",
+  "name": "Regain sauvage",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:wild-resurgence",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Une fois à chacun de vos tours, s’il ne vous reste aucune utilisation de Forme sauvage, vous pouvez vous en octroyer une en dépensant un emplacement de sort (pas d’action requise).\nDe plus, vous pouvez dépenser une utilisation de Forme sauvage (pas d’action requise) pour vous octroyer un emplacement du 1er niveau, après quoi vous devez terminer un Repos long pour le refaire."
+  }
+}

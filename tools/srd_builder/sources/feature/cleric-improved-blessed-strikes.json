@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:cleric-improved-blessed-strikes",
+  "type": "feature",
+  "name": "Impacts bénis améliorés",
+  "data": {
+    "source": "srd:class:cleric",
+    "level": 14
+  },
+  "text": {
+    "fr": "L’option retenue pour Impacts bénis se renforce. Impact divin. Les dégâts supplémentaires de votre\nImpact divin passent à 2d8. Incantation puissante. Lorsque vous lancez un sort mineur de Clerc et infligez des dégâts à une créature par son biais, vous pouvez insuffler de la vitalité à une créature dans un rayon de 18 m ou à vous-même, par l’acquisition de points de vie temporaires égaux au double de votre modificateur de Sagesse."
+  }
+}

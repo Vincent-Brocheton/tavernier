@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:land-natures-ward",
+  "type": "feature",
+  "name": "Protégé de dame Nature",
+  "data": {
+    "source": "srd:subclass:circle-of-the-land",
+    "level": 10
+  },
+  "effects": [
+    {
+      "op": "grant_defense",
+      "kind": "immunity",
+      "condition": "srd:condition:poisoned"
+    }
+  ],
+  "text": {
+    "fr": "Vous êtes immunisé contre l’état Empoisonné et bénéficiez de la Résistance contre les dégâts du type associé à votre choix d’environnement actuel pour l’aptitude Sorts de cercle, comme indiqué dans la table « Protégé de dame Nature ».\nProtégé de dame Nature\nEnvironne-\nEnvironnement\nRésistance ment\nAride\nFeu\nTempéré\nPolaire\nFroid\nTropical\nRésistance Foudre Poison"
+  }
+}

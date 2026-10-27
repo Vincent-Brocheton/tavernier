@@ -1,0 +1,35 @@
+{
+  "id": "srd:feature:druid-wild-shape",
+  "type": "feature",
+  "name": "Forme sauvage",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:wild-shape",
+      "max": {
+        "by_level": {
+          "2": 2,
+          "6": 3,
+          "17": 4
+        }
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": 1
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Le pouvoir de la nature vous permet d’adopter la forme d’un animal. Par une action Bonus, vous vous métamorphosez en Bête, forme apprise par le biais de cette aptitude (cf. Formes connues, plus loin). Vous restez sous cette forme autant d’heures que la moitié de votre niveau de Druide, mais la quittez prématurément si vous recourez de nouveau à Forme sauvage, subissez l’état Neutralisé ou mourez. Vous pouvez aussi quitter la forme par une action Bonus.\nNombre d’utilisations. Vous pouvez recourir deux fois à Forme sauvage. Vous en regagnez une utilisation lorsque vous terminez un Repos court, et récupérez tout le quota en terminant un Repos long.\nVous en recevez des utilisations supplémentaires à certains niveaux de Druide, comme indiqué à la colonne Forme sauvage de la table « Aptitudes du Druide ».\nFormes connues. Vous connaissez quatre formes de Bête pour cette aptitude, choisies parmi les profils de Bête dont le facteur de puissance n’excède pas 1/4 et dépourvus de Vitesse de vol (voir « Animaux » de la section « Monstres » pour quelques options). Araignée, cheval de selle, loup et rat sont recommandés. Chaque fois que vous terminez un Repos long, vous pouvez remplacer l’une de vos formes connues par une autre forme autorisée.\nLorsque vous atteignez certains niveaux de Druide, votre nombre de formes connues et le facteur de puissance maximal associé augmentent, comme indiqué sur la table Formes de bête. De plus, à partir du niveau 8, vous pouvez adopter une forme dotée d’une Vitesse de vol.\nSi votre maître de jeu l’autorise, vous pouvez consulter d’autres sources pour choisir vos formes connues.\nFormes de bête\nNiveau de Druide\nFormes connues\nFP max. 1/4 1/2\nVitesse de vol Non Non\nOui\nRègles sous métamorphose. Tant que vous êtes sous forme de bête, vous conservez votre personnalité, vos souvenirs et votre faculté de parole, et les règles suivantes s’appliquent :\nPoints de vie temporaires. Lorsque vous adoptez une Forme sauvage, vous recevez autant de points de vie temporaires que votre niveau de Druide.\nProfil de jeu. Votre profil est remplacé par celui de la Bête choisie, mais vous conservez les aspects suivants : type de créature ; points de vie ; dés de vie ; valeurs d’Intelligence, Sagesse et Charisme ; aptitudes de classe ; langues ; et dons. Vous conservez aussi vos maîtrises de compétence et de jet de sauvegarde, et appliquez le bonus de maîtrise correspondant, et vous recevez les maîtrises de la créature. Quand le modificateur de compétence ou de JS du profil de Bête est supérieur au vôtre, celui de la Bête s’applique.\nPas d’incantation. Vous ne pouvez pas lancer de sorts, mais la métamorphose ne rompt pas votre Concentration, pas plus qu’elle n’interfère avec les sorts que vous avez déjà lancés.\nObjets. Votre faculté de manipuler des objets dépend des membres et appendices de la forme et non plus des vôtres. En outre, vous décidez si votre équipement tombe dans votre espace, fusionne avec votre nouvelle forme ou est porté par elle. L’équipement porté fonctionne normalement, mais c’est au MJ de décider si une pièce d’équipement donnée peut être portée par la créature, en fonction de la forme et de la taille de celle-ci. Votre équipement ne change pas de taille ni de forme pour s’adapter à votre silhouette animale ; toute pièce d’équipement que la forme sauvage ne peut pas porter doit soit tomber au sol, soit fusionner avec elle. L’équipement qui fusionne avec la forme reste sans effet tant que vous restez sous cette forme."
+  }
+}

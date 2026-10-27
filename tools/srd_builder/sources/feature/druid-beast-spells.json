@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:druid-beast-spells",
+  "type": "feature",
+  "name": "Incantation animale",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 18
+  },
+  "text": {
+    "fr": "Tant que vous êtes sous Forme sauvage, vous pouvez lancer des sorts bien que sous forme de Bête, à l’exception des sorts assortis d’une composante matérielle dont le coût est spécifié ou qui est détruite par l’incantation."
+  }
+}

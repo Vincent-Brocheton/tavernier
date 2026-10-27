@@ -1,0 +1,24 @@
+{
+  "id": "srd:feature:bard-words-of-creation",
+  "type": "feature",
+  "name": "Verbe de la création",
+  "data": {
+    "source": "srd:class:bard",
+    "level": 20
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:power-word-heal",
+      "always_prepared": true
+    },
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:power-word-kill",
+      "always_prepared": true
+    }
+  ],
+  "text": {
+    "fr": "Vous avez maîtrisé deux des paroles du Verbe de la création : celles de la vie et de la mort. Les sorts mot de pouvoir guérisseur et mot de pouvoir mortel sont désormais constamment préparés en ce qui vous concerne. Lorsque vous lancez l’un de ces sorts, vous pouvez cibler une seconde créature qui se trouve dans un rayon de 3 m de la première cible."
+  }
+}

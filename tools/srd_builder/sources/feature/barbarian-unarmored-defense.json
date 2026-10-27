@@ -1,0 +1,26 @@
+{
+  "id": "srd:feature:barbarian-unarmored-defense",
+  "type": "feature",
+  "name": "Défense sans armure",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "ac_formula",
+      "base": 10,
+      "abilities": [
+        "dex",
+        "con"
+      ],
+      "allows_shield": true,
+      "when": {
+        "armor": "none"
+      }
+    }
+  ],
+  "text": {
+    "fr": "Tant que vous ne portez pas d’armure, votre classe d’armure de base est égale à 10 + vos modificateurs de Dextérité et de Constitution. Vous conservez ce bénéfice si vous vous servez d’un bouclier."
+  }
+}

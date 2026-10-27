@@ -1,0 +1,56 @@
+{
+  "id": "srd:feature:draconic-elemental-affinity",
+  "type": "feature",
+  "name": "Affinité élémentaire",
+  "data": {
+    "source": "srd:subclass:draconic-sorcery",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "draconic-elemental-affinity",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:acid"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:fire"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:lightning"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:cold"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:poison"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Votre magie draconique présente une affinité avec un type de dégâts associé aux dragons. Choisissez l’un des types suivants : acide, feu, foudre, froid ou poison.\nVous avez la Résistance à ce type de dégâts, et lorsque vous lancez un sort qui inflige des dégâts de ce type, vous pouvez ajouter votre modificateur de Charisme à un jet de dégâts de ce sort."
+  }
+}

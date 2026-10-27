@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:barbarian-reckless-attack",
+  "type": "feature",
+  "name": "Témérité",
+  "data": {
+    "source": "srd:class:barbarian",
+    "level": 2
+  },
+  "text": {
+    "fr": "Vous pouvez renoncer à toute velléité de vous défendre au profit d’une férocité accrue. Quand vous effectuez le premier jet d’attaque de votre tour, vous pouvez décider d’attaquer avec témérité. Ce faisant, vous avez l’Avantage aux jets d’attaque basés sur la Force jusqu’au début de votre tour suivant, mais les jets d’attaque contre vous ont l’Avantage dans le même intervalle."
+  }
+}

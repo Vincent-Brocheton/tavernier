@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:sorcerer-subclass",
+  "type": "feature",
+  "name": "Sous-classe d’Ensorceleur",
+  "data": {
+    "source": "srd:class:sorcerer",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe d’Ensorceleur de votre choix. La sous-classe Sorcellerie draconique est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux d’Ensorceleur. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel d’Ensorceleur."
+  }
+}

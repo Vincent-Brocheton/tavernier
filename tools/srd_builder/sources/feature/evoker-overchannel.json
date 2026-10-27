@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:evoker-overchannel",
+  "type": "feature",
+  "name": "Surcharge magique",
+  "data": {
+    "source": "srd:subclass:evoker",
+    "level": 14
+  },
+  "text": {
+    "fr": "Vous savez désormais augmenter la puissance de vos sorts. Lorsque vous lancez un sort de Magicien avec un emplacement de sort du 1er au 5e niveau et infligeant des dégâts, vous pouvez infliger le maximum de dégâts avec ce sort au tour où vous le lancez.\nLa première fois que vous procédez ainsi, vous ne subissez aucun effet indésirable. Si vous recourez de nouveau à cette aptitude avant d’avoir terminé un Repos long, vous subissez 2d12 dégâts nécrotiques pour chaque niveau de l’emplacement de sort, aussitôt après l’avoir lancé. Ces dégâts ne sont pas affectés par la Résistance et l’Immunité.\nChaque fois que vous réutilisez cette aptitude avant de terminer un Repos long, les dégâts nécrotiques par niveau de sort augmentent de 1d12."
+  }
+}

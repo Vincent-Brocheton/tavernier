@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:draconic-dragon-wings",
+  "type": "feature",
+  "name": "Ailes draconiques",
+  "data": {
+    "source": "srd:subclass:draconic-sorcery",
+    "level": 14
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:dragon-wings",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Par une action Bonus, vous faites apparaître des ailes draconiques dans votre dos. Ces ailes persistent 1 heure ou jusqu’à ce que vous les révoquiez (pas d’action requise). Pour toute la durée, vous bénéficiez d’une Vitesse de vol de 18 m.\nUne fois cette aptitude utilisée, vous devez terminer un Repos long ou dépenser 3 points de Sorcellerie (pas d’action requise) pour en récupérer l’usage."
+  }
+}

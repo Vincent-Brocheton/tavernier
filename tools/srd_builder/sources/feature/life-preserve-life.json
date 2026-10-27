@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:life-preserve-life",
+  "type": "feature",
+  "name": "Survivance",
+  "data": {
+    "source": "srd:subclass:life-domain",
+    "level": 3
+  },
+  "text": {
+    "fr": "Au prix de l’action Magie, vous présentez votre symbole sacré et dépensez une utilisation de Conduit divin pour libérer des énergies curatives qui restituent autant de points de vie que le quintuple de votre niveau de Clerc. Choisissez des créatures En péril dans un rayon de 9 m (vous pouvez vous inclure) et répartissez ces points de vie entre elles. Cette aptitude ne permet pas à une créature de dépasser la moitié de son maximum de points de vie."
+  }
+}

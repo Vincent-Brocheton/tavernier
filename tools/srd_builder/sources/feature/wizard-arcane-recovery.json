@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:wizard-arcane-recovery",
+  "type": "feature",
+  "name": "Restauration magique",
+  "data": {
+    "source": "srd:class:wizard",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:arcane-recovery",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez récupérer une partie de votre énergie magique en étudiant votre grimoire. En terminant un Repos court, désignez si vous le souhaitez les emplacements de sort dépensés que vous souhaitez récupérer.\nLa somme des niveaux de ces emplacements ne doit pas excéder la moitié de votre niveau de Magicien (arrondie au supérieur), et aucun de ces emplacements de sort ne doit être du 6e niveau ou plus. En tant que Magicien de niveau 4, par exemple, vous pouvez récupérer jusqu’à deux niveaux d’emplacements de sort, soit un emplacement de sort du 2e niveau ou deux emplacements de sort du 1er niveau.\nUne fois cette aptitude utilisée, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

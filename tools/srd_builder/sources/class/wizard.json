@@ -1,0 +1,565 @@
+{
+  "id": "srd:class:wizard",
+  "type": "class",
+  "name": "Magicien",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:intelligence"
+    ],
+    "hit_die": 6,
+    "saving_throws": [
+      "srd:ability:intelligence",
+      "srd:ability:wisdom"
+    ],
+    "skill_choice_count": 2,
+    "skill_choices": [
+      "srd:skill:arcana",
+      "srd:skill:history",
+      "srd:skill:insight",
+      "srd:skill:investigation",
+      "srd:skill:medicine",
+      "srd:skill:nature",
+      "srd:skill:religion"
+    ],
+    "weapon_proficiencies": [
+      "simple"
+    ],
+    "armor_training": [],
+    "subclass_level": 3,
+    "spellcasting_ability": "srd:ability:intelligence",
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:wizard-spellcasting",
+          "srd:feature:wizard-ritual-adept",
+          "srd:feature:wizard-arcane-recovery"
+        ],
+        "columns": {
+          "cantrips": 3,
+          "prepared_spells": 4,
+          "slot_1": 2
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:wizard-scholar"
+        ],
+        "columns": {
+          "cantrips": 3,
+          "prepared_spells": 5,
+          "slot_1": 3
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:wizard-subclass"
+        ],
+        "columns": {
+          "cantrips": 3,
+          "prepared_spells": 6,
+          "slot_1": 4,
+          "slot_2": 2
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:wizard-ability-score-improvement"
+        ],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 7,
+          "slot_1": 4,
+          "slot_2": 3
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:wizard-memorize-spell"
+        ],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 9,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 2
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 10,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 11,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 1
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:wizard-ability-score-improvement"
+        ],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 12,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 2
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "cantrips": 4,
+          "prepared_spells": 14,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 1
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 15,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:wizard-ability-score-improvement"
+        ],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 16,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 17,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 18,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 19,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:wizard-ability-score-improvement"
+        ],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 21,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 22,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:wizard-spell-mastery"
+        ],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 23,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 1,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:wizard-epic-boon"
+        ],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 24,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 1,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:wizard-signature-spells"
+        ],
+        "columns": {
+          "cantrips": 5,
+          "prepared_spells": 25,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 3,
+          "slot_6": 2,
+          "slot_7": 2,
+          "slot_8": 1,
+          "slot_9": 1
+        }
+      }
+    ],
+    "spell_list": [
+      "srd:spell:acid-arrow",
+      "srd:spell:acid-splash",
+      "srd:spell:alarm",
+      "srd:spell:alter-self",
+      "srd:spell:animate-dead",
+      "srd:spell:animate-objects",
+      "srd:spell:antimagic-field",
+      "srd:spell:antipathy-sympathy",
+      "srd:spell:arcane-eye",
+      "srd:spell:arcane-hand",
+      "srd:spell:arcane-lock",
+      "srd:spell:arcane-sword",
+      "srd:spell:arcanists-magic-aura",
+      "srd:spell:astral-projection",
+      "srd:spell:augury",
+      "srd:spell:banishment",
+      "srd:spell:befuddlement",
+      "srd:spell:bestow-curse",
+      "srd:spell:black-tentacles",
+      "srd:spell:blight",
+      "srd:spell:blindness-deafness",
+      "srd:spell:blink",
+      "srd:spell:blur",
+      "srd:spell:burning-hands",
+      "srd:spell:chain-lightning",
+      "srd:spell:charm-monster",
+      "srd:spell:charm-person",
+      "srd:spell:chill-touch",
+      "srd:spell:chromatic-orb",
+      "srd:spell:circle-of-death",
+      "srd:spell:clairvoyance",
+      "srd:spell:clone",
+      "srd:spell:cloudkill",
+      "srd:spell:color-spray",
+      "srd:spell:comprehend-languages",
+      "srd:spell:cone-of-cold",
+      "srd:spell:confusion",
+      "srd:spell:conjure-elemental",
+      "srd:spell:conjure-minor-elementals",
+      "srd:spell:contact-other-plane",
+      "srd:spell:contingency",
+      "srd:spell:continual-flame",
+      "srd:spell:control-water",
+      "srd:spell:control-weather",
+      "srd:spell:counterspell",
+      "srd:spell:create-undead",
+      "srd:spell:creation",
+      "srd:spell:dancing-lights",
+      "srd:spell:darkness",
+      "srd:spell:darkvision",
+      "srd:spell:delayed-blast-fireball",
+      "srd:spell:demiplane",
+      "srd:spell:detect-magic",
+      "srd:spell:detect-thoughts",
+      "srd:spell:dimension-door",
+      "srd:spell:disguise-self",
+      "srd:spell:disintegrate",
+      "srd:spell:dispel-magic",
+      "srd:spell:divination",
+      "srd:spell:dominate-monster",
+      "srd:spell:dominate-person",
+      "srd:spell:dragons-breath",
+      "srd:spell:dream",
+      "srd:spell:elementalism",
+      "srd:spell:enhance-ability",
+      "srd:spell:enlarge-reduce",
+      "srd:spell:etherealness",
+      "srd:spell:expeditious-retreat",
+      "srd:spell:eyebite",
+      "srd:spell:fabricate",
+      "srd:spell:faithful-hound",
+      "srd:spell:false-life",
+      "srd:spell:fear",
+      "srd:spell:feather-fall",
+      "srd:spell:find-familiar",
+      "srd:spell:finger-of-death",
+      "srd:spell:fire-bolt",
+      "srd:spell:fire-shield",
+      "srd:spell:fireball",
+      "srd:spell:flaming-sphere",
+      "srd:spell:flesh-to-stone",
+      "srd:spell:floating-disk",
+      "srd:spell:fly",
+      "srd:spell:fog-cloud",
+      "srd:spell:forcecage",
+      "srd:spell:foresight",
+      "srd:spell:freezing-sphere",
+      "srd:spell:gaseous-form",
+      "srd:spell:gate",
+      "srd:spell:geas",
+      "srd:spell:gentle-repose",
+      "srd:spell:globe-of-invulnerability",
+      "srd:spell:glyph-of-warding",
+      "srd:spell:grease",
+      "srd:spell:greater-invisibility",
+      "srd:spell:guards-and-wards",
+      "srd:spell:gust-of-wind",
+      "srd:spell:hallucinatory-terrain",
+      "srd:spell:haste",
+      "srd:spell:hideous-laughter",
+      "srd:spell:hold-monster",
+      "srd:spell:hold-person",
+      "srd:spell:hypnotic-pattern",
+      "srd:spell:ice-knife",
+      "srd:spell:ice-storm",
+      "srd:spell:identify",
+      "srd:spell:illusory-script",
+      "srd:spell:imprisonment",
+      "srd:spell:incendiary-cloud",
+      "srd:spell:instant-summons",
+      "srd:spell:invisibility",
+      "srd:spell:irresistible-dance",
+      "srd:spell:jump",
+      "srd:spell:knock",
+      "srd:spell:legend-lore",
+      "srd:spell:levitate",
+      "srd:spell:light",
+      "srd:spell:lightning-bolt",
+      "srd:spell:locate-creature",
+      "srd:spell:locate-object",
+      "srd:spell:longstrider",
+      "srd:spell:mage-armor",
+      "srd:spell:mage-hand",
+      "srd:spell:magic-circle",
+      "srd:spell:magic-jar",
+      "srd:spell:magic-missile",
+      "srd:spell:magic-mouth",
+      "srd:spell:magic-weapon",
+      "srd:spell:magnificent-mansion",
+      "srd:spell:major-image",
+      "srd:spell:mass-suggestion",
+      "srd:spell:maze",
+      "srd:spell:mending",
+      "srd:spell:message",
+      "srd:spell:meteor-swarm",
+      "srd:spell:mind-blank",
+      "srd:spell:mind-spike",
+      "srd:spell:minor-illusion",
+      "srd:spell:mirage-arcane",
+      "srd:spell:mirror-image",
+      "srd:spell:mislead",
+      "srd:spell:misty-step",
+      "srd:spell:modify-memory",
+      "srd:spell:move-earth",
+      "srd:spell:nondetection",
+      "srd:spell:passwall",
+      "srd:spell:phantasmal-force",
+      "srd:spell:phantasmal-killer",
+      "srd:spell:phantom-steed",
+      "srd:spell:planar-binding",
+      "srd:spell:plane-shift",
+      "srd:spell:poison-spray",
+      "srd:spell:polymorph",
+      "srd:spell:power-word-kill",
+      "srd:spell:power-word-stun",
+      "srd:spell:prestidigitation",
+      "srd:spell:prismatic-spray",
+      "srd:spell:prismatic-wall",
+      "srd:spell:private-sanctum",
+      "srd:spell:programmed-illusion",
+      "srd:spell:project-image",
+      "srd:spell:protection-from-energy",
+      "srd:spell:protection-from-evil-and-good",
+      "srd:spell:ray-of-enfeeblement",
+      "srd:spell:ray-of-frost",
+      "srd:spell:ray-of-sickness",
+      "srd:spell:remove-curse",
+      "srd:spell:resilient-sphere",
+      "srd:spell:reverse-gravity",
+      "srd:spell:rope-trick",
+      "srd:spell:scorching-ray",
+      "srd:spell:scrying",
+      "srd:spell:secret-chest",
+      "srd:spell:see-invisibility",
+      "srd:spell:seeming",
+      "srd:spell:sending",
+      "srd:spell:sequester",
+      "srd:spell:shapechange",
+      "srd:spell:shatter",
+      "srd:spell:shield",
+      "srd:spell:shocking-grasp",
+      "srd:spell:silent-image",
+      "srd:spell:simulacrum",
+      "srd:spell:sleep",
+      "srd:spell:sleet-storm",
+      "srd:spell:slow",
+      "srd:spell:speak-with-dead",
+      "srd:spell:spider-climb",
+      "srd:spell:stinking-cloud",
+      "srd:spell:stone-shape",
+      "srd:spell:stoneskin",
+      "srd:spell:suggestion",
+      "srd:spell:summon-dragon",
+      "srd:spell:sunbeam",
+      "srd:spell:sunburst",
+      "srd:spell:symbol",
+      "srd:spell:telekinesis",
+      "srd:spell:telepathic-bond",
+      "srd:spell:teleport",
+      "srd:spell:teleportation-circle",
+      "srd:spell:thunderwave",
+      "srd:spell:time-stop",
+      "srd:spell:tiny-hut",
+      "srd:spell:tongues",
+      "srd:spell:true-polymorph",
+      "srd:spell:true-seeing",
+      "srd:spell:true-strike",
+      "srd:spell:unseen-servant",
+      "srd:spell:vampiric-touch",
+      "srd:spell:vitriolic-sphere",
+      "srd:spell:wall-of-fire",
+      "srd:spell:wall-of-force",
+      "srd:spell:wall-of-ice",
+      "srd:spell:wall-of-stone",
+      "srd:spell:water-breathing",
+      "srd:spell:web",
+      "srd:spell:weird",
+      "srd:spell:wish"
+    ]
+  }
+}

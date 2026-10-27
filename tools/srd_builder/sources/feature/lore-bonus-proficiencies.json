@@ -1,0 +1,147 @@
+{
+  "id": "srd:feature:lore-bonus-proficiencies",
+  "type": "feature",
+  "name": "Maîtrises supplémentaires",
+  "data": {
+    "source": "srd:subclass:college-of-lore",
+    "level": 3
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "lore-bonus-proficiencies",
+      "count": 3,
+      "options": [
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:acrobatics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:animal-handling"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:arcana"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:athletics"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:deception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:history"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:intimidation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:investigation"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:medicine"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:nature"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:performance"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:persuasion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:religion"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:sleight-of-hand"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:stealth"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:survival"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez la maîtrise de trois compétences, au choix."
+  }
+}

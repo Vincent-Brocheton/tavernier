@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:bard-countercharm",
+  "type": "feature",
+  "name": "Contre-charme",
+  "data": {
+    "source": "srd:class:bard",
+    "level": 7
+  },
+  "text": {
+    "fr": "Vous pouvez recourir à des notes de musique ou à des mots de pouvoir pour contrer les effets qui influent sur l’esprit. Si vous ou une créature dans un rayon de 9 m ratez un jet de sauvegarde contre un effet qui impose l’état Charmé ou Effrayé, vous pouvez jouer votre Réaction pour que le JS soit rejoué, le nouveau jet se faisant avec l’Avantage."
+  }
+}

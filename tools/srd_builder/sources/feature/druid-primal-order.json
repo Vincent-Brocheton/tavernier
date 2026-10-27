@@ -1,0 +1,61 @@
+{
+  "id": "srd:feature:druid-primal-order",
+  "type": "feature",
+  "name": "Ordre primitif",
+  "data": {
+    "source": "srd:class:druid",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "druid-primal-order",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_spell_list_access",
+            "class_lists": [
+              "srd:class:druid"
+            ],
+            "count": 1,
+            "max_level": 0
+          },
+          {
+            "op": "modify_check",
+            "scope": "skill:arcana",
+            "add": {
+              "ref": "ability_mod",
+              "ability": "wis",
+              "min": 1
+            }
+          },
+          {
+            "op": "modify_check",
+            "scope": "skill:nature",
+            "add": {
+              "ref": "ability_mod",
+              "ability": "wis",
+              "min": 1
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "weapon_category",
+            "ref": "martial"
+          },
+          {
+            "op": "grant_proficiency",
+            "kind": "armor",
+            "ref": "medium"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous consacrez votre existence à l’un des rôles sacrés suivants, au choix.\nMage. Vous connaissez un sort mineur supplémentaire tiré de la liste du Druide. De plus, votre lien mystique vous octroie un bonus aux tests d’Intelligence (Arcanes et Nature). Ce bonus est égal à votre modificateur de Sagesse (minimum +1).\nGardien. Combattant chevronné, vous recevez la maîtrise des armes de guerre et la formation aux armures intermédiaires."
+  }
+}
