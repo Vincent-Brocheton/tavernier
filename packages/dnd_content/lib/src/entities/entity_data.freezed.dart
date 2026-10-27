@@ -4825,4 +4825,890 @@ as int?,
 
 }
 
+
+/// @nodoc
+mixin _$SpellRange {
+
+ RangeKind get kind; int? get feet;
+/// Create a copy of SpellRange
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpellRangeCopyWith<SpellRange> get copyWith => _$SpellRangeCopyWithImpl<SpellRange>(this as SpellRange, _$identity);
+
+  /// Serializes this SpellRange to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as SpellRange;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellRange&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.feet, _this.feet) || other.feet == _this.feet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as SpellRange;
+  return Object.hash(runtimeType,_this.kind,_this.feet);
+}
+
+@override
+String toString() {
+  final _this = this as SpellRange;
+  return 'SpellRange(kind: ${_this.kind}, feet: ${_this.feet})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SpellRangeCopyWith<$Res>  {
+  factory $SpellRangeCopyWith(SpellRange value, $Res Function(SpellRange) _then) = _$SpellRangeCopyWithImpl;
+@useResult
+$Res call({
+ RangeKind kind, int? feet
+});
+
+
+
+
+}
+/// @nodoc
+class _$SpellRangeCopyWithImpl<$Res>
+    implements $SpellRangeCopyWith<$Res> {
+  _$SpellRangeCopyWithImpl(this._self, this._then);
+
+  final SpellRange _self;
+  final $Res Function(SpellRange) _then;
+
+/// Create a copy of SpellRange
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? feet = freezed,}) {
+  return _then(SpellRange(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as RangeKind,feet: freezed == feet ? _self.feet : feet // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SpellRange].
+extension SpellRangePatterns on SpellRange {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpellRange value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpellRange() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpellRange value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpellRange():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpellRange value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpellRange() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( RangeKind kind,  int? feet)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpellRange() when $default != null:
+return $default(_that.kind,_that.feet);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( RangeKind kind,  int? feet)  $default,) {final _that = this;
+switch (_that) {
+case _SpellRange():
+return $default(_that.kind,_that.feet);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( RangeKind kind,  int? feet)?  $default,) {final _that = this;
+switch (_that) {
+case _SpellRange() when $default != null:
+return $default(_that.kind,_that.feet);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SpellRange implements SpellRange {
+  const _SpellRange({required this.kind, this.feet});
+  factory _SpellRange.fromJson(Map<String, dynamic> json) => _$SpellRangeFromJson(json);
+
+@override final  RangeKind kind;
+@override final  int? feet;
+
+/// Create a copy of SpellRange
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpellRangeCopyWith<_SpellRange> get copyWith => __$SpellRangeCopyWithImpl<_SpellRange>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SpellRangeToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellRange&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.feet, feet) || other.feet == feet));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,kind,feet);
+}
+
+@override
+String toString() {
+    return 'SpellRange(kind: $kind, feet: $feet)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpellRangeCopyWith<$Res> implements $SpellRangeCopyWith<$Res> {
+  factory _$SpellRangeCopyWith(_SpellRange value, $Res Function(_SpellRange) _then) = __$SpellRangeCopyWithImpl;
+@override @useResult
+$Res call({
+ RangeKind kind, int? feet
+});
+
+
+
+
+}
+/// @nodoc
+class __$SpellRangeCopyWithImpl<$Res>
+    implements _$SpellRangeCopyWith<$Res> {
+  __$SpellRangeCopyWithImpl(this._self, this._then);
+
+  final _SpellRange _self;
+  final $Res Function(_SpellRange) _then;
+
+/// Create a copy of SpellRange
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? feet = freezed,}) {
+  return _then(_SpellRange(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as RangeKind,feet: freezed == feet ? _self.feet : feet // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$SpellComponents {
+
+ bool get verbal; bool get somatic; String? get material;
+/// Create a copy of SpellComponents
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpellComponentsCopyWith<SpellComponents> get copyWith => _$SpellComponentsCopyWithImpl<SpellComponents>(this as SpellComponents, _$identity);
+
+  /// Serializes this SpellComponents to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as SpellComponents;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellComponents&&(identical(other.verbal, _this.verbal) || other.verbal == _this.verbal)&&(identical(other.somatic, _this.somatic) || other.somatic == _this.somatic)&&(identical(other.material, _this.material) || other.material == _this.material));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as SpellComponents;
+  return Object.hash(runtimeType,_this.verbal,_this.somatic,_this.material);
+}
+
+@override
+String toString() {
+  final _this = this as SpellComponents;
+  return 'SpellComponents(verbal: ${_this.verbal}, somatic: ${_this.somatic}, material: ${_this.material})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SpellComponentsCopyWith<$Res>  {
+  factory $SpellComponentsCopyWith(SpellComponents value, $Res Function(SpellComponents) _then) = _$SpellComponentsCopyWithImpl;
+@useResult
+$Res call({
+ bool verbal, bool somatic, String? material
+});
+
+
+
+
+}
+/// @nodoc
+class _$SpellComponentsCopyWithImpl<$Res>
+    implements $SpellComponentsCopyWith<$Res> {
+  _$SpellComponentsCopyWithImpl(this._self, this._then);
+
+  final SpellComponents _self;
+  final $Res Function(SpellComponents) _then;
+
+/// Create a copy of SpellComponents
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? verbal = null,Object? somatic = null,Object? material = freezed,}) {
+  return _then(SpellComponents(
+verbal: null == verbal ? _self.verbal : verbal // ignore: cast_nullable_to_non_nullable
+as bool,somatic: null == somatic ? _self.somatic : somatic // ignore: cast_nullable_to_non_nullable
+as bool,material: freezed == material ? _self.material : material // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SpellComponents].
+extension SpellComponentsPatterns on SpellComponents {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpellComponents value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpellComponents() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpellComponents value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpellComponents():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpellComponents value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpellComponents() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool verbal,  bool somatic,  String? material)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpellComponents() when $default != null:
+return $default(_that.verbal,_that.somatic,_that.material);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool verbal,  bool somatic,  String? material)  $default,) {final _that = this;
+switch (_that) {
+case _SpellComponents():
+return $default(_that.verbal,_that.somatic,_that.material);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool verbal,  bool somatic,  String? material)?  $default,) {final _that = this;
+switch (_that) {
+case _SpellComponents() when $default != null:
+return $default(_that.verbal,_that.somatic,_that.material);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SpellComponents implements SpellComponents {
+  const _SpellComponents({required this.verbal, required this.somatic, this.material});
+  factory _SpellComponents.fromJson(Map<String, dynamic> json) => _$SpellComponentsFromJson(json);
+
+@override final  bool verbal;
+@override final  bool somatic;
+@override final  String? material;
+
+/// Create a copy of SpellComponents
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpellComponentsCopyWith<_SpellComponents> get copyWith => __$SpellComponentsCopyWithImpl<_SpellComponents>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SpellComponentsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellComponents&&(identical(other.verbal, verbal) || other.verbal == verbal)&&(identical(other.somatic, somatic) || other.somatic == somatic)&&(identical(other.material, material) || other.material == material));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,verbal,somatic,material);
+}
+
+@override
+String toString() {
+    return 'SpellComponents(verbal: $verbal, somatic: $somatic, material: $material)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpellComponentsCopyWith<$Res> implements $SpellComponentsCopyWith<$Res> {
+  factory _$SpellComponentsCopyWith(_SpellComponents value, $Res Function(_SpellComponents) _then) = __$SpellComponentsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool verbal, bool somatic, String? material
+});
+
+
+
+
+}
+/// @nodoc
+class __$SpellComponentsCopyWithImpl<$Res>
+    implements _$SpellComponentsCopyWith<$Res> {
+  __$SpellComponentsCopyWithImpl(this._self, this._then);
+
+  final _SpellComponents _self;
+  final $Res Function(_SpellComponents) _then;
+
+/// Create a copy of SpellComponents
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? verbal = null,Object? somatic = null,Object? material = freezed,}) {
+  return _then(_SpellComponents(
+verbal: null == verbal ? _self.verbal : verbal // ignore: cast_nullable_to_non_nullable
+as bool,somatic: null == somatic ? _self.somatic : somatic // ignore: cast_nullable_to_non_nullable
+as bool,material: freezed == material ? _self.material : material // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$SpellData {
+
+@JsonKey(fromJson: _spellLevel) int get level; SpellSchool get school;/// Temps d'incantation, tel que dans le SRD (« action », « 1 minute »…).
+ String get castingTime; bool get ritual;@JsonKey(fromJson: _spellRange) SpellRange get range; SpellComponents get components; int? get materialCostCp; bool get materialConsumed;/// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
+ String get duration; bool get concentration;
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpellDataCopyWith<SpellData> get copyWith => _$SpellDataCopyWithImpl<SpellData>(this as SpellData, _$identity);
+
+  /// Serializes this SpellData to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as SpellData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellData&&(identical(other.level, _this.level) || other.level == _this.level)&&(identical(other.school, _this.school) || other.school == _this.school)&&(identical(other.castingTime, _this.castingTime) || other.castingTime == _this.castingTime)&&(identical(other.ritual, _this.ritual) || other.ritual == _this.ritual)&&(identical(other.range, _this.range) || other.range == _this.range)&&(identical(other.components, _this.components) || other.components == _this.components)&&(identical(other.materialCostCp, _this.materialCostCp) || other.materialCostCp == _this.materialCostCp)&&(identical(other.materialConsumed, _this.materialConsumed) || other.materialConsumed == _this.materialConsumed)&&(identical(other.duration, _this.duration) || other.duration == _this.duration)&&(identical(other.concentration, _this.concentration) || other.concentration == _this.concentration));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as SpellData;
+  return Object.hash(runtimeType,_this.level,_this.school,_this.castingTime,_this.ritual,_this.range,_this.components,_this.materialCostCp,_this.materialConsumed,_this.duration,_this.concentration);
+}
+
+@override
+String toString() {
+  final _this = this as SpellData;
+  return 'SpellData(level: ${_this.level}, school: ${_this.school}, castingTime: ${_this.castingTime}, ritual: ${_this.ritual}, range: ${_this.range}, components: ${_this.components}, materialCostCp: ${_this.materialCostCp}, materialConsumed: ${_this.materialConsumed}, duration: ${_this.duration}, concentration: ${_this.concentration})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SpellDataCopyWith<$Res>  {
+  factory $SpellDataCopyWith(SpellData value, $Res Function(SpellData) _then) = _$SpellDataCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration
+});
+
+
+$SpellRangeCopyWith<$Res> get range;$SpellComponentsCopyWith<$Res> get components;
+
+}
+/// @nodoc
+class _$SpellDataCopyWithImpl<$Res>
+    implements $SpellDataCopyWith<$Res> {
+  _$SpellDataCopyWithImpl(this._self, this._then);
+
+  final SpellData _self;
+  final $Res Function(SpellData) _then;
+
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,}) {
+  return _then(SpellData(
+level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,school: null == school ? _self.school : school // ignore: cast_nullable_to_non_nullable
+as SpellSchool,castingTime: null == castingTime ? _self.castingTime : castingTime // ignore: cast_nullable_to_non_nullable
+as String,ritual: null == ritual ? _self.ritual : ritual // ignore: cast_nullable_to_non_nullable
+as bool,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as SpellRange,components: null == components ? _self.components : components // ignore: cast_nullable_to_non_nullable
+as SpellComponents,materialCostCp: freezed == materialCostCp ? _self.materialCostCp : materialCostCp // ignore: cast_nullable_to_non_nullable
+as int?,materialConsumed: null == materialConsumed ? _self.materialConsumed : materialConsumed // ignore: cast_nullable_to_non_nullable
+as bool,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
+as String,concentration: null == concentration ? _self.concentration : concentration // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellRangeCopyWith<$Res> get range {
+  
+  return $SpellRangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellComponentsCopyWith<$Res> get components {
+  
+  return $SpellComponentsCopyWith<$Res>(_self.components, (value) {
+    return _then(_self.copyWith(components: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [SpellData].
+extension SpellDataPatterns on SpellData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpellData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpellData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpellData value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpellData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpellData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpellData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpellData() when $default != null:
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)  $default,) {final _that = this;
+switch (_that) {
+case _SpellData():
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)?  $default,) {final _that = this;
+switch (_that) {
+case _SpellData() when $default != null:
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SpellData implements SpellData {
+  const _SpellData({@JsonKey(fromJson: _spellLevel) required this.level, required this.school, required this.castingTime, required this.ritual, @JsonKey(fromJson: _spellRange) required this.range, required this.components, this.materialCostCp, required this.materialConsumed, required this.duration, required this.concentration});
+  factory _SpellData.fromJson(Map<String, dynamic> json) => _$SpellDataFromJson(json);
+
+@override@JsonKey(fromJson: _spellLevel) final  int level;
+@override final  SpellSchool school;
+/// Temps d'incantation, tel que dans le SRD (« action », « 1 minute »…).
+@override final  String castingTime;
+@override final  bool ritual;
+@override@JsonKey(fromJson: _spellRange) final  SpellRange range;
+@override final  SpellComponents components;
+@override final  int? materialCostCp;
+@override final  bool materialConsumed;
+/// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
+@override final  String duration;
+@override final  bool concentration;
+
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpellDataCopyWith<_SpellData> get copyWith => __$SpellDataCopyWithImpl<_SpellData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SpellDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellData&&(identical(other.level, level) || other.level == level)&&(identical(other.school, school) || other.school == school)&&(identical(other.castingTime, castingTime) || other.castingTime == castingTime)&&(identical(other.ritual, ritual) || other.ritual == ritual)&&(identical(other.range, range) || other.range == range)&&(identical(other.components, components) || other.components == components)&&(identical(other.materialCostCp, materialCostCp) || other.materialCostCp == materialCostCp)&&(identical(other.materialConsumed, materialConsumed) || other.materialConsumed == materialConsumed)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.concentration, concentration) || other.concentration == concentration));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,level,school,castingTime,ritual,range,components,materialCostCp,materialConsumed,duration,concentration);
+}
+
+@override
+String toString() {
+    return 'SpellData(level: $level, school: $school, castingTime: $castingTime, ritual: $ritual, range: $range, components: $components, materialCostCp: $materialCostCp, materialConsumed: $materialConsumed, duration: $duration, concentration: $concentration)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpellDataCopyWith<$Res> implements $SpellDataCopyWith<$Res> {
+  factory _$SpellDataCopyWith(_SpellData value, $Res Function(_SpellData) _then) = __$SpellDataCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration
+});
+
+
+@override $SpellRangeCopyWith<$Res> get range;@override $SpellComponentsCopyWith<$Res> get components;
+
+}
+/// @nodoc
+class __$SpellDataCopyWithImpl<$Res>
+    implements _$SpellDataCopyWith<$Res> {
+  __$SpellDataCopyWithImpl(this._self, this._then);
+
+  final _SpellData _self;
+  final $Res Function(_SpellData) _then;
+
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,}) {
+  return _then(_SpellData(
+level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,school: null == school ? _self.school : school // ignore: cast_nullable_to_non_nullable
+as SpellSchool,castingTime: null == castingTime ? _self.castingTime : castingTime // ignore: cast_nullable_to_non_nullable
+as String,ritual: null == ritual ? _self.ritual : ritual // ignore: cast_nullable_to_non_nullable
+as bool,range: null == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as SpellRange,components: null == components ? _self.components : components // ignore: cast_nullable_to_non_nullable
+as SpellComponents,materialCostCp: freezed == materialCostCp ? _self.materialCostCp : materialCostCp // ignore: cast_nullable_to_non_nullable
+as int?,materialConsumed: null == materialConsumed ? _self.materialConsumed : materialConsumed // ignore: cast_nullable_to_non_nullable
+as bool,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
+as String,concentration: null == concentration ? _self.concentration : concentration // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellRangeCopyWith<$Res> get range {
+  
+  return $SpellRangeCopyWith<$Res>(_self.range, (value) {
+    return _then(_self.copyWith(range: value));
+  });
+}/// Create a copy of SpellData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellComponentsCopyWith<$Res> get components {
+  
+  return $SpellComponentsCopyWith<$Res>(_self.components, (value) {
+    return _then(_self.copyWith(components: value));
+  });
+}
+}
+
 // dart format on

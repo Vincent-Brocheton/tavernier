@@ -1,6 +1,6 @@
 ## 1. Type d'entité sort
 
-- [ ] 1.1 Tests qui échouent dans `dnd_content` : lecture d'un sort valide, refus d'un niveau 10, d'une école inconnue, d'une portée `feet` sans valeur, d'un champ inconnu ; puis `SpellData` (freezed), lecteur `spell`, validation ; `build_runner` régénéré
+- [x] 1.1 Tests qui échouent dans `dnd_content` : lecture d'un sort valide, refus d'un niveau 10, d'une école inconnue, d'une portée `feet` sans valeur, d'un champ inconnu ; puis `SpellData` (freezed), lecteur `spell`, validation ; `build_runner` régénéré
 - [ ] 1.2 Tests qui échouent dans `dnd_data` : aller-retour d'un sort dans la table `spell`, recherche par nom ; puis import et export du type `spell` dans `PackStore`
 
 ## 2. Extraction
