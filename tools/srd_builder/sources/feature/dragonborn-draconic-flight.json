@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:dragonborn-draconic-flight",
+  "type": "feature",
+  "name": "Vol draconique",
+  "data": {
+    "source": "srd:species:dragonborn",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:draconic-flight",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ],
+      "when": {
+        "level": 5
+      }
+    }
+  ],
+  "text": {
+    "fr": "Lorsque vous atteignez le niveau de personnage 5, vous pouvez canaliser la magie draconique pour vous octroyer le vol de façon temporaire. Par une action Bonus, il vous pousse des ailes spectrales dans le dos qui persistent 10 minutes ou jusqu’à ce que vous rétractiez ces ailes (pas d’action requise) ou subissiez l’état Neutralisé. Pour toute la durée, vous disposez d’une Vitesse de vol égale à votre Vitesse. Ces ailes semblent être faites de la même énergie que votre souffle. Une fois ce trait utilisé, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

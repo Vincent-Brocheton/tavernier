@@ -1,0 +1,42 @@
+{
+  "id": "srd:feature:elf-keen-senses",
+  "type": "feature",
+  "name": "Sens aiguisés",
+  "data": {
+    "source": "srd:species:elf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "keen-senses",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:insight"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:perception"
+          }
+        ],
+        [
+          {
+            "op": "grant_proficiency",
+            "kind": "skill",
+            "ref": "srd:skill:survival"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous bénéficiez de la maîtrise de la compétence Intuition, Perception ou Survie au choix."
+  }
+}

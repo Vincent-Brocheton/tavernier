@@ -1,0 +1,19 @@
+{
+  "id": "srd:species:elf",
+  "type": "species",
+  "name": "Elfe",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:elf-fey-ancestry",
+      "srd:feature:elf-elven-lineage",
+      "srd:feature:elf-keen-senses",
+      "srd:feature:elf-trance",
+      "srd:feature:elf-darkvision"
+    ]
+  }
+}

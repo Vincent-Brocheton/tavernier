@@ -1,0 +1,27 @@
+{
+  "id": "srd:feature:dwarf-stonecunning",
+  "type": "feature",
+  "name": "Connaissance de la pierre",
+  "data": {
+    "source": "srd:species:dwarf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:stonecunning",
+      "max": {
+        "ref": "proficiency_bonus"
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Par une action Bonus, vous recevez la Perception des vibrations à 18 m pendant 10 minutes. Cette Perception des vibrations nécessite que vous soyez sur une surface en pierre ou en contact physique avec une telle surface. Cette pierre peut être naturelle ou façonnée.\nVous pouvez recourir à cette action Bonus autant de fois que votre bonus de maîtrise, et récupérez ce quota en terminant un Repos long."
+  }
+}

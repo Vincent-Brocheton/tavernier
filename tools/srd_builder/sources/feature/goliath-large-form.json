@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:goliath-large-form",
+  "type": "feature",
+  "name": "Forme de géant",
+  "data": {
+    "source": "srd:species:goliath",
+    "level": 5
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:large-form",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ],
+      "when": {
+        "level": 5
+      }
+    }
+  ],
+  "text": {
+    "fr": "À partir du niveau de personnage 5, vous pouvez changer de catégorie de taille et devenir de taille G par une action Bonus, à condition que l’espace que vous occupez soit suffisamment vaste. Cette transformation dure 10 minutes ou jusqu’à ce que vous y mettiez un terme (pas d’action requise). Pour toute la durée, vous avez l’Avantage aux tests de Force et votre Vitesse augmente de 3 m. Une fois ce trait utilisé, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

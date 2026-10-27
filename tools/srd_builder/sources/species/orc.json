@@ -1,0 +1,17 @@
+{
+  "id": "srd:species:orc",
+  "type": "species",
+  "name": "Orc",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:orc-relentless-endurance",
+      "srd:feature:orc-adrenaline-rush",
+      "srd:feature:orc-darkvision"
+    ]
+  }
+}

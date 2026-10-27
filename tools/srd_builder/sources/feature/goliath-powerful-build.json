@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:goliath-powerful-build",
+  "type": "feature",
+  "name": "Forte carrure",
+  "data": {
+    "source": "srd:species:goliath",
+    "level": 1
+  },
+  "text": {
+    "fr": "Vous avez l’Avantage à tous les tests de caractéristique que vous effectuez pour mettre un terme à l’état Agrippé. Votre catégorie de taille est en outre considérée comme du cran immédiatement supérieur pour ce qui est de définir votre capacité de charge."
+  }
+}

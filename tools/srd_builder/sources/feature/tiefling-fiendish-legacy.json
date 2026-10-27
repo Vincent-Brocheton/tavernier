@@ -1,0 +1,156 @@
+{
+  "id": "srd:feature:tiefling-fiendish-legacy",
+  "type": "feature",
+  "name": "Héritage fiélon",
+  "data": {
+    "source": "srd:species:tiefling",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "fiendish-legacy",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:poison"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:poison-spray"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:ray-of-sickness",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:hold-person",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:necrotic"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:chill-touch"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:false-life",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:ray-of-enfeeblement",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:fire"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:fire-bolt"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:hellish-rebuke",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 3
+            }
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:darkness",
+            "always_prepared": true,
+            "free_casts": {
+              "count": 1,
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            },
+            "when": {
+              "level": 5
+            }
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Votre héritage vous octroie des aptitudes surnaturelles. Choisissez un héritage dans la table Héritages fiélons. Vous recevez le bénéfice de niveau 1 de l’héritage choisi.\nLorsque vous atteignez les niveaux de personnage 3 et 5, vous apprenez un sort de niveau supérieur, comme indiqué sur la table. Ce sort est toujours considéré comme préparé pour vous. Vous pouvez le lancer une fois sans dépenser d’emplacement de sort et récupérez cette aptitude en terminant un Repos long. Vous pouvez également le lancer avec vos éventuels emplacements de sort de niveau adéquat.\nL’Intelligence, la Sagesse ou le Charisme est votre caractéristique d’incantation pour les sorts que vous lancez avec ce trait (décidez de la caractéristique lors de la sélection de l’héritage).\nHéritages fiélons\nHéritage | Niveau 1 | Niveau 3 | Niveau 5\nAbyssal | Vous bénéficiez de la Résistance aux dégâts de poison. Vous connaissez en outre le sort mineur bouffée de poison. | rayon empoisonné | immobilisation de personne\nChtonien | Vous bénéficiez de la Résistance aux dégâts nécrotiques. Vous connaissez en outre le sort mineur contact glacial. | simulacre de vie | rayon affaiblissant\nInfernal | Vous bénéficiez de la Résistance aux dégâts de feu. Vous connaissez en outre le sort mineur trait de feu. | représailles infernales | ténèbres"
+  }
+}

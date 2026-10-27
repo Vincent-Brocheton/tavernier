@@ -1,0 +1,56 @@
+{
+  "id": "srd:feature:dragonborn-draconic-ancestry",
+  "type": "feature",
+  "name": "Ascendance draconique",
+  "data": {
+    "source": "srd:species:dragonborn",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "draconic-ancestry",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:acid"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:cold"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:fire"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:lightning"
+          }
+        ],
+        [
+          {
+            "op": "grant_defense",
+            "kind": "resistance",
+            "damage_type": "srd:damage-type:poison"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Votre lignée remonte à un géniteur dragon. Choisissez le type de dragon dans la table « Ancêtres draconiques ». Ce choix affecte vos traits Souffle et Résistance aux dégâts, ainsi que votre apparence.\nAncêtres draconiques\nDragon | Type de dégâts\nAirain | Feu\nArgent | Froid\nBlanc | Froid\nBleu | Foudre\nBronze | Foudre\nCuivre | Acide\nNoir | Acide\nOr | Feu\nRouge | Feu\nVert | Poison"
+  }
+}

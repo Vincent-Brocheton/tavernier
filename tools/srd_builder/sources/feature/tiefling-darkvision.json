@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:tiefling-darkvision",
+  "type": "feature",
+  "name": "Vision dans le noir",
+  "data": {
+    "source": "srd:species:tiefling",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_sense",
+      "sense": "darkvision",
+      "range": 60
+    }
+  ],
+  "text": {
+    "fr": "Vous disposez de la Vision dans le noir sur 18 m."
+  }
+}

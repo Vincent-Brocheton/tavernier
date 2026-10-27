@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:halfling-naturally-stealthy",
+  "type": "feature",
+  "name": "Discrétion naturelle",
+  "data": {
+    "source": "srd:species:halfling",
+    "level": 1
+  },
+  "text": {
+    "fr": "Il vous suffit d’être dans l’ombre d’une créature dont la catégorie de taille est d’au moins un cran supérieure à la vôtre pour pouvoir entreprendre l’action Furtivité."
+  }
+}

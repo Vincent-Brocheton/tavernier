@@ -1,0 +1,18 @@
+{
+  "id": "srd:species:tiefling",
+  "type": "species",
+  "name": "Tieffelin",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M",
+      "P"
+    ],
+    "speed_feet": 30,
+    "traits": [
+      "srd:feature:tiefling-fiendish-legacy",
+      "srd:feature:tiefling-otherworldly-presence",
+      "srd:feature:tiefling-darkvision"
+    ]
+  }
+}

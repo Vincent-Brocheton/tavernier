@@ -1,0 +1,31 @@
+{
+  "id": "srd:feature:orc-adrenaline-rush",
+  "type": "feature",
+  "name": "Poussée d’adrénaline",
+  "data": {
+    "source": "srd:species:orc",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:adrenaline-rush",
+      "max": {
+        "ref": "proficiency_bonus"
+      },
+      "recharge": [
+        {
+          "on": "short_rest",
+          "amount": "all"
+        },
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez entreprendre l’action Pointe par une action Bonus. Quand vous faites ainsi, vous recevez un nombre de points de vie temporaires égal à votre bonus de maîtrise.\nVous pouvez recourir à ce trait autant de fois que votre bonus de maîtrise, et récupérez ce quota en terminant un Repos court ou long."
+  }
+}

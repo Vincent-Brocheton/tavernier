@@ -11,7 +11,9 @@ final _footer = RegExp(
   r'^(\d+\s+)?Document de Référence du Système 5\.2\.1(\s+\d+)?$',
 );
 final _pageNumber = RegExp(r'^\d+$');
-final _endsSentence = RegExp(r'[.:!?»)…]$');
+
+/// Fin de phrase : un raccord de ligne s'arrête là.
+final endsSentence = RegExp(r'[.:!?»)…]$');
 final _startsLower = RegExp(r'^[a-zàâäéèêëîïôöùûüç]');
 final _wordBefore = RegExp(r'(\p{L}+)-$', unicode: true);
 final _wordAfter = RegExp(r'^(\p{L}+)', unicode: true);
@@ -60,7 +62,7 @@ CleanText cleanText(String text) {
         );
         continue;
       }
-      if (!_endsSentence.hasMatch(previous)) {
+      if (!endsSentence.hasMatch(previous)) {
         lines.last = '$previous $line';
         joins.add('ligne recollée : $previous ⏎ $line');
         continue;

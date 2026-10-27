@@ -1,0 +1,17 @@
+{
+  "id": "srd:species:goliath",
+  "type": "species",
+  "name": "Goliath",
+  "data": {
+    "creature_type": "humanoid",
+    "sizes": [
+      "M"
+    ],
+    "speed_feet": 35,
+    "traits": [
+      "srd:feature:goliath-giant-ancestry",
+      "srd:feature:goliath-large-form",
+      "srd:feature:goliath-powerful-build"
+    ]
+  }
+}

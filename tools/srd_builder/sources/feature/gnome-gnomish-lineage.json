@@ -1,0 +1,53 @@
+{
+  "id": "srd:feature:gnome-gnomish-lineage",
+  "type": "feature",
+  "name": "Lignage gnome",
+  "data": {
+    "source": "srd:species:gnome",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "gnomish-lineage",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:minor-illusion"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:speak-with-animals",
+            "always_prepared": true,
+            "free_casts": {
+              "count": {
+                "ref": "proficiency_bonus"
+              },
+              "recharge": [
+                {
+                  "on": "long_rest",
+                  "amount": "all"
+                }
+              ]
+            }
+          }
+        ],
+        [
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:mending"
+          },
+          {
+            "op": "grant_spell",
+            "spell": "srd:spell:prestidigitation"
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous appartenez à un lignage qui vous octroie des aptitudes surnaturelles. Choisissez l’une des options ci-après ; quelle que soit celle que vous choisissez, l’Intelligence, la Sagesse ou le Charisme est votre caractéristique d’incantation pour les sorts que vous lancez avec ce trait (décidez de la caractéristique lors de la sélection du lignage) :\nGnome des forêts. Vous connaissez le sort mineur illusion mineure. Le sort communication avec les animaux est en outre considéré pour vous comme toujours préparé. Vous pouvez le lancer sans emplacement de sort autant de fois que votre bonus de maîtrise, et récupérez ce quota en terminant un Repos long. Vous pouvez en outre dépenser les emplacements de sort adaptés dont vous disposez pour lancer ce sort.\nGnome des roches. Vous connaissez les sorts mineurs prestidigitation et réparation. Vous pouvez en outre consacrer 10 minutes à lancer prestidigitation pour créer un appareil mécanique de taille TP (CA 5, 1 pv) tel qu’un jouet, un allume-feu ou une boîte à musique. Lorsque vous créez l’appareil, vous déterminez sa fonction en choisissant un effet parmi ceux de prestidigitation ; l’appareil produit cet effet chaque fois que vous-même ou une autre créature entreprenez une action Bonus pour l’activer par simple contact. Lorsque l’effet choisi comporte des options, vous devez en choisir une pour l’appareil à sa création. Si vous choisissez l’effet « allumage-extinction » du sort, par exemple, vous devez déterminer si l’appareil allume ou éteint le feu ; il ne peut pas faire les deux. Vous pouvez avoir trois appareils actifs de ce type à la fois, et chacun tombe en morceaux 8 heures après sa création ou lorsque vous le démantelez par simple contact en entreprenant l’action Utilisation."
+  }
+}

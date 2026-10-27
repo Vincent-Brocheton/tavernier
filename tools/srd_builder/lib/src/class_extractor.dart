@@ -99,7 +99,7 @@ List<String> extractClasses({
     }
 
     // Sous-classe : régénérée entièrement.
-    _write(File('$sources/subclass/${c.subclassSlug}.json'), {
+    writeJson(File('$sources/subclass/${c.subclassSlug}.json'), {
       'id': 'srd:subclass:${c.subclassSlug}',
       'type': 'subclass',
       'name': section.subclassName,
@@ -155,7 +155,7 @@ List<String> extractClasses({
     } else {
       data['spell_list'] = [for (final s in spells) 'srd:spell:$s'];
     }
-    _write(classFile, json);
+    writeJson(classFile, json);
   }
   return problems;
 }
@@ -173,7 +173,7 @@ bool writeFeature(
       ? jsonDecode(file.readAsStringSync()) as Map<String, Object?>
       : null;
   final slug = file.uri.pathSegments.last.replaceFirst('.json', '');
-  _write(file, {
+  writeJson(file, {
     'id': 'srd:feature:$slug',
     'type': 'feature',
     'name': name,
@@ -204,7 +204,8 @@ Map<String, List<String>> readSpellClasses(File file) {
   return result;
 }
 
-void _write(File file, Object json) {
+/// Écrit [json] indenté dans [file], terminé par un saut de ligne.
+void writeJson(File file, Object json) {
   file.parent.createSync(recursive: true);
   file.writeAsStringSync('${_encoder.convert(json)}\n');
 }

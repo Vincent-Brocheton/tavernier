@@ -1,0 +1,39 @@
+{
+  "id": "srd:feat:boon-of-irresistible-offense",
+  "type": "feat",
+  "name": "Faveur d’attaque irrésistible",
+  "data": {
+    "category": "epic_boon",
+    "prerequisites": {
+      "min_level": 19
+    }
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "boon-of-irresistible-offense",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "str",
+            "value": 1,
+            "max": 30
+          }
+        ],
+        [
+          {
+            "op": "ability_bonus",
+            "ability": "dex",
+            "value": 1,
+            "max": 30
+          }
+        ]
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez les bénéfices suivants. Augmentation de caractéristique. Votre valeur de Force ou de Dextérité augmente de 1, jusqu’à un maximum de 30.\nDéfenses surmontées. Les dégâts contondants, perforants et tranchants que vous infligez ne sont pas affectés par la Résistance.\nFrappe écrasante. Lorsque vous obtenez un 20 au d20 d’un jet d’attaque, vous pouvez infliger des dégâts supplémentaires à la cible à hauteur de la valeur de caractéristique augmentée par ce don. Ces dégâts supplémentaires sont du même type que celui de l’attaque."
+  }
+}

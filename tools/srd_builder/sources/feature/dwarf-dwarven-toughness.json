@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:dwarf-dwarven-toughness",
+  "type": "feature",
+  "name": "Ténacité naine",
+  "data": {
+    "source": "srd:species:dwarf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "modify_hp_max",
+      "per_level": 1
+    }
+  ],
+  "text": {
+    "fr": "Votre maximum de points de vie augmente de 1, et augmente encore de 1 chaque fois que vous gagnez un niveau."
+  }
+}

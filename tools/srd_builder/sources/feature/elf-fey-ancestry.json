@@ -1,0 +1,18 @@
+{
+  "id": "srd:feature:elf-fey-ancestry",
+  "type": "feature",
+  "name": "Ascendance féerique",
+  "data": {
+    "source": "srd:species:elf",
+    "level": 1
+  },
+  "effects": [
+    {
+      "op": "grant_advantage",
+      "on": "saving_throw_vs:charmed"
+    }
+  ],
+  "text": {
+    "fr": "Vous avez l’Avantage aux jets de sauvegarde visant à éviter l’état Charmé ou à y mettre un terme."
+  }
+}
