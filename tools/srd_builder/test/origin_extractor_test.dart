@@ -264,5 +264,13 @@ void main() {
       ]),
       ['Froid'],
     );
+    // Acide est la valeur de Cuivre, sur la même ligne du texte en page.
+    expect(
+      missingTableCells(layout, 'Ancêtres draconiques', [
+        ['Airain', 'Acide'],
+        ['Cuivre', 'Feu'],
+      ]),
+      ['Acide', 'Feu'],
+    );
   });
 }

@@ -22,8 +22,9 @@ List<String> extractOrigins({
       ? jsonDecode(file.readAsStringSync()) as Map<String, Object?>
       : null;
 
-  final species = extractSpecies(readingOrder, srdSpecies);
-  species.firstOrNull?.joins.forEach(report.writeln);
+  final joins = <String>[];
+  final species = extractSpecies(readingOrder, srdSpecies, joins: joins);
+  joins.forEach(report.writeln);
   for (final s in species) {
     report.writeln('== ${s.name}');
     final traits = <String>[];
@@ -50,7 +51,13 @@ List<String> extractOrigins({
     });
   }
 
-  for (final f in extractFeats(readingOrder)) {
+  final feats = extractFeats(readingOrder);
+  final found = {for (final f in feats) f.name};
+  problems.addAll([
+    for (final name in srdFeats.keys)
+      if (!found.contains(name)) 'don introuvable : $name',
+  ]);
+  for (final f in feats) {
     final slug = srdFeats[f.name];
     if (slug == null) {
       problems.add('don sans slug : ${f.name}');
@@ -91,7 +98,6 @@ typedef ExtractedSpecies = ({
   String slug,
   Map<String, Object> data,
   List<ExtractedTrait> traits,
-  List<String> joins,
 });
 
 typedef ExtractedFeat = ({String name, Map<String, Object> data, String text});
@@ -135,7 +141,7 @@ final _abilityMin = RegExp(
 String _paragraphs(List<String> lines) {
   final out = <String>[];
   for (final line in lines) {
-    if (out.isNotEmpty && !RegExp(r'[.:!?»)…]$').hasMatch(out.last)) {
+    if (out.isNotEmpty && !endsSentence.hasMatch(out.last)) {
       out.last = '${out.last} $line';
     } else {
       out.add(line);
@@ -158,8 +164,13 @@ CleanText _section(String text, String from, String to) {
 
 /// Espèces de [config] lues dans [text], de « Description des espèces » au
 /// titre « Dons ».
-List<ExtractedSpecies> extractSpecies(String text, List<SrdSpecies> config) {
+List<ExtractedSpecies> extractSpecies(
+  String text,
+  List<SrdSpecies> config, {
+  List<String>? joins,
+}) {
   final clean = _section(text, 'Description des espèces', 'Dons');
+  joins?.addAll(clean.joins);
   final lines = clean.lines;
   // Une espèce commence à son nom seul sur sa ligne, suivi de son en-tête.
   int startOf(String name) {
@@ -184,16 +195,11 @@ List<ExtractedSpecies> extractSpecies(String text, List<SrdSpecies> config) {
             orElse: () => lines.length,
           ),
         ),
-        clean.joins,
       ),
   ];
 }
 
-ExtractedSpecies _species(
-  SrdSpecies config,
-  List<String> lines,
-  List<String> joins,
-) {
+ExtractedSpecies _species(SrdSpecies config, List<String> lines) {
   final intro = lines.indexWhere((l) => l.startsWith('En tant qu'));
   if (intro < 0) throw FormatException('traits introuvables : ${config.name}');
   final header = lines.sublist(1, intro).join(' ');
@@ -247,7 +253,6 @@ ExtractedSpecies _species(
         else
           throw FormatException('trait introuvable : ${config.name}, $name'),
     ],
-    joins: joins,
   );
 }
 
@@ -299,8 +304,11 @@ ExtractedFeat _feat(String name, RegExpMatch category, List<String> lines) {
 }
 
 /// Cellules de [rows] absentes de la table [title] du texte en mise en
-/// page [layout] : les mots de chaque cellule doivent s'y suivre, dans les
-/// 25 lignes après le titre (les colonnes voisines s'intercalent).
+/// page [layout]. Une ligne de table va de sa première cellule à la
+/// première cellule d'une autre ligne qui la suit (la table du Drakéide
+/// a deux colonnes de dragons) ; les mots de chaque cellule doivent s'y
+/// suivre, les colonnes voisines pouvant s'intercaler. La ligne d'en-tête
+/// part du titre. Une cellule recopiée dans la mauvaise ligne manque donc.
 List<String> missingTableCells(
   String layout,
   String title,
@@ -319,20 +327,34 @@ List<String> missingTableCells(
             .take(25)
             .join(' ')
             .split(RegExp(r'\s+'));
-  bool found(String cell) {
+  final starts = [
+    for (final row in rows) block.indexOf(row.first.split(' ').first),
+  ];
+  bool found(String cell, List<String> window) {
     var i = 0;
     for (final word in cell.split(' ')) {
-      while (i < block.length && block[i] != word) {
+      while (i < window.length && window[i] != word) {
         i++;
       }
-      if (i++ >= block.length) return false;
+      if (i++ >= window.length) return false;
     }
     return true;
   }
 
   return [
-    for (final row in rows)
+    for (final (k, row) in rows.indexed)
       for (final cell in row)
-        if (!found(cell)) cell,
+        if (starts[k] < 0 ||
+            !found(
+              cell,
+              block.sublist(
+                k == 0 ? 0 : starts[k],
+                [
+                  for (final (j, s) in starts.indexed)
+                    if (j != k && s > starts[k]) s,
+                ].fold<int>(block.length, (a, b) => a < b ? a : b),
+              ),
+            ))
+          cell,
   ];
 }
