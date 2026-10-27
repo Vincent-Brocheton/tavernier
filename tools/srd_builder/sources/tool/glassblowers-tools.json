@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:glassblowers-tools",
+  "type": "tool",
+  "name": "Outils de souffleur de verre",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 2.5,
+    "cost_cp": 3000
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 2,5 kg\nUtilisation : déterminer ce qu’a contenu un objet en verre lors des dernières 24 heures (DD 15)\nArtisanat : bouteille en verre, fiole, longue-vue, loupe"
+  }
+}

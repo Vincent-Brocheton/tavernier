@@ -7629,6 +7629,425 @@ class BackgroundEquipmentOptionsCompanion
   }
 }
 
+class $ClassEquipmentOptionsTable extends ClassEquipmentOptions
+    with TableInfo<$ClassEquipmentOptionsTable, ClassEquipmentOptionRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ClassEquipmentOptionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _packIdMeta = const VerificationMeta('packId');
+  @override
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES content_pack (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _classIdMeta = const VerificationMeta(
+    'classId',
+  );
+  @override
+  late final GeneratedColumn<String> classId = GeneratedColumn<String>(
+    'class_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _optionMeta = const VerificationMeta('option');
+  @override
+  late final GeneratedColumn<String> option = GeneratedColumn<String>(
+    'option',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _itemsMeta = const VerificationMeta('items');
+  @override
+  late final GeneratedColumn<String> items = GeneratedColumn<String>(
+    'items',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _toolChoiceMeta = const VerificationMeta(
+    'toolChoice',
+  );
+  @override
+  late final GeneratedColumn<String> toolChoice = GeneratedColumn<String>(
+    'tool_choice',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _goldMeta = const VerificationMeta('gold');
+  @override
+  late final GeneratedColumn<int> gold = GeneratedColumn<int>(
+    'gold',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    packId,
+    classId,
+    option,
+    items,
+    toolChoice,
+    gold,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'class_equipment_option';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ClassEquipmentOptionRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('pack_id')) {
+      context.handle(
+        _packIdMeta,
+        packId.isAcceptableOrUnknown(data['pack_id']!, _packIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_packIdMeta);
+    }
+    if (data.containsKey('class_id')) {
+      context.handle(
+        _classIdMeta,
+        classId.isAcceptableOrUnknown(data['class_id']!, _classIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_classIdMeta);
+    }
+    if (data.containsKey('option')) {
+      context.handle(
+        _optionMeta,
+        option.isAcceptableOrUnknown(data['option']!, _optionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_optionMeta);
+    }
+    if (data.containsKey('items')) {
+      context.handle(
+        _itemsMeta,
+        items.isAcceptableOrUnknown(data['items']!, _itemsMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_itemsMeta);
+    }
+    if (data.containsKey('tool_choice')) {
+      context.handle(
+        _toolChoiceMeta,
+        toolChoice.isAcceptableOrUnknown(data['tool_choice']!, _toolChoiceMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_toolChoiceMeta);
+    }
+    if (data.containsKey('gold')) {
+      context.handle(
+        _goldMeta,
+        gold.isAcceptableOrUnknown(data['gold']!, _goldMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_goldMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {classId, option};
+  @override
+  ClassEquipmentOptionRow map(
+    Map<String, dynamic> data, {
+    String? tablePrefix,
+  }) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ClassEquipmentOptionRow(
+      packId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pack_id'],
+      )!,
+      classId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}class_id'],
+      )!,
+      option: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}option'],
+      )!,
+      items: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}items'],
+      )!,
+      toolChoice: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}tool_choice'],
+      )!,
+      gold: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}gold'],
+      )!,
+    );
+  }
+
+  @override
+  $ClassEquipmentOptionsTable createAlias(String alias) {
+    return $ClassEquipmentOptionsTable(attachedDatabase, alias);
+  }
+}
+
+class ClassEquipmentOptionRow extends DataClass
+    implements Insertable<ClassEquipmentOptionRow> {
+  final String packId;
+  final String classId;
+  final String option;
+  final String items;
+  final String toolChoice;
+  final int gold;
+  const ClassEquipmentOptionRow({
+    required this.packId,
+    required this.classId,
+    required this.option,
+    required this.items,
+    required this.toolChoice,
+    required this.gold,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['pack_id'] = Variable<String>(packId);
+    map['class_id'] = Variable<String>(classId);
+    map['option'] = Variable<String>(option);
+    map['items'] = Variable<String>(items);
+    map['tool_choice'] = Variable<String>(toolChoice);
+    map['gold'] = Variable<int>(gold);
+    return map;
+  }
+
+  ClassEquipmentOptionsCompanion toCompanion(bool nullToAbsent) {
+    return ClassEquipmentOptionsCompanion(
+      packId: Value(packId),
+      classId: Value(classId),
+      option: Value(option),
+      items: Value(items),
+      toolChoice: Value(toolChoice),
+      gold: Value(gold),
+    );
+  }
+
+  factory ClassEquipmentOptionRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ClassEquipmentOptionRow(
+      packId: serializer.fromJson<String>(json['packId']),
+      classId: serializer.fromJson<String>(json['classId']),
+      option: serializer.fromJson<String>(json['option']),
+      items: serializer.fromJson<String>(json['items']),
+      toolChoice: serializer.fromJson<String>(json['toolChoice']),
+      gold: serializer.fromJson<int>(json['gold']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'packId': serializer.toJson<String>(packId),
+      'classId': serializer.toJson<String>(classId),
+      'option': serializer.toJson<String>(option),
+      'items': serializer.toJson<String>(items),
+      'toolChoice': serializer.toJson<String>(toolChoice),
+      'gold': serializer.toJson<int>(gold),
+    };
+  }
+
+  ClassEquipmentOptionRow copyWith({
+    String? packId,
+    String? classId,
+    String? option,
+    String? items,
+    String? toolChoice,
+    int? gold,
+  }) => ClassEquipmentOptionRow(
+    packId: packId ?? this.packId,
+    classId: classId ?? this.classId,
+    option: option ?? this.option,
+    items: items ?? this.items,
+    toolChoice: toolChoice ?? this.toolChoice,
+    gold: gold ?? this.gold,
+  );
+  ClassEquipmentOptionRow copyWithCompanion(
+    ClassEquipmentOptionsCompanion data,
+  ) {
+    return ClassEquipmentOptionRow(
+      packId: data.packId.present ? data.packId.value : this.packId,
+      classId: data.classId.present ? data.classId.value : this.classId,
+      option: data.option.present ? data.option.value : this.option,
+      items: data.items.present ? data.items.value : this.items,
+      toolChoice: data.toolChoice.present
+          ? data.toolChoice.value
+          : this.toolChoice,
+      gold: data.gold.present ? data.gold.value : this.gold,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClassEquipmentOptionRow(')
+          ..write('packId: $packId, ')
+          ..write('classId: $classId, ')
+          ..write('option: $option, ')
+          ..write('items: $items, ')
+          ..write('toolChoice: $toolChoice, ')
+          ..write('gold: $gold')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(packId, classId, option, items, toolChoice, gold);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ClassEquipmentOptionRow &&
+          other.packId == this.packId &&
+          other.classId == this.classId &&
+          other.option == this.option &&
+          other.items == this.items &&
+          other.toolChoice == this.toolChoice &&
+          other.gold == this.gold);
+}
+
+class ClassEquipmentOptionsCompanion
+    extends UpdateCompanion<ClassEquipmentOptionRow> {
+  final Value<String> packId;
+  final Value<String> classId;
+  final Value<String> option;
+  final Value<String> items;
+  final Value<String> toolChoice;
+  final Value<int> gold;
+  final Value<int> rowid;
+  const ClassEquipmentOptionsCompanion({
+    this.packId = const Value.absent(),
+    this.classId = const Value.absent(),
+    this.option = const Value.absent(),
+    this.items = const Value.absent(),
+    this.toolChoice = const Value.absent(),
+    this.gold = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ClassEquipmentOptionsCompanion.insert({
+    required String packId,
+    required String classId,
+    required String option,
+    required String items,
+    required String toolChoice,
+    required int gold,
+    this.rowid = const Value.absent(),
+  }) : packId = Value(packId),
+       classId = Value(classId),
+       option = Value(option),
+       items = Value(items),
+       toolChoice = Value(toolChoice),
+       gold = Value(gold);
+  static Insertable<ClassEquipmentOptionRow> custom({
+    Expression<String>? packId,
+    Expression<String>? classId,
+    Expression<String>? option,
+    Expression<String>? items,
+    Expression<String>? toolChoice,
+    Expression<int>? gold,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (packId != null) 'pack_id': packId,
+      if (classId != null) 'class_id': classId,
+      if (option != null) 'option': option,
+      if (items != null) 'items': items,
+      if (toolChoice != null) 'tool_choice': toolChoice,
+      if (gold != null) 'gold': gold,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ClassEquipmentOptionsCompanion copyWith({
+    Value<String>? packId,
+    Value<String>? classId,
+    Value<String>? option,
+    Value<String>? items,
+    Value<String>? toolChoice,
+    Value<int>? gold,
+    Value<int>? rowid,
+  }) {
+    return ClassEquipmentOptionsCompanion(
+      packId: packId ?? this.packId,
+      classId: classId ?? this.classId,
+      option: option ?? this.option,
+      items: items ?? this.items,
+      toolChoice: toolChoice ?? this.toolChoice,
+      gold: gold ?? this.gold,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (packId.present) {
+      map['pack_id'] = Variable<String>(packId.value);
+    }
+    if (classId.present) {
+      map['class_id'] = Variable<String>(classId.value);
+    }
+    if (option.present) {
+      map['option'] = Variable<String>(option.value);
+    }
+    if (items.present) {
+      map['items'] = Variable<String>(items.value);
+    }
+    if (toolChoice.present) {
+      map['tool_choice'] = Variable<String>(toolChoice.value);
+    }
+    if (gold.present) {
+      map['gold'] = Variable<int>(gold.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ClassEquipmentOptionsCompanion(')
+          ..write('packId: $packId, ')
+          ..write('classId: $classId, ')
+          ..write('option: $option, ')
+          ..write('items: $items, ')
+          ..write('toolChoice: $toolChoice, ')
+          ..write('gold: $gold, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $FeatsTable extends Feats with TableInfo<$FeatsTable, FeatRow> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -25683,6 +26102,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
       $BackgroundProficienciesTable(this);
   late final $BackgroundEquipmentOptionsTable backgroundEquipmentOptions =
       $BackgroundEquipmentOptionsTable(this);
+  late final $ClassEquipmentOptionsTable classEquipmentOptions =
+      $ClassEquipmentOptionsTable(this);
   late final $FeatsTable feats = $FeatsTable(this);
   late final $SpeciesTableTable speciesTable = $SpeciesTableTable(this);
   late final $SpeciesTraitsTable speciesTraits = $SpeciesTraitsTable(this);
@@ -25766,6 +26187,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     backgroundAbilities,
     backgroundProficiencies,
     backgroundEquipmentOptions,
+    classEquipmentOptions,
     feats,
     speciesTable,
     speciesTraits,
@@ -25916,6 +26338,13 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
       result: [
         TableUpdate('background_equipment_option', kind: UpdateKind.delete),
       ],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('class_equipment_option', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -26750,6 +27179,31 @@ final class $$ContentPacksTableReferences
     );
   }
 
+  static MultiTypedResultKey<
+    $ClassEquipmentOptionsTable,
+    List<ClassEquipmentOptionRow>
+  >
+  _classEquipmentOptionsRefsTable(_$TavernierDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.classEquipmentOptions,
+        aliasName: 'content_pack__id__class_equipment_option__pack_id',
+      );
+
+  $$ClassEquipmentOptionsTableProcessedTableManager
+  get classEquipmentOptionsRefs {
+    final manager = $$ClassEquipmentOptionsTableTableManager(
+      $_db,
+      $_db.classEquipmentOptions,
+    ).filter((f) => f.packId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _classEquipmentOptionsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
   static MultiTypedResultKey<$FeatsTable, List<FeatRow>> _featsRefsTable(
     _$TavernierDatabase db,
   ) => MultiTypedResultKey.fromTable(
@@ -27478,6 +27932,32 @@ class $$ContentPacksTableFilterComposer
               }) => $$BackgroundEquipmentOptionsTableFilterComposer(
                 $db: $db,
                 $table: $db.backgroundEquipmentOptions,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
+  Expression<bool> classEquipmentOptionsRefs(
+    Expression<bool> Function($$ClassEquipmentOptionsTableFilterComposer f) f,
+  ) {
+    final $$ClassEquipmentOptionsTableFilterComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.classEquipmentOptions,
+          getReferencedColumn: (t) => t.packId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ClassEquipmentOptionsTableFilterComposer(
+                $db: $db,
+                $table: $db.classEquipmentOptions,
                 $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
                 joinBuilder: joinBuilder,
                 $removeJoinBuilderFromRootComposer:
@@ -28375,6 +28855,32 @@ class $$ContentPacksTableAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> classEquipmentOptionsRefs<T extends Object>(
+    Expression<T> Function($$ClassEquipmentOptionsTableAnnotationComposer a) f,
+  ) {
+    final $$ClassEquipmentOptionsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.classEquipmentOptions,
+          getReferencedColumn: (t) => t.packId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$ClassEquipmentOptionsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.classEquipmentOptions,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+
   Expression<T> featsRefs<T extends Object>(
     Expression<T> Function($$FeatsTableAnnotationComposer a) f,
   ) {
@@ -28780,6 +29286,7 @@ class $$ContentPacksTableTableManager
             bool backgroundAbilitiesRefs,
             bool backgroundProficienciesRefs,
             bool backgroundEquipmentOptionsRefs,
+            bool classEquipmentOptionsRefs,
             bool featsRefs,
             bool speciesTableRefs,
             bool speciesTraitsRefs,
@@ -28899,6 +29406,7 @@ class $$ContentPacksTableTableManager
                 backgroundAbilitiesRefs = false,
                 backgroundProficienciesRefs = false,
                 backgroundEquipmentOptionsRefs = false,
+                classEquipmentOptionsRefs = false,
                 featsRefs = false,
                 speciesTableRefs = false,
                 speciesTraitsRefs = false,
@@ -28934,6 +29442,7 @@ class $$ContentPacksTableTableManager
                     if (backgroundProficienciesRefs) db.backgroundProficiencies,
                     if (backgroundEquipmentOptionsRefs)
                       db.backgroundEquipmentOptions,
+                    if (classEquipmentOptionsRefs) db.classEquipmentOptions,
                     if (featsRefs) db.feats,
                     if (speciesTableRefs) db.speciesTable,
                     if (speciesTraitsRefs) db.speciesTraits,
@@ -29249,6 +29758,26 @@ class $$ContentPacksTableTableManager
                                 table,
                                 p0,
                               ).backgroundEquipmentOptionsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'pack_id',
+                          typedResults: items,
+                        ),
+                      if (classEquipmentOptionsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          ContentPackRow,
+                          $ContentPacksTable,
+                          ClassEquipmentOptionRow,
+                          $ClassEquipmentOptionsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ContentPacksTableReferences
+                              ._classEquipmentOptionsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ContentPacksTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).classEquipmentOptionsRefs,
                           currentColumn: 'id',
                           referencedColumn: 'pack_id',
                           typedResults: items,
@@ -29589,6 +30118,7 @@ typedef $$ContentPacksTableProcessedTableManager =
         bool backgroundAbilitiesRefs,
         bool backgroundProficienciesRefs,
         bool backgroundEquipmentOptionsRefs,
+        bool classEquipmentOptionsRefs,
         bool featsRefs,
         bool speciesTableRefs,
         bool speciesTraitsRefs,
@@ -34830,6 +35360,366 @@ typedef $$BackgroundEquipmentOptionsTableProcessedTableManager =
         $$BackgroundEquipmentOptionsTableReferences,
       ),
       BackgroundEquipmentOptionRow,
+      PrefetchHooks Function({bool packId})
+    >;
+typedef $$ClassEquipmentOptionsTableCreateCompanionBuilder =
+    ClassEquipmentOptionsCompanion Function({
+      required String packId,
+      required String classId,
+      required String option,
+      required String items,
+      required String toolChoice,
+      required int gold,
+      Value<int> rowid,
+    });
+typedef $$ClassEquipmentOptionsTableUpdateCompanionBuilder =
+    ClassEquipmentOptionsCompanion Function({
+      Value<String> packId,
+      Value<String> classId,
+      Value<String> option,
+      Value<String> items,
+      Value<String> toolChoice,
+      Value<int> gold,
+      Value<int> rowid,
+    });
+
+final class $$ClassEquipmentOptionsTableReferences
+    extends
+        BaseReferences<
+          _$TavernierDatabase,
+          $ClassEquipmentOptionsTable,
+          ClassEquipmentOptionRow
+        > {
+  $$ClassEquipmentOptionsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $ContentPacksTable _packIdTable(_$TavernierDatabase db) => db
+      .contentPacks
+      .createAlias('class_equipment_option__pack_id__content_pack__id');
+
+  $$ContentPacksTableProcessedTableManager get packId {
+    final $_column = $_itemColumn<String>('pack_id')!;
+
+    final manager = $$ContentPacksTableTableManager(
+      $_db,
+      $_db.contentPacks,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_packIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$ClassEquipmentOptionsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $ClassEquipmentOptionsTable> {
+  $$ClassEquipmentOptionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get classId => $composableBuilder(
+    column: $table.classId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get option => $composableBuilder(
+    column: $table.option,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get items => $composableBuilder(
+    column: $table.items,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get toolChoice => $composableBuilder(
+    column: $table.toolChoice,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get gold => $composableBuilder(
+    column: $table.gold,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ContentPacksTableFilterComposer get packId {
+    final $$ContentPacksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableFilterComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClassEquipmentOptionsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $ClassEquipmentOptionsTable> {
+  $$ClassEquipmentOptionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get classId => $composableBuilder(
+    column: $table.classId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get option => $composableBuilder(
+    column: $table.option,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get items => $composableBuilder(
+    column: $table.items,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get toolChoice => $composableBuilder(
+    column: $table.toolChoice,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get gold => $composableBuilder(
+    column: $table.gold,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ContentPacksTableOrderingComposer get packId {
+    final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableOrderingComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClassEquipmentOptionsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $ClassEquipmentOptionsTable> {
+  $$ClassEquipmentOptionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get classId =>
+      $composableBuilder(column: $table.classId, builder: (column) => column);
+
+  GeneratedColumn<String> get option =>
+      $composableBuilder(column: $table.option, builder: (column) => column);
+
+  GeneratedColumn<String> get items =>
+      $composableBuilder(column: $table.items, builder: (column) => column);
+
+  GeneratedColumn<String> get toolChoice => $composableBuilder(
+    column: $table.toolChoice,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get gold =>
+      $composableBuilder(column: $table.gold, builder: (column) => column);
+
+  $$ContentPacksTableAnnotationComposer get packId {
+    final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$ClassEquipmentOptionsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $ClassEquipmentOptionsTable,
+          ClassEquipmentOptionRow,
+          $$ClassEquipmentOptionsTableFilterComposer,
+          $$ClassEquipmentOptionsTableOrderingComposer,
+          $$ClassEquipmentOptionsTableAnnotationComposer,
+          $$ClassEquipmentOptionsTableCreateCompanionBuilder,
+          $$ClassEquipmentOptionsTableUpdateCompanionBuilder,
+          (ClassEquipmentOptionRow, $$ClassEquipmentOptionsTableReferences),
+          ClassEquipmentOptionRow,
+          PrefetchHooks Function({bool packId})
+        > {
+  $$ClassEquipmentOptionsTableTableManager(
+    _$TavernierDatabase db,
+    $ClassEquipmentOptionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ClassEquipmentOptionsTableFilterComposer(
+                $db: db,
+                $table: table,
+              ),
+          createOrderingComposer: () =>
+              $$ClassEquipmentOptionsTableOrderingComposer(
+                $db: db,
+                $table: table,
+              ),
+          createComputedFieldComposer: () =>
+              $$ClassEquipmentOptionsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> packId = const Value.absent(),
+                Value<String> classId = const Value.absent(),
+                Value<String> option = const Value.absent(),
+                Value<String> items = const Value.absent(),
+                Value<String> toolChoice = const Value.absent(),
+                Value<int> gold = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ClassEquipmentOptionsCompanion(
+                packId: packId,
+                classId: classId,
+                option: option,
+                items: items,
+                toolChoice: toolChoice,
+                gold: gold,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String packId,
+                required String classId,
+                required String option,
+                required String items,
+                required String toolChoice,
+                required int gold,
+                Value<int> rowid = const Value.absent(),
+              }) => ClassEquipmentOptionsCompanion.insert(
+                packId: packId,
+                classId: classId,
+                option: option,
+                items: items,
+                toolChoice: toolChoice,
+                gold: gold,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<
+                    $ClassEquipmentOptionsTable,
+                    ClassEquipmentOptionRow
+                  >(table),
+                  $$ClassEquipmentOptionsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({packId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (packId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.packId,
+                        referencedTable: $$ClassEquipmentOptionsTableReferences
+                            ._packIdTable(db),
+                        referencedColumn: $$ClassEquipmentOptionsTableReferences
+                            ._packIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$ClassEquipmentOptionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $ClassEquipmentOptionsTable,
+      ClassEquipmentOptionRow,
+      $$ClassEquipmentOptionsTableFilterComposer,
+      $$ClassEquipmentOptionsTableOrderingComposer,
+      $$ClassEquipmentOptionsTableAnnotationComposer,
+      $$ClassEquipmentOptionsTableCreateCompanionBuilder,
+      $$ClassEquipmentOptionsTableUpdateCompanionBuilder,
+      (ClassEquipmentOptionRow, $$ClassEquipmentOptionsTableReferences),
+      ClassEquipmentOptionRow,
       PrefetchHooks Function({bool packId})
     >;
 typedef $$FeatsTableCreateCompanionBuilder = FeatsCompanion Function({
@@ -51204,6 +52094,8 @@ class $TavernierDatabaseManager {
         _db,
         _db.backgroundEquipmentOptions,
       );
+  $$ClassEquipmentOptionsTableTableManager get classEquipmentOptions =>
+      $$ClassEquipmentOptionsTableTableManager(_db, _db.classEquipmentOptions);
   $$FeatsTableTableManager get feats =>
       $$FeatsTableTableManager(_db, _db.feats);
   $$SpeciesTableTableTableManager get speciesTable =>

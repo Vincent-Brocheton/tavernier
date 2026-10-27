@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:forgery-kit",
+  "type": "tool",
+  "name": "Matériel de contrefaçon",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 1500
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : imiter 10 mots ou moins de l’écriture d’autrui (DD 15), reproduire un cachet de cire (DD 20)"
+  }
+}

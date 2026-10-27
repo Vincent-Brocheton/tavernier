@@ -1522,6 +1522,91 @@ class BackgroundEquipmentOption extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
+class ClassEquipmentOption extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  ClassEquipmentOption(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES content_pack(id)ON DELETE CASCADE',
+  );
+  late final GeneratedColumn<String> classId = GeneratedColumn<String>(
+    'class_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> option = GeneratedColumn<String>(
+    'option',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> items = GeneratedColumn<String>(
+    'items',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> toolChoice = GeneratedColumn<String>(
+    'tool_choice',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<int> gold = GeneratedColumn<int>(
+    'gold',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    packId,
+    classId,
+    option,
+    items,
+    toolChoice,
+    gold,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'class_equipment_option';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {classId, option};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  ClassEquipmentOption createAlias(String alias) {
+    return ClassEquipmentOption(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(class_id, option)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
 class Feat extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5207,6 +5292,9 @@ class DatabaseAtV1 extends GeneratedDatabase {
       BackgroundProficiency(this);
   late final BackgroundEquipmentOption backgroundEquipmentOption =
       BackgroundEquipmentOption(this);
+  late final ClassEquipmentOption classEquipmentOption = ClassEquipmentOption(
+    this,
+  );
   late final Feat feat = Feat(this);
   late final Species species = Species(this);
   late final SpeciesTrait speciesTrait = SpeciesTrait(this);
@@ -5278,6 +5366,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     backgroundAbility,
     backgroundProficiency,
     backgroundEquipmentOption,
+    classEquipmentOption,
     feat,
     species,
     speciesTrait,
@@ -5428,6 +5517,13 @@ class DatabaseAtV1 extends GeneratedDatabase {
       result: [
         TableUpdate('background_equipment_option', kind: UpdateKind.delete),
       ],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('class_equipment_option', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(

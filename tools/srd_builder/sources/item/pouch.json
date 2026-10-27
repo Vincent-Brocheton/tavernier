@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 0.5,
     "cost_cp": 50
+  },
+  "text": {
+    "fr": "Une sacoche contient jusqu’à 3 kg pour un volume de 0,006 m3."
   }
 }

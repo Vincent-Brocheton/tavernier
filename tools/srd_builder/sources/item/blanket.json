@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:blanket",
+  "type": "item",
+  "name": "Couverture",
+  "data": {
+    "weight_kg": 1.5,
+    "cost_cp": 50
+  },
+  "text": {
+    "fr": "Enveloppé dans une couverture, vous avez l’Avantage aux jets de sauvegarde contre le froid extrême (cf. « Boîte à outils ludique »)."
+  }
+}

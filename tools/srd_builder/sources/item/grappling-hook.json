@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:grappling-hook",
+  "type": "item",
+  "name": "Grappin",
+  "data": {
+    "weight_kg": 2.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous lancez le grappin sur une balustrade, un rebord ou une autre prise à une distance maximale de 15 m, et le grappin s’accroche si vous réussissez un test de Dextérité (Acrobaties) DD 13. Si vous aviez attaché une corde au grappin, vous pouvez y grimper."
+  }
+}

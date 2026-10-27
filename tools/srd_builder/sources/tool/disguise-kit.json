@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:disguise-kit",
+  "type": "tool",
+  "name": "Accessoires de déguisement",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:charisma",
+    "weight_kg": 1.5,
+    "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Caractéristique : Charisme\nPoids : 1,5 kg\nUtilisation : appliquer du maquillage (DD 10)\nArtisanat : costume"
+  }
+}

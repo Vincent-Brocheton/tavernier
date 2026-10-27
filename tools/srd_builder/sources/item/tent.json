@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:tent",
+  "type": "item",
+  "name": "Tente",
+  "data": {
+    "weight_kg": 10.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Jusqu’à deux créatures de taille P ou M peuvent dormir sous la même tente."
+  }
+}

@@ -560,6 +560,39 @@
       "srd:spell:web",
       "srd:spell:weird",
       "srd:spell:wish"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 2
+          },
+          {
+            "item": "srd:item:arcane-focus-staff",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:robe",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:spellbook",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:scholars-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 5
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 55
+      }
     ]
   }
 }

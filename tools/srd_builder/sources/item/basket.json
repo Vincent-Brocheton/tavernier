@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:basket",
+  "type": "item",
+  "name": "Panier",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 40
+  },
+  "text": {
+    "fr": "Un panier contient jusqu’à 20 kg pour un volume de 60 litres ou 0,06 m3."
+  }
+}

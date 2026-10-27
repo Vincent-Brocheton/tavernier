@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:waterskin",
+  "type": "item",
+  "name": "Outre",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 20
+  },
+  "text": {
+    "fr": "Une outre contient 2 litres de liquide. Boire insuffisamment d’eau, c’est s’exposer à la déshydratation (cf. « Glossaire de règles »)."
+  }
+}

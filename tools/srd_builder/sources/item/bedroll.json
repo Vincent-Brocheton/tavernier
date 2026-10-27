@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:bedroll",
+  "type": "item",
+  "name": "Sac de couchage",
+  "data": {
+    "weight_kg": 3.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Un sac de couchage permet à une créature de taille P ou M de dormir. Dans un sac de couchage, vous réussissez automatiquement vos jets de sauvegarde contre le froid extrême (cf. « Boîte à outils ludique »)."
+  }
+}

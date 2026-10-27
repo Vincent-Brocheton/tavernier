@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:scholars-pack",
+  "type": "item",
+  "name": "Paquetage d’érudit",
+  "data": {
+    "weight_kg": 11.0,
+    "cost_cp": 4000
+  },
+  "text": {
+    "fr": "Le paquetage d’érudit contient les objets suivants : sac à dos, boîte à amadou, encre, lampe, livre, porteplume, 10 flasques d’huile, 10 feuilles de parchemin."
+  }
+}

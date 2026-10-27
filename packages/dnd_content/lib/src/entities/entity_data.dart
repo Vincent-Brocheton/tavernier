@@ -148,6 +148,25 @@ abstract class ItemQuantity with _$ItemQuantity {
       _$ItemQuantityFromJson(json);
 }
 
+/// Option d'équipement de départ d'une classe (« (A) Hache à deux mains,
+/// 4 hachettes… et 15 po »).
+@freezed
+abstract class StartingEquipmentOption with _$StartingEquipmentOption {
+  const factory StartingEquipmentOption({
+    @Default(<ItemQuantity>[]) List<ItemQuantity> items,
+
+    /// Un outil à choisir parmi ces catégories (« instrument de musique de
+    /// votre choix »).
+    @Default(<ToolCategory>[]) List<ToolCategory> toolChoice,
+
+    /// Pièces d'or.
+    required int gold,
+  }) = _StartingEquipmentOption;
+
+  factory StartingEquipmentOption.fromJson(Map<String, dynamic> json) =>
+      _$StartingEquipmentOptionFromJson(json);
+}
+
 @freezed
 abstract class BackgroundData with _$BackgroundData implements EntityData {
   const factory BackgroundData({
@@ -251,6 +270,10 @@ abstract class ClassData with _$ClassData implements EntityData {
     /// Outils à choisir dans une catégorie (Barde : 3 instruments).
     @Default(0) int toolChoiceCount,
     ToolCategory? toolChoiceCategory,
+
+    /// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
+    @Default(<StartingEquipmentOption>[])
+    List<StartingEquipmentOption> startingEquipment,
   }) = _ClassData;
 
   factory ClassData.fromJson(Map<String, dynamic> json) =>

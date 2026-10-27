@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:alchemists-supplies",
+  "type": "tool",
+  "name": "Matériel d’alchimiste",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 4.0,
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 4 kg\nUtilisation : identifier une substance (DD 15), allumer un feu (DD 15)\nArtisanat : acide, feu grégeois, huile, papier, parfum, sacoche à composantes"
+  }
+}

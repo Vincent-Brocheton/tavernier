@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:iron-pot",
+  "type": "item",
+  "name": "Pot en fer",
+  "data": {
+    "weight_kg": 5.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Un pot en fer contient jusqu’à 4 litres de liquide."
+  }
+}

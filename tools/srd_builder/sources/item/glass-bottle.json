@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:glass-bottle",
+  "type": "item",
+  "name": "Bouteille, verre",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Une bouteille en verre peut contenir jusqu’à 75 cl."
+  }
+}

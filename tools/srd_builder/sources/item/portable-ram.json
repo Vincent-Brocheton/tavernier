@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:portable-ram",
+  "type": "item",
+  "name": "Bélier portable",
+  "data": {
+    "weight_kg": 17.5,
+    "cost_cp": 400
+  },
+  "text": {
+    "fr": "Vous pouvez utiliser un bélier portable pour enfoncer les portes. Vous recevez alors un bonus de +4 au test de Force associé. Si un autre personnage vous aide à utiliser le bélier, vous recevez l’Avantage à ce test."
+  }
+}

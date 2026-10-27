@@ -234,6 +234,51 @@
           "sneak_attack_dice": 10
         }
       }
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 2
+          },
+          {
+            "item": "srd:weapon:shortsword",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:shortbow",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:arrows",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:quiver",
+            "quantity": 1
+          },
+          {
+            "item": "srd:tool:thieves-tools",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:burglars-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 8
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 100
+      }
     ]
   }
 }

@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:sack",
+  "type": "item",
+  "name": "Sac",
+  "data": {
+    "weight_kg": 0.25,
+    "cost_cp": 1
+  },
+  "text": {
+    "fr": "Un sac contient jusqu’à 15 kg pour un volume de 0,03 m3."
+  }
+}

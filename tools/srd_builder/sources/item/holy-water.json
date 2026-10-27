@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:holy-water",
+  "type": "item",
+  "name": "Eau bénite",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Lorsque vous effectuez l’action Attaque, vous pouvez remplacer l’une de vos attaques par le jet d’une flasque d’eau bénite. Ciblez une créature que vous voyez dans un rayon de 6 m. La cible doit réussir un jet de sauvegarde de Dextérité (DD égal à 8 + votre modificateur de Dextérité + votre bonus de maîtrise) sous peine de subir 2d8 dégâts radiants si elle est de type Fiélon ou Mort-vivant."
+  }
+}

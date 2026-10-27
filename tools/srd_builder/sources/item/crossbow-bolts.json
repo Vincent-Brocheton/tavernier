@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:crossbow-bolts",
+  "type": "item",
+  "name": "Carreaux (20)",
+  "data": {
+    "weight_kg": 0.75,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Les munitions sont nécessaires pour toute arme dotée de la propriété Munitions. Le descriptif de l’arme indique le type de munitions qu’elle utilise. La table « Munitions » répertorie les différents types de munitions et la quantité que vous obtenez lorsque vous en achetez. Figure en outre l’objet généralement utilisé pour ranger chaque type de munitions, qui doit être acheté séparément."
+  }
+}

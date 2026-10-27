@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:bullseye-lantern",
+  "type": "item",
+  "name": "Lanterne sourde",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Une lanterne sourde brûle de l’huile comme combustible et produit une Lumière vive sur un Cône de 18 m, ainsi qu’une Lumière faible sur 18 m de plus."
+  }
+}

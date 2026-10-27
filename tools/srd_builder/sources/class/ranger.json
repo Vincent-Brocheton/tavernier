@@ -362,6 +362,51 @@
       "srd:spell:water-breathing",
       "srd:spell:water-walk",
       "srd:spell:wind-wall"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:studded-leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:scimitar",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:shortsword",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:longbow",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:arrows",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:quiver",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:druidic-focus-sprig-of-mistletoe",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:explorers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 7
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 150
+      }
     ]
   }
 }

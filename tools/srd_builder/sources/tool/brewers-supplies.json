@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:brewers-supplies",
+  "type": "tool",
+  "name": "Matériel de brasseur",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 4.5,
+    "cost_cp": 2000
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 4,5 kg\nUtilisation : détecter qu’une boisson est empoisonnée (DD 15), identifier un alcool (DD 10)\nArtisanat : antidote"
+  }
+}

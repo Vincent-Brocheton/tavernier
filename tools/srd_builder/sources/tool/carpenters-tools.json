@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:carpenters-tools",
+  "type": "tool",
+  "name": "Outils de charpentier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:strength",
+    "weight_kg": 3.0,
+    "cost_cp": 800
+  },
+  "text": {
+    "fr": "Caractéristique : Force\nPoids : 3 kg\nUtilisation : sceller ou forcer une porte ou un contenant (DD 20)\nArtisanat : bâton de combat, bélier portable, coffre, échelle, gourdin, massue, perche, tonneau, torche"
+  }
+}

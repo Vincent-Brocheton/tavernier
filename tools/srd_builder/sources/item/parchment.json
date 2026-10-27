@@ -4,5 +4,8 @@
   "name": "Parchemin",
   "data": {
     "cost_cp": 10
+  },
+  "text": {
+    "fr": "Une feuille de parchemin peut contenir environ 250 mots écrits à la main."
   }
 }

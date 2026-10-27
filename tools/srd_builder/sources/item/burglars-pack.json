@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:burglars-pack",
+  "type": "item",
+  "name": "Paquetage de cambrioleur",
+  "data": {
+    "weight_kg": 21.0,
+    "cost_cp": 1600
+  },
+  "text": {
+    "fr": "Le paquetage de cambrioleur contient les objets suivants : sac à dos, billes, boîte à amadou, 10 bougies, cloche, corde, 7 flasques d’huile, lanterne à capote, outre, pied-de-biche, 5 jours de rations."
+  }
+}

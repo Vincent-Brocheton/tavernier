@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 2.0,
     "cost_cp": 200
+  },
+  "text": {
+    "fr": "La tenue de voyage comprend des vêtements résistants, conçus pour voyager dans divers environnements."
   }
 }

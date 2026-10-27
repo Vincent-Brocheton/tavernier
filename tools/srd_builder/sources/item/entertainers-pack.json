@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:entertainers-pack",
+  "type": "item",
+  "name": "Paquetage d’artiste",
+  "data": {
+    "weight_kg": 29.0,
+    "cost_cp": 4000
+  },
+  "text": {
+    "fr": "Le paquetage d’artiste contient les objets suivants : sac à dos, boîte à amadou, cloche, 3 costumes, 8 flasques d’huile, 9 jours de rations, lanterne sourde, miroir, outre, sac de couchage."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:hooded-lantern",
+  "type": "item",
+  "name": "Lanterne à capote",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Une lanterne à capote brûle de l’huile comme combustible et produit une Lumière vive sur un rayon de 9 m, ainsi qu’une Lumière faible sur 9 m de plus. Abaisser la capote par une action Bonus permet de réduire l’éclairage à une Lumière faible sur un rayon de 1,50 m, et la relever de rétablir la pleine lumière."
+  }
+}
