@@ -160,9 +160,7 @@
       {
         "level": 10,
         "proficiency_bonus": 4,
-        "features": [
-          "srd:feature:sorcerer-metamagic"
-        ],
+        "features": [],
         "columns": {
           "sorcery_points": 10,
           "cantrips": 6,
@@ -283,9 +281,7 @@
       {
         "level": 17,
         "proficiency_bonus": 6,
-        "features": [
-          "srd:feature:sorcerer-metamagic"
-        ],
+        "features": [],
         "columns": {
           "sorcery_points": 17,
           "cantrips": 6,

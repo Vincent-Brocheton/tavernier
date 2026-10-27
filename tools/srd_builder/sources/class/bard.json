@@ -162,9 +162,7 @@
       {
         "level": 9,
         "proficiency_bonus": 4,
-        "features": [
-          "srd:feature:bard-expertise"
-        ],
+        "features": [],
         "columns": {
           "bardic_die": 8,
           "cantrips": 3,

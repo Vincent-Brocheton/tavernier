@@ -122,6 +122,11 @@ List<String> extractClasses({
         jsonDecode(classFile.readAsStringSync()) as Map<String, Object?>;
     final data = json['data']! as Map<String, Object?>;
     final levels = <Map<String, Object?>>[];
+    // Le moteur applique une aptitude à chaque niveau où elle figure : seule
+    // une aptitude qui accorde un don (Amélioration de caractéristique) se
+    // répète ; les autres (Expertise, Métamagie) gardent leur premier niveau
+    // et leurs paliers passent par `when.level`.
+    final listed = <String>{};
     for (final row in parseProgressionTable(layout, c.table, c.columns)) {
       final features = <String>[];
       for (final name in row.features) {
@@ -131,7 +136,8 @@ List<String> extractClasses({
           problems.add(
             'aptitude de table sans slug : ${c.slug}\t$name\t${row.level}',
           );
-        } else {
+        } else if (listed.add(slug) ||
+            _grantsFeat('$sources/feature/$slug.json')) {
           features.add('srd:feature:$slug');
         }
       }
@@ -144,7 +150,9 @@ List<String> extractClasses({
     }
     data['levels'] = levels;
     final spells = spellClasses[c.name] ?? const [];
-    if (spells.isNotEmpty) {
+    if (spells.isEmpty) {
+      data.remove('spell_list');
+    } else {
       data['spell_list'] = [for (final s in spells) 'srd:spell:$s'];
     }
     _write(classFile, json);
@@ -181,7 +189,11 @@ Map<String, List<String>> readSpellClasses(File file) {
   final result = <String, List<String>>{};
   for (final line in file.readAsLinesSync()) {
     if (line.trim().isEmpty || line.startsWith('#')) continue;
-    final [slug, classes] = line.split('\t');
+    final columns = line.split('\t');
+    if (columns.length != 2) {
+      throw FormatException('ligne de spell_classes.tsv invalide : $line');
+    }
+    final [slug, classes] = columns;
     for (final c in classes.split(', ')) {
       result.putIfAbsent(c, () => []).add(slug);
     }
@@ -195,4 +207,12 @@ Map<String, List<String>> readSpellClasses(File file) {
 void _write(File file, Object json) {
   file.parent.createSync(recursive: true);
   file.writeAsStringSync('${_encoder.convert(json)}\n');
+}
+
+/// `true` si l'aptitude [path] accorde un don, et peut donc se répéter.
+bool _grantsFeat(String path) {
+  final json =
+      jsonDecode(File(path).readAsStringSync()) as Map<String, Object?>;
+  final effects = (json['effects'] as List<Object?>?) ?? const [];
+  return effects.any((e) => (e! as Map<String, Object?>)['op'] == 'grant_feat');
 }

@@ -57,6 +57,14 @@ void main() {
     expect(c.spellList, isEmpty);
   });
 
+  test('seule une aptitude qui accorde un don se répète dans la table', () {
+    List<String> at(String slug, int level) =>
+        cls(slug).levels[level - 1].features.map((e) => '$e').toList();
+    expect(at('bard', 9), isNot(contains('srd:feature:bard-expertise')));
+    expect(at('bard', 8), ['srd:feature:bard-ability-score-improvement']);
+    expect(at('sorcerer', 10), isEmpty);
+  });
+
   test('Défense sans armure du Barbare (p. 30)', () {
     expect(effect('barbarian-unarmored-defense'), {
       'op': 'ac_formula',
