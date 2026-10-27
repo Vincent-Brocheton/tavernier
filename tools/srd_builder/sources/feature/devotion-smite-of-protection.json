@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:devotion-smite-of-protection",
+  "type": "feature",
+  "name": "Châtiment de protection",
+  "data": {
+    "source": "srd:subclass:oath-of-devotion",
+    "level": 15
+  },
+  "text": {
+    "fr": "Votre châtiment magique rayonne désormais d’une énergie protectrice. Chaque fois que vous lancez châtiment divin, vous-même et vos alliés bénéficiez d’un Abri partiel dans votre Aura de protection. L’aura bénéficie de cette aptitude jusqu’au début de votre tour suivant."
+  }
+}

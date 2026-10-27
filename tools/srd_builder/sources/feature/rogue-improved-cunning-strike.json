@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-improved-cunning-strike",
+  "type": "feature",
+  "name": "Frappe malicieuse améliorée",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 11
+  },
+  "text": {
+    "fr": "Vous pouvez utiliser jusqu’à deux effets de Frappe malicieuse lorsque vous infligez des dégâts d’Attaque sournoise, en acquittant le coût en dés pour chaque effet."
+  }
+}

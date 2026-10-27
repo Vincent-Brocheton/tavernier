@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:thief-fast-hands",
+  "type": "feature",
+  "name": "Mains lestes",
+  "data": {
+    "source": "srd:subclass:thief",
+    "level": 3
+  },
+  "text": {
+    "fr": "Par une action Bonus, vous effectuez l’une des choses suivantes :\nEscamotage. Effectuez un test de Dextérité (Escamotage) pour crocheter une serrure, désamorcer un piège avec les outils de voleur ou faire les poches.\nUtilisation d’objet. Effectuez l’action Utilisation ou Magie pour utiliser un objet magique qui nécessite cette action."
+  }
+}

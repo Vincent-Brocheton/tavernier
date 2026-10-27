@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-stunning-strike",
+  "type": "feature",
+  "name": "Frappe étourdissante",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 5
+  },
+  "text": {
+    "fr": "Une fois par tour, lorsque vous touchez une créature avec une arme de Moine ou à mains nues, vous pouvez dépenser 1 point de Credo pour tenter de placer une frappe étourdissante. La cible effectue un jet de sauvegarde de Constitution. En cas d’échec, la cible subit l’état Étourdi jusqu’au début de votre tour suivant. En cas de réussite, la Vitesse de la cible est réduite de moitié jusqu’au début de votre tour suivant et le prochain jet d’attaque contre la cible dans cet intervalle a l’Avantage."
+  }
+}

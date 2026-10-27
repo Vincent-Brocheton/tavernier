@@ -1,0 +1,29 @@
+{
+  "id": "srd:feature:ranger-tireless",
+  "type": "feature",
+  "name": "Infatigable",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 10
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:tireless",
+      "max": {
+        "ref": "ability_mod",
+        "ability": "wis",
+        "min": 1
+      },
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Les forces primitives vous soutiennent désormais lors de vos périples, ce qui vous octroie les bénéfices suivants.\nPoints de vie temporaires. Au prix de l’action Magie, vous pouvez vous octroyer un nombre de points de vie temporaires égal à 1d8 + votre modificateur de Sagesse (minimum +1). Vous pouvez recourir à cette action autant de fois que votre modificateur de Sagesse (minimum d’une fois) et récupérez ce quota en terminant un Repos long.\nDiminuer l’Épuisement. Chaque fois que vous terminez un Repos court, votre éventuel niveau d’Épuisement diminue de 1."
+  }
+}

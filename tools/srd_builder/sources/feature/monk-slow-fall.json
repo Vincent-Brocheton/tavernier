@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-slow-fall",
+  "type": "feature",
+  "name": "Chute ralentie",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 4
+  },
+  "text": {
+    "fr": "Vous pouvez jouer votre Réaction pour réduire les dégâts de chute que vous subissez d’un montant égal au quintuple de votre niveau de Moine."
+  }
+}

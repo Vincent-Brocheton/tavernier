@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:paladin-restoring-touch",
+  "type": "feature",
+  "name": "Toucher réparateur",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 14
+  },
+  "text": {
+    "fr": "Lorsque vous utilisez Imposition des mains sur une créature, vous pouvez également lui retirer un ou plusieurs des états ci-après : Assourdi, Aveuglé, Charmé, Effrayé, Étourdi ou Paralysé. Vous devez dépenser 5 points de vie de la réserve de soins d’Imposition des mains pour chacun des états que vous supprimez ; ces points ne rendent pas de pv à la créature."
+  }
+}

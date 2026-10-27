@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:ranger-feral-senses",
+  "type": "feature",
+  "name": "Sens sauvages",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 18
+  },
+  "effects": [
+    {
+      "op": "grant_sense",
+      "sense": "blindsight",
+      "range": 30
+    }
+  ],
+  "text": {
+    "fr": "Fort d’un lien étroit avec les forces de la nature, vous jouissez de la Vision aveugle dans un rayon de 9 m."
+  }
+}

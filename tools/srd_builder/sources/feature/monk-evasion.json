@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-evasion",
+  "type": "feature",
+  "name": "Esquive totale",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 7
+  },
+  "text": {
+    "fr": "Quand vous êtes soumis à un effet qui vous permet d’effectuer un jet de sauvegarde de Dextérité pour réduire les dégâts de moitié, vous ne subissez aucun dégât en cas de sauvegarde réussie, et seulement la moitié en cas d’échec.\nVous ne bénéficiez pas de cette aptitude si vous subissez l’état Neutralisé."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:hunter-hunters-prey",
+  "type": "feature",
+  "name": "Proie du chasseur",
+  "data": {
+    "source": "srd:subclass:hunter",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez l’une des aptitudes suivantes au choix. Chaque fois que vous terminez un Repos court ou long, vous pouvez remplacer l’option choisie par l’autre.\nBriseur de hordes. Une fois à chacun de vos tours quand vous effectuez une attaque avec arme, vous pouvez effectuer une nouvelle attaque avec la même arme contre une créature différente dans un rayon de 1,50 m de la cible initiale et à portée de cette arme, à condition de ne pas l’avoir déjà attaquée ce tour-ci.\nGoût du sang. Votre ténacité vient à bout des ennemis les plus robustes. Lorsque vous touchez une créature avec une arme, celle-ci inflige 1d8 dégâts supplémentaires à la cible s’il lui manque des points de vie. Vous ne pouvez infliger ces dégâts supplémentaires qu’une seule fois par tour."
+  }
+}

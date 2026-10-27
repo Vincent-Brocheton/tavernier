@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-heightened-focus",
+  "type": "feature",
+  "name": "Credo accru",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 10
+  },
+  "text": {
+    "fr": "Déluge de coups, Patience défensive et Porté par le vent reçoivent respectivement les bénéfices suivants.\nDéluge de coups. Vous pouvez dépenser 1 point de Credo pour recourir à Déluge de coups et effectuer trois attaques à mains nues au lieu de deux.\nPatience défensive. Lorsque vous dépensez un point de Credo pour recourir à Patience défensive, vous recevez des points de vie temporaires égaux à deux jets de votre dé d’Arts martiaux.\nPorté par le vent. Lorsque vous dépensez un point de Credo pour recourir à Porté par le vent, vous pouvez choisir une créature consentante dans un rayon de 1,50 m, de taille G ou inférieure. Vous déplacez la créature avec vous jusqu’à la fin de votre tour. Le déplacement de cette créature ne provoque pas d’attaques d’Opportunité."
+  }
+}

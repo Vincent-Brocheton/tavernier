@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-deflect-attacks",
+  "type": "feature",
+  "name": "Déviation d’assaut",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 3
+  },
+  "text": {
+    "fr": "Lorsqu’un jet d’attaque vous touche et que ses dégâts incluent des dégâts contondants, perforants ou tranchants, vous pouvez jouer votre Réaction pour réduire contre vous les dégâts totaux de l’attaque. La réduction est égale à 1d10 plus votre modificateur de Dextérité et votre niveau de Moine.\nSi vous réduisez ainsi les dégâts à 0, vous pouvez dépenser 1 point de Credo pour dévier une partie de l’impact à votre guise. Dans ce cas, choisissez une créature que vous voyez dans un rayon de 1,50 m si l’attaque était de corps à corps, ou une créature que vous voyez dans un rayon de 18 m et qui ne bénéficie pas d’un Abri total si l’attaque était à distance. Cette créature doit réussir un jet de sauvegarde de Dextérité sous peine de subir des dégâts égaux à deux jets de votre dé d’Arts martiaux plus votre modificateur de Dextérité. Les dégâts sont du même type que ceux infligés par l’attaque."
+  }
+}

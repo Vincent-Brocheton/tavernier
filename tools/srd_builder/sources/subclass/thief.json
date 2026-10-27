@@ -1,0 +1,18 @@
+{
+  "id": "srd:subclass:thief",
+  "type": "subclass",
+  "name": "Voleur",
+  "data": {
+    "parent_class": "srd:class:rogue",
+    "features": [
+      "srd:feature:thief-fast-hands",
+      "srd:feature:thief-second-story-work",
+      "srd:feature:thief-supreme-sneak",
+      "srd:feature:thief-use-magic-device",
+      "srd:feature:thief-thiefs-reflexes"
+    ]
+  },
+  "text": {
+    "fr": "Chassez les trésors dans la peau de l’aventurier classique\nMélange de cambrioleur, de chasseur de trésor et d’explorateur, vous êtes la parfaite incarnation de l’aventurier. En plus d’améliorer votre agilité et votre discrétion, vous recevez des aptitudes utiles pour l’exploration des ruines et tirer le meilleur parti des objets magiques que vous y trouvez."
+  }
+}

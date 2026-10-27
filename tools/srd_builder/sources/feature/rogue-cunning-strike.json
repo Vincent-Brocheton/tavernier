@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:rogue-cunning-strike",
+  "type": "feature",
+  "name": "Frappe malicieuse",
+  "data": {
+    "source": "srd:class:rogue",
+    "level": 5
+  },
+  "text": {
+    "fr": "Vous avez mis au point des façons astucieuses d’utiliser votre Attaque sournoise. Lorsque vous infligez des dégâts d’Attaque sournoise, vous pouvez ajouter l’un des effets de Frappe malicieuse ci-après. Chaque effet présente un coût exprimé en dé, qui correspond au nombre de dés d’Attaque sournoise auquel vous renoncez pour ajouter cet effet. Vous retirez le ou les dés avant le lancer, et l’effet se produit immédiatement après que les dégâts de l’attaque ont été infligés. Si, par exemple, vous ajoutez l’effet Poison, retirez 1d6 aux dégâts d’Attaque sournoise avant le lancer.\nSi un effet de Frappe malicieuse entraîne un jet de sauvegarde, le DD est égal à 8 + votre modificateur de Dextérité + votre bonus de maîtrise.\nCroc-en-jambe (coût : 1d6). Si la cible est une de taille G ou inférieure, elle doit réussir un jet de sauvegarde de Dextérité sous peine de subir l’état À terre.\nPoison (coût : 1d6). Vous ajoutez une toxine à votre coup, contraignant la cible à effectuer un jet de sauvegarde de Constitution. En cas d’échec, la cible subit l’état Empoisonné pendant 1 minute. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l’effet Empoisonné sur elle-même en cas de réussite.\nPour recourir à cet effet, vous devez avoir un matériel d’empoisonneur sur vous.\nRepli (coût : 1d6). Aussitôt après l’attaque, vous vous déplacez à concurrence de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité."
+  }
+}

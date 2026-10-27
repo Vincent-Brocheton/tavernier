@@ -1,0 +1,372 @@
+{
+  "id": "srd:class:warlock",
+  "type": "class",
+  "name": "Occultiste",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:charisma"
+    ],
+    "hit_die": 8,
+    "saving_throws": [
+      "srd:ability:wisdom",
+      "srd:ability:charisma"
+    ],
+    "skill_choice_count": 2,
+    "skill_choices": [
+      "srd:skill:arcana",
+      "srd:skill:history",
+      "srd:skill:intimidation",
+      "srd:skill:investigation",
+      "srd:skill:nature",
+      "srd:skill:religion",
+      "srd:skill:deception"
+    ],
+    "weapon_proficiencies": [
+      "simple"
+    ],
+    "armor_training": [
+      "light"
+    ],
+    "subclass_level": 3,
+    "spellcasting_ability": "srd:ability:charisma",
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:warlock-eldritch-invocations",
+          "srd:feature:warlock-pact-magic"
+        ],
+        "columns": {
+          "invocations": 1,
+          "cantrips": 2,
+          "prepared_spells": 2,
+          "pact_slots": 1,
+          "pact_slot_level": 1
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:warlock-magical-cunning"
+        ],
+        "columns": {
+          "invocations": 3,
+          "cantrips": 2,
+          "prepared_spells": 3,
+          "pact_slots": 2,
+          "pact_slot_level": 1
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:warlock-subclass"
+        ],
+        "columns": {
+          "invocations": 3,
+          "cantrips": 2,
+          "prepared_spells": 4,
+          "pact_slots": 2,
+          "pact_slot_level": 2
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:warlock-ability-score-improvement"
+        ],
+        "columns": {
+          "invocations": 3,
+          "cantrips": 3,
+          "prepared_spells": 5,
+          "pact_slots": 2,
+          "pact_slot_level": 2
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "invocations": 5,
+          "cantrips": 3,
+          "prepared_spells": 6,
+          "pact_slots": 2,
+          "pact_slot_level": 3
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "invocations": 5,
+          "cantrips": 3,
+          "prepared_spells": 7,
+          "pact_slots": 2,
+          "pact_slot_level": 3
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "invocations": 6,
+          "cantrips": 3,
+          "prepared_spells": 8,
+          "pact_slots": 2,
+          "pact_slot_level": 4
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:warlock-ability-score-improvement"
+        ],
+        "columns": {
+          "invocations": 6,
+          "cantrips": 3,
+          "prepared_spells": 9,
+          "pact_slots": 2,
+          "pact_slot_level": 4
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:warlock-contact-patron"
+        ],
+        "columns": {
+          "invocations": 7,
+          "cantrips": 3,
+          "prepared_spells": 10,
+          "pact_slots": 2,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "invocations": 7,
+          "cantrips": 4,
+          "prepared_spells": 10,
+          "pact_slots": 2,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:warlock-mystic-arcanum"
+        ],
+        "columns": {
+          "invocations": 7,
+          "cantrips": 4,
+          "prepared_spells": 11,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:warlock-ability-score-improvement"
+        ],
+        "columns": {
+          "invocations": 8,
+          "cantrips": 4,
+          "prepared_spells": 11,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "invocations": 8,
+          "cantrips": 4,
+          "prepared_spells": 12,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "invocations": 8,
+          "cantrips": 4,
+          "prepared_spells": 12,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "invocations": 9,
+          "cantrips": 4,
+          "prepared_spells": 13,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:warlock-ability-score-improvement"
+        ],
+        "columns": {
+          "invocations": 9,
+          "cantrips": 4,
+          "prepared_spells": 13,
+          "pact_slots": 3,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "invocations": 9,
+          "cantrips": 4,
+          "prepared_spells": 14,
+          "pact_slots": 4,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "invocations": 10,
+          "cantrips": 4,
+          "prepared_spells": 14,
+          "pact_slots": 4,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:warlock-epic-boon"
+        ],
+        "columns": {
+          "invocations": 10,
+          "cantrips": 4,
+          "prepared_spells": 15,
+          "pact_slots": 4,
+          "pact_slot_level": 5
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:warlock-eldritch-master"
+        ],
+        "columns": {
+          "invocations": 10,
+          "cantrips": 4,
+          "prepared_spells": 15,
+          "pact_slots": 4,
+          "pact_slot_level": 5
+        }
+      }
+    ],
+    "spell_list": [
+      "srd:spell:astral-projection",
+      "srd:spell:bane",
+      "srd:spell:banishment",
+      "srd:spell:befuddlement",
+      "srd:spell:blight",
+      "srd:spell:charm-monster",
+      "srd:spell:charm-person",
+      "srd:spell:chill-touch",
+      "srd:spell:circle-of-death",
+      "srd:spell:comprehend-languages",
+      "srd:spell:contact-other-plane",
+      "srd:spell:counterspell",
+      "srd:spell:create-undead",
+      "srd:spell:darkness",
+      "srd:spell:demiplane",
+      "srd:spell:detect-magic",
+      "srd:spell:dimension-door",
+      "srd:spell:dispel-magic",
+      "srd:spell:dominate-monster",
+      "srd:spell:dream",
+      "srd:spell:eldritch-blast",
+      "srd:spell:enthrall",
+      "srd:spell:etherealness",
+      "srd:spell:expeditious-retreat",
+      "srd:spell:eyebite",
+      "srd:spell:fear",
+      "srd:spell:finger-of-death",
+      "srd:spell:fly",
+      "srd:spell:forcecage",
+      "srd:spell:foresight",
+      "srd:spell:gaseous-form",
+      "srd:spell:gate",
+      "srd:spell:glibness",
+      "srd:spell:hallucinatory-terrain",
+      "srd:spell:hellish-rebuke",
+      "srd:spell:hex",
+      "srd:spell:hideous-laughter",
+      "srd:spell:hold-monster",
+      "srd:spell:hold-person",
+      "srd:spell:hypnotic-pattern",
+      "srd:spell:illusory-script",
+      "srd:spell:imprisonment",
+      "srd:spell:invisibility",
+      "srd:spell:mage-hand",
+      "srd:spell:magic-circle",
+      "srd:spell:major-image",
+      "srd:spell:mind-spike",
+      "srd:spell:minor-illusion",
+      "srd:spell:mirror-image",
+      "srd:spell:mislead",
+      "srd:spell:misty-step",
+      "srd:spell:planar-binding",
+      "srd:spell:plane-shift",
+      "srd:spell:poison-spray",
+      "srd:spell:power-word-kill",
+      "srd:spell:power-word-stun",
+      "srd:spell:prestidigitation",
+      "srd:spell:protection-from-evil-and-good",
+      "srd:spell:ray-of-enfeeblement",
+      "srd:spell:remove-curse",
+      "srd:spell:scrying",
+      "srd:spell:speak-with-animals",
+      "srd:spell:spider-climb",
+      "srd:spell:suggestion",
+      "srd:spell:teleportation-circle",
+      "srd:spell:tongues",
+      "srd:spell:true-polymorph",
+      "srd:spell:true-seeing",
+      "srd:spell:true-strike",
+      "srd:spell:unseen-servant",
+      "srd:spell:vampiric-touch",
+      "srd:spell:weird"
+    ]
+  }
+}

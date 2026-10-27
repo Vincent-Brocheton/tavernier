@@ -1,0 +1,38 @@
+{
+  "id": "srd:feature:ranger-fighting-style",
+  "type": "feature",
+  "name": "Style de combat",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "ranger-fighting-style",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_feat",
+            "category": "fighting_style"
+          }
+        ],
+        [
+          {
+            "op": "grant_spell_list_access",
+            "class_lists": [
+              "srd:class:druid"
+            ],
+            "count": 2,
+            "max_level": 0
+          }
+        ]
+      ],
+      "replaceable_on": "level_up"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez le don de Style de combat de votre choix (cf. « Dons » pour la liste des dons). Au lieu de choisir l’un de ces dons, vous pouvez choisir l’option ci-dessous.\nCombattant druidique. Vous apprenez deux sorts mineurs de Druide de votre choix (la liste des sorts de Druide est consultable dans la section de cette classe). Assistance et poussière d’étoile sont recommandés. Les sorts mineurs choisis sont considérés pour vous comme des sorts de Rôdeur, et la Sagesse est la caractéristique d’incantation associée. Chaque fois que vous recevez un niveau de Rôdeur, vous pouvez remplacer l’un de ces sorts mineurs par un autre sort mineur de Druide."
+  }
+}

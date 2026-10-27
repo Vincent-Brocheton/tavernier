@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-empowered-strikes",
+  "type": "feature",
+  "name": "Frappes renforcées",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 6
+  },
+  "text": {
+    "fr": "Chaque fois que vous infligez des dégâts avec une attaque à mains nues, ceux-ci sont à votre convenance des dégâts de force ou du type normal de l’attaque."
+  }
+}

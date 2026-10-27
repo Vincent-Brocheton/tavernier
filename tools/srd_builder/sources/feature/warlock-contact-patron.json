@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:warlock-contact-patron",
+  "type": "feature",
+  "name": "Communication avec le protecteur",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 9
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:contact-other-plane",
+      "always_prepared": true,
+      "free_casts": {
+        "count": 1,
+        "recharge": [
+          {
+            "on": "long_rest",
+            "amount": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "text": {
+    "fr": "Dans le passé, vous contactiez généralement votre protecteur par le biais d’intermédiaires. Vous pouvez désormais communiquer directement avec lui ; le sort contact avec les plans est considéré comme toujours préparé pour vous. Cette aptitude vous permet de lancer le sort sans dépenser d’emplacement de sort pour contacter votre protecteur, et vous réussissez automatiquement le jet de sauvegarde du sort.\nUne fois un sort lancé par ce biais, vous devez terminer un Repos long avant de pouvoir refaire ainsi."
+  }
+}

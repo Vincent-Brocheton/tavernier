@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:fiend-dark-ones-blessing",
+  "type": "feature",
+  "name": "Bénédiction du ténébreux",
+  "data": {
+    "source": "srd:subclass:fiend-patron",
+    "level": 3
+  },
+  "text": {
+    "fr": "Lorsque vous réduisez un adversaire à 0 point de vie, vous recevez autant de points de vie temporaires que le total de votre modificateur de Charisme + votre niveau d’Occultiste (1 point de vie temporaire au minimum). Vous bénéficiez aussi de cette aptitude chaque fois qu’autrui réduit à 0 point de vie un adversaire dans un rayon de 3 m."
+  }
+}

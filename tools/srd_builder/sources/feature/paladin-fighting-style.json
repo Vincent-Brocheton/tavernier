@@ -1,0 +1,38 @@
+{
+  "id": "srd:feature:paladin-fighting-style",
+  "type": "feature",
+  "name": "Style de combat",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "choice",
+      "id": "paladin-fighting-style",
+      "count": 1,
+      "options": [
+        [
+          {
+            "op": "grant_feat",
+            "category": "fighting_style"
+          }
+        ],
+        [
+          {
+            "op": "grant_spell_list_access",
+            "class_lists": [
+              "srd:class:cleric"
+            ],
+            "count": 2,
+            "max_level": 0
+          }
+        ]
+      ],
+      "replaceable_on": "level_up"
+    }
+  ],
+  "text": {
+    "fr": "Vous recevez le don de Style de combat de votre choix (cf. « Dons » pour la liste des dons). Au lieu de choisir l’un de ces dons, vous pouvez choisir l’option ci-dessous.\nCombattant béni. Vous apprenez deux sorts mineurs de Clerc de votre choix (la liste des sorts de Clerc est consultable dans la section de cette classe). Assistance et flamme sacrée sont recommandés. Les sorts mineurs choisis sont considérés pour vous comme des sorts de Paladin, et le Charisme est la caractéristique d’incantation associée. Chaque fois que vous gagnez un niveau de Paladin, vous pouvez remplacer l’un de ces sorts mineurs par un autre sort mineur de Clerc."
+  }
+}

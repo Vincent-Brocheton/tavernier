@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-self-restoration",
+  "type": "feature",
+  "name": "Autosubsistance",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 10
+  },
+  "text": {
+    "fr": "Par la seule force de l’esprit, vous pouvez vous débarrasser de l’un des états suivants à la fin de chacun de vos tours : Charmé, Effrayé ou Empoisonné.\nDe plus, vous passer de nourriture et d’eau ne vous impose pas de niveaux d’Épuisement."
+  }
+}

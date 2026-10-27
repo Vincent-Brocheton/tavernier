@@ -1,0 +1,239 @@
+{
+  "id": "srd:class:rogue",
+  "type": "class",
+  "name": "Roublard",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:dexterity"
+    ],
+    "hit_die": 8,
+    "saving_throws": [
+      "srd:ability:dexterity",
+      "srd:ability:intelligence"
+    ],
+    "skill_choice_count": 4,
+    "skill_choices": [
+      "srd:skill:acrobatics",
+      "srd:skill:athletics",
+      "srd:skill:stealth",
+      "srd:skill:sleight-of-hand",
+      "srd:skill:intimidation",
+      "srd:skill:insight",
+      "srd:skill:investigation",
+      "srd:skill:perception",
+      "srd:skill:persuasion",
+      "srd:skill:deception"
+    ],
+    "weapon_proficiencies": [
+      "simple",
+      "martial_finesse_or_light"
+    ],
+    "armor_training": [
+      "light"
+    ],
+    "subclass_level": 3,
+    "tool_proficiencies": [
+      "srd:tool:thieves-tools"
+    ],
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:rogue-thieves-cant",
+          "srd:feature:rogue-sneak-attack",
+          "srd:feature:rogue-weapon-mastery",
+          "srd:feature:rogue-expertise"
+        ],
+        "columns": {
+          "sneak_attack_dice": 1
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:rogue-cunning-action"
+        ],
+        "columns": {
+          "sneak_attack_dice": 1
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:rogue-subclass",
+          "srd:feature:rogue-steady-aim"
+        ],
+        "columns": {
+          "sneak_attack_dice": 2
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:rogue-ability-score-improvement"
+        ],
+        "columns": {
+          "sneak_attack_dice": 2
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:rogue-cunning-strike",
+          "srd:feature:rogue-uncanny-dodge"
+        ],
+        "columns": {
+          "sneak_attack_dice": 3
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "sneak_attack_dice": 3
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:rogue-evasion",
+          "srd:feature:rogue-reliable-talent"
+        ],
+        "columns": {
+          "sneak_attack_dice": 4
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:rogue-ability-score-improvement"
+        ],
+        "columns": {
+          "sneak_attack_dice": 4
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [],
+        "columns": {
+          "sneak_attack_dice": 5
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:rogue-ability-score-improvement"
+        ],
+        "columns": {
+          "sneak_attack_dice": 5
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:rogue-improved-cunning-strike"
+        ],
+        "columns": {
+          "sneak_attack_dice": 6
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:rogue-ability-score-improvement"
+        ],
+        "columns": {
+          "sneak_attack_dice": 6
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "sneak_attack_dice": 7
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:rogue-devious-strikes"
+        ],
+        "columns": {
+          "sneak_attack_dice": 7
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:rogue-slippery-mind"
+        ],
+        "columns": {
+          "sneak_attack_dice": 8
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:rogue-ability-score-improvement"
+        ],
+        "columns": {
+          "sneak_attack_dice": 8
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "sneak_attack_dice": 9
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:rogue-elusive"
+        ],
+        "columns": {
+          "sneak_attack_dice": 9
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:rogue-epic-boon"
+        ],
+        "columns": {
+          "sneak_attack_dice": 10
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:rogue-stroke-of-luck"
+        ],
+        "columns": {
+          "sneak_attack_dice": 10
+        }
+      }
+    ]
+  }
+}

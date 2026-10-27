@@ -1,0 +1,25 @@
+{
+  "id": "srd:feature:warlock-magical-cunning",
+  "type": "feature",
+  "name": "Rouerie magique",
+  "data": {
+    "source": "srd:class:warlock",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_resource",
+      "id": "srd:resource:magical-cunning",
+      "max": 1,
+      "recharge": [
+        {
+          "on": "long_rest",
+          "amount": "all"
+        }
+      ]
+    }
+  ],
+  "text": {
+    "fr": "Vous pouvez accomplir un rite ésotérique qui dure 1 minute. À la fin de ce délai, vous regagnez des emplacements de sorts de Magie de pacte dépensés, à concurrence de la moitié du maximum (arrondie au supérieur). Une fois cette aptitude utilisée, vous devez terminer un Repos long pour pouvoir y recourir de nouveau."
+  }
+}

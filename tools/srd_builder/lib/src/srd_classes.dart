@@ -13,6 +13,8 @@ const _slots = [
   'slot_9',
 ];
 
+const _halfCasterSlots = ['slot_1', 'slot_2', 'slot_3', 'slot_4', 'slot_5'];
+
 /// Description d'une classe du SRD pour l'extraction.
 typedef SrdClass = ({
   /// Nom français, tel que dans « Traits de base du … ».
@@ -101,6 +103,64 @@ const srdClasses = <SrdClass>[
     subclassSlug: 'evoker',
     appendSections: {},
     sidebars: {'Étoffer et remplacer son grimoire': (lines: 5, to: 'Sorts')},
+    dropTables: [],
+  ),
+  (
+    name: 'Moine',
+    slug: 'monk',
+    table: 'Aptitudes du Moine',
+    columns: ['martial_arts_die', 'focus_points', 'unarmored_movement_feet'],
+    subclassSlug: 'warrior-of-the-open-hand',
+    appendSections: {},
+    sidebars: {},
+    dropTables: [],
+  ),
+  (
+    name: 'Occultiste',
+    slug: 'warlock',
+    table: 'Aptitudes de l’Occultiste',
+    columns: [
+      'invocations',
+      'cantrips',
+      'prepared_spells',
+      'pact_slots',
+      'pact_slot_level',
+    ],
+    subclassSlug: 'fiend-patron',
+    appendSections: {},
+    sidebars: {},
+    dropTables: ['Sorts du Fiélon'],
+  ),
+  (
+    name: 'Paladin',
+    slug: 'paladin',
+    table: 'Aptitudes du Paladin',
+    columns: ['channel_divinity', 'prepared_spells', ..._halfCasterSlots],
+    subclassSlug: 'oath-of-devotion',
+    appendSections: {},
+    sidebars: {
+      'Rompre votre serment': (lines: 4, to: 'Sous-classe de Paladin'),
+    },
+    dropTables: ['Sorts du Serment de Dévotion'],
+  ),
+  (
+    name: 'Rôdeur',
+    slug: 'ranger',
+    table: 'Aptitudes du Rôdeur',
+    columns: ['favored_enemy', 'prepared_spells', ..._halfCasterSlots],
+    subclassSlug: 'hunter',
+    appendSections: {},
+    sidebars: {},
+    dropTables: [],
+  ),
+  (
+    name: 'Roublard',
+    slug: 'rogue',
+    table: 'Aptitudes du Roublard',
+    columns: ['sneak_attack_dice'],
+    subclassSlug: 'thief',
+    appendSections: {},
+    sidebars: {},
     dropTables: [],
   ),
 ];

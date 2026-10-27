@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:paladin-subclass",
+  "type": "feature",
+  "name": "Sous-classe de Paladin",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous recevez la sous-classe de Paladin de votre choix. La sous-classe Serment de Dévotion est détaillée après la description de cette classe. Une sous-classe est une spécialisation qui vous octroie des aptitudes à certains niveaux de Paladin. Pour le reste de votre carrière, vous bénéficiez de chacune des aptitudes de la sous-classe choisie, à concurrence de votre niveau actuel de Paladin.\nRompre votre serment\nLes paladins ont beau s’efforcer de respecter une éthique très exigeante, même le plus dévoué d’entre eux reste un être faillible. Il arrive qu’un Paladin transgresse son serment.\nUn Paladin qui a rompu un vœu cherche généralement à obtenir l’absolution, en passant une nuit à veiller en signe de pénitence ou en se pliant à un jeûne expiatoire. Après un tel rite de pardon, ce Paladin prend un nouveau départ.\nSi votre Paladin viole son serment sans chercher à faire amende honorable, parlez-en à votre MJ. Votre Paladin devrait probablement choisir une sousclasse plus appropriée, voire abandonner la classe et en adopter une autre."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:monk-acrobatic-movement",
+  "type": "feature",
+  "name": "Mouvement acrobatique",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 9
+  },
+  "text": {
+    "fr": "Tant que vous ne portez ni armure ni bouclier, vous recevez la capacité de vous déplacer à votre tour le long de surfaces verticales et à travers des liquides sans tomber."
+  }
+}

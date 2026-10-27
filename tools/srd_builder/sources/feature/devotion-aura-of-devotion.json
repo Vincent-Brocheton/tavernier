@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:devotion-aura-of-devotion",
+  "type": "feature",
+  "name": "Aura de dévotion",
+  "data": {
+    "source": "srd:subclass:oath-of-devotion",
+    "level": 7
+  },
+  "text": {
+    "fr": "Vous-même et vos alliés jouissez de l’Immunité contre l’état Charmé au sein de votre Aura de protection. Si un allié Charmé pénètre dans l’aura, cet état est réprimé sur cet allié tant qu’il s’y trouve."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:feature:paladin-radiant-strikes",
+  "type": "feature",
+  "name": "Frappes radiantes",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 11
+  },
+  "effects": [
+    {
+      "op": "modify_damage",
+      "scope": "melee_weapon",
+      "value": "1d8",
+      "damage_type": "srd:damage-type:radiant"
+    },
+    {
+      "op": "modify_damage",
+      "scope": "unarmed",
+      "value": "1d8",
+      "damage_type": "srd:damage-type:radiant"
+    }
+  ],
+  "text": {
+    "fr": "Vos frappes s’accompagnent désormais de puissance surnaturelle. Quand vous touchez une cible avec un jet d’attaque avec une arme de corps à corps ou à mains nues, cette cible subit 1d8 dégâts radiants supplémentaires."
+  }
+}

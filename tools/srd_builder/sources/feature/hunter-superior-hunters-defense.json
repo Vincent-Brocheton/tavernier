@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:hunter-superior-hunters-defense",
+  "type": "feature",
+  "name": "Défense de chasseur supérieure",
+  "data": {
+    "source": "srd:subclass:hunter",
+    "level": 15
+  },
+  "text": {
+    "fr": "Quand vous subissez des dégâts, vous pouvez jouer votre Réaction pour vous octroyer la Résistance aux éventuels autres dégâts du même type jusqu’à la fin de ce tour."
+  }
+}

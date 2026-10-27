@@ -1,0 +1,19 @@
+{
+  "id": "srd:feature:monk-disciplined-survivor",
+  "type": "feature",
+  "name": "Survivant discipliné",
+  "data": {
+    "source": "srd:class:monk",
+    "level": 14
+  },
+  "effects": [
+    {
+      "op": "grant_proficiency",
+      "kind": "saving_throw",
+      "ref": "all"
+    }
+  ],
+  "text": {
+    "fr": "Votre discipline physique et mentale vous octroie la maîtrise de tous les jets de sauvegarde.\nDe plus, chaque fois que vous effectuez un jet de sauvegarde et ratez, vous pouvez dépenser 1 point de Credo pour le rejouer et conserver le nouveau jet."
+  }
+}

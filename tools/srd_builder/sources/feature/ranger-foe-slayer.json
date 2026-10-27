@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:ranger-foe-slayer",
+  "type": "feature",
+  "name": "Tueur implacable",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 20
+  },
+  "text": {
+    "fr": "Le dé de dégâts de votre marque du chasseur passe de d6 à d10."
+  }
+}

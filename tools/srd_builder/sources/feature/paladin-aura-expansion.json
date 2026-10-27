@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:paladin-aura-expansion",
+  "type": "feature",
+  "name": "Aura étendue",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 18
+  },
+  "text": {
+    "fr": "Votre Aura de protection est désormais une Émanation de 9 m."
+  }
+}

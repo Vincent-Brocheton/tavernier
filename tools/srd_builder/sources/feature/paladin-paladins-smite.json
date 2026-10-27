@@ -1,0 +1,28 @@
+{
+  "id": "srd:feature:paladin-paladins-smite",
+  "type": "feature",
+  "name": "Châtiment de paladin",
+  "data": {
+    "source": "srd:class:paladin",
+    "level": 2
+  },
+  "effects": [
+    {
+      "op": "grant_spell",
+      "spell": "srd:spell:divine-smite",
+      "always_prepared": true,
+      "free_casts": {
+        "count": 1,
+        "recharge": [
+          {
+            "on": "long_rest",
+            "amount": "all"
+          }
+        ]
+      }
+    }
+  ],
+  "text": {
+    "fr": "Le sort châtiment divin est toujours préparé pour vous. Vous pouvez en outre lancer ce sort sans dépenser d’emplacement de sort, sachant que vous devez ensuite terminer un Repos long avant de pouvoir le relancer par ce biais."
+  }
+}

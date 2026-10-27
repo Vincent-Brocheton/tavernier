@@ -1,0 +1,352 @@
+{
+  "id": "srd:class:paladin",
+  "type": "class",
+  "name": "Paladin",
+  "data": {
+    "primary_abilities": [
+      "srd:ability:strength",
+      "srd:ability:charisma"
+    ],
+    "hit_die": 10,
+    "saving_throws": [
+      "srd:ability:wisdom",
+      "srd:ability:charisma"
+    ],
+    "skill_choice_count": 2,
+    "skill_choices": [
+      "srd:skill:athletics",
+      "srd:skill:intimidation",
+      "srd:skill:insight",
+      "srd:skill:medicine",
+      "srd:skill:persuasion",
+      "srd:skill:religion"
+    ],
+    "weapon_proficiencies": [
+      "simple",
+      "martial"
+    ],
+    "armor_training": [
+      "light",
+      "medium",
+      "heavy",
+      "shield"
+    ],
+    "subclass_level": 3,
+    "spellcasting_ability": "srd:ability:charisma",
+    "levels": [
+      {
+        "level": 1,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:paladin-weapon-mastery",
+          "srd:feature:paladin-lay-on-hands",
+          "srd:feature:paladin-spellcasting"
+        ],
+        "columns": {
+          "prepared_spells": 2,
+          "slot_1": 2
+        }
+      },
+      {
+        "level": 2,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:paladin-paladins-smite",
+          "srd:feature:paladin-fighting-style"
+        ],
+        "columns": {
+          "prepared_spells": 3,
+          "slot_1": 2
+        }
+      },
+      {
+        "level": 3,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:paladin-channel-divinity",
+          "srd:feature:paladin-subclass"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 4,
+          "slot_1": 3
+        }
+      },
+      {
+        "level": 4,
+        "proficiency_bonus": 2,
+        "features": [
+          "srd:feature:paladin-ability-score-improvement"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 5,
+          "slot_1": 3
+        }
+      },
+      {
+        "level": 5,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:paladin-extra-attack",
+          "srd:feature:paladin-faithful-steed"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 6,
+          "slot_1": 4,
+          "slot_2": 2
+        }
+      },
+      {
+        "level": 6,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:paladin-aura-of-protection"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 6,
+          "slot_1": 4,
+          "slot_2": 2
+        }
+      },
+      {
+        "level": 7,
+        "proficiency_bonus": 3,
+        "features": [],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 7,
+          "slot_1": 4,
+          "slot_2": 3
+        }
+      },
+      {
+        "level": 8,
+        "proficiency_bonus": 3,
+        "features": [
+          "srd:feature:paladin-ability-score-improvement"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 7,
+          "slot_1": 4,
+          "slot_2": 3
+        }
+      },
+      {
+        "level": 9,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:paladin-abjure-foes"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 9,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 2
+        }
+      },
+      {
+        "level": 10,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:paladin-aura-of-courage"
+        ],
+        "columns": {
+          "channel_divinity": 2,
+          "prepared_spells": 9,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 2
+        }
+      },
+      {
+        "level": 11,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:paladin-radiant-strikes"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 10,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3
+        }
+      },
+      {
+        "level": 12,
+        "proficiency_bonus": 4,
+        "features": [
+          "srd:feature:paladin-ability-score-improvement"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 10,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3
+        }
+      },
+      {
+        "level": 13,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 11,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 1
+        }
+      },
+      {
+        "level": 14,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:paladin-restoring-touch"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 11,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 1
+        }
+      },
+      {
+        "level": 15,
+        "proficiency_bonus": 5,
+        "features": [],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 12,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 2
+        }
+      },
+      {
+        "level": 16,
+        "proficiency_bonus": 5,
+        "features": [
+          "srd:feature:paladin-ability-score-improvement"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 12,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 2
+        }
+      },
+      {
+        "level": 17,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 14,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 1
+        }
+      },
+      {
+        "level": 18,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:paladin-aura-expansion"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 14,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 1
+        }
+      },
+      {
+        "level": 19,
+        "proficiency_bonus": 6,
+        "features": [
+          "srd:feature:paladin-epic-boon"
+        ],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 15,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2
+        }
+      },
+      {
+        "level": 20,
+        "proficiency_bonus": 6,
+        "features": [],
+        "columns": {
+          "channel_divinity": 3,
+          "prepared_spells": 15,
+          "slot_1": 4,
+          "slot_2": 3,
+          "slot_3": 3,
+          "slot_4": 3,
+          "slot_5": 2
+        }
+      }
+    ],
+    "spell_list": [
+      "srd:spell:aid",
+      "srd:spell:aura-of-life",
+      "srd:spell:banishment",
+      "srd:spell:bless",
+      "srd:spell:command",
+      "srd:spell:create-food-and-water",
+      "srd:spell:cure-wounds",
+      "srd:spell:daylight",
+      "srd:spell:death-ward",
+      "srd:spell:detect-evil-and-good",
+      "srd:spell:detect-magic",
+      "srd:spell:detect-poison-and-disease",
+      "srd:spell:dispel-evil-and-good",
+      "srd:spell:dispel-magic",
+      "srd:spell:divine-favor",
+      "srd:spell:divine-smite",
+      "srd:spell:find-steed",
+      "srd:spell:geas",
+      "srd:spell:gentle-repose",
+      "srd:spell:greater-restoration",
+      "srd:spell:heroism",
+      "srd:spell:lesser-restoration",
+      "srd:spell:locate-creature",
+      "srd:spell:locate-object",
+      "srd:spell:magic-circle",
+      "srd:spell:magic-weapon",
+      "srd:spell:prayer-of-healing",
+      "srd:spell:protection-from-evil-and-good",
+      "srd:spell:protection-from-poison",
+      "srd:spell:purify-food-and-drink",
+      "srd:spell:raise-dead",
+      "srd:spell:remove-curse",
+      "srd:spell:revivify",
+      "srd:spell:searing-smite",
+      "srd:spell:shield-of-faith",
+      "srd:spell:shining-smite",
+      "srd:spell:warding-bond",
+      "srd:spell:zone-of-truth"
+    ]
+  }
+}

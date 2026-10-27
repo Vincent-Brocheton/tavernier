@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:hunter-superior-hunters-prey",
+  "type": "feature",
+  "name": "Proie du chasseur supérieure",
+  "data": {
+    "source": "srd:subclass:hunter",
+    "level": 11
+  },
+  "text": {
+    "fr": "Une fois par tour, lorsque vous infligez des dégâts à une créature marquée par votre marque du chasseur, vous pouvez également infliger les dégâts supplémentaires de ce sort à une créature différente que vous voyez dans un rayon de 9 m de la première."
+  }
+}

@@ -76,8 +76,14 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `spellcasting_ability` : caractéristique d'incantation ;
   - `tool_proficiencies` : outils maîtrisés d'office ;
   - `tool_choice_count` et `tool_choice_category` : outils à choisir dans une catégorie.
+  - `weapon_proficiencies` : `simple`, `martial`, ou une partie des armes de guerre : `martial_light` (Moine) ou `martial_finesse_or_light` (Roublard).
 
-  Dans `levels[].columns`, toutes les valeurs sont des entiers. Un dé est noté par son nombre de faces (`bardic_die: 8`), un bonus par sa valeur (`rage_damage: 2`). Les emplacements de sort sont `slot_1` à `slot_9`, avec `cantrips` et `prepared_spells`. Une case « — » de la table n'est pas écrite.
+  Dans `levels[].columns`, toutes les valeurs sont des entiers. Le suffixe de la colonne dit comment lire la case de la table :
+  - `_die` : le nombre de faces d'un dé (`bardic_die: 8`, `martial_arts_die: 6`) ;
+  - `_dice` : le nombre de dés (`sneak_attack_dice: 2`) ;
+  - `_feet` : une distance en pieds (`unarmored_movement_feet: 10` pour « +3 m »).
+
+  Un bonus est noté par sa valeur (`rage_damage: 2`). Les emplacements de sort sont `slot_1` à `slot_9`, avec `cantrips` et `prepared_spells`. Une case « — » de la table n'est pas écrite.
 - `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`, `spell`.
 - Le type `resource` est réservé aux clés de ressources (`srd:resource:second-wind`) : ce n'est jamais une entité.
 

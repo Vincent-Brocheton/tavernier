@@ -1,0 +1,12 @@
+{
+  "id": "srd:feature:hunter-hunters-lore",
+  "type": "feature",
+  "name": "Savoir du Chasseur",
+  "data": {
+    "source": "srd:subclass:hunter",
+    "level": 3
+  },
+  "text": {
+    "fr": "Vous faites appel aux forces de la nature pour révéler les forces et faiblesses de votre proie. Lorsqu’une créature est marquée par votre marque du chasseur, vous savez si cette créature dispose d’Immunités, de Résistances ou de Vulnérabilités, et le cas échéant, vous en connaissez la teneur."
+  }
+}

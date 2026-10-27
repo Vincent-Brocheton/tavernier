@@ -1,0 +1,32 @@
+{
+  "id": "srd:feature:ranger-roving",
+  "type": "feature",
+  "name": "Arpenteur",
+  "data": {
+    "source": "srd:class:ranger",
+    "level": 6
+  },
+  "effects": [
+    {
+      "op": "modify_speed",
+      "mode": "walk",
+      "value": 10,
+      "when": {
+        "armor": "not_heavy"
+      }
+    },
+    {
+      "op": "modify_speed",
+      "mode": "climb",
+      "equal_to": "walk"
+    },
+    {
+      "op": "modify_speed",
+      "mode": "swim",
+      "equal_to": "walk"
+    }
+  ],
+  "text": {
+    "fr": "Votre Vitesse augmente de 3 m tant que vous ne portez pas d’armure lourde. Vous disposez en outre d’une Vitesse d’escalade et de nage égales à votre valeur de Vitesse."
+  }
+}
