@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:gust-of-wind",
+  "type": "spell",
+  "name": "Bourrasque",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une graine de légumineuse"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Une Ligne de vent fort longue de 18 m et large de 3 m souffle depuis vous dans la direction de votre choix pour toute la durée. Toute créature prise dans la Ligne doit réussir un jet de sauvegarde de Force sous peine d’être repoussée de 4,50 m de vous selon la direction de la Ligne. Une créature qui termine son tour dans la Ligne est soumise au même JS.\nToute créature prise dans la Ligne qui se déplace vers vous doit consacrer le double du déplacement normal pour toute distance parcourue.\nLa bourrasque disperse les gaz et vapeurs, éteint les bougies et autres flammes exposées de la zone. Les flammes protégées, comme celles des lanternes, vacillent vigoureusement avec un risque de 50 % de s’éteindre.\nPar une action Bonus à vos tours suivants, vous pouvez changer la direction dans laquelle la Ligne jaillit de vous."
+  }
+}

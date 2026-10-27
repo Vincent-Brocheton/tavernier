@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:vampiric-touch",
+  "type": "spell",
+  "name": "Caresse du vampire",
+  "data": {
+    "level": 3,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Le contact de votre main nimbée d’ombres siphonne l’énergie vitale d’autrui pour refermer vos plaies. Effectuez une attaque de sort au corps à corps contre une créature à portée d’allonge. Si l’attaque touche, la cible subit 3d6 dégâts nécrotiques et vous récupérez autant de points de vie que la moitié des dégâts nécrotiques infligés.\nJusqu’à la fin du sort, vous pouvez répéter l’attaque à chacun de vos tours, au prix de l’action Magie, en ciblant la même créature ou une autre.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 3e."
+  }
+}

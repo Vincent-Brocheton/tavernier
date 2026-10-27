@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:identify",
+  "type": "spell",
+  "name": "Identification",
+  "data": {
+    "level": 1,
+    "school": "divination",
+    "casting_time": "1 minute",
+    "ritual": true,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une perle d’une valeur minimale de 100 po"
+    },
+    "material_cost_cp": 10000,
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement un objet tout au long de l’incantation. S’il s’agit d’un objet magique ou imprégné de magie, vous en apprenez les propriétés et savez les utiliser ; vous savez également si l’Harmonisation est requise et de combien de charges l’objet dispose, le cas échéant. Vous apprenez aussi quels sorts éventuels affectent l’objet. Si l’objet a été créé par un sort, vous apprenez lequel.\nSi au lieu d’un objet, vous touchez une créature pendant toute l’incantation, vous apprenez quels sorts éventuels l’affectent."
+  }
+}

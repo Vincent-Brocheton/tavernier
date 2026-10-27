@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:legend-lore",
+  "type": "spell",
+  "name": "Mythes et légendes",
+  "data": {
+    "level": 5,
+    "school": "divination",
+    "casting_time": "10 minutes",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "de l’encens d’une valeur minimale de 250 po, que le sort détruit, et quatre lamelles d’ivoire d’une valeur minimale de 50 po chacune"
+    },
+    "material_cost_cp": 25000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Nommez ou décrivez un élément notoire : personne, lieu ou objet. Le sort vous fait prendre brièvement conscience d’un fait important (décrit par le MJ) concernant l’élément mentionné.\nCette bribe de savoir peut consister en des détails essentiels, des révélations cocasses, voire quelque secret toujours resté méconnu. Plus vous en savez déjà sur l’élément, plus précises et détaillées seront les informations transmises. Les détails révélés sont justes, mais sont parfois formulés de manière imagée ou par le biais de vers (à l’appréciation du MJ).\nSi l’élément retenu n’est pas véritablement notoire, vous n’entendez que quelques notes tristes de trombone et le sort prend fin."
+  }
+}

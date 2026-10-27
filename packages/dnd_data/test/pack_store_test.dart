@@ -20,12 +20,12 @@ void main() {
   tearDown(() => db.close());
 
   group('import et export', () {
-    test('pack SRD aller-retour : 188 entités identiques', () async {
+    test('pack SRD aller-retour : toutes les entités identiques', () async {
       await store.importPack(srdPack);
       final exported = await store.exportPack(srdPack.manifest.id);
       expect(exported, isNotNull);
       expect(exported!.manifest.toJson(), srdPack.manifest.toJson());
-      expect(exported.entities, hasLength(188));
+      expect(exported.entities, hasLength(srdPack.entities.length));
       expect(_byId(exported), _byId(srdPack));
     });
 
@@ -38,7 +38,7 @@ void main() {
       expect(count.read<int>('n'), 38);
       expect(
         (await store.exportPack(srdPack.manifest.id))!.entities,
-        hasLength(188),
+        hasLength(srdPack.entities.length),
       );
     });
 
@@ -76,7 +76,7 @@ void main() {
       );
       expect(
         (await store.exportPack(srdPack.manifest.id))!.entities,
-        hasLength(188),
+        hasLength(srdPack.entities.length),
       );
     });
 

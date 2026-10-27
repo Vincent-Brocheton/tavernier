@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:see-invisibility",
+  "type": "spell",
+  "name": "Détection de l’invisibilité",
+  "data": {
+    "level": 2,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une pincée de talc"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Pour toute la durée, vous voyez les créatures et objets dotés de l’état Invisible comme s’ils étaient visibles, et vous percevez le Plan Éthéré. Les créatures et objets qui s’y trouvent ont un aspect spectral."
+  }
+}

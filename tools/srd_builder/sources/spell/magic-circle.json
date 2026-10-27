@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:magic-circle",
+  "type": "spell",
+  "name": "Cercle magique",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 10
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre d’argent et sel d’une valeur minimale de 100 po, que le sort détruit"
+    },
+    "material_cost_cp": 10000,
+    "material_consumed": true,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous créez un Cylindre d’énergies magiques, de 3 m de rayon et 6 m de haut, centré sur un point du sol que vous voyez à portée. Des runes luisantes apparaissent sur toute surface comprise dans le Cylindre, y compris le sol.\nChoisissez un ou plusieurs types parmi les suivants : Célestes, Élémentaires, Fées, Fiélons et Morts-vivants. Le cercle affecte les créatures du ou des types retenus des façons suivantes :\n• La créature ne peut pénétrer dans le Cylindre de son plein gré sans recourir à des moyens magiques.\nSi la créature recourt à la téléportation ou au voyage interplanaire pour ce faire, elle doit d’abord réussir un jet de sauvegarde de Charisme. • La créature a le Désavantage aux jets d’attaque contre les cibles situées dans le Cylindre. • La créature ne peut pas posséder une cible comprise dans le Cylindre ni lui imposer l’état Charmé ou Effrayé.\nÀ chaque incantation du sort, vous pouvez inverser l’orientation de sa magie, c’est-à-dire en empêchant toute créature du ou des types retenus de quitter le Cylindre et en protégeant les cibles qui se trouvent à l’extérieur.\nEmplacement de niveau supérieur. La durée augmente de 1 heure par niveau d’emplacement au-delà du 3e."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:levitate",
+  "type": "spell",
+  "name": "Lévitation",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un ressort métallique"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Une créature ou un objet de votre choix que vous voyez à portée monte verticalement d’un maximum de 6 m et y reste, en suspension, pour toute la durée. Le sort peut faire léviter un objet dont le poids n’excède pas 250 kg. Une créature non consentante qui réussit un jet de sauvegarde de Constitution n’est pas affectée.\nLa cible ne peut se déplacer qu’en prenant appui sur des objets et surfaces fixes à portée (murs, plafonds, etc.), comme si elle escaladait. À votre tour, vous pouvez modifier l’altitude de la cible d’un maximum de 6 m vers le haut ou vers le bas. Si vous êtes la cible, vous pouvez vous déplacer ainsi dans le cadre de votre déplacement. Sans cela, vous devez entreprendre l’action Magie pour déplacer la cible, qui doit rester à portée du sort.\nLorsque le sort prend fin, la cible redescend en flottant vers le sol si elle est toujours dans les airs."
+  }
+}

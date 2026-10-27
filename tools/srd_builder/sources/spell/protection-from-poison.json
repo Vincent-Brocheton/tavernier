@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:protection-from-poison",
+  "type": "spell",
+  "name": "Protection contre le poison",
+  "data": {
+    "level": 2,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature pour mettre fin sur elle à l’état Empoisonné. Pour toute la durée, la cible a l’Avantage aux jets de sauvegarde pour éviter l’état Empoisonné ou y mettre fin, et bénéficie de la Résistance aux dégâts de poison."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:shapechange",
+  "type": "spell",
+  "name": "Changement de forme",
+  "data": {
+    "level": 9,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "diadème de jade d’une valeur minimale de 1 500 po"
+    },
+    "material_cost_cp": 150000,
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous vous métamorphosez en une autre créature pour toute la durée, mais avez la possibilité d’entreprendre l’action Magie pour adopter une autre forme couverte par le sort. La nouvelle forme doit être une créature dont le facteur de puissance n’est pas supérieur à votre niveau ou FP. Vous devez avoir déjà vu une telle créature, qui ne peut être ni un Artificiel ni un Mort-vivant.\nEn lançant ce sort, vous recevez autant de points de vie temporaires que les points de vie de la première forme adoptée. Ces points de vie temporaires disparaissent s’il en reste à la fin du sort.\nVotre profil de jeu est remplacé par celui de la créature retenue, mais vous conservez certains de vos aspects : type de créature, alignement, personnalité, valeurs d’Intelligence, de Sagesse et de Charisme, points de vie, dés de vie, maîtrises et facultés de communication. Si vous disposez de l’aptitude Sorts ou Incantation, vous la conservez aussi.\nLors de la transformation, vous déterminez si votre équipement tombe au sol ou change de taille et de configuration pour s’adapter à votre nouvelle forme."
+  }
+}

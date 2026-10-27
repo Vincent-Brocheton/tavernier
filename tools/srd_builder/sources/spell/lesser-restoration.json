@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:lesser-restoration",
+  "type": "spell",
+  "name": "Restauration partielle",
+  "data": {
+    "level": 2,
+    "school": "abjuration",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature pour mettre fin à un état qui l’affecte parmi : Assourdi, Aveuglé, Empoisonné et Paralysé."
+  }
+}

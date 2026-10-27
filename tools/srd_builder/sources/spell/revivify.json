@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:revivify",
+  "type": "spell",
+  "name": "Retour à la vie",
+  "data": {
+    "level": 3,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un diamant d’une valeur minimale de 300 po, que le sort détruit"
+    },
+    "material_cost_cp": 30000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez une créature morte dans la minute qui vient de s’écouler. La créature est ramenée à la vie avec 1 point de vie. Ce sort ne peut pas affecter une créature morte de vieillesse, pas plus qu’il ne restitue l’anatomie manquante."
+  }
+}

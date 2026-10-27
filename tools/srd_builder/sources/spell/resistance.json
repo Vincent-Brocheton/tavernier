@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:resistance",
+  "type": "spell",
+  "name": "Résistance",
+  "data": {
+    "level": 0,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature consentante en choisissant un type de dégâts entre : acide, contondants, feu, foudre, froid, nécrotiques, perforants, poison, radiants, tonnerre et tranchants. Quand la créature subit des dégâts du type retenu avant la fin du sort, elle réduit les dégâts subis de 1d4. Une même créature ne peut bénéficier qu’une fois par tour de ce sort."
+  }
+}

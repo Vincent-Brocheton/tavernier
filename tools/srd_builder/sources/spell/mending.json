@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:mending",
+  "type": "spell",
+  "name": "Réparation",
+  "data": {
+    "level": 0,
+    "school": "transmutation",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "deux magnétites"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ce sort répare une dégradation (déchirure ou bris) sur l’objet que vous touchez, comme un maillon de chaîne brisé, une clef en deux morceaux, une cape déchirée ou une outre percée. Tant que la dégradation ne dépasse pas 30 cm dans quelque dimension que ce soit, vous la réparez et il n’en reste nulle trace.\nCe sort peut réparer la structure physique d’un objet magique, mais il ne lui rendra pas sa magie."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:locate-creature",
+  "type": "spell",
+  "name": "Localisation de créature",
+  "data": {
+    "level": 4,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une touffe de poils de limier"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Décrivez ou nommez une créature qui vous est familière. Vous percevez dans quelle direction la créature se trouve, à condition qu’elle soit située dans un rayon de 300 m. Si la créature se déplace, vous savez dans quelle direction.\nLe sort peut localiser une créature donnée que vous connaissez ou la créature d’une certaine catégorie (un humain ou une licorne, par exemple) la plus proche, à condition que vous ayez déjà vu une telle créature de près (9 m ou moins). Si la créature décrite ou nommée se trouve sous une forme différente, parce qu’elle est sous les effets du sort métamorphose ou pétrification par exemple, le sort ne parvient pas à la localiser.\nCe sort ne trouve pas davantage la créature si la moindre épaisseur de plomb vous sépare d’elle."
+  }
+}

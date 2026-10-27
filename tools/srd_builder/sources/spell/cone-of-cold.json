@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:cone-of-cold",
+  "type": "spell",
+  "name": "Cône de froid",
+  "data": {
+    "level": 5,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "petit Cône de verre ou de cristal"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous libérez une gerbe d’air glacial. Chaque créature prise dans un Cône de 18 m émanant de vous effectue un jet de sauvegarde de Constitution et subit 8d8 dégâts de froid en cas d’échec, la moitié en cas de réussite. Une créature tuée par ce sort se transforme en statue givrée, jusqu’à ce qu’elle dégèle.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 5e."
+  }
+}

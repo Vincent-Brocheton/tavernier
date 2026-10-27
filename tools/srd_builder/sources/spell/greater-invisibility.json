@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:greater-invisibility",
+  "type": "spell",
+  "name": "Invisibilité suprême",
+  "data": {
+    "level": 4,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "La créature que vous touchez physiquement reçoit l’état Invisible jusqu’à la fin du sort."
+  }
+}

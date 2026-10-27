@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:divine-word",
+  "type": "spell",
+  "name": "Parole divine",
+  "data": {
+    "level": 7,
+    "school": "evocation",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous prononcez une parole porteuse de la puissance des Plans Supérieurs. Chaque créature que vous choisissez à portée effectue un jet de sauvegarde de Charisme. En cas d’échec, une cible dotée de 50 points de vie ou moins subit un effet qui dépend de ses points de vie actuels, comme indiqué sur la table Effets de parole divine. Quels que soient ses points de vie actuels, une cible Céleste, Élémentaire, Fée ou Fiélon qui rate son JS est renvoyée d’office dans son plan d’origine (s’il ne s’y trouve pas déjà) et ne peut revenir sur votre plan actuel pendant 24 heures, sauf par le biais du sort souhait.\nEffets de parole divine\nPoints de vie\nEffet\n0–20 La cible meurt.\n21–30 La cible subit les états Assourdi, Aveuglé et Étourdi pendant 1 heure.\n31–40 La cible subit les états Assourdi et Aveuglé pendant 10 minutes.\n41–50 La cible subit l’état Assourdi pendant 1 minute."
+  }
+}

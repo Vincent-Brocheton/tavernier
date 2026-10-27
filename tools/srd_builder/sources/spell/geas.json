@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:geas",
+  "type": "spell",
+  "name": "Quête",
+  "data": {
+    "level": 5,
+    "school": "enchantment",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "30 jours",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous intimez un ordre verbal à une créature que vous voyez à portée, pour la contraindre à accomplir une tâche ou l’empêcher d’exécuter certains actes que vous définissez. La cible doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Charmé pour toute la durée du sort. Elle réussit automatiquement ce JS si elle n’est pas en mesure de comprendre votre ordre.\nTant que la créature est ainsi Charmée, elle subit 5d10 dégâts psychiques quand elle se conduit directement à l’encontre de vos instructions. Elle ne peut pas subir ces dégâts plus d’une fois par jour.\nVous pouvez donner n’importe quel ordre, en dehors d’une tâche dont l’issue serait forcément fatale à la cible. Si l’instruction intimée est suicidaire, le sort prend fin.\nLes sorts délivrance des malédictions, restauration suprême et souhait mettent chacun fin à ce sort.\nEmplacement de niveau supérieur. Avec un emplacement du 7e ou 8e niveau, la durée est de 365 jours. Avec un emplacement du 9e niveau, le sort persiste jusqu’à ce qu’un des sorts cités plus haut y mette fin."
+  }
+}

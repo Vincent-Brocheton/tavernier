@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:barkskin",
+  "type": "spell",
+  "name": "Peau d’écorce",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une poignée d’écorce"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez une créature consentante. Jusqu’à la fin du sort, la peau de la cible adopte un aspect d’écorce et sa classe d’armure passe à 17 si elle est inférieure à cette valeur."
+  }
+}

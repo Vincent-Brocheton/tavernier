@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:moonbeam",
+  "type": "spell",
+  "name": "Rayon de lune",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une feuille de cocculus"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Un large rayon de lueur argentée ténue plonge sous forme d’un Cylindre de 1,50 m de rayon et 12 m de haut, centré sur un point à portée. Jusqu’à la fin du sort, le Cylindre est empli de Lumière faible et vous pouvez entreprendre l’action Magie à vos tours suivants pour déplacer le Cylindre d’un maximum de 18 m.\nLorsque le Cylindre apparaît, chaque créature prise à l’intérieur effectue un jet de sauvegarde de Constitution. En cas d’échec, elle subit 2d10 dégâts radiants et, si elle est métamorphosée (par le sort métamorphose, par exemple), elle reprend sa forme véritable et ne peut plus en changer tant qu’elle reste dans le Cylindre. En cas de réussite, elle subit uniquement la moitié de ces dégâts. Toute créature qui voit la zone du sort se déplacer dans son espace, ou qui pénètre dans la zone ou y termine son tour, est également soumise à ce JS. Une même créature n’effectue en aucun cas ce JS plus d’une fois par tour.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d10 par niveau d’emplacement au-delà du 2e."
+  }
+}

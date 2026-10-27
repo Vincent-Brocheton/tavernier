@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:blindness-deafness",
+  "type": "spell",
+  "name": "Cécité/surdité",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "1 minute",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une créature que vous voyez à portée doit réussir un jet de sauvegarde de Constitution, sous peine de subir l’état Assourdi ou Aveuglé (vous choisissez) pour toute la durée. La cible réitère le JS à la fin de chacun de ses tours et met un terme au sort sur elle-même en cas de réussite.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 2e."
+  }
+}

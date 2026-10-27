@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:locate-animals-or-plants",
+  "type": "spell",
+  "name": "Localisation d’animaux ou de plantes",
+  "data": {
+    "level": 2,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une touffe de poils de limier"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Décrivez ou nommez une sorte de créature de type Bête ou Plante, ou une plante non magique. Vous savez alors dans quelle direction et à quelle distance se trouve, le cas échéant, la créature ou la plante de cette sorte la plus proche dans un rayon de 7,5 km."
+  }
+}

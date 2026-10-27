@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:clone",
+  "type": "spell",
+  "name": "Clone",
+  "data": {
+    "level": 8,
+    "school": "necromancy",
+    "casting_time": "1 heure",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un diamant d’une valeur minimale de 1 000 po que le sort détruit et un récipient d’une valeur minimale de 2 000 po, assez grand pour contenir la créature à cloner"
+    },
+    "material_cost_cp": 100000,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature ou au moins 15 cm3 de sa chair. Une réplique inerte se forme à l’intérieur d’un récipient utilisé pour l’incantation, sa croissance jusqu’à maturité demandant 120 jours. Vous décidez si le clone est une version plus jeune de la créature ou du même âge. Le clone reste inerte et immarcescible tant que le récipient n’est pas endommagé.\nSi, une fois le clone formé, la créature d’origine meurt, son âme (à condition qu’elle soit libre et consentante) est transférée dans le clone. Le clone est identique à l’original sur le plan physique et présente la même personnalité ; ses souvenirs sont les mêmes, ainsi que ses caractéristiques, mais il ne récupère rien de l’équipement de la créature clonée. La dépouille du cloné, si elle existe, devient inerte et ne pourra être ramenée à la vie, étant donné que l’âme de la créature est ailleurs."
+  }
+}

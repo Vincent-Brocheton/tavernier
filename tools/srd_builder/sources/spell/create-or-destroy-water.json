@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:create-or-destroy-water",
+  "type": "spell",
+  "name": "Création ou destruction d’eau",
+  "data": {
+    "level": 1,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un mélange d’eau et de sable"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous accomplissez l’une des tâches suivantes :\nCréation d’eau. Vous créez jusqu’à 40 litres d’eau propre dans un récipient ouvert à portée. Une autre option consiste à faire pleuvoir cette eau dans un Cube de 9 m à portée, ce qui éteint les flammes nues de la zone.\nDestruction d’eau. Vous détruisez jusqu’à 40 litres d’eau dans un récipient ouvert à portée. Au lieu de cela, vous pouvez chasser le brouillard dans un Cube de 9 m à portée.\nEmplacement de niveau supérieur. Vous créez ou détruisez 40 litres supplémentaires d’eau (ou l’arête du Cube augmente de 1,50 m) par niveau d’emplacement au-delà du 1er."
+  }
+}

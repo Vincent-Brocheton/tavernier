@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:speak-with-plants",
+  "type": "spell",
+  "name": "Communication avec les plantes",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "10 minutes",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous investissez la flore comprise dans une Émanation immobile de 9 m d’une conscience limitée et de mouvements, de quoi lui permettre de communiquer avec vous et de suivre vos instructions rudimentaires. Vous pouvez interroger ces plantes sur ce qui s’est passé dans la zone du sort depuis un jour, notamment la nature des créatures qui l’ont traversée, le temps qu’il a fait et autres détails.\nVous pouvez également transformer tout Terrain difficile engendré par la végétation (buissons et sousbois, par exemple) en terrain ordinaire qui persiste pour toute la durée. Ou bien transformer un terrain ordinaire pourvu de végétation en Terrain difficile qui persiste pour toute la durée.\nLe sort ne permet pas aux plantes de se déraciner pour se déplacer, mais elles peuvent agiter leurs branches, leurs vrilles et leurs pédoncules.\nSi une créature de type Plante se trouve dans la zone, vous pouvez communiquer avec elle comme si vous parliez une langue commune."
+  }
+}

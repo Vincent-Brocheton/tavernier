@@ -5,22 +5,22 @@
 
 ## 2. Extraction
 
-- [ ] 2.1 Tests qui échouent : nettoyage (pied de page retiré, « mini-/male » recollé, paragraphe coupé par une page recollé), découpage d'un extrait de deux sorts, lecture de l'en-tête, portée convertie en pieds (9 m, 45 m, 1,5 km, personnelle, contact), coût et consommation du composant matériel ; puis la commande `extract-spells`
-- [ ] 2.2 Table `spell_slugs.tsv` (339 lignes) ; l'extraction échoue sur un nom absent ou un slug en double. Vérifier qu'elle ne signale aucun manque
-- [ ] 2.3 Lancer l'extraction sur le PDF, relire le rapport de raccords, écrire `sources/spell/*.json` et `extract/spell_classes.tsv`
+- [x] 2.1 Tests qui échouent : nettoyage (pied de page retiré, « mini-/male » recollé, paragraphe coupé par une page recollé), découpage d'un extrait de deux sorts, lecture de l'en-tête, portée convertie en pieds (9 m, 45 m, 1,5 km, personnelle, contact), coût et consommation du composant matériel ; puis la commande `extract-spells`
+- [x] 2.2 Table `spell_slugs.tsv` (339 lignes) ; l'extraction échoue sur un nom absent ou un slug en double. Vérifier qu'elle ne signale aucun manque
+- [x] 2.3 Lancer l'extraction sur le PDF, relire le rapport de raccords, écrire `sources/spell/*.json` et `extract/spell_classes.tsv`
 
 ## 3. Contenu et vérifications
 
-- [ ] 3.1 Tests du pack SRD :
+- [x] 3.1 Tests du pack SRD :
   - comptes : 339 sorts, 27 mineurs, niveaux 1 à 9 et 8 écoles présents ;
   - sorts témoins vérifiés contre le PDF, page citée : Boule de feu, Bénédiction, Rappel à la vie, Souhait, Aspersion acide, Bouclier.
 
   Régénérer `apps/game_table/assets/packs/srd-5.2.1-fr.dndpack` et vérifier que le test « pack embarqué » passe.
-- [ ] 3.2 `docs/packs/FORMAT_DNDPACK.md` (type `spell`), CLAUDE.md (commande d'extraction) ; vérifier que chaque commande documentée s'exécute
+- [x] 3.2 `docs/packs/FORMAT_DNDPACK.md` (type `spell`), CLAUDE.md (commande d'extraction) ; vérifier que chaque commande documentée s'exécute
 
 ## 4. Intégration
 
-- [ ] 4.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
+- [x] 4.1 `fvm exec melos run format`, `analyze`, `test` et `coverage` verts
 
 ## Workflow follow-up
 

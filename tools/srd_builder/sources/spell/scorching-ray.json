@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:scorching-ray",
+  "type": "spell",
+  "name": "Rayon ardent",
+  "data": {
+    "level": 2,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez trois rayons de flammes. Vous pouvez cibler une seule cible à portée ou bien plusieurs.\nEffectuez une attaque de sort à distance pour chaque rayon. Une attaque qui touche sa cible lui inflige 2d6 dégâts de feu.\nEmplacement de niveau supérieur. Vous produisez un rayon supplémentaire par niveau d’emplacement au-delà du 2e."
+  }
+}

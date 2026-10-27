@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:water-breathing",
+  "type": "spell",
+  "name": "Respiration aquatique",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un court roseau"
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ce sort octroie la faculté de respirer sous l’eau à un maximum de dix créatures consentantes que vous choisissez à portée, jusqu’à la fin du sort. Les créatures affectées conservent leurs autres modes respiratoires."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:regenerate",
+  "type": "spell",
+  "name": "Régénération",
+  "data": {
+    "level": 7,
+    "school": "transmutation",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un moulin à prières"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une créature que vous touchez physiquement récupère 4d8 + 15 points de vie. Pour toute la durée, la cible récupère 1 point de vie au début de chacun de ses tours et les parties sectionnées de son anatomie repoussent en 2 minutes."
+  }
+}

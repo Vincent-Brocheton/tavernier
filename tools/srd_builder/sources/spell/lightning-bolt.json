@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:lightning-bolt",
+  "type": "spell",
+  "name": "Éclair",
+  "data": {
+    "level": 3,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une touffe de fourrure et une tige de cristal"
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Un éclair foudroyant jaillit de vous sous la forme d’une Ligne de 30 m de long et 1,50 m de large, dans la direction de votre choix. Chaque créature prise dans la Ligne effectue un jet de sauvegarde de Dextérité et subit 8d6 dégâts de foudre en cas d’échec, la moitié en cas de réussite.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d6 par niveau d’emplacement au-delà du 3e."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:guidance",
+  "type": "spell",
+  "name": "Assistance",
+  "data": {
+    "level": 0,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature consentante en choisissant une compétence. Jusqu’à la fin du sort, la créature ajoute 1d4 au résultat de tout test de caractéristique associé à cette compétence."
+  }
+}

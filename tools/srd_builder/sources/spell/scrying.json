@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:scrying",
+  "type": "spell",
+  "name": "Scrutation",
+  "data": {
+    "level": 5,
+    "school": "divination",
+    "casting_time": "10 minutes",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un focaliseur d’une valeur minimale de 1 000 po, comme une boule de cristal, un miroir en argent ou une vasque remplie d’eau bénite"
+    },
+    "material_cost_cp": 100000,
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous voyez et entendez une créature de votre choix, située sur le même plan d’existence que vous. La cible effectue un jet de sauvegarde de Sagesse, modifié par votre connaissance de la créature et le genre de lien physique que vous entretenez avec elle (voir les tables ci-après). La cible ignore contre quoi s’effectue le JS, et ressent juste une forme de malaise.\nVotre connaissance de la cible est… indirecte (vous avez entendu parler d’elle) directe (vous l’avez rencontrée) intime (vous la connaissez)\nModificateur au JS +5\n+0 −5\nVous disposez… de son portrait ou autre représentation d’un vêtement ou autre bien personnel d’un élément anatomique, mèche de cheveux ou rognure d’ongle\nModificateur au JS −2 −4 −10\nEn cas de JS réussi, la cible n’est pas affectée et vous ne pouvez plus réutiliser ce sort sur elle pendant 24 heures.\nEn cas d’échec, le sort crée un capteur Invisible et intangible dans un rayon de 3 m de la cible. Vous voyez et entendez par l’intermédiaire du capteur comme si vous y étiez. Le capteur se déplace avec la cible, en restant dans un rayon de 3 m d’elle pour toute la durée. Pour qui perçoit le capteur, celui-ci apparaît comme un orbe lumineux de la taille de votre poing.\nPlutôt qu’une créature, vous pouvez cibler un lieu que vous avez déjà vu. Ce faisant, le capteur apparaît à l’endroit désigné et ne bouge plus."
+  }
+}

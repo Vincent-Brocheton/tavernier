@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:dispel-evil-and-good",
+  "type": "spell",
+  "name": "Dissipation du mal et du bien",
+  "data": {
+    "level": 5,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "poudre d’argent et de fer"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Pour toute la durée, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants ont le Désavantage aux jets d’attaque contre vous. Vous pouvez mettre un terme prématuré au sort en recourant à l’une des fonctions spéciales suivantes.\nAnnulation d’enchantement. Au prix de l’action Magie, vous touchez une créature possédée ou subissant l’état Charmé ou Effrayé par au moins une créature d’un type précité. La cible n’est plus possédée, Charmée ou Effrayée par cette autre créature.\nRenvoi. Au prix de l’action Magie, vous ciblez une créature que vous voyez dans un rayon de 1,50 m, d’un type précité. La cible doit réussir un jet de sauvegarde de Charisme sous peine d’être renvoyée dans son plan d’origine (si elle ne s’y trouve pas déjà). S’ils ne sont pas sur leur plan d’origine, les Morts-vivants sont envoyés en Gisombre et les Fées en Féerie."
+  }
+}

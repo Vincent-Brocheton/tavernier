@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:mind-blank",
+  "type": "spell",
+  "name": "Esprit impénétrable",
+  "data": {
+    "level": 8,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Jusqu’à la fin du sort, une créature consentante que vous touchez physiquement bénéficie de l’Immunité contre les dégâts psychiques et l’état Charmé. La cible n’est pas davantage affectée par tout ce qui permet de percevoir les émotions ou l’alignement, de lire les pensées ou de détecter magiquement sa position, et aucun sort (pas même souhait) ne peut affecter l’esprit de la cible, l’observer à distance ou se renseigner sur son compte."
+  }
+}

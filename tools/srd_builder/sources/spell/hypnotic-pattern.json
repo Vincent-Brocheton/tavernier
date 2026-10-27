@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:hypnotic-pattern",
+  "type": "spell",
+  "name": "Motif hypnotique",
+  "data": {
+    "level": 3,
+    "school": "illusion",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true,
+      "material": "une pincée de confettis"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous créez un motif animé de couleurs occupant un Cube de 9 m à portée. Le motif apparaît un instant et disparaît aussitôt. Chaque créature prise dans la zone, si elle voit le motif, doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Charmé pour toute la durée du sort. Tant qu’elle est ainsi Charmée, la créature subit l’état Neutralisé et sa Vitesse est de 0.\nLe sort prend fin pour une créature affectée si elle subit des dégâts ou si quelqu’un d’autre consacre une action à la sortir de son hébétude."
+  }
+}

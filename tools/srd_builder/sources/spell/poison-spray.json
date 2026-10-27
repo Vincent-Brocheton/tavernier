@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:poison-spray",
+  "type": "spell",
+  "name": "Bouffée de poison",
+  "data": {
+    "level": 0,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous projetez une brume toxique vers une créature à portée. Effectuez une attaque de sort à distance contre la cible. Si l’attaque touche, la cible subit 1d12 dégâts de poison.\nAmélioration de sort mineur. Les dégâts augmentent de 1d12 lorsque vous atteignez les niveaux 5 (2d12), 11 (3d12) et 17 (4d12)."
+  }
+}

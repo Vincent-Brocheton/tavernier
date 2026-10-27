@@ -61,10 +61,17 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 ```
 
 - `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité. Les slugs `con`, `prn`, `aux`, `nul`, `com1`-`com9`, `lpt1`-`lpt9` sont interdits (noms réservés sous Windows).
-- Types v1 : `ability`, `skill`, `language`, `condition`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`.
+- Types v1 : `ability`, `skill`, `language`, `condition`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell` (ajouté par T-04).
+- `spell` :
+  - `level` : 0 pour un sort mineur, jusqu'à 9 ;
+  - `school` : `abjuration`, `conjuration`, `divination`, `enchantment`, `evocation`, `illusion`, `necromancy` ou `transmutation` ;
+  - `casting_time` et `duration` : texte du SRD ; `ritual` et `concentration` : booléens ;
+  - `range` : `{kind: self | touch | feet | sight | unlimited | special, feet}` (`feet` seulement pour `kind: feet`, en pieds) ;
+  - `components` : `{verbal, somatic, material?}` ; `material_cost_cp?` ; `material_consumed`.
+  - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
-- `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`.
+- `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`, `spell`.
 - Le type `resource` est réservé aux clés de ressources (`srd:resource:second-wind`) : ce n'est jamais une entité.
 
 ## Contrôles à la construction et à l'import

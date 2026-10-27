@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:goodberry",
+  "type": "spell",
+  "name": "Baies nourricières",
+  "data": {
+    "level": 1,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une branche de gui"
+    },
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Dix baies se matérialisent dans votre main, gorgées de magie pour toute la durée. Une créature peut manger l’une de ces baies par une action Bonus. L’ingestion d’une baie fait récupérer 1 point de vie et fournit l’équivalent d’une journée de sustentation pour une créature.\nLes baies non consommées disparaissent quand le sort prend fin."
+  }
+}

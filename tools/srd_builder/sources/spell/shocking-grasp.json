@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:shocking-grasp",
+  "type": "spell",
+  "name": "Poigne électrique",
+  "data": {
+    "level": 0,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "La foudre jaillit de vous vers une créature que vous tentez de toucher. Effectuez une attaque de sort au corps à corps contre la cible. Si l’attaque touche, la cible subit 1d8 dégâts de foudre et ne peut pas effectuer d’attaque d’Opportunité jusqu’au début de son tour suivant.\nAmélioration de sort mineur. Les dégâts augmentent de 1d8 lorsque vous atteignez les niveaux 5 (2d8), 11 (3d8) et 17 (4d8)."
+  }
+}

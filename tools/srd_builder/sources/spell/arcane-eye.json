@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:arcane-eye",
+  "type": "spell",
+  "name": "Œil du mage",
+  "data": {
+    "level": 4,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une touffe de poils de chauve-souris"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous créez un œil invulnérable et Invisible à portée, qui flotte dans les airs pour toute la durée. Vous recevez mentalement des informations visuelles transmises par l’œil, qui voit dans toutes les directions. Il dispose en outre de la Vision dans le noir sur 9 m.\nPar une action Bonus, vous pouvez déplacer l’œil d’un maximum de 9 m dans la direction de votre choix. Un obstacle solide bloque les déplacements de l’œil, mais celui-ci peut se glisser dans un interstice d’une largeur minimale de 2,5 cm."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:find-traps",
+  "type": "spell",
+  "name": "Détection des pièges",
+  "data": {
+    "level": 2,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous percevez la présence de tout piège à la fois à portée et dans votre champ de vision. Un piège, dans le cadre de ce sort, correspond à tout objet ou mécanisme conçu pour infliger des dégâts ou présenter un danger. Dans ces conditions, ce sort peut percevoir le sort alarme, un glyphe de garde ou une fosse qui s’ouvre mécaniquement, mais il ne révèle pas l’usure d’un plancher, l’instabilité d’un plafond ou un gouffre naturel caché par l’environnement.\nLe sort se contente de révéler la présence d’un piège, pas son emplacement. Vous avez une notion de la nature du danger qu’il présente."
+  }
+}

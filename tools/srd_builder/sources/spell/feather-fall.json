@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:feather-fall",
+  "type": "spell",
+  "name": "Feuille morte",
+  "data": {
+    "level": 1,
+    "school": "transmutation",
+    "casting_time": "Réaction, que vous jouez quand vous ou une créature dans un rayon de 18 m chutez",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false,
+      "material": "une petite plume ou un peu de duvet"
+    },
+    "material_consumed": false,
+    "duration": "1 minute",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Choisissez jusqu’à cinq créatures qui chutent à portée. La vitesse de chute de chacune passe à 18 m par round jusqu’à la fin du sort. Si la créature atterrit avant la fin du sort, elle ne subit aucun dégât de chute et le sort prend fin en ce qui la concerne."
+  }
+}

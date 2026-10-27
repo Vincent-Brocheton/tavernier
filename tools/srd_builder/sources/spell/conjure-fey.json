@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:conjure-fey",
+  "type": "spell",
+  "name": "Invocation de fée",
+  "data": {
+    "level": 6,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous invoquez un esprit de taille M issu de Féerie, en un espace inoccupé que vous voyez à portée. L’esprit persiste pour toute la durée, avec l’aspect de la Fée de votre choix. Quand l’esprit apparaît, vous pouvez effectuer une attaque de sort au corps à corps contre une créature située dans un rayon de 1,50 m de l’esprit. Si l’attaque touche, la cible subit des dégâts psychiques égaux à 3d12 plus votre modificateur de caractéristique d’incantation, et subit l’état Effrayé jusqu’au début de votre tour suivant, l’esprit et vousmême étant considérés comme source de sa frayeur.\nPar une action Bonus à vos tours suivants, vous pouvez téléporter l’esprit en un espace inoccupé que vous voyez dans un rayon de 9 m de l’espace que vous lui faites quitter et effectuer l’attaque contre une créature située à 1,50 m ou moins de lui.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d12 par niveau d’emplacement au-delà du 6e."
+  }
+}

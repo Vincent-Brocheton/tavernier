@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:magic-missile",
+  "type": "spell",
+  "name": "Projectile magique",
+  "data": {
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 120
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous créez trois traits de force magique et scintillante. Chaque projectile heurte une créature de votre choix parmi celles que vous voyez à portée. Un projectile inflige 1d4 + 1 dégâts de force à sa cible. Les traits frappent tous simultanément, sachant que vous pouvez viser une seule créature ou plusieurs.\nEmplacement de niveau supérieur. Le sort produit un trait supplémentaire par niveau d’emplacement au-delà du 1er."
+  }
+}

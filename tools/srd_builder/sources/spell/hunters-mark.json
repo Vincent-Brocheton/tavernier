@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:hunters-mark",
+  "type": "spell",
+  "name": "Marque du chasseur",
+  "data": {
+    "level": 1,
+    "school": "divination",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 90
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous désignez magiquement une créature que vous voyez à portée comme votre proie. Jusqu’à la fin du sort, vous infligez 1d6 dégâts de force à la cible chaque fois que vous la touchez avec un jet d’attaque. Vous avez aussi l’Avantage aux tests de Sagesse (Perception ou Survie) visant à la trouver.\nSi la cible tombe à 0 point de vie avant la fin du sort, vous pouvez par une action Bonus déplacer la marque vers une autre créature que vous voyez à portée.\nEmplacement de niveau supérieur. Votre Concentration peut persister plus longtemps avec un emplacement du 3e ou 4e niveau (jusqu’à 8 heures), ou du 5e et supérieur (24 heures)."
+  }
+}

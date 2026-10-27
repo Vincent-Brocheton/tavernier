@@ -128,6 +128,11 @@ fvm flutter run -d chrome          # depuis apps/game_table
 - **CI** : `.github/workflows/ci.yml` lance format, analyze, test et coverage sur chaque pull request et sur `main`, avec la version de `.fvmrc`.
 - **Lints** : `analysis_options.yaml` racine, commun à tous les packages (strict-casts, strict-inference, strict-raw-types). Pas d'`analysis_options.yaml` par package.
 - **Chaînes d'interface** : `apps/game_table/lib/l10n/app_fr.arb`, code généré par `flutter gen-l10n` (automatique au `pub get`).
+- **Extraction des sorts du SRD** (T-04) :
+  1. `pdftotext -enc UTF-8 docs/srd/FR_SRD_CC_v5.2.1.pdf <fichier>` (poppler, fourni avec Git pour Windows, sans `-layout`) ;
+  2. `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-spells --text <fichier>`.
+
+  L'outil réécrit `sources/spell/*.json` et `extract/spell_classes.tsv`. Les slugs anglais viennent de `extract/spell_slugs.tsv`. Les raccords de lignes à relire sont dans `build/extract-spells.txt`. Ne jamais retoucher un fichier de sort à la main : corriger l'extracteur et relancer.
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:shield-of-faith",
+  "type": "spell",
+  "name": "Bouclier de la foi",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un parchemin de prière"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Un champ scintillant enveloppe une créature de votre choix à portée et lui octroie un bonus de +2 à la CA pour toute la durée."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:spike-growth",
+  "type": "spell",
+  "name": "Croissance d’épines",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "sept épines"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Le sol dans une Sphère de 6 m de rayon centrée sur un point à portée laisse émerger des pointes et épines coriaces. La zone devient un Terrain difficile pour toute la durée. Lorsqu’une créature pénètre dans la zone ou s’y déplace, elle subit 2d4 dégâts perforants par tranche de 1,50 m qu’elle y parcourt.\nLa transformation du sol paraît naturelle. Toute créature qui ne voit pas la zone au moment de l’incantation doit entreprendre l’action Observation et réussir un test de Sagesse (Perception ou Survie) assorti de votre DD de sauvegarde des sorts pour reconnaître le danger avant de fouler ce sol."
+  }
+}

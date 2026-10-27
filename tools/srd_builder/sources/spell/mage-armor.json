@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:mage-armor",
+  "type": "spell",
+  "name": "Armure du mage",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un morceau de cuir traité"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous touchez une créature consentante qui ne porte pas d’armure. Jusqu’à la fin du sort, sa CA de base est de 13 plus son modificateur de Dextérité. Le sort prend fin prématurément si la cible enfile une armure."
+  }
+}

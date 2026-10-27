@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:cure-wounds",
+  "type": "spell",
+  "name": "Soins",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "La créature que vous touchez physiquement récupère un nombre de points de vie égal à 2d8 + votre modificateur de caractéristique d’incantation.\nEmplacement de niveau supérieur. Les soins augmentent de 2d8 par niveau d’emplacement au-delà du 1er."
+  }
+}

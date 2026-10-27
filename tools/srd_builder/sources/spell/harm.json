@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:harm",
+  "type": "spell",
+  "name": "Contamination",
+  "data": {
+    "level": 6,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous libérez une magie virulente sur une créature que vous voyez à portée. La cible effectue un jet de sauvegarde de Constitution. En cas d’échec, elle subit 14d6 dégâts nécrotiques et son maximum de points de vie est réduit d’autant que les dégâts nécrotiques subis. En cas de réussite, elle subit uniquement la moitié de ces dégâts. Ce sort ne peut réduire son maximum de points de vie en dessous de 1."
+  }
+}

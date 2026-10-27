@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:hellish-rebuke",
+  "type": "spell",
+  "name": "Représailles infernales",
+  "data": {
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "Réaction, que vous jouez lorsqu’une créature que vous voyez dans un rayon de 18 m vous inflige des dégâts.",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "La créature qui vous a infligé des dégâts se retrouve un court instant cernée de flammes vertes. Elle effectue un jet de sauvegarde de Dextérité, et subit 2d10 dégâts de feu en cas d’échec, la moitié en cas de réussite.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d10 par niveau d’emplacement au-delà du 1er."
+  }
+}

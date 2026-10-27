@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:sanctuary",
+  "type": "spell",
+  "name": "Sanctuaire",
+  "data": {
+    "level": 1,
+    "school": "abjuration",
+    "casting_time": "action Bonus",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un éclat de verre issu d’un miroir"
+    },
+    "material_consumed": false,
+    "duration": "1 minute",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous protégez une créature à portée. Jusqu’à la fin du sort, toute créature qui cible la créature protégée avec un jet d’attaque ou un sort nuisible doit réussir un jet de sauvegarde de Sagesse, sans quoi elle doit choisir une autre cible pour ne pas perdre l’attaque ou le sort. Ce sort ne protège pas la créature contre les zones d’effet. Le sort prend fin pour la créature protégée si elle effectue un jet d’attaque, lance un sort ou inflige des dégâts."
+  }
+}

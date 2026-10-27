@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:blight",
+  "type": "spell",
+  "name": "Flétrissement",
+  "data": {
+    "level": 4,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une créature que vous voyez à portée effectue un jet de sauvegarde de Constitution et subit 8d8 dégâts nécrotiques en cas d’échec, la moitié en cas de réussite. Une Plante rate automatiquement ce JS.\nAu lieu de cela, vous pouvez cibler une plante non magique qui n’est pas une créature, comme un arbre ou un arbuste. Elle n’effectue pas de JS, mais se flétrit et meurt.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 4e."
+  }
+}

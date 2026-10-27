@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:prismatic-spray",
+  "type": "spell",
+  "name": "Embruns prismatiques",
+  "data": {
+    "level": 7,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Huit rayons de lumière jaillissent de vous dans un Cône de 18 m. Chaque créature prise dans le Cône effectue un jet de sauvegarde de Dextérité. Pour chaque cible, lancez 1d8 pour déterminer le rayon de couleur qui l’affecte selon la table Rayons prismatiques.\nRayons prismatiques\n1d8 Rayon\n1 Rouge. Échec au JS : 12d6 dégâts de feu. JS réussi : 1/2 dégâts.\n2 Orange. Échec au JS : 12d6 dégâts d’acide. JS réussi : 1/2 dégâts.\n1d8 Rayon\n3 Jaune. Échec au JS : 12d6 dégâts de foudre. JS réussi : 1/2 dégâts.\n4 Vert. Échec au JS : 12d6 dégâts de poison. JS réussi : 1/2 dégâts.\n5 Bleu. Échec au JS : 12d6 dégâts de froid. JS réussi : 1/2 dégâts.\n6 Indigo. Échec au JS : La cible subit l’état Entravé et effectue un jet de sauvegarde de Constitution à la fin de chacun de ses tours. Si elle se sauvegarde trois fois, l’état prend fin. Si elle rate trois fois le JS, elle subit l’état Pétrifié jusqu’à en être libérée par un effet tel que restauration suprême. Ces réussites et échecs n’ont pas besoin d’être consécutifs ; notez-les quelque part, jusqu’à ce que la cible atteigne un total de trois pour l’un ou l’autre.\n7 Violet. Échec au JS : La cible subit l’état Aveuglé et effectue un jet de sauvegarde de Sagesse au début de votre tour suivant. En cas de réussite, l’état prend fin. En cas d’échec, l’état prend fin, et la créature est téléportée dans un autre plan d’existence (choisi par le MJ).\n8 Spécial. La cible est frappée par deux rayons. Lancez deux fois le dé, en rejouant tout 8."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:telepathic-bond",
+  "type": "spell",
+  "name": "Lien télépathique",
+  "data": {
+    "level": 5,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "deux œufs"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous forgez un lien télépathique entre un maximum de huit créatures consentantes que vous choisissez à portée, chacune se retrouvant en relation psychique avec toutes les autres pour toute la durée. Les créatures incapables de communiquer par le biais d’une langue ne sont pas affectées par ce sort.\nJusqu’à la fin du sort, les cibles peuvent communiquer par télépathie via le lien psychique, qu’elles parlent ou non une même langue. La communication, possible quelle que soit la distance, ne s’étend toutefois pas d’un plan d’existence à l’autre."
+  }
+}

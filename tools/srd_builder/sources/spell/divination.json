@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:divination",
+  "type": "spell",
+  "name": "Divination",
+  "data": {
+    "level": 4,
+    "school": "divination",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "encens d’une valeur minimale de 25 po, que le sort détruit"
+    },
+    "material_cost_cp": 2500,
+    "material_consumed": true,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ce sort vous met en contact avec un dieu ou ses serviteurs. Vous posez une question au sujet d’un objectif précis, d’un événement ou d’une activité censés intervenir dans les 7 jours. Le MJ vous répond par la vérité, qui peut s’énoncer par une courte phrase ou un vers abscons. Le sort ne tient pas compte des conjonctures qui pourraient peser dans la balance, comme l’incantation de nouveaux sorts.\nSi vous lancez le sort plus d’une fois avant de terminer votre prochain Repos long, vous courez dès la deuxième incantation 25 % de risques cumulatifs qu’il ne vous livre aucune réponse."
+  }
+}

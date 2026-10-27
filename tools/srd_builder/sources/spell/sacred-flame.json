@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:sacred-flame",
+  "type": "spell",
+  "name": "Flamme sacrée",
+  "data": {
+    "level": 0,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une radiance embrasée s’abat sur une créature que vous voyez à portée. La cible doit réussir un jet de sauvegarde de Dextérité sous peine de subir 1d8 dégâts radiants. Les Abris partiels et supérieurs ne confèrent aucun bénéfice dans le cadre de ce jet de sauvegarde.\nAmélioration de sort mineur. Les dégâts augmentent de 1d8 lorsque vous atteignez les niveaux 5 (2d8), 11 (3d8) et 17 (4d8)."
+  }
+}

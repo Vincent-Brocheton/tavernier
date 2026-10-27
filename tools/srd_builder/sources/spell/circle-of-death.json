@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:circle-of-death",
+  "type": "spell",
+  "name": "Cercle de mort",
+  "data": {
+    "level": 6,
+    "school": "necromancy",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une perle noire d’une valeur minimale de 500 po réduite en poudre"
+    },
+    "material_cost_cp": 50000,
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Des ondes d’énergie négative rayonnent sous forme d’une Sphère de 18 m de rayon centrée sur un point que vous choisissez à portée. Chaque créature prise dans la zone effectue un jet de sauvegarde de Constitution et subit 8d8 dégâts nécrotiques en cas d’échec, la moitié en cas de réussite.\nEmplacement de niveau supérieur. Les dégâts augmentent de 2d8 par niveau d’emplacement au-delà du 6e."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:conjure-minor-elementals",
+  "type": "spell",
+  "name": "Invocation d’élémentaires mineurs",
+  "data": {
+    "level": 4,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous invoquez des esprits issus des Plans Élémentaires qui volètent autour de vous pour toute la durée, sous forme d’une Émanation de 4,50 m. Jusqu’à la fin du sort, toute attaque que vous effectuez inflige 2d8 dégâts supplémentaires lorsque vous touchez une créature prise dans l’Émanation. Ces dégâts sont d’acide, de feu, de foudre ou de froid (vous choisissez en effectuant l’attaque).\nDe plus, le sol dans l’Émanation constitue un Terrain difficile pour vos ennemis.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 4e."
+  }
+}

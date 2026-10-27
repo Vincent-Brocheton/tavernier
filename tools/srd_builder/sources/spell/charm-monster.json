@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:charm-monster",
+  "type": "spell",
+  "name": "Charme-monstre",
+  "data": {
+    "level": 4,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Une créature que vous voyez à portée effectue un jet de sauvegarde de Sagesse. Ce jet s’effectue avec l’Avantage si vous ou vos alliés êtes en train de l’affronter. En cas d’échec, la cible subit l’état Charmé jusqu’à la fin du sort ou que vous ou vos alliés lui infligiez des dégâts. La créature ainsi Charmée vous est Amicale. Lorsque le sort prend fin, la cible sait que vous l’avez Charmée.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 4e."
+  }
+}

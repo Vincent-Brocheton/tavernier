@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:darkvision",
+  "type": "spell",
+  "name": "Vision dans le noir",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une carotte séchée"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Pour toute la durée, une créature consentante que vous touchez physiquement acquiert la Vision dans le noir sur 45 m."
+  }
+}

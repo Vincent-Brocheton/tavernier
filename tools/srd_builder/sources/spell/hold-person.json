@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:hold-person",
+  "type": "spell",
+  "name": "Immobilisation de personne",
+  "data": {
+    "level": 2,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un brin de fer"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Choisissez un Humanoïde que vous voyez à portée. La cible doit réussir un jet de sauvegarde de Sagesse sous peine de subir l’état Paralysé pour toute la durée du sort. La cible réitère le JS à la fin de chacun de ses tours et met un terme au sort sur elle-même en cas de réussite.\nEmplacement de niveau supérieur. Vous pouvez cibler un Humanoïde supplémentaire par niveau d’emplacement au-delà du 2e."
+  }
+}

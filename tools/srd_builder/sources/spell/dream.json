@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:dream",
+  "type": "spell",
+  "name": "Songe",
+  "data": {
+    "level": 5,
+    "school": "illusion",
+    "casting_time": "1 minute",
+    "ritual": false,
+    "range": {
+      "kind": "special"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une poignée de sable"
+    },
+    "material_consumed": false,
+    "duration": "8 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous ciblez une créature que vous connaissez sur votre plan d’existence. Vous-même, ou une créature consentante que vous touchez, entrez en transe pour faire office de messager onirique. Tant qu’il est en transe, le messager est Neutralisé et sa Vitesse est de 0.\nSi la cible est endormie, le messager lui apparaît en rêve et peut converser avec elle aussi longtemps que le sommeil se prolonge et que le sort persiste. Le messager peut également façonner l’environnement du songe en y ajoutant des paysages, des objets et autres images. Le messager peut sortir de sa transe à tout moment, ce qui met fin au sort. La cible se souvient parfaitement du songe à son réveil.\nSi la cible est réveillée à l’incantation du sort, le messager le sait et peut mettre un terme à sa transe (et au sort) ou attendre que la cible s’endorme, ce qui fera apparaître le messager dans ses rêves.\nVous pouvez rendre le messager terrifiant pour la cible. Dans ce cas, il livre un message qui ne dépasse pas dix mots, après quoi la cible effectue un jet de sauvegarde de Sagesse. En cas d’échec, la cible ne reçoit aucun bénéfice de son Repos et subit 3d6 dégâts psychiques à son réveil."
+  }
+}

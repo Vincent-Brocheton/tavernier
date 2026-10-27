@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:water-walk",
+  "type": "spell",
+  "name": "Marche sur l’onde",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": true,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un morceau de liège"
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Ce sort octroie la faculté de se déplacer sur n’importe quelle surface liquide (eau, acide, boue, neige, sables mouvants et même lave) comme s’il s’agissait d’une surface solide ne présentant aucun risque (sur de la lave, les créatures s’exposent tout de même aux dégâts que peut engendrer la chaleur). Un maximum de dix créatures consentantes que vous choisissez à portée reçoivent cette faculté pour toute la durée.\nUne cible affectée peut entreprendre une action Bonus pour s’immerger dans le liquide alors qu’elle est à sa surface, ou vice-versa, mais une cible qui tombe dans le liquide en traverse la surface et se retrouve immergée."
+  }
+}

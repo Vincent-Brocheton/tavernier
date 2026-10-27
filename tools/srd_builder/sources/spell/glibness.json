@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:glibness",
+  "type": "spell",
+  "name": "Bagou",
+  "data": {
+    "level": 8,
+    "school": "enchantment",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "1 heure",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Jusqu’à la fin du sort, chaque fois que vous effectuez un test de Charisme, vous pouvez substituer 15 au nombre que vous obtenez sur le dé. De plus, quoi que vous disiez, toute magie censée vérifier que vous ne mentez pas identifie vos paroles comme sincères."
+  }
+}

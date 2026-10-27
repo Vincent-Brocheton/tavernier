@@ -1,0 +1,27 @@
+{
+  "id": "srd:spell:arcane-sword",
+  "type": "spell",
+  "name": "Épée arcanique",
+  "data": {
+    "level": 7,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 90
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une épée miniature d’une valeur minimale de 250 po"
+    },
+    "material_cost_cp": 25000,
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous créez une épée spectrale qui flotte dans les airs à portée. Elle persiste pour toute la durée.\nÀ l’apparition de l’épée, vous effectuez une attaque de sort au corps à corps contre une cible dans un rayon de 1,50 m de l’épée. Si l’attaque touche, la cible subit des dégâts de force égaux à 4d12 + votre modificateur de caractéristique d’incantation.\nÀ chacun de vos tours suivants, vous pouvez par une action Bonus déplacer l’épée d’un maximum de 9 m vers un point que vous voyez et réitérer l’attaque, contre la même cible ou une autre."
+  }
+}

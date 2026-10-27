@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:word-of-recall",
+  "type": "spell",
+  "name": "Mot de retour",
+  "data": {
+    "level": 6,
+    "school": "conjuration",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 5
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous-même et un maximum de cinq créatures consentantes situées dans un rayon de 1,50 m vous téléportez en un sanctuaire désigné à l’avance. Vous et les créatures téléportées apparaissez dans les espaces inoccupés les plus proches du point désigné quand vous avez préparé votre sanctuaire (voir plus loin). Si vous lancez ce sort sans avoir préparé de sanctuaire, il est sans effet.\nLe sanctuaire se désigne au préalable en lançant ce sort en un lieu, tel qu’un temple."
+  }
+}

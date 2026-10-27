@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:fly",
+  "type": "spell",
+  "name": "Vol",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une plume"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 10 minutes",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous touchez une créature consentante. Pour toute la durée, la cible acquiert une Vitesse de vol de 18 m et bénéficie du vol stationnaire. Lorsque le sort prend fin, la cible tombe si elle est toujours dans les airs, à moins de pouvoir arrêter sa chute.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 3e."
+  }
+}

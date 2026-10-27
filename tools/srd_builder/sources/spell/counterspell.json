@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:counterspell",
+  "type": "spell",
+  "name": "Contresort",
+  "data": {
+    "level": 3,
+    "school": "abjuration",
+    "casting_time": "Réaction, que vous jouez en voyant dans un rayon de 18 m une créature lancer un sort avec une composante verbale, somatique ou matérielle",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 60
+    },
+    "components": {
+      "verbal": false,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous tentez d’interrompre une créature en pleine incantation. La créature effectue un jet de sauvegarde de Constitution. En cas d’échec, son sort se dissipe sans effet et l’action, l’action Bonus ou la Réaction entreprise pour l’incantation est gaspillée.\nSi ce sort était lancé par un emplacement, celui-ci n’est pas dépensé."
+  }
+}

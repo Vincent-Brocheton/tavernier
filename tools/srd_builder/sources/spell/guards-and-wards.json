@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:guards-and-wards",
+  "type": "spell",
+  "name": "Protections et sceaux",
+  "data": {
+    "level": 6,
+    "school": "abjuration",
+    "casting_time": "1 heure",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "sceptre en argent d’une valeur minimale de 10 po"
+    },
+    "material_cost_cp": 1000,
+    "material_consumed": false,
+    "duration": "24 heures",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Vous créez une barrière qui protège un espace au sol d’une surface maximale de 225 mètres carrés. La zone protégée peut atteindre 6 m de haut et se présenter comme une zone carrée de 15 m de côté, cent carrés de 1,50 m de côté ou vingt-cinq carrés contigus de 3 m de côté.\nÀ l’incantation du sort, vous pouvez spécifier quels individus ne seront pas affectés par les effets du sort. Vous pouvez également définir un mot de passe immunisant contre ces effets l’individu qui le prononce dans un rayon de 1,50 m de la zone protégée.\nLe sort crée les effets ci-après au sein de la zone protégée. Dissipation de la magie n’a en soi aucun effet sur protections et sceaux, mais chacun des effets suivants peut être dissipé. Si ces quatre effets sont dissipés, protections et sceaux prend fin. Si vous lancez quotidiennement ce sort sur la même zone pendant 365 jours, il y persiste jusqu’à ce que tous ses effets soient dissipés.\nCouloirs. La brume envahit les couloirs protégés, dans lesquels la Visibilité devient nulle. De plus, à chaque intersection ou embranchement qui présente un choix de direction, toute créature autre que vous a 50 % de chances de croire qu’elle a pris une direction autre que celle qu’elle a réellement empruntée, voire radicalement opposée.\nEscaliers. Tous les escaliers de la zone protégée sont envahis de filandres de la première à la dernière marche (équivalent du sort toile d’araignée). Tant que persiste le sort protections et sceaux, cette masse filandreuse se reconstitue en 10 minutes si on la détruit.\nPortes. Toutes les portes de la zone protégée sont magiquement verrouillées, comme si elles étaient condamnées par le sort verrou magique. De plus, vous pouvez assortir un maximum de dix portes d’une illusion afin qu’elles passent pour de simples pans de mur.\nAutres effets du sort. Appliquez l’un des effets magiques suivants à la zone protégée :\n• Lumières dansantes dans quatre couloirs, avec une séquence simple que les lumières répètent tant que persiste protections et sceaux\n• Bouche magique en deux endroits • Nuage nauséabond en deux endroits (les vapeurs se reconstituent en 10 minutes si dispersées tant que persiste protections et sceaux) • Bourrasque dans un couloir (le vent y souffle de manière continue tant que le sort persiste) • Suggestion dans un carré de 1,50 m de côté ; toute créature qui pénètre dans ce carré reçoit mentalement la suggestion"
+  }
+}

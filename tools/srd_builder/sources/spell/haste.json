@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:haste",
+  "type": "spell",
+  "name": "Hâte",
+  "data": {
+    "level": 3,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 30
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "un copeau de racine de réglisse"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Choisissez une créature consentante que vous voyez à portée. Jusqu’à la fin du sort, la cible voit sa Vitesse doubler, sa classe d’armure reçoit un bonus de +2, elle a l’Avantage aux jets de sauvegarde de Dextérité et bénéficie d’une action supplémentaire à chacun de ses tours. Cette action ne peut servir qu’à entreprendre l’action Attaque (une seule attaque d’arme), Désengagement, Furtivité, Pointe ou Utilisation.\nLorsque le sort prend fin, jusqu’à la fin de son tour suivant, la cible en proie à une vague de léthargie subit l’état Neutralisé et sa vitesse est de 0."
+  }
+}

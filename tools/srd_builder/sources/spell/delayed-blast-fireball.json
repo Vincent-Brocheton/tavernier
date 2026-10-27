@@ -1,0 +1,26 @@
+{
+  "id": "srd:spell:delayed-blast-fireball",
+  "type": "spell",
+  "name": "Boule de feu à retardement",
+  "data": {
+    "level": 7,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 150
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une boulette de guano de chauve-souris et de soufre"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 minute",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Un rayon de lumière jaune jaillit de vous pour se condenser en un point que vous choisissez à portée, sous forme d’une bille luisante pour toute la durée. Lorsque le sort prend fin, la bille explose et toute créature prise dans une Sphère de 6 m de rayon centrée sur ce point effectue un jet de sauvegarde de Dextérité. Elle subit des dégâts de feu égaux aux dégâts accumulés en cas d’échec, la moitié en cas de réussite.\nLes dégâts de base du sort sont de 12d6 et les dégâts augmentent de 1d6 chaque fois que votre tour prend fin tandis que le sort persiste.\nSi une créature touche physiquement la bille avant la fin de l’intervalle, elle effectue un jet de sauvegarde de Dextérité. En cas d’échec, le sort prend fin et la bille explose. En cas de réussite, la créature peut projeter la bille d’un maximum de 12 m. Si la bille pénètre dans l’espace d’une créature ou heurte un objet solide, le sort prend fin et la bille explose.\nQuand la bille explose, les objets inflammables pris dans la déflagration s’embrasent s’ils ne sont portés par personne.\nEmplacement de niveau supérieur. Les dégâts de base augmentent de 1d6 par niveau d’emplacement au-delà du 7e."
+  }
+}

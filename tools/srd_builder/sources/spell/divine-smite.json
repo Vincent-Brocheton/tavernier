@@ -1,0 +1,24 @@
+{
+  "id": "srd:spell:divine-smite",
+  "type": "spell",
+  "name": "Châtiment divin",
+  "data": {
+    "level": 1,
+    "school": "evocation",
+    "casting_time": "action Bonus, que vous entreprenez aussitôt après avoir touché une cible avec une arme de corps à corps ou à mains nues",
+    "ritual": false,
+    "range": {
+      "kind": "self"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": false
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "L’attaque inflige à la cible 2d8 dégâts radiants supplémentaires. Ces dégâts supplémentaires augmentent de 1d8 si la cible est un Fiélon ou un Mort-vivant.\nEmplacement de niveau supérieur. Les dégâts augmentent de 1d8 par niveau d’emplacement au-delà du 1er."
+  }
+}

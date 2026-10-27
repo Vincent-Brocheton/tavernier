@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:meteor-swarm",
+  "type": "spell",
+  "name": "Nuée de météores",
+  "data": {
+    "level": 9,
+    "school": "evocation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "feet",
+      "feet": 5000
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "material_consumed": false,
+    "duration": "instantanée",
+    "concentration": false
+  },
+  "text": {
+    "fr": "Des orbes embrasés s’abattent au sol en quatre points différents que vous voyez à portée. Toute créature prise dans une Sphère d’un rayon de 12 m centrée sur l’un des quatre points effectue un jet de sauvegarde de Dextérité. Une créature subit 20d6 dégâts de feu et 20d6 dégâts contondants en cas d’échec, la moitié en cas de réussite. Une créature prise dans les zones de plus d’une Sphère ardente n’est affectée qu’une fois.\nUn objet non magique qui n’est porté par personne subit lui aussi les dégâts s’il est dans la zone d’effet du sort, et il s’embrase s’il est inflammable.\nLe nuage s’éloigne de 3 m de vous au début de chacun de vos tours, dans la direction de votre choix."
+  }
+}

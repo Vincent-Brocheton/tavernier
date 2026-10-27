@@ -1,0 +1,25 @@
+{
+  "id": "srd:spell:enhance-ability",
+  "type": "spell",
+  "name": "Amélioration de caractéristique",
+  "data": {
+    "level": 2,
+    "school": "transmutation",
+    "casting_time": "action",
+    "ritual": false,
+    "range": {
+      "kind": "touch"
+    },
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "material": "une plume ou une touffe de fourrure"
+    },
+    "material_consumed": false,
+    "duration": "jusqu’à 1 heure",
+    "concentration": true
+  },
+  "text": {
+    "fr": "Vous touchez physiquement une créature et choisissez entre Force, Dextérité, Intelligence, Sagesse et Charisme. Pour toute la durée, la cible a l’Avantage aux tests de caractéristique associés à la caractéristique retenue.\nEmplacement de niveau supérieur. Vous pouvez cibler une créature supplémentaire par niveau d’emplacement au-delà du 2e. Vous pouvez opter pour une caractéristique différente pour chaque cible."
+  }
+}
