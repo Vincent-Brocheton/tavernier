@@ -772,5 +772,259 @@
         "type": "String"
       }
     }
+  },
+  "introEquipment": "Un lot de votre classe et un de votre Historique, ou leur valeur en or.",
+  "@introEquipment": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "introDetails": "Qui est votre personnage ? Seul le nom est obligatoire.",
+  "@introDetails": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "introSummary": "Votre personnage tel que les règles le calculent.",
+  "@introSummary": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "saveCharacter": "Enregistrer",
+  "@saveCharacter": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "saveFailed": "L’enregistrement a échoué. Votre brouillon est conservé, réessayez.",
+  "@saveFailed": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "lotName": "Lot {letter}",
+  "@lotName": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "letter": {
+        "type": "String"
+      }
+    }
+  },
+  "lotTool": "un outil au choix",
+  "@lotTool": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "lotToolChoice": "Outil du lot",
+  "@lotToolChoice": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "goldPieces": "{count} po",
+  "@goldPieces": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "armorClassWithEquipment": "CA avec cet équipement",
+  "@armorClassWithEquipment": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "startingGold": "Or de départ",
+  "@startingGold": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "missingClassEquipment": "Choisissez un lot de classe.",
+  "@missingClassEquipment": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "missingBackgroundEquipment": "Choisissez le lot de l’Historique ou son or.",
+  "@missingBackgroundEquipment": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "missingEquipmentTool": "Choisissez l’outil du lot.",
+  "@missingEquipmentTool": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "missingName": "Donnez un nom à votre personnage.",
+  "@missingName": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "missingRules": "Corrigez les erreurs de règle avant d’enregistrer.",
+  "@missingRules": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "detailName": "Nom *",
+  "@detailName": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "detailAlignment": "Alignement",
+  "@detailAlignment": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "detailAppearance": "Apparence",
+  "@detailAppearance": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "detailPersonality": "Personnalité",
+  "@detailPersonality": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "detailBackstory": "Histoire",
+  "@detailBackstory": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentLB": "Loyal Bon",
+  "@alignmentLB": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentNB": "Neutre Bon",
+  "@alignmentNB": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentCB": "Chaotique Bon",
+  "@alignmentCB": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentLN": "Loyal Neutre",
+  "@alignmentLN": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentN": "Neutre",
+  "@alignmentN": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentCN": "Chaotique Neutre",
+  "@alignmentCN": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentLM": "Loyal Mauvais",
+  "@alignmentLM": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentNM": "Neutre Mauvais",
+  "@alignmentNM": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "alignmentCM": "Chaotique Mauvais",
+  "@alignmentCM": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "classLevel": "{cls} {level}",
+  "@classLevel": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      },
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "savingThrow": "JS {value}",
+  "@savingThrow": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "statHitPoints": "PV max",
+  "@statHitPoints": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "statArmorClass": "CA",
+  "@statArmorClass": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "statInitiative": "Initiative",
+  "@statInitiative": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "statSpeed": "Vitesse",
+  "@statSpeed": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "statProficiency": "Maîtrise",
+  "@statProficiency": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "statPassivePerception": "Percep. passive",
+  "@statPassivePerception": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryProficiencies": "Maîtrises",
+  "@summaryProficiencies": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryTools": "Outils",
+  "@summaryTools": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryLanguages": "Langues",
+  "@summaryLanguages": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryAttacks": "Attaques",
+  "@summaryAttacks": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryFeatures": "Aptitudes et dons",
+  "@summaryFeatures": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summarySpells": "Sorts",
+  "@summarySpells": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "summaryChecks": "Vérification des règles",
+  "@summaryChecks": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "ruleError": "Erreur de règle",
+  "@ruleError": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "masteryWithoutWeaponTitle": "Botte sur une arme absente",
+  "@masteryWithoutWeaponTitle": {
+    "description": "Étapes 7 à 9 de la création."
+  },
+  "masteryWithoutWeapon": "Votre équipement ne contient pas : {names}. Cela ne bloque pas l’enregistrement.",
+  "@masteryWithoutWeapon": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "checkPoints": "Acquisition par points : {spent} / {budget}",
+  "@checkPoints": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "spent": {
+        "type": "int"
+      },
+      "budget": {
+        "type": "int"
+      }
+    }
+  },
+  "checkBonus": "Bonus d’Historique : {bonuses}",
+  "@checkBonus": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "bonuses": {
+        "type": "String"
+      }
+    }
+  },
+  "checkPacks": "Packs : {packs}",
+  "@checkPacks": {
+    "description": "Étapes 7 à 9 de la création.",
+    "placeholders": {
+      "packs": {
+        "type": "String"
+      }
+    }
+  },
+  "unarmedStrike": "Mains nues",
+  "@unarmedStrike": {
+    "description": "Attaque sans arme, au Récapitulatif."
   }
 }

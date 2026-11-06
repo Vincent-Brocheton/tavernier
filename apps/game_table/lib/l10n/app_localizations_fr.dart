@@ -527,4 +527,182 @@ class AppLocalizationsFr extends AppLocalizations {
   String spellKnownRule(String names) {
     return '$names : déjà connu, un sort ne se prend pas deux fois.';
   }
+
+  @override
+  String get introEquipment =>
+      'Un lot de votre classe et un de votre Historique, ou leur valeur en or.';
+
+  @override
+  String get introDetails =>
+      'Qui est votre personnage ? Seul le nom est obligatoire.';
+
+  @override
+  String get introSummary =>
+      'Votre personnage tel que les règles le calculent.';
+
+  @override
+  String get saveCharacter => 'Enregistrer';
+
+  @override
+  String get saveFailed =>
+      'L’enregistrement a échoué. Votre brouillon est conservé, réessayez.';
+
+  @override
+  String lotName(String letter) {
+    return 'Lot $letter';
+  }
+
+  @override
+  String get lotTool => 'un outil au choix';
+
+  @override
+  String get lotToolChoice => 'Outil du lot';
+
+  @override
+  String goldPieces(int count) {
+    return '$count po';
+  }
+
+  @override
+  String get armorClassWithEquipment => 'CA avec cet équipement';
+
+  @override
+  String get startingGold => 'Or de départ';
+
+  @override
+  String get missingClassEquipment => 'Choisissez un lot de classe.';
+
+  @override
+  String get missingBackgroundEquipment =>
+      'Choisissez le lot de l’Historique ou son or.';
+
+  @override
+  String get missingEquipmentTool => 'Choisissez l’outil du lot.';
+
+  @override
+  String get missingName => 'Donnez un nom à votre personnage.';
+
+  @override
+  String get missingRules =>
+      'Corrigez les erreurs de règle avant d’enregistrer.';
+
+  @override
+  String get detailName => 'Nom *';
+
+  @override
+  String get detailAlignment => 'Alignement';
+
+  @override
+  String get detailAppearance => 'Apparence';
+
+  @override
+  String get detailPersonality => 'Personnalité';
+
+  @override
+  String get detailBackstory => 'Histoire';
+
+  @override
+  String get alignmentLB => 'Loyal Bon';
+
+  @override
+  String get alignmentNB => 'Neutre Bon';
+
+  @override
+  String get alignmentCB => 'Chaotique Bon';
+
+  @override
+  String get alignmentLN => 'Loyal Neutre';
+
+  @override
+  String get alignmentN => 'Neutre';
+
+  @override
+  String get alignmentCN => 'Chaotique Neutre';
+
+  @override
+  String get alignmentLM => 'Loyal Mauvais';
+
+  @override
+  String get alignmentNM => 'Neutre Mauvais';
+
+  @override
+  String get alignmentCM => 'Chaotique Mauvais';
+
+  @override
+  String classLevel(String cls, int level) {
+    return '$cls $level';
+  }
+
+  @override
+  String savingThrow(String value) {
+    return 'JS $value';
+  }
+
+  @override
+  String get statHitPoints => 'PV max';
+
+  @override
+  String get statArmorClass => 'CA';
+
+  @override
+  String get statInitiative => 'Initiative';
+
+  @override
+  String get statSpeed => 'Vitesse';
+
+  @override
+  String get statProficiency => 'Maîtrise';
+
+  @override
+  String get statPassivePerception => 'Percep. passive';
+
+  @override
+  String get summaryProficiencies => 'Maîtrises';
+
+  @override
+  String get summaryTools => 'Outils';
+
+  @override
+  String get summaryLanguages => 'Langues';
+
+  @override
+  String get summaryAttacks => 'Attaques';
+
+  @override
+  String get summaryFeatures => 'Aptitudes et dons';
+
+  @override
+  String get summarySpells => 'Sorts';
+
+  @override
+  String get summaryChecks => 'Vérification des règles';
+
+  @override
+  String get ruleError => 'Erreur de règle';
+
+  @override
+  String get masteryWithoutWeaponTitle => 'Botte sur une arme absente';
+
+  @override
+  String masteryWithoutWeapon(String names) {
+    return 'Votre équipement ne contient pas : $names. Cela ne bloque pas l’enregistrement.';
+  }
+
+  @override
+  String checkPoints(int spent, int budget) {
+    return 'Acquisition par points : $spent / $budget';
+  }
+
+  @override
+  String checkBonus(String bonuses) {
+    return 'Bonus d’Historique : $bonuses';
+  }
+
+  @override
+  String checkPacks(String packs) {
+    return 'Packs : $packs';
+  }
+
+  @override
+  String get unarmedStrike => 'Mains nues';
 }

@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import 'creation/creation_page.dart';
+import 'creation/creation_providers.dart';
+import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
@@ -118,13 +120,15 @@ class _HomePage extends StatelessWidget {
   }
 }
 
-/// Personnages : point d'entrée de la création.
-class _CharactersPage extends StatelessWidget {
+/// Personnages : ceux qui sont enregistrés et l'entrée de la création.
+class _CharactersPage extends ConsumerWidget {
   const _CharactersPage();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final characters = ref.watch(charactersProvider).asData?.value ?? const [];
+    final content = ref.watch(contentProvider).asData?.value;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -134,7 +138,36 @@ class _CharactersPage extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(height: AppSpacing.sm),
-          Text(l10n.noCharacterYet),
+          if (characters.isEmpty || content == null)
+            Text(l10n.noCharacterYet)
+          else
+            Flexible(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 480),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (final (:id, :character) in characters)
+                      ListTile(
+                        key: ValueKey(id),
+                        title: Text(character.name),
+                        subtitle: Text(
+                          [
+                            namesOf(content, [character.speciesId]),
+                            l10n.classLevel(
+                              namesOf(content, [
+                                character.classLevels.first.classId,
+                              ]),
+                              character.classLevels.first.level,
+                            ),
+                            namesOf(content, [character.backgroundId]),
+                          ].join(' · '),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
           SizedBox(height: AppSpacing.md),
           FilledButton(
             onPressed: () => context.push('/characters/new'),

@@ -3,25 +3,36 @@
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
+import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/main.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 final _content = ActiveContent([
   readDndpack(File('assets/packs/srd-5.2.1-fr.dndpack').readAsBytesSync()),
 ]);
 
+late CharacterStore _store;
+
 Future<void> _open(WidgetTester tester, double width) async {
   tester.view.physicalSize = Size(width, 1300);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
+  final database = TavernierDatabase(NativeDatabase.memory());
+  addTearDown(database.close);
+  _store = CharacterStore(database);
   await tester.pumpWidget(
     ProviderScope(
-      overrides: [contentProvider.overrideWith((ref) => _content)],
+      overrides: [
+        contentProvider.overrideWith((ref) => _content),
+        characterStoreProvider.overrideWith((ref) => _store),
+      ],
       child: const GameTableApp(),
     ),
   );
@@ -345,6 +356,13 @@ void main() {
         tester,
       ) async {
         await toAbilities(tester, width);
+        // Au téléphone, comme un lien direct : rien à dépiler à la fin.
+        final direct = width == 390;
+        if (direct) {
+          GoRouter.of(tester.element(find.byType(WizardFooter)))
+              .go('/characters/new');
+          await tester.pumpAndSettle();
+        }
         await spendAllPoints(tester);
         await _tapBonus(tester, '+2 sur Constitution');
         await _tapBonus(tester, '+1 sur Dextérité');
@@ -362,6 +380,50 @@ void main() {
         await _tap(tester, 'Hache d’armes · Renversement');
         await _tap(tester, 'Défense');
         expect(_next(tester).onPressed, isNotNull);
+        await tester.tap(find.byType(FilledButton).last);
+        await tester.pumpAndSettle();
+
+        // Équipement.
+        expect(_next(tester).onPressed, isNull);
+        expect(find.text('Choisissez un lot de classe.'), findsOneWidget);
+        await _tap(tester, 'Lot A');
+        expect(
+          find.text('Choisissez le lot de l’Historique ou son or.'),
+          findsOneWidget,
+        );
+        await tester.ensureVisible(find.text('Lot B').last);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Lot B').last);
+        await tester.pumpAndSettle();
+        expect(find.text('CA avec cet équipement'), findsOneWidget);
+        expect(find.text('54 po'), findsOneWidget);
+        await tester.tap(find.byType(FilledButton).last);
+        await tester.pumpAndSettle();
+
+        // Détails.
+        expect(_next(tester).onPressed, isNull);
+        await tester.enterText(find.byType(TextFormField).first, 'Aldric');
+        await tester.pumpAndSettle();
+        await tester.tap(find.byType(FilledButton).last);
+        await tester.pumpAndSettle();
+
+        // Récapitulatif.
+        expect(find.text('Aldric'), findsOneWidget);
+        expect(find.text('Vérification des règles'), findsOneWidget);
+        expect(find.text('Botte sur une arme absente'), findsOneWidget);
+        expect(find.text('Mains nues'), findsOneWidget);
+        expect(find.text('unarmed'), findsNothing);
+        expect(find.text('Enregistrer'), findsOneWidget);
+        expect(_next(tester).onPressed, isNotNull);
+        await tester.tap(find.byType(FilledButton).last);
+        await tester.pumpAndSettle();
+
+        // Retour à la liste : le personnage est enregistré et affiché.
+        final saved = await _store.list();
+        expect(saved.single.character.name, 'Aldric');
+        if (direct) await _tap(tester, 'Personnages');
+        expect(find.text('Aldric'), findsOneWidget);
+        expect(find.text('Nain · Guerrier 1 · Criminel'), findsOneWidget);
         expect(tester.takeException(), isNull);
       });
     }

@@ -62,3 +62,6 @@ abstract final class AppSizes {
   static final button = AppTokens.size['button']!;
   static final keypadKey = AppTokens.size['keypadKey']!;
 }
+
+/// Modificateur signé, avec le vrai signe moins (« −1 », « +3 »).
+String formatSigned(int value) => value < 0 ? '−${-value}' : '+$value';

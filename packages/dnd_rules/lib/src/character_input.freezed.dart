@@ -1749,11 +1749,307 @@ as bool,
 
 
 /// @nodoc
+mixin _$SpellsInput {
+
+ List<String> get cantrips; List<String> get prepared; List<String> get spellbook;
+/// Create a copy of SpellsInput
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SpellsInputCopyWith<SpellsInput> get copyWith => _$SpellsInputCopyWithImpl<SpellsInput>(this as SpellsInput, _$identity);
+
+  /// Serializes this SpellsInput to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as SpellsInput;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _this.cantrips)&&const DeepCollectionEquality().equals(other.prepared, _this.prepared)&&const DeepCollectionEquality().equals(other.spellbook, _this.spellbook));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as SpellsInput;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.cantrips),const DeepCollectionEquality().hash(_this.prepared),const DeepCollectionEquality().hash(_this.spellbook));
+}
+
+@override
+String toString() {
+  final _this = this as SpellsInput;
+  return 'SpellsInput(cantrips: ${_this.cantrips}, prepared: ${_this.prepared}, spellbook: ${_this.spellbook})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SpellsInputCopyWith<$Res>  {
+  factory $SpellsInputCopyWith(SpellsInput value, $Res Function(SpellsInput) _then) = _$SpellsInputCopyWithImpl;
+@useResult
+$Res call({
+ List<String> cantrips, List<String> prepared, List<String> spellbook
+});
+
+
+
+
+}
+/// @nodoc
+class _$SpellsInputCopyWithImpl<$Res>
+    implements $SpellsInputCopyWith<$Res> {
+  _$SpellsInputCopyWithImpl(this._self, this._then);
+
+  final SpellsInput _self;
+  final $Res Function(SpellsInput) _then;
+
+/// Create a copy of SpellsInput
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,}) {
+  return _then(SpellsInput(
+cantrips: null == cantrips ? _self.cantrips : cantrips // ignore: cast_nullable_to_non_nullable
+as List<String>,prepared: null == prepared ? _self.prepared : prepared // ignore: cast_nullable_to_non_nullable
+as List<String>,spellbook: null == spellbook ? _self.spellbook : spellbook // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SpellsInput].
+extension SpellsInputPatterns on SpellsInput {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SpellsInput value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SpellsInput() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SpellsInput value)  $default,){
+final _that = this;
+switch (_that) {
+case _SpellsInput():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SpellsInput value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SpellsInput() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SpellsInput() when $default != null:
+return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)  $default,) {final _that = this;
+switch (_that) {
+case _SpellsInput():
+return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)?  $default,) {final _that = this;
+switch (_that) {
+case _SpellsInput() when $default != null:
+return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SpellsInput implements SpellsInput {
+  const _SpellsInput({ List<String> cantrips = const <String>[],  List<String> prepared = const <String>[],  List<String> spellbook = const <String>[]}): _cantrips = cantrips,_prepared = prepared,_spellbook = spellbook;
+  factory _SpellsInput.fromJson(Map<String, dynamic> json) => _$SpellsInputFromJson(json);
+
+ final  List<String> _cantrips;
+@override@JsonKey() List<String> get cantrips {
+  if (_cantrips is EqualUnmodifiableListView) return _cantrips;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_cantrips);
+}
+
+ final  List<String> _prepared;
+@override@JsonKey() List<String> get prepared {
+  if (_prepared is EqualUnmodifiableListView) return _prepared;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_prepared);
+}
+
+ final  List<String> _spellbook;
+@override@JsonKey() List<String> get spellbook {
+  if (_spellbook is EqualUnmodifiableListView) return _spellbook;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_spellbook);
+}
+
+
+/// Create a copy of SpellsInput
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SpellsInputCopyWith<_SpellsInput> get copyWith => __$SpellsInputCopyWithImpl<_SpellsInput>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SpellsInputToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _cantrips)&&const DeepCollectionEquality().equals(other.prepared, _prepared)&&const DeepCollectionEquality().equals(other.spellbook, _spellbook));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_cantrips),const DeepCollectionEquality().hash(_prepared),const DeepCollectionEquality().hash(_spellbook));
+}
+
+@override
+String toString() {
+    return 'SpellsInput(cantrips: $cantrips, prepared: $prepared, spellbook: $spellbook)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SpellsInputCopyWith<$Res> implements $SpellsInputCopyWith<$Res> {
+  factory _$SpellsInputCopyWith(_SpellsInput value, $Res Function(_SpellsInput) _then) = __$SpellsInputCopyWithImpl;
+@override @useResult
+$Res call({
+ List<String> cantrips, List<String> prepared, List<String> spellbook
+});
+
+
+
+
+}
+/// @nodoc
+class __$SpellsInputCopyWithImpl<$Res>
+    implements _$SpellsInputCopyWith<$Res> {
+  __$SpellsInputCopyWithImpl(this._self, this._then);
+
+  final _SpellsInput _self;
+  final $Res Function(_SpellsInput) _then;
+
+/// Create a copy of SpellsInput
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,}) {
+  return _then(_SpellsInput(
+cantrips: null == cantrips ? _self._cantrips : cantrips // ignore: cast_nullable_to_non_nullable
+as List<String>,prepared: null == prepared ? _self._prepared : prepared // ignore: cast_nullable_to_non_nullable
+as List<String>,spellbook: null == spellbook ? _self._spellbook : spellbook // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$CharacterInput {
 
  String get name; String? get player;/// `pc` ou `npc_full`.
  String get kind; String get speciesId; Map<String, String> get speciesChoices; String get backgroundId; BaseScores get baseScores; BackgroundChoice get backgroundChoice; List<ClassLevelInput> get classLevels; List<FeatInput> get feats;/// Choix des effets `choice`, par identifiant de choix (design §2).
- Map<String, List<String>> get choices; List<String> get languages; List<WeaponMasteryInput> get weaponMasteries; List<ItemInput> get items; int get xp;
+ Map<String, List<String>> get choices; List<String> get languages; List<WeaponMasteryInput> get weaponMasteries; List<ItemInput> get items; SpellsInput get spells;/// Monnaie par pièce (`gp` pour les pièces d'or).
+ Map<String, int> get coins;/// Abréviation du SRD (`LB`…`CM`).
+ String? get alignment; String? get appearance; String? get personality; String? get backstory; int get xp;
 /// Create a copy of CharacterInput
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1767,20 +2063,20 @@ $CharacterInputCopyWith<CharacterInput> get copyWith => _$CharacterInputCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as CharacterInput;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharacterInput&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.player, _this.player) || other.player == _this.player)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.speciesId, _this.speciesId) || other.speciesId == _this.speciesId)&&const DeepCollectionEquality().equals(other.speciesChoices, _this.speciesChoices)&&(identical(other.backgroundId, _this.backgroundId) || other.backgroundId == _this.backgroundId)&&(identical(other.baseScores, _this.baseScores) || other.baseScores == _this.baseScores)&&(identical(other.backgroundChoice, _this.backgroundChoice) || other.backgroundChoice == _this.backgroundChoice)&&const DeepCollectionEquality().equals(other.classLevels, _this.classLevels)&&const DeepCollectionEquality().equals(other.feats, _this.feats)&&const DeepCollectionEquality().equals(other.choices, _this.choices)&&const DeepCollectionEquality().equals(other.languages, _this.languages)&&const DeepCollectionEquality().equals(other.weaponMasteries, _this.weaponMasteries)&&const DeepCollectionEquality().equals(other.items, _this.items)&&(identical(other.xp, _this.xp) || other.xp == _this.xp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharacterInput&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.player, _this.player) || other.player == _this.player)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.speciesId, _this.speciesId) || other.speciesId == _this.speciesId)&&const DeepCollectionEquality().equals(other.speciesChoices, _this.speciesChoices)&&(identical(other.backgroundId, _this.backgroundId) || other.backgroundId == _this.backgroundId)&&(identical(other.baseScores, _this.baseScores) || other.baseScores == _this.baseScores)&&(identical(other.backgroundChoice, _this.backgroundChoice) || other.backgroundChoice == _this.backgroundChoice)&&const DeepCollectionEquality().equals(other.classLevels, _this.classLevels)&&const DeepCollectionEquality().equals(other.feats, _this.feats)&&const DeepCollectionEquality().equals(other.choices, _this.choices)&&const DeepCollectionEquality().equals(other.languages, _this.languages)&&const DeepCollectionEquality().equals(other.weaponMasteries, _this.weaponMasteries)&&const DeepCollectionEquality().equals(other.items, _this.items)&&(identical(other.spells, _this.spells) || other.spells == _this.spells)&&const DeepCollectionEquality().equals(other.coins, _this.coins)&&(identical(other.alignment, _this.alignment) || other.alignment == _this.alignment)&&(identical(other.appearance, _this.appearance) || other.appearance == _this.appearance)&&(identical(other.personality, _this.personality) || other.personality == _this.personality)&&(identical(other.backstory, _this.backstory) || other.backstory == _this.backstory)&&(identical(other.xp, _this.xp) || other.xp == _this.xp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as CharacterInput;
-  return Object.hash(runtimeType,_this.name,_this.player,_this.kind,_this.speciesId,const DeepCollectionEquality().hash(_this.speciesChoices),_this.backgroundId,_this.baseScores,_this.backgroundChoice,const DeepCollectionEquality().hash(_this.classLevels),const DeepCollectionEquality().hash(_this.feats),const DeepCollectionEquality().hash(_this.choices),const DeepCollectionEquality().hash(_this.languages),const DeepCollectionEquality().hash(_this.weaponMasteries),const DeepCollectionEquality().hash(_this.items),_this.xp);
+  return Object.hashAll([runtimeType,_this.name,_this.player,_this.kind,_this.speciesId,const DeepCollectionEquality().hash(_this.speciesChoices),_this.backgroundId,_this.baseScores,_this.backgroundChoice,const DeepCollectionEquality().hash(_this.classLevels),const DeepCollectionEquality().hash(_this.feats),const DeepCollectionEquality().hash(_this.choices),const DeepCollectionEquality().hash(_this.languages),const DeepCollectionEquality().hash(_this.weaponMasteries),const DeepCollectionEquality().hash(_this.items),_this.spells,const DeepCollectionEquality().hash(_this.coins),_this.alignment,_this.appearance,_this.personality,_this.backstory,_this.xp]);
 }
 
 @override
 String toString() {
   final _this = this as CharacterInput;
-  return 'CharacterInput(name: ${_this.name}, player: ${_this.player}, kind: ${_this.kind}, speciesId: ${_this.speciesId}, speciesChoices: ${_this.speciesChoices}, backgroundId: ${_this.backgroundId}, baseScores: ${_this.baseScores}, backgroundChoice: ${_this.backgroundChoice}, classLevels: ${_this.classLevels}, feats: ${_this.feats}, choices: ${_this.choices}, languages: ${_this.languages}, weaponMasteries: ${_this.weaponMasteries}, items: ${_this.items}, xp: ${_this.xp})';
+  return 'CharacterInput(name: ${_this.name}, player: ${_this.player}, kind: ${_this.kind}, speciesId: ${_this.speciesId}, speciesChoices: ${_this.speciesChoices}, backgroundId: ${_this.backgroundId}, baseScores: ${_this.baseScores}, backgroundChoice: ${_this.backgroundChoice}, classLevels: ${_this.classLevels}, feats: ${_this.feats}, choices: ${_this.choices}, languages: ${_this.languages}, weaponMasteries: ${_this.weaponMasteries}, items: ${_this.items}, spells: ${_this.spells}, coins: ${_this.coins}, alignment: ${_this.alignment}, appearance: ${_this.appearance}, personality: ${_this.personality}, backstory: ${_this.backstory}, xp: ${_this.xp})';
 }
 
 
@@ -1791,11 +2087,11 @@ abstract mixin class $CharacterInputCopyWith<$Res>  {
   factory $CharacterInputCopyWith(CharacterInput value, $Res Function(CharacterInput) _then) = _$CharacterInputCopyWithImpl;
 @useResult
 $Res call({
- String name, String? player, String kind, String speciesId, Map<String, String> speciesChoices, String backgroundId, BaseScores baseScores, BackgroundChoice backgroundChoice, List<ClassLevelInput> classLevels, List<FeatInput> feats, Map<String, List<String>> choices, List<String> languages, List<WeaponMasteryInput> weaponMasteries, List<ItemInput> items, int xp
+ String name, String? player, String kind, String speciesId, Map<String, String> speciesChoices, String backgroundId, BaseScores baseScores, BackgroundChoice backgroundChoice, List<ClassLevelInput> classLevels, List<FeatInput> feats, Map<String, List<String>> choices, List<String> languages, List<WeaponMasteryInput> weaponMasteries, List<ItemInput> items, SpellsInput spells, Map<String, int> coins, String? alignment, String? appearance, String? personality, String? backstory, int xp
 });
 
 
-$BaseScoresCopyWith<$Res> get baseScores;$BackgroundChoiceCopyWith<$Res> get backgroundChoice;
+$BaseScoresCopyWith<$Res> get baseScores;$BackgroundChoiceCopyWith<$Res> get backgroundChoice;$SpellsInputCopyWith<$Res> get spells;
 
 }
 /// @nodoc
@@ -1808,7 +2104,7 @@ class _$CharacterInputCopyWithImpl<$Res>
 
 /// Create a copy of CharacterInput
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? player = freezed,Object? kind = null,Object? speciesId = null,Object? speciesChoices = null,Object? backgroundId = null,Object? baseScores = null,Object? backgroundChoice = null,Object? classLevels = null,Object? feats = null,Object? choices = null,Object? languages = null,Object? weaponMasteries = null,Object? items = null,Object? xp = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? player = freezed,Object? kind = null,Object? speciesId = null,Object? speciesChoices = null,Object? backgroundId = null,Object? baseScores = null,Object? backgroundChoice = null,Object? classLevels = null,Object? feats = null,Object? choices = null,Object? languages = null,Object? weaponMasteries = null,Object? items = null,Object? spells = null,Object? coins = null,Object? alignment = freezed,Object? appearance = freezed,Object? personality = freezed,Object? backstory = freezed,Object? xp = null,}) {
   return _then(CharacterInput(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,player: freezed == player ? _self.player : player // ignore: cast_nullable_to_non_nullable
@@ -1824,7 +2120,13 @@ as List<FeatInput>,choices: null == choices ? _self.choices : choices // ignore:
 as Map<String, List<String>>,languages: null == languages ? _self.languages : languages // ignore: cast_nullable_to_non_nullable
 as List<String>,weaponMasteries: null == weaponMasteries ? _self.weaponMasteries : weaponMasteries // ignore: cast_nullable_to_non_nullable
 as List<WeaponMasteryInput>,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemInput>,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
+as List<ItemInput>,spells: null == spells ? _self.spells : spells // ignore: cast_nullable_to_non_nullable
+as SpellsInput,coins: null == coins ? _self.coins : coins // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,alignment: freezed == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
+as String?,appearance: freezed == appearance ? _self.appearance : appearance // ignore: cast_nullable_to_non_nullable
+as String?,personality: freezed == personality ? _self.personality : personality // ignore: cast_nullable_to_non_nullable
+as String?,backstory: freezed == backstory ? _self.backstory : backstory // ignore: cast_nullable_to_non_nullable
+as String?,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -1845,6 +2147,15 @@ $BackgroundChoiceCopyWith<$Res> get backgroundChoice {
   
   return $BackgroundChoiceCopyWith<$Res>(_self.backgroundChoice, (value) {
     return _then(_self.copyWith(backgroundChoice: value));
+  });
+}/// Create a copy of CharacterInput
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellsInputCopyWith<$Res> get spells {
+  
+  return $SpellsInputCopyWith<$Res>(_self.spells, (value) {
+    return _then(_self.copyWith(spells: value));
   });
 }
 }
@@ -1928,10 +2239,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  int xp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  SpellsInput spells,  Map<String, int> coins,  String? alignment,  String? appearance,  String? personality,  String? backstory,  int xp)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CharacterInput() when $default != null:
-return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.xp);case _:
+return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.spells,_that.coins,_that.alignment,_that.appearance,_that.personality,_that.backstory,_that.xp);case _:
   return orElse();
 
 }
@@ -1949,10 +2260,10 @@ return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.species
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  int xp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  SpellsInput spells,  Map<String, int> coins,  String? alignment,  String? appearance,  String? personality,  String? backstory,  int xp)  $default,) {final _that = this;
 switch (_that) {
 case _CharacterInput():
-return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.xp);case _:
+return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.spells,_that.coins,_that.alignment,_that.appearance,_that.personality,_that.backstory,_that.xp);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1969,10 +2280,10 @@ return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.species
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  int xp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? player,  String kind,  String speciesId,  Map<String, String> speciesChoices,  String backgroundId,  BaseScores baseScores,  BackgroundChoice backgroundChoice,  List<ClassLevelInput> classLevels,  List<FeatInput> feats,  Map<String, List<String>> choices,  List<String> languages,  List<WeaponMasteryInput> weaponMasteries,  List<ItemInput> items,  SpellsInput spells,  Map<String, int> coins,  String? alignment,  String? appearance,  String? personality,  String? backstory,  int xp)?  $default,) {final _that = this;
 switch (_that) {
 case _CharacterInput() when $default != null:
-return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.xp);case _:
+return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.speciesChoices,_that.backgroundId,_that.baseScores,_that.backgroundChoice,_that.classLevels,_that.feats,_that.choices,_that.languages,_that.weaponMasteries,_that.items,_that.spells,_that.coins,_that.alignment,_that.appearance,_that.personality,_that.backstory,_that.xp);case _:
   return null;
 
 }
@@ -1984,7 +2295,7 @@ return $default(_that.name,_that.player,_that.kind,_that.speciesId,_that.species
 @JsonSerializable()
 
 class _CharacterInput implements CharacterInput {
-  const _CharacterInput({required this.name, this.player, required this.kind, required this.speciesId,  Map<String, String> speciesChoices = const <String, String>{}, required this.backgroundId, required this.baseScores, required this.backgroundChoice, required  List<ClassLevelInput> classLevels,  List<FeatInput> feats = const <FeatInput>[],  Map<String, List<String>> choices = const <String, List<String>>{},  List<String> languages = const <String>[],  List<WeaponMasteryInput> weaponMasteries = const <WeaponMasteryInput>[],  List<ItemInput> items = const <ItemInput>[], this.xp = 0}): _speciesChoices = speciesChoices,_classLevels = classLevels,_feats = feats,_choices = choices,_languages = languages,_weaponMasteries = weaponMasteries,_items = items;
+  const _CharacterInput({required this.name, this.player, required this.kind, required this.speciesId,  Map<String, String> speciesChoices = const <String, String>{}, required this.backgroundId, required this.baseScores, required this.backgroundChoice, required  List<ClassLevelInput> classLevels,  List<FeatInput> feats = const <FeatInput>[],  Map<String, List<String>> choices = const <String, List<String>>{},  List<String> languages = const <String>[],  List<WeaponMasteryInput> weaponMasteries = const <WeaponMasteryInput>[],  List<ItemInput> items = const <ItemInput>[], this.spells = const SpellsInput(),  Map<String, int> coins = const <String, int>{}, this.alignment, this.appearance, this.personality, this.backstory, this.xp = 0}): _speciesChoices = speciesChoices,_classLevels = classLevels,_feats = feats,_choices = choices,_languages = languages,_weaponMasteries = weaponMasteries,_items = items,_coins = coins;
   factory _CharacterInput.fromJson(Map<String, dynamic> json) => _$CharacterInputFromJson(json);
 
 @override final  String name;
@@ -2046,6 +2357,21 @@ class _CharacterInput implements CharacterInput {
   return EqualUnmodifiableListView(_items);
 }
 
+@override@JsonKey() final  SpellsInput spells;
+/// Monnaie par pièce (`gp` pour les pièces d'or).
+ final  Map<String, int> _coins;
+/// Monnaie par pièce (`gp` pour les pièces d'or).
+@override@JsonKey() Map<String, int> get coins {
+  if (_coins is EqualUnmodifiableMapView) return _coins;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_coins);
+}
+
+/// Abréviation du SRD (`LB`…`CM`).
+@override final  String? alignment;
+@override final  String? appearance;
+@override final  String? personality;
+@override final  String? backstory;
 @override@JsonKey() final  int xp;
 
 /// Create a copy of CharacterInput
@@ -2061,18 +2387,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CharacterInput&&(identical(other.name, name) || other.name == name)&&(identical(other.player, player) || other.player == player)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.speciesId, speciesId) || other.speciesId == speciesId)&&const DeepCollectionEquality().equals(other.speciesChoices, _speciesChoices)&&(identical(other.backgroundId, backgroundId) || other.backgroundId == backgroundId)&&(identical(other.baseScores, baseScores) || other.baseScores == baseScores)&&(identical(other.backgroundChoice, backgroundChoice) || other.backgroundChoice == backgroundChoice)&&const DeepCollectionEquality().equals(other.classLevels, _classLevels)&&const DeepCollectionEquality().equals(other.feats, _feats)&&const DeepCollectionEquality().equals(other.choices, _choices)&&const DeepCollectionEquality().equals(other.languages, _languages)&&const DeepCollectionEquality().equals(other.weaponMasteries, _weaponMasteries)&&const DeepCollectionEquality().equals(other.items, _items)&&(identical(other.xp, xp) || other.xp == xp));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CharacterInput&&(identical(other.name, name) || other.name == name)&&(identical(other.player, player) || other.player == player)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.speciesId, speciesId) || other.speciesId == speciesId)&&const DeepCollectionEquality().equals(other.speciesChoices, _speciesChoices)&&(identical(other.backgroundId, backgroundId) || other.backgroundId == backgroundId)&&(identical(other.baseScores, baseScores) || other.baseScores == baseScores)&&(identical(other.backgroundChoice, backgroundChoice) || other.backgroundChoice == backgroundChoice)&&const DeepCollectionEquality().equals(other.classLevels, _classLevels)&&const DeepCollectionEquality().equals(other.feats, _feats)&&const DeepCollectionEquality().equals(other.choices, _choices)&&const DeepCollectionEquality().equals(other.languages, _languages)&&const DeepCollectionEquality().equals(other.weaponMasteries, _weaponMasteries)&&const DeepCollectionEquality().equals(other.items, _items)&&(identical(other.spells, spells) || other.spells == spells)&&const DeepCollectionEquality().equals(other.coins, _coins)&&(identical(other.alignment, alignment) || other.alignment == alignment)&&(identical(other.appearance, appearance) || other.appearance == appearance)&&(identical(other.personality, personality) || other.personality == personality)&&(identical(other.backstory, backstory) || other.backstory == backstory)&&(identical(other.xp, xp) || other.xp == xp));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,name,player,kind,speciesId,const DeepCollectionEquality().hash(_speciesChoices),backgroundId,baseScores,backgroundChoice,const DeepCollectionEquality().hash(_classLevels),const DeepCollectionEquality().hash(_feats),const DeepCollectionEquality().hash(_choices),const DeepCollectionEquality().hash(_languages),const DeepCollectionEquality().hash(_weaponMasteries),const DeepCollectionEquality().hash(_items),xp);
+    return Object.hashAll([runtimeType,name,player,kind,speciesId,const DeepCollectionEquality().hash(_speciesChoices),backgroundId,baseScores,backgroundChoice,const DeepCollectionEquality().hash(_classLevels),const DeepCollectionEquality().hash(_feats),const DeepCollectionEquality().hash(_choices),const DeepCollectionEquality().hash(_languages),const DeepCollectionEquality().hash(_weaponMasteries),const DeepCollectionEquality().hash(_items),spells,const DeepCollectionEquality().hash(_coins),alignment,appearance,personality,backstory,xp]);
 }
 
 @override
 String toString() {
-    return 'CharacterInput(name: $name, player: $player, kind: $kind, speciesId: $speciesId, speciesChoices: $speciesChoices, backgroundId: $backgroundId, baseScores: $baseScores, backgroundChoice: $backgroundChoice, classLevels: $classLevels, feats: $feats, choices: $choices, languages: $languages, weaponMasteries: $weaponMasteries, items: $items, xp: $xp)';
+    return 'CharacterInput(name: $name, player: $player, kind: $kind, speciesId: $speciesId, speciesChoices: $speciesChoices, backgroundId: $backgroundId, baseScores: $baseScores, backgroundChoice: $backgroundChoice, classLevels: $classLevels, feats: $feats, choices: $choices, languages: $languages, weaponMasteries: $weaponMasteries, items: $items, spells: $spells, coins: $coins, alignment: $alignment, appearance: $appearance, personality: $personality, backstory: $backstory, xp: $xp)';
 }
 
 
@@ -2083,11 +2409,11 @@ abstract mixin class _$CharacterInputCopyWith<$Res> implements $CharacterInputCo
   factory _$CharacterInputCopyWith(_CharacterInput value, $Res Function(_CharacterInput) _then) = __$CharacterInputCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? player, String kind, String speciesId, Map<String, String> speciesChoices, String backgroundId, BaseScores baseScores, BackgroundChoice backgroundChoice, List<ClassLevelInput> classLevels, List<FeatInput> feats, Map<String, List<String>> choices, List<String> languages, List<WeaponMasteryInput> weaponMasteries, List<ItemInput> items, int xp
+ String name, String? player, String kind, String speciesId, Map<String, String> speciesChoices, String backgroundId, BaseScores baseScores, BackgroundChoice backgroundChoice, List<ClassLevelInput> classLevels, List<FeatInput> feats, Map<String, List<String>> choices, List<String> languages, List<WeaponMasteryInput> weaponMasteries, List<ItemInput> items, SpellsInput spells, Map<String, int> coins, String? alignment, String? appearance, String? personality, String? backstory, int xp
 });
 
 
-@override $BaseScoresCopyWith<$Res> get baseScores;@override $BackgroundChoiceCopyWith<$Res> get backgroundChoice;
+@override $BaseScoresCopyWith<$Res> get baseScores;@override $BackgroundChoiceCopyWith<$Res> get backgroundChoice;@override $SpellsInputCopyWith<$Res> get spells;
 
 }
 /// @nodoc
@@ -2100,7 +2426,7 @@ class __$CharacterInputCopyWithImpl<$Res>
 
 /// Create a copy of CharacterInput
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? player = freezed,Object? kind = null,Object? speciesId = null,Object? speciesChoices = null,Object? backgroundId = null,Object? baseScores = null,Object? backgroundChoice = null,Object? classLevels = null,Object? feats = null,Object? choices = null,Object? languages = null,Object? weaponMasteries = null,Object? items = null,Object? xp = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? player = freezed,Object? kind = null,Object? speciesId = null,Object? speciesChoices = null,Object? backgroundId = null,Object? baseScores = null,Object? backgroundChoice = null,Object? classLevels = null,Object? feats = null,Object? choices = null,Object? languages = null,Object? weaponMasteries = null,Object? items = null,Object? spells = null,Object? coins = null,Object? alignment = freezed,Object? appearance = freezed,Object? personality = freezed,Object? backstory = freezed,Object? xp = null,}) {
   return _then(_CharacterInput(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,player: freezed == player ? _self.player : player // ignore: cast_nullable_to_non_nullable
@@ -2116,7 +2442,13 @@ as List<FeatInput>,choices: null == choices ? _self._choices : choices // ignore
 as Map<String, List<String>>,languages: null == languages ? _self._languages : languages // ignore: cast_nullable_to_non_nullable
 as List<String>,weaponMasteries: null == weaponMasteries ? _self._weaponMasteries : weaponMasteries // ignore: cast_nullable_to_non_nullable
 as List<WeaponMasteryInput>,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<ItemInput>,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
+as List<ItemInput>,spells: null == spells ? _self.spells : spells // ignore: cast_nullable_to_non_nullable
+as SpellsInput,coins: null == coins ? _self._coins : coins // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,alignment: freezed == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
+as String?,appearance: freezed == appearance ? _self.appearance : appearance // ignore: cast_nullable_to_non_nullable
+as String?,personality: freezed == personality ? _self.personality : personality // ignore: cast_nullable_to_non_nullable
+as String?,backstory: freezed == backstory ? _self.backstory : backstory // ignore: cast_nullable_to_non_nullable
+as String?,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -2138,6 +2470,15 @@ $BackgroundChoiceCopyWith<$Res> get backgroundChoice {
   
   return $BackgroundChoiceCopyWith<$Res>(_self.backgroundChoice, (value) {
     return _then(_self.copyWith(backgroundChoice: value));
+  });
+}/// Create a copy of CharacterInput
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SpellsInputCopyWith<$Res> get spells {
+  
+  return $SpellsInputCopyWith<$Res>(_self.spells, (value) {
+    return _then(_self.copyWith(spells: value));
   });
 }
 }

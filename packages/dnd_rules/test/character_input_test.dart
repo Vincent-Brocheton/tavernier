@@ -19,7 +19,7 @@ void main() {
   });
 
   test('un champ inconnu est refusé', () {
-    final json = {...fixtureInput('aldric_n1'), 'alignment': 'LB'};
+    final json = {...fixtureInput('aldric_n1'), 'charisma_bonus': 1};
     expect(() => CharacterInput.fromJson(json), throwsA(anything));
   });
 }

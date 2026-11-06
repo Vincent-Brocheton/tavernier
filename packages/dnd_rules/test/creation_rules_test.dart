@@ -4,6 +4,10 @@ import 'package:dnd_rules/dnd_rules.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test('9 alignements', () {
+    expect(alignments.toSet(), hasLength(9));
+  });
+
   test('coût des valeurs (SRD p. 22)', () {
     expect(pointBuyCosts, {
       8: 0,

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 
+import 'draft_input.dart';
 import 'subchoices.dart';
 
 /// Nombre d'étapes de la création (cahier §5.1).
@@ -22,6 +23,13 @@ enum MissingChoice {
   bonusInvalid,
   bonus,
   subchoices,
+  classEquipment,
+  backgroundEquipment,
+  equipmentTool,
+  name,
+
+  /// `computeSheet` signale une erreur d'intégrité.
+  rules,
 }
 
 /// Répartitions des bonus d'Historique (SRD p. 87).
@@ -56,6 +64,14 @@ final class CreationDraft {
     this.fightingStyle,
     this.originFeat,
     this.choices = const {},
+    this.classEquipment,
+    this.backgroundEquipment,
+    this.equipmentTool,
+    this.name = '',
+    this.alignment,
+    this.appearance = '',
+    this.personality = '',
+    this.backstory = '',
   });
 
   /// Étape affichée (à partir de 0).
@@ -97,6 +113,20 @@ final class CreationDraft {
   /// Sélections des effets `choice`, par identifiant de choix.
   final Map<String, List<String>> choices;
 
+  /// Rang du lot de classe.
+  final int? classEquipment;
+
+  /// 0 : le lot de l'Historique, 1 : son or.
+  final int? backgroundEquipment;
+
+  /// Outil à choisir dans le lot de classe.
+  final String? equipmentTool;
+  final String name;
+  final String? alignment;
+  final String appearance;
+  final String personality;
+  final String backstory;
+
   int get remainingPoints => pointBuyBudget - pointBuySpent(scores);
 
   /// Une autre classe efface ses sous-choix : leurs options ne sont plus
@@ -110,6 +140,7 @@ final class CreationDraft {
           masteries: const [],
           clearFightingStyle: true,
           choices: _without(classSpellsPrefix),
+          clearClassEquipment: true,
         );
 
   /// Un autre Historique efface l'outil et les sorts de son don : leurs
@@ -121,6 +152,7 @@ final class CreationDraft {
           backgroundId: id,
           clearTool: true,
           choices: _without(initiateKey(InitiatePlace.background, '')),
+          clearBackgroundEquipment: true,
         );
 
   CreationDraft selectTool(String id) => _with(toolChoice: id);
@@ -210,6 +242,30 @@ final class CreationDraft {
           choices: _without(initiateKey(InitiatePlace.species, '')),
         );
 
+  /// Un autre lot efface l'outil qu'il demandait.
+  CreationDraft selectClassEquipment(int index) => index == classEquipment
+      ? this
+      : _with(classEquipment: index, clearEquipmentTool: true);
+
+  CreationDraft selectBackgroundEquipment(int index) =>
+      _with(backgroundEquipment: index);
+
+  CreationDraft selectEquipmentTool(String id) => _with(equipmentTool: id);
+
+  CreationDraft withDetails({
+    String? name,
+    String? alignment,
+    String? appearance,
+    String? personality,
+    String? backstory,
+  }) => _with(
+    name: name,
+    alignment: alignment,
+    appearance: appearance,
+    personality: personality,
+    backstory: backstory,
+  );
+
   /// Une autre liste efface les sorts de cette place.
   CreationDraft selectInitiateList(InitiatePlace place, String list) =>
       choices[initiateKey(place, 'list')]?.contains(list) ?? false
@@ -242,6 +298,21 @@ final class CreationDraft {
     for (final entry in choices.entries)
       if (!entry.key.startsWith(prefix)) entry.key: entry.value,
   };
+
+  /// Sélectionne ou retire [id] dans [section].
+  CreationDraft toggleOption(Subchoice section, String id) {
+    final count = section.count;
+    return switch (section.kind) {
+      SubchoiceKind.classSkills => toggleClassSkill(id, count),
+      SubchoiceKind.classTools => toggleClassTool(id, count),
+      SubchoiceKind.masteries => toggleMastery(id, count),
+      SubchoiceKind.fightingStyle => selectFightingStyle(id),
+      SubchoiceKind.originFeat => selectOriginFeat(id),
+      SubchoiceKind.spellbook => toggleSpellbook(id, count),
+      SubchoiceKind.initiateList => selectInitiateList(section.place!, id),
+      _ => togglePick(section.choiceId!, id, count),
+    };
+  }
 
   /// Sélection d'un effet `choice` ou d'un sort.
   CreationDraft togglePick(String choiceId, String pick, int count) => _with(
@@ -302,6 +373,17 @@ final class CreationDraft {
     String? originFeat,
     bool clearOriginFeat = false,
     Map<String, List<String>>? choices,
+    int? classEquipment,
+    bool clearClassEquipment = false,
+    int? backgroundEquipment,
+    bool clearBackgroundEquipment = false,
+    String? equipmentTool,
+    bool clearEquipmentTool = false,
+    String? name,
+    String? alignment,
+    String? appearance,
+    String? personality,
+    String? backstory,
   }) => CreationDraft(
     step: step ?? this.step,
     reached: reached ?? this.reached,
@@ -322,6 +404,20 @@ final class CreationDraft {
         : fightingStyle ?? this.fightingStyle,
     originFeat: clearOriginFeat ? null : originFeat ?? this.originFeat,
     choices: choices ?? this.choices,
+    classEquipment: clearClassEquipment
+        ? null
+        : classEquipment ?? this.classEquipment,
+    backgroundEquipment: clearBackgroundEquipment
+        ? null
+        : backgroundEquipment ?? this.backgroundEquipment,
+    equipmentTool: clearEquipmentTool || clearClassEquipment
+        ? null
+        : equipmentTool ?? this.equipmentTool,
+    name: name ?? this.name,
+    alignment: alignment ?? this.alignment,
+    appearance: appearance ?? this.appearance,
+    personality: personality ?? this.personality,
+    backstory: backstory ?? this.backstory,
   );
 }
 
@@ -373,6 +469,22 @@ MissingChoice? missingAt(CreationDraft draft, int step, ActiveContent content) {
       return subchoiceSections(draft, content).every((s) => s.complete)
           ? null
           : MissingChoice.subchoices;
+    case 6:
+      final cls = content.entity(draft.classId ?? '')?.data as ClassData?;
+      final index = draft.classEquipment;
+      if (cls == null || index == null) return MissingChoice.classEquipment;
+      final lot = cls.startingEquipment[index];
+      if (draft.backgroundEquipment == null) {
+        return MissingChoice.backgroundEquipment;
+      }
+      return lot.toolChoice.isNotEmpty && draft.equipmentTool == null
+          ? MissingChoice.equipmentTool
+          : null;
+    case 7:
+      return draft.name.trim().isEmpty ? MissingChoice.name : null;
+    case 8:
+      final sheet = computeSheet(toCharacterInput(draft, content), content);
+      return sheet.integrityErrors.isEmpty ? null : MissingChoice.rules;
     default:
       return null;
   }

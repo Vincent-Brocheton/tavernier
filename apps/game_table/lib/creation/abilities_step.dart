@@ -9,8 +9,6 @@ import 'creation_draft.dart';
 import 'creation_providers.dart';
 import 'step_layout.dart';
 
-String _signed(int value) => value < 0 ? '−${-value}' : '+$value';
-
 /// Étape 5, Caractéristiques [3a], [3b] : acquisition par points, puis bonus
 /// d'Historique (US-06).
 class AbilitiesStep extends ConsumerWidget {
@@ -303,7 +301,10 @@ class _BonusRow extends ConsumerWidget {
             Column(
               children: [
                 Text('$total', style: text.titleMedium),
-                Text(_signed(abilityModifier(total)), style: text.bodySmall),
+                Text(
+                  formatSigned(abilityModifier(total)),
+                  style: text.bodySmall,
+                ),
               ],
             ),
           ),
