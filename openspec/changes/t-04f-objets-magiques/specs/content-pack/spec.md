@@ -14,7 +14,7 @@ Le format de pack SHALL accepter le type `magic-item`, avec sa catégorie, sa ra
 ### Requirement: Objets magiques du SRD
 Le pack SRD SHALL contenir les 258 objets magiques du SRD 5.2.1, avec le texte copié du PDF. Les tables d'un objet SHALL rester lisibles ligne par ligne, à leur place dans le texte.
 
-#### Scenario: Cape de protection (SRD p. 228)
+#### Scenario: Cape de protection (SRD p. 235)
 - **WHEN** on lit `srd:magic-item:cloak-of-protection`
 - **THEN** c'est un objet merveilleux peu courant qui exige l'harmonisation
 

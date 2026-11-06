@@ -66,7 +66,6 @@ final _typeLine = RegExp(
 );
 
 Map<String, Object> _data(RegExpMatch type) {
-  final attunement = type[0]!.contains('(Harmonisation requise');
   final rarities = RegExp(
     _rarityWord,
     caseSensitive: false,
@@ -82,7 +81,7 @@ Map<String, Object> _data(RegExpMatch type) {
     'category': _categories[type[1]]!,
     'rarity': rarity,
     'type_line': line,
-    'attunement': attunement,
+    'attunement': line.contains('(Harmonisation requise'),
     'attunement_by': ?type[3],
   };
 }
@@ -234,7 +233,18 @@ List<String> extractMagicItemSources({
     tables: tables,
     suspects: suspects,
   );
-  final problems = missingSlugs(items, slugs);
+  final folder = Directory('$sources/magic-item');
+  final known = slugs.values.toSet();
+  final problems = [
+    ...missingSlugs(items, slugs),
+    // Un slug renommé laisse son ancien fichier, qui entrerait dans le pack.
+    if (folder.existsSync())
+      for (final file in folder.listSync().whereType<File>())
+        if (!known.contains(
+          file.uri.pathSegments.last.replaceFirst('.json', ''),
+        ))
+          'source orpheline : ${file.path}',
+  ];
   if (problems.isNotEmpty) return problems;
   suspects.forEach(report.writeln);
   for (final item in items) {

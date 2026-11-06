@@ -1,5 +1,7 @@
 // Extraction des objets magiques (change t-04f-objets-magiques). Extraits
 // réels du PDF en ordre de lecture, abrégés.
+import 'dart:io';
+
 import 'package:srd_builder/src/magic_item_extractor.dart';
 import 'package:test/test.dart';
 
@@ -189,6 +191,42 @@ void main() {
     extractMagicItems(_text, suspects: suspects);
     expect(suspects, contains('Potions de guérison : Potion Pv récupérés'));
     expect(suspects, isNot(contains(startsWith('Amulette'))));
+  });
+
+  test('harmonisation lue dans la ligne de type, pas dans le texte', () {
+    const pasted = '''
+Objets magiques de A à Z
+Tarot mystérieux
+Objet merveilleux, légendaire Ce jeu (Harmonisation requise) est magique.
+Monstres
+''';
+    expect(extractMagicItems(pasted).single.data['attunement'], isFalse);
+  });
+
+  test('une source sans slug est signalée, rien n’est écrit', () {
+    final dir = Directory.systemTemp.createTempSync('magic');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    File('${dir.path}/magic-item/ancien.json')
+      ..createSync(recursive: true)
+      ..writeAsStringSync('{}');
+    final problems = extractMagicItemSources(
+      readingOrder: '''
+Objets magiques de A à Z
+Yeux de lynx
+Objet merveilleux, peu courant
+Ces lentilles s’appliquent sur les yeux.
+Monstres
+''',
+      slugs: const {'Yeux de lynx': 'eyes-of-the-eagle'},
+      tables: const [],
+      sources: dir.path,
+      report: StringBuffer(),
+    );
+    expect(problems.single, startsWith('source orpheline : '));
+    expect(
+      File('${dir.path}/magic-item/eyes-of-the-eagle.json').existsSync(),
+      isFalse,
+    );
   });
 
   test('slugs : entrée sans slug et slug sans entrée signalés', () {

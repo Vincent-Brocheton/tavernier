@@ -20,12 +20,17 @@ final _root = p.normalize(
 
 /// Les mots de [cell] se suivent dans [words], les colonnes voisines pouvant
 /// s'intercaler. Un exposant (« 7e ») est coupé du nombre dans le texte en
-/// page (« 7 niveau) / e »).
+/// page (« 7 niveau) / e ») et un mot peut y être coupé (« l’élé- / ment »).
 bool _cellIn(List<String> words, String cell) {
+  bool same(String page, String word) =>
+      page == word ||
+      (page.endsWith('-') &&
+          word.startsWith(page.substring(0, page.length - 1)));
+
   bool found(String text) {
     var i = 0;
     for (final word in text.split(' ')) {
-      while (i < words.length && words[i] != word) {
+      while (i < words.length && !same(words[i], word)) {
         i++;
       }
       if (i++ >= words.length) return false;
@@ -135,11 +140,9 @@ void main() {
           .take(220)
           .join('\n');
       final words = zone.split(RegExp(r'\s+'));
-      // Les textes longs (Sac de haricots, Submersible) passent à la ligne
-      // avec des coupures de mots : ils sont repris du texte extrait.
       for (final row in t.rows) {
         for (final cell in row) {
-          if (cell.length <= 60 && !_cellIn(words, cell)) {
+          if (!_cellIn(words, cell)) {
             missing.add('${t.item} : $cell');
           }
         }
@@ -149,11 +152,7 @@ void main() {
       for (final row in t.rows.skip(1)) {
         final [..., before, last] = row;
         if (before.length > 60 || last.length > 60) continue;
-        final alternatives = before
-            .split(' ')
-            .map(RegExp.escape)
-            .map((w) => w.replaceFirst(RegExp(r'(\d)e\b'), r'\1e?'))
-            .join('|');
+        final alternatives = before.split(' ').map(RegExp.escape).join('|');
         final next = RegExp.escape(last.split(' ').first);
         if (!RegExp(
           '(^|\\s)($alternatives)\\s+(?:[a-z]{1,2}\\s+)?$next(\\s|\$)',
