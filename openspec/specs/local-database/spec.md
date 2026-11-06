@@ -143,3 +143,10 @@ La base locale SHALL stocker les options d'équipement de départ de chaque clas
 #### Scenario: Aller-retour d'un pack
 - **WHEN** on importe le pack SRD puis qu'on relit le Guerrier
 - **THEN** ses trois options d'équipement de départ sont identiques à celles du pack
+
+### Requirement: Objets magiques en base
+La base locale SHALL stocker chaque objet magique importé et SHALL le restituer à l'export du pack à l'identique.
+
+#### Scenario: Aller-retour
+- **WHEN** on importe un pack qui contient un objet magique puis qu'on l'exporte
+- **THEN** l'objet exporté est identique à l'objet importé
