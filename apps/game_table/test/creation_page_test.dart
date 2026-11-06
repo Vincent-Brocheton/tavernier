@@ -40,6 +40,16 @@ Future<void> _tap(WidgetTester tester, String text) async {
   await tester.pumpAndSettle();
 }
 
+Finder _bonus(String label) =>
+    find.byWidgetPredicate((w) => w is BonusToggle && w.semanticLabel == label);
+
+Future<void> _tapBonus(WidgetTester tester, String label) async {
+  await tester.ensureVisible(_bonus(label));
+  await tester.pumpAndSettle();
+  await tester.tap(_bonus(label));
+  await tester.pumpAndSettle();
+}
+
 FilledButton _next(WidgetTester tester) =>
     tester.widget<FilledButton>(find.byType(FilledButton).last);
 
@@ -185,6 +195,159 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining('Votre classe décide'), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  group('étapes Langues et Caractéristiques', () {
+    Future<void> toLanguages(WidgetTester tester, double width) async {
+      await _open(tester, width);
+      await _tap(tester, 'Guerrier');
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+      await _tap(tester, 'Criminel');
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+      await _tap(tester, 'Nain');
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+    }
+
+    Future<void> tapRepeated(
+      WidgetTester tester,
+      String tooltip,
+      int times,
+    ) async {
+      final target = find.byTooltip(tooltip);
+      await tester.ensureVisible(target);
+      await tester.pumpAndSettle();
+      for (var i = 0; i < times; i++) {
+        await tester.tap(target);
+        await tester.pump();
+      }
+      await tester.pumpAndSettle();
+    }
+
+    Future<void> toAbilities(WidgetTester tester, double width) async {
+      await toLanguages(tester, width);
+      await _tap(tester, 'Orc');
+      await _tap(tester, 'Elfique');
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+    }
+
+    Future<void> spendAllPoints(WidgetTester tester) async {
+      await tapRepeated(tester, 'Augmenter Force', 7);
+      await tapRepeated(tester, 'Augmenter Dextérité', 5);
+      await tapRepeated(tester, 'Augmenter Constitution', 6);
+      await tapRepeated(tester, 'Augmenter Sagesse', 4);
+      await tapRepeated(tester, 'Augmenter Charisme', 2);
+    }
+
+    for (final width in [390.0, 1440.0]) {
+      testWidgets('$width dp : langues, compteur et plafond', (tester) async {
+        await toLanguages(tester, width);
+        expect(find.text('Commun'), findsWidgets);
+        expect(find.text('Gigant'), findsNothing);
+        expect(find.text('Géant'), findsOneWidget);
+        expect(find.text('Abyssal'), findsNothing);
+        expect(
+          find.text('Choisissez encore 2 langues pour continuer.'),
+          findsOneWidget,
+        );
+        await _tap(tester, 'Orc');
+        expect(find.text('1 / 2'), findsOneWidget);
+        expect(
+          find.text('Choisissez encore 1 langue pour continuer.'),
+          findsOneWidget,
+        );
+        await _tap(tester, 'Elfique');
+        expect(_next(tester).onPressed, isNotNull);
+        final gnome = find.widgetWithText(CheckboxListTile, 'Gnome');
+        expect(tester.widget<CheckboxListTile>(gnome).onChanged, isNull);
+      });
+
+      testWidgets('$width dp : points puis bonus jusqu’à Suivant', (
+        tester,
+      ) async {
+        await toAbilities(tester, width);
+        expect(find.text('0 / 27 points'), findsOneWidget);
+        expect(find.text('Il reste 27 points à dépenser.'), findsOneWidget);
+        await spendAllPoints(tester);
+        expect(find.text('27 / 27 points'), findsOneWidget);
+        expect(
+          find.text('Placez vos bonus d’Historique pour continuer.'),
+          findsOneWidget,
+        );
+        expect(find.text('Non éligible pour Criminel'), findsNWidgets(3));
+        await _tapBonus(tester, '+2 sur Constitution');
+        await _tapBonus(tester, '+1 sur Dextérité');
+        expect(find.text('Le +1 doit aller ailleurs'), findsOneWidget);
+        expect(find.text('Le +2 doit aller ailleurs'), findsOneWidget);
+        expect(_next(tester).onPressed, isNotNull);
+        expect(tester.takeException(), isNull);
+      });
+    }
+
+    testWidgets('Force non éligible : pas de bonus, explication', (
+      tester,
+    ) async {
+      await toAbilities(tester, 1440);
+      final toggle = find.bySemanticsLabel('+2 sur Force');
+      expect(toggle, findsOneWidget);
+      await tester.tap(toggle, warnIfMissed: false);
+      await tester.pumpAndSettle();
+      expect(find.text('Bonus à refaire'), findsNothing);
+      expect(
+        tester.widget<BonusToggle>(_bonus('+2 sur Force')).state,
+        BonusToggleState.blocked,
+      );
+    });
+
+    testWidgets('changer d’Historique signale le bonus à refaire', (
+      tester,
+    ) async {
+      await toAbilities(tester, 1440);
+      await spendAllPoints(tester);
+      await _tapBonus(tester, '+2 sur Intelligence');
+      await _tapBonus(tester, '+1 sur Constitution');
+      await tester.tap(find.text('Historique'));
+      await tester.pumpAndSettle();
+      await _tap(tester, 'Soldat');
+      await _tap(tester, 'dés');
+      await tester.tap(find.text('Caractéristiques'));
+      await tester.pumpAndSettle();
+      expect(find.text('Bonus à refaire'), findsOneWidget);
+      expect(
+        find.textContaining('Le bonus placé sur Intelligence'),
+        findsOneWidget,
+      );
+      expect(
+        find.text(
+          'Placez vos bonus sur des caractéristiques éligibles pour '
+          'continuer.',
+        ),
+        findsOneWidget,
+      );
+      expect(
+        tester.widget<BonusToggle>(_bonus('+2 sur Intelligence')).state,
+        BonusToggleState.invalid,
+      );
+      await _tapBonus(tester, '+2 sur Intelligence');
+      expect(find.text('Bonus à refaire'), findsNothing);
+    });
+
+    testWidgets('+1, +1 et +1 : trois bonus, une seule colonne', (
+      tester,
+    ) async {
+      await toAbilities(tester, 1440);
+      await spendAllPoints(tester);
+      await _tap(tester, '+1, +1 et +1');
+      expect(_bonus('+2 sur Dextérité'), findsNothing);
+      await _tapBonus(tester, '+1 sur Dextérité');
+      await _tapBonus(tester, '+1 sur Constitution');
+      expect(_next(tester).onPressed, isNull);
+      await _tapBonus(tester, '+1 sur Intelligence');
+      expect(_next(tester).onPressed, isNotNull);
+    });
   });
 
   testWidgets('filtre Lanceurs de sorts et recherche', (tester) async {

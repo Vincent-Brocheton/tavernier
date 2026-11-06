@@ -591,6 +591,196 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'(niv. {level})'**
   String traitFromLevel(int level);
+
+  /// Introduction de l’étape 4.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le commun, plus deux langues courantes.'**
+  String get introLanguages;
+
+  /// Sous-titre du Commun.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connu de tous les personnages'**
+  String get commonLanguageHint;
+
+  /// Titre de liste.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues courantes'**
+  String get standardLanguages;
+
+  /// Bouton : langues au hasard.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tirer au sort'**
+  String get drawLanguages;
+
+  /// Règle affichée sous la liste.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues rares (abyssal, céleste, infernal…) : seulement via une aptitude qui les accorde.'**
+  String get rareLanguagesRule;
+
+  /// Titre de section.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acquisition par points'**
+  String get pointBuy;
+
+  /// Répartition des bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'+2 et +1'**
+  String get distributionTwoOne;
+
+  /// Répartition des bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'+1, +1 et +1'**
+  String get distributionOnes;
+
+  /// En-tête de colonne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique'**
+  String get labelAbility;
+
+  /// En-tête de colonne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Base'**
+  String get labelBase;
+
+  /// En-tête de colonne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Total'**
+  String get labelTotal;
+
+  /// Ligne de bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Éligible'**
+  String get eligible;
+
+  /// Ligne de bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le +1 doit aller ailleurs'**
+  String get plusOneElsewhere;
+
+  /// Ligne de bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le +2 doit aller ailleurs'**
+  String get plusTwoElsewhere;
+
+  /// Bandeau de choix devenu invalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus à refaire'**
+  String get bonusInvalidTitle;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Placez vos bonus d’Historique pour continuer.'**
+  String get missingBonus;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Placez vos bonus sur des caractéristiques éligibles pour continuer.'**
+  String get missingBonusInvalid;
+
+  /// Compteur de sélection.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} / {total}'**
+  String countOf(int count, int total);
+
+  /// Budget de points.
+  ///
+  /// In fr, this message translates to:
+  /// **'{spent} / {total} points'**
+  String pointsOf(int spent, int total);
+
+  /// Coût d’une valeur.
+  ///
+  /// In fr, this message translates to:
+  /// **'coût {cost}'**
+  String costOf(int cost);
+
+  /// Rappel des coûts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Coûts : {costs}. Valeur entre 8 et 15 avant bonus.'**
+  String pointBuyCosts(String costs);
+
+  /// Bouton +.
+  ///
+  /// In fr, this message translates to:
+  /// **'Augmenter {ability}'**
+  String raiseAbility(String ability);
+
+  /// Bouton −.
+  ///
+  /// In fr, this message translates to:
+  /// **'Diminuer {ability}'**
+  String lowerAbility(String ability);
+
+  /// Introduction de l’étape 5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Répartissez vos {points} points, puis appliquez les bonus de votre Historique.'**
+  String introAbilities(int points);
+
+  /// Titre de section.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus d’Historique · {background}'**
+  String backgroundBonus(String background);
+
+  /// Sous-titre des bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'{abilities} · plafond {cap}'**
+  String bonusCap(String abilities, int cap);
+
+  /// Ligne de bonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non éligible pour {background}'**
+  String notEligibleFor(String background);
+
+  /// Nom lu d’une bascule.
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} sur {ability}'**
+  String bonusOn(int value, String ability);
+
+  /// Bandeau de choix devenu invalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le bonus placé sur {abilities} n’est plus valide. {background} n’autorise les bonus que sur {allowed}.'**
+  String bonusInvalidMessage(
+    String abilities,
+    String background,
+    String allowed,
+  );
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Choisissez encore 1 langue pour continuer.} other{Choisissez encore {count} langues pour continuer.}}'**
+  String missingLanguages(int count);
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Il reste 1 point à dépenser.} other{Il reste {count} points à dépenser.}}'**
+  String missingPoints(int count);
 }
 
 class _AppLocalizationsDelegate

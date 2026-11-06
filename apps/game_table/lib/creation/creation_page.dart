@@ -5,10 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../l10n/app_localizations.dart';
+import 'abilities_step.dart';
 import 'background_step.dart';
 import 'class_step.dart';
 import 'creation_draft.dart';
 import 'creation_providers.dart';
+import 'languages_step.dart';
 import 'species_step.dart';
 
 /// Assistant de création en 9 étapes (cahier §5.1, [P1]–[P9]).
@@ -63,6 +65,8 @@ class _Wizard extends ConsumerWidget {
       0 => ClassStep(content: content),
       1 => BackgroundStep(content: content),
       2 => SpeciesStep(content: content),
+      3 => LanguagesStep(content: content),
+      4 => AbilitiesStep(content: content),
       _ => Center(child: Text(l10n.comingSoon)),
     };
     final nextName = last ? null : steps[draft.step + 1].label;
@@ -114,10 +118,10 @@ class _Wizard extends ConsumerWidget {
                 ? null
                 : () => notifier.update((d) => d.previous()),
             onNext: () => notifier.update((d) => d.next(content)),
-            // Le lot 1 s'arrête à l'étape Langues, encore à livrer.
-            blockedReason: draft.step >= 3
+            // L'assistant s'arrête aux Sous-choix, encore à livrer.
+            blockedReason: draft.step >= 5
                 ? l10n.comingSoon
-                : _reason(l10n, missingChoice(draft, content)),
+                : _reason(l10n, draft, content),
           ),
         ),
       ],
@@ -206,18 +210,29 @@ String? _intro(AppLocalizations l10n, int step) => switch (step) {
   0 => l10n.introClass,
   1 => l10n.introBackground,
   2 => l10n.introSpecies,
+  3 => l10n.introLanguages,
+  4 => l10n.introAbilities(pointBuyBudget),
   _ => null,
 };
 
-String? _reason(AppLocalizations l10n, MissingChoice? missing) =>
-    switch (missing) {
-      null => null,
-      MissingChoice.classChoice => l10n.missingClass,
-      MissingChoice.background => l10n.missingBackground,
-      MissingChoice.tool => l10n.missingTool,
-      MissingChoice.species => l10n.missingSpecies,
-      MissingChoice.size => l10n.missingSize,
-    };
+String? _reason(
+  AppLocalizations l10n,
+  CreationDraft draft,
+  ActiveContent content,
+) => switch (missingChoice(draft, content)) {
+  null => null,
+  MissingChoice.classChoice => l10n.missingClass,
+  MissingChoice.background => l10n.missingBackground,
+  MissingChoice.tool => l10n.missingTool,
+  MissingChoice.species => l10n.missingSpecies,
+  MissingChoice.size => l10n.missingSize,
+  MissingChoice.languages => l10n.missingLanguages(
+    startingLanguageChoices - draft.languages.length,
+  ),
+  MissingChoice.points => l10n.missingPoints(draft.remainingPoints),
+  MissingChoice.bonusInvalid => l10n.missingBonusInvalid,
+  MissingChoice.bonus => l10n.missingBonus,
+};
 
 List<WizardStep> _steps(
   AppLocalizations l10n,
@@ -230,7 +245,15 @@ List<WizardStep> _steps(
     WizardStep(label: l10n.stepClass, detail: chosen(draft.classId)),
     WizardStep(label: l10n.stepBackground, detail: chosen(draft.backgroundId)),
     WizardStep(label: l10n.stepSpecies, detail: chosen(draft.speciesId)),
-    WizardStep(label: l10n.stepLanguages, detail: l10n.stepLanguagesHint),
+    WizardStep(
+      label: l10n.stepLanguages,
+      detail: draft.languages.isEmpty
+          ? l10n.stepLanguagesHint
+          : [
+              startingLanguageId,
+              ...draft.languages,
+            ].map((id) => content.entity(id)?.name ?? id).join(', '),
+    ),
     WizardStep(label: l10n.stepAbilities, detail: l10n.stepAbilitiesHint),
     WizardStep(label: l10n.stepSubchoices, detail: l10n.stepSubchoicesHint),
     WizardStep(label: l10n.stepEquipment, detail: l10n.stepEquipmentHint),

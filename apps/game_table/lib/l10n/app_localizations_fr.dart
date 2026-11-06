@@ -281,4 +281,143 @@ class AppLocalizationsFr extends AppLocalizations {
   String traitFromLevel(int level) {
     return '(niv. $level)';
   }
+
+  @override
+  String get introLanguages => 'Le commun, plus deux langues courantes.';
+
+  @override
+  String get commonLanguageHint => 'Connu de tous les personnages';
+
+  @override
+  String get standardLanguages => 'Langues courantes';
+
+  @override
+  String get drawLanguages => 'Tirer au sort';
+
+  @override
+  String get rareLanguagesRule =>
+      'Langues rares (abyssal, céleste, infernal…) : seulement via une aptitude qui les accorde.';
+
+  @override
+  String get pointBuy => 'Acquisition par points';
+
+  @override
+  String get distributionTwoOne => '+2 et +1';
+
+  @override
+  String get distributionOnes => '+1, +1 et +1';
+
+  @override
+  String get labelAbility => 'Caractéristique';
+
+  @override
+  String get labelBase => 'Base';
+
+  @override
+  String get labelTotal => 'Total';
+
+  @override
+  String get eligible => 'Éligible';
+
+  @override
+  String get plusOneElsewhere => 'Le +1 doit aller ailleurs';
+
+  @override
+  String get plusTwoElsewhere => 'Le +2 doit aller ailleurs';
+
+  @override
+  String get bonusInvalidTitle => 'Bonus à refaire';
+
+  @override
+  String get missingBonus => 'Placez vos bonus d’Historique pour continuer.';
+
+  @override
+  String get missingBonusInvalid =>
+      'Placez vos bonus sur des caractéristiques éligibles pour continuer.';
+
+  @override
+  String countOf(int count, int total) {
+    return '$count / $total';
+  }
+
+  @override
+  String pointsOf(int spent, int total) {
+    return '$spent / $total points';
+  }
+
+  @override
+  String costOf(int cost) {
+    return 'coût $cost';
+  }
+
+  @override
+  String pointBuyCosts(String costs) {
+    return 'Coûts : $costs. Valeur entre 8 et 15 avant bonus.';
+  }
+
+  @override
+  String raiseAbility(String ability) {
+    return 'Augmenter $ability';
+  }
+
+  @override
+  String lowerAbility(String ability) {
+    return 'Diminuer $ability';
+  }
+
+  @override
+  String introAbilities(int points) {
+    return 'Répartissez vos $points points, puis appliquez les bonus de votre Historique.';
+  }
+
+  @override
+  String backgroundBonus(String background) {
+    return 'Bonus d’Historique · $background';
+  }
+
+  @override
+  String bonusCap(String abilities, int cap) {
+    return '$abilities · plafond $cap';
+  }
+
+  @override
+  String notEligibleFor(String background) {
+    return 'Non éligible pour $background';
+  }
+
+  @override
+  String bonusOn(int value, String ability) {
+    return '+$value sur $ability';
+  }
+
+  @override
+  String bonusInvalidMessage(
+    String abilities,
+    String background,
+    String allowed,
+  ) {
+    return 'Le bonus placé sur $abilities n’est plus valide. $background n’autorise les bonus que sur $allowed.';
+  }
+
+  @override
+  String missingLanguages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Choisissez encore $count langues pour continuer.',
+      one: 'Choisissez encore 1 langue pour continuer.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String missingPoints(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Il reste $count points à dépenser.',
+      one: 'Il reste 1 point à dépenser.',
+    );
+    return '$_temp0';
+  }
 }

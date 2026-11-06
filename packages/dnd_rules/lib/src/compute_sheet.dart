@@ -3,11 +3,9 @@ import 'package:dnd_content/dnd_content.dart';
 import 'active_content.dart';
 import 'character_input.dart';
 import 'computed_sheet.dart';
+import 'creation_rules.dart';
 
 const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-
-/// SRD p. 22, « Coût des valeurs de caractéristique ».
-const _pointBuyCost = {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9};
 
 /// SRD p. 22, « Valeurs standard ».
 const _standardArray = [15, 14, 13, 12, 10, 8];
@@ -570,7 +568,7 @@ String _categoryName(FeatCategory category) => category.name.replaceAllMapped(
 int _proficiencyBonus(int level) => 2 + (level - 1) ~/ 4;
 
 int _cost(BaseScores scores) =>
-    abilityCodes.fold(0, (sum, c) => sum + (_pointBuyCost[scores.of(c)] ?? 99));
+    pointBuySpent({for (final c in abilityCodes) c: scores.of(c)});
 
 List<IntegrityError> _checkGeneration(BaseScores scores) {
   final values = [for (final c in abilityCodes) scores.of(c)]..sort();
@@ -579,9 +577,9 @@ List<IntegrityError> _checkGeneration(BaseScores scores) {
     case ScoreMethod.pointBuy:
       if (values.any((v) => v < 8 || v > 15)) {
         problem = 'acquisition par points : valeurs de 8 à 15';
-      } else if (_cost(scores) != 27) {
+      } else if (_cost(scores) != pointBuyBudget) {
         problem =
-            'acquisition par points : ${_cost(scores)} points au lieu de 27';
+            'acquisition par points : ${_cost(scores)} points au lieu de $pointBuyBudget';
       }
     case ScoreMethod.standardArray:
       if ('$values' != '${[..._standardArray]..sort()}') {

@@ -1,3 +1,5 @@
+import 'creation_rules.dart';
+
 /// Une contribution à une valeur calculée (EF-PJ-03) : `base`, un code de
 /// caractéristique ou l'identifiant de l'entité qui contribue.
 final class Contribution {
@@ -39,7 +41,7 @@ final class Initiative extends Computed {
 final class AbilityScore extends Computed {
   AbilityScore(super.sources);
 
-  int get modifier => ((value - 10) / 2).floor();
+  int get modifier => abilityModifier(value);
 }
 
 /// Une attaque de la fiche (arme portée ou mains nues).
