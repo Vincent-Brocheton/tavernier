@@ -1,6 +1,7 @@
 // Spec character-creation : « Assistant en 9 étapes », « Choix manquant
 // bloquant et expliqué ».
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
@@ -13,9 +14,33 @@ final _content = ActiveContent([
 
 MissingChoice? _missing(CreationDraft draft) => missingChoice(draft, _content);
 
-void main() {
-  const start = CreationDraft();
+const start = CreationDraft();
 
+/// Jusqu'à l'étape Langues : Guerrier, Criminel, Nain.
+CreationDraft _throughSpecies() => start
+    .selectClass('srd:class:fighter')
+    .next(_content)
+    .selectBackground('srd:background:criminal')
+    .next(_content)
+    .selectSpecies('srd:species:dwarf', const ['M'])
+    .next(_content);
+
+CreationDraft _raise(CreationDraft draft, String code, int times) {
+  var result = draft;
+  for (var i = 0; i < times; i++) {
+    result = result.raiseScore(code);
+  }
+  return result;
+}
+
+/// Les valeurs d'Aldric ([D1]) : 15 13 14 8 12 10.
+CreationDraft _aldricScores(CreationDraft draft) => _raise(
+  _raise(_raise(_raise(_raise(draft, 'str', 7), 'dex', 5), 'con', 6), 'wis', 4),
+  'cha',
+  2,
+);
+
+void main() {
   test('étape 1 : une classe à choisir', () {
     expect(_missing(start), MissingChoice.classChoice);
     expect(_missing(start.selectClass('srd:class:fighter')), isNull);
@@ -101,6 +126,112 @@ void main() {
     expect(back.goTo(2, _content).step, 2);
     expect(back.previous().step, 0);
     expect(draft.previous().step, 1);
+  });
+
+  group('langues', () {
+    final step4 = _throughSpecies();
+
+    test('deux langues à choisir, pas une de plus', () {
+      expect(_missing(step4), MissingChoice.languages);
+      final one = step4.toggleLanguage('srd:language:dwarvish');
+      expect(_missing(one), MissingChoice.languages);
+      final two = one.toggleLanguage('srd:language:orc');
+      expect(_missing(two), isNull);
+      expect(two.toggleLanguage('srd:language:elvish').languages, hasLength(2));
+      expect(two.toggleLanguage('srd:language:orc').languages, [
+        'srd:language:dwarvish',
+      ]);
+    });
+
+    test('le tirage garde le choix fait et complète sans doublon', () {
+      const options = ['a', 'b', 'c', 'd'];
+      final drawn = step4.toggleLanguage('b').drawLanguages(options, Random(1));
+      expect(drawn.languages, hasLength(2));
+      expect(drawn.languages.first, 'b');
+      expect(drawn.languages.toSet(), hasLength(2));
+      expect(drawn.drawLanguages(options).languages, drawn.languages);
+    });
+  });
+
+  group('acquisition par points', () {
+    test('départ : tout à 8, 27 points', () {
+      expect(start.remainingPoints, 27);
+      expect(start.scores['str'], 8);
+    });
+
+    test('bornes : ni sous 8 ni au-dessus de 15', () {
+      expect(start.canLower('str'), isFalse);
+      expect(start.lowerScore('str').scores['str'], 8);
+      final top = _raise(start, 'str', 7);
+      expect(top.scores['str'], 15);
+      expect(top.canRaise('str'), isFalse);
+    });
+
+    test('le coût monte à 14 et 15 ; le budget borne la hausse', () {
+      final at13 = _raise(start, 'str', 5);
+      expect(at13.remainingPoints, 22);
+      expect(at13.raiseScore('str').remainingPoints, 20);
+      final spent = _raise(_raise(_raise(start, 'str', 7), 'dex', 7), 'con', 7);
+      expect(spent.remainingPoints, 0);
+      expect(spent.canRaise('wis'), isFalse);
+      expect(spent.raiseScore('wis').scores['wis'], 8);
+    });
+  });
+
+  group('bonus d’Historique', () {
+    final step5 = _aldricScores(
+      _throughSpecies()
+          .toggleLanguage('srd:language:dwarvish')
+          .toggleLanguage('srd:language:orc')
+          .next(_content),
+    );
+
+    test('il faut dépenser les 27 points', () {
+      expect(step5.step, 4);
+      expect(_missing(step5.lowerScore('str')), MissingChoice.points);
+    });
+
+    test('+2 et +1 : les deux sont requis', () {
+      expect(_missing(step5), MissingChoice.bonus);
+      final plus2 = step5.setBonus('dex', 2);
+      expect(_missing(plus2), MissingChoice.bonus);
+      expect(_missing(plus2.setBonus('con', 1)), isNull);
+    });
+
+    test('un +2 posé ailleurs se déplace ; le retoucher le retire', () {
+      final moved = step5.setBonus('str', 2).setBonus('dex', 2);
+      expect(moved.bonuses, {'dex': 2});
+      expect(moved.setBonus('dex', 2).bonuses, isEmpty);
+    });
+
+    test('+1, +1 et +1 : trois caractéristiques ; changer vide les bonus', () {
+      final draft = step5.setBonus('str', 2).setDistribution('1-1-1');
+      expect(draft.bonuses, isEmpty);
+      final two = draft.setBonus('dex', 1).setBonus('con', 1);
+      expect(_missing(two), MissingChoice.bonus);
+      expect(_missing(two.setBonus('int', 1)), isNull);
+    });
+
+    test('une caractéristique non éligible est refusée', () {
+      expect(eligibleAbilities(step5, _content), {'dex', 'con', 'int'});
+      expect(
+        _missing(step5.setBonus('wis', 2).setBonus('con', 1)),
+        MissingChoice.bonusInvalid,
+      );
+    });
+
+    test('changer d’Historique rend le bonus invalide et bloque le saut', () {
+      final done = step5.setBonus('int', 2).setBonus('con', 1).next(_content);
+      expect(done.step, 5);
+      final soldier = done
+          .goTo(1, _content)
+          .selectBackground('srd:background:soldier')
+          .selectTool('srd:tool:dice-set');
+      expect(soldier.bonuses, {'int': 2, 'con': 1});
+      expect(missingAt(soldier, 4, _content), MissingChoice.bonusInvalid);
+      expect(soldier.goTo(5, _content).step, 1);
+      expect(soldier.goTo(4, _content).step, 4);
+    });
   });
 
   test('une étape rouverte bloque le saut vers l’avant', () {

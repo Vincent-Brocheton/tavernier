@@ -4,11 +4,14 @@ import 'layout.dart';
 
 /// Une étape d'assistant : son nom et le choix fait.
 final class WizardStep {
-  const WizardStep({required this.label, required this.detail});
+  const WizardStep({required this.label, required this.detail, this.alert});
 
   /// Textes venus des ARB de l'application.
   final String label;
   final String detail;
+
+  /// Étape franchie à reprendre : remplace [detail] et sa coche.
+  final String? alert;
 }
 
 /// Liste verticale des étapes d'un assistant (COMPOSANTS §2.18). Une étape
@@ -46,7 +49,7 @@ class WizardSteps extends StatelessWidget {
               number: i + 1,
               step: step,
               isCurrent: i == current,
-              isDone: i < reached && i != current,
+              isDone: i < reached && i != current && step.alert == null,
               onTap: i <= reached ? () => onSelected(i) : null,
             ),
         ],
@@ -75,6 +78,7 @@ class _StepTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     final radius = BorderRadius.circular(AppRadii.md);
+    final alert = step.alert != null;
     return Semantics(
       selected: isCurrent,
       button: true,
@@ -96,13 +100,19 @@ class _StepTile extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 12,
-                    backgroundColor: isDone || isCurrent
+                    backgroundColor: alert
+                        ? scheme.errorContainer
+                        : isDone || isCurrent
                         ? scheme.primary
                         : Colors.transparent,
-                    foregroundColor: isDone || isCurrent
+                    foregroundColor: alert
+                        ? scheme.onErrorContainer
+                        : isDone || isCurrent
                         ? scheme.onPrimary
                         : scheme.onSurfaceVariant,
-                    child: isDone
+                    child: alert
+                        ? const Icon(Icons.priority_high, size: 16)
+                        : isDone
                         ? const Icon(Icons.check, size: 16)
                         : Text('$number', style: text.labelMedium),
                   ),
@@ -113,9 +123,11 @@ class _StepTile extends StatelessWidget {
                       children: [
                         Text(step.label, style: text.titleSmall),
                         Text(
-                          step.detail,
+                          step.alert ?? step.detail,
                           style: text.bodySmall!.copyWith(
-                            color: scheme.onSurfaceVariant,
+                            color: alert
+                                ? scheme.error
+                                : scheme.onSurfaceVariant,
                           ),
                         ),
                       ],

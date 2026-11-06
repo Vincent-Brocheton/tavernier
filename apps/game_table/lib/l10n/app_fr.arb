@@ -390,5 +390,227 @@
         "type": "int"
       }
     }
+  },
+  "introLanguages": "Le commun, plus deux langues courantes.",
+  "@introLanguages": {
+    "description": "Introduction de l’étape 4."
+  },
+  "commonLanguageHint": "Connu de tous les personnages",
+  "@commonLanguageHint": {
+    "description": "Sous-titre du Commun."
+  },
+  "standardLanguages": "Langues courantes",
+  "@standardLanguages": {
+    "description": "Titre de liste."
+  },
+  "drawLanguages": "Tirer au sort",
+  "@drawLanguages": {
+    "description": "Bouton : langues au hasard."
+  },
+  "rareLanguagesRule": "Langues rares (abyssal, céleste, infernal…) : seulement via une aptitude qui les accorde.",
+  "@rareLanguagesRule": {
+    "description": "Règle affichée sous la liste."
+  },
+  "pointBuy": "Acquisition par points",
+  "@pointBuy": {
+    "description": "Titre de section."
+  },
+  "distributionTwoOne": "+2 et +1",
+  "@distributionTwoOne": {
+    "description": "Répartition des bonus."
+  },
+  "distributionOnes": "+1, +1 et +1",
+  "@distributionOnes": {
+    "description": "Répartition des bonus."
+  },
+  "labelAbility": "Caractéristique",
+  "@labelAbility": {
+    "description": "En-tête de colonne."
+  },
+  "labelBase": "Base",
+  "@labelBase": {
+    "description": "En-tête de colonne."
+  },
+  "labelTotal": "Total",
+  "@labelTotal": {
+    "description": "En-tête de colonne."
+  },
+  "eligible": "Éligible",
+  "@eligible": {
+    "description": "Ligne de bonus."
+  },
+  "plusOneElsewhere": "Le +1 doit aller ailleurs",
+  "@plusOneElsewhere": {
+    "description": "Ligne de bonus."
+  },
+  "plusTwoElsewhere": "Le +2 doit aller ailleurs",
+  "@plusTwoElsewhere": {
+    "description": "Ligne de bonus."
+  },
+  "bonusInvalidTitle": "Bonus à refaire",
+  "@bonusInvalidTitle": {
+    "description": "Bandeau de choix devenu invalide."
+  },
+  "missingBonus": "Placez vos bonus d’Historique pour continuer.",
+  "@missingBonus": {
+    "description": "Suivant bloqué."
+  },
+  "missingBonusInvalid": "Placez vos bonus sur des caractéristiques éligibles pour continuer.",
+  "@missingBonusInvalid": {
+    "description": "Suivant bloqué."
+  },
+  "countOf": "{count} / {total}",
+  "@countOf": {
+    "description": "Compteur de sélection.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "pointsOf": "{spent} / {total} points",
+  "@pointsOf": {
+    "description": "Budget de points.",
+    "placeholders": {
+      "spent": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "costOf": "coût {cost}",
+  "@costOf": {
+    "description": "Coût d’une valeur.",
+    "placeholders": {
+      "cost": {
+        "type": "int"
+      }
+    }
+  },
+  "pointBuyCosts": "Coûts : {costs}. Valeur entre {min} et {max} avant bonus.",
+  "@pointBuyCosts": {
+    "description": "Rappel des coûts.",
+    "placeholders": {
+      "costs": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "raiseAbility": "Augmenter {ability}",
+  "@raiseAbility": {
+    "description": "Bouton +.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "lowerAbility": "Diminuer {ability}",
+  "@lowerAbility": {
+    "description": "Bouton −.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "introAbilities": "Répartissez vos {points} points, puis appliquez les bonus de votre Historique.",
+  "@introAbilities": {
+    "description": "Introduction de l’étape 5.",
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "backgroundBonus": "Bonus d’Historique · {background}",
+  "@backgroundBonus": {
+    "description": "Titre de section.",
+    "placeholders": {
+      "background": {
+        "type": "String"
+      }
+    }
+  },
+  "bonusCap": "{abilities} · plafond {cap}",
+  "@bonusCap": {
+    "description": "Sous-titre des bonus.",
+    "placeholders": {
+      "abilities": {
+        "type": "String"
+      },
+      "cap": {
+        "type": "int"
+      }
+    }
+  },
+  "notEligibleFor": "Non éligible pour {background}",
+  "@notEligibleFor": {
+    "description": "Ligne de bonus.",
+    "placeholders": {
+      "background": {
+        "type": "String"
+      }
+    }
+  },
+  "bonusOn": "+{value} sur {ability}",
+  "@bonusOn": {
+    "description": "Nom lu d’une bascule.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      },
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "bonusInvalidMessage": "Le bonus placé sur {abilities} n’est plus valide. {background} n’autorise les bonus que sur {allowed}.",
+  "@bonusInvalidMessage": {
+    "description": "Bandeau de choix devenu invalide.",
+    "placeholders": {
+      "abilities": {
+        "type": "String"
+      },
+      "background": {
+        "type": "String"
+      },
+      "allowed": {
+        "type": "String"
+      }
+    }
+  },
+  "missingLanguages": "{count, plural, =1{Choisissez encore 1 langue pour continuer.} other{Choisissez encore {count} langues pour continuer.}}",
+  "@missingLanguages": {
+    "description": "Suivant bloqué.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingPoints": "{count, plural, =1{Il reste 1 point à dépenser.} other{Il reste {count} points à dépenser.}}",
+  "@missingPoints": {
+    "description": "Suivant bloqué.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stepToRedo": "À refaire",
+  "@stepToRedo": {
+    "description": "Étape franchie devenue invalide."
   }
 }
