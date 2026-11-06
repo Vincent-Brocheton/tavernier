@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:masons-tools",
+  "type": "tool",
+  "name": "Outils de maçon",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:strength",
+    "weight_kg": 4.0,
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Caractéristique : Force\nPoids : 4 kg\nUtilisation : ciseler un symbole ou creuser un trou dans la pierre (DD 10)\nArtisanat : palan"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:ink-pen",
+  "type": "item",
+  "name": "Porte-plume",
+  "data": {
+    "cost_cp": 2
+  },
+  "text": {
+    "fr": "Combiné à l’encre, le porte-plume permet d’écrire ou de dessiner."
+  }
+}

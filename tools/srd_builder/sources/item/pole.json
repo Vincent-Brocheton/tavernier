@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:pole",
+  "type": "item",
+  "name": "Perche",
+  "data": {
+    "weight_kg": 3.5,
+    "cost_cp": 5
+  },
+  "text": {
+    "fr": "Une perche mesure 3 m de long. Vous pouvez l’utiliser pour toucher quelque chose à une distance maximale de 3 m. Si vous effectuez un test de Force (Athlétisme) dans le cadre d’un saut en hauteur ou en longueur, utiliser la perche pour sauter vous octroie l’Avantage à ce test."
+  }
+}

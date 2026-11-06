@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:weavers-tools",
+  "type": "tool",
+  "name": "Outils de tisserand",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : raccommoder une déchirure dans un vêtement (DD 10), coudre un motif de taille TP (DD 10)\nArtisanat : armure matelassée, beaux habits, corde, couverture, ficelle, filet, panier, robe, sac, sac de couchage, tente, tenue de voyage"
+  }
+}

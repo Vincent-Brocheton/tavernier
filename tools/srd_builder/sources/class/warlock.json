@@ -367,6 +367,43 @@
       "srd:spell:unseen-servant",
       "srd:spell:vampiric-touch",
       "srd:spell:weird"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:sickle",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 2
+          },
+          {
+            "item": "srd:item:arcane-focus-orb",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:book",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:scholars-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 15
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 100
+      }
     ]
   }
 }

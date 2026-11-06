@@ -7,5 +7,8 @@
     "ability": "srd:ability:dexterity",
     "weight_kg": 2.5,
     "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : écrire des textes avec des fioritures impressionnantes qui le prémunissent contre la contrefaçon (DD 15)\nArtisanat : encre, parchemin de sort"
   }
 }

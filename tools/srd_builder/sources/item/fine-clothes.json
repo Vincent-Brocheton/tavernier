@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:fine-clothes",
+  "type": "item",
+  "name": "Beaux habits",
+  "data": {
+    "weight_kg": 3.0,
+    "cost_cp": 1500
+  },
+  "text": {
+    "fr": "Les beaux habits sont fabriqués dans des tissus coûteux et dotés d’ornements élaborés. Certains événements et lieux n’acceptent que les personnes portant de tels vêtements."
+  }
+}

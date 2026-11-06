@@ -347,6 +347,43 @@
       "srd:spell:shining-smite",
       "srd:spell:warding-bond",
       "srd:spell:zone-of-truth"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:chain-mail",
+            "quantity": 1
+          },
+          {
+            "item": "srd:armor:shield",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:longsword",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:javelin",
+            "quantity": 6
+          },
+          {
+            "item": "srd:item:holy-symbol",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:priests-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 9
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 150
+      }
     ]
   }
 }

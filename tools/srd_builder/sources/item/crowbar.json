@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 2.5,
     "cost_cp": 200
+  },
+  "text": {
+    "fr": "Le pied-de-biche vous octroie l’Avantage aux tests de Force chaque fois que son effet de levier peut être pris en compte."
   }
 }

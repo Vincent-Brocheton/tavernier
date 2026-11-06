@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:shovel",
+  "type": "item",
+  "name": "Pelle",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Au prix de 1 heure d’efforts, une pelle permet de creuser un trou de 1,5 m de côté pour autant de profondeur dans de la terre ou tout matériau similaire."
+  }
+}

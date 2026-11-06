@@ -497,6 +497,43 @@
       "srd:spell:water-walk",
       "srd:spell:wind-walk",
       "srd:spell:wind-wall"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:armor:shield",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:sickle",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:druidic-focus-wooden-staff",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:explorers-pack",
+            "quantity": 1
+          },
+          {
+            "item": "srd:tool:herbalism-kit",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 9
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 50
+      }
     ]
   }
 }

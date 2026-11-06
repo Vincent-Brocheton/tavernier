@@ -511,6 +511,33 @@
       "srd:spell:unseen-servant",
       "srd:spell:vicious-mockery",
       "srd:spell:zone-of-truth"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 2
+          },
+          {
+            "item": "srd:item:entertainers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [
+          "musical_instrument"
+        ],
+        "gold": 19
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 90
+      }
     ]
   }
 }

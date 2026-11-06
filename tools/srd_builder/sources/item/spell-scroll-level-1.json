@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:spell-scroll-level-1",
+  "type": "item",
+  "name": "Parchemin de sort (1er niveau)",
+  "data": {
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Un parchemin de sort (sort mineur) ou parchemin de sort (1er niveau) est un objet magique qui porte la formule d’un sort mineur ou d’un sort du 1er niveau, respectivement, tel que défini par le créateur du parchemin. Si ce sort figure dans votre liste de sorts de classe, vous pouvez lire le parchemin pour en lancer le sort avec son temps d’incantation habituel et sans en fournir les éventuelles composantes matérielles.\nSi le sort nécessite un jet de sauvegarde ou un jet d’attaque, le DD de sauvegarde est de 13 et le bonus à l’attaque est de +5. Le parchemin se désintègre lorsque l’incantation est terminée."
+  }
+}

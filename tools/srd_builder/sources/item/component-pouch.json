@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:component-pouch",
+  "type": "item",
+  "name": "Sacoche à composantes",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Une sacoche à composantes est étanche et divisée en compartiments qui permettent d’y ranger toutes les composantes matérielles gratuites de vos sorts."
+  }
+}

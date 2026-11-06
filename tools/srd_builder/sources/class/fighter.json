@@ -251,6 +251,73 @@
           "weapon_mastery": 6
         }
       }
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:armor:chain-mail",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:greatsword",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:flail",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:javelin",
+            "quantity": 8
+          },
+          {
+            "item": "srd:item:dungeoneers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 4
+      },
+      {
+        "items": [
+          {
+            "item": "srd:armor:studded-leather",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:scimitar",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:shortsword",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:longbow",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:arrows",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:quiver",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:dungeoneers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 11
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 155
+      }
     ]
   }
 }

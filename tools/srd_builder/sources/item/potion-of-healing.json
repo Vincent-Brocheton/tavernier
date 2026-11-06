@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:potion-of-healing",
+  "type": "item",
+  "name": "Potion de guérison",
+  "data": {
+    "weight_kg": 0.25,
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Cette potion est un objet magique. Par une action Bonus, vous pouvez boire une potion de guérison ou l’administrer à une autre créature dans un rayon de 1,50 m. La créature qui boit le liquide magique rouge contenu dans cette fiole récupère 2d4 + 2 points de vie."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:iron-spikes",
+  "type": "item",
+  "name": "Pointes en fer",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Les pointes en fer sont vendues par paquets de dix. Par une action Utilisation, vous pouvez recourir à un objet contondant, par exemple un marteau léger, pour enfoncer une pointe dans du bois, de la terre ou tout matériau similaire. Faire ainsi permet de bloquer une porte ou d’attacher une corde ou une chaîne à la pointe."
+  }
+}

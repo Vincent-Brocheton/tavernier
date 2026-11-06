@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:horn",
+  "type": "tool",
+  "name": "Instrument de musique : cor",
+  "data": {
+    "category": "musical_instrument",
+    "ability": "srd:ability:charisma",
+    "weight_kg": 1.0,
+    "cost_cp": 300
+  },
+  "text": {
+    "fr": "Caractéristique : Charisme\nPoids : variable\nUtilisation : jouer un air connu (DD 10), improviser une chanson (DD 15)\nVariantes : chalemie (2 po, 0,5 kg), cor (3 po, 1 kg), cornemuse (30 po, 3 kg), flûte (2 po, 0,5 kg), flûte de pan (12 po, 1 kg), luth (35 po, 1 kg), lyre (30 po, 1 kg), tambour (6 po, 1,5 kg), tympanon (25 po, 5 kg), viole (30 po, 0,5 kg)"
+  }
+}

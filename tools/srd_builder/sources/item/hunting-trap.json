@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:hunting-trap",
+  "type": "item",
+  "name": "Piège à mâchoires",
+  "data": {
+    "weight_kg": 12.5,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous posez un piège à mâchoires, anneau d’acier en dents de scie qui se referme lorsqu’une créature marche sur la plaque de pression centrale. Le piège est ancré par une lourde chaîne à un objet immobile, comme un arbre ou une pointe enfoncée dans le sol. Une créature qui marche sur la plaque doit réussir un jet de sauvegarde de Dextérité DD 13 sous peine de subir 1d4 dégâts perforants et de voir sa Vitesse réduite à 0 jusqu’au début de son tour suivant. Par la suite et jusqu’à ce que la créature se libère du piège, son déplacement est limité par la taille de la chaîne (en règle générale 90 cm de long). Toute créature peut consacrer son action à effectuer un test de Force (Athlétisme) DD 13 et se libère, ou en extrait une autre créature à portée d’allonge, en cas de réussite. Chaque échec au test inflige 1 dégât perforant à la créature piégée."
+  }
+}

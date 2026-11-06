@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:vial",
+  "type": "item",
+  "name": "Fiole",
+  "data": {
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Une fiole contient 120 ml de liquide."
+  }
+}

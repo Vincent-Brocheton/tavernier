@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:cobblers-tools",
+  "type": "tool",
+  "name": "Outils de cordonnier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : modifier des chaussures afin d’octroyer l’Avantage au prochain test de Dextérité (Acrobaties) de leur porteur (DD 10)\nArtisanat : matériel d’escalade"
+  }
+}

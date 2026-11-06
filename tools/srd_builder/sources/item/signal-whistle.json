@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:signal-whistle",
+  "type": "item",
+  "name": "Sifflet",
+  "data": {
+    "cost_cp": 5
+  },
+  "text": {
+    "fr": "Souffler dans le sifflet par une action Utilisation produit un son audible à 180 m."
+  }
+}

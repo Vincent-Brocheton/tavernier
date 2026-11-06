@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:diplomats-pack",
+  "type": "item",
+  "name": "Paquetage de diplomate",
+  "data": {
+    "weight_kg": 19.5,
+    "cost_cp": 3900
+  },
+  "text": {
+    "fr": "Le paquetage de diplomate contient les objets suivants : beaux habits, boîte à amadou, coffre, encre, 2 étuis à cartes et à parchemins, 5 feuilles de papier, 5 feuilles de parchemin, 4 flasques d’huile, lampe, 5 porte-plume, parfum."
+  }
+}

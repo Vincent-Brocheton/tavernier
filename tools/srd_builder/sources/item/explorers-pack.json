@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:explorers-pack",
+  "type": "item",
+  "name": "Paquetage d’explorateur",
+  "data": {
+    "weight_kg": 27.5,
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Le paquetage d’explorateur contient les objets suivants : sac à dos, sac de couchage, boîte à amadou, corde, 2 flasques d’huile, 10 jours de rations, outre, 10 torches."
+  }
+}

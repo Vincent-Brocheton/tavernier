@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:costume",
+  "type": "item",
+  "name": "Costume",
+  "data": {
+    "weight_kg": 2.0,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Vêtu d’un costume, vous avez l’Avantage aux tests de caractéristique visant à vous faire passer pour la personne ou le type de personne qu’il représente."
+  }
+}

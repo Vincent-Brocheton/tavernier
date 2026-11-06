@@ -500,6 +500,35 @@
       "srd:spell:water-walk",
       "srd:spell:web",
       "srd:spell:wish"
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:weapon:spear",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 2
+          },
+          {
+            "item": "srd:item:arcane-focus-crystal",
+            "quantity": 1
+          },
+          {
+            "item": "srd:item:dungeoneers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [],
+        "gold": 28
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 50
+      }
     ]
   }
 }

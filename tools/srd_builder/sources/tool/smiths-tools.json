@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:smiths-tools",
+  "type": "tool",
+  "name": "Outils de forgeron",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:strength",
+    "weight_kg": 4.0,
+    "cost_cp": 2000
+  },
+  "text": {
+    "fr": "Caractéristique : Force\nPoids : 4 kg\nUtilisation : forcer une porte ou un contenant (DD 20)\nArtisanat : toute arme de corps à corps (hormis bâton de combat, gourdin, massue et fouet), toute armure intermédiaire (hormis armure de peaux), toute armure lourde, balles pour arme à feu, billes, billes de fronde, chaîne, chausse-trappes, grappin, pied-de-biche, pointes en fer, pot en fer, seau"
+  }
+}

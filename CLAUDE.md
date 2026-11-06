@@ -145,6 +145,10 @@ fvm flutter run -d chrome          # depuis apps/game_table
   - **Ce que l'outil réécrit :** l'en-tête des espèces (type, tailles, Vitesse) et la liste de leurs traits ; le nom et le texte des traits ; le nom, le texte et les données des dons (catégorie, prérequis, « Répétable »).
   - **Ce qu'il garde :** les `effects`, saisis à la main, et les `data` d'un trait existant.
   - **Configuration :** `lib/src/srd_origins.dart` (slugs, lignes recopiées des tables de trait, vérifiées contre `docs/srd/FR_SRD_CC_v5.2.1.txt` par un test).
+- **Extraction de l'équipement du SRD** (T-04) : `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-equipment --text <fichier pdftotext>`, depuis la racine du dépôt.
+  - **Outils :** nom, texte et données lus dans leur description. Les slugs sont dans `lib/src/srd_equipment.dart`.
+  - **Objets :** le texte vient de leur description. Le slug, le nom, le poids et le prix viennent de `extract/gear.tsv`, recopié du tableau « Matériel d'aventurier » ; un test retrouve chaque ligne dans `docs/srd/FR_SRD_CC_v5.2.1.txt`.
+  - **Équipement de départ des classes :** saisi à la main dans les traits de base (`starting_equipment`). Un test relit l'or de chaque option dans le SRD.
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

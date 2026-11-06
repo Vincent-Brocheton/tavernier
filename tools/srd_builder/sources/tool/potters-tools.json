@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:potters-tools",
+  "type": "tool",
+  "name": "Outils de potier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 1.5,
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 1,5 kg\nUtilisation : déterminer ce qu’a contenu un objet en céramique lors des dernières 24 heures (DD 15)\nArtisanat : cruche, lampe"
+  }
+}

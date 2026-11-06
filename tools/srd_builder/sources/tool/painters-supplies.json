@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:painters-supplies",
+  "type": "tool",
+  "name": "Matériel de peintre",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:wisdom",
+    "weight_kg": 2.5,
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Caractéristique : Sagesse\nPoids : 2,5 kg\nUtilisation : produire une image ressemblante de quelque chose que vous avez vu (DD 10)\nArtisanat : focaliseur druidique, symbole sacré"
+  }
+}

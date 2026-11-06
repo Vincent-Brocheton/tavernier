@@ -1,0 +1,8 @@
+{
+  "id": "srd:item:spellbook",
+  "type": "item",
+  "name": "Grimoire",
+  "data": {
+    "weight_kg": 1.5
+  }
+}

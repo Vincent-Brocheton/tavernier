@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:jewelers-tools",
+  "type": "tool",
+  "name": "Outils de joaillier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:intelligence",
+    "weight_kg": 1.0,
+    "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 1 kg\nUtilisation : déterminer la valeur d’une gemme (DD 15)\nArtisanat : focaliseur arcanique, symbole sacré"
+  }
+}

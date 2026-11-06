@@ -299,6 +299,42 @@ Map<String, dynamic> _$ItemQuantityToJson(_ItemQuantity instance) =>
       'quantity': instance.quantity,
     };
 
+_StartingEquipmentOption _$StartingEquipmentOptionFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_StartingEquipmentOption', json, ($checkedConvert) {
+  $checkKeys(json, allowedKeys: const ['items', 'tool_choice', 'gold']);
+  final val = _StartingEquipmentOption(
+    items: $checkedConvert(
+      'items',
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map((e) => ItemQuantity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <ItemQuantity>[],
+    ),
+    toolChoice: $checkedConvert(
+      'tool_choice',
+      (v) =>
+          (v as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$ToolCategoryEnumMap, e))
+              .toList() ??
+          const <ToolCategory>[],
+    ),
+    gold: $checkedConvert('gold', (v) => (v as num).toInt()),
+  );
+  return val;
+}, fieldKeyMap: const {'toolChoice': 'tool_choice'});
+
+Map<String, dynamic> _$StartingEquipmentOptionToJson(
+  _StartingEquipmentOption instance,
+) => <String, dynamic>{
+  'items': instance.items.map((e) => e.toJson()).toList(),
+  'tool_choice': instance.toolChoice
+      .map((e) => _$ToolCategoryEnumMap[e]!)
+      .toList(),
+  'gold': instance.gold,
+};
+
 _BackgroundData _$BackgroundDataFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
       '_BackgroundData',
@@ -570,6 +606,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'tool_proficiencies',
         'tool_choice_count',
         'tool_choice_category',
+        'starting_equipment',
       ],
     );
     final val = _ClassData(
@@ -645,6 +682,18 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'tool_choice_category',
         (v) => $enumDecodeNullable(_$ToolCategoryEnumMap, v),
       ),
+      startingEquipment: $checkedConvert(
+        'starting_equipment',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map(
+                  (e) => StartingEquipmentOption.fromJson(
+                    e as Map<String, dynamic>,
+                  ),
+                )
+                .toList() ??
+            const <StartingEquipmentOption>[],
+      ),
     );
     return val;
   },
@@ -662,6 +711,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     'toolProficiencies': 'tool_proficiencies',
     'toolChoiceCount': 'tool_choice_count',
     'toolChoiceCategory': 'tool_choice_category',
+    'startingEquipment': 'starting_equipment',
   },
 );
 
@@ -695,6 +745,9 @@ Map<String, dynamic> _$ClassDataToJson(
       .toList(),
   'tool_choice_count': instance.toolChoiceCount,
   'tool_choice_category': ?_$ToolCategoryEnumMap[instance.toolChoiceCategory],
+  'starting_equipment': instance.startingEquipment
+      .map((e) => e.toJson())
+      .toList(),
 };
 
 _SubclassData _$SubclassDataFromJson(Map<String, dynamic> json) =>

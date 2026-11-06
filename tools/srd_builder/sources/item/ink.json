@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:ink",
+  "type": "item",
+  "name": "Encre",
+  "data": {
+    "cost_cp": 1000
+  },
+  "text": {
+    "fr": "Conditionnée en bouteille de 30 ml, cette quantité d’encre permet de noircir environ 500 pages."
+  }
+}

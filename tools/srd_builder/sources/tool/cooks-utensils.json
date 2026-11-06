@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:cooks-utensils",
+  "type": "tool",
+  "name": "Ustensiles de cuisinier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:wisdom",
+    "weight_kg": 4.0,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Caractéristique : Sagesse\nPoids : 4 kg\nUtilisation : améliorer la saveur des aliments (DD 10), détecter si un plat est avarié ou empoisonné (DD 15)\nArtisanat : rations"
+  }
+}

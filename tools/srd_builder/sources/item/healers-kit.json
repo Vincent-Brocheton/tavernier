@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 1.5,
     "cost_cp": 500
+  },
+  "text": {
+    "fr": "Une trousse de soins dispose de dix charges. Par une action Utilisation, dépenser une charge permet de stabiliser une créature avec l’état Inconscient et tombée à 0 point de vie sans passer par un test de Sagesse (Médecine)."
   }
 }

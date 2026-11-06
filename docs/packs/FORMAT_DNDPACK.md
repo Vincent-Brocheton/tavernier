@@ -77,6 +77,10 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `tool_proficiencies` : outils maîtrisés d'office ;
   - `tool_choice_count` et `tool_choice_category` : outils à choisir dans une catégorie.
   - `weapon_proficiencies` : `simple`, `martial`, ou une partie des armes de guerre : `martial_light` (Moine) ou `martial_finesse_or_light` (Roublard).
+  - `starting_equipment` : options d'équipement de départ dans l'ordre du SRD (A, B, C). Chaque option porte :
+    - `items` : `{item, quantity}`, où `item` est une arme, une armure, un outil ou un objet (« 20 flèches » donne l'objet « Flèches (20) » × 1) ;
+    - `tool_choice` : catégories d'outil, dans lesquelles on choisit un outil (`musical_instrument` pour le Barde) ;
+    - `gold` : pièces d'or.
 
   Dans `levels[].columns`, toutes les valeurs sont des entiers. Le suffixe de la colonne dit comment lire la case de la table :
   - `_die` : le nombre de faces d'un dé (`bardic_die: 8`, `martial_arts_die: 6`) ;

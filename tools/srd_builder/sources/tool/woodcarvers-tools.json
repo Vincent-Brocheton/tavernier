@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:woodcarvers-tools",
+  "type": "tool",
+  "name": "Outils de menuisier",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 2.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 2,5 kg\nUtilisation : sculpter un motif dans le bois (DD 10)\nArtisanat : armes à distance (sauf fronde, mousquet et pistolet), bâton de combat, carreaux d’arbalète, dards de sarbacane, flèches, focaliseur arcanique, focaliseur druidique, porte-plume"
+  }
+}

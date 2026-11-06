@@ -269,6 +269,34 @@
           "unarmored_movement_feet": 30
         }
       }
+    ],
+    "starting_equipment": [
+      {
+        "items": [
+          {
+            "item": "srd:weapon:spear",
+            "quantity": 1
+          },
+          {
+            "item": "srd:weapon:dagger",
+            "quantity": 5
+          },
+          {
+            "item": "srd:item:explorers-pack",
+            "quantity": 1
+          }
+        ],
+        "tool_choice": [
+          "artisan",
+          "musical_instrument"
+        ],
+        "gold": 11
+      },
+      {
+        "items": [],
+        "tool_choice": [],
+        "gold": 50
+      }
     ]
   }
 }

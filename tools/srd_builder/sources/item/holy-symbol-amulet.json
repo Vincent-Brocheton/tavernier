@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:holy-symbol-amulet",
+  "type": "item",
+  "name": "Symbole sacré (amulette)",
+  "data": {
+    "weight_kg": 0.5,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Un symbole sacré, qui prend l’une des formes proposées dans la table Symboles sacrés, est serti de pierreries ou peint afin de canaliser la magie divine. Clercs et Paladins peuvent se servir d’un symbole sacré comme focaliseur d’incantation.\nLa table indique si un symbole sacré doit être tenu, porté ou cousu sur une étoffe, par exemple sur un tabard ou une bannière, ou fixé sur un bouclier."
+  }
+}

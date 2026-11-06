@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:barrel",
+  "type": "item",
+  "name": "Tonneau",
+  "data": {
+    "weight_kg": 35.0,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Un tonneau contient jusqu’à 140 litres de liquide ou 0,12 m3 de solide."
+  }
+}

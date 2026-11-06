@@ -20,6 +20,7 @@ Map<String, Object?> _wizard({Map<String, Object?> data = const {}}) => {
     'tool_proficiencies': <String>[],
     'tool_choice_count': 0,
     'spell_list': <String>[],
+    'starting_equipment': <Object?>[],
     'levels': [
       {
         'level': 1,
@@ -88,6 +89,50 @@ void main() {
       (3, ToolCategory.musicalInstrument),
     );
     expect(entity.toJson(), json);
+  });
+
+  test('équipement de départ : objets, outil à choisir, or (Barde)', () {
+    final json = _wizard(
+      data: {
+        'starting_equipment': [
+          {
+            'items': [
+              {'item': 'srd:weapon:dagger', 'quantity': 2},
+            ],
+            'tool_choice': ['musical_instrument'],
+            'gold': 19,
+          },
+          {'items': <Object?>[], 'tool_choice': <Object?>[], 'gold': 90},
+        ],
+      },
+    );
+    final entity = parseEntity(json, 'class/bard.json').entity!;
+    final options = (entity.data as ClassData).startingEquipment;
+    expect(options, hasLength(2));
+    expect(options.first.items.single.quantity, 2);
+    expect(options.first.toolChoice, [ToolCategory.musicalInstrument]);
+    expect([for (final o in options) o.gold], [19, 90]);
+    expect(entity.toJson(), json);
+  });
+
+  test('un objet d’équipement de départ qui n’est pas un objet est refusé', () {
+    final wizard = entity(
+      _wizard(
+        data: {
+          'starting_equipment': [
+            {
+              'items': [
+                {'item': 'srd:ability:int', 'quantity': 1},
+              ],
+              'gold': 5,
+            },
+          ],
+        },
+      ),
+    );
+    final issues = validatePack(_pack([wizard, ability('int'), ability('wis')]))
+        .map((i) => '$i');
+    expect(issues, contains(contains('srd:ability:int')));
   });
 
   test('une classe sans sorts reste valide, liste vide', () {

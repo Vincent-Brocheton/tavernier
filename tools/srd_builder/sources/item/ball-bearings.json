@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:ball-bearings",
+  "type": "item",
+  "name": "Billes",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous pouvez déverser les billes de leur sacoche. Elles se répandent sur une suface plane de 3 m x 3 m, à une distance maximale de 3 m. Une créature qui traverse cette zone pour la première fois d’un tour doit réussir un jet de sauvegarde de Dextérité DD 10 sous peine de subir l’état À terre. 10 minutes sont nécessaires pour récupérer les billes."
+  }
+}

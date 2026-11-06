@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:bucket",
+  "type": "item",
+  "name": "Seau",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 5
+  },
+  "text": {
+    "fr": "Un seau contient 15 litres de liquide ou 0,015 m3."
+  }
+}

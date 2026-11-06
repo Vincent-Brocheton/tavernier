@@ -7,5 +7,8 @@
     "ability": "srd:ability:intelligence",
     "weight_kg": 1.5,
     "cost_cp": 500
+  },
+  "text": {
+    "fr": "Caractéristique : Intelligence\nPoids : 1,5 kg\nUtilisation : identifier une plante (DD 10)\nArtisanat : antidote, bougie, trousse de soins, potion de guérison"
   }
 }

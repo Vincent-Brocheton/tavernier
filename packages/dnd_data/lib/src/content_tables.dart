@@ -199,6 +199,22 @@ class BackgroundEquipmentOptions extends Table with PackOwned {
   Set<Column<Object>> get primaryKey => {backgroundId, option};
 }
 
+/// Options d'équipement de départ d'une classe (A, B, C), dans l'ordre du
+/// SRD.
+@DataClassName('ClassEquipmentOptionRow')
+class ClassEquipmentOptions extends Table with PackOwned {
+  @override
+  String get tableName => 'class_equipment_option';
+  TextColumn get classId => text()();
+  TextColumn get option => text()(); // A
+  TextColumn get items => text()(); // JSON
+  TextColumn get toolChoice => text()(); // JSON
+  IntColumn get gold => integer()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {classId, option};
+}
+
 @DataClassName('FeatRow')
 class Feats extends Table with ContentEntityColumns {
   @override

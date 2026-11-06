@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:bell",
+  "type": "item",
+  "name": "Cloche",
+  "data": {
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Actionnée par une action Utilisation, une cloche produit un son audible à 18 m."
+  }
+}

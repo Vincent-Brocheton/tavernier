@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:ladder",
+  "type": "item",
+  "name": "Échelle",
+  "data": {
+    "weight_kg": 12.5,
+    "cost_cp": 10
+  },
+  "text": {
+    "fr": "Une échelle mesure 3 m de haut. Grimper dessus permet de monter ou descendre."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:string",
+  "type": "item",
+  "name": "Ficelle",
+  "data": {
+    "cost_cp": 10
+  },
+  "text": {
+    "fr": "Cette ficelle mesure 3 m de long. Vous pouvez y faire un nœud par une action Utilisation."
+  }
+}

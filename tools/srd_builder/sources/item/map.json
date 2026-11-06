@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:map",
+  "type": "item",
+  "name": "Carte",
+  "data": {
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Si vous consultez une carte précise, vous recevez un bonus de +5 aux tests de Sagesse (Survie) effectués pour trouver votre chemin dans le lieu représenté sur la carte."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:basic-poison",
+  "type": "item",
+  "name": "Poison standard",
+  "data": {
+    "cost_cp": 10000
+  },
+  "text": {
+    "fr": "Par une action Bonus, utiliser une fiole de poison standard vous permet d’enduire une arme ou jusqu’à trois munitions. Une créature qui subit des dégâts perforants ou tranchants de l’arme ou des munitions empoisonnées subit 1d4 dégâts de poison supplémentaires. Une fois appliqué, le poison conserve sa virulence pendant 1 minute ou jusqu’à ce que ces dégâts soient infligés, selon ce qui survient en premier."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:block-and-tackle",
+  "type": "item",
+  "name": "Palan",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 100
+  },
+  "text": {
+    "fr": "Un palan vous permet de soulever jusqu’à quatre fois le poids que vous pouvez normalement soulever."
+  }
+}

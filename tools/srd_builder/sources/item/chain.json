@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:chain",
+  "type": "item",
+  "name": "Chaîne",
+  "data": {
+    "weight_kg": 5.0,
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Par une action Utilisation, vous enroulez une chaîne autour d’une créature non consentante dans un rayon de 1,50 m subissant l’état Agrippé, Entravé ou Neutralisé pour peu que vous réussissiez un test de Force (Athlétisme) DD 13. Si la créature a les jambes enchaînées, elle subit l’état Entravé jusqu’à ce qu’elle se libère. Se libérer de la chaîne nécessite que la créature réussisse un test de Dextérité (Acrobaties) DD 18 au prix d’une action. Briser cette chaîne nécessite de réussir un test de Force (Athlétisme) DD 20 au prix d’une action."
+  }
+}

@@ -48,6 +48,16 @@ final _wizard = parseEntity({
     'tool_choice_count': 3,
     'tool_choice_category': 'musical_instrument',
     'spellcasting_ability': 'srd:ability:intelligence',
+    'starting_equipment': [
+      {
+        'items': [
+          {'item': 'srd:weapon:dagger', 'quantity': 2},
+        ],
+        'tool_choice': ['musical_instrument'],
+        'gold': 5,
+      },
+      {'gold': 55},
+    ],
   },
 }, 'wizard').entity!;
 
@@ -119,6 +129,19 @@ void main() {
     expect(
       [for (final r in rows) r.read<String>('spell_id')],
       ['srd:spell:fireball', 'srd:spell:raise-dead'],
+    );
+  });
+
+  test('équipement de départ dans class_equipment_option', () async {
+    final rows = await db
+        .customSelect(
+          'SELECT option, gold FROM class_equipment_option '
+          "WHERE class_id = 'srd:class:wizard' ORDER BY option",
+        )
+        .get();
+    expect(
+      [for (final r in rows) (r.read<String>('option'), r.read<int>('gold'))],
+      [('A', 5), ('B', 55)],
     );
   });
 

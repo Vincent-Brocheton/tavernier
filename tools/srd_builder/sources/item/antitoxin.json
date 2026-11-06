@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:antitoxin",
+  "type": "item",
+  "name": "Antidote",
+  "data": {
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Par une action Bonus, vous pouvez boire le contenu d’une fiole d’antidote pour recevoir l’Avantage aux jets de sauvegarde visant à éviter l’état Empoisonné pendant 1 heure ou à y mettre un terme."
+  }
+}

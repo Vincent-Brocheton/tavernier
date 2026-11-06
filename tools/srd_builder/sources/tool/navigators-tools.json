@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:navigators-tools",
+  "type": "tool",
+  "name": "Instruments de navigateur",
+  "data": {
+    "category": "other",
+    "ability": "srd:ability:wisdom",
+    "weight_kg": 1.0,
+    "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Caractéristique : Sagesse\nPoids : 1 kg\nUtilisation : tracer un cap (DD 10), déterminer sa position en observant les étoiles (DD 15)"
+  }
+}

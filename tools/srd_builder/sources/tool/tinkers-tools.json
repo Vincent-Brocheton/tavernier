@@ -1,0 +1,14 @@
+{
+  "id": "srd:tool:tinkers-tools",
+  "type": "tool",
+  "name": "Outils de bricoleur",
+  "data": {
+    "category": "artisan",
+    "ability": "srd:ability:dexterity",
+    "weight_kg": 5.0,
+    "cost_cp": 5000
+  },
+  "text": {
+    "fr": "Caractéristique : Dextérité\nPoids : 5 kg\nUtilisation : assembler un objet de taille TP composé de ferraille, qui se désagrège au bout de 1 minute (DD 20)\nArtisanat : mousquet, pistolet, boîte à amadou, cloche, lanterne à capote, lanterne sourde, menottes, pelle, piège à mâchoires, serrure, sifflet"
+  }
+}

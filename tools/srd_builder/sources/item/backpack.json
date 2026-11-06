@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:backpack",
+  "type": "item",
+  "name": "Sac à dos",
+  "data": {
+    "weight_kg": 2.5,
+    "cost_cp": 200
+  },
+  "text": {
+    "fr": "Un sac à dos contient jusqu’à 15 kg pour un volume de 30 litres ou 0,03 m3. Il peut également servir de sacoche de selle."
+  }
+}

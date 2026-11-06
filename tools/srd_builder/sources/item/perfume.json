@@ -1,0 +1,11 @@
+{
+  "id": "srd:item:perfume",
+  "type": "item",
+  "name": "Parfum",
+  "data": {
+    "cost_cp": 500
+  },
+  "text": {
+    "fr": "Le parfum est présenté dans un flacon de 120 ml. Pendant 1 heure après vous être appliqué du parfum, vous avez l’Avantage aux tests de Charisme (Persuasion) effectués afin d’influencer un Humanoïde Indifférent dans un rayon de 1,5 m."
+  }
+}

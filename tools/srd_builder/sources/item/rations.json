@@ -1,0 +1,12 @@
+{
+  "id": "srd:item:rations",
+  "type": "item",
+  "name": "Rations",
+  "data": {
+    "weight_kg": 1.0,
+    "cost_cp": 50
+  },
+  "text": {
+    "fr": "Les rations sont composées d’aliments de voyage, viande séchée, fruits secs, biscuits et fruits à coque. Voir à « Malnutrition » dans le « Glossaire de règles » pour les risques liés à l’absence de nourriture."
+  }
+}

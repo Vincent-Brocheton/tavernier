@@ -5,5 +5,8 @@
   "data": {
     "weight_kg": 2.5,
     "cost_cp": 2500
+  },
+  "text": {
+    "fr": "Un livre traite de fiction ou de non-fiction. Si vous consultez un livre de non-fiction précis sur son sujet, vous recevez un bonus de +5 aux tests d’Intelligence (Arcanes, Histoire, Nature ou Religion) que vous effectuez sur ce sujet."
   }
 }

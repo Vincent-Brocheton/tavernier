@@ -1703,6 +1703,102 @@
       ],
       "type": "table",
       "data": {
+        "name": "class_equipment_option",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "pack_id",
+            "getter_name": "packId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES content_pack (id) ON DELETE CASCADE",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES content_pack (id) ON DELETE CASCADE"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "content_pack",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "cascade"
+                }
+              }
+            ]
+          },
+          {
+            "name": "class_id",
+            "getter_name": "classId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "option",
+            "getter_name": "option",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "items",
+            "getter_name": "items",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "tool_choice",
+            "getter_name": "toolChoice",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "gold",
+            "getter_name": "gold",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "class_id",
+          "option"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "references": [
+        1
+      ],
+      "type": "table",
+      "data": {
         "name": "feat",
         "was_declared_in_moor": false,
         "columns": [
@@ -1806,7 +1902,7 @@
       }
     },
     {
-      "id": 18,
+      "id": 19,
       "references": [
         1
       ],
@@ -1911,7 +2007,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 20,
       "references": [
         1
       ],
@@ -1987,7 +2083,7 @@
       }
     },
     {
-      "id": 20,
+      "id": 21,
       "references": [
         1
       ],
@@ -2182,7 +2278,7 @@
       }
     },
     {
-      "id": 21,
+      "id": 22,
       "references": [
         1
       ],
@@ -2278,7 +2374,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 23,
       "references": [
         1
       ],
@@ -2363,7 +2459,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 24,
       "references": [
         1
       ],
@@ -2439,7 +2535,7 @@
       }
     },
     {
-      "id": 24,
+      "id": 25,
       "references": [
         1
       ],
@@ -2534,7 +2630,7 @@
       }
     },
     {
-      "id": 25,
+      "id": 26,
       "references": [
         1
       ],
@@ -2721,7 +2817,7 @@
       }
     },
     {
-      "id": 26,
+      "id": 27,
       "references": [
         1
       ],
@@ -2787,7 +2883,7 @@
       }
     },
     {
-      "id": 27,
+      "id": 28,
       "references": [
         1
       ],
@@ -2912,7 +3008,7 @@
       }
     },
     {
-      "id": 28,
+      "id": 29,
       "references": [
         1
       ],
@@ -3018,7 +3114,7 @@
       }
     },
     {
-      "id": 29,
+      "id": 30,
       "references": [
         1
       ],
@@ -3094,7 +3190,7 @@
       }
     },
     {
-      "id": 30,
+      "id": 31,
       "references": [
         1
       ],
@@ -3180,7 +3276,7 @@
       }
     },
     {
-      "id": 31,
+      "id": 32,
       "references": [
         1
       ],
@@ -3256,7 +3352,7 @@
       }
     },
     {
-      "id": 32,
+      "id": 33,
       "references": [],
       "type": "table",
       "data": {
@@ -3323,7 +3419,7 @@
       }
     },
     {
-      "id": 33,
+      "id": 34,
       "references": [],
       "type": "table",
       "data": {
@@ -3448,9 +3544,9 @@
       }
     },
     {
-      "id": 34,
+      "id": 35,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -3539,9 +3635,9 @@
       }
     },
     {
-      "id": 35,
+      "id": 36,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -3634,9 +3730,9 @@
       }
     },
     {
-      "id": 36,
+      "id": 37,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -3715,9 +3811,9 @@
       }
     },
     {
-      "id": 37,
+      "id": 38,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -3786,9 +3882,9 @@
       }
     },
     {
-      "id": 38,
+      "id": 39,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -3951,9 +4047,9 @@
       }
     },
     {
-      "id": 39,
+      "id": 40,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4042,9 +4138,9 @@
       }
     },
     {
-      "id": 40,
+      "id": 41,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4142,9 +4238,9 @@
       }
     },
     {
-      "id": 41,
+      "id": 42,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4273,9 +4369,9 @@
       }
     },
     {
-      "id": 42,
+      "id": 43,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4378,9 +4474,9 @@
       }
     },
     {
-      "id": 43,
+      "id": 44,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4453,9 +4549,9 @@
       }
     },
     {
-      "id": 44,
+      "id": 45,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4556,9 +4652,9 @@
       }
     },
     {
-      "id": 45,
+      "id": 46,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4669,9 +4765,9 @@
       }
     },
     {
-      "id": 46,
+      "id": 47,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4813,9 +4909,9 @@
       }
     },
     {
-      "id": 47,
+      "id": 48,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4908,9 +5004,9 @@
       }
     },
     {
-      "id": 48,
+      "id": 49,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -4993,9 +5089,9 @@
       }
     },
     {
-      "id": 49,
+      "id": 50,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -5068,9 +5164,9 @@
       }
     },
     {
-      "id": 50,
+      "id": 51,
       "references": [
-        38
+        39
       ],
       "type": "table",
       "data": {
@@ -5149,9 +5245,9 @@
       }
     },
     {
-      "id": 51,
+      "id": 52,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -5244,9 +5340,9 @@
       }
     },
     {
-      "id": 52,
+      "id": 53,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -5319,9 +5415,9 @@
       }
     },
     {
-      "id": 53,
+      "id": 54,
       "references": [
-        52
+        53
       ],
       "type": "table",
       "data": {
@@ -5404,9 +5500,9 @@
       }
     },
     {
-      "id": 54,
+      "id": 55,
       "references": [
-        53
+        54
       ],
       "type": "table",
       "data": {
@@ -5553,9 +5649,9 @@
       }
     },
     {
-      "id": 55,
+      "id": 56,
       "references": [
-        53
+        54
       ],
       "type": "table",
       "data": {
@@ -5658,9 +5754,9 @@
       }
     },
     {
-      "id": 56,
+      "id": 57,
       "references": [
-        33
+        34
       ],
       "type": "table",
       "data": {
@@ -5767,7 +5863,7 @@
       }
     },
     {
-      "id": 57,
+      "id": 58,
       "references": [],
       "type": "table",
       "data": {
@@ -5955,6 +6051,15 @@
         {
           "dialect": "sqlite",
           "sql": "CREATE TABLE IF NOT EXISTS \"background_equipment_option\" (\"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"background_id\" TEXT NOT NULL, \"option\" TEXT NOT NULL, \"items\" TEXT NOT NULL, PRIMARY KEY (\"background_id\", \"option\"));"
+        }
+      ]
+    },
+    {
+      "name": "class_equipment_option",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"class_equipment_option\" (\"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"class_id\" TEXT NOT NULL, \"option\" TEXT NOT NULL, \"items\" TEXT NOT NULL, \"tool_choice\" TEXT NOT NULL, \"gold\" INTEGER NOT NULL, PRIMARY KEY (\"class_id\", \"option\"));"
         }
       ]
     },
