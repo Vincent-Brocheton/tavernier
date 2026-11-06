@@ -164,6 +164,70 @@ void main() {
       );
     });
 
+    test('un sort choisi ne se reprend pas dans une autre section', () {
+      final draft = _draft(
+        'cleric',
+        'acolyte',
+        'dwarf',
+      ).togglePick(cantripsKey, 'srd:spell:guidance', 3);
+      final initiate = _section(draft, 'magic-initiate-background-cantrips');
+      expect(_blocked(initiate), ['Assistance']);
+      expect(initiate.options.first.block, OptionBlock.spellKnown);
+      final other = draft.togglePick(
+        'magic-initiate-background-cantrips',
+        'srd:spell:mending',
+        2,
+      );
+      expect(_blocked(_section(other, cantripsKey)), contains('Réparation'));
+    });
+
+    test('un sort d’espèce ne se reprend pas', () {
+      expect(
+        _blocked(
+          _section(_draft('cleric', 'soldier', 'tiefling'), cantripsKey),
+        ),
+        ['Thaumaturgie'],
+      );
+    });
+
+    test('un sort du lignage retenu ne se reprend pas', () {
+      final draft = _draft(
+        'wizard',
+        'soldier',
+        'elf',
+      ).togglePick('elven-lineage', 'Haut-elfe', 1);
+      expect(_blocked(_section(draft, cantripsKey)), ['Prestidigitation']);
+    });
+
+    test('un sort accordé par la classe ne se prépare pas (Rôdeur)', () {
+      expect(
+        _blocked(_section(_draft('ranger', 'soldier', 'dwarf'), preparedKey)),
+        ['Marque du chasseur'],
+      );
+    });
+
+    test('devenu connu par un autre choix : à refaire', () {
+      final draft = _draft('wizard', 'soldier', 'elf')
+          .togglePick(cantripsKey, 'srd:spell:prestidigitation', 3)
+          .togglePick('elven-lineage', 'Haut-elfe', 1);
+      final cantrips = _section(draft, cantripsKey);
+      expect(cantrips.invalid.single.label, 'Prestidigitation');
+      expect(cantrips.complete, isFalse);
+    });
+
+    test('Magicien : grimoire et sorts préparés ne se bloquent pas', () {
+      var draft = _draft('wizard', 'soldier', 'dwarf');
+      final six = [
+        for (final o in _section(draft, spellbookKey).options.take(6)) o.id,
+      ];
+      for (final id in six) {
+        draft = draft.toggleSpellbook(id, 6);
+      }
+      draft = draft.togglePick(preparedKey, six.first, 4);
+      expect(_blocked(_section(draft, spellbookKey)), isEmpty);
+      expect(_blocked(_section(draft, preparedKey)), isEmpty);
+    });
+
     test('Thaumaturge : un sort mineur de plus', () {
       final draft = _draft(
         'cleric',

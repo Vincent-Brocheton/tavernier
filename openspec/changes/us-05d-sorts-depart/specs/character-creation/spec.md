@@ -27,6 +27,25 @@ L'étape Sous-choix SHALL demander à un lanceur de sorts ses sorts de niveau 1,
 - **WHEN** le joueur change de classe
 - **THEN** ses sorts de classe sont effacés
 
+### Requirement: Un sort ne se prend pas deux fois
+L'étape Sous-choix SHALL griser, avec la règle, un sort déjà choisi dans une autre section ou accordé au niveau 1 par la classe, l'espèce ou un lignage. Le grimoire et les sorts préparés du Magicien SHALL rester exemptés entre eux.
+
+#### Scenario: Sort d'espèce
+- **WHEN** un Clerc Tieffelin choisit ses sorts mineurs
+- **THEN** Thaumaturgie est grisée avec la règle
+
+#### Scenario: Sort pris par l'Initié à la magie
+- **WHEN** un Clerc Acolyte a choisi Assistance comme sort mineur de classe
+- **THEN** Assistance est grisée dans les sorts mineurs de l'Initié à la magie
+
+#### Scenario: Sort accordé par la classe
+- **WHEN** un Rôdeur choisit ses sorts préparés
+- **THEN** Marque du chasseur est grisée avec la règle
+
+#### Scenario: Sort devenu connu
+- **WHEN** un Magicien a choisi Prestidigitation, puis choisit le lignage Haut-elfe
+- **THEN** Prestidigitation est signalée « À refaire »
+
 ### Requirement: Initié à la magie
 L'étape Sous-choix SHALL demander, pour chaque Initié à la magie, la caractéristique d'incantation, 2 sorts mineurs et 1 sort du 1er niveau de sa liste. Un Historique SHALL imposer sa liste. Pris par Polyvalent, le don SHALL proposer le Clerc, le Druide et le Magicien.
 

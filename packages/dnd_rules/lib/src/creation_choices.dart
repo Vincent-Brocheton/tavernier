@@ -10,6 +10,7 @@ final class ChoiceOption {
     required this.label,
     required this.expertise,
     required this.bonusCantrips,
+    required this.spells,
   });
 
   /// Valeur à enregistrer dans `choices`.
@@ -21,6 +22,9 @@ final class ChoiceOption {
 
   /// Sorts mineurs de classe supplémentaires (Thaumaturge).
   final int bonusCantrips;
+
+  /// Sorts que l'option accorde au niveau 1.
+  final List<String> spells;
 }
 
 /// Un effet `choice` ouvert au niveau 1.
@@ -92,11 +96,32 @@ List<ChoiceOption> _options(ActiveContent content, Effect choice) {
                   e.op == 'grant_spell_list_access' && e.args['max_level'] == 0,
             )
             .fold(0, (sum, e) => sum + (e.args['count']! as int)),
+        spells: _grantedBy(effects).toList(),
       ),
     );
   }
   return options;
 }
+
+Iterable<String> _grantedBy(Iterable<Effect> effects) => [
+  for (final effect in effects)
+    if (effect.op == 'grant_spell' && _atLevelOne(effect))
+      effect.args['spell']! as String,
+];
+
+/// Sorts accordés au niveau 1 par [sourceIds], avec les options retenues de
+/// [choices].
+Set<String> grantedSpells(
+  ActiveContent content,
+  Iterable<String> sourceIds,
+  Map<String, List<String>> choices,
+) => {
+  for (final id in sourceIds)
+    ..._grantedBy(content.entity(id)?.effects ?? const []),
+  for (final choice in openChoices(content, sourceIds))
+    for (final option in choice.options)
+      if (choices[choice.id]?.contains(option.pick) ?? false) ...option.spells,
+};
 
 /// Sorts mineurs de [data] au niveau 1.
 int cantripsAtFirstLevel(ClassData data) =>

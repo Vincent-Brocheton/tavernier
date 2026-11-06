@@ -129,6 +129,10 @@ class _Section extends ConsumerWidget {
     final sameList = section.options.any(
       (o) => o.block == OptionBlock.sameList,
     );
+    final knownSpells = [
+      for (final o in section.options)
+        if (o.block == OptionBlock.spellKnown) o.label,
+    ];
     final invalid = section.invalid;
     return Container(
       padding: EdgeInsets.all(AppSpacing.md),
@@ -195,6 +199,14 @@ class _Section extends ConsumerWidget {
             Padding(
               padding: EdgeInsets.only(top: AppSpacing.xs),
               child: Text(l10n.sameListRule, style: text.bodySmall),
+            ),
+          if (knownSpells.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                l10n.spellKnownRule(knownSpells.join(', ')),
+                style: text.bodySmall,
+              ),
             ),
         ],
       ),

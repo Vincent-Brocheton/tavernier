@@ -34,6 +34,18 @@ const preparedKey = '${classSpellsPrefix}prepared';
 String initiateKey(InitiatePlace place, String field) =>
     'magic-initiate-${place.name}-$field';
 
+const bookAndPrepared = {spellbookKey, preparedKey};
+
+/// Clés dont les sélections sont des sorts.
+final spellKeys = [
+  cantripsKey,
+  ...bookAndPrepared,
+  for (final place in InitiatePlace.values) ...[
+    initiateKey(place, 'cantrips'),
+    initiateKey(place, 'spell'),
+  ],
+];
+
 /// Raison pour laquelle une option n'est pas disponible.
 enum OptionBlock {
   /// Maîtrise déjà acquise : elle ne se prend pas deux fois.
@@ -47,6 +59,9 @@ enum OptionBlock {
 
   /// Liste de sorts déjà prise par le même don.
   sameList,
+
+  /// Sort déjà connu : il ne se prend pas deux fois.
+  spellKnown,
 }
 
 /// Une option de section.
@@ -191,13 +206,34 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
   final classSkills = {for (final skill in cls.skillChoices) '$skill'};
   final skillsTaken = {...fromBackground, ...pickedElsewhere('classSkills')};
   late final spells = sortedEntities(content, 'spell');
-  List<SubchoiceOption> spellOptions(Iterable<ContentId> list, int level) {
+  final granted = grantedSpells(content, sources, draft.choices);
+  // Sorts connus par un autre biais que [key]. Le grimoire et les sorts
+  // préparés du Magicien sont les mêmes : ils ne se bloquent pas entre eux.
+  Set<String> knownElsewhere(String key) => {
+    ...granted,
+    for (final other in spellKeys)
+      if (other != key &&
+          !(bookAndPrepared.contains(key) && bookAndPrepared.contains(other)))
+        ...?draft.choices[other],
+  };
+  List<SubchoiceOption> spellOptions(
+    Iterable<ContentId> list,
+    int level,
+    String key,
+  ) {
     final ids = {for (final id in list) '$id'};
+    final known = knownElsewhere(key);
     return [
       for (final spell in spells)
         if (ids.contains('${spell.id}') &&
             (spell.data as SpellData).level == level)
-          SubchoiceOption(id: '${spell.id}', label: spell.name),
+          SubchoiceOption(
+            id: '${spell.id}',
+            label: spell.name,
+            block: known.contains('${spell.id}')
+                ? OptionBlock.spellKnown
+                : null,
+          ),
     ];
   }
 
@@ -275,14 +311,14 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
           'cantrips',
           magicInitiateCantrips,
           list: list,
-          spellOptions(spellList, 0),
+          spellOptions(spellList, 0, initiateKey(place, 'cantrips')),
         ),
         section(
           SubchoiceKind.initiateSpell,
           'spell',
           magicInitiateSpells,
           list: list,
-          spellOptions(spellList, 1),
+          spellOptions(spellList, 1, initiateKey(place, 'spell')),
         ),
       ],
     ];
@@ -373,18 +409,18 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
         SubchoiceKind.cantrips,
         cantripsKey,
         cantrips,
-        spellOptions(cls.spellList, 0),
+        spellOptions(cls.spellList, 0, cantripsKey),
       ),
     if (book > 0)
       pick(
         SubchoiceKind.spellbook,
         spellbookKey,
         book,
-        spellOptions(cls.spellList, 1),
+        spellOptions(cls.spellList, 1, spellbookKey),
       ),
     if (prepared > 0 && inBook.length == book)
       pick(SubchoiceKind.preparedSpells, preparedKey, prepared, [
-        for (final option in spellOptions(cls.spellList, 1))
+        for (final option in spellOptions(cls.spellList, 1, preparedKey))
           if (book == 0 || inBook.contains(option.id)) option,
       ]),
     if ('${background?.originFeat}' == magicInitiateFeat)

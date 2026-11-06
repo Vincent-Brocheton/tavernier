@@ -11,4 +11,5 @@
 ## 3. Écran
 
 - [x] 3.1 Tests puis titres, règle de la liste grisée et ARB
+- [x] 2.3 Tests puis blocage d'un sort déjà connu
 - [x] 3.2 Vérification dans le navigateur avec un Magicien et un Humain Acolyte

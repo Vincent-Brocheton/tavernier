@@ -15,6 +15,7 @@ La maquette [P5] ne montre pas de sorts : les sections reprennent ses puces et s
   - Un Historique impose sa liste (Acolyte : Clerc, Sage : Magicien).
   - Pris par Polyvalent, le joueur choisit entre Clerc, Druide et Magicien. La liste déjà prise par l'Historique est grisée : le don se reprend avec une autre liste.
 - **Caractéristique d'incantation des lignages :** Lignage elfique, Lignage gnome et Héritage fiélon demandent de choisir Intelligence, Sagesse ou Charisme. `choice` reçoit `title`, qui distingue ce choix de celui du lignage.
+- **Un sort ne se prend pas deux fois** (décision du porteur de projet, 6 nov. 2026) : un sort déjà choisi, ou accordé au niveau 1 par la classe, l'espèce ou un lignage, est grisé avec la règle.
 - **`dnd_rules` :** règles de ces comptes et listes, pour qu'aucune valeur de règle ne soit en dur dans l'app.
 
 ## Capabilities
@@ -39,4 +40,4 @@ Aucune.
 **Hors périmètre :**
 - **`CharacterInput` et base :** le champ `spells` et son enregistrement arrivent avec la conversion du brouillon, au lot 3. Les sélections vivent dans le brouillon, sous `choices`.
 - **Validation et calcul des sorts par `computeSheet` :** US-09.
-- **Sort connu deux fois :** le SRD ne l'interdit pas, l'écran ne le bloque donc pas.
+- **Sort acquis par une sous-classe alors qu'il est déjà connu :** seule exception à la règle ci-dessus, à traiter à la montée de niveau, les sous-classes n'arrivant pas au niveau 1.

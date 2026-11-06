@@ -763,5 +763,14 @@
   "sameListRule": "Ce don se reprend avec une autre liste de sorts.",
   "@sameListRule": {
     "description": "Règle sous la liste de sorts."
+  },
+  "spellKnownRule": "{names} : déjà connu, un sort ne se prend pas deux fois.",
+  "@spellKnownRule": {
+    "description": "Règle sous une section de sorts.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
   }
 }

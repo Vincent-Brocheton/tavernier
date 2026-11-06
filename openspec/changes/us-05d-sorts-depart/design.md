@@ -17,6 +17,7 @@
 4. **Règles dans `dnd_rules`.** `cantripsAtFirstLevel`, `preparedAtFirstLevel`, `spellbookSize` et les constantes de l'Initié. `ChoiceOption.bonusCantrips` lit `grant_spell_list_access` limité aux sorts mineurs.
 5. **L'Initié reste codé dans `dnd_rules`.** Ses choix dépendent les uns des autres : le DSL ne sait pas les exprimer. Un don homebrew équivalent ne profitera pas de ces sections.
 6. **`choice.title`.** Deux choix du même trait auraient le même titre. Le pack nomme le second : « Caractéristique d'incantation ».
+7. **Sort déjà connu.** `knownElsewhere` réunit `grantedSpells` et les sélections des autres sections. Le grimoire et les sorts préparés du Magicien sont les mêmes sorts et ne se bloquent pas entre eux. Un sort qui devient connu après coup, par un lignage par exemple, reste sélectionné et passe « À refaire ».
 
 ## Risques
 

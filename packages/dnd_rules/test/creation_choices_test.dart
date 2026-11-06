@@ -55,6 +55,37 @@ void main() {
     });
   });
 
+  group('sorts accordés au niveau 1', () {
+    test('Haut-elfe : prestidigitation, pas les sorts des niveaux 3 et 5', () {
+      expect(
+        grantedSpells(
+          content,
+          ['srd:feature:elf-elven-lineage'],
+          {
+            'elven-lineage': ['Haut-elfe'],
+          },
+        ),
+        {'srd:spell:prestidigitation'},
+      );
+    });
+
+    test('lignage pas encore choisi : aucun sort', () {
+      expect(
+        grantedSpells(content, ['srd:feature:elf-elven-lineage'], const {}),
+        isEmpty,
+      );
+    });
+
+    test('Tieffelin : thaumaturgie', () {
+      expect(
+        grantedSpells(content, [
+          'srd:feature:tiefling-otherworldly-presence',
+        ], const {}),
+        {'srd:spell:thaumaturgy'},
+      );
+    });
+  });
+
   test('Lignage elfique : le choix de caractéristique porte un titre', () {
     final choices = openChoices(content, ['srd:feature:elf-elven-lineage']);
     expect(choices.first.title, isNull);

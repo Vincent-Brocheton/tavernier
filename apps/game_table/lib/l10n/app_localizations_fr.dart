@@ -522,4 +522,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sameListRule => 'Ce don se reprend avec une autre liste de sorts.';
+
+  @override
+  String spellKnownRule(String names) {
+    return '$names : déjà connu, un sort ne se prend pas deux fois.';
+  }
 }

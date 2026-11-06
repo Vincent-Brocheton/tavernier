@@ -919,6 +919,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ce don se reprend avec une autre liste de sorts.'**
   String get sameListRule;
+
+  /// Règle sous une section de sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{names} : déjà connu, un sort ne se prend pas deux fois.'**
+  String spellKnownRule(String names);
 }
 
 class _AppLocalizationsDelegate
