@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:horn-of-valhalla",
+  "type": "magic-item",
+  "name": "Cor du Valhalla",
+  "data": {
+    "category": "wondrous",
+    "rarity": "varies",
+    "type_line": "Objet merveilleux, rare (argent ou airain), très rare (bronze) ou légendaire (fer)",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Souffler dans le cor s’effectue au prix de l’action Magie. En réponse, des esprits guerriers du plan d’Ysgard apparaissent en des espaces inoccupés dans un rayon de 18 m de vous. Chaque esprit utilise le profil berserker et retourne en Ysgard au bout de 1 heure, ou quand il tombe à 0 point de vie. Ces esprits ont l’aspect de combattants vivants et respirants, et bénéficient de l’Immunité contre les états Charmé et Effrayé. Une fois ce cor utilisé, il ne peut plus resservir pendant 7 jours.\nQuatre types de cor du Valhalla sont connus, chacun fait d’un métal différent. Le type de cor détermine combien d’esprits répondent à l’invocation, ainsi que l’éventuel prérequis pour son utilisation. Le MJ en choisit le type ou le détermine aléatoirement selon la table suivante.\nSi vous soufflez dans le cor sans répondre au prérequis, les esprits invoqués vous attaquent. Si vous remplissez le prérequis, ils sont Amicaux envers vous et vos alliés, et obéissent à vos ordres.\n1d100 | Type de cor | Esprits | Prérequis\n01–40 | Argent | 2 | Aucun\n41–75 | Airain | 3 | Maîtrise de toutes les armes courantes\n76–90 | Bronze | 4 | Formation au port de toutes les armures intermédiaires\n91–00 | Fer | 5 | Maîtrise de toutes les armes de guerre"
+  }
+}

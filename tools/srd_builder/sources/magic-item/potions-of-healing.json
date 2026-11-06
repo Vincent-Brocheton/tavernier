@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potions-of-healing",
+  "type": "magic-item",
+  "name": "Potions de guérison",
+  "data": {
+    "category": "potion",
+    "rarity": "varies",
+    "type_line": "Potion, rareté variable",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous récupérez des points de vie en buvant cette potion. Le nombre de points de vie dépend de la rareté de la potion, comme indiqué sur la table ci-après.\nQuelle que soit la puissance de la potion, son liquide rouge étincelle lorsqu’on l’agite.\nPotion | Pv récupérés | Rareté\nPotion de guérison | 2d4 + 2 | Courante\nPotion de guérison (importante) | 4d4 + 4 | Peu courante\nPotion de guérison (supérieure) | 8d4 + 8 | Rare\nPotion de guérison (suprême) | 10d4 + 20 | Très rare"
+  }
+}

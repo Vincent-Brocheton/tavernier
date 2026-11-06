@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:bead-of-nourishment",
+  "type": "magic-item",
+  "name": "Perle nutritive",
+  "data": {
+    "category": "wondrous",
+    "rarity": "common",
+    "type_line": "Objet merveilleux, courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette perle gélatineuse sans saveur fond sur la langue et fournit l’équivalent nutritif de 1 jour de rations."
+  }
+}

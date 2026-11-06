@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:shield-plus-1-2-or-3",
+  "type": "magic-item",
+  "name": "Bouclier +1, +2 ou +3",
+  "data": {
+    "category": "armor",
+    "rarity": "varies",
+    "type_line": "Armure (bouclier), peu courante (+1), rare (+2) ou très rare (+3)",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous tenez ce bouclier, vous bénéficiez à la classe d’armure d’un bonus déterminé par la rareté du bouclier, en plus du bonus normal du bouclier à la CA."
+  }
+}

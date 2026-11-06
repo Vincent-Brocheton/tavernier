@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-poison",
+  "type": "magic-item",
+  "name": "Potion toxique",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette décoction a l’apparence, l’odeur et le goût d’une potion de guérison ou d’une autre potion bénéfique. Il s’agit toutefois d’un poison masqué par quelque illusion magique. Le sort identification révèle sa véritable nature.\nSi vous en buvez le contenu, vous subissez 4d6 dégâts de poison et devez réussir un jet de sauvegarde de Constitution DD 13 sous peine de subir l’état Empoisonné pendant 1 heure."
+  }
+}

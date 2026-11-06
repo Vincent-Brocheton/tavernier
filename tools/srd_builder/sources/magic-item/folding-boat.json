@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:folding-boat",
+  "type": "magic-item",
+  "name": "Bateau pliable",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cet objet apparaît d’emblée comme une caisse oblongue en bois, longue de 30 cm pour une largeur et une hauteur de 15 cm. Elle pèse 2 kg et flotte. Il est possible de l’ouvrir et de ranger des objets à l’intérieur. L’objet est aussi doté de trois mots de commande, chacun nécessitant l’action Magie :\nPremier mot de commande. La caisse se déplie pour former une barque.\nDeuxième mot de commande. La caisse se déplie pour former une barge.\nTroisième mot de commande. Le bateau pliable se replie et retrouve sa forme de caisse si aucune créature ne se trouve à bord. Les objets restés à bord et qui ne tiennent pas dans cette caisse se retrouvent à l’extérieur de celle-ci lorsqu’elle se replie. Tout objet resté à bord du navire et qui tient dans la caisse y est rangé.\nLorsque la caisse se transforme en véhicule, son poids devient celui d’un bâtiment normal de son gabarit, et tout ce qui était rangé dans la caisse reste à bord.\nLes profils de la barque et de la barge sont disponibles en section « Équipement ». Si l’un ou l’autre véhicule est réduit à 0 point de vie, le bateau pliable est détruit."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-longevity",
+  "type": "magic-item",
+  "name": "Élixir de jouvence",
+  "data": {
+    "category": "potion",
+    "rarity": "very_rare",
+    "type_line": "Potion, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cet élixir, votre âge physique diminue de 1d6 + 6 ans, jusqu’à un minimum de 13 ans. Chaque fois que vous ingérez un élixir de jouvence au-delà du premier, il y a 10 % de chances cumulatives que vous vieillissiez au contraire de 1d6 + 6 ans.\nUn minuscule cœur en suspension dans ce liquide ambré bat encore, contre toute logique. Ces ingrédients disparaissent à l’ouverture de la potion."
+  }
+}

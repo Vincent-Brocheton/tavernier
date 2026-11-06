@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:dancing-sword",
+  "type": "magic-item",
+  "name": "Épée dansante",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (cimeterre, épée à deux mains, épée courte, épée longue ou rapière), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Par une action Bonus, vous lancez cette arme magique en l’air. Ce faisant, l’arme prend son envol avec le vol stationnaire et s’élance sur une distance maximale de 9 m en attaquant la créature de votre choix dans un rayon de 1,50 m d’elle. L’arme utilise votre jet d’attaque et ajoute votre modificateur de caractéristique aux jets de dégâts.\nTant que l’épée est en vol stationnaire, vous pouvez par une action Bonus la faire voler sur une distance maximale de 9 m vers un autre endroit situé dans un rayon de 9 m de vous. Dans le cadre de la même action Bonus, vous pouvez ordonner à l’arme d’attaquer une créature dans un rayon de 1,50 m d’elle.\nAprès avoir attaqué ainsi une quatrième fois, l’arme file jusqu’à vous en tentant de revenir dans votre main. Si vous n’avez aucune main libre, l’arme tombe au sol dans votre espace. En l’absence de chemin dégagé jusqu’à vous, l’arme se rapproche au maximum puis tombe au sol. Elle cesse également son vol stationnaire si vous l’empoignez ou vous retrouvez à plus de 9 m d’elle."
+  }
+}

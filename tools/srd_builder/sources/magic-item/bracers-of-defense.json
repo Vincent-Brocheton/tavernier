@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:bracers-of-defense",
+  "type": "magic-item",
+  "name": "Bracelets de défense",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ces bracelets et ne portez ni armure ni bouclier, vous recevez un bonus de +2 à la CA."
+  }
+}

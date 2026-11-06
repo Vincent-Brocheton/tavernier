@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:staff-of-healing",
+  "type": "magic-item",
+  "name": "Bâton de guérison",
+  "data": {
+    "category": "staff",
+    "rarity": "rare",
+    "type_line": "Bâton, rare (Harmonisation requise avec un Barde, Clerc ou Druide)",
+    "attunement": true,
+    "attunement_by": "un Barde, Clerc ou Druide"
+  },
+  "text": {
+    "fr": "Ce bâton dispose de 10 charges. Lorsque vous tenez le bâton, vous pouvez lancer l’un des sorts de la table suivante en prenant votre modificateur de caractéristique d’incantation. La table indique le nombre de charges à dépenser pour lancer le sort.\nSort | Coût en charges\nrestauration partielle | 2\nsoins | 1 charge par niveau de sort (maximum 4 pour un sort du 4e niveau)\nsoins de groupe | 5\nRécupération des charges. Le bâton récupère quotidiennement 1d6 + 4 charges dépensées, à l’aube.\nSi vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le bâton disparaît dans un éclat de lumière, perdu à jamais."
+  }
+}

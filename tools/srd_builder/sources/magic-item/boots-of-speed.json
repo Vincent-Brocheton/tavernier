@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:boots-of-speed",
+  "type": "magic-item",
+  "name": "Bottes de rapidité",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ces bottes, vous pouvez consacrer une action Bonus à faire claquer vos talons l’un contre l’autre. Dès lors, les bottes doublent votre Vitesse et toute créature qui effectue une attaque d’Opportunité contre vous subit le Désavantage à son jet d’attaque. Cet effet prend fin si vous faites de nouveau claquer vos talons.\nQuand la propriété des bottes a été utilisée pendant un total de 10 minutes, leur magie cesse de fonctionner jusqu’à ce que vous ayez terminé un Repos long."
+  }
+}

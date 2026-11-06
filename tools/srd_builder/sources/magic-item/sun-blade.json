@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:sun-blade",
+  "type": "magic-item",
+  "name": "Épée radieuse",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (épée longue), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cet objet se présente comme une simple poignée d’épée. Lame de radiance. Quand vous la tenez en main, vous pouvez en faire surgir une lame de lumière pure ou faire disparaître celle-ci, par une action Bonus. Tant que la lame existe, cette arme magique fonctionne comme une épée longue dotée de la propriété Finesse. Si vous avez la maîtrise des épées courtes ou des épées longues, vous avez aussi celle de cette épée radieuse.\nVous recevez un bonus de +2 aux jets d’attaque et de dégâts effectués avec cette arme, qui inflige des dégâts radiants au lieu de dégâts tranchants. Quand vous touchez un Mort-vivant avec cette arme, la cible subit 1d8 dégâts radiants supplémentaires.\nLumière du soleil. La lame lumineuse de l’épée émet une Lumière vive sur un rayon de 4,50 m et une Lumière faible sur 4,50 m de plus. Cette lumière est celle du soleil. Tant que la lame persiste, vous pouvez entreprendre l’action Magie pour étendre ou réduire ses rayons de Lumière vive et de Lumière faible de 1,50 m chacun, jusqu’à un maximum de 9 m chacun ou un minimum de 3 m chacun."
+  }
+}

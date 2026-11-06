@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:universal-solvent",
+  "type": "magic-item",
+  "name": "Solvant universel",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce tube contient un liquide laiteux qui dégage une forte odeur d’alcool. Lorsqu’on le découvre, un tel récipient contient 1d6 + 1 doses de 30 g.\nVous pouvez entreprendre l’action Utilisation pour verser une ou plusieurs doses sur une surface à portée d’allonge. Le liquide dissout instantanément jusqu’à 30 x 30 cm d’adhésif qu’il touche, y compris de la colle universelle."
+  }
+}

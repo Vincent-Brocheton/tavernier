@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:trident-of-fish-command",
+  "type": "magic-item",
+  "name": "Trident de domination aquatique",
+  "data": {
+    "category": "weapon",
+    "rarity": "uncommon",
+    "type_line": "Arme (trident), peu courante (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cette arme magique dispose de 3 charges et récupère quotidiennement 1d3 charges dépensées, à l’aube. Tant que vous la portez, vous pouvez dépenser 1 charge pour lancer le sort domination de bête (DD de sauvegarde 15) par son biais sur une Bête dotée d’une Vitesse de nage."
+  }
+}

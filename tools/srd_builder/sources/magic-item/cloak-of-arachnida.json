@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-arachnida",
+  "type": "magic-item",
+  "name": "Cape de l’arachnide",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce somptueux vêtement en soie noire est brodé de fils d’argent. Tant que vous le portez, vous recevez les bénéfices suivants :\nDéplacement arachnéen. Aucune toile d’araignée ne peut vous coincer ; vous pouvez vous déplacer librement à travers toute toile d’araignée comme s’il s’agissait d’un Terrain difficile.\nPattes d’araignée. Vous bénéficiez d’une Vitesse d’escalade égale à votre Vitesse et pouvez monter, descendre ou vous déplacer à l’horizontale sur une surface verticale ou encore au plafond, la tête en bas, tout en gardant les mains libres.\nRésistance au poison. Vous bénéficiez de la Résistance aux dégâts de poison.\nToile d’araignée. Vous pouvez lancer toile d’araignée (DD de sauvegarde 13). La toile d’araignée créée par ce sort remplit le double de la surface normale. Une fois utilisée, cette propriété ne peut plus resservir avant l’aube suivante."
+  }
+}

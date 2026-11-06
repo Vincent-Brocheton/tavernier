@@ -61,7 +61,12 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 ```
 
 - `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité. Les slugs `con`, `prn`, `aux`, `nul`, `com1`-`com9`, `lpt1`-`lpt9` sont interdits (noms réservés sous Windows).
-- Types v1 : `ability`, `skill`, `language`, `condition`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell` (ajouté par T-04).
+- Types v1 : `ability`, `skill`, `language`, `condition`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `magic-item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell` (`spell` et `magic-item` ajoutés par T-04).
+- `magic-item` :
+  - `category` : `wondrous`, `armor`, `weapon`, `ring`, `wand`, `staff`, `potion`, `scroll` ou `rod` ;
+  - `rarity` : `common`, `uncommon`, `rare`, `very_rare`, `legendary`, `artifact`, ou `varies` quand elle dépend de la variante ;
+  - `type_line` : ligne de type du SRD, recopiée telle quelle ;
+  - `attunement` : harmonisation requise ; `attunement_by?` : créature exigée (« un Magicien »).
 - `spell` :
   - `level` : 0 pour un sort mineur, jusqu'à 9 ;
   - `school` : `abjuration`, `conjuration`, `divination`, `enchantment`, `evocation`, `illusion`, `necromancy` ou `transmutation` ;
@@ -88,7 +93,7 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `_feet` : une distance en pieds (`unarmored_movement_feet: 10` pour « +3 m »).
 
   Un bonus est noté par sa valeur (`rage_damage: 2`). Les emplacements de sort sont `slot_1` à `slot_9`, avec `cantrips` et `prepared_spells`. Une case « — » de la table n'est pas écrite.
-- `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`, `spell`.
+- `text.fr` : texte de règles copié du document source ; obligatoire pour `feature`, `condition`, `feat`, `mastery`, `background`, `spell`, `magic-item`.
 - Le type `resource` est réservé aux clés de ressources (`srd:resource:second-wind`) : ce n'est jamais une entité.
 
 ## Contrôles à la construction et à l'import

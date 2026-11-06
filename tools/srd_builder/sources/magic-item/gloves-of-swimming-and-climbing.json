@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:gloves-of-swimming-and-climbing",
+  "type": "magic-item",
+  "name": "Gants de nage et d’escalade",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ces gants, vous recevez une Vitesse d’escalade et une Vitesse de nage égales à votre Vitesse, ainsi qu’un bonus de +5 aux tests de Force (Athlétisme) visant à escalader ou nager."
+  }
+}

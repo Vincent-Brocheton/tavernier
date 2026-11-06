@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-invisibility",
+  "type": "magic-item",
+  "name": "Potion d’invisibilité",
+  "data": {
+    "category": "potion",
+    "rarity": "rare",
+    "type_line": "Potion, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Le récipient de cette potion paraît vide, tout en donnant étrangement l’impression de contenir un liquide. Lorsque vous buvez la potion, vous recevez l’état Invisible pendant 1 heure. Cet effet prend fin prématurément si vous effectuez un jet d’attaque, infligez des dégâts ou lancez un sort."
+  }
+}

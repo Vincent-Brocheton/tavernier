@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:gem-of-seeing",
+  "type": "magic-item",
+  "name": "Gemme de vision",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cette gemme dispose de 3 charges. Au prix de l’action Magie, vous pouvez dépenser 1 charge. Pendant les 10 prochaines minutes, vous disposez de la Vision lucide sur 36 m lorsque vous regardez à travers la gemme.\nLa gemme récupère quotidiennement 1d3 charges dépensées, à l’aube."
+  }
+}

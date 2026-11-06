@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:oil-of-sharpness",
+  "type": "magic-item",
+  "name": "Huile d’affûtage",
+  "data": {
+    "category": "potion",
+    "rarity": "very_rare",
+    "type_line": "Potion, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Une fiole de cette huile peut enduire une arme de corps à corps ou vingt projectiles, sachant que seules les munitions et les armes de corps à corps non magiques infligeant des dégâts perforants ou tranchants sont affectées. L’application de l’huile prend 1 minute, après quoi l’huile s’infiltre magiquement dans ce qu’elle recouvre, ce qui transforme l’arme enduite en arme +3 (les munitions enduites en projectiles +3).\nDans cette huile incolore et gélatineuse scintillent de minuscules paillettes d’argent."
+  }
+}

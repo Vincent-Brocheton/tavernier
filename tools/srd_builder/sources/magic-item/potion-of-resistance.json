@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-resistance",
+  "type": "magic-item",
+  "name": "Potion de résistance",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez la Résistance à un type de dégâts pendant 1 heure. Le MJ en choisit le type ou le détermine aléatoirement selon la table suivante.\n1d10 | Type de dégâts\n1 | Acide\n2 | Feu\n3 | Force\n4 | Foudre\n5 | Froid\n6 | Nécrotiques\n7 | Poison\n8 | Psychiques\n9 | Radiants\n10 | Tonnerre"
+  }
+}

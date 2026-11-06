@@ -65,6 +65,19 @@ final _pack = ContentPack(
   manifest: srdPack.manifest,
   entities: [
     _wizard,
+    parseEntity({
+      'id': 'srd:magic-item:staff-of-healing',
+      'type': 'magic-item',
+      'name': 'Bâton de guérison',
+      'data': {
+        'category': 'staff',
+        'rarity': 'very_rare',
+        'type_line': 'Bâton, rare (Harmonisation requise avec un Barde, Clerc ou Druide)',
+        'attunement': true,
+        'attunement_by': 'un Barde, Clerc ou Druide',
+      },
+      'text': {'fr': 'Ce bâton a 10 charges.'},
+    }, 'staff').entity!,
     _spell('fireball', 'Boule de feu', {
       'level': 3,
       'school': 'evocation',
@@ -143,6 +156,17 @@ void main() {
       [for (final r in rows) (r.read<String>('option'), r.read<int>('gold'))],
       [('A', 5), ('B', 55)],
     );
+  });
+
+  test('objet magique dans magic_item', () async {
+    final row = await db
+        .customSelect(
+          'SELECT rarity, attunement_by FROM magic_item '
+          "WHERE id = 'srd:magic-item:staff-of-healing'",
+        )
+        .getSingle();
+    expect(row.read<String>('rarity'), 'very_rare');
+    expect(row.read<String>('attunement_by'), 'un Barde, Clerc ou Druide');
   });
 
   test('recherche par nom', () async {

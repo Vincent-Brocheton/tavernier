@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-climbing",
+  "type": "magic-item",
+  "name": "Potion d’escalade",
+  "data": {
+    "category": "potion",
+    "rarity": "common",
+    "type_line": "Potion, courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez une Vitesse d’escalade égale à votre Vitesse pendant 1 heure. Pendant cette heure, vous avez l’Avantage aux tests de Force (Athlétisme) effectués pour l’escalade.\nLa potion est divisée en nappes brunes, argentées et grises évoquant des strates dans la roche. Ces couleurs ne se mélangent pas, même quand on secoue la bouteille."
+  }
+}

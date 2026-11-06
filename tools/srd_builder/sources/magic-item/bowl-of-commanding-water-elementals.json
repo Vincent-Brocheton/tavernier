@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:bowl-of-commanding-water-elementals",
+  "type": "magic-item",
+  "name": "Jatte de contrôle des élémentaires de l’eau",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que cette jatte est remplie d’eau et se trouve dans un rayon de 1,50 m, vous pouvez entreprendre l’action Magie pour convoquer un élémentaire de l’eau.\nL’élémentaire apparaît en un espace inoccupé aussi près que possible de la jatte, comprend les mêmes langues que vous, obéit à vos ordres et joue son tour juste après vous à votre rang d’initiative. Il disparaît au bout de 1 heure, s’il meurt, ou si vous le révoquez par une action Bonus. La jatte ne peut plus être utilisée de cette manière avant l’aube suivante.\nLa jatte mesure environ 30 cm de diamètre et 15 de profondeur. Sa contenance est de 12 litres environ."
+  }
+}

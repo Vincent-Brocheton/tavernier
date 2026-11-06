@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:stone-of-controlling-earth-elementals",
+  "type": "magic-item",
+  "name": "Pierre de contrôle des élémentaires de la terre",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "En maintenant le contact avec cette pierre posée au sol de 2,5 kg, vous pouvez entreprendre l’action Magie pour convoquer un élémentaire de la terre. L’élémentaire apparaît en un espace inoccupé de votre choix dans un rayon de 9 m, obéit à vos ordres et joue son tour aussitôt après vous dans l’ordre d’Initiative. Il disparaît au bout de 1 heure ; plus tôt s’il meurt ou si vous le révoquez par une action Bonus. La pierre ne peut plus resservir de cette manière avant l’aube suivante."
+  }
+}

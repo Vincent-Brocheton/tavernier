@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cube-of-force",
+  "type": "magic-item",
+  "name": "Cube de force",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce cube mesure 2 à 3 centimètres d’arête. Chaque face s’orne d’un symbole distinct. Il vous suffit d’appuyer sur une face et de dépenser le nombre de charges requis pour lancer le sort associé à cette face (DD de sauvegarde 17), comme indiqué sur la table « Faces du cube de force ».\nLe cube dispose de 10 charges et récupère quotidiennement 1d6 charges dépensées, à l’aube.\nSort | Coût en charges\narmure du mage | 1\nbouclier | 1\npetite hutte | 3\nsanctuaire privé | 4\nsphère résiliente | 4\nmur de force | 5"
+  }
+}

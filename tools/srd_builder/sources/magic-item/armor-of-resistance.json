@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:armor-of-resistance",
+  "type": "magic-item",
+  "name": "Armure de résistance",
+  "data": {
+    "category": "armor",
+    "rarity": "rare",
+    "type_line": "Armure (légère, intermédiaire ou lourde), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous bénéficiez de la résistance à un type de dégâts tant que vous portez cette armure. Le MJ en choisit le type ou le détermine aléatoirement selon la table suivante.\n1d10 Type de dégâts 1 Acide 2 Feu 3 Force 4 Foudre 5 Froid 1d10 Type de dégâts 6 Nécrotiques 7 Poison 8 Psychiques 9 Radiants 10 Tonnerre"
+  }
+}

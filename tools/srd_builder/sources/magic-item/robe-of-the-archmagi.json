@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:robe-of-the-archmagi",
+  "type": "magic-item",
+  "name": "Robe de l’archimage",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise avec un Ensorceleur, Magicien ou Occultiste)",
+    "attunement": true,
+    "attunement_by": "un Ensorceleur, Magicien ou Occultiste"
+  },
+  "text": {
+    "fr": "Ce vêtement élégant est fait d’une superbe étoffe ornée de runes.\nTant que vous portez cette robe, vous recevez les bénéfices suivants :\nArmure. Si vous ne portez pas d’armure, votre classe d’armure de base est égale à 15 + votre modificateur de Dextérité.\nMagie de guerre. Votre DD de sauvegarde des sorts et votre bonus d’attaque de sort augmentent chacun de 2.\nRésistance à la magie. Vous avez l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+  }
+}

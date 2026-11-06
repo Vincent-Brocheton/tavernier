@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:horseshoes-of-speed",
+  "type": "magic-item",
+  "name": "Fers de rapidité",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ces fers à cheval vont par quatre. Au prix de l’action Magie, vous pouvez mettre l’un des fers au contact du sabot d’un cheval ou d’une créature équivalente : le fer se fixe au sabot. Retirer un fer nécessite également l’action Magie.\nSi les quatre fers sont fixés aux sabots de la même créature, la Vitesse de celle-ci augmente de 9 m."
+  }
+}

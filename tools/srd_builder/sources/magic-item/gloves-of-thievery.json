@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:gloves-of-thievery",
+  "type": "magic-item",
+  "name": "Gants de chapardeur",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Une fois enfilés, ces gants sont imperceptibles. Tant que vous les portez, vous recevez un bonus de +5 à vos tests de Dextérité (Escamotage)."
+  }
+}

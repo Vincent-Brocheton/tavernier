@@ -22,6 +22,7 @@ part 'database.g.dart';
     Armors,
     Tools,
     Items,
+    MagicItems,
     Backgrounds,
     BackgroundAbilities,
     BackgroundProficiencies,

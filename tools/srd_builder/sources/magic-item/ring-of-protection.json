@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-protection",
+  "type": "magic-item",
+  "name": "Anneau de protection",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 à la CA et aux jets de sauvegarde tant que vous portez cet anneau."
+  }
+}

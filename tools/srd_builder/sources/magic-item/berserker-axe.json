@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:berserker-axe",
+  "type": "magic-item",
+  "name": "Hache du berserker",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (hache d’armes, hache à deux mains ou hallebarde), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique. En outre et tant que vous êtes harmonisé avec cette arme, votre maximum de points de vie augmente de 1 par niveau dont vous disposez.\nMalédiction. Cette arme est maudite : être harmonisé avec elle vous inflige sa malédiction. Tant que vous êtes maudit, vous refusez de vous séparer de l’arme et la gardez en permanence à portée de main. Vous subissez en outre le Désavantage aux jets d’attaque effectués avec une autre arme que celle-ci.\nChaque fois qu’une autre créature vous inflige des dégâts alors que la hache est en votre possession, vous devez réussir un jet de sauvegarde de Sagesse DD 15 sous peine de devenir fou furieux. Cet état prend fin si vous commencez votre tour sans aucune créature que vous voyez ni n’entendez dans un rayon de 18 m.\nTant que cette folie persiste, vous considérez la créature la plus proche de vous, parmi celles que vous voyez ou entendez, comme un ennemi. Si plusieurs créatures sont concernées, choisissez-en une au hasard. À chacun de vos tours, vous devez vous rapprocher le plus possible de la créature et entreprendre l’action Attaque, en prenant cette créature pour cible. Si vous ne parvenez pas à vous approcher suffisamment de la créature pour l’attaquer avec l’arme, votre tour se termine après épuisement de votre déplacement disponible. Si la créature meurt ou que vous ne la voyez et ne l’entendez plus, la plus proche créature valide parmi celles que vous voyez ou entendez devient votre nouvelle cible."
+  }
+}

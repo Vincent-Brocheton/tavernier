@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:mace-of-smiting",
+  "type": "magic-item",
+  "name": "Masse destructrice",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (masse d’armes), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique. Ce bonus passe à +3 lorsque vous utilisez l’arme pour attaquer un Artificiel.\nLorsque vous obtenez un 20 sur un jet d’attaque effectué avec cette arme, la cible subit 7 dégâts contondants supplémentaires, ou 14 dégâts contondants supplémentaires s’il s’agit d’un Artificiel. Tout Artificiel qui se retrouve avec 25 points de vie ou moins après application de ces dégâts est détruit."
+  }
+}

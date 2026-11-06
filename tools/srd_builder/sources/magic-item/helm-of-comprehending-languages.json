@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:helm-of-comprehending-languages",
+  "type": "magic-item",
+  "name": "Heaume de compréhension des langues",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez ce heaume, vous pouvez lancer compréhension des langues par son biais."
+  }
+}

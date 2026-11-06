@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:hat-of-disguise",
+  "type": "magic-item",
+  "name": "Chapeau de déguisement",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ce chapeau sur la tête, vous pouvez lancer le sort déguisement. Le sort prend fin si vous ne coiffez plus le chapeau."
+  }
+}

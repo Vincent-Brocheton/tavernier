@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:scarab-of-protection",
+  "type": "magic-item",
+  "name": "Scarabée de protection",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce médaillon en forme de scarabée offre trois bénéfices lorsque vous le portez.\nDéfense. Vous recevez un bonus de +1 à la classe d’armure.\nPréservation. Le scarabée dispose de 12 charges. Si vous ratez un jet de sauvegarde contre un sort de Nécromancie ou un effet néfaste émanant d’un Mort-vivant, vous pouvez jouer votre Réaction pour dépenser 1 charge et transformer l’échec au JS en réussite. Le scarabée tombe en poussière, détruit à jamais, lorsque sa dernière charge est dépensée.\nRésistance aux sorts. Vous avez l’Avantage aux jets de sauvegarde contre les sorts."
+  }
+}

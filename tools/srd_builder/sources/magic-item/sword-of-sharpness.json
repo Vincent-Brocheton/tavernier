@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:sword-of-sharpness",
+  "type": "magic-item",
+  "name": "Épée acérée",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (cimeterre, coutille, épée à deux mains ou épée longue), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Lorsque vous attaquez un objet avec cette arme magique et que l’attaque touche, vos dés de dégâts d’arme contre cette cible sont maximisés.\nLorsque vous attaquez une créature avec cette arme et obtenez un 20 sur le d20 du jet d’attaque, cette cible subit 14 dégâts tranchants supplémentaires et reçoit 1 niveau d’Épuisement."
+  }
+}

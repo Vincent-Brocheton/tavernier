@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:wand-of-the-war-mage",
+  "type": "magic-item",
+  "name": "Baguette du mage de guerre +1, +2 ou +3",
+  "data": {
+    "category": "wand",
+    "rarity": "varies",
+    "type_line": "Baguette, peu courante (+1), rare (+2) ou très rare (+3) (Harmonisation requise avec un incantateur)",
+    "attunement": true,
+    "attunement_by": "un incantateur"
+  },
+  "text": {
+    "fr": "Tant que vous la tenez, vous recevez aux jets d’attaque de sort un bonus déterminé par la rareté de cette baguette. Par ailleurs, vos jets d’attaque de sort ne tiennent pas compte de l’Abri partiel des cibles."
+  }
+}

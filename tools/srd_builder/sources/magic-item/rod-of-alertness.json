@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:rod-of-alertness",
+  "type": "magic-item",
+  "name": "Sceptre de vigilance",
+  "data": {
+    "category": "rod",
+    "rarity": "very_rare",
+    "type_line": "Sceptre, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce sceptre possède les propriétés suivantes. Vigilance. Tant que vous tenez ce sceptre, vous avez l’Avantage aux tests de Sagesse (Perception) et aux jets d’Initiative.\nSorts. En tenant le sceptre, vous pouvez lancer les sorts suivants par son intermédiaire :\n• détection du mal et du bien • détection de la magie\n• détection du poison et des maladies • détection de l’invisibilité\nAura de protection. Au prix de l’action Magie, vous pouvez planter le manche du sceptre dans le sol, auquel cas sa tête émet une Lumière vive sur un rayon de 18 m et une Lumière faible sur 18 m de plus. Dans cette Lumière vive, vous et vos alliés recevez un bonus de +1 à la CA et aux jets de sauvegarde, et vous percevez la position de toute créature Invisible également présente dans la Lumière vive.\nLa tête du sceptre cesse de briller et l’effet prend fin au bout de 10 minutes (plus tôt si une créature consacre l’action Magie à l’arracher du sol). Une fois utilisée, cette propriété ne peut plus resservir jusqu’à l’aube suivante."
+  }
+}

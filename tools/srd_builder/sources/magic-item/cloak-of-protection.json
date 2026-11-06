@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-protection",
+  "type": "magic-item",
+  "name": "Cape de protection",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 à la classe d’armure et aux jets de sauvegarde tant que vous portez cette cape."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:wand-of-paralysis",
+  "type": "magic-item",
+  "name": "Baguette de paralysie",
+  "data": {
+    "category": "wand",
+    "rarity": "rare",
+    "type_line": "Baguette, rare (Harmonisation requise avec un incantateur)",
+    "attunement": true,
+    "attunement_by": "un incantateur"
+  },
+  "text": {
+    "fr": "Cette baguette dispose de 7 charges. Tant que vous la tenez, vous pouvez entreprendre l’action Magie pour dépenser 1 de ses charges afin de produire un fin rayon bleuté qui jaillit de la pointe vers une créature que vous voyez dans un rayon de 18 m. La cible doit réussir un jet de sauvegarde de Constitution DD 15 sous peine de subir l’état Paralysé pendant 1 minute. À la fin de chacun de ses tours, la cible réitère le JS et met un terme à l’effet sur elle-même en cas de réussite.\nRécupération des charges. La baguette récupère quotidiennement 1d6 + 1 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, la baguette se réduit en cendres, à jamais détruite."
+  }
+}

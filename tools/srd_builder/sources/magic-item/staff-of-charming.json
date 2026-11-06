@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:staff-of-charming",
+  "type": "magic-item",
+  "name": "Bâton d’envoûtement",
+  "data": {
+    "category": "staff",
+    "rarity": "rare",
+    "type_line": "Bâton, rare (Harmonisation requise avec un Barde, Clerc, Druide, Ensorceleur, Magicien ou Occultiste)",
+    "attunement": true,
+    "attunement_by": "un Barde, Clerc, Druide, Ensorceleur, Magicien ou Occultiste"
+  },
+  "text": {
+    "fr": "Ce bâton dispose de 10 charges. Tant que vous tenez ce bâton, vous pouvez recourir à ses propriétés :\nIncantation. Vous pouvez dépenser 1 charge du bâton pour lancer charme-personne, compréhension des langues ou injonction en prenant votre DD de sauvegarde des sorts.\nRenvoi d’enchantement. Si vous réussissez un JS contre un sort d’Enchantement qui ne cible que vous, vous pouvez jouer votre Réaction pour dépenser 1 charge du bâton, ce qui renvoie le sort sur son incantateur comme si vous aviez lancé le sort.\nRésistance aux enchantements. Si vous ratez un jet de sauvegarde contre un sort d’Enchantement qui ne cible que vous, vous pouvez transformer cet échec en réussite. Cette propriété du bâton ne peut plus resservir avant l’aube suivante.\nRécupération des charges. Le bâton récupère quotidiennement 1d8 + 2 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le bâton est réduit en poussière."
+  }
+}

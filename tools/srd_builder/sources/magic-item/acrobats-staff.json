@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:acrobats-staff",
+  "type": "magic-item",
+  "name": "Bâton de l’acrobate",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (bâton de combat), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +2 aux jets d’attaque et de dégâts effectués avec cette arme magique.\nTant que vous tenez cette arme, vous pouvez lui faire émettre une Lumière faible verte dans un rayon de 3 m, soit par une action Bonus, soit après avoir joué l’Initiative ; vous pouvez aussi en éteindre la lumière par une action Bonus.\nSi vous tenez l’arme, vous pouvez entreprendre une action Bonus pour modifier sa forme et la transformer en bâtonnet de 15 cm (pour en faciliter le rangement) ou une perche de 3 m, ou bien la ramener à sa forme de bâton de combat. L’arme ne s’allongera que dans la limite de l’espace disponible.\nSous certaines formes, l’arme est dotée des propriétés supplémentaires suivantes.\nArme à distance (bâton de combat uniquement). L’arme est dotée de la propriété Lancer avec une portée normale de 9 m et une portée longue de 36 m. Aussitôt après votre attaque à distance avec le bâton, il revient dans votre main.\nAssistance acrobatique (bâton de combat et perche de 3 m uniquement). En tenant cette arme, vous bénéficiez de l’Avantage aux tests de Dextérité (Acrobaties).\nDéviation d’attaque (bâton de combat uniquement). Lorsque vous êtes touché par une attaque alors que vous tenez l’arme, vous pouvez jouer votre Réaction pour décrire des moulinets avec le bâton et recevoir un bonus de +5 à votre CA contre l’attaque correspondante, ce qui peut la faire échouer. Vous ne pouvez ensuite plus recourir à cette propriété avant d’avoir terminé un Repos court ou long."
+  }
+}

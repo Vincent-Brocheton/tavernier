@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:winged-boots",
+  "type": "magic-item",
+  "name": "Bottes ailées",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ces bottes disposent de 4 charges et récupèrent quotidiennement 1d4 charges dépensées, à l’aube. Tant qu’elles vous chaussent, vous pouvez entreprendre l’action Magie pour dépenser 1 charge et recevoir une Vitesse de vol de 9 m pendant 1 heure. Si vous volez au moment où la durée expire, vous descendez à une vitesse de 9 m par round jusqu’à ce que vous touchiez terre."
+  }
+}

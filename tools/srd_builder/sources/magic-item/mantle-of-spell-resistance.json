@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:mantle-of-spell-resistance",
+  "type": "magic-item",
+  "name": "Manteau de résistance aux sorts",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous avez l’Avantage aux jets de sauvegarde contre les sorts quand vous portez ce manteau."
+  }
+}

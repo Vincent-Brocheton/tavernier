@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:sword-of-life-stealing",
+  "type": "magic-item",
+  "name": "Épée voleuse de vie",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (cimeterre, coutille, épée à deux mains, épée courte, épée longue ou rapière), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Lorsque vous attaquez une créature avec cette arme magique et obtenez un 20 sur le d20 du jet d’attaque, la cible subit 15 dégâts nécrotiques supplémentaires si elle n’est ni un Artificiel ni un Mort-vivant, et vous recevez autant de points de vie temporaires que les dégâts nécrotiques infligés."
+  }
+}

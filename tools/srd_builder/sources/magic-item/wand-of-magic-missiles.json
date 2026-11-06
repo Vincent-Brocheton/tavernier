@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:wand-of-magic-missiles",
+  "type": "magic-item",
+  "name": "Baguette de projectiles magiques",
+  "data": {
+    "category": "wand",
+    "rarity": "uncommon",
+    "type_line": "Baguette, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette baguette dispose de 7 charges. Lorsque vous la tenez, vous pouvez dépenser jusqu’à 3 charges pour lancer projectile magique par son biais. Avec 1 charge, vous lancez le sort au 1er niveau. Vous augmentez le niveau du sort d’un cran par charge additionnelle dépensée.\nRécupération des charges. La baguette récupère quotidiennement 1d6 + 1 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, la baguette se réduit en cendres, à jamais détruite."
+  }
+}

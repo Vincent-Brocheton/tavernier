@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:plate-armor-of-etherealness",
+  "type": "magic-item",
+  "name": "Harnois éthéré",
+  "data": {
+    "category": "armor",
+    "rarity": "legendary",
+    "type_line": "Armure (demi-plate ou harnois), légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette armure, vous pouvez entreprendre l’action Magie en prononçant un mot de commande pour recevoir l’effet du sort forme éthérée. Le sort prend aussitôt fin si vous ôtez l’armure ou entreprenez l’action Magie pour répéter le mot de commande. Une fois cette propriété de l’armure utilisée, elle ne peut plus resservir avant l’aube suivante."
+  }
+}

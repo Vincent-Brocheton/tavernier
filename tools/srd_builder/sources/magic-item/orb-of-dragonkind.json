@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:orb-of-dragonkind",
+  "type": "magic-item",
+  "name": "Orbe draconique",
+  "data": {
+    "category": "wondrous",
+    "rarity": "artifact",
+    "type_line": "Objet merveilleux, Artefact (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Chaque orbe est un globe de cristal gravé d’environ 25 cm de diamètre. Lorsqu’il est utilisé, il enfle pour atteindre un diamètre d’environ 50 cm, tandis que de la brume tourbillonne à l’intérieur.\nUne fois harmonisé avec l’orbe, vous pouvez entreprendre l’action Magie pour scruter ses profondeurs insondables. Effectuez un jet de sauvegarde de Charisme DD 15. En cas de réussite, vous contrôlez l’orbe aussi longtemps que l’harmonisation persiste. Un échec, en revanche, vous place sous l’emprise de l’Artefact en vous imposant l’état Charmé pour toute la durée de l’Harmonisation.\nTant que vous êtes Charmé par l’orbe, vous ne pouvez pas volontairement mettre fin à cette Harmonisation et l’orbe lance suggestion sur vous à volonté (sauvegarde DD 18) en vous pressant d’œuvrer à ses desseins maléfiques. Les désirs de l’essence du dragon peuvent prendre bien des formes : anéantir un groupe spécifique, libérer l’orbe, répandre la souffrance dans le monde, faire prospérer le culte de Tiamat ou tout autre sombre dessein imaginé par le MJ.\nSorts. L’orbe dispose de 7 charges et récupère quotidiennement 1d4 + 3 charges dépensées, à l’aube. Si vous contrôlez l’orbe, vous pouvez lancer l’un des sorts de la table suivante. La table indique le nombre de charges à dépenser pour lancer le sort.\nSort | Coût en charges\ndétection de la magie | 0\nlumière du jour | 1\nprotection contre la mort | 2\nscrutation (DD de sauvegarde 18) | 3\nsoins (au 9e niveau) | 4\nAppel des dragons. Tant que vous contrôlez l’orbe, vous pouvez, au prix de l’action Magie, émettre par son biais un appel télépathique qui s’étend dans toutes les directions sur 60 km. Les dragons chromatiques à portée sont contraints de venir vers l’orbe au plus vite et par l’itinéraire le plus direct. Les divinités draconiques, comme Tiamat, ne sont pas affectées par cet appel. Les dragons chromatiques attirés par l’orbe peuvent se montrer Hostiles envers vous pour les avoir contraints à venir. Une fois utilisée, cette propriété ne peut plus resservir pendant 1 heure.\nDestruction d’un orbe. Un Orbe draconique est doté d’une CA de 20 et ne peut être détruit que s’il subit des dégâts d’une arme +3 ou du sort désintégration. Nulle autre force ne saurait l’entamer."
+  }
+}

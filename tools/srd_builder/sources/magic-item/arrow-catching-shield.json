@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:arrow-catching-shield",
+  "type": "magic-item",
+  "name": "Bouclier antiprojectiles",
+  "data": {
+    "category": "armor",
+    "rarity": "rare",
+    "type_line": "Armure (bouclier), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +2 à la classe d’armure contre les jets d’attaque à distance tant que vous portez ce bouclier. Ce bonus s’ajoute à celui que le bouclier octroie normalement à la CA.\nChaque fois qu’un assaillant effectue un jet d’attaque à distance contre une cible dans un rayon de 1,50 m de vous, vous pouvez jouer votre Réaction pour devenir la cible de cette attaque à sa place."
+  }
+}

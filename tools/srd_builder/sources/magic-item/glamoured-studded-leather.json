@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:glamoured-studded-leather",
+  "type": "magic-item",
+  "name": "Armure de cuir clouté enchantée",
+  "data": {
+    "category": "armor",
+    "rarity": "rare",
+    "type_line": "Armure (armure de cuir clouté) rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez cette armure, vous recevez un bonus de +1 à la CA. Par une action Bonus, vous faites prendre à l’armure l’apparence de vêtements ordinaires ou d’un autre type d’armure. Vous décidez de son aspect, y compris sa couleur, son style et ses accessoires, mais l’armure conserve son encombrement normal et son poids. L’apparence illusoire persiste jusqu’à ce que vous réutilisiez cette propriété ou ôtiez l’armure."
+  }
+}

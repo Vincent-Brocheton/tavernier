@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:eyes-of-the-eagle",
+  "type": "magic-item",
+  "name": "Yeux de lynx",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ces lentilles en cristal s’appliquent sur les yeux. Tant que vous les portez, vous avez l’Avantage aux tests de Sagesse (Perception) qui reposent sur la vue. Dans des conditions de bonne visibilité, vous pouvez distinguer les détails de créatures et d’objets à très longue distance, tant que leur largeur est d’au moins 60 cm."
+  }
+}

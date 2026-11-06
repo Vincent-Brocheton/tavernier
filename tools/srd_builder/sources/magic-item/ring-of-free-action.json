@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-free-action",
+  "type": "magic-item",
+  "name": "Anneau d’action libre",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, le Terrain difficile ne vous coûte aucun déplacement supplémentaire. En outre, aucune magie ne peut réduire vos Vitesses ni vous imposer l’état Paralysé ou Entravé."
+  }
+}

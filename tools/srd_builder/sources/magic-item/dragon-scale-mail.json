@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:dragon-scale-mail",
+  "type": "magic-item",
+  "name": "Armure d’écailles de dragon",
+  "data": {
+    "category": "armor",
+    "rarity": "very_rare",
+    "type_line": "Armure (armure d’écailles), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Chaque armure d’écailles de dragon est faite avec des écailles d’une espèce de dragon. Il arrive à certains dragons de rassembler leurs écailles tombées pour en faire don. En d’autres occasions, ces écailles sont prélevées avec soin sur le cadavre d’un dragon tué par des chasseurs. Dans tous les cas, une armure d’écailles de dragon est un bien inestimable.\nTant que vous portez cette armure, vous recevez un bonus de +1 à la CA, bénéficiez de l’Avantage aux jets de sauvegarde contre le souffle des Dragons, et de la Résistance à un type de dégâts déterminé par l’espèce de dragon qui a fourni les écailles (cf. table ci-après).\nAu prix de l’action Magie, vous pouvez en outre focaliser vos sens afin de percevoir à quelle distance et dans quelle direction se trouve le plus proche dragon de l’espèce correspondant à l’armure dans un rayon de 45 km. Cette action ne peut alors plus resservir avant l’aube suivante.\nDragon | Résistance\nAirain | Feu\nArgent | Froid\nBlanc | Froid\nBleu | Foudre\nBronze | Foudre\nCuivre | Acide\nNoir | Acide\nOr | Feu\nRouge | Feu\nVert | Poison"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:goggles-of-night",
+  "type": "magic-item",
+  "name": "Lunettes du nyctalope",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous chaussez ces lunettes teintées, vous bénéficiez de la Vision dans le noir à 18 m. Si vous disposiez déjà de la Vision dans le noir, le port de ces lunettes en augmente la portée de 18 m."
+  }
+}

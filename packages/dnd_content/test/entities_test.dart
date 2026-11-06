@@ -42,8 +42,8 @@ List<String> _issuePaths(Object? json) => parseEntity(
 ).issues.map((i) => i.path).toList();
 
 void main() {
-  test('les 16 types de l\'échantillon sont connus', () {
-    expect(entityTypes, hasLength(17));
+  test('les 18 types du format sont connus', () {
+    expect(entityTypes, hasLength(18));
     expect(
       entityTypes,
       containsAll(['weapon', 'background', 'feature', 'damage-type']),
@@ -342,6 +342,18 @@ final _oneOfEachType = <Map<String, Object?>>[
       'material_consumed': false,
       'duration': 'instantanée',
       'concentration': false,
+    },
+    'text': {'fr': 'Texte.'},
+  },
+  {
+    'id': 'srd:magic-item:cloak-of-protection',
+    'type': 'magic-item',
+    'name': 'Cape de protection',
+    'data': {
+      'category': 'wondrous',
+      'rarity': 'uncommon',
+      'type_line': 'Objet merveilleux, peu courant (Harmonisation requise)',
+      'attunement': true,
     },
     'text': {'fr': 'Texte.'},
   },

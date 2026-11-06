@@ -280,6 +280,68 @@ Map<String, dynamic> _$ItemDataToJson(_ItemData instance) => <String, dynamic>{
   'cost_cp': ?instance.costCp,
 };
 
+_MagicItemData _$MagicItemDataFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  '_MagicItemData',
+  json,
+  ($checkedConvert) {
+    $checkKeys(
+      json,
+      allowedKeys: const [
+        'category',
+        'rarity',
+        'type_line',
+        'attunement',
+        'attunement_by',
+      ],
+    );
+    final val = _MagicItemData(
+      category: $checkedConvert(
+        'category',
+        (v) => $enumDecode(_$MagicItemCategoryEnumMap, v),
+      ),
+      rarity: $checkedConvert('rarity', (v) => $enumDecode(_$RarityEnumMap, v)),
+      typeLine: $checkedConvert('type_line', (v) => v as String),
+      attunement: $checkedConvert('attunement', (v) => v as bool? ?? false),
+      attunementBy: $checkedConvert('attunement_by', (v) => v as String?),
+    );
+    return val;
+  },
+  fieldKeyMap: const {'typeLine': 'type_line', 'attunementBy': 'attunement_by'},
+);
+
+Map<String, dynamic> _$MagicItemDataToJson(_MagicItemData instance) =>
+    <String, dynamic>{
+      'category': _$MagicItemCategoryEnumMap[instance.category]!,
+      'rarity': _$RarityEnumMap[instance.rarity]!,
+      'type_line': instance.typeLine,
+      'attunement': instance.attunement,
+      'attunement_by': ?instance.attunementBy,
+    };
+
+const _$MagicItemCategoryEnumMap = {
+  MagicItemCategory.wondrous: 'wondrous',
+  MagicItemCategory.armor: 'armor',
+  MagicItemCategory.weapon: 'weapon',
+  MagicItemCategory.ring: 'ring',
+  MagicItemCategory.wand: 'wand',
+  MagicItemCategory.staff: 'staff',
+  MagicItemCategory.potion: 'potion',
+  MagicItemCategory.scroll: 'scroll',
+  MagicItemCategory.rod: 'rod',
+};
+
+const _$RarityEnumMap = {
+  Rarity.common: 'common',
+  Rarity.uncommon: 'uncommon',
+  Rarity.rare: 'rare',
+  Rarity.veryRare: 'very_rare',
+  Rarity.legendary: 'legendary',
+  Rarity.artifact: 'artifact',
+  Rarity.varies: 'varies',
+};
+
 _ItemQuantity _$ItemQuantityFromJson(Map<String, dynamic> json) =>
     $checkedCreate('_ItemQuantity', json, ($checkedConvert) {
       $checkKeys(json, allowedKeys: const ['item', 'quantity']);

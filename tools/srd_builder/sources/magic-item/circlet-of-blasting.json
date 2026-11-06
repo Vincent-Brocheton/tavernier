@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:circlet-of-blasting",
+  "type": "magic-item",
+  "name": "Diadème de destruction",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez ce diadème, vous pouvez lancer rayon ardent par son biais (+5 pour toucher). Le diadème ne peut alors plus relancer ce sort avant l’aube suivante."
+  }
+}

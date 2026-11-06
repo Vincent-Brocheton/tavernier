@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:necklace-of-fireballs",
+  "type": "magic-item",
+  "name": "Collier de boules de feu",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "1d6 + 3 perles sont enfilées sur le collier. Vous pouvez entreprendre l’action Magie pour détacher une perle et la lancer jusqu’à 18 m. Quand la perle arrive en fin de trajectoire, elle détone en produisant l’équivalent du sort du 3e niveau boule de feu (DD de sauvegarde 15).\nVous pouvez lancer plusieurs perles, voire le collier entier, en une seule fois. Dans ce cas, augmentez les dégâts de la boule de feu de 1d6 pour chaque perle en plus de la première (maximum 12d6)."
+  }
+}

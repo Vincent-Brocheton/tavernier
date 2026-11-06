@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:giant-slayer",
+  "type": "magic-item",
+  "name": "Tueuse de géants",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (courante ou de guerre), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique.\nQuand vous touchez un Géant avec cette arme, il subit 2d6 dégâts supplémentaires du type associé à l’arme et doit réussir un jet de sauvegarde de Force DD 15 sous peine de subir l’état À terre."
+  }
+}

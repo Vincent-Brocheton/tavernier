@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:rod-of-resurrection",
+  "type": "magic-item",
+  "name": "Sceptre de résurrection",
+  "data": {
+    "category": "rod",
+    "rarity": "legendary",
+    "type_line": "Sceptre, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Le sceptre dispose de 5 charges. Lorsque vous le tenez, vous pouvez lancer l’un des sorts suivants par son intermédiaire : guérison (dépense 1 charge) ou résurrection (dépense 5 charges).\nLe sceptre récupère quotidiennement 1 charge dépensée, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le sceptre disparaît dans une explosion radiante inoffensive."
+  }
+}

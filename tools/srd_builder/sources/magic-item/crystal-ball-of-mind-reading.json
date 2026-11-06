@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:crystal-ball-of-mind-reading",
+  "type": "magic-item",
+  "name": "Boule de cristal de lecture des pensées",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous touchez cet orbe de cristal, vous pouvez lancer scrutation (DD de sauvegarde 17) par son biais. Vous pouvez en outre lancer détection des pensées (DD de sauvegarde 17) en prenant pour cible les créatures que vous voyez dans un rayon de 9 m du capteur du sort. Vous n’avez pas besoin de vous concentrer sur le sort détection des pensées pour le maintenir pendant toute sa durée, mais il s’achève si le sort scrutation se termine."
+  }
+}

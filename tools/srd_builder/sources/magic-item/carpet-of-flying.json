@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:carpet-of-flying",
+  "type": "magic-item",
+  "name": "Tapis volant",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce tapis devient volant et entre en vol stationnaire si vous entreprenez l’action Magie et prononcez son mot de commande. Il se déplace au gré de vos instructions à condition que vous restiez dans un rayon de 9 m.\nIl existe quatre tailles de tapis volant. Le MJ en choisit le type ou laisse le hasard décider sur la table ci-après. Un tapis peut transporter jusqu’au double du poids qui figure sur la table, mais sa Vitesse de vol est réduite de moitié s’il transporte plus que sa capacité normale.\n1d100 | Taille | Capacité | Vitesse de vol\n01–20 | 90 cm × 1,50 m | 100 kg | 24 m\n21–55 | 1,20 m × 1,80 m | 200 kg | 18 m\n56–80 | 1,50 m × 2,10 m | 300 kg | 12 m\n81–00 | 1,80 m × 2,70 m | 400 kg | 9m"
+  }
+}

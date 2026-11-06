@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:staff-of-withering",
+  "type": "magic-item",
+  "name": "Bâton de flétrissement",
+  "data": {
+    "category": "staff",
+    "rarity": "rare",
+    "type_line": "Bâton, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce bâton dispose de 3 charges et récupère quotidiennement 1d3 charges dépensées, à l’aube.\nIl peut également servir de bâton de combat magique. Une attaque qui touche avec ce bâton inflige les dégâts d’un bâton de combat normal, sachant que vous pouvez dépenser 1 charge pour qu’il inflige 2d10 dégâts nécrotiques supplémentaires à la cible et lui impose un jet de sauvegarde de Constitution DD 15. En cas d’échec, la cible subit le Désavantage pendant 1 heure à tout test de caractéristique et jet de sauvegarde basé sur la Force ou la Constitution."
+  }
+}

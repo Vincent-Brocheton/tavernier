@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:helm-of-teleportation",
+  "type": "magic-item",
+  "name": "Heaume de téléportation",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce heaume dispose de 3 charges. Tant que vous le portez, vous pouvez dépenser 1 charge pour lancer téléportation par son biais. Le heaume récupère quotidiennement 1d3 charges dépensées, à l’aube."
+  }
+}

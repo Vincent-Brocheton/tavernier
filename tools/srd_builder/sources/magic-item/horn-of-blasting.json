@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:horn-of-blasting",
+  "type": "magic-item",
+  "name": "Cor de dévastation",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous pouvez entreprendre l’action Magie pour souffler dans ce cor, qui émet dans un Cône de 9 m un son tonitruant audible à 180 m. Chaque créature prise dans le Cône effectue un jet de sauvegarde de Constitution DD 15. En cas d’échec, une créature subit 5d8 dégâts de tonnerre, ainsi que l’état Assourdi pendant 1 minute. En cas de réussite, elle subit uniquement la moitié de ces dégâts. Les objets en verre ou en cristal présents dans le Cône et n’étant portés par personne subissent 10d8 dégâts de tonnerre.\nChaque utilisation de la magie du cor a 20 % de chances d’en provoquer l’explosion. L’explosion inflige 10d6 dégâts de force à l’utilisateur et détruit le cor."
+  }
+}

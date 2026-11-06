@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-displacement",
+  "type": "magic-item",
+  "name": "Cape de déplacement",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette cape, elle projette magiquement un double illusoire de vous-même qui vous fait apparaître à côté de votre véritable position. Toutes les créatures subissent le Désavantage à leurs jets d’attaque contre vous. Si vous subissez des dégâts, cette propriété cesse de fonctionner jusqu’au début de votre tour suivant. Cette propriété est réprimée quand votre Vitesse tombe à 0 et tant qu’elle le reste."
+  }
+}

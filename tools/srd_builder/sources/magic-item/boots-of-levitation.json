@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:boots-of-levitation",
+  "type": "magic-item",
+  "name": "Bottes de lévitation",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Porter ces bottes vous permet de lancer le sort lévitation sur vous-même."
+  }
+}

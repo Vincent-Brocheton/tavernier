@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ammunition-of-slaying",
+  "type": "magic-item",
+  "name": "Projectile tueur",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (tout type de munitions), très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce projectile magique est conçu pour tuer les créatures d’un type donné, que le MJ choisit ou détermine aléatoirement selon la table ci-après. Si la créature de ce type subit des dégâts du projectile, elle effectue un jet de sauvegarde de Constitution DD 17 et subit 6d10 dégâts de force supplémentaires en cas d’échec, la moitié en cas de réussite.\nAprès avoir infligé ces dégâts supplémentaires à une créature, le projectile devient non magique.\nType de 1d100 créature 01–10 Aberrations 11–15 Artificiels 16–20 Bêtes 21–25 Célestes 26–35 Dragons 36–45 Élémentaires 46–55 Fées Type de 1d100 créature 56–65 Fiélons 66–70 Géants 71–75 Humanoïdes 76–80 Monstruosités 81–90 Morts-vivants 91–95 Plantes 96–00 Vases"
+  }
+}

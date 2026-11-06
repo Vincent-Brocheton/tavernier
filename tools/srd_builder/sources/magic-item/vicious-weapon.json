@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:vicious-weapon",
+  "type": "magic-item",
+  "name": "Arme brutale",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (courante ou de guerre), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette arme magique inflige 2d6 dégâts supplémentaires à toute créature qu’elle touche. Ces dégâts supplémentaires sont du même type que les dégâts normaux de l’arme."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-gaseous-form",
+  "type": "magic-item",
+  "name": "Potion de forme gazeuse",
+  "data": {
+    "category": "potion",
+    "rarity": "rare",
+    "type_line": "Potion, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez l’effet du sort forme gazeuse pendant 1 heure (aucune Concentration requise) ou jusqu’à ce que vous mettiez fin à cet effet par une action Bonus.\nLe récipient de cette potion semble contenir du brouillard dont la fluidité est cependant celle de l’eau."
+  }
+}

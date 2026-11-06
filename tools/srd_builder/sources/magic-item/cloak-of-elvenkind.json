@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-elvenkind",
+  "type": "magic-item",
+  "name": "Cape elfique",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette cape, tout test de Sagesse (Perception) effectué pour vous repérer subit le Désavantage, et vous bénéficiez de l’Avantage à vos tests de Dextérité (Discrétion)."
+  }
+}

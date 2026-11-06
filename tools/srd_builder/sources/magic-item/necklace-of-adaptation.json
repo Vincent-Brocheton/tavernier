@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:necklace-of-adaptation",
+  "type": "magic-item",
+  "name": "Collier d’adaptation",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ce collier, vous pouvez respirer normalement dans n’importe quel environnement et bénéficiez de l’Avantage aux jets de sauvegarde visant à éviter l’état Empoisonné ou à y mettre fin."
+  }
+}

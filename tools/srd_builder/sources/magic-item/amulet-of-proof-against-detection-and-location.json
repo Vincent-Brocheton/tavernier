@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:amulet-of-proof-against-detection-and-location",
+  "type": "magic-item",
+  "name": "Amulette d’antidétection",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette amulette, vous ne pouvez ni être la cible d’un sort de divination ni perçu par un capteur de scrutation, sauf si vous le permettez."
+  }
+}

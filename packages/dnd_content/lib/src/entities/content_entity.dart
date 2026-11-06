@@ -16,6 +16,7 @@ const typesWithRequiredText = {
   'mastery',
   'background',
   'spell',
+  'magic-item',
 };
 
 const _envelopeKeys = {

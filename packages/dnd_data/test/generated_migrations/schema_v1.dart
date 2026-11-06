@@ -1197,6 +1197,118 @@ class Item extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
+class MagicItem extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  MagicItem(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES content_pack(id)ON DELETE CASCADE',
+  );
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> extendsId = GeneratedColumn<String>(
+    'extends_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  late final GeneratedColumn<String> category = GeneratedColumn<String>(
+    'category',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> rarity = GeneratedColumn<String>(
+    'rarity',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> typeLine = GeneratedColumn<String>(
+    'type_line',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<int> attunement = GeneratedColumn<int>(
+    'attunement',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL CHECK (attunement IN (0, 1))',
+  );
+  late final GeneratedColumn<String> attunementBy = GeneratedColumn<String>(
+    'attunement_by',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    packId,
+    name,
+    extendsId,
+    category,
+    rarity,
+    typeLine,
+    attunement,
+    attunementBy,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'magic_item';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  MagicItem createAlias(String alias) {
+    return MagicItem(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
 class Background extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5286,6 +5398,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final Armor armor = Armor(this);
   late final Tool tool = Tool(this);
   late final Item item = Item(this);
+  late final MagicItem magicItem = MagicItem(this);
   late final Background background = Background(this);
   late final BackgroundAbility backgroundAbility = BackgroundAbility(this);
   late final BackgroundProficiency backgroundProficiency =
@@ -5362,6 +5475,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     armor,
     tool,
     item,
+    magicItem,
     background,
     backgroundAbility,
     backgroundProficiency,
@@ -5487,6 +5601,13 @@ class DatabaseAtV1 extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('item', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('magic_item', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(

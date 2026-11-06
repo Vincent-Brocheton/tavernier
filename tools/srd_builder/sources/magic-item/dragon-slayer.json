@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:dragon-slayer",
+  "type": "magic-item",
+  "name": "Tueuse de dragons",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (courante ou de guerre), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique.\nL’arme inflige 3d6 dégâts supplémentaires du type de l’arme si la cible est un Dragon."
+  }
+}

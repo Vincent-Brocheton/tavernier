@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:spell-scroll",
+  "type": "magic-item",
+  "name": "Parchemin de sort",
+  "data": {
+    "category": "scroll",
+    "rarity": "varies",
+    "type_line": "Parchemin, rareté variable",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Un parchemin de sort renferme la formule d’un sort unique, rédigée dans un code ésotérique. Si ce sort figure dans votre liste de sorts, vous pouvez lire le parchemin pour en lancer le sort sans composantes matérielles. Sans cela, le parchemin reste illisible. Lancer le sort par le biais du parchemin requiert le temps d’incantation normal. Une fois le sort lancé, le parchemin tombe en poussière. Si l’incantation est interrompue, le parchemin n’est pas perdu.\nSi le sort figure bien dans votre liste, mais qu’il est d’un niveau supérieur à ce que vous pouvez normalement lancer, vous effectuez un test de caractéristique avec votre caractéristique d’incantation pour savoir si vous parvenez à le lancer. Le DD est égal à 10 + le niveau du sort. En cas d’échec, le sort s’efface du parchemin et il ne se passe rien d’autre.\nLe niveau du sort inscrit sur un parchemin détermine le DD de sauvegarde et le bonus d’attaque associés, ainsi que la rareté du parchemin, comme indiqué sur la table suivante.\nNiveau du sort | Rareté | DD de sauvegarde | Bonus à l’attaque\nSort mineur | Courant | 13 | +5\n1 | Courant | 13 | +5\n2 | Peu courant | 13 | +5\n3 | Peu courant | 15 | +7\n4 | Rare | 15 | +7\n5 | Rare | 17 | +9\n6 | Très rare | 17 | +9\n7 | Très rare | 18 | +10\n8 | Très rare | 18 | +10\n9 | Légendaire | 19 | +11\nCopier un parchemin dans un grimoire. Un sort de Magicien inscrit sur un parchemin de sort peut être copié dans un grimoire. Pour ce faire, le copiste doit réussir un test d’Intelligence (Arcanes) assorti d’un DD égal à 10 + le niveau du sort. En cas de réussite, le sort est copié. Que ce test réussisse ou échoue, le parchemin de sort est détruit."
+  }
+}

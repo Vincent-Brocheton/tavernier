@@ -149,6 +149,17 @@ class Items extends Table with ContentEntityColumns {
   BoolColumn get attunement => boolean().withDefault(const Constant(false))();
 }
 
+@DataClassName('MagicItemRow')
+class MagicItems extends Table with ContentEntityColumns {
+  @override
+  String get tableName => 'magic_item';
+  TextColumn get category => text()();
+  TextColumn get rarity => text()();
+  TextColumn get typeLine => text()();
+  BoolColumn get attunement => boolean()();
+  TextColumn get attunementBy => text().nullable()();
+}
+
 @DataClassName('BackgroundRow')
 class Backgrounds extends Table with ContentEntityColumns {
   @override

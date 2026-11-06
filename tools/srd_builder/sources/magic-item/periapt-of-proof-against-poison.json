@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:periapt-of-proof-against-poison",
+  "type": "magic-item",
+  "name": "Amulette de protection contre le poison",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cette chaîne en argent délicatement ouvragée porte en sautoir une gemme noire magnifiquement taillée. Tant que vous la portez, vous bénéficiez de l’Immunité contre l’état Empoisonné et les dégâts de poison."
+  }
+}

@@ -1,0 +1,1106 @@
+[
+ {
+  "item": "Anneau de feu d’étoiles",
+  "start": "Nombre de Dégâts de sphères foudre",
+  "resume": "",
+  "rows": [
+   [
+    "Nombre de sphères",
+    "Dégâts de foudre"
+   ],
+   [
+    "1",
+    "4d12"
+   ],
+   [
+    "2",
+    "5d4"
+   ],
+   [
+    "3",
+    "2d6"
+   ],
+   [
+    "4",
+    "2d4"
+   ]
+  ]
+ },
+ {
+  "item": "Armure d’écailles de dragon",
+  "start": "Dragon",
+  "resume": "",
+  "rows": [
+   [
+    "Dragon",
+    "Résistance"
+   ],
+   [
+    "Airain",
+    "Feu"
+   ],
+   [
+    "Argent",
+    "Froid"
+   ],
+   [
+    "Blanc",
+    "Froid"
+   ],
+   [
+    "Bleu",
+    "Foudre"
+   ],
+   [
+    "Bronze",
+    "Foudre"
+   ],
+   [
+    "Cuivre",
+    "Acide"
+   ],
+   [
+    "Noir",
+    "Acide"
+   ],
+   [
+    "Or",
+    "Feu"
+   ],
+   [
+    "Rouge",
+    "Feu"
+   ],
+   [
+    "Vert",
+    "Poison"
+   ]
+  ]
+ },
+ {
+  "item": "Baguette de terreur",
+  "start": "Sort injonction",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "injonction (« fuis » ou « rampe » uniquement)",
+    "1"
+   ],
+   [
+    "terreur (Cône de 18 m)",
+    "3"
+   ]
+  ]
+ },
+ {
+  "item": "Baguette des entraves",
+  "start": "Sort immobilisation de monstre",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "immobilisation de monstre",
+    "5"
+   ],
+   [
+    "immobilisation de personne",
+    "2"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton de feu",
+  "start": "Sort",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "boule de feu",
+    "3"
+   ],
+   [
+    "mains brûlantes",
+    "1"
+   ],
+   [
+    "mur de feu",
+    "4"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton de givre",
+  "start": "Sort cône de froid",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "cône de froid",
+    "5"
+   ],
+   [
+    "mur de glace",
+    "4"
+   ],
+   [
+    "nappe de brouillard",
+    "1"
+   ],
+   [
+    "tempête de grêle",
+    "4"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton de guérison",
+  "start": "Sort restauration partielle",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "restauration partielle",
+    "2"
+   ],
+   [
+    "soins",
+    "1 charge par niveau de sort (maximum 4 pour un sort du 4e niveau)"
+   ],
+   [
+    "soins de groupe",
+    "5"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton de surpuissance",
+  "start": "Sort boule de feu (au 5e niveau)",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "boule de feu (au 5e niveau)",
+    "5"
+   ],
+   [
+    "cône de froid",
+    "5"
+   ],
+   [
+    "éclair (au 5e niveau)",
+    "5"
+   ],
+   [
+    "globe d’invulnérabilité",
+    "6"
+   ],
+   [
+    "immobilisation de monstre",
+    "5"
+   ],
+   [
+    "lévitation",
+    "2"
+   ],
+   [
+    "mur de force",
+    "5"
+   ],
+   [
+    "projectile magique",
+    "1"
+   ],
+   [
+    "rayon affaiblissant",
+    "1"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton des forêts",
+  "start": "Sort amitié avec les animaux",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "amitié avec les animaux",
+    "1"
+   ],
+   [
+    "communication avec les animaux",
+    "1"
+   ],
+   [
+    "communication avec les plantes",
+    "3"
+   ],
+   [
+    "éveil",
+    "5"
+   ],
+   [
+    "localisation d’animaux ou de plantes",
+    "2"
+   ],
+   [
+    "mur d’épines",
+    "6"
+   ],
+   [
+    "passage sans trace",
+    "2"
+   ],
+   [
+    "peau d’écorce",
+    "2"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton du grand essaim",
+  "start": "Coût en",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "fléau d’insectes",
+    "5"
+   ],
+   [
+    "insecte géant",
+    "4"
+   ]
+  ]
+ },
+ {
+  "item": "Bâton du thaumaturge",
+  "start": "Sort",
+  "resume": "Récupération des charges",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "agrandissement/rapetissement",
+    "0"
+   ],
+   [
+    "boule de feu (au 7e niveau)",
+    "7"
+   ],
+   [
+    "changement de plan",
+    "7"
+   ],
+   [
+    "déblocage",
+    "2"
+   ],
+   [
+    "détection de la magie",
+    "0"
+   ],
+   [
+    "dissipation de la magie",
+    "3"
+   ],
+   [
+    "éclair (au 7e niveau)",
+    "7"
+   ],
+   [
+    "invisibilité",
+    "2"
+   ],
+   [
+    "invocation d’élémentaire",
+    "7"
+   ],
+   [
+    "lumière",
+    "0"
+   ],
+   [
+    "main du mage",
+    "0"
+   ],
+   [
+    "mur de feu",
+    "4"
+   ],
+   [
+    "passe-muraille",
+    "5"
+   ],
+   [
+    "protection contre le mal et le bien",
+    "0"
+   ],
+   [
+    "sphère de feu",
+    "2"
+   ],
+   [
+    "télékinésie",
+    "5"
+   ],
+   [
+    "tempête de grêle",
+    "4"
+   ],
+   [
+    "toile d’araignée",
+    "2"
+   ],
+   [
+    "verrou magique",
+    "0"
+   ]
+  ]
+ },
+ {
+  "item": "Ceinturon de force de géant",
+  "start": "Ceinturon",
+  "resume": "",
+  "rows": [
+   [
+    "Ceinturon",
+    "For",
+    "Rareté"
+   ],
+   [
+    "Ceinturon de force de géant (collines)",
+    "21",
+    "Rare"
+   ],
+   [
+    "Ceinturon de force de géant (givre ou pierres)",
+    "23",
+    "Très rare"
+   ],
+   [
+    "Ceinturon de force de géant (feu)",
+    "25",
+    "Très rare"
+   ],
+   [
+    "Ceinturon de force de géant (nuages)",
+    "27",
+    "Légendaire"
+   ],
+   [
+    "Ceinturon de force de géant (tempêtes)",
+    "29",
+    "Légendaire"
+   ]
+  ]
+ },
+ {
+  "item": "Cor du Valhalla",
+  "start": "1d100 01– 40",
+  "resume": "",
+  "rows": [
+   [
+    "1d100",
+    "Type de cor",
+    "Esprits",
+    "Prérequis"
+   ],
+   [
+    "01–40",
+    "Argent",
+    "2",
+    "Aucun"
+   ],
+   [
+    "41–75",
+    "Airain",
+    "3",
+    "Maîtrise de toutes les armes courantes"
+   ],
+   [
+    "76–90",
+    "Bronze",
+    "4",
+    "Formation au port de toutes les armures intermédiaires"
+   ],
+   [
+    "91–00",
+    "Fer",
+    "5",
+    "Maîtrise de toutes les armes de guerre"
+   ]
+  ]
+ },
+ {
+  "item": "Cube de force",
+  "start": "Faces du cube de force",
+  "resume": "",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "armure du mage",
+    "1"
+   ],
+   [
+    "bouclier",
+    "1"
+   ],
+   [
+    "petite hutte",
+    "3"
+   ],
+   [
+    "sanctuaire privé",
+    "4"
+   ],
+   [
+    "sphère résiliente",
+    "4"
+   ],
+   [
+    "mur de force",
+    "5"
+   ]
+  ]
+ },
+ {
+  "item": "Gemme élémentaire",
+  "start": "Gemme",
+  "resume": "",
+  "rows": [
+   [
+    "Gemme",
+    "Élémentaire convoqué"
+   ],
+   [
+    "Corindon rouge",
+    "Élémentaire du feu"
+   ],
+   [
+    "Diamant jaune",
+    "Élémentaire de la terre"
+   ],
+   [
+    "Émeraude",
+    "Élémentaire de l’eau"
+   ],
+   [
+    "Saphir bleu",
+    "Élémentaire de l’air"
+   ]
+  ]
+ },
+ {
+  "item": "Manuel des golems",
+  "start": "1d20 1–5",
+  "resume": "",
+  "rows": [
+   [
+    "1d20",
+    "Golem",
+    "Temps",
+    "Prix"
+   ],
+   [
+    "1–5",
+    "Golem d’argile",
+    "30 jours",
+    "65 000 po"
+   ],
+   [
+    "6–17",
+    "Golem de chair",
+    "60 jours",
+    "50 000 po"
+   ],
+   [
+    "18",
+    "Golem de fer",
+    "120 jours",
+    "100 000 po"
+   ],
+   [
+    "19–20",
+    "Golem de pierre",
+    "90 jours",
+    "80 000 po"
+   ]
+  ]
+ },
+ {
+  "item": "Orbe draconique",
+  "start": "Sort",
+  "resume": "Appel des dragons",
+  "rows": [
+   [
+    "Sort",
+    "Coût en charges"
+   ],
+   [
+    "détection de la magie",
+    "0"
+   ],
+   [
+    "lumière du jour",
+    "1"
+   ],
+   [
+    "protection contre la mort",
+    "2"
+   ],
+   [
+    "scrutation (DD de sauvegarde 18)",
+    "3"
+   ],
+   [
+    "soins (au 9e niveau)",
+    "4"
+   ]
+  ]
+ },
+ {
+  "item": "Parchemin de sort",
+  "start": "Niveau du sort",
+  "resume": "Copier un parchemin",
+  "rows": [
+   [
+    "Niveau du sort",
+    "Rareté",
+    "DD de sauvegarde",
+    "Bonus à l’attaque"
+   ],
+   [
+    "Sort mineur",
+    "Courant",
+    "13",
+    "+5"
+   ],
+   [
+    "1",
+    "Courant",
+    "13",
+    "+5"
+   ],
+   [
+    "2",
+    "Peu courant",
+    "13",
+    "+5"
+   ],
+   [
+    "3",
+    "Peu courant",
+    "15",
+    "+7"
+   ],
+   [
+    "4",
+    "Rare",
+    "15",
+    "+7"
+   ],
+   [
+    "5",
+    "Rare",
+    "17",
+    "+9"
+   ],
+   [
+    "6",
+    "Très rare",
+    "17",
+    "+9"
+   ],
+   [
+    "7",
+    "Très rare",
+    "18",
+    "+10"
+   ],
+   [
+    "8",
+    "Très rare",
+    "18",
+    "+10"
+   ],
+   [
+    "9",
+    "Légendaire",
+    "19",
+    "+11"
+   ]
+  ]
+ },
+ {
+  "item": "Plume magique",
+  "start": "Plumes magiques",
+  "resume": "",
+  "rows": [
+   [
+    "1d100",
+    "Plume",
+    "Rareté"
+   ],
+   [
+    "01–20",
+    "Ancre",
+    "Peu courante"
+   ],
+   [
+    "21–45",
+    "Arbre",
+    "Peu courante"
+   ],
+   [
+    "46–60",
+    "Bateau-cygne",
+    "Rare"
+   ],
+   [
+    "61–75",
+    "Éventail",
+    "Peu courante"
+   ],
+   [
+    "76–85",
+    "Fouet",
+    "Rare"
+   ],
+   [
+    "86–00",
+    "Oiseau",
+    "Rare"
+   ]
+  ]
+ },
+ {
+  "item": "Potion de force de géant",
+  "start": "Potion",
+  "resume": "",
+  "rows": [
+   [
+    "Potion",
+    "Force",
+    "Rareté"
+   ],
+   [
+    "Potion de force de géant (collines)",
+    "21",
+    "Peu courante"
+   ],
+   [
+    "Potion de force de géant (givre ou pierres)",
+    "23",
+    "Rare"
+   ],
+   [
+    "Potion de force de géant (feu)",
+    "25",
+    "Rare"
+   ],
+   [
+    "Potion de force de géant (nuages)",
+    "27",
+    "Très rare"
+   ],
+   [
+    "Potion de force de géant (tempêtes)",
+    "29",
+    "Légendaire"
+   ]
+  ]
+ },
+ {
+  "item": "Potion de résistance",
+  "start": "1d10 1 2 3 4",
+  "resume": "",
+  "rows": [
+   [
+    "1d10",
+    "Type de dégâts"
+   ],
+   [
+    "1",
+    "Acide"
+   ],
+   [
+    "2",
+    "Feu"
+   ],
+   [
+    "3",
+    "Force"
+   ],
+   [
+    "4",
+    "Foudre"
+   ],
+   [
+    "5",
+    "Froid"
+   ],
+   [
+    "6",
+    "Nécrotiques"
+   ],
+   [
+    "7",
+    "Poison"
+   ],
+   [
+    "8",
+    "Psychiques"
+   ],
+   [
+    "9",
+    "Radiants"
+   ],
+   [
+    "10",
+    "Tonnerre"
+   ]
+  ]
+ },
+ {
+  "item": "Potions de guérison",
+  "start": "Potion Potion de guérison",
+  "resume": "",
+  "rows": [
+   [
+    "Potion",
+    "Pv récupérés",
+    "Rareté"
+   ],
+   [
+    "Potion de guérison",
+    "2d4 + 2",
+    "Courante"
+   ],
+   [
+    "Potion de guérison (importante)",
+    "4d4 + 4",
+    "Peu courante"
+   ],
+   [
+    "Potion de guérison (supérieure)",
+    "8d4 + 8",
+    "Rare"
+   ],
+   [
+    "Potion de guérison (suprême)",
+    "10d4 + 20",
+    "Très rare"
+   ]
+  ]
+ },
+ {
+  "item": "Sac de haricots magiques",
+  "start": "1d100 01",
+  "resume": "",
+  "rows": [
+   [
+    "1d100",
+    "Effet"
+   ],
+   [
+    "01",
+    "5d4 champignons poussent. Si une créature mange un champignon, lancez n’importe quel dé. En cas de résultat impair, la créature doit réussir un jet de sauvegarde de Constitution DD 15 sous peine de subir 5d6 dégâts de poison et l’état Empoisonné pendant 1 heure. En cas de résultat pair, la créature reçoit 5d6 points de vie temporaires qui persistent pendant 1 heure."
+   ],
+   [
+    "02–10",
+    "Un geyser jaillit sur 9 m de haut en déversant de l’eau, de la bière, de la mayonnaise, du thé, du vinaigre, du vin ou de l’huile (au choix du MJ) pendant 1d4 minutes."
+   ],
+   [
+    "11–20",
+    "Un sylvanien pousse. Lancez n’importe quel dé. En cas de résultat impair, ce sylvanien est Chaotique Mauvais. En cas de résultat pair, il est Chaotique Bon."
+   ],
+   [
+    "21–30",
+    "Une statue de pierre à votre effigie, animée, mais immobile, se dresse et profère des menaces verbales à votre encontre. Si vous partez et que d’autres s’en approchent, elle vous décrit comme le plus odieux des scélérats et intime aux nouveaux arrivants de vous pourchasser. Si vous êtes sur le même plan d’existence que la statue, elle sait exactement où vous êtes. La statue devient inanimée au bout de 24 heures."
+   ],
+   [
+    "31–40",
+    "Un feu de camp aux flammes vertes s’allume ; il brûle pendant 24 heures (sauf si quelqu’un l’éteint)."
+   ],
+   [
+    "41–50",
+    "Trois criards poussent."
+   ],
+   [
+    "51–60",
+    "1d4 + 4 crapauds rose vif émergent en rampant. Chaque fois qu’un crapaud est touché, il se transforme en un monstre de taille G ou inférieure au choix du MJ, qui agit selon son alignement et sa nature. Le monstre persiste pendant 1 minute puis disparaît dans une bouffée de fumée rose vif."
+   ],
+   [
+    "61–70",
+    "Une bulette affamée surgit du sol et passe à l’attaque."
+   ],
+   [
+    "71–80",
+    "Un arbre fruitier émerge. Il porte 1d10 + 20 fruits, dont 1d8 agissent comme autant de potions déterminées aléatoirement. L’arbre disparaît au bout de 1 heure. Les fruits cueillis persistent et conservent leurs propriétés magiques pendant 30 jours."
+   ],
+   [
+    "81–90",
+    "Un nid contenant 1d4 + 3 œufs aux couleurs de l’arc-en-ciel apparaît. Toute créature qui mange un œuf effectue un jet de sauvegarde de Constitution DD 20. En cas de réussite, cette créature augmente sa valeur de caractéristique la plus basse de 1, de manière permanente, le hasard décidant de laquelle en cas d’égalité. En cas d’échec, la créature subit 10d6 dégâts de force, provoqués par une explosion interne."
+   ],
+   [
+    "91–95",
+    "Une pyramide à base carrée de 18 m de côté surgit du sol. À l’intérieur, une chambre funéraire abrite une momie, une momie auguste ou quelque autre Mort-vivant choisi par le MJ. Son sarcophage contient un trésor choisi par le MJ."
+   ],
+   [
+    "96–00",
+    "Un plant de haricot géant surgit, poussant jusqu’à une hauteur décidée par le MJ. Le sommet mène là où le MJ le décide : panorama superbe, château d’une géante des nuages, autre plan d’existence, etc."
+   ]
+  ]
+ },
+ {
+  "item": "Tapis volant",
+  "start": "1d100 01–20",
+  "resume": "",
+  "rows": [
+   [
+    "1d100",
+    "Taille",
+    "Capacité",
+    "Vitesse de vol"
+   ],
+   [
+    "01–20",
+    "90 cm × 1,50 m",
+    "100 kg",
+    "24 m"
+   ],
+   [
+    "21–55",
+    "1,20 m × 1,80 m",
+    "200 kg",
+    "18 m"
+   ],
+   [
+    "56–80",
+    "1,50 m × 2,10 m",
+    "300 kg",
+    "12 m"
+   ],
+   [
+    "81–00",
+    "1,80 m × 2,70 m",
+    "400 kg",
+    "9m"
+   ]
+  ]
+ },
+ {
+  "item": "Tarot mystérieux",
+  "start": "Tarot mystérieux",
+  "resume": "L’effet de chaque carte",
+  "rows": [
+   [
+    "1d100 (jeu de 13 cartes)",
+    "1d100 (jeu de 22 cartes)",
+    "Carte"
+   ],
+   [
+    "—",
+    "01–05",
+    "La Balance"
+   ],
+   [
+    "01–08",
+    "06–10",
+    "Le Bouffon"
+   ],
+   [
+    "09–16",
+    "11–15",
+    "Le Chevalier"
+   ],
+   [
+    "17–24",
+    "16–20",
+    "La Clef"
+   ],
+   [
+    "—",
+    "21–25",
+    "La Comète"
+   ],
+   [
+    "25–32",
+    "26–29",
+    "Le Crâne"
+   ],
+   [
+    "—",
+    "30–33",
+    "Le Donjon"
+   ],
+   [
+    "—",
+    "34–37",
+    "L’Énigme"
+   ],
+   [
+    "33–40",
+    "38–42",
+    "L’Étoile"
+   ],
+   [
+    "41–48",
+    "43–46",
+    "Euryale"
+   ],
+   [
+    "49–56",
+    "47–50",
+    "Les Flammes"
+   ],
+   [
+    "—",
+    "51–54",
+    "Le Fou"
+   ],
+   [
+    "—",
+    "55–59",
+    "La Gemme"
+   ],
+   [
+    "57–64",
+    "60–64",
+    "La Lune"
+   ],
+   [
+    "65–68",
+    "65–68",
+    "Le Néant"
+   ],
+   [
+    "—",
+    "69–73",
+    "Les Parques"
+   ],
+   [
+    "69–76",
+    "74–77",
+    "La Ruine"
+   ],
+   [
+    "—",
+    "78–81",
+    "Les Serres"
+   ],
+   [
+    "77–84",
+    "82–86",
+    "Le Soleil"
+   ],
+   [
+    "85–92",
+    "87–90",
+    "Le Traître"
+   ],
+   [
+    "93–100",
+    "91–95",
+    "Le Trône"
+   ],
+   [
+    "—",
+    "96–00",
+    "Le Vizir"
+   ]
+  ]
+ },
+ {
+  "item": "Submersible du Crabe",
+  "start": "Leviers du submersible",
+  "resume": "Le submersible flotte sur l’eau",
+  "rows": [
+   [
+    "Levier",
+    "Haut",
+    "Bas"
+   ],
+   [
+    "1",
+    "Les pattes se déploient et le submersible est apte à la marche comme à la nage.",
+    "Les pattes se rétractent, ce qui réduit la Vitesse et la Vitesse de nage du submersible à 0 m et l’empêche de bénéficier d’un quelconque bonus de vitesse."
+   ],
+   [
+    "2",
+    "Le volet du hublot avant s’ouvre.",
+    "Le volet du hublot avant se ferme."
+   ],
+   [
+    "3",
+    "Les volets des hublots latéraux s’ouvrent (deux par côté).",
+    "Les volets des hublots latéraux se ferment (deux par côté)."
+   ],
+   [
+    "4",
+    "Deux pinces se déploient depuis les côtés, à l’avant du submersible.",
+    "Les pinces se rétractent."
+   ],
+   [
+    "5",
+    "Chaque pince déployée effectue l’attaque de corps à corps suivante : +8 pour toucher, allonge 1,50 m. Touché : 7 (2d6) dégâts contondants.",
+    "Chaque pince déployée effectue l’attaque de corps à corps suivante : +8 pour toucher, allonge 1,50 m. Touché : La cible subit l’état Agrippé (évasion DD 15)."
+   ],
+   [
+    "6",
+    "Le submersible marche ou nage vers l’avant à condition que ses pattes soient déployées.",
+    "Le submersible marche ou nage vers l’arrière à condition que ses pattes soient déployées."
+   ],
+   [
+    "7",
+    "Le submersible pivote de 90 degrés vers la gauche à condition que ses pattes soient déployées.",
+    "Le submersible pivote de 90 degrés vers la droite à condition que ses pattes soient déployées."
+   ],
+   [
+    "8",
+    "Des yeux mécaniques émettent une Lumière vive dans un rayon de 9 m et une Lumière faible sur 9 m de plus.",
+    "La lumière s’éteint."
+   ],
+   [
+    "9",
+    "Le submersible descend de 6 m s’il évolue dans l’élément liquide.",
+    "Le submersible remonte de 6 m s’il évolue dans l’élément liquide."
+   ],
+   [
+    "10",
+    "L’écoutille arrière s’ouvre.",
+    "L’écoutille arrière se ferme hermétiquement."
+   ]
+  ]
+ }
+]

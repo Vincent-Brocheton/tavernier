@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-mind-reading",
+  "type": "magic-item",
+  "name": "Potion de lecture des pensées",
+  "data": {
+    "category": "potion",
+    "rarity": "rare",
+    "type_line": "Potion, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez l’effet du sort détection des pensées (DD de sauvegarde 13) pendant 10 minutes (aucune Concentration requise).\nDans ce liquide dense et pourpre flotte un nuage ovoïde et rose."
+  }
+}

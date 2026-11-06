@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:staff-of-the-woodlands",
+  "type": "magic-item",
+  "name": "Bâton des forêts",
+  "data": {
+    "category": "staff",
+    "rarity": "rare",
+    "type_line": "Bâton, rare (Harmonisation requise avec un Druide)",
+    "attunement": true,
+    "attunement_by": "un Druide"
+  },
+  "text": {
+    "fr": "Ce bâton, qui dispose de 6 charges, peut se manier comme un bâton de combat magique octroyant un bonus de +2 aux jets d’attaque et de dégâts. Tant que vous le tenez, vous recevez un bonus de +2 aux jets d’attaque de sort.\nSorts. Lorsque vous tenez le bâton, vous pouvez lancer l’un des sorts de la table suivante en prenant votre DD de sauvegarde des sorts. La table indique le nombre de charges à dépenser pour lancer le sort.\nSort | Coût en charges\namitié avec les animaux | 1\ncommunication avec les animaux | 1\ncommunication avec les plantes | 3\néveil | 5\nlocalisation d’animaux ou de plantes | 2\nmur d’épines | 6\npassage sans trace | 2\npeau d’écorce | 2\nRécupération des charges. Le bâton récupère quotidiennement 1d6 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le bâton perd ses propriétés et devient un bâton de combat non magique."
+  }
+}

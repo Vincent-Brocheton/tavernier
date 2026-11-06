@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:medallion-of-thoughts",
+  "type": "magic-item",
+  "name": "Médaillon des pensées",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce médaillon dispose de 5 charges. Lorsque vous le portez, vous pouvez dépenser 1 charge pour lancer détection des pensées (DD de sauvegarde 13) par son intermédiaire. Le médaillon récupère quotidiennement 1d4 charges dépensées, à l’aube."
+  }
+}

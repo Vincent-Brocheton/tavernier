@@ -22,6 +22,7 @@ const _tableOf = {
   'armor': 'armor',
   'tool': 'tool',
   'item': 'item',
+  'magic-item': 'magic_item',
   'background': 'background',
   'species': 'species',
   'feat': 'feat',
@@ -152,6 +153,15 @@ final class PackStore {
         });
       case final ItemData i:
         row.addAll({'weight_kg': i.weightKg, 'cost_cp': i.costCp});
+      case final MagicItemData m:
+        final json = m.toJson();
+        row.addAll({
+          'category': json['category'],
+          'rarity': json['rarity'],
+          'type_line': m.typeLine,
+          'attunement': m.attunement,
+          'attunement_by': m.attunementBy,
+        });
       case final BackgroundData b:
         row.addAll({
           'origin_feat_id': '${b.originFeat}',
@@ -438,6 +448,13 @@ final class PackStore {
             'item' => {
               'weight_kg': row['weight_kg'],
               'cost_cp': row['cost_cp'],
+            },
+            'magic-item' => {
+              'category': row['category'],
+              'rarity': row['rarity'],
+              'type_line': row['type_line'],
+              'attunement': row['attunement'] == 1,
+              'attunement_by': row['attunement_by'],
             },
             'background' => {
               'abilities': [for (final r in of(bgAbilities)) r['ability_id']],

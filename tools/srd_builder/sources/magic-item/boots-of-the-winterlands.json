@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:boots-of-the-winterlands",
+  "type": "magic-item",
+  "name": "Bottes des terres gelées",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ces confortables bottes fourrées gardent les pieds au chaud. Tant que vous les portez, vous recevez les bénéfices suivants :\nArpenteur de l’hiver. Vous ne tenez pas compte du Terrain difficile créé par la glace et la neige.\nRésistance au froid. Vous bénéficiez de la Résistance aux dégâts de froid et tolérez les températures inférieures à –18 °C sans protection supplémentaire."
+  }
+}

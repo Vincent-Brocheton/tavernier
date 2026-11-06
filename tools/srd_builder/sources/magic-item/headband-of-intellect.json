@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:headband-of-intellect",
+  "type": "magic-item",
+  "name": "Bandeau d’intelligence",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Votre Intelligence est de 19 tant que vous portez ce bandeau. Il est sans effet sur vous si votre Intelligence est déjà supérieure ou égale à 19."
+  }
+}

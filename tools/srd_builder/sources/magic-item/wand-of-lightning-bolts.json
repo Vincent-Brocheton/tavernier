@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:wand-of-lightning-bolts",
+  "type": "magic-item",
+  "name": "Baguette d’éclairs",
+  "data": {
+    "category": "wand",
+    "rarity": "rare",
+    "type_line": "Baguette, rare (Harmonisation requise avec un incantateur)",
+    "attunement": true,
+    "attunement_by": "un incantateur"
+  },
+  "text": {
+    "fr": "Cette baguette dispose de 7 charges. Lorsque vous la tenez, vous pouvez dépenser jusqu’à 3 charges pour lancer éclair (DD de sauvegarde 15). Avec 1 charge, vous lancez le sort au 3e niveau. Vous augmentez le niveau du sort d’un cran par charge additionnelle dépensée.\nRécupération des charges. La baguette récupère quotidiennement 1d6 + 1 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, la baguette se réduit en cendres, à jamais détruite."
+  }
+}

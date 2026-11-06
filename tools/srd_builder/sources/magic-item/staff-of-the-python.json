@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:staff-of-the-python",
+  "type": "magic-item",
+  "name": "Bâton du python",
+  "data": {
+    "category": "staff",
+    "rarity": "uncommon",
+    "type_line": "Bâton, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Au prix de l’action Magie, vous pouvez lancer ce bâton pour qu’il atterrisse en un espace inoccupé dans un rayon de 3 m et s’y transforme en serpent constricteur géant. Le serpent, sous votre contrôle, partage votre rang d’initiative et joue son tour juste après le vôtre.\nÀ votre tour, vous pouvez donner un ordre mental au serpent (pas d’action requise) s’il se trouve dans un rayon de 18 m de vous et si vous ne subissez pas l’état Neutralisé. Vous décidez quelle action le serpent entreprend et où il se déplacera à son tour, ou pouvez vous contenter de lui donner une instruction plus générale, comme veiller sur un lieu ou attaquer vos ennemis. En l’absence d’ordres de votre part, le serpent se défend.\nPar une action Bonus, vous pouvez ordonner au serpent de reprendre sa forme de bâton dans son espace actuel, après quoi vous ne pouvez plus utiliser la propriété du bâton pendant 1 heure. Si le serpent tombe à 0 point de vie, il meurt et retrouve sa forme de bâton ; le bâton se détruit alors en se brisant. Si le serpent retrouve sa forme de bâton avant d’avoir perdu tous ses points de vie, il les récupère tous."
+  }
+}

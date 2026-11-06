@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:censer-of-controlling-air-elementals",
+  "type": "magic-item",
+  "name": "Encensoir de contrôle des élémentaires de l’air",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Entreprendre l’action Magie tout en faisant osciller cet encensoir vous permet de convoquer un élémentaire de l’air. L’élémentaire apparaît en un espace inoccupé aussi près que possible de l’encensoir, comprend les mêmes langues que vous, obéit à vos ordres et joue son tour juste après vous à votre rang d’initiative. Il disparaît au bout de 1 heure ; plus tôt s’il meurt ou si vous le révoquez par une action Bonus. L’encensoir ne peut plus être utilisé de cette manière avant l’aube suivante."
+  }
+}

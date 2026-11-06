@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:elemental-gem",
+  "type": "magic-item",
+  "name": "Gemme élémentaire",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette gemme contient une particule d’énergie élémentaire. Lorsque vous entreprenez l’action Utilisation pour briser la gemme, cela convoque un élémentaire (cf. « Monstres » pour son profil), et la gemme perd sa magie. L’élémentaire apparaît en un espace inoccupé aussi près que possible de la gemme brisée, comprend les mêmes langues que vous, obéit à vos ordres et joue son tour juste après vous à votre rang d’initiative. Il disparaît au bout de 1 heure, s’il meurt, ou si vous le révoquez par une action Bonus. Le type de gemme détermine la nature de l’élémentaire, comme indiqué sur la table ci-après.\nGemme | Élémentaire convoqué\nCorindon rouge | Élémentaire du feu\nDiamant jaune | Élémentaire de la terre\nÉmeraude | Élémentaire de l’eau\nSaphir bleu | Élémentaire de l’air"
+  }
+}

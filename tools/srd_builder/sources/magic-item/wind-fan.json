@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:wind-fan",
+  "type": "magic-item",
+  "name": "Éventail enchanté",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous tenez cet éventail, vous pouvez lancer bourrasque (DD de sauvegarde 13) par son biais. Cependant, chaque nouvelle utilisation avant l’aube suivante fragilise l’objet : les risques qu’il se désagrège augmentent de 20 % à chaque fois. Si cela se produit, il est réduit à l’état de lambeaux non magiques inutilisables."
+  }
+}

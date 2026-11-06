@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:weapon-of-warning",
+  "type": "magic-item",
+  "name": "Arme vigilante",
+  "data": {
+    "category": "weapon",
+    "rarity": "uncommon",
+    "type_line": "Arme (courante ou de guerre), peu courante (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que cette arme est à portée d’allonge et que persiste votre Harmonisation avec elle, vous-même et vos alliés dans un rayon de 9 m recevez les bénéfices suivants.\nAlarme. L’arme réveille magiquement chaque sujet endormi lorsqu’un combat commence. Ce bénéfice ne tire pas un sujet d’un sommeil provoqué magiquement.\nVigilance surnaturelle. Chaque sujet a l’Avantage aux jets d’Initiative."
+  }
+}

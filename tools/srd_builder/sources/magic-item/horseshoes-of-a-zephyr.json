@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:horseshoes-of-a-zephyr",
+  "type": "magic-item",
+  "name": "Fers du zéphyr",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ces fers à cheval vont par quatre. Au prix de l’action Magie, vous pouvez mettre l’un des fers au contact du sabot d’un cheval ou d’une créature équivalente : le fer se fixe au sabot. Retirer un fer nécessite également l’action Magie.\nSi les quatre fers sont fixés aux sabots d’un cheval ou d’une créature équivalente, ils permettent à cette créature de se déplacer normalement tout en flottant 10 cm au-dessus du sol. Cet effet signifie que la créature peut traverser ou survoler des surfaces non solides ou instables, comme l’eau ou la lave. La créature ferrée ne laisse aucune trace et n’est pas soumise au Terrain difficile. Elle peut en outre voyager pendant 12 heures par jour sans recevoir de niveau d’Épuisement."
+  }
+}

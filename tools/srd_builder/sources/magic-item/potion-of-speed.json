@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-speed",
+  "type": "magic-item",
+  "name": "Potion de vitesse",
+  "data": {
+    "category": "potion",
+    "rarity": "very_rare",
+    "type_line": "Potion, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez l’effet du sort hâte pendant 1 minute (aucune Concentration requise) sans subir la vague de léthargie qui survient habituellement à la fin de l’effet.\nLe liquide jaune de la potion, strié de noir, tourbillonne sans qu’on l’agite."
+  }
+}

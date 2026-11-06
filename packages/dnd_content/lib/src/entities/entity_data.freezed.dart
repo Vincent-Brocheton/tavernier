@@ -2175,6 +2175,292 @@ as int?,
 
 
 /// @nodoc
+mixin _$MagicItemData {
+
+ MagicItemCategory get category; Rarity get rarity;/// Ligne de type du SRD, recopiée telle quelle.
+ String get typeLine; bool get attunement;/// Créature exigée pour l'harmonisation (« un Magicien »).
+ String? get attunementBy;
+/// Create a copy of MagicItemData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MagicItemDataCopyWith<MagicItemData> get copyWith => _$MagicItemDataCopyWithImpl<MagicItemData>(this as MagicItemData, _$identity);
+
+  /// Serializes this MagicItemData to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MagicItemData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MagicItemData&&(identical(other.category, _this.category) || other.category == _this.category)&&(identical(other.rarity, _this.rarity) || other.rarity == _this.rarity)&&(identical(other.typeLine, _this.typeLine) || other.typeLine == _this.typeLine)&&(identical(other.attunement, _this.attunement) || other.attunement == _this.attunement)&&(identical(other.attunementBy, _this.attunementBy) || other.attunementBy == _this.attunementBy));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MagicItemData;
+  return Object.hash(runtimeType,_this.category,_this.rarity,_this.typeLine,_this.attunement,_this.attunementBy);
+}
+
+@override
+String toString() {
+  final _this = this as MagicItemData;
+  return 'MagicItemData(category: ${_this.category}, rarity: ${_this.rarity}, typeLine: ${_this.typeLine}, attunement: ${_this.attunement}, attunementBy: ${_this.attunementBy})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MagicItemDataCopyWith<$Res>  {
+  factory $MagicItemDataCopyWith(MagicItemData value, $Res Function(MagicItemData) _then) = _$MagicItemDataCopyWithImpl;
+@useResult
+$Res call({
+ MagicItemCategory category, Rarity rarity, String typeLine, bool attunement, String? attunementBy
+});
+
+
+
+
+}
+/// @nodoc
+class _$MagicItemDataCopyWithImpl<$Res>
+    implements $MagicItemDataCopyWith<$Res> {
+  _$MagicItemDataCopyWithImpl(this._self, this._then);
+
+  final MagicItemData _self;
+  final $Res Function(MagicItemData) _then;
+
+/// Create a copy of MagicItemData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? rarity = null,Object? typeLine = null,Object? attunement = null,Object? attunementBy = freezed,}) {
+  return _then(MagicItemData(
+category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as MagicItemCategory,rarity: null == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity,typeLine: null == typeLine ? _self.typeLine : typeLine // ignore: cast_nullable_to_non_nullable
+as String,attunement: null == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool,attunementBy: freezed == attunementBy ? _self.attunementBy : attunementBy // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MagicItemData].
+extension MagicItemDataPatterns on MagicItemData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MagicItemData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MagicItemData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MagicItemData value)  $default,){
+final _that = this;
+switch (_that) {
+case _MagicItemData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MagicItemData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MagicItemData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MagicItemCategory category,  Rarity rarity,  String typeLine,  bool attunement,  String? attunementBy)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MagicItemData() when $default != null:
+return $default(_that.category,_that.rarity,_that.typeLine,_that.attunement,_that.attunementBy);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MagicItemCategory category,  Rarity rarity,  String typeLine,  bool attunement,  String? attunementBy)  $default,) {final _that = this;
+switch (_that) {
+case _MagicItemData():
+return $default(_that.category,_that.rarity,_that.typeLine,_that.attunement,_that.attunementBy);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MagicItemCategory category,  Rarity rarity,  String typeLine,  bool attunement,  String? attunementBy)?  $default,) {final _that = this;
+switch (_that) {
+case _MagicItemData() when $default != null:
+return $default(_that.category,_that.rarity,_that.typeLine,_that.attunement,_that.attunementBy);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MagicItemData implements MagicItemData {
+  const _MagicItemData({required this.category, required this.rarity, required this.typeLine, this.attunement = false, this.attunementBy});
+  factory _MagicItemData.fromJson(Map<String, dynamic> json) => _$MagicItemDataFromJson(json);
+
+@override final  MagicItemCategory category;
+@override final  Rarity rarity;
+/// Ligne de type du SRD, recopiée telle quelle.
+@override final  String typeLine;
+@override@JsonKey() final  bool attunement;
+/// Créature exigée pour l'harmonisation (« un Magicien »).
+@override final  String? attunementBy;
+
+/// Create a copy of MagicItemData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MagicItemDataCopyWith<_MagicItemData> get copyWith => __$MagicItemDataCopyWithImpl<_MagicItemData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MagicItemDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MagicItemData&&(identical(other.category, category) || other.category == category)&&(identical(other.rarity, rarity) || other.rarity == rarity)&&(identical(other.typeLine, typeLine) || other.typeLine == typeLine)&&(identical(other.attunement, attunement) || other.attunement == attunement)&&(identical(other.attunementBy, attunementBy) || other.attunementBy == attunementBy));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,category,rarity,typeLine,attunement,attunementBy);
+}
+
+@override
+String toString() {
+    return 'MagicItemData(category: $category, rarity: $rarity, typeLine: $typeLine, attunement: $attunement, attunementBy: $attunementBy)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MagicItemDataCopyWith<$Res> implements $MagicItemDataCopyWith<$Res> {
+  factory _$MagicItemDataCopyWith(_MagicItemData value, $Res Function(_MagicItemData) _then) = __$MagicItemDataCopyWithImpl;
+@override @useResult
+$Res call({
+ MagicItemCategory category, Rarity rarity, String typeLine, bool attunement, String? attunementBy
+});
+
+
+
+
+}
+/// @nodoc
+class __$MagicItemDataCopyWithImpl<$Res>
+    implements _$MagicItemDataCopyWith<$Res> {
+  __$MagicItemDataCopyWithImpl(this._self, this._then);
+
+  final _MagicItemData _self;
+  final $Res Function(_MagicItemData) _then;
+
+/// Create a copy of MagicItemData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? rarity = null,Object? typeLine = null,Object? attunement = null,Object? attunementBy = freezed,}) {
+  return _then(_MagicItemData(
+category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as MagicItemCategory,rarity: null == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity,typeLine: null == typeLine ? _self.typeLine : typeLine // ignore: cast_nullable_to_non_nullable
+as String,attunement: null == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool,attunementBy: freezed == attunementBy ? _self.attunementBy : attunementBy // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$ItemQuantity {
 
 @ContentIdConverter() ContentId get item; int get quantity;
