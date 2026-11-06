@@ -136,3 +136,10 @@ La base SHALL stocker les sorts d'un pack dans la table `spell` (cahier §11.1) 
 #### Scenario: Recherche
 - **WHEN** on cherche « boule de feu »
 - **THEN** le premier résultat est `srd:spell:fireball`, de type `spell`
+
+### Requirement: Équipement de départ des classes en base
+La base locale SHALL stocker les options d'équipement de départ de chaque classe importée, et SHALL les restituer à l'export du pack à l'identique.
+
+#### Scenario: Aller-retour d'un pack
+- **WHEN** on importe le pack SRD puis qu'on relit le Guerrier
+- **THEN** ses trois options d'équipement de départ sont identiques à celles du pack
