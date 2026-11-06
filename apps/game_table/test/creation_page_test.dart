@@ -157,6 +157,36 @@ void main() {
     );
   });
 
+  testWidgets('grand écran : un premier choix ne déplace pas les cartes', (
+    tester,
+  ) async {
+    await _open(tester, 1440);
+    final before = tester.getTopLeft(find.text('Clerc'));
+    await _tap(tester, 'Guerrier');
+    expect(tester.getTopLeft(find.text('Clerc')), before);
+  });
+
+  testWidgets('écran bas : l’introduction laisse la place à la liste', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(844, 390);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [contentProvider.overrideWith((ref) => _content)],
+        child: const GameTableApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Personnages').first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Nouveau personnage'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Votre classe décide'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('filtre Lanceurs de sorts et recherche', (tester) async {
     await _open(tester, 1440);
     await _tap(tester, 'Lanceurs de sorts');

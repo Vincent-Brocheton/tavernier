@@ -59,67 +59,79 @@ class _SelectionCardState extends State<SelectionCard> {
     final scheme = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
     final radius = BorderRadius.circular(AppRadii.md);
-    return Semantics(
-      selected: selected,
-      button: true,
-      child: Material(
-        color: selected ? scheme.primaryContainer : scheme.surfaceContainerLow,
-        shape: RoundedRectangleBorder(
-          borderRadius: radius,
-          side: selected
-              ? BorderSide(color: scheme.primary, width: 2)
-              : BorderSide.none,
-        ),
-        child: InkWell(
-          borderRadius: radius,
-          onTap: widget.onTap,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: AppSizes.touchTargetMin),
-            child: Padding(
-              padding: EdgeInsets.all(AppSpacing.md),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+    return Material(
+      color: selected ? scheme.primaryContainer : scheme.surfaceContainerLow,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: radius,
+        side: selected
+            ? BorderSide(color: scheme.primary, width: 2)
+            : BorderSide.none,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Semantics(
+            selected: selected,
+            button: true,
+            child: InkWell(
+              onTap: widget.onTap,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: AppSizes.touchTargetMin),
+                child: Padding(
+                  padding: EdgeInsets.all(AppSpacing.md),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Text(widget.title, style: text.titleMedium),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(widget.title, style: text.titleMedium),
+                          ),
+                          if (widget.trailing case final value?)
+                            Text(value, style: text.bodyMedium),
+                          if (selected) ...[
+                            SizedBox(width: AppSpacing.xs),
+                            Icon(Icons.check_circle, color: scheme.primary),
+                          ],
+                        ],
                       ),
-                      if (widget.trailing case final value?)
-                        Text(value, style: text.bodyMedium),
-                      if (selected) ...[
-                        SizedBox(width: AppSpacing.xs),
-                        Icon(Icons.check_circle, color: scheme.primary),
+                      if (widget.subtitle case final value?)
+                        Text(
+                          value,
+                          style: text.bodySmall!.copyWith(
+                            color: selected
+                                ? scheme.onPrimaryContainer
+                                : scheme.onSurfaceVariant,
+                          ),
+                        ),
+                      if (widget.footer case final chips?) ...[
+                        SizedBox(height: AppSpacing.sm),
+                        Wrap(
+                          spacing: AppSpacing.xs,
+                          runSpacing: AppSpacing.xxs,
+                          children: chips,
+                        ),
                       ],
                     ],
                   ),
-                  if (widget.subtitle case final value?)
-                    Text(
-                      value,
-                      style: text.bodySmall!.copyWith(
-                        color: selected
-                            ? scheme.onPrimaryContainer
-                            : scheme.onSurfaceVariant,
-                      ),
-                    ),
-                  if (widget.footer case final chips?) ...[
-                    SizedBox(height: AppSpacing.sm),
-                    Wrap(
-                      spacing: AppSpacing.xs,
-                      runSpacing: AppSpacing.xxs,
-                      children: chips,
-                    ),
-                  ],
-                  if (widget.child case final content?) ...[
-                    SizedBox(height: AppSpacing.sm),
-                    content,
-                  ],
-                ],
+                ),
               ),
             ),
           ),
-        ),
+          // Hors de la zone tactile : le contenu a ses propres commandes.
+          if (widget.child case final content?)
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                AppSpacing.md,
+                0,
+                AppSpacing.md,
+                AppSpacing.md,
+              ),
+              child: content,
+            ),
+        ],
       ),
     );
   }

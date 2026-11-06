@@ -189,9 +189,12 @@ class WizardFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         if (blockedReason case final reason?) ...[
-          Text(
-            reason,
-            style: text.bodySmall!.copyWith(color: scheme.onSurfaceVariant),
+          Semantics(
+            liveRegion: true,
+            child: Text(
+              reason,
+              style: text.bodySmall!.copyWith(color: scheme.onSurfaceVariant),
+            ),
           ),
           SizedBox(height: AppSpacing.xs),
         ],

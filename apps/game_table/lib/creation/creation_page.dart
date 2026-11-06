@@ -149,6 +149,7 @@ class _Header extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final scheme = Theme.of(context).colorScheme;
     final number = draft.step + 1;
+    final short = MediaQuery.sizeOf(context).height < 600;
     return Container(
       color: scheme.surfaceContainerLow,
       padding: EdgeInsets.fromLTRB(
@@ -186,7 +187,8 @@ class _Header extends StatelessWidget {
             title,
             style: text.headlineMedium!.copyWith(color: scheme.tertiary),
           ),
-          if (intro case final value?)
+          // Sur un écran bas (téléphone en paysage), la liste passe avant.
+          if (intro case final value? when !short)
             Padding(
               padding: EdgeInsets.only(top: AppSpacing.xxs),
               child: ConstrainedBox(

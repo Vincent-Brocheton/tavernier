@@ -16,7 +16,7 @@ US-05 est livrée en trois lots, chacun avec son change et sa pull request ; la 
   - Sur desktop et tablette, la liste des étapes à gauche ; sur téléphone, « Étape n sur 9 » et une barre de progression.
   - « Suivant » est désactivé tant qu'un choix manque, avec sa raison au-dessus (critère « choix invalides bloqués et expliqués »).
   - Le joueur revient à toute étape déjà atteinte.
-  - Les étapes 4 à 9 affichent « Bientôt disponible » jusqu'aux lots suivants.
+  - L'étape 4 affiche « Bientôt disponible » et « Suivant » s'y arrête jusqu'au lot suivant ; les étapes 5 à 9 sont listées, pas encore accessibles.
 - **Étape 1, Classe [P1] :** recherche, filtres (Toutes, Martiales, Lanceurs de sorts, Homebrew), cartes et panneau de détail.
 - **Étape 2, Historique [P2] :** cartes, détail (caractéristiques, don d'origines, compétences, outil), choix de l'outil quand l'Historique en propose un.
 - **Étape 3, Espèce [P3] :** liste, traits, choix de la taille quand l'espèce en propose deux.

@@ -99,6 +99,20 @@ void main() {
       expect(tester.widget<FilledButton>(next).onPressed, isNull);
       expect(find.text('Choisissez une classe.'), findsOneWidget);
       expect(
+        tester
+            .widget<Semantics>(
+              find
+                  .ancestor(
+                    of: find.text('Choisissez une classe.'),
+                    matching: find.byType(Semantics),
+                  )
+                  .first,
+            )
+            .properties
+            .liveRegion,
+        isTrue,
+      );
+      expect(
         tester.getTopLeft(find.text('Choisissez une classe.')).dy,
         lessThan(tester.getTopLeft(next).dy),
       );
@@ -161,10 +175,40 @@ void main() {
       );
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
       expect(
-        tester.getSemantics(find.byType(SelectionCard)),
-        isSemantics(isSelected: true),
+        tester.getSemantics(find.widgetWithText(InkWell, 'Guerrier')),
+        isSemantics(isSelected: true, isButton: true),
       );
       handle.dispose();
+    });
+
+    testWidgets('le contenu ouvert a ses commandes, hors de la zone tactile', (
+      tester,
+    ) async {
+      var card = 0;
+      var inner = 0;
+      await tester.pumpWidget(
+        _app(
+          SelectionCard(
+            title: 'Humain',
+            selected: true,
+            onTap: () => card++,
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () => inner++,
+                  child: const Text('Taille M'),
+                ),
+                const SizedBox(height: 60, child: Text('Trait')),
+              ],
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('Taille M'));
+      await tester.tap(find.text('Trait'));
+      expect((card, inner), (0, 1));
+      await tester.tap(find.text('Humain'));
+      expect(card, 1);
     });
 
     testWidgets('non sélectionnée : pas de coche, 48 dp, touchable', (

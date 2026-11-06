@@ -18,8 +18,10 @@ class StepLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final phone =
         formFactorOf(MediaQuery.sizeOf(context).width) == FormFactor.phone;
+    if (phone) return SingleChildScrollView(child: list);
+    // Le panneau garde sa place même vide : un premier choix ne doit pas
+    // déplacer les cartes sous le pointeur.
     final panel = detail;
-    if (phone || panel == null) return SingleChildScrollView(child: list);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,18 +29,20 @@ class StepLayout extends StatelessWidget {
         SizedBox(width: AppSpacing.lg),
         SizedBox(
           width: 300,
-          child: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.all(AppSpacing.md),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppRadii.lg),
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.outlineVariant,
+          child: panel == null
+              ? null
+              : SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.all(AppSpacing.md),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppRadii.lg),
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                      ),
+                    ),
+                    child: panel,
+                  ),
                 ),
-              ),
-              child: panel,
-            ),
-          ),
         ),
       ],
     );
