@@ -137,6 +137,8 @@ class _PointBuy extends ConsumerWidget {
               for (final MapEntry(:key, :value) in pointBuyCosts.entries)
                 '$key → $value',
             ].join(' · '),
+            pointBuyCosts.keys.first,
+            pointBuyCosts.keys.last,
           ),
           style: text.bodySmall,
         ),

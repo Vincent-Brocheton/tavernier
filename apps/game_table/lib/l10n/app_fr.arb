@@ -492,12 +492,18 @@
       }
     }
   },
-  "pointBuyCosts": "Coûts : {costs}. Valeur entre 8 et 15 avant bonus.",
+  "pointBuyCosts": "Coûts : {costs}. Valeur entre {min} et {max} avant bonus.",
   "@pointBuyCosts": {
     "description": "Rappel des coûts.",
     "placeholders": {
       "costs": {
         "type": "String"
+      },
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
       }
     }
   },
@@ -602,5 +608,9 @@
         "type": "int"
       }
     }
+  },
+  "stepToRedo": "À refaire",
+  "@stepToRedo": {
+    "description": "Étape franchie devenue invalide."
   }
 }

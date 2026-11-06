@@ -309,10 +309,15 @@ void main() {
       await spendAllPoints(tester);
       await _tapBonus(tester, '+2 sur Intelligence');
       await _tapBonus(tester, '+1 sur Constitution');
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+      expect(find.text('ÉTAPE 6 SUR 9'), findsOneWidget);
       await tester.tap(find.text('Historique'));
       await tester.pumpAndSettle();
       await _tap(tester, 'Soldat');
       await _tap(tester, 'dés');
+      // L'étape à reprendre le dit dans la liste, avant même d'y aller.
+      expect(find.text('À refaire'), findsOneWidget);
       await tester.tap(find.text('Caractéristiques'));
       await tester.pumpAndSettle();
       expect(find.text('Bonus à refaire'), findsOneWidget);

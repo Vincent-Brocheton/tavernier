@@ -351,8 +351,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String pointBuyCosts(String costs) {
-    return 'Coûts : $costs. Valeur entre 8 et 15 avant bonus.';
+  String pointBuyCosts(String costs, int min, int max) {
+    return 'Coûts : $costs. Valeur entre $min et $max avant bonus.';
   }
 
   @override
@@ -420,4 +420,7 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get stepToRedo => 'À refaire';
 }

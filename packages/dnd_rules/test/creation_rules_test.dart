@@ -1,5 +1,5 @@
 // Spec character-creation : règles de l'acquisition par points (SRD p. 22) et
-// des langues de départ (SRD p. 20), partagées par le moteur et l'interface.
+// des langues de départ (SRD p. 21), partagées par le moteur et l'interface.
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:test/test.dart';
 
@@ -40,7 +40,7 @@ void main() {
     expect(abilityModifier(9), -1);
   });
 
-  test('langues de départ (SRD p. 20) : le Commun et deux au choix', () {
+  test('langues de départ (SRD p. 21) : le Commun et deux au choix', () {
     expect(startingLanguageId, 'srd:language:common');
     expect(startingLanguageChoices, 2);
   });

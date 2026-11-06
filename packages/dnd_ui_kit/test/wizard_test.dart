@@ -56,6 +56,33 @@ void main() {
       expect(taps, [0]);
     });
 
+    testWidgets('étape à reprendre : alerte à la place de la coche', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _app(
+          WizardSteps(
+            steps: const [
+              WizardStep(label: 'Classe', detail: 'Guerrier'),
+              WizardStep(
+                label: 'Caractéristiques',
+                detail: 'Acquisition par points',
+                alert: 'À refaire',
+              ),
+              WizardStep(label: 'Espèce', detail: 'Nain'),
+            ],
+            current: 0,
+            reached: 2,
+            onSelected: (_) {},
+          ),
+        ),
+      );
+      expect(find.text('À refaire'), findsOneWidget);
+      expect(find.text('Acquisition par points'), findsNothing);
+      expect(find.byIcon(Icons.priority_high), findsOneWidget);
+      expect(find.byIcon(Icons.check), findsNothing);
+    });
+
     testWidgets('chaque étape fait au moins 48 dp', (tester) async {
       await tester.pumpWidget(
         _app(

@@ -239,25 +239,41 @@ List<WizardStep> _steps(
   CreationDraft draft,
   ActiveContent content,
 ) {
+  WizardStep alerted(int index, WizardStep step) =>
+      index != draft.step &&
+          index < draft.reached &&
+          missingAt(draft, index, content) != null
+      ? WizardStep(
+          label: step.label,
+          detail: step.detail,
+          alert: l10n.stepToRedo,
+        )
+      : step;
   String chosen(String? id) =>
       (id == null ? null : content.entity(id)?.name) ?? l10n.stepToChoose;
   return [
-    WizardStep(label: l10n.stepClass, detail: chosen(draft.classId)),
-    WizardStep(label: l10n.stepBackground, detail: chosen(draft.backgroundId)),
-    WizardStep(label: l10n.stepSpecies, detail: chosen(draft.speciesId)),
-    WizardStep(
-      label: l10n.stepLanguages,
-      detail: draft.languages.isEmpty
-          ? l10n.stepLanguagesHint
-          : [
-              startingLanguageId,
-              ...draft.languages,
-            ].map((id) => content.entity(id)?.name ?? id).join(', '),
-    ),
-    WizardStep(label: l10n.stepAbilities, detail: l10n.stepAbilitiesHint),
-    WizardStep(label: l10n.stepSubchoices, detail: l10n.stepSubchoicesHint),
-    WizardStep(label: l10n.stepEquipment, detail: l10n.stepEquipmentHint),
-    WizardStep(label: l10n.stepDetails, detail: l10n.stepDetailsHint),
-    WizardStep(label: l10n.stepSummary, detail: l10n.stepSummaryHint),
+    for (final (i, step) in [
+      WizardStep(label: l10n.stepClass, detail: chosen(draft.classId)),
+      WizardStep(
+        label: l10n.stepBackground,
+        detail: chosen(draft.backgroundId),
+      ),
+      WizardStep(label: l10n.stepSpecies, detail: chosen(draft.speciesId)),
+      WizardStep(
+        label: l10n.stepLanguages,
+        detail: draft.languages.isEmpty
+            ? l10n.stepLanguagesHint
+            : [
+                startingLanguageId,
+                ...draft.languages,
+              ].map((id) => content.entity(id)?.name ?? id).join(', '),
+      ),
+      WizardStep(label: l10n.stepAbilities, detail: l10n.stepAbilitiesHint),
+      WizardStep(label: l10n.stepSubchoices, detail: l10n.stepSubchoicesHint),
+      WizardStep(label: l10n.stepEquipment, detail: l10n.stepEquipmentHint),
+      WizardStep(label: l10n.stepDetails, detail: l10n.stepDetailsHint),
+      WizardStep(label: l10n.stepSummary, detail: l10n.stepSummaryHint),
+    ].indexed)
+      alerted(i, step),
   ];
 }

@@ -715,8 +715,8 @@ abstract class AppLocalizations {
   /// Rappel des coûts.
   ///
   /// In fr, this message translates to:
-  /// **'Coûts : {costs}. Valeur entre 8 et 15 avant bonus.'**
-  String pointBuyCosts(String costs);
+  /// **'Coûts : {costs}. Valeur entre {min} et {max} avant bonus.'**
+  String pointBuyCosts(String costs, int min, int max);
 
   /// Bouton +.
   ///
@@ -781,6 +781,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count, plural, =1{Il reste 1 point à dépenser.} other{Il reste {count} points à dépenser.}}'**
   String missingPoints(int count);
+
+  /// Étape franchie devenue invalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'À refaire'**
+  String get stepToRedo;
 }
 
 class _AppLocalizationsDelegate

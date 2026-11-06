@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Choix des langues
-L'étape Langues SHALL donner le Commun d'office et demander exactement 2 langues courantes (SRD p. 20). Les langues rares ne SHALL pas être proposées.
+L'étape Langues SHALL donner le Commun d'office et demander exactement 2 langues courantes (SRD p. 21). Les langues rares ne SHALL pas être proposées.
 
 #### Scenario: Compte incomplet
 - **WHEN** le joueur a choisi une langue

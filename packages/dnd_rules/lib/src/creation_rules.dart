@@ -21,8 +21,8 @@ int abilityModifier(int score) => ((score - 10) / 2).floor();
 /// Plafond d'une valeur de caractéristique à la création (SRD p. 87).
 const abilityScoreCap = 20;
 
-/// Langue connue de tout personnage (SRD p. 20).
+/// Langue connue de tout personnage (SRD p. 21).
 const startingLanguageId = 'srd:language:common';
 
-/// Langues courantes à choisir en plus du Commun (SRD p. 20).
+/// Langues courantes à choisir en plus du Commun (SRD p. 21).
 const startingLanguageChoices = 2;
