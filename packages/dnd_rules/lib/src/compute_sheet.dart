@@ -188,10 +188,8 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       resolve(a.effect.args['count'], a.level),
   ].fold(0, (sum, v) => sum + v);
   final masteries = <String>{};
-  final meleeOnly =
-      ofOp('grant_mastery_slots').isNotEmpty &&
-      ofOp('grant_mastery_slots')
-          .every((a) => a.effect.args['melee_only'] == true);
+  final meleeOnly = ofOp('grant_mastery_slots')
+      .every((a) => a.effect.args['melee_only'] == true);
   if (character.weaponMasteries.length > masterySlots) {
     errors.add(
       IntegrityError(

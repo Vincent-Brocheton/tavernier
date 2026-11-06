@@ -87,6 +87,22 @@ void main() {
     ]);
   });
 
+  test('Goliath : un bénéfice d’Ascendance gigante parmi six', () {
+    final ancestry = _section(
+      _draft('monk', 'sage', 'goliath'),
+      'giant-ancestry',
+    );
+    expect(ancestry.count, 1);
+    expect(ancestry.options.map((o) => o.label), [
+      'Brûlure ignée',
+      'Endurance de la pierre',
+      'Froid mordant',
+      'Renversement des coteaux',
+      'Saut des nuées',
+      'Tonnerre des cieux',
+    ]);
+  });
+
   test('Barde : 3 instruments sur 10', () {
     final tools = _section(_draft('bard', 'sage', 'dwarf'), 'classTools');
     expect(tools.count, 3);
@@ -177,9 +193,10 @@ void main() {
 
     test('pas plus que le nombre permis', () {
       final draft = atSubchoices(_draft('fighter', 'criminal', 'dwarf'))
-          .toggleMastery('srd:weapon:longsword', 1)
-          .toggleMastery('srd:weapon:javelin', 1);
-      expect(draft.masteries, ['srd:weapon:longsword']);
+          .toggleMastery('srd:weapon:longsword', 2)
+          .toggleMastery('srd:weapon:javelin', 2)
+          .toggleMastery('srd:weapon:battleaxe', 2);
+      expect(draft.masteries, ['srd:weapon:longsword', 'srd:weapon:javelin']);
     });
 
     test('un choix unique se remplace', () {
@@ -187,6 +204,8 @@ void main() {
           .togglePick('elven-lineage', 'Drow', 1)
           .togglePick('elven-lineage', 'Haut-elfe', 1);
       expect(draft.choices['elven-lineage'], ['Haut-elfe']);
+      final skills = draft.toggleClassSkill('a', 1).toggleClassSkill('b', 1);
+      expect(skills.classSkills, ['b']);
     });
 
     test('compétence devenue invalide : signalée, l’étape bloque', () {

@@ -83,18 +83,23 @@ String firstSentence(String text) {
       ? text.substring(announce.length)
       : text;
   final line = body.split('\n').first;
-  final end = RegExp(r'(?<!\bcf)\. ').firstMatch(line);
+  final end = '. '
+      .allMatches(line)
+      .where((m) => !line.substring(0, m.start).endsWith('cf'))
+      .firstOrNull;
   return end == null ? line : line.substring(0, end.start + 1);
 }
 
-/// Aptitudes de classe, traits d'espèce et don d'origines du brouillon : ce
-/// qui peut ouvrir un choix.
+/// Aptitudes de classe, traits d'espèce et dons d'origines : ce qui peut
+/// ouvrir un choix.
 List<String> _sources(CreationDraft draft, ActiveContent content) {
   final cls = content.entity(draft.classId ?? '')?.data;
   final species = content.entity(draft.speciesId ?? '')?.data;
+  final background = content.entity(draft.backgroundId ?? '')?.data;
   return [
     if (cls is ClassData) ...levelOneFeatures(cls),
     if (species is SpeciesData) ...[for (final t in species.traits) '$t'],
+    if (background is BackgroundData) '${background.originFeat}',
     ?draft.originFeat,
   ];
 }
@@ -150,6 +155,8 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
         ),
   ];
 
+  final classSkills = {for (final skill in cls.skillChoices) '$skill'};
+  final skillsTaken = {...fromBackground, ...pickedElsewhere('classSkills')};
   final mastery = masteryOptions(content, cls);
   final masteryWeapons = {for (final w in mastery.weapons) '${w.id}'};
   return [
@@ -158,19 +165,16 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
       count: cls.skillChoiceCount,
       chosen: draft.classSkills,
       options: [
-        for (final skill in cls.skillChoices)
-          SubchoiceOption(
-            id: '$skill',
-            label: namesOf(content, [skill]),
-            block:
-                {
-                  ...fromBackground,
-                  ...pickedElsewhere('classSkills'),
-                }.contains('$skill')
-                ? OptionBlock.known
-                : null,
-          ),
-      ]..sort((a, b) => a.label.compareTo(b.label)),
+        for (final skill in sortedEntities(content, 'skill'))
+          if (classSkills.contains('${skill.id}'))
+            SubchoiceOption(
+              id: '${skill.id}',
+              label: skill.name,
+              block: skillsTaken.contains('${skill.id}')
+                  ? OptionBlock.known
+                  : null,
+            ),
+      ],
     ),
     if (cls.toolChoiceCategory case final category?)
       Subchoice(

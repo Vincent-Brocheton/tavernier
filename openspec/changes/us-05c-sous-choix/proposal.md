@@ -16,7 +16,7 @@ Elle est livrée en deux pull requests :
   - style de combat (don) ;
   - don d'origines de l'Humain (Polyvalent), un don non répétable déjà obtenu grisé ;
   - instruments du Barde ;
-  - tous les effets `choice` de niveau 1 : Ordre divin, Ordre primitif, lignages, Ascendance draconique, Héritage fiélon, Compétent, Sens aiguisés, Expertise, langue du Roublard, Doué.
+  - tous les effets `choice` de niveau 1 : Ordre divin, Ordre primitif, lignages, Ascendance draconique, Ascendance gigante, Héritage fiélon, Compétent, Sens aiguisés, Expertise, langue du Roublard, Doué.
 - **Panneau « À compléter »** : l'état de chaque choix.
 - **DSL :** `choice` reçoit `labels`, le nom de chaque option (« Protecteur », « Drow »).
   - Il sert d'étiquette à l'écran.

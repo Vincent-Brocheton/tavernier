@@ -23,7 +23,7 @@ Motivation : proposal.md.
 4. **Déjà acquis :** l'étape calcule les entités connues (compétences de l'Historique et de la classe, Commun et langues choisies).
    - Une option qui accorde une maîtrise déjà acquise est grisée.
    - Une option d'Expertise exige au contraire la compétence.
-5. **Brouillon :** `classSkills`, `classTools`, `masteries`, `fightingStyle`, `originFeat`, `choices`. Changer de classe efface les choix de la classe, changer d'espèce efface le don de Polyvalent : leurs options ne sont plus les mêmes, et l'étape repasse « À refaire ». Changer d'Historique les garde : `Subchoice.invalid` signale une maîtrise devenue doublon.
+5. **Brouillon :** `classSkills`, `classTools`, `masteries`, `fightingStyle`, `originFeat`, `choices`. Changer de classe efface les choix de la classe, changer d'espèce efface le don de Polyvalent : leurs options ne sont plus les mêmes, et l'étape repasse « À refaire ». Changer d'Historique les garde : `Subchoice.invalid` signale une maîtrise devenue doublon. `choices` n'est pas purgé, ses entrées dépendent d'un contenu que le brouillon ne connaît pas : seules comptent celles d'une section ouverte, et l'enregistrement (lot 3) part des sections.
 6. **Bottes :** `masterySlots(content, classId)` lit `grant_mastery_slots` au niveau 1. Une arme est proposée si `coversWeapon` l'accepte et si `melee_only` ne l'exclut pas.
 7. **Disposition :** sections empilées, panneau « À compléter » à droite sur grand écran. Sur téléphone, la raison du blocage donne le choix manquant.
 

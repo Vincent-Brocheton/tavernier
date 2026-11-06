@@ -197,18 +197,19 @@ final class CreationDraft {
 
   CreationDraft selectOriginFeat(String id) => _with(originFeat: id);
 
-  /// Sélection d'un effet `choice` : à une place, une autre option remplace
-  /// la précédente ; à plusieurs, on ne dépasse pas [count].
-  CreationDraft togglePick(String choiceId, String pick, int count) {
-    final current = choices[choiceId] ?? const <String>[];
-    final next = count == 1 && !current.contains(pick)
-        ? [pick]
-        : _toggled(current, pick, count);
-    return _with(choices: {...choices, choiceId: next});
-  }
+  /// Sélection d'un effet `choice`.
+  CreationDraft togglePick(String choiceId, String pick, int count) => _with(
+    choices: {
+      ...choices,
+      choiceId: _toggled(choices[choiceId] ?? const [], pick, count),
+    },
+  );
 
+  /// À une place, une autre option remplace la précédente ; à plusieurs, on
+  /// ne dépasse pas [count].
   static List<String> _toggled(List<String> list, String id, int count) {
     if (list.contains(id)) return [...list]..remove(id);
+    if (count == 1) return [id];
     return list.length < count ? [...list, id] : list;
   }
 

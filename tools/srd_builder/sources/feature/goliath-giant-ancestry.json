@@ -8,6 +8,20 @@
   },
   "effects": [
     {
+      "op": "choice",
+      "id": "giant-ancestry",
+      "count": 1,
+      "options": [[], [], [], [], [], []],
+      "labels": [
+        "Brûlure ignée",
+        "Endurance de la pierre",
+        "Froid mordant",
+        "Renversement des coteaux",
+        "Saut des nuées",
+        "Tonnerre des cieux"
+      ]
+    },
+    {
       "op": "grant_resource",
       "id": "srd:resource:giant-ancestry",
       "max": {

@@ -114,7 +114,8 @@ List<String> grantedFeatCategories(
       if (effect.op != 'grant_mastery_slots') continue;
       slots += switch (effect.args['count']) {
         final int count => count,
-        {'by_level': final Map<String, Object?> steps} => steps['1']! as int,
+        {'by_level': final Map<String, Object?> steps} =>
+          steps['1'] as int? ?? 0,
         _ => 0,
       };
       meleeOnly = effect.args['melee_only'] == true;

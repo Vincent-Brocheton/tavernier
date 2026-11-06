@@ -188,9 +188,7 @@ class _Section extends ConsumerWidget {
       title: option.label,
       subtitle: blocked ? l10n.featNotRepeatable : option.detail,
       selected: section.chosen.contains(option.id),
-      onTap: () {
-        if (!blocked) _toggle(ref, option.id);
-      },
+      onTap: blocked ? null : () => _toggle(ref, option.id),
     );
     return blocked ? Opacity(opacity: 0.6, child: card) : card;
   }
