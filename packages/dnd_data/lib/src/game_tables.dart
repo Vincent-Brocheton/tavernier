@@ -125,6 +125,13 @@ class Characters extends Table with IdKey {
 
   /// Jets de la génération aléatoire, JSON.
   TextColumn get scoreRolls => text().nullable()();
+
+  /// Monnaie par pièce, JSON.
+  TextColumn get coins => text().withDefault(const Constant('{}'))();
+  TextColumn get alignment => text().nullable()();
+  TextColumn get appearance => text().nullable()();
+  TextColumn get personality => text().nullable()();
+  TextColumn get backstory => text().nullable()();
 }
 
 /// Ligne rattachée à un personnage, supprimée avec lui.

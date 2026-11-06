@@ -17978,6 +17978,60 @@ class $CharactersTable extends Characters
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _coinsMeta = const VerificationMeta('coins');
+  @override
+  late final GeneratedColumn<String> coins = GeneratedColumn<String>(
+    'coins',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _alignmentMeta = const VerificationMeta(
+    'alignment',
+  );
+  @override
+  late final GeneratedColumn<String> alignment = GeneratedColumn<String>(
+    'alignment',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _appearanceMeta = const VerificationMeta(
+    'appearance',
+  );
+  @override
+  late final GeneratedColumn<String> appearance = GeneratedColumn<String>(
+    'appearance',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _personalityMeta = const VerificationMeta(
+    'personality',
+  );
+  @override
+  late final GeneratedColumn<String> personality = GeneratedColumn<String>(
+    'personality',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _backstoryMeta = const VerificationMeta(
+    'backstory',
+  );
+  @override
+  late final GeneratedColumn<String> backstory = GeneratedColumn<String>(
+    'backstory',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -17993,6 +18047,11 @@ class $CharactersTable extends Characters
     xp,
     levelUnlock,
     scoreRolls,
+    coins,
+    alignment,
+    appearance,
+    personality,
+    backstory,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -18102,6 +18161,39 @@ class $CharactersTable extends Characters
         scoreRolls.isAcceptableOrUnknown(data['score_rolls']!, _scoreRollsMeta),
       );
     }
+    if (data.containsKey('coins')) {
+      context.handle(
+        _coinsMeta,
+        coins.isAcceptableOrUnknown(data['coins']!, _coinsMeta),
+      );
+    }
+    if (data.containsKey('alignment')) {
+      context.handle(
+        _alignmentMeta,
+        alignment.isAcceptableOrUnknown(data['alignment']!, _alignmentMeta),
+      );
+    }
+    if (data.containsKey('appearance')) {
+      context.handle(
+        _appearanceMeta,
+        appearance.isAcceptableOrUnknown(data['appearance']!, _appearanceMeta),
+      );
+    }
+    if (data.containsKey('personality')) {
+      context.handle(
+        _personalityMeta,
+        personality.isAcceptableOrUnknown(
+          data['personality']!,
+          _personalityMeta,
+        ),
+      );
+    }
+    if (data.containsKey('backstory')) {
+      context.handle(
+        _backstoryMeta,
+        backstory.isAcceptableOrUnknown(data['backstory']!, _backstoryMeta),
+      );
+    }
     return context;
   }
 
@@ -18163,6 +18255,26 @@ class $CharactersTable extends Characters
         DriftSqlType.string,
         data['${effectivePrefix}score_rolls'],
       ),
+      coins: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}coins'],
+      )!,
+      alignment: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}alignment'],
+      ),
+      appearance: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}appearance'],
+      ),
+      personality: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}personality'],
+      ),
+      backstory: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}backstory'],
+      ),
     );
   }
 
@@ -18196,6 +18308,13 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
 
   /// Jets de la génération aléatoire, JSON.
   final String? scoreRolls;
+
+  /// Monnaie par pièce, JSON.
+  final String coins;
+  final String? alignment;
+  final String? appearance;
+  final String? personality;
+  final String? backstory;
   const CharacterRow({
     required this.id,
     this.tableId,
@@ -18210,6 +18329,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     required this.xp,
     this.levelUnlock,
     this.scoreRolls,
+    required this.coins,
+    this.alignment,
+    this.appearance,
+    this.personality,
+    this.backstory,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -18236,6 +18360,19 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     }
     if (!nullToAbsent || scoreRolls != null) {
       map['score_rolls'] = Variable<String>(scoreRolls);
+    }
+    map['coins'] = Variable<String>(coins);
+    if (!nullToAbsent || alignment != null) {
+      map['alignment'] = Variable<String>(alignment);
+    }
+    if (!nullToAbsent || appearance != null) {
+      map['appearance'] = Variable<String>(appearance);
+    }
+    if (!nullToAbsent || personality != null) {
+      map['personality'] = Variable<String>(personality);
+    }
+    if (!nullToAbsent || backstory != null) {
+      map['backstory'] = Variable<String>(backstory);
     }
     return map;
   }
@@ -18265,6 +18402,19 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       scoreRolls: scoreRolls == null && nullToAbsent
           ? const Value.absent()
           : Value(scoreRolls),
+      coins: Value(coins),
+      alignment: alignment == null && nullToAbsent
+          ? const Value.absent()
+          : Value(alignment),
+      appearance: appearance == null && nullToAbsent
+          ? const Value.absent()
+          : Value(appearance),
+      personality: personality == null && nullToAbsent
+          ? const Value.absent()
+          : Value(personality),
+      backstory: backstory == null && nullToAbsent
+          ? const Value.absent()
+          : Value(backstory),
     );
   }
 
@@ -18287,6 +18437,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       xp: serializer.fromJson<int>(json['xp']),
       levelUnlock: serializer.fromJson<String?>(json['levelUnlock']),
       scoreRolls: serializer.fromJson<String?>(json['scoreRolls']),
+      coins: serializer.fromJson<String>(json['coins']),
+      alignment: serializer.fromJson<String?>(json['alignment']),
+      appearance: serializer.fromJson<String?>(json['appearance']),
+      personality: serializer.fromJson<String?>(json['personality']),
+      backstory: serializer.fromJson<String?>(json['backstory']),
     );
   }
   @override
@@ -18306,6 +18461,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       'xp': serializer.toJson<int>(xp),
       'levelUnlock': serializer.toJson<String?>(levelUnlock),
       'scoreRolls': serializer.toJson<String?>(scoreRolls),
+      'coins': serializer.toJson<String>(coins),
+      'alignment': serializer.toJson<String?>(alignment),
+      'appearance': serializer.toJson<String?>(appearance),
+      'personality': serializer.toJson<String?>(personality),
+      'backstory': serializer.toJson<String?>(backstory),
     };
   }
 
@@ -18323,6 +18483,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     int? xp,
     Value<String?> levelUnlock = const Value.absent(),
     Value<String?> scoreRolls = const Value.absent(),
+    String? coins,
+    Value<String?> alignment = const Value.absent(),
+    Value<String?> appearance = const Value.absent(),
+    Value<String?> personality = const Value.absent(),
+    Value<String?> backstory = const Value.absent(),
   }) => CharacterRow(
     id: id ?? this.id,
     tableId: tableId.present ? tableId.value : this.tableId,
@@ -18337,6 +18502,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     xp: xp ?? this.xp,
     levelUnlock: levelUnlock.present ? levelUnlock.value : this.levelUnlock,
     scoreRolls: scoreRolls.present ? scoreRolls.value : this.scoreRolls,
+    coins: coins ?? this.coins,
+    alignment: alignment.present ? alignment.value : this.alignment,
+    appearance: appearance.present ? appearance.value : this.appearance,
+    personality: personality.present ? personality.value : this.personality,
+    backstory: backstory.present ? backstory.value : this.backstory,
   );
   CharacterRow copyWithCompanion(CharactersCompanion data) {
     return CharacterRow(
@@ -18363,6 +18533,15 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       scoreRolls: data.scoreRolls.present
           ? data.scoreRolls.value
           : this.scoreRolls,
+      coins: data.coins.present ? data.coins.value : this.coins,
+      alignment: data.alignment.present ? data.alignment.value : this.alignment,
+      appearance: data.appearance.present
+          ? data.appearance.value
+          : this.appearance,
+      personality: data.personality.present
+          ? data.personality.value
+          : this.personality,
+      backstory: data.backstory.present ? data.backstory.value : this.backstory,
     );
   }
 
@@ -18381,7 +18560,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
           ..write('status: $status, ')
           ..write('xp: $xp, ')
           ..write('levelUnlock: $levelUnlock, ')
-          ..write('scoreRolls: $scoreRolls')
+          ..write('scoreRolls: $scoreRolls, ')
+          ..write('coins: $coins, ')
+          ..write('alignment: $alignment, ')
+          ..write('appearance: $appearance, ')
+          ..write('personality: $personality, ')
+          ..write('backstory: $backstory')
           ..write(')'))
         .toString();
   }
@@ -18401,6 +18585,11 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     xp,
     levelUnlock,
     scoreRolls,
+    coins,
+    alignment,
+    appearance,
+    personality,
+    backstory,
   );
   @override
   bool operator ==(Object other) =>
@@ -18418,7 +18607,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
           other.status == this.status &&
           other.xp == this.xp &&
           other.levelUnlock == this.levelUnlock &&
-          other.scoreRolls == this.scoreRolls);
+          other.scoreRolls == this.scoreRolls &&
+          other.coins == this.coins &&
+          other.alignment == this.alignment &&
+          other.appearance == this.appearance &&
+          other.personality == this.personality &&
+          other.backstory == this.backstory);
 }
 
 class CharactersCompanion extends UpdateCompanion<CharacterRow> {
@@ -18435,6 +18629,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
   final Value<int> xp;
   final Value<String?> levelUnlock;
   final Value<String?> scoreRolls;
+  final Value<String> coins;
+  final Value<String?> alignment;
+  final Value<String?> appearance;
+  final Value<String?> personality;
+  final Value<String?> backstory;
   final Value<int> rowid;
   const CharactersCompanion({
     this.id = const Value.absent(),
@@ -18450,6 +18649,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     this.xp = const Value.absent(),
     this.levelUnlock = const Value.absent(),
     this.scoreRolls = const Value.absent(),
+    this.coins = const Value.absent(),
+    this.alignment = const Value.absent(),
+    this.appearance = const Value.absent(),
+    this.personality = const Value.absent(),
+    this.backstory = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   CharactersCompanion.insert({
@@ -18466,6 +18670,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     this.xp = const Value.absent(),
     this.levelUnlock = const Value.absent(),
     this.scoreRolls = const Value.absent(),
+    this.coins = const Value.absent(),
+    this.alignment = const Value.absent(),
+    this.appearance = const Value.absent(),
+    this.personality = const Value.absent(),
+    this.backstory = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        kind = Value(kind),
@@ -18487,6 +18696,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     Expression<int>? xp,
     Expression<String>? levelUnlock,
     Expression<String>? scoreRolls,
+    Expression<String>? coins,
+    Expression<String>? alignment,
+    Expression<String>? appearance,
+    Expression<String>? personality,
+    Expression<String>? backstory,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -18503,6 +18717,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
       if (xp != null) 'xp': xp,
       if (levelUnlock != null) 'level_unlock': levelUnlock,
       if (scoreRolls != null) 'score_rolls': scoreRolls,
+      if (coins != null) 'coins': coins,
+      if (alignment != null) 'alignment': alignment,
+      if (appearance != null) 'appearance': appearance,
+      if (personality != null) 'personality': personality,
+      if (backstory != null) 'backstory': backstory,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -18521,6 +18740,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     Value<int>? xp,
     Value<String?>? levelUnlock,
     Value<String?>? scoreRolls,
+    Value<String>? coins,
+    Value<String?>? alignment,
+    Value<String?>? appearance,
+    Value<String?>? personality,
+    Value<String?>? backstory,
     Value<int>? rowid,
   }) {
     return CharactersCompanion(
@@ -18537,6 +18761,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
       xp: xp ?? this.xp,
       levelUnlock: levelUnlock ?? this.levelUnlock,
       scoreRolls: scoreRolls ?? this.scoreRolls,
+      coins: coins ?? this.coins,
+      alignment: alignment ?? this.alignment,
+      appearance: appearance ?? this.appearance,
+      personality: personality ?? this.personality,
+      backstory: backstory ?? this.backstory,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -18583,6 +18812,21 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     if (scoreRolls.present) {
       map['score_rolls'] = Variable<String>(scoreRolls.value);
     }
+    if (coins.present) {
+      map['coins'] = Variable<String>(coins.value);
+    }
+    if (alignment.present) {
+      map['alignment'] = Variable<String>(alignment.value);
+    }
+    if (appearance.present) {
+      map['appearance'] = Variable<String>(appearance.value);
+    }
+    if (personality.present) {
+      map['personality'] = Variable<String>(personality.value);
+    }
+    if (backstory.present) {
+      map['backstory'] = Variable<String>(backstory.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -18605,6 +18849,11 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
           ..write('xp: $xp, ')
           ..write('levelUnlock: $levelUnlock, ')
           ..write('scoreRolls: $scoreRolls, ')
+          ..write('coins: $coins, ')
+          ..write('alignment: $alignment, ')
+          ..write('appearance: $appearance, ')
+          ..write('personality: $personality, ')
+          ..write('backstory: $backstory, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -44711,6 +44960,11 @@ typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   Value<int> xp,
   Value<String?> levelUnlock,
   Value<String?> scoreRolls,
+  Value<String> coins,
+  Value<String?> alignment,
+  Value<String?> appearance,
+  Value<String?> personality,
+  Value<String?> backstory,
   Value<int> rowid,
 });
 typedef $$CharactersTableUpdateCompanionBuilder = CharactersCompanion Function({
@@ -44727,6 +44981,11 @@ typedef $$CharactersTableUpdateCompanionBuilder = CharactersCompanion Function({
   Value<int> xp,
   Value<String?> levelUnlock,
   Value<String?> scoreRolls,
+  Value<String> coins,
+  Value<String?> alignment,
+  Value<String?> appearance,
+  Value<String?> personality,
+  Value<String?> backstory,
   Value<int> rowid,
 });
 
@@ -45092,6 +45351,31 @@ class $$CharactersTableFilterComposer
 
   ColumnFilters<String> get scoreRolls => $composableBuilder(
     column: $table.scoreRolls,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get coins => $composableBuilder(
+    column: $table.coins,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get alignment => $composableBuilder(
+    column: $table.alignment,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get appearance => $composableBuilder(
+    column: $table.appearance,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get personality => $composableBuilder(
+    column: $table.personality,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get backstory => $composableBuilder(
+    column: $table.backstory,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -45492,6 +45776,31 @@ class $$CharactersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get coins => $composableBuilder(
+    column: $table.coins,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get alignment => $composableBuilder(
+    column: $table.alignment,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get appearance => $composableBuilder(
+    column: $table.appearance,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get personality => $composableBuilder(
+    column: $table.personality,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get backstory => $composableBuilder(
+    column: $table.backstory,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$GameTablesTableOrderingComposer get tableId {
     final $$GameTablesTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -45570,6 +45879,25 @@ class $$CharactersTableAnnotationComposer
     column: $table.scoreRolls,
     builder: (column) => column,
   );
+
+  GeneratedColumn<String> get coins =>
+      $composableBuilder(column: $table.coins, builder: (column) => column);
+
+  GeneratedColumn<String> get alignment =>
+      $composableBuilder(column: $table.alignment, builder: (column) => column);
+
+  GeneratedColumn<String> get appearance => $composableBuilder(
+    column: $table.appearance,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get personality => $composableBuilder(
+    column: $table.personality,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get backstory =>
+      $composableBuilder(column: $table.backstory, builder: (column) => column);
 
   $$GameTablesTableAnnotationComposer get tableId {
     final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
@@ -45961,6 +46289,11 @@ class $$CharactersTableTableManager
                 Value<int> xp = const Value.absent(),
                 Value<String?> levelUnlock = const Value.absent(),
                 Value<String?> scoreRolls = const Value.absent(),
+                Value<String> coins = const Value.absent(),
+                Value<String?> alignment = const Value.absent(),
+                Value<String?> appearance = const Value.absent(),
+                Value<String?> personality = const Value.absent(),
+                Value<String?> backstory = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CharactersCompanion(
                 id: id,
@@ -45976,6 +46309,11 @@ class $$CharactersTableTableManager
                 xp: xp,
                 levelUnlock: levelUnlock,
                 scoreRolls: scoreRolls,
+                coins: coins,
+                alignment: alignment,
+                appearance: appearance,
+                personality: personality,
+                backstory: backstory,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -45993,6 +46331,11 @@ class $$CharactersTableTableManager
                 Value<int> xp = const Value.absent(),
                 Value<String?> levelUnlock = const Value.absent(),
                 Value<String?> scoreRolls = const Value.absent(),
+                Value<String> coins = const Value.absent(),
+                Value<String?> alignment = const Value.absent(),
+                Value<String?> appearance = const Value.absent(),
+                Value<String?> personality = const Value.absent(),
+                Value<String?> backstory = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CharactersCompanion.insert(
                 id: id,
@@ -46008,6 +46351,11 @@ class $$CharactersTableTableManager
                 xp: xp,
                 levelUnlock: levelUnlock,
                 scoreRolls: scoreRolls,
+                coins: coins,
+                alignment: alignment,
+                appearance: appearance,
+                personality: personality,
+                backstory: backstory,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

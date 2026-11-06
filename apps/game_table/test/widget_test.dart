@@ -1,8 +1,15 @@
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/main.dart';
 import 'package:material_ui/material_ui.dart';
+
+/// Sans base réelle en test : aucune page ne doit l'ouvrir.
+Widget _app() => ProviderScope(
+  overrides: [charactersProvider.overrideWith((ref) => const [])],
+  child: const GameTableApp(),
+);
 
 const _destinations = [
   'Accueil',
@@ -14,7 +21,7 @@ const _destinations = [
 
 void main() {
   testWidgets("l'accueil affiche le nom et le sous-titre", (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: GameTableApp()));
+    await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
     expect(find.text('Tavernier'), findsOneWidget);
@@ -22,7 +29,7 @@ void main() {
   });
 
   testWidgets('thème sombre du kit', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: GameTableApp()));
+    await tester.pumpWidget(_app());
     final app = tester.widget<MaterialApp>(find.byType(MaterialApp));
     expect(app.themeMode, ThemeMode.dark);
     expect(app.darkTheme, AppTheme.dark);
@@ -35,7 +42,7 @@ void main() {
       tester.view.physicalSize = Size(width, 900);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.reset);
-      await tester.pumpWidget(const ProviderScope(child: GameTableApp()));
+      await tester.pumpWidget(_app());
       await tester.pumpAndSettle();
       for (final label in _destinations) {
         expect(find.text(label), findsWidgets);

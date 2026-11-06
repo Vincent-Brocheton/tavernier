@@ -925,6 +925,318 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{names} : déjà connu, un sort ne se prend pas deux fois.'**
   String spellKnownRule(String names);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un lot de votre classe et un de votre Historique, ou leur valeur en or.'**
+  String get introEquipment;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Qui est votre personnage ? Seul le nom est obligatoire.'**
+  String get introDetails;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre personnage tel que les règles le calculent.'**
+  String get introSummary;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get saveCharacter;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'L’enregistrement a échoué. Votre brouillon est conservé, réessayez.'**
+  String get saveFailed;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lot {letter}'**
+  String lotName(String letter);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'un outil au choix'**
+  String get lotTool;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Outil du lot'**
+  String get lotToolChoice;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} po'**
+  String goldPieces(int count);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'CA avec cet équipement'**
+  String get armorClassWithEquipment;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Or de départ'**
+  String get startingGold;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez un lot de classe.'**
+  String get missingClassEquipment;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez le lot de l’Historique ou son or.'**
+  String get missingBackgroundEquipment;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez l’outil du lot.'**
+  String get missingEquipmentTool;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donnez un nom à votre personnage.'**
+  String get missingName;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrigez les erreurs de règle avant d’enregistrer.'**
+  String get missingRules;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom *'**
+  String get detailName;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Alignement'**
+  String get detailAlignment;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Apparence'**
+  String get detailAppearance;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnalité'**
+  String get detailPersonality;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Histoire'**
+  String get detailBackstory;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Loyal Bon'**
+  String get alignmentLB;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Neutre Bon'**
+  String get alignmentNB;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaotique Bon'**
+  String get alignmentCB;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Loyal Neutre'**
+  String get alignmentLN;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Neutre'**
+  String get alignmentN;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaotique Neutre'**
+  String get alignmentCN;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Loyal Mauvais'**
+  String get alignmentLM;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Neutre Mauvais'**
+  String get alignmentNM;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaotique Mauvais'**
+  String get alignmentCM;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'{cls} {level}'**
+  String classLevel(String cls, int level);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'JS {value}'**
+  String savingThrow(String value);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV max'**
+  String get statHitPoints;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'CA'**
+  String get statArmorClass;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative'**
+  String get statInitiative;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vitesse'**
+  String get statSpeed;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maîtrise'**
+  String get statProficiency;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Percep. passive'**
+  String get statPassivePerception;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maîtrises'**
+  String get summaryProficiencies;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Outils'**
+  String get summaryTools;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues'**
+  String get summaryLanguages;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaques'**
+  String get summaryAttacks;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitudes et dons'**
+  String get summaryFeatures;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts'**
+  String get summarySpells;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification des règles'**
+  String get summaryChecks;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur de règle'**
+  String get ruleError;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Botte sur une arme absente'**
+  String get masteryWithoutWeaponTitle;
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre équipement ne contient pas : {names}. Cela ne bloque pas l’enregistrement.'**
+  String masteryWithoutWeapon(String names);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acquisition par points : {spent} / {budget}'**
+  String checkPoints(int spent, int budget);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus d’Historique : {bonuses}'**
+  String checkBonus(String bonuses);
+
+  /// Étapes 7 à 9 de la création.
+  ///
+  /// In fr, this message translates to:
+  /// **'Packs : {packs}'**
+  String checkPacks(String packs);
+
+  /// Attaque sans arme, au Récapitulatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mains nues'**
+  String get unarmedStrike;
 }
 
 class _AppLocalizationsDelegate

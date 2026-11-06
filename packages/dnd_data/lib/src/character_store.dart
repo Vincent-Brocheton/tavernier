@@ -14,6 +14,7 @@ const _inputTables = [
   'character_feat',
   'character_weapon_mastery',
   'character_item',
+  'character_spell',
   'character_language',
   'character_choice',
 ];
@@ -33,14 +34,18 @@ final class CharacterStore {
       final base = c['base_scores']! as Map<String, Object?>;
       await _db.customStatement(
         'INSERT INTO character (id, kind, name, player, species_id, '
-        'species_choices, background_id, status, xp, score_rolls) '
-        "VALUES (?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?) "
+        'species_choices, background_id, status, xp, score_rolls, coins, '
+        'alignment, appearance, personality, backstory) '
+        "VALUES (?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?, ?, ?, ?, ?) "
         'ON CONFLICT(id) DO UPDATE SET kind = excluded.kind, '
         'name = excluded.name, player = excluded.player, '
         'species_id = excluded.species_id, '
         'species_choices = excluded.species_choices, '
         'background_id = excluded.background_id, xp = excluded.xp, '
-        'score_rolls = excluded.score_rolls',
+        'score_rolls = excluded.score_rolls, coins = excluded.coins, '
+        'alignment = excluded.alignment, appearance = excluded.appearance, '
+        'personality = excluded.personality, '
+        'backstory = excluded.backstory',
         [
           id,
           character.kind,
@@ -51,6 +56,11 @@ final class CharacterStore {
           character.backgroundId,
           character.xp,
           base['rolls'] == null ? null : jsonEncode(base['rolls']),
+          jsonEncode(character.coins),
+          character.alignment,
+          character.appearance,
+          character.personality,
+          character.backstory,
         ],
       );
       for (final table in _inputTables) {
@@ -116,6 +126,20 @@ final class CharacterStore {
           'position': i,
         });
       }
+      final spells = character.spells;
+      for (final (source, list) in [
+        ('cantrip', spells.cantrips),
+        ('class', {...spells.spellbook, ...spells.prepared}),
+      ]) {
+        for (final spell in list) {
+          await insert('character_spell', spell, {
+            'spell_id': spell,
+            'source': source,
+            'prepared': spells.prepared.contains(spell),
+            'in_spellbook': spells.spellbook.contains(spell),
+          });
+        }
+      }
       for (final (i, language) in character.languages.indexed) {
         await insert('character_language', '$i', {
           'language_id': language,
@@ -130,6 +154,20 @@ final class CharacterStore {
       }
     },
   );
+
+  /// Personnages enregistrés, du plus ancien au plus récent.
+  Future<List<({String id, CharacterInput character})>> list() async {
+    final rows = await _db
+        .customSelect('SELECT id FROM character ORDER BY rowid')
+        .get();
+    return [
+      for (final row in rows)
+        (
+          id: row.read<String>('id'),
+          character: (await load(row.read<String>('id')))!,
+        ),
+    ];
+  }
 
   /// Relit le personnage [id], ou `null` s'il n'existe pas.
   Future<CharacterInput?> load(String id) async {
@@ -155,6 +193,7 @@ final class CharacterStore {
     final scores = await rows('character_base_scores');
     final bg = (await rows('character_background_choice')).single;
     Object? json(Object? text) => text == null ? null : jsonDecode('$text');
+    final spells = await rows('character_spell', 'rowid');
 
     return CharacterInput.fromJson({
       'name': c['name'],
@@ -214,6 +253,25 @@ final class CharacterStore {
             'attuned': item['attuned'] == 1,
           },
       ],
+      'spells': {
+        'cantrips': [
+          for (final s in spells)
+            if (s['source'] == 'cantrip') s['spell_id'],
+        ],
+        'prepared': [
+          for (final s in spells)
+            if (s['prepared'] == 1) s['spell_id'],
+        ],
+        'spellbook': [
+          for (final s in spells)
+            if (s['in_spellbook'] == 1) s['spell_id'],
+        ],
+      },
+      'coins': json(c['coins']),
+      'alignment': c['alignment'],
+      'appearance': c['appearance'],
+      'personality': c['personality'],
+      'backstory': c['backstory'],
       'xp': c['xp'],
     });
   }

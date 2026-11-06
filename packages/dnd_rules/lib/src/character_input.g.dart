@@ -221,6 +221,42 @@ Map<String, dynamic> _$ItemInputToJson(_ItemInput instance) =>
       'attuned': instance.attuned,
     };
 
+_SpellsInput _$SpellsInputFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_SpellsInput',
+  json,
+  ($checkedConvert) {
+    $checkKeys(json, allowedKeys: const ['cantrips', 'prepared', 'spellbook']);
+    final val = _SpellsInput(
+      cantrips: $checkedConvert(
+        'cantrips',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+            const <String>[],
+      ),
+      prepared: $checkedConvert(
+        'prepared',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+            const <String>[],
+      ),
+      spellbook: $checkedConvert(
+        'spellbook',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+            const <String>[],
+      ),
+    );
+    return val;
+  },
+);
+
+Map<String, dynamic> _$SpellsInputToJson(_SpellsInput instance) =>
+    <String, dynamic>{
+      'cantrips': instance.cantrips,
+      'prepared': instance.prepared,
+      'spellbook': instance.spellbook,
+    };
+
 _CharacterInput _$CharacterInputFromJson(Map<String, dynamic> json) =>
     $checkedCreate(
       '_CharacterInput',
@@ -243,6 +279,12 @@ _CharacterInput _$CharacterInputFromJson(Map<String, dynamic> json) =>
             'languages',
             'weapon_masteries',
             'items',
+            'spells',
+            'coins',
+            'alignment',
+            'appearance',
+            'personality',
+            'backstory',
             'xp',
           ],
         );
@@ -319,6 +361,24 @@ _CharacterInput _$CharacterInputFromJson(Map<String, dynamic> json) =>
                     .toList() ??
                 const <ItemInput>[],
           ),
+          spells: $checkedConvert(
+            'spells',
+            (v) => v == null
+                ? const SpellsInput()
+                : SpellsInput.fromJson(v as Map<String, dynamic>),
+          ),
+          coins: $checkedConvert(
+            'coins',
+            (v) =>
+                (v as Map<String, dynamic>?)?.map(
+                  (k, e) => MapEntry(k, (e as num).toInt()),
+                ) ??
+                const <String, int>{},
+          ),
+          alignment: $checkedConvert('alignment', (v) => v as String?),
+          appearance: $checkedConvert('appearance', (v) => v as String?),
+          personality: $checkedConvert('personality', (v) => v as String?),
+          backstory: $checkedConvert('backstory', (v) => v as String?),
           xp: $checkedConvert('xp', (v) => (v as num?)?.toInt() ?? 0),
         );
         return val;
@@ -351,5 +411,11 @@ Map<String, dynamic> _$CharacterInputToJson(
   'languages': instance.languages,
   'weapon_masteries': instance.weaponMasteries.map((e) => e.toJson()).toList(),
   'items': instance.items.map((e) => e.toJson()).toList(),
+  'spells': instance.spells.toJson(),
+  'coins': instance.coins,
+  'alignment': ?instance.alignment,
+  'appearance': ?instance.appearance,
+  'personality': ?instance.personality,
+  'backstory': ?instance.backstory,
   'xp': instance.xp,
 };

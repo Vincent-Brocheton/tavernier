@@ -126,7 +126,14 @@ Widget sourceBadgeOf(AppLocalizations l10n, ActiveContent content, String id) {
 
 /// Entités de type [type], dans l'ordre alphabétique français : Rôdeur avant
 /// Roublard, les accents ne comptent pas.
-List<ContentEntity> sortedEntities(ActiveContent content, String type) {
+List<ContentEntity> sortedEntities(ActiveContent content, String type) =>
+    (_sorted[content] ??= {}).putIfAbsent(type, () => _sort(content, type));
+
+/// Tri par contenu : l'étape 6 le redemande à chaque affichage, pour plus de
+/// 300 sorts.
+final _sorted = Expando<Map<String, List<ContentEntity>>>();
+
+List<ContentEntity> _sort(ActiveContent content, String type) {
   const accents = {
     'à': 'a',
     'â': 'a',

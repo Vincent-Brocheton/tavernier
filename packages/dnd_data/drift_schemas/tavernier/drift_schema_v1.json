@@ -4179,6 +4179,56 @@
             "default_dart": null,
             "default_client_dart": null,
             "dsl_features": []
+          },
+          {
+            "name": "coins",
+            "getter_name": "coins",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'{}\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "alignment",
+            "getter_name": "alignment",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "appearance",
+            "getter_name": "appearance",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "personality",
+            "getter_name": "personality",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "backstory",
+            "getter_name": "backstory",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
           }
         ],
         "is_virtual": false,
@@ -6409,7 +6459,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL REFERENCES game_table (id) ON DELETE SET NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL REFERENCES game_table (id) ON DELETE SET NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, \"coins\" TEXT NOT NULL DEFAULT '{}', \"alignment\" TEXT NULL, \"appearance\" TEXT NULL, \"personality\" TEXT NULL, \"backstory\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

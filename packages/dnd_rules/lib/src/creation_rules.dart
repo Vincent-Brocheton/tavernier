@@ -1,6 +1,9 @@
 // Règles de création partagées par le moteur et l'interface : l'interface
 // n'en porte aucune (CLAUDE.md, « Aucune valeur de règle en dur dans l'UI »).
 
+/// Alignements du SRD (« Étape 4. Alignement »).
+const alignments = ['LB', 'NB', 'CB', 'LN', 'N', 'CN', 'LM', 'NM', 'CM'];
+
 /// Budget de l'acquisition par points (SRD p. 22).
 const pointBuyBudget = 27;
 

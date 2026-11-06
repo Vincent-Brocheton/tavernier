@@ -10,10 +10,13 @@ import 'background_step.dart';
 import 'class_step.dart';
 import 'creation_draft.dart';
 import 'creation_providers.dart';
+import 'details_step.dart';
+import 'equipment_step.dart';
 import 'languages_step.dart';
 import 'species_step.dart';
 import 'subchoices.dart';
 import 'subchoices_step.dart';
+import 'summary_step.dart';
 
 /// Assistant de création en 9 étapes (cahier §5.1, [P1]–[P9]).
 class CreationPage extends ConsumerWidget {
@@ -53,6 +56,21 @@ class _Wizard extends ConsumerWidget {
 
   final ActiveContent content;
 
+  Future<void> _save(
+    BuildContext context,
+    CreationNotifier notifier,
+    AppLocalizations l10n,
+  ) async {
+    final saved = await notifier.save(content);
+    if (!context.mounted) return;
+    if (saved) {
+      _leave(context);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.saveFailed)));
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -70,7 +88,9 @@ class _Wizard extends ConsumerWidget {
       3 => LanguagesStep(content: content),
       4 => AbilitiesStep(content: content),
       5 => SubchoicesStep(content: content),
-      _ => Center(child: Text(l10n.comingSoon)),
+      6 => EquipmentStep(content: content),
+      7 => const DetailsStep(),
+      _ => SummaryStep(content: content),
     };
     final nextName = last ? null : steps[draft.step + 1].label;
 
@@ -114,23 +134,28 @@ class _Wizard extends ConsumerWidget {
           padding: EdgeInsets.all(margin),
           child: WizardFooter(
             previousLabel: l10n.previous,
-            nextLabel: phone || nextName == null
+            nextLabel: nextName == null
+                ? l10n.saveCharacter
+                : phone
                 ? l10n.next
                 : l10n.nextTo(nextName),
             onPrevious: draft.step == 0
                 ? null
                 : () => notifier.update((d) => d.previous()),
-            onNext: () => notifier.update((d) => d.next(content)),
-            // L'assistant s'arrête à l'Équipement, encore à livrer.
-            blockedReason: draft.step >= 6
-                ? l10n.comingSoon
-                : _reason(l10n, draft, content),
+            onNext: last
+                ? () => _save(context, notifier, l10n)
+                : () => notifier.update((d) => d.next(content)),
+            blockedReason: _reason(l10n, draft, content),
           ),
         ),
       ],
     );
   }
 }
+
+/// Quitte l'assistant. Ouvert par un lien direct, il n'a rien à dépiler.
+void _leave(BuildContext context) =>
+    context.canPop() ? context.pop() : context.go('/');
 
 class _Header extends StatelessWidget {
   const _Header({
@@ -146,9 +171,6 @@ class _Header extends StatelessWidget {
   final String? intro;
   final double margin;
   final bool phone;
-
-  void _close(BuildContext context) =>
-      context.canPop() ? context.pop() : context.go('/');
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +195,7 @@ class _Header extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.close),
                 tooltip: l10n.close,
-                onPressed: () => _close(context),
+                onPressed: () => _leave(context),
               ),
               SizedBox(width: AppSpacing.xs),
               Expanded(child: Text(l10n.newCharacter, style: text.titleMedium)),
@@ -216,6 +238,9 @@ String? _intro(AppLocalizations l10n, int step) => switch (step) {
   3 => l10n.introLanguages,
   4 => l10n.introAbilities(pointBuyBudget),
   5 => l10n.introSubchoices,
+  6 => l10n.introEquipment,
+  7 => l10n.introDetails,
+  8 => l10n.introSummary,
   _ => null,
 };
 
@@ -244,6 +269,11 @@ String? _reason(
       content,
     ),
   ),
+  MissingChoice.classEquipment => l10n.missingClassEquipment,
+  MissingChoice.backgroundEquipment => l10n.missingBackgroundEquipment,
+  MissingChoice.equipmentTool => l10n.missingEquipmentTool,
+  MissingChoice.name => l10n.missingName,
+  MissingChoice.rules => l10n.missingRules,
 };
 
 List<WizardStep> _steps(

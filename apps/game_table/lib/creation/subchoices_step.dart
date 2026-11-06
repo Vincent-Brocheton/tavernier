@@ -93,23 +93,9 @@ class _Section extends ConsumerWidget {
   final CreationDraft draft;
   final ActiveContent content;
 
-  void _toggle(WidgetRef ref, String id) =>
-      ref.read(creationProvider.notifier).update((d) {
-        final count = section.count;
-        return switch (section.kind) {
-          SubchoiceKind.classSkills => d.toggleClassSkill(id, count),
-          SubchoiceKind.classTools => d.toggleClassTool(id, count),
-          SubchoiceKind.masteries => d.toggleMastery(id, count),
-          SubchoiceKind.fightingStyle => d.selectFightingStyle(id),
-          SubchoiceKind.originFeat => d.selectOriginFeat(id),
-          SubchoiceKind.spellbook => d.toggleSpellbook(id, count),
-          SubchoiceKind.initiateList => d.selectInitiateList(
-            section.place!,
-            id,
-          ),
-          _ => d.togglePick(section.choiceId!, id, count),
-        };
-      });
+  void _toggle(WidgetRef ref, String id) => ref
+      .read(creationProvider.notifier)
+      .update((d) => d.toggleOption(section, id));
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

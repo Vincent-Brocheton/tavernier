@@ -110,6 +110,19 @@ abstract class ItemInput with _$ItemInput {
       _$ItemInputFromJson(json);
 }
 
+/// Sorts choisis par la classe. Ceux des dons sont dans `FeatInput.choices`.
+@freezed
+abstract class SpellsInput with _$SpellsInput {
+  const factory SpellsInput({
+    @Default(<String>[]) List<String> cantrips,
+    @Default(<String>[]) List<String> prepared,
+    @Default(<String>[]) List<String> spellbook,
+  }) = _SpellsInput;
+
+  factory SpellsInput.fromJson(Map<String, dynamic> json) =>
+      _$SpellsInputFromJson(json);
+}
+
 @freezed
 abstract class CharacterInput with _$CharacterInput {
   const factory CharacterInput({
@@ -131,6 +144,16 @@ abstract class CharacterInput with _$CharacterInput {
     @Default(<String>[]) List<String> languages,
     @Default(<WeaponMasteryInput>[]) List<WeaponMasteryInput> weaponMasteries,
     @Default(<ItemInput>[]) List<ItemInput> items,
+    @Default(SpellsInput()) SpellsInput spells,
+
+    /// Monnaie par pièce (`gp` pour les pièces d'or).
+    @Default(<String, int>{}) Map<String, int> coins,
+
+    /// Abréviation du SRD (`LB`…`CM`).
+    String? alignment,
+    String? appearance,
+    String? personality,
+    String? backstory,
     @Default(0) int xp,
   }) = _CharacterInput;
 

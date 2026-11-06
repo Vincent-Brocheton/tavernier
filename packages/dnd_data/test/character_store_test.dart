@@ -28,6 +28,46 @@ void main() {
   });
   tearDown(() => db.close());
 
+  group('sorts, monnaie et détails', () {
+    final wizard = CharacterInput.fromJson(_aldricJson()).copyWith(
+      spells: const SpellsInput(
+        cantrips: ['srd:spell:light', 'srd:spell:mage-hand'],
+        prepared: ['srd:spell:sleep', 'srd:spell:burning-hands'],
+        spellbook: [
+          'srd:spell:thunderwave',
+          'srd:spell:sleep',
+          'srd:spell:burning-hands',
+        ],
+      ),
+      coins: const {'gp': 18},
+      alignment: 'LB',
+      appearance: 'Grand et sec',
+      personality: 'Calme',
+      backstory: 'Ancien soldat',
+    );
+
+    test('aller-retour', () async {
+      await store.save('c1', wizard);
+      expect(await store.load('c1'), wizard);
+    });
+
+    test('un second enregistrement remplace les sorts', () async {
+      await store.save('c1', wizard);
+      final next = wizard.copyWith(spells: const SpellsInput());
+      await store.save('c1', next);
+      expect(await store.load('c1'), next);
+    });
+  });
+
+  test('liste : du plus ancien au plus récent', () async {
+    final aldric = CharacterInput.fromJson(_aldricJson());
+    await store.save('b', aldric);
+    await store.save('a', aldric.copyWith(name: 'Autre'));
+    final list = await store.list();
+    expect(list.map((c) => c.id), ['b', 'a']);
+    expect(list.last.character.name, 'Autre');
+  });
+
   test('Aldric aller-retour', () async {
     final aldric = CharacterInput.fromJson(_aldricJson());
     await store.save('c1', aldric);
