@@ -8,6 +8,7 @@ import 'dart:io';
 
 import 'class_extractor.dart';
 import 'origin_extractor.dart';
+import 'spell_extractor.dart';
 import 'srd_equipment.dart';
 
 typedef ExtractedTool = ({
@@ -70,9 +71,7 @@ double? parseWeight(String weight) {
 /// « Variable ».
 int? parsePrice(String price) {
   final m = RegExp(r'^([\d ]+) (po|pa|pc)$').firstMatch(price.trim());
-  if (m == null) return null;
-  return int.parse(m[1]!.replaceAll(' ', '')) *
-      const {'po': 100, 'pa': 10, 'pc': 1}[m[2]]!;
+  return m == null ? null : priceCp(m[1]!, m[2]!);
 }
 
 /// Outils de [text], d'« Outils d’artisan » à « Matériel d’aventurier ».
@@ -124,6 +123,8 @@ List<ExtractedTool> extractTools(String text, Map<String, String> slugs) {
     final text = b.lines.join('\n');
     final parent = _variantParents[b.name];
     if (parent == null) {
+      final price = b.price == null ? null : parsePrice(b.price!);
+      if (price == null) throw FormatException('prix illisible : ${b.name}');
       tools.add((
         slug: slugs[b.name]!,
         name: b.name,
@@ -131,7 +132,7 @@ List<ExtractedTool> extractTools(String text, Map<String, String> slugs) {
           'category': b.artisan ? 'artisan' : 'other',
           'ability': ability,
           'weight_kg': ?weight,
-          'cost_cp': parsePrice(b.price!)!,
+          'cost_cp': price,
         },
         text: text,
       ));
@@ -269,16 +270,19 @@ void extractEquipment({
     });
   }
 
-  for (final t in extractTools(readingOrder, srdTools)) {
+  // Tout est extrait avant la première écriture : une erreur ne laisse
+  // aucune source à moitié réécrite.
+  final tools = extractTools(readingOrder, srdTools);
+  final texts = extractGearTexts(readingOrder, [
+    ...{for (final g in gear) g.description},
+  ]);
+  for (final t in tools) {
     write('tool', t.slug, {
       'name': t.name,
       'data': t.data,
       'text': {'fr': t.text},
     });
   }
-  final texts = extractGearTexts(readingOrder, [
-    ...{for (final g in gear) g.description},
-  ]);
   for (final g in gear) {
     write('item', g.slug, {
       'name': g.name,

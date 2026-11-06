@@ -73,6 +73,12 @@ CleanText cleanText(String text) {
   return (lines: lines, joins: joins);
 }
 
+/// Prix en pièces de cuivre : [amount] (« 1 000 ») de pièces [coin]
+/// (`po`, `pa` ou `pc`).
+int priceCp(String amount, String coin) =>
+    int.parse(amount.replaceAll(RegExp(r'\s'), '')) *
+    const {'po': 100, 'pa': 10, 'pc': 1}[coin]!;
+
 const _schools = {
   'Abjuration': 'abjuration',
   'Divination': 'divination',
@@ -199,7 +205,6 @@ Map<String, Object?> parseRange(String range) {
       : RegExp(
           r'(?:valeur (?:minimale )?de|au moins) ([\d\s]+) (po|pa|pc)( chacune)?',
         ).firstMatch(material);
-  final rate = {'po': 100, 'pa': 10, 'pc': 1};
   const counts = {'deux': 2, 'trois': 3, 'quatre': 4};
   final each = cost?[3] == null
       ? 1
@@ -211,11 +216,7 @@ Map<String, Object?> parseRange(String range) {
       'somatic': letters.contains('S'),
       'material': ?material,
     },
-    costCp: cost == null
-        ? null
-        : int.parse(cost[1]!.replaceAll(RegExp(r'\s'), '')) *
-              rate[cost[2]]! *
-              each,
+    costCp: cost == null ? null : priceCp(cost[1]!, cost[2]!) * each,
     consumed:
         material != null &&
         RegExp(r'que le sort (détruit|consume)').hasMatch(material),

@@ -154,12 +154,18 @@ int run(List<String> arguments, StringSink out, StringSink err) {
   }
   if (command.name == 'extract-equipment') {
     final report = StringBuffer();
-    extractEquipment(
-      readingOrder: File(command.option('text')!).readAsStringSync(),
-      gear: readGear(File(command.option('gear')!)),
-      sources: command.option('sources')!,
-      report: report,
-    );
+    try {
+      extractEquipment(
+        readingOrder: File(command.option('text')!).readAsStringSync(),
+        gear: readGear(File(command.option('gear')!)),
+        sources: command.option('sources')!,
+        report: report,
+      );
+    } on FormatException catch (e) {
+      // Outil, variante ou description introuvable : rien n'est écrit.
+      err.writeln(e.message);
+      return 1;
+    }
     File(command.option('report')!)
       ..parent.createSync(recursive: true)
       ..writeAsStringSync(report.toString());

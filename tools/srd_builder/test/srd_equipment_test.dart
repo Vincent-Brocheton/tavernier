@@ -86,13 +86,26 @@ void main() {
   test('chaque ligne de gear.tsv figure dans le tableau en page', () {
     final gear = readGear(File(p.join(_root, 'extract', 'gear.tsv')));
     expect(gear, hasLength(95));
+    // Pages du matériel seulement (p. 100-105) : un libellé court (« Sac »)
+    // ne doit pas se retrouver dans une autre table du SRD.
+    final pages = layout.substring(
+      layout.indexOf(RegExp(r'Matériel d’aventurier\s+Objet')),
+      layout.indexOf('Montures et autres animaux'),
+    );
     expect([
       for (final g in gear)
-        if (!gearRowInLayout(layout, g.label, g.weight, g.price)) g.slug,
+        if (!gearRowInLayout(pages, g.label, g.weight, g.price)) g.slug,
     ], isEmpty);
     for (final g in gear) {
       expect(byId['srd:item:${g.slug}']?.textFr, isNotEmpty, reason: g.slug);
     }
+  });
+
+  test('grimoire du Magicien (p. 59) : 1,5 kg, sans prix', () {
+    final spellbook = byId['srd:item:spellbook']!.data as ItemData;
+    expect((spellbook.weightKg, spellbook.costCp), (1.5, null));
+    // « … votre gri-/moire. Cet objet de taille TP pèse 1,5 kg »
+    expect(layout, contains('moire. Cet objet de taille TP pèse 1,5 kg'));
   });
 
   test('Guerrier (p. 56) : options A, B et C, la C en or seul', () {
@@ -133,6 +146,9 @@ void main() {
         opts.length == 3,
         reason: slug,
       );
+      // Chaque option est cherchée après la précédente : un or attribué à
+      // la mauvaise option (A et B inversés) échoue.
+      var from = 0;
       for (final (i, o) in opts.indexed) {
         final letter = String.fromCharCode(0x41 + i);
         // Une option d'objets se termine par « et N po ; » : la colonne
@@ -140,7 +156,9 @@ void main() {
         final pattern = o.items.isEmpty
             ? '\\($letter\\)\\s+${o.gold}\\s+po'
             : '(?<![\\d,])${o.gold}\\s+po\\s+;';
-        expect(window, matches(RegExp(pattern)), reason: '$slug ($letter)');
+        final match = RegExp(pattern).allMatches(window, from).firstOrNull;
+        expect(match, isNotNull, reason: '$slug ($letter)');
+        from = match!.end;
       }
     }
   });
