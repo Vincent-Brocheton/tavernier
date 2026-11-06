@@ -55,7 +55,7 @@ backend/
 - **Tests d'abord pour `dnd_rules`** : couverture ≥ 95 % des lignes, un test par règle d'intégrité (§11.3). Les valeurs attendues viennent de [D1] ou du SRD, écrites à la main, jamais recopiées depuis la sortie du code.
 - **Branches** `feature/<id-carte>-<slug>`, **commits conventionnels** (`feat:`, `fix:`, `test:`, `chore:`…) qui citent la carte et les exigences, par exemple `feat(rules): bonus d'Historique 2-1 / 1-1-1 (US-06, EF-PJ-02)`. Fusion par pull request, CI verte obligatoire.
 - **Aucune chaîne d'interface en dur** : tout passe par les ARB, en français. **Aucune valeur de règle en dur dans l'UI** : elle vient de `dnd_rules`.
-- **Vocabulaire du SRD français** : « état » (pas « condition »), « profil de jeu », « Amical / Indifférent / Hostile », « Bottes d'armes », « Acquisition par points », « Repos court / Repos long », « Inspiration héroïque ». Distances stockées en pieds, affichées en mètres (1,5 m pour 5 pieds).
+- **Vocabulaire du SRD français** : « état » (pas « condition »), « profil de jeu », « Amical / Indifférent / Hostile », « Bottes d'arme », « Acquisition par points », « Repos court / Repos long », « Inspiration héroïque ». Distances stockées en pieds, affichées en mètres (1,5 m pour 5 pieds).
 - **Interfaces** : suis les planches et `COMPOSANTS.md` à la lettre, avec les tokens de `design_tokens.json` via le thème (jamais de couleur en dur) et des cibles tactiles ≥ 48 dp. La couleur ne porte jamais seule une information : toujours une icône et un libellé.
 - **Quand une règle de jeu est floue**, cherche dans `docs/srd/FR_SRD_CC_v5.2.1.txt`. Si le SRD ne tranche pas, demande au porteur de projet au lieu d'inventer.
 

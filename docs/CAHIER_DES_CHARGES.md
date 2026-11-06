@@ -42,11 +42,11 @@ Oct 24, 2026 · @Vincent
 | Homebrew | Contenu de règles créé par un utilisateur |
 | SRD 5.2.1 | System Reference Document des règles 2024, publié en français sous le titre « Document de Référence du Système », libre sous CC-BY-4.0 |
 | Don d'origine | Don accordé par l'Historique à la création (règles 2024) |
-| Botte d'arme | Propriété botte d'une arme, utilisable grâce à l'aptitude Bottes d'armes : Coup double, Écorchure, Enchaînement, Ouverture, Poussée, Ralentissement, Renversement, Sape |
+| Botte d'arme | Propriété botte d'une arme, utilisable grâce à l'aptitude Bottes d'arme : Coup double, Écorchure, Enchaînement, Ouverture, Poussée, Ralentissement, Renversement, Sape |
 | Étude, Influence, Observation | Actions 2024 (Study, Influence, Search en VO) résolues par un test de caractéristique |
 | Offline-first | L'appareil est la source de vérité ; le réseau ne sert qu'à synchroniser |
 
-**Vocabulaire de l'interface.** L'application reprend le vocabulaire du SRD 5.2.1 français : « état » pour une condition, « profil de jeu » pour un bloc de stats, « Amical / Indifférent / Hostile » pour les attitudes, « Bottes d'armes » pour l'aptitude de maîtrise. Les distances sont en mètres (1,5 m par case), comme dans le SRD français.
+**Vocabulaire de l'interface.** L'application reprend le vocabulaire du SRD 5.2.1 français : « état » pour une condition, « profil de jeu » pour un bloc de stats, « Amical / Indifférent / Hostile » pour les attitudes, « Bottes d'arme » pour l'aptitude de maîtrise. Les distances sont en mètres (1,5 m par case), comme dans le SRD français.
 
 ## 2. Utilisateurs et rôles
 
@@ -178,7 +178,7 @@ Le joueur peut revenir à toute étape ; les choix devenus invalides sont signal
 | EF-PJ-01 | Niveaux 1 à 20, multiclassage avec contrôle des prérequis (13 dans la caractéristique principale de chaque classe concernée). |
 | EF-PJ-02 | Valeurs calculées : modificateurs, bonus de maîtrise, sauvegardes, compétences, Perception passive, initiative, CA, vitesse, PV max, DD et bonus d'attaque des sorts, attaques et dégâts d'armes. |
 | EF-PJ-03 | Chaque valeur calculée affiche sa décomposition au toucher (ex. « FOR 16 = 14 base + 2 Historique Soldat »). |
-| EF-PJ-04 | Bottes d'armes : nombre d'emplacements selon la classe et le niveau ; choix modifiable après un repos long ; effet de la botte affiché sur l'attaque. |
+| EF-PJ-04 | Bottes d'arme : nombre d'emplacements selon la classe et le niveau ; choix modifiable après un repos long ; effet de la botte affiché sur l'attaque. |
 | EF-PJ-05 | Dons classés par catégorie (origine, général, style de combat, faveur épique) ; seuls les dons éligibles sont proposés (catégorie, niveau, prérequis). |
 | EF-PJ-06 | Montée de niveau guidée : PV (moyenne fixe ou jet, selon réglage de table), aptitudes de classe, sous-classe au niveau 3, amélioration de caractéristique ou don aux niveaux prévus, faveur épique au niveau 19, nouveaux sorts. |
 | EF-PJ-07 | Sorts : connus et préparés selon la classe, grimoire du Magicien, rituels, sorts mineurs avec progression, emplacements par niveau, magie de pacte de l'Occultiste, table d'emplacements du multiclassage. |
