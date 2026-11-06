@@ -27,5 +27,368 @@
   "navHomebrew": "Homebrew",
   "@navHomebrew": {
     "description": "Destination de navigation : contenu homebrew."
+  },
+  "newCharacter": "Nouveau personnage",
+  "@newCharacter": {
+    "description": "Bouton et titre de la création de personnage."
+  },
+  "noCharacterYet": "Aucun personnage pour l’instant.",
+  "@noCharacterYet": {
+    "description": "Liste de personnages vide."
+  },
+  "close": "Fermer",
+  "@close": {
+    "description": "Bouton de fermeture."
+  },
+  "previous": "Précédent",
+  "@previous": {
+    "description": "Assistant : étape précédente."
+  },
+  "next": "Suivant",
+  "@next": {
+    "description": "Assistant : étape suivante, sur téléphone."
+  },
+  "comingSoon": "Bientôt disponible",
+  "@comingSoon": {
+    "description": "Étape pas encore livrée."
+  },
+  "contentError": "Le contenu n’a pas pu être lu.",
+  "@contentError": {
+    "description": "Échec de lecture du pack."
+  },
+  "retry": "Réessayer",
+  "@retry": {
+    "description": "Relance une lecture."
+  },
+  "stepClass": "Classe",
+  "@stepClass": {
+    "description": "Étape 1."
+  },
+  "stepBackground": "Historique",
+  "@stepBackground": {
+    "description": "Étape 2."
+  },
+  "stepSpecies": "Espèce",
+  "@stepSpecies": {
+    "description": "Étape 3."
+  },
+  "stepLanguages": "Langues",
+  "@stepLanguages": {
+    "description": "Étape 4."
+  },
+  "stepAbilities": "Caractéristiques",
+  "@stepAbilities": {
+    "description": "Étape 5."
+  },
+  "stepSubchoices": "Sous-choix",
+  "@stepSubchoices": {
+    "description": "Étape 6."
+  },
+  "stepEquipment": "Équipement",
+  "@stepEquipment": {
+    "description": "Étape 7."
+  },
+  "stepDetails": "Détails",
+  "@stepDetails": {
+    "description": "Étape 8."
+  },
+  "stepSummary": "Récapitulatif",
+  "@stepSummary": {
+    "description": "Étape 9."
+  },
+  "stepToChoose": "À choisir",
+  "@stepToChoose": {
+    "description": "Étape sans choix fait."
+  },
+  "stepLanguagesHint": "Commun + 2",
+  "@stepLanguagesHint": {
+    "description": "Sous-libellé de l’étape 4."
+  },
+  "stepAbilitiesHint": "Acquisition par points",
+  "@stepAbilitiesHint": {
+    "description": "Sous-libellé de l’étape 5."
+  },
+  "stepSubchoicesHint": "Compétences, bottes, don",
+  "@stepSubchoicesHint": {
+    "description": "Sous-libellé de l’étape 6."
+  },
+  "stepEquipmentHint": "Pack ou or",
+  "@stepEquipmentHint": {
+    "description": "Sous-libellé de l’étape 7."
+  },
+  "stepDetailsHint": "Nom, apparence",
+  "@stepDetailsHint": {
+    "description": "Sous-libellé de l’étape 8."
+  },
+  "stepSummaryHint": "Envoi au MJ",
+  "@stepSummaryHint": {
+    "description": "Sous-libellé de l’étape 9."
+  },
+  "introClass": "Votre classe décide de vos talents au combat, de vos dés de vie et de vos maîtrises. Vous pourrez revenir sur ce choix.",
+  "@introClass": {
+    "description": "Introduction de l’étape 1."
+  },
+  "introBackground": "Ce que faisait votre personnage avant l’aventure. L’Historique donne trois caractéristiques à augmenter, un don d’origines, deux compétences et un outil.",
+  "@introBackground": {
+    "description": "Introduction de l’étape 2."
+  },
+  "introSpecies": "Taille, Vitesse et traits. Aucun bonus de caractéristique : ils viennent de l’Historique.",
+  "@introSpecies": {
+    "description": "Introduction de l’étape 3."
+  },
+  "missingClass": "Choisissez une classe pour continuer.",
+  "@missingClass": {
+    "description": "Suivant bloqué."
+  },
+  "missingBackground": "Choisissez un Historique pour continuer.",
+  "@missingBackground": {
+    "description": "Suivant bloqué."
+  },
+  "missingTool": "Choisissez un outil pour continuer.",
+  "@missingTool": {
+    "description": "Suivant bloqué."
+  },
+  "missingSpecies": "Choisissez une espèce pour continuer.",
+  "@missingSpecies": {
+    "description": "Suivant bloqué."
+  },
+  "missingSize": "Choisissez une catégorie de taille pour continuer.",
+  "@missingSize": {
+    "description": "Suivant bloqué."
+  },
+  "searchClass": "Rechercher une classe",
+  "@searchClass": {
+    "description": "Champ de recherche."
+  },
+  "filterAll": "Toutes",
+  "@filterAll": {
+    "description": "Filtre de classes."
+  },
+  "filterMartial": "Martiales",
+  "@filterMartial": {
+    "description": "Filtre de classes."
+  },
+  "filterCasters": "Lanceurs de sorts",
+  "@filterCasters": {
+    "description": "Filtre de classes."
+  },
+  "filterHomebrew": "Homebrew",
+  "@filterHomebrew": {
+    "description": "Filtre de classes."
+  },
+  "noResult": "Aucun résultat.",
+  "@noResult": {
+    "description": "Recherche vide."
+  },
+  "orWord": "ou",
+  "@orWord": {
+    "description": "Conjonction entre deux valeurs."
+  },
+  "andWord": "et",
+  "@andWord": {
+    "description": "Conjonction entre deux valeurs."
+  },
+  "labelPrimary": "Principale",
+  "@labelPrimary": {
+    "description": "Détail de classe."
+  },
+  "labelHitDie": "Dé de vie",
+  "@labelHitDie": {
+    "description": "Détail de classe."
+  },
+  "labelSaves": "Jets de sauvegarde",
+  "@labelSaves": {
+    "description": "Détail de classe."
+  },
+  "labelSkills": "Compétences",
+  "@labelSkills": {
+    "description": "Détail de classe et d’Historique."
+  },
+  "labelWeapons": "Armes",
+  "@labelWeapons": {
+    "description": "Détail de classe."
+  },
+  "labelArmor": "Armures",
+  "@labelArmor": {
+    "description": "Détail de classe."
+  },
+  "labelAtLevel1": "Au niveau 1",
+  "@labelAtLevel1": {
+    "description": "Détail de classe."
+  },
+  "labelEligibleAbilities": "Caractéristiques éligibles",
+  "@labelEligibleAbilities": {
+    "description": "Détail d’Historique."
+  },
+  "bonusSpread": "+2 / +1 ou +1 / +1 / +1, répartis à l’étape 5.",
+  "@bonusSpread": {
+    "description": "Détail d’Historique."
+  },
+  "labelOriginFeat": "Don d’origines",
+  "@labelOriginFeat": {
+    "description": "Détail d’Historique."
+  },
+  "labelTool": "Outil",
+  "@labelTool": {
+    "description": "Détail d’Historique."
+  },
+  "labelToolChoice": "Type",
+  "@labelToolChoice": {
+    "description": "Choix d’un outil."
+  },
+  "labelSizeCategory": "Catégorie de taille",
+  "@labelSizeCategory": {
+    "description": "Détail d’espèce."
+  },
+  "weaponSimple": "Courantes",
+  "@weaponSimple": {
+    "description": "Maîtrise d’armes."
+  },
+  "weaponMartial": "De guerre",
+  "@weaponMartial": {
+    "description": "Maîtrise d’armes."
+  },
+  "weaponMartialLight": "De guerre (propriété Légère)",
+  "@weaponMartialLight": {
+    "description": "Maîtrise d’armes."
+  },
+  "weaponMartialFinesseOrLight": "De guerre (Finesse ou Légère)",
+  "@weaponMartialFinesseOrLight": {
+    "description": "Maîtrise d’armes."
+  },
+  "armorLight": "Légères",
+  "@armorLight": {
+    "description": "Formation aux armures."
+  },
+  "armorMedium": "Intermédiaires",
+  "@armorMedium": {
+    "description": "Formation aux armures."
+  },
+  "armorHeavy": "Lourdes",
+  "@armorHeavy": {
+    "description": "Formation aux armures."
+  },
+  "armorShield": "Boucliers",
+  "@armorShield": {
+    "description": "Formation aux armures."
+  },
+  "armorNone": "Aucune",
+  "@armorNone": {
+    "description": "Formation aux armures."
+  },
+  "toolGamingSet": "boîte de jeux",
+  "@toolGamingSet": {
+    "description": "Catégorie d’outil."
+  },
+  "toolMusicalInstrument": "instrument de musique",
+  "@toolMusicalInstrument": {
+    "description": "Catégorie d’outil."
+  },
+  "toolArtisan": "outils d’artisan",
+  "@toolArtisan": {
+    "description": "Catégorie d’outil."
+  },
+  "sourceSrd": "SRD 5.2.1",
+  "@sourceSrd": {
+    "description": "Badge de source du pack SRD."
+  },
+  "stepOf": "Étape {step} sur {total}",
+  "@stepOf": {
+    "description": "Progression de l’assistant.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "stepEyebrow": "ÉTAPE {step} SUR {total}",
+  "@stepEyebrow": {
+    "description": "Surtitre de l’assistant.",
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "nextTo": "Suivant : {step}",
+  "@nextTo": {
+    "description": "Assistant : étape suivante, grand écran.",
+    "placeholders": {
+      "step": {
+        "type": "String"
+      }
+    }
+  },
+  "classPrimary": "Principale : {abilities}",
+  "@classPrimary": {
+    "description": "Carte de classe.",
+    "placeholders": {
+      "abilities": {
+        "type": "String"
+      }
+    }
+  },
+  "classHitDie": "Dé de vie d{faces}",
+  "@classHitDie": {
+    "description": "Puce de classe.",
+    "placeholders": {
+      "faces": {
+        "type": "int"
+      }
+    }
+  },
+  "hitDiePerLevel": "d{faces} par niveau",
+  "@hitDiePerLevel": {
+    "description": "Détail de classe.",
+    "placeholders": {
+      "faces": {
+        "type": "int"
+      }
+    }
+  },
+  "skillsAmong": "{count} parmi {skills}",
+  "@skillsAmong": {
+    "description": "Compétences à choisir.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "skills": {
+        "type": "String"
+      }
+    }
+  },
+  "featLine": "Don : {feat}",
+  "@featLine": {
+    "description": "Carte d’Historique.",
+    "placeholders": {
+      "feat": {
+        "type": "String"
+      }
+    }
+  },
+  "toolChoiceLine": "{category} (au choix)",
+  "@toolChoiceLine": {
+    "description": "Outil au choix.",
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "traitFromLevel": "(niv. {level})",
+  "@traitFromLevel": {
+    "description": "Trait d’espèce à niveau.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
   }
 }

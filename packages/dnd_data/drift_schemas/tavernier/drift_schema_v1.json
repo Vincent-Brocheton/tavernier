@@ -2298,6 +2298,20 @@
             "dsl_features": []
           },
           {
+            "name": "primary_abilities_any",
+            "getter_name": "primaryAbilitiesAny",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "CHECK (\"primary_abilities_any\" IN (0, 1))",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "CHECK (\"primary_abilities_any\" IN (0, 1))"
+            },
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "saving_throws",
             "getter_name": "savingThrows",
             "moor_type": "string",
@@ -6233,7 +6247,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"player_class\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, \"hit_die\" INTEGER NOT NULL, \"primary_abilities\" TEXT NOT NULL, \"saving_throws\" TEXT NOT NULL, \"skill_choice_count\" INTEGER NOT NULL, \"skill_choices\" TEXT NOT NULL, \"weapon_proficiencies\" TEXT NOT NULL, \"armor_training\" TEXT NOT NULL, \"subclass_level\" INTEGER NOT NULL, \"spellcasting_ability_id\" TEXT NULL, \"tool_proficiencies\" TEXT NOT NULL DEFAULT '[]', \"tool_choice_count\" INTEGER NOT NULL DEFAULT 0, \"tool_choice_category\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"player_class\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, \"hit_die\" INTEGER NOT NULL, \"primary_abilities\" TEXT NOT NULL, \"primary_abilities_any\" INTEGER NOT NULL DEFAULT 0 CHECK (\"primary_abilities_any\" IN (0, 1)), \"saving_throws\" TEXT NOT NULL, \"skill_choice_count\" INTEGER NOT NULL, \"skill_choices\" TEXT NOT NULL, \"weapon_proficiencies\" TEXT NOT NULL, \"armor_training\" TEXT NOT NULL, \"subclass_level\" INTEGER NOT NULL, \"spellcasting_ability_id\" TEXT NULL, \"tool_proficiencies\" TEXT NOT NULL DEFAULT '[]', \"tool_choice_count\" INTEGER NOT NULL DEFAULT 0, \"tool_choice_category\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

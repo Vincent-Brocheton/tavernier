@@ -9940,6 +9940,20 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _primaryAbilitiesAnyMeta =
+      const VerificationMeta('primaryAbilitiesAny');
+  @override
+  late final GeneratedColumn<bool> primaryAbilitiesAny = GeneratedColumn<bool>(
+    'primary_abilities_any',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("primary_abilities_any" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   static const VerificationMeta _savingThrowsMeta = const VerificationMeta(
     'savingThrows',
   );
@@ -10061,6 +10075,7 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     extendsId,
     hitDie,
     primaryAbilities,
+    primaryAbilitiesAny,
     savingThrows,
     skillChoiceCount,
     skillChoices,
@@ -10129,6 +10144,15 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
       );
     } else if (isInserting) {
       context.missing(_primaryAbilitiesMeta);
+    }
+    if (data.containsKey('primary_abilities_any')) {
+      context.handle(
+        _primaryAbilitiesAnyMeta,
+        primaryAbilitiesAny.isAcceptableOrUnknown(
+          data['primary_abilities_any']!,
+          _primaryAbilitiesAnyMeta,
+        ),
+      );
     }
     if (data.containsKey('saving_throws')) {
       context.handle(
@@ -10265,6 +10289,10 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         DriftSqlType.string,
         data['${effectivePrefix}primary_abilities'],
       )!,
+      primaryAbilitiesAny: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}primary_abilities_any'],
+      )!,
       savingThrows: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}saving_throws'],
@@ -10321,6 +10349,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
   final String? extendsId;
   final int hitDie;
   final String primaryAbilities;
+  final bool primaryAbilitiesAny;
   final String savingThrows;
   final int skillChoiceCount;
   final String skillChoices;
@@ -10338,6 +10367,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     this.extendsId,
     required this.hitDie,
     required this.primaryAbilities,
+    required this.primaryAbilitiesAny,
     required this.savingThrows,
     required this.skillChoiceCount,
     required this.skillChoices,
@@ -10360,6 +10390,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     }
     map['hit_die'] = Variable<int>(hitDie);
     map['primary_abilities'] = Variable<String>(primaryAbilities);
+    map['primary_abilities_any'] = Variable<bool>(primaryAbilitiesAny);
     map['saving_throws'] = Variable<String>(savingThrows);
     map['skill_choice_count'] = Variable<int>(skillChoiceCount);
     map['skill_choices'] = Variable<String>(skillChoices);
@@ -10387,6 +10418,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           : Value(extendsId),
       hitDie: Value(hitDie),
       primaryAbilities: Value(primaryAbilities),
+      primaryAbilitiesAny: Value(primaryAbilitiesAny),
       savingThrows: Value(savingThrows),
       skillChoiceCount: Value(skillChoiceCount),
       skillChoices: Value(skillChoices),
@@ -10416,6 +10448,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       extendsId: serializer.fromJson<String?>(json['extendsId']),
       hitDie: serializer.fromJson<int>(json['hitDie']),
       primaryAbilities: serializer.fromJson<String>(json['primaryAbilities']),
+      primaryAbilitiesAny: serializer.fromJson<bool>(
+        json['primaryAbilitiesAny'],
+      ),
       savingThrows: serializer.fromJson<String>(json['savingThrows']),
       skillChoiceCount: serializer.fromJson<int>(json['skillChoiceCount']),
       skillChoices: serializer.fromJson<String>(json['skillChoices']),
@@ -10444,6 +10479,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       'extendsId': serializer.toJson<String?>(extendsId),
       'hitDie': serializer.toJson<int>(hitDie),
       'primaryAbilities': serializer.toJson<String>(primaryAbilities),
+      'primaryAbilitiesAny': serializer.toJson<bool>(primaryAbilitiesAny),
       'savingThrows': serializer.toJson<String>(savingThrows),
       'skillChoiceCount': serializer.toJson<int>(skillChoiceCount),
       'skillChoices': serializer.toJson<String>(skillChoices),
@@ -10466,6 +10502,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     Value<String?> extendsId = const Value.absent(),
     int? hitDie,
     String? primaryAbilities,
+    bool? primaryAbilitiesAny,
     String? savingThrows,
     int? skillChoiceCount,
     String? skillChoices,
@@ -10483,6 +10520,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     extendsId: extendsId.present ? extendsId.value : this.extendsId,
     hitDie: hitDie ?? this.hitDie,
     primaryAbilities: primaryAbilities ?? this.primaryAbilities,
+    primaryAbilitiesAny: primaryAbilitiesAny ?? this.primaryAbilitiesAny,
     savingThrows: savingThrows ?? this.savingThrows,
     skillChoiceCount: skillChoiceCount ?? this.skillChoiceCount,
     skillChoices: skillChoices ?? this.skillChoices,
@@ -10508,6 +10546,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       primaryAbilities: data.primaryAbilities.present
           ? data.primaryAbilities.value
           : this.primaryAbilities,
+      primaryAbilitiesAny: data.primaryAbilitiesAny.present
+          ? data.primaryAbilitiesAny.value
+          : this.primaryAbilitiesAny,
       savingThrows: data.savingThrows.present
           ? data.savingThrows.value
           : this.savingThrows,
@@ -10550,6 +10591,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           ..write('extendsId: $extendsId, ')
           ..write('hitDie: $hitDie, ')
           ..write('primaryAbilities: $primaryAbilities, ')
+          ..write('primaryAbilitiesAny: $primaryAbilitiesAny, ')
           ..write('savingThrows: $savingThrows, ')
           ..write('skillChoiceCount: $skillChoiceCount, ')
           ..write('skillChoices: $skillChoices, ')
@@ -10572,6 +10614,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     extendsId,
     hitDie,
     primaryAbilities,
+    primaryAbilitiesAny,
     savingThrows,
     skillChoiceCount,
     skillChoices,
@@ -10593,6 +10636,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           other.extendsId == this.extendsId &&
           other.hitDie == this.hitDie &&
           other.primaryAbilities == this.primaryAbilities &&
+          other.primaryAbilitiesAny == this.primaryAbilitiesAny &&
           other.savingThrows == this.savingThrows &&
           other.skillChoiceCount == this.skillChoiceCount &&
           other.skillChoices == this.skillChoices &&
@@ -10612,6 +10656,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
   final Value<String?> extendsId;
   final Value<int> hitDie;
   final Value<String> primaryAbilities;
+  final Value<bool> primaryAbilitiesAny;
   final Value<String> savingThrows;
   final Value<int> skillChoiceCount;
   final Value<String> skillChoices;
@@ -10630,6 +10675,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.extendsId = const Value.absent(),
     this.hitDie = const Value.absent(),
     this.primaryAbilities = const Value.absent(),
+    this.primaryAbilitiesAny = const Value.absent(),
     this.savingThrows = const Value.absent(),
     this.skillChoiceCount = const Value.absent(),
     this.skillChoices = const Value.absent(),
@@ -10649,6 +10695,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.extendsId = const Value.absent(),
     required int hitDie,
     required String primaryAbilities,
+    this.primaryAbilitiesAny = const Value.absent(),
     required String savingThrows,
     required int skillChoiceCount,
     required String skillChoices,
@@ -10678,6 +10725,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Expression<String>? extendsId,
     Expression<int>? hitDie,
     Expression<String>? primaryAbilities,
+    Expression<bool>? primaryAbilitiesAny,
     Expression<String>? savingThrows,
     Expression<int>? skillChoiceCount,
     Expression<String>? skillChoices,
@@ -10697,6 +10745,8 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       if (extendsId != null) 'extends_id': extendsId,
       if (hitDie != null) 'hit_die': hitDie,
       if (primaryAbilities != null) 'primary_abilities': primaryAbilities,
+      if (primaryAbilitiesAny != null)
+        'primary_abilities_any': primaryAbilitiesAny,
       if (savingThrows != null) 'saving_throws': savingThrows,
       if (skillChoiceCount != null) 'skill_choice_count': skillChoiceCount,
       if (skillChoices != null) 'skill_choices': skillChoices,
@@ -10721,6 +10771,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Value<String?>? extendsId,
     Value<int>? hitDie,
     Value<String>? primaryAbilities,
+    Value<bool>? primaryAbilitiesAny,
     Value<String>? savingThrows,
     Value<int>? skillChoiceCount,
     Value<String>? skillChoices,
@@ -10740,6 +10791,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       extendsId: extendsId ?? this.extendsId,
       hitDie: hitDie ?? this.hitDie,
       primaryAbilities: primaryAbilities ?? this.primaryAbilities,
+      primaryAbilitiesAny: primaryAbilitiesAny ?? this.primaryAbilitiesAny,
       savingThrows: savingThrows ?? this.savingThrows,
       skillChoiceCount: skillChoiceCount ?? this.skillChoiceCount,
       skillChoices: skillChoices ?? this.skillChoices,
@@ -10775,6 +10827,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     }
     if (primaryAbilities.present) {
       map['primary_abilities'] = Variable<String>(primaryAbilities.value);
+    }
+    if (primaryAbilitiesAny.present) {
+      map['primary_abilities_any'] = Variable<bool>(primaryAbilitiesAny.value);
     }
     if (savingThrows.present) {
       map['saving_throws'] = Variable<String>(savingThrows.value);
@@ -10823,6 +10878,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
           ..write('extendsId: $extendsId, ')
           ..write('hitDie: $hitDie, ')
           ..write('primaryAbilities: $primaryAbilities, ')
+          ..write('primaryAbilitiesAny: $primaryAbilitiesAny, ')
           ..write('savingThrows: $savingThrows, ')
           ..write('skillChoiceCount: $skillChoiceCount, ')
           ..write('skillChoices: $skillChoices, ')
@@ -37814,6 +37870,7 @@ typedef $$ClassesTableCreateCompanionBuilder = ClassesCompanion Function({
   Value<String?> extendsId,
   required int hitDie,
   required String primaryAbilities,
+  Value<bool> primaryAbilitiesAny,
   required String savingThrows,
   required int skillChoiceCount,
   required String skillChoices,
@@ -37833,6 +37890,7 @@ typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
   Value<String?> extendsId,
   Value<int> hitDie,
   Value<String> primaryAbilities,
+  Value<bool> primaryAbilitiesAny,
   Value<String> savingThrows,
   Value<int> skillChoiceCount,
   Value<String> skillChoices,
@@ -37899,6 +37957,11 @@ class $$ClassesTableFilterComposer
 
   ColumnFilters<String> get primaryAbilities => $composableBuilder(
     column: $table.primaryAbilities,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get primaryAbilitiesAny => $composableBuilder(
+    column: $table.primaryAbilitiesAny,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -38010,6 +38073,11 @@ class $$ClassesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<bool> get primaryAbilitiesAny => $composableBuilder(
+    column: $table.primaryAbilitiesAny,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get savingThrows => $composableBuilder(
     column: $table.savingThrows,
     builder: (column) => ColumnOrderings(column),
@@ -38107,6 +38175,11 @@ class $$ClassesTableAnnotationComposer
 
   GeneratedColumn<String> get primaryAbilities => $composableBuilder(
     column: $table.primaryAbilities,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get primaryAbilitiesAny => $composableBuilder(
+    column: $table.primaryAbilitiesAny,
     builder: (column) => column,
   );
 
@@ -38218,6 +38291,7 @@ class $$ClassesTableTableManager
                 Value<String?> extendsId = const Value.absent(),
                 Value<int> hitDie = const Value.absent(),
                 Value<String> primaryAbilities = const Value.absent(),
+                Value<bool> primaryAbilitiesAny = const Value.absent(),
                 Value<String> savingThrows = const Value.absent(),
                 Value<int> skillChoiceCount = const Value.absent(),
                 Value<String> skillChoices = const Value.absent(),
@@ -38236,6 +38310,7 @@ class $$ClassesTableTableManager
                 extendsId: extendsId,
                 hitDie: hitDie,
                 primaryAbilities: primaryAbilities,
+                primaryAbilitiesAny: primaryAbilitiesAny,
                 savingThrows: savingThrows,
                 skillChoiceCount: skillChoiceCount,
                 skillChoices: skillChoices,
@@ -38256,6 +38331,7 @@ class $$ClassesTableTableManager
                 Value<String?> extendsId = const Value.absent(),
                 required int hitDie,
                 required String primaryAbilities,
+                Value<bool> primaryAbilitiesAny = const Value.absent(),
                 required String savingThrows,
                 required int skillChoiceCount,
                 required String skillChoices,
@@ -38274,6 +38350,7 @@ class $$ClassesTableTableManager
                 extendsId: extendsId,
                 hitDie: hitDie,
                 primaryAbilities: primaryAbilities,
+                primaryAbilitiesAny: primaryAbilitiesAny,
                 savingThrows: savingThrows,
                 skillChoiceCount: skillChoiceCount,
                 skillChoices: skillChoices,

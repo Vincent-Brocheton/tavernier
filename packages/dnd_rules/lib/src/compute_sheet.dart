@@ -262,11 +262,16 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     ),
   ];
 
-  // Cahier §11.3, SRD p. 26 : 13 dans une caractéristique principale de la
-  // nouvelle classe et de chaque classe existante.
-  bool meetsPrimary(ClassData cls) => cls.primaryAbilities.any(
-    (id) => (abilities[_codeOf('$id')]?.value ?? 0) >= 13,
-  );
+  // Cahier §11.3, SRD p. 26 : 13 dans la caractéristique principale de la
+  // nouvelle classe et de chaque classe existante. Toutes les principales
+  // sont requises, sauf pour une classe où l'une suffit (Guerrier).
+  bool meetsPrimary(ClassData cls) {
+    bool reaches(ContentId id) => (abilities[_codeOf('$id')]?.value ?? 0) >= 13;
+    return cls.primaryAbilitiesAny
+        ? cls.primaryAbilities.any(reaches)
+        : cls.primaryAbilities.every(reaches);
+  }
+
   for (var i = 1; i < classes.length; i++) {
     final involved = [for (final c in classes.take(i + 1)) c.data].nonNulls;
     if (!involved.every(meetsPrimary)) {

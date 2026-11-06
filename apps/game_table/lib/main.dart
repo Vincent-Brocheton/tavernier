@@ -1,21 +1,43 @@
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import 'creation/creation_page.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
   registerFontLicenses();
-  runApp(const GameTableApp());
+  runApp(const ProviderScope(child: GameTableApp()));
 }
 
 /// Racine de l'application : thème sombre du kit, taille de texte bornée,
 /// navigation principale à cinq destinations.
-class GameTableApp extends StatelessWidget {
+class GameTableApp extends StatefulWidget {
   const GameTableApp({super.key});
 
   @override
+  State<GameTableApp> createState() => _GameTableAppState();
+}
+
+class _GameTableAppState extends State<GameTableApp> {
+  final _router = GoRouter(
+    routes: [
+      GoRoute(path: '/', builder: (_, _) => const _Shell()),
+      GoRoute(path: '/characters/new', builder: (_, _) => const CreationPage()),
+    ],
+  );
+
+  @override
+  void dispose() {
+    _router.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -26,7 +48,6 @@ class GameTableApp extends StatelessWidget {
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
       builder: (context, child) => AppTextScale.clamp(child: child!),
-      home: const _Shell(),
     );
   }
 }
@@ -63,9 +84,11 @@ class _ShellState extends State<_Shell> {
           ),
       ],
       body: SafeArea(
-        child: _selected == 0
-            ? const _HomePage()
-            : _PlaceholderPage(destinations[_selected].$2),
+        child: switch (_selected) {
+          0 => const _HomePage(),
+          2 => const _CharactersPage(),
+          _ => _PlaceholderPage(destinations[_selected].$2),
+        },
       ),
     );
   }
@@ -89,6 +112,34 @@ class _HomePage extends StatelessWidget {
             ),
           ),
           Text(l10n.appTagline, style: text.bodyLarge),
+        ],
+      ),
+    );
+  }
+}
+
+/// Personnages : point d'entrée de la création.
+class _CharactersPage extends StatelessWidget {
+  const _CharactersPage();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            l10n.navCharacters,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          SizedBox(height: AppSpacing.sm),
+          Text(l10n.noCharacterYet),
+          SizedBox(height: AppSpacing.md),
+          FilledButton(
+            onPressed: () => context.push('/characters/new'),
+            child: Text(l10n.newCharacter),
+          ),
         ],
       ),
     );

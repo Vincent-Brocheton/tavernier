@@ -262,6 +262,8 @@ class Classes extends Table with ContentEntityColumns {
   String get tableName => 'player_class';
   IntColumn get hitDie => integer()();
   TextColumn get primaryAbilities => text()(); // JSON
+  BoolColumn get primaryAbilitiesAny =>
+      boolean().withDefault(const Constant(false))();
   TextColumn get savingThrows => text()(); // JSON
   IntColumn get skillChoiceCount => integer()();
   TextColumn get skillChoices => text()(); // JSON

@@ -284,6 +284,10 @@ abstract class ClassLevelData with _$ClassLevelData {
 abstract class ClassData with _$ClassData implements EntityData {
   const factory ClassData({
     @ContentIdConverter() required List<ContentId> primaryAbilities,
+
+    /// L'une des caractéristiques principales suffit (Guerrier : Force ou
+    /// Dextérité) ; sinon toutes sont requises (Moine).
+    @Default(false) bool primaryAbilitiesAny,
     required int hitDie,
     @ContentIdConverter() required List<ContentId> savingThrows,
     required int skillChoiceCount,
