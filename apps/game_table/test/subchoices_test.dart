@@ -5,6 +5,7 @@ import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/creation/creation_draft.dart';
+import 'package:game_table/creation/step_layout.dart';
 import 'package:game_table/creation/subchoices.dart';
 
 final _content = ActiveContent([
@@ -73,14 +74,19 @@ void main() {
     expect(keys(_draft('bard', 'criminal', 'dwarf')), [
       'classSkills',
       'classTools',
+      'spells-cantrips',
+      'spells-prepared',
     ]);
-    expect(keys(_draft('cleric', 'sage', 'elf')), [
+    expect(keys(_draft('cleric', 'soldier', 'elf')), [
       'classSkills',
       'cleric-divine-order',
       'elven-lineage',
+      'elven-lineage-ability',
       'keen-senses',
+      'spells-cantrips',
+      'spells-prepared',
     ]);
-    expect(keys(_draft('monk', 'sage', 'human')), [
+    expect(keys(_draft('monk', 'soldier', 'human')), [
       'classSkills',
       'originFeat',
       'skillful',
@@ -108,6 +114,215 @@ void main() {
     expect(tools.count, 3);
     expect(tools.options, hasLength(10));
     expect(tools.options.map((o) => o.label), contains('luth'));
+  });
+
+  test('toute combinaison a assez d’options libres', () {
+    final feats = [
+      null,
+      for (final feat in sortedEntities(_content, 'feat'))
+        if ((feat.data as FeatData).category == FeatCategory.origin)
+          '${feat.id}',
+    ];
+    for (final cls in sortedEntities(_content, 'class')) {
+      for (final background in sortedEntities(_content, 'background')) {
+        for (final species in sortedEntities(_content, 'species')) {
+          for (final feat in feats) {
+            var draft = const CreationDraft()
+                .selectClass('${cls.id}')
+                .selectBackground('${background.id}')
+                .selectSpecies('${species.id}', const ['M']);
+            if (feat != null) draft = draft.selectOriginFeat(feat);
+            for (final section in subchoiceSections(draft, _content)) {
+              final free = section.options.where((o) => o.block == null);
+              expect(
+                free.length,
+                greaterThanOrEqualTo(section.count),
+                reason: '${draft.classId} ${draft.speciesId} ${section.key}',
+              );
+            }
+          }
+        }
+      }
+    }
+  });
+
+  group('sorts de départ', () {
+    test('Clerc : 3 sorts mineurs et 4 préparés de sa liste', () {
+      final draft = _draft('cleric', 'soldier', 'dwarf');
+      final cantrips = _section(draft, cantripsKey);
+      expect(cantrips.count, 3);
+      expect(
+        cantrips.options.map((o) => o.label),
+        containsAll(['Assistance', 'Flamme sacrée']),
+      );
+      final prepared = _section(draft, preparedKey);
+      expect(prepared.count, 4);
+      expect(prepared.options.map((o) => o.label), contains('Bénédiction'));
+      expect(
+        prepared.options.map((o) => o.label),
+        isNot(contains('Flamme sacrée')),
+      );
+    });
+
+    test('Thaumaturge : un sort mineur de plus', () {
+      final draft = _draft(
+        'cleric',
+        'soldier',
+        'dwarf',
+      ).togglePick('cleric-divine-order', 'Thaumaturge', 1);
+      expect(_section(draft, cantripsKey).count, 4);
+    });
+
+    test('trop de sorts mineurs après l’Ordre divin : section incomplète', () {
+      var draft = _draft(
+        'cleric',
+        'soldier',
+        'dwarf',
+      ).togglePick('cleric-divine-order', 'Thaumaturge', 1);
+      for (final id in ['a', 'b', 'c', 'd']) {
+        draft = draft.togglePick(cantripsKey, id, 4);
+      }
+      draft = draft.togglePick('cleric-divine-order', 'Protecteur', 1);
+      expect(_section(draft, cantripsKey).complete, isFalse);
+    });
+
+    test('Paladin : pas de sorts mineurs', () {
+      final draft = _draft('paladin', 'soldier', 'dwarf');
+      expect(_section(draft, preparedKey).count, 2);
+      expect(
+        subchoiceSections(draft, _content).map((s) => s.key),
+        isNot(contains(cantripsKey)),
+      );
+    });
+
+    test('Magicien : le grimoire d’abord, puis 4 sorts parmi les 6', () {
+      var draft = _draft('wizard', 'soldier', 'dwarf');
+      final book = _section(draft, spellbookKey);
+      expect(book.count, 6);
+      expect(
+        subchoiceSections(draft, _content).map((s) => s.key),
+        isNot(contains(preparedKey)),
+      );
+      final six = [for (final o in book.options.take(6)) o.id];
+      for (final id in six) {
+        draft = draft.toggleSpellbook(id, 6);
+      }
+      final prepared = _section(draft, preparedKey);
+      expect(prepared.count, 4);
+      expect(prepared.options.map((o) => o.id), six);
+    });
+
+    test('un sort retiré du grimoire n’est plus préparé', () {
+      final draft = _draft('wizard', 'soldier', 'dwarf')
+          .toggleSpellbook('a', 6)
+          .toggleSpellbook('b', 6)
+          .togglePick(preparedKey, 'a', 4)
+          .togglePick(preparedKey, 'b', 4)
+          .toggleSpellbook('a', 6);
+      expect(draft.choices[preparedKey], ['b']);
+    });
+
+    test('changer de classe efface les sorts de classe', () {
+      final draft = _draft('cleric', 'soldier', 'dwarf')
+          .togglePick(cantripsKey, 'srd:spell:guidance', 3)
+          .togglePick('elven-lineage', 'Drow', 1)
+          .selectClass('srd:class:bard');
+      expect(draft.choices.keys, ['elven-lineage']);
+    });
+  });
+
+  group('Initié à la magie', () {
+    final place = InitiatePlace.species;
+
+    test('Acolyte : liste imposée, sorts du Clerc', () {
+      final draft = _draft('monk', 'acolyte', 'dwarf');
+      final keys = subchoiceSections(draft, _content).map((s) => s.key);
+      expect(keys, isNot(contains('magic-initiate-background-list')));
+      final cantrips = _section(draft, 'magic-initiate-background-cantrips');
+      expect(cantrips.count, 2);
+      expect(cantrips.listId, 'srd:class:cleric');
+      expect(cantrips.options.map((o) => o.label), contains('Assistance'));
+      expect(_section(draft, 'magic-initiate-background-spell').count, 1);
+      expect(
+        _section(
+          draft,
+          'magic-initiate-background-ability',
+        ).options.map((o) => o.label),
+        ['Intelligence', 'Sagesse', 'Charisme'],
+      );
+    });
+
+    test('Polyvalent : la liste d’abord, puis les sorts', () {
+      var draft = _draft(
+        'monk',
+        'soldier',
+        'human',
+      ).selectOriginFeat(magicInitiateFeat);
+      final lists = _section(draft, initiateKey(place, 'list'));
+      expect(lists.options.map((o) => o.label), [
+        'Clerc',
+        'Druide',
+        'Magicien',
+      ]);
+      final keys = subchoiceSections(draft, _content).map((s) => s.key);
+      expect(keys, isNot(contains(initiateKey(place, 'cantrips'))));
+      draft = draft.selectInitiateList(place, 'srd:class:druid');
+      expect(
+        _section(draft, initiateKey(place, 'cantrips')).listId,
+        'srd:class:druid',
+      );
+    });
+
+    test('Humain Acolyte : la liste du Clerc est grisée', () {
+      final draft = _draft(
+        'monk',
+        'acolyte',
+        'human',
+      ).selectOriginFeat(magicInitiateFeat);
+      final lists = _section(draft, initiateKey(place, 'list'));
+      expect(_blocked(lists), ['Clerc']);
+      expect(lists.options.first.block, OptionBlock.sameList);
+    });
+
+    test('une autre liste efface les sorts, pas la caractéristique', () {
+      final draft = _draft('monk', 'soldier', 'human')
+          .selectOriginFeat(magicInitiateFeat)
+          .selectInitiateList(place, 'srd:class:druid')
+          .togglePick(initiateKey(place, 'ability'), 'x', 1)
+          .togglePick(initiateKey(place, 'cantrips'), 'y', 2)
+          .selectInitiateList(place, 'srd:class:wizard');
+      expect(draft.choices[initiateKey(place, 'cantrips')], isEmpty);
+      expect(draft.choices[initiateKey(place, 'ability')], ['x']);
+    });
+
+    test('la même liste garde les sorts', () {
+      final draft = _draft('monk', 'soldier', 'human')
+          .selectInitiateList(place, 'srd:class:druid')
+          .togglePick(initiateKey(place, 'cantrips'), 'y', 2)
+          .selectInitiateList(place, 'srd:class:druid');
+      expect(draft.choices[initiateKey(place, 'cantrips')], ['y']);
+    });
+
+    test('changer d’Historique efface les sorts de son don', () {
+      final key = initiateKey(InitiatePlace.background, 'cantrips');
+      final draft = _draft(
+        'monk',
+        'acolyte',
+        'dwarf',
+      ).togglePick(key, 'y', 2).selectBackground('srd:background:sage');
+      expect(draft.choices, isEmpty);
+    });
+
+    test('changer de don ou d’espèce efface les sorts de Polyvalent', () {
+      final draft = _draft('monk', 'soldier', 'human')
+          .selectOriginFeat(magicInitiateFeat)
+          .togglePick(initiateKey(place, 'ability'), 'x', 1);
+      expect(draft.selectOriginFeat('srd:feat:alert').choices, isEmpty);
+      expect(
+        draft.selectSpecies('srd:species:orc', const ['M']).choices,
+        isEmpty,
+      );
+    });
   });
 
   test('Humain Soldat : Sauvagerie martiale déjà obtenue, non répétable', () {

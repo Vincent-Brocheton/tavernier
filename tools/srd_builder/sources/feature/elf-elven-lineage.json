@@ -148,6 +148,14 @@
         "Elfe sylvestre",
         "Haut-elfe"
       ]
+    },
+    {
+      "op": "choice",
+      "id": "elven-lineage-ability",
+      "title": "Caractéristique d’incantation",
+      "count": 1,
+      "options": [[], [], []],
+      "labels": ["Intelligence", "Sagesse", "Charisme"]
     }
   ],
   "text": {

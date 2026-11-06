@@ -9,6 +9,7 @@ final class ChoiceOption {
     required this.pick,
     required this.label,
     required this.expertise,
+    required this.bonusCantrips,
   });
 
   /// Valeur à enregistrer dans `choices`.
@@ -17,6 +18,9 @@ final class ChoiceOption {
 
   /// L'option donne l'Expertise : la compétence doit être maîtrisée.
   final bool expertise;
+
+  /// Sorts mineurs de classe supplémentaires (Thaumaturge).
+  final int bonusCantrips;
 }
 
 /// Un effet `choice` ouvert au niveau 1.
@@ -26,6 +30,7 @@ final class OpenChoice {
     required this.sourceId,
     required this.count,
     required this.options,
+    this.title,
   });
 
   final String id;
@@ -34,6 +39,9 @@ final class OpenChoice {
   final String sourceId;
   final int count;
   final List<ChoiceOption> options;
+
+  /// Distingue ce choix d'un autre de la même entité.
+  final String? title;
 }
 
 bool _atLevelOne(Effect effect) => (effect.when['level'] as int? ?? 1) <= 1;
@@ -51,6 +59,7 @@ List<OpenChoice> openChoices(
           sourceId: id,
           count: effect.args['count']! as int,
           options: _options(content, effect),
+          title: effect.args['title'] as String?,
         ),
 ];
 
@@ -77,11 +86,44 @@ List<ChoiceOption> _options(ActiveContent content, Effect choice) {
         pick: pick,
         label: label,
         expertise: effects.any((e) => e.op == 'grant_expertise'),
+        bonusCantrips: effects
+            .where(
+              (e) =>
+                  e.op == 'grant_spell_list_access' && e.args['max_level'] == 0,
+            )
+            .fold(0, (sum, e) => sum + (e.args['count']! as int)),
       ),
     );
   }
   return options;
 }
+
+/// Sorts mineurs de [data] au niveau 1.
+int cantripsAtFirstLevel(ClassData data) =>
+    data.levels.firstOrNull?.columns['cantrips'] ?? 0;
+
+/// Sorts préparés de [data] au niveau 1.
+int preparedAtFirstLevel(ClassData data) =>
+    data.levels.firstOrNull?.columns['prepared_spells'] ?? 0;
+
+/// Sorts du grimoire de départ (SRD, Magicien, « Grimoire »).
+int spellbookSize(String classId) => classId == 'srd:class:wizard' ? 6 : 0;
+
+/// Initié à la magie (SRD, « Dons »). Ses choix dépendent les uns des autres :
+/// le DSL ne les exprime pas.
+const magicInitiateFeat = 'srd:feat:magic-initiate';
+const magicInitiateCantrips = 2;
+const magicInitiateSpells = 1;
+const magicInitiateLists = [
+  'srd:class:cleric',
+  'srd:class:druid',
+  'srd:class:wizard',
+];
+const magicInitiateAbilities = [
+  'srd:ability:intelligence',
+  'srd:ability:wisdom',
+  'srd:ability:charisma',
+];
 
 /// Identifiants des aptitudes de niveau 1 de [data].
 List<String> levelOneFeatures(ClassData data) => [

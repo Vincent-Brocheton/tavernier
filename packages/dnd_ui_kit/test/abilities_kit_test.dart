@@ -87,6 +87,16 @@ void main() {
       handle.dispose();
     });
 
+    testWidgets('disponible : activable au lecteur d’écran', (tester) async {
+      final handle = tester.ensureSemantics();
+      await pump(tester, BonusToggleState.available, '+2');
+      expect(
+        tester.getSemantics(find.byType(InkWell)),
+        isSemantics(isButton: true, hasTapAction: true),
+      );
+      handle.dispose();
+    });
+
     testWidgets('bloquée : ne réagit pas', (tester) async {
       expect(await pump(tester, BonusToggleState.blocked, '—'), 0);
     });

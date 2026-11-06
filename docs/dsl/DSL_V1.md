@@ -71,7 +71,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 
 | op | Champs | Exemple SRD |
 |---|---|---|
-| `choice` | `id`, `count`, `options[]` (chaque option est une liste d'effets ou une référence), `labels[]` (nom de chaque option : il s'affiche, et une sélection peut le citer ; une option nommée peut n'avoir aucun effet, comme le bénéfice d'Ascendance gigante), `replaceable_on` (`level_up`, `long_rest`, `short_rest`) | Compétent (1 compétence), Sens aiguisés, Ordre divin, Proie du chasseur |
+| `choice` | `id`, `count`, `options[]` (chaque option est une liste d'effets ou une référence), `labels[]` (nom de chaque option : il s'affiche, et une sélection peut le citer ; une option nommée peut n'avoir aucun effet, comme le bénéfice d'Ascendance gigante), `title` (distingue ce choix d'un autre de la même entité), `replaceable_on` (`level_up`, `long_rest`, `short_rest`) | Compétent (1 compétence), Sens aiguisés, Ordre divin, Proie du chasseur |
 
 Les incantations de classe (emplacements, sorts mineurs, préparés, magie de pacte, niveau de lanceur en multiclassage) ne passent **pas** par le DSL : ce sont des colonnes de `class_level` (cahier §11.1), calculées par le moteur.
 

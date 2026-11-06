@@ -153,6 +153,14 @@
         "Chtonien",
         "Infernal"
       ]
+    },
+    {
+      "op": "choice",
+      "id": "fiendish-legacy-ability",
+      "title": "Caractéristique d’incantation",
+      "count": 1,
+      "options": [[], [], []],
+      "labels": ["Intelligence", "Sagesse", "Charisme"]
     }
   ],
   "text": {

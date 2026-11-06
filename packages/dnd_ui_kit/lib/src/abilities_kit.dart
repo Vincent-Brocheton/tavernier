@@ -147,6 +147,7 @@ class BonusToggle extends StatelessWidget {
         selected: state == BonusToggleState.selected,
         button: true,
         enabled: !blocked,
+        onTap: blocked ? null : onTap,
         excludeSemantics: true,
         child: Material(
           color: background,

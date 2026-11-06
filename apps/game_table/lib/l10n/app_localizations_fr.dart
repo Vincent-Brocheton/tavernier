@@ -481,4 +481,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String missingSubchoice(String title) {
     return 'À compléter : $title.';
   }
+
+  @override
+  String choiceTitle(String name, String title) {
+    return '$name : $title';
+  }
+
+  @override
+  String cantripsOf(String cls) {
+    return 'Sorts mineurs de $cls';
+  }
+
+  @override
+  String preparedSpellsOf(String cls) {
+    return 'Sorts préparés de $cls';
+  }
+
+  @override
+  String get spellbookTitle => 'Grimoire';
+
+  @override
+  String initiateListTitle(String feat) {
+    return '$feat : liste de sorts';
+  }
+
+  @override
+  String initiateAbilityTitle(String feat) {
+    return '$feat : caractéristique d’incantation';
+  }
+
+  @override
+  String initiateCantripsTitle(String feat) {
+    return '$feat : sorts mineurs';
+  }
+
+  @override
+  String initiateSpellTitle(String feat) {
+    return '$feat : sort du 1er niveau';
+  }
+
+  @override
+  String get sameListRule => 'Ce don se reprend avec une autre liste de sorts.';
 }

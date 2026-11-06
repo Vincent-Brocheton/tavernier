@@ -23,8 +23,39 @@ String subchoiceTitle(
   SubchoiceKind.masteries => l10n.weaponMasteryTitle,
   SubchoiceKind.fightingStyle => l10n.fightingStyleTitle,
   SubchoiceKind.originFeat => l10n.originFeatTitle,
-  SubchoiceKind.effect => namesOf(content, [section.sourceId!]),
+  SubchoiceKind.effect => switch (section.title) {
+    final title? => l10n.choiceTitle(
+      namesOf(content, [section.sourceId!]),
+      title,
+    ),
+    null => namesOf(content, [section.sourceId!]),
+  },
+  SubchoiceKind.cantrips => l10n.cantripsOf(namesOf(content, [draft.classId!])),
+  SubchoiceKind.spellbook => l10n.spellbookTitle,
+  SubchoiceKind.preparedSpells => l10n.preparedSpellsOf(
+    namesOf(content, [draft.classId!]),
+  ),
+  SubchoiceKind.initiateList => l10n.initiateListTitle(
+    _initiateName(section, content),
+  ),
+  SubchoiceKind.initiateAbility => l10n.initiateAbilityTitle(
+    _initiateName(section, content),
+  ),
+  SubchoiceKind.initiateCantrips => l10n.initiateCantripsTitle(
+    _initiateName(section, content),
+  ),
+  SubchoiceKind.initiateSpell => l10n.initiateSpellTitle(
+    _initiateName(section, content),
+  ),
 };
+
+/// Nom du don, avec sa liste de sorts une fois connue.
+String _initiateName(Subchoice section, ActiveContent content) {
+  final name = namesOf(content, [section.sourceId!]);
+  return section.listId == null
+      ? name
+      : '$name (${namesOf(content, [section.listId!])})';
+}
 
 /// Étape 6, Sous-choix [P5].
 class SubchoicesStep extends ConsumerWidget {
@@ -71,7 +102,12 @@ class _Section extends ConsumerWidget {
           SubchoiceKind.masteries => d.toggleMastery(id, count),
           SubchoiceKind.fightingStyle => d.selectFightingStyle(id),
           SubchoiceKind.originFeat => d.selectOriginFeat(id),
-          SubchoiceKind.effect => d.togglePick(section.choiceId!, id, count),
+          SubchoiceKind.spellbook => d.toggleSpellbook(id, count),
+          SubchoiceKind.initiateList => d.selectInitiateList(
+            section.place!,
+            id,
+          ),
+          _ => d.togglePick(section.choiceId!, id, count),
         };
       });
 
@@ -89,6 +125,9 @@ class _Section extends ConsumerWidget {
     ];
     final expertise = section.options.any(
       (o) => o.block == OptionBlock.notProficient,
+    );
+    final sameList = section.options.any(
+      (o) => o.block == OptionBlock.sameList,
     );
     final invalid = section.invalid;
     return Container(
@@ -151,6 +190,11 @@ class _Section extends ConsumerWidget {
             Padding(
               padding: EdgeInsets.only(top: AppSpacing.xs),
               child: Text(l10n.expertiseRule, style: text.bodySmall),
+            ),
+          if (sameList)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(l10n.sameListRule, style: text.bodySmall),
             ),
         ],
       ),
@@ -254,7 +298,10 @@ class _ToComplete extends StatelessWidget {
   }
 
   String _state(AppLocalizations l10n, Subchoice section) {
-    if (section.invalid.isNotEmpty) return l10n.stepToRedo;
+    // Plus de sélections que de places : l'Ordre divin a changé.
+    if (section.invalid.isNotEmpty || section.chosen.length > section.count) {
+      return l10n.stepToRedo;
+    }
     if (!section.complete) {
       return l10n.choicesLeft(section.count - section.chosen.length);
     }

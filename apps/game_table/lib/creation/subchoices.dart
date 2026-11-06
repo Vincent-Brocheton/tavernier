@@ -12,7 +12,27 @@ enum SubchoiceKind {
   fightingStyle,
   originFeat,
   effect,
+  cantrips,
+  spellbook,
+  preparedSpells,
+  initiateList,
+  initiateAbility,
+  initiateCantrips,
+  initiateSpell,
 }
+
+/// Don qui amène un Initié à la magie : l'Historique ou Polyvalent.
+enum InitiatePlace { background, species }
+
+/// Préfixe des sélections de sorts de classe dans `CreationDraft.choices`.
+const classSpellsPrefix = 'spells-';
+const cantripsKey = '${classSpellsPrefix}cantrips';
+const spellbookKey = '${classSpellsPrefix}book';
+const preparedKey = '${classSpellsPrefix}prepared';
+
+/// Clé d'une sélection d'Initié à la magie dans `CreationDraft.choices`.
+String initiateKey(InitiatePlace place, String field) =>
+    'magic-initiate-${place.name}-$field';
 
 /// Raison pour laquelle une option n'est pas disponible.
 enum OptionBlock {
@@ -24,6 +44,9 @@ enum OptionBlock {
 
   /// Don non répétable déjà obtenu.
   notRepeatable,
+
+  /// Liste de sorts déjà prise par le même don.
+  sameList,
 }
 
 /// Une option de section.
@@ -50,6 +73,9 @@ final class Subchoice {
     required this.options,
     this.choiceId,
     this.sourceId,
+    this.title,
+    this.listId,
+    this.place,
   });
 
   final SubchoiceKind kind;
@@ -57,11 +83,18 @@ final class Subchoice {
   final List<String> chosen;
   final List<SubchoiceOption> options;
 
-  /// Pour [SubchoiceKind.effect] : identifiant du `choice`.
+  /// Clé de la sélection dans `CreationDraft.choices`.
   final String? choiceId;
 
-  /// Pour [SubchoiceKind.effect] : entité qui ouvre le choix.
+  /// Entité qui ouvre le choix.
   final String? sourceId;
+
+  /// Pour [SubchoiceKind.effect] : titre propre au choix.
+  final String? title;
+
+  /// Pour un Initié à la magie : liste de sorts, une fois connue.
+  final String? listId;
+  final InitiatePlace? place;
 
   /// Identifiant de section, stable entre deux affichages.
   String get key => choiceId ?? kind.name;
@@ -157,6 +190,109 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
 
   final classSkills = {for (final skill in cls.skillChoices) '$skill'};
   final skillsTaken = {...fromBackground, ...pickedElsewhere('classSkills')};
+  late final spells = sortedEntities(content, 'spell');
+  List<SubchoiceOption> spellOptions(Iterable<ContentId> list, int level) {
+    final ids = {for (final id in list) '$id'};
+    return [
+      for (final spell in spells)
+        if (ids.contains('${spell.id}') &&
+            (spell.data as SpellData).level == level)
+          SubchoiceOption(id: '${spell.id}', label: spell.name),
+    ];
+  }
+
+  Subchoice pick(
+    SubchoiceKind kind,
+    String key,
+    int count,
+    List<SubchoiceOption> options,
+  ) => Subchoice(
+    kind: kind,
+    count: count,
+    chosen: draft.choices[key] ?? const [],
+    options: options,
+    choiceId: key,
+  );
+
+  final cantrips =
+      cantripsAtFirstLevel(cls) +
+      [
+        for (final choice in open)
+          for (final option in choice.options)
+            if (draft.choices[choice.id]?.contains(option.pick) ?? false)
+              option.bonusCantrips,
+      ].fold<int>(0, (sum, count) => sum + count);
+  final book = spellbookSize(draft.classId!);
+  final prepared = preparedAtFirstLevel(cls);
+  final inBook = draft.choices[spellbookKey] ?? const <String>[];
+
+  List<Subchoice> initiate(
+    InitiatePlace place, {
+    String? fixed,
+    String? taken,
+  }) {
+    Subchoice section(
+      SubchoiceKind kind,
+      String field,
+      int count,
+      List<SubchoiceOption> options, {
+      String? list,
+    }) {
+      final key = initiateKey(place, field);
+      return Subchoice(
+        kind: kind,
+        count: count,
+        chosen: draft.choices[key] ?? const [],
+        options: options,
+        choiceId: key,
+        sourceId: magicInitiateFeat,
+        listId: list,
+        place: place,
+      );
+    }
+
+    final list =
+        fixed ?? draft.choices[initiateKey(place, 'list')]?.firstOrNull;
+    final spellList =
+        (content.entity(list ?? '')?.data as ClassData?)?.spellList;
+    return [
+      if (fixed == null)
+        section(SubchoiceKind.initiateList, 'list', 1, [
+          for (final id in magicInitiateLists)
+            SubchoiceOption(
+              id: id,
+              label: content.entity(id)?.name ?? id,
+              block: id == taken ? OptionBlock.sameList : null,
+            ),
+        ]),
+      section(SubchoiceKind.initiateAbility, 'ability', 1, list: list, [
+        for (final id in magicInitiateAbilities)
+          SubchoiceOption(id: id, label: content.entity(id)?.name ?? id),
+      ]),
+      if (spellList != null) ...[
+        section(
+          SubchoiceKind.initiateCantrips,
+          'cantrips',
+          magicInitiateCantrips,
+          list: list,
+          spellOptions(spellList, 0),
+        ),
+        section(
+          SubchoiceKind.initiateSpell,
+          'spell',
+          magicInitiateSpells,
+          list: list,
+          spellOptions(spellList, 1),
+        ),
+      ],
+    ];
+  }
+
+  final backgroundList = switch (background?.originFeatChoices?['spell_list']) {
+    final list? => 'srd:class:$list',
+    null => null,
+  };
+
   final mastery = masteryOptions(content, cls);
   final masteryWeapons = {for (final w in mastery.weapons) '${w.id}'};
   return [
@@ -229,7 +365,31 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
         chosen: draft.choices[choice.id] ?? const [],
         choiceId: choice.id,
         sourceId: choice.sourceId,
+        title: choice.title,
         options: [for (final o in choice.options) effectOption(choice, o)],
       ),
+    if (cantrips > 0)
+      pick(
+        SubchoiceKind.cantrips,
+        cantripsKey,
+        cantrips,
+        spellOptions(cls.spellList, 0),
+      ),
+    if (book > 0)
+      pick(
+        SubchoiceKind.spellbook,
+        spellbookKey,
+        book,
+        spellOptions(cls.spellList, 1),
+      ),
+    if (prepared > 0 && inBook.length == book)
+      pick(SubchoiceKind.preparedSpells, preparedKey, prepared, [
+        for (final option in spellOptions(cls.spellList, 1))
+          if (book == 0 || inBook.contains(option.id)) option,
+      ]),
+    if ('${background?.originFeat}' == magicInitiateFeat)
+      ...initiate(InitiatePlace.background, fixed: backgroundList),
+    if (draft.originFeat == magicInitiateFeat)
+      ...initiate(InitiatePlace.species, taken: backgroundList),
   ];
 }
