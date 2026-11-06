@@ -113,10 +113,12 @@ abstract final class AppTheme {
     // lettres, 500 (700 pour la destination active), sur une ligne.
     final navLabel = AppTypography.textTheme.labelMedium!.copyWith(
       letterSpacing: 0,
+      color: scheme.onSurfaceVariant,
     );
     TextStyle navLabelFor(Set<WidgetState> states) =>
         states.contains(WidgetState.selected)
         ? navLabel.copyWith(
+            color: scheme.onSurface,
             fontWeight: FontWeight.w700,
             fontVariations: const [FontVariation('wght', 700)],
           )

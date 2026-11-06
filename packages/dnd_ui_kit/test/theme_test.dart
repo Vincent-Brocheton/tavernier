@@ -67,4 +67,13 @@ void main() {
     final packages = {for (final e in entries) ...e.packages};
     expect(packages, containsAll(['Cinzel', 'Roboto Flex']));
   });
+
+  test('libellés de navigation lisibles sur le fond sombre', () {
+    final scheme = AppTheme.dark.colorScheme;
+    final rail = AppTheme.dark.navigationRailTheme;
+    expect(rail.unselectedLabelTextStyle!.color, scheme.onSurfaceVariant);
+    expect(rail.selectedLabelTextStyle!.color, scheme.onSurface);
+    final bar = AppTheme.dark.navigationBarTheme.labelTextStyle!;
+    expect(bar.resolve(const {})!.color, scheme.onSurfaceVariant);
+  });
 }

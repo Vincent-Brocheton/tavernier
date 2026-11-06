@@ -118,13 +118,15 @@ final class ComputedSheet {
     required this.abilities,
     required this.pointBuyCost,
     required this.savingThrows,
+    required this.saveBreakdown,
     required this.savingThrowProficiencies,
     required this.skills,
+    required this.skillBreakdown,
     required this.skillProficiencies,
     required this.passivePerception,
     required this.initiative,
     required this.armorClass,
-    required this.speedFeet,
+    required this.speed,
     required this.hitPointsMax,
     required this.hitDice,
     required this.resources,
@@ -144,15 +146,20 @@ final class ComputedSheet {
 
   /// Par code de caractéristique.
   final Map<String, int> savingThrows;
+  final Map<String, Computed> saveBreakdown;
   final List<String> savingThrowProficiencies;
 
   /// Par compétence, clé en snake_case (`animal_handling`).
   final Map<String, int> skills;
+  final Map<String, Computed> skillBreakdown;
   final List<String> skillProficiencies;
   final int passivePerception;
   final Initiative initiative;
   final Computed armorClass;
-  final int speedFeet;
+
+  /// Vitesse en pieds.
+  final Computed speed;
+  int get speedFeet => speed.value;
   final Computed hitPointsMax;
   final ({String die, int total}) hitDice;
 

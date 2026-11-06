@@ -38,7 +38,7 @@
   },
   "close": "Fermer",
   "@close": {
-    "description": "Bouton de fermeture."
+    "description": "Fiche du personnage."
   },
   "previous": "Précédent",
   "@previous": {
@@ -1026,5 +1026,162 @@
   "unarmedStrike": "Mains nues",
   "@unarmedStrike": {
     "description": "Attaque sans arme, au Récapitulatif."
+  },
+  "tabMain": "Principal",
+  "@tabMain": {
+    "description": "Fiche du personnage."
+  },
+  "tabSkills": "Compétences",
+  "@tabSkills": {
+    "description": "Fiche du personnage."
+  },
+  "tabCombat": "Combat",
+  "@tabCombat": {
+    "description": "Fiche du personnage."
+  },
+  "tabSpells": "Sorts",
+  "@tabSpells": {
+    "description": "Fiche du personnage."
+  },
+  "tabInventory": "Inventaire",
+  "@tabInventory": {
+    "description": "Fiche du personnage."
+  },
+  "tabFeatures": "Aptitudes",
+  "@tabFeatures": {
+    "description": "Fiche du personnage."
+  },
+  "tabNotes": "Notes",
+  "@tabNotes": {
+    "description": "Fiche du personnage."
+  },
+  "back": "Retour",
+  "@back": {
+    "description": "Fiche du personnage."
+  },
+  "characterNotFound": "Ce personnage est introuvable.",
+  "@characterNotFound": {
+    "description": "Fiche du personnage."
+  },
+  "abilitiesTitle": "Caractéristiques",
+  "@abilitiesTitle": {
+    "description": "Fiche du personnage."
+  },
+  "tapForBreakdown": "Touchez une valeur : décomposition",
+  "@tapForBreakdown": {
+    "description": "Fiche du personnage."
+  },
+  "abbrStr": "FOR",
+  "@abbrStr": {
+    "description": "Fiche du personnage."
+  },
+  "abbrDex": "DEX",
+  "@abbrDex": {
+    "description": "Fiche du personnage."
+  },
+  "abbrCon": "CON",
+  "@abbrCon": {
+    "description": "Fiche du personnage."
+  },
+  "abbrInt": "INT",
+  "@abbrInt": {
+    "description": "Fiche du personnage."
+  },
+  "abbrWis": "SAG",
+  "@abbrWis": {
+    "description": "Fiche du personnage."
+  },
+  "abbrCha": "CHA",
+  "@abbrCha": {
+    "description": "Fiche du personnage."
+  },
+  "expertise": "Expertise",
+  "@expertise": {
+    "description": "Fiche du personnage."
+  },
+  "usedBy": "Utilisée par",
+  "@usedBy": {
+    "description": "Fiche du personnage."
+  },
+  "categoryAbility": "Caractéristique",
+  "@categoryAbility": {
+    "description": "Fiche du personnage."
+  },
+  "categorySkill": "Compétence",
+  "@categorySkill": {
+    "description": "Fiche du personnage."
+  },
+  "categoryStat": "Statistique",
+  "@categoryStat": {
+    "description": "Fiche du personnage."
+  },
+  "breakdownBase": "Valeur de base",
+  "@breakdownBase": {
+    "description": "Fiche du personnage."
+  },
+  "breakdownProficiency": "Bonus de maîtrise",
+  "@breakdownProficiency": {
+    "description": "Fiche du personnage."
+  },
+  "sourceCreation": "Création",
+  "@sourceCreation": {
+    "description": "Fiche du personnage."
+  },
+  "breakdownModifier": "Modificateur de {ability}",
+  "@breakdownModifier": {
+    "description": "Fiche du personnage.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "savingThrowOf": "JS {ability}",
+  "@savingThrowOf": {
+    "description": "Fiche du personnage.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "modifierRule": "Modificateur {modifier} = ({score} − 10) ÷ 2, arrondi à l’inférieur",
+  "@modifierRule": {
+    "description": "Fiche du personnage.",
+    "placeholders": {
+      "modifier": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "proficiencyByLevel": "Niveau de personnage {level}",
+  "@proficiencyByLevel": {
+    "description": "Fiche du personnage.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "abilitySemantics": "{ability} {score}, modificateur {modifier}, jet de sauvegarde {save}",
+  "@abilitySemantics": {
+    "description": "Fiche du personnage.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      },
+      "modifier": {
+        "type": "String"
+      },
+      "save": {
+        "type": "String"
+      }
+    }
   }
 }

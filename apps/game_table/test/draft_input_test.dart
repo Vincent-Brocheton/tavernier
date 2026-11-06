@@ -333,6 +333,24 @@ void main() {
     });
   });
 
+  group('compétences du Récapitulatif', () {
+    test('la clé d’une compétence à tiret se retrouve dans la fiche', () {
+      final input = toCharacterInput(
+        _withScores(
+          _complete(
+            'srd:class:rogue',
+            'srd:background:criminal',
+            'srd:species:dwarf',
+          ),
+        ),
+        _content,
+      );
+      final sheet = computeSheet(input, _content);
+      final hand = _content.entity('srd:skill:sleight-of-hand')!;
+      expect(sheet.skillProficiencies, contains(skillKey(hand)));
+    });
+  });
+
   group('blocage des étapes', () {
     test('équipement : lot de classe, puis Historique, puis outil', () {
       final bard = const CreationDraft().selectClass('srd:class:bard');

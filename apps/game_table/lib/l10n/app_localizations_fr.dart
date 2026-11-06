@@ -705,4 +705,109 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get unarmedStrike => 'Mains nues';
+
+  @override
+  String get tabMain => 'Principal';
+
+  @override
+  String get tabSkills => 'Compétences';
+
+  @override
+  String get tabCombat => 'Combat';
+
+  @override
+  String get tabSpells => 'Sorts';
+
+  @override
+  String get tabInventory => 'Inventaire';
+
+  @override
+  String get tabFeatures => 'Aptitudes';
+
+  @override
+  String get tabNotes => 'Notes';
+
+  @override
+  String get back => 'Retour';
+
+  @override
+  String get characterNotFound => 'Ce personnage est introuvable.';
+
+  @override
+  String get abilitiesTitle => 'Caractéristiques';
+
+  @override
+  String get tapForBreakdown => 'Touchez une valeur : décomposition';
+
+  @override
+  String get abbrStr => 'FOR';
+
+  @override
+  String get abbrDex => 'DEX';
+
+  @override
+  String get abbrCon => 'CON';
+
+  @override
+  String get abbrInt => 'INT';
+
+  @override
+  String get abbrWis => 'SAG';
+
+  @override
+  String get abbrCha => 'CHA';
+
+  @override
+  String get expertise => 'Expertise';
+
+  @override
+  String get usedBy => 'Utilisée par';
+
+  @override
+  String get categoryAbility => 'Caractéristique';
+
+  @override
+  String get categorySkill => 'Compétence';
+
+  @override
+  String get categoryStat => 'Statistique';
+
+  @override
+  String get breakdownBase => 'Valeur de base';
+
+  @override
+  String get breakdownProficiency => 'Bonus de maîtrise';
+
+  @override
+  String get sourceCreation => 'Création';
+
+  @override
+  String breakdownModifier(String ability) {
+    return 'Modificateur de $ability';
+  }
+
+  @override
+  String savingThrowOf(String ability) {
+    return 'JS $ability';
+  }
+
+  @override
+  String modifierRule(String modifier, int score) {
+    return 'Modificateur $modifier = ($score − 10) ÷ 2, arrondi à l’inférieur';
+  }
+
+  @override
+  String proficiencyByLevel(int level) {
+    return 'Niveau de personnage $level';
+  }
+
+  @override
+  String abilitySemantics(
+    String ability,
+    int score,
+    String modifier,
+    String save,
+  ) {
+    return '$ability $score, modificateur $modifier, jet de sauvegarde $save';
+  }
 }

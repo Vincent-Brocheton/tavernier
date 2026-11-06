@@ -7,6 +7,7 @@ import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
+import 'sheet/sheet_page.dart';
 
 void main() {
   registerFontLicenses();
@@ -27,6 +28,10 @@ class _GameTableAppState extends State<GameTableApp> {
     routes: [
       GoRoute(path: '/', builder: (_, _) => const _Shell()),
       GoRoute(path: '/characters/new', builder: (_, _) => const CreationPage()),
+      GoRoute(
+        path: '/characters/:id',
+        builder: (_, state) => SheetPage(id: state.pathParameters['id']!),
+      ),
     ],
   );
 
@@ -150,6 +155,7 @@ class _CharactersPage extends ConsumerWidget {
                     for (final (:id, :character) in characters)
                       ListTile(
                         key: ValueKey(id),
+                        onTap: () => context.push('/characters/$id'),
                         title: Text(character.name),
                         subtitle: Text(
                           [
