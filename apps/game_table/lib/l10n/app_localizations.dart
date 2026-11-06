@@ -787,6 +787,84 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'À refaire'**
   String get stepToRedo;
+
+  /// Introduction de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les choix laissés ouverts par votre classe, votre Historique et votre espèce. Les options impossibles sont grisées, avec la règle qui les bloque.'**
+  String get introSubchoices;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Outils à choisir'**
+  String get classToolsTitle;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bottes d’arme'**
+  String get weaponMasteryTitle;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Style de combat'**
+  String get fightingStyleTitle;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Don d’origines'**
+  String get originFeatTitle;
+
+  /// Panneau de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'À compléter'**
+  String get toComplete;
+
+  /// Don indisponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déjà obtenu par l’Historique · non répétable'**
+  String get featNotRepeatable;
+
+  /// Règle affichée sous l’Expertise.
+  ///
+  /// In fr, this message translates to:
+  /// **'L’Expertise ne porte que sur une compétence que vous maîtrisez déjà.'**
+  String get expertiseRule;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences de {cls}'**
+  String classSkillsOf(String cls);
+
+  /// Règle sous une section.
+  ///
+  /// In fr, this message translates to:
+  /// **'{names} : déjà maîtrisé, une maîtrise ne se prend pas deux fois.'**
+  String alreadyKnownRule(String names);
+
+  /// Choix devenu invalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'À refaire : {names}.'**
+  String choiceToRedo(String names);
+
+  /// Panneau À compléter.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Encore 1 choix} other{Encore {count} choix}}'**
+  String choicesLeft(int count);
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'À compléter : {title}.'**
+  String missingSubchoice(String title);
 }
 
 class _AppLocalizationsDelegate

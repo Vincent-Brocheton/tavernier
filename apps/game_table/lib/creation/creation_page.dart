@@ -12,6 +12,8 @@ import 'creation_draft.dart';
 import 'creation_providers.dart';
 import 'languages_step.dart';
 import 'species_step.dart';
+import 'subchoices.dart';
+import 'subchoices_step.dart';
 
 /// Assistant de création en 9 étapes (cahier §5.1, [P1]–[P9]).
 class CreationPage extends ConsumerWidget {
@@ -67,6 +69,7 @@ class _Wizard extends ConsumerWidget {
       2 => SpeciesStep(content: content),
       3 => LanguagesStep(content: content),
       4 => AbilitiesStep(content: content),
+      5 => SubchoicesStep(content: content),
       _ => Center(child: Text(l10n.comingSoon)),
     };
     final nextName = last ? null : steps[draft.step + 1].label;
@@ -118,8 +121,8 @@ class _Wizard extends ConsumerWidget {
                 ? null
                 : () => notifier.update((d) => d.previous()),
             onNext: () => notifier.update((d) => d.next(content)),
-            // L'assistant s'arrête aux Sous-choix, encore à livrer.
-            blockedReason: draft.step >= 5
+            // L'assistant s'arrête à l'Équipement, encore à livrer.
+            blockedReason: draft.step >= 6
                 ? l10n.comingSoon
                 : _reason(l10n, draft, content),
           ),
@@ -212,6 +215,7 @@ String? _intro(AppLocalizations l10n, int step) => switch (step) {
   2 => l10n.introSpecies,
   3 => l10n.introLanguages,
   4 => l10n.introAbilities(pointBuyBudget),
+  5 => l10n.introSubchoices,
   _ => null,
 };
 
@@ -232,6 +236,14 @@ String? _reason(
   MissingChoice.points => l10n.missingPoints(draft.remainingPoints),
   MissingChoice.bonusInvalid => l10n.missingBonusInvalid,
   MissingChoice.bonus => l10n.missingBonus,
+  MissingChoice.subchoices => l10n.missingSubchoice(
+    subchoiceTitle(
+      l10n,
+      subchoiceSections(draft, content).firstWhere((s) => !s.complete),
+      draft,
+      content,
+    ),
+  ),
 };
 
 List<WizardStep> _steps(

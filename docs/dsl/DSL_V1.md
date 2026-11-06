@@ -55,7 +55,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 | `modify_check` | `scope` (`unproficient_ability_checks`, `skill:<s>`, `saving_throws`, `saving_throw:<a>`, `melee_weapon_attack`, `ranged_weapon_attack`, `spell_attack`), `add` | Touche-à-tout : moitié de la maîtrise ; Thaumaturge : SAG à Arcanes et Religion ; Archerie : +2 `ranged_weapon_attack` ; Aura de protection : CHA aux `saving_throws` |
 | `set_attacks_per_action` | `count` | Attaque supplémentaire : 2 |
 | `set_crit_range` | `min` | Critique amélioré : 19 |
-| `grant_mastery_slots` | `count` (souvent `by_level`) | Guerrier : 3, puis 4 au niv. 4… |
+| `grant_mastery_slots` | `count` (souvent `by_level`), `melee_only` (armes de corps à corps seulement) | Guerrier : 3, puis 4 au niv. 4… ; Barbare : `melee_only` |
 | `modify_damage` | `value`, `scope` (`melee_weapon`, `unarmed`, `cantrip:<liste>`), `damage_type` | Frappes radiantes : +1d8 radiants au corps à corps |
 
 ### Ressources, sorts, objets
@@ -71,7 +71,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 
 | op | Champs | Exemple SRD |
 |---|---|---|
-| `choice` | `id`, `count`, `options[]` (chaque option est une liste d'effets ou une référence), `replaceable_on` (`level_up`, `long_rest`, `short_rest`) | Compétent (1 compétence), Sens aiguisés, Ordre divin, Proie du chasseur |
+| `choice` | `id`, `count`, `options[]` (chaque option est une liste d'effets ou une référence), `labels[]` (nom de chaque option : il s'affiche, et une sélection peut le citer), `replaceable_on` (`level_up`, `long_rest`, `short_rest`) | Compétent (1 compétence), Sens aiguisés, Ordre divin, Proie du chasseur |
 
 Les incantations de classe (emplacements, sorts mineurs, préparés, magie de pacte, niveau de lanceur en multiclassage) ne passent **pas** par le DSL : ce sont des colonnes de `class_level` (cahier §11.1), calculées par le moteur.
 

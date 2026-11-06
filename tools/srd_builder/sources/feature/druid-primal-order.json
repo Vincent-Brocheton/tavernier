@@ -52,6 +52,10 @@
             "ref": "medium"
           }
         ]
+      ],
+      "labels": [
+        "Mage",
+        "Gardien"
       ]
     }
   ],

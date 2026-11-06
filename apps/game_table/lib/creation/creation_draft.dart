@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 
+import 'subchoices.dart';
+
 /// Nombre d'étapes de la création (cahier §5.1).
 const creationStepCount = 9;
 
@@ -19,6 +21,7 @@ enum MissingChoice {
   /// Un bonus porte sur une caractéristique que l'Historique n'autorise pas.
   bonusInvalid,
   bonus,
+  subchoices,
 }
 
 /// Répartitions des bonus d'Historique (SRD p. 87).
@@ -47,6 +50,12 @@ final class CreationDraft {
     },
     this.distribution = '2-1',
     this.bonuses = const {},
+    this.classSkills = const [],
+    this.classTools = const [],
+    this.masteries = const [],
+    this.fightingStyle,
+    this.originFeat,
+    this.choices = const {},
   });
 
   /// Étape affichée (à partir de 0).
@@ -72,9 +81,35 @@ final class CreationDraft {
   /// Bonus d'Historique par caractéristique.
   final Map<String, int> bonuses;
 
+  /// Compétences choisies dans la liste de la classe.
+  final List<String> classSkills;
+
+  /// Outils choisis dans la catégorie de la classe (Barde).
+  final List<String> classTools;
+
+  /// Armes dont la botte est choisie.
+  final List<String> masteries;
+  final String? fightingStyle;
+
+  /// Don d'origines accordé par l'espèce (Humain, Polyvalent).
+  final String? originFeat;
+
+  /// Sélections des effets `choice`, par identifiant de choix.
+  final Map<String, List<String>> choices;
+
   int get remainingPoints => pointBuyBudget - pointBuySpent(scores);
 
-  CreationDraft selectClass(String id) => _with(classId: id);
+  /// Une autre classe efface ses sous-choix : leurs options ne sont plus
+  /// les mêmes.
+  CreationDraft selectClass(String id) => id == classId
+      ? this
+      : _with(
+          classId: id,
+          classSkills: const [],
+          classTools: const [],
+          masteries: const [],
+          clearFightingStyle: true,
+        );
 
   /// Un autre Historique efface l'outil : ses options ne sont plus les mêmes.
   /// Les bonus restent : le joueur voit ce qui est devenu invalide.
@@ -91,6 +126,7 @@ final class CreationDraft {
           speciesId: id,
           size: sizes.length == 1 ? sizes.single : null,
           clearSize: sizes.length != 1,
+          clearOriginFeat: true,
         );
 
   CreationDraft selectSize(String value) => _with(size: value);
@@ -148,6 +184,34 @@ final class CreationDraft {
     return _with(bonuses: next);
   }
 
+  CreationDraft toggleClassSkill(String id, int count) =>
+      _with(classSkills: _toggled(classSkills, id, count));
+
+  CreationDraft toggleClassTool(String id, int count) =>
+      _with(classTools: _toggled(classTools, id, count));
+
+  CreationDraft toggleMastery(String id, int count) =>
+      _with(masteries: _toggled(masteries, id, count));
+
+  CreationDraft selectFightingStyle(String id) => _with(fightingStyle: id);
+
+  CreationDraft selectOriginFeat(String id) => _with(originFeat: id);
+
+  /// Sélection d'un effet `choice` : à une place, une autre option remplace
+  /// la précédente ; à plusieurs, on ne dépasse pas [count].
+  CreationDraft togglePick(String choiceId, String pick, int count) {
+    final current = choices[choiceId] ?? const <String>[];
+    final next = count == 1 && !current.contains(pick)
+        ? [pick]
+        : _toggled(current, pick, count);
+    return _with(choices: {...choices, choiceId: next});
+  }
+
+  static List<String> _toggled(List<String> list, String id, int count) {
+    if (list.contains(id)) return [...list]..remove(id);
+    return list.length < count ? [...list, id] : list;
+  }
+
   /// Va à une étape atteinte. Vers l'avant, toutes les étapes franchies
   /// doivent être complètes : un retour en arrière peut invalider un choix.
   CreationDraft goTo(int target, ActiveContent content) {
@@ -183,6 +247,14 @@ final class CreationDraft {
     Map<String, int>? scores,
     String? distribution,
     Map<String, int>? bonuses,
+    List<String>? classSkills,
+    List<String>? classTools,
+    List<String>? masteries,
+    String? fightingStyle,
+    bool clearFightingStyle = false,
+    String? originFeat,
+    bool clearOriginFeat = false,
+    Map<String, List<String>>? choices,
   }) => CreationDraft(
     step: step ?? this.step,
     reached: reached ?? this.reached,
@@ -195,6 +267,14 @@ final class CreationDraft {
     scores: scores ?? this.scores,
     distribution: distribution ?? this.distribution,
     bonuses: bonuses ?? this.bonuses,
+    classSkills: classSkills ?? this.classSkills,
+    classTools: classTools ?? this.classTools,
+    masteries: masteries ?? this.masteries,
+    fightingStyle: clearFightingStyle
+        ? null
+        : fightingStyle ?? this.fightingStyle,
+    originFeat: clearOriginFeat ? null : originFeat ?? this.originFeat,
+    choices: choices ?? this.choices,
   );
 }
 
@@ -242,6 +322,10 @@ MissingChoice? missingAt(CreationDraft draft, int step, ActiveContent content) {
       final values = draft.bonuses.values.toList()..sort();
       final expected = draft.distribution == '2-1' ? [1, 2] : [1, 1, 1];
       return '$values' == '$expected' ? null : MissingChoice.bonus;
+    case 5:
+      return subchoiceSections(draft, content).every((s) => s.complete)
+          ? null
+          : MissingChoice.subchoices;
     default:
       return null;
   }

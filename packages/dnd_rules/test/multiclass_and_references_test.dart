@@ -32,6 +32,35 @@ Iterable<IntegrityRule> _rules(ComputedSheet sheet) =>
     sheet.integrityErrors.map((e) => e.rule);
 
 void main() {
+  group('bottes du Barbare (SRD p. 31)', () {
+    Iterable<IntegrityError> errors(String weapon) => computeSheet(
+      aldric((json) {
+        json['class_levels'] = [
+          {
+            'class_id': 'srd:class:barbarian',
+            'level': 1,
+            'skill_choices': ['srd:skill:athletics', 'srd:skill:nature'],
+          },
+        ];
+        json['weapon_masteries'] = [
+          {'weapon_id': weapon, 'slot_index': 0},
+        ];
+      }),
+      srdContent(),
+    ).integrityErrors.where((e) => e.rule == IntegrityRule.weaponMastery);
+
+    test('arme de corps à corps : acceptée', () {
+      expect(errors('srd:weapon:greataxe'), isEmpty);
+    });
+
+    test('arme à distance : refusée', () {
+      expect(
+        errors('srd:weapon:longbow').single.message,
+        contains('corps à corps'),
+      );
+    });
+  });
+
   group('prérequis de multiclassage (§11.3)', () {
     test('Guerrier à FOR 12 et DEX 12 : prérequis non remplis', () {
       final sheet = computeSheet(
