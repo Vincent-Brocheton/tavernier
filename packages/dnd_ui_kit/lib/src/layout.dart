@@ -10,6 +10,16 @@ FormFactor formFactorOf(double width) => width < AppTokens.tabletMinWidth
     ? FormFactor.tabletLandscape
     : FormFactor.desktop;
 
+/// Distance stockée en pieds, affichée en mètres : 1,50 m pour 5 pieds.
+String formatFeet(int feet) {
+  final centimeters = feet * 30;
+  final meters = centimeters ~/ 100;
+  final rest = centimeters % 100;
+  return rest == 0
+      ? '$meters m'
+      : '$meters,${rest.toString().padLeft(2, '0')} m';
+}
+
 /// Espacements des tokens.
 abstract final class AppSpacing {
   static final xxs = AppTokens.spacing['xxs']!;

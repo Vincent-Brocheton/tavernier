@@ -10,6 +10,7 @@ Map<String, Object?> _wizard({Map<String, Object?> data = const {}}) => {
   'name': 'Magicien',
   'data': {
     'primary_abilities': ['srd:ability:int'],
+    'primary_abilities_any': false,
     'hit_die': 6,
     'saving_throws': ['srd:ability:int', 'srd:ability:wis'],
     'skill_choice_count': 2,

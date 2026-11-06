@@ -135,6 +135,462 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Homebrew'**
   String get navHomebrew;
+
+  /// Bouton et titre de la création de personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau personnage'**
+  String get newCharacter;
+
+  /// Liste de personnages vide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun personnage pour l’instant.'**
+  String get noCharacterYet;
+
+  /// Bouton de fermeture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermer'**
+  String get close;
+
+  /// Assistant : étape précédente.
+  ///
+  /// In fr, this message translates to:
+  /// **'Précédent'**
+  String get previous;
+
+  /// Assistant : étape suivante, sur téléphone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suivant'**
+  String get next;
+
+  /// Étape pas encore livrée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bientôt disponible'**
+  String get comingSoon;
+
+  /// Échec de lecture du pack.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le contenu n’a pas pu être lu.'**
+  String get contentError;
+
+  /// Relance une lecture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get retry;
+
+  /// Étape 1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe'**
+  String get stepClass;
+
+  /// Étape 2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get stepBackground;
+
+  /// Étape 3.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espèce'**
+  String get stepSpecies;
+
+  /// Étape 4.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues'**
+  String get stepLanguages;
+
+  /// Étape 5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques'**
+  String get stepAbilities;
+
+  /// Étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-choix'**
+  String get stepSubchoices;
+
+  /// Étape 7.
+  ///
+  /// In fr, this message translates to:
+  /// **'Équipement'**
+  String get stepEquipment;
+
+  /// Étape 8.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détails'**
+  String get stepDetails;
+
+  /// Étape 9.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récapitulatif'**
+  String get stepSummary;
+
+  /// Étape sans choix fait.
+  ///
+  /// In fr, this message translates to:
+  /// **'À choisir'**
+  String get stepToChoose;
+
+  /// Sous-libellé de l’étape 4.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commun + 2'**
+  String get stepLanguagesHint;
+
+  /// Sous-libellé de l’étape 5.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acquisition par points'**
+  String get stepAbilitiesHint;
+
+  /// Sous-libellé de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences, bottes, don'**
+  String get stepSubchoicesHint;
+
+  /// Sous-libellé de l’étape 7.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pack ou or'**
+  String get stepEquipmentHint;
+
+  /// Sous-libellé de l’étape 8.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom, apparence'**
+  String get stepDetailsHint;
+
+  /// Sous-libellé de l’étape 9.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoi au MJ'**
+  String get stepSummaryHint;
+
+  /// Introduction de l’étape 1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre classe décide de vos talents au combat, de vos dés de vie et de vos maîtrises. Vous pourrez revenir sur ce choix.'**
+  String get introClass;
+
+  /// Introduction de l’étape 2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce que faisait votre personnage avant l’aventure. L’Historique donne trois caractéristiques à augmenter, un don d’origines, deux compétences et un outil.'**
+  String get introBackground;
+
+  /// Introduction de l’étape 3.
+  ///
+  /// In fr, this message translates to:
+  /// **'Taille, Vitesse et traits. Aucun bonus de caractéristique : ils viennent de l’Historique.'**
+  String get introSpecies;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une classe pour continuer.'**
+  String get missingClass;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez un Historique pour continuer.'**
+  String get missingBackground;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez un outil pour continuer.'**
+  String get missingTool;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une espèce pour continuer.'**
+  String get missingSpecies;
+
+  /// Suivant bloqué.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une catégorie de taille pour continuer.'**
+  String get missingSize;
+
+  /// Champ de recherche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une classe'**
+  String get searchClass;
+
+  /// Filtre de classes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes'**
+  String get filterAll;
+
+  /// Filtre de classes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Martiales'**
+  String get filterMartial;
+
+  /// Filtre de classes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lanceurs de sorts'**
+  String get filterCasters;
+
+  /// Filtre de classes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homebrew'**
+  String get filterHomebrew;
+
+  /// Recherche vide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun résultat.'**
+  String get noResult;
+
+  /// Conjonction entre deux valeurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'ou'**
+  String get orWord;
+
+  /// Conjonction entre deux valeurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'et'**
+  String get andWord;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Principale'**
+  String get labelPrimary;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dé de vie'**
+  String get labelHitDie;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets de sauvegarde'**
+  String get labelSaves;
+
+  /// Détail de classe et d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences'**
+  String get labelSkills;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Armes'**
+  String get labelWeapons;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Armures'**
+  String get labelArmor;
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au niveau 1'**
+  String get labelAtLevel1;
+
+  /// Détail d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques éligibles'**
+  String get labelEligibleAbilities;
+
+  /// Détail d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'+2 / +1 ou +1 / +1 / +1, répartis à l’étape 5.'**
+  String get bonusSpread;
+
+  /// Détail d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Don d’origines'**
+  String get labelOriginFeat;
+
+  /// Détail d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Outil'**
+  String get labelTool;
+
+  /// Choix d’un outil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type'**
+  String get labelToolChoice;
+
+  /// Détail d’espèce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie de taille'**
+  String get labelSizeCategory;
+
+  /// Maîtrise d’armes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Courantes'**
+  String get weaponSimple;
+
+  /// Maîtrise d’armes.
+  ///
+  /// In fr, this message translates to:
+  /// **'De guerre'**
+  String get weaponMartial;
+
+  /// Maîtrise d’armes.
+  ///
+  /// In fr, this message translates to:
+  /// **'De guerre (propriété Légère)'**
+  String get weaponMartialLight;
+
+  /// Maîtrise d’armes.
+  ///
+  /// In fr, this message translates to:
+  /// **'De guerre (Finesse ou Légère)'**
+  String get weaponMartialFinesseOrLight;
+
+  /// Formation aux armures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Légères'**
+  String get armorLight;
+
+  /// Formation aux armures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Intermédiaires'**
+  String get armorMedium;
+
+  /// Formation aux armures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lourdes'**
+  String get armorHeavy;
+
+  /// Formation aux armures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Boucliers'**
+  String get armorShield;
+
+  /// Formation aux armures.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune'**
+  String get armorNone;
+
+  /// Catégorie d’outil.
+  ///
+  /// In fr, this message translates to:
+  /// **'boîte de jeux'**
+  String get toolGamingSet;
+
+  /// Catégorie d’outil.
+  ///
+  /// In fr, this message translates to:
+  /// **'instrument de musique'**
+  String get toolMusicalInstrument;
+
+  /// Catégorie d’outil.
+  ///
+  /// In fr, this message translates to:
+  /// **'outils d’artisan'**
+  String get toolArtisan;
+
+  /// Badge de source du pack SRD.
+  ///
+  /// In fr, this message translates to:
+  /// **'SRD 5.2.1'**
+  String get sourceSrd;
+
+  /// Progression de l’assistant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape {step} sur {total}'**
+  String stepOf(int step, int total);
+
+  /// Surtitre de l’assistant.
+  ///
+  /// In fr, this message translates to:
+  /// **'ÉTAPE {step} SUR {total}'**
+  String stepEyebrow(int step, int total);
+
+  /// Assistant : étape suivante, grand écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suivant : {step}'**
+  String nextTo(String step);
+
+  /// Carte de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Principale : {abilities}'**
+  String classPrimary(String abilities);
+
+  /// Puce de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dé de vie d{faces}'**
+  String classHitDie(int faces);
+
+  /// Détail de classe.
+  ///
+  /// In fr, this message translates to:
+  /// **'d{faces} par niveau'**
+  String hitDiePerLevel(int faces);
+
+  /// Compétences à choisir.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} parmi {skills}'**
+  String skillsAmong(int count, String skills);
+
+  /// Carte d’Historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Don : {feat}'**
+  String featLine(String feat);
+
+  /// Outil au choix.
+  ///
+  /// In fr, this message translates to:
+  /// **'{category} (au choix)'**
+  String toolChoiceLine(String category);
+
+  /// Trait d’espèce à niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'(niv. {level})'**
+  String traitFromLevel(int level);
 }
 
 class _AppLocalizationsDelegate

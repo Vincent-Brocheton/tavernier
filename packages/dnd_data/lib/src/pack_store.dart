@@ -198,6 +198,7 @@ final class PackStore {
             'armor_training',
           ])
             key: jsonEncode(json[key]),
+          'primary_abilities_any': c.primaryAbilitiesAny,
           'hit_die': c.hitDie,
           'skill_choice_count': c.skillChoiceCount,
           'subclass_level': c.subclassLevel,
@@ -496,6 +497,7 @@ final class PackStore {
                 'armor_training',
               ])
                 key: jsonDecode(row[key]! as String),
+              'primary_abilities_any': row['primary_abilities_any'] == 1,
               'hit_die': row['hit_die'],
               'skill_choice_count': row['skill_choice_count'],
               'subclass_level': row['subclass_level'],

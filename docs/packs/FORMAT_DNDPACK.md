@@ -76,7 +76,8 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
-- `class` (champs ajoutés par T-04) :
+- `class` (champs ajoutés par T-04 et US-05) :
+  - `primary_abilities_any` : l'une des `primary_abilities` suffit (Guerrier : Force ou Dextérité) ; faux par défaut, toutes sont alors requises (Moine : Dextérité et Sagesse) ;
   - `spell_list` : identifiants des sorts de la classe ;
   - `spellcasting_ability` : caractéristique d'incantation ;
   - `tool_proficiencies` : outils maîtrisés d'office ;

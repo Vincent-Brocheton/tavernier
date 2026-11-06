@@ -2029,6 +2029,16 @@ class PlayerClass extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<int> primaryAbilitiesAny = GeneratedColumn<int>(
+    'primary_abilities_any',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints:
+        'NOT NULL DEFAULT 0 CHECK (primary_abilities_any IN (0, 1))',
+    defaultValue: const CustomExpression('0'),
+  );
   late final GeneratedColumn<String> savingThrows = GeneratedColumn<String>(
     'saving_throws',
     aliasedName,
@@ -2123,6 +2133,7 @@ class PlayerClass extends Table with TableInfo {
     extendsId,
     hitDie,
     primaryAbilities,
+    primaryAbilitiesAny,
     savingThrows,
     skillChoiceCount,
     skillChoices,

@@ -31,6 +31,14 @@ void main() {
   Map<String, int> at(String slug, int level) =>
       cls(slug).levels[level - 1].columns;
 
+  test('caractéristique principale : « ou » pour le Guerrier seul', () {
+    expect(cls('fighter').primaryAbilitiesAny, isTrue);
+    for (final slug in ['monk', 'paladin', 'ranger']) {
+      expect(cls(slug).primaryAbilities, hasLength(2), reason: slug);
+      expect(cls(slug).primaryAbilitiesAny, isFalse, reason: slug);
+    }
+  });
+
   test('Moine (p. 64) : Arts martiaux, Déplacement sans armure en pieds', () {
     expect(at('monk', 1)['martial_arts_die'], 6);
     expect(at('monk', 20)['martial_arts_die'], 12);

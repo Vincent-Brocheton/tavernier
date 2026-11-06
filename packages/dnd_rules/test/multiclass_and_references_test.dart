@@ -60,6 +60,47 @@ void main() {
       expect(_rules(sheet), contains(IntegrityRule.multiclass));
     });
 
+    void addMonk(Map<String, Object?> json) =>
+        (json['class_levels']! as List<Object?>).add({
+          'class_id': 'srd:class:monk',
+          'level': 1,
+        });
+
+    test('Moine (p. 64) : Dextérité et Sagesse sont toutes deux requises', () {
+      final sheet = computeSheet(aldric(addMonk), srdContent());
+      expect(sheet.abilities['dex']!.value, 13);
+      expect(sheet.abilities['wis']!.value, 12);
+      expect(_rules(sheet), contains(IntegrityRule.multiclass));
+    });
+
+    test('Moine : 13 en Dextérité et en Sagesse suffit', () {
+      final sheet = computeSheet(
+        aldric((json) {
+          (json['base_scores']! as Map<String, Object?>)['wis'] = 13;
+          addMonk(json);
+        }),
+        srdContent(),
+      );
+      expect(_rules(sheet), isNot(contains(IntegrityRule.multiclass)));
+    });
+
+    test('Guerrier (p. 56) : Force ou Dextérité, une seule suffit', () {
+      final sheet = computeSheet(
+        aldric((json) {
+          (json['base_scores']! as Map<String, Object?>)['str'] = 8;
+          (json['background_choice']! as Map<String, Object?>)['bonuses'] = {
+            'con': 2,
+            'wis': 1,
+          };
+          _addSecondClass(json);
+        }),
+        srdContent([_secondClass('constitution')]),
+      );
+      expect(sheet.abilities['str']!.value, 8);
+      expect(sheet.abilities['dex']!.value, 13);
+      expect(_rules(sheet), isNot(contains(IntegrityRule.multiclass)));
+    });
+
     test('prérequis remplis : FOR 17 et CON 15', () {
       final sheet = computeSheet(
         aldric(_addSecondClass),

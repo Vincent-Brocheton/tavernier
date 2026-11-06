@@ -655,6 +655,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       allowedKeys: const [
         'primary_abilities',
+        'primary_abilities_any',
         'hit_die',
         'saving_throws',
         'skill_choice_count',
@@ -677,6 +678,10 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         (v) => (v as List<dynamic>)
             .map((e) => const ContentIdConverter().fromJson(e as String))
             .toList(),
+      ),
+      primaryAbilitiesAny: $checkedConvert(
+        'primary_abilities_any',
+        (v) => v as bool? ?? false,
       ),
       hitDie: $checkedConvert('hit_die', (v) => (v as num).toInt()),
       savingThrows: $checkedConvert(
@@ -761,6 +766,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   },
   fieldKeyMap: const {
     'primaryAbilities': 'primary_abilities',
+    'primaryAbilitiesAny': 'primary_abilities_any',
     'hitDie': 'hit_die',
     'savingThrows': 'saving_throws',
     'skillChoiceCount': 'skill_choice_count',
@@ -783,6 +789,7 @@ Map<String, dynamic> _$ClassDataToJson(
   'primary_abilities': instance.primaryAbilities
       .map(const ContentIdConverter().toJson)
       .toList(),
+  'primary_abilities_any': instance.primaryAbilitiesAny,
   'hit_die': instance.hitDie,
   'saving_throws': instance.savingThrows
       .map(const ContentIdConverter().toJson)
