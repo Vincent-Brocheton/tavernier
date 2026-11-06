@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:boots-of-elvenkind",
+  "type": "magic-item",
+  "name": "Bottes elfiques",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez ces bottes, vos pas restent silencieux, quelle que soit la surface que vous foulez. Vous avez l’Avantage aux tests de Dextérité (Discrétion)."
+  }
+}

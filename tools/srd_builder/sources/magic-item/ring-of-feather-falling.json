@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-feather-falling",
+  "type": "magic-item",
+  "name": "Anneau de feuille morte",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Quand vous tombez alors que vous portez cet anneau, vous descendez de 18 m par round sans subir de dégâts de chute."
+  }
+}

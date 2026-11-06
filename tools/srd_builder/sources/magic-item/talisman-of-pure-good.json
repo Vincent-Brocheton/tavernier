@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:talisman-of-pure-good",
+  "type": "magic-item",
+  "name": "Talisman du bien ultime",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise avec un Clerc ou Paladin)",
+    "attunement": true,
+    "attunement_by": "un Clerc ou Paladin"
+  },
+  "text": {
+    "fr": "Ce talisman est un puissant symbole de bonté. Un Fiélon ou un Mort-vivant qui touche le talisman subit 8d6 dégâts radiants, et en subit autant chaque fois qu’il termine son tour en tenant ou en portant le talisman.\nRéprimande pure. Le talisman dispose de 7 charges. Lorsque vous portez ou tenez le talisman, vous pouvez entreprendre l’action Magie pour dépenser 1 charge et cibler une créature que vous voyez en contact avec le sol dans un rayon de 36 m. Une faille ardente s’ouvre sous la cible, qui effectue un jet de sauvegarde de Dextérité DD 20. Si la cible est un Fiélon ou un Mortvivant, elle subit le Désavantage au JS. En cas d’échec, elle tombe dans la faille, ce qui la détruit sans en laisser la moindre trace. En cas de réussite, la cible n’est pas précipitée dans la faille mais l’épreuve lui inflige 4d6 dégâts psychiques. Dans un cas comme dans l’autre, la faille se referme alors, ne laissant aucune trace de son existence. Lorsque vous dépensez sa dernière charge, le talisman se désagrège en particules de lumière dorée, détruit à jamais.\nSymbole sacré. Vous pouvez utiliser le talisman comme symbole sacré. Vous recevez un bonus de +2 aux jets d’attaque de sort lorsque vous le portez ou le tenez."
+  }
+}

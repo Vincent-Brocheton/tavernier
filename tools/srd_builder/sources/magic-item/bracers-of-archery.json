@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:bracers-of-archery",
+  "type": "magic-item",
+  "name": "Bracelets d’archer",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ces bracelets, vous avez la maîtrise de l’arc long et de l’arc court, et recevez un bonus de +2 aux jets de dégâts effectués avec ces armes."
+  }
+}

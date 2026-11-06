@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:pearl-of-power",
+  "type": "magic-item",
+  "name": "Perle de thaumaturgie",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise avec un incantateur)",
+    "attunement": true,
+    "attunement_by": "un incantateur"
+  },
+  "text": {
+    "fr": "Tant que cette perle est sur vous, vous pouvez entreprendre l’action Magie pour récupérer un emplacement de sort dépensé du 3e niveau ou inférieur. Une fois la perle utilisée, vous ne pouvez plus y recourir avant l’aube suivante."
+  }
+}

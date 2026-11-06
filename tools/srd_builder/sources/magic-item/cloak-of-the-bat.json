@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-the-bat",
+  "type": "magic-item",
+  "name": "Cape de la chauve-souris",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette cape, vous bénéficiez de l’Avantage aux tests de Dextérité (Discrétion). Dans une zone de Lumière faible ou de Ténèbres, vous pouvez saisir les bords de la cape à deux mains et l’utiliser pour recevoir une Vitesse de vol de 12 m. Si vous lâchez les bords de la cape en volant de cette manière, ou si vous n’êtes plus dans une zone de Lumière faible ou de Ténèbres, vous perdez cette Vitesse de vol.\nTant que vous portez cette cape dans une zone de Lumière faible ou de ténèbres, vous pouvez lancer métamorphose sur vous-même, qui vous transforme en chauve-souris. Sous cette forme, vous conservez vos valeurs d’Intelligence, de Sagesse et de Charisme. La cape ne peut plus être utilisée de cette manière jusqu’à l’aube suivante."
+  }
+}

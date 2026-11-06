@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:scimitar-of-speed",
+  "type": "magic-item",
+  "name": "Cimeterre de célérité",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (cimeterre), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +2 aux jets d’attaque et de dégâts effectués avec cette arme magique. Vous pouvez en outre effectuer une attaque avec ce cimeterre par une action Bonus à chacun de vous tours."
+  }
+}

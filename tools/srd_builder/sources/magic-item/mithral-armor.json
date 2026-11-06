@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:mithral-armor",
+  "type": "magic-item",
+  "name": "Armure de mithral",
+  "data": {
+    "category": "armor",
+    "rarity": "uncommon",
+    "type_line": "Armure (intermédiaire ou lourde, sauf armure de peaux), peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Le mithral est un métal léger et souple. Une armure fabriquée dans ce matériau peut être portée sous des vêtements normaux. Si l’armure dans sa version normale impose le Désavantage aux tests de Dextérité (Discrétion) ou requiert une valeur de Force minimale, ce n’est pas le cas de la version en mithral."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-heroism",
+  "type": "magic-item",
+  "name": "Potion d’héroïsme",
+  "data": {
+    "category": "potion",
+    "rarity": "rare",
+    "type_line": "Potion, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez 10 points de vie temporaires qui persistent 1 heure. Pendant cette heure, vous êtes sous l’effet du sort bénédiction (aucune Concentration requise).\nCe liquide bleu bouillonne et fume comme s’il était en ébullition."
+  }
+}

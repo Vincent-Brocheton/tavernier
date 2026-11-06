@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-animal-friendship",
+  "type": "magic-item",
+  "name": "Potion d’amitié avec les animaux",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous pouvez lancer le sort amitié avec les animaux au 3e niveau (DD de sauvegarde 13).\nAgiter ce liquide trouble permet de distinguer les menus objets qui y flottent : écaille de poisson, plume de colibri, griffe de chat, poil d’écureuil."
+  }
+}

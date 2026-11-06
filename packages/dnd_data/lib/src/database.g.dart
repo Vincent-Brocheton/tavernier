@@ -6005,6 +6005,575 @@ class ItemsCompanion extends UpdateCompanion<ItemRow> {
   }
 }
 
+class $MagicItemsTable extends MagicItems
+    with TableInfo<$MagicItemsTable, MagicItemRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MagicItemsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _packIdMeta = const VerificationMeta('packId');
+  @override
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES content_pack (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _extendsIdMeta = const VerificationMeta(
+    'extendsId',
+  );
+  @override
+  late final GeneratedColumn<String> extendsId = GeneratedColumn<String>(
+    'extends_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _categoryMeta = const VerificationMeta(
+    'category',
+  );
+  @override
+  late final GeneratedColumn<String> category = GeneratedColumn<String>(
+    'category',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _rarityMeta = const VerificationMeta('rarity');
+  @override
+  late final GeneratedColumn<String> rarity = GeneratedColumn<String>(
+    'rarity',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _typeLineMeta = const VerificationMeta(
+    'typeLine',
+  );
+  @override
+  late final GeneratedColumn<String> typeLine = GeneratedColumn<String>(
+    'type_line',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _attunementMeta = const VerificationMeta(
+    'attunement',
+  );
+  @override
+  late final GeneratedColumn<bool> attunement = GeneratedColumn<bool>(
+    'attunement',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("attunement" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _attunementByMeta = const VerificationMeta(
+    'attunementBy',
+  );
+  @override
+  late final GeneratedColumn<String> attunementBy = GeneratedColumn<String>(
+    'attunement_by',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    packId,
+    name,
+    extendsId,
+    category,
+    rarity,
+    typeLine,
+    attunement,
+    attunementBy,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'magic_item';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MagicItemRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pack_id')) {
+      context.handle(
+        _packIdMeta,
+        packId.isAcceptableOrUnknown(data['pack_id']!, _packIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_packIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('extends_id')) {
+      context.handle(
+        _extendsIdMeta,
+        extendsId.isAcceptableOrUnknown(data['extends_id']!, _extendsIdMeta),
+      );
+    }
+    if (data.containsKey('category')) {
+      context.handle(
+        _categoryMeta,
+        category.isAcceptableOrUnknown(data['category']!, _categoryMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_categoryMeta);
+    }
+    if (data.containsKey('rarity')) {
+      context.handle(
+        _rarityMeta,
+        rarity.isAcceptableOrUnknown(data['rarity']!, _rarityMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_rarityMeta);
+    }
+    if (data.containsKey('type_line')) {
+      context.handle(
+        _typeLineMeta,
+        typeLine.isAcceptableOrUnknown(data['type_line']!, _typeLineMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeLineMeta);
+    }
+    if (data.containsKey('attunement')) {
+      context.handle(
+        _attunementMeta,
+        attunement.isAcceptableOrUnknown(data['attunement']!, _attunementMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_attunementMeta);
+    }
+    if (data.containsKey('attunement_by')) {
+      context.handle(
+        _attunementByMeta,
+        attunementBy.isAcceptableOrUnknown(
+          data['attunement_by']!,
+          _attunementByMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MagicItemRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MagicItemRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      packId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pack_id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      extendsId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}extends_id'],
+      ),
+      category: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}category'],
+      )!,
+      rarity: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rarity'],
+      )!,
+      typeLine: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type_line'],
+      )!,
+      attunement: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}attunement'],
+      )!,
+      attunementBy: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}attunement_by'],
+      ),
+    );
+  }
+
+  @override
+  $MagicItemsTable createAlias(String alias) {
+    return $MagicItemsTable(attachedDatabase, alias);
+  }
+}
+
+class MagicItemRow extends DataClass implements Insertable<MagicItemRow> {
+  final String id;
+  final String packId;
+  final String name;
+  final String? extendsId;
+  final String category;
+  final String rarity;
+  final String typeLine;
+  final bool attunement;
+  final String? attunementBy;
+  const MagicItemRow({
+    required this.id,
+    required this.packId,
+    required this.name,
+    this.extendsId,
+    required this.category,
+    required this.rarity,
+    required this.typeLine,
+    required this.attunement,
+    this.attunementBy,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['pack_id'] = Variable<String>(packId);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || extendsId != null) {
+      map['extends_id'] = Variable<String>(extendsId);
+    }
+    map['category'] = Variable<String>(category);
+    map['rarity'] = Variable<String>(rarity);
+    map['type_line'] = Variable<String>(typeLine);
+    map['attunement'] = Variable<bool>(attunement);
+    if (!nullToAbsent || attunementBy != null) {
+      map['attunement_by'] = Variable<String>(attunementBy);
+    }
+    return map;
+  }
+
+  MagicItemsCompanion toCompanion(bool nullToAbsent) {
+    return MagicItemsCompanion(
+      id: Value(id),
+      packId: Value(packId),
+      name: Value(name),
+      extendsId: extendsId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(extendsId),
+      category: Value(category),
+      rarity: Value(rarity),
+      typeLine: Value(typeLine),
+      attunement: Value(attunement),
+      attunementBy: attunementBy == null && nullToAbsent
+          ? const Value.absent()
+          : Value(attunementBy),
+    );
+  }
+
+  factory MagicItemRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MagicItemRow(
+      id: serializer.fromJson<String>(json['id']),
+      packId: serializer.fromJson<String>(json['packId']),
+      name: serializer.fromJson<String>(json['name']),
+      extendsId: serializer.fromJson<String?>(json['extendsId']),
+      category: serializer.fromJson<String>(json['category']),
+      rarity: serializer.fromJson<String>(json['rarity']),
+      typeLine: serializer.fromJson<String>(json['typeLine']),
+      attunement: serializer.fromJson<bool>(json['attunement']),
+      attunementBy: serializer.fromJson<String?>(json['attunementBy']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'packId': serializer.toJson<String>(packId),
+      'name': serializer.toJson<String>(name),
+      'extendsId': serializer.toJson<String?>(extendsId),
+      'category': serializer.toJson<String>(category),
+      'rarity': serializer.toJson<String>(rarity),
+      'typeLine': serializer.toJson<String>(typeLine),
+      'attunement': serializer.toJson<bool>(attunement),
+      'attunementBy': serializer.toJson<String?>(attunementBy),
+    };
+  }
+
+  MagicItemRow copyWith({
+    String? id,
+    String? packId,
+    String? name,
+    Value<String?> extendsId = const Value.absent(),
+    String? category,
+    String? rarity,
+    String? typeLine,
+    bool? attunement,
+    Value<String?> attunementBy = const Value.absent(),
+  }) => MagicItemRow(
+    id: id ?? this.id,
+    packId: packId ?? this.packId,
+    name: name ?? this.name,
+    extendsId: extendsId.present ? extendsId.value : this.extendsId,
+    category: category ?? this.category,
+    rarity: rarity ?? this.rarity,
+    typeLine: typeLine ?? this.typeLine,
+    attunement: attunement ?? this.attunement,
+    attunementBy: attunementBy.present ? attunementBy.value : this.attunementBy,
+  );
+  MagicItemRow copyWithCompanion(MagicItemsCompanion data) {
+    return MagicItemRow(
+      id: data.id.present ? data.id.value : this.id,
+      packId: data.packId.present ? data.packId.value : this.packId,
+      name: data.name.present ? data.name.value : this.name,
+      extendsId: data.extendsId.present ? data.extendsId.value : this.extendsId,
+      category: data.category.present ? data.category.value : this.category,
+      rarity: data.rarity.present ? data.rarity.value : this.rarity,
+      typeLine: data.typeLine.present ? data.typeLine.value : this.typeLine,
+      attunement: data.attunement.present
+          ? data.attunement.value
+          : this.attunement,
+      attunementBy: data.attunementBy.present
+          ? data.attunementBy.value
+          : this.attunementBy,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MagicItemRow(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('name: $name, ')
+          ..write('extendsId: $extendsId, ')
+          ..write('category: $category, ')
+          ..write('rarity: $rarity, ')
+          ..write('typeLine: $typeLine, ')
+          ..write('attunement: $attunement, ')
+          ..write('attunementBy: $attunementBy')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    packId,
+    name,
+    extendsId,
+    category,
+    rarity,
+    typeLine,
+    attunement,
+    attunementBy,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MagicItemRow &&
+          other.id == this.id &&
+          other.packId == this.packId &&
+          other.name == this.name &&
+          other.extendsId == this.extendsId &&
+          other.category == this.category &&
+          other.rarity == this.rarity &&
+          other.typeLine == this.typeLine &&
+          other.attunement == this.attunement &&
+          other.attunementBy == this.attunementBy);
+}
+
+class MagicItemsCompanion extends UpdateCompanion<MagicItemRow> {
+  final Value<String> id;
+  final Value<String> packId;
+  final Value<String> name;
+  final Value<String?> extendsId;
+  final Value<String> category;
+  final Value<String> rarity;
+  final Value<String> typeLine;
+  final Value<bool> attunement;
+  final Value<String?> attunementBy;
+  final Value<int> rowid;
+  const MagicItemsCompanion({
+    this.id = const Value.absent(),
+    this.packId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.extendsId = const Value.absent(),
+    this.category = const Value.absent(),
+    this.rarity = const Value.absent(),
+    this.typeLine = const Value.absent(),
+    this.attunement = const Value.absent(),
+    this.attunementBy = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MagicItemsCompanion.insert({
+    required String id,
+    required String packId,
+    required String name,
+    this.extendsId = const Value.absent(),
+    required String category,
+    required String rarity,
+    required String typeLine,
+    required bool attunement,
+    this.attunementBy = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       packId = Value(packId),
+       name = Value(name),
+       category = Value(category),
+       rarity = Value(rarity),
+       typeLine = Value(typeLine),
+       attunement = Value(attunement);
+  static Insertable<MagicItemRow> custom({
+    Expression<String>? id,
+    Expression<String>? packId,
+    Expression<String>? name,
+    Expression<String>? extendsId,
+    Expression<String>? category,
+    Expression<String>? rarity,
+    Expression<String>? typeLine,
+    Expression<bool>? attunement,
+    Expression<String>? attunementBy,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (packId != null) 'pack_id': packId,
+      if (name != null) 'name': name,
+      if (extendsId != null) 'extends_id': extendsId,
+      if (category != null) 'category': category,
+      if (rarity != null) 'rarity': rarity,
+      if (typeLine != null) 'type_line': typeLine,
+      if (attunement != null) 'attunement': attunement,
+      if (attunementBy != null) 'attunement_by': attunementBy,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MagicItemsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? packId,
+    Value<String>? name,
+    Value<String?>? extendsId,
+    Value<String>? category,
+    Value<String>? rarity,
+    Value<String>? typeLine,
+    Value<bool>? attunement,
+    Value<String?>? attunementBy,
+    Value<int>? rowid,
+  }) {
+    return MagicItemsCompanion(
+      id: id ?? this.id,
+      packId: packId ?? this.packId,
+      name: name ?? this.name,
+      extendsId: extendsId ?? this.extendsId,
+      category: category ?? this.category,
+      rarity: rarity ?? this.rarity,
+      typeLine: typeLine ?? this.typeLine,
+      attunement: attunement ?? this.attunement,
+      attunementBy: attunementBy ?? this.attunementBy,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (packId.present) {
+      map['pack_id'] = Variable<String>(packId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (extendsId.present) {
+      map['extends_id'] = Variable<String>(extendsId.value);
+    }
+    if (category.present) {
+      map['category'] = Variable<String>(category.value);
+    }
+    if (rarity.present) {
+      map['rarity'] = Variable<String>(rarity.value);
+    }
+    if (typeLine.present) {
+      map['type_line'] = Variable<String>(typeLine.value);
+    }
+    if (attunement.present) {
+      map['attunement'] = Variable<bool>(attunement.value);
+    }
+    if (attunementBy.present) {
+      map['attunement_by'] = Variable<String>(attunementBy.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MagicItemsCompanion(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('name: $name, ')
+          ..write('extendsId: $extendsId, ')
+          ..write('category: $category, ')
+          ..write('rarity: $rarity, ')
+          ..write('typeLine: $typeLine, ')
+          ..write('attunement: $attunement, ')
+          ..write('attunementBy: $attunementBy, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $BackgroundsTable extends Backgrounds
     with TableInfo<$BackgroundsTable, BackgroundRow> {
   @override
@@ -26095,6 +26664,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $ArmorsTable armors = $ArmorsTable(this);
   late final $ToolsTable tools = $ToolsTable(this);
   late final $ItemsTable items = $ItemsTable(this);
+  late final $MagicItemsTable magicItems = $MagicItemsTable(this);
   late final $BackgroundsTable backgrounds = $BackgroundsTable(this);
   late final $BackgroundAbilitiesTable backgroundAbilities =
       $BackgroundAbilitiesTable(this);
@@ -26183,6 +26753,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     armors,
     tools,
     items,
+    magicItems,
     backgrounds,
     backgroundAbilities,
     backgroundProficiencies,
@@ -26308,6 +26879,13 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('item', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('magic_item', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -27086,6 +27664,24 @@ final class $$ContentPacksTableReferences
     );
   }
 
+  static MultiTypedResultKey<$MagicItemsTable, List<MagicItemRow>>
+  _magicItemsRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
+    db.magicItems,
+    aliasName: 'content_pack__id__magic_item__pack_id',
+  );
+
+  $$MagicItemsTableProcessedTableManager get magicItemsRefs {
+    final manager = $$MagicItemsTableTableManager(
+      $_db,
+      $_db.magicItems,
+    ).filter((f) => f.packId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_magicItemsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
   static MultiTypedResultKey<$BackgroundsTable, List<BackgroundRow>>
   _backgroundsRefsTable(_$TavernierDatabase db) =>
       MultiTypedResultKey.fromTable(
@@ -27829,6 +28425,31 @@ class $$ContentPacksTableFilterComposer
           }) => $$ItemsTableFilterComposer(
             $db: $db,
             $table: $db.items,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> magicItemsRefs(
+    Expression<bool> Function($$MagicItemsTableFilterComposer f) f,
+  ) {
+    final $$MagicItemsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.magicItems,
+      getReferencedColumn: (t) => t.packId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MagicItemsTableFilterComposer(
+            $db: $db,
+            $table: $db.magicItems,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -28748,6 +29369,31 @@ class $$ContentPacksTableAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> magicItemsRefs<T extends Object>(
+    Expression<T> Function($$MagicItemsTableAnnotationComposer a) f,
+  ) {
+    final $$MagicItemsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.magicItems,
+      getReferencedColumn: (t) => t.packId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MagicItemsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.magicItems,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
   Expression<T> backgroundsRefs<T extends Object>(
     Expression<T> Function($$BackgroundsTableAnnotationComposer a) f,
   ) {
@@ -29282,6 +29928,7 @@ class $$ContentPacksTableTableManager
             bool armorsRefs,
             bool toolsRefs,
             bool itemsRefs,
+            bool magicItemsRefs,
             bool backgroundsRefs,
             bool backgroundAbilitiesRefs,
             bool backgroundProficienciesRefs,
@@ -29402,6 +30049,7 @@ class $$ContentPacksTableTableManager
                 armorsRefs = false,
                 toolsRefs = false,
                 itemsRefs = false,
+                magicItemsRefs = false,
                 backgroundsRefs = false,
                 backgroundAbilitiesRefs = false,
                 backgroundProficienciesRefs = false,
@@ -29437,6 +30085,7 @@ class $$ContentPacksTableTableManager
                     if (armorsRefs) db.armors,
                     if (toolsRefs) db.tools,
                     if (itemsRefs) db.items,
+                    if (magicItemsRefs) db.magicItems,
                     if (backgroundsRefs) db.backgrounds,
                     if (backgroundAbilitiesRefs) db.backgroundAbilities,
                     if (backgroundProficienciesRefs) db.backgroundProficiencies,
@@ -29678,6 +30327,26 @@ class $$ContentPacksTableTableManager
                                 table,
                                 p0,
                               ).itemsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'pack_id',
+                          typedResults: items,
+                        ),
+                      if (magicItemsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          ContentPackRow,
+                          $ContentPacksTable,
+                          MagicItemRow,
+                          $MagicItemsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ContentPacksTableReferences
+                              ._magicItemsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ContentPacksTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).magicItemsRefs,
                           currentColumn: 'id',
                           referencedColumn: 'pack_id',
                           typedResults: items,
@@ -30114,6 +30783,7 @@ typedef $$ContentPacksTableProcessedTableManager =
         bool armorsRefs,
         bool toolsRefs,
         bool itemsRefs,
+        bool magicItemsRefs,
         bool backgroundsRefs,
         bool backgroundAbilitiesRefs,
         bool backgroundProficienciesRefs,
@@ -33967,6 +34637,400 @@ typedef $$ItemsTableProcessedTableManager =
       $$ItemsTableUpdateCompanionBuilder,
       (ItemRow, $$ItemsTableReferences),
       ItemRow,
+      PrefetchHooks Function({bool packId})
+    >;
+typedef $$MagicItemsTableCreateCompanionBuilder = MagicItemsCompanion Function({
+  required String id,
+  required String packId,
+  required String name,
+  Value<String?> extendsId,
+  required String category,
+  required String rarity,
+  required String typeLine,
+  required bool attunement,
+  Value<String?> attunementBy,
+  Value<int> rowid,
+});
+typedef $$MagicItemsTableUpdateCompanionBuilder = MagicItemsCompanion Function({
+  Value<String> id,
+  Value<String> packId,
+  Value<String> name,
+  Value<String?> extendsId,
+  Value<String> category,
+  Value<String> rarity,
+  Value<String> typeLine,
+  Value<bool> attunement,
+  Value<String?> attunementBy,
+  Value<int> rowid,
+});
+
+final class $$MagicItemsTableReferences
+    extends
+        BaseReferences<_$TavernierDatabase, $MagicItemsTable, MagicItemRow> {
+  $$MagicItemsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ContentPacksTable _packIdTable(_$TavernierDatabase db) =>
+      db.contentPacks.createAlias('magic_item__pack_id__content_pack__id');
+
+  $$ContentPacksTableProcessedTableManager get packId {
+    final $_column = $_itemColumn<String>('pack_id')!;
+
+    final manager = $$ContentPacksTableTableManager(
+      $_db,
+      $_db.contentPacks,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_packIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$MagicItemsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $MagicItemsTable> {
+  $$MagicItemsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get extendsId => $composableBuilder(
+    column: $table.extendsId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get typeLine => $composableBuilder(
+    column: $table.typeLine,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get attunementBy => $composableBuilder(
+    column: $table.attunementBy,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ContentPacksTableFilterComposer get packId {
+    final $$ContentPacksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableFilterComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MagicItemsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $MagicItemsTable> {
+  $$MagicItemsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get extendsId => $composableBuilder(
+    column: $table.extendsId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get category => $composableBuilder(
+    column: $table.category,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get typeLine => $composableBuilder(
+    column: $table.typeLine,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get attunementBy => $composableBuilder(
+    column: $table.attunementBy,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ContentPacksTableOrderingComposer get packId {
+    final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableOrderingComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MagicItemsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $MagicItemsTable> {
+  $$MagicItemsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get extendsId =>
+      $composableBuilder(column: $table.extendsId, builder: (column) => column);
+
+  GeneratedColumn<String> get category =>
+      $composableBuilder(column: $table.category, builder: (column) => column);
+
+  GeneratedColumn<String> get rarity =>
+      $composableBuilder(column: $table.rarity, builder: (column) => column);
+
+  GeneratedColumn<String> get typeLine =>
+      $composableBuilder(column: $table.typeLine, builder: (column) => column);
+
+  GeneratedColumn<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get attunementBy => $composableBuilder(
+    column: $table.attunementBy,
+    builder: (column) => column,
+  );
+
+  $$ContentPacksTableAnnotationComposer get packId {
+    final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$MagicItemsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $MagicItemsTable,
+          MagicItemRow,
+          $$MagicItemsTableFilterComposer,
+          $$MagicItemsTableOrderingComposer,
+          $$MagicItemsTableAnnotationComposer,
+          $$MagicItemsTableCreateCompanionBuilder,
+          $$MagicItemsTableUpdateCompanionBuilder,
+          (MagicItemRow, $$MagicItemsTableReferences),
+          MagicItemRow,
+          PrefetchHooks Function({bool packId})
+        > {
+  $$MagicItemsTableTableManager(_$TavernierDatabase db, $MagicItemsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MagicItemsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MagicItemsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MagicItemsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> packId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String?> extendsId = const Value.absent(),
+                Value<String> category = const Value.absent(),
+                Value<String> rarity = const Value.absent(),
+                Value<String> typeLine = const Value.absent(),
+                Value<bool> attunement = const Value.absent(),
+                Value<String?> attunementBy = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MagicItemsCompanion(
+                id: id,
+                packId: packId,
+                name: name,
+                extendsId: extendsId,
+                category: category,
+                rarity: rarity,
+                typeLine: typeLine,
+                attunement: attunement,
+                attunementBy: attunementBy,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String packId,
+                required String name,
+                Value<String?> extendsId = const Value.absent(),
+                required String category,
+                required String rarity,
+                required String typeLine,
+                required bool attunement,
+                Value<String?> attunementBy = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MagicItemsCompanion.insert(
+                id: id,
+                packId: packId,
+                name: name,
+                extendsId: extendsId,
+                category: category,
+                rarity: rarity,
+                typeLine: typeLine,
+                attunement: attunement,
+                attunementBy: attunementBy,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$MagicItemsTable, MagicItemRow>(table),
+                  $$MagicItemsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({packId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (packId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.packId,
+                        referencedTable: $$MagicItemsTableReferences
+                            ._packIdTable(db),
+                        referencedColumn: $$MagicItemsTableReferences
+                            ._packIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MagicItemsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $MagicItemsTable,
+      MagicItemRow,
+      $$MagicItemsTableFilterComposer,
+      $$MagicItemsTableOrderingComposer,
+      $$MagicItemsTableAnnotationComposer,
+      $$MagicItemsTableCreateCompanionBuilder,
+      $$MagicItemsTableUpdateCompanionBuilder,
+      (MagicItemRow, $$MagicItemsTableReferences),
+      MagicItemRow,
       PrefetchHooks Function({bool packId})
     >;
 typedef $$BackgroundsTableCreateCompanionBuilder =
@@ -52079,6 +53143,8 @@ class $TavernierDatabaseManager {
       $$ToolsTableTableManager(_db, _db.tools);
   $$ItemsTableTableManager get items =>
       $$ItemsTableTableManager(_db, _db.items);
+  $$MagicItemsTableTableManager get magicItems =>
+      $$MagicItemsTableTableManager(_db, _db.magicItems);
   $$BackgroundsTableTableManager get backgrounds =>
       $$BackgroundsTableTableManager(_db, _db.backgrounds);
   $$BackgroundAbilitiesTableTableManager get backgroundAbilities =>

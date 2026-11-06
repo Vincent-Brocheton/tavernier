@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:adamantine-armor",
+  "type": "magic-item",
+  "name": "Armure en adamantium",
+  "data": {
+    "category": "armor",
+    "rarity": "uncommon",
+    "type_line": "Armure (intermédiaire ou lourde, sauf armure de peaux), peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Les parties en adamantium, l’un des matériaux les plus résistants qui existent, augmentent la solidité de cette armure. Tant que vous la portez, tout Coup critique contre vous devient un coup normal."
+  }
+}

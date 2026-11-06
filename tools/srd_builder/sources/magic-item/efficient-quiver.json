@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:efficient-quiver",
+  "type": "magic-item",
+  "name": "Carquois efficace",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Chacun des trois compartiments de ce carquois est lié à un espace extradimensionnel qui permet au carquois de contenir de nombreux objets sans jamais peser plus de 1 kg. Le compartiment court peut contenir jusqu’à 60 flèches, carreaux ou objets comparables. Le compartiment de taille intermédiaire peut contenir jusqu’à 18 javelines ou objets comparables. Le compartiment long peut contenir jusqu’à 6 objets longs de type arc, bâton de combat ou lance.\nVous pouvez extraire n’importe quel objet contenu dans le carquois comme si vous le tiriez d’un carquois ou d’un fourreau ordinaire."
+  }
+}

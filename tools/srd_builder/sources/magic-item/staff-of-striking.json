@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:staff-of-striking",
+  "type": "magic-item",
+  "name": "Bâton percussif",
+  "data": {
+    "category": "staff",
+    "rarity": "very_rare",
+    "type_line": "Bâton, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce bâton peut se manier comme un bâton de combat magique qui octroie un bonus de +3 aux jets d’attaque et de dégâts.\nLe bâton dispose de 10 charges. Lorsque vous touchez avec une attaque de corps à corps par son intermédiaire, vous pouvez dépenser jusqu’à 3 charges. Pour chaque charge dépensée, la cible subit 1d6 dégâts de force supplémentaires.\nRécupération des charges. Le bâton récupère quotidiennement 1d6 + 4 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le bâton devient un bâton de combat non magique."
+  }
+}

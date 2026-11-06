@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:armor-plus-1-2-or-3",
+  "type": "magic-item",
+  "name": "Armure +1, +2 ou +3",
+  "data": {
+    "category": "armor",
+    "rarity": "varies",
+    "type_line": "Armure (légère, intermédiaire ou lourde), rare (+1), très rare (+2) ou légendaire (+3)",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus à la CA tant que vous portez cette armure. Ce bonus est déterminé par sa rareté."
+  }
+}

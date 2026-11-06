@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:gauntlets-of-ogre-power",
+  "type": "magic-item",
+  "name": "Gantelets de puissance d’ogre",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Votre Force passe à 19 tant que vous portez ces gantelets. Ils restent sans effet sur vous si votre Force est supérieure ou égale à 19 sans que vous les portiez."
+  }
+}

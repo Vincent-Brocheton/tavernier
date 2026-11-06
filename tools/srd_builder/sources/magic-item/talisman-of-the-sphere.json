@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:talisman-of-the-sphere",
+  "type": "magic-item",
+  "name": "Talisman de la sphère",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous tenez ou portez ce talisman, vous avez l’Avantage à tout test d’Intelligence (Arcanes) visant à contrôler une sphère d’annihilation. En outre, lorsque vous commencez votre tour en contrôlant une sphère d’annihilation, vous pouvez entreprendre l’action Magie pour la déplacer, en mètres, d’un maximum de 3 plus le triple de votre modificateur d’Intelligence. Ce déplacement n’est pas nécessairement en ligne droite."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:staff-of-fire",
+  "type": "magic-item",
+  "name": "Bâton de feu",
+  "data": {
+    "category": "staff",
+    "rarity": "very_rare",
+    "type_line": "Bâton, très rare (Harmonisation requise avec un Druide, Ensorceleur, Magicien ou Occultiste)",
+    "attunement": true,
+    "attunement_by": "un Druide, Ensorceleur, Magicien ou Occultiste"
+  },
+  "text": {
+    "fr": "Vous bénéficiez de la Résistance aux dégâts de feu tant que vous tenez ce bâton.\nSorts. Le bâton dispose de 10 charges. Lorsque vous tenez le bâton, vous pouvez lancer l’un des sorts de la table suivante en prenant votre DD de sauvegarde des sorts. La table indique le nombre de charges à dépenser pour lancer le sort.\nSort | Coût en charges\nboule de feu | 3\nmains brûlantes | 1\nmur de feu | 4\nRécupération des charges. Le bâton récupère quotidiennement 1d6 + 4 charges dépensées, à l’aube.\nSi vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, le bâton est réduit en cendres."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:tome-of-leadership-and-influence",
+  "type": "magic-item",
+  "name": "Traité d’autorité et d’influence",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce livre aux inscriptions chargées de magie dispense de précieux conseils sur la façon d’influencer et de captiver l’auditoire. Si vous consacrez 48 heures sur une période maximale de 6 jours à étudier le contenu de l’ouvrage et à le mettre en pratique, votre valeur de Charisme augmente de 2, jusqu’à un maximum de 30. Le manuel perd alors sa magie, mais la retrouve après un siècle."
+  }
+}

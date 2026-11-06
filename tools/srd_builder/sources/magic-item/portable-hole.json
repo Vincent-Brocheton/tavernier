@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:portable-hole",
+  "type": "magic-item",
+  "name": "Puits portable",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce pan d’étoffe noire et précieuse, aussi douce que de la soie, est plié aux dimensions d’un mouchoir de poche. Déplié, il forme un cercle de 1,80 m de diamètre.\nVous pouvez entreprendre l’action Magie pour déplier un puits portable et le placer sur ou contre une surface solide. Le puits portable crée alors un trou extradimensionnel de 3 m de profondeur. L’espace cylindrique à l’intérieur du puits, qui existe sur un plan d’existence différent, ne peut pas être utilisé pour créer un passage.\nToute créature à l’intérieur d’un puits portable ouvert peut en sortir en escaladant la paroi.\nVous pouvez consacrer l’action Magie à refermer un puits portable en saisissant les bords de l’étoffe et en le repliant. Plier le tissu ferme le puits. Toutes les créatures et tous les objets qu’il contient restent dans l’espace extradimensionnel. Quoi qu’il renferme, le puits ne pèse presque rien.\nSi le puits est replié, une créature à l’intérieur de l’espace extradimensionnel peut consacrer une action à effectuer un test de Force (Athlétisme) DD 10. En cas de réussite, elle se fraie un chemin et apparaît dans un rayon de 1,50 m du puits portable. Un puits portable fermé contient suffisamment d’air pour 1 heure de ventilation, à diviser par le nombre de créatures qui respirent à l’intérieur.\nPlacer un puits portable dans l’espace extradimensionnel créé par un sac sans fond, un havresac magique ou tout autre objet comparable détruit instantanément les deux objets et ouvre un portail vers le Plan Astral. Ce portail s’ouvre à l’endroit où l’objet a été placé dans l’autre. Toute créature dans un rayon de 3 m du portail, si elle ne dispose pas d’un Abri total, est aspirée et déposée en un lieu aléatoire du Plan Astral. Le portail se referme alors. Il est à sens unique et ne peut pas être rouvert."
+  }
+}

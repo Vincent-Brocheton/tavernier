@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:nolzurs-marvelous-pigments",
+  "type": "magic-item",
+  "name": "Pigments merveilleux",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette belle boîte en bois contient 1d4 pots de pigments et un pinceau (pour un poids total de 500 g).\nEn utilisant le pinceau et en dépensant 1 pot de pigments, vous pouvez peindre un nombre illimité d’objets tridimensionnels et d’éléments de terrain (tels que murs, portes, arbres, fleurs, armes, toiles d’araignée et fosses), à condition que ces éléments tiennent tous dans un Cube de 6 m. L’opération prend 10 minutes (quel que soit le nombre d’éléments que vous créez), pendant lesquelles vous devez rester dans le Cube, et nécessite votre Concentration. Si votre Concentration est rompue ou que vous quittez le Cube avant que le travail ne soit terminé, tous les éléments peints disparaissent et le pot de pigments est gaspillé.\nUne fois le travail terminé, tous les objets et éléments de terrain peints deviennent réels. Ainsi, peindre une porte sur un mur crée-t-il une vraie porte qu’on peut ouvrir sur ce qui se trouve au-delà du mur. Peindre une fosse crée une véritable fosse, dont la profondeur totale doit se trouver dans le Cube de 6 m.\nAucun objet créé par un pot de pigments ne peut avoir une valeur supérieure à 25 po, tandis que la valeur totale de tous les objets créés par un même pot de pigments ne peut dépasser 500 po. Si vous tracez des objets de plus grande valeur (comme un gros tas d’or), ils paraissent authentiques, mais un examen attentif révèle qu’ils sont faits de pâte, de biscuits ou de quelque autre matériau sans valeur.\nSi vous peignez une forme d’énergie comme le feu ou la foudre, l’énergie se dissipe sitôt la peinture achevée, sans rien endommager."
+  }
+}

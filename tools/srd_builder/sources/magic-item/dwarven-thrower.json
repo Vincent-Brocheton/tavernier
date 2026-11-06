@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:dwarven-thrower",
+  "type": "magic-item",
+  "name": "Marteau volant des nains",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (marteau de guerre), très rare (Harmonisation requise avec un nain ou une créature harmonisée avec un ceinturon des nains)",
+    "attunement": true,
+    "attunement_by": "un nain ou une créature harmonisée avec un ceinturon des nains"
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +3 aux jets d’attaque et de dégâts effectués avec cette arme magique. Elle est dotée de la propriété Lancer avec une portée normale de 6 m et une portée longue de 18 m. Lorsque vous touchez avec une attaque à distance à l’aide de cette arme, celle-ci inflige 1d8 dégâts de force supplémentaires (2d8 si la cible est un Géant). Aussitôt après avoir touché ou raté sa cible, l’arme revient dans votre main."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ammunition-plus-1-2-or-3",
+  "type": "magic-item",
+  "name": "Projectile +1, +2 ou +3",
+  "data": {
+    "category": "weapon",
+    "rarity": "varies",
+    "type_line": "Arme (tout type de projectile), peu courante (+1), rare (+2) ou très rare (+3)",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus aux jets d’attaque et de dégâts effectués avec ces munitions magiques. Ce bonus est déterminé par la rareté du projectile. Dès qu’il touche une cible, le projectile perd ses propriétés magiques.\nCes munitions sont généralement trouvées ou vendues par quantités de dix ou vingt. Dix projectiles équivalent en valeur à une potion de même rareté."
+  }
+}

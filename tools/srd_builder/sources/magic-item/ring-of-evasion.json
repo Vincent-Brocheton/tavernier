@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-evasion",
+  "type": "magic-item",
+  "name": "Anneau d’esquive totale",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cet anneau dispose de 3 charges et récupère quotidiennement 1d3 charges dépensées, à l’aube. Lorsque vous ratez un jet de sauvegarde de Dextérité en portant l’anneau, vous pouvez jouer votre Réaction pour dépenser 1 charge et finalement réussir ce JS."
+  }
+}

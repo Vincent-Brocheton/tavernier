@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:helm-of-telepathy",
+  "type": "magic-item",
+  "name": "Heaume de télépathie",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ce heaume, vous bénéficiez de la télépathie à une portée de 9 m, et pouvez lancer détection des pensées ou suggestion (DD de sauvegarde 13) par le biais du heaume. Dès que l’un de ces sorts a été lancé par le biais du heaume, il ne peut plus être lancé via cet objet avant l’aube suivante."
+  }
+}

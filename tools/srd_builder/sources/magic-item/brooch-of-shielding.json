@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:brooch-of-shielding",
+  "type": "magic-item",
+  "name": "Broche de défense",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette broche, vous bénéficiez de la Résistance aux dégâts de force et de l’Immunité contre les dégâts du sort projectile magique."
+  }
+}

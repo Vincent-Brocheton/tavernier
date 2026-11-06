@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:dust-of-disappearance",
+  "type": "magic-item",
+  "name": "Poussière de disparition",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette poudre ressemble à du sable fin. Il y en a assez pour une utilisation. Lorsque vous entreprenez l’action Utilisation pour lancer la poudre en l’air, vous-même et chaque créature ou objet pris dans une Émanation de 3 m centrée sur vous recevez l’état Invisible pendant 2d4 minutes. La durée est la même pour tous les sujets, et la poussière est détruite quand sa magie s’active. Aussitôt après qu’une créature affectée effectue un jet d’attaque, inflige des dégâts ou lance un sort, l’état Invisible prend fin pour elle."
+  }
+}

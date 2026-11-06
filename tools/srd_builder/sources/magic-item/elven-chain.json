@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:elven-chain",
+  "type": "magic-item",
+  "name": "Armure de mailles elfique",
+  "data": {
+    "category": "armor",
+    "rarity": "rare",
+    "type_line": "Armure (chemise de mailles ou cotte de mailles), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 à la CA tant que vous portez cette armure. Vous êtes considéré comme formé au port de cette armure même s’il vous manque la formation aux armures lourdes et intermédiaires."
+  }
+}

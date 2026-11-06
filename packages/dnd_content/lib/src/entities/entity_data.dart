@@ -35,6 +35,23 @@ enum WeaponCategory { simple, martial }
 enum WeaponKind { melee, ranged }
 
 @JsonEnum(fieldRename: FieldRename.snake)
+enum MagicItemCategory {
+  wondrous,
+  armor,
+  weapon,
+  ring,
+  wand,
+  staff,
+  potion,
+  scroll,
+  rod,
+}
+
+/// Rareté d'un objet magique ; `varies` quand elle dépend de la variante.
+@JsonEnum(fieldRename: FieldRename.snake)
+enum Rarity { common, uncommon, rare, veryRare, legendary, artifact, varies }
+
+@JsonEnum(fieldRename: FieldRename.snake)
 enum ArmorCategory { light, medium, heavy, shield }
 
 @JsonEnum(fieldRename: FieldRename.snake)
@@ -135,6 +152,26 @@ abstract class ItemData with _$ItemData implements EntityData {
 
   factory ItemData.fromJson(Map<String, dynamic> json) =>
       _$ItemDataFromJson(json);
+}
+
+/// Objet magique du SRD (une entité par entrée du chapitre, variantes
+/// comprises).
+@freezed
+abstract class MagicItemData with _$MagicItemData implements EntityData {
+  const factory MagicItemData({
+    required MagicItemCategory category,
+    required Rarity rarity,
+
+    /// Ligne de type du SRD, recopiée telle quelle.
+    required String typeLine,
+    @Default(false) bool attunement,
+
+    /// Créature exigée pour l'harmonisation (« un Magicien »).
+    String? attunementBy,
+  }) = _MagicItemData;
+
+  factory MagicItemData.fromJson(Map<String, dynamic> json) =>
+      _$MagicItemDataFromJson(json);
 }
 
 @freezed
@@ -393,6 +430,7 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'armor': ArmorData.fromJson,
   'tool': ToolData.fromJson,
   'item': ItemData.fromJson,
+  'magic-item': MagicItemData.fromJson,
   'background': BackgroundData.fromJson,
   'species': SpeciesData.fromJson,
   'feat': FeatData.fromJson,

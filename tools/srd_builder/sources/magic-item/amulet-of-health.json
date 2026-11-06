@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:amulet-of-health",
+  "type": "magic-item",
+  "name": "Amulette de santé",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Votre Constitution est de 19 tant que vous portez cette amulette. Elle est sans effet sur vous si votre Constitution est déjà supérieure ou égale à 19."
+  }
+}

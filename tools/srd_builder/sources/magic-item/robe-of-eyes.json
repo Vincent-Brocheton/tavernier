@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:robe-of-eyes",
+  "type": "magic-item",
+  "name": "Robe de vision totale",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Cette robe est ornée de motifs représentant des yeux. Tant que vous la portez, vous recevez les bénéfices suivants :\nSens spéciaux. Vous disposez de la Vision dans le noir et de la Vision lucide sur 36 m.\nVision panoramique. La robe vous confère l’Avantage aux tests de Sagesse (Perception) qui reposent sur la vue.\nInconvénients. Le sort lumière lancé sur la robe ou le sort lumière du jour lancé dans un rayon de 1,50 m du vêtement vous fait subir l’état Aveuglé pendant 1 minute. À la fin de chacun de vos tours, vous pouvez effectuer un jet de sauvegarde de Constitution (DD 11 pour lumière, DD 15 pour lumière du jour) et mettez fin à cet état en cas de réussite."
+  }
+}

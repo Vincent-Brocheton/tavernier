@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:wand-of-magic-detection",
+  "type": "magic-item",
+  "name": "Baguette de détection de la magie",
+  "data": {
+    "category": "wand",
+    "rarity": "uncommon",
+    "type_line": "Baguette, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette baguette dispose de 3 charges. Lorsque vous la tenez, vous pouvez dépenser 1 charge pour lancer détection de la magie par son biais. La baguette récupère quotidiennement 1d3 charges dépensées, à l’aube."
+  }
+}

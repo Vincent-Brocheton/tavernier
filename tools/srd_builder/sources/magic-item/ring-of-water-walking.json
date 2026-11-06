@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-water-walking",
+  "type": "magic-item",
+  "name": "Anneau de marche sur l’eau",
+  "data": {
+    "category": "ring",
+    "rarity": "uncommon",
+    "type_line": "Anneau, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous lancez marche sur l’onde par son biais, en ne ciblant que vous-même."
+  }
+}

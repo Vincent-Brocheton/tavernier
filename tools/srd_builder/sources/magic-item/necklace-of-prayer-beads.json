@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:necklace-of-prayer-beads",
+  "type": "magic-item",
+  "name": "Chapelet mystique",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise avec un Clerc, Druide ou Paladin)",
+    "attunement": true,
+    "attunement_by": "un Clerc, Druide ou Paladin"
+  },
+  "text": {
+    "fr": "Ce collier possède 1d4 + 2 perles magiques faites d’aigue-marine, de perle noire ou de topaze. Il possède en outre de nombreuses perles non magiques faites à partir de minéraux tels que l’ambre, l’héliotrope, la citrine, le corail, le jade, la perle ou le quartz. Si une perle magique est retirée du collier, celle-ci perd sa magie.\nIl existe six types de perle magique. Le MJ choisit le type de chaque perle ou le détermine aléatoirement selon la table ci-dessous. Ce chapelet peut posséder plusieurs perles du même type. Pour en utiliser une, vous devez porter le collier. Chaque perle renferme un sort que vous pouvez lancer par une action Bonus (en appliquant votre DD de sauvegarde des sorts si nécessaire). Une fois lancé le sort contenu dans une perle magique, celle-ci ne peut plus resservir avant l’aube suivante.\n1d20 Perle Sort 1–6 Perle de bénédiction bénédiction 7–8 Perle de châtiment châtiment de révélation 9 Perle de convocation gardien de la foi 10 Perle d’envolée divine vent divin 11–16 Perle de guérison soins (au 2e niveau)\n17–20 Perle de rétablissement restauration suprême"
+  }
+}

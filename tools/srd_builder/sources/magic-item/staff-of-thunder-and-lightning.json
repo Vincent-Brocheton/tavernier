@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:staff-of-thunder-and-lightning",
+  "type": "magic-item",
+  "name": "Bâton de tonnerre et de foudre",
+  "data": {
+    "category": "staff",
+    "rarity": "very_rare",
+    "type_line": "Bâton, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Ce bâton peut se manier comme un bâton de combat magique qui octroie un bonus de +2 aux jets d’attaque et de dégâts. Il dispose en outre des propriétés supplémentaires suivantes. Une fois que l’une de ces propriétés est utilisée, vous ne pouvez plus y recourir avant l’aube suivante.\nFoudre. Lorsque vous touchez une cible avec une attaque de corps à corps utilisant le bâton, vous pouvez lui infliger 2d6 dégâts de foudre supplémentaires (pas d’action requise).\nTonnerre. Lorsque vous touchez avec une attaque de corps à corps utilisant le bâton, vous pouvez faire produire à celui-ci un éclat de tonnerre audible à 90 m (pas d’action requise). La cible que vous avez touchée doit réussir un jet de sauvegarde de Constitution DD 17 sous peine de subir l’état Étourdi jusqu’à la fin de votre tour suivant.\nTonnerre et foudre. Aussitôt après avoir touché une cible avec une attaque de corps à corps utilisant le bâton, vous pouvez entreprendre une action Bonus pour utiliser simultanément les propriétés Foudre et Tonnerre (voir ci-dessus). Cela ne dépense pas l’utilisation quotidienne de ces deux propriétés, seulement celle de « Tonnerre et foudre ».\nTrait de foudre. Vous pouvez entreprendre l’action Magie pour faire jaillir la foudre de la pointe du bâton sur une Ligne de 1,50 m de large et 36 m de long. Chaque créature prise dans cette Ligne effectue un jet de sauvegarde de Dextérité DD 17 et subit 9d6 dégâts de foudre en cas d’échec, la moitié en cas de réussite.\nCoup de tonnerre. Vous pouvez entreprendre l’action Magie pour que le bâton produise un coup de tonnerre audible à 180 m. Chaque créature dans une Émanation de 18 m centrée sur vous effectue un jet de sauvegarde de Constitution DD 17. En cas d’échec, une créature subit 2d6 dégâts de tonnerre, ainsi que l’état Assourdi pendant 1 minute. En cas de réussite, elle subit uniquement la moitié de ces dégâts."
+  }
+}

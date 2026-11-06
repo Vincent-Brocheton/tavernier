@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-flying",
+  "type": "magic-item",
+  "name": "Potion de vol",
+  "data": {
+    "category": "potion",
+    "rarity": "very_rare",
+    "type_line": "Potion, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez une Vitesse de vol égale à votre Vitesse pendant 1 heure et pouvez évoluer en vol stationnaire. Si vous êtes en vol au moment où la potion cesse de faire effet, vous tombez si vous ne disposez d’aucun autre moyen de vous maintenir dans les airs.\nLe liquide translucide de cette potion flotte dans la partie supérieure du récipient, troublé par des impuretés blanches."
+  }
+}

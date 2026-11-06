@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:defender",
+  "type": "magic-item",
+  "name": "Gardienne",
+  "data": {
+    "category": "weapon",
+    "rarity": "legendary",
+    "type_line": "Arme (toute arme de corps à corps), légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +3 aux jets d’attaque et de dégâts effectués avec cette arme magique.\nLa première fois que vous attaquez avec l’arme à chacun de vos tours, vous pouvez transférer tout ou partie de son bonus à votre classe d’armure. Vous pouvez par exemple réduire le bonus à vos jets d’attaque et de dégâts à +1 afin de recevoir un bonus de +2 à la CA. Les bonus ajustés restent en vigueur jusqu’au début de votre tour suivant, mais vous devez continuer à tenir l’arme pour recevoir le bonus qu’elle octroie à la CA."
+  }
+}

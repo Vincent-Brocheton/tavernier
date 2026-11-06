@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:demon-armor",
+  "type": "magic-item",
+  "name": "Armure démoniaque",
+  "data": {
+    "category": "armor",
+    "rarity": "very_rare",
+    "type_line": "Armure (légère, intermédiaire ou lourde), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette armure, vous recevez un bonus de +1 à la CA et parlez l’abyssal. Les gantelets griffus de l’armure permettent en outre à vos attaques à mains nues d’infliger 1d8 dégâts tranchants au lieu des dégâts contondants habituels, et vous recevez un bonus de +1 aux jets d’attaque et de dégâts de vos attaques à mains nues.\nMalédiction. Une fois cette armure maudite enfilée, vous ne pouvez plus l’ôter sauf si vous êtes la cible du sort délivrance des malédictions ou d’une magie équivalente. Tant que vous portez cette armure, vous subissez le Désavantage aux jets d’attaque contre les démons et aux jets de sauvegarde contre leurs sorts et aptitudes spéciales."
+  }
+}

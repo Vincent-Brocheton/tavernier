@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:spellguard-shield",
+  "type": "magic-item",
+  "name": "Bouclier gardesort",
+  "data": {
+    "category": "armor",
+    "rarity": "very_rare",
+    "type_line": "Armure (bouclier), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous tenez ce bouclier, vous avez l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques, et les jets d’attaque de sort contre vous subissent le Désavantage."
+  }
+}

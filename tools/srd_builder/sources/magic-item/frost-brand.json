@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:frost-brand",
+  "type": "magic-item",
+  "name": "Fer gelé",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (cimeterre, coutille, épée à deux mains, épée courte, épée longue ou rapière), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Lorsque votre jet d’attaque touche avec cette arme magique, la cible subit 1d6 dégâts de froid supplémentaires. En outre et tant que vous tenez l’arme, vous bénéficiez de la Résistance aux dégâts de feu.\nLorsqu’il gèle, l’arme émet une Lumière vive sur un rayon de 3 m et une Lumière faible sur 3 m de plus.\nEn dégainant cette arme, vous pouvez décider d’éteindre toutes les flammes non magiques dans un rayon de 9 m. Une fois utilisée, cette propriété ne peut plus resservir pendant 1 heure."
+  }
+}

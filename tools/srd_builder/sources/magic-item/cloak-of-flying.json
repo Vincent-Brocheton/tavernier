@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-flying",
+  "type": "magic-item",
+  "name": "Cape de vol",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette cape, vous pouvez entreprendre l’action Magie pour la transformer en paire d’ailes dans votre dos. Elles persistent pendant 1 heure, sauf si vous y mettez fin prématurément au prix de l’action Magie. Ces ailes vous octroient une Vitesse de vol de 18 m. Si vous êtes en l’air lorsqu’elles disparaissent, vous tombez. Après leur disparition, vous ne pouvez plus les déployer pendant 1d12 heures."
+  }
+}

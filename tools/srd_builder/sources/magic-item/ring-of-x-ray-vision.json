@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-x-ray-vision",
+  "type": "magic-item",
+  "name": "Anneau de rayons X",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous pouvez entreprendre l’action Magie pour recevoir la vision aux rayons X sur 9 m pendant 1 minute. Pour vous, les objets solides dans ce rayon apparaissent transparents et ne bloquent pas la lumière. Cette vision pénètre 30 cm de pierre, 2,5 cm de métal courant et jusqu’à 90 cm de bois ou de terre. Des substances plus denses ou une fine feuille de plomb bloquent la vision.\nChaque fois que vous réutilisez cet anneau sans avoir pris de Repos long, vous devez réussir un jet de sauvegarde de Constitution DD 15 sous peine de recevoir un niveau d’Épuisement."
+  }
+}

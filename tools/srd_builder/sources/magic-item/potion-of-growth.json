@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-growth",
+  "type": "magic-item",
+  "name": "Potion d’agrandissement",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez l’effet « agrandissement » du sort agrandissement/rapetissement pendant 10 minutes (aucune Concentration requise).\nLa partie rouge du liquide de la potion se dilate et se contracte en boucle, d’une petite perle colorant le liquide incolore et vice-versa. Le processus ne s’interrompt pas, même quand on secoue la bouteille."
+  }
+}

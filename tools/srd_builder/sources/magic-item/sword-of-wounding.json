@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:sword-of-wounding",
+  "type": "magic-item",
+  "name": "Épée mordante",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (cimeterre, coutille, épée à deux mains, épée courte, épée longue ou rapière), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Lorsque vous touchez une créature avec une attaque utilisant cette arme magique, la cible subit 2d6 dégâts nécrotiques supplémentaires et doit réussir un jet de sauvegarde de Constitution DD 15 sous peine de ne plus pouvoir récupérer de points de vie pendant 1 heure. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l’effet sur elle-même en cas de réussite."
+  }
+}

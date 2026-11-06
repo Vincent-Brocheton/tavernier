@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-resistance",
+  "type": "magic-item",
+  "name": "Anneau de résistance",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous bénéficiez de la Résistance à un type de dégâts. La gemme de l’anneau indique le type, que le MJ choisit ou détermine aléatoirement selon la table suivante.\n1d10 Type de dégâts 1 Acide 2 Feu 3 Force 4 Foudre 5 Froid 6 Nécrotiques 7 Poison 8 Psychiques 9 Radiants 10 Tonnerre Gemme Perle Grenat Saphir Citrine Tourmaline Jais Améthyste Jade Topaze Spinelle"
+  }
+}

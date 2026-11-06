@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-swimming",
+  "type": "magic-item",
+  "name": "Anneau de nage",
+  "data": {
+    "category": "ring",
+    "rarity": "uncommon",
+    "type_line": "Anneau, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous disposez d’une Vitesse de nage de 12 m."
+  }
+}

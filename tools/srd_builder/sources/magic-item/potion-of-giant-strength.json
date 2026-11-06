@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-giant-strength",
+  "type": "magic-item",
+  "name": "Potion de force de géant",
+  "data": {
+    "category": "potion",
+    "rarity": "varies",
+    "type_line": "Potion, rareté variable",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, votre valeur de Force change pendant 1 heure. Le type de géant détermine cette valeur (cf. table ci-dessous). Si votre Force est déjà supérieure ou égale à la valeur octroyée par la potion, celle-ci n’a aucun effet sur vous.\nCe liquide transparent contient un éclat de lumière flottant qui évoque l’ongle d’un géant.\nPotion | Force | Rareté\nPotion de force de géant (collines) | 21 | Peu courante\nPotion de force de géant (givre ou pierres) | 23 | Rare\nPotion de force de géant (feu) | 25 | Rare\nPotion de force de géant (nuages) | 27 | Très rare\nPotion de force de géant (tempêtes) | 29 | Légendaire"
+  }
+}

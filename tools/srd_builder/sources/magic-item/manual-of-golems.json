@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:manual-of-golems",
+  "type": "magic-item",
+  "name": "Manuel des golems",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cet ouvrage renferme les informations et incantations nécessaires à l’assemblage d’un type spécifique de golem. Le MJ en choisit le type ou le détermine aléatoirement selon la table suivante. Pour déchiffrer et utiliser ce manuel, vous devez être un incantateur disposant d’au moins deux emplacements de sort du 5e niveau. Une créature incapable d’utiliser le manuel des golems et qui tente de le lire subit 6d6 dégâts psychiques.\nPour créer un golem, vous devez consacrer le nombre de jours indiqué sur la table et travailler sans relâche avec le manuel à portée de main sans prendre plus de 8 heures de Repos par jour. Vous devez également acquitter le coût indiqué pour acheter les matériaux nécessaires.\nUne fois la création du golem terminée, des flammes mystiques dévorent le livre. Le golem s’anime lorsque les cendres du manuel sont dispersées sur lui. Reportez-vous à « Monstres » pour le profil de jeu du golem. Il est sous votre contrôle, vous comprend et obéit à vos ordres.\n1d20 | Golem | Temps | Prix\n1–5 | Golem d’argile | 30 jours | 65 000 po\n6–17 | Golem de chair | 60 jours | 50 000 po\n18 | Golem de fer | 120 jours | 100 000 po\n19–20 | Golem de pierre | 90 jours | 80 000 po"
+  }
+}

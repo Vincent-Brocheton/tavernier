@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:chime-of-opening",
+  "type": "magic-item",
+  "name": "Carillon d’ouverture",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce tube de métal creux, long d’environ 30 cm, pèse 500 g. Au prix de l’action Magie, vous pouvez tinter le carillon pour lancer déblocage. Le son habituel du sort est remplacé par le tintement clair du carillon, audible à 90 m.\nLe carillon peut être utilisé 10 fois. Il se fissure et devient inutilisable après la dixième utilisation."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cloak-of-the-manta-ray",
+  "type": "magic-item",
+  "name": "Cape de la raie manta",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cette cape, vous pouvez respirer sous l’eau et disposez d’une Vitesse de nage de 18 m."
+  }
+}

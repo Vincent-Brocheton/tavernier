@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-three-wishes",
+  "type": "magic-item",
+  "name": "Anneau de triple souhait",
+  "data": {
+    "category": "ring",
+    "rarity": "legendary",
+    "type_line": "Anneau, légendaire",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous pouvez dépenser 1 de ses 3 charges pour lancer souhait par son biais. L’anneau devient non magique lorsque vous dépensez sa dernière charge."
+  }
+}

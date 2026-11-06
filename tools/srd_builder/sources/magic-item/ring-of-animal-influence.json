@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-animal-influence",
+  "type": "magic-item",
+  "name": "Anneau d’influence animale",
+  "data": {
+    "category": "ring",
+    "rarity": "rare",
+    "type_line": "Anneau, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cet anneau dispose de 3 charges et récupère quotidiennement 1d3 charges dépensées, à l’aube. Tant que vous portez l’anneau, vous pouvez en dépenser 1 charge pour lancer l’un des sorts suivants (DD de sauvegarde 13) par son intermédiaire :\n• amitié avec les animaux • terreur (affecte uniquement les Bêtes) • communication avec les animaux"
+  }
+}

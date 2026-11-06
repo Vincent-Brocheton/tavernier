@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:luck-blade",
+  "type": "magic-item",
+  "name": "Lame porte-bonheur",
+  "data": {
+    "category": "weapon",
+    "rarity": "legendary",
+    "type_line": "Arme (cimeterre, coutille, épée à deux mains, épée courte, épée longue, rapière ou serpe), légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique. Tant que l’arme est sur vous, vous recevez en outre un bonus de +1 aux jets de sauvegarde.\nChance. Si l’arme est sur vous et si vous ne subissez pas l’état Neutralisé, vous pouvez faire appel à sa chance (pas d’action requise) pour relancer un Test d20 raté. Vous devez garder le deuxième jet. Une fois utilisée, cette propriété ne peut plus resservir avant l’aube suivante.\nSouhait. L’arme est dotée de 1d3 charges. En la tenant, vous pouvez dépenser 1 charge et lancer souhait par son intermédiaire. Une fois utilisée, cette propriété ne peut plus resservir avant l’aube suivante. L’arme perd cette propriété quand toutes ses charges ont été dépensées."
+  }
+}

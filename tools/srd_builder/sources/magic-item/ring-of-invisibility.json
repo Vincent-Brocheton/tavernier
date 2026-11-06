@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-invisibility",
+  "type": "magic-item",
+  "name": "Anneau d’invisibilité",
+  "data": {
+    "category": "ring",
+    "rarity": "legendary",
+    "type_line": "Anneau, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous pouvez entreprendre l’action Magie pour recevoir l’état Invisible. Vous restez Invisible jusqu’à ce que l’anneau soit retiré ou que vous entrepreniez une action Bonus pour redevenir visible."
+  }
+}

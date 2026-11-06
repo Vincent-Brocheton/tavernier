@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:crystal-ball-of-telepathy",
+  "type": "magic-item",
+  "name": "Boule de cristal de télépathie",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous touchez cet orbe de cristal, vous pouvez lancer scrutation (DD de sauvegarde 17) par son biais. Vous pouvez en outre communiquer par télépathie avec les créatures que vous voyez dans un rayon de 9 m du capteur du sort. Vous pouvez enfin lancer suggestion (DD de sauvegarde 17) par le biais du capteur sur l’une de ces créatures. Vous n’avez pas besoin de vous concentrer sur cette suggestion pour la maintenir pendant toute sa durée, mais elle s’achève si la scrutation se termine. Vous ne pouvez pas relancer suggestion par ce biais avant l’aube suivante."
+  }
+}

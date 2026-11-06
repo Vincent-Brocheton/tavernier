@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:lantern-of-revealing",
+  "type": "magic-item",
+  "name": "Lanterne de révélation",
+  "data": {
+    "category": "wondrous",
+    "rarity": "uncommon",
+    "type_line": "Objet merveilleux, peu courant",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsqu’elle est allumée, cette lanterne à capote brûle pendant 6 heures avec 50 cl d’huile, en projetant une Lumière vive dans un rayon de 9 m et une Lumière faible sur 9 m supplémentaires. Les créatures et objets Invisibles sont visibles sous la Lumière vive de la lanterne. Vous pouvez entreprendre l’action Utilisation pour abaisser la capote, ce qui réduit la lumière de la lanterne à une Lumière faible dans un rayon de 1,50 m."
+  }
+}

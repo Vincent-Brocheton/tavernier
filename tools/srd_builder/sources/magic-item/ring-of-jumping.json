@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-jumping",
+  "type": "magic-item",
+  "name": "Anneau de saut",
+  "data": {
+    "category": "ring",
+    "rarity": "uncommon",
+    "type_line": "Anneau, peu courant (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous pouvez lancer saut par son intermédiaire, mais vous ne pouvez cibler que vous-même."
+  }
+}

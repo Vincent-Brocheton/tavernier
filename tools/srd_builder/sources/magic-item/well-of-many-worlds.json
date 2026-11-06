@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:well-of-many-worlds",
+  "type": "magic-item",
+  "name": "Puits des mondes",
+  "data": {
+    "category": "wondrous",
+    "rarity": "legendary",
+    "type_line": "Objet merveilleux, légendaire",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Ce pan d’étoffe noire et précieuse, aussi douce que de la soie, est plié aux dimensions d’un mouchoir de poche. Déplié, il forme un cercle de 1,80 m de diamètre.\nVous pouvez entreprendre l’action Magie pour déplier le puits des mondes en le plaçant sur une surface solide, où il forme un portail circulaire bidirectionnel de 1,80 m de diamètre vers un autre monde ou plan d’existence. Chaque fois que l’objet ouvre un portail, le MJ décide où il mène. Le portail reste ouvert jusqu’à ce qu’une créature dans un rayon de 1,50 m entreprenne l’action Magie pour le fermer en saisissant les bords du tissu et en le repliant.\nUne fois que le puits des mondes a ouvert un portail, il ne peut plus en rouvrir d’autres pendant 1d8 heures."
+  }
+}

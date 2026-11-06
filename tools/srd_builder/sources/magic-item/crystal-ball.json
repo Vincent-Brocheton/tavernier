@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:crystal-ball",
+  "type": "magic-item",
+  "name": "Boule de cristal",
+  "data": {
+    "category": "wondrous",
+    "rarity": "very_rare",
+    "type_line": "Objet merveilleux, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous touchez cet orbe de cristal, vous pouvez lancer scrutation (DD de sauvegarde 17) par son biais."
+  }
+}

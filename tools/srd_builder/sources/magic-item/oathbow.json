@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:oathbow",
+  "type": "magic-item",
+  "name": "Arc du serment",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (arc court ou arc long), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Lorsque vous encochez une flèche sur cet arc, il murmure en elfique « Une prompte défaite pour mes ennemis. » Lorsque vous utilisez l’arme pour effectuer une attaque à distance, vous pouvez prononcer ou signer les mots de commande suivants : « Une mort rapide à toi qui m’as fait du tort. » La cible devient votre ennemi désigné et le reste pendant 7 jours, jusqu’à l’aube du dernier jour. Elle ne l’est plus si elle meurt dans l’intervalle. Vous ne pouvez avoir qu’un seul ennemi désigné de ce type à la fois. Lorsque votre ennemi désigné meurt, vous pouvez en désigner un nouveau après l’aube suivante.\nLorsque vous effectuez un jet d’attaque à distance avec cette arme contre votre ennemi désigné, vous bénéficiez de l’Avantage sur le jet. De plus, votre cible ne reçoit aucun bénéfice lié à un Abri partiel ou supérieur, et vous ne subissez aucun Désavantage dû à la portée longue. Si l’attaque touche, votre ennemi désigné subit 3d6 dégâts perforants supplémentaires.\nTant que votre ennemi désigné est vivant, vous subissez le Désavantage aux jets d’attaque avec toutes les autres armes."
+  }
+}

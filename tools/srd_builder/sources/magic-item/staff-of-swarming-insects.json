@@ -1,0 +1,15 @@
+{
+  "id": "srd:magic-item:staff-of-swarming-insects",
+  "type": "magic-item",
+  "name": "Bâton du grand essaim",
+  "data": {
+    "category": "staff",
+    "rarity": "rare",
+    "type_line": "Bâton, rare (Harmonisation requise avec un Barde, Clerc, Druide, Ensorceleur, Magicien ou Occultiste)",
+    "attunement": true,
+    "attunement_by": "un Barde, Clerc, Druide, Ensorceleur, Magicien ou Occultiste"
+  },
+  "text": {
+    "fr": "Ce bâton dispose de 10 charges. Nuage d’insectes. Lorsque vous tenez le bâton, vous pouvez entreprendre l’action Magie et dépenser 1 charge pour faire apparaître un essaim d’insectes volants inoffensifs dans une Émanation de 9 m centrée sur vous. Les insectes persistent pendant 10 minutes, rendant la Visibilité nulle dans la zone pour toutes les créatures autres que vous. Un vent fort (comme celui créé par bourrasque) disperse l’essaim et met fin à l’effet.\nSorts. Lorsque vous tenez le bâton, vous pouvez lancer l’un des sorts de la table suivante en prenant votre DD de sauvegarde des sorts et votre modificateur d’attaque des sorts. La table indique le nombre de charges à dépenser pour lancer le sort.\nSort | Coût en charges\nfléau d’insectes | 5\ninsecte géant | 4\nRécupération des charges. Le bâton récupère quotidiennement 1d6 + 4 charges dépensées, à l’aube. Si vous dépensez la dernière charge, lancez 1d20. Sur un résultat de 1, une nuée d’insectes dévore le bâton et le détruit avant de se disperser."
+  }
+}

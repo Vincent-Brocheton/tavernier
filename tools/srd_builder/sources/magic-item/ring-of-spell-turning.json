@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-spell-turning",
+  "type": "magic-item",
+  "name": "Anneau de renvoi des sorts",
+  "data": {
+    "category": "ring",
+    "rarity": "legendary",
+    "type_line": "Anneau, légendaire (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous avez l’Avantage aux jets de sauvegarde contre les sorts. Si vous réussissez le JS contre un sort du 7e niveau ou inférieur, ce sort n’a aucun effet sur vous. Si ce sort ne ciblait que vous sans créer de zone d’effet, vous pouvez jouer votre Réaction pour le retourner vers son lanceur ; l’incantateur effectue un JS contre le sort en prenant son propre DD de sauvegarde des sorts."
+  }
+}

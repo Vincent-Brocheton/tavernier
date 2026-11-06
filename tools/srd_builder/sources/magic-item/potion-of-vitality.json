@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-vitality",
+  "type": "magic-item",
+  "name": "Potion de vitalité",
+  "data": {
+    "category": "potion",
+    "rarity": "very_rare",
+    "type_line": "Potion, très rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, elle supprime tous vos niveaux d’Épuisement et met fin à l’éventuel état Empoisonné qui vous affecte. Pendant 24 heures, vous récupérez le maximum de points de vie pour chaque dé de vie dépensé.\nCe liquide cramoisi palpite régulièrement d’une lueur sourde, tel un battement de cœur."
+  }
+}

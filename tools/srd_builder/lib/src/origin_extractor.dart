@@ -141,7 +141,10 @@ final _abilityMin = RegExp(
 String paragraphs(List<String> lines) {
   final out = <String>[];
   for (final line in lines) {
-    if (out.isNotEmpty && !endsSentence.hasMatch(out.last)) {
+    if (out.isNotEmpty &&
+        !endsSentence.hasMatch(out.last) &&
+        !out.last.startsWith('•') &&
+        !line.startsWith('•')) {
       out.last = '${out.last} $line';
     } else {
       out.add(line);

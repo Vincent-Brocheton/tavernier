@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:belt-of-giant-strength",
+  "type": "magic-item",
+  "name": "Ceinturon de force de géant",
+  "data": {
+    "category": "wondrous",
+    "rarity": "varies",
+    "type_line": "Objet merveilleux, rareté variable (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez ce ceinturon, votre valeur de Force devient celle octroyée par l’objet. Le type de géant détermine cette valeur (cf. table ci-dessous). Si votre Force est déjà supérieure ou égale à la valeur octroyée par le ceinturon, l’objet n’a aucun effet sur vous.\nCeinturon | For | Rareté\nCeinturon de force de géant (collines) | 21 | Rare\nCeinturon de force de géant (givre ou pierres) | 23 | Très rare\nCeinturon de force de géant (feu) | 25 | Très rare\nCeinturon de force de géant (nuages) | 27 | Légendaire\nCeinturon de force de géant (tempêtes) | 29 | Légendaire"
+  }
+}

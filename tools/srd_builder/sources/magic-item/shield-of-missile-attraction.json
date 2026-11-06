@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:shield-of-missile-attraction",
+  "type": "magic-item",
+  "name": "Bouclier d’attraction des projectiles",
+  "data": {
+    "category": "armor",
+    "rarity": "rare",
+    "type_line": "Armure (bouclier), rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous tenez ce bouclier, vous bénéficiez de la Résistance aux dégâts des attaques des armes à distance.\nMalédiction. Ce bouclier est maudit. S’harmoniser avec lui vous maudit jusqu’à ce que vous soyez la cible du sort délivrance des malédictions ou d’un effet magique équivalent. Retirer le bouclier ne suffit pas à lever la malédiction. Chaque fois qu’une attaque avec une arme à distance cible une créature dans un rayon de 3 m de vous, vous en devenez en fait la cible."
+  }
+}

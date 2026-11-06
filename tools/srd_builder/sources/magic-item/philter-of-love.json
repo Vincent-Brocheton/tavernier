@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:philter-of-love",
+  "type": "magic-item",
+  "name": "Philtre d’amour",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "La première fois que vous voyez une créature dans les 10 minutes après avoir bu ce philtre, vous êtes séduit par cette créature et recevez l’état Charmé pendant 1 heure.\nCe liquide rosé effervescent contient une imperceptible bulle en forme de cœur."
+  }
+}

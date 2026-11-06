@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:ring-of-telekinesis",
+  "type": "magic-item",
+  "name": "Anneau de télékinésie",
+  "data": {
+    "category": "ring",
+    "rarity": "very_rare",
+    "type_line": "Anneau, très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Tant que vous portez cet anneau, vous pouvez lancer télékinésie par son intermédiaire."
+  }
+}

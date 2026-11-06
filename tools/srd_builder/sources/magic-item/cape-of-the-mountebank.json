@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:cape-of-the-mountebank",
+  "type": "magic-item",
+  "name": "Cape du prestidigitateur",
+  "data": {
+    "category": "wondrous",
+    "rarity": "rare",
+    "type_line": "Objet merveilleux, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Cette cape sent légèrement le soufre. Quand vous la portez, vous pouvez l’utiliser pour lancer porte dimensionnelle au prix de l’action Magie. Cette propriété ne peut plus resservir avant l’aube suivante.\nEn vous téléportant avec ce sort, vous laissez derrière vous un nuage de fumée. Cette fumée entraîne une Visibilité réduite dans l’espace que vous venez de quitter jusqu’à la fin de votre tour suivant."
+  }
+}

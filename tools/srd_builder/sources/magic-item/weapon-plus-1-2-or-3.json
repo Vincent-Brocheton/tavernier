@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:weapon-plus-1-2-or-3",
+  "type": "magic-item",
+  "name": "Arme +1, +2 ou +3",
+  "data": {
+    "category": "weapon",
+    "rarity": "varies",
+    "type_line": "Arme (courante ou de guerre), peu courante (+1), rare (+2) ou très rare (+3)",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus aux jets d’attaque et de dégâts effectués avec cette arme magique. Ce bonus est déterminé par la rareté de l’arme."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:dagger-of-venom",
+  "type": "magic-item",
+  "name": "Dague venimeuse",
+  "data": {
+    "category": "weapon",
+    "rarity": "rare",
+    "type_line": "Arme (dague), rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique.\nPar une action Bonus, vous enduisez magiquement la lame de poison. Le poison persiste 1 minute ou jusqu’à ce qu’une attaque avec cette arme touche une créature. Cette créature doit réussir un jet de sauvegarde de Constitution DD 15 sous peine de subir 2d10 dégâts de poison et l’état Empoisonné pendant 1 minute. L’arme ne peut plus resservir de cette manière avant l’aube suivante."
+  }
+}

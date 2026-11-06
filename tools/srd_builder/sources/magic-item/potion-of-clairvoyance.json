@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-clairvoyance",
+  "type": "magic-item",
+  "name": "Potion de clairvoyance",
+  "data": {
+    "category": "potion",
+    "rarity": "rare",
+    "type_line": "Potion, rare",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Lorsque vous buvez cette potion, vous recevez l’effet du sort clairvoyance (aucune Concentration requise).\nLe globe oculaire qui flotte dans ce liquide jaunâtre disparaît quand la potion est ouverte."
+  }
+}

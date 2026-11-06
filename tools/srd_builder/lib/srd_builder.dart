@@ -9,6 +9,7 @@ import 'package:dnd_content/dnd_content.dart';
 
 import 'src/class_extractor.dart';
 import 'src/equipment_extractor.dart';
+import 'src/magic_item_extractor.dart';
 import 'src/origin_extractor.dart';
 import 'src/source_loader.dart';
 import 'src/spell_extractor.dart';
@@ -62,6 +63,35 @@ int run(List<String> arguments, StringSink out, StringSink err) {
     ..addFlag('help', abbr: 'h', negatable: false, help: "Affiche l'aide.")
     ..addCommand('build', build)
     ..addCommand('extract-spells', extractSpells)
+    ..addCommand(
+      'extract-magic-items',
+      ArgParser()
+        ..addOption(
+          'text',
+          mandatory: true,
+          help: 'Texte du PDF en ordre de lecture (pdftotext -enc UTF-8).',
+        )
+        ..addOption(
+          'slugs',
+          defaultsTo: 'tools/srd_builder/extract/magic_item_slugs.tsv',
+          help: 'Correspondance nom français → slug anglais.',
+        )
+        ..addOption(
+          'tables',
+          defaultsTo: 'tools/srd_builder/extract/magic_item_tables.json',
+          help: 'Tables des objets, recopiées du texte en mise en page.',
+        )
+        ..addOption(
+          'sources',
+          defaultsTo: defaultSources,
+          help: 'Dossier des sources JSON.',
+        )
+        ..addOption(
+          'report',
+          defaultsTo: 'build/extract-magic-items.txt',
+          help: 'Lignes courtes restées dans un texte, à relire.',
+        ),
+    )
     ..addCommand(
       'extract-equipment',
       ArgParser()
@@ -151,6 +181,28 @@ int run(List<String> arguments, StringSink out, StringSink err) {
       ..writeln('       srd_builder extract-spells --text <fichier>')
       ..writeln(extractSpells.usage);
     return 0;
+  }
+  if (command.name == 'extract-magic-items') {
+    final report = StringBuffer();
+    final List<String> problems;
+    try {
+      problems = extractMagicItemSources(
+        readingOrder: File(command.option('text')!).readAsStringSync(),
+        slugs: readMagicItemSlugs(File(command.option('slugs')!)),
+        tables: readMagicItemTables(File(command.option('tables')!)),
+        sources: command.option('sources')!,
+        report: report,
+      );
+    } on FormatException catch (e) {
+      err.writeln(e.message);
+      return 1;
+    }
+    File(command.option('report')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(report.toString());
+    problems.forEach(err.writeln);
+    out.writeln('Rapport : ${command.option('report')}.');
+    return problems.isEmpty ? 0 : 1;
   }
   if (command.name == 'extract-equipment') {
     final report = StringBuffer();

@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:potion-of-water-breathing",
+  "type": "magic-item",
+  "name": "Potion de respiration aquatique",
+  "data": {
+    "category": "potion",
+    "rarity": "uncommon",
+    "type_line": "Potion, peu courante",
+    "attunement": false
+  },
+  "text": {
+    "fr": "Vous pouvez respirer sous l’eau pendant 24 heures après avoir bu cette potion.\nCe liquide vert laiteux, dans lequel flotte une bulle aux allures de méduse (acalèphe), dégage des senteurs marines."
+  }
+}

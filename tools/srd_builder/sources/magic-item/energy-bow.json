@@ -1,0 +1,14 @@
+{
+  "id": "srd:magic-item:energy-bow",
+  "type": "magic-item",
+  "name": "Arc à énergie",
+  "data": {
+    "category": "weapon",
+    "rarity": "very_rare",
+    "type_line": "Arme (arc court ou arc long), très rare (Harmonisation requise)",
+    "attunement": true
+  },
+  "text": {
+    "fr": "Vous recevez un bonus de +1 aux jets d’attaque et de dégâts effectués avec cette arme magique, qui n’a pas de corde. Chaque fois que vous faites le geste de tendre l’arc, une flèche magique faite d’énergie dorée apparaît, prête à être décochée. Les flèches produites par cette arme infligent des dégâts de force au lieu des dégâts perforants si l’attaque touche, et s’évanouissent après avoir touché ou raté leur cible. Jusqu’à sa disparition, une telle flèche émet une Lumière vive dans un rayon de 6 m et une Lumière faible sur 6 m de plus.\nL’arme est dotée des propriétés supplémentaires suivantes.\nÉchelle d’énergie. Au prix de l’action Magie, vous décochez une volée de flèches d’énergie pure avec cette arme en direction d’un mur situé dans un rayon de 18 m. Les flèches se transforment en barreaux lumineux qui dépassent du mur, formant une échelle magique pouvant atteindre 18 m de haut. Cette échelle persiste pendant 1 minute avant de disparaître.\nFlèche d’entrave. Chaque fois que vous utilisez cette arme pour effectuer une attaque à distance contre une créature, vous pouvez tenter d’entraver la cible au lieu de lui infliger des dégâts. Si la flèche touche, la cible doit réussir un jet de sauvegarde de Force DD 15 sous peine de subir l’état Entravé pendant 1 minute. Au prix d’une action, toute créature Entravée par une flèche peut effectuer un test de Force (Athlétisme) DD 20 pour tenter de se libérer, et met fin à l’effet sur ellemême en cas de réussite.\nFlèche de transport. Au prix de l’action Magie, vous décochez avec cette arme une flèche d’énergie sur une cible que vous voyez dans un rayon de 18 m. La cible peut être une créature consentante de taille M ou inférieure ou un objet qui n’est porté par personne, à condition que celui-ci contienne dans un Cube de 1,50 m. La flèche téléporte la cible en un espace inoccupé que vous voyez, dans un rayon de 3 m de vous."
+  }
+}

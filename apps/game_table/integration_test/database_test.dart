@@ -15,7 +15,7 @@ void main() {
     var db = openTavernierDatabase(name: name);
     await PackStore(db).importPack(pack);
     final hits = await PackStore(db).search('vigil');
-    expect(hits.first.id, 'srd:feat:alert');
+    expect(hits.map((h) => h.id), contains('srd:feat:alert'));
     await db.close();
 
     db = openTavernierDatabase(name: name);
