@@ -150,3 +150,10 @@ La base locale SHALL stocker chaque objet magique importé et SHALL le restituer
 #### Scenario: Aller-retour
 - **WHEN** on importe un pack qui contient un objet magique puis qu'on l'exporte
 - **THEN** l'objet exporté est identique à l'objet importé
+
+### Requirement: Caractéristique principale au choix en base
+La base locale SHALL conserver `primary_abilities_any` à l'import et le restituer à l'export.
+
+#### Scenario: Aller-retour
+- **WHEN** on importe puis exporte le pack SRD
+- **THEN** le Guerrier garde `primary_abilities_any` à vrai

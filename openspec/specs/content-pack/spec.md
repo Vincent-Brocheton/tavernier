@@ -236,3 +236,14 @@ Le pack SRD SHALL contenir les 258 objets magiques du SRD 5.2.1, avec le texte c
 #### Scenario: Potions de guérison
 - **WHEN** on lit `srd:magic-item:potions-of-healing`
 - **THEN** son texte associe chaque potion à ses points de vie sur une même ligne
+
+### Requirement: Caractéristique principale au choix
+Une classe SHALL pouvoir déclarer que l'une de ses caractéristiques principales suffit (`primary_abilities_any`). Par défaut, toutes sont requises.
+
+#### Scenario: Guerrier (SRD p. 56)
+- **WHEN** on lit `srd:class:fighter`
+- **THEN** `primary_abilities_any` est vrai
+
+#### Scenario: Moine (SRD p. 64)
+- **WHEN** on lit `srd:class:monk`
+- **THEN** `primary_abilities_any` est faux
