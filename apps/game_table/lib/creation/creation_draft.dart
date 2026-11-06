@@ -109,12 +109,19 @@ final class CreationDraft {
           classTools: const [],
           masteries: const [],
           clearFightingStyle: true,
+          choices: _without(classSpellsPrefix),
         );
 
-  /// Un autre Historique efface l'outil : ses options ne sont plus les mêmes.
+  /// Un autre Historique efface l'outil et les sorts de son don : leurs
+  /// options ne sont plus les mêmes.
   /// Les bonus restent : le joueur voit ce qui est devenu invalide.
-  CreationDraft selectBackground(String id) =>
-      id == backgroundId ? this : _with(backgroundId: id, clearTool: true);
+  CreationDraft selectBackground(String id) => id == backgroundId
+      ? this
+      : _with(
+          backgroundId: id,
+          clearTool: true,
+          choices: _without(initiateKey(InitiatePlace.background, '')),
+        );
 
   CreationDraft selectTool(String id) => _with(toolChoice: id);
 
@@ -127,6 +134,7 @@ final class CreationDraft {
           size: sizes.length == 1 ? sizes.single : null,
           clearSize: sizes.length != 1,
           clearOriginFeat: true,
+          choices: _without(initiateKey(InitiatePlace.species, '')),
         );
 
   CreationDraft selectSize(String value) => _with(size: value);
@@ -195,9 +203,47 @@ final class CreationDraft {
 
   CreationDraft selectFightingStyle(String id) => _with(fightingStyle: id);
 
-  CreationDraft selectOriginFeat(String id) => _with(originFeat: id);
+  CreationDraft selectOriginFeat(String id) => id == originFeat
+      ? this
+      : _with(
+          originFeat: id,
+          choices: _without(initiateKey(InitiatePlace.species, '')),
+        );
 
-  /// Sélection d'un effet `choice`.
+  /// Une autre liste efface les sorts de cette place.
+  CreationDraft selectInitiateList(InitiatePlace place, String list) =>
+      choices[initiateKey(place, 'list')]?.contains(list) ?? false
+      ? this
+      : _with(
+          choices: {
+            ...choices,
+            initiateKey(place, 'list'): [list],
+            initiateKey(place, 'cantrips'): const [],
+            initiateKey(place, 'spell'): const [],
+          },
+        );
+
+  /// Un sort retiré du grimoire n'est plus préparé.
+  CreationDraft toggleSpellbook(String id, int count) {
+    final book = _toggled(choices[spellbookKey] ?? const [], id, count);
+    return _with(
+      choices: {
+        ...choices,
+        spellbookKey: book,
+        preparedKey: [
+          for (final spell in choices[preparedKey] ?? const <String>[])
+            if (book.contains(spell)) spell,
+        ],
+      },
+    );
+  }
+
+  Map<String, List<String>> _without(String prefix) => {
+    for (final entry in choices.entries)
+      if (!entry.key.startsWith(prefix)) entry.key: entry.value,
+  };
+
+  /// Sélection d'un effet `choice` ou d'un sort.
   CreationDraft togglePick(String choiceId, String pick, int count) => _with(
     choices: {
       ...choices,

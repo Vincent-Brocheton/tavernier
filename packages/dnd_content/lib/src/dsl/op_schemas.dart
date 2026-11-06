@@ -311,6 +311,7 @@ Map<String, Map<String, FieldSpec>> opSchemas(FieldCheck effects) => {
     'count': FieldSpec(intField(min: 1), required: true),
     'options': FieldSpec(listField(effects), required: true),
     'labels': FieldSpec(listField(stringField())),
+    'title': FieldSpec(stringField()),
     'replaceable_on': FieldSpec(enumField(_replaceableOn)),
   },
 };

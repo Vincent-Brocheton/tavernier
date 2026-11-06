@@ -689,5 +689,88 @@
         "type": "String"
       }
     }
+  },
+  "choiceTitle": "{name} : {title}",
+  "@choiceTitle": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "cantripsOf": "Sorts mineurs de {cls}",
+  "@cantripsOf": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      }
+    }
+  },
+  "preparedSpellsOf": "Sorts préparés de {cls}",
+  "@preparedSpellsOf": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      }
+    }
+  },
+  "spellbookTitle": "Grimoire",
+  "@spellbookTitle": {
+    "description": "Section de l’étape 6."
+  },
+  "initiateListTitle": "{feat} : liste de sorts",
+  "@initiateListTitle": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "feat": {
+        "type": "String"
+      }
+    }
+  },
+  "initiateAbilityTitle": "{feat} : caractéristique d’incantation",
+  "@initiateAbilityTitle": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "feat": {
+        "type": "String"
+      }
+    }
+  },
+  "initiateCantripsTitle": "{feat} : sorts mineurs",
+  "@initiateCantripsTitle": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "feat": {
+        "type": "String"
+      }
+    }
+  },
+  "initiateSpellTitle": "{feat} : sort du 1er niveau",
+  "@initiateSpellTitle": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "feat": {
+        "type": "String"
+      }
+    }
+  },
+  "sameListRule": "Ce don se reprend avec une autre liste de sorts.",
+  "@sameListRule": {
+    "description": "Règle sous la liste de sorts."
+  },
+  "spellKnownRule": "{names} : déjà connu, un sort ne se prend pas deux fois.",
+  "@spellKnownRule": {
+    "description": "Règle sous une section de sorts.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
   }
 }

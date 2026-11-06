@@ -865,6 +865,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'À compléter : {title}.'**
   String missingSubchoice(String title);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : {title}'**
+  String choiceTitle(String name, String title);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts mineurs de {cls}'**
+  String cantripsOf(String cls);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts préparés de {cls}'**
+  String preparedSpellsOf(String cls);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'Grimoire'**
+  String get spellbookTitle;
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'{feat} : liste de sorts'**
+  String initiateListTitle(String feat);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'{feat} : caractéristique d’incantation'**
+  String initiateAbilityTitle(String feat);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'{feat} : sorts mineurs'**
+  String initiateCantripsTitle(String feat);
+
+  /// Section de l’étape 6.
+  ///
+  /// In fr, this message translates to:
+  /// **'{feat} : sort du 1er niveau'**
+  String initiateSpellTitle(String feat);
+
+  /// Règle sous la liste de sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce don se reprend avec une autre liste de sorts.'**
+  String get sameListRule;
+
+  /// Règle sous une section de sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{names} : déjà connu, un sort ne se prend pas deux fois.'**
+  String spellKnownRule(String names);
 }
 
 class _AppLocalizationsDelegate

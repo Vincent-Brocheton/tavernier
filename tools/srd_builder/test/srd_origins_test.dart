@@ -77,7 +77,8 @@ void main() {
   });
 
   test('Lignage drow (p. 88) : 120 pieds, sorts aux niveaux 1, 3 et 5', () {
-    final lineage = effects('srd:feature:elf-elven-lineage').single;
+    final [lineage, ability] = effects('srd:feature:elf-elven-lineage');
+    expect(ability['labels'], ['Intelligence', 'Sagesse', 'Charisme']);
     final drow = (lineage['options']! as List<Object?>).first! as List;
     expect(drow, [
       {'op': 'grant_sense', 'sense': 'darkvision', 'range': 120},
