@@ -612,5 +612,82 @@
   "stepToRedo": "À refaire",
   "@stepToRedo": {
     "description": "Étape franchie devenue invalide."
+  },
+  "introSubchoices": "Les choix laissés ouverts par votre classe, votre Historique et votre espèce. Les options impossibles sont grisées, avec la règle qui les bloque.",
+  "@introSubchoices": {
+    "description": "Introduction de l’étape 6."
+  },
+  "classToolsTitle": "Outils à choisir",
+  "@classToolsTitle": {
+    "description": "Section de l’étape 6."
+  },
+  "weaponMasteryTitle": "Bottes d’arme",
+  "@weaponMasteryTitle": {
+    "description": "Section de l’étape 6."
+  },
+  "fightingStyleTitle": "Style de combat",
+  "@fightingStyleTitle": {
+    "description": "Section de l’étape 6."
+  },
+  "originFeatTitle": "Don d’origines",
+  "@originFeatTitle": {
+    "description": "Section de l’étape 6."
+  },
+  "toComplete": "À compléter",
+  "@toComplete": {
+    "description": "Panneau de l’étape 6."
+  },
+  "featNotRepeatable": "Déjà obtenu par l’Historique · non répétable",
+  "@featNotRepeatable": {
+    "description": "Don indisponible."
+  },
+  "expertiseRule": "L’Expertise ne porte que sur une compétence que vous maîtrisez déjà.",
+  "@expertiseRule": {
+    "description": "Règle affichée sous l’Expertise."
+  },
+  "classSkillsOf": "Compétences de {cls}",
+  "@classSkillsOf": {
+    "description": "Section de l’étape 6.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      }
+    }
+  },
+  "alreadyKnownRule": "{names} : déjà maîtrisé, une maîtrise ne se prend pas deux fois.",
+  "@alreadyKnownRule": {
+    "description": "Règle sous une section.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "choiceToRedo": "À refaire : {names}.",
+  "@choiceToRedo": {
+    "description": "Choix devenu invalide.",
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "choicesLeft": "{count, plural, =1{Encore 1 choix} other{Encore {count} choix}}",
+  "@choicesLeft": {
+    "description": "Panneau À compléter.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "missingSubchoice": "À compléter : {title}.",
+  "@missingSubchoice": {
+    "description": "Suivant bloqué.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
   }
 }

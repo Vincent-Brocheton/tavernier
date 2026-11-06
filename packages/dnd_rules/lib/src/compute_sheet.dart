@@ -188,6 +188,8 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       resolve(a.effect.args['count'], a.level),
   ].fold(0, (sum, v) => sum + v);
   final masteries = <String>{};
+  final meleeOnly = ofOp('grant_mastery_slots')
+      .every((a) => a.effect.args['melee_only'] == true);
   if (character.weaponMasteries.length > masterySlots) {
     errors.add(
       IntegrityError(
@@ -213,6 +215,15 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
           IntegrityRule.weaponMastery,
           'weapon_masteries[$i]',
           '${m.weaponId} : arme non maîtrisée par les classes du personnage',
+        ),
+      );
+    } else if (meleeOnly &&
+        (weapon.data as WeaponData).kind != WeaponKind.melee) {
+      errors.add(
+        IntegrityError(
+          IntegrityRule.weaponMastery,
+          'weapon_masteries[$i]',
+          '${m.weaponId} : botte réservée aux armes de corps à corps',
         ),
       );
     } else {
@@ -436,15 +447,21 @@ List<_Active> _activeEffects(
             Effect.fromJson(json! as Map<String, Object?>),
         ],
     ];
-    bool cites(List<Effect> option, String pick) =>
-        option.any((e) => effectReferences(e).contains(pick));
+    final labels = [
+      for (final label in (a.effect.args['labels'] as List<Object?>?) ?? [])
+        '$label',
+    ];
+    // Une sélection nomme l'option, ou cite une entité qu'elle accorde.
+    bool cites(int index, String pick) =>
+        (index < labels.length && labels[index] == pick) ||
+        options[index].any((e) => effectReferences(e).contains(pick));
     final retained = [
-      for (final option in options)
-        if (picked.any((pick) => cites(option, pick))) option,
+      for (final (i, option) in options.indexed)
+        if (picked.any((pick) => cites(i, pick))) option,
     ];
     final count = a.effect.args['count']! as int;
     if (picked.length != count ||
-        picked.any((pick) => !options.any((o) => cites(o, pick)))) {
+        picked.any((pick) => !options.indexed.any((o) => cites(o.$1, pick)))) {
       errors.add(
         IntegrityError(
           IntegrityRule.choice,

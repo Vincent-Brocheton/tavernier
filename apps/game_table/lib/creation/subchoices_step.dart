@@ -1,0 +1,266 @@
+import 'package:dnd_rules/dnd_rules.dart';
+import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../l10n/app_localizations.dart';
+import 'creation_draft.dart';
+import 'creation_providers.dart';
+import 'step_layout.dart';
+import 'subchoices.dart';
+
+/// Titre d'une section, aussi cité par la raison du blocage.
+String subchoiceTitle(
+  AppLocalizations l10n,
+  Subchoice section,
+  CreationDraft draft,
+  ActiveContent content,
+) => switch (section.kind) {
+  SubchoiceKind.classSkills => l10n.classSkillsOf(
+    namesOf(content, [draft.classId!]),
+  ),
+  SubchoiceKind.classTools => l10n.classToolsTitle,
+  SubchoiceKind.masteries => l10n.weaponMasteryTitle,
+  SubchoiceKind.fightingStyle => l10n.fightingStyleTitle,
+  SubchoiceKind.originFeat => l10n.originFeatTitle,
+  SubchoiceKind.effect => namesOf(content, [section.sourceId!]),
+};
+
+/// Étape 6, Sous-choix [P5].
+class SubchoicesStep extends ConsumerWidget {
+  const SubchoicesStep({super.key, required this.content});
+
+  final ActiveContent content;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final draft = ref.watch(creationProvider);
+    final sections = subchoiceSections(draft, content);
+    return StepLayout(
+      detail: _ToComplete(sections: sections, draft: draft, content: content),
+      list: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final section in sections) ...[
+            _Section(section: section, draft: draft, content: content),
+            SizedBox(height: AppSpacing.md),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _Section extends ConsumerWidget {
+  const _Section({
+    required this.section,
+    required this.draft,
+    required this.content,
+  });
+
+  final Subchoice section;
+  final CreationDraft draft;
+  final ActiveContent content;
+
+  void _toggle(WidgetRef ref, String id) =>
+      ref.read(creationProvider.notifier).update((d) {
+        final count = section.count;
+        return switch (section.kind) {
+          SubchoiceKind.classSkills => d.toggleClassSkill(id, count),
+          SubchoiceKind.classTools => d.toggleClassTool(id, count),
+          SubchoiceKind.masteries => d.toggleMastery(id, count),
+          SubchoiceKind.fightingStyle => d.selectFightingStyle(id),
+          SubchoiceKind.originFeat => d.selectOriginFeat(id),
+          SubchoiceKind.effect => d.togglePick(section.choiceId!, id, count),
+        };
+      });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final feats =
+        section.kind == SubchoiceKind.fightingStyle ||
+        section.kind == SubchoiceKind.originFeat;
+    final known = [
+      for (final o in section.options)
+        if (o.block == OptionBlock.known) o.label,
+    ];
+    final expertise = section.options.any(
+      (o) => o.block == OptionBlock.notProficient,
+    );
+    final invalid = section.invalid;
+    return Container(
+      padding: EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(AppRadii.lg),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  subchoiceTitle(l10n, section, draft, content),
+                  style: text.titleMedium,
+                ),
+              ),
+              Text(
+                l10n.countOf(section.chosen.length, section.count),
+                style: text.labelLarge,
+              ),
+            ],
+          ),
+          SizedBox(height: AppSpacing.sm),
+          if (feats)
+            CardGrid(
+              minWidth: 260,
+              children: [
+                for (final option in section.options)
+                  _featCard(ref, l10n, option),
+              ],
+            )
+          else
+            Wrap(
+              spacing: AppSpacing.xs,
+              runSpacing: AppSpacing.xxs,
+              children: [
+                for (final option in section.options) _chip(ref, option),
+              ],
+            ),
+          if (invalid.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                l10n.choiceToRedo(invalid.map((o) => o.label).join(', ')),
+                style: text.bodySmall!.copyWith(color: scheme.error),
+              ),
+            ),
+          if (known.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                l10n.alreadyKnownRule(known.join(', ')),
+                style: text.bodySmall,
+              ),
+            ),
+          if (expertise)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(l10n.expertiseRule, style: text.bodySmall),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _chip(WidgetRef ref, SubchoiceOption option) {
+    final chosen = section.chosen.contains(option.id);
+    final full = section.count > 1 && section.chosen.length >= section.count;
+    final blocked = option.block != null;
+    return FilterChip(
+      label: Text(
+        option.detail == null
+            ? option.label
+            : '${option.label} · ${option.detail}',
+      ),
+      avatar: blocked && !chosen
+          ? const Icon(Icons.lock_outline, size: 16)
+          : null,
+      selected: chosen,
+      // Un choix devenu invalide reste touchable, pour le retirer.
+      onSelected: chosen || (!blocked && !full)
+          ? (_) => _toggle(ref, option.id)
+          : null,
+    );
+  }
+
+  Widget _featCard(
+    WidgetRef ref,
+    AppLocalizations l10n,
+    SubchoiceOption option,
+  ) {
+    final blocked = option.block == OptionBlock.notRepeatable;
+    final card = SelectionCard(
+      title: option.label,
+      subtitle: blocked ? l10n.featNotRepeatable : option.detail,
+      selected: section.chosen.contains(option.id),
+      onTap: blocked ? null : () => _toggle(ref, option.id),
+    );
+    return blocked ? Opacity(opacity: 0.6, child: card) : card;
+  }
+}
+
+/// Panneau « À compléter » : l'état de chaque section.
+class _ToComplete extends StatelessWidget {
+  const _ToComplete({
+    required this.sections,
+    required this.draft,
+    required this.content,
+  });
+
+  final List<Subchoice> sections;
+  final CreationDraft draft;
+  final ActiveContent content;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(l10n.toComplete, style: text.titleMedium),
+        for (final section in sections)
+          Padding(
+            padding: EdgeInsets.only(top: AppSpacing.sm),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  section.complete ? Icons.check_circle : Icons.error_outline,
+                  size: 20,
+                  color: section.complete ? scheme.primary : scheme.error,
+                ),
+                SizedBox(width: AppSpacing.xs),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        subchoiceTitle(l10n, section, draft, content),
+                        style: text.titleSmall,
+                      ),
+                      Text(
+                        _state(l10n, section),
+                        style: text.bodySmall!.copyWith(
+                          color: section.complete
+                              ? scheme.onSurfaceVariant
+                              : scheme.error,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+
+  String _state(AppLocalizations l10n, Subchoice section) {
+    if (section.invalid.isNotEmpty) return l10n.stepToRedo;
+    if (!section.complete) {
+      return l10n.choicesLeft(section.count - section.chosen.length);
+    }
+    return [
+      for (final option in section.options)
+        if (section.chosen.contains(option.id)) option.label,
+    ].join(', ');
+  }
+}

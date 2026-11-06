@@ -58,7 +58,14 @@ void main() {
 
   test('Goliath (p. 89) : 35 pieds, Ascendance gigante par Repos long', () {
     expect(species('goliath').speedFeet, 35);
-    final ancestry = effects('srd:feature:goliath-giant-ancestry').single;
+    final [choice, ancestry] = effects('srd:feature:goliath-giant-ancestry');
+    expect(choice['op'], 'choice');
+    expect(choice['count'], 1);
+    final text = byId['srd:feature:goliath-giant-ancestry']!.textFr!;
+    expect(choice['labels'], hasLength(6));
+    for (final label in choice['labels']! as List<Object?>) {
+      expect(text, contains('$label ('));
+    }
     expect(ancestry['max'], {'ref': 'proficiency_bonus'});
     expect(ancestry['recharge'], [
       {'on': 'long_rest', 'amount': 'all'},

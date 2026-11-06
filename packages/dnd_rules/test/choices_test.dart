@@ -30,6 +30,52 @@ void main() {
     expect(_choiceErrors(sheet).single.path, 'choices.skillful');
   });
 
+  group('option nommée', () {
+    Map<String, Object?> cleric(String order) => {
+      'class_id': 'srd:class:cleric',
+      'level': 1,
+      'skill_choices': ['srd:skill:medicine', 'srd:skill:persuasion'],
+    };
+
+    test('Protecteur (SRD p. 38) : les armes de guerre sont maîtrisées', () {
+      final sheet = _sheet((json) {
+        json['class_levels'] = [cleric('Protecteur')];
+        (json['choices']! as Map<String, Object?>)['cleric-divine-order'] = [
+          'Protecteur',
+        ];
+      });
+      expect(_choiceErrors(sheet), isEmpty);
+      // Épée longue maîtrisée : +2 de maîtrise au toucher ([D1] Aldric : FOR 17).
+      final longsword = sheet.attacks.firstWhere(
+        (a) => a.weaponId == 'srd:weapon:longsword',
+      );
+      expect(longsword.attackBonus, 3 + 2);
+    });
+
+    test('Thaumaturge : pas de maîtrise des armes de guerre', () {
+      final sheet = _sheet((json) {
+        json['class_levels'] = [cleric('Thaumaturge')];
+        (json['choices']! as Map<String, Object?>)['cleric-divine-order'] = [
+          'Thaumaturge',
+        ];
+      });
+      final longsword = sheet.attacks.firstWhere(
+        (a) => a.weaponId == 'srd:weapon:longsword',
+      );
+      expect(longsword.attackBonus, 3);
+    });
+
+    test('un nom hors des options : erreur', () {
+      final sheet = _sheet((json) {
+        json['class_levels'] = [cleric('Inconnu')];
+        (json['choices']! as Map<String, Object?>)['cleric-divine-order'] = [
+          'Inconnu',
+        ];
+      });
+      expect(_choiceErrors(sheet).single.path, 'choices.cleric-divine-order');
+    });
+  });
+
   test('une sélection hors des options : erreur', () {
     final sheet = _sheet(
       (json) => json['choices'] = {

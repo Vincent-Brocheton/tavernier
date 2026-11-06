@@ -257,7 +257,10 @@ Map<String, Map<String, FieldSpec>> opSchemas(FieldCheck effects) => {
     'count': FieldSpec(intField(min: 1), required: true),
   },
   'set_crit_range': {'min': FieldSpec(intField(min: 2), required: true)},
-  'grant_mastery_slots': {'count': const FieldSpec(checkValue, required: true)},
+  'grant_mastery_slots': {
+    'count': const FieldSpec(checkValue, required: true),
+    'melee_only': FieldSpec(boolField()),
+  },
   'modify_damage': {
     'value': const FieldSpec(checkDamage, required: true),
     'scope': FieldSpec(
@@ -307,6 +310,7 @@ Map<String, Map<String, FieldSpec>> opSchemas(FieldCheck effects) => {
     'id': FieldSpec(stringField(), required: true),
     'count': FieldSpec(intField(min: 1), required: true),
     'options': FieldSpec(listField(effects), required: true),
+    'labels': FieldSpec(listField(stringField())),
     'replaceable_on': FieldSpec(enumField(_replaceableOn)),
   },
 };

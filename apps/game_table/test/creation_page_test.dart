@@ -340,6 +340,32 @@ void main() {
       expect(find.text('Bonus à refaire'), findsNothing);
     });
 
+    for (final width in [390.0, 1440.0]) {
+      testWidgets('$width dp : sous-choix du Guerrier jusqu’à Équipement', (
+        tester,
+      ) async {
+        await toAbilities(tester, width);
+        await spendAllPoints(tester);
+        await _tapBonus(tester, '+2 sur Constitution');
+        await _tapBonus(tester, '+1 sur Dextérité');
+        await tester.tap(find.byType(FilledButton).last);
+        await tester.pumpAndSettle();
+        expect(find.text('Compétences de Guerrier'), findsWidgets);
+        expect(
+          find.text('À compléter : Compétences de Guerrier.'),
+          findsOneWidget,
+        );
+        await _tap(tester, 'Perception');
+        await _tap(tester, 'Survie');
+        await _tap(tester, 'Épée longue · Sape');
+        await _tap(tester, 'Javeline · Ralentissement');
+        await _tap(tester, 'Hache d’armes · Renversement');
+        await _tap(tester, 'Défense');
+        expect(_next(tester).onPressed, isNotNull);
+        expect(tester.takeException(), isNull);
+      });
+    }
+
     testWidgets('+1, +1 et +1 : trois bonus, une seule colonne', (
       tester,
     ) async {

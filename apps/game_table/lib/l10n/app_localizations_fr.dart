@@ -423,4 +423,62 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get stepToRedo => 'À refaire';
+
+  @override
+  String get introSubchoices =>
+      'Les choix laissés ouverts par votre classe, votre Historique et votre espèce. Les options impossibles sont grisées, avec la règle qui les bloque.';
+
+  @override
+  String get classToolsTitle => 'Outils à choisir';
+
+  @override
+  String get weaponMasteryTitle => 'Bottes d’arme';
+
+  @override
+  String get fightingStyleTitle => 'Style de combat';
+
+  @override
+  String get originFeatTitle => 'Don d’origines';
+
+  @override
+  String get toComplete => 'À compléter';
+
+  @override
+  String get featNotRepeatable =>
+      'Déjà obtenu par l’Historique · non répétable';
+
+  @override
+  String get expertiseRule =>
+      'L’Expertise ne porte que sur une compétence que vous maîtrisez déjà.';
+
+  @override
+  String classSkillsOf(String cls) {
+    return 'Compétences de $cls';
+  }
+
+  @override
+  String alreadyKnownRule(String names) {
+    return '$names : déjà maîtrisé, une maîtrise ne se prend pas deux fois.';
+  }
+
+  @override
+  String choiceToRedo(String names) {
+    return 'À refaire : $names.';
+  }
+
+  @override
+  String choicesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Encore $count choix',
+      one: 'Encore 1 choix',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String missingSubchoice(String title) {
+    return 'À compléter : $title.';
+  }
 }

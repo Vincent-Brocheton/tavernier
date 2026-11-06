@@ -25,7 +25,9 @@ class SelectionCard extends StatefulWidget {
   /// Valeur à droite du titre (« M · 9 m »).
   final String? trailing;
   final bool selected;
-  final VoidCallback onTap;
+
+  /// Sans action, la carte est inactive.
+  final VoidCallback? onTap;
 
   /// Puces sous le texte (dé de vie, source).
   final List<Widget>? footer;

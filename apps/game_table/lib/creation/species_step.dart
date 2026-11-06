@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../l10n/app_localizations.dart';
 import 'creation_providers.dart';
 import 'step_layout.dart';
+import 'subchoices.dart';
 
 /// Étape 3, Espèce [P3].
 class SpeciesStep extends ConsumerWidget {
@@ -68,12 +69,6 @@ class SpeciesDetail extends ConsumerWidget {
   final ContentEntity entity;
   final ActiveContent content;
 
-  /// Première phrase du texte d'un trait.
-  static String _summary(String text) {
-    final end = text.indexOf('. ');
-    return end < 0 ? text.split('\n').first : text.substring(0, end + 1);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -116,7 +111,7 @@ class SpeciesDetail extends ConsumerWidget {
                     if ((trait.data as FeatureData).level case final level?
                         when level > 1)
                       TextSpan(text: ' ${l10n.traitFromLevel(level)}'),
-                    TextSpan(text: '. ${_summary(trait.textFr ?? '')}'),
+                    TextSpan(text: '. ${firstSentence(trait.textFr ?? '')}'),
                   ],
                 ),
               ),
