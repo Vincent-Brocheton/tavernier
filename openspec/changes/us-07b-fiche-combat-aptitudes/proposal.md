@@ -32,3 +32,4 @@ Aucune.
 - **Bouton « Utiliser », utilisations restantes :** l'état de jeu arrive avec US-11 et US-31. Les pips montrent le maximum.
 - **Propriétés d'arme, Attaque supplémentaire, critique élargi :** les maquettes les citent, le moteur ne les expose pas encore.
 - **Modifier ses bottes après un repos long :** US-11.
+- **Aptitudes de sous-classe :** US-08, on n'en choisit pas au niveau 1.

@@ -7,3 +7,4 @@
 
 - [x] 2.1 Tests puis onglet Combat
 - [x] 2.2 Tests puis `sheet_features.dart` et onglet Aptitudes
+- [x] 2.3 Vérification dans le navigateur

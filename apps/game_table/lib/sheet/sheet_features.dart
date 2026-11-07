@@ -28,7 +28,8 @@ FeatureResource? _resource(ContentEntity entity, ComputedSheet sheet) {
 }
 
 /// Aptitudes atteintes par [character], groupées par origine : classes,
-/// sous-classes, espèce, puis dons.
+/// espèce, puis dons. Les sous-classes viendront avec la montée de niveau
+/// (US-08) : on n'en choisit pas au niveau 1.
 List<FeatureGroup> featureGroups(
   CharacterInput character,
   ComputedSheet sheet,
