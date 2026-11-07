@@ -113,6 +113,13 @@ final class SheetBreakdowns {
     _lines(sheet.skillBreakdown[skillKey(skill)]!),
   );
 
+  Widget attack(String name, Attack attack) => _view(
+    l10n.categoryAttack,
+    name,
+    formatSigned(attack.attackBonus),
+    _lines(Computed(attack.sources)),
+  );
+
   Widget armorClass() => _view(
     l10n.categoryStat,
     l10n.statArmorClass,

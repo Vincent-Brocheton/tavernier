@@ -43,14 +43,26 @@ const _aldric = CharacterInput(
     ),
   ],
   alignment: 'LB',
+  feats: [
+    FeatInput(
+      featId: 'srd:feat:alert',
+      sourceType: 'species',
+      sourceRef: 'srd:species:human',
+    ),
+  ],
+  weaponMasteries: [
+    WeaponMasteryInput(weaponId: 'srd:weapon:longsword', slotIndex: 0),
+  ],
   items: [
+    ItemInput(itemId: 'srd:weapon:longsword', quantity: 1, equipped: true),
+    ItemInput(itemId: 'srd:weapon:javelin', quantity: 8),
     ItemInput(itemId: 'srd:armor:chain-mail', quantity: 1, equipped: true),
     ItemInput(itemId: 'srd:armor:shield', quantity: 1, equipped: true),
   ],
 );
 
 Future<void> _open(WidgetTester tester, double width, {String id = 'a'}) async {
-  tester.view.physicalSize = Size(width, 1000);
+  tester.view.physicalSize = Size(width, 2000);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   final database = TavernierDatabase(NativeDatabase.memory());
@@ -120,6 +132,58 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Modificateur de Force'), findsOneWidget);
       expect(find.text('Bonus de maîtrise'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  for (final width in [390.0, 1440.0]) {
+    testWidgets('$width dp : onglet Combat', (tester) async {
+      await _open(tester, width);
+      await tester.ensureVisible(find.text('Combat'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Combat'));
+      await tester.pumpAndSettle();
+      expect(find.text('Épée longue'), findsOneWidget);
+      expect(find.text('Mains nues'), findsOneWidget);
+      expect(find.text('1d8 + 3'), findsOneWidget);
+      expect(find.text('Botte : Sape'), findsOneWidget);
+      expect(find.textContaining('Désavantage'), findsOneWidget);
+      expect(find.text('Javeline · Ralentissement'), findsNothing);
+      expect(find.text('Second souffle'), findsOneWidget);
+      expect(find.byType(ResourcePips), findsWidgets);
+      expect(find.text('Épée longue · Sape'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+
+      await tester.tap(find.text('toucher').first);
+      await tester.pumpAndSettle();
+      expect(find.text('Modificateur de Force'), findsOneWidget);
+      expect(find.text('Bonus de maîtrise'), findsOneWidget);
+    });
+
+    testWidgets('$width dp : onglet Aptitudes et filtres', (tester) async {
+      await _open(tester, width);
+      final tab = find.text('Aptitudes');
+      await tester.ensureVisible(tab);
+      await tester.pumpAndSettle();
+      await tester.tap(tab);
+      await tester.pumpAndSettle();
+      expect(find.text('Guerrier 1'), findsOneWidget);
+      expect(find.text('Humain'), findsOneWidget);
+      expect(find.text('Second souffle'), findsOneWidget);
+      expect(find.text('Vigilant'), findsOneWidget);
+      // Attaque supplémentaire arrive au niveau 5.
+      expect(find.text('Attaque supplémentaire'), findsNothing);
+
+      await tester.tap(find.text('Avec utilisations'));
+      await tester.pumpAndSettle();
+      expect(find.text('Second souffle'), findsOneWidget);
+      expect(find.text('Vigilant'), findsNothing);
+      expect(find.text('repos court'), findsOneWidget);
+
+      await tester.tap(find.text('Dons').first);
+      await tester.pumpAndSettle();
+      expect(find.text('Vigilant'), findsOneWidget);
+      expect(find.text('Second souffle'), findsNothing);
       expect(tester.takeException(), isNull);
     });
   }

@@ -248,11 +248,11 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
 
   // Attaques (SRD p. 97 et p. 189) ; bonus d'attaque des effets
   // `modify_check` (Archerie).
-  int attackBonus(String scope) => [
+  List<Contribution> attackEffects(String scope) => [
     for (final a in ofOp('modify_check'))
       if (a.effect.args['scope'] == scope)
-        resolve(a.effect.args['add'], a.level),
-  ].fold(0, (sum, v) => sum + v);
+        Contribution(a.source, resolve(a.effect.args['add'], a.level)),
+  ];
   String withMod(String dice, int mod) =>
       mod == 0 ? dice : '$dice${mod > 0 ? '+' : ''}$mod';
   final attacks = <Attack>[
@@ -261,17 +261,21 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         () {
           final w = weapon.data as WeaponData;
           final ranged = w.kind == WeaponKind.ranged;
-          final abilityMod = w.properties.contains('finesse')
-              ? [mod('str'), mod('dex')].reduce((a, b) => a > b ? a : b)
-              : mod(ranged ? 'dex' : 'str');
+          final abilityCode = w.properties.contains('finesse')
+              ? (mod('dex') > mod('str') ? 'dex' : 'str')
+              : (ranged ? 'dex' : 'str');
+          final abilityMod = mod(abilityCode);
+          final bonus = Computed([
+            Contribution(abilityCode, abilityMod),
+            if (proficientWith(weapon)) Contribution('proficiency', pb),
+            ...attackEffects(
+              ranged ? 'ranged_weapon_attack' : 'melee_weapon_attack',
+            ),
+          ]);
           return Attack(
             weaponId: id,
-            attackBonus:
-                abilityMod +
-                (proficientWith(weapon) ? pb : 0) +
-                attackBonus(
-                  ranged ? 'ranged_weapon_attack' : 'melee_weapon_attack',
-                ),
+            attackBonus: bonus.value,
+            sources: bonus.sources,
             damage: withMod(w.damage, abilityMod),
             damageType: w.damageType.slug,
             rangeFeet: w.rangeFeet,
@@ -281,6 +285,10 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     Attack(
       weaponId: 'unarmed',
       attackBonus: mod('str') + pb,
+      sources: [
+        Contribution('str', mod('str')),
+        Contribution('proficiency', pb),
+      ],
       damage: '${1 + mod('str')}',
       damageType: 'bludgeoning',
     ),
