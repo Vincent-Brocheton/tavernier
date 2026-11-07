@@ -27,6 +27,11 @@
     "armor_training": [
       "light"
     ],
+    "multiclass": {
+      "armor_training": [
+        "light"
+      ]
+    },
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:charisma",
     "levels": [

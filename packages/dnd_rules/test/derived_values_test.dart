@@ -260,7 +260,7 @@ void main() {
       const Contribution('srd:class:fighter', 10),
       const Contribution('con', 2),
     ]);
-    expect(sheet.hitDice, (die: 'd10', total: 1));
+    expect(sheet.hitDice, [(die: 'd10', total: 1)]);
   });
 
   test('ressources : Second souffle 2 et Inspiration héroïque', () {

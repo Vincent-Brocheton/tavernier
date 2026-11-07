@@ -29,6 +29,12 @@
       "light",
       "shield"
     ],
+    "multiclass": {
+      "armor_training": [
+        "light",
+        "shield"
+      ]
+    },
     "subclass_level": 3,
     "tool_proficiencies": [
       "srd:tool:herbalism-kit"

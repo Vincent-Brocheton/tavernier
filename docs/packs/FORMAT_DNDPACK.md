@@ -82,6 +82,7 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `spellcasting_ability` : caractéristique d'incantation ;
   - `tool_proficiencies` : outils maîtrisés d'office ;
   - `tool_choice_count` et `tool_choice_category` : outils à choisir dans une catégorie.
+  - `multiclass` : ce que reçoit un personnage dont ce n'est pas la classe de départ, en plus du dé de vie et des aptitudes de niveau 1 : `weapon_proficiencies`, `armor_training`, `tool_proficiencies`, `skill_choice_count` et `tool_choice_count`. Absent, le bloc n'accorde rien.
   - `weapon_proficiencies` : `simple`, `martial`, ou une partie des armes de guerre : `martial_light` (Moine) ou `martial_finesse_or_light` (Roublard).
   - `starting_equipment` : options d'équipement de départ dans l'ordre du SRD (A, B, C). Chaque option porte :
     - `items` : `{item, quantity}`, où `item` est une arme, une armure, un outil ou un objet (« 20 flèches » donne l'objet « Flèches (20) » × 1) ;

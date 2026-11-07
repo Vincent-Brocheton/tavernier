@@ -10,6 +10,38 @@ const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 /// SRD p. 22, « Valeurs standard ».
 const _standardArray = [15, 14, 13, 12, 10, 8];
 
+/// Valeur requise pour se multiclasser (SRD p. 26).
+const multiclassMinimum = 13;
+
+/// Une classe ouverte ou non au multiclassage, et les valeurs qui le disent :
+/// celles qui atteignent le minimum si [open], sinon celles qui le ratent.
+final class ClassAccess {
+  const ClassAccess({required this.open, required this.scores});
+
+  final bool open;
+  final List<({String ability, int score})> scores;
+}
+
+/// Toutes les principales sont requises, sauf pour une classe où l'une suffit
+/// (Guerrier).
+ClassAccess classAccess(ClassData cls, Map<String, AbilityScore> abilities) {
+  final scores = [
+    for (final id in cls.primaryAbilities)
+      (ability: '$id', score: abilities[_codeOf('$id')]?.value ?? 0),
+  ];
+  bool reaches(({String ability, int score}) s) => s.score >= multiclassMinimum;
+  final open = cls.primaryAbilitiesAny
+      ? scores.any(reaches)
+      : scores.every(reaches);
+  return ClassAccess(
+    open: open,
+    scores: [
+      for (final s in scores)
+        if (reaches(s) == open) s,
+    ],
+  );
+}
+
 /// Effet actif : sa source (entité porteuse), son origine (`species`,
 /// `class`, `feat`), le niveau qui résout ses tables `by_level`, et où lire
 /// les sélections de ses effets `choice`.
@@ -85,8 +117,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   // Maîtrises de compétence et jets de sauvegarde.
   final skillIds = {
     ...?background?.skillProficiencies.map((id) => '$id'),
-    if (character.classLevels.firstOrNull case final first?)
-      ...first.skillChoices,
+    for (final c in character.classLevels) ...c.skillChoices,
     for (final a in ofOp('grant_proficiency'))
       if (a.effect.args['kind'] == 'skill') a.effect.args['ref']! as String,
   };
@@ -147,8 +178,31 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         (shieldWanted == null || shieldWanted == (shield != null));
   }
 
+  // SRD p. 27 : une seule méthode de calcul s'applique, la meilleure ici.
+  int formulaValue(Map<String, Object?> args) =>
+      (args['abilities']! as List<Object?>).fold(
+        args['base']! as int,
+        (sum, code) => sum + mod(code! as String),
+      );
+  final formula =
+      [
+        for (final a in ofOp('ac_formula'))
+          if (applies(a.effect)) a.effect.args,
+      ].fold<Map<String, Object?>?>(
+        null,
+        (best, args) =>
+            formulaValue(args) >
+                (best == null ? 10 + mod('dex') : formulaValue(best))
+            ? args
+            : best,
+      );
+
   final armorClass = Computed([
-    if (armor != null) ...[
+    if (formula != null) ...[
+      Contribution('base', formula['base']! as int),
+      for (final code in formula['abilities']! as List<Object?>)
+        Contribution('$code', mod('$code')),
+    ] else if (armor != null) ...[
       Contribution('${armor.id}', armorData(armor)!.baseAc),
       if (_dexToAc(armorData(armor)!, mod('dex')) case final dex when dex != 0)
         Contribution('dex', dex),
@@ -173,7 +227,17 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     advantage: initiativeEffects.any((a) => a.effect.args['advantage'] == true),
   );
 
-  final hitDie = classes.firstOrNull?.data?.hitDie ?? 0;
+  // SRD p. 26 : les dés de même type se regroupent.
+  final hitDice = <int, int>{};
+  for (final c in classes) {
+    if (c.data case final cls?) {
+      hitDice.update(
+        cls.hitDie,
+        (total) => total + c.input.level,
+        ifAbsent: () => c.input.level,
+      );
+    }
+  }
   final hitPointsMax = Computed([
     for (final (i, c) in classes.indexed)
       if (c.data case final cls?)
@@ -186,9 +250,13 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     Contribution('con', mod('con') * level),
   ]);
 
-  // Armes maîtrisées : catégories des classes et effets de maîtrise.
+  // Armes maîtrisées : classe de départ, traits de multiclassage des suivantes
+  // et effets de maîtrise.
   final weaponCategories = {
-    for (final c in classes) ...?c.data?.weaponProficiencies,
+    for (final (i, c) in classes.indexed)
+      ...?(i == 0
+          ? c.data?.weaponProficiencies
+          : c.data?.multiclass.weaponProficiencies),
     for (final a in ofOp('grant_proficiency'))
       if (a.effect.args['kind'] == 'weapon_category')
         a.effect.args['ref']! as String,
@@ -298,18 +366,10 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   ];
 
   // Cahier §11.3, SRD p. 26 : 13 dans la caractéristique principale de la
-  // nouvelle classe et de chaque classe existante. Toutes les principales
-  // sont requises, sauf pour une classe où l'une suffit (Guerrier).
-  bool meetsPrimary(ClassData cls) {
-    bool reaches(ContentId id) => (abilities[_codeOf('$id')]?.value ?? 0) >= 13;
-    return cls.primaryAbilitiesAny
-        ? cls.primaryAbilities.any(reaches)
-        : cls.primaryAbilities.every(reaches);
-  }
-
+  // nouvelle classe et de chaque classe existante.
   for (var i = 1; i < classes.length; i++) {
     final involved = [for (final c in classes.take(i + 1)) c.data].nonNulls;
-    if (!involved.every(meetsPrimary)) {
+    if (!involved.every((cls) => classAccess(cls, abilities).open)) {
       errors.add(
         IntegrityError(
           IntegrityRule.multiclass,
@@ -383,7 +443,14 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
           Contribution(a.source, resolve(a.effect.args['value'] ?? 0, a.level)),
     ]),
     hitPointsMax: hitPointsMax,
-    hitDice: (die: 'd$hitDie', total: level),
+    hitDice: [
+      for (final MapEntry(:key, :value) in hitDice.entries)
+        (die: 'd$key', total: value),
+    ],
+    proficientWeapons: {
+      for (final entity in content.entities)
+        if (entity.data is WeaponData && proficientWith(entity)) '${entity.id}',
+    },
     resources: {
       for (final a in ofOp('grant_resource'))
         a.effect.args['id']! as String: resolve(a.effect.args['max'], a.level),

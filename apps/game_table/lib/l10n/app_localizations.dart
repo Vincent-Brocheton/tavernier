@@ -1686,6 +1686,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Sort du 1er niveau'**
   String get initiateSpellChoice;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelle classe pour le niveau {level} ?'**
+  String classForLevel(int level);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get continueClass;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Multiclasser · niveau 1 dans une autre classe'**
+  String get multiclassHeading;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{{names} {minimum} requise} other{{names} {minimum} requis}}'**
+  String multiclassNeeds(int count, String names, int minimum);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **' et '**
+  String get abilityAnd;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **' ou '**
+  String get abilityOr;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{ability} {score} ✓'**
+  String abilityReached(String ability, int score);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{ability} {score} : il manque {missing}'**
+  String abilityMissing(String ability, int score, int missing);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Multiclasser demande {minimum} dans la caractéristique principale de la nouvelle classe et de la classe actuelle.'**
+  String multiclassRule(int minimum);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétence de {cls}'**
+  String multiclassSkill(String cls);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Instrument de {cls}'**
+  String multiclassTool(String cls);
 }
 
 class _AppLocalizationsDelegate

@@ -31,6 +31,16 @@
       "heavy",
       "shield"
     ],
+    "multiclass": {
+      "weapon_proficiencies": [
+        "martial"
+      ],
+      "armor_training": [
+        "light",
+        "medium",
+        "shield"
+      ]
+    },
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:charisma",
     "levels": [

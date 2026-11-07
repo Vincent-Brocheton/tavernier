@@ -53,7 +53,7 @@ void main() {
       expect(sheet.level, 5);
       expect(sheet.proficiencyBonus, 3);
       expect(sheet.hitPointsMax.value, 49);
-      expect(sheet.hitDice, (die: 'd10', total: 5));
+      expect(sheet.hitDice, [(die: 'd10', total: 5)]);
     });
 
     test('caractéristiques', () {

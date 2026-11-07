@@ -13,7 +13,7 @@ import 'level_up_draft.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
 
-enum _Step { hitPoints, features, feat, spells, summary }
+enum _Step { classChoice, hitPoints, features, feat, spells, summary }
 
 /// Une section de sorts à choisir.
 typedef _SpellSection = ({
@@ -75,7 +75,7 @@ class _WizardState extends ConsumerState<_Wizard> {
   /// Le personnage tel qu'à l'ouverture : enregistrer le relit, et l'assistant
   /// ne doit pas recalculer un niveau de plus pendant qu'il se ferme.
   late final CharacterInput _character = widget.character;
-  String get _classId => _character.classLevels.first.classId;
+  String get _classId => _draft.classId ?? _character.classLevels.first.classId;
 
   void _update(LevelUpDraft Function(LevelUpDraft) change) =>
       setState(() => _draft = change(_draft));
@@ -117,12 +117,21 @@ class _WizardState extends ConsumerState<_Wizard> {
     final name = namesOf(_content, [_classId]);
     final book = {..._character.spells.spellbook, ...?_draft.spells[spellBook]}
       ..removeAll(_character.spells.prepared);
+    // Thaumaturge : un sort mineur de plus, dans la liste de la classe.
+    final bonus = [
+      for (final choice in gain.choices)
+        for (final option in choice.options)
+          if (option.cantripListId == null &&
+              (_draft.choices[choice.id]?.contains(option.pick) ?? false))
+            option.bonusCantrips,
+    ].fold(0, (sum, count) => sum + count);
+    final cantrips = spells.cantrips + bonus;
     return [
-      if (spells.cantrips > 0)
+      if (cantrips > 0)
         (
           key: spellCantrips,
           title: l10n.cantripsOf(name),
-          count: spells.cantrips,
+          count: cantrips,
           ids: spellsOfList(_content, _classId, 0, 0),
         ),
       if (spells.spellbook > 0)
@@ -167,6 +176,7 @@ class _WizardState extends ConsumerState<_Wizard> {
           gain,
         ).any((s) => (_draft.spells[s.key]?.length ?? 0) != s.count);
         return open ? l10n.missingSpells : null;
+      case _Step.classChoice:
       case _Step.hitPoints:
       case _Step.summary:
         return null;
@@ -233,6 +243,7 @@ class _WizardState extends ConsumerState<_Wizard> {
     final sheet = computeSheet(after, _content);
     final slots = sheet.weaponMasterySlots - before.weaponMasterySlots;
     final steps = [
+      _Step.classChoice,
       _Step.hitPoints,
       _Step.features,
       if (gain.featCategories.isNotEmpty) _Step.feat,
@@ -248,8 +259,9 @@ class _WizardState extends ConsumerState<_Wizard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: switch (step) {
+          _Step.classChoice => _classChoice(l10n, text, before),
           _Step.hitPoints => _hitPoints(l10n, text, before, sheet),
-          _Step.features => _features(l10n, text, gain, slots, before),
+          _Step.features => _features(l10n, text, gain, slots, before, sheet),
           _Step.feat => _feat(
             l10n,
             text,
@@ -285,7 +297,9 @@ class _WizardState extends ConsumerState<_Wizard> {
           Text(_character.name, style: text.bodyMedium),
           Text(l10n.levelUpTitle, style: text.labelMedium),
           Text(
-            l10n.levelFromTo(name, gain.classLevel - 1, gain.classLevel),
+            gain.classLevel == 1
+                ? l10n.classLevel(name, 1)
+                : l10n.levelFromTo(name, gain.classLevel - 1, gain.classLevel),
             style: text.headlineSmall,
           ),
           Text(l10n.stepOf(_index + 1, steps.length), style: text.bodySmall),
@@ -319,6 +333,84 @@ class _WizardState extends ConsumerState<_Wizard> {
         ],
       ),
     );
+  }
+
+  /// Choix de la classe [G2] : les classes actuelles, puis les autres, celles
+  /// dont le prérequis est rempli d'abord.
+  List<Widget> _classChoice(
+    AppLocalizations l10n,
+    TextTheme text,
+    ComputedSheet before,
+  ) {
+    String name(String id) => namesOf(_content, [id]);
+    ClassData data(String id) => _content.entity(id)!.data as ClassData;
+    ClassAccess access(String id) => classAccess(data(id), before.abilities);
+    String status(ClassAccess value) => value.scores
+        .map(
+          (s) => value.open
+              ? l10n.abilityReached(name(s.ability), s.score)
+              : l10n.abilityMissing(
+                  name(s.ability),
+                  s.score,
+                  multiclassMinimum - s.score,
+                ),
+        )
+        .join(' · ');
+    String needs(ClassData cls) => l10n.multiclassNeeds(
+      cls.primaryAbilitiesAny ? 1 : cls.primaryAbilities.length,
+      cls.primaryAbilities
+          .map((id) => name('$id'))
+          .join(cls.primaryAbilitiesAny ? l10n.abilityOr : l10n.abilityAnd),
+      multiclassMinimum,
+    );
+
+    final current = {for (final c in _character.classLevels) c.classId};
+    final eligible = current.every((id) => access(id).open);
+    final others = [
+      for (final entity in sortedEntities(_content, 'class'))
+        if (!current.contains('${entity.id}')) '${entity.id}',
+    ];
+    final ordered = [
+      ...others.where((id) => access(id).open),
+      ...others.where((id) => !access(id).open),
+    ];
+    return [
+      Text(l10n.classForLevel(before.level + 1), style: text.titleMedium),
+      SizedBox(height: AppSpacing.xs),
+      for (final level in _character.classLevels)
+        SelectionCard(
+          title: l10n.classLevel(name(level.classId), level.level + 1),
+          subtitle: [
+            l10n.continueClass,
+            ...levelGain(
+              _character,
+              _content,
+              level.classId,
+            ).features.map((f) => f.name),
+          ].join(' · '),
+          selected: _classId == level.classId,
+          onTap: () => _update((d) => d.selectClass(level.classId)),
+        ),
+      SizedBox(height: AppSpacing.sm),
+      Text(l10n.multiclassHeading, style: text.titleSmall),
+      SizedBox(height: AppSpacing.xs),
+      for (final id in ordered)
+        Opacity(
+          opacity: access(id).open && eligible ? 1 : 0.6,
+          child: SelectionCard(
+            title: l10n.classLevel(name(id), 1),
+            subtitle: '${needs(data(id))} · ${status(access(id))}',
+            selected: _classId == id,
+            onTap: access(id).open && eligible
+                ? () => _update((d) => d.selectClass(id))
+                : null,
+          ),
+        ),
+      SizedBox(height: AppSpacing.xs),
+      Text(l10n.multiclassRule(multiclassMinimum), style: text.bodySmall),
+      for (final id in current)
+        Text('${name(id)} : ${status(access(id))}', style: text.bodySmall),
+    ];
   }
 
   List<Widget> _spells(
@@ -421,10 +513,12 @@ class _WizardState extends ConsumerState<_Wizard> {
     LevelGain gain,
     int slots,
     ComputedSheet before,
+    ComputedSheet after,
   ) {
     final cls = _content.entity(_classId)!.data as ClassData;
     final masteryWeapons = {
-      for (final w in masteryOptions(_content, cls).weapons) '${w.id}',
+      for (final w in masteryOptions(_content, cls).weapons)
+        if (after.proficientWeapons.contains('${w.id}')) '${w.id}',
     };
     final taken = {for (final m in _character.weaponMasteries) m.weaponId};
     return [
@@ -456,7 +550,7 @@ class _WizardState extends ConsumerState<_Wizard> {
       for (final choice in gain.choices) ...[
         SizedBox(height: AppSpacing.sm),
         Text(
-          '${namesOf(_content, [choice.sourceId])} '
+          '${_choiceTitle(l10n, choice)} '
           '${(_draft.choices[choice.id]?.length ?? 0)} / ${choice.count}',
           style: text.titleMedium,
         ),
@@ -501,10 +595,23 @@ class _WizardState extends ConsumerState<_Wizard> {
     ];
   }
 
+  String _choiceTitle(AppLocalizations l10n, OpenChoice choice) {
+    final name = namesOf(_content, [choice.sourceId]);
+    if (choice.id == multiclassSkillChoice(_classId)) {
+      return l10n.multiclassSkill(name);
+    }
+    return choice.id == multiclassToolChoice(_classId)
+        ? l10n.multiclassTool(name)
+        : name;
+  }
+
   /// Expertise : sur une compétence maîtrisée, et pas deux fois sur la même.
+  /// La compétence d'une nouvelle classe compte, elle est maîtrisée à ce niveau.
   bool _optionBlocked(ChoiceOption option, ComputedSheet before) {
     final skill = _content.entity(option.pick);
     if (skill == null || !option.expertise) return false;
+    final fresh = _draft.choices[multiclassSkillChoice(_classId)];
+    if (fresh?.contains(option.pick) ?? false) return false;
     final breakdown = before.skillBreakdown[skillKey(skill)];
     if (breakdown == null) return false;
     final labels = breakdown.sources.map((c) => c.label);
@@ -747,6 +854,9 @@ class _Changes extends StatelessWidget {
   final ComputedSheet before;
   final ComputedSheet after;
 
+  String _dice(ComputedSheet sheet) =>
+      sheet.hitDice.map((d) => '${d.total} ${d.die}').join(' + ');
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -767,11 +877,7 @@ class _Changes extends StatelessWidget {
           formatSigned(before.proficiencyBonus),
           formatSigned(after.proficiencyBonus),
         ),
-        row(
-          l10n.hitDiceLabel,
-          '${before.hitDice.total} ${before.hitDice.die}',
-          '${after.hitDice.total} ${after.hitDice.die}',
-        ),
+        row(l10n.hitDiceLabel, _dice(before), _dice(after)),
         row(
           l10n.weaponMasteryTitle,
           before.weaponMasterySlots,

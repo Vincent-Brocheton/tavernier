@@ -280,6 +280,27 @@ abstract class ClassLevelData with _$ClassLevelData {
       _$ClassLevelDataFromJson(json);
 }
 
+/// Encadré « En tant que personnage multiclassé » d'une classe, hors dé de vie.
+@freezed
+abstract class MulticlassTraits with _$MulticlassTraits {
+  const factory MulticlassTraits({
+    @Default(<String>[]) List<String> weaponProficiencies,
+    @Default(<String>[]) List<String> armorTraining,
+    @ContentIdConverter()
+    @Default(<ContentId>[])
+    List<ContentId> toolProficiencies,
+
+    /// Compétences à choisir dans celles de la classe.
+    @Default(0) int skillChoiceCount,
+
+    /// Outils à choisir dans la catégorie de la classe.
+    @Default(0) int toolChoiceCount,
+  }) = _MulticlassTraits;
+
+  factory MulticlassTraits.fromJson(Map<String, dynamic> json) =>
+      _$MulticlassTraitsFromJson(json);
+}
+
 @freezed
 abstract class ClassData with _$ClassData implements EntityData {
   const factory ClassData({
@@ -315,6 +336,9 @@ abstract class ClassData with _$ClassData implements EntityData {
     /// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
     @Default(<StartingEquipmentOption>[])
     List<StartingEquipmentOption> startingEquipment,
+
+    /// Traits reçus quand ce n'est pas la classe de départ.
+    @Default(MulticlassTraits()) MulticlassTraits multiclass,
   }) = _ClassData;
 
   factory ClassData.fromJson(Map<String, dynamic> json) =>

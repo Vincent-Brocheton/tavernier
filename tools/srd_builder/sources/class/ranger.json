@@ -32,6 +32,17 @@
       "medium",
       "shield"
     ],
+    "multiclass": {
+      "weapon_proficiencies": [
+        "martial"
+      ],
+      "armor_training": [
+        "light",
+        "medium",
+        "shield"
+      ],
+      "skill_choice_count": 1
+    },
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:wisdom",
     "levels": [

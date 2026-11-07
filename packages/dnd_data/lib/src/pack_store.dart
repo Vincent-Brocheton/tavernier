@@ -206,6 +206,7 @@ final class PackStore {
           'tool_proficiencies': jsonEncode(json['tool_proficiencies']),
           'tool_choice_count': c.toolChoiceCount,
           'tool_choice_category': json['tool_choice_category'],
+          'multiclass': jsonEncode(json['multiclass']),
         });
       case SubclassData(:final parentClass):
         row['parent_class_id'] = '$parentClass';
@@ -507,6 +508,7 @@ final class PackStore {
                 row['tool_proficiencies']! as String,
               ),
               'tool_choice_count': row['tool_choice_count'],
+              'multiclass': jsonDecode(row['multiclass']! as String),
               'tool_choice_category': row['tool_choice_category'],
               'starting_equipment': [
                 for (final o in of(classEquipment))

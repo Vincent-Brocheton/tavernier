@@ -968,4 +968,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get initiateSpellChoice => 'Sort du 1er niveau';
+
+  @override
+  String classForLevel(int level) {
+    return 'Quelle classe pour le niveau $level ?';
+  }
+
+  @override
+  String get continueClass => 'Continuer';
+
+  @override
+  String get multiclassHeading =>
+      'Multiclasser · niveau 1 dans une autre classe';
+
+  @override
+  String multiclassNeeds(int count, String names, int minimum) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$names $minimum requis',
+      one: '$names $minimum requise',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get abilityAnd => ' et ';
+
+  @override
+  String get abilityOr => ' ou ';
+
+  @override
+  String abilityReached(String ability, int score) {
+    return '$ability $score ✓';
+  }
+
+  @override
+  String abilityMissing(String ability, int score, int missing) {
+    return '$ability $score : il manque $missing';
+  }
+
+  @override
+  String multiclassRule(int minimum) {
+    return 'Multiclasser demande $minimum dans la caractéristique principale de la nouvelle classe et de la classe actuelle.';
+  }
+
+  @override
+  String multiclassSkill(String cls) {
+    return 'Compétence de $cls';
+  }
+
+  @override
+  String multiclassTool(String cls) {
+    return 'Instrument de $cls';
+  }
 }

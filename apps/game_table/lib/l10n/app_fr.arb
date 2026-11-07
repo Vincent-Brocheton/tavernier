@@ -1422,5 +1422,99 @@
   "initiateSpellChoice": "Sort du 1er niveau",
   "@initiateSpellChoice": {
     "description": "Montée de niveau : sorts."
+  },
+  "classForLevel": "Quelle classe pour le niveau {level} ?",
+  "@classForLevel": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "continueClass": "Continuer",
+  "@continueClass": {
+    "description": "Montée de niveau."
+  },
+  "multiclassHeading": "Multiclasser · niveau 1 dans une autre classe",
+  "@multiclassHeading": {
+    "description": "Montée de niveau."
+  },
+  "multiclassNeeds": "{count, plural, =1{{names} {minimum} requise} other{{names} {minimum} requis}}",
+  "@multiclassNeeds": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "names": {
+        "type": "String"
+      },
+      "minimum": {
+        "type": "int"
+      }
+    }
+  },
+  "abilityAnd": " et ",
+  "@abilityAnd": {
+    "description": "Montée de niveau."
+  },
+  "abilityOr": " ou ",
+  "@abilityOr": {
+    "description": "Montée de niveau."
+  },
+  "abilityReached": "{ability} {score} ✓",
+  "@abilityReached": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "abilityMissing": "{ability} {score} : il manque {missing}",
+  "@abilityMissing": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      },
+      "missing": {
+        "type": "int"
+      }
+    }
+  },
+  "multiclassRule": "Multiclasser demande {minimum} dans la caractéristique principale de la nouvelle classe et de la classe actuelle.",
+  "@multiclassRule": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "minimum": {
+        "type": "int"
+      }
+    }
+  },
+  "multiclassSkill": "Compétence de {cls}",
+  "@multiclassSkill": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      }
+    }
+  },
+  "multiclassTool": "Instrument de {cls}",
+  "@multiclassTool": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      }
+    }
   }
 }
