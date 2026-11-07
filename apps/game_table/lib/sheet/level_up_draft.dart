@@ -19,6 +19,7 @@ enum ImprovementMode { two, oneAndOne }
 /// Choix d'une montée de niveau, le temps de l'assistant.
 final class LevelUpDraft {
   const LevelUpDraft({
+    this.classId,
     this.subclassId,
     this.choices = const {},
     this.masteries = const [],
@@ -29,6 +30,8 @@ final class LevelUpDraft {
     this.spells = const {},
   });
 
+  /// Classe du niveau gagné ; `null` tant que la classe de départ est retenue.
+  final String? classId;
   final String? subclassId;
   final Map<String, List<String>> choices;
   final List<String> masteries;
@@ -50,6 +53,7 @@ final class LevelUpDraft {
     List<String>? masteries,
     Map<String, List<String>>? spells,
   }) => LevelUpDraft(
+    classId: classId,
     subclassId: subclassId ?? this.subclassId,
     choices: choices ?? this.choices,
     masteries: masteries ?? this.masteries,
@@ -84,10 +88,15 @@ final class LevelUpDraft {
     );
   }
 
+  /// Une autre classe efface les choix : ils lui étaient propres.
+  LevelUpDraft selectClass(String id) =>
+      id == classId ? this : LevelUpDraft(classId: id);
+
   /// Un autre don vide ce qui avait été choisi pour le précédent.
   LevelUpDraft selectFeat(String id) => id == feat
       ? this
       : LevelUpDraft(
+          classId: classId,
           subclassId: subclassId,
           choices: choices,
           masteries: masteries,
@@ -98,6 +107,7 @@ final class LevelUpDraft {
   LevelUpDraft selectMode(ImprovementMode value) => value == mode
       ? this
       : LevelUpDraft(
+          classId: classId,
           subclassId: subclassId,
           choices: choices,
           masteries: masteries,
@@ -107,6 +117,7 @@ final class LevelUpDraft {
         );
 
   LevelUpDraft toggleBonus(String code, int count) => LevelUpDraft(
+    classId: classId,
     subclassId: subclassId,
     choices: choices,
     masteries: masteries,
@@ -119,6 +130,7 @@ final class LevelUpDraft {
 
   LevelUpDraft toggleFeatChoice(String id, String pick, int count) =>
       LevelUpDraft(
+        classId: classId,
         subclassId: subclassId,
         choices: choices,
         masteries: masteries,
@@ -137,6 +149,7 @@ final class LevelUpDraft {
       featChoices[initiateList]?.contains(list) ?? false
       ? this
       : LevelUpDraft(
+          classId: classId,
           subclassId: subclassId,
           choices: choices,
           masteries: masteries,

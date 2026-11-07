@@ -38,6 +38,13 @@
     "armor_training": [
       "light"
     ],
+    "multiclass": {
+      "armor_training": [
+        "light"
+      ],
+      "skill_choice_count": 1,
+      "tool_choice_count": 1
+    },
     "subclass_level": 3,
     "tool_choice_count": 3,
     "tool_choice_category": "musical_instrument",

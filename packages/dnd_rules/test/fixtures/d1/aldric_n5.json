@@ -63,7 +63,7 @@
     "armor_class": 19,
     "speed_feet": 30,
     "hit_points_max": 49,
-    "hit_dice": { "die": "d10", "total": 5 },
+    "hit_dice": [{ "die": "d10", "total": 5 }],
     "weapon_mastery_slots": 4,
     "attacks_per_action": 2,
     "attacks": [

@@ -105,6 +105,7 @@ Future<void> _open(
   int level, {
   String id = 'a',
   CharacterInput? character,
+  bool classStep = false,
 }) async {
   tester.view.physicalSize = Size(width, 1600);
   tester.view.devicePixelRatio = 1;
@@ -146,6 +147,7 @@ Future<void> _open(
     ),
   );
   await tester.pumpAndSettle();
+  if (!classStep && id == 'a') await _tapNext(tester);
 }
 
 FilledButton _next(WidgetTester tester) =>
@@ -164,7 +166,115 @@ Future<void> _tap(WidgetTester tester, String label) async {
   await tester.pumpAndSettle();
 }
 
+Future<void> _chip(WidgetTester tester, String label) async {
+  final target = find.widgetWithText(FilterChip, label).first;
+  await tester.ensureVisible(target);
+  await tester.pumpAndSettle();
+  await tester.tap(target);
+  await tester.pumpAndSettle();
+}
+
 void main() {
+  group('multiclassage [G2]', () {
+    testWidgets('prérequis lus sur la fiche', (tester) async {
+      await _open(tester, 1440, 5, classStep: true);
+      expect(find.text('Quelle classe pour le niveau 6 ?'), findsOneWidget);
+      expect(find.text('Guerrier 6'), findsOneWidget);
+      expect(
+        find.textContaining('Dextérité 13 requise · Dextérité 13 ✓'),
+        findsOneWidget,
+      );
+      expect(
+        find.textContaining('Sagesse 13 requise · Sagesse 12 : il manque 1'),
+        findsWidgets,
+      );
+      expect(
+        find.textContaining('Force et Charisme 13 requis · Charisme 10'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('format téléphone', (tester) async {
+      await _open(tester, 390, 5, classStep: true);
+      expect(tester.takeException(), isNull);
+      expect(find.text('Guerrier 6'), findsOneWidget);
+    });
+
+    testWidgets('une classe sans prérequis ne se choisit pas', (tester) async {
+      await _open(tester, 1440, 5, classStep: true);
+      await _tap(tester, 'Clerc 1');
+      expect(find.text('Guerrier 5 → 6'), findsOneWidget);
+    });
+
+    testWidgets('niveau 1 de Barbare', (tester) async {
+      await _open(tester, 1440, 1, classStep: true);
+      await _tap(tester, 'Barbare 1');
+      expect(find.text('Barbare 1'), findsWidgets);
+      await _tapNext(tester);
+      // d12 : valeur fixe 7, CON +2.
+      expect(find.text('+9 PV'), findsOneWidget);
+      await _tapNext(tester);
+      await _chip(tester, 'Hache à deux mains');
+      await _chip(tester, 'Marteau de guerre');
+      await _tapNext(tester);
+      await _tapNext(tester);
+      final saved = await _store.load('a');
+      expect(saved!.classLevels.map((c) => c.classId), [
+        'srd:class:fighter',
+        'srd:class:barbarian',
+      ]);
+      expect(saved.classLevels.last.level, 1);
+    });
+
+    testWidgets('Roublard : compétence retenue sur la classe', (tester) async {
+      await _open(tester, 1440, 1, classStep: true);
+      await _tap(tester, 'Roublard 1');
+      await _tapNext(tester);
+      await _tapNext(tester);
+      expect(find.text('Compétence de Roublard 0 / 1'), findsOneWidget);
+      // L'Expertise accepte la compétence gagnée à ce niveau.
+      final stealth = find.widgetWithText(FilterChip, 'Discrétion');
+      await tester.ensureVisible(stealth.last);
+      await tester.pumpAndSettle();
+      await tester.tap(stealth.last);
+      await tester.pumpAndSettle();
+      await _chip(tester, 'Discrétion');
+      await _chip(tester, 'Athlétisme');
+      await _chip(tester, 'Nain');
+      await _chip(tester, 'Dague');
+      await _chip(tester, 'Fléchette');
+      expect(_next(tester).onPressed, isNotNull);
+      await _tapNext(tester);
+      await _tapNext(tester);
+      final saved = await _store.load('a');
+      expect(saved!.classLevels.last.skillChoices, ['srd:skill:stealth']);
+    });
+
+    testWidgets('Clerc : Thaumaturge ajoute un sort mineur', (tester) async {
+      final wise = _aldric(1)
+          .copyWith(baseScores: _aldric(1).baseScores.copyWith(wisdom: 13));
+      await _open(tester, 1440, 1, classStep: true, character: wise);
+      await _tap(tester, 'Clerc 1');
+      await _tapNext(tester);
+      await _tapNext(tester);
+      await _chip(tester, 'Thaumaturge');
+      await _tapNext(tester);
+      expect(find.textContaining('0 / 4'), findsWidgets);
+    });
+
+    testWidgets('Magicien : six sorts au grimoire', (tester) async {
+      final wise = _aldric(
+        1,
+      ).copyWith(baseScores: _aldric(1).baseScores.copyWith(intelligence: 13));
+      await _open(tester, 1440, 1, classStep: true, character: wise);
+      await _tap(tester, 'Magicien 1');
+      await _tapNext(tester);
+      await _tapNext(tester);
+      await _tapNext(tester);
+      expect(find.text('Grimoire 0 / 6'), findsOneWidget);
+    });
+  });
+
   test('adresse de la montée de niveau', () {
     expect(levelUpPath('abc'), '/characters/abc/level-up');
   });

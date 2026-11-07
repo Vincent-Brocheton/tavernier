@@ -133,6 +133,7 @@ final class ComputedSheet {
     required this.speed,
     required this.hitPointsMax,
     required this.hitDice,
+    required this.proficientWeapons,
     required this.resources,
     required this.weaponMasterySlots,
     required this.attacks,
@@ -165,7 +166,12 @@ final class ComputedSheet {
   final Computed speed;
   int get speedFeet => speed.value;
   final Computed hitPointsMax;
-  final ({String die, int total}) hitDice;
+
+  /// Une entrée par type de dé, dans l'ordre des classes.
+  final List<({String die, int total})> hitDice;
+
+  /// Identifiants des armes maîtrisées.
+  final Set<String> proficientWeapons;
 
   /// Maximum de chaque ressource, par clé (`srd:resource:second-wind`).
   final Map<String, int> resources;
@@ -193,7 +199,9 @@ final class ComputedSheet {
     'armor_class': armorClass.value,
     'speed_feet': speedFeet,
     'hit_points_max': hitPointsMax.value,
-    'hit_dice': {'die': hitDice.die, 'total': hitDice.total},
+    'hit_dice': [
+      for (final dice in hitDice) {'die': dice.die, 'total': dice.total},
+    ],
     'resources': [
       for (final MapEntry(:key, :value) in resources.entries)
         {'id': key, 'max': value},

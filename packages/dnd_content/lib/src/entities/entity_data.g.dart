@@ -647,6 +647,75 @@ Map<String, dynamic> _$ClassLevelDataToJson(
   'columns': instance.columns,
 };
 
+_MulticlassTraits _$MulticlassTraitsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      '_MulticlassTraits',
+      json,
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const [
+            'weapon_proficiencies',
+            'armor_training',
+            'tool_proficiencies',
+            'skill_choice_count',
+            'tool_choice_count',
+          ],
+        );
+        final val = _MulticlassTraits(
+          weaponProficiencies: $checkedConvert(
+            'weapon_proficiencies',
+            (v) =>
+                (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+                const <String>[],
+          ),
+          armorTraining: $checkedConvert(
+            'armor_training',
+            (v) =>
+                (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+                const <String>[],
+          ),
+          toolProficiencies: $checkedConvert(
+            'tool_proficiencies',
+            (v) =>
+                (v as List<dynamic>?)
+                    ?.map(
+                      (e) => const ContentIdConverter().fromJson(e as String),
+                    )
+                    .toList() ??
+                const <ContentId>[],
+          ),
+          skillChoiceCount: $checkedConvert(
+            'skill_choice_count',
+            (v) => (v as num?)?.toInt() ?? 0,
+          ),
+          toolChoiceCount: $checkedConvert(
+            'tool_choice_count',
+            (v) => (v as num?)?.toInt() ?? 0,
+          ),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'weaponProficiencies': 'weapon_proficiencies',
+        'armorTraining': 'armor_training',
+        'toolProficiencies': 'tool_proficiencies',
+        'skillChoiceCount': 'skill_choice_count',
+        'toolChoiceCount': 'tool_choice_count',
+      },
+    );
+
+Map<String, dynamic> _$MulticlassTraitsToJson(_MulticlassTraits instance) =>
+    <String, dynamic>{
+      'weapon_proficiencies': instance.weaponProficiencies,
+      'armor_training': instance.armorTraining,
+      'tool_proficiencies': instance.toolProficiencies
+          .map(const ContentIdConverter().toJson)
+          .toList(),
+      'skill_choice_count': instance.skillChoiceCount,
+      'tool_choice_count': instance.toolChoiceCount,
+    };
+
 _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   '_ClassData',
   json,
@@ -670,6 +739,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'tool_choice_count',
         'tool_choice_category',
         'starting_equipment',
+        'multiclass',
       ],
     );
     final val = _ClassData(
@@ -761,6 +831,12 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
                 .toList() ??
             const <StartingEquipmentOption>[],
       ),
+      multiclass: $checkedConvert(
+        'multiclass',
+        (v) => v == null
+            ? const MulticlassTraits()
+            : MulticlassTraits.fromJson(v as Map<String, dynamic>),
+      ),
     );
     return val;
   },
@@ -817,6 +893,7 @@ Map<String, dynamic> _$ClassDataToJson(
   'starting_equipment': instance.startingEquipment
       .map((e) => e.toJson())
       .toList(),
+  'multiclass': instance.multiclass.toJson(),
 };
 
 _SubclassData _$SubclassDataFromJson(Map<String, dynamic> json) =>

@@ -12,6 +12,12 @@ const maxCharacterLevel = 20;
 /// Identifiant du don Amélioration de caractéristique.
 const abilityScoreImprovementFeat = 'srd:feat:ability-score-improvement';
 
+/// Choix de la compétence accordée par une nouvelle classe.
+String multiclassSkillChoice(String classId) => 'multiclass-skill:$classId';
+
+/// Choix de l'outil accordé par une nouvelle classe.
+String multiclassToolChoice(String classId) => 'multiclass-tool:$classId';
+
 /// Ce qu'apporte le niveau suivant d'une classe.
 final class LevelGain {
   const LevelGain({
@@ -79,8 +85,8 @@ final class SpellGain {
   final int maxLevel;
 }
 
-/// Compare deux lignes de la table de classe. Le Magicien ajoute deux sorts à
-/// son grimoire par niveau (SRD, Magicien, « Grimoire »).
+/// Compare deux lignes de la table de classe. Le Magicien inscrit 6 sorts à
+/// son premier niveau puis 2 par niveau (SRD, Magicien, « Grimoire »).
 SpellGain spellGain(ActiveContent content, String classId, int level) {
   final data = content.entity(classId)!.data as ClassData;
   Map<String, int> columns(int at) =>
@@ -95,7 +101,9 @@ SpellGain spellGain(ActiveContent content, String classId, int level) {
   return SpellGain(
     cantrips: gained('cantrips'),
     prepared: gained('prepared_spells'),
-    spellbook: spellbookSize(classId) > 0 ? 2 : 0,
+    spellbook: level == 1
+        ? spellbookSize(classId)
+        : (spellbookSize(classId) > 0 ? 2 : 0),
     maxLevel: [
       next['pact_slot_level'] ?? 0,
       for (final MapEntry(:key, :value) in next.entries)
@@ -152,10 +160,8 @@ Set<String> knownSpells(
   };
 }
 
-ClassLevelInput _classLevel(CharacterInput character, String classId) =>
-    character.classLevels.firstWhere((c) => c.classId == classId);
-
-/// [character] avec un niveau de plus dans [classId], sans aucun choix.
+/// [character] avec un niveau de plus dans [classId], nouvelle ou non, sans
+/// aucun choix.
 CharacterInput raisedOneLevel(CharacterInput character, String classId) =>
     character.copyWith(
       classLevels: [
@@ -163,8 +169,53 @@ CharacterInput raisedOneLevel(CharacterInput character, String classId) =>
           level.classId == classId
               ? level.copyWith(level: level.level + 1)
               : level,
+        if (character.classLevels.every((c) => c.classId != classId))
+          ClassLevelInput(classId: classId, level: 1),
       ],
     );
+
+/// Compétence et outil que [data] accorde à un personnage multiclassé. Une
+/// compétence déjà maîtrisée n'est pas proposée.
+List<OpenChoice> _multiclassChoices(
+  CharacterInput character,
+  ActiveContent content,
+  String classId,
+  ClassData data,
+) {
+  final known = computeSheet(character, content).skillProficiencies.toSet();
+  ChoiceOption option(ContentEntity entity) => ChoiceOption(
+    pick: '${entity.id}',
+    label: entity.name.split(' : ').last,
+    expertise: false,
+    bonusCantrips: 0,
+    spells: const [],
+  );
+  return [
+    if (data.multiclass.skillChoiceCount > 0)
+      OpenChoice(
+        id: multiclassSkillChoice(classId),
+        sourceId: classId,
+        count: data.multiclass.skillChoiceCount,
+        options: [
+          for (final id in data.skillChoices)
+            if (content.entity('$id') case final skill?)
+              if (!known.contains(skill.id.slug.replaceAll('-', '_')))
+                option(skill),
+        ],
+      ),
+    if (data.multiclass.toolChoiceCount > 0)
+      OpenChoice(
+        id: multiclassToolChoice(classId),
+        sourceId: classId,
+        count: data.multiclass.toolChoiceCount,
+        options: [
+          for (final entity in content.entities)
+            if (entity.data case final ToolData tool)
+              if (tool.category == data.toolChoiceCategory) option(entity),
+        ],
+      ),
+  ];
+}
 
 List<ContentEntity> _subclassesOf(ActiveContent content, String classId) => [
   for (final entity in content.entities)
@@ -182,10 +233,12 @@ LevelGain levelGain(
   String? subclassId,
   Map<String, List<String>> picks = const {},
 }) {
-  final current = _classLevel(character, classId);
+  final current = character.classLevels
+      .where((c) => c.classId == classId)
+      .firstOrNull;
   final data = content.entity(classId)!.data as ClassData;
-  final next = current.level + 1;
-  final subclass = subclassId ?? current.subclassId;
+  final next = (current?.level ?? 0) + 1;
+  final subclass = subclassId ?? current?.subclassId;
   final row = data.levels.where((l) => l.level == next).firstOrNull;
   final ofSubclass = content.entity(subclass ?? '')?.data;
   final features = [
@@ -221,7 +274,7 @@ LevelGain levelGain(
   return LevelGain(
     classLevel: next,
     features: features,
-    subclasses: data.subclassLevel == next && current.subclassId == null
+    subclasses: data.subclassLevel == next && current?.subclassId == null
         ? _subclassesOf(content, classId)
         : const [],
     featCategories: [
@@ -234,7 +287,11 @@ LevelGain levelGain(
           if (picks[choice.id]?.contains(option.pick) ?? false)
             ?option.featCategory,
     ],
-    choices: choices,
+    choices: [
+      ...choices,
+      if (current == null)
+        ..._multiclassChoices(character, content, classId, data),
+    ],
   );
 }
 
@@ -290,12 +347,18 @@ CharacterInput applyLevelUp(
   LevelChoices picks,
 ) {
   final raised = raisedOneLevel(character, classId);
-  final level = _classLevel(raised, classId).level;
+  final level = raised.classLevels
+      .firstWhere((c) => c.classId == classId)
+      .level;
+  final skill = multiclassSkillChoice(classId);
   return raised.copyWith(
     classLevels: [
       for (final entry in raised.classLevels)
-        entry.classId == classId && picks.subclassId != null
-            ? entry.copyWith(subclassId: picks.subclassId)
+        entry.classId == classId
+            ? entry.copyWith(
+                subclassId: picks.subclassId ?? entry.subclassId,
+                skillChoices: [...entry.skillChoices, ...?picks.choices[skill]],
+              )
             : entry,
     ],
     feats: [
@@ -308,7 +371,7 @@ CharacterInput applyLevelUp(
           choices: picks.featChoices,
         ),
     ],
-    choices: {...raised.choices, ...picks.choices},
+    choices: {...raised.choices, ...picks.choices}..remove(skill),
     spells: SpellsInput(
       cantrips: [...raised.spells.cantrips, ...picks.spells.cantrips],
       prepared: [...raised.spells.prepared, ...picks.spells.prepared],

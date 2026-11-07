@@ -2125,6 +2125,15 @@ class PlayerClass extends Table with TableInfo {
         requiredDuringInsert: false,
         $customConstraints: 'NULL',
       );
+  late final GeneratedColumn<String> multiclass = GeneratedColumn<String>(
+    'multiclass',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'{}\'',
+    defaultValue: const CustomExpression('\'{}\''),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -2144,6 +2153,7 @@ class PlayerClass extends Table with TableInfo {
     toolProficiencies,
     toolChoiceCount,
     toolChoiceCategory,
+    multiclass,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;

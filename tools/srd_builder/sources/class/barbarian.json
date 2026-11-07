@@ -29,6 +29,14 @@
       "medium",
       "shield"
     ],
+    "multiclass": {
+      "weapon_proficiencies": [
+        "martial"
+      ],
+      "armor_training": [
+        "shield"
+      ]
+    },
     "subclass_level": 3,
     "levels": [
       {

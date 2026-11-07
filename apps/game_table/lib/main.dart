@@ -165,12 +165,11 @@ class _CharactersPage extends ConsumerWidget {
                         subtitle: Text(
                           [
                             namesOf(content, [character.speciesId]),
-                            l10n.classLevel(
-                              namesOf(content, [
-                                character.classLevels.first.classId,
-                              ]),
-                              character.classLevels.first.level,
-                            ),
+                            for (final level in character.classLevels)
+                              l10n.classLevel(
+                                namesOf(content, [level.classId]),
+                                level.level,
+                              ),
                             namesOf(content, [character.backgroundId]),
                           ].join(' · '),
                         ),

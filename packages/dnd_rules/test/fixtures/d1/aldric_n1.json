@@ -88,7 +88,7 @@
     "armor_class": 19,
     "speed_feet": 30,
     "hit_points_max": 12,
-    "hit_dice": { "die": "d10", "total": 1 },
+    "hit_dice": [{ "die": "d10", "total": 1 }],
     "weapon_mastery_slots": 3,
     "attacks": [
       { "weapon_id": "srd:weapon:longsword", "attack_bonus": 5, "damage": "1d8+3", "damage_type": "slashing", "mastery": "srd:mastery:sap" },
