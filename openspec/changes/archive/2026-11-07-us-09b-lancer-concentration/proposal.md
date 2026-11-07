@@ -28,7 +28,7 @@ Aucune.
 - `apps/game_table/lib/sheet/` : onglet Sorts, fournisseur d'état, ARB.
 
 **Hors périmètre :**
-- **Récupérer les emplacements :** US-10, avec les repos.
+- **Récupérer les emplacements :** US-11, avec les repos.
 - **Lancers gratuits d'un trait ou d'un don (`free_casts`) :** un sort accordé dépense un emplacement s'il en reste, sinon il attend ce suivi.
 - **Durée restante et cibles de la concentration, tests de concentration :** M3, avec le combat.
 - **Rituel d'un sort du grimoire non préparé :** troisième change.
