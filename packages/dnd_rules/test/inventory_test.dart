@@ -191,6 +191,30 @@ void main() {
     expect(sheet.savingThrows['int'], 1);
   });
 
+  group('consommables [J7]', () {
+    final potion = consumableOf(content.entity('srd:item:potion-of-healing'));
+
+    test('potion de guérison : 2d4 + 2, action Bonus', () {
+      expect(potion, (dice: 2, sides: 4, bonus: 2, action: 'bonus_action'));
+    });
+
+    test('un objet ordinaire ne s\'utilise pas', () {
+      expect(consumableOf(content.entity('srd:item:healers-kit')), isNull);
+      expect(consumableOf(null), isNull);
+    });
+
+    test('jet entre 2 et 8', () {
+      expect(consumableRollValid(potion!, 1), isFalse);
+      expect(consumableRollValid(potion, 2), isTrue);
+      expect(consumableRollValid(potion, 8), isTrue);
+      expect(consumableRollValid(potion, 9), isFalse);
+    });
+
+    test('la fiche ne change pas tant qu\'on ne boit pas', () {
+      expect(computeSheet(aldric, content).integrityErrors, isEmpty);
+    });
+  });
+
   test('monnaie : une pièce changée, les autres intactes', () {
     final after = setCoin(aldric, 'gp', 40);
     expect(after.coins['gp'], 40);

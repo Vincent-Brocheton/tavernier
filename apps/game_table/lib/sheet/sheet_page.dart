@@ -257,6 +257,7 @@ class _MainTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HitPointsTracker(id: id, sheet: sheet),
+          InspirationTracker(id: id),
           SizedBox(height: AppSpacing.xs),
           Wrap(
             spacing: AppSpacing.xs,

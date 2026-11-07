@@ -2232,5 +2232,77 @@
         "type": "int"
       }
     }
+  },
+  "inspirationHeld": "Inspiration héroïque",
+  "@inspirationHeld": {
+    "description": "Consommables et Inspiration."
+  },
+  "inspirationNone": "Pas d’Inspiration héroïque",
+  "@inspirationNone": {
+    "description": "Consommables et Inspiration."
+  },
+  "inspirationGained": "Obtenue",
+  "@inspirationGained": {
+    "description": "Consommables et Inspiration."
+  },
+  "receiveInspiration": "Recevoir",
+  "@receiveInspiration": {
+    "description": "Consommables et Inspiration."
+  },
+  "actionBonus": "Action Bonus",
+  "@actionBonus": {
+    "description": "Consommables et Inspiration."
+  },
+  "actionPlain": "Action",
+  "@actionPlain": {
+    "description": "Consommables et Inspiration."
+  },
+  "enterRollOf": "Saisir mon jet ({dice})",
+  "@enterRollOf": {
+    "description": "Consommables et Inspiration.",
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "consumableLine": "{action} · {dice} + {bonus} PV · ×{count} dans le sac",
+  "@consumableLine": {
+    "description": "Consommables et Inspiration.",
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "dice": {
+        "type": "String"
+      },
+      "bonus": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "consumableResult": "PV {before} → {after} / {max} · quantité {from} → {to}",
+  "@consumableResult": {
+    "description": "Consommables et Inspiration.",
+    "placeholders": {
+      "before": {
+        "type": "int"
+      },
+      "after": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      },
+      "from": {
+        "type": "int"
+      },
+      "to": {
+        "type": "int"
+      }
+    }
   }
 }

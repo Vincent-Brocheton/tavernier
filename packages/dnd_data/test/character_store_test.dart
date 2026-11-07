@@ -62,6 +62,11 @@ void main() {
       expect(state.exhaustion, 2);
     });
 
+    test('Inspiration relue', () async {
+      await store.saveState('a', const PlayState(heroicInspiration: true));
+      expect((await store.loadState('a')).heroicInspiration, isTrue);
+    });
+
     test('personnage indemne : PV vides', () async {
       await store.saveState('a', const PlayState());
       expect((await store.loadState('a')).hpCurrent, isNull);

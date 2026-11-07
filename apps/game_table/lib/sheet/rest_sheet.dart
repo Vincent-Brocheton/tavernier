@@ -55,6 +55,33 @@ class HitPointsTracker extends ConsumerWidget {
   }
 }
 
+/// Inspiration héroïque, sur l'onglet Principal.
+class InspirationTracker extends ConsumerWidget {
+  const InspirationTracker({super.key, required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final play =
+        ref.watch(playStateProvider(id)).asData?.value ?? const PlayState();
+    final has = play.heroicInspiration;
+    return Wrap(
+      spacing: AppSpacing.xs,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        Icon(has ? Icons.star : Icons.star_border, size: 20),
+        Text(has ? l10n.inspirationHeld : l10n.inspirationNone),
+        TextButton(
+          onPressed: () => savePlayState(ref, id, play.withInspiration(!has)),
+          child: Text(has ? l10n.useResource : l10n.receiveInspiration),
+        ),
+      ],
+    );
+  }
+}
+
 /// Utilisations restantes d'une ressource, avec un bouton pour en dépenser.
 class ResourceTracker extends ConsumerWidget {
   const ResourceTracker({
@@ -274,6 +301,8 @@ class _RestSheetState extends ConsumerState<RestSheet> {
                     dice.die,
                   ),
                 ),
+              if (after.heroicInspiration && !_start.heroicInspiration)
+                DetailRow(l10n.inspirationHeld, l10n.inspirationGained),
               if (_start.exhaustion > 0)
                 DetailRow(
                   l10n.exhaustion,

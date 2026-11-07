@@ -1507,4 +1507,37 @@ class AppLocalizationsFr extends AppLocalizations {
   String recoveredUses(int before, int after, int max) {
     return '$before → $after / $max';
   }
+
+  @override
+  String get inspirationHeld => 'Inspiration héroïque';
+
+  @override
+  String get inspirationNone => 'Pas d’Inspiration héroïque';
+
+  @override
+  String get inspirationGained => 'Obtenue';
+
+  @override
+  String get receiveInspiration => 'Recevoir';
+
+  @override
+  String get actionBonus => 'Action Bonus';
+
+  @override
+  String get actionPlain => 'Action';
+
+  @override
+  String enterRollOf(String dice) {
+    return 'Saisir mon jet ($dice)';
+  }
+
+  @override
+  String consumableLine(String action, String dice, int bonus, int count) {
+    return '$action · $dice + $bonus PV · ×$count dans le sac';
+  }
+
+  @override
+  String consumableResult(int before, int after, int max, int from, int to) {
+    return 'PV $before → $after / $max · quantité $from → $to';
+  }
 }

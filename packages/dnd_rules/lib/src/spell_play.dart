@@ -18,6 +18,7 @@ final class PlayState {
     this.concentrationSpellId,
     this.hpCurrent,
     this.exhaustion = 0,
+    this.heroicInspiration = false,
   });
 
   /// Utilisations dépensées, par ressource.
@@ -32,6 +33,9 @@ final class PlayState {
   /// Niveaux d'Épuisement.
   final int exhaustion;
 
+  /// Une seule à la fois (SRD, « Inspiration héroïque »).
+  final bool heroicInspiration;
+
   int usedOf(String resource) => used[resource] ?? 0;
 
   PlayState withUsed(Map<String, int> value) => PlayState(
@@ -39,6 +43,7 @@ final class PlayState {
     concentrationSpellId: concentrationSpellId,
     hpCurrent: hpCurrent,
     exhaustion: exhaustion,
+    heroicInspiration: heroicInspiration,
   );
 
   PlayState withConcentration(String? spellId) => PlayState(
@@ -46,6 +51,7 @@ final class PlayState {
     concentrationSpellId: spellId,
     hpCurrent: hpCurrent,
     exhaustion: exhaustion,
+    heroicInspiration: heroicInspiration,
   );
 
   PlayState withHitPoints(int? value) => PlayState(
@@ -53,6 +59,15 @@ final class PlayState {
     concentrationSpellId: concentrationSpellId,
     hpCurrent: value,
     exhaustion: exhaustion,
+    heroicInspiration: heroicInspiration,
+  );
+
+  PlayState withInspiration(bool value) => PlayState(
+    used: used,
+    concentrationSpellId: concentrationSpellId,
+    hpCurrent: hpCurrent,
+    exhaustion: exhaustion,
+    heroicInspiration: value,
   );
 }
 

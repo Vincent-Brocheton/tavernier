@@ -2496,6 +2496,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{before} → {after} / {max}'**
   String recoveredUses(int before, int after, int max);
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inspiration héroïque'**
+  String get inspirationHeld;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas d’Inspiration héroïque'**
+  String get inspirationNone;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Obtenue'**
+  String get inspirationGained;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevoir'**
+  String get receiveInspiration;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Action Bonus'**
+  String get actionBonus;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Action'**
+  String get actionPlain;
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisir mon jet ({dice})'**
+  String enterRollOf(String dice);
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'{action} · {dice} + {bonus} PV · ×{count} dans le sac'**
+  String consumableLine(String action, String dice, int bonus, int count);
+
+  /// Consommables et Inspiration.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV {before} → {after} / {max} · quantité {from} → {to}'**
+  String consumableResult(int before, int after, int max, int from, int to);
 }
 
 class _AppLocalizationsDelegate

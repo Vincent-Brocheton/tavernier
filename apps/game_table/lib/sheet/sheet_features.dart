@@ -18,6 +18,8 @@ typedef FeatureGroup = ({
 FeatureResource? _resource(ContentEntity entity, ComputedSheet sheet) {
   for (final effect in entity.effects) {
     if (effect.op != 'grant_resource') continue;
+    // Suivie sur l'onglet Principal : tout personnage peut en recevoir une.
+    if (effect.args['id'] == heroicInspirationResource) continue;
     final max = sheet.resources[effect.args['id']];
     if (max == null) continue;
     final recharge = effect.args['recharge'] as List<Object?>?;

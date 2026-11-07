@@ -303,6 +303,11 @@ Map<String, Map<String, FieldSpec>> opSchemas(FieldCheck effects) => {
     'count': FieldSpec(intField(min: 1), required: true),
     'max_level': FieldSpec(intField(), required: true),
   },
+  'consumable_heal': {
+    'dice': FieldSpec(stringField(), required: true),
+    'bonus': const FieldSpec(checkValue),
+    'action': FieldSpec(enumField(['action', 'bonus_action']), required: true),
+  },
   'modify_attunement_slots': {
     'value': FieldSpec(intField(min: 1), required: true),
   },
