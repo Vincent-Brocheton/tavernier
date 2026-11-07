@@ -276,3 +276,10 @@ Une classe SHALL pouvoir porter un bloc `multiclass` : armes, armures, outils d'
 #### Scenario: Bloc absent
 - **WHEN** une classe de pack n'a pas ce bloc
 - **THEN** elle n'accorde que son dé de vie à un personnage multiclassé
+
+### Requirement: Poids de lanceur d'une classe
+Le bloc `multiclass` SHALL pouvoir porter `caster_divisor` : la part des niveaux de la classe comptée dans le niveau de lanceur.
+
+#### Scenario: Pack SRD
+- **WHEN** le pack SRD est lu
+- **THEN** le Clerc vaut 1, le Paladin 2 et l'Occultiste 0
