@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/step_layout.dart';
 import '../creation/subchoices.dart';
 import '../l10n/app_localizations.dart';
+import 'rest_sheet.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_features.dart';
 
@@ -20,11 +21,13 @@ String? rechargeLabel(AppLocalizations l10n, String? on) => switch (on) {
 class CombatTab extends StatelessWidget {
   const CombatTab({
     super.key,
+    required this.id,
     required this.content,
     required this.character,
     required this.sheet,
   });
 
+  final String id;
   final ActiveContent content;
   final CharacterInput character;
   final ComputedSheet sheet;
@@ -58,14 +61,12 @@ class CombatTab extends StatelessWidget {
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(feature.entity.name),
-              subtitle: Text(firstSentence(feature.entity.textFr ?? '')),
-              trailing: ResourcePips(
-                total: feature.resource!.max,
-                available: feature.resource!.max,
-                semanticLabel: l10n.usesOf(
-                  feature.resource!.max,
-                  feature.resource!.max,
-                ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(firstSentence(feature.entity.textFr ?? '')),
+                  ResourceTracker(id: id, resource: feature.resource!),
+                ],
               ),
             ),
         ],

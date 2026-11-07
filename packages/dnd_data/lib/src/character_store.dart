@@ -161,7 +161,8 @@ final class CharacterStore {
   Future<PlayState> loadState(String id) async {
     final rows = await _db
         .customSelect(
-          'SELECT resources, concentration_spell_id FROM character_state '
+          'SELECT resources, concentration_spell_id, hp_current, exhaustion '
+          'FROM character_state '
           'WHERE character_id = ?',
           variables: [Variable.withString(id)],
         )
@@ -178,18 +179,30 @@ final class CharacterStore {
       concentrationSpellId: rows.single.readNullable<String>(
         'concentration_spell_id',
       ),
+      hpCurrent: rows.single.readNullable<int>('hp_current'),
+      exhaustion: rows.single.read<int>('exhaustion'),
     );
   }
 
   /// Enregistre l'état de jeu de [id], sans toucher au reste de la fiche.
   Future<void> saveState(String id, PlayState state) => _db.customStatement(
     'INSERT INTO character_state '
-    '(id, character_id, resources, concentration_spell_id) '
-    'VALUES (?, ?, ?, ?) '
+    '(id, character_id, resources, concentration_spell_id, hp_current, '
+    'exhaustion) '
+    'VALUES (?, ?, ?, ?, ?, ?) '
     'ON CONFLICT(character_id) DO UPDATE SET '
     'resources = excluded.resources, '
-    'concentration_spell_id = excluded.concentration_spell_id',
-    [id, id, jsonEncode(state.used), state.concentrationSpellId],
+    'concentration_spell_id = excluded.concentration_spell_id, '
+    'hp_current = excluded.hp_current, '
+    'exhaustion = excluded.exhaustion',
+    [
+      id,
+      id,
+      jsonEncode(state.used),
+      state.concentrationSpellId,
+      state.hpCurrent,
+      state.exhaustion,
+    ],
   );
 
   Future<List<({String id, CharacterInput character})>> list() async {

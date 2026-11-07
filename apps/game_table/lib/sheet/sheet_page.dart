@@ -12,6 +12,7 @@ import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'features_tab.dart';
 import 'inventory_tab.dart';
+import 'rest_sheet.dart';
 import 'sheet_breakdowns.dart';
 import 'spells_tab.dart';
 
@@ -145,17 +146,37 @@ class _Sheet extends StatelessWidget {
               ],
             ),
           ),
-          if (sheet.level < maxCharacterLevel)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: FilledButton(
-                  onPressed: () => context.push(levelUpPath(id)),
-                  child: Text(l10n.levelUpTo(sheet.level + 1)),
-                ),
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+            child: Wrap(
+              spacing: AppSpacing.xs,
+              runSpacing: AppSpacing.xs,
+              children: [
+                if (sheet.level < maxCharacterLevel)
+                  FilledButton(
+                    onPressed: () => context.push(levelUpPath(id)),
+                    child: Text(l10n.levelUpTo(sheet.level + 1)),
+                  ),
+                for (final (kind, label) in [
+                  (RestKind.short, l10n.shortRest),
+                  (RestKind.long, l10n.longRest),
+                ])
+                  OutlinedButton(
+                    onPressed: () => showAdaptiveSheet(
+                      context,
+                      RestSheet(
+                        id: id,
+                        kind: kind,
+                        content: content,
+                        character: character,
+                        sheet: sheet,
+                      ),
+                    ),
+                    child: Text(label),
+                  ),
+              ],
             ),
+          ),
           TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
@@ -172,9 +193,14 @@ class _Sheet extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                _MainTab(content: content, sheet: sheet),
+                _MainTab(id: id, content: content, sheet: sheet),
                 _SkillsTab(content: content, sheet: sheet),
-                CombatTab(content: content, character: character, sheet: sheet),
+                CombatTab(
+                  id: id,
+                  content: content,
+                  character: character,
+                  sheet: sheet,
+                ),
                 SpellsTab(
                   id: id,
                   content: content,
@@ -188,6 +214,7 @@ class _Sheet extends StatelessWidget {
                   sheet: sheet,
                 ),
                 FeaturesTab(
+                  id: id,
                   content: content,
                   character: character,
                   sheet: sheet,
@@ -203,8 +230,13 @@ class _Sheet extends StatelessWidget {
 }
 
 class _MainTab extends StatelessWidget {
-  const _MainTab({required this.content, required this.sheet});
+  const _MainTab({
+    required this.id,
+    required this.content,
+    required this.sheet,
+  });
 
+  final String id;
   final ActiveContent content;
   final ComputedSheet sheet;
 
@@ -224,6 +256,8 @@ class _MainTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          HitPointsTracker(id: id, sheet: sheet),
+          SizedBox(height: AppSpacing.xs),
           Wrap(
             spacing: AppSpacing.xs,
             runSpacing: AppSpacing.xs,

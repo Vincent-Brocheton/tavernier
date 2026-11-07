@@ -6,6 +6,7 @@ import 'computed_sheet.dart';
 import 'creation_choices.dart';
 import 'creation_rules.dart';
 import 'inventory.dart';
+import 'spell_play.dart';
 
 const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
@@ -575,6 +576,20 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         if (a.effect.args['sense'] == 'darkvision')
           a.effect.args['range']! as int,
     ].fold(0, (best, range) => range > best ? range : best),
+    recharges: {
+      for (final a in ofOp('grant_resource'))
+        a.effect.args['id']! as String: _recharges(a.effect.args['recharge']),
+      for (final a in ofOp('grant_spell'))
+        if (a.effect.args['free_casts'] case final Map<String, Object?> casts)
+          freeCastResource(a.effect.args['spell']! as String): _recharges(
+            casts['recharge'],
+          ),
+      // Initié à la magie : un lancer gratuit par Repos long.
+      for (final feat in character.feats)
+        if (feat.featId == magicInitiateFeat)
+          if (feat.choices?['level_1_spell'] case final String spell)
+            freeCastResource(spell): const [(on: 'long_rest', amount: null)],
+    },
     freeCasts: {
       for (final a in ofOp('grant_spell'))
         if (a.effect.args['free_casts'] case final Map<String, Object?> casts)
@@ -636,6 +651,16 @@ AbilityScore _abilityScore(
   }
   return AbilityScore(sources);
 }
+
+/// Entrées `recharge` d'un effet.
+List<Recharge> _recharges(Object? value) => [
+  for (final entry in (value as List<Object?>?) ?? const <Object?>[])
+    if (entry case final Map<String, Object?> map)
+      (
+        on: map['on']! as String,
+        amount: map['amount'] is int ? map['amount']! as int : null,
+      ),
+];
 
 /// Rang de l'option dont les `ability_bonus` valent exactement [bonuses].
 int _optionOfBonuses(List<List<Effect>> options, Map<String, int> bonuses) =>

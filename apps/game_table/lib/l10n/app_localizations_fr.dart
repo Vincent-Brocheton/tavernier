@@ -1422,4 +1422,89 @@ class AppLocalizationsFr extends AppLocalizations {
   String armorShieldBonus(int value) {
     return '+$value à la CA';
   }
+
+  @override
+  String get shortRest => 'Repos court';
+
+  @override
+  String get longRest => 'Repos long';
+
+  @override
+  String get shortRestHint => 'Au moins 1 heure · il faut au moins 1 PV';
+
+  @override
+  String get longRestHint =>
+      'Au moins 8 heures, dont 6 de sommeil. Prochain repos long possible 16 h après celui-ci.';
+
+  @override
+  String get restNeedsHitPoint => 'Il faut au moins 1 PV pour se reposer.';
+
+  @override
+  String get hitDiceSpent => 'Dés de vie dépensés';
+
+  @override
+  String get enterRoll => 'Saisir mon jet';
+
+  @override
+  String get useMyRoll => 'Utiliser mon jet';
+
+  @override
+  String get useResource => 'Utiliser';
+
+  @override
+  String get loseHitPoint => 'Perdre 1 PV';
+
+  @override
+  String get gainHitPoint => 'Regagner 1 PV';
+
+  @override
+  String get recoveredTitle => 'Récupéré à la fin du repos';
+
+  @override
+  String get nothingToRecover => 'Rien à récupérer de plus.';
+
+  @override
+  String get slotsRecovered => 'Récupérés';
+
+  @override
+  String get exhaustion => 'Épuisement';
+
+  @override
+  String get concentrationEnds => 'Concentration terminée';
+
+  @override
+  String get finishShortRest => 'Terminer le repos court';
+
+  @override
+  String get finishLongRest => 'Terminer le repos';
+
+  @override
+  String hitPointsOf(int current, int max) {
+    return 'PV $current / $max';
+  }
+
+  @override
+  String hitPointsChange(int before, int after, int max) {
+    return '$before → $after / $max';
+  }
+
+  @override
+  String hitDiceLeft(int left, int total, String die) {
+    return 'restants : $left / $total $die';
+  }
+
+  @override
+  String hitDiceChange(int before, int total, String die) {
+    return '$before → $total $die';
+  }
+
+  @override
+  String rollDie(String die) {
+    return 'Lancer un $die';
+  }
+
+  @override
+  String recoveredUses(int before, int after, int max) {
+    return '$before → $after / $max';
+  }
 }

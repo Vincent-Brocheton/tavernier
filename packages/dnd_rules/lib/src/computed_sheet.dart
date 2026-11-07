@@ -142,6 +142,9 @@ final class ClassCasting {
   };
 }
 
+/// Ce qui revient à la fin d'un repos ; [amount] vide : tout.
+typedef Recharge = ({String on, int? amount});
+
 /// Magie de pacte de l'Occultiste, récupérée au repos court.
 final class PactMagic {
   const PactMagic({required this.slots, required this.slotLevel});
@@ -185,6 +188,7 @@ final class ComputedSheet {
     required this.attunementSlots,
     required this.darkvisionFeet,
     required this.freeCasts,
+    required this.recharges,
     required this.spellcasting,
     required this.casterLevel,
     required this.spellSlots,
@@ -246,6 +250,9 @@ final class ComputedSheet {
 
   /// Portée de la vision dans le noir ; 0 sans elle.
   final int darkvisionFeet;
+
+  /// Récupération de chaque ressource, lancers gratuits compris.
+  final Map<String, List<Recharge>> recharges;
 
   /// Lancers sans emplacement, par sort.
   final Map<String, int> freeCasts;

@@ -2,7 +2,7 @@ import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 
 /// Ressource accordée par une aptitude : son maximum et sa recharge.
-typedef FeatureResource = ({int max, String? recharge});
+typedef FeatureResource = ({String id, int max, String? recharge});
 
 /// Une aptitude, un trait ou un don du personnage.
 typedef SheetFeature = ({ContentEntity entity, FeatureResource? resource});
@@ -22,7 +22,11 @@ FeatureResource? _resource(ContentEntity entity, ComputedSheet sheet) {
     if (max == null) continue;
     final recharge = effect.args['recharge'] as List<Object?>?;
     final first = recharge?.firstOrNull as Map<String, Object?>?;
-    return (max: max, recharge: first?['on'] as String?);
+    return (
+      id: effect.args['id']! as String,
+      max: max,
+      recharge: first?['on'] as String?,
+    );
   }
   return null;
 }

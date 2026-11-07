@@ -2352,6 +2352,150 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'+{value} à la CA'**
   String armorShieldBonus(int value);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos court'**
+  String get shortRest;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos long'**
+  String get longRest;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au moins 1 heure · il faut au moins 1 PV'**
+  String get shortRestHint;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au moins 8 heures, dont 6 de sommeil. Prochain repos long possible 16 h après celui-ci.'**
+  String get longRestHint;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il faut au moins 1 PV pour se reposer.'**
+  String get restNeedsHitPoint;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dés de vie dépensés'**
+  String get hitDiceSpent;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisir mon jet'**
+  String get enterRoll;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utiliser mon jet'**
+  String get useMyRoll;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utiliser'**
+  String get useResource;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Perdre 1 PV'**
+  String get loseHitPoint;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Regagner 1 PV'**
+  String get gainHitPoint;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupéré à la fin du repos'**
+  String get recoveredTitle;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien à récupérer de plus.'**
+  String get nothingToRecover;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupérés'**
+  String get slotsRecovered;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Épuisement'**
+  String get exhaustion;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration terminée'**
+  String get concentrationEnds;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer le repos court'**
+  String get finishShortRest;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer le repos'**
+  String get finishLongRest;
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV {current} / {max}'**
+  String hitPointsOf(int current, int max);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'{before} → {after} / {max}'**
+  String hitPointsChange(int before, int after, int max);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'restants : {left} / {total} {die}'**
+  String hitDiceLeft(int left, int total, String die);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'{before} → {total} {die}'**
+  String hitDiceChange(int before, int total, String die);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer un {die}'**
+  String rollDie(String die);
+
+  /// Repos et suivi de jeu.
+  ///
+  /// In fr, this message translates to:
+  /// **'{before} → {after} / {max}'**
+  String recoveredUses(int before, int after, int max);
 }
 
 class _AppLocalizationsDelegate

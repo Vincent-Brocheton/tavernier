@@ -55,6 +55,18 @@ void main() {
       expect(state.concentrationSpellId, 'srd:spell:bless');
     });
 
+    test('PV et Épuisement relus', () async {
+      await store.saveState('a', const PlayState(hpCurrent: 7, exhaustion: 2));
+      final state = await store.loadState('a');
+      expect(state.hpCurrent, 7);
+      expect(state.exhaustion, 2);
+    });
+
+    test('personnage indemne : PV vides', () async {
+      await store.saveState('a', const PlayState());
+      expect((await store.loadState('a')).hpCurrent, isNull);
+    });
+
     test('un second enregistrement remplace le premier', () async {
       await store.saveState(
         'a',
