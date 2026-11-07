@@ -90,6 +90,7 @@ enum IntegrityRule {
   featGrant,
   weaponMastery,
   multiclass,
+  attunement,
   choice,
   reference,
 }
@@ -181,6 +182,7 @@ final class ComputedSheet {
     required this.attacksPerAction,
     required this.sneakAttack,
     required this.attunedCount,
+    required this.attunementSlots,
     required this.darkvisionFeet,
     required this.freeCasts,
     required this.spellcasting,
@@ -238,6 +240,9 @@ final class ComputedSheet {
   /// Dés d'Attaque sournoise, par exemple `3d6`.
   final String? sneakAttack;
   final int attunedCount;
+
+  /// Objets harmonisés au maximum.
+  final int attunementSlots;
 
   /// Portée de la vision dans le noir ; 0 sans elle.
   final int darkvisionFeet;

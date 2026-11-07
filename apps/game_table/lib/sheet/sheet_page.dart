@@ -11,6 +11,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'features_tab.dart';
+import 'inventory_tab.dart';
 import 'sheet_breakdowns.dart';
 import 'spells_tab.dart';
 
@@ -180,7 +181,12 @@ class _Sheet extends StatelessWidget {
                   character: character,
                   sheet: sheet,
                 ),
-                soon,
+                InventoryTab(
+                  id: id,
+                  content: content,
+                  character: character,
+                  sheet: sheet,
+                ),
                 FeaturesTab(
                   content: content,
                   character: character,

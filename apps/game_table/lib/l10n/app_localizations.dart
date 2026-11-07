@@ -2214,6 +2214,144 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Sans emplacement ({left, plural, =1{1 restant} other{{left} restants}})'**
   String castFree(int left);
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'pp'**
+  String get coinPlatinum;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'po'**
+  String get coinGold;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'pe'**
+  String get coinElectrum;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'pa'**
+  String get coinSilver;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'pc'**
+  String get coinCopper;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Harmonisation requise'**
+  String get attunementRequired;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous vos emplacements d’harmonisation sont pris.'**
+  String get attunementFull;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'S’harmoniser'**
+  String get attune;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre fin à l’harmonisation'**
+  String get endAttunement;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Équiper'**
+  String get equip;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ranger au sac'**
+  String get unequip;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Équipé'**
+  String get itemsWorn;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sac'**
+  String get itemsBag;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un objet'**
+  String get addItem;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un objet'**
+  String get searchItem;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun objet trouvé.'**
+  String get noItemMatches;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre sac est vide.'**
+  String get emptyInventory;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'En ajouter un'**
+  String get addOne;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'En retirer un'**
+  String get removeOne;
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'× {count}'**
+  String itemQuantity(int count);
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Harmonisation {count} / {max}'**
+  String attunementCount(int count, int max);
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'CA {value}'**
+  String armorClassValue(int value);
+
+  /// Onglet Inventaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} à la CA'**
+  String armorShieldBonus(int value);
 }
 
 class _AppLocalizationsDelegate

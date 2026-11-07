@@ -5,6 +5,7 @@ import 'character_input.dart';
 import 'computed_sheet.dart';
 import 'creation_choices.dart';
 import 'creation_rules.dart';
+import 'inventory.dart';
 
 const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
@@ -470,6 +471,22 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       );
     }
   }
+  // SRD, « Harmonisation » : trois objets, sauf aptitude contraire.
+  final attunementSlots = [
+    baseAttunementSlots,
+    for (final a in ofOp('modify_attunement_slots'))
+      a.effect.args['value']! as int,
+  ].reduce((best, value) => value > best ? value : best);
+  final attuned = character.items.where((item) => item.attuned).length;
+  if (attuned > attunementSlots) {
+    errors.add(
+      IntegrityError(
+        IntegrityRule.attunement,
+        'items',
+        '$attuned objets harmonisés pour $attunementSlots emplacements',
+      ),
+    );
+  }
   for (final (i, item) in character.items.indexed) {
     if (content.entity(item.itemId) == null) {
       errors.add(
@@ -487,6 +504,10 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       code: Computed([
         Contribution(code, mod(code)),
         if (saveCodes.contains(code)) Contribution('proficiency', pb),
+        for (final a in ofOp('modify_check'))
+          if (a.effect.args['scope'] == 'saving_throws' ||
+              a.effect.args['scope'] == 'saving_throw:$code')
+            Contribution(a.source, resolve(a.effect.args['add'], a.level)),
       ]),
   };
 
@@ -541,7 +562,8 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final c in classes)
         if (columnsOf(c)['sneak_attack_dice'] case final dice?) '${dice}d6',
     ].firstOrNull,
-    attunedCount: character.items.where((item) => item.attuned).length,
+    attunedCount: attuned,
+    attunementSlots: attunementSlots,
     darkvisionFeet: [
       for (final a in ofOp('grant_sense'))
         if (a.effect.args['sense'] == 'darkvision')
@@ -672,6 +694,20 @@ List<_Active> _activeEffects(
       feat.choices ?? const {},
       'feats[$i].choices',
     );
+  }
+  // Un objet magique agit équipé, et harmonisé s'il le demande.
+  for (final item in character.items.where((item) => item.equipped)) {
+    final data = content.entity(item.itemId)?.data;
+    if (data is MagicItemData && (!data.attunement || item.attuned)) {
+      add(
+        item.itemId,
+        'item',
+        effectsOf(item.itemId),
+        level,
+        const {},
+        'items',
+      );
+    }
   }
   for (final c in classes) {
     for (final row in c.data?.levels ?? const <ClassLevelData>[]) {
