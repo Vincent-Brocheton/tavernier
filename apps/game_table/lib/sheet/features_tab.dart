@@ -6,6 +6,7 @@ import '../creation/step_layout.dart';
 import '../creation/subchoices.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
+import 'rest_sheet.dart';
 import 'sheet_features.dart';
 
 enum _Filter { all, withUses, feats }
@@ -14,11 +15,13 @@ enum _Filter { all, withUses, feats }
 class FeaturesTab extends StatefulWidget {
   const FeaturesTab({
     super.key,
+    required this.id,
     required this.content,
     required this.character,
     required this.sheet,
   });
 
+  final String id;
   final ActiveContent content;
   final CharacterInput character;
   final ComputedSheet sheet;
@@ -80,27 +83,18 @@ class _FeaturesTabState extends State<FeaturesTab> {
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(feature.entity.name),
-                  subtitle: Text(firstSentence(feature.entity.textFr ?? '')),
-                  trailing: switch (feature.resource) {
-                    final resource? => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        ResourcePips(
-                          total: resource.max,
-                          available: resource.max,
-                          semanticLabel: l10n.usesOf(
-                            resource.max,
-                            resource.max,
-                          ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(firstSentence(feature.entity.textFr ?? '')),
+                      if (feature.resource case final resource?)
+                        ResourceTracker(
+                          id: widget.id,
+                          resource: resource,
+                          label: rechargeLabel(l10n, resource.recharge),
                         ),
-                        if (rechargeLabel(l10n, resource.recharge)
-                            case final label?)
-                          Text(label, style: text.bodySmall),
-                      ],
-                    ),
-                    null => null,
-                  },
+                    ],
+                  ),
                 ),
           ],
       ],

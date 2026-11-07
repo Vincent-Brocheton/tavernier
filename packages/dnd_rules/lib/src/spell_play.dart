@@ -13,7 +13,12 @@ const pactSlotResource = 'pact-slot';
 
 /// État de jeu d'un personnage : ce qui change à la table, hors de sa fiche.
 final class PlayState {
-  const PlayState({this.used = const {}, this.concentrationSpellId});
+  const PlayState({
+    this.used = const {},
+    this.concentrationSpellId,
+    this.hpCurrent,
+    this.exhaustion = 0,
+  });
 
   /// Utilisations dépensées, par ressource.
   final Map<String, int> used;
@@ -21,7 +26,34 @@ final class PlayState {
   /// Un seul sort à concentration à la fois (EF-PJ-09).
   final String? concentrationSpellId;
 
+  /// PV actuels ; vide tant que le personnage est à son maximum.
+  final int? hpCurrent;
+
+  /// Niveaux d'Épuisement.
+  final int exhaustion;
+
   int usedOf(String resource) => used[resource] ?? 0;
+
+  PlayState withUsed(Map<String, int> value) => PlayState(
+    used: value,
+    concentrationSpellId: concentrationSpellId,
+    hpCurrent: hpCurrent,
+    exhaustion: exhaustion,
+  );
+
+  PlayState withConcentration(String? spellId) => PlayState(
+    used: used,
+    concentrationSpellId: spellId,
+    hpCurrent: hpCurrent,
+    exhaustion: exhaustion,
+  );
+
+  PlayState withHitPoints(int? value) => PlayState(
+    used: used,
+    concentrationSpellId: concentrationSpellId,
+    hpCurrent: value,
+    exhaustion: exhaustion,
+  );
 }
 
 /// Manière de lancer un sort.
@@ -107,15 +139,14 @@ PlayState castSpell(
   String spellId,
   SpellData spell,
   CastOption option,
-) => PlayState(
-  used: {
-    ...state.used,
-    ?option.resource: state.usedOf(option.resource ?? '') + 1,
-  },
-  concentrationSpellId: spell.concentration
-      ? spellId
-      : state.concentrationSpellId,
-);
+) => state
+    .withUsed({
+      ...state.used,
+      ?option.resource: state.usedOf(option.resource ?? '') + 1,
+    })
+    .withConcentration(
+      spell.concentration ? spellId : state.concentrationSpellId,
+    );
 
 /// [state] sans concentration en cours.
-PlayState endConcentration(PlayState state) => PlayState(used: state.used);
+PlayState endConcentration(PlayState state) => state.withConcentration(null);
