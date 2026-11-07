@@ -197,3 +197,14 @@ Le dépôt SHALL écrire et relire les dépenses et la concentration d'un person
 #### Scenario: Personnage réenregistré
 - **WHEN** le personnage est enregistré après une montée de niveau
 - **THEN** son état de jeu ne change pas
+
+### Requirement: PV et Épuisement dans l'état de jeu
+Le dépôt SHALL écrire et relire les PV actuels et l'Épuisement d'un personnage.
+
+#### Scenario: Relecture
+- **WHEN** un état avec des PV et de l'Épuisement est enregistré puis relu
+- **THEN** ces valeurs sont identiques
+
+#### Scenario: Personnage indemne
+- **WHEN** aucun PV n'a été enregistré
+- **THEN** les PV actuels sont vides, soit le maximum
