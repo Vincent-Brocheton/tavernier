@@ -117,7 +117,7 @@ void main() {
     expect(find.text('restants : 3 / 3 d10'), findsOneWidget);
     await tester.enterText(find.byType(TextField), '7');
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Utiliser mon jet'));
+    await tester.tap(find.text('Dépenser le d10'));
     await tester.pumpAndSettle();
     expect(find.text('10 → 19 / 28'), findsOneWidget);
     expect(find.text('restants : 2 / 3 d10'), findsOneWidget);
@@ -134,7 +134,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '11');
     await tester.pumpAndSettle();
     final button = tester.widget<OutlinedButton>(
-      find.widgetWithText(OutlinedButton, 'Utiliser mon jet'),
+      find.widgetWithText(OutlinedButton, 'Dépenser le d10'),
     );
     expect(button.onPressed, isNull);
   });
@@ -142,7 +142,9 @@ void main() {
   testWidgets('lancer un dé : soigne', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
-    await tester.tap(find.text('Lancer un d10'));
+    await tester.tap(find.widgetWithText(OutlinedButton, 'Lancer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Dépenser le d10'));
     await tester.pumpAndSettle();
     expect(find.text('restants : 2 / 3 d10'), findsOneWidget);
   });
@@ -150,7 +152,9 @@ void main() {
   testWidgets('annuler : rien ne change', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
-    await tester.tap(find.text('Lancer un d10'));
+    await tester.tap(find.widgetWithText(OutlinedButton, 'Lancer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Dépenser le d10'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Annuler'));
     await _settle(tester);

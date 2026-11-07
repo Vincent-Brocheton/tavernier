@@ -2398,12 +2398,6 @@ abstract class AppLocalizations {
   /// Repos et suivi de jeu.
   ///
   /// In fr, this message translates to:
-  /// **'Utiliser mon jet'**
-  String get useMyRoll;
-
-  /// Repos et suivi de jeu.
-  ///
-  /// In fr, this message translates to:
   /// **'Utiliser'**
   String get useResource;
 
@@ -2488,12 +2482,6 @@ abstract class AppLocalizations {
   /// Repos et suivi de jeu.
   ///
   /// In fr, this message translates to:
-  /// **'Lancer un {die}'**
-  String rollDie(String die);
-
-  /// Repos et suivi de jeu.
-  ///
-  /// In fr, this message translates to:
   /// **'{before} → {after} / {max}'**
   String recoveredUses(int before, int after, int max);
 
@@ -2532,12 +2520,6 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Action'**
   String get actionPlain;
-
-  /// Consommables et Inspiration.
-  ///
-  /// In fr, this message translates to:
-  /// **'Saisir mon jet ({dice})'**
-  String enterRollOf(String dice);
 
   /// Consommables et Inspiration.
   ///
@@ -2598,6 +2580,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Glossaire · SRD 5.2.1'**
   String get ruleTermSource;
+
+  /// Jet simple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Relancer'**
+  String get reroll;
+
+  /// Jet simple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Résultat du {dice} (modifiable avant validation)'**
+  String rollResultOf(String dice);
+
+  /// Jet simple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Résultat impossible pour {dice}.'**
+  String rollImpossible(String dice);
+
+  /// Jet simple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dépenser le {die}'**
+  String spendHitDie(String die);
 }
 
 class _AppLocalizationsDelegate

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +8,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'sheet_features.dart';
 import 'sheet_page.dart';
+import 'simple_roll.dart';
 
 /// Écrit l'état de jeu de [id] et relit les écrans qui le montrent.
 Future<void> savePlayState(WidgetRef ref, String id, PlayState state) async {
@@ -155,63 +154,49 @@ class _RestSheetState extends ConsumerState<RestSheet> {
   late final PlayState _start =
       ref.read(playStateProvider(widget.id)).asData?.value ?? const PlayState();
   late PlayState _state = _start;
-  final _roll = TextEditingController();
+
+  /// Résultat validé de chaque type de dé, et clé neuve après chaque dépense.
+  final _rolls = <String, int?>{};
+  var _round = 0;
 
   ComputedSheet get _sheet => widget.sheet;
 
-  @override
-  void dispose() {
-    _roll.dispose();
-    super.dispose();
-  }
-
-  void _spend(String die, int roll) => setState(() {
-    _state = spendHitDie(_state, _sheet, die, roll);
-    _roll.clear();
+  void _spend(String die) => setState(() {
+    _state = spendHitDie(_state, _sheet, die, _rolls[die]!);
+    _rolls.clear();
+    _round++;
   });
-
-  int _sides(String die) => int.parse(die.substring(1));
-
-  int? _typedRoll(String die) {
-    final roll = int.tryParse(_roll.text);
-    return roll != null && roll >= 1 && roll <= _sides(die) ? roll : null;
-  }
 
   List<Widget> _dice(AppLocalizations l10n, TextTheme text) => [
     Text(l10n.hitDiceSpent, style: text.titleSmall),
-    SizedBox(height: AppSpacing.xxs),
-    if (_sheet.hitDice.any((d) => hitDiceLeft(_state, d) > 0))
-      TextField(
-        controller: _roll,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(labelText: l10n.enterRoll),
-        onChanged: (_) => setState(() {}),
-      ),
     for (final dice in _sheet.hitDice)
       if (hitDiceLeft(_state, dice) case final left) ...[
-        SizedBox(height: AppSpacing.xxs),
+        SizedBox(height: AppSpacing.xs),
         Text(
           l10n.hitDiceLeft(left, dice.total, dice.die),
           style: text.bodyMedium,
         ),
-        Wrap(
-          spacing: AppSpacing.xs,
-          children: [
-            OutlinedButton(
-              onPressed: left > 0
-                  ? () =>
-                        _spend(dice.die, Random().nextInt(_sides(dice.die)) + 1)
-                  : null,
-              child: Text(l10n.rollDie(dice.die)),
+        if (left > 0) ...[
+          SimpleRoll(
+            key: ValueKey('${dice.die}-$_round'),
+            formula: DiceFormula(
+              1,
+              int.parse(dice.die.substring(1)),
+              bonus: _sheet.abilities['con']!.modifier,
             ),
-            OutlinedButton(
-              onPressed: left > 0 && _typedRoll(dice.die) != null
-                  ? () => _spend(dice.die, _typedRoll(dice.die)!)
-                  : null,
-              child: Text(l10n.useMyRoll),
+            bonusLabel: l10n.abbrCon,
+            onChanged: (roll) => setState(() => _rolls[dice.die] = roll),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: OutlinedButton(
+              onPressed: _rolls[dice.die] == null
+                  ? null
+                  : () => _spend(dice.die),
+              child: Text(l10n.spendHitDie(dice.die)),
             ),
-          ],
-        ),
+          ),
+        ],
       ],
     SizedBox(height: AppSpacing.sm),
   ];
