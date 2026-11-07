@@ -1564,4 +1564,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String suggestImprovementReason(String abilities) {
     return 'Augmenter $abilities renforce ce que fait votre classe.';
   }
+
+  @override
+  String ruleTermLabel(String term) {
+    return '$term, définition';
+  }
+
+  @override
+  String get ruleTermSource => 'Glossaire · SRD 5.2.1';
 }

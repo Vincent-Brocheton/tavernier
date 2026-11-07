@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:disadvantage",
+  "type": "rule",
+  "name": "Désavantage",
+  "text": {
+    "fr": "Si vous avez le Désavantage à un Test d20, lancez deux d20 et ne retenez que le résultat le plus faible. Un jet ne peut pas être affecté par plus d’un Désavantage, et l’Avantage et le Désavantage sur un même jet s’annulent."
+  }
+}

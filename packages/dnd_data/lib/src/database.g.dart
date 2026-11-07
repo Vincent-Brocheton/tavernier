@@ -2813,6 +2813,316 @@ class ConditionsCompanion extends UpdateCompanion<ConditionRow> {
   }
 }
 
+class $RuleTermsTable extends RuleTerms
+    with TableInfo<$RuleTermsTable, RuleTermRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $RuleTermsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _packIdMeta = const VerificationMeta('packId');
+  @override
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES content_pack (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _extendsIdMeta = const VerificationMeta(
+    'extendsId',
+  );
+  @override
+  late final GeneratedColumn<String> extendsId = GeneratedColumn<String>(
+    'extends_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, packId, name, extendsId];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'rule_term';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<RuleTermRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pack_id')) {
+      context.handle(
+        _packIdMeta,
+        packId.isAcceptableOrUnknown(data['pack_id']!, _packIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_packIdMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('extends_id')) {
+      context.handle(
+        _extendsIdMeta,
+        extendsId.isAcceptableOrUnknown(data['extends_id']!, _extendsIdMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  RuleTermRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return RuleTermRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      packId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pack_id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      extendsId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}extends_id'],
+      ),
+    );
+  }
+
+  @override
+  $RuleTermsTable createAlias(String alias) {
+    return $RuleTermsTable(attachedDatabase, alias);
+  }
+}
+
+class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
+  final String id;
+  final String packId;
+  final String name;
+  final String? extendsId;
+  const RuleTermRow({
+    required this.id,
+    required this.packId,
+    required this.name,
+    this.extendsId,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['pack_id'] = Variable<String>(packId);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || extendsId != null) {
+      map['extends_id'] = Variable<String>(extendsId);
+    }
+    return map;
+  }
+
+  RuleTermsCompanion toCompanion(bool nullToAbsent) {
+    return RuleTermsCompanion(
+      id: Value(id),
+      packId: Value(packId),
+      name: Value(name),
+      extendsId: extendsId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(extendsId),
+    );
+  }
+
+  factory RuleTermRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return RuleTermRow(
+      id: serializer.fromJson<String>(json['id']),
+      packId: serializer.fromJson<String>(json['packId']),
+      name: serializer.fromJson<String>(json['name']),
+      extendsId: serializer.fromJson<String?>(json['extendsId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'packId': serializer.toJson<String>(packId),
+      'name': serializer.toJson<String>(name),
+      'extendsId': serializer.toJson<String?>(extendsId),
+    };
+  }
+
+  RuleTermRow copyWith({
+    String? id,
+    String? packId,
+    String? name,
+    Value<String?> extendsId = const Value.absent(),
+  }) => RuleTermRow(
+    id: id ?? this.id,
+    packId: packId ?? this.packId,
+    name: name ?? this.name,
+    extendsId: extendsId.present ? extendsId.value : this.extendsId,
+  );
+  RuleTermRow copyWithCompanion(RuleTermsCompanion data) {
+    return RuleTermRow(
+      id: data.id.present ? data.id.value : this.id,
+      packId: data.packId.present ? data.packId.value : this.packId,
+      name: data.name.present ? data.name.value : this.name,
+      extendsId: data.extendsId.present ? data.extendsId.value : this.extendsId,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RuleTermRow(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('name: $name, ')
+          ..write('extendsId: $extendsId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, packId, name, extendsId);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is RuleTermRow &&
+          other.id == this.id &&
+          other.packId == this.packId &&
+          other.name == this.name &&
+          other.extendsId == this.extendsId);
+}
+
+class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
+  final Value<String> id;
+  final Value<String> packId;
+  final Value<String> name;
+  final Value<String?> extendsId;
+  final Value<int> rowid;
+  const RuleTermsCompanion({
+    this.id = const Value.absent(),
+    this.packId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.extendsId = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  RuleTermsCompanion.insert({
+    required String id,
+    required String packId,
+    required String name,
+    this.extendsId = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       packId = Value(packId),
+       name = Value(name);
+  static Insertable<RuleTermRow> custom({
+    Expression<String>? id,
+    Expression<String>? packId,
+    Expression<String>? name,
+    Expression<String>? extendsId,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (packId != null) 'pack_id': packId,
+      if (name != null) 'name': name,
+      if (extendsId != null) 'extends_id': extendsId,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  RuleTermsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? packId,
+    Value<String>? name,
+    Value<String?>? extendsId,
+    Value<int>? rowid,
+  }) {
+    return RuleTermsCompanion(
+      id: id ?? this.id,
+      packId: packId ?? this.packId,
+      name: name ?? this.name,
+      extendsId: extendsId ?? this.extendsId,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (packId.present) {
+      map['pack_id'] = Variable<String>(packId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (extendsId.present) {
+      map['extends_id'] = Variable<String>(extendsId.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('RuleTermsCompanion(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('name: $name, ')
+          ..write('extendsId: $extendsId, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $DamageTypesTable extends DamageTypes
     with TableInfo<$DamageTypesTable, DamageTypeRow> {
   @override
@@ -27123,6 +27433,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $SkillsTable skills = $SkillsTable(this);
   late final $LanguagesTable languages = $LanguagesTable(this);
   late final $ConditionsTable conditions = $ConditionsTable(this);
+  late final $RuleTermsTable ruleTerms = $RuleTermsTable(this);
   late final $DamageTypesTable damageTypes = $DamageTypesTable(this);
   late final $MasteryPropertiesTable masteryProperties =
       $MasteryPropertiesTable(this);
@@ -27213,6 +27524,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     skills,
     languages,
     conditions,
+    ruleTerms,
     damageTypes,
     masteryProperties,
     weapons,
@@ -27303,6 +27615,13 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('condition', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('rule_term', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -28009,6 +28328,24 @@ final class $$ContentPacksTableReferences
     ).filter((f) => f.packId.id.sqlEquals($_itemColumn<String>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_conditionsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$RuleTermsTable, List<RuleTermRow>>
+  _ruleTermsRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
+    db.ruleTerms,
+    aliasName: 'content_pack__id__rule_term__pack_id',
+  );
+
+  $$RuleTermsTableProcessedTableManager get ruleTermsRefs {
+    final manager = $$RuleTermsTableTableManager(
+      $_db,
+      $_db.ruleTerms,
+    ).filter((f) => f.packId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_ruleTermsRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -28741,6 +29078,31 @@ class $$ContentPacksTableFilterComposer
           }) => $$ConditionsTableFilterComposer(
             $db: $db,
             $table: $db.conditions,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> ruleTermsRefs(
+    Expression<bool> Function($$RuleTermsTableFilterComposer f) f,
+  ) {
+    final $$RuleTermsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.ruleTerms,
+      getReferencedColumn: (t) => t.packId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RuleTermsTableFilterComposer(
+            $db: $db,
+            $table: $db.ruleTerms,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -29684,6 +30046,31 @@ class $$ContentPacksTableAnnotationComposer
     return f(composer);
   }
 
+  Expression<T> ruleTermsRefs<T extends Object>(
+    Expression<T> Function($$RuleTermsTableAnnotationComposer a) f,
+  ) {
+    final $$RuleTermsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.ruleTerms,
+      getReferencedColumn: (t) => t.packId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$RuleTermsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.ruleTerms,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
   Expression<T> damageTypesRefs<T extends Object>(
     Expression<T> Function($$DamageTypesTableAnnotationComposer a) f,
   ) {
@@ -30388,6 +30775,7 @@ class $$ContentPacksTableTableManager
             bool skillsRefs,
             bool languagesRefs,
             bool conditionsRefs,
+            bool ruleTermsRefs,
             bool damageTypesRefs,
             bool masteryPropertiesRefs,
             bool weaponsRefs,
@@ -30509,6 +30897,7 @@ class $$ContentPacksTableTableManager
                 skillsRefs = false,
                 languagesRefs = false,
                 conditionsRefs = false,
+                ruleTermsRefs = false,
                 damageTypesRefs = false,
                 masteryPropertiesRefs = false,
                 weaponsRefs = false,
@@ -30545,6 +30934,7 @@ class $$ContentPacksTableTableManager
                     if (skillsRefs) db.skills,
                     if (languagesRefs) db.languages,
                     if (conditionsRefs) db.conditions,
+                    if (ruleTermsRefs) db.ruleTerms,
                     if (damageTypesRefs) db.damageTypes,
                     if (masteryPropertiesRefs) db.masteryProperties,
                     if (weaponsRefs) db.weapons,
@@ -30673,6 +31063,26 @@ class $$ContentPacksTableTableManager
                                 table,
                                 p0,
                               ).conditionsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'pack_id',
+                          typedResults: items,
+                        ),
+                      if (ruleTermsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          ContentPackRow,
+                          $ContentPacksTable,
+                          RuleTermRow,
+                          $RuleTermsTable
+                        >(
+                          currentTable: table,
+                          referencedTable: $$ContentPacksTableReferences
+                              ._ruleTermsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$ContentPacksTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).ruleTermsRefs,
                           currentColumn: 'id',
                           referencedColumn: 'pack_id',
                           typedResults: items,
@@ -31243,6 +31653,7 @@ typedef $$ContentPacksTableProcessedTableManager =
         bool skillsRefs,
         bool languagesRefs,
         bool conditionsRefs,
+        bool ruleTermsRefs,
         bool damageTypesRefs,
         bool masteryPropertiesRefs,
         bool weaponsRefs,
@@ -32799,6 +33210,300 @@ typedef $$ConditionsTableProcessedTableManager =
       $$ConditionsTableUpdateCompanionBuilder,
       (ConditionRow, $$ConditionsTableReferences),
       ConditionRow,
+      PrefetchHooks Function({bool packId})
+    >;
+typedef $$RuleTermsTableCreateCompanionBuilder = RuleTermsCompanion Function({
+  required String id,
+  required String packId,
+  required String name,
+  Value<String?> extendsId,
+  Value<int> rowid,
+});
+typedef $$RuleTermsTableUpdateCompanionBuilder = RuleTermsCompanion Function({
+  Value<String> id,
+  Value<String> packId,
+  Value<String> name,
+  Value<String?> extendsId,
+  Value<int> rowid,
+});
+
+final class $$RuleTermsTableReferences
+    extends BaseReferences<_$TavernierDatabase, $RuleTermsTable, RuleTermRow> {
+  $$RuleTermsTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $ContentPacksTable _packIdTable(_$TavernierDatabase db) =>
+      db.contentPacks.createAlias('rule_term__pack_id__content_pack__id');
+
+  $$ContentPacksTableProcessedTableManager get packId {
+    final $_column = $_itemColumn<String>('pack_id')!;
+
+    final manager = $$ContentPacksTableTableManager(
+      $_db,
+      $_db.contentPacks,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_packIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$RuleTermsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $RuleTermsTable> {
+  $$RuleTermsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get extendsId => $composableBuilder(
+    column: $table.extendsId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$ContentPacksTableFilterComposer get packId {
+    final $$ContentPacksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableFilterComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RuleTermsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $RuleTermsTable> {
+  $$RuleTermsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get extendsId => $composableBuilder(
+    column: $table.extendsId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$ContentPacksTableOrderingComposer get packId {
+    final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableOrderingComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RuleTermsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $RuleTermsTable> {
+  $$RuleTermsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get extendsId =>
+      $composableBuilder(column: $table.extendsId, builder: (column) => column);
+
+  $$ContentPacksTableAnnotationComposer get packId {
+    final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.packId,
+      referencedTable: $db.contentPacks,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$ContentPacksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.contentPacks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$RuleTermsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $RuleTermsTable,
+          RuleTermRow,
+          $$RuleTermsTableFilterComposer,
+          $$RuleTermsTableOrderingComposer,
+          $$RuleTermsTableAnnotationComposer,
+          $$RuleTermsTableCreateCompanionBuilder,
+          $$RuleTermsTableUpdateCompanionBuilder,
+          (RuleTermRow, $$RuleTermsTableReferences),
+          RuleTermRow,
+          PrefetchHooks Function({bool packId})
+        > {
+  $$RuleTermsTableTableManager(_$TavernierDatabase db, $RuleTermsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$RuleTermsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$RuleTermsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$RuleTermsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> packId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String?> extendsId = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RuleTermsCompanion(
+                id: id,
+                packId: packId,
+                name: name,
+                extendsId: extendsId,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String packId,
+                required String name,
+                Value<String?> extendsId = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => RuleTermsCompanion.insert(
+                id: id,
+                packId: packId,
+                name: name,
+                extendsId: extendsId,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$RuleTermsTable, RuleTermRow>(table),
+                  $$RuleTermsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({packId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (packId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.packId,
+                        referencedTable: $$RuleTermsTableReferences
+                            ._packIdTable(db),
+                        referencedColumn: $$RuleTermsTableReferences
+                            ._packIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$RuleTermsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $RuleTermsTable,
+      RuleTermRow,
+      $$RuleTermsTableFilterComposer,
+      $$RuleTermsTableOrderingComposer,
+      $$RuleTermsTableAnnotationComposer,
+      $$RuleTermsTableCreateCompanionBuilder,
+      $$RuleTermsTableUpdateCompanionBuilder,
+      (RuleTermRow, $$RuleTermsTableReferences),
+      RuleTermRow,
       PrefetchHooks Function({bool packId})
     >;
 typedef $$DamageTypesTableCreateCompanionBuilder =
@@ -53778,6 +54483,8 @@ class $TavernierDatabaseManager {
       $$LanguagesTableTableManager(_db, _db.languages);
   $$ConditionsTableTableManager get conditions =>
       $$ConditionsTableTableManager(_db, _db.conditions);
+  $$RuleTermsTableTableManager get ruleTerms =>
+      $$RuleTermsTableTableManager(_db, _db.ruleTerms);
   $$DamageTypesTableTableManager get damageTypes =>
       $$DamageTypesTableTableManager(_db, _db.damageTypes);
   $$MasteryPropertiesTableTableManager get masteryProperties =>

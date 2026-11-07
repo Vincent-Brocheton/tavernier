@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:difficult-terrain",
+  "type": "rule",
+  "name": "Terrain difficile",
+  "text": {
+    "fr": "Si un espace est un Terrain difficile, le coût de déplacement y est doublé. Se déplacer de 1,50 m en Terrain difficile, par exemple, coûte 3 m de déplacement."
+  }
+}

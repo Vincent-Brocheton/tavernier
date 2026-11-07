@@ -87,6 +87,12 @@ class Conditions extends Table with ContentEntityColumns {
   String get tableName => 'condition';
 }
 
+@DataClassName('RuleTermRow')
+class RuleTerms extends Table with ContentEntityColumns {
+  @override
+  String get tableName => 'rule_term';
+}
+
 @DataClassName('DamageTypeRow')
 class DamageTypes extends Table with ContentEntityColumns {
   @override

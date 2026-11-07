@@ -7,6 +7,7 @@ import '../creation/subchoices.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'rest_sheet.dart';
+import 'rule_text.dart';
 import 'sheet_features.dart';
 
 enum _Filter { all, withUses, feats }
@@ -86,7 +87,11 @@ class _FeaturesTabState extends State<FeaturesTab> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(firstSentence(feature.entity.textFr ?? '')),
+                      RuleText(
+                        firstSentence(feature.entity.textFr ?? ''),
+                        content: content,
+                        style: text.bodyMedium,
+                      ),
                       if (feature.resource case final resource?)
                         ResourceTracker(
                           id: widget.id,

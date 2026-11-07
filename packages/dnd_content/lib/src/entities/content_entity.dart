@@ -12,6 +12,7 @@ final Set<String> entityTypes = Set.unmodifiable(dataReaders.keys);
 const typesWithRequiredText = {
   'feature',
   'condition',
+  'rule',
   'feat',
   'mastery',
   'background',

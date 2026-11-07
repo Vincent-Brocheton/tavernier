@@ -16,6 +16,7 @@ part 'database.g.dart';
     Skills,
     Languages,
     Conditions,
+    RuleTerms,
     DamageTypes,
     MasteryProperties,
     Weapons,

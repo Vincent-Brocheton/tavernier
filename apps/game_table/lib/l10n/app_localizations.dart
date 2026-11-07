@@ -2586,6 +2586,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Augmenter {abilities} renforce ce que fait votre classe.'**
   String suggestImprovementReason(String abilities);
+
+  /// Termes cliquables.
+  ///
+  /// In fr, this message translates to:
+  /// **'{term}, définition'**
+  String ruleTermLabel(String term);
+
+  /// Termes cliquables.
+  ///
+  /// In fr, this message translates to:
+  /// **'Glossaire · SRD 5.2.1'**
+  String get ruleTermSource;
 }
 
 class _AppLocalizationsDelegate
