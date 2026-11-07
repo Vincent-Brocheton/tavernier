@@ -298,6 +298,27 @@ void main() {
       });
     }
 
+    testWidgets('Suggérer : 27 points, bonus posés, tout Suivant', (
+      tester,
+    ) async {
+      await toAbilities(tester, 1440);
+      await tester.tap(find.widgetWithText(OutlinedButton, 'Suggérer'));
+      await tester.pumpAndSettle();
+      expect(find.text('27 / 27 points'), findsOneWidget);
+      expect(find.text('Suggestion appliquée, modifiable'), findsOneWidget);
+      expect(find.textContaining('Force en tête'), findsOneWidget);
+      expect(_next(tester).onPressed, isNotNull);
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+
+      final buttons = find.widgetWithText(OutlinedButton, 'Suggérer');
+      await tester.ensureVisible(buttons.first);
+      await tester.pumpAndSettle();
+      await tester.tap(buttons.first);
+      await tester.pumpAndSettle();
+      expect(find.text('Suggestion appliquée, modifiable'), findsOneWidget);
+    });
+
     testWidgets('Force non éligible : pas de bonus, explication', (
       tester,
     ) async {

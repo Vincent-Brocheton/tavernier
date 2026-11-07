@@ -175,6 +175,21 @@ Future<void> _chip(WidgetTester tester, String label) async {
 }
 
 void main() {
+  testWidgets('Suggérer : Amélioration, Force 17 → 19', (tester) async {
+    await _open(tester, 1440, 3);
+    await _tapNext(tester);
+    await _tap(tester, 'Épée à deux mains');
+    await _tapNext(tester);
+    await _tap(tester, 'Suggérer');
+    expect(find.textContaining('Augmenter Force'), findsOneWidget);
+    await _tapNext(tester);
+    await _tapNext(tester);
+    final saved = await _store.load('a');
+    final feat = saved!.feats.last;
+    expect(feat.featId, abilityScoreImprovementFeat);
+    expect(feat.choices, {'str': 2});
+  });
+
   group('multiclassage [G2]', () {
     testWidgets('prérequis lus sur la fiche', (tester) async {
       await _open(tester, 1440, 5, classStep: true);

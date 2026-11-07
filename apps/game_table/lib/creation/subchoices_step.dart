@@ -1,3 +1,4 @@
+import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -97,6 +98,36 @@ class _Section extends ConsumerWidget {
       .read(creationProvider.notifier)
       .update((d) => d.toggleOption(section, id));
 
+  /// Compétences et bottes se suggèrent (EF-PJ-15).
+  Widget? _suggest(AppLocalizations l10n, WidgetRef ref) {
+    final data = content.entity(draft.classId!)!.data as ClassData;
+    final free = [
+      for (final option in section.options)
+        if (option.block == null) option.id,
+    ];
+    return switch (section.kind) {
+      SubchoiceKind.classSkills => SuggestButton(
+        onApply: () {
+          final picks = suggestedSkills(content, data, free, section.count);
+          ref
+              .read(creationProvider.notifier)
+              .update((d) => d.withClassSkills(picks));
+          return l10n.suggestSkillsReason;
+        },
+      ),
+      SubchoiceKind.masteries => SuggestButton(
+        onApply: () {
+          final picks = suggestedMasteries(data, free, section.count);
+          ref
+              .read(creationProvider.notifier)
+              .update((d) => d.withMasteries(picks));
+          return l10n.suggestMasteriesReason;
+        },
+      ),
+      _ => null,
+    };
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -129,6 +160,10 @@ class _Section extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (_suggest(l10n, ref) case final button?) ...[
+            Align(alignment: Alignment.centerLeft, child: button),
+            SizedBox(height: AppSpacing.xs),
+          ],
           Row(
             children: [
               Expanded(

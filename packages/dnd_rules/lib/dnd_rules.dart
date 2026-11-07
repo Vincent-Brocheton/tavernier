@@ -13,3 +13,4 @@ export 'src/rest.dart';
 export 'src/sheet_spells.dart';
 export 'src/spell_changes.dart';
 export 'src/spell_play.dart';
+export 'src/suggestions.dart';

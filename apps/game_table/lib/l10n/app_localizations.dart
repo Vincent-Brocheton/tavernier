@@ -2550,6 +2550,42 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'PV {before} → {after} / {max} · quantité {from} → {to}'**
   String consumableResult(int before, int after, int max, int from, int to);
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suggérer'**
+  String get suggest;
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suggestion appliquée, modifiable'**
+  String get suggestionApplied;
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'{first} en tête, puis {second}, selon les valeurs standard de votre classe.'**
+  String suggestScoresReason(String first, String second);
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les compétences de votre caractéristique principale, celles où vous brillez d’emblée.'**
+  String get suggestSkillsReason;
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les armes de votre équipement de départ d’abord.'**
+  String get suggestMasteriesReason;
+
+  /// Suggestions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Augmenter {abilities} renforce ce que fait votre classe.'**
+  String suggestImprovementReason(String abilities);
 }
 
 class _AppLocalizationsDelegate

@@ -206,6 +206,17 @@ final class CreationDraft {
       ? _with(scores: {...scores, code: scores[code]! - 1})
       : this;
 
+  /// Suggestion de valeurs : répartition 2-1 et bonus posés.
+  CreationDraft withSuggestedScores(
+    Map<String, int> values,
+    Map<String, int> bonuses,
+  ) => _with(scores: values, distribution: '2-1', bonuses: bonuses);
+
+  CreationDraft withClassSkills(List<String> value) =>
+      _with(classSkills: value);
+
+  CreationDraft withMasteries(List<String> value) => _with(masteries: value);
+
   /// Changer de répartition vide les bonus : ils n'ont plus le même sens.
   CreationDraft setDistribution(String value) => value == distribution
       ? this
