@@ -19,9 +19,9 @@ final _content = ActiveContent([
 ]);
 
 void main() {
-  for (final width in [390.0, 1440.0]) {
+  for (final width in [390.0, 800.0, 1440.0]) {
     testWidgets('$width dp : création puis niveau 5', (tester) async {
-      tester.view.physicalSize = Size(width, 1300);
+      tester.view.physicalSize = Size(width, width == 800 ? 600 : 1300);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.reset);
       final database = TavernierDatabase(NativeDatabase.memory());

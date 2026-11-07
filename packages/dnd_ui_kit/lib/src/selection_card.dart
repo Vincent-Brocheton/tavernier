@@ -91,8 +91,15 @@ class _SelectionCardState extends State<SelectionCard> {
                           Expanded(
                             child: Text(widget.title, style: text.titleMedium),
                           ),
+                          // Une carte étroite ne doit pas déborder.
                           if (widget.trailing case final value?)
-                            Text(value, style: text.bodyMedium),
+                            Flexible(
+                              child: Text(
+                                value,
+                                style: text.bodyMedium,
+                                textAlign: TextAlign.end,
+                              ),
+                            ),
                           if (selected) ...[
                             SizedBox(width: AppSpacing.xs),
                             Icon(Icons.check_circle, color: scheme.primary),
