@@ -1636,12 +1636,6 @@ abstract class AppLocalizations {
   /// Montée de niveau.
   ///
   /// In fr, this message translates to:
-  /// **'Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.'**
-  String get spellsNotYet;
-
-  /// Montée de niveau.
-  ///
-  /// In fr, this message translates to:
   /// **'Prêt à enregistrer'**
   String get levelUpReady;
 
@@ -1650,6 +1644,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Don accordé par ce niveau'**
   String get featChoiceOther;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez vos sorts.'**
+  String get missingSpells;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} {chosen} / {count}'**
+  String spellSectionCount(String title, int chosen, int count);
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un sort déjà connu ne se prend pas deux fois.'**
+  String get spellKnownShort;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste de sorts'**
+  String get initiateListChoice;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique d’incantation'**
+  String get initiateAbilityChoice;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts mineurs'**
+  String get initiateCantripChoice;
+
+  /// Montée de niveau : sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort du 1er niveau'**
+  String get initiateSpellChoice;
 }
 
 class _AppLocalizationsDelegate

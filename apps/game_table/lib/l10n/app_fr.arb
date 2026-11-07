@@ -1376,10 +1376,6 @@
   "@featBlockNotRepeatable": {
     "description": "Montée de niveau."
   },
-  "spellsNotYet": "Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.",
-  "@spellsNotYet": {
-    "description": "Montée de niveau."
-  },
   "levelUpReady": "Prêt à enregistrer",
   "@levelUpReady": {
     "description": "Montée de niveau."
@@ -1387,5 +1383,44 @@
   "featChoiceOther": "Don accordé par ce niveau",
   "@featChoiceOther": {
     "description": "Montée de niveau."
+  },
+  "missingSpells": "Choisissez vos sorts.",
+  "@missingSpells": {
+    "description": "Montée de niveau : sorts."
+  },
+  "spellSectionCount": "{title} {chosen} / {count}",
+  "@spellSectionCount": {
+    "description": "Montée de niveau : sorts.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "chosen": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spellKnownShort": "Un sort déjà connu ne se prend pas deux fois.",
+  "@spellKnownShort": {
+    "description": "Montée de niveau : sorts."
+  },
+  "initiateListChoice": "Liste de sorts",
+  "@initiateListChoice": {
+    "description": "Montée de niveau : sorts."
+  },
+  "initiateAbilityChoice": "Caractéristique d’incantation",
+  "@initiateAbilityChoice": {
+    "description": "Montée de niveau : sorts."
+  },
+  "initiateCantripChoice": "Sorts mineurs",
+  "@initiateCantripChoice": {
+    "description": "Montée de niveau : sorts."
+  },
+  "initiateSpellChoice": "Sort du 1er niveau",
+  "@initiateSpellChoice": {
+    "description": "Montée de niveau : sorts."
   }
 }

@@ -13,7 +13,15 @@ import 'level_up_draft.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
 
-enum _Step { hitPoints, features, feat, summary }
+enum _Step { hitPoints, features, feat, spells, summary }
+
+/// Une section de sorts à choisir.
+typedef _SpellSection = ({
+  String key,
+  String title,
+  int count,
+  Set<String> ids,
+});
 
 /// Montée de niveau [P10], [P11].
 class LevelUpPage extends ConsumerWidget {
@@ -103,6 +111,49 @@ class _WizardState extends ConsumerState<_Wizard> {
             if (choice.options.isNotEmpty) choice,
         ];
 
+  /// Sections de sorts du niveau gagné, dans l'ordre de l'écran.
+  List<_SpellSection> _spellSections(AppLocalizations l10n, LevelGain gain) {
+    final spells = spellGain(_content, _classId, gain.classLevel);
+    final name = namesOf(_content, [_classId]);
+    final book = {..._character.spells.spellbook, ...?_draft.spells[spellBook]}
+      ..removeAll(_character.spells.prepared);
+    return [
+      if (spells.cantrips > 0)
+        (
+          key: spellCantrips,
+          title: l10n.cantripsOf(name),
+          count: spells.cantrips,
+          ids: spellsOfList(_content, _classId, 0, 0),
+        ),
+      if (spells.spellbook > 0)
+        (
+          key: spellBook,
+          title: l10n.spellbookTitle,
+          count: spells.spellbook,
+          ids: spellsOfList(_content, _classId, 1, spells.maxLevel),
+        ),
+      if (spells.prepared > 0)
+        (
+          key: spellPrepared,
+          title: l10n.preparedSpellsOf(name),
+          count: spells.prepared,
+          ids: spells.spellbook > 0
+              ? book
+              : spellsOfList(_content, _classId, 1, spells.maxLevel),
+        ),
+      for (final choice in gain.choices)
+        for (final option in choice.options)
+          if (_draft.choices[choice.id]?.contains(option.pick) ?? false)
+            if (option.cantripListId case final list?)
+              (
+                key: spellAccess,
+                title: l10n.cantripsOf(namesOf(_content, [list])),
+                count: option.bonusCantrips,
+                ids: spellsOfList(_content, list, 0, 0),
+              ),
+    ];
+  }
+
   String? _missing(
     AppLocalizations l10n,
     _Step step,
@@ -110,6 +161,12 @@ class _WizardState extends ConsumerState<_Wizard> {
     int slots,
   ) {
     switch (step) {
+      case _Step.spells:
+        final open = _spellSections(
+          l10n,
+          gain,
+        ).any((s) => (_draft.spells[s.key]?.length ?? 0) != s.count);
+        return open ? l10n.missingSpells : null;
       case _Step.hitPoints:
       case _Step.summary:
         return null;
@@ -124,6 +181,15 @@ class _WizardState extends ConsumerState<_Wizard> {
         return _draft.masteries.length == slots ? null : l10n.missingMastery;
       case _Step.feat:
         if (_draft.feat == null) return l10n.missingFeat;
+        if (_draft.feat == magicInitiateFeat) {
+          int chosen(String key) => _draft.featChoices[key]?.length ?? 0;
+          return chosen(initiateList) == 1 &&
+                  chosen(initiateAbility) == 1 &&
+                  chosen(initiateCantrips) == magicInitiateCantrips &&
+                  chosen(initiateSpell) == magicInitiateSpells
+              ? null
+              : l10n.missingLevelChoice;
+        }
         if (_draft.bonuses.length != _bonusCount) return l10n.missingFeatBonus;
         final open = _featOptions.any(
           (c) => (_draft.featChoices[c.id]?.length ?? 0) != c.count,
@@ -170,6 +236,7 @@ class _WizardState extends ConsumerState<_Wizard> {
       _Step.hitPoints,
       _Step.features,
       if (gain.featCategories.isNotEmpty) _Step.feat,
+      if (_spellSections(l10n, gain).isNotEmpty) _Step.spells,
       _Step.summary,
     ];
     final step = steps[_index];
@@ -190,6 +257,7 @@ class _WizardState extends ConsumerState<_Wizard> {
             sheet,
             gain.featCategories.first,
           ),
+          _Step.spells => _spells(l10n, text, gain, sheet.level),
           _Step.summary => [
             Text(l10n.levelUpReady, style: text.titleMedium),
             for (final feature in gain.features)
@@ -201,7 +269,6 @@ class _WizardState extends ConsumerState<_Wizard> {
             if (sheet.integrityErrors.isNotEmpty)
               for (final error in sheet.integrityErrors)
                 StatusBanner(title: l10n.ruleError, message: error.message),
-            if (_hasSpells) Text(l10n.spellsNotYet, style: text.bodySmall),
           ],
         },
       ),
@@ -254,10 +321,80 @@ class _WizardState extends ConsumerState<_Wizard> {
     );
   }
 
-  bool get _hasSpells {
-    final data = _content.entity(_classId)?.data;
-    return data is ClassData && data.spellList.isNotEmpty;
+  List<Widget> _spells(
+    AppLocalizations l10n,
+    TextTheme text,
+    LevelGain gain,
+    int level,
+  ) {
+    final known = {
+      ...knownSpells(_character, _content, level),
+      ...?_draft.featChoices[initiateCantrips],
+      ...?_draft.featChoices[initiateSpell],
+    };
+    final picked = {
+      for (final MapEntry(:key, :value) in _draft.spells.entries)
+        for (final spell in value) spell: key,
+    };
+    return [
+      for (final section in _spellSections(l10n, gain)) ...[
+        Text(
+          l10n.spellSectionCount(
+            section.title,
+            _draft.spells[section.key]?.length ?? 0,
+            section.count,
+          ),
+          style: text.titleMedium,
+        ),
+        SizedBox(height: AppSpacing.xs),
+        Wrap(
+          spacing: AppSpacing.xs,
+          runSpacing: AppSpacing.xxs,
+          children: [
+            for (final spell in sortedEntities(_content, 'spell'))
+              if (section.ids.contains('${spell.id}'))
+                _spellChip(section, spell, known, picked),
+          ],
+        ),
+        SizedBox(height: AppSpacing.xs),
+        Text(l10n.spellKnownShort, style: text.bodySmall),
+        SizedBox(height: AppSpacing.sm),
+      ],
+    ];
   }
+
+  Widget _spellChip(
+    _SpellSection section,
+    ContentEntity spell,
+    Set<String> known,
+    Map<String, String> picked,
+  ) {
+    final id = '${spell.id}';
+    final chosen = _draft.spells[section.key]?.contains(id) ?? false;
+    // Le grimoire et les sorts préparés du Magicien sont les mêmes sorts.
+    final elsewhere =
+        picked[id] != null &&
+        picked[id] != section.key &&
+        !{spellBook, spellPrepared}.containsAll([picked[id], section.key]);
+    final blocked = section.key == spellPrepared && _isWizard
+        ? false
+        : known.contains(id) || elsewhere;
+    final full = (_draft.spells[section.key]?.length ?? 0) >= section.count;
+    return FilterChip(
+      label: Text(spell.name),
+      selected: chosen,
+      avatar: blocked ? const Icon(Icons.lock_outline, size: 16) : null,
+      onSelected: chosen || (!blocked && (!full || section.count == 1))
+          ? (_) => _update(
+              (d) => section.key == spellBook
+                  ? d.toggleSpellbook(id, section.count)
+                  : d.toggleSpell(section.key, id, section.count),
+            )
+          : null,
+    );
+  }
+
+  bool get _isWizard => spellbookSize(_classId) > 0;
 
   List<Widget> _hitPoints(
     AppLocalizations l10n,
@@ -374,6 +511,102 @@ class _WizardState extends ConsumerState<_Wizard> {
     return !labels.contains('proficiency') || labels.contains('expertise');
   }
 
+  /// Choix d'un Initié à la magie : liste, caractéristique, puis sorts.
+  List<Widget> _initiate(
+    AppLocalizations l10n,
+    TextTheme text,
+    ComputedSheet before,
+  ) {
+    final taken = {
+      for (final feat in _character.feats)
+        if (feat.featId == magicInitiateFeat) feat.choices?['spell_list'],
+    };
+    final list = _draft.featChoices[initiateList]?.firstOrNull;
+    final known = knownSpells(_character, _content, before.level + 1);
+    final other = {
+      ...?_draft.spells[spellCantrips],
+      ...?_draft.spells[spellPrepared],
+      ...?_draft.spells[spellBook],
+      ...?_draft.spells[spellAccess],
+    };
+    Widget chips(String title, String key, int count, int level) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: AppSpacing.sm),
+        Text(title, style: text.titleSmall),
+        SizedBox(height: AppSpacing.xs),
+        Wrap(
+          spacing: AppSpacing.xs,
+          runSpacing: AppSpacing.xxs,
+          children: [
+            for (final spell in sortedEntities(_content, 'spell'))
+              if (spellsOfList(
+                _content,
+                list!,
+                level,
+                level,
+              ).contains('${spell.id}'))
+                _chip(
+                  spell.name,
+                  _draft.featChoices[key]?.contains('${spell.id}') ?? false,
+                  known.contains('${spell.id}') || other.contains('${spell.id}')
+                      ? null
+                      : () => _update(
+                          (d) => d.toggleFeatChoice(key, '${spell.id}', count),
+                        ),
+                ),
+          ],
+        ),
+      ],
+    );
+
+    return [
+      SizedBox(height: AppSpacing.sm),
+      Text(l10n.initiateListChoice, style: text.titleSmall),
+      SizedBox(height: AppSpacing.xs),
+      Wrap(
+        spacing: AppSpacing.xs,
+        children: [
+          for (final id in magicInitiateLists)
+            _chip(
+              namesOf(_content, [id]),
+              list == id,
+              taken.contains(id)
+                  ? null
+                  : () => _update((d) => d.selectInitiateList(id)),
+            ),
+        ],
+      ),
+      if (taken.isNotEmpty) ...[
+        SizedBox(height: AppSpacing.xs),
+        Text(l10n.sameListRule, style: text.bodySmall),
+      ],
+      SizedBox(height: AppSpacing.sm),
+      Text(l10n.initiateAbilityChoice, style: text.titleSmall),
+      SizedBox(height: AppSpacing.xs),
+      Wrap(
+        spacing: AppSpacing.xs,
+        children: [
+          for (final id in magicInitiateAbilities)
+            _chip(
+              namesOf(_content, [id]),
+              _draft.featChoices[initiateAbility]?.contains(id) ?? false,
+              () => _update((d) => d.toggleFeatChoice(initiateAbility, id, 1)),
+            ),
+        ],
+      ),
+      if (list != null) ...[
+        chips(
+          l10n.initiateCantripChoice,
+          initiateCantrips,
+          magicInitiateCantrips,
+          0,
+        ),
+        chips(l10n.initiateSpellChoice, initiateSpell, magicInitiateSpells, 1),
+      ],
+    ];
+  }
+
   String _blockReason(AppLocalizations l10n, FeatBlock block) =>
       switch (block) {
         FeatBlock.level => l10n.featBlockLevel,
@@ -479,6 +712,7 @@ class _WizardState extends ConsumerState<_Wizard> {
           ],
         ),
       ],
+      if (_draft.feat == magicInitiateFeat) ..._initiate(l10n, text, before),
       for (final choice in _featOptions) ...[
         SizedBox(height: AppSpacing.sm),
         Wrap(
