@@ -1516,5 +1516,309 @@
         "type": "String"
       }
     }
+  },
+  "schoolAbjuration": "Abjuration",
+  "@schoolAbjuration": {
+    "description": "Onglet Sorts."
+  },
+  "schoolConjuration": "Invocation",
+  "@schoolConjuration": {
+    "description": "Onglet Sorts."
+  },
+  "schoolDivination": "Divination",
+  "@schoolDivination": {
+    "description": "Onglet Sorts."
+  },
+  "schoolEnchantment": "Enchantement",
+  "@schoolEnchantment": {
+    "description": "Onglet Sorts."
+  },
+  "schoolEvocation": "Évocation",
+  "@schoolEvocation": {
+    "description": "Onglet Sorts."
+  },
+  "schoolIllusion": "Illusion",
+  "@schoolIllusion": {
+    "description": "Onglet Sorts."
+  },
+  "schoolNecromancy": "Nécromancie",
+  "@schoolNecromancy": {
+    "description": "Onglet Sorts."
+  },
+  "schoolTransmutation": "Transmutation",
+  "@schoolTransmutation": {
+    "description": "Onglet Sorts."
+  },
+  "rangeSelf": "Personnelle",
+  "@rangeSelf": {
+    "description": "Onglet Sorts."
+  },
+  "rangeTouch": "Contact",
+  "@rangeTouch": {
+    "description": "Onglet Sorts."
+  },
+  "rangeSight": "À vue",
+  "@rangeSight": {
+    "description": "Onglet Sorts."
+  },
+  "rangeUnlimited": "Illimitée",
+  "@rangeUnlimited": {
+    "description": "Onglet Sorts."
+  },
+  "rangeSpecial": "Spéciale",
+  "@rangeSpecial": {
+    "description": "Onglet Sorts."
+  },
+  "spellSaveDcTitle": "DD des sorts",
+  "@spellSaveDcTitle": {
+    "description": "Onglet Sorts."
+  },
+  "spellAttack": "Attaque de sort",
+  "@spellAttack": {
+    "description": "Onglet Sorts."
+  },
+  "spellSlotsTitle": "Emplacements",
+  "@spellSlotsTitle": {
+    "description": "Onglet Sorts."
+  },
+  "spellSlotsCombined": "Emplacements combinés",
+  "@spellSlotsCombined": {
+    "description": "Onglet Sorts."
+  },
+  "pactMagicTitle": "Magie de pacte",
+  "@pactMagicTitle": {
+    "description": "Onglet Sorts."
+  },
+  "pactRecharge": "Récupérés au repos court.",
+  "@pactRecharge": {
+    "description": "Onglet Sorts."
+  },
+  "alwaysPrepared": "Toujours préparé",
+  "@alwaysPrepared": {
+    "description": "Onglet Sorts."
+  },
+  "inSpellbook": "Au grimoire",
+  "@inSpellbook": {
+    "description": "Onglet Sorts."
+  },
+  "concentration": "Concentration",
+  "@concentration": {
+    "description": "Onglet Sorts."
+  },
+  "ritual": "Rituel",
+  "@ritual": {
+    "description": "Onglet Sorts."
+  },
+  "badgeConcentration": "C",
+  "@badgeConcentration": {
+    "description": "Onglet Sorts."
+  },
+  "badgeRitual": "R",
+  "@badgeRitual": {
+    "description": "Onglet Sorts."
+  },
+  "noSpells": "Aucun sort",
+  "@noSpells": {
+    "description": "Onglet Sorts."
+  },
+  "noSpellsHint": "Ce personnage ne lance pas de sorts. Le don Initié à la magie, pris à une prochaine Amélioration de caractéristique, lui en donnerait.",
+  "@noSpellsHint": {
+    "description": "Onglet Sorts."
+  },
+  "filterPrepared": "Préparés",
+  "@filterPrepared": {
+    "description": "Onglet Sorts."
+  },
+  "filterRituals": "Rituels",
+  "@filterRituals": {
+    "description": "Onglet Sorts."
+  },
+  "noSpellMatches": "Aucun sort pour ce filtre.",
+  "@noSpellMatches": {
+    "description": "Onglet Sorts."
+  },
+  "cantripsHeading": "Sorts mineurs",
+  "@cantripsHeading": {
+    "description": "Onglet Sorts."
+  },
+  "componentVerbal": "V",
+  "@componentVerbal": {
+    "description": "Onglet Sorts."
+  },
+  "componentSomatic": "S",
+  "@componentSomatic": {
+    "description": "Onglet Sorts."
+  },
+  "spellCasting": "Incantation",
+  "@spellCasting": {
+    "description": "Onglet Sorts."
+  },
+  "spellRange": "Portée",
+  "@spellRange": {
+    "description": "Onglet Sorts."
+  },
+  "spellComponents": "Composantes",
+  "@spellComponents": {
+    "description": "Onglet Sorts."
+  },
+  "spellDuration": "Durée",
+  "@spellDuration": {
+    "description": "Onglet Sorts."
+  },
+  "spellMaterial": "Composante matérielle",
+  "@spellMaterial": {
+    "description": "Onglet Sorts."
+  },
+  "materialConsumed": "Consommée par le sort",
+  "@materialConsumed": {
+    "description": "Onglet Sorts."
+  },
+  "casterHalf": "{label} ÷ 2",
+  "@casterHalf": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "casterRounded": "{sum} (arrondi supérieur)",
+  "@casterRounded": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "sum": {
+        "type": "String"
+      }
+    }
+  },
+  "casterSum": "{sum} = {level}",
+  "@casterSum": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "sum": {
+        "type": "String"
+      },
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "spellSaveDc": "DD ({ability})",
+  "@spellSaveDc": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
+  },
+  "preparedOfMax": "Préparés : {count} / {max}",
+  "@preparedOfMax": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "slotLevel": "{level, plural, =1{1er} other{{level}e}}",
+  "@slotLevel": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "slotsOf": "{available} emplacements sur {total} du niveau {level}",
+  "@slotsOf": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "available": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "pactSlots": "{slots} emplacements du {level}e niveau",
+  "@pactSlots": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "slots": {
+        "type": "int"
+      },
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "alwaysPreparedCount": "{count, plural, =1{Plus 1 sort toujours préparé} other{Plus {count} sorts toujours préparés}}",
+  "@alwaysPreparedCount": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spellLevelName": "{level, plural, =1{1er niveau} other{{level}e niveau}}",
+  "@spellLevelName": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "componentMaterial": "M ({material})",
+  "@componentMaterial": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "material": {
+        "type": "String"
+      }
+    }
+  },
+  "cantripOf": "Sort mineur · {school}",
+  "@cantripOf": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "school": {
+        "type": "String"
+      }
+    }
+  },
+  "spellOfLevel": "{school} du {level}",
+  "@spellOfLevel": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "school": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "durationConcentration": "Concentration, {duration}",
+  "@durationConcentration": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "filterAllSpells": "Tous",
+  "@filterAllSpells": {
+    "description": "Onglet Sorts."
   }
 }

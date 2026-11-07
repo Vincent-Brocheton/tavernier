@@ -27,6 +27,7 @@ Map<String, Object?> _wizard({Map<String, Object?> data = const {}}) => {
       'armor_training': <String>[],
       'tool_proficiencies': <String>[],
       'skill_choice_count': 0,
+      'caster_divisor': 0,
       'tool_choice_count': 0,
     },
     'levels': [

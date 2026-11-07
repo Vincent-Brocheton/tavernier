@@ -269,7 +269,7 @@ class _WizardState extends ConsumerState<_Wizard> {
             sheet,
             gain.featCategories.first,
           ),
-          _Step.spells => _spells(l10n, text, gain, sheet.level),
+          _Step.spells => _spells(l10n, text, gain),
           _Step.summary => [
             Text(l10n.levelUpReady, style: text.titleMedium),
             for (final feature in gain.features)
@@ -413,14 +413,9 @@ class _WizardState extends ConsumerState<_Wizard> {
     ];
   }
 
-  List<Widget> _spells(
-    AppLocalizations l10n,
-    TextTheme text,
-    LevelGain gain,
-    int level,
-  ) {
+  List<Widget> _spells(AppLocalizations l10n, TextTheme text, LevelGain gain) {
     final known = {
-      ...knownSpells(_character, _content, level),
+      ...knownSpells(raisedOneLevel(_character, _classId), _content),
       ...?_draft.featChoices[initiateCantrips],
       ...?_draft.featChoices[initiateSpell],
     };
@@ -629,7 +624,7 @@ class _WizardState extends ConsumerState<_Wizard> {
         if (feat.featId == magicInitiateFeat) feat.choices?['spell_list'],
     };
     final list = _draft.featChoices[initiateList]?.firstOrNull;
-    final known = knownSpells(_character, _content, before.level + 1);
+    final known = knownSpells(raisedOneLevel(_character, _classId), _content);
     final other = {
       ...?_draft.spells[spellCantrips],
       ...?_draft.spells[spellPrepared],

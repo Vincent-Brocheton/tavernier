@@ -33,6 +33,7 @@
       "shield"
     ],
     "multiclass": {
+      "caster_divisor": 2,
       "weapon_proficiencies": [
         "martial"
       ],

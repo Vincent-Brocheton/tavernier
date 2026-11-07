@@ -216,6 +216,9 @@ class CharacterSpells extends Table with IdKey, CharacterOwned {
   TextColumn get source => text()();
   BoolColumn get prepared => boolean().withDefault(const Constant(false))();
   BoolColumn get inSpellbook => boolean().withDefault(const Constant(false))();
+
+  /// Classe du sort ; vide : la première classe de lanceur.
+  TextColumn get classId => text().nullable()();
 }
 
 @DataClassName('CharacterItemRow')

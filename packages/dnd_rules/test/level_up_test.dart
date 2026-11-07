@@ -267,7 +267,7 @@ void main() {
         speciesId: 'srd:species:tiefling',
       );
       expect(
-        knownSpells(mage, content, 2),
+        knownSpells(mage, content),
         containsAll([
           'srd:spell:light',
           'srd:spell:guidance',
@@ -361,7 +361,7 @@ void main() {
           if (category == 'epic_boon') 'str': 1,
         };
         final spells = spellGain(content, classId, gain.classLevel);
-        final known = knownSpells(character, content, level);
+        final known = knownSpells(character, content);
         List<String> pick(int count, int from, int to) => spellsOfList(
           content,
           classId,

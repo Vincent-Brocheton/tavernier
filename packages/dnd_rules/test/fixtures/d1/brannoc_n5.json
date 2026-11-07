@@ -1,8 +1,8 @@
 {
   "fixture": "brannoc_n5",
-  "status": "pending_content",
+  "status": "pending_engine",
   "board": "D1",
-  "note": "Magicien absent de l'échantillon SRD de M0 : testé en M1.",
+  "note": "En attente du moteur : Ténacité naine, vision dans le noir, Armure du mage. Les valeurs de sorts sont testées par spellcasting_test.dart.",
   "srd_refs": {
     "magicien": "p. 59, d6, JS Int et Sag, niv. 5 : 4 sorts mineurs, 9 préparés, emplacements 4/3/2 ; p. 60, Érudition niv. 2",
     "sage": "p. 87, Con/Int/Sag, Initié à la magie (Magicien), Arcanes et Histoire",
@@ -34,6 +34,14 @@
         "choices": { "int": 1, "dex": 1 }
       }
     ],
+    "spells": {
+      "spellbook": [
+        "srd:spell:mage-armor", "srd:spell:shield", "srd:spell:comprehend-languages", "srd:spell:detect-magic",
+        "srd:spell:feather-fall", "srd:spell:grease", "srd:spell:magic-missile", "srd:spell:misty-step",
+        "srd:spell:shatter", "srd:spell:mirror-image", "srd:spell:web", "srd:spell:fireball",
+        "srd:spell:counterspell", "srd:spell:fly"
+      ]
+    },
     "items": [],
     "xp": 7475
   },
@@ -59,7 +67,7 @@
     "skill_proficiencies": ["arcana", "history", "investigation", "medicine"],
     "expertise": ["arcana"],
     "spellcasting": {
-      "srd:class:wizard": { "ability": "int", "save_dc": 15, "attack_bonus": 7, "prepared_max": 9 }
+      "srd:class:wizard": { "ability": "int", "save_dc": 15, "attack_bonus": 7, "cantrips_known": 4, "prepared_max": 9 }
     },
     "spell_slots": [4, 3, 2],
     "spellbook_count": 14,

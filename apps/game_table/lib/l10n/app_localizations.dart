@@ -1752,6 +1752,330 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Instrument de {cls}'**
   String multiclassTool(String cls);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abjuration'**
+  String get schoolAbjuration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Invocation'**
+  String get schoolConjuration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Divination'**
+  String get schoolDivination;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enchantement'**
+  String get schoolEnchantment;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Évocation'**
+  String get schoolEvocation;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Illusion'**
+  String get schoolIllusion;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nécromancie'**
+  String get schoolNecromancy;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmutation'**
+  String get schoolTransmutation;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnelle'**
+  String get rangeSelf;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contact'**
+  String get rangeTouch;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'À vue'**
+  String get rangeSight;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Illimitée'**
+  String get rangeUnlimited;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spéciale'**
+  String get rangeSpecial;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD des sorts'**
+  String get spellSaveDcTitle;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque de sort'**
+  String get spellAttack;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacements'**
+  String get spellSlotsTitle;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacements combinés'**
+  String get spellSlotsCombined;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Magie de pacte'**
+  String get pactMagicTitle;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupérés au repos court.'**
+  String get pactRecharge;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toujours préparé'**
+  String get alwaysPrepared;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au grimoire'**
+  String get inSpellbook;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration'**
+  String get concentration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rituel'**
+  String get ritual;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'C'**
+  String get badgeConcentration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'R'**
+  String get badgeRitual;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun sort'**
+  String get noSpells;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce personnage ne lance pas de sorts. Le don Initié à la magie, pris à une prochaine Amélioration de caractéristique, lui en donnerait.'**
+  String get noSpellsHint;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparés'**
+  String get filterPrepared;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rituels'**
+  String get filterRituals;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun sort pour ce filtre.'**
+  String get noSpellMatches;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts mineurs'**
+  String get cantripsHeading;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'V'**
+  String get componentVerbal;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'S'**
+  String get componentSomatic;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Incantation'**
+  String get spellCasting;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Portée'**
+  String get spellRange;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Composantes'**
+  String get spellComponents;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get spellDuration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Composante matérielle'**
+  String get spellMaterial;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consommée par le sort'**
+  String get materialConsumed;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{label} ÷ 2'**
+  String casterHalf(String label);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{sum} (arrondi supérieur)'**
+  String casterRounded(String sum);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{sum} = {level}'**
+  String casterSum(String sum, int level);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD ({ability})'**
+  String spellSaveDc(String ability);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparés : {count} / {max}'**
+  String preparedOfMax(int count, int max);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{level, plural, =1{1er} other{{level}e}}'**
+  String slotLevel(int level);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{available} emplacements sur {total} du niveau {level}'**
+  String slotsOf(int level, int available, int total);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{slots} emplacements du {level}e niveau'**
+  String pactSlots(int slots, int level);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Plus 1 sort toujours préparé} other{Plus {count} sorts toujours préparés}}'**
+  String alwaysPreparedCount(int count);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{level, plural, =1{1er niveau} other{{level}e niveau}}'**
+  String spellLevelName(int level);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'M ({material})'**
+  String componentMaterial(String material);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort mineur · {school}'**
+  String cantripOf(String school);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{school} du {level}'**
+  String spellOfLevel(String school, String level);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration, {duration}'**
+  String durationConcentration(String duration);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get filterAllSpells;
 }
 
 class _AppLocalizationsDelegate

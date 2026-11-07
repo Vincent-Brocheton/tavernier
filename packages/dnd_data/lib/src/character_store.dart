@@ -137,6 +137,7 @@ final class CharacterStore {
             'source': source,
             'prepared': spells.prepared.contains(spell),
             'in_spellbook': spells.spellbook.contains(spell),
+            'class_id': spells.classes[spell],
           });
         }
       }
@@ -266,6 +267,11 @@ final class CharacterStore {
           for (final s in spells)
             if (s['in_spellbook'] == 1) s['spell_id'],
         ],
+        'classes': {
+          for (final s in spells)
+            if (s['class_id'] case final String classId)
+              s['spell_id']! as String: classId,
+        },
       },
       'coins': json(c['coins']),
       'alignment': c['alignment'],

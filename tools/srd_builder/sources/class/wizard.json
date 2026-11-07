@@ -25,7 +25,9 @@
       "simple"
     ],
     "armor_training": [],
-    "multiclass": {},
+    "multiclass": {
+      "caster_divisor": 1
+    },
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:intelligence",
     "levels": [

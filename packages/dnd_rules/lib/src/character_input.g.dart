@@ -221,40 +221,49 @@ Map<String, dynamic> _$ItemInputToJson(_ItemInput instance) =>
       'attuned': instance.attuned,
     };
 
-_SpellsInput _$SpellsInputFromJson(Map<String, dynamic> json) => $checkedCreate(
-  '_SpellsInput',
-  json,
-  ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['cantrips', 'prepared', 'spellbook']);
-    final val = _SpellsInput(
-      cantrips: $checkedConvert(
-        'cantrips',
-        (v) =>
-            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
-            const <String>[],
-      ),
-      prepared: $checkedConvert(
-        'prepared',
-        (v) =>
-            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
-            const <String>[],
-      ),
-      spellbook: $checkedConvert(
-        'spellbook',
-        (v) =>
-            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
-            const <String>[],
-      ),
-    );
-    return val;
-  },
-);
+_SpellsInput _$SpellsInputFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_SpellsInput', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        allowedKeys: const ['cantrips', 'prepared', 'spellbook', 'classes'],
+      );
+      final val = _SpellsInput(
+        cantrips: $checkedConvert(
+          'cantrips',
+          (v) =>
+              (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const <String>[],
+        ),
+        prepared: $checkedConvert(
+          'prepared',
+          (v) =>
+              (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const <String>[],
+        ),
+        spellbook: $checkedConvert(
+          'spellbook',
+          (v) =>
+              (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const <String>[],
+        ),
+        classes: $checkedConvert(
+          'classes',
+          (v) =>
+              (v as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(k, e as String),
+              ) ??
+              const <String, String>{},
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$SpellsInputToJson(_SpellsInput instance) =>
     <String, dynamic>{
       'cantrips': instance.cantrips,
       'prepared': instance.prepared,
       'spellbook': instance.spellbook,
+      'classes': instance.classes,
     };
 
 _CharacterInput _$CharacterInputFromJson(Map<String, dynamic> json) =>

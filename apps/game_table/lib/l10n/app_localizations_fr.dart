@@ -1022,4 +1022,213 @@ class AppLocalizationsFr extends AppLocalizations {
   String multiclassTool(String cls) {
     return 'Instrument de $cls';
   }
+
+  @override
+  String get schoolAbjuration => 'Abjuration';
+
+  @override
+  String get schoolConjuration => 'Invocation';
+
+  @override
+  String get schoolDivination => 'Divination';
+
+  @override
+  String get schoolEnchantment => 'Enchantement';
+
+  @override
+  String get schoolEvocation => 'Évocation';
+
+  @override
+  String get schoolIllusion => 'Illusion';
+
+  @override
+  String get schoolNecromancy => 'Nécromancie';
+
+  @override
+  String get schoolTransmutation => 'Transmutation';
+
+  @override
+  String get rangeSelf => 'Personnelle';
+
+  @override
+  String get rangeTouch => 'Contact';
+
+  @override
+  String get rangeSight => 'À vue';
+
+  @override
+  String get rangeUnlimited => 'Illimitée';
+
+  @override
+  String get rangeSpecial => 'Spéciale';
+
+  @override
+  String get spellSaveDcTitle => 'DD des sorts';
+
+  @override
+  String get spellAttack => 'Attaque de sort';
+
+  @override
+  String get spellSlotsTitle => 'Emplacements';
+
+  @override
+  String get spellSlotsCombined => 'Emplacements combinés';
+
+  @override
+  String get pactMagicTitle => 'Magie de pacte';
+
+  @override
+  String get pactRecharge => 'Récupérés au repos court.';
+
+  @override
+  String get alwaysPrepared => 'Toujours préparé';
+
+  @override
+  String get inSpellbook => 'Au grimoire';
+
+  @override
+  String get concentration => 'Concentration';
+
+  @override
+  String get ritual => 'Rituel';
+
+  @override
+  String get badgeConcentration => 'C';
+
+  @override
+  String get badgeRitual => 'R';
+
+  @override
+  String get noSpells => 'Aucun sort';
+
+  @override
+  String get noSpellsHint =>
+      'Ce personnage ne lance pas de sorts. Le don Initié à la magie, pris à une prochaine Amélioration de caractéristique, lui en donnerait.';
+
+  @override
+  String get filterPrepared => 'Préparés';
+
+  @override
+  String get filterRituals => 'Rituels';
+
+  @override
+  String get noSpellMatches => 'Aucun sort pour ce filtre.';
+
+  @override
+  String get cantripsHeading => 'Sorts mineurs';
+
+  @override
+  String get componentVerbal => 'V';
+
+  @override
+  String get componentSomatic => 'S';
+
+  @override
+  String get spellCasting => 'Incantation';
+
+  @override
+  String get spellRange => 'Portée';
+
+  @override
+  String get spellComponents => 'Composantes';
+
+  @override
+  String get spellDuration => 'Durée';
+
+  @override
+  String get spellMaterial => 'Composante matérielle';
+
+  @override
+  String get materialConsumed => 'Consommée par le sort';
+
+  @override
+  String casterHalf(String label) {
+    return '$label ÷ 2';
+  }
+
+  @override
+  String casterRounded(String sum) {
+    return '$sum (arrondi supérieur)';
+  }
+
+  @override
+  String casterSum(String sum, int level) {
+    return '$sum = $level';
+  }
+
+  @override
+  String spellSaveDc(String ability) {
+    return 'DD ($ability)';
+  }
+
+  @override
+  String preparedOfMax(int count, int max) {
+    return 'Préparés : $count / $max';
+  }
+
+  @override
+  String slotLevel(int level) {
+    String _temp0 = intl.Intl.pluralLogic(
+      level,
+      locale: localeName,
+      other: '${level}e',
+      one: '1er',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String slotsOf(int level, int available, int total) {
+    return '$available emplacements sur $total du niveau $level';
+  }
+
+  @override
+  String pactSlots(int slots, int level) {
+    return '$slots emplacements du ${level}e niveau';
+  }
+
+  @override
+  String alwaysPreparedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Plus $count sorts toujours préparés',
+      one: 'Plus 1 sort toujours préparé',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String spellLevelName(int level) {
+    String _temp0 = intl.Intl.pluralLogic(
+      level,
+      locale: localeName,
+      other: '${level}e niveau',
+      one: '1er niveau',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String componentMaterial(String material) {
+    return 'M ($material)';
+  }
+
+  @override
+  String cantripOf(String school) {
+    return 'Sort mineur · $school';
+  }
+
+  @override
+  String spellOfLevel(String school, String level) {
+    return '$school du $level';
+  }
+
+  @override
+  String durationConcentration(String duration) {
+    return 'Concentration, $duration';
+  }
+
+  @override
+  String get filterAllSpells => 'Tous';
 }

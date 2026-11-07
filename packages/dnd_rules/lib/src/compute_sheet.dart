@@ -10,6 +10,31 @@ const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 /// SRD p. 22, « Valeurs standard ».
 const _standardArray = [15, 14, 13, 12, 10, 8];
 
+/// Table « Incantateur multiclassé » (SRD p. 27) : emplacements par niveau de
+/// sort, pour chaque niveau de lanceur.
+const multiclassSlots = <List<int>>[
+  [2],
+  [3],
+  [4, 2],
+  [4, 3],
+  [4, 3, 2],
+  [4, 3, 3],
+  [4, 3, 3, 1],
+  [4, 3, 3, 2],
+  [4, 3, 3, 3, 1],
+  [4, 3, 3, 3, 2],
+  [4, 3, 3, 3, 2, 1],
+  [4, 3, 3, 3, 2, 1],
+  [4, 3, 3, 3, 2, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1, 1],
+  [4, 3, 3, 3, 3, 1, 1, 1, 1],
+  [4, 3, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 3, 2, 2, 1, 1],
+];
+
 /// Valeur requise pour se multiclasser (SRD p. 26).
 const multiclassMinimum = 13;
 
@@ -381,6 +406,50 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     }
   }
 
+  Map<String, int> columnsOf(({ClassLevelInput input, ClassData? data}) c) =>
+      c.data?.levels
+          .where((l) => l.level == c.input.level)
+          .firstOrNull
+          ?.columns ??
+      const {};
+
+  final spellcasting = <String, ClassCasting>{
+    for (final c in classes)
+      if (_codeOf('${c.data?.spellcastingAbility}') case final code?)
+        c.input.classId: ClassCasting(
+          ability: code,
+          saveDc: Computed([
+            const Contribution('dc_base', 8),
+            Contribution('proficiency', pb),
+            Contribution(code, mod(code)),
+          ]),
+          attackBonus: Computed([
+            Contribution('proficiency', pb),
+            Contribution(code, mod(code)),
+          ]),
+          cantripsKnown: columnsOf(c)['cantrips'] ?? 0,
+          preparedMax: columnsOf(c)['prepared_spells'] ?? 0,
+        ),
+  };
+
+  // SRD p. 27 : la table du multiclassage ne sert qu'à partir de deux classes
+  // à emplacements, l'Occultiste à part.
+  List<int> slotsOf(Map<String, int> columns) => [
+    for (var n = 1; columns['slot_$n'] != null; n++) columns['slot_$n']!,
+  ];
+  final slotClasses = [
+    for (final c in classes)
+      if (slotsOf(columnsOf(c)).isNotEmpty) c,
+  ];
+  int? casterLevel;
+  if (slotClasses.length > 1) {
+    int levelsAt(int divisor) => classes
+        .where((c) => c.data?.multiclass.casterDivisor == divisor)
+        .fold(0, (sum, c) => sum + c.input.level);
+    casterLevel = levelsAt(1) + (levelsAt(2) + 1) ~/ 2;
+  }
+  final pact = classes.map(columnsOf).where((c) => c['pact_slots'] != null);
+
   for (final (i, f) in character.feats.indexed) {
     if (content.entity(f.featId)?.data is! FeatData) {
       errors.add(
@@ -447,6 +516,20 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final MapEntry(:key, :value) in hitDice.entries)
         (die: 'd$key', total: value),
     ],
+    spellcasting: spellcasting,
+    casterLevel: casterLevel,
+    spellSlots: switch (casterLevel) {
+      final int reached when reached > 0 =>
+        multiclassSlots[reached.clamp(1, multiclassSlots.length) - 1],
+      _ =>
+        slotClasses.isEmpty ? const [] : slotsOf(columnsOf(slotClasses.first)),
+    },
+    pactMagic: pact.isEmpty
+        ? null
+        : PactMagic(
+            slots: pact.first['pact_slots']!,
+            slotLevel: pact.first['pact_slot_level']!,
+          ),
     proficientWeapons: {
       for (final entity in content.entities)
         if (entity.data is WeaponData && proficientWith(entity)) '${entity.id}',

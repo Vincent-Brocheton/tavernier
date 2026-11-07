@@ -4302,6 +4302,14 @@ class CharacterSpell extends Table with TableInfo {
     $customConstraints: 'NOT NULL DEFAULT 0 CHECK (in_spellbook IN (0, 1))',
     defaultValue: const CustomExpression('0'),
   );
+  late final GeneratedColumn<String> classId = GeneratedColumn<String>(
+    'class_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -4310,6 +4318,7 @@ class CharacterSpell extends Table with TableInfo {
     source,
     prepared,
     inSpellbook,
+    classId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;

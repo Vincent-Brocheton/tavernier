@@ -12,6 +12,7 @@ import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'features_tab.dart';
 import 'sheet_breakdowns.dart';
+import 'spells_tab.dart';
 
 /// Personnage enregistré, relu à l'ouverture de la fiche.
 final characterProvider = FutureProvider.autoDispose
@@ -168,7 +169,7 @@ class _Sheet extends StatelessWidget {
                 _MainTab(content: content, sheet: sheet),
                 _SkillsTab(content: content, sheet: sheet),
                 CombatTab(content: content, character: character, sheet: sheet),
-                soon,
+                SpellsTab(content: content, character: character, sheet: sheet),
                 soon,
                 FeaturesTab(
                   content: content,

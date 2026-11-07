@@ -5,6 +5,7 @@ import 'character_input.dart';
 import 'compute_sheet.dart';
 import 'computed_sheet.dart';
 import 'creation_choices.dart';
+import 'sheet_spells.dart';
 
 /// Niveau de personnage maximal (SRD p. 24).
 const maxCharacterLevel = 20;
@@ -128,37 +129,12 @@ Set<String> spellsOfList(
   };
 }
 
-/// Sorts que [character] connaît déjà au niveau [level] : un sort ne se prend
-/// pas deux fois. L'exception du porteur de projet, un sort pris puis acquis
-/// par une capacité de sous-classe, n'appelle aucun blocage ici.
-Set<String> knownSpells(
-  CharacterInput character,
-  ActiveContent content,
-  int level,
-) {
-  final sources = <String>[
-    for (final entry in character.classLevels) ...[
-      if (content.entity(entry.classId)?.data case final ClassData data)
-        for (final row in data.levels)
-          if (row.level <= entry.level) ...row.features.map((id) => '$id'),
-      if (content.entity(entry.subclassId ?? '')?.data
-          case final SubclassData data)
-        ...data.features.map((id) => '$id'),
-    ],
-    if (content.entity(character.speciesId)?.data case final SpeciesData data)
-      ...data.traits.map((id) => '$id'),
-  ];
-  return {
-    ...character.spells.cantrips,
-    ...character.spells.prepared,
-    ...character.spells.spellbook,
-    for (final feat in character.feats) ...[
-      ...?(feat.choices?['cantrips'] as List<Object?>?)?.map((id) => '$id'),
-      if (feat.choices?['level_1_spell'] case final String spell) spell,
-    ],
-    ...grantedSpells(content, sources, character.choices, level: level),
-  };
-}
+/// Sorts que [character] connaît déjà : un sort ne se prend pas deux fois.
+/// L'exception du porteur de projet, un sort pris puis acquis par une capacité
+/// de sous-classe, n'appelle aucun blocage ici.
+Set<String> knownSpells(CharacterInput character, ActiveContent content) => {
+  for (final spell in sheetSpells(character, content)) spell.id,
+};
 
 /// [character] avec un niveau de plus dans [classId], nouvelle ou non, sans
 /// aucun choix.
@@ -376,6 +352,15 @@ CharacterInput applyLevelUp(
       cantrips: [...raised.spells.cantrips, ...picks.spells.cantrips],
       prepared: [...raised.spells.prepared, ...picks.spells.prepared],
       spellbook: [...raised.spells.spellbook, ...picks.spells.spellbook],
+      classes: {
+        ...raised.spells.classes,
+        for (final spell in [
+          ...picks.spells.cantrips,
+          ...picks.spells.prepared,
+          ...picks.spells.spellbook,
+        ])
+          spell: classId,
+      },
     ),
     weaponMasteries: [
       ...raised.weaponMasteries,
