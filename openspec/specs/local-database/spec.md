@@ -208,3 +208,10 @@ Le dépôt SHALL écrire et relire les PV actuels et l'Épuisement d'un personna
 #### Scenario: Personnage indemne
 - **WHEN** aucun PV n'a été enregistré
 - **THEN** les PV actuels sont vides, soit le maximum
+
+### Requirement: Inspiration dans l'état de jeu
+Le dépôt SHALL écrire et relire l'Inspiration héroïque d'un personnage.
+
+#### Scenario: Relecture
+- **WHEN** un état avec l'Inspiration est enregistré puis relu
+- **THEN** il l'a toujours
