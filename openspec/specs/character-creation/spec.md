@@ -297,3 +297,10 @@ L'assistant SHALL enregistrer le personnage sans réseau, puis revenir à la pag
 #### Scenario: Échec d'écriture
 - **WHEN** l'écriture échoue
 - **THEN** l'erreur s'affiche et le brouillon reste ouvert
+
+### Requirement: Compétences du Récapitulatif
+Le Récapitulatif SHALL lister toutes les compétences maîtrisées, dans l'ordre alphabétique français.
+
+#### Scenario: Identifiant à tiret
+- **WHEN** le personnage maîtrise Escamotage
+- **THEN** Escamotage apparaît au Récapitulatif
