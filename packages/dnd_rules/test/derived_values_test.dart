@@ -19,6 +19,103 @@ Map<String, Object?> _feat(Map<String, Object?> json, String sourceType) =>
     );
 
 void main() {
+  group('Expertise et décomposition', () {
+    Map<String, Object?> rogue() => {
+      ...fixtureInput('aldric_n1'),
+      'class_levels': [
+        {
+          'class_id': 'srd:class:rogue',
+          'level': 1,
+          'skill_choices': ['srd:skill:stealth'],
+        },
+      ],
+      'base_scores': {
+        'method': 'point_buy',
+        'str': 8,
+        'dex': 15,
+        'con': 14,
+        'int': 12,
+        'wis': 10,
+        'cha': 8,
+      },
+      'feats': <Object?>[],
+      'weapon_masteries': <Object?>[],
+    };
+    ComputedSheet sheetOf(Map<String, Object?> json) =>
+        computeSheet(CharacterInput.fromJson(json), srdContent());
+
+    test('l’Expertise double la maîtrise (effet)', () {
+      final sheet = sheetOf({
+        ...rogue(),
+        'choices': {
+          'rogue-expertise': ['srd:skill:stealth', 'srd:skill:athletics'],
+        },
+      });
+      expect(
+        [for (final c in sheet.skillBreakdown['stealth']!.sources) c.label],
+        ['dex', 'proficiency', 'expertise'],
+      );
+      expect(sheet.skills['stealth'], 2 + 2 + 2);
+    });
+
+    test('l’Expertise de class_levels compte aussi', () {
+      final json = rogue();
+      final level = {
+        ...(json['class_levels']! as List<Object?>).single!
+            as Map<String, Object?>,
+        'expertise': ['srd:skill:stealth'],
+      };
+      final sheet = sheetOf({
+        ...json,
+        'class_levels': [level],
+      });
+      expect(sheet.skills['stealth'], 6);
+    });
+
+    test('la somme des contributions égale chaque valeur', () {
+      final sheet = _sheet();
+      for (final MapEntry(:key, :value) in sheet.skillBreakdown.entries) {
+        expect(value.value, sheet.skills[key], reason: key);
+      }
+      for (final MapEntry(:key, :value) in sheet.saveBreakdown.entries) {
+        expect(value.value, sheet.savingThrows[key], reason: key);
+      }
+      expect(sheet.speed.value, sheet.speedFeet);
+    });
+
+    test('Athlétisme d’Aldric : Force et maîtrise', () {
+      expect(_sheet().skillBreakdown['athletics']!.sources, const [
+        Contribution('str', 3),
+        Contribution('proficiency', 2),
+      ]);
+    });
+
+    test('Thaumaturge : Religion reçoit le bonus de l’Ordre divin', () {
+      final sheet = sheetOf({
+        ...rogue(),
+        'class_levels': [
+          {'class_id': 'srd:class:cleric', 'level': 1},
+        ],
+        'base_scores': {
+          'method': 'point_buy',
+          'str': 8,
+          'dex': 8,
+          'con': 8,
+          'int': 8,
+          'wis': 15,
+          'cha': 8,
+        },
+        'choices': {
+          'cleric-divine-order': ['Thaumaturge'],
+        },
+      });
+      expect(
+        sheet.skillBreakdown['religion']!.sources.last,
+        const Contribution('srd:feature:cleric-divine-order', 2),
+      );
+    });
+  });
+
   test('jets de sauvegarde du Guerrier : FOR +5, CON +4, DEX +1', () {
     final saves = _sheet().savingThrows;
     expect(saves['str'], 5);

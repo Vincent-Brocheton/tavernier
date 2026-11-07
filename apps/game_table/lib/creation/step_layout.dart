@@ -124,6 +124,9 @@ Widget sourceBadgeOf(AppLocalizations l10n, ActiveContent content, String id) {
   return SourceBadge(pack.manifest.name, homebrew: true);
 }
 
+/// Clé d'une compétence dans `ComputedSheet.skills`.
+String skillKey(ContentEntity skill) => skill.id.slug.replaceAll('-', '_');
+
 /// Entités de type [type], dans l'ordre alphabétique français : Rôdeur avant
 /// Roublard, les accents ne comptent pas.
 List<ContentEntity> sortedEntities(ActiveContent content, String type) =>

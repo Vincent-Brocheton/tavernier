@@ -91,13 +91,28 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     for (final id in classes.firstOrNull?.data?.savingThrows ?? <ContentId>[])
       ?_codeOf('$id'),
   };
+  final expertiseIds = {
+    for (final c in character.classLevels) ...c.expertise,
+    for (final a in ofOp('grant_expertise')) a.effect.args['ref']! as String,
+  };
   final skills = <String, int>{};
+  final skillBreakdown = <String, Computed>{};
   final skillProficiencies = <String>[];
   for (final skill in content.entities.where((e) => e.type == 'skill')) {
     final key = skill.id.slug.replaceAll('-', '_');
     final code = _codeOf('${(skill.data as SkillData).ability}') ?? 'str';
     final proficient = skillIds.contains('${skill.id}');
-    skills[key] = mod(code) + (proficient ? pb : 0);
+    final breakdown = Computed([
+      Contribution(code, mod(code)),
+      if (proficient) Contribution('proficiency', pb),
+      // SRD, Glossaire : l'Expertise double le bonus de maîtrise.
+      if (expertiseIds.contains('${skill.id}')) Contribution('expertise', pb),
+      for (final a in ofOp('modify_check'))
+        if (a.effect.args['scope'] == 'skill:${skill.id.slug}')
+          Contribution(a.source, resolve(a.effect.args['add'], a.level)),
+    ]);
+    skillBreakdown[key] = breakdown;
+    skills[key] = breakdown.value;
     if (proficient) skillProficiencies.add(key);
   }
 
@@ -318,6 +333,14 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     }
   }
 
+  final saveBreakdown = {
+    for (final code in abilityCodes)
+      code: Computed([
+        Contribution(code, mod(code)),
+        if (saveCodes.contains(code)) Contribution('proficiency', pb),
+      ]),
+  };
+
   errors
     ..addAll(_checkGeneration(character.baseScores))
     ..addAll(_checkBackgroundBonus(character, background, abilities))
@@ -331,22 +354,23 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         ? _cost(character.baseScores)
         : null,
     savingThrows: {
-      for (final code in abilityCodes)
-        code: mod(code) + (saveCodes.contains(code) ? pb : 0),
+      for (final MapEntry(:key, :value) in saveBreakdown.entries)
+        key: value.value,
     },
+    saveBreakdown: saveBreakdown,
     savingThrowProficiencies: [...saveCodes],
     skills: skills,
+    skillBreakdown: skillBreakdown,
     skillProficiencies: skillProficiencies,
     passivePerception: 10 + (skills['perception'] ?? 0),
     initiative: initiative,
     armorClass: armorClass,
-    speedFeet:
-        (species?.speedFeet ?? 0) +
-        [
-          for (final a in ofOp('modify_speed'))
-            if (a.effect.args['mode'] == 'walk' && applies(a.effect))
-              resolve(a.effect.args['value'] ?? 0, a.level),
-        ].fold(0, (sum, v) => sum + v),
+    speed: Computed([
+      Contribution(character.speciesId, species?.speedFeet ?? 0),
+      for (final a in ofOp('modify_speed'))
+        if (a.effect.args['mode'] == 'walk' && applies(a.effect))
+          Contribution(a.source, resolve(a.effect.args['value'] ?? 0, a.level)),
+    ]),
     hitPointsMax: hitPointsMax,
     hitDice: (die: 'd$hitDie', total: level),
     resources: {

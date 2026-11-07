@@ -98,9 +98,10 @@ class SummaryStep extends ConsumerWidget {
             l10n.labelSkills,
             [
               for (final skill in sortedEntities(content, 'skill'))
-                if (sheet.skillProficiencies.contains(skill.id.slug))
+                if (sheet.skills.containsKey(skillKey(skill)) &&
+                    sheet.skillProficiencies.contains(skillKey(skill)))
                   '${skill.name} '
-                      '${formatSigned(sheet.skills[skill.id.slug] ?? 0)}',
+                      '${formatSigned(sheet.skills[skillKey(skill)]!)}',
             ].join(', '),
           ),
           if (tools.isNotEmpty)

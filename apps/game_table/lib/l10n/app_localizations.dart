@@ -148,7 +148,7 @@ abstract class AppLocalizations {
   /// **'Aucun personnage pour l’instant.'**
   String get noCharacterYet;
 
-  /// Bouton de fermeture.
+  /// Fiche du personnage.
   ///
   /// In fr, this message translates to:
   /// **'Fermer'**
@@ -1237,6 +1237,191 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Mains nues'**
   String get unarmedStrike;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Principal'**
+  String get tabMain;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences'**
+  String get tabSkills;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Combat'**
+  String get tabCombat;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts'**
+  String get tabSpells;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inventaire'**
+  String get tabInventory;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitudes'**
+  String get tabFeatures;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes'**
+  String get tabNotes;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour'**
+  String get back;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce personnage est introuvable.'**
+  String get characterNotFound;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques'**
+  String get abilitiesTitle;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Touchez une valeur : décomposition'**
+  String get tapForBreakdown;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'FOR'**
+  String get abbrStr;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'DEX'**
+  String get abbrDex;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'CON'**
+  String get abbrCon;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'INT'**
+  String get abbrInt;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'SAG'**
+  String get abbrWis;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'CHA'**
+  String get abbrCha;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Expertise'**
+  String get expertise;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisée par'**
+  String get usedBy;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique'**
+  String get categoryAbility;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétence'**
+  String get categorySkill;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statistique'**
+  String get categoryStat;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valeur de base'**
+  String get breakdownBase;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus de maîtrise'**
+  String get breakdownProficiency;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Création'**
+  String get sourceCreation;
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modificateur de {ability}'**
+  String breakdownModifier(String ability);
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'JS {ability}'**
+  String savingThrowOf(String ability);
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modificateur {modifier} = ({score} − 10) ÷ 2, arrondi à l’inférieur'**
+  String modifierRule(String modifier, int score);
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de personnage {level}'**
+  String proficiencyByLevel(int level);
+
+  /// Fiche du personnage.
+  ///
+  /// In fr, this message translates to:
+  /// **'{ability} {score}, modificateur {modifier}, jet de sauvegarde {save}'**
+  String abilitySemantics(
+    String ability,
+    int score,
+    String modifier,
+    String save,
+  );
 }
 
 class _AppLocalizationsDelegate
