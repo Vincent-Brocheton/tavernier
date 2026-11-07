@@ -3,9 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
+import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:drift/native.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/sheet/spells_tab.dart';
 import 'package:material_ui/material_ui.dart';
@@ -21,33 +25,65 @@ CharacterInput _fixture(String name) {
   return CharacterInput.fromJson(data['input']! as Map<String, Object?>);
 }
 
+late CharacterStore _store;
+
 Future<void> _open(
   WidgetTester tester,
   CharacterInput character, {
   double width = 1440,
+  PlayState? play,
 }) async {
   tester.view.physicalSize = Size(width, 2400);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
+  final database = TavernierDatabase(NativeDatabase.memory());
+  addTearDown(database.close);
+  _store = CharacterStore(database);
+  await tester.runAsync(() async {
+    await _store.save('a', character);
+    if (play != null) await _store.saveState('a', play);
+  });
   await tester.pumpWidget(
-    MaterialApp(
-      theme: AppTheme.dark,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        ...GlobalMaterialLocalizations.delegates,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: SpellsTab(
-          content: _content,
-          character: character,
-          sheet: computeSheet(character, _content),
+    ProviderScope(
+      overrides: [characterStoreProvider.overrideWith((ref) => _store)],
+      child: MaterialApp(
+        theme: AppTheme.dark,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          ...GlobalMaterialLocalizations.delegates,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(
+          body: SpellsTab(
+            id: 'a',
+            content: _content,
+            character: character,
+            sheet: computeSheet(character, _content),
+          ),
         ),
       ),
     ),
   );
+  await _settle(tester);
+}
+
+/// La base tourne hors de l'horloge de test.
+Future<void> _settle(WidgetTester tester) async {
+  await tester.runAsync(
+    () => Future<void>.delayed(const Duration(milliseconds: 50)),
+  );
   await tester.pumpAndSettle();
 }
+
+Future<void> _openSpell(WidgetTester tester, String name) async {
+  final target = find.text(name);
+  await tester.ensureVisible(target);
+  await tester.pumpAndSettle();
+  await tester.tap(target);
+  await tester.pumpAndSettle();
+}
+
+Finder get _castButton => find.widgetWithText(FilledButton, 'Lancer');
 
 void main() {
   final mira = _fixture('mira_n5');
@@ -107,6 +143,93 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('DD des sorts'), findsOneWidget);
     expect(find.text('+3'), findsNWidgets(2));
+  });
+
+  testWidgets('lancer décompte l\'emplacement choisi', (tester) async {
+    await _open(tester, mira);
+    await _openSpell(tester, 'Sanctuaire');
+    await tester.tap(find.text('2e niveau (3 restants)'));
+    await tester.pumpAndSettle();
+    await tester.tap(_castButton);
+    await _settle(tester);
+    expect(find.text('2 / 3'), findsOneWidget);
+    expect(find.text('4 / 4'), findsOneWidget);
+    expect(
+      (await tester.runAsync(() => _store.loadState('a')))!
+          .usedOf(slotResource(2)),
+      1,
+    );
+  });
+
+  testWidgets('plus d\'emplacement : Lancer désactivé', (tester) async {
+    await _open(tester, mira, play: PlayState(used: {slotResource(3): 2}));
+    final row = find.ancestor(
+      of: find.text('Esprits gardiens'),
+      matching: find.byType(ListTile),
+    );
+    final button = tester.widget<TextButton>(
+      find.descendant(of: row, matching: find.byType(TextButton)),
+    );
+    expect(button.onPressed, isNull);
+  });
+
+  testWidgets('sort mineur : pas de choix d\'emplacement', (tester) async {
+    await _open(tester, mira);
+    await _openSpell(tester, 'Flamme sacrée');
+    expect(find.text('Emplacement'), findsNothing);
+    await tester.tap(_castButton);
+    await _settle(tester);
+    expect(find.text('4 / 4'), findsOneWidget);
+  });
+
+  testWidgets('lancer ouvre la concentration', (tester) async {
+    await _open(tester, mira);
+    await _openSpell(tester, 'Bénédiction');
+    await tester.tap(_castButton);
+    await _settle(tester);
+    expect(find.text('Concentration en cours'), findsOneWidget);
+    await tester.tap(find.text('Mettre fin'));
+    await _settle(tester);
+    expect(find.text('Concentration en cours'), findsNothing);
+    expect(
+      (await tester.runAsync(() => _store.loadState('a')))!
+          .concentrationSpellId,
+      isNull,
+    );
+  });
+
+  testWidgets('second sort : confirmation puis remplacement', (tester) async {
+    await _open(
+      tester,
+      mira,
+      play: const PlayState(concentrationSpellId: 'srd:spell:bless'),
+    );
+    await _openSpell(tester, 'Esprits gardiens');
+    expect(find.textContaining('Le lancer met fin à'), findsOneWidget);
+    await tester.tap(_castButton);
+    await tester.pumpAndSettle();
+    expect(find.text('Mettre fin à Bénédiction ?'), findsOneWidget);
+    await tester.tap(find.text('Lancer quand même'));
+    await _settle(tester);
+    final state = await tester.runAsync(() => _store.loadState('a'));
+    expect(state!.concentrationSpellId, 'srd:spell:spirit-guardians');
+    expect(state.usedOf(slotResource(3)), 1);
+  });
+
+  testWidgets('confirmation refusée : rien ne change', (tester) async {
+    await _open(
+      tester,
+      mira,
+      play: const PlayState(concentrationSpellId: 'srd:spell:bless'),
+    );
+    await _openSpell(tester, 'Esprits gardiens');
+    await tester.tap(_castButton);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Annuler'));
+    await _settle(tester);
+    final state = await tester.runAsync(() => _store.loadState('a'));
+    expect(state!.concentrationSpellId, 'srd:spell:bless');
+    expect(state.used, isEmpty);
   });
 
   testWidgets('Aldric [P17] : aucun sort', (tester) async {

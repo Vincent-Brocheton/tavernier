@@ -157,6 +157,41 @@ final class CharacterStore {
   );
 
   /// Personnages enregistrés, du plus ancien au plus récent.
+  /// État de jeu de [id] ; vide si rien n'a encore été dépensé.
+  Future<PlayState> loadState(String id) async {
+    final rows = await _db
+        .customSelect(
+          'SELECT resources, concentration_spell_id FROM character_state '
+          'WHERE character_id = ?',
+          variables: [Variable.withString(id)],
+        )
+        .get();
+    if (rows.isEmpty) return const PlayState();
+    final resources = jsonDecode(
+      rows.single.read<String>('resources'),
+    ) as Map<String, Object?>;
+    return PlayState(
+      used: {
+        for (final MapEntry(:key, :value) in resources.entries)
+          key: value! as int,
+      },
+      concentrationSpellId: rows.single.readNullable<String>(
+        'concentration_spell_id',
+      ),
+    );
+  }
+
+  /// Enregistre l'état de jeu de [id], sans toucher au reste de la fiche.
+  Future<void> saveState(String id, PlayState state) => _db.customStatement(
+    'INSERT INTO character_state '
+    '(id, character_id, resources, concentration_spell_id) '
+    'VALUES (?, ?, ?, ?) '
+    'ON CONFLICT(character_id) DO UPDATE SET '
+    'resources = excluded.resources, '
+    'concentration_spell_id = excluded.concentration_spell_id',
+    [id, id, jsonEncode(state.used), state.concentrationSpellId],
+  );
+
   Future<List<({String id, CharacterInput character})>> list() async {
     final rows = await _db
         .customSelect('SELECT id FROM character ORDER BY rowid')

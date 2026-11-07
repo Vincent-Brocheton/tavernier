@@ -1231,4 +1231,61 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get filterAllSpells => 'Tous';
+
+  @override
+  String get castSpell => 'Lancer';
+
+  @override
+  String get castSlotTitle => 'Emplacement';
+
+  @override
+  String get castRitual => 'En rituel, sans emplacement';
+
+  @override
+  String castSlot(String level, int left) {
+    String _temp0 = intl.Intl.pluralLogic(
+      left,
+      locale: localeName,
+      other: '$left restants',
+      one: '1 restant',
+    );
+    return '$level ($_temp0)';
+  }
+
+  @override
+  String castPactSlot(String level, int left) {
+    String _temp0 = intl.Intl.pluralLogic(
+      left,
+      locale: localeName,
+      other: '$left restants',
+      one: '1 restant',
+    );
+    return '$level, pacte ($_temp0)';
+  }
+
+  @override
+  String get concentrationActive => 'Concentration en cours';
+
+  @override
+  String get endConcentration => 'Mettre fin';
+
+  @override
+  String replacesConcentration(String spell) {
+    return 'Le lancer met fin à $spell : un seul sort de concentration à la fois.';
+  }
+
+  @override
+  String replaceConcentrationTitle(String spell) {
+    return 'Mettre fin à $spell ?';
+  }
+
+  @override
+  String get replaceConcentrationHint =>
+      'Un seul sort de concentration à la fois.';
+
+  @override
+  String get confirmCast => 'Lancer quand même';
+
+  @override
+  String get cancelCast => 'Annuler';
 }

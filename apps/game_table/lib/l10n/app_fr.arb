@@ -1820,5 +1820,79 @@
   "filterAllSpells": "Tous",
   "@filterAllSpells": {
     "description": "Onglet Sorts."
+  },
+  "castSpell": "Lancer",
+  "@castSpell": {
+    "description": "Onglet Sorts."
+  },
+  "castSlotTitle": "Emplacement",
+  "@castSlotTitle": {
+    "description": "Onglet Sorts."
+  },
+  "castRitual": "En rituel, sans emplacement",
+  "@castRitual": {
+    "description": "Onglet Sorts."
+  },
+  "castSlot": "{level} ({left, plural, =1{1 restant} other{{left} restants}})",
+  "@castSlot": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "castPactSlot": "{level}, pacte ({left, plural, =1{1 restant} other{{left} restants}})",
+  "@castPactSlot": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "concentrationActive": "Concentration en cours",
+  "@concentrationActive": {
+    "description": "Onglet Sorts."
+  },
+  "endConcentration": "Mettre fin",
+  "@endConcentration": {
+    "description": "Onglet Sorts."
+  },
+  "replacesConcentration": "Le lancer met fin à {spell} : un seul sort de concentration à la fois.",
+  "@replacesConcentration": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "spell": {
+        "type": "String"
+      }
+    }
+  },
+  "replaceConcentrationTitle": "Mettre fin à {spell} ?",
+  "@replaceConcentrationTitle": {
+    "description": "Onglet Sorts.",
+    "placeholders": {
+      "spell": {
+        "type": "String"
+      }
+    }
+  },
+  "replaceConcentrationHint": "Un seul sort de concentration à la fois.",
+  "@replaceConcentrationHint": {
+    "description": "Onglet Sorts."
+  },
+  "confirmCast": "Lancer quand même",
+  "@confirmCast": {
+    "description": "Onglet Sorts."
+  },
+  "cancelCast": "Annuler",
+  "@cancelCast": {
+    "description": "Onglet Sorts."
   }
 }
