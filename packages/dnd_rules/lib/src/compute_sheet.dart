@@ -525,6 +525,22 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         (die: 'd$key', total: value),
     ],
     expertise: expertise,
+    skillAdvantages: [
+      for (final a in ofOp('grant_advantage'))
+        if ('${a.effect.args['on']}'.startsWith('skill:'))
+          '${a.effect.args['on']}'
+              .substring('skill:'.length)
+              .replaceAll('-', '_'),
+    ],
+    attacksPerAction: [
+      for (final a in ofOp('set_attacks_per_action'))
+        a.effect.args['count']! as int,
+    ].fold(1, (best, count) => count > best ? count : best),
+    sneakAttack: [
+      for (final c in classes)
+        if (columnsOf(c)['sneak_attack_dice'] case final dice?) '${dice}d6',
+    ].firstOrNull,
+    attunedCount: character.items.where((item) => item.attuned).length,
     darkvisionFeet: [
       for (final a in ofOp('grant_sense'))
         if (a.effect.args['sense'] == 'darkvision')

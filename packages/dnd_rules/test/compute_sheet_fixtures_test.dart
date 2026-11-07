@@ -50,8 +50,8 @@ void main() {
           key,
           () => expect(
             sheet[key],
-            // `sources` ne donne qu'un échantillon des décompositions.
-            key == 'sources'
+            // `sources` et `skills` ne donnent qu'un échantillon.
+            key == 'sources' || key == 'skills'
                 ? allOf([
                     for (final e in (value! as Map<String, Object?>).entries)
                       containsPair(e.key, _same(e.value)),

@@ -219,6 +219,29 @@ void main() {
       );
     });
 
+    test('Thalia, haute-elfe de niveau 5 : trois sorts de lignage', () {
+      final thalia = CharacterInput.fromJson(fixtureInput('thalia_n5'));
+      expect(
+        sheetSpells(thalia, content).map((s) => s.id),
+        unorderedEquals([
+          'srd:spell:prestidigitation',
+          'srd:spell:detect-magic',
+          'srd:spell:misty-step',
+        ]),
+      );
+    });
+
+    test('Kael, haut-elfe de niveau 3 : deux sorts de lignage', () {
+      final kael = CharacterInput.fromJson(fixtureInput('kael_n3'));
+      expect(
+        sheetSpells(kael, content).map((s) => s.id),
+        unorderedEquals([
+          'srd:spell:prestidigitation',
+          'srd:spell:detect-magic',
+        ]),
+      );
+    });
+
     test('Mira : neuf sorts préparés de sa classe', () {
       final spells = sheetSpells(mira, content);
       expect(

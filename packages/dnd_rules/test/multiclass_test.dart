@@ -137,6 +137,23 @@ void main() {
     });
   });
 
+  group('Attaque supplémentaire (SRD p. 27)', () {
+    int attacks(List<ClassLevelInput> levels) =>
+        computeSheet(withClasses(levels), content).attacksPerAction;
+
+    test('sans elle : une attaque', () {
+      expect(attacks([level('fighter', 4)]), 1);
+    });
+
+    test('deux classes : pas de cumul', () {
+      expect(attacks([level('fighter', 5), level('paladin', 5)]), 2);
+    });
+
+    test('Guerrier 11 : trois attaques', () {
+      expect(attacks([level('fighter', 11)]), 3);
+    });
+  });
+
   group('armes', () {
     test('Roublard de départ : rapière maîtrisée', () {
       final sheet = computeSheet(withClasses([level('rogue', 1)]), content);
