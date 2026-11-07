@@ -28,8 +28,7 @@ FeatureResource? _resource(ContentEntity entity, ComputedSheet sheet) {
 }
 
 /// Aptitudes atteintes par [character], groupées par origine : classes,
-/// espèce, puis dons. Les sous-classes viendront avec la montée de niveau
-/// (US-08) : on n'en choisit pas au niveau 1.
+/// sous-classes, espèce, puis dons.
 List<FeatureGroup> featureGroups(
   CharacterInput character,
   ComputedSheet sheet,
@@ -52,6 +51,20 @@ List<FeatureGroup> featureGroups(
           features: resolved([
             for (final row in data.levels)
               if (row.level <= level.level) ...row.features,
+          ]),
+        ),
+    for (final level in character.classLevels)
+      if (content.entity(level.subclassId ?? '')?.data
+          case final SubclassData data)
+        (
+          sourceId: level.subclassId!,
+          level: null,
+          feats: false,
+          features: resolved([
+            for (final id in data.features)
+              if ((content.entity('$id')?.data as FeatureData?)?.level
+                  case final int reached when reached <= level.level)
+                id,
           ]),
         ),
     if (species is SpeciesData)

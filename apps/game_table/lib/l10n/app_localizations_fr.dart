@@ -854,4 +854,99 @@ class AppLocalizationsFr extends AppLocalizations {
   String inReserve(int count) {
     return '$count en réserve';
   }
+
+  @override
+  String levelUpTo(int level) {
+    return 'Monter au niveau $level';
+  }
+
+  @override
+  String get levelUpTitle => 'Montée de niveau';
+
+  @override
+  String levelFromTo(String cls, int from, int to) {
+    return '$cls $from → $to';
+  }
+
+  @override
+  String hitPointsGain(int count) {
+    return '+$count PV';
+  }
+
+  @override
+  String get hitPointsAverage =>
+      'Moyenne du dé de vie et modificateur de Constitution.';
+
+  @override
+  String get featuresGained => 'Aptitudes gagnées';
+
+  @override
+  String get subclassTitle => 'Sous-classe';
+
+  @override
+  String masteriesGained(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nouvelles bottes',
+      one: 'Nouvelle botte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get featChoiceTitle => 'Amélioration de caractéristique ou autre don';
+
+  @override
+  String get featChoiceHint =>
+      'Seuls les dons dont vous remplissez les conditions sont sélectionnables.';
+
+  @override
+  String get improvementTwo => '+2 à une';
+
+  @override
+  String get improvementOneAndOne => '+1 à deux';
+
+  @override
+  String get whatChanges => 'Ce qui change';
+
+  @override
+  String get hitDiceLabel => 'Dés de vie';
+
+  @override
+  String get missingSubclass => 'Choisissez une sous-classe.';
+
+  @override
+  String get missingLevelChoice => 'Faites les choix de ce niveau.';
+
+  @override
+  String get missingMastery => 'Choisissez votre nouvelle botte.';
+
+  @override
+  String get missingFeat => 'Choisissez un don.';
+
+  @override
+  String get missingFeatBonus => 'Choisissez où porter le bonus.';
+
+  @override
+  String get featBlockLevel => 'Niveau insuffisant';
+
+  @override
+  String get featBlockAbility => 'Caractéristique insuffisante';
+
+  @override
+  String get featBlockFeature => 'Aptitude requise manquante';
+
+  @override
+  String get featBlockNotRepeatable => 'Déjà obtenu · non répétable';
+
+  @override
+  String get spellsNotYet =>
+      'Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.';
+
+  @override
+  String get levelUpReady => 'Prêt à enregistrer';
+
+  @override
+  String get featChoiceOther => 'Don accordé par ce niveau';
 }

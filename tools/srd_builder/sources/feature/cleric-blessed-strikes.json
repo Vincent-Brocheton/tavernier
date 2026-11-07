@@ -11,6 +11,7 @@
       "op": "choice",
       "id": "cleric-blessed-strikes",
       "count": 1,
+      "labels": ["Impact divin", "Incantation puissante"],
       "options": [
         [],
         [

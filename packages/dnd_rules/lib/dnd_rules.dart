@@ -7,3 +7,4 @@ export 'src/compute_sheet.dart';
 export 'src/computed_sheet.dart';
 export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
+export 'src/level_up.dart';

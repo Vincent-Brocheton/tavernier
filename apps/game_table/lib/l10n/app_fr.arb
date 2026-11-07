@@ -294,7 +294,7 @@
   },
   "stepOf": "Étape {step} sur {total}",
   "@stepOf": {
-    "description": "Progression de l’assistant.",
+    "description": "Montée de niveau.",
     "placeholders": {
       "step": {
         "type": "int"
@@ -1257,5 +1257,135 @@
         "type": "int"
       }
     }
+  },
+  "levelUpTo": "Monter au niveau {level}",
+  "@levelUpTo": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "levelUpTitle": "Montée de niveau",
+  "@levelUpTitle": {
+    "description": "Montée de niveau."
+  },
+  "levelFromTo": "{cls} {from} → {to}",
+  "@levelFromTo": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "cls": {
+        "type": "String"
+      },
+      "from": {
+        "type": "int"
+      },
+      "to": {
+        "type": "int"
+      }
+    }
+  },
+  "hitPointsGain": "+{count} PV",
+  "@hitPointsGain": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hitPointsAverage": "Moyenne du dé de vie et modificateur de Constitution.",
+  "@hitPointsAverage": {
+    "description": "Montée de niveau."
+  },
+  "featuresGained": "Aptitudes gagnées",
+  "@featuresGained": {
+    "description": "Montée de niveau."
+  },
+  "subclassTitle": "Sous-classe",
+  "@subclassTitle": {
+    "description": "Montée de niveau."
+  },
+  "masteriesGained": "{count, plural, =1{Nouvelle botte} other{{count} nouvelles bottes}}",
+  "@masteriesGained": {
+    "description": "Montée de niveau.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "featChoiceTitle": "Amélioration de caractéristique ou autre don",
+  "@featChoiceTitle": {
+    "description": "Montée de niveau."
+  },
+  "featChoiceHint": "Seuls les dons dont vous remplissez les conditions sont sélectionnables.",
+  "@featChoiceHint": {
+    "description": "Montée de niveau."
+  },
+  "improvementTwo": "+2 à une",
+  "@improvementTwo": {
+    "description": "Montée de niveau."
+  },
+  "improvementOneAndOne": "+1 à deux",
+  "@improvementOneAndOne": {
+    "description": "Montée de niveau."
+  },
+  "whatChanges": "Ce qui change",
+  "@whatChanges": {
+    "description": "Montée de niveau."
+  },
+  "hitDiceLabel": "Dés de vie",
+  "@hitDiceLabel": {
+    "description": "Montée de niveau."
+  },
+  "missingSubclass": "Choisissez une sous-classe.",
+  "@missingSubclass": {
+    "description": "Montée de niveau."
+  },
+  "missingLevelChoice": "Faites les choix de ce niveau.",
+  "@missingLevelChoice": {
+    "description": "Montée de niveau."
+  },
+  "missingMastery": "Choisissez votre nouvelle botte.",
+  "@missingMastery": {
+    "description": "Montée de niveau."
+  },
+  "missingFeat": "Choisissez un don.",
+  "@missingFeat": {
+    "description": "Montée de niveau."
+  },
+  "missingFeatBonus": "Choisissez où porter le bonus.",
+  "@missingFeatBonus": {
+    "description": "Montée de niveau."
+  },
+  "featBlockLevel": "Niveau insuffisant",
+  "@featBlockLevel": {
+    "description": "Montée de niveau."
+  },
+  "featBlockAbility": "Caractéristique insuffisante",
+  "@featBlockAbility": {
+    "description": "Montée de niveau."
+  },
+  "featBlockFeature": "Aptitude requise manquante",
+  "@featBlockFeature": {
+    "description": "Montée de niveau."
+  },
+  "featBlockNotRepeatable": "Déjà obtenu · non répétable",
+  "@featBlockNotRepeatable": {
+    "description": "Montée de niveau."
+  },
+  "spellsNotYet": "Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.",
+  "@spellsNotYet": {
+    "description": "Montée de niveau."
+  },
+  "levelUpReady": "Prêt à enregistrer",
+  "@levelUpReady": {
+    "description": "Montée de niveau."
+  },
+  "featChoiceOther": "Don accordé par ce niveau",
+  "@featChoiceOther": {
+    "description": "Montée de niveau."
   }
 }

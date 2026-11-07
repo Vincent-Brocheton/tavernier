@@ -7,6 +7,7 @@ import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
+import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
 
 void main() {
@@ -31,6 +32,10 @@ class _GameTableAppState extends State<GameTableApp> {
       GoRoute(
         path: '/characters/:id',
         builder: (_, state) => SheetPage(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/characters/:id/level-up',
+        builder: (_, state) => LevelUpPage(id: state.pathParameters['id']!),
       ),
     ],
   );

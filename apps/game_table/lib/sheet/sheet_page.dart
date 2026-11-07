@@ -35,10 +35,12 @@ class SheetPage extends ConsumerWidget {
       body: SafeArea(
         child: switch ((content, character)) {
           (final content?, AsyncData(value: final character?)) => _Sheet(
+            id: id,
             content: content,
             character: character,
           ),
-          (_, AsyncData(value: null)) || (_, AsyncError()) => const _NotFound(),
+          (_, AsyncData(value: null)) ||
+          (_, AsyncError()) => const CharacterNotFound(),
           _ => const Center(child: CircularProgressIndicator()),
         },
       ),
@@ -46,11 +48,15 @@ class SheetPage extends ConsumerWidget {
   }
 }
 
+/// Adresse de la montée de niveau du personnage [id].
+String levelUpPath(String id) => '/characters/$id/level-up';
+
 void _leave(BuildContext context) =>
     context.canPop() ? context.pop() : context.go('/');
 
-class _NotFound extends StatelessWidget {
-  const _NotFound();
+/// Page d'un personnage absent de la base.
+class CharacterNotFound extends StatelessWidget {
+  const CharacterNotFound({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +78,13 @@ class _NotFound extends StatelessWidget {
 }
 
 class _Sheet extends StatelessWidget {
-  const _Sheet({required this.content, required this.character});
+  const _Sheet({
+    required this.id,
+    required this.content,
+    required this.character,
+  });
 
+  final String id;
   final ActiveContent content;
   final CharacterInput character;
 
@@ -127,6 +138,17 @@ class _Sheet extends StatelessWidget {
               ],
             ),
           ),
+          if (sheet.level < maxCharacterLevel)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: FilledButton(
+                  onPressed: () => context.push(levelUpPath(id)),
+                  child: Text(l10n.levelUpTo(sheet.level + 1)),
+                ),
+              ),
+            ),
           TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
