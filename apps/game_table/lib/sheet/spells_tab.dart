@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import 'rule_text.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
 import 'spell_changes_sheet.dart';
@@ -326,6 +327,7 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
       context,
       _SpellDetail(
         entity: entity,
+        content: _content,
         data: data,
         options: options,
         replaced: replacedConcentration(spell.id, data, _latest),
@@ -467,6 +469,7 @@ class _Badge extends StatelessWidget {
 class _SpellDetail extends StatefulWidget {
   const _SpellDetail({
     required this.entity,
+    required this.content,
     required this.data,
     required this.options,
     required this.replaced,
@@ -475,6 +478,7 @@ class _SpellDetail extends StatefulWidget {
   });
 
   final ContentEntity entity;
+  final ActiveContent content;
   final SpellData data;
   final List<CastOption> options;
 
@@ -571,7 +575,11 @@ class _SpellDetailState extends State<_SpellDetail> {
           if (data.materialConsumed)
             DetailRow(l10n.spellMaterial, l10n.materialConsumed),
           SizedBox(height: AppSpacing.sm),
-          Text(widget.entity.textFr ?? '', style: text.bodyMedium),
+          RuleText(
+            widget.entity.textFr ?? '',
+            content: widget.content,
+            style: text.bodyMedium,
+          ),
           SizedBox(height: AppSpacing.sm),
           if (widget.replaced case final replaced?) ...[
             Text(

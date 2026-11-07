@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:bonus-action",
+  "type": "rule",
+  "name": "Action Bonus",
+  "text": {
+    "fr": "Une action Bonus est une action spéciale que vous pouvez entreprendre au même tour qu’une action. Vous ne pouvez pas entreprendre plus d’une action Bonus par tour, et ne jouissez d’une action Bonus que si une règle le stipule explicitement."
+  }
+}

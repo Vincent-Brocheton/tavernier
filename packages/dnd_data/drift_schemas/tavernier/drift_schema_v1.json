@@ -622,7 +622,7 @@
       ],
       "type": "table",
       "data": {
-        "name": "damage_type",
+        "name": "rule_term",
         "was_declared_in_moor": false,
         "columns": [
           {
@@ -697,7 +697,7 @@
       ],
       "type": "table",
       "data": {
-        "name": "mastery_property",
+        "name": "damage_type",
         "was_declared_in_moor": false,
         "columns": [
           {
@@ -767,6 +767,81 @@
     },
     {
       "id": 9,
+      "references": [
+        1
+      ],
+      "type": "table",
+      "data": {
+        "name": "mastery_property",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "pack_id",
+            "getter_name": "packId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "REFERENCES content_pack (id) ON DELETE CASCADE",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "REFERENCES content_pack (id) ON DELETE CASCADE"
+            },
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": [
+              {
+                "foreign_key": {
+                  "to": {
+                    "table": "content_pack",
+                    "column": "id"
+                  },
+                  "initially_deferred": false,
+                  "on_update": null,
+                  "on_delete": "cascade"
+                }
+              }
+            ]
+          },
+          {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "extends_id",
+            "getter_name": "extendsId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 10,
       "references": [
         1
       ],
@@ -951,7 +1026,7 @@
       }
     },
     {
-      "id": 10,
+      "id": 11,
       "references": [
         1
       ],
@@ -1100,7 +1175,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 12,
       "references": [
         1
       ],
@@ -1215,7 +1290,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 13,
       "references": [
         1
       ],
@@ -1334,7 +1409,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 14,
       "references": [
         1
       ],
@@ -1463,7 +1538,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 15,
       "references": [
         1
       ],
@@ -1588,7 +1663,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 16,
       "references": [
         1
       ],
@@ -1664,7 +1739,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 17,
       "references": [
         1
       ],
@@ -1750,7 +1825,7 @@
       }
     },
     {
-      "id": 17,
+      "id": 18,
       "references": [
         1
       ],
@@ -1826,7 +1901,7 @@
       }
     },
     {
-      "id": 18,
+      "id": 19,
       "references": [
         1
       ],
@@ -1922,7 +1997,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 20,
       "references": [
         1
       ],
@@ -2031,7 +2106,7 @@
       }
     },
     {
-      "id": 20,
+      "id": 21,
       "references": [
         1
       ],
@@ -2136,7 +2211,7 @@
       }
     },
     {
-      "id": 21,
+      "id": 22,
       "references": [
         1
       ],
@@ -2212,7 +2287,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 23,
       "references": [
         1
       ],
@@ -2441,7 +2516,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 24,
       "references": [
         1
       ],
@@ -2537,7 +2612,7 @@
       }
     },
     {
-      "id": 24,
+      "id": 25,
       "references": [
         1
       ],
@@ -2622,7 +2697,7 @@
       }
     },
     {
-      "id": 25,
+      "id": 26,
       "references": [
         1
       ],
@@ -2698,7 +2773,7 @@
       }
     },
     {
-      "id": 26,
+      "id": 27,
       "references": [
         1
       ],
@@ -2793,7 +2868,7 @@
       }
     },
     {
-      "id": 27,
+      "id": 28,
       "references": [
         1
       ],
@@ -2980,7 +3055,7 @@
       }
     },
     {
-      "id": 28,
+      "id": 29,
       "references": [
         1
       ],
@@ -3046,7 +3121,7 @@
       }
     },
     {
-      "id": 29,
+      "id": 30,
       "references": [
         1
       ],
@@ -3171,7 +3246,7 @@
       }
     },
     {
-      "id": 30,
+      "id": 31,
       "references": [
         1
       ],
@@ -3277,7 +3352,7 @@
       }
     },
     {
-      "id": 31,
+      "id": 32,
       "references": [
         1
       ],
@@ -3353,7 +3428,7 @@
       }
     },
     {
-      "id": 32,
+      "id": 33,
       "references": [
         1
       ],
@@ -3439,7 +3514,7 @@
       }
     },
     {
-      "id": 33,
+      "id": 34,
       "references": [
         1
       ],
@@ -3515,7 +3590,7 @@
       }
     },
     {
-      "id": 34,
+      "id": 35,
       "references": [],
       "type": "table",
       "data": {
@@ -3582,7 +3657,7 @@
       }
     },
     {
-      "id": 35,
+      "id": 36,
       "references": [],
       "type": "table",
       "data": {
@@ -3707,9 +3782,9 @@
       }
     },
     {
-      "id": 36,
+      "id": 37,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -3798,9 +3873,9 @@
       }
     },
     {
-      "id": 37,
+      "id": 38,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -3893,9 +3968,9 @@
       }
     },
     {
-      "id": 38,
+      "id": 39,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -3974,9 +4049,9 @@
       }
     },
     {
-      "id": 39,
+      "id": 40,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -4045,9 +4120,9 @@
       }
     },
     {
-      "id": 40,
+      "id": 41,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -4260,9 +4335,9 @@
       }
     },
     {
-      "id": 41,
+      "id": 42,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4351,9 +4426,9 @@
       }
     },
     {
-      "id": 42,
+      "id": 43,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4451,9 +4526,9 @@
       }
     },
     {
-      "id": 43,
+      "id": 44,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4582,9 +4657,9 @@
       }
     },
     {
-      "id": 44,
+      "id": 45,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4687,9 +4762,9 @@
       }
     },
     {
-      "id": 45,
+      "id": 46,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4762,9 +4837,9 @@
       }
     },
     {
-      "id": 46,
+      "id": 47,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4875,9 +4950,9 @@
       }
     },
     {
-      "id": 47,
+      "id": 48,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -4988,9 +5063,9 @@
       }
     },
     {
-      "id": 48,
+      "id": 49,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -5132,9 +5207,9 @@
       }
     },
     {
-      "id": 49,
+      "id": 50,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -5227,9 +5302,9 @@
       }
     },
     {
-      "id": 50,
+      "id": 51,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -5312,9 +5387,9 @@
       }
     },
     {
-      "id": 51,
+      "id": 52,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -5387,9 +5462,9 @@
       }
     },
     {
-      "id": 52,
+      "id": 53,
       "references": [
-        40
+        41
       ],
       "type": "table",
       "data": {
@@ -5468,9 +5543,9 @@
       }
     },
     {
-      "id": 53,
+      "id": 54,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -5563,9 +5638,9 @@
       }
     },
     {
-      "id": 54,
+      "id": 55,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -5638,9 +5713,9 @@
       }
     },
     {
-      "id": 55,
+      "id": 56,
       "references": [
-        54
+        55
       ],
       "type": "table",
       "data": {
@@ -5723,9 +5798,9 @@
       }
     },
     {
-      "id": 56,
+      "id": 57,
       "references": [
-        55
+        56
       ],
       "type": "table",
       "data": {
@@ -5872,9 +5947,9 @@
       }
     },
     {
-      "id": 57,
+      "id": 58,
       "references": [
-        55
+        56
       ],
       "type": "table",
       "data": {
@@ -5977,9 +6052,9 @@
       }
     },
     {
-      "id": 58,
+      "id": 59,
       "references": [
-        35
+        36
       ],
       "type": "table",
       "data": {
@@ -6086,7 +6161,7 @@
       }
     },
     {
-      "id": 59,
+      "id": 60,
       "references": [],
       "type": "table",
       "data": {
@@ -6184,6 +6259,15 @@
         {
           "dialect": "sqlite",
           "sql": "CREATE TABLE IF NOT EXISTS \"condition\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
+        }
+      ]
+    },
+    {
+      "name": "rule_term",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"rule_term\" (\"id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL REFERENCES content_pack (id) ON DELETE CASCADE, \"name\" TEXT NOT NULL, \"extends_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

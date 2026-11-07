@@ -569,6 +569,68 @@ class Condition extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
+class RuleTerm extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  RuleTerm(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES content_pack(id)ON DELETE CASCADE',
+  );
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> extendsId = GeneratedColumn<String>(
+    'extends_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, packId, name, extendsId];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'rule_term';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  RuleTerm createAlias(String alias) {
+    return RuleTerm(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
 class DamageType extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5477,6 +5539,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final Skill skill = Skill(this);
   late final Language language = Language(this);
   late final Condition condition = Condition(this);
+  late final RuleTerm ruleTerm = RuleTerm(this);
   late final DamageType damageType = DamageType(this);
   late final MasteryProperty masteryProperty = MasteryProperty(this);
   late final Weapon weapon = Weapon(this);
@@ -5554,6 +5617,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     skill,
     language,
     condition,
+    ruleTerm,
     damageType,
     masteryProperty,
     weapon,
@@ -5644,6 +5708,13 @@ class DatabaseAtV1 extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('condition', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'content_pack',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('rule_term', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(

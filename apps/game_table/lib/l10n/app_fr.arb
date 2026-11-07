@@ -2341,5 +2341,18 @@
         "type": "String"
       }
     }
+  },
+  "ruleTermLabel": "{term}, définition",
+  "@ruleTermLabel": {
+    "description": "Termes cliquables.",
+    "placeholders": {
+      "term": {
+        "type": "String"
+      }
+    }
+  },
+  "ruleTermSource": "Glossaire · SRD 5.2.1",
+  "@ruleTermSource": {
+    "description": "Termes cliquables."
   }
 }

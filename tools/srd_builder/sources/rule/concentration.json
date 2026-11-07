@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:concentration",
+  "type": "rule",
+  "name": "Concentration",
+  "text": {
+    "fr": "Certains sorts et effets nécessitent la Concentration pour rester actifs, comme stipulé dans leur description. Si son créateur perd sa Concentration, l’effet prend fin. Si l’effet affiche une durée maximale, son descriptif indique combien de temps son créateur peut se concentrer sur lui : jusqu’à 1 minute, 1 heure, ou autre durée. Le créateur peut rompre volontairement sa Concentration à tout moment (pas d’action requise).\nLes facteurs ci-après brisent la Concentration.\nAutre effet nécessitant la Concentration. Vous perdez la Concentration sur un effet dès l’instant où vous commencez à lancer un sort nécessitant la Concentration ou activez un autre effet qui la requiert.\nDégâts. Si vous subissez des dégâts, vous devez réussir un jet de sauvegarde de Constitution pour maintenir votre Concentration. Le DD est égal à 10 ou à la moitié des dégâts subis (arrondir à l’inférieur), le nombre le plus élevé étant retenu, jusqu’à un DD maximal de 30.\nNeutralisé ou mort. Votre Concentration prend fin si vous subissez l’état Neutralisé ou si vous mourez."
+  }
+}

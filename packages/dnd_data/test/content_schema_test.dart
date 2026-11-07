@@ -7,7 +7,13 @@ import 'support.dart';
 
 const contentTables = {
   'content_pack', 'pack_dependency', 'ability', 'skill', 'language', //
-  'condition', 'damage_type', 'mastery_property', 'weapon', 'armor', 'tool',
+  'condition',
+  'rule_term',
+  'damage_type',
+  'mastery_property',
+  'weapon',
+  'armor',
+  'tool',
   'item', 'background', 'background_ability', 'background_proficiency',
   'background_equipment_option', 'feat', 'species', 'species_trait',
   'player_class',

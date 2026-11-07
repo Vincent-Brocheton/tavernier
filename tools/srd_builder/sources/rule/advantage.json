@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:advantage",
+  "type": "rule",
+  "name": "Avantage",
+  "text": {
+    "fr": "Si vous avez l’Avantage à un Test d20, lancez deux d20 et ne retenez que le résultat le plus élevé. Un jet ne peut pas être affecté par plus d’un Avantage, et l’Avantage et le Désavantage sur un même jet s’annulent."
+  }
+}

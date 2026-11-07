@@ -42,8 +42,8 @@ List<String> _issuePaths(Object? json) => parseEntity(
 ).issues.map((i) => i.path).toList();
 
 void main() {
-  test('les 18 types du format sont connus', () {
-    expect(entityTypes, hasLength(18));
+  test('les 19 types du format sont connus', () {
+    expect(entityTypes, hasLength(19));
     expect(
       entityTypes,
       containsAll(['weapon', 'background', 'feature', 'damage-type']),
@@ -222,6 +222,12 @@ final _oneOfEachType = <Map<String, Object?>>[
   {
     'id': 'srd:condition:blinded',
     'type': 'condition',
+    'name': 'Aveuglé',
+    'text': {'fr': 'Texte.'},
+  },
+  {
+    'id': 'srd:rule:advantage',
+    'type': 'rule',
     'name': 'Aveuglé',
     'text': {'fr': 'Texte.'},
   },

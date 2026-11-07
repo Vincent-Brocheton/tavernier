@@ -463,6 +463,7 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'skill': SkillData.fromJson,
   'language': LanguageData.fromJson,
   'condition': EmptyData.fromJson,
+  'rule': EmptyData.fromJson,
   'damage-type': EmptyData.fromJson,
   'mastery': EmptyData.fromJson,
   'weapon': WeaponData.fromJson,

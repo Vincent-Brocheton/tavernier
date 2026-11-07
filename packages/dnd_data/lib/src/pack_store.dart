@@ -16,6 +16,7 @@ const _tableOf = {
   'skill': 'skill',
   'language': 'language',
   'condition': 'condition',
+  'rule': 'rule_term',
   'damage-type': 'damage_type',
   'mastery': 'mastery_property',
   'weapon': 'weapon',

@@ -1,0 +1,8 @@
+{
+  "id": "srd:rule:reaction",
+  "type": "rule",
+  "name": "Réaction",
+  "text": {
+    "fr": "Une Réaction est une action spéciale entreprise en réponse à un événement déclencheur défini dans la description de la Réaction. Vous pouvez jouer votre Réaction pendant le tour d’une autre créature, et si vous la jouez pendant votre tour, vous pouvez le faire même si vous entreprenez également une action, une action Bonus, ou les deux. Une fois la Réaction jouée, vous ne pouvez pas en jouer d’autre avant le début de votre tour suivant. L’attaque d’Opportunité est une Réaction accessible à toutes les créatures."
+  }
+}

@@ -85,6 +85,7 @@ void main() {
     expect(ofType('ability'), hasLength(6));
     expect(ofType('skill'), hasLength(18));
     expect(ofType('condition'), hasLength(15));
+    expect(ofType('rule'), hasLength(6));
     expect(ofType('damage-type'), hasLength(13));
     expect(ofType('mastery'), hasLength(8));
     expect(ofType('weapon').length, greaterThanOrEqualTo(30));
