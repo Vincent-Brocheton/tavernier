@@ -46,6 +46,7 @@
       "skill_choice_count": 1,
       "tool_choice_count": 1
     },
+    "prepared_change": "level_up_one",
     "subclass_level": 3,
     "tool_choice_count": 3,
     "tool_choice_category": "musical_instrument",

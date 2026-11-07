@@ -35,6 +35,7 @@
         "shield"
       ]
     },
+    "prepared_change": "long_rest_all",
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:wisdom",
     "levels": [

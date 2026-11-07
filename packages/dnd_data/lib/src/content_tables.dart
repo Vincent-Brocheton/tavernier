@@ -277,6 +277,7 @@ class Classes extends Table with ContentEntityColumns {
   TextColumn get toolChoiceCategory => text().nullable()();
   TextColumn get multiclass =>
       text().withDefault(const Constant('{}'))(); // JSON
+  TextColumn get preparedChange => text().nullable()();
 }
 
 @DataClassName('ClassLevelRow')

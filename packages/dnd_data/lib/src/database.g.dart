@@ -10079,6 +10079,17 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     requiredDuringInsert: false,
     defaultValue: const Constant('{}'),
   );
+  static const VerificationMeta _preparedChangeMeta = const VerificationMeta(
+    'preparedChange',
+  );
+  @override
+  late final GeneratedColumn<String> preparedChange = GeneratedColumn<String>(
+    'prepared_change',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -10099,6 +10110,7 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     toolChoiceCount,
     toolChoiceCategory,
     multiclass,
+    preparedChange,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -10275,6 +10287,15 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         multiclass.isAcceptableOrUnknown(data['multiclass']!, _multiclassMeta),
       );
     }
+    if (data.containsKey('prepared_change')) {
+      context.handle(
+        _preparedChangeMeta,
+        preparedChange.isAcceptableOrUnknown(
+          data['prepared_change']!,
+          _preparedChangeMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -10356,6 +10377,10 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         DriftSqlType.string,
         data['${effectivePrefix}multiclass'],
       )!,
+      preparedChange: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}prepared_change'],
+      ),
     );
   }
 
@@ -10384,6 +10409,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
   final int toolChoiceCount;
   final String? toolChoiceCategory;
   final String multiclass;
+  final String? preparedChange;
   const ClassRow({
     required this.id,
     required this.packId,
@@ -10403,6 +10429,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     required this.toolChoiceCount,
     this.toolChoiceCategory,
     required this.multiclass,
+    this.preparedChange,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -10431,6 +10458,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       map['tool_choice_category'] = Variable<String>(toolChoiceCategory);
     }
     map['multiclass'] = Variable<String>(multiclass);
+    if (!nullToAbsent || preparedChange != null) {
+      map['prepared_change'] = Variable<String>(preparedChange);
+    }
     return map;
   }
 
@@ -10460,6 +10490,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           ? const Value.absent()
           : Value(toolChoiceCategory),
       multiclass: Value(multiclass),
+      preparedChange: preparedChange == null && nullToAbsent
+          ? const Value.absent()
+          : Value(preparedChange),
     );
   }
 
@@ -10495,6 +10528,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
         json['toolChoiceCategory'],
       ),
       multiclass: serializer.fromJson<String>(json['multiclass']),
+      preparedChange: serializer.fromJson<String?>(json['preparedChange']),
     );
   }
   @override
@@ -10521,6 +10555,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       'toolChoiceCount': serializer.toJson<int>(toolChoiceCount),
       'toolChoiceCategory': serializer.toJson<String?>(toolChoiceCategory),
       'multiclass': serializer.toJson<String>(multiclass),
+      'preparedChange': serializer.toJson<String?>(preparedChange),
     };
   }
 
@@ -10543,6 +10578,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     int? toolChoiceCount,
     Value<String?> toolChoiceCategory = const Value.absent(),
     String? multiclass,
+    Value<String?> preparedChange = const Value.absent(),
   }) => ClassRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
@@ -10566,6 +10602,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
         ? toolChoiceCategory.value
         : this.toolChoiceCategory,
     multiclass: multiclass ?? this.multiclass,
+    preparedChange: preparedChange.present
+        ? preparedChange.value
+        : this.preparedChange,
   );
   ClassRow copyWithCompanion(ClassesCompanion data) {
     return ClassRow(
@@ -10613,6 +10652,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       multiclass: data.multiclass.present
           ? data.multiclass.value
           : this.multiclass,
+      preparedChange: data.preparedChange.present
+          ? data.preparedChange.value
+          : this.preparedChange,
     );
   }
 
@@ -10636,7 +10678,8 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           ..write('toolProficiencies: $toolProficiencies, ')
           ..write('toolChoiceCount: $toolChoiceCount, ')
           ..write('toolChoiceCategory: $toolChoiceCategory, ')
-          ..write('multiclass: $multiclass')
+          ..write('multiclass: $multiclass, ')
+          ..write('preparedChange: $preparedChange')
           ..write(')'))
         .toString();
   }
@@ -10661,6 +10704,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     toolChoiceCount,
     toolChoiceCategory,
     multiclass,
+    preparedChange,
   );
   @override
   bool operator ==(Object other) =>
@@ -10683,7 +10727,8 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           other.toolProficiencies == this.toolProficiencies &&
           other.toolChoiceCount == this.toolChoiceCount &&
           other.toolChoiceCategory == this.toolChoiceCategory &&
-          other.multiclass == this.multiclass);
+          other.multiclass == this.multiclass &&
+          other.preparedChange == this.preparedChange);
 }
 
 class ClassesCompanion extends UpdateCompanion<ClassRow> {
@@ -10705,6 +10750,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
   final Value<int> toolChoiceCount;
   final Value<String?> toolChoiceCategory;
   final Value<String> multiclass;
+  final Value<String?> preparedChange;
   final Value<int> rowid;
   const ClassesCompanion({
     this.id = const Value.absent(),
@@ -10725,6 +10771,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.toolChoiceCount = const Value.absent(),
     this.toolChoiceCategory = const Value.absent(),
     this.multiclass = const Value.absent(),
+    this.preparedChange = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ClassesCompanion.insert({
@@ -10746,6 +10793,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.toolChoiceCount = const Value.absent(),
     this.toolChoiceCategory = const Value.absent(),
     this.multiclass = const Value.absent(),
+    this.preparedChange = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -10777,6 +10825,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Expression<int>? toolChoiceCount,
     Expression<String>? toolChoiceCategory,
     Expression<String>? multiclass,
+    Expression<String>? preparedChange,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -10802,6 +10851,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       if (toolChoiceCategory != null)
         'tool_choice_category': toolChoiceCategory,
       if (multiclass != null) 'multiclass': multiclass,
+      if (preparedChange != null) 'prepared_change': preparedChange,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -10825,6 +10875,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Value<int>? toolChoiceCount,
     Value<String?>? toolChoiceCategory,
     Value<String>? multiclass,
+    Value<String?>? preparedChange,
     Value<int>? rowid,
   }) {
     return ClassesCompanion(
@@ -10847,6 +10898,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       toolChoiceCount: toolChoiceCount ?? this.toolChoiceCount,
       toolChoiceCategory: toolChoiceCategory ?? this.toolChoiceCategory,
       multiclass: multiclass ?? this.multiclass,
+      preparedChange: preparedChange ?? this.preparedChange,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -10910,6 +10962,9 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     if (multiclass.present) {
       map['multiclass'] = Variable<String>(multiclass.value);
     }
+    if (preparedChange.present) {
+      map['prepared_change'] = Variable<String>(preparedChange.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -10937,6 +10992,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
           ..write('toolChoiceCount: $toolChoiceCount, ')
           ..write('toolChoiceCategory: $toolChoiceCategory, ')
           ..write('multiclass: $multiclass, ')
+          ..write('preparedChange: $preparedChange, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -38236,6 +38292,7 @@ typedef $$ClassesTableCreateCompanionBuilder = ClassesCompanion Function({
   Value<int> toolChoiceCount,
   Value<String?> toolChoiceCategory,
   Value<String> multiclass,
+  Value<String?> preparedChange,
   Value<int> rowid,
 });
 typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
@@ -38257,6 +38314,7 @@ typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
   Value<int> toolChoiceCount,
   Value<String?> toolChoiceCategory,
   Value<String> multiclass,
+  Value<String?> preparedChange,
   Value<int> rowid,
 });
 
@@ -38373,6 +38431,11 @@ class $$ClassesTableFilterComposer
 
   ColumnFilters<String> get multiclass => $composableBuilder(
     column: $table.multiclass,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get preparedChange => $composableBuilder(
+    column: $table.preparedChange,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -38494,6 +38557,11 @@ class $$ClassesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get preparedChange => $composableBuilder(
+    column: $table.preparedChange,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -38604,6 +38672,11 @@ class $$ClassesTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get preparedChange => $composableBuilder(
+    column: $table.preparedChange,
+    builder: (column) => column,
+  );
+
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -38674,6 +38747,7 @@ class $$ClassesTableTableManager
                 Value<int> toolChoiceCount = const Value.absent(),
                 Value<String?> toolChoiceCategory = const Value.absent(),
                 Value<String> multiclass = const Value.absent(),
+                Value<String?> preparedChange = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ClassesCompanion(
                 id: id,
@@ -38694,6 +38768,7 @@ class $$ClassesTableTableManager
                 toolChoiceCount: toolChoiceCount,
                 toolChoiceCategory: toolChoiceCategory,
                 multiclass: multiclass,
+                preparedChange: preparedChange,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -38716,6 +38791,7 @@ class $$ClassesTableTableManager
                 Value<int> toolChoiceCount = const Value.absent(),
                 Value<String?> toolChoiceCategory = const Value.absent(),
                 Value<String> multiclass = const Value.absent(),
+                Value<String?> preparedChange = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ClassesCompanion.insert(
                 id: id,
@@ -38736,6 +38812,7 @@ class $$ClassesTableTableManager
                 toolChoiceCount: toolChoiceCount,
                 toolChoiceCategory: toolChoiceCategory,
                 multiclass: multiclass,
+                preparedChange: preparedChange,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

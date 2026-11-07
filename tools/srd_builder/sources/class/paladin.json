@@ -42,6 +42,7 @@
         "shield"
       ]
     },
+    "prepared_change": "long_rest_one",
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:charisma",
     "levels": [

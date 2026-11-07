@@ -232,6 +232,137 @@ void main() {
     expect(state.used, isEmpty);
   });
 
+  group('modifier ses sorts', () {
+    Future<void> openChanges(WidgetTester tester) async {
+      await tester.tap(find.text('Modifier mes sorts'));
+      await tester.pumpAndSettle();
+    }
+
+    FilterChip chip(WidgetTester tester, String name) =>
+        tester.widget<FilterChip>(find.widgetWithText(FilterChip, name).first);
+
+    testWidgets('Clerc : retirer puis ajouter, enregistré', (tester) async {
+      await _open(tester, mira);
+      await openChanges(tester);
+      expect(find.text('Préparés 9 / 9'), findsOneWidget);
+      // Au maximum : ajouter demande de retirer d'abord.
+      expect(chip(tester, 'Imprécation').onSelected, isNull);
+      await tester.ensureVisible(find.widgetWithText(FilterChip, 'Sanctuaire'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilterChip, 'Sanctuaire'));
+      await tester.pumpAndSettle();
+      expect(find.text('Préparés 8 / 9'), findsOneWidget);
+      await tester.ensureVisible(find.widgetWithText(FilterChip, 'Injonction'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilterChip, 'Injonction'));
+      await tester.pumpAndSettle();
+      expect(find.text('Préparés 7 / 9'), findsOneWidget);
+      await tester.ensureVisible(find.text('Enregistrer'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Enregistrer'));
+      await _settle(tester);
+      final saved = await tester.runAsync(() => _store.load('a'));
+      expect(saved!.spells.prepared, hasLength(7));
+      expect(saved.spells.prepared, isNot(contains('srd:spell:sanctuary')));
+    });
+
+    testWidgets('sort accordé : bloqué', (tester) async {
+      await _open(tester, mira);
+      await openChanges(tester);
+      expect(chip(tester, 'Bénédiction').onSelected, isNull);
+    });
+
+    testWidgets('Paladin : un seul remplacement', (tester) async {
+      await _open(
+        tester,
+        mira.copyWith(
+          classLevels: const [
+            ClassLevelInput(classId: 'srd:class:paladin', level: 5),
+          ],
+          feats: const [],
+          choices: const {},
+          spells: const SpellsInput(
+            prepared: [
+              'srd:spell:command',
+              'srd:spell:divine-favor',
+              'srd:spell:shield-of-faith',
+            ],
+          ),
+        ),
+      );
+      await openChanges(tester);
+      await tester.tap(find.widgetWithText(FilterChip, 'Injonction'));
+      await tester.pumpAndSettle();
+      expect(chip(tester, 'Faveur divine').onSelected, isNull);
+      await tester.tap(find.widgetWithText(FilterChip, 'Injonction'));
+      await tester.pumpAndSettle();
+      expect(chip(tester, 'Faveur divine').onSelected, isNotNull);
+    });
+  });
+
+  group('grimoire [G3]', () {
+    final brannoc = _fixture('brannoc_n5').copyWith(coins: const {'gp': 120});
+
+    testWidgets('nombre de sorts', (tester) async {
+      await _open(tester, brannoc);
+      expect(find.text('Grimoire : 14 sorts'), findsOneWidget);
+    });
+
+    testWidgets('Savoir rituel : rituel du grimoire seulement', (tester) async {
+      await _open(tester, brannoc);
+      await _openSpell(tester, 'Détection de la magie');
+      expect(find.text('En rituel, sans emplacement'), findsOneWidget);
+      expect(find.textContaining('restants'), findsNothing);
+    });
+
+    testWidgets('sort sans rituel ni préparation : pas de lancer', (
+      tester,
+    ) async {
+      await _open(tester, brannoc);
+      await _openSpell(tester, 'Boule de feu');
+      expect(_castButton, findsNothing);
+    });
+
+    testWidgets('recopie : grimoire et or', (tester) async {
+      await _open(tester, brannoc);
+      await tester.tap(find.text('Copier un sort'));
+      await tester.pumpAndSettle();
+      expect(find.text('120 po'), findsOneWidget);
+      final knock = find.widgetWithText(ChoiceChip, 'Déblocage');
+      await tester.ensureVisible(knock);
+      await tester.pumpAndSettle();
+      await tester.tap(knock);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Copier'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Copier'));
+      await _settle(tester);
+      final saved = await tester.runAsync(() => _store.load('a'));
+      expect(saved!.spells.spellbook, contains('srd:spell:knock'));
+      expect(saved.coins['gp'], 20);
+    });
+
+    testWidgets('or insuffisant : sort non recopiable', (tester) async {
+      await _open(tester, brannoc.copyWith(coins: const {'gp': 60}));
+      await tester.tap(find.text('Copier un sort'));
+      await tester.pumpAndSettle();
+      final knock = tester.widget<ChoiceChip>(
+        find.widgetWithText(ChoiceChip, 'Déblocage'),
+      );
+      expect(knock.onSelected, isNull);
+    });
+  });
+
+  testWidgets('Thalia : lancer gratuit décompté', (tester) async {
+    await _open(tester, _fixture('thalia_n5'));
+    await _openSpell(tester, 'Foulée brumeuse');
+    expect(find.text('Sans emplacement (1 restant)'), findsOneWidget);
+    await tester.tap(_castButton);
+    await _settle(tester);
+    final state = await tester.runAsync(() => _store.loadState('a'));
+    expect(state!.usedOf(freeCastResource('srd:spell:misty-step')), 1);
+  });
+
   testWidgets('Aldric [P17] : aucun sort', (tester) async {
     await _open(tester, _fixture('aldric_n1'));
     expect(find.text('Aucun sort'), findsOneWidget);

@@ -280,6 +280,10 @@ abstract class ClassLevelData with _$ClassLevelData {
       _$ClassLevelDataFromJson(json);
 }
 
+/// Façon de changer ses sorts préparés (SRD, chaque classe).
+@JsonEnum(fieldRename: FieldRename.snake)
+enum PreparedChange { longRestAll, longRestOne, levelUpOne }
+
 /// Encadré « En tant que personnage multiclassé » d'une classe, hors dé de vie.
 @freezed
 abstract class MulticlassTraits with _$MulticlassTraits {
@@ -340,6 +344,9 @@ abstract class ClassData with _$ClassData implements EntityData {
     /// Options d'équipement de départ, dans l'ordre du SRD (A, B, C).
     @Default(<StartingEquipmentOption>[])
     List<StartingEquipmentOption> startingEquipment,
+
+    /// Façon de changer les sorts préparés ; vide sans lanceur.
+    PreparedChange? preparedChange,
 
     /// Traits reçus quand ce n'est pas la classe de départ.
     @Default(MulticlassTraits()) MulticlassTraits multiclass,

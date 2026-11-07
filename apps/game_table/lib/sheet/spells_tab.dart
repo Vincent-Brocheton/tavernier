@@ -9,6 +9,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
+import 'spell_changes_sheet.dart';
 
 enum _Filter { all, prepared, concentration, rituals }
 
@@ -69,6 +70,13 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
       ref.read(playStateProvider(widget.id)).asData?.value ?? const PlayState();
 
   String _name(String id) => namesOf(_content, [id]);
+
+  Future<void> _saveCharacter(CharacterInput character) async {
+    await ref.read(characterStoreProvider).save(widget.id, character);
+    ref
+      ..invalidate(characterProvider(widget.id))
+      ..invalidate(charactersProvider);
+  }
 
   Future<void> _store(PlayState state) async {
     await ref.read(characterStoreProvider).saveState(widget.id, state);
@@ -201,6 +209,42 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
             ),
             style: text.bodyMedium,
           ),
+        if (spellbookSize(classId) > 0)
+          Text(
+            l10n.spellbookCount(spells.where((s) => s.inSpellbook).length),
+            style: text.bodyMedium,
+          ),
+        Wrap(
+          spacing: AppSpacing.xs,
+          children: [
+            TextButton(
+              onPressed: () => showAdaptiveSheet(
+                context,
+                SpellChangesSheet(
+                  content: _content,
+                  character: widget.character,
+                  classId: classId,
+                  preparedMax: casting.preparedMax,
+                  onSave: _saveCharacter,
+                ),
+              ),
+              child: Text(l10n.changeSpells),
+            ),
+            if (spellbookSize(classId) > 0)
+              TextButton(
+                onPressed: () => showAdaptiveSheet(
+                  context,
+                  SpellCopySheet(
+                    content: _content,
+                    character: widget.character,
+                    classId: classId,
+                    onSave: _saveCharacter,
+                  ),
+                ),
+                child: Text(l10n.copySpellAction),
+              ),
+          ],
+        ),
         SizedBox(height: AppSpacing.sm),
       ],
     ];
@@ -272,8 +316,12 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
     final several = _sheet.spellcasting.length > 1;
     final castable = data.level == 0 || spell.prepared || spell.alwaysPrepared;
     final options = castable
-        ? castOptions(data, _sheet, _play)
-        : const <CastOption>[];
+        ? castOptions(data, _sheet, _play, spellId: spell.id)
+        : [
+            // Savoir rituel : le grimoire suffit, sans préparer le sort.
+            if (spell.inSpellbook && data.ritual)
+              CastOption(level: data.level, left: 0, ritual: true),
+          ];
     void open() => showAdaptiveSheet(
       context,
       _SpellDetail(
@@ -446,6 +494,7 @@ class _SpellDetailState extends State<_SpellDetail> {
 
   String _optionLabel(AppLocalizations l10n, CastOption option) {
     if (option.ritual) return l10n.castRitual;
+    if (option.free) return l10n.castFree(option.left);
     final level = l10n.spellLevelName(option.level);
     return option.pact
         ? l10n.castPactSlot(level, option.left)

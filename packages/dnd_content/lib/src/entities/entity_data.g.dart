@@ -746,6 +746,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'tool_choice_count',
         'tool_choice_category',
         'starting_equipment',
+        'prepared_change',
         'multiclass',
       ],
     );
@@ -838,6 +839,10 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
                 .toList() ??
             const <StartingEquipmentOption>[],
       ),
+      preparedChange: $checkedConvert(
+        'prepared_change',
+        (v) => $enumDecodeNullable(_$PreparedChangeEnumMap, v),
+      ),
       multiclass: $checkedConvert(
         'multiclass',
         (v) => v == null
@@ -863,6 +868,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     'toolChoiceCount': 'tool_choice_count',
     'toolChoiceCategory': 'tool_choice_category',
     'startingEquipment': 'starting_equipment',
+    'preparedChange': 'prepared_change',
   },
 );
 
@@ -900,7 +906,14 @@ Map<String, dynamic> _$ClassDataToJson(
   'starting_equipment': instance.startingEquipment
       .map((e) => e.toJson())
       .toList(),
+  'prepared_change': ?_$PreparedChangeEnumMap[instance.preparedChange],
   'multiclass': instance.multiclass.toJson(),
+};
+
+const _$PreparedChangeEnumMap = {
+  PreparedChange.longRestAll: 'long_rest_all',
+  PreparedChange.longRestOne: 'long_rest_one',
+  PreparedChange.levelUpOne: 'level_up_one',
 };
 
 _SubclassData _$SubclassDataFromJson(Map<String, dynamic> json) =>
