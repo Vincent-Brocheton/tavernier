@@ -230,6 +230,53 @@ void main() {
     });
   });
 
+  group('Inspiration héroïque', () {
+    final dwarf = computeSheet(
+      CharacterInput.fromJson(fixtureInput('brannoc_n5')),
+      content,
+    );
+
+    test('Repos long d\'un humain : obtenue', () {
+      expect(
+        finishRest(const PlayState(), aldric, RestKind.long).heroicInspiration,
+        isTrue,
+      );
+    });
+
+    test('Repos long d\'un nain : rien de plus', () {
+      expect(
+        finishRest(const PlayState(), dwarf, RestKind.long).heroicInspiration,
+        isFalse,
+      );
+    });
+
+    test('Repos long d\'un nain : conservée', () {
+      expect(
+        finishRest(
+          const PlayState(heroicInspiration: true),
+          dwarf,
+          RestKind.long,
+        ).heroicInspiration,
+        isTrue,
+      );
+    });
+
+    test('Repos court : ni gagnée ni perdue', () {
+      expect(
+        finishRest(const PlayState(), aldric, RestKind.short).heroicInspiration,
+        isFalse,
+      );
+      expect(
+        finishRest(
+          const PlayState(heroicInspiration: true),
+          aldric,
+          RestKind.short,
+        ).heroicInspiration,
+        isTrue,
+      );
+    });
+  });
+
   test('table des récupérations : Second souffle', () {
     expect(aldric.recharges[_secondWind], [
       (on: 'short_rest', amount: 1),

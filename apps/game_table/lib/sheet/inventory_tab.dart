@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
@@ -7,6 +9,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import 'rest_sheet.dart';
 import 'sheet_page.dart';
 
 String _coinName(AppLocalizations l10n, String code) => switch (code) {
@@ -75,6 +78,8 @@ class InventoryTab extends ConsumerWidget {
     final item = character.items[index];
     final entity = content.entity(item.itemId);
     final subtitle = _subtitle(l10n, entity);
+    final play =
+        ref.watch(playStateProvider(id)).asData?.value ?? const PlayState();
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(entity?.name ?? item.itemId),
@@ -85,6 +90,25 @@ class InventoryTab extends ConsumerWidget {
         _ItemSheet(
           entity: entity,
           item: item,
+          onUse: consumableOf(entity) == null
+              ? null
+              : () => showAdaptiveSheet(
+                  context,
+                  _ConsumableSheet(
+                    entity: entity!,
+                    consumable: consumableOf(entity)!,
+                    quantity: item.quantity,
+                    sheet: sheet,
+                    state: play,
+                    onUse: (state) {
+                      savePlayState(ref, id, state);
+                      _save(
+                        ref,
+                        setItemQuantity(character, index, item.quantity - 1),
+                      );
+                    },
+                  ),
+                ),
           blockAttunement:
               !item.attuned && sheet.attunedCount >= sheet.attunementSlots,
           onEquip: () => _save(ref, toggleEquipped(character, content, index)),
@@ -172,6 +196,7 @@ class _ItemSheet extends StatelessWidget {
   const _ItemSheet({
     required this.entity,
     required this.item,
+    required this.onUse,
     required this.blockAttunement,
     required this.onEquip,
     required this.onAttune,
@@ -180,6 +205,9 @@ class _ItemSheet extends StatelessWidget {
 
   final ContentEntity? entity;
   final ItemInput item;
+
+  /// Ouvre la feuille d'usage ; vide si l'objet ne s'utilise pas.
+  final VoidCallback? onUse;
   final bool blockAttunement;
   final VoidCallback onEquip;
   final VoidCallback onAttune;
@@ -233,6 +261,14 @@ class _ItemSheet extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(l10n.close),
               ),
+              if (onUse != null)
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    onUse!();
+                  },
+                  child: Text(l10n.useResource),
+                ),
               if (_needsAttunement(entity))
                 OutlinedButton(
                   onPressed: blockAttunement ? null : () => act(onAttune),
@@ -243,6 +279,131 @@ class _ItemSheet extends StatelessWidget {
                   onPressed: () => act(onEquip),
                   child: Text(item.equipped ? l10n.unequip : l10n.equip),
                 ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Utiliser un consommable [J7].
+class _ConsumableSheet extends StatefulWidget {
+  const _ConsumableSheet({
+    required this.entity,
+    required this.consumable,
+    required this.quantity,
+    required this.sheet,
+    required this.state,
+    required this.onUse,
+  });
+
+  final ContentEntity entity;
+  final Consumable consumable;
+  final int quantity;
+  final ComputedSheet sheet;
+  final PlayState state;
+  final ValueChanged<PlayState> onUse;
+
+  @override
+  State<_ConsumableSheet> createState() => _ConsumableSheetState();
+}
+
+class _ConsumableSheetState extends State<_ConsumableSheet> {
+  final _controller = TextEditingController();
+
+  Consumable get _item => widget.consumable;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _roll() {
+    final random = Random();
+    final total = List.generate(
+      _item.dice,
+      (_) => random.nextInt(_item.sides) + 1,
+    ).fold(0, (sum, die) => sum + die);
+    setState(() => _controller.text = '$total');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final dice = '${_item.dice}d${_item.sides}';
+    final roll = int.tryParse(_controller.text);
+    final valid = roll != null && consumableRollValid(_item, roll);
+    final before = hitPoints(widget.state, widget.sheet);
+    final after = valid
+        ? changeHitPoints(widget.state, widget.sheet, roll + _item.bonus)
+        : null;
+    return Padding(
+      padding: EdgeInsets.all(AppSpacing.md),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(widget.entity.name, style: text.headlineSmall),
+          Text(
+            l10n.consumableLine(
+              _item.action == 'bonus_action'
+                  ? l10n.actionBonus
+                  : l10n.actionPlain,
+              dice,
+              _item.bonus,
+              widget.quantity,
+            ),
+            style: text.bodyMedium,
+          ),
+          SizedBox(height: AppSpacing.sm),
+          TextField(
+            controller: _controller,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: l10n.enterRollOf(dice)),
+            onChanged: (_) => setState(() {}),
+          ),
+          SizedBox(height: AppSpacing.xs),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: OutlinedButton(
+              onPressed: _roll,
+              child: Text(l10n.castSpell),
+            ),
+          ),
+          if (after != null) ...[
+            SizedBox(height: AppSpacing.xs),
+            Text(
+              l10n.consumableResult(
+                before,
+                hitPoints(after, widget.sheet),
+                widget.sheet.hitPointsMax.value,
+                widget.quantity,
+                widget.quantity - 1,
+              ),
+              style: text.bodyMedium,
+            ),
+          ],
+          SizedBox(height: AppSpacing.sm),
+          Wrap(
+            alignment: WrapAlignment.end,
+            spacing: AppSpacing.xs,
+            children: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(l10n.cancelCast),
+              ),
+              FilledButton(
+                onPressed: after == null
+                    ? null
+                    : () {
+                        widget.onUse(after);
+                        Navigator.of(context).pop();
+                      },
+                child: Text(l10n.useResource),
+              ),
             ],
           ),
         ],

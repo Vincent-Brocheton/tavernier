@@ -42,6 +42,7 @@ Sources : cahier §10.3 (liste fermée, opération inconnue = entité invalide),
 | `modify_ac` | `value` | Défense : +1, `when.armor: any` |
 | `ac_formula` | `base`, `abilities[]`, `allows_shield` | Défense sans armure (Barbare) : 10 + DEX + CON, bouclier permis |
 | `modify_speed` | `mode` (`walk`, `climb`, `swim`, `fly`), `value` (**bonus** en pieds, jamais une valeur absolue) ou `equal_to: walk` (vitesse égale à la vitesse au sol) | Déplacement rapide : +10 ; Monte-en-l'air : escalade = vitesse |
+| `consumable_heal` | `dice`, `bonus`, `action` (`action`, `bonus_action`) | Potion de guérison : `2d4`, +2, action Bonus. Agit à l'usage, jamais sur la fiche |
 | `modify_hp_max` | `per_level` et/ou `flat` | Ténacité naine : +1 par niveau ; Résistance draconique : `per_level: 1`, soit le niveau de classe |
 | `grant_sense` | `sense` (`darkvision`, `blindsight`, `tremorsense`, `truesight`), `range` (pieds) | Nain : Vision dans le noir 120 |
 | `grant_defense` | `kind` (`resistance`, `immunity`), `damage_type` ou `condition` | Résistance naine : poison ; Protégé de dame Nature : immunité Empoisonné |

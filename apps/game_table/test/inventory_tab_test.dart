@@ -74,6 +74,7 @@ Future<void> _open(
   WidgetTester tester,
   CharacterInput character, {
   double width = 1440,
+  PlayState? play,
 }) async {
   tester.view.physicalSize = Size(width, 2400);
   tester.view.devicePixelRatio = 1;
@@ -81,7 +82,10 @@ Future<void> _open(
   final database = TavernierDatabase(NativeDatabase.memory());
   addTearDown(database.close);
   _store = CharacterStore(database);
-  await tester.runAsync(() => _store.save('a', character));
+  await tester.runAsync(() async {
+    await _store.save('a', character);
+    if (play != null) await _store.saveState('a', play);
+  });
   await tester.pumpWidget(
     ProviderScope(
       overrides: [characterStoreProvider.overrideWith((ref) => _store)],
@@ -217,6 +221,69 @@ void main() {
     await tester.enterText(find.byType(TextField), 'zzz');
     await tester.pumpAndSettle();
     expect(find.text('Aucun objet trouvé.'), findsOneWidget);
+  });
+
+  group('potion [J7]', () {
+    Future<void> openPotion(WidgetTester tester) async {
+      await tester.tap(find.text('Potion de guérison'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Utiliser'));
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('boire : PV et quantité', (tester) async {
+      await _open(tester, _aldric, play: const PlayState(hpCurrent: 34));
+      await openPotion(tester);
+      expect(
+        find.text('Action Bonus · 2d4 + 2 PV · ×2 dans le sac'),
+        findsOneWidget,
+      );
+      await tester.enterText(find.byType(TextField), '5');
+      await tester.pumpAndSettle();
+      expect(find.text('PV 34 → 41 / 49 · quantité 2 → 1'), findsOneWidget);
+      await tester.tap(find.widgetWithText(FilledButton, 'Utiliser'));
+      await _settle(tester);
+      final saved = await _saved(tester);
+      final potions = saved.items.singleWhere(
+        (i) => i.itemId == 'srd:item:potion-of-healing',
+      );
+      expect(potions.quantity, 1);
+      final state = await tester.runAsync(() => _store.loadState('a'));
+      expect(state!.hpCurrent, 41);
+    });
+
+    testWidgets('jet impossible : bloqué', (tester) async {
+      await _open(tester, _aldric, play: const PlayState(hpCurrent: 34));
+      await openPotion(tester);
+      await tester.enterText(find.byType(TextField), '9');
+      await tester.pumpAndSettle();
+      final button = tester.widget<FilledButton>(
+        find.widgetWithText(FilledButton, 'Utiliser'),
+      );
+      expect(button.onPressed, isNull);
+    });
+
+    testWidgets('lancer remplit le jet', (tester) async {
+      await _open(tester, _aldric, play: const PlayState(hpCurrent: 34));
+      await openPotion(tester);
+      await tester.tap(find.widgetWithText(OutlinedButton, 'Lancer'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('PV 34 →'), findsOneWidget);
+    });
+
+    testWidgets('annuler : rien ne change', (tester) async {
+      await _open(tester, _aldric, play: const PlayState(hpCurrent: 34));
+      await openPotion(tester);
+      await tester.tap(find.text('Annuler'));
+      await _settle(tester);
+      final saved = await _saved(tester);
+      expect(
+        saved.items
+            .singleWhere((i) => i.itemId == 'srd:item:potion-of-healing')
+            .quantity,
+        2,
+      );
+    });
   });
 
   testWidgets('sac vide', (tester) async {

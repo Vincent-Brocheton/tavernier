@@ -1,6 +1,9 @@
 import 'computed_sheet.dart';
 import 'spell_play.dart';
 
+/// Ressource déclarée par Ingénieux : une Inspiration à chaque Repos long.
+const heroicInspirationResource = 'srd:resource:heroic-inspiration';
+
 /// Type de repos.
 enum RestKind { short, long }
 
@@ -86,5 +89,8 @@ PlayState finishRest(
     used: used,
     hpCurrent: rule == LongRestRule.fullHitPoints ? null : state.hpCurrent,
     exhaustion: state.exhaustion > 0 ? state.exhaustion - 1 : 0,
+    heroicInspiration:
+        state.heroicInspiration ||
+        sheet.resources.containsKey(heroicInspirationResource),
   );
 }

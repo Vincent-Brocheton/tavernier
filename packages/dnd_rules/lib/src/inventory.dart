@@ -6,6 +6,28 @@ import 'character_input.dart';
 /// Objets harmonisés au maximum (SRD, « Harmonisation »).
 const baseAttunementSlots = 3;
 
+/// Soin d'un consommable.
+typedef Consumable = ({int dice, int sides, int bonus, String action});
+
+/// Soin de [entity], ou `null` si l'objet ne s'utilise pas.
+Consumable? consumableOf(ContentEntity? entity) {
+  for (final effect in entity?.effects ?? const <Effect>[]) {
+    if (effect.op != 'consumable_heal') continue;
+    final dice = (effect.args['dice']! as String).split('d');
+    return (
+      dice: int.parse(dice.first),
+      sides: int.parse(dice.last),
+      bonus: effect.args['bonus'] as int? ?? 0,
+      action: effect.args['action']! as String,
+    );
+  }
+  return null;
+}
+
+/// Un jet saisi doit pouvoir sortir de ces dés.
+bool consumableRollValid(Consumable item, int roll) =>
+    roll >= item.dice && roll <= item.dice * item.sides;
+
 /// Pièces, de la plus précieuse à la moins précieuse.
 const coinCodes = ['pp', 'gp', 'ep', 'sp', 'cp'];
 

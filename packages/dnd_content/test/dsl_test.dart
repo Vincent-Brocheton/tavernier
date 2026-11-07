@@ -15,9 +15,10 @@ void _expectIssueAt(Map<String, Object?> json, String path) {
 }
 
 void main() {
-  test('la v1 compte exactement les 22 opérations de DSL_V1.md', () {
+  test('la v1 compte exactement les 23 opérations de DSL_V1.md', () {
     expect(dslV1Ops, {
       'ability_bonus',
+      'consumable_heal',
       'grant_proficiency',
       'grant_expertise',
       'grant_feat',

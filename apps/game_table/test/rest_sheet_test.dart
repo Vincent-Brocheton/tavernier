@@ -218,6 +218,23 @@ void main() {
     expect((await _saved(tester)).usedOf(_secondWind), 1);
   });
 
+  testWidgets('Inspiration : recevoir puis utiliser', (tester) async {
+    await _open(tester, const PlayState());
+    expect(find.text('Pas d’Inspiration héroïque'), findsOneWidget);
+    await tester.tap(find.text('Recevoir'));
+    await _settle(tester);
+    expect((await _saved(tester)).heroicInspiration, isTrue);
+    await tester.tap(find.text('Utiliser'));
+    await _settle(tester);
+    expect((await _saved(tester)).heroicInspiration, isFalse);
+  });
+
+  testWidgets('repos long d\'un humain : Inspiration obtenue', (tester) async {
+    await _open(tester, const PlayState());
+    await _rest(tester, 'Repos long');
+    expect(find.text('Obtenue'), findsOneWidget);
+  });
+
   testWidgets('format téléphone', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10), width: 390);
     await _rest(tester, 'Repos court');
