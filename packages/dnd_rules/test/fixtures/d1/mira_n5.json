@@ -1,8 +1,9 @@
 {
   "fixture": "mira_n5",
-  "status": "pending_engine",
+  "status": "active",
   "board": "D1",
-  "note": "En attente du moteur : don Doué, soins, résumé des maîtrises. Les valeurs de sorts sont testées par spellcasting_test.dart.",
+  "note": "Soins calculés en attente des données de sort. Sorts de domaine testés par spellcasting_test.dart.",
+  "pending_keys": ["domain_spells", "healing"],
   "srd_refs": {
     "clerc": "p. 38, Aptitudes du Clerc niv. 5 : 4 sorts mineurs, 9 préparés, emplacements 4/3/2",
     "disciple_de_la_vie": "p. 42, + 2 + niveau de l'emplacement aux soins",
@@ -36,7 +37,7 @@
       },
       {
         "feat_id": "srd:feat:skilled", "source_type": "species", "source_ref": "srd:species:human",
-        "choices": { "proficiencies": ["srd:skill:history", "srd:skill:nature", "srd:tool:herbalism-kit"] }
+        "choices": { "skilled": ["srd:skill:history", "srd:skill:nature", "srd:tool:herbalism-kit"] }
       },
       {
         "feat_id": "srd:feat:ability-score-improvement", "source_type": "class_level", "source_ref": "srd:class:cleric:4",
@@ -73,7 +74,7 @@
     "armor_class": 18,
     "speed_feet": 30,
     "initiative": { "bonus": 0, "advantage": false },
-    "saving_throws": { "wis": 6, "cha": 5 },
+    "saving_throws": { "str": 1, "dex": 0, "con": 2, "int": 0, "wis": 6, "cha": 5 },
     "passive_perception": 16,
     "skill_proficiencies": ["history", "insight", "medicine", "nature", "perception", "persuasion", "religion"],
     "spellcasting": {

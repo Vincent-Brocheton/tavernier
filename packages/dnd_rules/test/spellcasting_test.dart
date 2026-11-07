@@ -166,6 +166,30 @@ void main() {
     });
   });
 
+  group('bonus de PV', () {
+    int bonus(String slug, int at) {
+      final sheet = computeSheet(
+        orin([level('sorcerer', at, 'srd:subclass:$slug')]),
+        content,
+      );
+      return sheet.hitPointsMax.sources
+          .where((c) => c.label == 'srd:feature:draconic-draconic-resilience')
+          .fold(0, (sum, c) => sum + c.value);
+    }
+
+    test('Résistance draconique : +3 au niveau 3 (SRD)', () {
+      expect(bonus('draconic-sorcery', 3), 3);
+    });
+
+    test('Résistance draconique : +1 au niveau suivant (SRD)', () {
+      expect(bonus('draconic-sorcery', 4), 4);
+    });
+
+    test('Résistance draconique : rien avant le niveau 3', () {
+      expect(bonus('draconic-sorcery', 2), 0);
+    });
+  });
+
   group('sorts de la fiche', () {
     test('Mira : sorts de domaine toujours préparés', () {
       final spells = sheetSpells(mira, content);
@@ -175,6 +199,23 @@ void main() {
       expect(
         spells.where((s) => s.origin == SpellOrigin.granted),
         hasLength(6),
+      );
+    });
+
+    test('Mira : les six sorts de son domaine', () {
+      expect(
+        sheetSpells(
+          mira,
+          content,
+        ).where((s) => s.origin == SpellOrigin.granted).map((s) => s.id),
+        unorderedEquals([
+          'srd:spell:aid',
+          'srd:spell:bless',
+          'srd:spell:mass-healing-word',
+          'srd:spell:lesser-restoration',
+          'srd:spell:revivify',
+          'srd:spell:cure-wounds',
+        ]),
       );
     });
 

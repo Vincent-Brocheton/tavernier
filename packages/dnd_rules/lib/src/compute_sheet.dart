@@ -157,6 +157,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   final skills = <String, int>{};
   final skillBreakdown = <String, Computed>{};
   final skillProficiencies = <String>[];
+  final expertise = <String>[];
   for (final skill in content.entities.where((e) => e.type == 'skill')) {
     final key = skill.id.slug.replaceAll('-', '_');
     final code = _codeOf('${(skill.data as SkillData).ability}') ?? 'str';
@@ -173,6 +174,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     skillBreakdown[key] = breakdown;
     skills[key] = breakdown.value;
     if (proficient) skillProficiencies.add(key);
+    if (expertiseIds.contains('${skill.id}')) expertise.add(key);
   }
 
   // Équipement porté.
@@ -273,6 +275,12 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
               (c.input.level - (i == 0 ? 1 : 0)) * (cls.hitDie ~/ 2 + 1),
         ),
     Contribution('con', mod('con') * level),
+    for (final a in ofOp('modify_hp_max'))
+      Contribution(
+        a.source,
+        resolve(a.effect.args['flat'] ?? 0, a.level) +
+            resolve(a.effect.args['per_level'] ?? 0, a.level) * a.level,
+      ),
   ]);
 
   // Armes maîtrisées : classe de départ, traits de multiclassage des suivantes
@@ -516,6 +524,12 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final MapEntry(:key, :value) in hitDice.entries)
         (die: 'd$key', total: value),
     ],
+    expertise: expertise,
+    darkvisionFeet: [
+      for (final a in ofOp('grant_sense'))
+        if (a.effect.args['sense'] == 'darkvision')
+          a.effect.args['range']! as int,
+    ].fold(0, (best, range) => range > best ? range : best),
     spellcasting: spellcasting,
     casterLevel: casterLevel,
     spellSlots: switch (casterLevel) {

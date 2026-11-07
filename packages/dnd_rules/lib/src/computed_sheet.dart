@@ -176,6 +176,8 @@ final class ComputedSheet {
     required this.hitPointsMax,
     required this.hitDice,
     required this.proficientWeapons,
+    required this.expertise,
+    required this.darkvisionFeet,
     required this.spellcasting,
     required this.casterLevel,
     required this.spellSlots,
@@ -218,6 +220,12 @@ final class ComputedSheet {
 
   /// Identifiants des armes maîtrisées.
   final Set<String> proficientWeapons;
+
+  /// Clés des compétences en Expertise.
+  final List<String> expertise;
+
+  /// Portée de la vision dans le noir ; 0 sans elle.
+  final int darkvisionFeet;
 
   /// Valeurs d'incantation, par classe de lanceur.
   final Map<String, ClassCasting> spellcasting;
@@ -263,6 +271,8 @@ final class ComputedSheet {
         {'id': key, 'max': value},
     ],
     'weapon_mastery_slots': weaponMasterySlots,
+    'expertise': expertise,
+    'darkvision_feet': darkvisionFeet,
     'spellcasting': {
       for (final MapEntry(:key, :value) in spellcasting.entries)
         key: value.toJson(),
