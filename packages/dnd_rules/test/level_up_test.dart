@@ -215,6 +215,86 @@ void main() {
     });
   });
 
+  group('sorts gagnés (tables de classe, SRD)', () {
+    test('Clerc niveau 4 : 1 sort mineur, 1 préparé', () {
+      final gain = spellGain(content, 'srd:class:cleric', 4);
+      expect(gain.cantrips, 1);
+      expect(gain.prepared, 1);
+      expect(gain.spellbook, 0);
+      expect(gain.maxLevel, 2);
+    });
+
+    test('Clerc niveau 3 : sorts jusqu’au 2e niveau', () {
+      expect(spellGain(content, 'srd:class:cleric', 3).maxLevel, 2);
+    });
+
+    test('Magicien niveau 2 : 2 au grimoire, 1 préparé', () {
+      final gain = spellGain(content, 'srd:class:wizard', 2);
+      expect(gain.spellbook, 2);
+      expect(gain.prepared, 1);
+      expect(gain.maxLevel, 1);
+    });
+
+    test('Occultiste niveau 3 : niveau de pacte', () {
+      expect(spellGain(content, 'srd:class:warlock', 3).maxLevel, 2);
+    });
+
+    test('Guerrier : aucun sort', () {
+      final gain = spellGain(content, _fighter, 4);
+      expect([gain.cantrips, gain.prepared, gain.spellbook], [0, 0, 0]);
+    });
+
+    test('liste : sorts mineurs seuls', () {
+      final cantrips = spellsOfList(content, 'srd:class:cleric', 0, 0);
+      expect(cantrips, contains('srd:spell:guidance'));
+      expect(cantrips, isNot(contains('srd:spell:bless')));
+    });
+
+    test('sorts connus : les siens, ceux des dons et ceux accordés', () {
+      final mage = aldric.copyWith(
+        spells: const SpellsInput(cantrips: ['srd:spell:light']),
+        feats: const [
+          FeatInput(
+            featId: magicInitiateFeat,
+            sourceType: 'background',
+            sourceRef: 'srd:background:acolyte',
+            choices: {
+              'cantrips': ['srd:spell:guidance'],
+              'level_1_spell': 'srd:spell:bless',
+            },
+          ),
+        ],
+        speciesId: 'srd:species:tiefling',
+      );
+      expect(
+        knownSpells(mage, content, 2),
+        containsAll([
+          'srd:spell:light',
+          'srd:spell:guidance',
+          'srd:spell:bless',
+          'srd:spell:thaumaturgy',
+        ]),
+      );
+    });
+  });
+
+  test('Combattant béni : sorts mineurs de Clerc', () {
+    final paladin = aldric.copyWith(
+      classLevels: [
+        const ClassLevelInput(classId: 'srd:class:paladin', level: 1),
+      ],
+    );
+    final choice = levelGain(
+      paladin,
+      content,
+      'srd:class:paladin',
+    ).choices.single;
+    final blessed = choice.options.last;
+    expect(blessed.pick, 'Combattant béni');
+    expect(blessed.cantripListId, 'srd:class:cleric');
+    expect(blessed.bonusCantrips, 2);
+  });
+
   test('Paladin niveau 2 : styles de combat, pas de dons généraux', () {
     final styles = featsForCategory(content, 'fighting_style');
     expect(styles.map((f) => '${f.id}'), contains('srd:feat:defense'));
@@ -280,10 +360,28 @@ void main() {
               ],
           if (category == 'epic_boon') 'str': 1,
         };
+        final spells = spellGain(content, classId, gain.classLevel);
+        final known = knownSpells(character, content, level);
+        List<String> pick(int count, int from, int to) => spellsOfList(
+          content,
+          classId,
+          from,
+          to,
+        ).where((id) => !known.contains(id)).take(count).toList();
+        final book = pick(spells.spellbook, 1, spells.maxLevel);
+        final held = {...character.spells.spellbook, ...book}
+          ..removeAll(character.spells.prepared);
         character = applyLevelUp(
           character,
           classId,
           LevelChoices(
+            spells: SpellsInput(
+              cantrips: pick(spells.cantrips, 0, 0),
+              spellbook: book,
+              prepared: spells.spellbook > 0
+                  ? held.take(spells.prepared).toList()
+                  : pick(spells.prepared, 1, spells.maxLevel),
+            ),
             subclassId: subclass == null ? null : '${subclass.id}',
             feat: feat == null ? null : featId,
             featChoices: featChoices.isEmpty ? null : featChoices,
@@ -337,8 +435,24 @@ void main() {
             ...first,
           },
         );
-        final sheet = computeSheet(climb(start, classId), content);
+        final end = climb(start, classId);
+        final sheet = computeSheet(end, content);
         expect(sheet.level, 20);
+        final top = data.levels.last.columns;
+        expect(
+          end.spells.cantrips.length,
+          (top['cantrips'] ?? 0) - cantripsAtFirstLevel(data),
+          reason: slug,
+        );
+        expect(
+          end.spells.prepared.length,
+          (top['prepared_spells'] ?? 0) - preparedAtFirstLevel(data),
+          reason: slug,
+        );
+        expect(
+          end.spells.spellbook.toSet(),
+          hasLength(end.spells.spellbook.length),
+        );
         expect(
           sheet.integrityErrors.map((e) => e.message),
           isEmpty,

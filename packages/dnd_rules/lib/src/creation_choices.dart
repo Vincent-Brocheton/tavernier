@@ -12,6 +12,7 @@ final class ChoiceOption {
     required this.bonusCantrips,
     required this.spells,
     this.featCategory,
+    this.cantripListId,
   });
 
   /// Valeur à enregistrer dans `choices`.
@@ -29,6 +30,9 @@ final class ChoiceOption {
 
   /// Catégorie du don que l'option accorde (Style de combat du Paladin).
   final String? featCategory;
+
+  /// Liste de classe des sorts mineurs à choisir (Combattant béni).
+  final String? cantripListId;
 }
 
 /// Un effet `choice` ouvert au niveau 1.
@@ -70,12 +74,12 @@ List<OpenChoice> openChoices(
           id: effect.args['id']! as String,
           sourceId: id,
           count: effect.args['count']! as int,
-          options: _options(content, effect),
+          options: _options(content, effect, level),
           title: effect.args['title'] as String?,
         ),
 ];
 
-List<ChoiceOption> _options(ActiveContent content, Effect choice) {
+List<ChoiceOption> _options(ActiveContent content, Effect choice, int level) {
   final labels = [
     for (final label in (choice.args['labels'] as List<Object?>?) ?? [])
       '$label',
@@ -104,7 +108,14 @@ List<ChoiceOption> _options(ActiveContent content, Effect choice) {
                   e.op == 'grant_spell_list_access' && e.args['max_level'] == 0,
             )
             .fold(0, (sum, e) => sum + (e.args['count']! as int)),
-        spells: _grantedBy(effects).toList(),
+        spells: _grantedBy(effects, level).toList(),
+        cantripListId: effects
+            .where(
+              (e) =>
+                  e.op == 'grant_spell_list_access' && e.args['max_level'] == 0,
+            )
+            .map((e) => '${(e.args['class_lists']! as List<Object?>).first}')
+            .firstOrNull,
         featCategory: effects
             .where((e) => e.op == 'grant_feat')
             .map((e) => e.args['category'] as String?)
@@ -116,22 +127,23 @@ List<ChoiceOption> _options(ActiveContent content, Effect choice) {
   return options;
 }
 
-Iterable<String> _grantedBy(Iterable<Effect> effects) => [
+Iterable<String> _grantedBy(Iterable<Effect> effects, int level) => [
   for (final effect in effects)
-    if (effect.op == 'grant_spell' && _atLevelOne(effect))
+    if (effect.op == 'grant_spell' && _reached(effect, level))
       effect.args['spell']! as String,
 ];
 
-/// Sorts accordés au niveau 1 par [sourceIds], avec les options retenues de
-/// [choices].
+/// Sorts accordés au niveau [level] par [sourceIds], avec les options retenues
+/// de [choices].
 Set<String> grantedSpells(
   ActiveContent content,
   Iterable<String> sourceIds,
-  Map<String, List<String>> choices,
-) => {
+  Map<String, List<String>> choices, {
+  int level = 1,
+}) => {
   for (final id in sourceIds)
-    ..._grantedBy(content.entity(id)?.effects ?? const []),
-  for (final choice in openChoices(content, sourceIds))
+    ..._grantedBy(content.entity(id)?.effects ?? const [], level),
+  for (final choice in openChoices(content, sourceIds, level: level))
     for (final option in choice.options)
       if (choices[choice.id]?.contains(option.pick) ?? false) ...option.spells,
 };

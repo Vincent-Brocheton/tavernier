@@ -45,6 +45,7 @@ final class LevelChoices {
     this.featChoices,
     this.choices = const {},
     this.masteries = const [],
+    this.spells = const SpellsInput(),
   });
 
   final String? subclassId;
@@ -56,6 +57,99 @@ final class LevelChoices {
 
   /// Armes des bottes gagnées.
   final List<String> masteries;
+
+  /// Sorts gagnés à ce niveau.
+  final SpellsInput spells;
+}
+
+/// Sorts qu'apporte le niveau suivant d'une classe.
+final class SpellGain {
+  const SpellGain({
+    required this.cantrips,
+    required this.prepared,
+    required this.spellbook,
+    required this.maxLevel,
+  });
+
+  final int cantrips;
+  final int prepared;
+  final int spellbook;
+
+  /// Plus haut niveau de sort atteint.
+  final int maxLevel;
+}
+
+/// Compare deux lignes de la table de classe. Le Magicien ajoute deux sorts à
+/// son grimoire par niveau (SRD, Magicien, « Grimoire »).
+SpellGain spellGain(ActiveContent content, String classId, int level) {
+  final data = content.entity(classId)!.data as ClassData;
+  Map<String, int> columns(int at) =>
+      data.levels.where((l) => l.level == at).firstOrNull?.columns ?? const {};
+  final next = columns(level);
+  final previous = columns(level - 1);
+  int gained(String column) {
+    final difference = (next[column] ?? 0) - (previous[column] ?? 0);
+    return difference > 0 ? difference : 0;
+  }
+
+  return SpellGain(
+    cantrips: gained('cantrips'),
+    prepared: gained('prepared_spells'),
+    spellbook: spellbookSize(classId) > 0 ? 2 : 0,
+    maxLevel: [
+      next['pact_slot_level'] ?? 0,
+      for (final MapEntry(:key, :value) in next.entries)
+        if (key.startsWith('slot_') && value > 0)
+          int.parse(key.substring('slot_'.length)),
+    ].fold(0, (best, level) => level > best ? level : best),
+  );
+}
+
+/// Sorts de la liste de [classId], de niveau [from] à [to].
+Set<String> spellsOfList(
+  ActiveContent content,
+  String classId,
+  int from,
+  int to,
+) {
+  final data = content.entity(classId)!.data as ClassData;
+  return {
+    for (final id in data.spellList)
+      if (content.entity('$id')?.data case final SpellData spell)
+        if (spell.level >= from && spell.level <= to) '$id',
+  };
+}
+
+/// Sorts que [character] connaît déjà au niveau [level] : un sort ne se prend
+/// pas deux fois. L'exception du porteur de projet, un sort pris puis acquis
+/// par une capacité de sous-classe, n'appelle aucun blocage ici.
+Set<String> knownSpells(
+  CharacterInput character,
+  ActiveContent content,
+  int level,
+) {
+  final sources = <String>[
+    for (final entry in character.classLevels) ...[
+      if (content.entity(entry.classId)?.data case final ClassData data)
+        for (final row in data.levels)
+          if (row.level <= entry.level) ...row.features.map((id) => '$id'),
+      if (content.entity(entry.subclassId ?? '')?.data
+          case final SubclassData data)
+        ...data.features.map((id) => '$id'),
+    ],
+    if (content.entity(character.speciesId)?.data case final SpeciesData data)
+      ...data.traits.map((id) => '$id'),
+  ];
+  return {
+    ...character.spells.cantrips,
+    ...character.spells.prepared,
+    ...character.spells.spellbook,
+    for (final feat in character.feats) ...[
+      ...?(feat.choices?['cantrips'] as List<Object?>?)?.map((id) => '$id'),
+      if (feat.choices?['level_1_spell'] case final String spell) spell,
+    ],
+    ...grantedSpells(content, sources, character.choices, level: level),
+  };
 }
 
 ClassLevelInput _classLevel(CharacterInput character, String classId) =>
@@ -145,8 +239,7 @@ LevelGain levelGain(
 }
 
 /// Dons proposés pour une catégorie accordée. Un don général ouvre aussi les
-/// dons d'origines (SRD, Amélioration de caractéristique, [P10]) ; l'Initié à
-/// la magie attend le change suivant.
+/// dons d'origines (SRD, Amélioration de caractéristique, [P10]).
 List<ContentEntity> featsForCategory(ActiveContent content, String category) {
   bool offered(FeatCategory value) => category == 'general'
       ? value == FeatCategory.general || value == FeatCategory.origin
@@ -154,8 +247,7 @@ List<ContentEntity> featsForCategory(ActiveContent content, String category) {
   return [
     for (final entity in content.entities)
       if (entity.data case final FeatData data)
-        if (offered(data.category) && '${entity.id}' != magicInitiateFeat)
-          entity,
+        if (offered(data.category)) entity,
   ];
 }
 
@@ -217,6 +309,11 @@ CharacterInput applyLevelUp(
         ),
     ],
     choices: {...raised.choices, ...picks.choices},
+    spells: SpellsInput(
+      cantrips: [...raised.spells.cantrips, ...picks.spells.cantrips],
+      prepared: [...raised.spells.prepared, ...picks.spells.prepared],
+      spellbook: [...raised.spells.spellbook, ...picks.spells.spellbook],
+    ),
     weaponMasteries: [
       ...raised.weaponMasteries,
       for (final (i, weapon) in picks.masteries.indexed)

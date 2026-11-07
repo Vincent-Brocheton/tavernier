@@ -20,6 +20,31 @@ final _content = ActiveContent([
   readDndpack(File('assets/packs/srd-5.2.1-fr.dndpack').readAsBytesSync()),
 ]);
 
+CharacterInput _caster(String classId, int level, {SpellsInput? spells}) =>
+    _aldric(level).copyWith(
+      classLevels: [
+        ClassLevelInput(
+          classId: classId,
+          level: level,
+          skillChoices: const ['srd:skill:arcana', 'srd:skill:religion'],
+        ),
+      ],
+      feats: const [
+        FeatInput(
+          featId: 'srd:feat:savage-attacker',
+          sourceType: 'background',
+          sourceRef: 'srd:background:soldier',
+        ),
+        FeatInput(
+          featId: 'srd:feat:alert',
+          sourceType: 'species',
+          sourceRef: 'srd:species:human',
+        ),
+      ],
+      spells: spells ?? const SpellsInput(),
+      weaponMasteries: const [],
+    );
+
 CharacterInput _aldric(int level) => CharacterInput(
   name: 'Aldric',
   kind: 'pc',
@@ -79,6 +104,7 @@ Future<void> _open(
   double width,
   int level, {
   String id = 'a',
+  CharacterInput? character,
 }) async {
   tester.view.physicalSize = Size(width, 1600);
   tester.view.devicePixelRatio = 1;
@@ -86,7 +112,7 @@ Future<void> _open(
   final database = TavernierDatabase(NativeDatabase.memory());
   addTearDown(database.close);
   _store = CharacterStore(database);
-  await _store.save('a', _aldric(level));
+  await _store.save('a', character ?? _aldric(level));
   final router = GoRouter(
     initialLocation: '/level',
     routes: [
@@ -181,6 +207,118 @@ void main() {
           .toggleBonus('str', 1)
           .selectFeat('srd:feat:grappler');
       expect(draft.bonuses, isEmpty);
+    });
+  });
+
+  group('sorts', () {
+    testWidgets('Magicien 1 → 2 : grimoire, puis préparé', (tester) async {
+      await _open(
+        tester,
+        1440,
+        1,
+        character: _caster(
+          'srd:class:wizard',
+          1,
+          spells: const SpellsInput(
+            spellbook: ['srd:spell:sleep', 'srd:spell:magic-missile'],
+            prepared: ['srd:spell:sleep', 'srd:spell:magic-missile'],
+          ),
+        ),
+      );
+      await _tapNext(tester);
+      await _tap(tester, 'Arcanes');
+      await _tapNext(tester);
+      expect(find.text('Grimoire 0 / 2'), findsOneWidget);
+      expect(_next(tester).onPressed, isNull);
+      expect(find.text('Choisissez vos sorts.'), findsOneWidget);
+      Future<void> pick(Finder target) async {
+        await tester.ensureVisible(target);
+        await tester.pumpAndSettle();
+        await tester.tap(target);
+        await tester.pumpAndSettle();
+      }
+
+      await pick(find.widgetWithText(FilterChip, 'Armure du mage').first);
+      await pick(find.widgetWithText(FilterChip, 'Bouclier').first);
+      // La section préparés propose ces deux sorts : le grimoire, puis elle.
+      expect(_next(tester).onPressed, isNull);
+      await pick(find.widgetWithText(FilterChip, 'Bouclier').last);
+      expect(_next(tester).onPressed, isNotNull);
+      await _tapNext(tester);
+      await _tapNext(tester);
+      final saved = await _store.load('a');
+      expect(saved!.spells.spellbook, hasLength(4));
+      expect(saved.spells.prepared, hasLength(3));
+      expect(saved.spells.spellbook, containsAll(saved.spells.prepared));
+    });
+
+    testWidgets('Clerc 3 → 4 : sort connu bloqué', (tester) async {
+      await _open(
+        tester,
+        1440,
+        1,
+        character: _caster(
+          'srd:class:cleric',
+          3,
+          spells: const SpellsInput(cantrips: ['srd:spell:guidance']),
+        ),
+      );
+      await _tapNext(tester);
+      await _tapNext(tester);
+      await _tap(tester, 'Amélioration de caractéristique');
+      await _tap(tester, 'SAG');
+      await _tapNext(tester);
+      final known = tester.widget<FilterChip>(
+        find.widgetWithText(FilterChip, 'Assistance'),
+      );
+      expect(known.onSelected, isNull);
+      expect(find.textContaining('ne se prend pas deux fois'), findsWidgets);
+    });
+
+    testWidgets('Paladin 1 → 2 : Combattant béni, sorts de Clerc', (
+      tester,
+    ) async {
+      await _open(tester, 1440, 1, character: _caster('srd:class:paladin', 1));
+      await _tapNext(tester);
+      await _tap(tester, 'Combattant béni');
+      await _tapNext(tester);
+      expect(find.text('Sorts mineurs de Clerc 0 / 2'), findsOneWidget);
+    });
+
+    testWidgets('Initié à la magie : la liste déjà prise est grisée', (
+      tester,
+    ) async {
+      final base = _aldric(3);
+      await _open(
+        tester,
+        1440,
+        3,
+        character: base.copyWith(
+          feats: [
+            ...base.feats,
+            const FeatInput(
+              featId: magicInitiateFeat,
+              sourceType: 'species',
+              sourceRef: 'srd:species:human',
+              choices: {'spell_list': 'srd:class:cleric'},
+            ),
+          ],
+        ),
+      );
+      await _tapNext(tester);
+      await _tap(tester, 'Épée à deux mains');
+      await _tapNext(tester);
+      await _tap(tester, 'Initié à la magie');
+      final cleric = tester.widget<FilterChip>(
+        find.widgetWithText(FilterChip, 'Clerc'),
+      );
+      expect(cleric.onSelected, isNull);
+      await _tap(tester, 'Druide');
+      await _tap(tester, 'Sagesse');
+      await _tap(tester, 'Druidisme');
+      await _tap(tester, 'Assistance');
+      await _tap(tester, 'Baies nourricières');
+      expect(_next(tester).onPressed, isNotNull);
     });
   });
 

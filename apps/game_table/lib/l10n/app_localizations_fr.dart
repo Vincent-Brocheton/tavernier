@@ -941,12 +941,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get featBlockNotRepeatable => 'Déjà obtenu · non répétable';
 
   @override
-  String get spellsNotYet =>
-      'Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.';
-
-  @override
   String get levelUpReady => 'Prêt à enregistrer';
 
   @override
   String get featChoiceOther => 'Don accordé par ce niveau';
+
+  @override
+  String get missingSpells => 'Choisissez vos sorts.';
+
+  @override
+  String spellSectionCount(String title, int chosen, int count) {
+    return '$title $chosen / $count';
+  }
+
+  @override
+  String get spellKnownShort => 'Un sort déjà connu ne se prend pas deux fois.';
+
+  @override
+  String get initiateListChoice => 'Liste de sorts';
+
+  @override
+  String get initiateAbilityChoice => 'Caractéristique d’incantation';
+
+  @override
+  String get initiateCantripChoice => 'Sorts mineurs';
+
+  @override
+  String get initiateSpellChoice => 'Sort du 1er niveau';
 }
