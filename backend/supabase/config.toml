@@ -1,0 +1,31 @@
+# Supabase local, pour la CI (T-05). Le projet hébergé (région UE) sera relié
+# plus tard ; ses secrets ne sont jamais dans le dépôt.
+project_id = "tavernier"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = false
+
+[inbucket]
+enabled = false
+
+[storage]
+enabled = false
+
+[edge_runtime]
+enabled = false
+
+[analytics]
+enabled = false
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
