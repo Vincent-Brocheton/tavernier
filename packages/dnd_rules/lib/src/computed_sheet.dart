@@ -177,6 +177,10 @@ final class ComputedSheet {
     required this.hitDice,
     required this.proficientWeapons,
     required this.expertise,
+    required this.skillAdvantages,
+    required this.attacksPerAction,
+    required this.sneakAttack,
+    required this.attunedCount,
     required this.darkvisionFeet,
     required this.spellcasting,
     required this.casterLevel,
@@ -223,6 +227,16 @@ final class ComputedSheet {
 
   /// Clés des compétences en Expertise.
   final List<String> expertise;
+
+  /// Clés des compétences testées avec Avantage.
+  final List<String> skillAdvantages;
+
+  /// Sans cumul entre classes (SRD p. 27).
+  final int attacksPerAction;
+
+  /// Dés d'Attaque sournoise, par exemple `3d6`.
+  final String? sneakAttack;
+  final int attunedCount;
 
   /// Portée de la vision dans le noir ; 0 sans elle.
   final int darkvisionFeet;
@@ -272,6 +286,10 @@ final class ComputedSheet {
     ],
     'weapon_mastery_slots': weaponMasterySlots,
     'expertise': expertise,
+    'skill_advantages': skillAdvantages,
+    'attacks_per_action': attacksPerAction,
+    'sneak_attack': sneakAttack,
+    'attuned_count': attunedCount,
     'darkvision_feet': darkvisionFeet,
     'spellcasting': {
       for (final MapEntry(:key, :value) in spellcasting.entries)

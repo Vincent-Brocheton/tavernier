@@ -1,8 +1,9 @@
 {
   "fixture": "aldric_n5",
-  "status": "pending_engine",
+  "status": "active",
   "board": "D1",
-  "note": "Valeurs de la planche, vérifiées dans le SRD. Testé avec computeSheet() quand le moteur gère les niveaux 2 à 20 (M1).",
+  "note": "Valeurs de la planche, vérifiées dans le SRD. PX et état de jeu en attente : ils ne sont pas dans CharacterInput.",
+  "pending_keys": ["xp_next_level", "state_2026_10_24"],
   "srd_refs": {
     "pv_niveaux_suivants": "p. 25, Points de vie fixes : Guerrier 6 + modificateur de Con",
     "guerrier": "p. 56, niv. 5 : maîtrise +3, Second souffle 3, Bottes d'arme 4 ; niv. 2 Fougue (une utilisation) ; niv. 5 Attaque supplémentaire",
@@ -38,10 +39,8 @@
       { "item_id": "srd:item:healers-kit", "quantity": 1, "equipped": false },
       { "item_id": "srd:magic-item:cloak-of-protection", "quantity": 1, "equipped": true, "attuned": false }
     ],
-    "currency": { "gp": 46, "sp": 12, "cp": 30 },
-    "languages_added_by_override": [
-      { "language_id": "srd:language:giant", "date": "2026-10-23" }
-    ],
+    "coins": { "gp": 46, "sp": 12, "cp": 30 },
+    "languages_added": ["srd:language:giant"],
     "xp": 7475
   },
   "expected": {
@@ -69,6 +68,7 @@
     "attacks": [
       { "weapon_id": "srd:weapon:longsword", "attack_bonus": 7, "damage": "1d8+4", "damage_type": "slashing", "mastery": "srd:mastery:sap" },
       { "weapon_id": "srd:weapon:javelin", "attack_bonus": 7, "damage": "1d6+4", "damage_type": "piercing", "range_feet": [30, 120], "mastery": "srd:mastery:slow" },
+      { "weapon_id": "srd:weapon:battleaxe", "attack_bonus": 7, "damage": "1d8+4", "damage_type": "slashing", "mastery": "srd:mastery:topple" },
       { "weapon_id": "unarmed", "attack_bonus": 7, "damage": "5", "damage_type": "bludgeoning" }
     ],
     "resources": [
@@ -91,9 +91,8 @@
         { "label": "srd:feat:ability-score-improvement", "value": 1 }
       ],
       "hit_points_max": [
-        { "label": "srd:class:fighter", "value": 10 },
-        { "label": "srd:class:fighter niv. 2-5 (valeur fixe 4 × 6)", "value": 24 },
-        { "label": "con (5 niveaux × 3)", "value": 15 }
+        { "label": "srd:class:fighter", "value": 34 },
+        { "label": "con", "value": 15 }
       ],
       "initiative": [
         { "label": "dex", "value": 1 },

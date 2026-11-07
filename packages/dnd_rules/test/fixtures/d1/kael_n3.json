@@ -1,22 +1,27 @@
 {
   "fixture": "kael_n3",
-  "status": "pending_content",
+  "status": "active",
   "board": "D1",
-  "note": "Personnage libre rattaché, avec dérogations (niveau 3 au lieu de 1, génération aléatoire) accordées le 23 oct. Magicien absent de l'échantillon M0 : testé en M1.",
+  "note": "Personnage libre rattaché, avec dérogations (niveau 3 au lieu de 1, génération aléatoire) accordées le 23 oct. Sorts d'espèce testés par spellcasting_test.dart.",
+  "pending_keys": ["species_spells"],
   "srd_refs": {
     "generation_aleatoire": "p. 22, 4d6 en gardant les 3 meilleurs, six fois",
     "magicien": "p. 59, d6, niv. 3 ; p. 60, Érudition niv. 2",
     "elfe": "p. 88, Sens aiguisés (Intuition, Perception ou Survie), lignage haut-elfe",
     "pv_fixes": "p. 25, Magicien 4 + modificateur de Con"
   },
+  "overrides": [
+    { "kind": "starting_level", "value": 3, "date": "2026-10-23" },
+    { "kind": "stat_method", "value": "random", "date": "2026-10-23" }
+  ],
   "input": {
     "name": "Kael",
     "player": "Léo",
     "kind": "pc",
     "species_id": "srd:species:elf",
-    "species_choices": {
-      "lineage": "high-elf", "lineage_ability": "int",
-      "keen_senses_skill": "srd:skill:insight"
+    "choices": {
+      "elven-lineage": ["Haut-elfe"], "elven-lineage-ability": ["Intelligence"],
+      "keen-senses": ["srd:skill:insight"]
     },
     "background_id": "srd:background:sage",
     "base_scores": {
@@ -36,10 +41,6 @@
         "feat_id": "srd:feat:magic-initiate", "source_type": "background", "source_ref": "srd:background:sage",
         "choices": { "spell_list": "srd:class:wizard", "ability": "int" }
       }
-    ],
-    "overrides": [
-      { "kind": "starting_level", "value": 3, "date": "2026-10-23" },
-      { "kind": "stat_method", "value": "random", "date": "2026-10-23" }
     ],
     "items": [],
     "xp": 2100

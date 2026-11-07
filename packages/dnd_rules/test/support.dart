@@ -18,8 +18,25 @@ Map<String, Object?> fixture(String name) => jsonDecode(
 ) as Map<String, Object?>;
 
 /// Entrée stockée d'une fixture [D1].
-Map<String, Object?> fixtureInput(String name) =>
-    fixture(name)['input']! as Map<String, Object?>;
+Map<String, Object?> fixtureInput(String name) {
+  final data = fixture(name);
+  final parent = data['extends'] as String?;
+  if (parent == null) return data['input']! as Map<String, Object?>;
+  final input = {...fixtureInput(parent)};
+  // `<clé>_added` complète la liste du parent, toute autre clé la remplace.
+  (data['input_changes']! as Map<String, Object?>).forEach((key, value) {
+    if (key.endsWith('_added')) {
+      final base = key.substring(0, key.length - '_added'.length);
+      input[base] = [
+        ...(input[base] as List<Object?>? ?? const []),
+        ...value! as List<Object?>,
+      ];
+    } else {
+      input[key] = value;
+    }
+  });
+  return input;
+}
 
 /// Pack SRD de l'échantillon M0, chargé depuis ses sources.
 final ContentPack srdPack = () {
