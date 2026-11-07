@@ -1344,4 +1344,82 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return 'Sans emplacement ($_temp0)';
   }
+
+  @override
+  String get coinPlatinum => 'pp';
+
+  @override
+  String get coinGold => 'po';
+
+  @override
+  String get coinElectrum => 'pe';
+
+  @override
+  String get coinSilver => 'pa';
+
+  @override
+  String get coinCopper => 'pc';
+
+  @override
+  String get attunementRequired => 'Harmonisation requise';
+
+  @override
+  String get attunementFull =>
+      'Tous vos emplacements d’harmonisation sont pris.';
+
+  @override
+  String get attune => 'S’harmoniser';
+
+  @override
+  String get endAttunement => 'Mettre fin à l’harmonisation';
+
+  @override
+  String get equip => 'Équiper';
+
+  @override
+  String get unequip => 'Ranger au sac';
+
+  @override
+  String get itemsWorn => 'Équipé';
+
+  @override
+  String get itemsBag => 'Sac';
+
+  @override
+  String get addItem => 'Ajouter un objet';
+
+  @override
+  String get searchItem => 'Rechercher un objet';
+
+  @override
+  String get noItemMatches => 'Aucun objet trouvé.';
+
+  @override
+  String get emptyInventory => 'Votre sac est vide.';
+
+  @override
+  String get addOne => 'En ajouter un';
+
+  @override
+  String get removeOne => 'En retirer un';
+
+  @override
+  String itemQuantity(int count) {
+    return '× $count';
+  }
+
+  @override
+  String attunementCount(int count, int max) {
+    return 'Harmonisation $count / $max';
+  }
+
+  @override
+  String armorClassValue(int value) {
+    return 'CA $value';
+  }
+
+  @override
+  String armorShieldBonus(int value) {
+    return '+$value à la CA';
+  }
 }

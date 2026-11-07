@@ -7,6 +7,7 @@ export 'src/compute_sheet.dart';
 export 'src/computed_sheet.dart';
 export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
+export 'src/inventory.dart';
 export 'src/level_up.dart';
 export 'src/sheet_spells.dart';
 export 'src/spell_changes.dart';

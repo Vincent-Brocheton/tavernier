@@ -8,6 +8,17 @@
     "type_line": "Objet merveilleux, peu courant (Harmonisation requise)",
     "attunement": true
   },
+  "effects": [
+    {
+      "op": "modify_ac",
+      "value": 1
+    },
+    {
+      "op": "modify_check",
+      "scope": "saving_throws",
+      "add": 1
+    }
+  ],
   "text": {
     "fr": "Vous recevez un bonus de +1 à la classe d’armure et aux jets de sauvegarde tant que vous portez cette cape."
   }

@@ -1964,5 +1964,120 @@
         "type": "int"
       }
     }
+  },
+  "coinPlatinum": "pp",
+  "@coinPlatinum": {
+    "description": "Onglet Inventaire."
+  },
+  "coinGold": "po",
+  "@coinGold": {
+    "description": "Onglet Inventaire."
+  },
+  "coinElectrum": "pe",
+  "@coinElectrum": {
+    "description": "Onglet Inventaire."
+  },
+  "coinSilver": "pa",
+  "@coinSilver": {
+    "description": "Onglet Inventaire."
+  },
+  "coinCopper": "pc",
+  "@coinCopper": {
+    "description": "Onglet Inventaire."
+  },
+  "attunementRequired": "Harmonisation requise",
+  "@attunementRequired": {
+    "description": "Onglet Inventaire."
+  },
+  "attunementFull": "Tous vos emplacements d’harmonisation sont pris.",
+  "@attunementFull": {
+    "description": "Onglet Inventaire."
+  },
+  "attune": "S’harmoniser",
+  "@attune": {
+    "description": "Onglet Inventaire."
+  },
+  "endAttunement": "Mettre fin à l’harmonisation",
+  "@endAttunement": {
+    "description": "Onglet Inventaire."
+  },
+  "equip": "Équiper",
+  "@equip": {
+    "description": "Onglet Inventaire."
+  },
+  "unequip": "Ranger au sac",
+  "@unequip": {
+    "description": "Onglet Inventaire."
+  },
+  "itemsWorn": "Équipé",
+  "@itemsWorn": {
+    "description": "Onglet Inventaire."
+  },
+  "itemsBag": "Sac",
+  "@itemsBag": {
+    "description": "Onglet Inventaire."
+  },
+  "addItem": "Ajouter un objet",
+  "@addItem": {
+    "description": "Onglet Inventaire."
+  },
+  "searchItem": "Rechercher un objet",
+  "@searchItem": {
+    "description": "Onglet Inventaire."
+  },
+  "noItemMatches": "Aucun objet trouvé.",
+  "@noItemMatches": {
+    "description": "Onglet Inventaire."
+  },
+  "emptyInventory": "Votre sac est vide.",
+  "@emptyInventory": {
+    "description": "Onglet Inventaire."
+  },
+  "addOne": "En ajouter un",
+  "@addOne": {
+    "description": "Onglet Inventaire."
+  },
+  "removeOne": "En retirer un",
+  "@removeOne": {
+    "description": "Onglet Inventaire."
+  },
+  "itemQuantity": "× {count}",
+  "@itemQuantity": {
+    "description": "Onglet Inventaire.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "attunementCount": "Harmonisation {count} / {max}",
+  "@attunementCount": {
+    "description": "Onglet Inventaire.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "armorClassValue": "CA {value}",
+  "@armorClassValue": {
+    "description": "Onglet Inventaire.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "armorShieldBonus": "+{value} à la CA",
+  "@armorShieldBonus": {
+    "description": "Onglet Inventaire.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
   }
 }
