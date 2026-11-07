@@ -114,7 +114,6 @@ void main() {
     expect(c.levels[19].columns['sorcery_points'], 20);
     expect(effect('draconic-draconic-resilience'), {
       'op': 'modify_hp_max',
-      'flat': 3,
       'per_level': 1,
     });
   });

@@ -1,8 +1,9 @@
 {
   "fixture": "brannoc_n5",
-  "status": "pending_engine",
+  "status": "active",
   "board": "D1",
-  "note": "En attente du moteur : Ténacité naine, vision dans le noir, Armure du mage. Les valeurs de sorts sont testées par spellcasting_test.dart.",
+  "note": "CA sous Armure du mage en attente des données de sort. Grimoire testé par spellcasting_test.dart.",
+  "pending_keys": ["armor_class_with_mage_armor", "spellbook_count"],
   "srd_refs": {
     "magicien": "p. 59, d6, JS Int et Sag, niv. 5 : 4 sorts mineurs, 9 préparés, emplacements 4/3/2 ; p. 60, Érudition niv. 2",
     "sage": "p. 87, Con/Int/Sag, Initié à la magie (Magicien), Arcanes et Histoire",
@@ -63,7 +64,7 @@
     "speed_feet": 30,
     "darkvision_feet": 120,
     "initiative": { "bonus": 2, "advantage": false },
-    "saving_throws": { "int": 7, "wis": 4 },
+    "saving_throws": { "str": -1, "dex": 2, "con": 0, "int": 7, "wis": 4, "cha": 1 },
     "skill_proficiencies": ["arcana", "history", "investigation", "medicine"],
     "expertise": ["arcana"],
     "spellcasting": {
@@ -73,10 +74,9 @@
     "spellbook_count": 14,
     "sources": {
       "hit_points_max": [
-        { "label": "srd:class:wizard", "value": 6 },
-        { "label": "srd:class:wizard niv. 2-5 (valeur fixe 4 × 4)", "value": 16 },
-        { "label": "con (5 niveaux × 0)", "value": 0 },
-        { "label": "srd:species:dwarf (Ténacité naine, 5 niveaux)", "value": 5 }
+        { "label": "srd:class:wizard", "value": 22 },
+        { "label": "con", "value": 0 },
+        { "label": "srd:feature:dwarf-dwarven-toughness", "value": 5 }
       ]
     }
   }

@@ -9,7 +9,6 @@
   "effects": [
     {
       "op": "modify_hp_max",
-      "flat": 3,
       "per_level": 1
     },
     {

@@ -34,6 +34,7 @@ void main() {
     final data = fixture(name);
     final status = data['status']! as String;
     final expected = data['expected']! as Map<String, Object?>;
+    final pending = (data['pending_keys'] as List<Object?>?) ?? const [];
 
     group(name, () {
       late Map<String, Object?> sheet;
@@ -58,7 +59,11 @@ void main() {
                 : _same(value),
             reason: '$name.$key',
           ),
-          skip: status == 'active' ? false : 'fixture $status',
+          skip: status != 'active'
+              ? 'fixture $status'
+              : pending.contains(key)
+              ? 'valeur en attente du moteur'
+              : false,
         );
       }
     }, skip: status == 'active' ? false : 'fixture $status');
