@@ -151,6 +151,12 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   final saveCodes = {
     for (final id in classes.firstOrNull?.data?.savingThrows ?? <ContentId>[])
       ?_codeOf('$id'),
+    for (final a in ofOp('grant_proficiency'))
+      if (a.effect.args['kind'] == 'saving_throw')
+        if (a.effect.args['ref'] == 'all')
+          ...abilityCodes
+        else
+          a.effect.args['ref']! as String,
   };
   final expertiseIds = {
     for (final c in character.classLevels) ...c.expertise,
