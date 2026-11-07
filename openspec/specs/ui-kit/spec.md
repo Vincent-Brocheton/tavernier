@@ -143,3 +143,10 @@ Le kit SHALL fournir `AbilityTile`, `StatTile` et `ValueBreakdown`. Une tuile SH
 #### Scenario: Grand écran
 - **WHEN** `showAdaptiveSheet` s'ouvre sur un écran large
 - **THEN** le contenu est dans une boîte de dialogue
+
+### Requirement: Pips de ressource
+`ResourcePips` SHALL afficher une pastille par utilisation et s'annoncer au lecteur d'écran sous forme de texte.
+
+#### Scenario: Deux sur trois
+- **WHEN** 2 utilisations sur 3 sont disponibles
+- **THEN** 2 pastilles sont pleines, et le libellé fourni est annoncé
