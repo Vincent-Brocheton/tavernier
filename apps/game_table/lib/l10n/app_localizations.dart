@@ -2076,6 +2076,78 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Tous'**
   String get filterAllSpells;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer'**
+  String get castSpell;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacement'**
+  String get castSlotTitle;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'En rituel, sans emplacement'**
+  String get castRitual;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{level} ({left, plural, =1{1 restant} other{{left} restants}})'**
+  String castSlot(String level, int left);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{level}, pacte ({left, plural, =1{1 restant} other{{left} restants}})'**
+  String castPactSlot(String level, int left);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration en cours'**
+  String get concentrationActive;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre fin'**
+  String get endConcentration;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le lancer met fin à {spell} : un seul sort de concentration à la fois.'**
+  String replacesConcentration(String spell);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre fin à {spell} ?'**
+  String replaceConcentrationTitle(String spell);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un seul sort de concentration à la fois.'**
+  String get replaceConcentrationHint;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer quand même'**
+  String get confirmCast;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get cancelCast;
 }
 
 class _AppLocalizationsDelegate

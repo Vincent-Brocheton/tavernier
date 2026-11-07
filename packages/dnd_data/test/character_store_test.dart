@@ -28,6 +28,49 @@ void main() {
   });
   tearDown(() => db.close());
 
+  group('état de jeu', () {
+    late CharacterInput aldric;
+    setUp(() async {
+      aldric = CharacterInput.fromJson(_aldricJson());
+      await store.save('a', aldric);
+    });
+
+    test('sans état : vide', () async {
+      final state = await store.loadState('a');
+      expect(state.used, isEmpty);
+      expect(state.concentrationSpellId, isNull);
+    });
+
+    test('relecture à l\'identique', () async {
+      await store.saveState(
+        'a',
+        PlayState(
+          used: {slotResource(1): 2, pactSlotResource: 1},
+          concentrationSpellId: 'srd:spell:bless',
+        ),
+      );
+      final state = await store.loadState('a');
+      expect(state.usedOf(slotResource(1)), 2);
+      expect(state.usedOf(pactSlotResource), 1);
+      expect(state.concentrationSpellId, 'srd:spell:bless');
+    });
+
+    test('un second enregistrement remplace le premier', () async {
+      await store.saveState(
+        'a',
+        const PlayState(concentrationSpellId: 'srd:spell:bless'),
+      );
+      await store.saveState('a', const PlayState());
+      expect((await store.loadState('a')).concentrationSpellId, isNull);
+    });
+
+    test('réenregistrer le personnage garde son état', () async {
+      await store.saveState('a', PlayState(used: {slotResource(1): 1}));
+      await store.save('a', aldric);
+      expect((await store.loadState('a')).usedOf(slotResource(1)), 1);
+    });
+  });
+
   group('sorts, monnaie et détails', () {
     final wizard = CharacterInput.fromJson(_aldricJson()).copyWith(
       spells: const SpellsInput(

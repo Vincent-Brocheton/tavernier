@@ -20,6 +20,11 @@ final characterProvider = FutureProvider.autoDispose
       (ref, id) => ref.watch(characterStoreProvider).load(id),
     );
 
+/// État de jeu, relu à l'ouverture de la fiche.
+final playStateProvider = FutureProvider.autoDispose.family<PlayState, String>(
+  (ref, id) => ref.watch(characterStoreProvider).loadState(id),
+);
+
 const _tabCount = 7;
 
 /// Fiche d'un personnage [2a], [2c].
@@ -169,7 +174,12 @@ class _Sheet extends StatelessWidget {
                 _MainTab(content: content, sheet: sheet),
                 _SkillsTab(content: content, sheet: sheet),
                 CombatTab(content: content, character: character, sheet: sheet),
-                SpellsTab(content: content, character: character, sheet: sheet),
+                SpellsTab(
+                  id: id,
+                  content: content,
+                  character: character,
+                  sheet: sheet,
+                ),
                 soon,
                 FeaturesTab(
                   content: content,

@@ -1,11 +1,14 @@
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'sheet_breakdowns.dart';
+import 'sheet_page.dart';
 
 enum _Filter { all, prepared, concentration, rituals }
 
@@ -33,29 +36,97 @@ String _capitalized(String value) =>
     value.isEmpty ? value : '${value[0].toUpperCase()}${value.substring(1)}';
 
 /// Onglet Sorts [P14], [P17], [F5a], [F5b].
-class SpellsTab extends StatefulWidget {
+class SpellsTab extends ConsumerStatefulWidget {
   const SpellsTab({
     super.key,
+    required this.id,
     required this.content,
     required this.character,
     required this.sheet,
   });
 
+  final String id;
   final ActiveContent content;
   final CharacterInput character;
   final ComputedSheet sheet;
 
   @override
-  State<SpellsTab> createState() => _SpellsTabState();
+  ConsumerState<SpellsTab> createState() => _SpellsTabState();
 }
 
-class _SpellsTabState extends State<SpellsTab> {
+class _SpellsTabState extends ConsumerState<SpellsTab> {
   _Filter _filter = _Filter.all;
 
   ActiveContent get _content => widget.content;
   ComputedSheet get _sheet => widget.sheet;
 
+  PlayState get _play =>
+      ref.watch(playStateProvider(widget.id)).asData?.value ??
+      const PlayState();
+
+  /// À lire hors de `build`, depuis un rappel.
+  PlayState get _latest =>
+      ref.read(playStateProvider(widget.id)).asData?.value ?? const PlayState();
+
   String _name(String id) => namesOf(_content, [id]);
+
+  Future<void> _store(PlayState state) async {
+    await ref.read(characterStoreProvider).saveState(widget.id, state);
+    ref.invalidate(playStateProvider(widget.id));
+  }
+
+  Widget _concentration(AppLocalizations l10n, TextTheme text, String id) {
+    final colors = GameColors.of(context);
+    final data = _content.entity(id)?.data;
+    return Card(
+      color: colors.concentrationContainer,
+      child: Padding(
+        padding: EdgeInsets.all(AppSpacing.sm),
+        child: Row(
+          children: [
+            GameIcon(
+              GameIcons.concentration,
+              color: colors.onConcentrationContainer,
+            ),
+            SizedBox(width: AppSpacing.xs),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.concentrationActive,
+                    style: text.labelMedium?.copyWith(
+                      color: colors.onConcentrationContainer,
+                    ),
+                  ),
+                  Text(
+                    _name(id),
+                    style: text.titleMedium?.copyWith(
+                      color: colors.onConcentrationContainer,
+                    ),
+                  ),
+                  if (data is SpellData)
+                    Text(
+                      data.duration,
+                      style: text.bodySmall?.copyWith(
+                        color: colors.onConcentrationContainer,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () => _store(endConcentration(_latest)),
+              child: Text(
+                l10n.endConcentration,
+                style: TextStyle(color: colors.onConcentrationContainer),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   bool _shown(SheetSpell spell, SpellData data) => switch (_filter) {
     _Filter.all => true,
@@ -150,24 +221,25 @@ class _SpellsTabState extends State<SpellsTab> {
           Text(_casterSum(l10n), style: text.bodySmall),
         SizedBox(height: AppSpacing.xs),
         for (final (i, total) in slots.indexed)
-          Padding(
-            padding: EdgeInsets.only(bottom: AppSpacing.xxs),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 56,
-                  child: Text(l10n.slotLevel(i + 1), style: text.bodyMedium),
-                ),
-                ResourcePips(
-                  total: total,
-                  available: total,
-                  semanticLabel: l10n.slotsOf(i + 1, total, total),
-                ),
-                SizedBox(width: AppSpacing.xs),
-                Text('$total / $total', style: text.bodySmall),
-              ],
+          if (total - _play.usedOf(slotResource(i + 1)) case final left)
+            Padding(
+              padding: EdgeInsets.only(bottom: AppSpacing.xxs),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 56,
+                    child: Text(l10n.slotLevel(i + 1), style: text.bodyMedium),
+                  ),
+                  ResourcePips(
+                    total: total,
+                    available: left,
+                    semanticLabel: l10n.slotsOf(i + 1, left, total),
+                  ),
+                  SizedBox(width: AppSpacing.xs),
+                  Text('$left / $total', style: text.bodySmall),
+                ],
+              ),
             ),
-          ),
         SizedBox(height: AppSpacing.sm),
       ],
       if (pact != null) ...[
@@ -175,6 +247,15 @@ class _SpellsTabState extends State<SpellsTab> {
         Text(
           l10n.pactSlots(pact.slots, pact.slotLevel),
           style: text.bodyMedium,
+        ),
+        ResourcePips(
+          total: pact.slots,
+          available: pact.slots - _play.usedOf(pactSlotResource),
+          semanticLabel: l10n.slotsOf(
+            pact.slotLevel,
+            pact.slots - _play.usedOf(pactSlotResource),
+            pact.slots,
+          ),
         ),
         Text(l10n.pactRecharge, style: text.bodySmall),
         SizedBox(height: AppSpacing.sm),
@@ -189,6 +270,21 @@ class _SpellsTabState extends State<SpellsTab> {
     SheetSpell spell,
   ) {
     final several = _sheet.spellcasting.length > 1;
+    final castable = data.level == 0 || spell.prepared || spell.alwaysPrepared;
+    final options = castable
+        ? castOptions(data, _sheet, _play)
+        : const <CastOption>[];
+    void open() => showAdaptiveSheet(
+      context,
+      _SpellDetail(
+        entity: entity,
+        data: data,
+        options: options,
+        replaced: replacedConcentration(spell.id, data, _latest),
+        onCast: (option) => _store(castSpell(_latest, spell.id, data, option)),
+        name: _name,
+      ),
+    );
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(entity.name),
@@ -207,10 +303,14 @@ class _SpellsTabState extends State<SpellsTab> {
           if (data.concentration)
             _Badge(letter: l10n.badgeConcentration, label: l10n.concentration),
           if (data.ritual) _Badge(letter: l10n.badgeRitual, label: l10n.ritual),
+          SizedBox(width: AppSpacing.xs),
+          TextButton(
+            onPressed: options.isEmpty ? null : open,
+            child: Text(l10n.castSpell),
+          ),
         ],
       ),
-      onTap: () =>
-          showAdaptiveSheet(context, _SpellDetail(entity: entity, data: data)),
+      onTap: open,
     );
   }
 
@@ -251,6 +351,10 @@ class _SpellsTabState extends State<SpellsTab> {
     return ListView(
       padding: EdgeInsets.all(AppSpacing.md),
       children: [
+        if (_play.concentrationSpellId case final id?) ...[
+          _concentration(l10n, text, id),
+          SizedBox(height: AppSpacing.sm),
+        ],
         ..._castingValues(l10n, text, spells),
         ..._slots(l10n, text),
         if (always > 0) ...[
@@ -311,12 +415,68 @@ class _Badge extends StatelessWidget {
   );
 }
 
-/// Fiche de sort (EF-PJ-08).
-class _SpellDetail extends StatelessWidget {
-  const _SpellDetail({required this.entity, required this.data});
+/// Fiche de sort (EF-PJ-08) et lancement [P14].
+class _SpellDetail extends StatefulWidget {
+  const _SpellDetail({
+    required this.entity,
+    required this.data,
+    required this.options,
+    required this.replaced,
+    required this.onCast,
+    required this.name,
+  });
 
   final ContentEntity entity;
   final SpellData data;
+  final List<CastOption> options;
+
+  /// Sort à concentration que ce lancer arrête.
+  final String? replaced;
+  final ValueChanged<CastOption> onCast;
+  final String Function(String) name;
+
+  @override
+  State<_SpellDetail> createState() => _SpellDetailState();
+}
+
+class _SpellDetailState extends State<_SpellDetail> {
+  late CastOption? _option = widget.options.firstOrNull;
+
+  SpellData get data => widget.data;
+
+  String _optionLabel(AppLocalizations l10n, CastOption option) {
+    if (option.ritual) return l10n.castRitual;
+    final level = l10n.spellLevelName(option.level);
+    return option.pact
+        ? l10n.castPactSlot(level, option.left)
+        : l10n.castSlot(level, option.left);
+  }
+
+  /// Le second sort à concentration demande confirmation (EF-PJ-09).
+  Future<void> _cast(AppLocalizations l10n, CastOption option) async {
+    if (widget.replaced case final replaced?) {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (dialog) => AlertDialog(
+          title: Text(l10n.replaceConcentrationTitle(widget.name(replaced))),
+          content: Text(l10n.replaceConcentrationHint),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialog).pop(false),
+              child: Text(l10n.cancelCast),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(dialog).pop(true),
+              child: Text(l10n.confirmCast),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted) return;
+    }
+    widget.onCast(option);
+    if (mounted) Navigator.of(context).pop();
+  }
 
   String _components(AppLocalizations l10n) => [
     if (data.components.verbal) l10n.componentVerbal,
@@ -336,7 +496,7 @@ class _SpellDetail extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(entity.name, style: text.headlineSmall),
+          Text(widget.entity.name, style: text.headlineSmall),
           Text(
             data.level == 0
                 ? l10n.cantripOf(school)
@@ -362,14 +522,47 @@ class _SpellDetail extends StatelessWidget {
           if (data.materialConsumed)
             DetailRow(l10n.spellMaterial, l10n.materialConsumed),
           SizedBox(height: AppSpacing.sm),
-          Text(entity.textFr ?? '', style: text.bodyMedium),
+          Text(widget.entity.textFr ?? '', style: text.bodyMedium),
           SizedBox(height: AppSpacing.sm),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(l10n.close),
+          if (widget.replaced case final replaced?) ...[
+            Text(
+              l10n.replacesConcentration(widget.name(replaced)),
+              style: text.bodySmall,
             ),
+            SizedBox(height: AppSpacing.xs),
+          ],
+          if (data.level > 0 && widget.options.isNotEmpty) ...[
+            Text(l10n.castSlotTitle, style: text.titleSmall),
+            SizedBox(height: AppSpacing.xs),
+            Wrap(
+              spacing: AppSpacing.xs,
+              runSpacing: AppSpacing.xxs,
+              children: [
+                for (final option in widget.options)
+                  ChoiceChip(
+                    label: Text(_optionLabel(l10n, option)),
+                    selected: identical(_option, option),
+                    onSelected: (_) => setState(() => _option = option),
+                  ),
+              ],
+            ),
+            SizedBox(height: AppSpacing.sm),
+          ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(l10n.close),
+              ),
+              if (_option case final option?) ...[
+                SizedBox(width: AppSpacing.xs),
+                FilledButton(
+                  onPressed: () => _cast(l10n, option),
+                  child: Text(l10n.castSpell),
+                ),
+              ],
+            ],
           ),
         ],
       ),
