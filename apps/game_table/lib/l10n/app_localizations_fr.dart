@@ -1446,9 +1446,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get enterRoll => 'Saisir mon jet';
 
   @override
-  String get useMyRoll => 'Utiliser mon jet';
-
-  @override
   String get useResource => 'Utiliser';
 
   @override
@@ -1499,11 +1496,6 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String rollDie(String die) {
-    return 'Lancer un $die';
-  }
-
-  @override
   String recoveredUses(int before, int after, int max) {
     return '$before → $after / $max';
   }
@@ -1525,11 +1517,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get actionPlain => 'Action';
-
-  @override
-  String enterRollOf(String dice) {
-    return 'Saisir mon jet ($dice)';
-  }
 
   @override
   String consumableLine(String action, String dice, int bonus, int count) {
@@ -1572,4 +1559,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ruleTermSource => 'Glossaire · SRD 5.2.1';
+
+  @override
+  String get reroll => 'Relancer';
+
+  @override
+  String rollResultOf(String dice) {
+    return 'Résultat du $dice (modifiable avant validation)';
+  }
+
+  @override
+  String rollImpossible(String dice) {
+    return 'Résultat impossible pour $dice.';
+  }
+
+  @override
+  String spendHitDie(String die) {
+    return 'Dépenser le $die';
+  }
 }

@@ -2108,10 +2108,6 @@
   "@enterRoll": {
     "description": "Repos et suivi de jeu."
   },
-  "useMyRoll": "Utiliser mon jet",
-  "@useMyRoll": {
-    "description": "Repos et suivi de jeu."
-  },
   "useResource": "Utiliser",
   "@useResource": {
     "description": "Repos et suivi de jeu."
@@ -2209,15 +2205,6 @@
       }
     }
   },
-  "rollDie": "Lancer un {die}",
-  "@rollDie": {
-    "description": "Repos et suivi de jeu.",
-    "placeholders": {
-      "die": {
-        "type": "String"
-      }
-    }
-  },
   "recoveredUses": "{before} → {after} / {max}",
   "@recoveredUses": {
     "description": "Repos et suivi de jeu.",
@@ -2256,15 +2243,6 @@
   "actionPlain": "Action",
   "@actionPlain": {
     "description": "Consommables et Inspiration."
-  },
-  "enterRollOf": "Saisir mon jet ({dice})",
-  "@enterRollOf": {
-    "description": "Consommables et Inspiration.",
-    "placeholders": {
-      "dice": {
-        "type": "String"
-      }
-    }
   },
   "consumableLine": "{action} · {dice} + {bonus} PV · ×{count} dans le sac",
   "@consumableLine": {
@@ -2354,5 +2332,36 @@
   "ruleTermSource": "Glossaire · SRD 5.2.1",
   "@ruleTermSource": {
     "description": "Termes cliquables."
+  },
+  "reroll": "Relancer",
+  "@reroll": {
+    "description": "Jet simple."
+  },
+  "rollResultOf": "Résultat du {dice} (modifiable avant validation)",
+  "@rollResultOf": {
+    "description": "Jet simple.",
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "rollImpossible": "Résultat impossible pour {dice}.",
+  "@rollImpossible": {
+    "description": "Jet simple.",
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "spendHitDie": "Dépenser le {die}",
+  "@spendHitDie": {
+    "description": "Jet simple.",
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
   }
 }

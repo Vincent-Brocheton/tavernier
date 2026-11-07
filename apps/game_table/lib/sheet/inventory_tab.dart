@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
@@ -11,6 +9,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'rest_sheet.dart';
 import 'sheet_page.dart';
+import 'simple_roll.dart';
 
 String _coinName(AppLocalizations l10n, String code) => switch (code) {
   'pp' => l10n.coinPlatinum,
@@ -310,36 +309,21 @@ class _ConsumableSheet extends StatefulWidget {
 }
 
 class _ConsumableSheetState extends State<_ConsumableSheet> {
-  final _controller = TextEditingController();
+  int? _roll;
 
   Consumable get _item => widget.consumable;
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _roll() {
-    final random = Random();
-    final total = List.generate(
-      _item.dice,
-      (_) => random.nextInt(_item.sides) + 1,
-    ).fold(0, (sum, die) => sum + die);
-    setState(() => _controller.text = '$total');
-  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
-    final dice = '${_item.dice}d${_item.sides}';
-    final roll = int.tryParse(_controller.text);
-    final valid = roll != null && consumableRollValid(_item, roll);
+    final formula = DiceFormula(_item.dice, _item.sides, bonus: _item.bonus);
+    final dice = formula.dice;
+    final roll = _roll;
     final before = hitPoints(widget.state, widget.sheet);
-    final after = valid
-        ? changeHitPoints(widget.state, widget.sheet, roll + _item.bonus)
-        : null;
+    final after = roll == null
+        ? null
+        : changeHitPoints(widget.state, widget.sheet, roll + _item.bonus);
     return Padding(
       padding: EdgeInsets.all(AppSpacing.md),
       child: Column(
@@ -359,19 +343,9 @@ class _ConsumableSheetState extends State<_ConsumableSheet> {
             style: text.bodyMedium,
           ),
           SizedBox(height: AppSpacing.sm),
-          TextField(
-            controller: _controller,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(labelText: l10n.enterRollOf(dice)),
-            onChanged: (_) => setState(() {}),
-          ),
-          SizedBox(height: AppSpacing.xs),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: OutlinedButton(
-              onPressed: _roll,
-              child: Text(l10n.castSpell),
-            ),
+          SimpleRoll(
+            formula: formula,
+            onChanged: (value) => setState(() => _roll = value),
           ),
           if (after != null) ...[
             SizedBox(height: AppSpacing.xs),
