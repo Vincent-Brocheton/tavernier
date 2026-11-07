@@ -8,3 +8,4 @@ export 'src/computed_sheet.dart';
 export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
 export 'src/level_up.dart';
+export 'src/sheet_spells.dart';

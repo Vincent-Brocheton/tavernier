@@ -295,6 +295,10 @@ abstract class MulticlassTraits with _$MulticlassTraits {
 
     /// Outils à choisir dans la catégorie de la classe.
     @Default(0) int toolChoiceCount,
+
+    /// Part des niveaux de la classe dans le niveau de lanceur : 1 pour tous,
+    /// 2 pour la moitié, 0 si elle n'y compte pas (SRD p. 27).
+    @Default(0) int casterDivisor,
   }) = _MulticlassTraits;
 
   factory MulticlassTraits.fromJson(Map<String, dynamic> json) =>

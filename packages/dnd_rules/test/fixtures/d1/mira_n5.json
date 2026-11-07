@@ -1,8 +1,8 @@
 {
   "fixture": "mira_n5",
-  "status": "pending_content",
+  "status": "pending_engine",
   "board": "D1",
-  "note": "Clerc absent de l'échantillon SRD de M0 : testé en M1.",
+  "note": "En attente du moteur : don Doué, soins, résumé des maîtrises. Les valeurs de sorts sont testées par spellcasting_test.dart.",
   "srd_refs": {
     "clerc": "p. 38, Aptitudes du Clerc niv. 5 : 4 sorts mineurs, 9 préparés, emplacements 4/3/2",
     "disciple_de_la_vie": "p. 42, + 2 + niveau de l'emplacement aux soins",
@@ -14,15 +14,15 @@
     "player": "Inès",
     "kind": "pc",
     "species_id": "srd:species:human",
-    "species_choices": { "size": "M", "skillful_skill": "srd:skill:perception" },
+    "species_choices": { "size": "M" },
+    "choices": { "skillful": ["srd:skill:perception"], "cleric-divine-order": ["Protecteur"] },
     "background_id": "srd:background:acolyte",
     "base_scores": { "method": "point_buy", "str": 13, "dex": 10, "con": 13, "int": 10, "wis": 15, "cha": 12 },
     "background_choice": { "distribution": "2-1", "bonuses": { "wis": 2, "cha": 1 } },
     "class_levels": [
       {
         "class_id": "srd:class:cleric", "level": 5, "subclass_id": "srd:subclass:life-domain", "hp_roll": null,
-        "skill_choices": ["srd:skill:medicine", "srd:skill:persuasion"],
-        "class_choices": { "divine_order": "protector" }
+        "skill_choices": ["srd:skill:medicine", "srd:skill:persuasion"]
       }
     ],
     "feats": [

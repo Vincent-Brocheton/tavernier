@@ -36,6 +36,8 @@ final class SheetBreakdowns {
     switch (c.label) {
       case 'base':
         (label, badge) = (l10n.breakdownBase, l10n.sourceCreation);
+      case 'dc_base':
+        (label, badge) = (l10n.breakdownBase, null);
       case 'proficiency':
         (label, badge) = (l10n.breakdownProficiency, null);
       case 'expertise':
@@ -119,6 +121,9 @@ final class SheetBreakdowns {
     formatSigned(attack.attackBonus),
     _lines(Computed(attack.sources)),
   );
+
+  Widget spellValue(String title, Computed value) =>
+      _view(l10n.categoryStat, title, '${value.value}', _lines(value));
 
   Widget armorClass() => _view(
     l10n.categoryStat,

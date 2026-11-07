@@ -115,6 +115,48 @@ final class IntegrityError {
 
 /// Fiche calculée par `computeSheet`. [toJson] a la forme du bloc
 /// `expected` des fixtures [D1].
+/// Valeurs d'incantation d'une classe.
+final class ClassCasting {
+  const ClassCasting({
+    required this.ability,
+    required this.saveDc,
+    required this.attackBonus,
+    required this.cantripsKnown,
+    required this.preparedMax,
+  });
+
+  /// Code de la caractéristique d'incantation.
+  final String ability;
+  final Computed saveDc;
+  final Computed attackBonus;
+  final int cantripsKnown;
+  final int preparedMax;
+
+  Map<String, Object?> toJson() => {
+    'ability': ability,
+    'save_dc': saveDc.value,
+    'attack_bonus': attackBonus.value,
+    'cantrips_known': cantripsKnown,
+    'prepared_max': preparedMax,
+  };
+}
+
+/// Magie de pacte de l'Occultiste, récupérée au repos court.
+final class PactMagic {
+  const PactMagic({required this.slots, required this.slotLevel});
+
+  final int slots;
+
+  /// Niveau auquel les sorts sont toujours lancés.
+  final int slotLevel;
+
+  Map<String, Object?> toJson() => {
+    'slots': slots,
+    'slot_level': slotLevel,
+    'recharge': 'short_rest',
+  };
+}
+
 final class ComputedSheet {
   const ComputedSheet({
     required this.level,
@@ -134,6 +176,10 @@ final class ComputedSheet {
     required this.hitPointsMax,
     required this.hitDice,
     required this.proficientWeapons,
+    required this.spellcasting,
+    required this.casterLevel,
+    required this.spellSlots,
+    required this.pactMagic,
     required this.resources,
     required this.weaponMasterySlots,
     required this.attacks,
@@ -173,6 +219,16 @@ final class ComputedSheet {
   /// Identifiants des armes maîtrisées.
   final Set<String> proficientWeapons;
 
+  /// Valeurs d'incantation, par classe de lanceur.
+  final Map<String, ClassCasting> spellcasting;
+
+  /// Niveau de lanceur d'un multiclassé à deux classes à emplacements.
+  final int? casterLevel;
+
+  /// Emplacements par niveau de sort, du 1er au plus haut.
+  final List<int> spellSlots;
+  final PactMagic? pactMagic;
+
   /// Maximum de chaque ressource, par clé (`srd:resource:second-wind`).
   final Map<String, int> resources;
   final int weaponMasterySlots;
@@ -207,6 +263,13 @@ final class ComputedSheet {
         {'id': key, 'max': value},
     ],
     'weapon_mastery_slots': weaponMasterySlots,
+    'spellcasting': {
+      for (final MapEntry(:key, :value) in spellcasting.entries)
+        key: value.toJson(),
+    },
+    'caster_level': casterLevel,
+    'spell_slots': spellSlots,
+    'pact_magic': pactMagic?.toJson(),
     'attacks': [for (final a in attacks) a.toJson()],
     'integrity_errors': [for (final e in integrityErrors) e.toJson()],
     'sources': {

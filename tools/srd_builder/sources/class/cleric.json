@@ -28,6 +28,7 @@
       "shield"
     ],
     "multiclass": {
+      "caster_divisor": 1,
       "armor_training": [
         "light",
         "medium",

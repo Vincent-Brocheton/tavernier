@@ -4844,6 +4844,16 @@
             "default_dart": "const CustomExpression('0')",
             "default_client_dart": null,
             "dsl_features": []
+          },
+          {
+            "name": "class_id",
+            "getter_name": "classId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
           }
         ],
         "is_virtual": false,
@@ -6523,7 +6533,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_spell\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"spell_id\" TEXT NOT NULL, \"source\" TEXT NOT NULL, \"prepared\" INTEGER NOT NULL DEFAULT 0 CHECK (\"prepared\" IN (0, 1)), \"in_spellbook\" INTEGER NOT NULL DEFAULT 0 CHECK (\"in_spellbook\" IN (0, 1)), PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_spell\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"spell_id\" TEXT NOT NULL, \"source\" TEXT NOT NULL, \"prepared\" INTEGER NOT NULL DEFAULT 0 CHECK (\"prepared\" IN (0, 1)), \"in_spellbook\" INTEGER NOT NULL DEFAULT 0 CHECK (\"in_spellbook\" IN (0, 1)), \"class_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

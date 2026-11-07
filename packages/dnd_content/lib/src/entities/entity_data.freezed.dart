@@ -4531,7 +4531,9 @@ mixin _$MulticlassTraits {
 
  List<String> get weaponProficiencies; List<String> get armorTraining;@ContentIdConverter() List<ContentId> get toolProficiencies;/// Compétences à choisir dans celles de la classe.
  int get skillChoiceCount;/// Outils à choisir dans la catégorie de la classe.
- int get toolChoiceCount;
+ int get toolChoiceCount;/// Part des niveaux de la classe dans le niveau de lanceur : 1 pour tous,
+/// 2 pour la moitié, 0 si elle n'y compte pas (SRD p. 27).
+ int get casterDivisor;
 /// Create a copy of MulticlassTraits
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4545,20 +4547,20 @@ $MulticlassTraitsCopyWith<MulticlassTraits> get copyWith => _$MulticlassTraitsCo
 @override
 bool operator ==(Object other) {
   final _this = this as MulticlassTraits;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MulticlassTraits&&const DeepCollectionEquality().equals(other.weaponProficiencies, _this.weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _this.armorTraining)&&const DeepCollectionEquality().equals(other.toolProficiencies, _this.toolProficiencies)&&(identical(other.skillChoiceCount, _this.skillChoiceCount) || other.skillChoiceCount == _this.skillChoiceCount)&&(identical(other.toolChoiceCount, _this.toolChoiceCount) || other.toolChoiceCount == _this.toolChoiceCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MulticlassTraits&&const DeepCollectionEquality().equals(other.weaponProficiencies, _this.weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _this.armorTraining)&&const DeepCollectionEquality().equals(other.toolProficiencies, _this.toolProficiencies)&&(identical(other.skillChoiceCount, _this.skillChoiceCount) || other.skillChoiceCount == _this.skillChoiceCount)&&(identical(other.toolChoiceCount, _this.toolChoiceCount) || other.toolChoiceCount == _this.toolChoiceCount)&&(identical(other.casterDivisor, _this.casterDivisor) || other.casterDivisor == _this.casterDivisor));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as MulticlassTraits;
-  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.weaponProficiencies),const DeepCollectionEquality().hash(_this.armorTraining),const DeepCollectionEquality().hash(_this.toolProficiencies),_this.skillChoiceCount,_this.toolChoiceCount);
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.weaponProficiencies),const DeepCollectionEquality().hash(_this.armorTraining),const DeepCollectionEquality().hash(_this.toolProficiencies),_this.skillChoiceCount,_this.toolChoiceCount,_this.casterDivisor);
 }
 
 @override
 String toString() {
   final _this = this as MulticlassTraits;
-  return 'MulticlassTraits(weaponProficiencies: ${_this.weaponProficiencies}, armorTraining: ${_this.armorTraining}, toolProficiencies: ${_this.toolProficiencies}, skillChoiceCount: ${_this.skillChoiceCount}, toolChoiceCount: ${_this.toolChoiceCount})';
+  return 'MulticlassTraits(weaponProficiencies: ${_this.weaponProficiencies}, armorTraining: ${_this.armorTraining}, toolProficiencies: ${_this.toolProficiencies}, skillChoiceCount: ${_this.skillChoiceCount}, toolChoiceCount: ${_this.toolChoiceCount}, casterDivisor: ${_this.casterDivisor})';
 }
 
 
@@ -4569,7 +4571,7 @@ abstract mixin class $MulticlassTraitsCopyWith<$Res>  {
   factory $MulticlassTraitsCopyWith(MulticlassTraits value, $Res Function(MulticlassTraits) _then) = _$MulticlassTraitsCopyWithImpl;
 @useResult
 $Res call({
- List<String> weaponProficiencies, List<String> armorTraining,@ContentIdConverter() List<ContentId> toolProficiencies, int skillChoiceCount, int toolChoiceCount
+ List<String> weaponProficiencies, List<String> armorTraining,@ContentIdConverter() List<ContentId> toolProficiencies, int skillChoiceCount, int toolChoiceCount, int casterDivisor
 });
 
 
@@ -4586,13 +4588,14 @@ class _$MulticlassTraitsCopyWithImpl<$Res>
 
 /// Create a copy of MulticlassTraits
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? weaponProficiencies = null,Object? armorTraining = null,Object? toolProficiencies = null,Object? skillChoiceCount = null,Object? toolChoiceCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? weaponProficiencies = null,Object? armorTraining = null,Object? toolProficiencies = null,Object? skillChoiceCount = null,Object? toolChoiceCount = null,Object? casterDivisor = null,}) {
   return _then(MulticlassTraits(
 weaponProficiencies: null == weaponProficiencies ? _self.weaponProficiencies : weaponProficiencies // ignore: cast_nullable_to_non_nullable
 as List<String>,armorTraining: null == armorTraining ? _self.armorTraining : armorTraining // ignore: cast_nullable_to_non_nullable
 as List<String>,toolProficiencies: null == toolProficiencies ? _self.toolProficiencies : toolProficiencies // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,skillChoiceCount: null == skillChoiceCount ? _self.skillChoiceCount : skillChoiceCount // ignore: cast_nullable_to_non_nullable
 as int,toolChoiceCount: null == toolChoiceCount ? _self.toolChoiceCount : toolChoiceCount // ignore: cast_nullable_to_non_nullable
+as int,casterDivisor: null == casterDivisor ? _self.casterDivisor : casterDivisor // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -4678,10 +4681,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount,  int casterDivisor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MulticlassTraits() when $default != null:
-return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount);case _:
+return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount,_that.casterDivisor);case _:
   return orElse();
 
 }
@@ -4699,10 +4702,10 @@ return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficie
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount,  int casterDivisor)  $default,) {final _that = this;
 switch (_that) {
 case _MulticlassTraits():
-return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount);case _:
+return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount,_that.casterDivisor);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -4719,10 +4722,10 @@ return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficie
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> weaponProficiencies,  List<String> armorTraining, @ContentIdConverter()  List<ContentId> toolProficiencies,  int skillChoiceCount,  int toolChoiceCount,  int casterDivisor)?  $default,) {final _that = this;
 switch (_that) {
 case _MulticlassTraits() when $default != null:
-return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount);case _:
+return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficiencies,_that.skillChoiceCount,_that.toolChoiceCount,_that.casterDivisor);case _:
   return null;
 
 }
@@ -4734,7 +4737,7 @@ return $default(_that.weaponProficiencies,_that.armorTraining,_that.toolProficie
 @JsonSerializable()
 
 class _MulticlassTraits implements MulticlassTraits {
-  const _MulticlassTraits({ List<String> weaponProficiencies = const <String>[],  List<String> armorTraining = const <String>[], @ContentIdConverter()  List<ContentId> toolProficiencies = const <ContentId>[], this.skillChoiceCount = 0, this.toolChoiceCount = 0}): _weaponProficiencies = weaponProficiencies,_armorTraining = armorTraining,_toolProficiencies = toolProficiencies;
+  const _MulticlassTraits({ List<String> weaponProficiencies = const <String>[],  List<String> armorTraining = const <String>[], @ContentIdConverter()  List<ContentId> toolProficiencies = const <ContentId>[], this.skillChoiceCount = 0, this.toolChoiceCount = 0, this.casterDivisor = 0}): _weaponProficiencies = weaponProficiencies,_armorTraining = armorTraining,_toolProficiencies = toolProficiencies;
   factory _MulticlassTraits.fromJson(Map<String, dynamic> json) => _$MulticlassTraitsFromJson(json);
 
  final  List<String> _weaponProficiencies;
@@ -4762,6 +4765,9 @@ class _MulticlassTraits implements MulticlassTraits {
 @override@JsonKey() final  int skillChoiceCount;
 /// Outils à choisir dans la catégorie de la classe.
 @override@JsonKey() final  int toolChoiceCount;
+/// Part des niveaux de la classe dans le niveau de lanceur : 1 pour tous,
+/// 2 pour la moitié, 0 si elle n'y compte pas (SRD p. 27).
+@override@JsonKey() final  int casterDivisor;
 
 /// Create a copy of MulticlassTraits
 /// with the given fields replaced by the non-null parameter values.
@@ -4776,18 +4782,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MulticlassTraits&&const DeepCollectionEquality().equals(other.weaponProficiencies, _weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _armorTraining)&&const DeepCollectionEquality().equals(other.toolProficiencies, _toolProficiencies)&&(identical(other.skillChoiceCount, skillChoiceCount) || other.skillChoiceCount == skillChoiceCount)&&(identical(other.toolChoiceCount, toolChoiceCount) || other.toolChoiceCount == toolChoiceCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MulticlassTraits&&const DeepCollectionEquality().equals(other.weaponProficiencies, _weaponProficiencies)&&const DeepCollectionEquality().equals(other.armorTraining, _armorTraining)&&const DeepCollectionEquality().equals(other.toolProficiencies, _toolProficiencies)&&(identical(other.skillChoiceCount, skillChoiceCount) || other.skillChoiceCount == skillChoiceCount)&&(identical(other.toolChoiceCount, toolChoiceCount) || other.toolChoiceCount == toolChoiceCount)&&(identical(other.casterDivisor, casterDivisor) || other.casterDivisor == casterDivisor));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_weaponProficiencies),const DeepCollectionEquality().hash(_armorTraining),const DeepCollectionEquality().hash(_toolProficiencies),skillChoiceCount,toolChoiceCount);
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_weaponProficiencies),const DeepCollectionEquality().hash(_armorTraining),const DeepCollectionEquality().hash(_toolProficiencies),skillChoiceCount,toolChoiceCount,casterDivisor);
 }
 
 @override
 String toString() {
-    return 'MulticlassTraits(weaponProficiencies: $weaponProficiencies, armorTraining: $armorTraining, toolProficiencies: $toolProficiencies, skillChoiceCount: $skillChoiceCount, toolChoiceCount: $toolChoiceCount)';
+    return 'MulticlassTraits(weaponProficiencies: $weaponProficiencies, armorTraining: $armorTraining, toolProficiencies: $toolProficiencies, skillChoiceCount: $skillChoiceCount, toolChoiceCount: $toolChoiceCount, casterDivisor: $casterDivisor)';
 }
 
 
@@ -4798,7 +4804,7 @@ abstract mixin class _$MulticlassTraitsCopyWith<$Res> implements $MulticlassTrai
   factory _$MulticlassTraitsCopyWith(_MulticlassTraits value, $Res Function(_MulticlassTraits) _then) = __$MulticlassTraitsCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> weaponProficiencies, List<String> armorTraining,@ContentIdConverter() List<ContentId> toolProficiencies, int skillChoiceCount, int toolChoiceCount
+ List<String> weaponProficiencies, List<String> armorTraining,@ContentIdConverter() List<ContentId> toolProficiencies, int skillChoiceCount, int toolChoiceCount, int casterDivisor
 });
 
 
@@ -4815,13 +4821,14 @@ class __$MulticlassTraitsCopyWithImpl<$Res>
 
 /// Create a copy of MulticlassTraits
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? weaponProficiencies = null,Object? armorTraining = null,Object? toolProficiencies = null,Object? skillChoiceCount = null,Object? toolChoiceCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? weaponProficiencies = null,Object? armorTraining = null,Object? toolProficiencies = null,Object? skillChoiceCount = null,Object? toolChoiceCount = null,Object? casterDivisor = null,}) {
   return _then(_MulticlassTraits(
 weaponProficiencies: null == weaponProficiencies ? _self._weaponProficiencies : weaponProficiencies // ignore: cast_nullable_to_non_nullable
 as List<String>,armorTraining: null == armorTraining ? _self._armorTraining : armorTraining // ignore: cast_nullable_to_non_nullable
 as List<String>,toolProficiencies: null == toolProficiencies ? _self._toolProficiencies : toolProficiencies // ignore: cast_nullable_to_non_nullable
 as List<ContentId>,skillChoiceCount: null == skillChoiceCount ? _self.skillChoiceCount : skillChoiceCount // ignore: cast_nullable_to_non_nullable
 as int,toolChoiceCount: null == toolChoiceCount ? _self.toolChoiceCount : toolChoiceCount // ignore: cast_nullable_to_non_nullable
+as int,casterDivisor: null == casterDivisor ? _self.casterDivisor : casterDivisor // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

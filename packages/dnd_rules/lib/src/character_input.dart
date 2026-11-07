@@ -117,6 +117,9 @@ abstract class SpellsInput with _$SpellsInput {
     @Default(<String>[]) List<String> cantrips,
     @Default(<String>[]) List<String> prepared,
     @Default(<String>[]) List<String> spellbook,
+
+    /// Classe d'un sort. Sans entrée : la première classe de lanceur.
+    @Default(<String, String>{}) Map<String, String> classes,
   }) = _SpellsInput;
 
   factory SpellsInput.fromJson(Map<String, dynamic> json) =>

@@ -660,6 +660,7 @@ _MulticlassTraits _$MulticlassTraitsFromJson(Map<String, dynamic> json) =>
             'tool_proficiencies',
             'skill_choice_count',
             'tool_choice_count',
+            'caster_divisor',
           ],
         );
         final val = _MulticlassTraits(
@@ -693,6 +694,10 @@ _MulticlassTraits _$MulticlassTraitsFromJson(Map<String, dynamic> json) =>
             'tool_choice_count',
             (v) => (v as num?)?.toInt() ?? 0,
           ),
+          casterDivisor: $checkedConvert(
+            'caster_divisor',
+            (v) => (v as num?)?.toInt() ?? 0,
+          ),
         );
         return val;
       },
@@ -702,6 +707,7 @@ _MulticlassTraits _$MulticlassTraitsFromJson(Map<String, dynamic> json) =>
         'toolProficiencies': 'tool_proficiencies',
         'skillChoiceCount': 'skill_choice_count',
         'toolChoiceCount': 'tool_choice_count',
+        'casterDivisor': 'caster_divisor',
       },
     );
 
@@ -714,6 +720,7 @@ Map<String, dynamic> _$MulticlassTraitsToJson(_MulticlassTraits instance) =>
           .toList(),
       'skill_choice_count': instance.skillChoiceCount,
       'tool_choice_count': instance.toolChoiceCount,
+      'caster_divisor': instance.casterDivisor,
     };
 
 _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(

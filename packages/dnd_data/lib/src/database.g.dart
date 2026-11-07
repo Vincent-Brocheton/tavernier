@@ -21188,6 +21188,17 @@ class $CharacterSpellsTable extends CharacterSpells
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _classIdMeta = const VerificationMeta(
+    'classId',
+  );
+  @override
+  late final GeneratedColumn<String> classId = GeneratedColumn<String>(
+    'class_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -21196,6 +21207,7 @@ class $CharacterSpellsTable extends CharacterSpells
     source,
     prepared,
     inSpellbook,
+    classId,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -21256,6 +21268,12 @@ class $CharacterSpellsTable extends CharacterSpells
         ),
       );
     }
+    if (data.containsKey('class_id')) {
+      context.handle(
+        _classIdMeta,
+        classId.isAcceptableOrUnknown(data['class_id']!, _classIdMeta),
+      );
+    }
     return context;
   }
 
@@ -21289,6 +21307,10 @@ class $CharacterSpellsTable extends CharacterSpells
         DriftSqlType.bool,
         data['${effectivePrefix}in_spellbook'],
       )!,
+      classId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}class_id'],
+      ),
     );
   }
 
@@ -21306,6 +21328,9 @@ class CharacterSpellRow extends DataClass
   final String source;
   final bool prepared;
   final bool inSpellbook;
+
+  /// Classe du sort ; vide : la première classe de lanceur.
+  final String? classId;
   const CharacterSpellRow({
     required this.id,
     required this.characterId,
@@ -21313,6 +21338,7 @@ class CharacterSpellRow extends DataClass
     required this.source,
     required this.prepared,
     required this.inSpellbook,
+    this.classId,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -21323,6 +21349,9 @@ class CharacterSpellRow extends DataClass
     map['source'] = Variable<String>(source);
     map['prepared'] = Variable<bool>(prepared);
     map['in_spellbook'] = Variable<bool>(inSpellbook);
+    if (!nullToAbsent || classId != null) {
+      map['class_id'] = Variable<String>(classId);
+    }
     return map;
   }
 
@@ -21334,6 +21363,9 @@ class CharacterSpellRow extends DataClass
       source: Value(source),
       prepared: Value(prepared),
       inSpellbook: Value(inSpellbook),
+      classId: classId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(classId),
     );
   }
 
@@ -21349,6 +21381,7 @@ class CharacterSpellRow extends DataClass
       source: serializer.fromJson<String>(json['source']),
       prepared: serializer.fromJson<bool>(json['prepared']),
       inSpellbook: serializer.fromJson<bool>(json['inSpellbook']),
+      classId: serializer.fromJson<String?>(json['classId']),
     );
   }
   @override
@@ -21361,6 +21394,7 @@ class CharacterSpellRow extends DataClass
       'source': serializer.toJson<String>(source),
       'prepared': serializer.toJson<bool>(prepared),
       'inSpellbook': serializer.toJson<bool>(inSpellbook),
+      'classId': serializer.toJson<String?>(classId),
     };
   }
 
@@ -21371,6 +21405,7 @@ class CharacterSpellRow extends DataClass
     String? source,
     bool? prepared,
     bool? inSpellbook,
+    Value<String?> classId = const Value.absent(),
   }) => CharacterSpellRow(
     id: id ?? this.id,
     characterId: characterId ?? this.characterId,
@@ -21378,6 +21413,7 @@ class CharacterSpellRow extends DataClass
     source: source ?? this.source,
     prepared: prepared ?? this.prepared,
     inSpellbook: inSpellbook ?? this.inSpellbook,
+    classId: classId.present ? classId.value : this.classId,
   );
   CharacterSpellRow copyWithCompanion(CharacterSpellsCompanion data) {
     return CharacterSpellRow(
@@ -21391,6 +21427,7 @@ class CharacterSpellRow extends DataClass
       inSpellbook: data.inSpellbook.present
           ? data.inSpellbook.value
           : this.inSpellbook,
+      classId: data.classId.present ? data.classId.value : this.classId,
     );
   }
 
@@ -21402,14 +21439,22 @@ class CharacterSpellRow extends DataClass
           ..write('spellId: $spellId, ')
           ..write('source: $source, ')
           ..write('prepared: $prepared, ')
-          ..write('inSpellbook: $inSpellbook')
+          ..write('inSpellbook: $inSpellbook, ')
+          ..write('classId: $classId')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, characterId, spellId, source, prepared, inSpellbook);
+  int get hashCode => Object.hash(
+    id,
+    characterId,
+    spellId,
+    source,
+    prepared,
+    inSpellbook,
+    classId,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -21419,7 +21464,8 @@ class CharacterSpellRow extends DataClass
           other.spellId == this.spellId &&
           other.source == this.source &&
           other.prepared == this.prepared &&
-          other.inSpellbook == this.inSpellbook);
+          other.inSpellbook == this.inSpellbook &&
+          other.classId == this.classId);
 }
 
 class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
@@ -21429,6 +21475,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
   final Value<String> source;
   final Value<bool> prepared;
   final Value<bool> inSpellbook;
+  final Value<String?> classId;
   final Value<int> rowid;
   const CharacterSpellsCompanion({
     this.id = const Value.absent(),
@@ -21437,6 +21484,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
     this.source = const Value.absent(),
     this.prepared = const Value.absent(),
     this.inSpellbook = const Value.absent(),
+    this.classId = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   CharacterSpellsCompanion.insert({
@@ -21446,6 +21494,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
     required String source,
     this.prepared = const Value.absent(),
     this.inSpellbook = const Value.absent(),
+    this.classId = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        characterId = Value(characterId),
@@ -21458,6 +21507,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
     Expression<String>? source,
     Expression<bool>? prepared,
     Expression<bool>? inSpellbook,
+    Expression<String>? classId,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -21467,6 +21517,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
       if (source != null) 'source': source,
       if (prepared != null) 'prepared': prepared,
       if (inSpellbook != null) 'in_spellbook': inSpellbook,
+      if (classId != null) 'class_id': classId,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -21478,6 +21529,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
     Value<String>? source,
     Value<bool>? prepared,
     Value<bool>? inSpellbook,
+    Value<String?>? classId,
     Value<int>? rowid,
   }) {
     return CharacterSpellsCompanion(
@@ -21487,6 +21539,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
       source: source ?? this.source,
       prepared: prepared ?? this.prepared,
       inSpellbook: inSpellbook ?? this.inSpellbook,
+      classId: classId ?? this.classId,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -21512,6 +21565,9 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
     if (inSpellbook.present) {
       map['in_spellbook'] = Variable<bool>(inSpellbook.value);
     }
+    if (classId.present) {
+      map['class_id'] = Variable<String>(classId.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -21527,6 +21583,7 @@ class CharacterSpellsCompanion extends UpdateCompanion<CharacterSpellRow> {
           ..write('source: $source, ')
           ..write('prepared: $prepared, ')
           ..write('inSpellbook: $inSpellbook, ')
+          ..write('classId: $classId, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -48599,6 +48656,7 @@ typedef $$CharacterSpellsTableCreateCompanionBuilder =
       required String source,
       Value<bool> prepared,
       Value<bool> inSpellbook,
+      Value<String?> classId,
       Value<int> rowid,
     });
 typedef $$CharacterSpellsTableUpdateCompanionBuilder =
@@ -48609,6 +48667,7 @@ typedef $$CharacterSpellsTableUpdateCompanionBuilder =
       Value<String> source,
       Value<bool> prepared,
       Value<bool> inSpellbook,
+      Value<String?> classId,
       Value<int> rowid,
     });
 
@@ -48677,6 +48736,11 @@ class $$CharacterSpellsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get classId => $composableBuilder(
+    column: $table.classId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   $$CharactersTableFilterComposer get characterId {
     final $$CharactersTableFilterComposer composer = $composerBuilder(
       composer: this,
@@ -48735,6 +48799,11 @@ class $$CharacterSpellsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get classId => $composableBuilder(
+    column: $table.classId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$CharactersTableOrderingComposer get characterId {
     final $$CharactersTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -48784,6 +48853,9 @@ class $$CharacterSpellsTableAnnotationComposer
     column: $table.inSpellbook,
     builder: (column) => column,
   );
+
+  GeneratedColumn<String> get classId =>
+      $composableBuilder(column: $table.classId, builder: (column) => column);
 
   $$CharactersTableAnnotationComposer get characterId {
     final $$CharactersTableAnnotationComposer composer = $composerBuilder(
@@ -48845,6 +48917,7 @@ class $$CharacterSpellsTableTableManager
                 Value<String> source = const Value.absent(),
                 Value<bool> prepared = const Value.absent(),
                 Value<bool> inSpellbook = const Value.absent(),
+                Value<String?> classId = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CharacterSpellsCompanion(
                 id: id,
@@ -48853,6 +48926,7 @@ class $$CharacterSpellsTableTableManager
                 source: source,
                 prepared: prepared,
                 inSpellbook: inSpellbook,
+                classId: classId,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -48863,6 +48937,7 @@ class $$CharacterSpellsTableTableManager
                 required String source,
                 Value<bool> prepared = const Value.absent(),
                 Value<bool> inSpellbook = const Value.absent(),
+                Value<String?> classId = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CharacterSpellsCompanion.insert(
                 id: id,
@@ -48871,6 +48946,7 @@ class $$CharacterSpellsTableTableManager
                 source: source,
                 prepared: prepared,
                 inSpellbook: inSpellbook,
+                classId: classId,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

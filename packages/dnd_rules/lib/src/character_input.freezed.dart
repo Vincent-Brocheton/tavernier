@@ -1751,7 +1751,8 @@ as bool,
 /// @nodoc
 mixin _$SpellsInput {
 
- List<String> get cantrips; List<String> get prepared; List<String> get spellbook;
+ List<String> get cantrips; List<String> get prepared; List<String> get spellbook;/// Classe d'un sort. Sans entrée : la première classe de lanceur.
+ Map<String, String> get classes;
 /// Create a copy of SpellsInput
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1765,20 +1766,20 @@ $SpellsInputCopyWith<SpellsInput> get copyWith => _$SpellsInputCopyWithImpl<Spel
 @override
 bool operator ==(Object other) {
   final _this = this as SpellsInput;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _this.cantrips)&&const DeepCollectionEquality().equals(other.prepared, _this.prepared)&&const DeepCollectionEquality().equals(other.spellbook, _this.spellbook));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _this.cantrips)&&const DeepCollectionEquality().equals(other.prepared, _this.prepared)&&const DeepCollectionEquality().equals(other.spellbook, _this.spellbook)&&const DeepCollectionEquality().equals(other.classes, _this.classes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as SpellsInput;
-  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.cantrips),const DeepCollectionEquality().hash(_this.prepared),const DeepCollectionEquality().hash(_this.spellbook));
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.cantrips),const DeepCollectionEquality().hash(_this.prepared),const DeepCollectionEquality().hash(_this.spellbook),const DeepCollectionEquality().hash(_this.classes));
 }
 
 @override
 String toString() {
   final _this = this as SpellsInput;
-  return 'SpellsInput(cantrips: ${_this.cantrips}, prepared: ${_this.prepared}, spellbook: ${_this.spellbook})';
+  return 'SpellsInput(cantrips: ${_this.cantrips}, prepared: ${_this.prepared}, spellbook: ${_this.spellbook}, classes: ${_this.classes})';
 }
 
 
@@ -1789,7 +1790,7 @@ abstract mixin class $SpellsInputCopyWith<$Res>  {
   factory $SpellsInputCopyWith(SpellsInput value, $Res Function(SpellsInput) _then) = _$SpellsInputCopyWithImpl;
 @useResult
 $Res call({
- List<String> cantrips, List<String> prepared, List<String> spellbook
+ List<String> cantrips, List<String> prepared, List<String> spellbook, Map<String, String> classes
 });
 
 
@@ -1806,12 +1807,13 @@ class _$SpellsInputCopyWithImpl<$Res>
 
 /// Create a copy of SpellsInput
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,Object? classes = null,}) {
   return _then(SpellsInput(
 cantrips: null == cantrips ? _self.cantrips : cantrips // ignore: cast_nullable_to_non_nullable
 as List<String>,prepared: null == prepared ? _self.prepared : prepared // ignore: cast_nullable_to_non_nullable
 as List<String>,spellbook: null == spellbook ? _self.spellbook : spellbook // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as List<String>,classes: null == classes ? _self.classes : classes // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,
   ));
 }
 
@@ -1896,10 +1898,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook,  Map<String, String> classes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SpellsInput() when $default != null:
-return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+return $default(_that.cantrips,_that.prepared,_that.spellbook,_that.classes);case _:
   return orElse();
 
 }
@@ -1917,10 +1919,10 @@ return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook,  Map<String, String> classes)  $default,) {final _that = this;
 switch (_that) {
 case _SpellsInput():
-return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+return $default(_that.cantrips,_that.prepared,_that.spellbook,_that.classes);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1937,10 +1939,10 @@ return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> cantrips,  List<String> prepared,  List<String> spellbook,  Map<String, String> classes)?  $default,) {final _that = this;
 switch (_that) {
 case _SpellsInput() when $default != null:
-return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
+return $default(_that.cantrips,_that.prepared,_that.spellbook,_that.classes);case _:
   return null;
 
 }
@@ -1952,7 +1954,7 @@ return $default(_that.cantrips,_that.prepared,_that.spellbook);case _:
 @JsonSerializable()
 
 class _SpellsInput implements SpellsInput {
-  const _SpellsInput({ List<String> cantrips = const <String>[],  List<String> prepared = const <String>[],  List<String> spellbook = const <String>[]}): _cantrips = cantrips,_prepared = prepared,_spellbook = spellbook;
+  const _SpellsInput({ List<String> cantrips = const <String>[],  List<String> prepared = const <String>[],  List<String> spellbook = const <String>[],  Map<String, String> classes = const <String, String>{}}): _cantrips = cantrips,_prepared = prepared,_spellbook = spellbook,_classes = classes;
   factory _SpellsInput.fromJson(Map<String, dynamic> json) => _$SpellsInputFromJson(json);
 
  final  List<String> _cantrips;
@@ -1976,6 +1978,15 @@ class _SpellsInput implements SpellsInput {
   return EqualUnmodifiableListView(_spellbook);
 }
 
+/// Classe d'un sort. Sans entrée : la première classe de lanceur.
+ final  Map<String, String> _classes;
+/// Classe d'un sort. Sans entrée : la première classe de lanceur.
+@override@JsonKey() Map<String, String> get classes {
+  if (_classes is EqualUnmodifiableMapView) return _classes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_classes);
+}
+
 
 /// Create a copy of SpellsInput
 /// with the given fields replaced by the non-null parameter values.
@@ -1990,18 +2001,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _cantrips)&&const DeepCollectionEquality().equals(other.prepared, _prepared)&&const DeepCollectionEquality().equals(other.spellbook, _spellbook));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellsInput&&const DeepCollectionEquality().equals(other.cantrips, _cantrips)&&const DeepCollectionEquality().equals(other.prepared, _prepared)&&const DeepCollectionEquality().equals(other.spellbook, _spellbook)&&const DeepCollectionEquality().equals(other.classes, _classes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_cantrips),const DeepCollectionEquality().hash(_prepared),const DeepCollectionEquality().hash(_spellbook));
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_cantrips),const DeepCollectionEquality().hash(_prepared),const DeepCollectionEquality().hash(_spellbook),const DeepCollectionEquality().hash(_classes));
 }
 
 @override
 String toString() {
-    return 'SpellsInput(cantrips: $cantrips, prepared: $prepared, spellbook: $spellbook)';
+    return 'SpellsInput(cantrips: $cantrips, prepared: $prepared, spellbook: $spellbook, classes: $classes)';
 }
 
 
@@ -2012,7 +2023,7 @@ abstract mixin class _$SpellsInputCopyWith<$Res> implements $SpellsInputCopyWith
   factory _$SpellsInputCopyWith(_SpellsInput value, $Res Function(_SpellsInput) _then) = __$SpellsInputCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> cantrips, List<String> prepared, List<String> spellbook
+ List<String> cantrips, List<String> prepared, List<String> spellbook, Map<String, String> classes
 });
 
 
@@ -2029,12 +2040,13 @@ class __$SpellsInputCopyWithImpl<$Res>
 
 /// Create a copy of SpellsInput
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cantrips = null,Object? prepared = null,Object? spellbook = null,Object? classes = null,}) {
   return _then(_SpellsInput(
 cantrips: null == cantrips ? _self._cantrips : cantrips // ignore: cast_nullable_to_non_nullable
 as List<String>,prepared: null == prepared ? _self._prepared : prepared // ignore: cast_nullable_to_non_nullable
 as List<String>,spellbook: null == spellbook ? _self._spellbook : spellbook // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as List<String>,classes: null == classes ? _self._classes : classes // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,
   ));
 }
 
