@@ -11,6 +11,7 @@ final class ChoiceOption {
     required this.expertise,
     required this.bonusCantrips,
     required this.spells,
+    this.featCategory,
   });
 
   /// Valeur à enregistrer dans `choices`.
@@ -25,6 +26,9 @@ final class ChoiceOption {
 
   /// Sorts que l'option accorde au niveau 1.
   final List<String> spells;
+
+  /// Catégorie du don que l'option accorde (Style de combat du Paladin).
+  final String? featCategory;
 }
 
 /// Un effet `choice` ouvert au niveau 1.
@@ -50,14 +54,18 @@ final class OpenChoice {
 
 bool _atLevelOne(Effect effect) => (effect.when['level'] as int? ?? 1) <= 1;
 
-/// Choix ouverts au niveau 1 par les entités [sourceIds].
+bool _reached(Effect effect, int level) =>
+    (effect.when['level'] as int? ?? 1) <= level;
+
+/// Choix ouverts au niveau [level] par les entités [sourceIds].
 List<OpenChoice> openChoices(
   ActiveContent content,
-  Iterable<String> sourceIds,
-) => [
+  Iterable<String> sourceIds, {
+  int level = 1,
+}) => [
   for (final id in sourceIds)
     for (final effect in content.entity(id)?.effects ?? const <Effect>[])
-      if (effect.op == 'choice' && _atLevelOne(effect))
+      if (effect.op == 'choice' && _reached(effect, level))
         OpenChoice(
           id: effect.args['id']! as String,
           sourceId: id,
@@ -97,6 +105,11 @@ List<ChoiceOption> _options(ActiveContent content, Effect choice) {
             )
             .fold(0, (sum, e) => sum + (e.args['count']! as int)),
         spells: _grantedBy(effects).toList(),
+        featCategory: effects
+            .where((e) => e.op == 'grant_feat')
+            .map((e) => e.args['category'] as String?)
+            .nonNulls
+            .firstOrNull,
       ),
     );
   }

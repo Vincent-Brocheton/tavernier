@@ -11,6 +11,7 @@
       "op": "choice",
       "id": "druid-elemental-fury",
       "count": 1,
+      "labels": ["Incantation puissante", "Attaques primitives"],
       "options": [
         [
           {

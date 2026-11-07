@@ -11,6 +11,7 @@
       "op": "choice",
       "id": "ranger-fighting-style",
       "count": 1,
+      "labels": ["Style de combat", "Combattant druidique"],
       "options": [
         [
           {

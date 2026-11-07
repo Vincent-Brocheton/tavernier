@@ -532,7 +532,7 @@ abstract class AppLocalizations {
   /// **'SRD 5.2.1'**
   String get sourceSrd;
 
-  /// Progression de l’assistant.
+  /// Montée de niveau.
   ///
   /// In fr, this message translates to:
   /// **'Étape {step} sur {total}'**
@@ -1494,6 +1494,162 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count} en réserve'**
   String inReserve(int count);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monter au niveau {level}'**
+  String levelUpTo(int level);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montée de niveau'**
+  String get levelUpTitle;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{cls} {from} → {to}'**
+  String levelFromTo(String cls, int from, int to);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'+{count} PV'**
+  String hitPointsGain(int count);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyenne du dé de vie et modificateur de Constitution.'**
+  String get hitPointsAverage;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitudes gagnées'**
+  String get featuresGained;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-classe'**
+  String get subclassTitle;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Nouvelle botte} other{{count} nouvelles bottes}}'**
+  String masteriesGained(int count);
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Amélioration de caractéristique ou autre don'**
+  String get featChoiceTitle;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Seuls les dons dont vous remplissez les conditions sont sélectionnables.'**
+  String get featChoiceHint;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'+2 à une'**
+  String get improvementTwo;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'+1 à deux'**
+  String get improvementOneAndOne;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qui change'**
+  String get whatChanges;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dés de vie'**
+  String get hitDiceLabel;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une sous-classe.'**
+  String get missingSubclass;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Faites les choix de ce niveau.'**
+  String get missingLevelChoice;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez votre nouvelle botte.'**
+  String get missingMastery;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez un don.'**
+  String get missingFeat;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez où porter le bonus.'**
+  String get missingFeatBonus;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau insuffisant'**
+  String get featBlockLevel;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique insuffisante'**
+  String get featBlockAbility;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitude requise manquante'**
+  String get featBlockFeature;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déjà obtenu · non répétable'**
+  String get featBlockNotRepeatable;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les nouveaux sorts arrivent dans une prochaine version : vos sorts ne changent pas à ce niveau.'**
+  String get spellsNotYet;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prêt à enregistrer'**
+  String get levelUpReady;
+
+  /// Montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Don accordé par ce niveau'**
+  String get featChoiceOther;
 }
 
 class _AppLocalizationsDelegate

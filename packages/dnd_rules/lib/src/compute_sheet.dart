@@ -53,17 +53,6 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       (input: c, data: data<ClassData>(c.classId, 'class_levels[$i].class_id')),
   ];
 
-  final abilities = {
-    for (final code in abilityCodes)
-      code: AbilityScore([
-        Contribution('base', character.baseScores.of(code)),
-        if (character.backgroundChoice.bonuses[code] case final bonus?
-            when bonus != 0)
-          Contribution(character.backgroundId, bonus),
-      ]),
-  };
-  int mod(String code) => abilities[code]!.modifier;
-
   final active = _activeEffects(
     character,
     content,
@@ -72,6 +61,20 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     level,
     errors,
   );
+  final abilities = {
+    for (final code in abilityCodes)
+      code: _abilityScore(
+        code,
+        character,
+        active.where(
+          (a) =>
+              a.effect.op == 'ability_bonus' &&
+              a.effect.args['ability'] == code,
+        ),
+      ),
+  };
+  int mod(String code) => abilities[code]!.modifier;
+
   final classLevels = {
     for (final c in character.classLevels) c.classId: c.level,
   };
@@ -391,6 +394,39 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
   );
 }
 
+/// Valeur d'une caractéristique : base, bonus d'Historique, puis `ability_bonus`
+/// plafonnés par leur `max`.
+AbilityScore _abilityScore(
+  String code,
+  CharacterInput character,
+  Iterable<_Active> bonuses,
+) {
+  final sources = [
+    Contribution('base', character.baseScores.of(code)),
+    if (character.backgroundChoice.bonuses[code] case final bonus?
+        when bonus != 0)
+      Contribution(character.backgroundId, bonus),
+  ];
+  for (final a in bonuses) {
+    final total = sources.fold(0, (sum, c) => sum + c.value);
+    final max = a.effect.args['max'] as int? ?? abilityScoreCap;
+    final room = max - total;
+    final value = a.effect.args['value']! as int;
+    if (room > 0) {
+      sources.add(Contribution(a.source, value < room ? value : room));
+    }
+  }
+  return AbilityScore(sources);
+}
+
+/// Rang de l'option dont les `ability_bonus` valent exactement [bonuses].
+int _optionOfBonuses(List<List<Effect>> options, Map<String, int> bonuses) =>
+    options.indexWhere((option) {
+      final grants = option.where((e) => e.op == 'ability_bonus');
+      return grants.length == bonuses.length &&
+          grants.every((e) => bonuses[e.args['ability']] == e.args['value']);
+    });
+
 /// Effets actifs : traits d'espèce, dons, aptitudes de classe atteintes,
 /// puis options retenues des effets `choice` (design §2 et §3). Un effet
 /// dont `when.level` dépasse son niveau n'est pas actif.
@@ -461,6 +497,21 @@ List<_Active> _activeEffects(
         );
       }
     }
+    final subclass = content.entity(c.input.subclassId ?? '')?.data;
+    for (final feature
+        in subclass is SubclassData ? subclass.features : const <ContentId>[]) {
+      final data = content.entity('$feature')?.data;
+      if (data is FeatureData && (data.level ?? 1) <= c.input.level) {
+        add(
+          '$feature',
+          'class',
+          effectsOf('$feature'),
+          c.input.level,
+          character.choices,
+          'choices',
+        );
+      }
+    }
   }
 
   // Un `choice` reçoit exactement `count` sélections, chacune désignant une
@@ -479,6 +530,27 @@ List<_Active> _activeEffects(
             Effect.fromJson(json! as Map<String, Object?>),
         ],
     ];
+    // Répartition d'une Amélioration de caractéristique, format [D1] :
+    // `{"str": 1, "con": 1}` à la place d'une liste de sélections.
+    final bonuses = {
+      for (final code in abilityCodes)
+        if (a.picks[code] case final int value) code: value,
+    };
+    if (bonuses.isNotEmpty) {
+      final index = _optionOfBonuses(options, bonuses);
+      if (index < 0) {
+        errors.add(
+          IntegrityError(
+            IntegrityRule.choice,
+            '${a.picksPath}.$id',
+            '${a.source} : répartition inconnue',
+          ),
+        );
+      } else {
+        add(a.source, a.origin, options[index], a.level, a.picks, a.picksPath);
+      }
+      continue;
+    }
     final labels = [
       for (final label in (a.effect.args['labels'] as List<Object?>?) ?? [])
         '$label',
@@ -583,14 +655,26 @@ List<IntegrityError> _checkFeats(
             (origin == 'class' && f.sourceType == 'class_level'))
           f.featId,
     ];
-    for (final a in active) {
-      if (a.origin != origin || a.effect.op != 'grant_feat') continue;
+    // Un don général accepte tout don : il passe après les autres, pour ne pas
+    // prendre le style de combat qu'une autre aptitude réclame.
+    final grants = active
+        .where((a) => a.origin == origin && a.effect.op == 'grant_feat')
+        .toList();
+    final ordered = [
+      ...grants.where((a) => a.effect.args['category'] != 'general'),
+      ...grants.where((a) => a.effect.args['category'] == 'general'),
+    ];
+    for (final a in ordered) {
       final grant = a.effect.args;
       final match = chosen.where((id) {
         final feat = content.entity(id)?.data;
+        // SRD, Amélioration de caractéristique : le don accordé peut être
+        // « un autre don de votre choix pour lequel vous remplissez les
+        // conditions ».
         return grant['feat'] == id ||
+            grant['category'] == 'general' && feat is FeatData ||
             (feat is FeatData &&
-                _categoryName(feat.category) == grant['category']);
+                featCategoryName(feat.category) == grant['category']);
       }).firstOrNull;
       if (match == null) {
         error(
@@ -608,10 +692,8 @@ List<IntegrityError> _checkFeats(
 }
 
 /// Nom JSON d'une catégorie de don (`fighting_style`…).
-String _categoryName(FeatCategory category) => category.name.replaceAllMapped(
-  RegExp('[A-Z]'),
-  (m) => '_${m[0]!.toLowerCase()}',
-);
+String featCategoryName(FeatCategory category) => category.name
+    .replaceAllMapped(RegExp('[A-Z]'), (m) => '_${m[0]!.toLowerCase()}');
 
 /// SRD p. 24, « Progression des personnages ».
 int _proficiencyBonus(int level) => 2 + (level - 1) ~/ 4;
@@ -680,7 +762,7 @@ List<IntegrityError> _checkBackgroundBonus(
           'caractéristique non proposée par l\'Historique',
         ),
     for (final e in bonuses)
-      if (abilities[e.key]!.value > 20)
+      if (character.baseScores.of(e.key) + e.value > 20)
         IntegrityError(
           IntegrityRule.backgroundBonus,
           'background_choice.bonuses.${e.key}',

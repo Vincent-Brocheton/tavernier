@@ -61,14 +61,27 @@ const _aldric = CharacterInput(
   ],
 );
 
-Future<void> _open(WidgetTester tester, double width, {String id = 'a'}) async {
+Future<void> _open(
+  WidgetTester tester,
+  double width, {
+  String id = 'a',
+  int level = 1,
+  String? subclass,
+}) async {
   tester.view.physicalSize = Size(width, 2000);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   final database = TavernierDatabase(NativeDatabase.memory());
   addTearDown(database.close);
   final store = CharacterStore(database);
-  await store.save('a', _aldric);
+  await store.save(
+    'a',
+    _aldric.copyWith(
+      classLevels: [
+        _aldric.classLevels.single.copyWith(level: level, subclassId: subclass),
+      ],
+    ),
+  );
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
@@ -204,6 +217,25 @@ void main() {
       await tester.tap(find.text('Fermer'));
       await tester.pumpAndSettle();
     }
+  });
+
+  testWidgets('aptitudes de sous-classe atteintes', (tester) async {
+    await _open(tester, 1440, level: 3, subclass: 'srd:subclass:champion');
+    await tester.tap(find.text('Aptitudes'));
+    await tester.pumpAndSettle();
+    expect(find.text('Champion'), findsOneWidget);
+    expect(find.text('Critique amélioré'), findsOneWidget);
+    expect(find.text('Survivant'), findsNothing);
+  });
+
+  testWidgets('bouton de montée de niveau', (tester) async {
+    await _open(tester, 390);
+    expect(find.text('Monter au niveau 2'), findsOneWidget);
+  });
+
+  testWidgets('niveau 20 : plus de bouton', (tester) async {
+    await _open(tester, 390, level: 20);
+    expect(find.textContaining('Monter au niveau'), findsNothing);
   });
 
   testWidgets('personnage introuvable', (tester) async {
