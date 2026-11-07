@@ -32,6 +32,7 @@
         "light"
       ]
     },
+    "prepared_change": "level_up_one",
     "subclass_level": 3,
     "spellcasting_ability": "srd:ability:charisma",
     "levels": [

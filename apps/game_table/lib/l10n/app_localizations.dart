@@ -2148,6 +2148,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Annuler'**
   String get cancelCast;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier mes sorts'**
+  String get changeSpells;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get saveSpells;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Après un Repos long, vous pouvez changer votre liste de sorts préparés. Un sort mineur se remplace quand vous gagnez un niveau, ou après un Repos long pour le Magicien.'**
+  String get changeRuleLongRestAll;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Après un Repos long, vous pouvez remplacer un sort préparé.'**
+  String get changeRuleLongRestOne;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quand vous gagnez un niveau, vous pouvez remplacer un sort préparé et un sort mineur.'**
+  String get changeRuleLevelUp;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Grimoire : {count, plural, =1{1 sort} other{{count} sorts}}'**
+  String spellbookCount(int count);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Copier un sort'**
+  String get copySpellAction;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Copier'**
+  String get copySpellConfirm;
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{hours} heures et {gold} po par niveau de sort.'**
+  String copySpellRule(int hours, int gold);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{level} · {gold} po'**
+  String copySpellLevel(String level, int gold);
+
+  /// Onglet Sorts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans emplacement ({left, plural, =1{1 restant} other{{left} restants}})'**
+  String castFree(int left);
 }
 
 class _AppLocalizationsDelegate

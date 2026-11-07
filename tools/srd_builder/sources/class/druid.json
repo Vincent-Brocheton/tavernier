@@ -36,6 +36,7 @@
         "shield"
       ]
     },
+    "prepared_change": "long_rest_all",
     "subclass_level": 3,
     "tool_proficiencies": [
       "srd:tool:herbalism-kit"

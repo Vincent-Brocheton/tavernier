@@ -3,6 +3,7 @@ import 'package:dnd_content/dnd_content.dart';
 import 'active_content.dart';
 import 'character_input.dart';
 import 'computed_sheet.dart';
+import 'creation_choices.dart';
 import 'creation_rules.dart';
 
 const abilityCodes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
@@ -546,6 +547,15 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         if (a.effect.args['sense'] == 'darkvision')
           a.effect.args['range']! as int,
     ].fold(0, (best, range) => range > best ? range : best),
+    freeCasts: {
+      for (final a in ofOp('grant_spell'))
+        if (a.effect.args['free_casts'] case final Map<String, Object?> casts)
+          a.effect.args['spell']! as String: resolve(casts['count'], a.level),
+      // Initié à la magie : sans effet dans le pack, ses choix sont libres.
+      for (final feat in character.feats)
+        if (feat.featId == magicInitiateFeat)
+          if (feat.choices?['level_1_spell'] case final String spell) spell: 1,
+    },
     spellcasting: spellcasting,
     casterLevel: casterLevel,
     spellSlots: switch (casterLevel) {

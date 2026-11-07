@@ -1288,4 +1288,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cancelCast => 'Annuler';
+
+  @override
+  String get changeSpells => 'Modifier mes sorts';
+
+  @override
+  String get saveSpells => 'Enregistrer';
+
+  @override
+  String get changeRuleLongRestAll =>
+      'Après un Repos long, vous pouvez changer votre liste de sorts préparés. Un sort mineur se remplace quand vous gagnez un niveau, ou après un Repos long pour le Magicien.';
+
+  @override
+  String get changeRuleLongRestOne =>
+      'Après un Repos long, vous pouvez remplacer un sort préparé.';
+
+  @override
+  String get changeRuleLevelUp =>
+      'Quand vous gagnez un niveau, vous pouvez remplacer un sort préparé et un sort mineur.';
+
+  @override
+  String spellbookCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sorts',
+      one: '1 sort',
+    );
+    return 'Grimoire : $_temp0';
+  }
+
+  @override
+  String get copySpellAction => 'Copier un sort';
+
+  @override
+  String get copySpellConfirm => 'Copier';
+
+  @override
+  String copySpellRule(int hours, int gold) {
+    return '$hours heures et $gold po par niveau de sort.';
+  }
+
+  @override
+  String copySpellLevel(String level, int gold) {
+    return '$level · $gold po';
+  }
+
+  @override
+  String castFree(int left) {
+    String _temp0 = intl.Intl.pluralLogic(
+      left,
+      locale: localeName,
+      other: '$left restants',
+      one: '1 restant',
+    );
+    return 'Sans emplacement ($_temp0)';
+  }
 }

@@ -5,6 +5,9 @@ import 'computed_sheet.dart';
 /// Clé de `PlayState.used` pour les emplacements du niveau [level].
 String slotResource(int level) => 'spell-slot:$level';
 
+/// Clé de `PlayState.used` pour les lancers gratuits de [spellId].
+String freeCastResource(String spellId) => 'free-cast:$spellId';
+
 /// Clé de `PlayState.used` pour les emplacements de pacte.
 const pactSlotResource = 'pact-slot';
 
@@ -41,19 +44,32 @@ final class CastOption {
   final bool ritual;
 
   bool get pact => resource == pactSlotResource;
+  bool get free => resource?.startsWith('free-cast:') ?? false;
 }
 
 /// Manières de lancer [spell] : un sort mineur ne dépense rien, un rituel peut
 /// s'en passer, sinon tout emplacement de son niveau ou plus. Les emplacements
 /// de pacte et les autres servent aux sorts de toutes les classes (SRD p. 27).
+/// [spellId] donne accès aux lancers gratuits du sort.
 List<CastOption> castOptions(
   SpellData spell,
   ComputedSheet sheet,
-  PlayState state,
-) {
+  PlayState state, {
+  String? spellId,
+}) {
   if (spell.level == 0) return const [CastOption(level: 0, left: 0)];
   final pact = sheet.pactMagic;
+  final free = spellId == null
+      ? 0
+      : (sheet.freeCasts[spellId] ?? 0) -
+            state.usedOf(freeCastResource(spellId));
   return [
+    if (free > 0)
+      CastOption(
+        level: spell.level,
+        left: free,
+        resource: freeCastResource(spellId!),
+      ),
     for (final (i, total) in sheet.spellSlots.indexed)
       if (i + 1 >= spell.level && total > state.usedOf(slotResource(i + 1)))
         CastOption(

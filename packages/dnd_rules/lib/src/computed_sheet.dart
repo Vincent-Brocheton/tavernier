@@ -182,6 +182,7 @@ final class ComputedSheet {
     required this.sneakAttack,
     required this.attunedCount,
     required this.darkvisionFeet,
+    required this.freeCasts,
     required this.spellcasting,
     required this.casterLevel,
     required this.spellSlots,
@@ -240,6 +241,9 @@ final class ComputedSheet {
 
   /// Portée de la vision dans le noir ; 0 sans elle.
   final int darkvisionFeet;
+
+  /// Lancers sans emplacement, par sort.
+  final Map<String, int> freeCasts;
 
   /// Valeurs d'incantation, par classe de lanceur.
   final Map<String, ClassCasting> spellcasting;
