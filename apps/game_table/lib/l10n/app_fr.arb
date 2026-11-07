@@ -2304,5 +2304,42 @@
         "type": "int"
       }
     }
+  },
+  "suggest": "Suggérer",
+  "@suggest": {
+    "description": "Suggestions."
+  },
+  "suggestionApplied": "Suggestion appliquée, modifiable",
+  "@suggestionApplied": {
+    "description": "Suggestions."
+  },
+  "suggestScoresReason": "{first} en tête, puis {second}, selon les valeurs standard de votre classe.",
+  "@suggestScoresReason": {
+    "description": "Suggestions.",
+    "placeholders": {
+      "first": {
+        "type": "String"
+      },
+      "second": {
+        "type": "String"
+      }
+    }
+  },
+  "suggestSkillsReason": "Les compétences de votre caractéristique principale, celles où vous brillez d’emblée.",
+  "@suggestSkillsReason": {
+    "description": "Suggestions."
+  },
+  "suggestMasteriesReason": "Les armes de votre équipement de départ d’abord.",
+  "@suggestMasteriesReason": {
+    "description": "Suggestions."
+  },
+  "suggestImprovementReason": "Augmenter {abilities} renforce ce que fait votre classe.",
+  "@suggestImprovementReason": {
+    "description": "Suggestions.",
+    "placeholders": {
+      "abilities": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -78,6 +78,43 @@ class CardGrid extends StatelessWidget {
 }
 
 /// Ligne « libellé / valeur » d'un panneau de détail.
+/// Bouton « Suggérer » [J11] : rien ne s'applique sans lui, et la raison
+/// reste affichée sous le bouton. Le choix reste modifiable.
+class SuggestButton extends StatefulWidget {
+  const SuggestButton({super.key, required this.onApply});
+
+  /// Applique la suggestion et rend sa raison.
+  final String Function() onApply;
+
+  @override
+  State<SuggestButton> createState() => _SuggestButtonState();
+}
+
+class _SuggestButtonState extends State<SuggestButton> {
+  String? _reason;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        OutlinedButton(
+          onPressed: () => setState(() => _reason = widget.onApply()),
+          child: Text(l10n.suggest),
+        ),
+        if (_reason case final reason?) ...[
+          SizedBox(height: AppSpacing.xxs),
+          Text(l10n.suggestionApplied, style: text.labelMedium),
+          Text(reason, style: text.bodySmall),
+        ],
+      ],
+    );
+  }
+}
+
 class DetailRow extends StatelessWidget {
   const DetailRow(this.label, this.value, {super.key});
 

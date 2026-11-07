@@ -45,6 +45,33 @@ class AbilitiesStep extends ConsumerWidget {
             ),
             SizedBox(height: AppSpacing.md),
           ],
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SuggestButton(
+              onApply: () {
+                final id = draft.classId!;
+                final scores = suggestedScores(
+                  id,
+                  content.entity(id)!.data as ClassData,
+                );
+                final top = abilityCodes.toList()
+                  ..sort((a, b) => scores[b]!.compareTo(scores[a]!));
+                ref
+                    .read(creationProvider.notifier)
+                    .update(
+                      (d) => d.withSuggestedScores(
+                        scores,
+                        suggestedBonuses(scores, eligible),
+                      ),
+                    );
+                return l10n.suggestScoresReason(
+                  _name(top.first),
+                  _name(top[1]),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: AppSpacing.sm),
           _Section(
             child: _PointBuy(draft: draft, name: _name),
           ),

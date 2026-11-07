@@ -1540,4 +1540,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String consumableResult(int before, int after, int max, int from, int to) {
     return 'PV $before → $after / $max · quantité $from → $to';
   }
+
+  @override
+  String get suggest => 'Suggérer';
+
+  @override
+  String get suggestionApplied => 'Suggestion appliquée, modifiable';
+
+  @override
+  String suggestScoresReason(String first, String second) {
+    return '$first en tête, puis $second, selon les valeurs standard de votre classe.';
+  }
+
+  @override
+  String get suggestSkillsReason =>
+      'Les compétences de votre caractéristique principale, celles où vous brillez d’emblée.';
+
+  @override
+  String get suggestMasteriesReason =>
+      'Les armes de votre équipement de départ d’abord.';
+
+  @override
+  String suggestImprovementReason(String abilities) {
+    return 'Augmenter $abilities renforce ce que fait votre classe.';
+  }
 }

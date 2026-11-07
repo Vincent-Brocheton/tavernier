@@ -755,6 +755,40 @@ class _WizardState extends ConsumerState<_Wizard> {
       ),
       Text(l10n.featChoiceHint, style: text.bodySmall),
       SizedBox(height: AppSpacing.xs),
+      if (category == 'general' &&
+          featsForCategory(
+            _content,
+            category,
+          ).any((f) => '${f.id}' == abilityScoreImprovementFeat)) ...[
+        SuggestButton(
+          onApply: () {
+            final picks = suggestedImprovement(
+              before,
+              _content.entity(_classId)!.data as ClassData,
+            );
+            final mode = picks.length == 1
+                ? ImprovementMode.two
+                : ImprovementMode.oneAndOne;
+            _update((d) {
+              var next = d
+                  .selectFeat(abilityScoreImprovementFeat)
+                  .selectMode(mode);
+              for (final code in picks) {
+                if (!next.bonuses.contains(code)) {
+                  next = next.toggleBonus(code, picks.length);
+                }
+              }
+              return next;
+            });
+            return l10n.suggestImprovementReason(
+              picks
+                  .map((c) => namesOf(_content, [abilityIdByCode[c]!]))
+                  .join(', '),
+            );
+          },
+        ),
+        SizedBox(height: AppSpacing.xs),
+      ],
       CardGrid(
         minWidth: 260,
         children: [
