@@ -29,7 +29,7 @@ class StatTile extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(AppSpacing.xs),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(value, style: AppTypography.numeric(text.titleLarge!)),
               Text(label, style: text.bodySmall, textAlign: TextAlign.center),
@@ -81,7 +81,7 @@ class AbilityTile extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(AppSpacing.xs),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(label, style: text.labelMedium),
                 Text(modifier, style: AppTypography.numeric(text.titleLarge!)),
@@ -106,6 +106,46 @@ class AbilityTile extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Pastilles d'une ressource : pleine si disponible (COMPOSANTS §2.16).
+class ResourcePips extends StatelessWidget {
+  const ResourcePips({
+    super.key,
+    required this.total,
+    required this.available,
+    required this.semanticLabel,
+  });
+
+  final int total;
+  final int available;
+
+  /// « 2 utilisations sur 3 ».
+  final String semanticLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+    return Semantics(
+      label: semanticLabel,
+      excludeSemantics: true,
+      child: Wrap(
+        spacing: AppSpacing.xxs,
+        children: [
+          for (var i = 0; i < total; i++)
+            Container(
+              width: 16,
+              height: 16,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: i < available ? color : null,
+                border: Border.all(color: color, width: 2),
+              ),
+            ),
+        ],
       ),
     );
   }

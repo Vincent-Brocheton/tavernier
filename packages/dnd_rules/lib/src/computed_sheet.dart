@@ -49,6 +49,7 @@ final class Attack {
   const Attack({
     required this.weaponId,
     required this.attackBonus,
+    this.sources = const [],
     required this.damage,
     required this.damageType,
     this.rangeFeet,
@@ -58,6 +59,9 @@ final class Attack {
   /// Identifiant de l'arme, ou `unarmed`.
   final String weaponId;
   final int attackBonus;
+
+  /// Décomposition du bonus d'attaque.
+  final List<Contribution> sources;
 
   /// Dés et modificateur, ex. `1d8+3` ; un nombre pour les mains nues.
   final String damage;

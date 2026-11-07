@@ -83,6 +83,26 @@ void main() {
       expect(sheet.speed.value, sheet.speedFeet);
     });
 
+    test('chaque attaque : la somme des contributions égale le bonus', () {
+      for (final attack in _sheet().attacks) {
+        expect(
+          attack.sources.fold(0, (sum, c) => sum + c.value),
+          attack.attackBonus,
+          reason: attack.weaponId,
+        );
+      }
+    });
+
+    test('épée longue d’Aldric : Force et maîtrise', () {
+      final sword = _sheet().attacks.firstWhere(
+        (a) => a.weaponId == 'srd:weapon:longsword',
+      );
+      expect(sword.sources, const [
+        Contribution('str', 3),
+        Contribution('proficiency', 2),
+      ]);
+    });
+
     test('Athlétisme d’Aldric : Force et maîtrise', () {
       expect(_sheet().skillBreakdown['athletics']!.sources, const [
         Contribution('str', 3),

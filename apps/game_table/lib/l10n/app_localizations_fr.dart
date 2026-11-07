@@ -134,7 +134,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get searchClass => 'Rechercher une classe';
 
   @override
-  String get filterAll => 'Toutes';
+  String get filterAll => 'Tout';
 
   @override
   String get filterMartial => 'Martiales';
@@ -809,5 +809,49 @@ class AppLocalizationsFr extends AppLocalizations {
     String save,
   ) {
     return '$ability $score, modificateur $modifier, jet de sauvegarde $save';
+  }
+
+  @override
+  String get resourcesTitle => 'Ressources';
+
+  @override
+  String get toHit => 'toucher';
+
+  @override
+  String get damageLabel => 'dégâts';
+
+  @override
+  String get categoryAttack => 'Attaque';
+
+  @override
+  String get rechargeShortRest => 'repos court';
+
+  @override
+  String get rechargeLongRest => 'repos long';
+
+  @override
+  String get filterWithUses => 'Avec utilisations';
+
+  @override
+  String get filterFeats => 'Dons';
+
+  @override
+  String usesOf(int available, int total) {
+    return '$available utilisations sur $total';
+  }
+
+  @override
+  String masteriesCount(int chosen, int slots) {
+    return 'Bottes d’arme $chosen / $slots';
+  }
+
+  @override
+  String masteryOn(String name) {
+    return 'Botte : $name';
+  }
+
+  @override
+  String inReserve(int count) {
+    return '$count en réserve';
   }
 }

@@ -10,7 +10,6 @@ Widget _app(Widget child) => MaterialApp(
 
 Widget _ability({required bool proficient, VoidCallback? onTap}) => SizedBox(
   width: 120,
-  height: 140,
   child: AbilityTile(
     label: 'FOR',
     modifier: '+3',
@@ -66,6 +65,32 @@ void main() {
       await tester.pumpWidget(_app(_ability(proficient: false)));
       expect(find.byIcon(Icons.radio_button_unchecked), findsOneWidget);
     });
+  });
+
+  testWidgets('ResourcePips : pleines et vides, annoncées', (tester) async {
+    final handle = tester.ensureSemantics();
+    await tester.pumpWidget(
+      _app(
+        const ResourcePips(
+          total: 3,
+          available: 2,
+          semanticLabel: '2 utilisations sur 3',
+        ),
+      ),
+    );
+    final pips = tester.widgetList<Container>(
+      find.descendant(
+        of: find.byType(ResourcePips),
+        matching: find.byType(Container),
+      ),
+    );
+    expect(pips, hasLength(3));
+    expect(
+      pips.where((p) => (p.decoration! as BoxDecoration).color != null),
+      hasLength(2),
+    );
+    expect(find.bySemanticsLabel('2 utilisations sur 3'), findsOneWidget);
+    handle.dispose();
   });
 
   testWidgets('StatTile : valeur, libellé, toucher', (tester) async {

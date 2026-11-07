@@ -160,9 +160,9 @@
   "@searchClass": {
     "description": "Champ de recherche."
   },
-  "filterAll": "Toutes",
+  "filterAll": "Tout",
   "@filterAll": {
-    "description": "Filtre de classes."
+    "description": "Fiche : onglets Combat et Aptitudes."
   },
   "filterMartial": "Martiales",
   "@filterMartial": {
@@ -1181,6 +1181,80 @@
       },
       "save": {
         "type": "String"
+      }
+    }
+  },
+  "resourcesTitle": "Ressources",
+  "@resourcesTitle": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "toHit": "toucher",
+  "@toHit": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "damageLabel": "dégâts",
+  "@damageLabel": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "categoryAttack": "Attaque",
+  "@categoryAttack": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "rechargeShortRest": "repos court",
+  "@rechargeShortRest": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "rechargeLongRest": "repos long",
+  "@rechargeLongRest": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "filterWithUses": "Avec utilisations",
+  "@filterWithUses": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "filterFeats": "Dons",
+  "@filterFeats": {
+    "description": "Fiche : onglets Combat et Aptitudes."
+  },
+  "usesOf": "{available} utilisations sur {total}",
+  "@usesOf": {
+    "description": "Fiche : onglets Combat et Aptitudes.",
+    "placeholders": {
+      "available": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "masteriesCount": "Bottes d’arme {chosen} / {slots}",
+  "@masteriesCount": {
+    "description": "Fiche : onglets Combat et Aptitudes.",
+    "placeholders": {
+      "chosen": {
+        "type": "int"
+      },
+      "slots": {
+        "type": "int"
+      }
+    }
+  },
+  "masteryOn": "Botte : {name}",
+  "@masteryOn": {
+    "description": "Fiche : onglets Combat et Aptitudes.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "inReserve": "{count} en réserve",
+  "@inReserve": {
+    "description": "Fiche : onglets Combat et Aptitudes.",
+    "placeholders": {
+      "count": {
+        "type": "int"
       }
     }
   }

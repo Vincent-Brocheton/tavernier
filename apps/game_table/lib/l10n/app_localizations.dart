@@ -334,10 +334,10 @@ abstract class AppLocalizations {
   /// **'Rechercher une classe'**
   String get searchClass;
 
-  /// Filtre de classes.
+  /// Fiche : onglets Combat et Aptitudes.
   ///
   /// In fr, this message translates to:
-  /// **'Toutes'**
+  /// **'Tout'**
   String get filterAll;
 
   /// Filtre de classes.
@@ -1422,6 +1422,78 @@ abstract class AppLocalizations {
     String modifier,
     String save,
   );
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ressources'**
+  String get resourcesTitle;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'toucher'**
+  String get toHit;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'dégâts'**
+  String get damageLabel;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque'**
+  String get categoryAttack;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'repos court'**
+  String get rechargeShortRest;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'repos long'**
+  String get rechargeLongRest;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avec utilisations'**
+  String get filterWithUses;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dons'**
+  String get filterFeats;
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{available} utilisations sur {total}'**
+  String usesOf(int available, int total);
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bottes d’arme {chosen} / {slots}'**
+  String masteriesCount(int chosen, int slots);
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Botte : {name}'**
+  String masteryOn(String name);
+
+  /// Fiche : onglets Combat et Aptitudes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} en réserve'**
+  String inReserve(int count);
 }
 
 class _AppLocalizationsDelegate

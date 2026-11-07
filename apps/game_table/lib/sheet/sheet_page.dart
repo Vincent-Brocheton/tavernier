@@ -9,6 +9,8 @@ import '../creation/creation_providers.dart';
 import '../creation/details_step.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import 'combat_tab.dart';
+import 'features_tab.dart';
 import 'sheet_breakdowns.dart';
 
 /// Personnage enregistré, relu à l'ouverture de la fiche.
@@ -143,10 +145,14 @@ class _Sheet extends StatelessWidget {
               children: [
                 _MainTab(content: content, sheet: sheet),
                 _SkillsTab(content: content, sheet: sheet),
+                CombatTab(content: content, character: character, sheet: sheet),
                 soon,
                 soon,
-                soon,
-                soon,
+                FeaturesTab(
+                  content: content,
+                  character: character,
+                  sheet: sheet,
+                ),
                 soon,
               ],
             ),
@@ -171,7 +177,6 @@ class _MainTab extends StatelessWidget {
     void open(Widget view) => showAdaptiveSheet(context, view);
     Widget stat(String value, String label, Widget Function() view) => SizedBox(
       width: 104,
-      height: 88,
       child: StatTile(value: value, label: label, onTap: () => open(view())),
     );
 
@@ -227,7 +232,6 @@ class _MainTab extends StatelessWidget {
               for (final code in abilityCodes)
                 SizedBox(
                   width: 104,
-                  height: 112,
                   child: AbilityTile(
                     label: abbreviation(l10n, code),
                     modifier: formatSigned(sheet.abilities[code]!.modifier),
