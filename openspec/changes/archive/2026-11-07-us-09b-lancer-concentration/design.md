@@ -16,4 +16,4 @@
 
 ## Risques
 
-- **Emplacements sans retour :** tant qu'US-10 n'est pas livrée, rien ne les récupère.
+- **Emplacements sans retour :** tant qu'US-11 n'est pas livrée, rien ne les récupère.

@@ -31,6 +31,6 @@ Aucune.
 - `apps/game_table/lib/sheet/` : onglet Sorts, ARB.
 
 **Hors périmètre :**
-- **Moment du changement :** les repos arrivent avec US-10. L'écran rappelle la règle (repos long ou gain de niveau) sans la vérifier.
-- **Récupérer les lancers gratuits :** US-10, avec les emplacements.
+- **Moment du changement :** les repos arrivent avec US-11. L'écran rappelle la règle (repos long ou gain de niveau) sans la vérifier.
+- **Récupérer les lancers gratuits :** US-11, avec les emplacements.
 - **Copier tout le grimoire dans un autre :** aucun écran ne gère de second grimoire.

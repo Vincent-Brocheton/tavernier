@@ -283,3 +283,10 @@ Le bloc `multiclass` SHALL pouvoir porter `caster_divisor` : la part des niveaux
 #### Scenario: Pack SRD
 - **WHEN** le pack SRD est lu
 - **THEN** le Clerc vaut 1, le Paladin 2 et l'Occultiste 0
+
+### Requirement: Changement des sorts d'une classe
+Une classe SHALL pouvoir porter `prepared_change`.
+
+#### Scenario: Pack SRD
+- **WHEN** le pack SRD est lu
+- **THEN** le Clerc vaut `long_rest_all`, le Paladin `long_rest_one` et le Barde `level_up_one`
