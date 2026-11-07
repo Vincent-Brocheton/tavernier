@@ -290,3 +290,14 @@ Une classe SHALL pouvoir porter `prepared_change`.
 #### Scenario: Pack SRD
 - **WHEN** le pack SRD est lu
 - **THEN** le Clerc vaut `long_rest_all`, le Paladin `long_rest_one` et le Barde `level_up_one`
+
+### Requirement: Termes de règles
+Le pack SHALL pouvoir porter des entités `rule`, avec un texte obligatoire.
+
+#### Scenario: Pack SRD
+- **WHEN** le pack SRD est lu
+- **THEN** il porte les six termes du glossaire
+
+#### Scenario: Sans texte
+- **WHEN** une entité `rule` n'a pas de texte
+- **THEN** elle est refusée
