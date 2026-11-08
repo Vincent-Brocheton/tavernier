@@ -3429,11 +3429,11 @@ class TableMember extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  late final GeneratedColumn<int> joinedAt = GeneratedColumn<int>(
+  late final GeneratedColumn<String> joinedAt = GeneratedColumn<String>(
     'joined_at',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -3498,11 +3498,11 @@ class TableInvite extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL UNIQUE',
   );
-  late final GeneratedColumn<int> expiresAt = GeneratedColumn<int>(
+  late final GeneratedColumn<String> expiresAt = GeneratedColumn<String>(
     'expires_at',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -4758,11 +4758,11 @@ class CharacterChangeLog extends Table with TableInfo {
     requiredDuringInsert: false,
     $customConstraints: 'NULL',
   );
-  late final GeneratedColumn<int> timestamp = GeneratedColumn<int>(
+  late final GeneratedColumn<String> timestamp = GeneratedColumn<String>(
     'timestamp',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -5047,11 +5047,11 @@ class Session extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
   );
-  late final GeneratedColumn<int> date = GeneratedColumn<int>(
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
     'date',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -6075,4 +6075,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   ]);
   @override
   int get schemaVersion => 1;
+  @override
+  DriftDatabaseOptions get options =>
+      const DriftDatabaseOptions(storeDateTimeAsText: true);
 }

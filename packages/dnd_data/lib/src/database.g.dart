@@ -27980,6 +27980,9 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
       result: [TableUpdate('note', kind: UpdateKind.delete)],
     ),
   ]);
+  @override
+  DriftDatabaseOptions get options =>
+      const DriftDatabaseOptions(storeDateTimeAsText: true);
 }
 
 typedef $ContentSearchCreateCompanionBuilder = ContentSearchCompanion Function({

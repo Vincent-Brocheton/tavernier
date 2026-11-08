@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 
 import 'content_tables.dart';
 import 'game_tables.dart';
+import 'powersync.dart';
 
 part 'database.g.dart';
 
@@ -74,13 +75,27 @@ part 'database.g.dart';
   include: {'content_search.drift'},
 )
 class TavernierDatabase extends _$TavernierDatabase {
-  TavernierDatabase(super.executor);
+  /// Avec [syncedTablesByPowerSync], les tables synchronisées existent déjà
+  /// (vues de PowerSync) : la migration ne les crée pas.
+  TavernierDatabase(super.executor, {this.syncedTablesByPowerSync = false});
+
+  final bool syncedTablesByPowerSync;
 
   @override
   int get schemaVersion => 1;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
+    onCreate: (m) async {
+      for (final entity in allSchemaEntities) {
+        if (syncedTablesByPowerSync &&
+            entity is TableInfo &&
+            syncedTables.contains(entity.actualTableName)) {
+          continue;
+        }
+        await m.create(entity);
+      }
+    },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
     },

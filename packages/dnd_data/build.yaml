@@ -7,6 +7,8 @@ targets:
             tavernier: lib/src/database.dart
           schema_dir: drift_schemas/
           test_dir: test/drift/
+          # PowerSync transporte les timestamptz en texte ISO 8601 (T-05).
+          store_date_time_values_as_text: true
           sql:
             dialect: sqlite
             options:
