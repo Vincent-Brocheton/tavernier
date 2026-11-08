@@ -87,7 +87,7 @@ jobs:
   # Base locale sur le Web (SQLite WASM) : spec local-database, US-04 et
   # T-01 (stockage OPFS ou IndexedDB, 10 000 entités).
   supabase:
-    name: Base Supabase (schéma et droits)
+    name: Base Supabase (schéma, droits, synchronisation)
     # Une étiquette ne relance la CI que si c'est « update-goldens ».
     if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: ubuntu-latest
@@ -108,6 +108,30 @@ jobs:
       - name: Tests des droits
         working-directory: backend
         run: supabase test db
+      # PowerSync auto-hébergé sur le réseau Docker de Supabase local (T-05) :
+      # rôle de réplication, base de stockage des buckets, puis le service.
+      - name: Démarrer PowerSync
+        working-directory: backend
+        run: |
+          eval "$(supabase status -o env | grep -E '^JWT_SECRET=')"
+          docker exec -i supabase_db_tavernier psql -U supabase_admin -d postgres -v ON_ERROR_STOP=1 <<'SQL'
+          create role powersync_role with replication bypassrls login password 'powersync';
+          grant select on all tables in schema public to powersync_role;
+          create database powersync_storage owner powersync_role;
+          SQL
+          docker run -d --name powersync --network supabase_network_tavernier             -p 8080:8080 -v "$PWD/powersync:/config"             -e POWERSYNC_CONFIG_PATH=/config/service.yaml             -e PS_DATA_SOURCE_URI=postgresql://powersync_role:powersync@supabase_db_tavernier:5432/postgres             -e PS_STORAGE_URI=postgresql://powersync_role:powersync@supabase_db_tavernier:5432/powersync_storage             -e PS_JWKS_URI=http://supabase_kong_tavernier:8000/auth/v1/.well-known/jwks.json             -e PS_SUPABASE_JWT_SECRET="$JWT_SECRET"             journeyapps/powersync-service:latest start -r unified
+          for _ in $(seq 60); do
+            curl -sf http://localhost:8080/probes/liveness > /dev/null && exit 0
+            sleep 2
+          done
+          docker logs powersync
+          exit 1
+      - name: Tests de synchronisation
+        working-directory: backend
+        run: bash powersync/tests/sync_test.sh
+      - name: Journal de PowerSync
+        if: failure()
+        run: docker logs powersync 2>&1 | tail -200
 
   supabase-deploy:
     name: Migrations Supabase (projet hébergé)

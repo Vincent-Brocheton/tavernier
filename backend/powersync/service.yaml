@@ -1,0 +1,30 @@
+# Service PowerSync auto-hébergé (T-05). Les valeurs viennent de l'environnement :
+#   PS_DATA_SOURCE_URI     base Supabase, rôle avec REPLICATION
+#   PS_STORAGE_URI         base de stockage des buckets (Postgres)
+#   PS_JWKS_URI            clés publiques de Supabase Auth
+#   PS_SUPABASE_JWT_SECRET secret des jetons HS256 (Supabase local)
+telemetry:
+  # Aucune analytique d'usage (cahier §1.3).
+  disable_telemetry_sharing: true
+
+replication:
+  connections:
+    - type: postgresql
+      uri: !env PS_DATA_SOURCE_URI
+      sslmode: disable
+
+storage:
+  type: postgresql
+  uri: !env PS_STORAGE_URI
+  sslmode: disable
+
+port: 8080
+
+sync_config:
+  path: sync-config.yaml
+
+client_auth:
+  supabase: true
+  jwks_uri: !env PS_JWKS_URI
+  supabase_jwt_secret: !env PS_SUPABASE_JWT_SECRET
+  audience: ["authenticated"]
