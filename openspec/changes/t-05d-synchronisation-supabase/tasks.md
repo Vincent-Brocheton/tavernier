@@ -10,4 +10,4 @@
 
 ## 3. Coût
 
-- [ ] 3.1 Estimation pour 1 000 utilisateurs
+- [x] 3.1 Estimation pour 1 000 utilisateurs
