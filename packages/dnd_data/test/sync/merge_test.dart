@@ -27,7 +27,7 @@ final class _Device {
   CharacterStore get store => CharacterStore(db);
 
   static Future<_Device> signedIn(String email) async {
-    final client = SupabaseClient(_url!, _anonKey!);
+    final client = _client();
     await client.auth.signInWithPassword(email: email, password: _password);
     final db = await powerSyncDatabase();
     return _Device._(db, (await db.powerSync)!, client);
@@ -46,10 +46,17 @@ final class _Device {
 
 const _password = 'mot-de-passe-de-test';
 
+/// Client sans stockage de session : flux direct, sans PKCE.
+SupabaseClient _client() => SupabaseClient(
+  _url!,
+  _anonKey!,
+  authOptions: const AuthClientOptions(authFlowType: AuthFlowType.implicit),
+);
+
 /// Compte neuf, propre à ce lancement.
 Future<String> _newAccount(String who) async {
   final email = '$who-${DateTime.now().microsecondsSinceEpoch}@test.local';
-  final client = SupabaseClient(_url!, _anonKey!);
+  final client = _client();
   await client.auth.signUp(email: email, password: _password);
   await client.dispose();
   return email;
