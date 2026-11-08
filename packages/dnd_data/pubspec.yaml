@@ -20,3 +20,4 @@ dependencies:
   powersync: 2.6.1
   sqlite3: ^3.8.0
   sqlite_async: 0.14.8
+  supabase: 2.16.5

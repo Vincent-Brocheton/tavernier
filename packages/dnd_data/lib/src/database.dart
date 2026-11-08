@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:powersync/powersync.dart' show PowerSyncDatabase;
 
 import 'content_tables.dart';
 import 'game_tables.dart';
@@ -77,20 +78,22 @@ part 'database.g.dart';
 class TavernierDatabase extends _$TavernierDatabase {
   /// Avec [syncedTablesByPowerSync], les tables synchronisées existent déjà
   /// (vues de PowerSync) : la migration ne les crée pas.
-  /// [onClose] ferme ce que la base ne possède pas (la base PowerSync).
+  /// [powerSync] : la base PowerSync sous-jacente, fermée avec celle-ci.
   TavernierDatabase(
     super.executor, {
     this.syncedTablesByPowerSync = false,
-    this._onClose,
+    this.powerSync,
   });
 
   final bool syncedTablesByPowerSync;
-  final Future<void> Function()? _onClose;
+
+  /// Base PowerSync, pour connecter ou déconnecter la synchronisation.
+  final Future<PowerSyncDatabase>? powerSync;
 
   @override
   Future<void> close() async {
     await super.close();
-    await _onClose?.call();
+    await (await powerSync)?.close();
   }
 
   @override

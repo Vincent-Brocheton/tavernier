@@ -8,3 +8,4 @@ export 'src/game_tables.dart';
 export 'src/ids.dart';
 export 'src/pack_store.dart';
 export 'src/powersync.dart';
+export 'src/supabase_connector.dart';

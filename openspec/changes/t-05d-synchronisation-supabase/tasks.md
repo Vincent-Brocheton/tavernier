@@ -5,7 +5,7 @@
 
 ## 2. Envoi
 
-- [ ] 2.1 Connecteur Supabase : jeton, envoi, booléens, propriétaire, erreurs définitives
+- [x] 2.1 Connecteur Supabase : jeton, envoi, booléens, propriétaire, erreurs définitives
 - [ ] 2.2 Test de fusion sur 3 appareils, dans le job « Base Supabase »
 
 ## 3. Coût
