@@ -94,7 +94,17 @@ Future<void> createAndReachLevel5(WidgetTester tester) async {
   await _next(tester);
 
   // Détails, puis enregistrement.
-  await tester.enterText(find.byType(TextFormField).first, m1Name);
+  // Sur le Web sans fenêtre, enterText n'atteint pas le champ : on écrit
+  // par le champ lui-même, comme le ferait le clavier.
+  m1LastAction = 'Nom';
+  final name = tester.widget<TextField>(
+    find.descendant(
+      of: find.byType(TextFormField).first,
+      matching: find.byType(TextField),
+    ),
+  );
+  name.controller!.text = m1Name;
+  name.onChanged!(m1Name);
   await tester.pumpAndSettle();
   await _next(tester);
   m1LastAction = 'Récapitulatif de création';
