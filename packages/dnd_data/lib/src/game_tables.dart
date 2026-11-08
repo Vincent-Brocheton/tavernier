@@ -41,10 +41,10 @@ class GameTables extends Table with IdKey {
   BoolColumn get archived => boolean().withDefault(const Constant(false))();
 }
 
-/// Ligne rattachée à une table de jeu, supprimée avec elle.
+/// Ligne rattachée à une table de jeu. Pas de clé étrangère locale : la
+/// table de jeu est une vue PowerSync (T-05) ; le serveur vérifie.
 mixin TableOwned on Table {
-  TextColumn get tableId =>
-      text().references(GameTables, #id, onDelete: KeyAction.cascade)();
+  TextColumn get tableId => text()();
 }
 
 @DataClassName('TableMemberRow')
@@ -101,11 +101,7 @@ class Characters extends Table with IdKey {
   String get tableName => 'character';
 
   /// `null` : personnage libre (§4.3).
-  TextColumn get tableId => text().nullable().references(
-    GameTables,
-    #id,
-    onDelete: KeyAction.setNull,
-  )();
+  TextColumn get tableId => text().nullable()();
   TextColumn get ownerUserId => text().nullable()();
 
   /// `pc` ou `npc_full`.
@@ -134,10 +130,10 @@ class Characters extends Table with IdKey {
   TextColumn get backstory => text().nullable()();
 }
 
-/// Ligne rattachée à un personnage, supprimée avec lui.
+/// Ligne rattachée à un personnage. Pas de clé étrangère locale (vue
+/// PowerSync) : `CharacterStore.delete` supprime le contenu avec la fiche.
 mixin CharacterOwned on Table {
-  TextColumn get characterId =>
-      text().references(Characters, #id, onDelete: KeyAction.cascade)();
+  TextColumn get characterId => text()();
 }
 
 @DataClassName('CharacterBaseScoreRow')
@@ -363,11 +359,7 @@ class Notes extends Table with IdKey {
   @override
   String get tableName => 'note';
   TextColumn get ownerUserId => text()();
-  TextColumn get tableId => text().nullable().references(
-    GameTables,
-    #id,
-    onDelete: KeyAction.cascade,
-  )();
+  TextColumn get tableId => text().nullable()();
 
   /// `table`, `session`, `npc` ou `encounter`.
   TextColumn get scope => text()();

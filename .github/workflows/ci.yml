@@ -180,7 +180,7 @@ jobs:
             args: >-
               --web-header=Cross-Origin-Opener-Policy=same-origin
               --web-header=Cross-Origin-Embedder-Policy=require-corp
-              --dart-define=T01_EXPECTED_STORAGE=opfs
+             
           - name: Chrome non isolé
             browser: chrome
             args: ""

@@ -1,29 +1,28 @@
 // Spec local-database : « Enregistrement d'un personnage ».
-import 'dart:convert';
-import 'dart:io';
-import 'dart:isolate';
 
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
+import 'package:drift/drift.dart' show Variable;
 import 'package:test/test.dart';
 
 import 'support.dart';
 
-/// Entrée d'Aldric niveau 1, fixture [D1] de dnd_rules.
-Map<String, Object?> _aldricJson() {
-  final file = File.fromUri(
-    Isolate.resolvePackageUriSync(Uri.parse('package:dnd_rules/'))!
-        .resolve('../test/fixtures/d1/aldric_n1.json'),
-  );
-  final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
-  return json['input']! as Map<String, Object?>;
+void main() {
+  // Mêmes tests sur des tables ordinaires et sur les vues de PowerSync, le
+  // moteur de l'app (spec local-database : « Base locale PowerSync »).
+  for (final (name, open) in [
+    ('tables', () async => memoryDatabase()),
+    ('PowerSync', powerSyncDatabase),
+  ]) {
+    group(name, () => _tests(open));
+  }
 }
 
-void main() {
+void _tests(Future<TavernierDatabase> Function() open) {
   late TavernierDatabase db;
   late CharacterStore store;
-  setUp(() {
-    db = memoryDatabase();
+  setUp(() async {
+    db = await open();
     store = CharacterStore(db);
   });
   tearDown(() => db.close());
@@ -31,7 +30,7 @@ void main() {
   group('état de jeu', () {
     late CharacterInput aldric;
     setUp(() async {
-      aldric = CharacterInput.fromJson(_aldricJson());
+      aldric = CharacterInput.fromJson(aldricJson());
       await store.save('a', aldric);
     });
 
@@ -89,7 +88,7 @@ void main() {
   });
 
   group('sorts, monnaie et détails', () {
-    final wizard = CharacterInput.fromJson(_aldricJson()).copyWith(
+    final wizard = CharacterInput.fromJson(aldricJson()).copyWith(
       spells: const SpellsInput(
         cantrips: ['srd:spell:light', 'srd:spell:mage-hand'],
         prepared: ['srd:spell:sleep', 'srd:spell:burning-hands'],
@@ -119,23 +118,44 @@ void main() {
     });
   });
 
-  test('liste : du plus ancien au plus récent', () async {
-    final aldric = CharacterInput.fromJson(_aldricJson());
-    await store.save('b', aldric);
-    await store.save('a', aldric.copyWith(name: 'Autre'));
+  test('liste : du plus ancien au plus récent, par identifiant', () async {
+    final aldric = CharacterInput.fromJson(aldricJson());
+    final older = uuidV7(at: DateTime.utc(2026));
+    final newer = uuidV7(at: DateTime.utc(2026, 2));
+    await store.save(newer, aldric.copyWith(name: 'Autre'));
+    await store.save(older, aldric);
     final list = await store.list();
-    expect(list.map((c) => c.id), ['b', 'a']);
+    expect(list.map((c) => c.id), [older, newer]);
     expect(list.last.character.name, 'Autre');
   });
 
+  test('suppression : la fiche et tout son contenu', () async {
+    final aldric = CharacterInput.fromJson(aldricJson());
+    await store.save('a', aldric);
+    await store.saveState('a', const PlayState(hpCurrent: 3));
+    await store.save('b', aldric);
+    await store.delete('a');
+    expect(await store.load('a'), isNull);
+    for (final table in syncedTables.where((t) => t.startsWith('character_'))) {
+      final rows = await db
+          .customSelect(
+            'SELECT count(*) AS n FROM $table WHERE character_id = ?',
+            variables: [Variable.withString('a')],
+          )
+          .getSingle();
+      expect(rows.read<int>('n'), 0, reason: table);
+    }
+    expect(await store.load('b'), aldric);
+  });
+
   test('Aldric aller-retour', () async {
-    final aldric = CharacterInput.fromJson(_aldricJson());
+    final aldric = CharacterInput.fromJson(aldricJson());
     await store.save('c1', aldric);
     expect(await store.load('c1'), aldric);
   });
 
   test('modification : une botte de moins', () async {
-    final aldric = CharacterInput.fromJson(_aldricJson());
+    final aldric = CharacterInput.fromJson(aldricJson());
     await store.save('c1', aldric);
     final changed = aldric.copyWith(
       weaponMasteries: aldric.weaponMasteries.take(2).toList(),
@@ -149,7 +169,7 @@ void main() {
   });
 
   test("réenregistrer garde l'état de jeu du personnage", () async {
-    final aldric = CharacterInput.fromJson(_aldricJson());
+    final aldric = CharacterInput.fromJson(aldricJson());
     await store.save('c1', aldric);
     await db.customStatement(
       'INSERT INTO character_state (id, character_id, hp_current) '
@@ -168,7 +188,7 @@ void main() {
   });
 
   test('génération aléatoire : les jets sont conservés', () async {
-    final json = _aldricJson();
+    final json = aldricJson();
     (json['base_scores']! as Map<String, Object?>)
       ..['method'] = 'random'
       ..['rolls'] = [15, 13, 14, 8, 12, 10];
@@ -180,7 +200,7 @@ void main() {
   test(
     'une entrée non validée (langue en double) est gardée telle quelle',
     () async {
-      final aldric = CharacterInput.fromJson(_aldricJson());
+      final aldric = CharacterInput.fromJson(aldricJson());
       final draft = aldric.copyWith(
         languages: [...aldric.languages, aldric.languages.first],
       );

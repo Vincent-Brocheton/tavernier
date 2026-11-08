@@ -3,7 +3,7 @@
 // relais quand le réseau manque. Les données vivent dans la base locale, pas ici.
 'use strict';
 
-const CACHE = 'tavernier-shell-v1';
+const CACHE = 'tavernier-shell-v2';
 
 // Coquille de l'application, mise en cache dès l'installation : sans elle,
 // un premier rechargement hors ligne échouerait.
@@ -15,7 +15,7 @@ const SHELL = [
   'manifest.json',
   'favicon.png',
   'sqlite3.wasm',
-  'drift_worker.js',
+  'powersync_db.worker.js',
   'canvaskit/canvaskit.js',
   'canvaskit/canvaskit.wasm',
   'canvaskit/chromium/canvaskit.js',

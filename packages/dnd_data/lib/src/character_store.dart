@@ -4,6 +4,7 @@ import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart';
 
 import 'database.dart';
+import 'powersync.dart';
 
 /// Tables qui contiennent l'entrée stockée d'un personnage ; l'état de jeu,
 /// l'historique et les références de contenu n'en font pas partie.
@@ -32,37 +33,22 @@ final class CharacterStore {
     () async {
       final c = character.toJson();
       final base = c['base_scores']! as Map<String, Object?>;
-      await _db.customStatement(
-        'INSERT INTO character (id, kind, name, player, species_id, '
-        'species_choices, background_id, status, xp, score_rolls, coins, '
-        'alignment, appearance, personality, backstory) '
-        "VALUES (?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?, ?, ?, ?, ?) "
-        'ON CONFLICT(id) DO UPDATE SET kind = excluded.kind, '
-        'name = excluded.name, player = excluded.player, '
-        'species_id = excluded.species_id, '
-        'species_choices = excluded.species_choices, '
-        'background_id = excluded.background_id, xp = excluded.xp, '
-        'score_rolls = excluded.score_rolls, coins = excluded.coins, '
-        'alignment = excluded.alignment, appearance = excluded.appearance, '
-        'personality = excluded.personality, '
-        'backstory = excluded.backstory',
-        [
-          id,
-          character.kind,
-          character.name,
-          character.player,
-          character.speciesId,
-          jsonEncode(character.speciesChoices),
-          character.backgroundId,
-          character.xp,
-          base['rolls'] == null ? null : jsonEncode(base['rolls']),
-          jsonEncode(character.coins),
-          character.alignment,
-          character.appearance,
-          character.personality,
-          character.backstory,
-        ],
-      );
+      final columns = {
+        'kind': character.kind,
+        'name': character.name,
+        'player': character.player,
+        'species_id': character.speciesId,
+        'species_choices': jsonEncode(character.speciesChoices),
+        'background_id': character.backgroundId,
+        'xp': character.xp,
+        'score_rolls': base['rolls'] == null ? null : jsonEncode(base['rolls']),
+        'coins': jsonEncode(character.coins),
+        'alignment': character.alignment,
+        'appearance': character.appearance,
+        'personality': character.personality,
+        'backstory': character.backstory,
+      };
+      await _upsert('character', 'id', id, columns, {'status': 'draft'});
       for (final table in _inputTables) {
         await _db.customStatement('DELETE FROM $table WHERE character_id = ?', [
           id,
@@ -131,14 +117,19 @@ final class CharacterStore {
         ('cantrip', spells.cantrips),
         ('class', {...spells.spellbook, ...spells.prepared}),
       ]) {
-        for (final spell in list) {
-          await insert('character_spell', spell, {
-            'spell_id': spell,
-            'source': source,
-            'prepared': spells.prepared.contains(spell),
-            'in_spellbook': spells.spellbook.contains(spell),
-            'class_id': spells.classes[spell],
-          });
+        for (final (i, spell) in list.indexed) {
+          // Clé ordonnée : la relecture trie par id (une vue n'a pas de rowid).
+          await insert(
+            'character_spell',
+            '$source:${i.toString().padLeft(4, '0')}',
+            {
+              'spell_id': spell,
+              'source': source,
+              'prepared': spells.prepared.contains(spell),
+              'in_spellbook': spells.spellbook.contains(spell),
+              'class_id': spells.classes[spell],
+            },
+          );
         }
       }
       for (final (i, language) in character.languages.indexed) {
@@ -186,31 +177,62 @@ final class CharacterStore {
   }
 
   /// Enregistre l'état de jeu de [id], sans toucher au reste de la fiche.
-  Future<void> saveState(String id, PlayState state) => _db.customStatement(
-    'INSERT INTO character_state '
-    '(id, character_id, resources, concentration_spell_id, hp_current, '
-    'exhaustion, heroic_inspiration) '
-    'VALUES (?, ?, ?, ?, ?, ?, ?) '
-    'ON CONFLICT(character_id) DO UPDATE SET '
-    'resources = excluded.resources, '
-    'concentration_spell_id = excluded.concentration_spell_id, '
-    'hp_current = excluded.hp_current, '
-    'exhaustion = excluded.exhaustion, '
-    'heroic_inspiration = excluded.heroic_inspiration',
-    [
-      id,
-      id,
-      jsonEncode(state.used),
-      state.concentrationSpellId,
-      state.hpCurrent,
-      state.exhaustion,
-      state.heroicInspiration,
-    ],
-  );
+  Future<void> saveState(String id, PlayState state) =>
+      _db.transaction(() async {
+        final columns = {
+          'resources': jsonEncode(state.used),
+          'concentration_spell_id': state.concentrationSpellId,
+          'hp_current': state.hpCurrent,
+          'exhaustion': state.exhaustion,
+          'heroic_inspiration': state.heroicInspiration,
+        };
+        await _upsert('character_state', 'character_id', id, columns);
+      });
+
+  /// Met à jour la ligne de [table] où [key] vaut [id], ou l'insère. Pas
+  /// d'UPSERT : SQLite le refuse sur une vue, et une mise à jour de vue ne
+  /// compte aucune ligne modifiée.
+  Future<void> _upsert(
+    String table,
+    String key,
+    String id,
+    Map<String, Object?> columns, [
+    Map<String, Object?> onInsert = const {},
+  ]) async {
+    List<Object?> sql(Iterable<Object?> values) => [
+      for (final v in values) v is bool ? (v ? 1 : 0) : v,
+    ];
+    await _db.customStatement(
+      'UPDATE $table SET ${columns.keys.map((c) => '$c = ?').join(', ')} '
+      'WHERE $key = ?',
+      sql([...columns.values, id]),
+    );
+    final values = {'id': id, key: id, ...onInsert, ...columns};
+    await _db.customStatement(
+      'INSERT INTO $table (${values.keys.join(', ')}) '
+      'SELECT ${List.filled(values.length, '?').join(', ')} '
+      'WHERE NOT EXISTS (SELECT 1 FROM $table WHERE $key = ?)',
+      sql([...values.values, id]),
+    );
+  }
+
+  /// Supprime le personnage [id] et tout son contenu. Les tables
+  /// synchronisées n'ont pas de clés étrangères locales : rien ne part en
+  /// cascade.
+  Future<void> delete(String id) => _db.transaction(() async {
+    for (final table in [
+      ...syncedTables.where((t) => t.startsWith('character_')),
+    ]) {
+      await _db.customStatement('DELETE FROM $table WHERE character_id = ?', [
+        id,
+      ]);
+    }
+    await _db.customStatement('DELETE FROM character WHERE id = ?', [id]);
+  });
 
   Future<List<({String id, CharacterInput character})>> list() async {
     final rows = await _db
-        .customSelect('SELECT id FROM character ORDER BY rowid')
+        .customSelect('SELECT id FROM character ORDER BY id')
         .get();
     return [
       for (final row in rows)
@@ -245,7 +267,7 @@ final class CharacterStore {
     final scores = await rows('character_base_scores');
     final bg = (await rows('character_background_choice')).single;
     Object? json(Object? text) => text == null ? null : jsonDecode('$text');
-    final spells = await rows('character_spell', 'rowid');
+    final spells = await rows('character_spell', 'id');
 
     return CharacterInput.fromJson({
       'name': c['name'],

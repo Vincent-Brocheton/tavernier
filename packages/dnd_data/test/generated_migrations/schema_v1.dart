@@ -3411,7 +3411,7 @@ class TableMember extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> userId = GeneratedColumn<String>(
     'user_id',
@@ -3429,11 +3429,11 @@ class TableMember extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  late final GeneratedColumn<int> joinedAt = GeneratedColumn<int>(
+  late final GeneratedColumn<String> joinedAt = GeneratedColumn<String>(
     'joined_at',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -3488,7 +3488,7 @@ class TableInvite extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> code = GeneratedColumn<String>(
     'code',
@@ -3498,11 +3498,11 @@ class TableInvite extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL UNIQUE',
   );
-  late final GeneratedColumn<int> expiresAt = GeneratedColumn<int>(
+  late final GeneratedColumn<String> expiresAt = GeneratedColumn<String>(
     'expires_at',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -3559,7 +3559,7 @@ class TablePack extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> packId = GeneratedColumn<String>(
     'pack_id',
@@ -3628,7 +3628,7 @@ class TableBannedEntity extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> entityId = GeneratedColumn<String>(
     'entity_id',
@@ -3689,7 +3689,7 @@ class Character extends Table with TableInfo {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    $customConstraints: 'NULL REFERENCES game_table(id)ON DELETE SET NULL',
+    $customConstraints: 'NULL',
   );
   late final GeneratedColumn<String> ownerUserId = GeneratedColumn<String>(
     'owner_user_id',
@@ -3885,7 +3885,7 @@ class CharacterBaseScores extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> abilityId = GeneratedColumn<String>(
     'ability_id',
@@ -3968,7 +3968,7 @@ class CharacterBackgroundChoice extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> distribution = GeneratedColumn<String>(
     'distribution',
@@ -4060,7 +4060,7 @@ class CharacterClassLevel extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> classId = GeneratedColumn<String>(
     'class_id',
@@ -4181,7 +4181,7 @@ class CharacterFeat extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> featId = GeneratedColumn<String>(
     'feat_id',
@@ -4275,7 +4275,7 @@ class CharacterWeaponMastery extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> weaponId = GeneratedColumn<String>(
     'weapon_id',
@@ -4337,7 +4337,7 @@ class CharacterSpell extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> spellId = GeneratedColumn<String>(
     'spell_id',
@@ -4433,7 +4433,7 @@ class CharacterItem extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> itemId = GeneratedColumn<String>(
     'item_id',
@@ -4527,7 +4527,7 @@ class CharacterState extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<int> hpCurrent = GeneratedColumn<int>(
     'hp_current',
@@ -4663,7 +4663,7 @@ class CharacterContentRef extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> entityId = GeneratedColumn<String>(
     'entity_id',
@@ -4748,7 +4748,7 @@ class CharacterChangeLog extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
     'author_user_id',
@@ -4758,11 +4758,11 @@ class CharacterChangeLog extends Table with TableInfo {
     requiredDuringInsert: false,
     $customConstraints: 'NULL',
   );
-  late final GeneratedColumn<int> timestamp = GeneratedColumn<int>(
+  late final GeneratedColumn<String> timestamp = GeneratedColumn<String>(
     'timestamp',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -4824,7 +4824,7 @@ class CharacterLanguage extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> languageId = GeneratedColumn<String>(
     'language_id',
@@ -4886,7 +4886,7 @@ class CharacterChoice extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES character(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> choiceKey = GeneratedColumn<String>(
     'choice_key',
@@ -4960,7 +4960,7 @@ class NpcStatblock extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> monsterId = GeneratedColumn<String>(
     'monster_id',
@@ -5045,13 +5045,13 @@ class Session extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
-  late final GeneratedColumn<int> date = GeneratedColumn<int>(
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
     'date',
     aliasedName,
     false,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
@@ -5416,7 +5416,7 @@ class Note extends Table with TableInfo {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    $customConstraints: 'NULL REFERENCES game_table(id)ON DELETE CASCADE',
+    $customConstraints: 'NULL',
   );
   late final GeneratedColumn<String> scope = GeneratedColumn<String>(
     'scope',
@@ -5909,143 +5909,6 @@ class DatabaseAtV1 extends GeneratedDatabase {
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_member', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_invite', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_pack', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_banned_entity', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_base_scores', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [
-        TableUpdate('character_background_choice', kind: UpdateKind.delete),
-      ],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_class_level', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_feat', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [
-        TableUpdate('character_weapon_mastery', kind: UpdateKind.delete),
-      ],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_spell', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_item', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_state', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_content_ref', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_change_log', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_language', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_choice', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('npc_statblock', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('session', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
         'session',
         limitUpdateKind: UpdateKind.delete,
       ),
@@ -6065,14 +5928,10 @@ class DatabaseAtV1 extends GeneratedDatabase {
       ),
       result: [TableUpdate('encounter_event', kind: UpdateKind.delete)],
     ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('note', kind: UpdateKind.delete)],
-    ),
   ]);
   @override
   int get schemaVersion => 1;
+  @override
+  DriftDatabaseOptions get options =>
+      const DriftDatabaseOptions(storeDateTimeAsText: true);
 }

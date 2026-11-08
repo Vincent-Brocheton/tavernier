@@ -7,3 +7,4 @@ export 'src/database.dart';
 export 'src/game_tables.dart';
 export 'src/ids.dart';
 export 'src/pack_store.dart';
+export 'src/powersync.dart';

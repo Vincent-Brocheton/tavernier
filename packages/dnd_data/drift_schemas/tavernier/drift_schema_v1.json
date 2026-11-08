@@ -4,7 +4,7 @@
     "version": "1.3.0"
   },
   "options": {
-    "store_date_time_values_as_text": false
+    "store_date_time_values_as_text": true
   },
   "entities": [
     {
@@ -3783,9 +3783,7 @@
     },
     {
       "id": 37,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "table_member",
@@ -3807,25 +3805,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "user_id",
@@ -3874,9 +3856,7 @@
     },
     {
       "id": 38,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "table_invite",
@@ -3898,25 +3878,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "code",
@@ -3969,9 +3933,7 @@
     },
     {
       "id": 39,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "table_pack",
@@ -3993,25 +3955,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "pack_id",
@@ -4050,9 +3996,7 @@
     },
     {
       "id": 40,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "table_banned_entity",
@@ -4074,25 +4018,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "entity_id",
@@ -4121,9 +4049,7 @@
     },
     {
       "id": 41,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character",
@@ -4145,25 +4071,9 @@
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE SET NULL",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE SET NULL"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "setNull"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "owner_user_id",
@@ -4336,9 +4246,7 @@
     },
     {
       "id": 42,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_base_scores",
@@ -4360,25 +4268,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "ability_id",
@@ -4427,9 +4319,7 @@
     },
     {
       "id": 43,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_background_choice",
@@ -4451,25 +4341,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "distribution",
@@ -4527,9 +4401,7 @@
     },
     {
       "id": 44,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_class_level",
@@ -4551,25 +4423,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "class_id",
@@ -4658,9 +4514,7 @@
     },
     {
       "id": 45,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_feat",
@@ -4682,25 +4536,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "feat_id",
@@ -4763,9 +4601,7 @@
     },
     {
       "id": 46,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_weapon_mastery",
@@ -4787,25 +4623,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "weapon_id",
@@ -4838,9 +4658,7 @@
     },
     {
       "id": 47,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_spell",
@@ -4862,25 +4680,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "spell_id",
@@ -4951,9 +4753,7 @@
     },
     {
       "id": 48,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_item",
@@ -4975,25 +4775,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "item_id",
@@ -5064,9 +4848,7 @@
     },
     {
       "id": 49,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_state",
@@ -5088,25 +4870,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "hp_current",
@@ -5208,9 +4974,7 @@
     },
     {
       "id": 50,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_content_ref",
@@ -5232,25 +4996,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "entity_id",
@@ -5303,9 +5051,7 @@
     },
     {
       "id": 51,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_change_log",
@@ -5327,25 +5073,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "author_user_id",
@@ -5388,9 +5118,7 @@
     },
     {
       "id": 52,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_language",
@@ -5412,25 +5140,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "language_id",
@@ -5463,9 +5175,7 @@
     },
     {
       "id": 53,
-      "references": [
-        41
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "character_choice",
@@ -5487,25 +5197,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES character (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES character (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "character",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "choice_key",
@@ -5544,9 +5238,7 @@
     },
     {
       "id": 54,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "npc_statblock",
@@ -5568,25 +5260,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "monster_id",
@@ -5639,9 +5315,7 @@
     },
     {
       "id": 55,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "session",
@@ -5663,25 +5337,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "date",
@@ -6053,9 +5711,7 @@
     },
     {
       "id": 59,
-      "references": [
-        36
-      ],
+      "references": [],
       "type": "table",
       "data": {
         "name": "note",
@@ -6087,25 +5743,9 @@
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES game_table (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES game_table (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "game_table",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "scope",
@@ -6537,7 +6177,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"table_member\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"user_id\" TEXT NOT NULL, \"role\" TEXT NOT NULL, \"joined_at\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"user_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"table_member\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"user_id\" TEXT NOT NULL, \"role\" TEXT NOT NULL, \"joined_at\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"user_id\"));"
         }
       ]
     },
@@ -6546,7 +6186,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"table_invite\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"code\" TEXT NOT NULL UNIQUE, \"expires_at\" INTEGER NOT NULL, \"revoked\" INTEGER NOT NULL DEFAULT 0 CHECK (\"revoked\" IN (0, 1)), PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"table_invite\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"code\" TEXT NOT NULL UNIQUE, \"expires_at\" TEXT NOT NULL, \"revoked\" INTEGER NOT NULL DEFAULT 0 CHECK (\"revoked\" IN (0, 1)), PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6555,7 +6195,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"table_pack\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"pack_id\" TEXT NOT NULL, \"pinned_version\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"pack_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"table_pack\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL, \"pinned_version\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"pack_id\"));"
         }
       ]
     },
@@ -6564,7 +6204,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"table_banned_entity\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"entity_id\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"entity_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"table_banned_entity\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"entity_id\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"entity_id\"));"
         }
       ]
     },
@@ -6573,7 +6213,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL REFERENCES game_table (id) ON DELETE SET NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, \"coins\" TEXT NOT NULL DEFAULT '{}', \"alignment\" TEXT NULL, \"appearance\" TEXT NULL, \"personality\" TEXT NULL, \"backstory\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, \"coins\" TEXT NOT NULL DEFAULT '{}', \"alignment\" TEXT NULL, \"appearance\" TEXT NULL, \"personality\" TEXT NULL, \"backstory\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6582,7 +6222,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_base_scores\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"ability_id\" TEXT NOT NULL, \"base\" INTEGER NOT NULL, \"method\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"ability_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_base_scores\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"ability_id\" TEXT NOT NULL, \"base\" INTEGER NOT NULL, \"method\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"ability_id\"));"
         }
       ]
     },
@@ -6591,7 +6231,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_background_choice\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"distribution\" TEXT NOT NULL, \"bonuses\" TEXT NOT NULL, \"feat_choices\" TEXT NULL, \"tool_choice\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_background_choice\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"distribution\" TEXT NOT NULL, \"bonuses\" TEXT NOT NULL, \"feat_choices\" TEXT NULL, \"tool_choice\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\"));"
         }
       ]
     },
@@ -6600,7 +6240,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_class_level\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"class_id\" TEXT NOT NULL, \"level\" INTEGER NOT NULL, \"subclass_id\" TEXT NULL, \"hp_roll\" TEXT NULL, \"skill_choices\" TEXT NOT NULL DEFAULT '[]', \"expertise\" TEXT NOT NULL DEFAULT '[]', \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"class_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_class_level\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"class_id\" TEXT NOT NULL, \"level\" INTEGER NOT NULL, \"subclass_id\" TEXT NULL, \"hp_roll\" TEXT NULL, \"skill_choices\" TEXT NOT NULL DEFAULT '[]', \"expertise\" TEXT NOT NULL DEFAULT '[]', \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"class_id\"));"
         }
       ]
     },
@@ -6609,7 +6249,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_feat\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"feat_id\" TEXT NOT NULL, \"source_type\" TEXT NOT NULL, \"source_ref\" TEXT NOT NULL, \"choices\" TEXT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_feat\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"feat_id\" TEXT NOT NULL, \"source_type\" TEXT NOT NULL, \"source_ref\" TEXT NOT NULL, \"choices\" TEXT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6618,7 +6258,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_weapon_mastery\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"weapon_id\" TEXT NOT NULL, \"slot_index\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_weapon_mastery\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"weapon_id\" TEXT NOT NULL, \"slot_index\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6627,7 +6267,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_spell\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"spell_id\" TEXT NOT NULL, \"source\" TEXT NOT NULL, \"prepared\" INTEGER NOT NULL DEFAULT 0 CHECK (\"prepared\" IN (0, 1)), \"in_spellbook\" INTEGER NOT NULL DEFAULT 0 CHECK (\"in_spellbook\" IN (0, 1)), \"class_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_spell\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"spell_id\" TEXT NOT NULL, \"source\" TEXT NOT NULL, \"prepared\" INTEGER NOT NULL DEFAULT 0 CHECK (\"prepared\" IN (0, 1)), \"in_spellbook\" INTEGER NOT NULL DEFAULT 0 CHECK (\"in_spellbook\" IN (0, 1)), \"class_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6636,7 +6276,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_item\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"item_id\" TEXT NOT NULL, \"quantity\" INTEGER NOT NULL, \"equipped\" INTEGER NOT NULL CHECK (\"equipped\" IN (0, 1)), \"attuned\" INTEGER NOT NULL CHECK (\"attuned\" IN (0, 1)), \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_item\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"item_id\" TEXT NOT NULL, \"quantity\" INTEGER NOT NULL, \"equipped\" INTEGER NOT NULL CHECK (\"equipped\" IN (0, 1)), \"attuned\" INTEGER NOT NULL CHECK (\"attuned\" IN (0, 1)), \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6645,7 +6285,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_state\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"hp_current\" INTEGER NULL, \"hp_temp\" INTEGER NOT NULL DEFAULT 0, \"hit_dice_used\" INTEGER NOT NULL DEFAULT 0, \"death_saves\" TEXT NOT NULL DEFAULT '{}', \"exhaustion\" INTEGER NOT NULL DEFAULT 0, \"heroic_inspiration\" INTEGER NOT NULL DEFAULT 0 CHECK (\"heroic_inspiration\" IN (0, 1)), \"resources\" TEXT NOT NULL DEFAULT '{}', \"concentration_spell_id\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_state\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"hp_current\" INTEGER NULL, \"hp_temp\" INTEGER NOT NULL DEFAULT 0, \"hit_dice_used\" INTEGER NOT NULL DEFAULT 0, \"death_saves\" TEXT NOT NULL DEFAULT '{}', \"exhaustion\" INTEGER NOT NULL DEFAULT 0, \"heroic_inspiration\" INTEGER NOT NULL DEFAULT 0 CHECK (\"heroic_inspiration\" IN (0, 1)), \"resources\" TEXT NOT NULL DEFAULT '{}', \"concentration_spell_id\" TEXT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\"));"
         }
       ]
     },
@@ -6654,7 +6294,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_content_ref\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"entity_id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL, \"pack_version\" TEXT NOT NULL, \"snapshot\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_content_ref\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"entity_id\" TEXT NOT NULL, \"pack_id\" TEXT NOT NULL, \"pack_version\" TEXT NOT NULL, \"snapshot\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6663,7 +6303,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_change_log\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"author_user_id\" TEXT NULL, \"timestamp\" INTEGER NOT NULL, \"diff\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_change_log\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, \"timestamp\" TEXT NOT NULL, \"diff\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6672,7 +6312,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_language\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"language_id\" TEXT NOT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_language\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"language_id\" TEXT NOT NULL, \"position\" INTEGER NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6681,7 +6321,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character_choice\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL REFERENCES character (id) ON DELETE CASCADE, \"choice_key\" TEXT NOT NULL, \"selections\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"choice_key\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_choice\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"choice_key\" TEXT NOT NULL, \"selections\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"choice_key\"));"
         }
       ]
     },
@@ -6690,7 +6330,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"npc_statblock\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"monster_id\" TEXT NULL, \"stat_block\" TEXT NULL, \"attitude\" TEXT NULL, \"hidden_info\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"npc_statblock\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"monster_id\" TEXT NULL, \"stat_block\" TEXT NULL, \"attitude\" TEXT NULL, \"hidden_info\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6699,7 +6339,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"session\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"date\" INTEGER NOT NULL, \"title\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"session\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"date\" TEXT NOT NULL, \"title\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6735,7 +6375,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"note\" (\"id\" TEXT NOT NULL, \"owner_user_id\" TEXT NOT NULL, \"table_id\" TEXT NULL REFERENCES game_table (id) ON DELETE CASCADE, \"scope\" TEXT NOT NULL, \"ref_id\" TEXT NULL, \"content\" TEXT NOT NULL, \"private\" INTEGER NOT NULL DEFAULT 1 CHECK (\"private\" IN (0, 1)), PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"note\" (\"id\" TEXT NOT NULL, \"owner_user_id\" TEXT NOT NULL, \"table_id\" TEXT NULL, \"scope\" TEXT NOT NULL, \"ref_id\" TEXT NULL, \"content\" TEXT NOT NULL, \"private\" INTEGER NOT NULL DEFAULT 1 CHECK (\"private\" IN (0, 1)), PRIMARY KEY (\"id\"));"
         }
       ]
     },
