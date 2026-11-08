@@ -1,0 +1,5 @@
+# Supabase local, pour la CI (T-05). Valeurs par défaut de la CLI pour le
+# reste : une section disparue d'une version à l'autre bloque le démarrage.
+# Le projet hébergé (région UE) sera relié plus tard ; ses secrets ne sont
+# jamais dans le dépôt.
+project_id = "tavernier"
