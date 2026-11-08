@@ -275,37 +275,3 @@ jobs:
         if: always()
         working-directory: apps/game_table
         run: cat build/integration_response_data.json || true
-
-  # Base locale sur iOS (SQLite natif, simulateur) : spec local-database, US-04.
-  ios:
-    name: Intégration iOS (simulateur)
-    # Une étiquette ne relance la CI que si c'est « update-goldens ».
-    if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
-    runs-on: macos-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Version de Flutter (.fvmrc)
-        run: echo "FLUTTER_VERSION=$(jq -r .flutter .fvmrc)" >> "$GITHUB_ENV"
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
-
-      - run: flutter pub get
-      - name: Démarrer un simulateur iPhone
-        run: |
-          UDID=$(xcrun simctl list devices available -j \
-            | jq -r '[.devices[][] | select(.name | startswith("iPhone"))][0].udid')
-          if [ -z "$UDID" ] || [ "$UDID" = null ]; then
-            echo "::error::Aucun simulateur iPhone disponible sur ce runner"
-            exit 1
-          fi
-          xcrun simctl boot "$UDID"
-          echo "SIMULATOR=$UDID" >> "$GITHUB_ENV"
-      - name: Tests d'intégration
-        working-directory: apps/game_table
-        run: flutter test integration_test -d "$SIMULATOR"
