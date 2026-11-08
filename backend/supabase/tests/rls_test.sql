@@ -4,7 +4,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(22);
+select plan(26);
 
 -- Identités ------------------------------------------------------------------
 
@@ -199,6 +199,44 @@ select is(
   (select pseudonym from profile)::text, 'Camille',
   'un joueur voit le profil de son MJ, pas celui d''un inconnu'
 );
+
+-- Upsert (envoi PowerSync, T-05) --------------------------------------------
+-- INSERT … ON CONFLICT DO UPDATE vérifie aussi la lecture de la ligne
+-- nouvelle : les règles de lecture ne doivent pas dépendre d'une ligne que
+-- l'instruction est en train d'écrire.
+
+select lives_ok(
+  $$ insert into character (id, owner_user_id, kind, name, species_id,
+       background_id, status)
+     values ('u1', '00000000-0000-0000-0000-00000000000b', 'pc', 'Neuf',
+       'srd:species:human', 'srd:background:soldier', 'draft')
+     on conflict (id) do update set name = excluded.name $$,
+  'un joueur envoie une fiche neuve en upsert'
+);
+
+select tests.as_user('00000000-0000-0000-0000-00000000000a');
+
+select lives_ok(
+  $$ insert into game_table (id, gm_user_id, name, stat_method,
+       long_rest_rule, hp_on_level_rule, progression_mode)
+     values ('t3', '00000000-0000-0000-0000-00000000000a', 'Neuve',
+       'point_buy', 'full', 'average', 'xp')
+     on conflict (id) do update set name = excluded.name $$,
+  'le MJ envoie une table neuve en upsert'
+);
+select lives_ok(
+  $$ insert into table_member (id, table_id, user_id, role)
+     values ('m3', 't3', '00000000-0000-0000-0000-00000000000a', 'gm')
+     on conflict (id) do update set role = excluded.role $$,
+  'le MJ s''inscrit à sa table neuve en upsert'
+);
+select lives_ok(
+  $$ insert into table_pack (id, table_id, pack_id) values ('p3', 't3', 'srd')
+     on conflict (id) do update set pack_id = excluded.pack_id $$,
+  'le MJ règle les packs de sa table neuve en upsert'
+);
+
+select tests.as_user('00000000-0000-0000-0000-00000000000b');
 
 -- Départ ---------------------------------------------------------------------
 

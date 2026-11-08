@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
+import 'package:logging/logging.dart';
 import 'package:powersync/powersync.dart' show PowerSyncDatabase;
 import 'package:supabase/supabase.dart';
 import 'package:test/test.dart';
@@ -72,6 +73,9 @@ Future<void> _until(Future<bool> Function() ok, String what) async {
 }
 
 void main() {
+  // Journaux de PowerSync et du connecteur (écritures écartées) en console.
+  // ignore: avoid_print
+  Logger.root.onRecord.listen((r) => print('[${r.loggerName}] ${r.message}'));
   final skip = _url == null || _anonKey == null || _powerSyncUrl == null
       ? 'backend absent (SUPABASE_URL, SUPABASE_ANON_KEY, POWERSYNC_URL)'
       : null;

@@ -1,5 +1,4 @@
-import 'dart:developer' as developer;
-
+import 'package:logging/logging.dart';
 import 'package:powersync/powersync.dart';
 import 'package:supabase/supabase.dart';
 
@@ -9,10 +8,15 @@ import 'powersync.dart';
 /// service PowerSync à [powerSyncUrl], et envoi de la file d'écritures
 /// locales par l'API de Supabase, sous les droits (RLS) de l'utilisateur.
 final class SupabaseConnector extends PowerSyncBackendConnector {
-  SupabaseConnector(this._client, this.powerSyncUrl);
+  SupabaseConnector(this._client, this.powerSyncUrl, {this.onDiscarded});
 
   final SupabaseClient _client;
   final String powerSyncUrl;
+
+  /// Appelé pour chaque écriture refusée définitivement, et donc écartée.
+  final void Function(CrudEntry entry, PostgrestException error)? onDiscarded;
+
+  static final _log = Logger('tavernier.sync');
 
   @override
   Future<PowerSyncCredentials?> fetchCredentials() async {
@@ -53,11 +57,11 @@ final class SupabaseConnector extends PowerSyncBackendConnector {
         // Refus définitif : réessayer bloquerait toutes les écritures
         // suivantes. L'erreur réseau, elle, remonte et PowerSync réessaie.
         if (!_isDefinitive(e)) rethrow;
-        developer.log(
+        _log.warning(
           'Écriture écartée : ${entry.op.name} ${entry.table}/${entry.id} '
           '(${e.code} ${e.message})',
-          name: 'tavernier.sync',
         );
+        onDiscarded?.call(entry, e);
       }
     }
     await transaction.complete();
