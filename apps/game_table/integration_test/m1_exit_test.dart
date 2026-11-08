@@ -8,10 +8,23 @@ import 'package:integration_test/integration_test.dart';
 import 'support/m1_flow.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('M1 : création puis niveau 5, hors ligne', (tester) async {
     await tester.pumpWidget(const ProviderScope(child: GameTableApp()));
-    await createAndReachLevel5(tester);
+    try {
+      await createAndReachLevel5(tester);
+    } catch (error) {
+      // flutter drive n'affiche pas le message : le rapport le garde.
+      binding.reportData = {
+        'm1': {
+          'derniere_action': m1LastAction,
+          'erreur': '$error',
+          'taille':
+              '${tester.view.physicalSize / tester.view.devicePixelRatio}',
+        },
+      };
+      rethrow;
+    }
   });
 }

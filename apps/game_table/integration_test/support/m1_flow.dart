@@ -8,6 +8,9 @@ import 'package:material_ui/material_ui.dart';
 /// Nom du personnage du parcours.
 const m1Name = 'Brunhild';
 
+/// Dernière action tentée : un échec en CI dit où il s'est arrêté.
+String m1LastAction = '';
+
 Future<void> _settle(WidgetTester tester) async {
   // La base répond hors de l'horloge du test : on lui laisse le temps.
   for (var i = 0; i < 5; i++) {
@@ -17,6 +20,7 @@ Future<void> _settle(WidgetTester tester) async {
 }
 
 Future<void> _tap(WidgetTester tester, Finder target) async {
+  m1LastAction = '$target';
   await tester.ensureVisible(target);
   await tester.pumpAndSettle();
   await tester.tap(target);
@@ -30,6 +34,7 @@ Future<void> _next(WidgetTester tester) =>
     _tap(tester, find.byType(FilledButton).last);
 
 Future<void> _raise(WidgetTester tester, String ability, int times) async {
+  m1LastAction = 'Augmenter $ability';
   final target = find.byTooltip('Augmenter $ability');
   await tester.ensureVisible(target);
   await tester.pumpAndSettle();
