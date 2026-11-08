@@ -19,6 +19,17 @@ Future<void> _settle(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// Attend un écran que l'app atteint après une écriture en base, plus lente
+/// que [_settle] sur certains navigateurs (Safari).
+Future<void> _waitFor(WidgetTester tester, Finder target) async {
+  m1LastAction = 'Attente de $target';
+  for (var i = 0; i < 100 && target.evaluate().isEmpty; i++) {
+    await tester.pump(const Duration(milliseconds: 100));
+  }
+  await tester.pumpAndSettle();
+  expect(target, findsOneWidget);
+}
+
 Future<void> _tap(WidgetTester tester, Finder target) async {
   m1LastAction = '$target';
   await tester.ensureVisible(target);
@@ -112,8 +123,10 @@ Future<void> createAndReachLevel5(WidgetTester tester) async {
   await _next(tester);
 
   // La fiche, depuis la liste.
-  await _tapText(tester, m1Name);
-  expect(find.text('Monter au niveau 2'), findsOneWidget);
+  final inList = find.widgetWithText(ListTile, m1Name);
+  await _waitFor(tester, inList);
+  await _tap(tester, inList);
+  await _waitFor(tester, find.text('Monter au niveau 2'));
 
   for (var level = 2; level <= 5; level++) {
     await _tapText(tester, 'Monter au niveau $level');
@@ -129,10 +142,7 @@ Future<void> createAndReachLevel5(WidgetTester tester) async {
     m1LastAction = 'Récapitulatif du niveau $level';
     expect(find.text('Enregistrer'), findsOneWidget);
     await _next(tester);
-    expect(
-      find.text(level < 20 ? 'Monter au niveau ${level + 1}' : ''),
-      findsOneWidget,
-    );
+    await _waitFor(tester, find.text('Monter au niveau ${level + 1}'));
   }
   expect(find.textContaining('Guerrier 5'), findsWidgets);
 }
