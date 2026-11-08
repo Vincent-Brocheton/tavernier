@@ -16961,9 +16961,6 @@ class $TableMembersTable extends TableMembers
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
   @override
@@ -17320,9 +17317,6 @@ class $TableInvitesTable extends TableInvites
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _codeMeta = const VerificationMeta('code');
   @override
@@ -17679,9 +17673,6 @@ class $TablePacksTable extends TablePacks
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _packIdMeta = const VerificationMeta('packId');
   @override
@@ -18002,9 +17993,6 @@ class $TableBannedEntitiesTable extends TableBannedEntities
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _entityIdMeta = const VerificationMeta(
     'entityId',
@@ -18275,9 +18263,6 @@ class $CharactersTable extends Characters
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE SET NULL',
-    ),
   );
   static const VerificationMeta _ownerUserIdMeta = const VerificationMeta(
     'ownerUserId',
@@ -19299,9 +19284,6 @@ class $CharacterBaseScoresTable extends CharacterBaseScores
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _abilityIdMeta = const VerificationMeta(
     'abilityId',
@@ -19677,9 +19659,6 @@ class $CharacterBackgroundChoicesTable extends CharacterBackgroundChoices
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _distributionMeta = const VerificationMeta(
     'distribution',
@@ -20126,9 +20105,6 @@ class $CharacterClassLevelsTable extends CharacterClassLevels
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _classIdMeta = const VerificationMeta(
     'classId',
@@ -20701,9 +20677,6 @@ class $CharacterFeatsTable extends CharacterFeats
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _featIdMeta = const VerificationMeta('featId');
   @override
@@ -21175,9 +21148,6 @@ class $CharacterWeaponMasteriesTable extends CharacterWeaponMasteries
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _weaponIdMeta = const VerificationMeta(
     'weaponId',
@@ -21500,9 +21470,6 @@ class $CharacterSpellsTable extends CharacterSpells
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _spellIdMeta = const VerificationMeta(
     'spellId',
@@ -21981,9 +21948,6 @@ class $CharacterItemsTable extends CharacterItems
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _itemIdMeta = const VerificationMeta('itemId');
   @override
@@ -22458,9 +22422,6 @@ class $CharacterStatesTable extends CharacterStates
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _hpCurrentMeta = const VerificationMeta(
     'hpCurrent',
@@ -23098,9 +23059,6 @@ class $CharacterContentRefsTable extends CharacterContentRefs
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _entityIdMeta = const VerificationMeta(
     'entityId',
@@ -23521,9 +23479,6 @@ class $CharacterChangeLogsTable extends CharacterChangeLogs
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
     'authorUserId',
@@ -23898,9 +23853,6 @@ class $CharacterLanguagesTable extends CharacterLanguages
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _languageIdMeta = const VerificationMeta(
     'languageId',
@@ -24220,9 +24172,6 @@ class $CharacterChoicesTable extends CharacterChoices
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES character (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _choiceKeyMeta = const VerificationMeta(
     'choiceKey',
@@ -24550,9 +24499,6 @@ class $NpcStatblocksTable extends NpcStatblocks
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _monsterIdMeta = const VerificationMeta(
     'monsterId',
@@ -24969,9 +24915,6 @@ class $SessionsTable extends Sessions
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
@@ -26777,9 +26720,6 @@ class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES game_table (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _scopeMeta = const VerificationMeta('scope');
   @override
@@ -27816,143 +27756,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_member', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_invite', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_pack', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('table_banned_entity', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character', kind: UpdateKind.update)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_base_scores', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [
-        TableUpdate('character_background_choice', kind: UpdateKind.delete),
-      ],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_class_level', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_feat', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [
-        TableUpdate('character_weapon_mastery', kind: UpdateKind.delete),
-      ],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_spell', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_item', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_state', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_content_ref', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_change_log', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_language', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'character',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('character_choice', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('npc_statblock', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('session', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
         'session',
         limitUpdateKind: UpdateKind.delete,
       ),
@@ -27971,13 +27774,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('encounter_event', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'game_table',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('note', kind: UpdateKind.delete)],
     ),
   ]);
   @override
@@ -43575,166 +43371,6 @@ typedef $$GameTablesTableUpdateCompanionBuilder = GameTablesCompanion Function({
   Value<int> rowid,
 });
 
-final class $$GameTablesTableReferences
-    extends
-        BaseReferences<_$TavernierDatabase, $GameTablesTable, GameTableRow> {
-  $$GameTablesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static MultiTypedResultKey<$TableMembersTable, List<TableMemberRow>>
-  _tableMembersRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.tableMembers,
-        aliasName: 'game_table__id__table_member__table_id',
-      );
-
-  $$TableMembersTableProcessedTableManager get tableMembersRefs {
-    final manager = $$TableMembersTableTableManager(
-      $_db,
-      $_db.tableMembers,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_tableMembersRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$TableInvitesTable, List<TableInviteRow>>
-  _tableInvitesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.tableInvites,
-        aliasName: 'game_table__id__table_invite__table_id',
-      );
-
-  $$TableInvitesTableProcessedTableManager get tableInvitesRefs {
-    final manager = $$TableInvitesTableTableManager(
-      $_db,
-      $_db.tableInvites,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_tableInvitesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$TablePacksTable, List<TablePackRow>>
-  _tablePacksRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
-    db.tablePacks,
-    aliasName: 'game_table__id__table_pack__table_id',
-  );
-
-  $$TablePacksTableProcessedTableManager get tablePacksRefs {
-    final manager = $$TablePacksTableTableManager(
-      $_db,
-      $_db.tablePacks,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_tablePacksRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $TableBannedEntitiesTable,
-    List<TableBannedEntityRow>
-  >
-  _tableBannedEntitiesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.tableBannedEntities,
-        aliasName: 'game_table__id__table_banned_entity__table_id',
-      );
-
-  $$TableBannedEntitiesTableProcessedTableManager get tableBannedEntitiesRefs {
-    final manager = $$TableBannedEntitiesTableTableManager(
-      $_db,
-      $_db.tableBannedEntities,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _tableBannedEntitiesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharactersTable, List<CharacterRow>>
-  _charactersRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
-    db.characters,
-    aliasName: 'game_table__id__character__table_id',
-  );
-
-  $$CharactersTableProcessedTableManager get charactersRefs {
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_charactersRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$NpcStatblocksTable, List<NpcStatblockRow>>
-  _npcStatblocksRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.npcStatblocks,
-        aliasName: 'game_table__id__npc_statblock__table_id',
-      );
-
-  $$NpcStatblocksTableProcessedTableManager get npcStatblocksRefs {
-    final manager = $$NpcStatblocksTableTableManager(
-      $_db,
-      $_db.npcStatblocks,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_npcStatblocksRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$SessionsTable, List<SessionRow>>
-  _sessionsRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
-    db.sessions,
-    aliasName: 'game_table__id__session__table_id',
-  );
-
-  $$SessionsTableProcessedTableManager get sessionsRefs {
-    final manager = $$SessionsTableTableManager(
-      $_db,
-      $_db.sessions,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_sessionsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$NotesTable, List<NoteRow>> _notesRefsTable(
-    _$TavernierDatabase db,
-  ) => MultiTypedResultKey.fromTable(
-    db.notes,
-    aliasName: 'game_table__id__note__table_id',
-  );
-
-  $$NotesTableProcessedTableManager get notesRefs {
-    final manager = $$NotesTableTableManager(
-      $_db,
-      $_db.notes,
-    ).filter((f) => f.tableId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_notesRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
 class $$GameTablesTableFilterComposer
     extends Composer<_$TavernierDatabase, $GameTablesTable> {
   $$GameTablesTableFilterComposer({
@@ -43793,206 +43429,6 @@ class $$GameTablesTableFilterComposer
     column: $table.archived,
     builder: (column) => ColumnFilters(column),
   );
-
-  Expression<bool> tableMembersRefs(
-    Expression<bool> Function($$TableMembersTableFilterComposer f) f,
-  ) {
-    final $$TableMembersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tableMembers,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TableMembersTableFilterComposer(
-            $db: $db,
-            $table: $db.tableMembers,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> tableInvitesRefs(
-    Expression<bool> Function($$TableInvitesTableFilterComposer f) f,
-  ) {
-    final $$TableInvitesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tableInvites,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TableInvitesTableFilterComposer(
-            $db: $db,
-            $table: $db.tableInvites,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> tablePacksRefs(
-    Expression<bool> Function($$TablePacksTableFilterComposer f) f,
-  ) {
-    final $$TablePacksTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tablePacks,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TablePacksTableFilterComposer(
-            $db: $db,
-            $table: $db.tablePacks,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> tableBannedEntitiesRefs(
-    Expression<bool> Function($$TableBannedEntitiesTableFilterComposer f) f,
-  ) {
-    final $$TableBannedEntitiesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tableBannedEntities,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TableBannedEntitiesTableFilterComposer(
-            $db: $db,
-            $table: $db.tableBannedEntities,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> charactersRefs(
-    Expression<bool> Function($$CharactersTableFilterComposer f) f,
-  ) {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> npcStatblocksRefs(
-    Expression<bool> Function($$NpcStatblocksTableFilterComposer f) f,
-  ) {
-    final $$NpcStatblocksTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.npcStatblocks,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$NpcStatblocksTableFilterComposer(
-            $db: $db,
-            $table: $db.npcStatblocks,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> sessionsRefs(
-    Expression<bool> Function($$SessionsTableFilterComposer f) f,
-  ) {
-    final $$SessionsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.sessions,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$SessionsTableFilterComposer(
-            $db: $db,
-            $table: $db.sessions,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> notesRefs(
-    Expression<bool> Function($$NotesTableFilterComposer f) f,
-  ) {
-    final $$NotesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.notes,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$NotesTableFilterComposer(
-            $db: $db,
-            $table: $db.notes,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$GameTablesTableOrderingComposer
@@ -44105,207 +43541,6 @@ class $$GameTablesTableAnnotationComposer
 
   GeneratedColumn<bool> get archived =>
       $composableBuilder(column: $table.archived, builder: (column) => column);
-
-  Expression<T> tableMembersRefs<T extends Object>(
-    Expression<T> Function($$TableMembersTableAnnotationComposer a) f,
-  ) {
-    final $$TableMembersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tableMembers,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TableMembersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.tableMembers,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> tableInvitesRefs<T extends Object>(
-    Expression<T> Function($$TableInvitesTableAnnotationComposer a) f,
-  ) {
-    final $$TableInvitesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tableInvites,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TableInvitesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.tableInvites,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> tablePacksRefs<T extends Object>(
-    Expression<T> Function($$TablePacksTableAnnotationComposer a) f,
-  ) {
-    final $$TablePacksTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.tablePacks,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$TablePacksTableAnnotationComposer(
-            $db: $db,
-            $table: $db.tablePacks,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> tableBannedEntitiesRefs<T extends Object>(
-    Expression<T> Function($$TableBannedEntitiesTableAnnotationComposer a) f,
-  ) {
-    final $$TableBannedEntitiesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.tableBannedEntities,
-          getReferencedColumn: (t) => t.tableId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$TableBannedEntitiesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.tableBannedEntities,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> charactersRefs<T extends Object>(
-    Expression<T> Function($$CharactersTableAnnotationComposer a) f,
-  ) {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> npcStatblocksRefs<T extends Object>(
-    Expression<T> Function($$NpcStatblocksTableAnnotationComposer a) f,
-  ) {
-    final $$NpcStatblocksTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.npcStatblocks,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$NpcStatblocksTableAnnotationComposer(
-            $db: $db,
-            $table: $db.npcStatblocks,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> sessionsRefs<T extends Object>(
-    Expression<T> Function($$SessionsTableAnnotationComposer a) f,
-  ) {
-    final $$SessionsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.sessions,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$SessionsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.sessions,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> notesRefs<T extends Object>(
-    Expression<T> Function($$NotesTableAnnotationComposer a) f,
-  ) {
-    final $$NotesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.notes,
-      getReferencedColumn: (t) => t.tableId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$NotesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.notes,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$GameTablesTableTableManager
@@ -44319,18 +43554,12 @@ class $$GameTablesTableTableManager
           $$GameTablesTableAnnotationComposer,
           $$GameTablesTableCreateCompanionBuilder,
           $$GameTablesTableUpdateCompanionBuilder,
-          (GameTableRow, $$GameTablesTableReferences),
+          (
+            GameTableRow,
+            BaseReferences<_$TavernierDatabase, $GameTablesTable, GameTableRow>,
+          ),
           GameTableRow,
-          PrefetchHooks Function({
-            bool tableMembersRefs,
-            bool tableInvitesRefs,
-            bool tablePacksRefs,
-            bool tableBannedEntitiesRefs,
-            bool charactersRefs,
-            bool npcStatblocksRefs,
-            bool sessionsRefs,
-            bool notesRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$GameTablesTableTableManager(_$TavernierDatabase db, $GameTablesTable table)
     : super(
@@ -44399,200 +43628,15 @@ class $$GameTablesTableTableManager
               .map(
                 (e) => (
                   e.readTable<$GameTablesTable, GameTableRow>(table),
-                  $$GameTablesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $GameTablesTable,
+                    GameTableRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback:
-              ({
-                tableMembersRefs = false,
-                tableInvitesRefs = false,
-                tablePacksRefs = false,
-                tableBannedEntitiesRefs = false,
-                charactersRefs = false,
-                npcStatblocksRefs = false,
-                sessionsRefs = false,
-                notesRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (tableMembersRefs) db.tableMembers,
-                    if (tableInvitesRefs) db.tableInvites,
-                    if (tablePacksRefs) db.tablePacks,
-                    if (tableBannedEntitiesRefs) db.tableBannedEntities,
-                    if (charactersRefs) db.characters,
-                    if (npcStatblocksRefs) db.npcStatblocks,
-                    if (sessionsRefs) db.sessions,
-                    if (notesRefs) db.notes,
-                  ],
-                  addJoins: null,
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (tableMembersRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          TableMemberRow,
-                          $TableMembersTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._tableMembersRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).tableMembersRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (tableInvitesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          TableInviteRow,
-                          $TableInvitesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._tableInvitesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).tableInvitesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (tablePacksRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          TablePackRow,
-                          $TablePacksTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._tablePacksRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).tablePacksRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (tableBannedEntitiesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          TableBannedEntityRow,
-                          $TableBannedEntitiesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._tableBannedEntitiesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).tableBannedEntitiesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (charactersRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          CharacterRow,
-                          $CharactersTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._charactersRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).charactersRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (npcStatblocksRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          NpcStatblockRow,
-                          $NpcStatblocksTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._npcStatblocksRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).npcStatblocksRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (sessionsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          SessionRow,
-                          $SessionsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._sessionsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).sessionsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                      if (notesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          GameTableRow,
-                          $GameTablesTable,
-                          NoteRow,
-                          $NotesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$GameTablesTableReferences
-                              ._notesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$GameTablesTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).notesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'table_id',
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -44607,18 +43651,12 @@ typedef $$GameTablesTableProcessedTableManager =
       $$GameTablesTableAnnotationComposer,
       $$GameTablesTableCreateCompanionBuilder,
       $$GameTablesTableUpdateCompanionBuilder,
-      (GameTableRow, $$GameTablesTableReferences),
+      (
+        GameTableRow,
+        BaseReferences<_$TavernierDatabase, $GameTablesTable, GameTableRow>,
+      ),
       GameTableRow,
-      PrefetchHooks Function({
-        bool tableMembersRefs,
-        bool tableInvitesRefs,
-        bool tablePacksRefs,
-        bool tableBannedEntitiesRefs,
-        bool charactersRefs,
-        bool npcStatblocksRefs,
-        bool sessionsRefs,
-        bool notesRefs,
-      })
+      PrefetchHooks Function()
     >;
 typedef $$TableMembersTableCreateCompanionBuilder =
     TableMembersCompanion Function({
@@ -44639,33 +43677,6 @@ typedef $$TableMembersTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$TableMembersTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $TableMembersTable,
-          TableMemberRow
-        > {
-  $$TableMembersTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('table_member__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$TableMembersTableFilterComposer
     extends Composer<_$TavernierDatabase, $TableMembersTable> {
   $$TableMembersTableFilterComposer({
@@ -44677,6 +43688,11 @@ class $$TableMembersTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -44694,29 +43710,6 @@ class $$TableMembersTableFilterComposer
     column: $table.joinedAt,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableMembersTableOrderingComposer
@@ -44730,6 +43723,11 @@ class $$TableMembersTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -44747,29 +43745,6 @@ class $$TableMembersTableOrderingComposer
     column: $table.joinedAt,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableMembersTableAnnotationComposer
@@ -44784,6 +43759,9 @@ class $$TableMembersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get userId =>
       $composableBuilder(column: $table.userId, builder: (column) => column);
 
@@ -44792,29 +43770,6 @@ class $$TableMembersTableAnnotationComposer
 
   GeneratedColumn<DateTime> get joinedAt =>
       $composableBuilder(column: $table.joinedAt, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableMembersTableTableManager
@@ -44828,9 +43783,16 @@ class $$TableMembersTableTableManager
           $$TableMembersTableAnnotationComposer,
           $$TableMembersTableCreateCompanionBuilder,
           $$TableMembersTableUpdateCompanionBuilder,
-          (TableMemberRow, $$TableMembersTableReferences),
+          (
+            TableMemberRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $TableMembersTable,
+              TableMemberRow
+            >,
+          ),
           TableMemberRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$TableMembersTableTableManager(
     _$TavernierDatabase db,
@@ -44881,49 +43843,15 @@ class $$TableMembersTableTableManager
               .map(
                 (e) => (
                   e.readTable<$TableMembersTable, TableMemberRow>(table),
-                  $$TableMembersTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $TableMembersTable,
+                    TableMemberRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$TableMembersTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$TableMembersTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -44938,9 +43866,12 @@ typedef $$TableMembersTableProcessedTableManager =
       $$TableMembersTableAnnotationComposer,
       $$TableMembersTableCreateCompanionBuilder,
       $$TableMembersTableUpdateCompanionBuilder,
-      (TableMemberRow, $$TableMembersTableReferences),
+      (
+        TableMemberRow,
+        BaseReferences<_$TavernierDatabase, $TableMembersTable, TableMemberRow>,
+      ),
       TableMemberRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$TableInvitesTableCreateCompanionBuilder =
     TableInvitesCompanion Function({
@@ -44961,33 +43892,6 @@ typedef $$TableInvitesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$TableInvitesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $TableInvitesTable,
-          TableInviteRow
-        > {
-  $$TableInvitesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('table_invite__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$TableInvitesTableFilterComposer
     extends Composer<_$TavernierDatabase, $TableInvitesTable> {
   $$TableInvitesTableFilterComposer({
@@ -44999,6 +43903,11 @@ class $$TableInvitesTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -45016,29 +43925,6 @@ class $$TableInvitesTableFilterComposer
     column: $table.revoked,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableInvitesTableOrderingComposer
@@ -45052,6 +43938,11 @@ class $$TableInvitesTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -45069,29 +43960,6 @@ class $$TableInvitesTableOrderingComposer
     column: $table.revoked,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableInvitesTableAnnotationComposer
@@ -45106,6 +43974,9 @@ class $$TableInvitesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get code =>
       $composableBuilder(column: $table.code, builder: (column) => column);
 
@@ -45114,29 +43985,6 @@ class $$TableInvitesTableAnnotationComposer
 
   GeneratedColumn<bool> get revoked =>
       $composableBuilder(column: $table.revoked, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableInvitesTableTableManager
@@ -45150,9 +43998,16 @@ class $$TableInvitesTableTableManager
           $$TableInvitesTableAnnotationComposer,
           $$TableInvitesTableCreateCompanionBuilder,
           $$TableInvitesTableUpdateCompanionBuilder,
-          (TableInviteRow, $$TableInvitesTableReferences),
+          (
+            TableInviteRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $TableInvitesTable,
+              TableInviteRow
+            >,
+          ),
           TableInviteRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$TableInvitesTableTableManager(
     _$TavernierDatabase db,
@@ -45203,49 +44058,15 @@ class $$TableInvitesTableTableManager
               .map(
                 (e) => (
                   e.readTable<$TableInvitesTable, TableInviteRow>(table),
-                  $$TableInvitesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $TableInvitesTable,
+                    TableInviteRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$TableInvitesTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$TableInvitesTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -45260,9 +44081,12 @@ typedef $$TableInvitesTableProcessedTableManager =
       $$TableInvitesTableAnnotationComposer,
       $$TableInvitesTableCreateCompanionBuilder,
       $$TableInvitesTableUpdateCompanionBuilder,
-      (TableInviteRow, $$TableInvitesTableReferences),
+      (
+        TableInviteRow,
+        BaseReferences<_$TavernierDatabase, $TableInvitesTable, TableInviteRow>,
+      ),
       TableInviteRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$TablePacksTableCreateCompanionBuilder = TablePacksCompanion Function({
   required String id,
@@ -45279,29 +44103,6 @@ typedef $$TablePacksTableUpdateCompanionBuilder = TablePacksCompanion Function({
   Value<int> rowid,
 });
 
-final class $$TablePacksTableReferences
-    extends
-        BaseReferences<_$TavernierDatabase, $TablePacksTable, TablePackRow> {
-  $$TablePacksTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('table_pack__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$TablePacksTableFilterComposer
     extends Composer<_$TavernierDatabase, $TablePacksTable> {
   $$TablePacksTableFilterComposer({
@@ -45316,6 +44117,11 @@ class $$TablePacksTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get packId => $composableBuilder(
     column: $table.packId,
     builder: (column) => ColumnFilters(column),
@@ -45325,29 +44131,6 @@ class $$TablePacksTableFilterComposer
     column: $table.pinnedVersion,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TablePacksTableOrderingComposer
@@ -45364,6 +44147,11 @@ class $$TablePacksTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get packId => $composableBuilder(
     column: $table.packId,
     builder: (column) => ColumnOrderings(column),
@@ -45373,29 +44161,6 @@ class $$TablePacksTableOrderingComposer
     column: $table.pinnedVersion,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TablePacksTableAnnotationComposer
@@ -45410,6 +44175,9 @@ class $$TablePacksTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get packId =>
       $composableBuilder(column: $table.packId, builder: (column) => column);
 
@@ -45417,29 +44185,6 @@ class $$TablePacksTableAnnotationComposer
     column: $table.pinnedVersion,
     builder: (column) => column,
   );
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TablePacksTableTableManager
@@ -45453,9 +44198,12 @@ class $$TablePacksTableTableManager
           $$TablePacksTableAnnotationComposer,
           $$TablePacksTableCreateCompanionBuilder,
           $$TablePacksTableUpdateCompanionBuilder,
-          (TablePackRow, $$TablePacksTableReferences),
+          (
+            TablePackRow,
+            BaseReferences<_$TavernierDatabase, $TablePacksTable, TablePackRow>,
+          ),
           TablePackRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$TablePacksTableTableManager(_$TavernierDatabase db, $TablePacksTable table)
     : super(
@@ -45500,49 +44248,15 @@ class $$TablePacksTableTableManager
               .map(
                 (e) => (
                   e.readTable<$TablePacksTable, TablePackRow>(table),
-                  $$TablePacksTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $TablePacksTable,
+                    TablePackRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$TablePacksTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$TablePacksTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -45557,9 +44271,12 @@ typedef $$TablePacksTableProcessedTableManager =
       $$TablePacksTableAnnotationComposer,
       $$TablePacksTableCreateCompanionBuilder,
       $$TablePacksTableUpdateCompanionBuilder,
-      (TablePackRow, $$TablePacksTableReferences),
+      (
+        TablePackRow,
+        BaseReferences<_$TavernierDatabase, $TablePacksTable, TablePackRow>,
+      ),
       TablePackRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$TableBannedEntitiesTableCreateCompanionBuilder =
     TableBannedEntitiesCompanion Function({
@@ -45576,37 +44293,6 @@ typedef $$TableBannedEntitiesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$TableBannedEntitiesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $TableBannedEntitiesTable,
-          TableBannedEntityRow
-        > {
-  $$TableBannedEntitiesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) => db.gameTables
-      .createAlias('table_banned_entity__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$TableBannedEntitiesTableFilterComposer
     extends Composer<_$TavernierDatabase, $TableBannedEntitiesTable> {
   $$TableBannedEntitiesTableFilterComposer({
@@ -45621,33 +44307,15 @@ class $$TableBannedEntitiesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get entityId => $composableBuilder(
     column: $table.entityId,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableBannedEntitiesTableOrderingComposer
@@ -45664,33 +44332,15 @@ class $$TableBannedEntitiesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get entityId => $composableBuilder(
     column: $table.entityId,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableBannedEntitiesTableAnnotationComposer
@@ -45705,31 +44355,11 @@ class $$TableBannedEntitiesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get entityId =>
       $composableBuilder(column: $table.entityId, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$TableBannedEntitiesTableTableManager
@@ -45743,9 +44373,16 @@ class $$TableBannedEntitiesTableTableManager
           $$TableBannedEntitiesTableAnnotationComposer,
           $$TableBannedEntitiesTableCreateCompanionBuilder,
           $$TableBannedEntitiesTableUpdateCompanionBuilder,
-          (TableBannedEntityRow, $$TableBannedEntitiesTableReferences),
+          (
+            TableBannedEntityRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $TableBannedEntitiesTable,
+              TableBannedEntityRow
+            >,
+          ),
           TableBannedEntityRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$TableBannedEntitiesTableTableManager(
     _$TavernierDatabase db,
@@ -45796,49 +44433,15 @@ class $$TableBannedEntitiesTableTableManager
                   e.readTable<$TableBannedEntitiesTable, TableBannedEntityRow>(
                     table,
                   ),
-                  $$TableBannedEntitiesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $TableBannedEntitiesTable,
+                    TableBannedEntityRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$TableBannedEntitiesTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$TableBannedEntitiesTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -45853,9 +44456,16 @@ typedef $$TableBannedEntitiesTableProcessedTableManager =
       $$TableBannedEntitiesTableAnnotationComposer,
       $$TableBannedEntitiesTableCreateCompanionBuilder,
       $$TableBannedEntitiesTableUpdateCompanionBuilder,
-      (TableBannedEntityRow, $$TableBannedEntitiesTableReferences),
+      (
+        TableBannedEntityRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $TableBannedEntitiesTable,
+          TableBannedEntityRow
+        >,
+      ),
       TableBannedEntityRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   required String id,
@@ -45900,302 +44510,6 @@ typedef $$CharactersTableUpdateCompanionBuilder = CharactersCompanion Function({
   Value<int> rowid,
 });
 
-final class $$CharactersTableReferences
-    extends
-        BaseReferences<_$TavernierDatabase, $CharactersTable, CharacterRow> {
-  $$CharactersTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('character__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager? get tableId {
-    final $_column = $_itemColumn<String>('table_id');
-    if ($_column == null) return null;
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterBaseScoresTable,
-    List<CharacterBaseScoreRow>
-  >
-  _characterBaseScoresRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterBaseScores,
-        aliasName: 'character__id__character_base_scores__character_id',
-      );
-
-  $$CharacterBaseScoresTableProcessedTableManager get characterBaseScoresRefs {
-    final manager = $$CharacterBaseScoresTableTableManager(
-      $_db,
-      $_db.characterBaseScores,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterBaseScoresRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterBackgroundChoicesTable,
-    List<CharacterBackgroundChoiceRow>
-  >
-  _characterBackgroundChoicesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterBackgroundChoices,
-        aliasName: 'character__id__character_background_choice__character_id',
-      );
-
-  $$CharacterBackgroundChoicesTableProcessedTableManager
-  get characterBackgroundChoicesRefs {
-    final manager = $$CharacterBackgroundChoicesTableTableManager(
-      $_db,
-      $_db.characterBackgroundChoices,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterBackgroundChoicesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterClassLevelsTable,
-    List<CharacterClassLevelRow>
-  >
-  _characterClassLevelsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterClassLevels,
-        aliasName: 'character__id__character_class_level__character_id',
-      );
-
-  $$CharacterClassLevelsTableProcessedTableManager
-  get characterClassLevelsRefs {
-    final manager = $$CharacterClassLevelsTableTableManager(
-      $_db,
-      $_db.characterClassLevels,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterClassLevelsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterFeatsTable, List<CharacterFeatRow>>
-  _characterFeatsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterFeats,
-        aliasName: 'character__id__character_feat__character_id',
-      );
-
-  $$CharacterFeatsTableProcessedTableManager get characterFeatsRefs {
-    final manager = $$CharacterFeatsTableTableManager(
-      $_db,
-      $_db.characterFeats,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_characterFeatsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterWeaponMasteriesTable,
-    List<CharacterWeaponMasteryRow>
-  >
-  _characterWeaponMasteriesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterWeaponMasteries,
-        aliasName: 'character__id__character_weapon_mastery__character_id',
-      );
-
-  $$CharacterWeaponMasteriesTableProcessedTableManager
-  get characterWeaponMasteriesRefs {
-    final manager = $$CharacterWeaponMasteriesTableTableManager(
-      $_db,
-      $_db.characterWeaponMasteries,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterWeaponMasteriesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterSpellsTable, List<CharacterSpellRow>>
-  _characterSpellsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterSpells,
-        aliasName: 'character__id__character_spell__character_id',
-      );
-
-  $$CharacterSpellsTableProcessedTableManager get characterSpellsRefs {
-    final manager = $$CharacterSpellsTableTableManager(
-      $_db,
-      $_db.characterSpells,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterSpellsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterItemsTable, List<CharacterItemRow>>
-  _characterItemsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterItems,
-        aliasName: 'character__id__character_item__character_id',
-      );
-
-  $$CharacterItemsTableProcessedTableManager get characterItemsRefs {
-    final manager = $$CharacterItemsTableTableManager(
-      $_db,
-      $_db.characterItems,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_characterItemsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterStatesTable, List<CharacterStateRow>>
-  _characterStatesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterStates,
-        aliasName: 'character__id__character_state__character_id',
-      );
-
-  $$CharacterStatesTableProcessedTableManager get characterStatesRefs {
-    final manager = $$CharacterStatesTableTableManager(
-      $_db,
-      $_db.characterStates,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterStatesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterContentRefsTable,
-    List<CharacterContentRefRow>
-  >
-  _characterContentRefsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterContentRefs,
-        aliasName: 'character__id__character_content_ref__character_id',
-      );
-
-  $$CharacterContentRefsTableProcessedTableManager
-  get characterContentRefsRefs {
-    final manager = $$CharacterContentRefsTableTableManager(
-      $_db,
-      $_db.characterContentRefs,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterContentRefsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterChangeLogsTable,
-    List<CharacterChangeLogRow>
-  >
-  _characterChangeLogsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterChangeLogs,
-        aliasName: 'character__id__character_change_log__character_id',
-      );
-
-  $$CharacterChangeLogsTableProcessedTableManager get characterChangeLogsRefs {
-    final manager = $$CharacterChangeLogsTableTableManager(
-      $_db,
-      $_db.characterChangeLogs,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterChangeLogsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<
-    $CharacterLanguagesTable,
-    List<CharacterLanguageRow>
-  >
-  _characterLanguagesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterLanguages,
-        aliasName: 'character__id__character_language__character_id',
-      );
-
-  $$CharacterLanguagesTableProcessedTableManager get characterLanguagesRefs {
-    final manager = $$CharacterLanguagesTableTableManager(
-      $_db,
-      $_db.characterLanguages,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterLanguagesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$CharacterChoicesTable, List<CharacterChoiceRow>>
-  _characterChoicesRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.characterChoices,
-        aliasName: 'character__id__character_choice__character_id',
-      );
-
-  $$CharacterChoicesTableProcessedTableManager get characterChoicesRefs {
-    final manager = $$CharacterChoicesTableTableManager(
-      $_db,
-      $_db.characterChoices,
-    ).filter((f) => f.characterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _characterChoicesRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
 class $$CharactersTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharactersTable> {
   $$CharactersTableFilterComposer({
@@ -46207,6 +44521,11 @@ class $$CharactersTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -46289,333 +44608,6 @@ class $$CharactersTableFilterComposer
     column: $table.backstory,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<bool> characterBaseScoresRefs(
-    Expression<bool> Function($$CharacterBaseScoresTableFilterComposer f) f,
-  ) {
-    final $$CharacterBaseScoresTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterBaseScores,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterBaseScoresTableFilterComposer(
-            $db: $db,
-            $table: $db.characterBaseScores,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterBackgroundChoicesRefs(
-    Expression<bool> Function($$CharacterBackgroundChoicesTableFilterComposer f)
-    f,
-  ) {
-    final $$CharacterBackgroundChoicesTableFilterComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterBackgroundChoices,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterBackgroundChoicesTableFilterComposer(
-                $db: $db,
-                $table: $db.characterBackgroundChoices,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<bool> characterClassLevelsRefs(
-    Expression<bool> Function($$CharacterClassLevelsTableFilterComposer f) f,
-  ) {
-    final $$CharacterClassLevelsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterClassLevels,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterClassLevelsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterClassLevels,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterFeatsRefs(
-    Expression<bool> Function($$CharacterFeatsTableFilterComposer f) f,
-  ) {
-    final $$CharacterFeatsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterFeats,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterFeatsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterFeats,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterWeaponMasteriesRefs(
-    Expression<bool> Function($$CharacterWeaponMasteriesTableFilterComposer f)
-    f,
-  ) {
-    final $$CharacterWeaponMasteriesTableFilterComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterWeaponMasteries,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterWeaponMasteriesTableFilterComposer(
-                $db: $db,
-                $table: $db.characterWeaponMasteries,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<bool> characterSpellsRefs(
-    Expression<bool> Function($$CharacterSpellsTableFilterComposer f) f,
-  ) {
-    final $$CharacterSpellsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterSpells,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterSpellsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterSpells,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterItemsRefs(
-    Expression<bool> Function($$CharacterItemsTableFilterComposer f) f,
-  ) {
-    final $$CharacterItemsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterItems,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterItemsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterItems,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterStatesRefs(
-    Expression<bool> Function($$CharacterStatesTableFilterComposer f) f,
-  ) {
-    final $$CharacterStatesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterStates,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterStatesTableFilterComposer(
-            $db: $db,
-            $table: $db.characterStates,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterContentRefsRefs(
-    Expression<bool> Function($$CharacterContentRefsTableFilterComposer f) f,
-  ) {
-    final $$CharacterContentRefsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterContentRefs,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterContentRefsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterContentRefs,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterChangeLogsRefs(
-    Expression<bool> Function($$CharacterChangeLogsTableFilterComposer f) f,
-  ) {
-    final $$CharacterChangeLogsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterChangeLogs,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterChangeLogsTableFilterComposer(
-            $db: $db,
-            $table: $db.characterChangeLogs,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterLanguagesRefs(
-    Expression<bool> Function($$CharacterLanguagesTableFilterComposer f) f,
-  ) {
-    final $$CharacterLanguagesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterLanguages,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterLanguagesTableFilterComposer(
-            $db: $db,
-            $table: $db.characterLanguages,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<bool> characterChoicesRefs(
-    Expression<bool> Function($$CharacterChoicesTableFilterComposer f) f,
-  ) {
-    final $$CharacterChoicesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterChoices,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterChoicesTableFilterComposer(
-            $db: $db,
-            $table: $db.characterChoices,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$CharactersTableOrderingComposer
@@ -46629,6 +44621,11 @@ class $$CharactersTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -46711,29 +44708,6 @@ class $$CharactersTableOrderingComposer
     column: $table.backstory,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharactersTableAnnotationComposer
@@ -46747,6 +44721,9 @@ class $$CharactersTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
 
   GeneratedColumn<String> get ownerUserId => $composableBuilder(
     column: $table.ownerUserId,
@@ -46809,340 +44786,6 @@ class $$CharactersTableAnnotationComposer
 
   GeneratedColumn<String> get backstory =>
       $composableBuilder(column: $table.backstory, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
-
-  Expression<T> characterBaseScoresRefs<T extends Object>(
-    Expression<T> Function($$CharacterBaseScoresTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterBaseScoresTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterBaseScores,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterBaseScoresTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterBaseScores,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterBackgroundChoicesRefs<T extends Object>(
-    Expression<T> Function(
-      $$CharacterBackgroundChoicesTableAnnotationComposer a,
-    )
-    f,
-  ) {
-    final $$CharacterBackgroundChoicesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterBackgroundChoices,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterBackgroundChoicesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterBackgroundChoices,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterClassLevelsRefs<T extends Object>(
-    Expression<T> Function($$CharacterClassLevelsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterClassLevelsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterClassLevels,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterClassLevelsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterClassLevels,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterFeatsRefs<T extends Object>(
-    Expression<T> Function($$CharacterFeatsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterFeatsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterFeats,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterFeatsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterFeats,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> characterWeaponMasteriesRefs<T extends Object>(
-    Expression<T> Function($$CharacterWeaponMasteriesTableAnnotationComposer a)
-    f,
-  ) {
-    final $$CharacterWeaponMasteriesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterWeaponMasteries,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterWeaponMasteriesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterWeaponMasteries,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterSpellsRefs<T extends Object>(
-    Expression<T> Function($$CharacterSpellsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterSpellsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterSpells,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterSpellsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterSpells,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> characterItemsRefs<T extends Object>(
-    Expression<T> Function($$CharacterItemsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterItemsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterItems,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterItemsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterItems,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> characterStatesRefs<T extends Object>(
-    Expression<T> Function($$CharacterStatesTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterStatesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterStates,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterStatesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterStates,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-
-  Expression<T> characterContentRefsRefs<T extends Object>(
-    Expression<T> Function($$CharacterContentRefsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterContentRefsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterContentRefs,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterContentRefsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterContentRefs,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterChangeLogsRefs<T extends Object>(
-    Expression<T> Function($$CharacterChangeLogsTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterChangeLogsTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterChangeLogs,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterChangeLogsTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterChangeLogs,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterLanguagesRefs<T extends Object>(
-    Expression<T> Function($$CharacterLanguagesTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterLanguagesTableAnnotationComposer composer =
-        $composerBuilder(
-          composer: this,
-          getCurrentColumn: (t) => t.id,
-          referencedTable: $db.characterLanguages,
-          getReferencedColumn: (t) => t.characterId,
-          builder:
-              (
-                joinBuilder, {
-                $addJoinBuilderToRootComposer,
-                $removeJoinBuilderFromRootComposer,
-              }) => $$CharacterLanguagesTableAnnotationComposer(
-                $db: $db,
-                $table: $db.characterLanguages,
-                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-                joinBuilder: joinBuilder,
-                $removeJoinBuilderFromRootComposer:
-                    $removeJoinBuilderFromRootComposer,
-              ),
-        );
-    return f(composer);
-  }
-
-  Expression<T> characterChoicesRefs<T extends Object>(
-    Expression<T> Function($$CharacterChoicesTableAnnotationComposer a) f,
-  ) {
-    final $$CharacterChoicesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.characterChoices,
-      getReferencedColumn: (t) => t.characterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharacterChoicesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characterChoices,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
 }
 
 class $$CharactersTableTableManager
@@ -47156,23 +44799,12 @@ class $$CharactersTableTableManager
           $$CharactersTableAnnotationComposer,
           $$CharactersTableCreateCompanionBuilder,
           $$CharactersTableUpdateCompanionBuilder,
-          (CharacterRow, $$CharactersTableReferences),
+          (
+            CharacterRow,
+            BaseReferences<_$TavernierDatabase, $CharactersTable, CharacterRow>,
+          ),
           CharacterRow,
-          PrefetchHooks Function({
-            bool tableId,
-            bool characterBaseScoresRefs,
-            bool characterBackgroundChoicesRefs,
-            bool characterClassLevelsRefs,
-            bool characterFeatsRefs,
-            bool characterWeaponMasteriesRefs,
-            bool characterSpellsRefs,
-            bool characterItemsRefs,
-            bool characterStatesRefs,
-            bool characterContentRefsRefs,
-            bool characterChangeLogsRefs,
-            bool characterLanguagesRefs,
-            bool characterChoicesRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$CharactersTableTableManager(_$TavernierDatabase db, $CharactersTable table)
     : super(
@@ -47273,320 +44905,15 @@ class $$CharactersTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CharactersTable, CharacterRow>(table),
-                  $$CharactersTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharactersTable,
+                    CharacterRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback:
-              ({
-                tableId = false,
-                characterBaseScoresRefs = false,
-                characterBackgroundChoicesRefs = false,
-                characterClassLevelsRefs = false,
-                characterFeatsRefs = false,
-                characterWeaponMasteriesRefs = false,
-                characterSpellsRefs = false,
-                characterItemsRefs = false,
-                characterStatesRefs = false,
-                characterContentRefsRefs = false,
-                characterChangeLogsRefs = false,
-                characterLanguagesRefs = false,
-                characterChoicesRefs = false,
-              }) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (characterBaseScoresRefs) db.characterBaseScores,
-                    if (characterBackgroundChoicesRefs)
-                      db.characterBackgroundChoices,
-                    if (characterClassLevelsRefs) db.characterClassLevels,
-                    if (characterFeatsRefs) db.characterFeats,
-                    if (characterWeaponMasteriesRefs)
-                      db.characterWeaponMasteries,
-                    if (characterSpellsRefs) db.characterSpells,
-                    if (characterItemsRefs) db.characterItems,
-                    if (characterStatesRefs) db.characterStates,
-                    if (characterContentRefsRefs) db.characterContentRefs,
-                    if (characterChangeLogsRefs) db.characterChangeLogs,
-                    if (characterLanguagesRefs) db.characterLanguages,
-                    if (characterChoicesRefs) db.characterChoices,
-                  ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (tableId) {
-                          state = state.withJoin(
-                            currentTable: table,
-                            currentColumn: table.tableId,
-                            referencedTable: $$CharactersTableReferences
-                                ._tableIdTable(db),
-                            referencedColumn: $$CharactersTableReferences
-                                ._tableIdTable(db)
-                                .id,
-                          ) as T;
-                        }
-
-                        return state;
-                      },
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (characterBaseScoresRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterBaseScoreRow,
-                          $CharacterBaseScoresTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterBaseScoresRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterBaseScoresRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterBackgroundChoicesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterBackgroundChoiceRow,
-                          $CharacterBackgroundChoicesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterBackgroundChoicesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterBackgroundChoicesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterClassLevelsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterClassLevelRow,
-                          $CharacterClassLevelsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterClassLevelsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterClassLevelsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterFeatsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterFeatRow,
-                          $CharacterFeatsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterFeatsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterFeatsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterWeaponMasteriesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterWeaponMasteryRow,
-                          $CharacterWeaponMasteriesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterWeaponMasteriesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterWeaponMasteriesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterSpellsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterSpellRow,
-                          $CharacterSpellsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterSpellsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterSpellsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterItemsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterItemRow,
-                          $CharacterItemsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterItemsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterItemsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterStatesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterStateRow,
-                          $CharacterStatesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterStatesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterStatesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterContentRefsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterContentRefRow,
-                          $CharacterContentRefsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterContentRefsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterContentRefsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterChangeLogsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterChangeLogRow,
-                          $CharacterChangeLogsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterChangeLogsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterChangeLogsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterLanguagesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterLanguageRow,
-                          $CharacterLanguagesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterLanguagesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterLanguagesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                      if (characterChoicesRefs)
-                        await $_getPrefetchedDataByColumns<
-                          CharacterRow,
-                          $CharactersTable,
-                          CharacterChoiceRow,
-                          $CharacterChoicesTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$CharactersTableReferences
-                              ._characterChoicesRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$CharactersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).characterChoicesRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'character_id',
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -47601,23 +44928,12 @@ typedef $$CharactersTableProcessedTableManager =
       $$CharactersTableAnnotationComposer,
       $$CharactersTableCreateCompanionBuilder,
       $$CharactersTableUpdateCompanionBuilder,
-      (CharacterRow, $$CharactersTableReferences),
+      (
+        CharacterRow,
+        BaseReferences<_$TavernierDatabase, $CharactersTable, CharacterRow>,
+      ),
       CharacterRow,
-      PrefetchHooks Function({
-        bool tableId,
-        bool characterBaseScoresRefs,
-        bool characterBackgroundChoicesRefs,
-        bool characterClassLevelsRefs,
-        bool characterFeatsRefs,
-        bool characterWeaponMasteriesRefs,
-        bool characterSpellsRefs,
-        bool characterItemsRefs,
-        bool characterStatesRefs,
-        bool characterContentRefsRefs,
-        bool characterChangeLogsRefs,
-        bool characterLanguagesRefs,
-        bool characterChoicesRefs,
-      })
+      PrefetchHooks Function()
     >;
 typedef $$CharacterBaseScoresTableCreateCompanionBuilder =
     CharacterBaseScoresCompanion Function({
@@ -47638,38 +44954,6 @@ typedef $$CharacterBaseScoresTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterBaseScoresTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterBaseScoresTable,
-          CharacterBaseScoreRow
-        > {
-  $$CharacterBaseScoresTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_base_scores__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterBaseScoresTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterBaseScoresTable> {
   $$CharacterBaseScoresTableFilterComposer({
@@ -47681,6 +44965,11 @@ class $$CharacterBaseScoresTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -47698,29 +44987,6 @@ class $$CharacterBaseScoresTableFilterComposer
     column: $table.method,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBaseScoresTableOrderingComposer
@@ -47734,6 +45000,11 @@ class $$CharacterBaseScoresTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -47751,29 +45022,6 @@ class $$CharacterBaseScoresTableOrderingComposer
     column: $table.method,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBaseScoresTableAnnotationComposer
@@ -47788,6 +45036,11 @@ class $$CharacterBaseScoresTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get abilityId =>
       $composableBuilder(column: $table.abilityId, builder: (column) => column);
 
@@ -47796,29 +45049,6 @@ class $$CharacterBaseScoresTableAnnotationComposer
 
   GeneratedColumn<String> get method =>
       $composableBuilder(column: $table.method, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBaseScoresTableTableManager
@@ -47832,9 +45062,16 @@ class $$CharacterBaseScoresTableTableManager
           $$CharacterBaseScoresTableAnnotationComposer,
           $$CharacterBaseScoresTableCreateCompanionBuilder,
           $$CharacterBaseScoresTableUpdateCompanionBuilder,
-          (CharacterBaseScoreRow, $$CharacterBaseScoresTableReferences),
+          (
+            CharacterBaseScoreRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterBaseScoresTable,
+              CharacterBaseScoreRow
+            >,
+          ),
           CharacterBaseScoreRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterBaseScoresTableTableManager(
     _$TavernierDatabase db,
@@ -47893,49 +45130,15 @@ class $$CharacterBaseScoresTableTableManager
                   e.readTable<$CharacterBaseScoresTable, CharacterBaseScoreRow>(
                     table,
                   ),
-                  $$CharacterBaseScoresTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterBaseScoresTable,
+                    CharacterBaseScoreRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterBaseScoresTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterBaseScoresTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -47950,9 +45153,16 @@ typedef $$CharacterBaseScoresTableProcessedTableManager =
       $$CharacterBaseScoresTableAnnotationComposer,
       $$CharacterBaseScoresTableCreateCompanionBuilder,
       $$CharacterBaseScoresTableUpdateCompanionBuilder,
-      (CharacterBaseScoreRow, $$CharacterBaseScoresTableReferences),
+      (
+        CharacterBaseScoreRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterBaseScoresTable,
+          CharacterBaseScoreRow
+        >,
+      ),
       CharacterBaseScoreRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterBackgroundChoicesTableCreateCompanionBuilder =
     CharacterBackgroundChoicesCompanion Function({
@@ -47975,38 +45185,6 @@ typedef $$CharacterBackgroundChoicesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterBackgroundChoicesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterBackgroundChoicesTable,
-          CharacterBackgroundChoiceRow
-        > {
-  $$CharacterBackgroundChoicesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_background_choice__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterBackgroundChoicesTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterBackgroundChoicesTable> {
   $$CharacterBackgroundChoicesTableFilterComposer({
@@ -48018,6 +45196,11 @@ class $$CharacterBackgroundChoicesTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -48040,29 +45223,6 @@ class $$CharacterBackgroundChoicesTableFilterComposer
     column: $table.toolChoice,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBackgroundChoicesTableOrderingComposer
@@ -48076,6 +45236,11 @@ class $$CharacterBackgroundChoicesTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -48098,29 +45263,6 @@ class $$CharacterBackgroundChoicesTableOrderingComposer
     column: $table.toolChoice,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBackgroundChoicesTableAnnotationComposer
@@ -48134,6 +45276,11 @@ class $$CharacterBackgroundChoicesTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get distribution => $composableBuilder(
     column: $table.distribution,
@@ -48152,29 +45299,6 @@ class $$CharacterBackgroundChoicesTableAnnotationComposer
     column: $table.toolChoice,
     builder: (column) => column,
   );
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterBackgroundChoicesTableTableManager
@@ -48190,10 +45314,14 @@ class $$CharacterBackgroundChoicesTableTableManager
           $$CharacterBackgroundChoicesTableUpdateCompanionBuilder,
           (
             CharacterBackgroundChoiceRow,
-            $$CharacterBackgroundChoicesTableReferences,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterBackgroundChoicesTable,
+              CharacterBackgroundChoiceRow
+            >,
           ),
           CharacterBackgroundChoiceRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterBackgroundChoicesTableTableManager(
     _$TavernierDatabase db,
@@ -48260,51 +45388,15 @@ class $$CharacterBackgroundChoicesTableTableManager
                     $CharacterBackgroundChoicesTable,
                     CharacterBackgroundChoiceRow
                   >(table),
-                  $$CharacterBackgroundChoicesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterBackgroundChoicesTable,
+                    CharacterBackgroundChoiceRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable:
-                            $$CharacterBackgroundChoicesTableReferences
-                                ._characterIdTable(db),
-                        referencedColumn:
-                            $$CharacterBackgroundChoicesTableReferences
-                                ._characterIdTable(db)
-                                .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -48321,10 +45413,14 @@ typedef $$CharacterBackgroundChoicesTableProcessedTableManager =
       $$CharacterBackgroundChoicesTableUpdateCompanionBuilder,
       (
         CharacterBackgroundChoiceRow,
-        $$CharacterBackgroundChoicesTableReferences,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterBackgroundChoicesTable,
+          CharacterBackgroundChoiceRow
+        >,
       ),
       CharacterBackgroundChoiceRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterClassLevelsTableCreateCompanionBuilder =
     CharacterClassLevelsCompanion Function({
@@ -48353,38 +45449,6 @@ typedef $$CharacterClassLevelsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterClassLevelsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterClassLevelsTable,
-          CharacterClassLevelRow
-        > {
-  $$CharacterClassLevelsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_class_level__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterClassLevelsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterClassLevelsTable> {
   $$CharacterClassLevelsTableFilterComposer({
@@ -48396,6 +45460,11 @@ class $$CharacterClassLevelsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -48433,29 +45502,6 @@ class $$CharacterClassLevelsTableFilterComposer
     column: $table.position,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterClassLevelsTableOrderingComposer
@@ -48469,6 +45515,11 @@ class $$CharacterClassLevelsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -48506,29 +45557,6 @@ class $$CharacterClassLevelsTableOrderingComposer
     column: $table.position,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterClassLevelsTableAnnotationComposer
@@ -48542,6 +45570,11 @@ class $$CharacterClassLevelsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get classId =>
       $composableBuilder(column: $table.classId, builder: (column) => column);
@@ -48567,29 +45600,6 @@ class $$CharacterClassLevelsTableAnnotationComposer
 
   GeneratedColumn<int> get position =>
       $composableBuilder(column: $table.position, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterClassLevelsTableTableManager
@@ -48603,9 +45613,16 @@ class $$CharacterClassLevelsTableTableManager
           $$CharacterClassLevelsTableAnnotationComposer,
           $$CharacterClassLevelsTableCreateCompanionBuilder,
           $$CharacterClassLevelsTableUpdateCompanionBuilder,
-          (CharacterClassLevelRow, $$CharacterClassLevelsTableReferences),
+          (
+            CharacterClassLevelRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterClassLevelsTable,
+              CharacterClassLevelRow
+            >,
+          ),
           CharacterClassLevelRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterClassLevelsTableTableManager(
     _$TavernierDatabase db,
@@ -48681,49 +45698,15 @@ class $$CharacterClassLevelsTableTableManager
                     $CharacterClassLevelsTable,
                     CharacterClassLevelRow
                   >(table),
-                  $$CharacterClassLevelsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterClassLevelsTable,
+                    CharacterClassLevelRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterClassLevelsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterClassLevelsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -48738,9 +45721,16 @@ typedef $$CharacterClassLevelsTableProcessedTableManager =
       $$CharacterClassLevelsTableAnnotationComposer,
       $$CharacterClassLevelsTableCreateCompanionBuilder,
       $$CharacterClassLevelsTableUpdateCompanionBuilder,
-      (CharacterClassLevelRow, $$CharacterClassLevelsTableReferences),
+      (
+        CharacterClassLevelRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterClassLevelsTable,
+          CharacterClassLevelRow
+        >,
+      ),
       CharacterClassLevelRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterFeatsTableCreateCompanionBuilder =
     CharacterFeatsCompanion Function({
@@ -48765,37 +45755,6 @@ typedef $$CharacterFeatsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterFeatsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterFeatsTable,
-          CharacterFeatRow
-        > {
-  $$CharacterFeatsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) =>
-      db.characters.createAlias('character_feat__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterFeatsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterFeatsTable> {
   $$CharacterFeatsTableFilterComposer({
@@ -48807,6 +45766,11 @@ class $$CharacterFeatsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -48834,29 +45798,6 @@ class $$CharacterFeatsTableFilterComposer
     column: $table.position,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterFeatsTableOrderingComposer
@@ -48870,6 +45811,11 @@ class $$CharacterFeatsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -48897,29 +45843,6 @@ class $$CharacterFeatsTableOrderingComposer
     column: $table.position,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterFeatsTableAnnotationComposer
@@ -48933,6 +45856,11 @@ class $$CharacterFeatsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get featId =>
       $composableBuilder(column: $table.featId, builder: (column) => column);
@@ -48950,29 +45878,6 @@ class $$CharacterFeatsTableAnnotationComposer
 
   GeneratedColumn<int> get position =>
       $composableBuilder(column: $table.position, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterFeatsTableTableManager
@@ -48986,9 +45891,16 @@ class $$CharacterFeatsTableTableManager
           $$CharacterFeatsTableAnnotationComposer,
           $$CharacterFeatsTableCreateCompanionBuilder,
           $$CharacterFeatsTableUpdateCompanionBuilder,
-          (CharacterFeatRow, $$CharacterFeatsTableReferences),
+          (
+            CharacterFeatRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterFeatsTable,
+              CharacterFeatRow
+            >,
+          ),
           CharacterFeatRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterFeatsTableTableManager(
     _$TavernierDatabase db,
@@ -49047,49 +45959,15 @@ class $$CharacterFeatsTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CharacterFeatsTable, CharacterFeatRow>(table),
-                  $$CharacterFeatsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterFeatsTable,
+                    CharacterFeatRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterFeatsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterFeatsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -49104,9 +45982,16 @@ typedef $$CharacterFeatsTableProcessedTableManager =
       $$CharacterFeatsTableAnnotationComposer,
       $$CharacterFeatsTableCreateCompanionBuilder,
       $$CharacterFeatsTableUpdateCompanionBuilder,
-      (CharacterFeatRow, $$CharacterFeatsTableReferences),
+      (
+        CharacterFeatRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterFeatsTable,
+          CharacterFeatRow
+        >,
+      ),
       CharacterFeatRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterWeaponMasteriesTableCreateCompanionBuilder =
     CharacterWeaponMasteriesCompanion Function({
@@ -49125,38 +46010,6 @@ typedef $$CharacterWeaponMasteriesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterWeaponMasteriesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterWeaponMasteriesTable,
-          CharacterWeaponMasteryRow
-        > {
-  $$CharacterWeaponMasteriesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_weapon_mastery__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterWeaponMasteriesTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterWeaponMasteriesTable> {
   $$CharacterWeaponMasteriesTableFilterComposer({
@@ -49171,6 +46024,11 @@ class $$CharacterWeaponMasteriesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get weaponId => $composableBuilder(
     column: $table.weaponId,
     builder: (column) => ColumnFilters(column),
@@ -49180,29 +46038,6 @@ class $$CharacterWeaponMasteriesTableFilterComposer
     column: $table.slotIndex,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterWeaponMasteriesTableOrderingComposer
@@ -49219,6 +46054,11 @@ class $$CharacterWeaponMasteriesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get weaponId => $composableBuilder(
     column: $table.weaponId,
     builder: (column) => ColumnOrderings(column),
@@ -49228,29 +46068,6 @@ class $$CharacterWeaponMasteriesTableOrderingComposer
     column: $table.slotIndex,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterWeaponMasteriesTableAnnotationComposer
@@ -49265,34 +46082,16 @@ class $$CharacterWeaponMasteriesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get weaponId =>
       $composableBuilder(column: $table.weaponId, builder: (column) => column);
 
   GeneratedColumn<int> get slotIndex =>
       $composableBuilder(column: $table.slotIndex, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterWeaponMasteriesTableTableManager
@@ -49308,10 +46107,14 @@ class $$CharacterWeaponMasteriesTableTableManager
           $$CharacterWeaponMasteriesTableUpdateCompanionBuilder,
           (
             CharacterWeaponMasteryRow,
-            $$CharacterWeaponMasteriesTableReferences,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterWeaponMasteriesTable,
+              CharacterWeaponMasteryRow
+            >,
           ),
           CharacterWeaponMasteryRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterWeaponMasteriesTableTableManager(
     _$TavernierDatabase db,
@@ -49370,51 +46173,15 @@ class $$CharacterWeaponMasteriesTableTableManager
                     $CharacterWeaponMasteriesTable,
                     CharacterWeaponMasteryRow
                   >(table),
-                  $$CharacterWeaponMasteriesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterWeaponMasteriesTable,
+                    CharacterWeaponMasteryRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable:
-                            $$CharacterWeaponMasteriesTableReferences
-                                ._characterIdTable(db),
-                        referencedColumn:
-                            $$CharacterWeaponMasteriesTableReferences
-                                ._characterIdTable(db)
-                                .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -49429,9 +46196,16 @@ typedef $$CharacterWeaponMasteriesTableProcessedTableManager =
       $$CharacterWeaponMasteriesTableAnnotationComposer,
       $$CharacterWeaponMasteriesTableCreateCompanionBuilder,
       $$CharacterWeaponMasteriesTableUpdateCompanionBuilder,
-      (CharacterWeaponMasteryRow, $$CharacterWeaponMasteriesTableReferences),
+      (
+        CharacterWeaponMasteryRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterWeaponMasteriesTable,
+          CharacterWeaponMasteryRow
+        >,
+      ),
       CharacterWeaponMasteryRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterSpellsTableCreateCompanionBuilder =
     CharacterSpellsCompanion Function({
@@ -49456,37 +46230,6 @@ typedef $$CharacterSpellsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterSpellsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterSpellsTable,
-          CharacterSpellRow
-        > {
-  $$CharacterSpellsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) =>
-      db.characters.createAlias('character_spell__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterSpellsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterSpellsTable> {
   $$CharacterSpellsTableFilterComposer({
@@ -49498,6 +46241,11 @@ class $$CharacterSpellsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -49525,29 +46273,6 @@ class $$CharacterSpellsTableFilterComposer
     column: $table.classId,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterSpellsTableOrderingComposer
@@ -49561,6 +46286,11 @@ class $$CharacterSpellsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -49588,29 +46318,6 @@ class $$CharacterSpellsTableOrderingComposer
     column: $table.classId,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterSpellsTableAnnotationComposer
@@ -49624,6 +46331,11 @@ class $$CharacterSpellsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get spellId =>
       $composableBuilder(column: $table.spellId, builder: (column) => column);
@@ -49641,29 +46353,6 @@ class $$CharacterSpellsTableAnnotationComposer
 
   GeneratedColumn<String> get classId =>
       $composableBuilder(column: $table.classId, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterSpellsTableTableManager
@@ -49677,9 +46366,16 @@ class $$CharacterSpellsTableTableManager
           $$CharacterSpellsTableAnnotationComposer,
           $$CharacterSpellsTableCreateCompanionBuilder,
           $$CharacterSpellsTableUpdateCompanionBuilder,
-          (CharacterSpellRow, $$CharacterSpellsTableReferences),
+          (
+            CharacterSpellRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterSpellsTable,
+              CharacterSpellRow
+            >,
+          ),
           CharacterSpellRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterSpellsTableTableManager(
     _$TavernierDatabase db,
@@ -49738,49 +46434,15 @@ class $$CharacterSpellsTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CharacterSpellsTable, CharacterSpellRow>(table),
-                  $$CharacterSpellsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterSpellsTable,
+                    CharacterSpellRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterSpellsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterSpellsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -49795,9 +46457,16 @@ typedef $$CharacterSpellsTableProcessedTableManager =
       $$CharacterSpellsTableAnnotationComposer,
       $$CharacterSpellsTableCreateCompanionBuilder,
       $$CharacterSpellsTableUpdateCompanionBuilder,
-      (CharacterSpellRow, $$CharacterSpellsTableReferences),
+      (
+        CharacterSpellRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterSpellsTable,
+          CharacterSpellRow
+        >,
+      ),
       CharacterSpellRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterItemsTableCreateCompanionBuilder =
     CharacterItemsCompanion Function({
@@ -49822,37 +46491,6 @@ typedef $$CharacterItemsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterItemsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterItemsTable,
-          CharacterItemRow
-        > {
-  $$CharacterItemsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) =>
-      db.characters.createAlias('character_item__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterItemsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterItemsTable> {
   $$CharacterItemsTableFilterComposer({
@@ -49864,6 +46502,11 @@ class $$CharacterItemsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -49891,29 +46534,6 @@ class $$CharacterItemsTableFilterComposer
     column: $table.position,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterItemsTableOrderingComposer
@@ -49927,6 +46547,11 @@ class $$CharacterItemsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -49954,29 +46579,6 @@ class $$CharacterItemsTableOrderingComposer
     column: $table.position,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterItemsTableAnnotationComposer
@@ -49990,6 +46592,11 @@ class $$CharacterItemsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get itemId =>
       $composableBuilder(column: $table.itemId, builder: (column) => column);
@@ -50005,29 +46612,6 @@ class $$CharacterItemsTableAnnotationComposer
 
   GeneratedColumn<int> get position =>
       $composableBuilder(column: $table.position, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterItemsTableTableManager
@@ -50041,9 +46625,16 @@ class $$CharacterItemsTableTableManager
           $$CharacterItemsTableAnnotationComposer,
           $$CharacterItemsTableCreateCompanionBuilder,
           $$CharacterItemsTableUpdateCompanionBuilder,
-          (CharacterItemRow, $$CharacterItemsTableReferences),
+          (
+            CharacterItemRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterItemsTable,
+              CharacterItemRow
+            >,
+          ),
           CharacterItemRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterItemsTableTableManager(
     _$TavernierDatabase db,
@@ -50102,49 +46693,15 @@ class $$CharacterItemsTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CharacterItemsTable, CharacterItemRow>(table),
-                  $$CharacterItemsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterItemsTable,
+                    CharacterItemRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterItemsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterItemsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -50159,9 +46716,16 @@ typedef $$CharacterItemsTableProcessedTableManager =
       $$CharacterItemsTableAnnotationComposer,
       $$CharacterItemsTableCreateCompanionBuilder,
       $$CharacterItemsTableUpdateCompanionBuilder,
-      (CharacterItemRow, $$CharacterItemsTableReferences),
+      (
+        CharacterItemRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterItemsTable,
+          CharacterItemRow
+        >,
+      ),
       CharacterItemRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterStatesTableCreateCompanionBuilder =
     CharacterStatesCompanion Function({
@@ -50192,37 +46756,6 @@ typedef $$CharacterStatesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterStatesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterStatesTable,
-          CharacterStateRow
-        > {
-  $$CharacterStatesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) =>
-      db.characters.createAlias('character_state__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterStatesTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterStatesTable> {
   $$CharacterStatesTableFilterComposer({
@@ -50234,6 +46767,11 @@ class $$CharacterStatesTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -50276,29 +46814,6 @@ class $$CharacterStatesTableFilterComposer
     column: $table.concentrationSpellId,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterStatesTableOrderingComposer
@@ -50312,6 +46827,11 @@ class $$CharacterStatesTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -50354,29 +46874,6 @@ class $$CharacterStatesTableOrderingComposer
     column: $table.concentrationSpellId,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterStatesTableAnnotationComposer
@@ -50390,6 +46887,11 @@ class $$CharacterStatesTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<int> get hpCurrent =>
       $composableBuilder(column: $table.hpCurrent, builder: (column) => column);
@@ -50424,29 +46926,6 @@ class $$CharacterStatesTableAnnotationComposer
     column: $table.concentrationSpellId,
     builder: (column) => column,
   );
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterStatesTableTableManager
@@ -50460,9 +46939,16 @@ class $$CharacterStatesTableTableManager
           $$CharacterStatesTableAnnotationComposer,
           $$CharacterStatesTableCreateCompanionBuilder,
           $$CharacterStatesTableUpdateCompanionBuilder,
-          (CharacterStateRow, $$CharacterStatesTableReferences),
+          (
+            CharacterStateRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterStatesTable,
+              CharacterStateRow
+            >,
+          ),
           CharacterStateRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterStatesTableTableManager(
     _$TavernierDatabase db,
@@ -50533,49 +47019,15 @@ class $$CharacterStatesTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CharacterStatesTable, CharacterStateRow>(table),
-                  $$CharacterStatesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterStatesTable,
+                    CharacterStateRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterStatesTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterStatesTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -50590,9 +47042,16 @@ typedef $$CharacterStatesTableProcessedTableManager =
       $$CharacterStatesTableAnnotationComposer,
       $$CharacterStatesTableCreateCompanionBuilder,
       $$CharacterStatesTableUpdateCompanionBuilder,
-      (CharacterStateRow, $$CharacterStatesTableReferences),
+      (
+        CharacterStateRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterStatesTable,
+          CharacterStateRow
+        >,
+      ),
       CharacterStateRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterContentRefsTableCreateCompanionBuilder =
     CharacterContentRefsCompanion Function({
@@ -50615,38 +47074,6 @@ typedef $$CharacterContentRefsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterContentRefsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterContentRefsTable,
-          CharacterContentRefRow
-        > {
-  $$CharacterContentRefsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_content_ref__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterContentRefsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterContentRefsTable> {
   $$CharacterContentRefsTableFilterComposer({
@@ -50658,6 +47085,11 @@ class $$CharacterContentRefsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -50680,29 +47112,6 @@ class $$CharacterContentRefsTableFilterComposer
     column: $table.snapshot,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterContentRefsTableOrderingComposer
@@ -50716,6 +47125,11 @@ class $$CharacterContentRefsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -50738,29 +47152,6 @@ class $$CharacterContentRefsTableOrderingComposer
     column: $table.snapshot,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterContentRefsTableAnnotationComposer
@@ -50775,6 +47166,11 @@ class $$CharacterContentRefsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get entityId =>
       $composableBuilder(column: $table.entityId, builder: (column) => column);
 
@@ -50788,29 +47184,6 @@ class $$CharacterContentRefsTableAnnotationComposer
 
   GeneratedColumn<String> get snapshot =>
       $composableBuilder(column: $table.snapshot, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterContentRefsTableTableManager
@@ -50824,9 +47197,16 @@ class $$CharacterContentRefsTableTableManager
           $$CharacterContentRefsTableAnnotationComposer,
           $$CharacterContentRefsTableCreateCompanionBuilder,
           $$CharacterContentRefsTableUpdateCompanionBuilder,
-          (CharacterContentRefRow, $$CharacterContentRefsTableReferences),
+          (
+            CharacterContentRefRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterContentRefsTable,
+              CharacterContentRefRow
+            >,
+          ),
           CharacterContentRefRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterContentRefsTableTableManager(
     _$TavernierDatabase db,
@@ -50890,49 +47270,15 @@ class $$CharacterContentRefsTableTableManager
                     $CharacterContentRefsTable,
                     CharacterContentRefRow
                   >(table),
-                  $$CharacterContentRefsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterContentRefsTable,
+                    CharacterContentRefRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterContentRefsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterContentRefsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -50947,9 +47293,16 @@ typedef $$CharacterContentRefsTableProcessedTableManager =
       $$CharacterContentRefsTableAnnotationComposer,
       $$CharacterContentRefsTableCreateCompanionBuilder,
       $$CharacterContentRefsTableUpdateCompanionBuilder,
-      (CharacterContentRefRow, $$CharacterContentRefsTableReferences),
+      (
+        CharacterContentRefRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterContentRefsTable,
+          CharacterContentRefRow
+        >,
+      ),
       CharacterContentRefRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterChangeLogsTableCreateCompanionBuilder =
     CharacterChangeLogsCompanion Function({
@@ -50970,38 +47323,6 @@ typedef $$CharacterChangeLogsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterChangeLogsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterChangeLogsTable,
-          CharacterChangeLogRow
-        > {
-  $$CharacterChangeLogsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_change_log__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterChangeLogsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterChangeLogsTable> {
   $$CharacterChangeLogsTableFilterComposer({
@@ -51013,6 +47334,11 @@ class $$CharacterChangeLogsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -51030,29 +47356,6 @@ class $$CharacterChangeLogsTableFilterComposer
     column: $table.diff,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChangeLogsTableOrderingComposer
@@ -51066,6 +47369,11 @@ class $$CharacterChangeLogsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -51083,29 +47391,6 @@ class $$CharacterChangeLogsTableOrderingComposer
     column: $table.diff,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChangeLogsTableAnnotationComposer
@@ -51120,6 +47405,11 @@ class $$CharacterChangeLogsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get authorUserId => $composableBuilder(
     column: $table.authorUserId,
     builder: (column) => column,
@@ -51130,29 +47420,6 @@ class $$CharacterChangeLogsTableAnnotationComposer
 
   GeneratedColumn<String> get diff =>
       $composableBuilder(column: $table.diff, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChangeLogsTableTableManager
@@ -51166,9 +47433,16 @@ class $$CharacterChangeLogsTableTableManager
           $$CharacterChangeLogsTableAnnotationComposer,
           $$CharacterChangeLogsTableCreateCompanionBuilder,
           $$CharacterChangeLogsTableUpdateCompanionBuilder,
-          (CharacterChangeLogRow, $$CharacterChangeLogsTableReferences),
+          (
+            CharacterChangeLogRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterChangeLogsTable,
+              CharacterChangeLogRow
+            >,
+          ),
           CharacterChangeLogRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterChangeLogsTableTableManager(
     _$TavernierDatabase db,
@@ -51227,49 +47501,15 @@ class $$CharacterChangeLogsTableTableManager
                   e.readTable<$CharacterChangeLogsTable, CharacterChangeLogRow>(
                     table,
                   ),
-                  $$CharacterChangeLogsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterChangeLogsTable,
+                    CharacterChangeLogRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterChangeLogsTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterChangeLogsTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -51284,9 +47524,16 @@ typedef $$CharacterChangeLogsTableProcessedTableManager =
       $$CharacterChangeLogsTableAnnotationComposer,
       $$CharacterChangeLogsTableCreateCompanionBuilder,
       $$CharacterChangeLogsTableUpdateCompanionBuilder,
-      (CharacterChangeLogRow, $$CharacterChangeLogsTableReferences),
+      (
+        CharacterChangeLogRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterChangeLogsTable,
+          CharacterChangeLogRow
+        >,
+      ),
       CharacterChangeLogRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterLanguagesTableCreateCompanionBuilder =
     CharacterLanguagesCompanion Function({
@@ -51305,38 +47552,6 @@ typedef $$CharacterLanguagesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterLanguagesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterLanguagesTable,
-          CharacterLanguageRow
-        > {
-  $$CharacterLanguagesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_language__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterLanguagesTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterLanguagesTable> {
   $$CharacterLanguagesTableFilterComposer({
@@ -51351,6 +47566,11 @@ class $$CharacterLanguagesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get languageId => $composableBuilder(
     column: $table.languageId,
     builder: (column) => ColumnFilters(column),
@@ -51360,29 +47580,6 @@ class $$CharacterLanguagesTableFilterComposer
     column: $table.position,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterLanguagesTableOrderingComposer
@@ -51399,6 +47596,11 @@ class $$CharacterLanguagesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get languageId => $composableBuilder(
     column: $table.languageId,
     builder: (column) => ColumnOrderings(column),
@@ -51408,29 +47610,6 @@ class $$CharacterLanguagesTableOrderingComposer
     column: $table.position,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterLanguagesTableAnnotationComposer
@@ -51445,6 +47624,11 @@ class $$CharacterLanguagesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get languageId => $composableBuilder(
     column: $table.languageId,
     builder: (column) => column,
@@ -51452,29 +47636,6 @@ class $$CharacterLanguagesTableAnnotationComposer
 
   GeneratedColumn<int> get position =>
       $composableBuilder(column: $table.position, builder: (column) => column);
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterLanguagesTableTableManager
@@ -51488,9 +47649,16 @@ class $$CharacterLanguagesTableTableManager
           $$CharacterLanguagesTableAnnotationComposer,
           $$CharacterLanguagesTableCreateCompanionBuilder,
           $$CharacterLanguagesTableUpdateCompanionBuilder,
-          (CharacterLanguageRow, $$CharacterLanguagesTableReferences),
+          (
+            CharacterLanguageRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterLanguagesTable,
+              CharacterLanguageRow
+            >,
+          ),
           CharacterLanguageRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterLanguagesTableTableManager(
     _$TavernierDatabase db,
@@ -51542,49 +47710,15 @@ class $$CharacterLanguagesTableTableManager
                   e.readTable<$CharacterLanguagesTable, CharacterLanguageRow>(
                     table,
                   ),
-                  $$CharacterLanguagesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterLanguagesTable,
+                    CharacterLanguageRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterLanguagesTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterLanguagesTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -51599,9 +47733,16 @@ typedef $$CharacterLanguagesTableProcessedTableManager =
       $$CharacterLanguagesTableAnnotationComposer,
       $$CharacterLanguagesTableCreateCompanionBuilder,
       $$CharacterLanguagesTableUpdateCompanionBuilder,
-      (CharacterLanguageRow, $$CharacterLanguagesTableReferences),
+      (
+        CharacterLanguageRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterLanguagesTable,
+          CharacterLanguageRow
+        >,
+      ),
       CharacterLanguageRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$CharacterChoicesTableCreateCompanionBuilder =
     CharacterChoicesCompanion Function({
@@ -51620,38 +47761,6 @@ typedef $$CharacterChoicesTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$CharacterChoicesTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $CharacterChoicesTable,
-          CharacterChoiceRow
-        > {
-  $$CharacterChoicesTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $CharactersTable _characterIdTable(_$TavernierDatabase db) => db
-      .characters
-      .createAlias('character_choice__character_id__character__id');
-
-  $$CharactersTableProcessedTableManager get characterId {
-    final $_column = $_itemColumn<String>('character_id')!;
-
-    final manager = $$CharactersTableTableManager(
-      $_db,
-      $_db.characters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_characterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CharacterChoicesTableFilterComposer
     extends Composer<_$TavernierDatabase, $CharacterChoicesTable> {
   $$CharacterChoicesTableFilterComposer({
@@ -51666,6 +47775,11 @@ class $$CharacterChoicesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get choiceKey => $composableBuilder(
     column: $table.choiceKey,
     builder: (column) => ColumnFilters(column),
@@ -51675,29 +47789,6 @@ class $$CharacterChoicesTableFilterComposer
     column: $table.selections,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$CharactersTableFilterComposer get characterId {
-    final $$CharactersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableFilterComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChoicesTableOrderingComposer
@@ -51714,6 +47805,11 @@ class $$CharacterChoicesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get choiceKey => $composableBuilder(
     column: $table.choiceKey,
     builder: (column) => ColumnOrderings(column),
@@ -51723,29 +47819,6 @@ class $$CharacterChoicesTableOrderingComposer
     column: $table.selections,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$CharactersTableOrderingComposer get characterId {
-    final $$CharactersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableOrderingComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChoicesTableAnnotationComposer
@@ -51760,6 +47833,11 @@ class $$CharacterChoicesTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get choiceKey =>
       $composableBuilder(column: $table.choiceKey, builder: (column) => column);
 
@@ -51767,29 +47845,6 @@ class $$CharacterChoicesTableAnnotationComposer
     column: $table.selections,
     builder: (column) => column,
   );
-
-  $$CharactersTableAnnotationComposer get characterId {
-    final $$CharactersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.characterId,
-      referencedTable: $db.characters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CharactersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.characters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CharacterChoicesTableTableManager
@@ -51803,9 +47858,16 @@ class $$CharacterChoicesTableTableManager
           $$CharacterChoicesTableAnnotationComposer,
           $$CharacterChoicesTableCreateCompanionBuilder,
           $$CharacterChoicesTableUpdateCompanionBuilder,
-          (CharacterChoiceRow, $$CharacterChoicesTableReferences),
+          (
+            CharacterChoiceRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterChoicesTable,
+              CharacterChoiceRow
+            >,
+          ),
           CharacterChoiceRow,
-          PrefetchHooks Function({bool characterId})
+          PrefetchHooks Function()
         > {
   $$CharacterChoicesTableTableManager(
     _$TavernierDatabase db,
@@ -51854,49 +47916,15 @@ class $$CharacterChoicesTableTableManager
                   e.readTable<$CharacterChoicesTable, CharacterChoiceRow>(
                     table,
                   ),
-                  $$CharacterChoicesTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterChoicesTable,
+                    CharacterChoiceRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({characterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (characterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.characterId,
-                        referencedTable: $$CharacterChoicesTableReferences
-                            ._characterIdTable(db),
-                        referencedColumn: $$CharacterChoicesTableReferences
-                            ._characterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -51911,9 +47939,16 @@ typedef $$CharacterChoicesTableProcessedTableManager =
       $$CharacterChoicesTableAnnotationComposer,
       $$CharacterChoicesTableCreateCompanionBuilder,
       $$CharacterChoicesTableUpdateCompanionBuilder,
-      (CharacterChoiceRow, $$CharacterChoicesTableReferences),
+      (
+        CharacterChoiceRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterChoicesTable,
+          CharacterChoiceRow
+        >,
+      ),
       CharacterChoiceRow,
-      PrefetchHooks Function({bool characterId})
+      PrefetchHooks Function()
     >;
 typedef $$NpcStatblocksTableCreateCompanionBuilder =
     NpcStatblocksCompanion Function({
@@ -51936,37 +47971,6 @@ typedef $$NpcStatblocksTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$NpcStatblocksTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $NpcStatblocksTable,
-          NpcStatblockRow
-        > {
-  $$NpcStatblocksTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('npc_statblock__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$NpcStatblocksTableFilterComposer
     extends Composer<_$TavernierDatabase, $NpcStatblocksTable> {
   $$NpcStatblocksTableFilterComposer({
@@ -51978,6 +47982,11 @@ class $$NpcStatblocksTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -52000,29 +48009,6 @@ class $$NpcStatblocksTableFilterComposer
     column: $table.hiddenInfo,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NpcStatblocksTableOrderingComposer
@@ -52036,6 +48022,11 @@ class $$NpcStatblocksTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -52058,29 +48049,6 @@ class $$NpcStatblocksTableOrderingComposer
     column: $table.hiddenInfo,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NpcStatblocksTableAnnotationComposer
@@ -52095,6 +48063,9 @@ class $$NpcStatblocksTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get monsterId =>
       $composableBuilder(column: $table.monsterId, builder: (column) => column);
 
@@ -52108,29 +48079,6 @@ class $$NpcStatblocksTableAnnotationComposer
     column: $table.hiddenInfo,
     builder: (column) => column,
   );
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NpcStatblocksTableTableManager
@@ -52144,9 +48092,16 @@ class $$NpcStatblocksTableTableManager
           $$NpcStatblocksTableAnnotationComposer,
           $$NpcStatblocksTableCreateCompanionBuilder,
           $$NpcStatblocksTableUpdateCompanionBuilder,
-          (NpcStatblockRow, $$NpcStatblocksTableReferences),
+          (
+            NpcStatblockRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $NpcStatblocksTable,
+              NpcStatblockRow
+            >,
+          ),
           NpcStatblockRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$NpcStatblocksTableTableManager(
     _$TavernierDatabase db,
@@ -52201,49 +48156,15 @@ class $$NpcStatblocksTableTableManager
               .map(
                 (e) => (
                   e.readTable<$NpcStatblocksTable, NpcStatblockRow>(table),
-                  $$NpcStatblocksTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $NpcStatblocksTable,
+                    NpcStatblockRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$NpcStatblocksTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$NpcStatblocksTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -52258,9 +48179,16 @@ typedef $$NpcStatblocksTableProcessedTableManager =
       $$NpcStatblocksTableAnnotationComposer,
       $$NpcStatblocksTableCreateCompanionBuilder,
       $$NpcStatblocksTableUpdateCompanionBuilder,
-      (NpcStatblockRow, $$NpcStatblocksTableReferences),
+      (
+        NpcStatblockRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $NpcStatblocksTable,
+          NpcStatblockRow
+        >,
+      ),
       NpcStatblockRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$SessionsTableCreateCompanionBuilder = SessionsCompanion Function({
   required String id,
@@ -52280,23 +48208,6 @@ typedef $$SessionsTableUpdateCompanionBuilder = SessionsCompanion Function({
 final class $$SessionsTableReferences
     extends BaseReferences<_$TavernierDatabase, $SessionsTable, SessionRow> {
   $$SessionsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('session__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager get tableId {
-    final $_column = $_itemColumn<String>('table_id')!;
-
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
 
   static MultiTypedResultKey<$EncountersTable, List<EncounterRow>>
   _encountersRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
@@ -52331,6 +48242,11 @@ class $$SessionsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<DateTime> get date => $composableBuilder(
     column: $table.date,
     builder: (column) => ColumnFilters(column),
@@ -52340,29 +48256,6 @@ class $$SessionsTableFilterComposer
     column: $table.title,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 
   Expression<bool> encountersRefs(
     Expression<bool> Function($$EncountersTableFilterComposer f) f,
@@ -52404,6 +48297,11 @@ class $$SessionsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<DateTime> get date => $composableBuilder(
     column: $table.date,
     builder: (column) => ColumnOrderings(column),
@@ -52413,29 +48311,6 @@ class $$SessionsTableOrderingComposer
     column: $table.title,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$SessionsTableAnnotationComposer
@@ -52450,34 +48325,14 @@ class $$SessionsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<DateTime> get date =>
       $composableBuilder(column: $table.date, builder: (column) => column);
 
   GeneratedColumn<String> get title =>
       $composableBuilder(column: $table.title, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 
   Expression<T> encountersRefs<T extends Object>(
     Expression<T> Function($$EncountersTableAnnotationComposer a) f,
@@ -52518,7 +48373,7 @@ class $$SessionsTableTableManager
           $$SessionsTableUpdateCompanionBuilder,
           (SessionRow, $$SessionsTableReferences),
           SessionRow,
-          PrefetchHooks Function({bool tableId, bool encountersRefs})
+          PrefetchHooks Function({bool encountersRefs})
         > {
   $$SessionsTableTableManager(_$TavernierDatabase db, $SessionsTable table)
     : super(
@@ -52567,40 +48422,11 @@ class $$SessionsTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false, encountersRefs = false}) {
+          prefetchHooksCallback: ({encountersRefs = false}) {
             return PrefetchHooks(
               db: db,
               explicitlyWatchedTables: [if (encountersRefs) db.encounters],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$SessionsTableReferences
-                            ._tableIdTable(db),
-                        referencedColumn: $$SessionsTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
+              addJoins: null,
               getPrefetchedDataCallback: (items) async {
                 return [
                   if (encountersRefs)
@@ -52642,7 +48468,7 @@ typedef $$SessionsTableProcessedTableManager =
       $$SessionsTableUpdateCompanionBuilder,
       (SessionRow, $$SessionsTableReferences),
       SessionRow,
-      PrefetchHooks Function({bool tableId, bool encountersRefs})
+      PrefetchHooks Function({bool encountersRefs})
     >;
 typedef $$EncountersTableCreateCompanionBuilder = EncountersCompanion Function({
   required String id,
@@ -53973,28 +49799,6 @@ typedef $$NotesTableUpdateCompanionBuilder = NotesCompanion Function({
   Value<int> rowid,
 });
 
-final class $$NotesTableReferences
-    extends BaseReferences<_$TavernierDatabase, $NotesTable, NoteRow> {
-  $$NotesTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $GameTablesTable _tableIdTable(_$TavernierDatabase db) =>
-      db.gameTables.createAlias('note__table_id__game_table__id');
-
-  $$GameTablesTableProcessedTableManager? get tableId {
-    final $_column = $_itemColumn<String>('table_id');
-    if ($_column == null) return null;
-    final manager = $$GameTablesTableTableManager(
-      $_db,
-      $_db.gameTables,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_tableIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$NotesTableFilterComposer
     extends Composer<_$TavernierDatabase, $NotesTable> {
   $$NotesTableFilterComposer({
@@ -54011,6 +49815,11 @@ class $$NotesTableFilterComposer
 
   ColumnFilters<String> get ownerUserId => $composableBuilder(
     column: $table.ownerUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -54033,29 +49842,6 @@ class $$NotesTableFilterComposer
     column: $table.private,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$GameTablesTableFilterComposer get tableId {
-    final $$GameTablesTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableFilterComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NotesTableOrderingComposer
@@ -54074,6 +49860,11 @@ class $$NotesTableOrderingComposer
 
   ColumnOrderings<String> get ownerUserId => $composableBuilder(
     column: $table.ownerUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -54096,29 +49887,6 @@ class $$NotesTableOrderingComposer
     column: $table.private,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$GameTablesTableOrderingComposer get tableId {
-    final $$GameTablesTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableOrderingComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NotesTableAnnotationComposer
@@ -54138,6 +49906,9 @@ class $$NotesTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get scope =>
       $composableBuilder(column: $table.scope, builder: (column) => column);
 
@@ -54149,29 +49920,6 @@ class $$NotesTableAnnotationComposer
 
   GeneratedColumn<bool> get private =>
       $composableBuilder(column: $table.private, builder: (column) => column);
-
-  $$GameTablesTableAnnotationComposer get tableId {
-    final $$GameTablesTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.tableId,
-      referencedTable: $db.gameTables,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$GameTablesTableAnnotationComposer(
-            $db: $db,
-            $table: $db.gameTables,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$NotesTableTableManager
@@ -54185,9 +49933,9 @@ class $$NotesTableTableManager
           $$NotesTableAnnotationComposer,
           $$NotesTableCreateCompanionBuilder,
           $$NotesTableUpdateCompanionBuilder,
-          (NoteRow, $$NotesTableReferences),
+          (NoteRow, BaseReferences<_$TavernierDatabase, $NotesTable, NoteRow>),
           NoteRow,
-          PrefetchHooks Function({bool tableId})
+          PrefetchHooks Function()
         > {
   $$NotesTableTableManager(_$TavernierDatabase db, $NotesTable table)
     : super(
@@ -54244,50 +49992,15 @@ class $$NotesTableTableManager
               .map(
                 (e) => (
                   e.readTable<$NotesTable, NoteRow>(table),
-                  $$NotesTableReferences(db, table, e),
+                  BaseReferences<_$TavernierDatabase, $NotesTable, NoteRow>(
+                    db,
+                    table,
+                    e,
+                  ),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({tableId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (tableId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.tableId,
-                        referencedTable: $$NotesTableReferences._tableIdTable(
-                          db,
-                        ),
-                        referencedColumn: $$NotesTableReferences
-                            ._tableIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -54302,9 +50015,9 @@ typedef $$NotesTableProcessedTableManager =
       $$NotesTableAnnotationComposer,
       $$NotesTableCreateCompanionBuilder,
       $$NotesTableUpdateCompanionBuilder,
-      (NoteRow, $$NotesTableReferences),
+      (NoteRow, BaseReferences<_$TavernierDatabase, $NotesTable, NoteRow>),
       NoteRow,
-      PrefetchHooks Function({bool tableId})
+      PrefetchHooks Function()
     >;
 typedef $$AuthorIdentitiesTableCreateCompanionBuilder =
     AuthorIdentitiesCompanion Function({

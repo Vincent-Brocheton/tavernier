@@ -58,6 +58,23 @@ void main() {
     expect(member.joinedAt.toUtc(), DateTime.utc(2026, 11, 8, 17, 38, 43, 123));
   });
 
+  test(
+    'une séance (M3, locale) se rattache à une table synchronisée',
+    () async {
+      await db.customStatement(
+        'INSERT INTO game_table (id, name, stat_method, long_rest_rule, '
+        'hp_on_level_rule, progression_mode) '
+        "VALUES ('t', 'T', 'point_buy', 'full', 'average', 'xp')",
+      );
+      await db.customStatement(
+        'INSERT INTO session (id, table_id, date, title) '
+        "VALUES ('s', 't', '2026-11-08', 'Séance 1')",
+      );
+      final session = await db.select(db.sessions).getSingle();
+      expect(session.tableId, 't');
+    },
+  );
+
   test('tables synchronisées : celles de la publication Supabase', () {
     final migrations = Directory.fromUri(
       Isolate.resolvePackageUriSync(Uri.parse('package:dnd_data/'))!
