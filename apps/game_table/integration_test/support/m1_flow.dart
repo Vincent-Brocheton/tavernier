@@ -97,6 +97,7 @@ Future<void> createAndReachLevel5(WidgetTester tester) async {
   await tester.enterText(find.byType(TextFormField).first, m1Name);
   await tester.pumpAndSettle();
   await _next(tester);
+  m1LastAction = 'Récapitulatif de création';
   expect(find.text('Enregistrer'), findsOneWidget);
   await _next(tester);
 
@@ -115,6 +116,7 @@ Future<void> createAndReachLevel5(WidgetTester tester) async {
       await _tap(tester, find.widgetWithText(OutlinedButton, 'Suggérer'));
       await _next(tester); // Don.
     }
+    m1LastAction = 'Récapitulatif du niveau $level';
     expect(find.text('Enregistrer'), findsOneWidget);
     await _next(tester);
     expect(

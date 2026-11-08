@@ -1,5 +1,6 @@
 // Critère de sortie de M1 (cahier §3) : un PJ complet créé puis monté au
 // niveau 5, avec la vraie base de la plateforme et sans réseau.
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/main.dart';
@@ -22,6 +23,10 @@ void main() {
           'erreur': '$error',
           'taille':
               '${tester.view.physicalSize / tester.view.devicePixelRatio}',
+          // L'écran affiché au moment de l'échec.
+          'textes': [
+            for (final w in tester.widgetList<Text>(find.byType(Text))) ?w.data,
+          ],
         },
       };
       rethrow;
