@@ -14,12 +14,12 @@ TavernierDatabase memoryDatabase() =>
 
 /// Base ouverte comme sur un appareil : PowerSync, dans un dossier
 /// temporaire.
-Future<TavernierDatabase> powerSyncDatabase() async {
-  final dir = await Directory.systemTemp.createTemp('tavernier');
-  return openPowerSyncTavernierDatabase(
-    openPowerSyncDatabase('${dir.path}/tavernier.db'),
-  );
-}
+Future<TavernierDatabase> powerSyncDatabase() async =>
+    openPowerSyncTavernierDatabase(
+      Directory.systemTemp
+          .createTemp('tavernier')
+          .then((dir) => '${dir.path}/tavernier.db'),
+    );
 
 /// Noms des tables (hors tables internes de SQLite).
 Future<Set<String>> tableNames(TavernierDatabase db) async => {

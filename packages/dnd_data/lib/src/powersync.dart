@@ -53,17 +53,20 @@ final Schema powerSyncSchema = () {
   ]);
 }();
 
-/// Base PowerSync de l'appareil, à [path] (un nom de fichier sur le Web).
-PowerSyncDatabase openPowerSyncDatabase(String path) =>
-    PowerSyncDatabase(schema: powerSyncSchema, path: path);
-
-/// Base Drift de l'app au-dessus de [powerSync].
-TavernierDatabase openPowerSyncTavernierDatabase(PowerSyncDatabase powerSync) =>
-    TavernierDatabase(
-      DatabaseConnection.delayed(
-        powerSync.initialize().then(
-          (_) => SqliteAsyncDriftConnection(powerSync),
-        ),
-      ),
-      syncedTablesByPowerSync: true,
-    );
+/// Base Drift de l'app, ouverte par PowerSync à [path] (un nom de fichier
+/// sur le Web). La fermer ferme aussi la base PowerSync.
+TavernierDatabase openPowerSyncTavernierDatabase(Future<String> path) {
+  PowerSyncDatabase? powerSync;
+  return TavernierDatabase(
+    DatabaseConnection.delayed(() async {
+      final db = powerSync = PowerSyncDatabase(
+        schema: powerSyncSchema,
+        path: await path,
+      );
+      await db.initialize();
+      return SqliteAsyncDriftConnection(db);
+    }()),
+    syncedTablesByPowerSync: true,
+    onClose: () async => powerSync?.close(),
+  );
+}

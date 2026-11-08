@@ -12,11 +12,7 @@ import 'package:material_ui/material_ui.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var storage = 'natif';
-  final db = openTavernierDatabase(
-    name: 't01_persistence',
-    onWebResult: (r) => storage = r.chosenImplementation.name,
-  );
+  final db = openTavernierDatabase(name: 't01_persistence');
   final rows = await db
       .customSelect("SELECT content FROM note WHERE id = 't01'")
       .get();
@@ -33,7 +29,7 @@ Future<void> main() async {
   final persistent = await requestPersistentStorage()
       .then<Object>((g) => g)
       .timeout(const Duration(seconds: 5), onTimeout: () => 'sans_reponse');
-  final line = 'T01 lancement=$count stockage=$storage persistant=$persistent';
+  final line = 'T01 lancement=$count persistant=$persistent';
   debugPrint(line);
   // Le titre de la page porte aussi la ligne, lisible depuis le titre de la
   // fenêtre du navigateur.

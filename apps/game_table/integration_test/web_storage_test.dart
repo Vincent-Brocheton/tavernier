@@ -1,9 +1,9 @@
 // Spike T-01 (spec local-database : « Stockage Web », « Volume de contenu »).
+// Depuis T-05, PowerSync choisit seul OPFS ou IndexedDB.
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart' show Variable;
-import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/database.dart';
@@ -11,9 +11,6 @@ import 'package:game_table/persistent_storage.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'support/browser_name.dart';
-
-/// `opfs` pour exiger OPFS (job Chrome isolé) ; vide sinon.
-const _expectedStorage = String.fromEnvironment('T01_EXPECTED_STORAGE');
 
 /// Plafond d'entités d'un pack (ENF-09).
 const _volume = 10000;
@@ -136,29 +133,6 @@ void main() {
 
   String dbName() => 't01_${DateTime.now().microsecondsSinceEpoch}';
 
-  testWidgets('le stockage Web choisi est connu', (_) async {
-    WasmDatabaseResult? result;
-    final db = openTavernierDatabase(
-      name: dbName(),
-      onWebResult: (r) => result = r,
-    );
-    addTearDown(db.close);
-    await db.customSelect('SELECT 1').get();
-
-    if (!kIsWeb) {
-      expect(result, isNull);
-      return;
-    }
-    expect(result, isNotNull);
-    record({
-      'stockage': result!.chosenImplementation.name,
-      'manquants': result!.missingFeatures.map((f) => f.name).join(','),
-    });
-    if (_expectedStorage == 'opfs') {
-      expect(result!.chosenImplementation.name, startsWith('opfs'));
-    }
-  });
-
   testWidgets('le stockage persistant se demande sans erreur', (_) async {
     // Un navigateur peut attendre la réponse de l'utilisateur à une invite
     // (Firefox) : au-delà de 10 s, la demande est notée sans réponse.
@@ -172,7 +146,6 @@ void main() {
   testWidgets('10 000 entités : import, réouverture, recherche', (_) async {
     final pack = _syntheticPack(await loadSrdPack());
     final name = dbName();
-    var storage = 'natif';
     final watch = Stopwatch()..start();
     int lap() {
       final ms = watch.elapsedMilliseconds;
@@ -180,10 +153,7 @@ void main() {
       return ms;
     }
 
-    var db = openTavernierDatabase(
-      name: name,
-      onWebResult: (r) => storage = r.chosenImplementation.name,
-    );
+    var db = openTavernierDatabase(name: name);
     await db.customSelect('SELECT 1').get();
     lap();
     await PackStore(db).importPack(pack);
@@ -207,7 +177,6 @@ void main() {
 
     record({
       'plateforme': _platform(),
-      'stockage': storage,
       'import_ms': importMs,
       'reouverture_ms': reopenMs,
       'recherche_ms': searchMs,

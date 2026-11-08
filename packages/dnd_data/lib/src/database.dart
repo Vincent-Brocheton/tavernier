@@ -77,9 +77,21 @@ part 'database.g.dart';
 class TavernierDatabase extends _$TavernierDatabase {
   /// Avec [syncedTablesByPowerSync], les tables synchronisées existent déjà
   /// (vues de PowerSync) : la migration ne les crée pas.
-  TavernierDatabase(super.executor, {this.syncedTablesByPowerSync = false});
+  /// [onClose] ferme ce que la base ne possède pas (la base PowerSync).
+  TavernierDatabase(
+    super.executor, {
+    this.syncedTablesByPowerSync = false,
+    this._onClose,
+  });
 
   final bool syncedTablesByPowerSync;
+  final Future<void> Function()? _onClose;
+
+  @override
+  Future<void> close() async {
+    await super.close();
+    await _onClose?.call();
+  }
 
   @override
   int get schemaVersion => 1;
