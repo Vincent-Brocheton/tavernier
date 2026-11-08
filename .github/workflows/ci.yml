@@ -109,6 +109,38 @@ jobs:
         working-directory: backend
         run: supabase test db
 
+  supabase-deploy:
+    name: Migrations Supabase (projet hébergé)
+    # Cahier §12.2 : les migrations ne sont appliquées que par la CI, après
+    # leur passage sur base vierge, et seulement depuis main.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: supabase
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      SUPABASE_PROJECT_REF: mtreifjwfadiyvatldux
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Secrets présents ?
+        id: ready
+        run: |
+          if [ -n "$SUPABASE_ACCESS_TOKEN" ] && [ -n "$SUPABASE_DB_PASSWORD" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Secrets Supabase absents : migrations non appliquées."
+          fi
+      - name: Appliquer les migrations
+        if: steps.ready.outputs.ok == 'true'
+        working-directory: backend
+        run: |
+          supabase link --project-ref "$SUPABASE_PROJECT_REF" --password "$SUPABASE_DB_PASSWORD"
+          supabase db push --password "$SUPABASE_DB_PASSWORD"
+
   web:
     name: Intégration Web (${{ matrix.name }})
     # Une étiquette ne relance la CI que si c'est « update-goldens ».
