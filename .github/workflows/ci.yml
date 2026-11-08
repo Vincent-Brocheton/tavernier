@@ -189,7 +189,7 @@ jobs:
       - name: Tests d'intégration
         working-directory: apps/game_table
         run: |
-          for target in database_test web_storage_test; do
+          for target in database_test web_storage_test m1_exit_test; do
             flutter drive -d web-server --profile --browser-name="$BROWSER" \
               $DRIVE_ARGS \
               --driver=test_driver/integration_test.dart \
@@ -241,7 +241,7 @@ jobs:
       - name: Tests d'intégration
         working-directory: apps/game_table
         run: |
-          for target in database_test web_storage_test; do
+          for target in database_test web_storage_test m1_exit_test; do
             flutter drive -d web-server --profile --browser-name="$BROWSER" \
               $DRIVE_ARGS \
               --driver=test_driver/integration_test.dart \

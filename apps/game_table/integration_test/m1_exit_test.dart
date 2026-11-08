@@ -1,0 +1,35 @@
+// Critère de sortie de M1 (cahier §3) : un PJ complet créé puis monté au
+// niveau 5, avec la vraie base de la plateforme et sans réseau.
+import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:game_table/main.dart';
+import 'package:integration_test/integration_test.dart';
+
+import 'support/m1_flow.dart';
+
+void main() {
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('M1 : création puis niveau 5, hors ligne', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: GameTableApp()));
+    try {
+      await createAndReachLevel5(tester);
+    } catch (error) {
+      // flutter drive n'affiche pas le message : le rapport le garde.
+      binding.reportData = {
+        'm1': {
+          'derniere_action': m1LastAction,
+          'erreur': '$error',
+          'taille':
+              '${tester.view.physicalSize / tester.view.devicePixelRatio}',
+          // L'écran affiché au moment de l'échec.
+          'textes': [
+            for (final w in tester.widgetList<Text>(find.byType(Text))) ?w.data,
+          ],
+        },
+      };
+      rethrow;
+    }
+  });
+}
