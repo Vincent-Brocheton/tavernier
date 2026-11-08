@@ -39,17 +39,22 @@ final Schema powerSyncSchema = () {
   return Schema([
     for (final table in metadata.allTables)
       if (syncedTables.contains(table.actualTableName))
-        Table(table.actualTableName, [
-          for (final column in table.$columns)
-            if (column.name != 'id')
-              switch (column.type) {
-                DriftSqlType.bool ||
-                DriftSqlType.int ||
-                DriftSqlType.bigInt => Column.integer(column.name),
-                DriftSqlType.double => Column.real(column.name),
-                _ => Column.text(column.name),
-              },
-        ]),
+        Table(
+          table.actualTableName,
+          [
+            for (final column in table.$columns)
+              if (column.name != 'id')
+                switch (column.type) {
+                  DriftSqlType.bool ||
+                  DriftSqlType.int ||
+                  DriftSqlType.bigInt => Column.integer(column.name),
+                  DriftSqlType.double => Column.real(column.name),
+                  _ => Column.text(column.name),
+                },
+          ],
+          // Une mise à jour sans changement n'est pas envoyée.
+          ignoreEmptyUpdates: true,
+        ),
   ]);
 }();
 

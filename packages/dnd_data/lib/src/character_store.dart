@@ -49,36 +49,29 @@ final class CharacterStore {
         'backstory': character.backstory,
       };
       await _upsert('character', 'id', id, columns, {'status': 'draft'});
-      for (final table in _inputTables) {
-        await _db.customStatement('DELETE FROM $table WHERE character_id = ?', [
-          id,
-        ]);
-      }
-
-      Future<void> insert(String table, String key, Map<String, Object?> row) {
-        final values = {'id': '$id:$table:$key', 'character_id': id, ...row};
-        return _db.customStatement(
-          'INSERT INTO $table (${values.keys.join(', ')}) '
-          'VALUES (${List.filled(values.length, '?').join(', ')})',
-          [for (final v in values.values) v is bool ? (v ? 1 : 0) : v],
-        );
-      }
+      // Lignes voulues, par table : seules les différences s'écrivent, pour
+      // ne pas écraser ce qu'un autre appareil a modifié (ENF-03).
+      final wanted = {
+        for (final t in _inputTables) t: <String, Map<String, Object?>>{},
+      };
+      void insert(String table, String key, Map<String, Object?> row) =>
+          wanted[table]!['$id:$table:$key'] = {'character_id': id, ...row};
 
       for (final code in abilityCodes) {
-        await insert('character_base_scores', code, {
+        insert('character_base_scores', code, {
           'ability_id': code,
           'base': character.baseScores.of(code),
           'method': base['method'],
         });
       }
       final bg = character.backgroundChoice;
-      await insert('character_background_choice', 'bg', {
+      insert('character_background_choice', 'bg', {
         'distribution': bg.distribution,
         'bonuses': jsonEncode(bg.bonuses),
         'tool_choice': bg.toolChoice,
       });
       for (final (i, cl) in character.classLevels.indexed) {
-        await insert('character_class_level', '$i', {
+        insert('character_class_level', '$i', {
           'class_id': cl.classId,
           'level': cl.level,
           'subclass_id': cl.subclassId,
@@ -89,7 +82,7 @@ final class CharacterStore {
         });
       }
       for (final (i, f) in character.feats.indexed) {
-        await insert('character_feat', '$i', {
+        insert('character_feat', '$i', {
           'feat_id': f.featId,
           'source_type': f.sourceType,
           'source_ref': f.sourceRef,
@@ -98,13 +91,13 @@ final class CharacterStore {
         });
       }
       for (final (i, m) in character.weaponMasteries.indexed) {
-        await insert('character_weapon_mastery', '$i', {
+        insert('character_weapon_mastery', '$i', {
           'weapon_id': m.weaponId,
           'slot_index': m.slotIndex,
         });
       }
       for (final (i, item) in character.items.indexed) {
-        await insert('character_item', '$i', {
+        insert('character_item', '$i', {
           'item_id': item.itemId,
           'quantity': item.quantity,
           'equipped': item.equipped,
@@ -119,30 +112,29 @@ final class CharacterStore {
       ]) {
         for (final (i, spell) in list.indexed) {
           // Clé ordonnée : la relecture trie par id (une vue n'a pas de rowid).
-          await insert(
-            'character_spell',
-            '$source:${i.toString().padLeft(4, '0')}',
-            {
-              'spell_id': spell,
-              'source': source,
-              'prepared': spells.prepared.contains(spell),
-              'in_spellbook': spells.spellbook.contains(spell),
-              'class_id': spells.classes[spell],
-            },
-          );
+          insert('character_spell', '$source:${i.toString().padLeft(4, '0')}', {
+            'spell_id': spell,
+            'source': source,
+            'prepared': spells.prepared.contains(spell),
+            'in_spellbook': spells.spellbook.contains(spell),
+            'class_id': spells.classes[spell],
+          });
         }
       }
       for (final (i, language) in character.languages.indexed) {
-        await insert('character_language', '$i', {
+        insert('character_language', '$i', {
           'language_id': language,
           'position': i,
         });
       }
       for (final MapEntry(:key, :value) in character.choices.entries) {
-        await insert('character_choice', key, {
+        insert('character_choice', key, {
           'choice_key': key,
           'selections': jsonEncode(value),
         });
+      }
+      for (final MapEntry(key: table, value: rows) in wanted.entries) {
+        await _writeDifference(table, id, rows);
       }
     },
   );
@@ -188,6 +180,32 @@ final class CharacterStore {
         };
         await _upsert('character_state', 'character_id', id, columns);
       });
+
+  /// Amène les lignes de [table] de la fiche [id] à [wanted] (par
+  /// identifiant) : supprime, insère, ou met à jour. PowerSync n'envoie que
+  /// les colonnes changées, et rien pour une ligne identique.
+  Future<void> _writeDifference(
+    String table,
+    String id,
+    Map<String, Map<String, Object?>> wanted,
+  ) async {
+    final existing = {
+      for (final row
+          in await _db
+              .customSelect(
+                'SELECT id FROM $table WHERE character_id = ?',
+                variables: [Variable.withString(id)],
+              )
+              .get())
+        row.read<String>('id'),
+    };
+    for (final gone in existing.difference(wanted.keys.toSet())) {
+      await _db.customStatement('DELETE FROM $table WHERE id = ?', [gone]);
+    }
+    for (final MapEntry(key: rowId, value: row) in wanted.entries) {
+      await _upsert(table, 'id', rowId, row);
+    }
+  }
 
   /// Met à jour la ligne de [table] où [key] vaut [id], ou l'insère. Pas
   /// d'UPSERT : SQLite le refuse sur une vue, et une mise à jour de vue ne
