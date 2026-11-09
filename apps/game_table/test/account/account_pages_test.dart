@@ -68,6 +68,11 @@ final class _FakeGateway implements AccountGateway {
   }
 
   var signedOut = false;
+  final resent = <String>[];
+
+  @override
+  Future<void> resendConfirmation(String email, {String? redirectTo}) async =>
+      resent.add(email);
 
   @override
   Future<void> signOut() async => signedOut = true;
@@ -187,6 +192,22 @@ void main() {
       expect(_enabled(tester, l10n.signInAction), isTrue);
     });
 
+    testWidgets('lien expiré : nouvel e-mail de confirmation', (tester) async {
+      final gateway = _FakeGateway();
+      await _pump(tester, '/connexion-lien-invalide', gateway);
+      expect(_enabled(tester, l10n.resendConfirmation), isFalse);
+      await _type(tester, l10n.emailLabel, 'hugo@exemple.fr');
+      await tester.tap(_button(l10n.resendConfirmation));
+      await tester.pump();
+      expect(gateway.resent, ['hugo@exemple.fr']);
+      expect(
+        find.text(l10n.confirmationResent('hugo@exemple.fr')),
+        findsOneWidget,
+      );
+      expect(find.text(l10n.resendConfirmationIn('1:00')), findsOneWidget);
+      await tester.pump(const Duration(seconds: 60));
+    });
+
     testWidgets('serveur muet : un autre message', (tester) async {
       final gateway = _FakeGateway()..outcome = SignInOutcome.network;
       await _pump(tester, '/connexion', gateway);
@@ -281,6 +302,13 @@ void main() {
       await tester.tap(_button(l10n.signUpAction));
       await tester.pumpAndSettle();
       expect(find.text(l10n.signUpConfirmTitle), findsOneWidget);
+      // L'e-mail vient de partir : renvoi possible après une minute.
+      expect(_enabled(tester, l10n.resendConfirmationIn('1:00')), isFalse);
+      await tester.pump(const Duration(seconds: 60));
+      await tester.tap(_button(l10n.resendConfirmation));
+      await tester.pump();
+      expect(gateway.resent, ['hugo@exemple.fr']);
+      await tester.pump(const Duration(seconds: 60));
       expect(
         find.text(l10n.signUpConfirmBody('hugo@exemple.fr')),
         findsOneWidget,

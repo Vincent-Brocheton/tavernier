@@ -2871,5 +2871,27 @@
   "authLinkInvalid": "Ce lien a expiré ou a déjà servi. Si votre adresse est confirmée, connectez-vous ; sinon, demandez un nouveau lien avec « Mot de passe oublié ? ».",
   "@authLinkInvalid": {
     "description": "Lien de confirmation ou de réinitialisation expiré (US-12, US-39)."
+  },
+  "resendConfirmation": "Renvoyer l’e-mail de confirmation",
+  "@resendConfirmation": {
+    "description": "Renvoi de l’e-mail de confirmation d’inscription (US-12)."
+  },
+  "resendConfirmationIn": "Renvoyer l’e-mail dans {time}",
+  "@resendConfirmationIn": {
+    "description": "Renvoi de l’e-mail de confirmation d’inscription (US-12).",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmationResent": "Si un compte attend une confirmation pour {email}, un nouveau lien vient d’y être envoyé.",
+  "@confirmationResent": {
+    "description": "Renvoi de l’e-mail de confirmation d’inscription (US-12).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
   }
 }

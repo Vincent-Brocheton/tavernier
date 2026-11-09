@@ -107,6 +107,23 @@ class AccountGateway {
     }
   }
 
+  /// Renvoie l'e-mail de confirmation d'inscription. Comme pour le mot de
+  /// passe oublié, la réponse ne dit jamais si le compte existe ; seule
+  /// l'absence de réseau lève [AccountNetworkException].
+  Future<void> resendConfirmation(String email, {String? redirectTo}) async {
+    try {
+      await _auth.resend(
+        type: OtpType.signup,
+        email: email.trim(),
+        emailRedirectTo: redirectTo,
+      );
+    } on AuthRetryableFetchException {
+      throw const AccountNetworkException();
+    } on AuthException {
+      // Adresse inconnue, déjà confirmée ou trop de demandes : même réponse.
+    }
+  }
+
   /// Ferme la session sur cet appareil seulement. Sans réseau, la session
   /// locale est quand même oubliée.
   Future<void> signOut() async {
