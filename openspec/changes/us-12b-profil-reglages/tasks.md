@@ -8,4 +8,4 @@
 - [x] 2.1 Entrée de compte dans `AdaptiveNavigationScaffold` ; tests du kit
 - [x] 2.2 Profil et réglages [T5]/[A7] ; tests
 - [x] 2.3 Déconnexion avec effacement des données synchronisées ; tests
-- [ ] 2.4 Vérification dans le navigateur
+- [x] 2.4 Vérification dans le navigateur

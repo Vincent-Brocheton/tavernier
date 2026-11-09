@@ -33,7 +33,14 @@ class CrashConsentDialog extends StatelessWidget {
       canPop: false,
       child: AlertDialog(
         icon: const Icon(Icons.verified_user_outlined),
-        title: Text(l10n.consentTitle, textAlign: TextAlign.center),
+        // Titre en texte courant, comme [T1] (pas la police d'affichage).
+        title: Text(
+          l10n.consentTitle,
+          textAlign: TextAlign.center,
+          style: text.headlineSmall!.copyWith(
+            fontFamily: text.bodyLarge!.fontFamily,
+          ),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

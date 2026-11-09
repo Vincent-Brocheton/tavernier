@@ -62,6 +62,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         formFactorOf(MediaQuery.sizeOf(context).width) == FormFactor.desktop;
 
     final header = _ProfileHeader(
+      signedIn: user != null,
       name: user == null
           ? l10n.profileSignedOut
           : pseudonym ?? user.email ?? '',
@@ -108,7 +109,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               Row(
                 children: [
                   const BackButton(),
-                  Text(l10n.profileTitle, style: text.headlineMedium),
+                  // Texte courant, comme [A7] (pas la police d'affichage).
+                  Text(
+                    l10n.profileTitle,
+                    style: text.headlineMedium!.copyWith(
+                      fontFamily: text.bodyLarge!.fontFamily,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: AppSpacing.lg),
@@ -177,8 +184,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
 /// Initiale, pseudonyme et e-mail.
 class _ProfileHeader extends StatelessWidget {
-  const _ProfileHeader({required this.name, this.email});
+  const _ProfileHeader({
+    required this.signedIn,
+    required this.name,
+    this.email,
+  });
 
+  final bool signedIn;
   final String name;
   final String? email;
 
@@ -189,7 +201,9 @@ class _ProfileHeader extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
         radius: 28,
-        child: Text(name.isEmpty ? '?' : name.characters.first.toUpperCase()),
+        child: !signedIn || name.isEmpty
+            ? const Icon(Icons.person_outline)
+            : Text(name.characters.first.toUpperCase()),
       ),
       title: Text(name, style: text.titleMedium),
       subtitle: email == null ? null : Text(email!),
@@ -251,11 +265,12 @@ class _DisplaySection extends ConsumerWidget {
           value: scale,
           min: AppTokens.textScaleMin,
           max: AppTokens.textScaleMax,
-          divisions: 23,
           label: percent(scale),
           semanticFormatterCallback: percent,
-          onChanged: (value) =>
-              ref.read(deviceSettingsProvider.notifier).setTextScale(value),
+          // Par pas de 5 %.
+          onChanged: (value) => ref
+              .read(deviceSettingsProvider.notifier)
+              .setTextScale((value * 20).round() / 20),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
