@@ -19,20 +19,26 @@ import 'package:material_ui/material_ui.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show AuthState, User;
 
 final class _FakeGateway implements AccountGateway {
+  _FakeGateway({this.signedIn = true});
+
+  /// Faux : page ouverte sans le lien de réinitialisation.
+  final bool signedIn;
   SignInOutcome outcome = SignInOutcome.signedIn;
   final signIns = <(String, String)>[];
   final resets = <String>[];
   final updates = <(String, bool)>[];
 
   @override
-  User? get user => const User(
-    id: 'u1',
-    appMetadata: {},
-    userMetadata: {},
-    aud: 'authenticated',
-    createdAt: '2026-11-09T10:00:00Z',
-    email: 'hugo@exemple.fr',
-  );
+  User? get user => !signedIn
+      ? null
+      : const User(
+          id: 'u1',
+          appMetadata: {},
+          userMetadata: {},
+          aud: 'authenticated',
+          createdAt: '2026-11-09T10:00:00Z',
+          email: 'hugo@exemple.fr',
+        );
 
   @override
   Stream<AuthState> get changes => const Stream.empty();
@@ -260,6 +266,22 @@ void main() {
         tester.getSemantics(find.text(l10n.ruleIdentity)).label,
         ruleLabel(l10n.ruleIdentity, l10n.ruleUnmet),
       );
+    });
+
+    testWidgets('sans session de récupération : rien à enregistrer', (
+      tester,
+    ) async {
+      await _pumpTall(
+        tester,
+        '/nouveau-mot-de-passe',
+        _FakeGateway(signedIn: false),
+      );
+      const password = 'Correct-Cheval-Pile-42';
+      await _type(tester, l10n.newPasswordLabel, password);
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.pumpAndSettle();
+      await _type(tester, l10n.confirmPasswordLabel, password);
+      expect(_enabled(tester, l10n.savePasswordAndSignIn), isFalse);
     });
 
     testWidgets(

@@ -114,7 +114,10 @@ class _NewPasswordPageState extends ConsumerState<NewPasswordPage> {
         ? PasswordRuleState.met
         : PasswordRuleState.unmet;
     final mismatch = _confirm.text.isNotEmpty && _confirm.text != password;
+    // Sans session de récupération (page ouverte sans le lien), rien à
+    // enregistrer.
     final ready =
+        gateway?.user != null &&
         lengthOk &&
         identityOk &&
         breachedState == PasswordRuleState.met &&
