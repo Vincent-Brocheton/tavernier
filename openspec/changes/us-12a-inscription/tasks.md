@@ -7,4 +7,4 @@
 
 - [x] 2.1 `AccountGateway.signUp`, réponses neutres ; tests
 - [x] 2.2 Onglets et formulaire d'inscription [T2], âge, règles du mot de passe ; tests
-- [ ] 2.3 Vérification dans le navigateur
+- [x] 2.3 Vérification dans le navigateur
