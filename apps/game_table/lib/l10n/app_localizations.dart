@@ -2964,6 +2964,168 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Inscription impossible pour le moment. Réessayez dans quelques minutes.'**
   String get signUpFailed;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer les rapports de plantage ?'**
+  String get consentTitle;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Si l’application plante, un rapport technique nous aide à corriger le problème.'**
+  String get consentBody;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune donnée de jeu, aucune fiche, aucun contenu personnel.'**
+  String get consentNoGameData;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune mesure d’usage.'**
+  String get consentNoUsage;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifiable à tout moment dans Réglages.'**
+  String get consentChangeable;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser'**
+  String get consentRefuse;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter'**
+  String get consentAccept;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil et réglages'**
+  String get profileTitle;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Non connecté'**
+  String get profileSignedOut;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Affichage'**
+  String get displaySection;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue'**
+  String get languageLabel;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Français'**
+  String get languageFrench;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Taille du texte'**
+  String get textSizeLabel;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{percent} %'**
+  String textSizeValue(int percent);
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Thème'**
+  String get themeLabel;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sombre'**
+  String get themeDark;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Clair'**
+  String get themeLight;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Système'**
+  String get themeSystem;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le thème clair arrive dans une prochaine version.'**
+  String get themeLightSoon;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Confidentialité'**
+  String get privacySection;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rapports de plantage'**
+  String get crashReportsLabel;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans données de jeu ni contenu personnel'**
+  String get crashReportsHint;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter'**
+  String get signOut;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifications non envoyées'**
+  String get signOutPendingTitle;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 modification n’a pas encore été envoyée. Elle sera perdue si vous vous déconnectez maintenant.} other{{count} modifications n’ont pas encore été envoyées. Elles seront perdues si vous vous déconnectez maintenant.}}'**
+  String signOutPendingBody(int count);
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter quand même'**
+  String get signOutAnyway;
+
+  /// Profil, réglages et consentement (US-12, écrans T1, T5, A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

@@ -103,3 +103,28 @@ final syncProvider = Provider<void>((ref) {
     );
   }
 });
+
+/// Actions de session de l'appareil (US-12).
+class SessionActions {
+  SessionActions(this._ref);
+
+  final Ref _ref;
+
+  /// Modifications locales pas encore envoyées au serveur.
+  Future<int> pendingUploads() async {
+    final powerSync = await _ref.read(databaseProvider).powerSync;
+    return powerSync == null
+        ? 0
+        : (await powerSync.getUploadQueueStats()).count;
+  }
+
+  /// Arrête la synchronisation, efface les données synchronisées de
+  /// l'appareil (le compte suivant n'en voit rien), puis ferme la session.
+  /// Le contenu de règles reste.
+  Future<void> signOut() async {
+    await (await _ref.read(databaseProvider).powerSync)?.disconnectAndClear();
+    await _ref.read(accountGatewayProvider)?.signOut();
+  }
+}
+
+final sessionActionsProvider = Provider<SessionActions>(SessionActions.new);

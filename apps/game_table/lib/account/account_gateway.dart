@@ -107,6 +107,16 @@ class AccountGateway {
     }
   }
 
+  /// Ferme la session sur cet appareil seulement. Sans réseau, la session
+  /// locale est quand même oubliée.
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } on AuthException {
+      // Le serveur n'a pas répondu : la session locale est déjà effacée.
+    }
+  }
+
   /// Demande un lien de réinitialisation. Le résultat ne dit jamais si le
   /// compte existe ; seule l'absence de réseau lève
   /// [AccountNetworkException].
