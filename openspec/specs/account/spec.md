@@ -70,3 +70,47 @@ Une fois connecté, l'utilisateur SHALL le rester sans réseau, sans limite de d
 #### Scenario: Réouverture en mode avion
 - **WHEN** l'app est rouverte sans réseau après une connexion
 - **THEN** l'utilisateur est toujours connecté
+
+### Requirement: Consentement aux rapports de crash
+Au premier lancement, l'app SHALL demander le consentement aux rapports de plantage, sans aucune donnée de jeu ni mesure d'usage, et SHALL le rendre révocable dans les réglages (EF-CPT-06, ENF-11).
+
+#### Scenario: Premier lancement
+- **WHEN** l'app s'ouvre pour la première fois
+- **THEN** le dialogue « Envoyer les rapports de plantage ? » s'affiche jusqu'à une réponse
+
+#### Scenario: Révocation
+- **WHEN** l'utilisateur coupe « Rapports de plantage » dans les réglages
+- **THEN** le consentement est retiré et le dialogue ne revient pas
+
+### Requirement: Réglages d'affichage
+L'utilisateur SHALL régler la taille du texte de 85 % à 200 %, appliquée à toute l'app. Le thème sombre SHALL être le seul disponible, avec l'annonce du thème clair (EF-CPT-03).
+
+#### Scenario: Taille du texte
+- **WHEN** l'utilisateur règle le texte à 150 %
+- **THEN** l'app s'affiche à 150 %, et le réglage est retrouvé au lancement suivant
+
+### Requirement: Déconnexion
+La déconnexion SHALL fermer la session sur cet appareil et effacer ses données synchronisées. Si des modifications n'ont pas été envoyées, elle SHALL demander une confirmation qui le dit.
+
+#### Scenario: Rien en attente
+- **WHEN** l'utilisateur se déconnecte sans modification en attente
+- **THEN** la session est fermée et les fiches synchronisées sont effacées de l'appareil
+
+#### Scenario: Modifications en attente
+- **WHEN** des modifications attendent l'envoi
+- **THEN** une confirmation en donne le nombre avant de les effacer
+
+### Requirement: Appareils connectés
+Le profil SHALL lister les appareils connectés au compte, avec leur nom lisible et leur dernière activité, et SHALL permettre de déconnecter à distance chacun des autres (EF-CPT-05).
+
+#### Scenario: Liste
+- **WHEN** l'utilisateur ouvre son profil avec le réseau
+- **THEN** il voit cet appareil, marqué « Cet appareil · actif maintenant », puis les autres avec leur dernière activité
+
+#### Scenario: Déconnexion à distance
+- **WHEN** il appuie sur « Déconnecter » à côté d'un autre appareil
+- **THEN** cet appareil disparaît de la liste et ne peut plus prolonger sa connexion
+
+#### Scenario: Sans réseau
+- **WHEN** l'utilisateur ouvre son profil sans réseau
+- **THEN** la section dit que la liste demande le réseau

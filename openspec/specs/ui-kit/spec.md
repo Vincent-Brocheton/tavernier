@@ -164,3 +164,10 @@ Le kit SHALL fournir `AbilityTile`, `StatTile` et `ValueBreakdown`. Une tuile SH
 #### Scenario: Règle respectée
 - **WHEN** une règle est respectée
 - **THEN** elle affiche une coche et le lecteur d'écran lit « Respecté »
+
+### Requirement: Entrée de compte de la navigation
+`AdaptiveNavigationScaffold` SHALL accepter une entrée de compte facultative : en bas du rail à partir de la tablette paysage ([A7]), en haut à droite du contenu sur téléphone.
+
+#### Scenario: Desktop
+- **WHEN** une entrée de compte est donnée sur un écran desktop
+- **THEN** elle s'affiche en bas du rail
