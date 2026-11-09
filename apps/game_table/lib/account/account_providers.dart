@@ -88,11 +88,12 @@ final pseudonymProvider = FutureProvider<String?>((ref) async {
 /// déconnecte sinon. À surveiller depuis la racine de l'app.
 final syncProvider = Provider<void>((ref) {
   if (!accountsConfigured) return;
-  final user = ref.watch(currentUserProvider).value;
+  // L'identifiant seul : un rafraîchissement de jeton ne reconnecte pas.
+  final userId = ref.watch(currentUserProvider.select((u) => u.value?.id));
   final database = ref.watch(databaseProvider);
   final powerSync = database.powerSync;
   if (powerSync == null) return;
-  if (user == null) {
+  if (userId == null) {
     powerSync.then((db) => db.disconnect());
   } else {
     powerSync.then(
