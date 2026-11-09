@@ -51,8 +51,7 @@ String _nativeUserAgent() {
 
 /// Accès au compte, ou `null` sans configuration.
 final accountGatewayProvider = Provider<AccountGateway?>(
-  (ref) =>
-      accountsConfigured ? AccountGateway(Supabase.instance.client.auth) : null,
+  (ref) => accountsConfigured ? AccountGateway(Supabase.instance.client) : null,
 );
 
 /// Utilisateur connecté, mis à jour à chaque changement de session.
@@ -82,6 +81,13 @@ final breachedPasswordsProvider = Provider<BreachedPasswords>((ref) {
   final client = http.Client();
   ref.onDispose(client.close);
   return BreachedPasswords(client);
+});
+
+/// Vrai si le compte a un mot de passe (un compte Google n'en a pas).
+final hasPasswordProvider = FutureProvider.autoDispose<bool>((ref) async {
+  final gateway = ref.watch(accountGatewayProvider);
+  ref.watch(currentUserProvider);
+  return gateway?.user == null ? true : gateway!.hasPassword();
 });
 
 /// Pseudo de l'utilisateur connecté, d'après son profil local.

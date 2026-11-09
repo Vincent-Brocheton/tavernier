@@ -2044,4 +2044,66 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get pseudonymRequired => 'Le pseudonyme ne peut pas être vide.';
+
+  @override
+  String get continueWithGoogle => 'Continuer avec Google';
+
+  @override
+  String get orSeparator => 'ou';
+
+  @override
+  String get ageTitle => 'Date de naissance';
+
+  @override
+  String get ageIntro =>
+      'Avant de continuer, indiquez votre date de naissance : il faut avoir au moins 15 ans pour utiliser un compte. Elle sert à la vérification et n’est pas conservée.';
+
+  @override
+  String get ageContinue => 'Continuer';
+
+  @override
+  String get ageRefused =>
+      'Il faut avoir au moins 15 ans pour créer un compte. Votre compte Google n’a pas été conservé.';
+
+  @override
+  String get methodsSection => 'Méthodes de connexion';
+
+  @override
+  String get methodActive => 'Active';
+
+  @override
+  String get methodNotLinked => 'Non liée';
+
+  @override
+  String get methodNone => 'Aucun pour l’instant';
+
+  @override
+  String get methodLink => 'Lier';
+
+  @override
+  String get methodRemove => 'Retirer';
+
+  @override
+  String get methodAdd => 'Ajouter';
+
+  @override
+  String get googleLabel => 'Google';
+
+  @override
+  String get passwordMethodLabel => 'Mot de passe';
+
+  @override
+  String get googleOnlyNote =>
+      'Il faut garder au moins une méthode : Google ne peut pas être retiré tant que c’est la seule.';
+
+  @override
+  String get emailFromGoogle =>
+      'Fourni par Google. Pour en changer, ajoutez d’abord un mot de passe.';
+
+  @override
+  String get addPasswordTitle => 'Ajouter un mot de passe';
+
+  @override
+  String get methodFailed =>
+      'Opération impossible pour le moment. Réessayez dans quelques minutes.';
 }

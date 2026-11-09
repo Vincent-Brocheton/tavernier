@@ -2,7 +2,8 @@
 import 'package:game_table/account/account_gateway.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/account/devices.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' show AuthState, User;
+import 'package:supabase_flutter/supabase_flutter.dart'
+    show AuthState, User, UserIdentity;
 
 final class FakeGateway implements AccountGateway {
   FakeGateway({this.signedIn = true});
@@ -55,6 +56,54 @@ final class FakeGateway implements AccountGateway {
 
   var signedOut = false;
   final resent = <String>[];
+
+  /// Compte Google : identité liée, âge à vérifier, mot de passe absent.
+  bool google = false;
+  bool ageCheckedValue = true;
+  bool hasPasswordValue = true;
+  bool ageAccepted = true;
+  final calls = <String>[];
+
+  @override
+  Future<void> signInWithGoogle({String? redirectTo}) async =>
+      calls.add('google');
+
+  @override
+  bool get ageChecked => ageCheckedValue;
+
+  @override
+  Future<bool> confirmAge(DateTime birthDate) async {
+    calls.add('age ${birthDate.year}');
+    return ageAccepted;
+  }
+
+  @override
+  Future<bool> hasPassword() async => hasPasswordValue;
+
+  @override
+  UserIdentity? get googleIdentity => !google
+      ? null
+      : const UserIdentity(
+          id: 'g1',
+          userId: 'u1',
+          identityData: {'email': 'ines.l@gmail.com'},
+          identityId: 'g1',
+          provider: 'google',
+          createdAt: '2026-11-09T10:00:00Z',
+          lastSignInAt: '2026-11-09T10:00:00Z',
+        );
+
+  @override
+  Future<void> linkGoogle({String? redirectTo}) async => calls.add('link');
+
+  @override
+  Future<void> unlinkGoogle() async => calls.add('unlink');
+
+  @override
+  Future<PasswordChangeOutcome> addPassword(String password) async {
+    calls.add('add $password');
+    return PasswordChangeOutcome.changed;
+  }
 
   final emailChanges = <String>[];
   PasswordChangeOutcome passwordOutcome = PasswordChangeOutcome.changed;

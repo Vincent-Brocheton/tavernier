@@ -123,6 +123,9 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
       _email.text = _savedEmail;
     }
     final emptyPseudonym = _initialized && _pseudonym.text.trim().isEmpty;
+    // En attendant la réponse, on suppose un mot de passe : rien ne se
+    // verrouille à tort.
+    final hasPassword = ref.watch(hasPasswordProvider).value ?? true;
     final passwordReady =
         !_passwordChanged || (_current.text.isNotEmpty && _nextValid);
     final canSave =
@@ -206,59 +209,75 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
                 ]),
                 SizedBox(height: AppSpacing.md),
                 card(l10n.emailSection, [
+                  // Sans mot de passe (compte Google), l'e-mail est verrouillé
+                  // (EF-CPT-10).
                   TextField(
                     controller: _email,
+                    readOnly: !hasPassword,
                     keyboardType: TextInputType.emailAddress,
                     autofillHints: const [AutofillHints.email],
                     onChanged: (_) => setState(() {}),
-                    decoration: InputDecoration(labelText: l10n.emailLabel),
+                    decoration: InputDecoration(
+                      labelText: l10n.emailLabel,
+                      suffixIcon: hasPassword
+                          ? null
+                          : const Icon(Icons.lock_outline),
+                      helperText: hasPassword ? null : l10n.emailFromGoogle,
+                      helperMaxLines: 3,
+                    ),
                   ),
                   SizedBox(height: AppSpacing.sm),
-                  Card(
-                    margin: EdgeInsets.zero,
-                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: ListTile(
-                      leading: const Icon(Icons.mail_outline),
-                      title: Text(
-                        l10n.emailChangeHint(_savedEmail),
-                        style: text.bodyMedium,
+                  if (hasPassword)
+                    Card(
+                      margin: EdgeInsets.zero,
+                      color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                      child: ListTile(
+                        leading: const Icon(Icons.mail_outline),
+                        title: Text(
+                          l10n.emailChangeHint(_savedEmail),
+                          style: text.bodyMedium,
+                        ),
                       ),
                     ),
-                  ),
                 ]),
                 SizedBox(height: AppSpacing.md),
-                card(l10n.changePasswordSection, [
-                  TextField(
-                    controller: _current,
-                    obscureText: _obscuredCurrent,
-                    autofillHints: const [AutofillHints.password],
-                    onChanged: (_) => setState(() {}),
-                    decoration: InputDecoration(
-                      labelText: l10n.currentPasswordLabel,
-                      suffixIcon: IconButton(
-                        tooltip: _obscuredCurrent
-                            ? l10n.showPassword
-                            : l10n.hidePassword,
-                        icon: Icon(
-                          _obscuredCurrent
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () => setState(
-                          () => _obscuredCurrent = !_obscuredCurrent,
+                if (hasPassword)
+                  card(l10n.changePasswordSection, [
+                    TextField(
+                      controller: _current,
+                      obscureText: _obscuredCurrent,
+                      autofillHints: const [AutofillHints.password],
+                      onChanged: (_) => setState(() {}),
+                      decoration: InputDecoration(
+                        labelText: l10n.currentPasswordLabel,
+                        suffixIcon: IconButton(
+                          tooltip: _obscuredCurrent
+                              ? l10n.showPassword
+                              : l10n.hidePassword,
+                          icon: Icon(
+                            _obscuredCurrent
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () => setState(
+                            () => _obscuredCurrent = !_obscuredCurrent,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: AppSpacing.md),
-                  NewPasswordField(
-                    controller: _next,
-                    label: l10n.newPasswordLabel,
-                    email: _savedEmail,
-                    pseudonym: _pseudonym.text,
-                    onValidityChanged: (valid) =>
-                        setState(() => _nextValid = valid),
-                  ),
+                    SizedBox(height: AppSpacing.md),
+                    NewPasswordField(
+                      controller: _next,
+                      label: l10n.newPasswordLabel,
+                      email: _savedEmail,
+                      pseudonym: _pseudonym.text,
+                      onValidityChanged: (valid) =>
+                          setState(() => _nextValid = valid),
+                    ),
+                  ]),
+                SizedBox(height: AppSpacing.md),
+                card(l10n.methodsSection, [
+                  _SignInMethods(hasPassword: hasPassword),
                 ]),
                 SizedBox(height: AppSpacing.md),
                 Text(l10n.networkFieldsNote, style: text.bodySmall),
@@ -267,6 +286,171 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Méthodes de connexion [A6] : Google et mot de passe. Il en reste toujours
+/// une : « Retirer » est désactivé sur la dernière (EF-CPT-10). Apple est
+/// abandonné.
+class _SignInMethods extends ConsumerStatefulWidget {
+  const _SignInMethods({required this.hasPassword});
+
+  final bool hasPassword;
+
+  @override
+  ConsumerState<_SignInMethods> createState() => _SignInMethodsState();
+}
+
+class _SignInMethodsState extends ConsumerState<_SignInMethods> {
+  var _busy = false;
+
+  Future<void> _run(Future<void> Function() action) async {
+    final l10n = AppLocalizations.of(context);
+    setState(() => _busy = true);
+    try {
+      await action();
+    } on Exception {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(l10n.methodFailed)));
+      }
+    }
+    if (mounted) setState(() => _busy = false);
+    ref
+      ..invalidate(hasPasswordProvider)
+      ..invalidate(currentUserProvider);
+  }
+
+  Future<void> _addPassword() async {
+    final gateway = ref.read(accountGatewayProvider);
+    if (gateway == null) return;
+    final password = await showDialog<String>(
+      context: context,
+      builder: (_) => _AddPasswordDialog(email: gateway.user?.email ?? ''),
+    );
+    if (password == null) return;
+    await _run(() async {
+      final outcome = await gateway.addPassword(password);
+      if (outcome != PasswordChangeOutcome.changed) {
+        throw Exception('mot de passe refusé : $outcome');
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final gateway = ref.watch(accountGatewayProvider);
+    final google = gateway?.googleIdentity;
+    final googleEmail = google?.identityData?['email'] as String?;
+    final googleOnly = google != null && !widget.hasPassword;
+    Widget active() => Padding(
+      padding: EdgeInsets.only(left: AppSpacing.xs),
+      child: Chip(
+        label: Text(l10n.methodActive),
+        visualDensity: VisualDensity.compact,
+      ),
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.g_mobiledata),
+          title: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [Text(l10n.googleLabel), if (google != null) active()],
+          ),
+          subtitle: Text(googleEmail ?? l10n.methodNotLinked),
+          trailing: google == null
+              ? FilledButton.tonal(
+                  onPressed: _busy || gateway == null
+                      ? null
+                      : () => _run(
+                          () => gateway.linkGoogle(
+                            redirectTo: kIsWeb ? Uri.base.origin : null,
+                          ),
+                        ),
+                  child: Text(l10n.methodLink),
+                )
+              : OutlinedButton(
+                  onPressed: _busy || googleOnly
+                      ? null
+                      : () => _run(gateway!.unlinkGoogle),
+                  child: Text(l10n.methodRemove),
+                ),
+        ),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.key_outlined),
+          title: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Text(l10n.passwordMethodLabel),
+              if (widget.hasPassword) active(),
+            ],
+          ),
+          subtitle: widget.hasPassword ? null : Text(l10n.methodNone),
+          trailing: widget.hasPassword
+              ? null
+              : FilledButton.tonal(
+                  onPressed: _busy ? null : _addPassword,
+                  child: Text(l10n.methodAdd),
+                ),
+        ),
+        if (googleOnly) Text(l10n.googleOnlyNote, style: text.bodySmall),
+      ],
+    );
+  }
+}
+
+/// Ajout d'un mot de passe à un compte Google, selon EF-CPT-08.
+class _AddPasswordDialog extends StatefulWidget {
+  const _AddPasswordDialog({required this.email});
+
+  final String email;
+
+  @override
+  State<_AddPasswordDialog> createState() => _AddPasswordDialogState();
+}
+
+class _AddPasswordDialogState extends State<_AddPasswordDialog> {
+  final _password = TextEditingController();
+  var _valid = false;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return AlertDialog(
+      title: Text(l10n.addPasswordTitle),
+      content: SingleChildScrollView(
+        child: NewPasswordField(
+          controller: _password,
+          label: l10n.newPasswordLabel,
+          email: widget.email,
+          onValidityChanged: (valid) => setState(() => _valid = valid),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        TextButton(
+          onPressed: _valid
+              ? () => Navigator.pop(context, _password.text)
+              : null,
+          child: Text(l10n.accountSave),
+        ),
+      ],
     );
   }
 }
