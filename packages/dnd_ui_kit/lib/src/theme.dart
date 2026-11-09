@@ -130,6 +130,12 @@ abstract final class AppTheme {
       textTheme: AppTypography.textTheme,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       extensions: [game],
+      // Champs encadrés, rayon xs des tokens (planches [A1], [P7]).
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadii.xs),
+        ),
+      ),
       navigationBarTheme: NavigationBarThemeData(
         height: AppSizes.navigationBar,
         backgroundColor: scheme.surfaceContainer,

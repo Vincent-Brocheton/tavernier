@@ -9,6 +9,8 @@ environment:
   flutter: ">=3.47.0"
 
 dependencies:
+  connectivity_plus: ^7.3.2
+  crypto: ^3.0.8
   dnd_content:
   dnd_data:
   dnd_rules:
@@ -20,11 +22,13 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^3.5.0
   go_router: ^18.1.3
+  http: ^1.6.0
   intl: any
   material_ui: ^1.8.0
   path: ^1.9.1
   path_provider: ^2.1.6
   powersync: 2.6.1
+  supabase_flutter: ^2.18.3
   web: ^1.1.1
 dev_dependencies:
   flutter_test:

@@ -2363,5 +2363,229 @@
         "type": "String"
       }
     }
+  },
+  "signInWelcome": "Bienvenue",
+  "@signInWelcome": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInPurpose": "Un compte sert à rejoindre des tables et à synchroniser vos fiches.",
+  "@signInPurpose": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInTitle": "Connexion",
+  "@signInTitle": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "emailLabel": "E-mail",
+  "@emailLabel": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordLabel": "Mot de passe",
+  "@passwordLabel": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "showPassword": "Afficher le mot de passe",
+  "@showPassword": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "hidePassword": "Masquer le mot de passe",
+  "@hidePassword": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotPasswordLink": "Mot de passe oublié ?",
+  "@forgotPasswordLink": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInAction": "Se connecter",
+  "@signInAction": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInInvalid": "E-mail ou mot de passe incorrect. Vérifiez la saisie, ou réinitialisez votre mot de passe.",
+  "@signInInvalid": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInNetworkError": "Le serveur ne répond pas. Vérifiez votre connexion et réessayez.",
+  "@signInNetworkError": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInFailed": "Connexion impossible pour le moment. Réessayez dans quelques minutes.",
+  "@signInFailed": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "offlineTitle": "Pas de connexion internet",
+  "@offlineTitle": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "offlineFirstSignIn": "La première connexion sur cet appareil demande le réseau. Le bouton se réactive dès que la connexion revient ; rien n’est enregistré en attendant.",
+  "@offlineFirstSignIn": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInFooter": "La première connexion demande le réseau, ensuite tout fonctionne hors-ligne.",
+  "@signInFooter": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInTagline": "Votre table, même sans réseau",
+  "@signInTagline": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInPitch": "Fiches de personnage, combats et notes de séance, compatibles avec la cinquième édition. Une fois connecté, tout fonctionne hors-ligne.",
+  "@signInPitch": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInDesktopFooter": "Déjà connecté sur cet appareil ? Vos données s’ouvrent sans réseau.",
+  "@signInDesktopFooter": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotTitle": "Mot de passe oublié",
+  "@forgotTitle": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotIntro": "Indiquez l’e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.",
+  "@forgotIntro": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotSend": "Envoyer le lien",
+  "@forgotSend": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotSentTitle": "Vérifiez votre boîte mail",
+  "@forgotSentTitle": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotSentBody": "Si un compte existe pour {email}, un lien vient d’y être envoyé. Il est valable 1 heure. Pensez à regarder dans les courriers indésirables.",
+  "@forgotSentBody": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotResendIn": "Renvoyer le lien dans {time}",
+  "@forgotResendIn": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4).",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotResend": "Renvoyer le lien",
+  "@forgotResend": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "backToSignIn": "Revenir à la connexion",
+  "@backToSignIn": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "forgotSocialNote": "Compte créé avec Google ou Apple : pas de mot de passe à réinitialiser, utilisez le même bouton qu’à l’inscription.",
+  "@forgotSocialNote": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "newPasswordTitle": "Nouveau mot de passe",
+  "@newPasswordTitle": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "newPasswordAccount": "Compte {email} · lien valable encore {minutes} min.",
+  "@newPasswordAccount": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "newPasswordAccountOnly": "Compte {email}",
+  "@newPasswordAccountOnly": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "newPasswordLabel": "Nouveau mot de passe",
+  "@newPasswordLabel": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "confirmPasswordLabel": "Confirmer le mot de passe",
+  "@confirmPasswordLabel": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordMismatch": "Les deux mots de passe diffèrent.",
+  "@passwordMismatch": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordStrength": "Robustesse : {level}",
+  "@passwordStrength": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4).",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordStrength0": "très faible",
+  "@passwordStrength0": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordStrength1": "faible",
+  "@passwordStrength1": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordStrength2": "moyenne",
+  "@passwordStrength2": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordStrength3": "correcte",
+  "@passwordStrength3": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "passwordStrength4": "forte",
+  "@passwordStrength4": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "ruleLength": "10 caractères au moins",
+  "@ruleLength": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "ruleIdentity": "Différent de votre e-mail et de votre pseudo",
+  "@ruleIdentity": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "ruleBreached": "Absent des listes de mots de passe divulgués",
+  "@ruleBreached": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "ruleMet": "Respecté",
+  "@ruleMet": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "ruleUnmet": "Non respecté",
+  "@ruleUnmet": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "rulePending": "Vérification…",
+  "@rulePending": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signOutOthers": "Déconnecter mes autres appareils",
+  "@signOutOthers": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signOutOthersHint": "Leurs données locales sont conservées ; il faudra se reconnecter pour synchroniser.",
+  "@signOutOthersHint": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "savePasswordAndSignIn": "Enregistrer et se connecter",
+  "@savePasswordAndSignIn": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "savePasswordNetworkError": "Enregistrement impossible sans réseau. Réessayez une fois connecté.",
+  "@savePasswordNetworkError": {
+    "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
   }
 }

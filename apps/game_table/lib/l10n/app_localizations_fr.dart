@@ -1577,4 +1577,173 @@ class AppLocalizationsFr extends AppLocalizations {
   String spendHitDie(String die) {
     return 'Dépenser le $die';
   }
+
+  @override
+  String get signInWelcome => 'Bienvenue';
+
+  @override
+  String get signInPurpose =>
+      'Un compte sert à rejoindre des tables et à synchroniser vos fiches.';
+
+  @override
+  String get signInTitle => 'Connexion';
+
+  @override
+  String get emailLabel => 'E-mail';
+
+  @override
+  String get passwordLabel => 'Mot de passe';
+
+  @override
+  String get showPassword => 'Afficher le mot de passe';
+
+  @override
+  String get hidePassword => 'Masquer le mot de passe';
+
+  @override
+  String get forgotPasswordLink => 'Mot de passe oublié ?';
+
+  @override
+  String get signInAction => 'Se connecter';
+
+  @override
+  String get signInInvalid =>
+      'E-mail ou mot de passe incorrect. Vérifiez la saisie, ou réinitialisez votre mot de passe.';
+
+  @override
+  String get signInNetworkError =>
+      'Le serveur ne répond pas. Vérifiez votre connexion et réessayez.';
+
+  @override
+  String get signInFailed =>
+      'Connexion impossible pour le moment. Réessayez dans quelques minutes.';
+
+  @override
+  String get offlineTitle => 'Pas de connexion internet';
+
+  @override
+  String get offlineFirstSignIn =>
+      'La première connexion sur cet appareil demande le réseau. Le bouton se réactive dès que la connexion revient ; rien n’est enregistré en attendant.';
+
+  @override
+  String get signInFooter =>
+      'La première connexion demande le réseau, ensuite tout fonctionne hors-ligne.';
+
+  @override
+  String get signInTagline => 'Votre table, même sans réseau';
+
+  @override
+  String get signInPitch =>
+      'Fiches de personnage, combats et notes de séance, compatibles avec la cinquième édition. Une fois connecté, tout fonctionne hors-ligne.';
+
+  @override
+  String get signInDesktopFooter =>
+      'Déjà connecté sur cet appareil ? Vos données s’ouvrent sans réseau.';
+
+  @override
+  String get forgotTitle => 'Mot de passe oublié';
+
+  @override
+  String get forgotIntro =>
+      'Indiquez l’e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.';
+
+  @override
+  String get forgotSend => 'Envoyer le lien';
+
+  @override
+  String get forgotSentTitle => 'Vérifiez votre boîte mail';
+
+  @override
+  String forgotSentBody(String email) {
+    return 'Si un compte existe pour $email, un lien vient d’y être envoyé. Il est valable 1 heure. Pensez à regarder dans les courriers indésirables.';
+  }
+
+  @override
+  String forgotResendIn(String time) {
+    return 'Renvoyer le lien dans $time';
+  }
+
+  @override
+  String get forgotResend => 'Renvoyer le lien';
+
+  @override
+  String get backToSignIn => 'Revenir à la connexion';
+
+  @override
+  String get forgotSocialNote =>
+      'Compte créé avec Google ou Apple : pas de mot de passe à réinitialiser, utilisez le même bouton qu’à l’inscription.';
+
+  @override
+  String get newPasswordTitle => 'Nouveau mot de passe';
+
+  @override
+  String newPasswordAccount(String email, int minutes) {
+    return 'Compte $email · lien valable encore $minutes min.';
+  }
+
+  @override
+  String newPasswordAccountOnly(String email) {
+    return 'Compte $email';
+  }
+
+  @override
+  String get newPasswordLabel => 'Nouveau mot de passe';
+
+  @override
+  String get confirmPasswordLabel => 'Confirmer le mot de passe';
+
+  @override
+  String get passwordMismatch => 'Les deux mots de passe diffèrent.';
+
+  @override
+  String passwordStrength(String level) {
+    return 'Robustesse : $level';
+  }
+
+  @override
+  String get passwordStrength0 => 'très faible';
+
+  @override
+  String get passwordStrength1 => 'faible';
+
+  @override
+  String get passwordStrength2 => 'moyenne';
+
+  @override
+  String get passwordStrength3 => 'correcte';
+
+  @override
+  String get passwordStrength4 => 'forte';
+
+  @override
+  String get ruleLength => '10 caractères au moins';
+
+  @override
+  String get ruleIdentity => 'Différent de votre e-mail et de votre pseudo';
+
+  @override
+  String get ruleBreached => 'Absent des listes de mots de passe divulgués';
+
+  @override
+  String get ruleMet => 'Respecté';
+
+  @override
+  String get ruleUnmet => 'Non respecté';
+
+  @override
+  String get rulePending => 'Vérification…';
+
+  @override
+  String get signOutOthers => 'Déconnecter mes autres appareils';
+
+  @override
+  String get signOutOthersHint =>
+      'Leurs données locales sont conservées ; il faudra se reconnecter pour synchroniser.';
+
+  @override
+  String get savePasswordAndSignIn => 'Enregistrer et se connecter';
+
+  @override
+  String get savePasswordNetworkError =>
+      'Enregistrement impossible sans réseau. Réessayez une fois connecté.';
 }
