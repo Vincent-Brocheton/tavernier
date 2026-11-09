@@ -79,3 +79,14 @@ Des modifications faites hors ligne sur plusieurs appareils SHALL fusionner cham
 #### Scenario: Trois appareils
 - **WHEN** trois appareils d'un même compte modifient hors ligne trois points différents d'une fiche, puis se reconnectent
 - **THEN** chaque appareil et le serveur ont les trois modifications
+
+### Requirement: Inscription côté serveur
+Le serveur SHALL refuser une inscription sans date de naissance ou de moins de 15 ans, SHALL ne pas conserver la date de naissance, et SHALL créer le profil avec le pseudonyme fourni.
+
+#### Scenario: Quinze ans révolus
+- **WHEN** un compte est créé avec une date de naissance de plus de 15 ans
+- **THEN** son profil existe avec le pseudonyme, et ses métadonnées ne contiennent plus la date de naissance
+
+#### Scenario: Trop jeune
+- **WHEN** un compte est créé avec une date de naissance de moins de 15 ans
+- **THEN** la création échoue
