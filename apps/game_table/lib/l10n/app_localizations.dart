@@ -3252,6 +3252,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ce lien a expiré ou a déjà servi. Si votre adresse est confirmée, connectez-vous ; sinon, demandez un nouveau lien avec « Mot de passe oublié ? ».'**
   String get authLinkInvalid;
+
+  /// Renvoi de l’e-mail de confirmation d’inscription (US-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Renvoyer l’e-mail de confirmation'**
+  String get resendConfirmation;
+
+  /// Renvoi de l’e-mail de confirmation d’inscription (US-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Renvoyer l’e-mail dans {time}'**
+  String resendConfirmationIn(String time);
+
+  /// Renvoi de l’e-mail de confirmation d’inscription (US-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Si un compte attend une confirmation pour {email}, un nouveau lien vient d’y être envoyé.'**
+  String confirmationResent(String email);
 }
 
 class _AppLocalizationsDelegate

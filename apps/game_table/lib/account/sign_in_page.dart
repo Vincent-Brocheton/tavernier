@@ -9,6 +9,7 @@ import 'account_gateway.dart';
 import 'account_providers.dart';
 import 'birth_date.dart';
 import 'new_password_field.dart';
+import 'resend_confirmation_button.dart';
 
 /// Connexion [A1] et inscription [T2], en onglets : une colonne sur
 /// téléphone, deux sur desktop [A4]. Une seule erreur d'identifiants
@@ -176,6 +177,9 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           title: l10n.signUpConfirmTitle,
           message: l10n.signUpConfirmBody(email),
         ),
+        SizedBox(height: AppSpacing.sm),
+        // L'e-mail vient de partir : le renvoi attend une minute.
+        ResendConfirmationButton(email: email, justSent: true),
         SizedBox(height: AppSpacing.md),
       ],
       if (_signUpResult case SignUpOutcome.network || SignUpOutcome.failed) ...[
@@ -251,6 +255,9 @@ class _SignInPageState extends ConsumerState<SignInPage> {
               icon: Icons.link_off,
               message: l10n.authLinkInvalid,
             ),
+            SizedBox(height: AppSpacing.sm),
+            // Lien de confirmation expiré : un autre, à l'adresse saisie.
+            ResendConfirmationButton(email: _email.text),
             SizedBox(height: AppSpacing.md),
           ],
           if (!online) ...[

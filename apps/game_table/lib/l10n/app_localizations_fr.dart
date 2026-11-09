@@ -1972,4 +1972,17 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get authLinkInvalid =>
       'Ce lien a expiré ou a déjà servi. Si votre adresse est confirmée, connectez-vous ; sinon, demandez un nouveau lien avec « Mot de passe oublié ? ».';
+
+  @override
+  String get resendConfirmation => 'Renvoyer l’e-mail de confirmation';
+
+  @override
+  String resendConfirmationIn(String time) {
+    return 'Renvoyer l’e-mail dans $time';
+  }
+
+  @override
+  String confirmationResent(String email) {
+    return 'Si un compte attend une confirmation pour $email, un nouveau lien vient d’y être envoyé.';
+  }
 }
