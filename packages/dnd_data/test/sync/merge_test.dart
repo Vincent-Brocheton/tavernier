@@ -34,8 +34,17 @@ final class _Device {
     return _Device._(db, (await db.powerSync)!, client);
   }
 
-  Future<void> connect() =>
-      powerSync.connect(connector: SupabaseConnector(client, _powerSyncUrl!));
+  /// Écritures refusées par le serveur.
+  final discarded = <String>[];
+
+  Future<void> connect() => powerSync.connect(
+    connector: SupabaseConnector(
+      client,
+      _powerSyncUrl!,
+      onDiscarded: (w) =>
+          discarded.add('${w.op} ${w.table}/${w.id} : ${w.code} ${w.message}'),
+    ),
+  );
 
   Future<void> disconnect() => powerSync.disconnect();
 
@@ -147,6 +156,9 @@ void main() {
       }
       final name = await server.select('name').eq('id', id).single();
       expect(name['name'], 'Aldric le Brave');
+      for (final d in devices) {
+        expect(d.discarded, isEmpty);
+      }
     },
     skip: skip,
     timeout: const Timeout(Duration(minutes: 3)),
