@@ -3246,6 +3246,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'La liste des appareils demande le réseau.'**
   String get devicesOffline;
+
+  /// Lien de confirmation ou de réinitialisation expiré (US-12, US-39).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce lien a expiré ou a déjà servi. Si votre adresse est confirmée, connectez-vous ; sinon, demandez un nouveau lien avec « Mot de passe oublié ? ».'**
+  String get authLinkInvalid;
 }
 
 class _AppLocalizationsDelegate

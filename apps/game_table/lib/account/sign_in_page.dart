@@ -16,7 +16,10 @@ import 'new_password_field.dart';
 /// les boutons sont désactivés et expliqués, et rien n'est gardé en
 /// attendant (EF-CPT-11).
 class SignInPage extends ConsumerStatefulWidget {
-  const SignInPage({super.key});
+  const SignInPage({super.key, this.invalidLink = false});
+
+  /// Ouvert par un lien de confirmation ou de réinitialisation expiré.
+  final bool invalidLink;
 
   @override
   ConsumerState<SignInPage> createState() => _SignInPageState();
@@ -242,6 +245,14 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             onSelectionChanged: (s) => setState(() => _signingUp = s.single),
           ),
           SizedBox(height: AppSpacing.md),
+          if (widget.invalidLink) ...[
+            StatusBanner(
+              kind: StatusBannerKind.alert,
+              icon: Icons.link_off,
+              message: l10n.authLinkInvalid,
+            ),
+            SizedBox(height: AppSpacing.md),
+          ],
           if (!online) ...[
             StatusBanner(
               kind: StatusBannerKind.alert,

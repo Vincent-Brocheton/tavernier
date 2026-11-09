@@ -1968,4 +1968,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get devicesOffline => 'La liste des appareils demande le réseau.';
+
+  @override
+  String get authLinkInvalid =>
+      'Ce lien a expiré ou a déjà servi. Si votre adresse est confirmée, connectez-vous ; sinon, demandez un nouveau lien avec « Mot de passe oublié ? ».';
 }
