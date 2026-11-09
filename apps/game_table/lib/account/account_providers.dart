@@ -149,6 +149,16 @@ class SessionActions {
     ];
   }
 
+  /// Change le pseudonyme dans la base de l'appareil : hors ligne compris,
+  /// il part à la synchronisation (EF-CPT-09).
+  Future<void> renameProfile(String userId, String pseudonym) async {
+    await _ref.read(databaseProvider).customStatement(
+      'UPDATE profile SET pseudonym = ? WHERE id = ?',
+      [pseudonym.trim(), userId],
+    );
+    _ref.invalidate(pseudonymProvider);
+  }
+
   /// Déconnecte un autre appareil : il ne peut plus prolonger sa connexion.
   Future<void> revokeDevice(String id) => Supabase.instance.client.rpc<bool>(
     'revoke_my_session',

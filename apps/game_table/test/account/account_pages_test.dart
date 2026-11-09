@@ -16,77 +16,8 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' show AuthState, User;
 
-final class _FakeGateway implements AccountGateway {
-  _FakeGateway({this.signedIn = true});
-
-  /// Faux : page ouverte sans le lien de réinitialisation.
-  final bool signedIn;
-  SignInOutcome outcome = SignInOutcome.signedIn;
-  SignUpOutcome signUpOutcome = SignUpOutcome.signedIn;
-  final signIns = <(String, String)>[];
-  final signUps = <(String, String, String, DateTime)>[];
-  final resets = <String>[];
-  final updates = <(String, bool)>[];
-
-  @override
-  User? get user => !signedIn
-      ? null
-      : const User(
-          id: 'u1',
-          appMetadata: {},
-          userMetadata: {},
-          aud: 'authenticated',
-          createdAt: '2026-11-09T10:00:00Z',
-          email: 'hugo@exemple.fr',
-        );
-
-  @override
-  Stream<AuthState> get changes => const Stream.empty();
-
-  @override
-  DateTime? get resetLinkExpiry =>
-      DateTime.now().add(const Duration(minutes: 48, seconds: 30));
-
-  @override
-  Future<SignInOutcome> signIn(String email, String password) async {
-    signIns.add((email, password));
-    return outcome;
-  }
-
-  @override
-  Future<SignUpOutcome> signUp({
-    required String email,
-    required String password,
-    required String pseudonym,
-    required DateTime birthDate,
-    String? redirectTo,
-  }) async {
-    signUps.add((email, password, pseudonym, birthDate));
-    return signUpOutcome;
-  }
-
-  var signedOut = false;
-  final resent = <String>[];
-
-  @override
-  Future<void> resendConfirmation(String email, {String? redirectTo}) async =>
-      resent.add(email);
-
-  @override
-  Future<void> signOut() async => signedOut = true;
-
-  @override
-  Future<void> requestPasswordReset(String email, {String? redirectTo}) async =>
-      resets.add(email);
-
-  @override
-  Future<void> updatePassword(
-    String password, {
-    required bool signOutOthers,
-  }) async => updates.add((password, signOutOthers));
-}
+import 'fakes.dart';
 
 late AppLocalizations l10n;
 
@@ -96,7 +27,7 @@ const _leaked = 'motdepasse123';
 Future<void> _pump(
   WidgetTester tester,
   String location,
-  _FakeGateway gateway, {
+  FakeGateway gateway, {
   Stream<bool>? online,
 }) async {
   final router = GoRouter(
@@ -151,7 +82,7 @@ Future<void> _pump(
 Future<void> _pumpTall(
   WidgetTester tester,
   String location,
-  _FakeGateway gateway,
+  FakeGateway gateway,
 ) async {
   tester.view.physicalSize = const Size(800, 1600);
   tester.view.devicePixelRatio = 1;
@@ -175,8 +106,7 @@ bool _enabled(WidgetTester tester, String label) =>
 void main() {
   group('connexion', () {
     testWidgets('identifiants refusés : le message unique', (tester) async {
-      final gateway = _FakeGateway()
-        ..outcome = SignInOutcome.invalidCredentials;
+      final gateway = FakeGateway()..outcome = SignInOutcome.invalidCredentials;
       await _pump(tester, '/connexion', gateway);
       await _type(tester, l10n.emailLabel, ' hugo@exemple.fr ');
       await _type(tester, l10n.passwordLabel, 'faux');
@@ -187,13 +117,13 @@ void main() {
     });
 
     testWidgets('lien expiré : expliqué, connexion possible', (tester) async {
-      await _pump(tester, '/connexion-lien-invalide', _FakeGateway());
+      await _pump(tester, '/connexion-lien-invalide', FakeGateway());
       expect(find.text(l10n.authLinkInvalid), findsOneWidget);
       expect(_enabled(tester, l10n.signInAction), isTrue);
     });
 
     testWidgets('lien expiré : nouvel e-mail de confirmation', (tester) async {
-      final gateway = _FakeGateway();
+      final gateway = FakeGateway();
       await _pump(tester, '/connexion-lien-invalide', gateway);
       expect(_enabled(tester, l10n.resendConfirmation), isFalse);
       await _type(tester, l10n.emailLabel, 'hugo@exemple.fr');
@@ -209,7 +139,7 @@ void main() {
     });
 
     testWidgets('serveur muet : un autre message', (tester) async {
-      final gateway = _FakeGateway()..outcome = SignInOutcome.network;
+      final gateway = FakeGateway()..outcome = SignInOutcome.network;
       await _pump(tester, '/connexion', gateway);
       await tester.tap(_button(l10n.signInAction));
       await tester.pumpAndSettle();
@@ -218,7 +148,7 @@ void main() {
     });
 
     testWidgets('réussie : retour à l\'accueil', (tester) async {
-      await _pump(tester, '/connexion', _FakeGateway());
+      await _pump(tester, '/connexion', FakeGateway());
       await tester.tap(_button(l10n.signInAction));
       await tester.pumpAndSettle();
       expect(find.text('accueil'), findsOneWidget);
@@ -229,7 +159,7 @@ void main() {
     ) async {
       final online = StreamController<bool>();
       addTearDown(online.close);
-      final gateway = _FakeGateway();
+      final gateway = FakeGateway();
       await _pump(tester, '/connexion', gateway, online: online.stream);
       online.add(false);
       await tester.pumpAndSettle();
@@ -249,7 +179,7 @@ void main() {
       tester.view.physicalSize = const Size(1440, 900);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.reset);
-      await _pump(tester, '/connexion', _FakeGateway());
+      await _pump(tester, '/connexion', FakeGateway());
       expect(find.text(l10n.signInTagline), findsOneWidget);
       // Titre et onglet, comme sur [A4].
       expect(find.text(l10n.signInTitle), findsNWidgets(2));
@@ -273,7 +203,7 @@ void main() {
     }
 
     testWidgets('moins de 15 ans : refusé et expliqué', (tester) async {
-      final gateway = _FakeGateway();
+      final gateway = FakeGateway();
       await _pumpTall(tester, '/connexion', gateway);
       await fill(tester, '12/03/2013');
       expect(find.text(l10n.tooYoung), findsOneWidget);
@@ -282,7 +212,7 @@ void main() {
     });
 
     testWidgets("réussie : compte créé, retour à l'accueil", (tester) async {
-      final gateway = _FakeGateway();
+      final gateway = FakeGateway();
       await _pumpTall(tester, '/connexion', gateway);
       await fill(tester, '01/01/2000');
       expect(_enabled(tester, l10n.signUpAction), isTrue);
@@ -295,8 +225,7 @@ void main() {
     });
 
     testWidgets('confirmation attendue : réponse neutre', (tester) async {
-      final gateway = _FakeGateway()
-        ..signUpOutcome = SignUpOutcome.confirmEmail;
+      final gateway = FakeGateway()..signUpOutcome = SignUpOutcome.confirmEmail;
       await _pumpTall(tester, '/connexion', gateway);
       await fill(tester, '01/01/2000');
       await tester.tap(_button(l10n.signUpAction));
@@ -318,7 +247,7 @@ void main() {
 
   group('mot de passe oublié', () {
     testWidgets('confirmation neutre, renvoi après 60 s', (tester) async {
-      final gateway = _FakeGateway();
+      final gateway = FakeGateway();
       await _pump(tester, '/connexion/mot-de-passe-oublie', gateway);
       await _type(tester, l10n.emailLabel, 'hugo@exemple.fr');
       await tester.tap(_button(l10n.forgotSend));
@@ -345,7 +274,7 @@ void main() {
     testWidgets('8 caractères : règle non respectée, enregistrement bloqué', (
       tester,
     ) async {
-      await _pumpTall(tester, '/nouveau-mot-de-passe', _FakeGateway());
+      await _pumpTall(tester, '/nouveau-mot-de-passe', FakeGateway());
       expect(
         find.text(l10n.newPasswordAccount('hugo@exemple.fr', 48)),
         findsOneWidget,
@@ -359,7 +288,7 @@ void main() {
     });
 
     testWidgets('mot de passe divulgué : règle non respectée', (tester) async {
-      await _pumpTall(tester, '/nouveau-mot-de-passe', _FakeGateway());
+      await _pumpTall(tester, '/nouveau-mot-de-passe', FakeGateway());
       await _type(tester, l10n.newPasswordLabel, _leaked);
       await tester.pump(const Duration(milliseconds: 400));
       await tester.pumpAndSettle();
@@ -370,7 +299,7 @@ void main() {
     });
 
     testWidgets('pseudo : règle d\'identité non respectée', (tester) async {
-      await _pumpTall(tester, '/nouveau-mot-de-passe', _FakeGateway());
+      await _pumpTall(tester, '/nouveau-mot-de-passe', FakeGateway());
       await _type(tester, l10n.newPasswordLabel, 'grimoire42');
       expect(
         tester.getSemantics(find.text(l10n.ruleIdentity)).label,
@@ -384,7 +313,7 @@ void main() {
       await _pumpTall(
         tester,
         '/nouveau-mot-de-passe',
-        _FakeGateway(signedIn: false),
+        FakeGateway(signedIn: false),
       );
       const password = 'Correct-Cheval-Pile-42';
       await _type(tester, l10n.newPasswordLabel, password);
@@ -397,7 +326,7 @@ void main() {
     testWidgets(
       'toutes les règles : enregistré, autres appareils déconnectés',
       (tester) async {
-        final gateway = _FakeGateway();
+        final gateway = FakeGateway();
         await _pumpTall(tester, '/nouveau-mot-de-passe', gateway);
         const password = 'Correct-Cheval-Pile-42';
         await _type(tester, l10n.newPasswordLabel, password);

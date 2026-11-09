@@ -2893,5 +2893,83 @@
         "type": "String"
       }
     }
+  },
+  "editAccountTitle": "Modifier le compte",
+  "@editAccountTitle": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "editAccountAction": "Modifier",
+  "@editAccountAction": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "accountSave": "Enregistrer",
+  "@accountSave": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "profileSection": "Profil",
+  "@profileSection": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "avatarLabel": "Avatar",
+  "@avatarLabel": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "avatarHint": "Image carrée, compressée à 200 Ko. Visible des membres de vos tables.",
+  "@avatarHint": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "pseudonymHint": "Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.",
+  "@pseudonymHint": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "emailSection": "E-mail",
+  "@emailSection": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "emailChangeHint": "Un lien de confirmation sera envoyé à la nouvelle adresse. {email} reste active jusqu’à la confirmation, et sera prévenue du changement.",
+  "@emailChangeHint": {
+    "description": "Modifier le compte (US-40, écran A5).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "changePasswordSection": "Changer le mot de passe",
+  "@changePasswordSection": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "currentPasswordLabel": "Mot de passe actuel",
+  "@currentPasswordLabel": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "networkFieldsNote": "L’e-mail et le mot de passe demandent le réseau : ils sont vérifiés par le serveur.",
+  "@networkFieldsNote": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "wrongCurrentPassword": "Mot de passe actuel incorrect.",
+  "@wrongCurrentPassword": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "emailChangeSent": "Un lien de confirmation a été envoyé à {email}. Votre adresse actuelle reste active jusqu’à la confirmation.",
+  "@emailChangeSent": {
+    "description": "Modifier le compte (US-40, écran A5).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountSaved": "Modifications enregistrées.",
+  "@accountSaved": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "accountNetworkError": "L’e-mail et le mot de passe demandent le réseau. Réessayez une fois connecté.",
+  "@accountNetworkError": {
+    "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "pseudonymRequired": "Le pseudonyme ne peut pas être vide.",
+  "@pseudonymRequired": {
+    "description": "Modifier le compte (US-40, écran A5)."
   }
 }

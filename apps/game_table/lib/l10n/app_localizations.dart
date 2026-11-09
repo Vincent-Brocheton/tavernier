@@ -3270,6 +3270,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Si un compte attend une confirmation pour {email}, un nouveau lien vient d’y être envoyé.'**
   String confirmationResent(String email);
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le compte'**
+  String get editAccountTitle;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get editAccountAction;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get accountSave;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get profileSection;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Avatar'**
+  String get avatarLabel;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Image carrée, compressée à 200 Ko. Visible des membres de vos tables.'**
+  String get avatarHint;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.'**
+  String get pseudonymHint;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'E-mail'**
+  String get emailSection;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un lien de confirmation sera envoyé à la nouvelle adresse. {email} reste active jusqu’à la confirmation, et sera prévenue du changement.'**
+  String emailChangeHint(String email);
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer le mot de passe'**
+  String get changePasswordSection;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe actuel'**
+  String get currentPasswordLabel;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’e-mail et le mot de passe demandent le réseau : ils sont vérifiés par le serveur.'**
+  String get networkFieldsNote;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe actuel incorrect.'**
+  String get wrongCurrentPassword;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un lien de confirmation a été envoyé à {email}. Votre adresse actuelle reste active jusqu’à la confirmation.'**
+  String emailChangeSent(String email);
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifications enregistrées.'**
+  String get accountSaved;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’e-mail et le mot de passe demandent le réseau. Réessayez une fois connecté.'**
+  String get accountNetworkError;
+
+  /// Modifier le compte (US-40, écran A5).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le pseudonyme ne peut pas être vide.'**
+  String get pseudonymRequired;
 }
 
 class _AppLocalizationsDelegate

@@ -9,6 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
 import 'account/account_providers.dart';
 import 'account/auth_links.dart';
+import 'account/edit_account_page.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
 import 'account/profile_page.dart';
@@ -60,6 +61,10 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
         ),
       ),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
+      GoRoute(
+        path: '/profil/compte',
+        builder: (_, _) => const EditAccountPage(),
+      ),
       GoRoute(
         path: '/connexion/mot-de-passe-oublie',
         builder: (_, _) => const ForgotPasswordPage(),
