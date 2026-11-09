@@ -178,10 +178,11 @@ class BonusToggle extends StatelessWidget {
 }
 
 /// Variante de [StatusBanner] (COMPOSANTS §2.17).
-enum StatusBannerKind { error, alert }
+enum StatusBannerKind { error, alert, info }
 
 /// Bandeau d'état en haut de contenu (COMPOSANTS §2.17) : erreur
-/// (`errorContainer`) ou alerte (`alertContainer`), toujours avec une icône,
+/// (`errorContainer`), alerte (`alertContainer`) ou information
+/// (`primaryContainer`), toujours avec une icône,
 /// et annoncé quand il apparaît.
 class StatusBanner extends StatelessWidget {
   const StatusBanner({
@@ -214,6 +215,11 @@ class StatusBanner extends StatelessWidget {
         game.alertContainer,
         game.onAlertContainer,
         Icons.warning_amber,
+      ),
+      StatusBannerKind.info => (
+        scheme.primaryContainer,
+        scheme.onPrimaryContainer,
+        Icons.info_outline,
       ),
     };
     return Semantics(

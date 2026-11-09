@@ -4,7 +4,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(29);
+select plan(30);
 
 -- Identités ------------------------------------------------------------------
 
@@ -188,16 +188,24 @@ select is(
 
 -- Profils --------------------------------------------------------------------
 
+-- Créés à l'inscription (US-12) ; le MJ choisit son pseudonyme.
 select tests.as_admin();
-insert into profile (id, pseudonym) values
-  ('00000000-0000-0000-0000-00000000000a', 'Camille'),
-  ('00000000-0000-0000-0000-00000000000d', 'Inconnu');
+update profile set pseudonym = 'Camille'
+where id = '00000000-0000-0000-0000-00000000000a';
 
 select tests.as_user('00000000-0000-0000-0000-00000000000b');
 
 select is(
-  (select pseudonym from profile)::text, 'Camille',
-  'un joueur voit le profil de son MJ, pas celui d''un inconnu'
+  (select pseudonym from profile
+   where id = '00000000-0000-0000-0000-00000000000a')::text,
+  'Camille',
+  'un joueur voit le profil de son MJ'
+);
+select is(
+  (select count(*) from profile
+   where id = '00000000-0000-0000-0000-00000000000d')::int,
+  0,
+  'un joueur ne voit pas le profil d''un inconnu'
 );
 
 -- Upsert (envoi PowerSync, T-05) --------------------------------------------

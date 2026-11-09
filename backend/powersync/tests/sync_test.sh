@@ -20,7 +20,7 @@ for who in mj joueur1 joueur2 inconnu; do
   id[$who]=$(curl -sf "$API_URL/auth/v1/admin/users" \
     -H "apikey: $SERVICE_ROLE_KEY" -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
     -H 'Content-Type: application/json' \
-    -d "{\"email\":\"$who@test.local\",\"password\":\"mot-de-passe-$who\",\"email_confirm\":true}" |
+    -d "{\"email\":\"$who@test.local\",\"password\":\"mot-de-passe-$who\",\"email_confirm\":true,\"user_metadata\":{\"pseudonym\":\"$who\",\"birth_date\":\"2000-01-01\"}}" |
     jq -r .id)
   token[$who]=$(curl -sf "$API_URL/auth/v1/token?grant_type=password" \
     -H "apikey: $ANON_KEY" -H 'Content-Type: application/json' \
@@ -30,10 +30,8 @@ done
 
 # Données : la table du MJ, deux joueurs et leurs fiches ----------------------
 
+# Les profils sont créés à l'inscription (US-12).
 sql <<SQL
-insert into profile (id, pseudonym) values
-  ('${id[mj]}', 'MJ'), ('${id[joueur1]}', 'J1'),
-  ('${id[joueur2]}', 'J2'), ('${id[inconnu]}', 'X');
 insert into game_table (id, gm_user_id, name, stat_method, long_rest_rule,
   hp_on_level_rule, progression_mode)
   values ('t1', '${id[mj]}', 'Brumeval', 'point_buy', 'full', 'average', 'xp');
