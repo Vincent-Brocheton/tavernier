@@ -9,4 +9,4 @@
 - [x] 2.3 Écran de connexion [A1]/[A4], réseau absent ; tests
 - [x] 2.4 Mot de passe oublié [A2], décompte de renvoi ; tests
 - [x] 2.5 Nouveau mot de passe [A3], déconnexion des autres appareils ; tests
-- [ ] 2.6 Accès depuis l'onglet Tables, routes ; vérification dans le navigateur
+- [x] 2.6 Accès depuis l'onglet Tables, routes ; vérification dans le navigateur

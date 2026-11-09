@@ -123,7 +123,12 @@ class _NewPasswordPageState extends ConsumerState<NewPasswordPage> {
     final level = strength(password);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.newPasswordTitle)),
+      appBar: AppBar(
+        // Ouvert par le lien reçu : pas d'écran précédent, on referme vers
+        // l'accueil [A3].
+        leading: CloseButton(onPressed: () => context.go('/')),
+        title: Text(l10n.newPasswordTitle),
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
