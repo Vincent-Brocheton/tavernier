@@ -68,6 +68,18 @@ class _SignInPageState extends ConsumerState<SignInPage> {
     });
   }
 
+  /// Google, par redirection : la session revient à l'app, et un compte neuf
+  /// passe par la date de naissance (EF-CPT-01).
+  Future<void> _google() async {
+    try {
+      await ref
+          .read(accountGatewayProvider)
+          ?.signInWithGoogle(redirectTo: kIsWeb ? Uri.base.origin : null);
+    } on AccountNetworkException {
+      if (mounted) setState(() => _signInFailure = SignInOutcome.network);
+    }
+  }
+
   Future<void> _signUp(DateTime birthDate) async {
     final gateway = ref.read(accountGatewayProvider);
     if (gateway == null) return;
@@ -270,6 +282,24 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             SizedBox(height: AppSpacing.md),
           ],
           ...(_signingUp ? signUpFields : signInFields),
+          // Google, à la connexion comme à l'inscription (Apple : abandonné).
+          SizedBox(height: AppSpacing.md),
+          Row(
+            children: [
+              const Expanded(child: Divider()),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                child: Text(l10n.orSeparator, style: text.bodySmall),
+              ),
+              const Expanded(child: Divider()),
+            ],
+          ),
+          SizedBox(height: AppSpacing.md),
+          OutlinedButton.icon(
+            onPressed: online && !_busy ? _google : null,
+            icon: const Icon(Icons.g_mobiledata),
+            label: Text(l10n.continueWithGoogle),
+          ),
           SizedBox(height: AppSpacing.xl),
           Text(
             desktop ? l10n.signInDesktopFooter : l10n.signInFooter,

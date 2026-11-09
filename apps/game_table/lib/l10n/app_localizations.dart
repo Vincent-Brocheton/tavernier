@@ -3372,6 +3372,120 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Le pseudonyme ne peut pas être vide.'**
   String get pseudonymRequired;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer avec Google'**
+  String get continueWithGoogle;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'ou'**
+  String get orSeparator;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de naissance'**
+  String get ageTitle;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Avant de continuer, indiquez votre date de naissance : il faut avoir au moins 15 ans pour utiliser un compte. Elle sert à la vérification et n’est pas conservée.'**
+  String get ageIntro;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get ageContinue;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Il faut avoir au moins 15 ans pour créer un compte. Votre compte Google n’a pas été conservé.'**
+  String get ageRefused;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthodes de connexion'**
+  String get methodsSection;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Active'**
+  String get methodActive;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Non liée'**
+  String get methodNotLinked;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun pour l’instant'**
+  String get methodNone;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lier'**
+  String get methodLink;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer'**
+  String get methodRemove;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter'**
+  String get methodAdd;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Google'**
+  String get googleLabel;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get passwordMethodLabel;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Il faut garder au moins une méthode : Google ne peut pas être retiré tant que c’est la seule.'**
+  String get googleOnlyNote;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fourni par Google. Pour en changer, ajoutez d’abord un mot de passe.'**
+  String get emailFromGoogle;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un mot de passe'**
+  String get addPasswordTitle;
+
+  /// Google et méthodes de connexion (US-40, écrans A1, T2, A6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Opération impossible pour le moment. Réessayez dans quelques minutes.'**
+  String get methodFailed;
 }
 
 class _AppLocalizationsDelegate

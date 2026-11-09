@@ -44,9 +44,10 @@ final class AccountNetworkException implements Exception {
 
 /// Accès au compte par Supabase Auth.
 class AccountGateway {
-  AccountGateway(this._auth);
+  AccountGateway(this._client);
 
-  final GoTrueClient _auth;
+  final SupabaseClient _client;
+  GoTrueClient get _auth => _client.auth;
 
   /// Utilisateur connecté, ou `null`.
   User? get user => _auth.currentUser;
@@ -163,6 +164,72 @@ class AccountGateway {
     }
     try {
       await _auth.updateUser(UserAttributes(password: next));
+      return PasswordChangeOutcome.changed;
+    } on AuthRetryableFetchException {
+      return PasswordChangeOutcome.network;
+    } on AuthException {
+      return PasswordChangeOutcome.failed;
+    }
+  }
+
+  /// Connexion ou inscription par Google (redirection, sur le Web).
+  Future<void> signInWithGoogle({String? redirectTo}) async {
+    try {
+      await _auth.signInWithOAuth(OAuthProvider.google, redirectTo: redirectTo);
+    } on AuthRetryableFetchException {
+      throw const AccountNetworkException();
+    }
+  }
+
+  /// Vrai si l'âge de l'utilisateur a été vérifié : à l'inscription par
+  /// e-mail, ou par [confirmAge] pour un compte Google (EF-CPT-01).
+  bool get ageChecked => user?.userMetadata?['age_checked_at'] != null;
+
+  /// Déclare la date de naissance d'un compte créé sans elle. Vrai à 15 ans
+  /// révolus ; sinon le serveur supprime le compte, et la session locale est
+  /// fermée.
+  Future<bool> confirmAge(DateTime birthDate) async {
+    final ok = await _client.rpc<bool>(
+      'confirm_age',
+      params: {
+        'birth_date':
+            '${birthDate.year.toString().padLeft(4, '0')}-'
+            '${birthDate.month.toString().padLeft(2, '0')}-'
+            '${birthDate.day.toString().padLeft(2, '0')}',
+      },
+    );
+    if (ok) {
+      // Les métadonnées de la session portent maintenant la vérification.
+      await _auth.refreshSession();
+    } else {
+      await signOut();
+    }
+    return ok;
+  }
+
+  /// Vrai si le compte a un mot de passe (un compte Google n'en a pas).
+  Future<bool> hasPassword() => _client.rpc<bool>('has_password');
+
+  /// Identité Google liée au compte, ou `null`.
+  UserIdentity? get googleIdentity =>
+      user?.identities?.where((i) => i.provider == 'google').firstOrNull;
+
+  /// Lie Google au compte (redirection, sur le Web).
+  Future<void> linkGoogle({String? redirectTo}) =>
+      _auth.linkIdentity(OAuthProvider.google, redirectTo: redirectTo);
+
+  /// Retire Google ; à n'appeler que s'il reste une autre méthode.
+  Future<void> unlinkGoogle() async {
+    final identity = googleIdentity;
+    if (identity == null) return;
+    await _auth.unlinkIdentity(identity);
+    await _auth.refreshSession();
+  }
+
+  /// Ajoute un mot de passe à un compte qui n'en a pas (compte Google).
+  Future<PasswordChangeOutcome> addPassword(String password) async {
+    try {
+      await _auth.updateUser(UserAttributes(password: password));
       return PasswordChangeOutcome.changed;
     } on AuthRetryableFetchException {
       return PasswordChangeOutcome.network;

@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
 import 'account/account_providers.dart';
+import 'account/age_page.dart';
 import 'account/auth_links.dart';
 import 'account/edit_account_page.dart';
 import 'account/forgot_password_page.dart';
@@ -47,10 +48,11 @@ class GameTableApp extends ConsumerStatefulWidget {
 
 class _GameTableAppState extends ConsumerState<GameTableApp> {
   StreamSubscription<Object?>? _recovery;
-  final _router = GoRouter(
+  late final _router = GoRouter(
     // Retours de Supabase Auth (« #error=… », « #access_token=… ») : vers un
     // écran connu ; toute autre adresse inconnue ramène à l'accueil.
-    redirect: (_, state) => authCallbackRedirect(state.uri),
+    redirect: (_, state) =>
+        authCallbackRedirect(state.uri) ?? _ageRedirect(state.uri),
     errorBuilder: (_, _) => const _Shell(),
     routes: [
       GoRoute(path: '/', builder: (_, _) => const _Shell()),
@@ -61,6 +63,7 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
         ),
       ),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
+      GoRoute(path: '/age', builder: (_, _) => const AgePage()),
       GoRoute(
         path: '/profil/compte',
         builder: (_, _) => const EditAccountPage(),
@@ -85,9 +88,23 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
     ],
   );
 
+  /// Un compte connecté sans âge vérifié (Google) passe d'abord par la date
+  /// de naissance (EF-CPT-01).
+  String? _ageRedirect(Uri location) {
+    final gateway = ref.read(accountGatewayProvider);
+    final needsAge =
+        gateway?.user != null &&
+        !gateway!.ageChecked &&
+        gateway.googleIdentity != null;
+    if (!needsAge || location.path == '/age') return null;
+    return '/age';
+  }
+
   @override
   void initState() {
     super.initState();
+    // Toute connexion ou déconnexion revoit la redirection d'âge.
+    ref.listenManual(currentUserProvider, (_, _) => _router.refresh());
     // Le lien de réinitialisation suivi ouvre une session de récupération :
     // on mène au choix du nouveau mot de passe [A3].
     _recovery = ref

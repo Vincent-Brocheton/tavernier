@@ -2971,5 +2971,81 @@
   "pseudonymRequired": "Le pseudonyme ne peut pas être vide.",
   "@pseudonymRequired": {
     "description": "Modifier le compte (US-40, écran A5)."
+  },
+  "continueWithGoogle": "Continuer avec Google",
+  "@continueWithGoogle": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "orSeparator": "ou",
+  "@orSeparator": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "ageTitle": "Date de naissance",
+  "@ageTitle": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "ageIntro": "Avant de continuer, indiquez votre date de naissance : il faut avoir au moins 15 ans pour utiliser un compte. Elle sert à la vérification et n’est pas conservée.",
+  "@ageIntro": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "ageContinue": "Continuer",
+  "@ageContinue": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "ageRefused": "Il faut avoir au moins 15 ans pour créer un compte. Votre compte Google n’a pas été conservé.",
+  "@ageRefused": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodsSection": "Méthodes de connexion",
+  "@methodsSection": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodActive": "Active",
+  "@methodActive": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodNotLinked": "Non liée",
+  "@methodNotLinked": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodNone": "Aucun pour l’instant",
+  "@methodNone": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodLink": "Lier",
+  "@methodLink": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodRemove": "Retirer",
+  "@methodRemove": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodAdd": "Ajouter",
+  "@methodAdd": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "googleLabel": "Google",
+  "@googleLabel": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "passwordMethodLabel": "Mot de passe",
+  "@passwordMethodLabel": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "googleOnlyNote": "Il faut garder au moins une méthode : Google ne peut pas être retiré tant que c’est la seule.",
+  "@googleOnlyNote": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "emailFromGoogle": "Fourni par Google. Pour en changer, ajoutez d’abord un mot de passe.",
+  "@emailFromGoogle": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "addPasswordTitle": "Ajouter un mot de passe",
+  "@addPasswordTitle": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "methodFailed": "Opération impossible pour le moment. Réessayez dans quelques minutes.",
+  "@methodFailed": {
+    "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
   }
 }
