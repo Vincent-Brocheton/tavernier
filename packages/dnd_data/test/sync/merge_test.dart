@@ -175,6 +175,8 @@ void main() {
                 .isNotEmpty,
         'personnage envoyé après le refus',
       );
+      expect(device.discarded, [startsWith('PUT game_table/')]);
+      expect(device.discarded.single, contains('42501'));
     },
     skip: skip,
     timeout: const Timeout(Duration(minutes: 2)),
