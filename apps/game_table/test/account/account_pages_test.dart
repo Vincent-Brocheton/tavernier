@@ -67,6 +67,11 @@ final class _FakeGateway implements AccountGateway {
     return signUpOutcome;
   }
 
+  var signedOut = false;
+
+  @override
+  Future<void> signOut() async => signedOut = true;
+
   @override
   Future<void> requestPasswordReset(String email, {String? redirectTo}) async =>
       resets.add(email);

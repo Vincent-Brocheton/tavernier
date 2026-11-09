@@ -1783,4 +1783,99 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get signUpFailed =>
       'Inscription impossible pour le moment. Réessayez dans quelques minutes.';
+
+  @override
+  String get consentTitle => 'Envoyer les rapports de plantage ?';
+
+  @override
+  String get consentBody =>
+      'Si l’application plante, un rapport technique nous aide à corriger le problème.';
+
+  @override
+  String get consentNoGameData =>
+      'Aucune donnée de jeu, aucune fiche, aucun contenu personnel.';
+
+  @override
+  String get consentNoUsage => 'Aucune mesure d’usage.';
+
+  @override
+  String get consentChangeable => 'Modifiable à tout moment dans Réglages.';
+
+  @override
+  String get consentRefuse => 'Refuser';
+
+  @override
+  String get consentAccept => 'Accepter';
+
+  @override
+  String get profileTitle => 'Profil et réglages';
+
+  @override
+  String get profileSignedOut => 'Non connecté';
+
+  @override
+  String get displaySection => 'Affichage';
+
+  @override
+  String get languageLabel => 'Langue';
+
+  @override
+  String get languageFrench => 'Français';
+
+  @override
+  String get textSizeLabel => 'Taille du texte';
+
+  @override
+  String textSizeValue(int percent) {
+    return '$percent %';
+  }
+
+  @override
+  String get themeLabel => 'Thème';
+
+  @override
+  String get themeDark => 'Sombre';
+
+  @override
+  String get themeLight => 'Clair';
+
+  @override
+  String get themeSystem => 'Système';
+
+  @override
+  String get themeLightSoon =>
+      'Le thème clair arrive dans une prochaine version.';
+
+  @override
+  String get privacySection => 'Confidentialité';
+
+  @override
+  String get crashReportsLabel => 'Rapports de plantage';
+
+  @override
+  String get crashReportsHint => 'Sans données de jeu ni contenu personnel';
+
+  @override
+  String get signOut => 'Se déconnecter';
+
+  @override
+  String get signOutPendingTitle => 'Modifications non envoyées';
+
+  @override
+  String signOutPendingBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count modifications n’ont pas encore été envoyées. Elles seront perdues si vous vous déconnectez maintenant.',
+      one: '1 modification n’a pas encore été envoyée. Elle sera perdue si vous vous déconnectez maintenant.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get signOutAnyway => 'Se déconnecter quand même';
+
+  @override
+  String get cancel => 'Annuler';
 }

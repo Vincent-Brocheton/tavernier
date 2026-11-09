@@ -4,16 +4,20 @@ import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
 import 'account/account_providers.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
+import 'account/profile_page.dart';
 import 'account/sign_in_page.dart';
 import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
+import 'settings/crash_consent_dialog.dart';
+import 'settings/device_settings.dart';
 import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
 
@@ -21,7 +25,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   registerFontLicenses();
   await initAccounts();
-  runApp(const ProviderScope(child: GameTableApp()));
+  final preferences = await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      overrides: [sharedPreferencesProvider.overrideWithValue(preferences)],
+      child: const GameTableApp(),
+    ),
+  );
 }
 
 /// Racine de l'application : thème sombre du kit, taille de texte bornée,
@@ -39,6 +49,7 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
     routes: [
       GoRoute(path: '/', builder: (_, _) => const _Shell()),
       GoRoute(path: '/connexion', builder: (_, _) => const SignInPage()),
+      GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
       GoRoute(
         path: '/connexion/mot-de-passe-oublie',
         builder: (_, _) => const ForgotPasswordPage(),
@@ -82,6 +93,7 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
   Widget build(BuildContext context) {
     // Synchronisation tant qu'un utilisateur est connecté (T-05).
     ref.watch(syncProvider);
+    final textScale = ref.watch(deviceSettingsProvider).textScale;
     return MaterialApp.router(
       routerConfig: _router,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
@@ -93,20 +105,41 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
-      builder: (context, child) => AppTextScale.clamp(child: child!),
+      // Taille du texte du système, multipliée par le réglage (EF-CPT-03),
+      // puis bornée de 85 % à 200 %.
+      builder: (context, child) {
+        final media = MediaQuery.of(context);
+        return MediaQuery(
+          data: media.copyWith(
+            textScaler: TextScaler.linear(
+              media.textScaler.scale(1) * textScale,
+            ),
+          ),
+          child: AppTextScale.clamp(child: child!),
+        );
+      },
     );
   }
 }
 
-class _Shell extends StatefulWidget {
+class _Shell extends ConsumerStatefulWidget {
   const _Shell();
 
   @override
-  State<_Shell> createState() => _ShellState();
+  ConsumerState<_Shell> createState() => _ShellState();
 }
 
-class _ShellState extends State<_Shell> {
+class _ShellState extends ConsumerState<_Shell> {
   var _selected = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Premier lancement : consentement aux rapports de plantage [T1].
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => mounted ? askCrashConsentIfNeeded(context, ref) : null,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +151,18 @@ class _ShellState extends State<_Shell> {
       (GameIcons.navigation['compendium']!, l10n.navCompendium),
       (GameIcons.navigation['homebrew']!, l10n.navHomebrew),
     ];
+    final pseudonym = ref.watch(pseudonymProvider).value;
     return AdaptiveNavigationScaffold(
+      account: IconButton(
+        tooltip: l10n.profileTitle,
+        onPressed: () => context.push('/profil'),
+        icon: CircleAvatar(
+          radius: 18,
+          child: pseudonym == null || pseudonym.isEmpty
+              ? const Icon(Icons.person_outline)
+              : Text(pseudonym.characters.first.toUpperCase()),
+        ),
+      ),
       selectedIndex: _selected,
       onDestinationSelected: (i) => setState(() => _selected = i),
       destinations: [

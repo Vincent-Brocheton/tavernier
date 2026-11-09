@@ -2636,5 +2636,123 @@
   "signUpFailed": "Inscription impossible pour le moment. Réessayez dans quelques minutes.",
   "@signUpFailed": {
     "description": "Inscription (US-12, écran T2)."
+  },
+  "consentTitle": "Envoyer les rapports de plantage ?",
+  "@consentTitle": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentBody": "Si l’application plante, un rapport technique nous aide à corriger le problème.",
+  "@consentBody": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentNoGameData": "Aucune donnée de jeu, aucune fiche, aucun contenu personnel.",
+  "@consentNoGameData": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentNoUsage": "Aucune mesure d’usage.",
+  "@consentNoUsage": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentChangeable": "Modifiable à tout moment dans Réglages.",
+  "@consentChangeable": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentRefuse": "Refuser",
+  "@consentRefuse": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "consentAccept": "Accepter",
+  "@consentAccept": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "profileTitle": "Profil et réglages",
+  "@profileTitle": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "profileSignedOut": "Non connecté",
+  "@profileSignedOut": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "displaySection": "Affichage",
+  "@displaySection": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "languageLabel": "Langue",
+  "@languageLabel": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "languageFrench": "Français",
+  "@languageFrench": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "textSizeLabel": "Taille du texte",
+  "@textSizeLabel": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "textSizeValue": "{percent} %",
+  "@textSizeValue": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7).",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "themeLabel": "Thème",
+  "@themeLabel": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "themeDark": "Sombre",
+  "@themeDark": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "themeLight": "Clair",
+  "@themeLight": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "themeSystem": "Système",
+  "@themeSystem": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "themeLightSoon": "Le thème clair arrive dans une prochaine version.",
+  "@themeLightSoon": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "privacySection": "Confidentialité",
+  "@privacySection": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "crashReportsLabel": "Rapports de plantage",
+  "@crashReportsLabel": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "crashReportsHint": "Sans données de jeu ni contenu personnel",
+  "@crashReportsHint": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "signOut": "Se déconnecter",
+  "@signOut": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "signOutPendingTitle": "Modifications non envoyées",
+  "@signOutPendingTitle": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "signOutPendingBody": "{count, plural, =1{1 modification n’a pas encore été envoyée. Elle sera perdue si vous vous déconnectez maintenant.} other{{count} modifications n’ont pas encore été envoyées. Elles seront perdues si vous vous déconnectez maintenant.}}",
+  "@signOutPendingBody": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signOutAnyway": "Se déconnecter quand même",
+  "@signOutAnyway": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "cancel": "Annuler",
+  "@cancel": {
+    "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
   }
 }

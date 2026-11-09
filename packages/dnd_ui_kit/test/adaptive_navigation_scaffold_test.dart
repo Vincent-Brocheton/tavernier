@@ -5,22 +5,24 @@ import 'package:material_ui/material_ui.dart';
 
 const _labels = ['Accueil', 'Tables', 'Personnages', 'Compendium', 'Homebrew'];
 
-Widget _app(int selected, ValueChanged<int> onSelected) => MaterialApp(
-  theme: AppTheme.dark,
-  home: AdaptiveNavigationScaffold(
-    selectedIndex: selected,
-    onDestinationSelected: onSelected,
-    destinations: [
-      for (final label in _labels)
-        AdaptiveDestination(
-          icon: const Icon(Icons.circle_outlined),
-          selectedIcon: const Icon(Icons.circle),
-          label: label,
-        ),
-    ],
-    body: Text('page $selected'),
-  ),
-);
+Widget _app(int selected, ValueChanged<int> onSelected, {Widget? account}) =>
+    MaterialApp(
+      theme: AppTheme.dark,
+      home: AdaptiveNavigationScaffold(
+        selectedIndex: selected,
+        onDestinationSelected: onSelected,
+        destinations: [
+          for (final label in _labels)
+            AdaptiveDestination(
+              icon: const Icon(Icons.circle_outlined),
+              selectedIcon: const Icon(Icons.circle),
+              label: label,
+            ),
+        ],
+        body: Text('page $selected'),
+        account: account,
+      ),
+    );
 
 Future<void> _setWidth(WidgetTester tester, double width) async {
   tester.view.physicalSize = Size(width, 800);
@@ -80,6 +82,27 @@ void main() {
       }
     });
   }
+
+  testWidgets('desktop : entrée du compte en bas du rail [A7]', (tester) async {
+    await _setWidth(tester, 1440);
+    await tester.pumpWidget(
+      _app(0, (_) {}, account: const CircleAvatar(child: Text('C'))),
+    );
+    final rail = tester.getRect(find.byType(NavigationRail));
+    final avatar = tester.getRect(find.byType(CircleAvatar));
+    expect(rail.contains(avatar.center), isTrue);
+    expect(rail.bottom - avatar.bottom, lessThan(40));
+  });
+
+  testWidgets('téléphone : entrée du compte en haut à droite', (tester) async {
+    await _setWidth(tester, 390);
+    await tester.pumpWidget(
+      _app(0, (_) {}, account: const CircleAvatar(child: Text('C'))),
+    );
+    final avatar = tester.getRect(find.byType(CircleAvatar));
+    expect(avatar.top, lessThan(40));
+    expect(390 - avatar.right, lessThan(40));
+  });
 
   testWidgets('destinations : cibles d’au moins 48 dp', (tester) async {
     await _setWidth(tester, 960);

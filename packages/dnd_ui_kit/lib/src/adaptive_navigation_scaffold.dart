@@ -26,6 +26,7 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
     required this.selectedIndex,
     required this.onDestinationSelected,
     required this.body,
+    this.account,
   });
 
   final List<AdaptiveDestination> destinations;
@@ -33,11 +34,33 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
   final ValueChanged<int> onDestinationSelected;
   final Widget body;
 
+  /// Entrée du compte (avatar) : en bas du rail [A7], en haut à droite du
+  /// contenu sur téléphone.
+  final Widget? account;
+
   @override
   Widget build(BuildContext context) {
     if (formFactorOf(MediaQuery.sizeOf(context).width) == FormFactor.phone) {
+      final account = this.account;
       return Scaffold(
-        body: body,
+        body: account == null
+            ? body
+            : Stack(
+                fit: StackFit.expand,
+                children: [
+                  body,
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: SafeArea(
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSpacing.xs),
+                        child: account,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: selectedIndex,
           onDestinationSelected: onDestinationSelected,
@@ -62,6 +85,17 @@ class AdaptiveNavigationScaffold extends StatelessWidget {
               selectedIndex: selectedIndex,
               onDestinationSelected: onDestinationSelected,
               labelType: NavigationRailLabelType.all,
+              trailing: account == null
+                  ? null
+                  : Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: AppSpacing.md),
+                          child: account,
+                        ),
+                      ),
+                    ),
               destinations: [
                 for (final d in destinations)
                   NavigationRailDestination(
