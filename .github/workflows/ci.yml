@@ -91,7 +91,7 @@ jobs:
     # Une étiquette ne relance la CI que si c'est « update-goldens ».
     if: github.event.action != 'labeled' || github.event.label.name == 'update-goldens'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: supabase/setup-cli@v1
@@ -129,6 +129,20 @@ jobs:
       - name: Tests de synchronisation
         working-directory: backend
         run: bash powersync/tests/sync_test.sh
+      # Envoi et fusion par le client de l'app (dnd_data), sur 3 appareils.
+      - name: Version de Flutter (.fvmrc)
+        run: echo "FLUTTER_VERSION=$(jq -r .flutter .fvmrc)" >> "$GITHUB_ENV"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - name: Tests de fusion
+        working-directory: packages/dnd_data
+        run: |
+          eval "$(cd ../../backend && supabase status -o env | grep -E '^(API_URL|ANON_KEY)=')"
+          SUPABASE_URL="$API_URL" SUPABASE_ANON_KEY="$ANON_KEY"             POWERSYNC_URL=http://localhost:8080 dart test test/sync
       - name: Journal de PowerSync
         if: failure()
         run: docker logs powersync 2>&1 | tail -200

@@ -31,42 +31,56 @@ const syncedTables = {
 
 /// Schéma PowerSync des [syncedTables], dérivé des tables Drift : une
 /// colonne ajoutée côté Drift y entre seule. `id` est implicite.
-final Schema powerSyncSchema = () {
-  // Base jamais ouverte : on n'en lit que la description des tables.
-  final metadata = TavernierDatabase(
+final Schema powerSyncSchema = Schema([
+  for (final table in _syncedDriftTables)
+    Table(
+      table.actualTableName,
+      [
+        for (final column in table.$columns)
+          if (column.name != 'id')
+            switch (column.type) {
+              DriftSqlType.bool ||
+              DriftSqlType.int ||
+              DriftSqlType.bigInt => Column.integer(column.name),
+              DriftSqlType.double => Column.real(column.name),
+              _ => Column.text(column.name),
+            },
+      ],
+      // Une mise à jour sans changement n'est pas envoyée.
+      ignoreEmptyUpdates: true,
+    ),
+]);
+
+/// Colonnes booléennes des [syncedTables] : 0/1 en local, `true`/`false`
+/// pour Postgres.
+final Map<String, Set<String>> syncedBooleanColumns = {
+  for (final table in _syncedDriftTables)
+    table.actualTableName: {
+      for (final column in table.$columns)
+        if (column.type == DriftSqlType.bool) column.name,
+    },
+};
+
+/// Tables Drift synchronisées, lues sur une base jamais ouverte : on n'en
+/// prend que la description.
+final _syncedDriftTables = [
+  for (final table in TavernierDatabase(
     LazyDatabase(() => throw StateError('base de description seulement')),
-  );
-  return Schema([
-    for (final table in metadata.allTables)
-      if (syncedTables.contains(table.actualTableName))
-        Table(table.actualTableName, [
-          for (final column in table.$columns)
-            if (column.name != 'id')
-              switch (column.type) {
-                DriftSqlType.bool ||
-                DriftSqlType.int ||
-                DriftSqlType.bigInt => Column.integer(column.name),
-                DriftSqlType.double => Column.real(column.name),
-                _ => Column.text(column.name),
-              },
-        ]),
-  ]);
-}();
+  ).allTables)
+    if (syncedTables.contains(table.actualTableName)) table,
+];
 
 /// Base Drift de l'app, ouverte par PowerSync à [path] (un nom de fichier
 /// sur le Web). La fermer ferme aussi la base PowerSync.
 TavernierDatabase openPowerSyncTavernierDatabase(Future<String> path) {
-  PowerSyncDatabase? powerSync;
+  final powerSync = path.then((p) async {
+    final db = PowerSyncDatabase(schema: powerSyncSchema, path: p);
+    await db.initialize();
+    return db;
+  });
   return TavernierDatabase(
-    DatabaseConnection.delayed(() async {
-      final db = powerSync = PowerSyncDatabase(
-        schema: powerSyncSchema,
-        path: await path,
-      );
-      await db.initialize();
-      return SqliteAsyncDriftConnection(db);
-    }()),
+    DatabaseConnection.delayed(powerSync.then(SqliteAsyncDriftConnection.new)),
     syncedTablesByPowerSync: true,
-    onClose: () async => powerSync?.close(),
+    powerSync: powerSync,
   );
 }

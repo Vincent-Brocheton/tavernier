@@ -43,6 +43,50 @@ void main() {
     expect(queued.read<int>('n'), greaterThan(0));
   });
 
+  group('enregistrement par différence', () {
+    late CharacterStore store;
+    late CharacterInput aldric;
+    Future<List<String>> queue() async => [
+      for (final row
+          in await db
+              .customSelect('SELECT data FROM ps_crud ORDER BY id')
+              .get())
+        row.read<String>('data'),
+    ];
+
+    setUp(() async {
+      store = CharacterStore(db);
+      aldric = CharacterInput.fromJson(aldricJson());
+      await store.save('a', aldric);
+      await db.customStatement('DELETE FROM ps_crud');
+    });
+
+    test('rien ne change : file vide', () async {
+      await store.save('a', aldric);
+      expect(await queue(), isEmpty);
+    });
+
+    test('un objet change : seule sa quantité part', () async {
+      final items = [...aldric.items];
+      items[3] = items[3].copyWith(quantity: 2);
+      await store.save('a', aldric.copyWith(items: items));
+      expect(await queue(), [
+        '{"op":"PATCH","id":"a:character_item:3","type":"character_item",'
+            '"data":{"quantity":2}}',
+      ]);
+      expect(await store.load('a'), aldric.copyWith(items: items));
+    });
+
+    test('un objet de moins : sa ligne seule est supprimée', () async {
+      final items = [...aldric.items]..removeLast();
+      await store.save('a', aldric.copyWith(items: items));
+      expect(await queue(), [
+        '{"op":"DELETE","id":"a:character_item:5","type":"character_item"}',
+      ]);
+      expect(await store.load('a'), aldric.copyWith(items: items));
+    });
+  });
+
   test('dates en texte ISO 8601, comme les transporte PowerSync', () async {
     await db.customStatement(
       'INSERT INTO game_table (id, name, stat_method, long_rest_rule, '

@@ -4,7 +4,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(22);
+select plan(29);
 
 -- Identités ------------------------------------------------------------------
 
@@ -198,6 +198,78 @@ select tests.as_user('00000000-0000-0000-0000-00000000000b');
 select is(
   (select pseudonym from profile)::text, 'Camille',
   'un joueur voit le profil de son MJ, pas celui d''un inconnu'
+);
+
+-- Upsert (envoi PowerSync, T-05) --------------------------------------------
+-- INSERT … ON CONFLICT DO UPDATE vérifie aussi la lecture de la ligne
+-- nouvelle : les règles de lecture ne doivent pas dépendre d'une ligne que
+-- l'instruction est en train d'écrire.
+
+select lives_ok(
+  $$ insert into character (id, owner_user_id, kind, name, species_id,
+       background_id, status)
+     values ('u1', '00000000-0000-0000-0000-00000000000b', 'pc', 'Neuf',
+       'srd:species:human', 'srd:background:soldier', 'draft')
+     on conflict (id) do update set name = excluded.name $$,
+  'un joueur envoie une fiche neuve en upsert'
+);
+
+select tests.as_user('00000000-0000-0000-0000-00000000000a');
+
+select lives_ok(
+  $$ insert into game_table (id, gm_user_id, name, stat_method,
+       long_rest_rule, hp_on_level_rule, progression_mode)
+     values ('t3', '00000000-0000-0000-0000-00000000000a', 'Neuve',
+       'point_buy', 'full', 'average', 'xp')
+     on conflict (id) do update set name = excluded.name $$,
+  'le MJ envoie une table neuve en upsert'
+);
+select lives_ok(
+  $$ insert into table_member (id, table_id, user_id, role)
+     values ('m3', 't3', '00000000-0000-0000-0000-00000000000a', 'gm')
+     on conflict (id) do update set role = excluded.role $$,
+  'le MJ s''inscrit à sa table neuve en upsert'
+);
+select lives_ok(
+  $$ insert into table_pack (id, table_id, pack_id) values ('p3', 't3', 'srd')
+     on conflict (id) do update set pack_id = excluded.pack_id $$,
+  'le MJ règle les packs de sa table neuve en upsert'
+);
+
+select tests.as_user('00000000-0000-0000-0000-00000000000b');
+
+-- Envoi par lot (apply_crud) --------------------------------------------------
+
+select is(
+  apply_crud($$[
+    {"op": "PUT", "table": "character", "id": "x1", "data": {
+      "owner_user_id": "00000000-0000-0000-0000-00000000000b", "kind": "pc",
+      "name": "Lot", "species_id": "srd:species:human",
+      "background_id": "srd:background:soldier", "status": "draft"}},
+    {"op": "PUT", "table": "character_state", "id": "x1",
+     "data": {"character_id": "x1", "heroic_inspiration": 1}},
+    {"op": "PATCH", "table": "character", "id": "x1",
+     "data": {"name": "Lot modifié"}}
+  ]$$::jsonb),
+  '[]'::jsonb,
+  'un lot de fiche s''applique en entier, booléen 0/1 compris'
+);
+select is(
+  (select name from character where id = 'x1')::text, 'Lot modifié',
+  'la modification du lot ne touche que les colonnes envoyées'
+);
+select is(
+  (select array_agg(e->>'code' order by e->>'table')
+   from jsonb_array_elements(apply_crud($$[
+     {"op": "PUT", "table": "game_table", "id": "t9", "data": {
+       "gm_user_id": "00000000-0000-0000-0000-00000000000a", "name": "Usurpée",
+       "stat_method": "point_buy", "long_rest_rule": "full",
+       "hp_on_level_rule": "average", "progression_mode": "xp"}},
+     {"op": "PUT", "table": "pg_authid", "id": "z", "data": {}},
+     {"op": "DELETE", "table": "character", "id": "x1"}
+   ]$$::jsonb)) e),
+  array['42501', '42501'],
+  'un lot écarte les refus un par un, et applique le reste'
 );
 
 -- Départ ---------------------------------------------------------------------
