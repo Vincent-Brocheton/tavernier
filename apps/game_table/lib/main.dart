@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
 import 'account/account_providers.dart';
+import 'account/auth_links.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
 import 'account/profile_page.dart';
@@ -46,9 +47,18 @@ class GameTableApp extends ConsumerStatefulWidget {
 class _GameTableAppState extends ConsumerState<GameTableApp> {
   StreamSubscription<Object?>? _recovery;
   final _router = GoRouter(
+    // Retours de Supabase Auth (« #error=… », « #access_token=… ») : vers un
+    // écran connu ; toute autre adresse inconnue ramène à l'accueil.
+    redirect: (_, state) => authCallbackRedirect(state.uri),
+    errorBuilder: (_, _) => const _Shell(),
     routes: [
       GoRoute(path: '/', builder: (_, _) => const _Shell()),
-      GoRoute(path: '/connexion', builder: (_, _) => const SignInPage()),
+      GoRoute(
+        path: '/connexion',
+        builder: (_, state) => SignInPage(
+          invalidLink: state.uri.queryParameters['lien'] == 'invalide',
+        ),
+      ),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
       GoRoute(
         path: '/connexion/mot-de-passe-oublie',

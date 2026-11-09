@@ -100,6 +100,10 @@ Future<void> _pump(
       GoRoute(path: '/', builder: (_, _) => const Text('accueil')),
       GoRoute(path: '/connexion', builder: (_, _) => const SignInPage()),
       GoRoute(
+        path: '/connexion-lien-invalide',
+        builder: (_, _) => const SignInPage(invalidLink: true),
+      ),
+      GoRoute(
         path: '/connexion/mot-de-passe-oublie',
         builder: (_, _) => const ForgotPasswordPage(),
       ),
@@ -175,6 +179,12 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text(l10n.signInInvalid), findsOneWidget);
       expect(gateway.signIns, [(' hugo@exemple.fr ', 'faux')]);
+    });
+
+    testWidgets('lien expiré : expliqué, connexion possible', (tester) async {
+      await _pump(tester, '/connexion-lien-invalide', _FakeGateway());
+      expect(find.text(l10n.authLinkInvalid), findsOneWidget);
+      expect(_enabled(tester, l10n.signInAction), isTrue);
     });
 
     testWidgets('serveur muet : un autre message', (tester) async {
