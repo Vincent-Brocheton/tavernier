@@ -6,7 +6,6 @@ import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
-import 'package:game_table/account/devices.dart';
 import 'package:game_table/account/profile_page.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
@@ -17,54 +16,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show User;
 
-final class _FakeSession implements SessionActions {
-  _FakeSession(this.pending, {this.online = true});
-
-  final int pending;
-  final bool online;
-  var signedOut = false;
-  final revoked = <String>[];
-  final _devices = [
-    ConnectedDevice(
-      id: 's1',
-      info: describeUserAgent(
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/131.0 Safari/537.36',
-      ),
-      lastActive: DateTime.now(),
-      current: true,
-    ),
-    ConnectedDevice(
-      id: 's2',
-      info: describeUserAgent('Tavernier (android; phone)'),
-      lastActive: DateTime.now().subtract(const Duration(days: 2, hours: 1)),
-      current: false,
-    ),
-  ];
-
-  @override
-  Future<List<ConnectedDevice>> devices() async {
-    if (!online) throw Exception('hors ligne');
-    return [
-      for (final d in _devices)
-        if (!revoked.contains(d.id)) d,
-    ];
-  }
-
-  /// Faux : la déconnexion à distance échoue faute de réseau.
-  var revokeFails = false;
-
-  @override
-  Future<void> revokeDevice(String id) async {
-    if (revokeFails) throw Exception('hors ligne');
-    revoked.add(id);
-  }
-
-  @override
-  Future<int> pendingUploads() async => pending;
-
-  @override
-  Future<void> signOut() async => signedOut = true;
-}
+import 'fakes.dart';
 
 const _user = User(
   id: 'u1',
@@ -85,7 +37,7 @@ Future<SharedPreferences> _prefs(Map<String, Object> values) async {
 Future<void> _pumpProfile(
   WidgetTester tester, {
   required SharedPreferences prefs,
-  _FakeSession? session,
+  FakeSession? session,
 }) async {
   // Tout le profil construit, « Se déconnecter » compris.
   tester.view.physicalSize = const Size(390, 1600);
@@ -194,7 +146,7 @@ void main() {
       await _pumpProfile(
         tester,
         prefs: await _prefs({}),
-        session: _FakeSession(0),
+        session: FakeSession(0),
       );
       expect(find.text(l10n.devicesSection), findsOneWidget);
       expect(find.text('Chrome sur Windows'), findsOneWidget);
@@ -208,7 +160,7 @@ void main() {
     testWidgets("déconnexion à distance : l'appareil disparaît", (
       tester,
     ) async {
-      final session = _FakeSession(0);
+      final session = FakeSession(0);
       await _pumpProfile(tester, prefs: await _prefs({}), session: session);
       await tester.tap(find.text(l10n.revokeDevice));
       await tester.pumpAndSettle();
@@ -219,7 +171,7 @@ void main() {
     testWidgets('déconnexion à distance sans réseau : expliquée', (
       tester,
     ) async {
-      final session = _FakeSession(0)..revokeFails = true;
+      final session = FakeSession(0)..revokeFails = true;
       await _pumpProfile(tester, prefs: await _prefs({}), session: session);
       await tester.tap(find.text(l10n.revokeDevice));
       await tester.pumpAndSettle();
@@ -231,13 +183,13 @@ void main() {
       await _pumpProfile(
         tester,
         prefs: await _prefs({}),
-        session: _FakeSession(0, online: false),
+        session: FakeSession(0, online: false),
       );
       expect(find.text(l10n.devicesOffline), findsOneWidget);
     });
 
     testWidgets('déconnexion sans modification en attente', (tester) async {
-      final session = _FakeSession(0);
+      final session = FakeSession(0);
       await _pumpProfile(tester, prefs: await _prefs({}), session: session);
       await tester.tap(find.text(l10n.signOut));
       await tester.pumpAndSettle();
@@ -248,7 +200,7 @@ void main() {
     testWidgets('modifications en attente : confirmation qui les compte', (
       tester,
     ) async {
-      final session = _FakeSession(3);
+      final session = FakeSession(3);
       await _pumpProfile(tester, prefs: await _prefs({}), session: session);
       await tester.tap(find.text(l10n.signOut));
       await tester.pumpAndSettle();

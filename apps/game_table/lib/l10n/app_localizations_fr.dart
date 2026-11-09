@@ -1985,4 +1985,63 @@ class AppLocalizationsFr extends AppLocalizations {
   String confirmationResent(String email) {
     return 'Si un compte attend une confirmation pour $email, un nouveau lien vient d’y être envoyé.';
   }
+
+  @override
+  String get editAccountTitle => 'Modifier le compte';
+
+  @override
+  String get editAccountAction => 'Modifier';
+
+  @override
+  String get accountSave => 'Enregistrer';
+
+  @override
+  String get profileSection => 'Profil';
+
+  @override
+  String get avatarLabel => 'Avatar';
+
+  @override
+  String get avatarHint =>
+      'Image carrée, compressée à 200 Ko. Visible des membres de vos tables.';
+
+  @override
+  String get pseudonymHint =>
+      'Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.';
+
+  @override
+  String get emailSection => 'E-mail';
+
+  @override
+  String emailChangeHint(String email) {
+    return 'Un lien de confirmation sera envoyé à la nouvelle adresse. $email reste active jusqu’à la confirmation, et sera prévenue du changement.';
+  }
+
+  @override
+  String get changePasswordSection => 'Changer le mot de passe';
+
+  @override
+  String get currentPasswordLabel => 'Mot de passe actuel';
+
+  @override
+  String get networkFieldsNote =>
+      'L’e-mail et le mot de passe demandent le réseau : ils sont vérifiés par le serveur.';
+
+  @override
+  String get wrongCurrentPassword => 'Mot de passe actuel incorrect.';
+
+  @override
+  String emailChangeSent(String email) {
+    return 'Un lien de confirmation a été envoyé à $email. Votre adresse actuelle reste active jusqu’à la confirmation.';
+  }
+
+  @override
+  String get accountSaved => 'Modifications enregistrées.';
+
+  @override
+  String get accountNetworkError =>
+      'L’e-mail et le mot de passe demandent le réseau. Réessayez une fois connecté.';
+
+  @override
+  String get pseudonymRequired => 'Le pseudonyme ne peut pas être vide.';
 }

@@ -34,6 +34,9 @@ enum SignUpOutcome {
   failed,
 }
 
+/// Issue d'un changement de mot de passe.
+enum PasswordChangeOutcome { changed, wrongCurrent, network, failed }
+
 /// Échec d'une demande sans réponse du serveur.
 final class AccountNetworkException implements Exception {
   const AccountNetworkException();
@@ -121,6 +124,50 @@ class AccountGateway {
       throw const AccountNetworkException();
     } on AuthException {
       // Adresse inconnue, déjà confirmée ou trop de demandes : même réponse.
+    }
+  }
+
+  /// Demande le passage à [email] : un lien de confirmation part vers la
+  /// nouvelle adresse, l'ancienne reste active jusque-là (EF-CPT-09). La
+  /// réponse ne dit jamais si l'adresse est déjà prise ; seule l'absence de
+  /// réseau lève [AccountNetworkException].
+  Future<void> changeEmail(String email, {String? redirectTo}) async {
+    try {
+      await _auth.updateUser(
+        UserAttributes(email: email.trim()),
+        emailRedirectTo: redirectTo,
+      );
+    } on AuthRetryableFetchException {
+      throw const AccountNetworkException();
+    } on AuthException {
+      // Adresse prise, invalide ou trop de demandes : même réponse.
+    }
+  }
+
+  /// Change le mot de passe après avoir vérifié [current] par une connexion.
+  Future<PasswordChangeOutcome> changePassword(
+    String current,
+    String next,
+  ) async {
+    final email = user?.email;
+    if (email == null) return PasswordChangeOutcome.failed;
+    switch (await signIn(email, current)) {
+      case SignInOutcome.signedIn:
+        break;
+      case SignInOutcome.invalidCredentials:
+        return PasswordChangeOutcome.wrongCurrent;
+      case SignInOutcome.network:
+        return PasswordChangeOutcome.network;
+      case SignInOutcome.failed:
+        return PasswordChangeOutcome.failed;
+    }
+    try {
+      await _auth.updateUser(UserAttributes(password: next));
+      return PasswordChangeOutcome.changed;
+    } on AuthRetryableFetchException {
+      return PasswordChangeOutcome.network;
+    } on AuthException {
+      return PasswordChangeOutcome.failed;
     }
   }
 

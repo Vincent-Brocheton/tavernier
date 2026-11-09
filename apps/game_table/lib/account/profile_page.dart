@@ -215,6 +215,12 @@ class _ProfileHeader extends StatelessWidget {
       ),
       title: Text(name, style: text.titleMedium),
       subtitle: email == null ? null : Text(email!),
+      trailing: signedIn
+          ? TextButton(
+              onPressed: () => context.push('/profil/compte'),
+              child: Text(AppLocalizations.of(context).editAccountAction),
+            )
+          : null,
     );
   }
 }
