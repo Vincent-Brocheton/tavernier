@@ -67,7 +67,12 @@ SupabaseClient _client() => SupabaseClient(
 Future<String> _newAccount(String who) async {
   final email = '$who-${DateTime.now().microsecondsSinceEpoch}@test.local';
   final client = _client();
-  await client.auth.signUp(email: email, password: _password);
+  // 15 ans au moins, vérifiés par le serveur (US-12).
+  await client.auth.signUp(
+    email: email,
+    password: _password,
+    data: {'pseudonym': who, 'birth_date': '2000-01-01'},
+  );
   await client.dispose();
   return email;
 }
