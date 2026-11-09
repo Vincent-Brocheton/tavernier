@@ -4,7 +4,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(26);
+select plan(29);
 
 -- Identités ------------------------------------------------------------------
 
@@ -237,6 +237,40 @@ select lives_ok(
 );
 
 select tests.as_user('00000000-0000-0000-0000-00000000000b');
+
+-- Envoi par lot (apply_crud) --------------------------------------------------
+
+select is(
+  apply_crud($$[
+    {"op": "PUT", "table": "character", "id": "x1", "data": {
+      "owner_user_id": "00000000-0000-0000-0000-00000000000b", "kind": "pc",
+      "name": "Lot", "species_id": "srd:species:human",
+      "background_id": "srd:background:soldier", "status": "draft"}},
+    {"op": "PUT", "table": "character_state", "id": "x1",
+     "data": {"character_id": "x1", "heroic_inspiration": 1}},
+    {"op": "PATCH", "table": "character", "id": "x1",
+     "data": {"name": "Lot modifié"}}
+  ]$$::jsonb),
+  '[]'::jsonb,
+  'un lot de fiche s''applique en entier, booléen 0/1 compris'
+);
+select is(
+  (select name from character where id = 'x1')::text, 'Lot modifié',
+  'la modification du lot ne touche que les colonnes envoyées'
+);
+select is(
+  (select array_agg(e->>'code' order by e->>'table')
+   from jsonb_array_elements(apply_crud($$[
+     {"op": "PUT", "table": "game_table", "id": "t9", "data": {
+       "gm_user_id": "00000000-0000-0000-0000-00000000000a", "name": "Usurpée",
+       "stat_method": "point_buy", "long_rest_rule": "full",
+       "hp_on_level_rule": "average", "progression_mode": "xp"}},
+     {"op": "PUT", "table": "pg_authid", "id": "z", "data": {}},
+     {"op": "DELETE", "table": "character", "id": "x1"}
+   ]$$::jsonb)) e),
+  array['42501', '42501'],
+  'un lot écarte les refus un par un, et applique le reste'
+);
 
 -- Départ ---------------------------------------------------------------------
 

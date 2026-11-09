@@ -4,17 +4,27 @@ import 'package:supabase/supabase.dart';
 
 import 'powersync.dart';
 
+/// Écriture refusée définitivement par le serveur (droits, donnée invalide,
+/// contrainte), et donc écartée de la file.
+typedef DiscardedWrite = ({
+  String op,
+  String table,
+  String id,
+  String code,
+  String message,
+});
+
 /// Relie la base PowerSync à Supabase (T-05) : jeton de la session pour le
 /// service PowerSync à [powerSyncUrl], et envoi de la file d'écritures
-/// locales par l'API de Supabase, sous les droits (RLS) de l'utilisateur.
+/// locales sous les droits (RLS) de l'utilisateur.
 final class SupabaseConnector extends PowerSyncBackendConnector {
   SupabaseConnector(this._client, this.powerSyncUrl, {this.onDiscarded});
 
   final SupabaseClient _client;
   final String powerSyncUrl;
 
-  /// Appelé pour chaque écriture refusée définitivement, et donc écartée.
-  final void Function(CrudEntry entry, PostgrestException error)? onDiscarded;
+  /// Appelé pour chaque écriture écartée.
+  final void Function(DiscardedWrite write)? onDiscarded;
 
   static final _log = Logger('tavernier.sync');
 
@@ -32,52 +42,62 @@ final class SupabaseConnector extends PowerSyncBackendConnector {
     );
   }
 
+  /// Une transaction locale part en un seul appel à `apply_crud`, appliqué
+  /// en une seule transaction Postgres : les autres appareils ne reçoivent
+  /// jamais une fiche à moitié écrite. Une erreur réseau remonte, et
+  /// PowerSync réessaie ; un refus définitif n'écarte que son opération.
   @override
   Future<void> uploadData(PowerSyncDatabase database) async {
     final transaction = await database.getNextCrudTransaction();
     if (transaction == null) return;
-    for (final entry in transaction.crud) {
-      final table = _client.from(entry.table);
-      final data = _forPostgres(entry.table, entry.opData ?? const {});
-      try {
-        switch (entry.op) {
-          case UpdateType.put:
-            // Un personnage créé sans compte reçoit l'utilisateur connecté :
-            // le serveur refuse un personnage sans propriétaire.
-            if (entry.table == 'character' && data['owner_user_id'] == null) {
-              data['owner_user_id'] = _client.auth.currentUser?.id;
-            }
-            await table.upsert({...data, 'id': entry.id});
-          case UpdateType.patch:
-            await table.update(data).eq('id', entry.id);
-          case UpdateType.delete:
-            await table.delete().eq('id', entry.id);
-        }
-      } on PostgrestException catch (e) {
-        // Refus définitif : réessayer bloquerait toutes les écritures
-        // suivantes. L'erreur réseau, elle, remonte et PowerSync réessaie.
-        if (!_isDefinitive(e)) rethrow;
-        _log.warning(
-          'Écriture écartée : ${entry.op.name} ${entry.table}/${entry.id} '
-          '(${e.code} ${e.message})',
-        );
-        onDiscarded?.call(entry, e);
-      }
+    final ops = [
+      for (final entry in transaction.crud)
+        {
+          'op': switch (entry.op) {
+            UpdateType.put => 'PUT',
+            UpdateType.patch => 'PATCH',
+            UpdateType.delete => 'DELETE',
+          },
+          'table': entry.table,
+          'id': entry.id,
+          'data': _forPostgres(entry),
+        },
+    ];
+    final discarded = await _client.rpc<List<dynamic>>(
+      'apply_crud',
+      params: {'ops': ops},
+    );
+    for (final d in discarded.cast<Map<String, dynamic>>()) {
+      final write = (
+        op: d['op'] as String,
+        table: d['table'] as String,
+        id: d['id'] as String,
+        code: d['code'] as String,
+        message: d['message'] as String,
+      );
+      _log.warning(
+        'Écriture écartée : ${write.op} ${write.table}/${write.id} '
+        '(${write.code} ${write.message})',
+      );
+      onDiscarded?.call(write);
     }
     await transaction.complete();
   }
-}
 
-/// Données invalides (22…), contrainte violée (23…), droits refusés (42501).
-bool _isDefinitive(PostgrestException e) {
-  final code = e.code ?? '';
-  return code.startsWith('22') || code.startsWith('23') || code == '42501';
+  /// Colonnes pour Postgres : booléens en `true`/`false` (0/1 en local), et
+  /// le propriétaire d'un personnage créé sans compte, que le serveur
+  /// exige.
+  Map<String, Object?> _forPostgres(CrudEntry entry) {
+    final booleans = syncedBooleanColumns[entry.table] ?? const {};
+    final data = {
+      for (final MapEntry(:key, :value) in (entry.opData ?? const {}).entries)
+        key: booleans.contains(key) && value is int ? value != 0 : value,
+    };
+    if (entry.op == UpdateType.put &&
+        entry.table == 'character' &&
+        data['owner_user_id'] == null) {
+      data['owner_user_id'] = _client.auth.currentUser?.id;
+    }
+    return data;
+  }
 }
-
-/// Booléens en `true`/`false` (0/1 en local).
-Map<String, Object?> _forPostgres(String table, Map<String, Object?> data) => {
-  for (final MapEntry(:key, :value) in data.entries)
-    key: syncedBooleanColumns[table]!.contains(key) && value is int
-        ? value != 0
-        : value,
-};
