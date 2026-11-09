@@ -76,7 +76,9 @@ class PasswordRules extends StatelessWidget {
         ),
         SizedBox(height: AppSpacing.sm),
         for (final rule in rules)
+          // Un nœud par règle : chacune se lit avec son état.
           Semantics(
+            container: true,
             label:
                 '${rule.label}, ${switch (rule.state) {
                   PasswordRuleState.met => metLabel,

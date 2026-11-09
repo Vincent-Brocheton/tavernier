@@ -5,7 +5,8 @@ import 'package:material_ui/material_ui.dart';
 
 Widget _app(Widget child) => MaterialApp(
   theme: AppTheme.dark,
-  home: Scaffold(body: Center(child: child)),
+  // Dans une liste, comme sur les écrans : les nœuds ne doivent pas fusionner.
+  home: Scaffold(body: ListView(children: [child])),
 );
 
 void main() {

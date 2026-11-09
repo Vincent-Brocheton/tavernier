@@ -2604,6 +2604,300 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Dépenser le {die}'**
   String spendHitDie(String die);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bienvenue'**
+  String get signInWelcome;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un compte sert à rejoindre des tables et à synchroniser vos fiches.'**
+  String get signInPurpose;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion'**
+  String get signInTitle;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'E-mail'**
+  String get emailLabel;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get passwordLabel;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher le mot de passe'**
+  String get showPassword;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Masquer le mot de passe'**
+  String get hidePassword;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe oublié ?'**
+  String get forgotPasswordLink;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Se connecter'**
+  String get signInAction;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'E-mail ou mot de passe incorrect. Vérifiez la saisie, ou réinitialisez votre mot de passe.'**
+  String get signInInvalid;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le serveur ne répond pas. Vérifiez votre connexion et réessayez.'**
+  String get signInNetworkError;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion impossible pour le moment. Réessayez dans quelques minutes.'**
+  String get signInFailed;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de connexion internet'**
+  String get offlineTitle;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'La première connexion sur cet appareil demande le réseau. Le bouton se réactive dès que la connexion revient ; rien n’est enregistré en attendant.'**
+  String get offlineFirstSignIn;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'La première connexion demande le réseau, ensuite tout fonctionne hors-ligne.'**
+  String get signInFooter;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre table, même sans réseau'**
+  String get signInTagline;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiches de personnage, combats et notes de séance, compatibles avec la cinquième édition. Une fois connecté, tout fonctionne hors-ligne.'**
+  String get signInPitch;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déjà connecté sur cet appareil ? Vos données s’ouvrent sans réseau.'**
+  String get signInDesktopFooter;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe oublié'**
+  String get forgotTitle;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez l’e-mail de votre compte : vous recevrez un lien pour choisir un nouveau mot de passe.'**
+  String get forgotIntro;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer le lien'**
+  String get forgotSend;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérifiez votre boîte mail'**
+  String get forgotSentTitle;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Si un compte existe pour {email}, un lien vient d’y être envoyé. Il est valable 1 heure. Pensez à regarder dans les courriers indésirables.'**
+  String forgotSentBody(String email);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Renvoyer le lien dans {time}'**
+  String forgotResendIn(String time);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Renvoyer le lien'**
+  String get forgotResend;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenir à la connexion'**
+  String get backToSignIn;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte créé avec Google ou Apple : pas de mot de passe à réinitialiser, utilisez le même bouton qu’à l’inscription.'**
+  String get forgotSocialNote;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau mot de passe'**
+  String get newPasswordTitle;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte {email} · lien valable encore {minutes} min.'**
+  String newPasswordAccount(String email, int minutes);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte {email}'**
+  String newPasswordAccountOnly(String email);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau mot de passe'**
+  String get newPasswordLabel;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer le mot de passe'**
+  String get confirmPasswordLabel;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les deux mots de passe diffèrent.'**
+  String get passwordMismatch;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Robustesse : {level}'**
+  String passwordStrength(String level);
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'très faible'**
+  String get passwordStrength0;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'faible'**
+  String get passwordStrength1;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'moyenne'**
+  String get passwordStrength2;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'correcte'**
+  String get passwordStrength3;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'forte'**
+  String get passwordStrength4;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'10 caractères au moins'**
+  String get ruleLength;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Différent de votre e-mail et de votre pseudo'**
+  String get ruleIdentity;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Absent des listes de mots de passe divulgués'**
+  String get ruleBreached;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Respecté'**
+  String get ruleMet;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Non respecté'**
+  String get ruleUnmet;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification…'**
+  String get rulePending;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déconnecter mes autres appareils'**
+  String get signOutOthers;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Leurs données locales sont conservées ; il faudra se reconnecter pour synchroniser.'**
+  String get signOutOthersHint;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer et se connecter'**
+  String get savePasswordAndSignIn;
+
+  /// Connexion et mot de passe (US-39, écrans A1 à A4).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrement impossible sans réseau. Réessayez une fois connecté.'**
+  String get savePasswordNetworkError;
 }
 
 class _AppLocalizationsDelegate

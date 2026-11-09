@@ -1,8 +1,15 @@
+import 'dart:async';
+
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 
+import 'account/account_providers.dart';
+import 'account/forgot_password_page.dart';
+import 'account/new_password_page.dart';
+import 'account/sign_in_page.dart';
 import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
@@ -10,24 +17,36 @@ import 'l10n/app_localizations.dart';
 import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   registerFontLicenses();
+  await initAccounts();
   runApp(const ProviderScope(child: GameTableApp()));
 }
 
 /// Racine de l'application : thème sombre du kit, taille de texte bornée,
 /// navigation principale à cinq destinations.
-class GameTableApp extends StatefulWidget {
+class GameTableApp extends ConsumerStatefulWidget {
   const GameTableApp({super.key});
 
   @override
-  State<GameTableApp> createState() => _GameTableAppState();
+  ConsumerState<GameTableApp> createState() => _GameTableAppState();
 }
 
-class _GameTableAppState extends State<GameTableApp> {
+class _GameTableAppState extends ConsumerState<GameTableApp> {
+  StreamSubscription<Object?>? _recovery;
   final _router = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (_, _) => const _Shell()),
+      GoRoute(path: '/connexion', builder: (_, _) => const SignInPage()),
+      GoRoute(
+        path: '/connexion/mot-de-passe-oublie',
+        builder: (_, _) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: '/nouveau-mot-de-passe',
+        builder: (_, _) => const NewPasswordPage(),
+      ),
       GoRoute(path: '/characters/new', builder: (_, _) => const CreationPage()),
       GoRoute(
         path: '/characters/:id',
@@ -41,13 +60,28 @@ class _GameTableAppState extends State<GameTableApp> {
   );
 
   @override
+  void initState() {
+    super.initState();
+    // Le lien de réinitialisation suivi ouvre une session de récupération :
+    // on mène au choix du nouveau mot de passe [A3].
+    _recovery = ref
+        .read(accountGatewayProvider)
+        ?.changes
+        .where((c) => c.event == AuthChangeEvent.passwordRecovery)
+        .listen((_) => _router.go('/nouveau-mot-de-passe'));
+  }
+
+  @override
   void dispose() {
+    _recovery?.cancel();
     _router.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // Synchronisation tant qu'un utilisateur est connecté (T-05).
+    ref.watch(syncProvider);
     return MaterialApp.router(
       routerConfig: _router,
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
@@ -98,6 +132,7 @@ class _ShellState extends State<_Shell> {
       body: SafeArea(
         child: switch (_selected) {
           0 => const _HomePage(),
+          1 => const _TablesPage(),
           2 => const _CharactersPage(),
           _ => _PlaceholderPage(destinations[_selected].$2),
         },
@@ -184,6 +219,40 @@ class _CharactersPage extends ConsumerWidget {
             child: Text(l10n.newCharacter),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Tables : un compte est nécessaire pour en rejoindre ou en créer une ;
+/// sans session, on propose de se connecter.
+class _TablesPage extends ConsumerWidget {
+  const _TablesPage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final signedIn = ref.watch(currentUserProvider).value != null;
+    if (ref.watch(accountGatewayProvider) == null || signedIn) {
+      return _PlaceholderPage(l10n.navTables);
+    }
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(l10n.navTables, style: text.headlineMedium),
+            SizedBox(height: AppSpacing.sm),
+            Text(l10n.signInPurpose, textAlign: TextAlign.center),
+            SizedBox(height: AppSpacing.md),
+            FilledButton(
+              onPressed: () => context.push('/connexion'),
+              child: Text(l10n.signInAction),
+            ),
+          ],
+        ),
       ),
     );
   }
