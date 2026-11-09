@@ -19,6 +19,21 @@ enum SignInOutcome {
   failed,
 }
 
+/// Issue d'une inscription.
+enum SignUpOutcome {
+  signedIn,
+
+  /// Confirmation par e-mail attendue ; aussi la réponse pour une adresse
+  /// déjà prise, pour ne pas révéler l'existence d'un compte (EF-CPT-07).
+  confirmEmail,
+
+  /// Pas de réponse du serveur.
+  network,
+
+  /// Autre refus.
+  failed,
+}
+
 /// Échec d'une demande sans réponse du serveur.
 final class AccountNetworkException implements Exception {
   const AccountNetworkException();
@@ -53,6 +68,42 @@ class AccountGateway {
           : SignInOutcome.failed;
     } on AuthException {
       return SignInOutcome.failed;
+    }
+  }
+
+  /// Crée un compte par e-mail. Le serveur vérifie les 15 ans d'après
+  /// [birthDate] et ne la garde pas ; il crée le profil avec [pseudonym].
+  Future<SignUpOutcome> signUp({
+    required String email,
+    required String password,
+    required String pseudonym,
+    required DateTime birthDate,
+    String? redirectTo,
+  }) async {
+    try {
+      final response = await _auth.signUp(
+        email: email.trim(),
+        password: password,
+        emailRedirectTo: redirectTo,
+        data: {
+          'pseudonym': pseudonym.trim(),
+          'birth_date':
+              '${birthDate.year.toString().padLeft(4, '0')}-'
+              '${birthDate.month.toString().padLeft(2, '0')}-'
+              '${birthDate.day.toString().padLeft(2, '0')}',
+        },
+      );
+      return response.session == null
+          ? SignUpOutcome.confirmEmail
+          : SignUpOutcome.signedIn;
+    } on AuthRetryableFetchException {
+      return SignUpOutcome.network;
+    } on AuthApiException catch (e) {
+      return e.code == 'user_already_exists' || e.code == 'email_exists'
+          ? SignUpOutcome.confirmEmail
+          : SignUpOutcome.failed;
+    } on AuthException {
+      return SignUpOutcome.failed;
     }
   }
 

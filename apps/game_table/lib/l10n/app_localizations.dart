@@ -2898,6 +2898,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Enregistrement impossible sans réseau. Réessayez une fois connecté.'**
   String get savePasswordNetworkError;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion'**
+  String get signInTab;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscription'**
+  String get signUpTab;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Pseudonyme affiché'**
+  String get pseudonymLabel;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de naissance'**
+  String get birthDateLabel;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'JJ/MM/AAAA'**
+  String get birthDateHint;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Date invalide : utilisez le format JJ/MM/AAAA.'**
+  String get birthDateInvalid;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Il faut avoir au moins 15 ans pour créer un compte.'**
+  String get tooYoung;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer le compte'**
+  String get signUpAction;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérifiez votre boîte mail'**
+  String get signUpConfirmTitle;
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Si l’adresse {email} peut recevoir un compte, un lien de confirmation vient d’y être envoyé. Pensez à regarder dans les courriers indésirables.'**
+  String signUpConfirmBody(String email);
+
+  /// Inscription (US-12, écran T2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscription impossible pour le moment. Réessayez dans quelques minutes.'**
+  String get signUpFailed;
 }
 
 class _AppLocalizationsDelegate

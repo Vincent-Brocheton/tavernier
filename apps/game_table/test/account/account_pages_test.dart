@@ -24,7 +24,9 @@ final class _FakeGateway implements AccountGateway {
   /// Faux : page ouverte sans le lien de réinitialisation.
   final bool signedIn;
   SignInOutcome outcome = SignInOutcome.signedIn;
+  SignUpOutcome signUpOutcome = SignUpOutcome.signedIn;
   final signIns = <(String, String)>[];
+  final signUps = <(String, String, String, DateTime)>[];
   final resets = <String>[];
   final updates = <(String, bool)>[];
 
@@ -51,6 +53,18 @@ final class _FakeGateway implements AccountGateway {
   Future<SignInOutcome> signIn(String email, String password) async {
     signIns.add((email, password));
     return outcome;
+  }
+
+  @override
+  Future<SignUpOutcome> signUp({
+    required String email,
+    required String password,
+    required String pseudonym,
+    required DateTime birthDate,
+    String? redirectTo,
+  }) async {
+    signUps.add((email, password, pseudonym, birthDate));
+    return signUpOutcome;
   }
 
   @override
@@ -201,8 +215,61 @@ void main() {
       addTearDown(tester.view.reset);
       await _pump(tester, '/connexion', _FakeGateway());
       expect(find.text(l10n.signInTagline), findsOneWidget);
-      expect(find.text(l10n.signInTitle), findsOneWidget);
+      // Titre et onglet, comme sur [A4].
+      expect(find.text(l10n.signInTitle), findsNWidgets(2));
       expect(find.text(l10n.signInWelcome), findsNothing);
+    });
+  });
+
+  group('inscription [T2]', () {
+    const password = 'Correct-Cheval-Pile-42';
+
+    Future<void> fill(WidgetTester tester, String birthDate) async {
+      await tester.tap(find.text(l10n.signUpTab));
+      await tester.pumpAndSettle();
+      await _type(tester, l10n.pseudonymLabel, 'Hugo');
+      await _type(tester, l10n.emailLabel, 'hugo@exemple.fr');
+      await _type(tester, l10n.passwordLabel, password);
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.pumpAndSettle();
+      await _type(tester, l10n.birthDateLabel, birthDate);
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('moins de 15 ans : refusé et expliqué', (tester) async {
+      final gateway = _FakeGateway();
+      await _pumpTall(tester, '/connexion', gateway);
+      await fill(tester, '12/03/2013');
+      expect(find.text(l10n.tooYoung), findsOneWidget);
+      expect(_enabled(tester, l10n.signUpAction), isFalse);
+      expect(gateway.signUps, isEmpty);
+    });
+
+    testWidgets("réussie : compte créé, retour à l'accueil", (tester) async {
+      final gateway = _FakeGateway();
+      await _pumpTall(tester, '/connexion', gateway);
+      await fill(tester, '01/01/2000');
+      expect(_enabled(tester, l10n.signUpAction), isTrue);
+      await tester.tap(_button(l10n.signUpAction));
+      await tester.pumpAndSettle();
+      expect(gateway.signUps, [
+        ('hugo@exemple.fr', password, 'Hugo', DateTime(2000)),
+      ]);
+      expect(find.text('accueil'), findsOneWidget);
+    });
+
+    testWidgets('confirmation attendue : réponse neutre', (tester) async {
+      final gateway = _FakeGateway()
+        ..signUpOutcome = SignUpOutcome.confirmEmail;
+      await _pumpTall(tester, '/connexion', gateway);
+      await fill(tester, '01/01/2000');
+      await tester.tap(_button(l10n.signUpAction));
+      await tester.pumpAndSettle();
+      expect(find.text(l10n.signUpConfirmTitle), findsOneWidget);
+      expect(
+        find.text(l10n.signUpConfirmBody('hugo@exemple.fr')),
+        findsOneWidget,
+      );
     });
   });
 

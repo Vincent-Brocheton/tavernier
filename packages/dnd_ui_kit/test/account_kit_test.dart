@@ -46,6 +46,32 @@ void main() {
     });
   });
 
+  testWidgets('StatusBanner information : primaryContainer et icône', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _app(
+        const StatusBanner(
+          kind: StatusBannerKind.info,
+          title: 'Vérifiez votre boîte mail',
+          message: 'Un lien vient d’être envoyé.',
+        ),
+      ),
+    );
+    expect(find.byIcon(Icons.info_outline), findsOneWidget);
+    final context = tester.element(find.byType(StatusBanner));
+    final box = tester.widget<Container>(
+      find.descendant(
+        of: find.byType(StatusBanner),
+        matching: find.byType(Container),
+      ),
+    );
+    expect(
+      (box.decoration! as BoxDecoration).color,
+      Theme.of(context).colorScheme.primaryContainer,
+    );
+  });
+
   group('PasswordRules', () {
     Widget rules(int strength) => _app(
       PasswordRules(

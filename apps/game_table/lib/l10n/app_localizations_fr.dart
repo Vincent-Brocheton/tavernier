@@ -1746,4 +1746,41 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get savePasswordNetworkError =>
       'Enregistrement impossible sans réseau. Réessayez une fois connecté.';
+
+  @override
+  String get signInTab => 'Connexion';
+
+  @override
+  String get signUpTab => 'Inscription';
+
+  @override
+  String get pseudonymLabel => 'Pseudonyme affiché';
+
+  @override
+  String get birthDateLabel => 'Date de naissance';
+
+  @override
+  String get birthDateHint => 'JJ/MM/AAAA';
+
+  @override
+  String get birthDateInvalid =>
+      'Date invalide : utilisez le format JJ/MM/AAAA.';
+
+  @override
+  String get tooYoung => 'Il faut avoir au moins 15 ans pour créer un compte.';
+
+  @override
+  String get signUpAction => 'Créer le compte';
+
+  @override
+  String get signUpConfirmTitle => 'Vérifiez votre boîte mail';
+
+  @override
+  String signUpConfirmBody(String email) {
+    return 'Si l’adresse $email peut recevoir un compte, un lien de confirmation vient d’y être envoyé. Pensez à regarder dans les courriers indésirables.';
+  }
+
+  @override
+  String get signUpFailed =>
+      'Inscription impossible pour le moment. Réessayez dans quelques minutes.';
 }

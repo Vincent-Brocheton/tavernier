@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import '../l10n/app_localizations.dart';
 import 'account_gateway.dart';
 import 'account_providers.dart';
-import 'password_policy.dart';
+import 'new_password_field.dart';
 
 /// Nouveau mot de passe [A3], ouvert par le lien de réinitialisation : règles
 /// cochées au fil de la saisie, jauge de robustesse, et « Déconnecter mes
@@ -23,46 +21,17 @@ class NewPasswordPage extends ConsumerStatefulWidget {
 class _NewPasswordPageState extends ConsumerState<NewPasswordPage> {
   final _password = TextEditingController();
   final _confirm = TextEditingController();
-  var _obscured = true;
   var _obscuredConfirm = true;
   var _signOutOthers = true;
+  var _passwordValid = false;
   var _busy = false;
   var _networkError = false;
 
-  /// Résultat de Have I Been Pwned pour [_checked] ; `null` en attente ou
-  /// sans réponse.
-  bool? _breached;
-  String? _checked;
-  Timer? _debounce;
-
   @override
   void dispose() {
-    _debounce?.cancel();
     _password.dispose();
     _confirm.dispose();
     super.dispose();
-  }
-
-  /// Vérifie la fuite après 400 ms sans frappe.
-  void _onPasswordChanged(String password) {
-    _debounce?.cancel();
-    setState(() => _breached = null);
-    if (!longEnough(password)) return;
-    _debounce = Timer(const Duration(milliseconds: 400), () async {
-      bool? breached;
-      try {
-        breached = await ref
-            .read(breachedPasswordsProvider)
-            .isBreached(password);
-      } on Exception {
-        breached = null;
-      }
-      if (!mounted || _password.text != password) return;
-      setState(() {
-        _breached = breached;
-        _checked = password;
-      });
-    });
   }
 
   Future<void> _save() async {
@@ -95,35 +64,16 @@ class _NewPasswordPageState extends ConsumerState<NewPasswordPage> {
     final text = Theme.of(context).textTheme;
     final gateway = ref.watch(accountGatewayProvider);
     final email = gateway?.user?.email ?? '';
-    final pseudonym = ref.watch(pseudonymProvider).value;
     final expiry = gateway?.resetLinkExpiry;
-    final password = _password.text;
-
-    final lengthOk = longEnough(password);
-    final identityOk =
-        password.isNotEmpty &&
-        differsFromIdentity(password, email: email, pseudonym: pseudonym);
-    final breachedState = !lengthOk || _checked != password || _breached == null
-        ? PasswordRuleState.pending
-        : _breached!
-        ? PasswordRuleState.unmet
-        : PasswordRuleState.met;
-    PasswordRuleState state(bool ok) => password.isEmpty
-        ? PasswordRuleState.pending
-        : ok
-        ? PasswordRuleState.met
-        : PasswordRuleState.unmet;
-    final mismatch = _confirm.text.isNotEmpty && _confirm.text != password;
+    final mismatch =
+        _confirm.text.isNotEmpty && _confirm.text != _password.text;
     // Sans session de récupération (page ouverte sans le lien), rien à
     // enregistrer.
     final ready =
         gateway?.user != null &&
-        lengthOk &&
-        identityOk &&
-        breachedState == PasswordRuleState.met &&
-        _confirm.text == password &&
+        _passwordValid &&
+        _confirm.text == _password.text &&
         !_busy;
-    final level = strength(password);
 
     return Scaffold(
       appBar: AppBar(
@@ -156,42 +106,13 @@ class _NewPasswordPageState extends ConsumerState<NewPasswordPage> {
                   StatusBanner(message: l10n.savePasswordNetworkError),
                   SizedBox(height: AppSpacing.md),
                 ],
-                TextField(
+                NewPasswordField(
                   controller: _password,
-                  obscureText: _obscured,
-                  autofillHints: const [AutofillHints.newPassword],
-                  onChanged: _onPasswordChanged,
-                  decoration: InputDecoration(
-                    labelText: l10n.newPasswordLabel,
-                    suffixIcon: IconButton(
-                      tooltip: _obscured
-                          ? l10n.showPassword
-                          : l10n.hidePassword,
-                      icon: Icon(
-                        _obscured ? Icons.visibility : Icons.visibility_off,
-                      ),
-                      onPressed: () => setState(() => _obscured = !_obscured),
-                    ),
-                  ),
-                ),
-                SizedBox(height: AppSpacing.sm),
-                PasswordRules(
-                  strength: level,
-                  strengthLabel: l10n.passwordStrength(switch (level) {
-                    0 => l10n.passwordStrength0,
-                    1 => l10n.passwordStrength1,
-                    2 => l10n.passwordStrength2,
-                    3 => l10n.passwordStrength3,
-                    _ => l10n.passwordStrength4,
-                  }),
-                  rules: [
-                    (label: l10n.ruleLength, state: state(lengthOk)),
-                    (label: l10n.ruleIdentity, state: state(identityOk)),
-                    (label: l10n.ruleBreached, state: breachedState),
-                  ],
-                  metLabel: l10n.ruleMet,
-                  unmetLabel: l10n.ruleUnmet,
-                  pendingLabel: l10n.rulePending,
+                  label: l10n.newPasswordLabel,
+                  email: email,
+                  pseudonym: ref.watch(pseudonymProvider).value,
+                  onValidityChanged: (valid) =>
+                      setState(() => _passwordValid = valid),
                 ),
                 SizedBox(height: AppSpacing.md),
                 TextField(

@@ -2587,5 +2587,54 @@
   "savePasswordNetworkError": "Enregistrement impossible sans réseau. Réessayez une fois connecté.",
   "@savePasswordNetworkError": {
     "description": "Connexion et mot de passe (US-39, écrans A1 à A4)."
+  },
+  "signInTab": "Connexion",
+  "@signInTab": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "signUpTab": "Inscription",
+  "@signUpTab": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "pseudonymLabel": "Pseudonyme affiché",
+  "@pseudonymLabel": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "birthDateLabel": "Date de naissance",
+  "@birthDateLabel": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "birthDateHint": "JJ/MM/AAAA",
+  "@birthDateHint": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "birthDateInvalid": "Date invalide : utilisez le format JJ/MM/AAAA.",
+  "@birthDateInvalid": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "tooYoung": "Il faut avoir au moins 15 ans pour créer un compte.",
+  "@tooYoung": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "signUpAction": "Créer le compte",
+  "@signUpAction": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "signUpConfirmTitle": "Vérifiez votre boîte mail",
+  "@signUpConfirmTitle": {
+    "description": "Inscription (US-12, écran T2)."
+  },
+  "signUpConfirmBody": "Si l’adresse {email} peut recevoir un compte, un lien de confirmation vient d’y être envoyé. Pensez à regarder dans les courriers indésirables.",
+  "@signUpConfirmBody": {
+    "description": "Inscription (US-12, écran T2).",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "signUpFailed": "Inscription impossible pour le moment. Réessayez dans quelques minutes.",
+  "@signUpFailed": {
+    "description": "Inscription (US-12, écran T2)."
   }
 }
