@@ -3126,6 +3126,126 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Annuler'**
   String get cancel;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Appareils connectés'**
+  String get devicesSection;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{browser} sur {platform}'**
+  String deviceBrowserOn(String browser, String platform);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Windows'**
+  String get platformWindows;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'macOS'**
+  String get platformMacos;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Linux'**
+  String get platformLinux;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Android'**
+  String get platformAndroid;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'iPhone'**
+  String get platformIphone;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'iPad'**
+  String get platformIpad;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléphone Android'**
+  String get deviceAndroidPhone;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tablette Android'**
+  String get deviceAndroidTablet;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Appareil inconnu'**
+  String get deviceUnknown;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Cet appareil · actif maintenant'**
+  String get thisDeviceNow;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Actif maintenant'**
+  String get activeNow;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Il y a {count} min'**
+  String activeMinutes(int count);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Il y a 1 heure} other{Il y a {count} heures}}'**
+  String activeHours(int count);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Il y a 1 jour} other{Il y a {count} jours}}'**
+  String activeDays(int count);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Il y a 1 semaine} other{Il y a {count} semaines}}'**
+  String activeWeeks(int count);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Il y a {count} mois'**
+  String activeMonths(int count);
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déconnecter'**
+  String get revokeDevice;
+
+  /// Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).
+  ///
+  /// In fr, this message translates to:
+  /// **'La liste des appareils demande le réseau.'**
+  String get devicesOffline;
 }
 
 class _AppLocalizationsDelegate

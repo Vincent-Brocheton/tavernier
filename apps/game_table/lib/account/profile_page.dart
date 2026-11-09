@@ -6,9 +6,10 @@ import 'package:material_ui/material_ui.dart';
 import '../l10n/app_localizations.dart';
 import '../settings/device_settings.dart';
 import 'account_providers.dart';
+import 'devices.dart';
 
 /// Section du profil, sur desktop [A7].
-enum _Section { display, privacy }
+enum _Section { display, privacy, devices }
 
 /// Profil et réglages : une colonne sur téléphone [T5] ; sur desktop [A7],
 /// les sections à gauche et la section choisie à droite. Affichage
@@ -91,6 +92,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               const _DisplaySection(),
               SizedBox(height: AppSpacing.md),
               const _PrivacySection(),
+              if (user != null) ...[
+                SizedBox(height: AppSpacing.md),
+                const _DevicesSection(),
+              ],
               SizedBox(height: AppSpacing.lg),
               ?signOut,
             ],
@@ -131,6 +136,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           for (final (section, label) in [
                             (_Section.display, l10n.displaySection),
                             (_Section.privacy, l10n.privacySection),
+                            if (user != null)
+                              (_Section.devices, l10n.devicesSection),
                           ])
                             ListTile(
                               title: Text(label),
@@ -166,6 +173,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             switch (_section) {
                               _Section.display => const _DisplaySection(),
                               _Section.privacy => const _PrivacySection(),
+                              _Section.devices => const _DevicesSection(),
                             },
                           ],
                         ),
@@ -326,6 +334,102 @@ class _PrivacySection extends ConsumerWidget {
               ref.read(deviceSettingsProvider.notifier).setCrashReports(value),
         ),
       ],
+    );
+  }
+}
+
+/// Appareils connectés au compte, et déconnexion à distance (EF-CPT-05).
+class _DevicesSection extends ConsumerWidget {
+  const _DevicesSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final devices = ref.watch(connectedDevicesProvider);
+    return _SectionCard(
+      title: l10n.devicesSection,
+      children: switch (devices) {
+        AsyncData(:final value) => [
+          for (final device in value) _DeviceTile(device: device),
+        ],
+        AsyncError() => [Text(l10n.devicesOffline)],
+        _ => [const LinearProgressIndicator()],
+      },
+    );
+  }
+}
+
+class _DeviceTile extends ConsumerWidget {
+  const _DeviceTile({required this.device});
+
+  final ConnectedDevice device;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final info = device.info;
+    final platform = switch (info.platform) {
+      DevicePlatform.windows => l10n.platformWindows,
+      DevicePlatform.macos => l10n.platformMacos,
+      DevicePlatform.linux => l10n.platformLinux,
+      DevicePlatform.android => l10n.platformAndroid,
+      DevicePlatform.iphone => l10n.platformIphone,
+      DevicePlatform.ipad => l10n.platformIpad,
+      null => null,
+    };
+    final name = switch ((info.browser, platform)) {
+      (final browser?, final platform?) => l10n.deviceBrowserOn(
+        browser,
+        platform,
+      ),
+      (final browser?, null) => browser,
+      (null, _) when info.platform == DevicePlatform.android =>
+        info.form == DeviceForm.tablet
+            ? l10n.deviceAndroidTablet
+            : l10n.deviceAndroidPhone,
+      (null, final platform?) => platform,
+      (null, null) => l10n.deviceUnknown,
+    };
+    final activity = activitySince(device.lastActive, DateTime.now());
+    final since = switch (activity.unit) {
+      ActivityUnit.now => l10n.activeNow,
+      ActivityUnit.minutes => l10n.activeMinutes(activity.count),
+      ActivityUnit.hours => l10n.activeHours(activity.count),
+      ActivityUnit.days => l10n.activeDays(activity.count),
+      ActivityUnit.weeks => l10n.activeWeeks(activity.count),
+      ActivityUnit.months => l10n.activeMonths(activity.count),
+    };
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(switch (info.form) {
+        DeviceForm.phone => Icons.smartphone,
+        DeviceForm.tablet => Icons.tablet,
+        DeviceForm.computer => Icons.computer,
+        DeviceForm.unknown => Icons.devices_other,
+      }),
+      title: Text(name),
+      subtitle: Text(device.current ? l10n.thisDeviceNow : since),
+      trailing: device.current
+          ? null
+          : TextButton(
+              onPressed: () async {
+                try {
+                  await ref
+                      .read(sessionActionsProvider)
+                      .revokeDevice(device.id);
+                } on Exception {
+                  // Sans réseau : rien n'a changé, on le dit.
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.devicesOffline)),
+                    );
+                  }
+                  return;
+                }
+                ref.invalidate(connectedDevicesProvider);
+              },
+              child: Text(l10n.revokeDevice),
+            ),
     );
   }
 }

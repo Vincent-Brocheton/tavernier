@@ -4,12 +4,14 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:drift/drift.dart' show Variable;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../creation/creation_providers.dart';
 import 'account_gateway.dart';
+import 'devices.dart';
 import 'password_policy.dart';
 
 /// Projet Supabase, sa clé publique et le service PowerSync, passés au
@@ -32,6 +34,18 @@ Future<void> initAccounts() async {
   await Supabase.initialize(
     url: supabaseUrl,
     publishableKey: supabasePublishableKey,
+    // Un navigateur donne son User-Agent ; une app native se nomme, pour la
+    // liste des appareils connectés (EF-CPT-05).
+    headers: kIsWeb ? null : {'User-Agent': _nativeUserAgent()},
+  );
+}
+
+String _nativeUserAgent() {
+  final view = PlatformDispatcher.instance.views.first;
+  final shortest = view.physicalSize.shortestSide / view.devicePixelRatio;
+  return nativeUserAgent(
+    defaultTargetPlatform.name.toLowerCase(),
+    tablet: shortest >= 600,
   );
 }
 
@@ -118,6 +132,29 @@ class SessionActions {
         : (await powerSync.getUploadQueueStats()).count;
   }
 
+  /// Appareils connectés au compte (EF-CPT-05), cet appareil d'abord.
+  /// Demande le réseau.
+  Future<List<ConnectedDevice>> devices() async {
+    final rows = await Supabase.instance.client.rpc<List<dynamic>>(
+      'list_my_sessions',
+    );
+    return [
+      for (final row in rows.cast<Map<String, dynamic>>())
+        ConnectedDevice(
+          id: row['id'] as String,
+          info: describeUserAgent(row['user_agent'] as String?),
+          lastActive: DateTime.parse(row['last_active_at'] as String),
+          current: row['is_current'] as bool,
+        ),
+    ];
+  }
+
+  /// Déconnecte un autre appareil : il ne peut plus prolonger sa connexion.
+  Future<void> revokeDevice(String id) => Supabase.instance.client.rpc<bool>(
+    'revoke_my_session',
+    params: {'target': id},
+  );
+
   /// Arrête la synchronisation, efface les données synchronisées de
   /// l'appareil (le compte suivant n'en voit rien), puis ferme la session.
   /// Le contenu de règles reste.
@@ -128,3 +165,26 @@ class SessionActions {
 }
 
 final sessionActionsProvider = Provider<SessionActions>(SessionActions.new);
+
+/// Un appareil connecté au compte.
+final class ConnectedDevice {
+  const ConnectedDevice({
+    required this.id,
+    required this.info,
+    required this.lastActive,
+    required this.current,
+  });
+
+  final String id;
+  final DeviceInfo info;
+  final DateTime lastActive;
+
+  /// Vrai pour l'appareil qui affiche la liste.
+  final bool current;
+}
+
+/// Appareils connectés, relus à chaque ouverture du profil.
+final connectedDevicesProvider =
+    FutureProvider.autoDispose<List<ConnectedDevice>>(
+      (ref) => ref.watch(sessionActionsProvider).devices(),
+    );
