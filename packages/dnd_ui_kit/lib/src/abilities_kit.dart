@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 
+import 'game_colors.dart';
 import 'layout.dart';
 
 /// Tuile d'acquisition par points (COMPOSANTS §2.10) : nom, coût, boutons −/+
@@ -176,46 +177,70 @@ class BonusToggle extends StatelessWidget {
   }
 }
 
-/// Bandeau d'erreur de règle en haut de contenu (COMPOSANTS §2.17, variante
-/// erreur) : il explique un choix à refaire, et s'annonce quand il apparaît.
-class StatusBanner extends StatelessWidget {
-  const StatusBanner({super.key, required this.title, required this.message});
+/// Variante de [StatusBanner] (COMPOSANTS §2.17).
+enum StatusBannerKind { error, alert }
 
-  final String title;
+/// Bandeau d'état en haut de contenu (COMPOSANTS §2.17) : erreur
+/// (`errorContainer`) ou alerte (`alertContainer`), toujours avec une icône,
+/// et annoncé quand il apparaît.
+class StatusBanner extends StatelessWidget {
+  const StatusBanner({
+    super.key,
+    this.title,
+    required this.message,
+    this.kind = StatusBannerKind.error,
+    this.icon,
+  });
+
+  final String? title;
   final String message;
+  final StatusBannerKind kind;
+
+  /// Icône ; par défaut celle de l'erreur ou de l'alerte.
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final game = GameColors.of(context);
     final text = Theme.of(context).textTheme;
+    final (background, foreground, defaultIcon) = switch (kind) {
+      StatusBannerKind.error => (
+        scheme.errorContainer,
+        scheme.onErrorContainer,
+        Icons.error_outline,
+      ),
+      StatusBannerKind.alert => (
+        game.alertContainer,
+        game.onAlertContainer,
+        Icons.warning_amber,
+      ),
+    };
     return Semantics(
       liveRegion: true,
       child: Container(
         padding: EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
-          color: scheme.errorContainer,
+          color: background,
           borderRadius: BorderRadius.circular(AppRadii.md),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.error_outline, color: scheme.onErrorContainer),
+            Icon(icon ?? defaultIcon, color: foreground),
             SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: text.titleSmall!.copyWith(
-                      color: scheme.onErrorContainer,
+                  if (title case final title?)
+                    Text(
+                      title,
+                      style: text.titleSmall!.copyWith(color: foreground),
                     ),
-                  ),
                   Text(
                     message,
-                    style: text.bodyMedium!.copyWith(
-                      color: scheme.onErrorContainer,
-                    ),
+                    style: text.bodyMedium!.copyWith(color: foreground),
                   ),
                 ],
               ),
