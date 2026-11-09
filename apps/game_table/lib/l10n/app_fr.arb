@@ -2754,5 +2754,118 @@
   "cancel": "Annuler",
   "@cancel": {
     "description": "Profil, réglages et consentement (US-12, écrans T1, T5, A7)."
+  },
+  "devicesSection": "Appareils connectés",
+  "@devicesSection": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "deviceBrowserOn": "{browser} sur {platform}",
+  "@deviceBrowserOn": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "browser": {
+        "type": "String"
+      },
+      "platform": {
+        "type": "String"
+      }
+    }
+  },
+  "platformWindows": "Windows",
+  "@platformWindows": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "platformMacos": "macOS",
+  "@platformMacos": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "platformLinux": "Linux",
+  "@platformLinux": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "platformAndroid": "Android",
+  "@platformAndroid": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "platformIphone": "iPhone",
+  "@platformIphone": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "platformIpad": "iPad",
+  "@platformIpad": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "deviceAndroidPhone": "Téléphone Android",
+  "@deviceAndroidPhone": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "deviceAndroidTablet": "Tablette Android",
+  "@deviceAndroidTablet": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "deviceUnknown": "Appareil inconnu",
+  "@deviceUnknown": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "thisDeviceNow": "Cet appareil · actif maintenant",
+  "@thisDeviceNow": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "activeNow": "Actif maintenant",
+  "@activeNow": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "activeMinutes": "Il y a {count} min",
+  "@activeMinutes": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activeHours": "{count, plural, =1{Il y a 1 heure} other{Il y a {count} heures}}",
+  "@activeHours": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activeDays": "{count, plural, =1{Il y a 1 jour} other{Il y a {count} jours}}",
+  "@activeDays": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activeWeeks": "{count, plural, =1{Il y a 1 semaine} other{Il y a {count} semaines}}",
+  "@activeWeeks": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activeMonths": "Il y a {count} mois",
+  "@activeMonths": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "revokeDevice": "Déconnecter",
+  "@revokeDevice": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
+  },
+  "devicesOffline": "La liste des appareils demande le réseau.",
+  "@devicesOffline": {
+    "description": "Appareils connectés (US-12, EF-CPT-05, écrans T5 et A7)."
   }
 }

@@ -1878,4 +1878,94 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cancel => 'Annuler';
+
+  @override
+  String get devicesSection => 'Appareils connectés';
+
+  @override
+  String deviceBrowserOn(String browser, String platform) {
+    return '$browser sur $platform';
+  }
+
+  @override
+  String get platformWindows => 'Windows';
+
+  @override
+  String get platformMacos => 'macOS';
+
+  @override
+  String get platformLinux => 'Linux';
+
+  @override
+  String get platformAndroid => 'Android';
+
+  @override
+  String get platformIphone => 'iPhone';
+
+  @override
+  String get platformIpad => 'iPad';
+
+  @override
+  String get deviceAndroidPhone => 'Téléphone Android';
+
+  @override
+  String get deviceAndroidTablet => 'Tablette Android';
+
+  @override
+  String get deviceUnknown => 'Appareil inconnu';
+
+  @override
+  String get thisDeviceNow => 'Cet appareil · actif maintenant';
+
+  @override
+  String get activeNow => 'Actif maintenant';
+
+  @override
+  String activeMinutes(int count) {
+    return 'Il y a $count min';
+  }
+
+  @override
+  String activeHours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Il y a $count heures',
+      one: 'Il y a 1 heure',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String activeDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Il y a $count jours',
+      one: 'Il y a 1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String activeWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Il y a $count semaines',
+      one: 'Il y a 1 semaine',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String activeMonths(int count) {
+    return 'Il y a $count mois';
+  }
+
+  @override
+  String get revokeDevice => 'Déconnecter';
+
+  @override
+  String get devicesOffline => 'La liste des appareils demande le réseau.';
 }

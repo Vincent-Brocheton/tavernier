@@ -5,7 +5,7 @@
 
 ## 2. App
 
-- [ ] 2.1 Libellé d'appareil et durée relative ; tests
-- [ ] 2.2 `User-Agent` des apps natives
-- [ ] 2.3 Section « Appareils connectés » du profil, déconnexion à distance ; tests
-- [ ] 2.4 Vérification dans le navigateur
+- [x] 2.1 Libellé d'appareil et durée relative ; tests
+- [x] 2.2 `User-Agent` des apps natives
+- [x] 2.3 Section « Appareils connectés » du profil, déconnexion à distance ; tests
+- [ ] 2.4 Vérification dans le navigateur, connecté (attend la clé publique du projet hébergé)
