@@ -413,7 +413,19 @@ class _DeviceTile extends ConsumerWidget {
           ? null
           : TextButton(
               onPressed: () async {
-                await ref.read(sessionActionsProvider).revokeDevice(device.id);
+                try {
+                  await ref
+                      .read(sessionActionsProvider)
+                      .revokeDevice(device.id);
+                } on Exception {
+                  // Sans réseau : rien n'a changé, on le dit.
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.devicesOffline)),
+                    );
+                  }
+                  return;
+                }
                 ref.invalidate(connectedDevicesProvider);
               },
               child: Text(l10n.revokeDevice),

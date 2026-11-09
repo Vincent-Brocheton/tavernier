@@ -50,8 +50,14 @@ final class _FakeSession implements SessionActions {
     ];
   }
 
+  /// Faux : la déconnexion à distance échoue faute de réseau.
+  var revokeFails = false;
+
   @override
-  Future<void> revokeDevice(String id) async => revoked.add(id);
+  Future<void> revokeDevice(String id) async {
+    if (revokeFails) throw Exception('hors ligne');
+    revoked.add(id);
+  }
 
   @override
   Future<int> pendingUploads() async => pending;
@@ -208,6 +214,17 @@ void main() {
       await tester.pumpAndSettle();
       expect(session.revoked, ['s2']);
       expect(find.text(l10n.deviceAndroidPhone), findsNothing);
+    });
+
+    testWidgets('déconnexion à distance sans réseau : expliquée', (
+      tester,
+    ) async {
+      final session = _FakeSession(0)..revokeFails = true;
+      await _pumpProfile(tester, prefs: await _prefs({}), session: session);
+      await tester.tap(find.text(l10n.revokeDevice));
+      await tester.pumpAndSettle();
+      expect(find.text(l10n.devicesOffline), findsOneWidget);
+      expect(find.text(l10n.deviceAndroidPhone), findsOneWidget);
     });
 
     testWidgets('appareils sans réseau : expliqué', (tester) async {
