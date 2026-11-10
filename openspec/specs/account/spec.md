@@ -114,3 +114,44 @@ Le profil SHALL lister les appareils connectés au compte, avec leur nom lisible
 #### Scenario: Sans réseau
 - **WHEN** l'utilisateur ouvre son profil sans réseau
 - **THEN** la section dit que la liste demande le réseau
+
+### Requirement: Modification du compte
+L'utilisateur SHALL modifier son pseudonyme, y compris hors ligne, ainsi que son e-mail et son mot de passe, qui demandent le réseau (EF-CPT-09). Un nouvel e-mail SHALL être confirmé par un lien envoyé à la nouvelle adresse. Un nouveau mot de passe SHALL demander le mot de passe actuel et suivre les règles d'EF-CPT-08.
+
+#### Scenario: Pseudonyme hors ligne
+- **WHEN** l'utilisateur change son pseudonyme sans réseau et enregistre
+- **THEN** le nouveau pseudonyme s'affiche aussitôt et attend l'envoi
+
+#### Scenario: Nouvel e-mail
+- **WHEN** l'utilisateur saisit une nouvelle adresse et enregistre
+- **THEN** un message dit qu'un lien de confirmation est envoyé à la nouvelle adresse, et que l'ancienne reste active jusque-là
+
+#### Scenario: Mot de passe actuel faux
+- **WHEN** le mot de passe actuel saisi est faux
+- **THEN** « Mot de passe actuel incorrect » s'affiche et rien n'est changé
+
+#### Scenario: Sans réseau
+- **WHEN** l'utilisateur change son e-mail ou son mot de passe sans réseau
+- **THEN** l'écran dit que ces changements demandent le réseau
+
+### Requirement: Connexion par Google
+L'utilisateur SHALL se connecter ou s'inscrire avec Google. Un compte Google SHALL déclarer sa date de naissance avant tout usage, et être refusé sous 15 ans (EF-CPT-01).
+
+#### Scenario: Première connexion Google
+- **WHEN** un nouveau compte Google se connecte
+- **THEN** l'écran « Date de naissance » s'affiche avant tout autre
+
+#### Scenario: Moins de 15 ans
+- **WHEN** la date déclarée donne moins de 15 ans
+- **THEN** le compte est supprimé, l'utilisateur déconnecté, et l'écran explique pourquoi
+
+### Requirement: Méthodes de connexion
+Le compte SHALL montrer ses méthodes (Google, mot de passe), permettre de lier Google, d'ajouter un mot de passe, et de retirer une méthode tant qu'il en reste une autre (EF-CPT-10).
+
+#### Scenario: Seule méthode
+- **WHEN** Google est la seule méthode du compte
+- **THEN** « Retirer » est désactivé, avec l'explication
+
+#### Scenario: E-mail d'un compte Google sans mot de passe
+- **WHEN** le compte n'a pas de mot de passe
+- **THEN** l'e-mail est verrouillé avec « Fourni par Google. Pour en changer, ajoutez d'abord un mot de passe. »
