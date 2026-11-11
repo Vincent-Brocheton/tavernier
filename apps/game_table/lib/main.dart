@@ -23,6 +23,9 @@ import 'settings/crash_consent_dialog.dart';
 import 'settings/device_settings.dart';
 import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
+import 'tables/create_table_page.dart';
+import 'tables/table_page.dart';
+import 'tables/tables_tab.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,6 +67,14 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       ),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
       GoRoute(path: '/age', builder: (_, _) => const AgePage()),
+      GoRoute(
+        path: '/tables/nouvelle',
+        builder: (_, _) => const CreateTablePage(),
+      ),
+      GoRoute(
+        path: '/tables/:id',
+        builder: (_, state) => TablePage(id: state.pathParameters['id']!),
+      ),
       GoRoute(
         path: '/profil/compte',
         builder: (_, _) => const EditAccountPage(),
@@ -208,7 +219,7 @@ class _ShellState extends ConsumerState<_Shell> {
       body: SafeArea(
         child: switch (_selected) {
           0 => const _HomePage(),
-          1 => const _TablesPage(),
+          1 => const TablesTab(),
           2 => const _CharactersPage(),
           _ => _PlaceholderPage(destinations[_selected].$2),
         },
@@ -295,40 +306,6 @@ class _CharactersPage extends ConsumerWidget {
             child: Text(l10n.newCharacter),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Tables : un compte est nécessaire pour en rejoindre ou en créer une ;
-/// sans session, on propose de se connecter.
-class _TablesPage extends ConsumerWidget {
-  const _TablesPage();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final text = Theme.of(context).textTheme;
-    final signedIn = ref.watch(currentUserProvider).value != null;
-    if (ref.watch(accountGatewayProvider) == null || signedIn) {
-      return _PlaceholderPage(l10n.navTables);
-    }
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(l10n.navTables, style: text.headlineMedium),
-            SizedBox(height: AppSpacing.sm),
-            Text(l10n.signInPurpose, textAlign: TextAlign.center),
-            SizedBox(height: AppSpacing.md),
-            FilledButton(
-              onPressed: () => context.push('/connexion'),
-              child: Text(l10n.signInAction),
-            ),
-          ],
-        ),
       ),
     );
   }

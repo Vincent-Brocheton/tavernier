@@ -3486,6 +3486,294 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Opération impossible pour le moment. Réessayez dans quelques minutes.'**
   String get methodFailed;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle table'**
+  String get newTable;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer la table'**
+  String get createTable;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom de la table *'**
+  String get tableNameLabel;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get tableDescriptionLabel;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de départ des personnages'**
+  String get startingLevelLabel;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de départ'**
+  String get startingLevelShort;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Baisser le niveau de départ'**
+  String get levelDecrease;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Monter le niveau de départ'**
+  String get levelIncrease;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthode de caractéristiques'**
+  String get statMethodTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Imposée à toutes les créations de personnage de la table.'**
+  String get statMethodHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Valeurs standard'**
+  String get methodStandard;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'15, 14, 13, 12, 10, 8 à répartir'**
+  String get methodStandardHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'27 points, valeurs de 8 à 15'**
+  String get methodPointBuyHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Génération aléatoire'**
+  String get methodRandom;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'4d6, on retire le plus faible, six fois'**
+  String get methodRandomHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos long'**
+  String get longRestTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupération totale des PV'**
+  String get longRestFull;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règle de base du SRD'**
+  String get longRestFullHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupération par dés de vie'**
+  String get longRestHitDice;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PV ne remontent qu’en dépensant des dés de vie'**
+  String get longRestHitDiceHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupération totale'**
+  String get longRestFullShort;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Par dés de vie'**
+  String get longRestHitDiceShort;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV à la montée de niveau'**
+  String get hpOnLevelTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyenne fixe'**
+  String get hpAverage;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet de dé'**
+  String get hpRoll;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'La moyenne du dé de vie, plus le modificateur de Constitution, à chaque niveau.'**
+  String get hpAverageHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le joueur lance son dé de vie à chaque niveau.'**
+  String get hpRollHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Progression des personnages'**
+  String get progressionTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Points d’expérience'**
+  String get progressionXp;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jalons'**
+  String get progressionMilestones;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PX des rencontres s’ajoutent aux fiches à la clôture de chaque séance ; le niveau suit les seuils du SRD.'**
+  String get progressionXpHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun PX n’apparaît aux joueurs : vous accordez les niveaux vous-même.'**
+  String get progressionMilestonesHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Packs actifs'**
+  String get packsTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'La version est figée pour la table ; les joueurs reçoivent les packs par la synchronisation.'**
+  String get packsHint;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'SRD 5.2.1'**
+  String get srdPackName;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Toujours actif'**
+  String get srdPackAlways;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aperçu de la carte'**
+  String get previewTitle;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques'**
+  String get previewCharacteristics;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos long'**
+  String get previewLongRest;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV par niveau'**
+  String get previewHpPerLevel;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Progression'**
+  String get previewProgression;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Packs'**
+  String get previewPacks;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout reste modifiable dans Configuration. Étape suivante : inviter les joueurs.'**
+  String get previewNext;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes MJ'**
+  String get youAreGm;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes joueur'**
+  String get youArePlayer;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune table pour l’instant. Créez la vôtre, ou rejoignez celle d’un MJ avec son invitation.'**
+  String get tablesEmpty;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'MJ'**
+  String get roleGm;
+
+  /// Créer une table (US-13, écran T8).
+  ///
+  /// In fr, this message translates to:
+  /// **'Joueur'**
+  String get rolePlayer;
 }
 
 class _AppLocalizationsDelegate
