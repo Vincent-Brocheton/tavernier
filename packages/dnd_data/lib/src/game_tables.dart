@@ -84,6 +84,18 @@ class TablePacks extends Table with IdKey, TableOwned {
   ];
 }
 
+/// Activité d'une table (EF-TAB-11) : chaque changement de configuration
+/// ou d'archivage, daté avec son auteur. On ajoute, on ne corrige pas.
+@DataClassName('TableActivityRow')
+class TableActivities extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'table_activity';
+  TextColumn get authorUserId => text().nullable()();
+  DateTimeColumn get at => dateTime()();
+  TextColumn get kind => text()();
+  TextColumn get detail => text().withDefault(const Constant('{}'))();
+}
+
 @DataClassName('TableBannedEntityRow')
 class TableBannedEntities extends Table with IdKey, TableOwned {
   @override

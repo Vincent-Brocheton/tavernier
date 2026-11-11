@@ -42,6 +42,8 @@ insert into table_member (id, table_id, user_id, role) values
 insert into table_invite (id, table_id, code, expires_at)
   values ('i1', 't1', 'ABC123', now() + interval '7 days');
 insert into table_pack (id, table_id, pack_id) values ('p1', 't1', 'srd');
+insert into table_activity (id, table_id, author_user_id, kind)
+  values ('a1', 't1', '${id[mj]}', 'config');
 insert into character (id, table_id, owner_user_id, kind, name, species_id,
   background_id, status) values
   ('c1', 't1', '${id[joueur1]}', 'pc', 'Brunhild', 'srd:species:dwarf',
@@ -86,7 +88,8 @@ expect() {
 }
 
 profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
-table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1)
+table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
+  table_activity/a1)
 c1=(character/c1 character_state/s1 character_item/o1)
 c2=(character/c2 character_state/s2)
 

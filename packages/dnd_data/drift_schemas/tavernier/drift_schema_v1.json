@@ -4062,6 +4062,83 @@
       "references": [],
       "type": "table",
       "data": {
+        "name": "table_activity",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "author_user_id",
+            "getter_name": "authorUserId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "at",
+            "getter_name": "at",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "detail",
+            "getter_name": "detail",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'{}\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "references": [],
+      "type": "table",
+      "data": {
         "name": "character",
         "was_declared_in_moor": false,
         "columns": [
@@ -4255,7 +4332,7 @@
       }
     },
     {
-      "id": 42,
+      "id": 43,
       "references": [],
       "type": "table",
       "data": {
@@ -4328,7 +4405,7 @@
       }
     },
     {
-      "id": 43,
+      "id": 44,
       "references": [],
       "type": "table",
       "data": {
@@ -4410,7 +4487,7 @@
       }
     },
     {
-      "id": 44,
+      "id": 45,
       "references": [],
       "type": "table",
       "data": {
@@ -4523,7 +4600,7 @@
       }
     },
     {
-      "id": 45,
+      "id": 46,
       "references": [],
       "type": "table",
       "data": {
@@ -4610,7 +4687,7 @@
       }
     },
     {
-      "id": 46,
+      "id": 47,
       "references": [],
       "type": "table",
       "data": {
@@ -4667,7 +4744,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 48,
       "references": [],
       "type": "table",
       "data": {
@@ -4762,7 +4839,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 49,
       "references": [],
       "type": "table",
       "data": {
@@ -4857,7 +4934,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 50,
       "references": [],
       "type": "table",
       "data": {
@@ -4983,7 +5060,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 51,
       "references": [],
       "type": "table",
       "data": {
@@ -5060,7 +5137,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 52,
       "references": [],
       "type": "table",
       "data": {
@@ -5127,7 +5204,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 53,
       "references": [],
       "type": "table",
       "data": {
@@ -5184,7 +5261,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 54,
       "references": [],
       "type": "table",
       "data": {
@@ -5247,7 +5324,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 55,
       "references": [],
       "type": "table",
       "data": {
@@ -5324,7 +5401,7 @@
       }
     },
     {
-      "id": 55,
+      "id": 56,
       "references": [],
       "type": "table",
       "data": {
@@ -5381,9 +5458,9 @@
       }
     },
     {
-      "id": 56,
+      "id": 57,
       "references": [
-        55
+        56
       ],
       "type": "table",
       "data": {
@@ -5466,9 +5543,9 @@
       }
     },
     {
-      "id": 57,
+      "id": 58,
       "references": [
-        56
+        57
       ],
       "type": "table",
       "data": {
@@ -5615,9 +5692,9 @@
       }
     },
     {
-      "id": 58,
+      "id": 59,
       "references": [
-        56
+        57
       ],
       "type": "table",
       "data": {
@@ -5720,7 +5797,7 @@
       }
     },
     {
-      "id": 59,
+      "id": 60,
       "references": [],
       "type": "table",
       "data": {
@@ -5811,7 +5888,7 @@
       }
     },
     {
-      "id": 60,
+      "id": 61,
       "references": [],
       "type": "table",
       "data": {
@@ -6215,6 +6292,15 @@
         {
           "dialect": "sqlite",
           "sql": "CREATE TABLE IF NOT EXISTS \"table_banned_entity\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"entity_id\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"table_id\", \"entity_id\"));"
+        }
+      ]
+    },
+    {
+      "name": "table_activity",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"table_activity\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, \"at\" TEXT NOT NULL, \"kind\" TEXT NOT NULL, \"detail\" TEXT NOT NULL DEFAULT '{}', PRIMARY KEY (\"id\"));"
         }
       ]
     },

@@ -128,11 +128,19 @@ void main() {
         .listSync()
         .whereType<File>()
         .map((f) => f.readAsStringSync())
-        .firstWhere((s) => s.contains('create publication powersync'));
-    final published = RegExp(r'public\.(\w+)')
-        .allMatches(sql.substring(sql.indexOf('create publication')))
-        .map((m) => m[1]!)
-        .toSet();
+        .join('\n');
+    // La publication d'origine, puis les tables ajoutées par la suite.
+    final created = sql.substring(sql.indexOf('create publication powersync'));
+    final published = {
+      for (final m in RegExp(
+        r'public\.(\w+)',
+      ).allMatches(created.substring(0, created.indexOf(';'))))
+        m[1]!,
+      for (final m in RegExp(
+        r'alter publication powersync add table public\.(\w+)',
+      ).allMatches(sql))
+        m[1]!,
+    };
     expect(published, syncedTables);
   });
 }
