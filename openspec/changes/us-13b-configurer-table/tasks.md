@@ -6,7 +6,7 @@
 
 ## 2. Données
 
-- [ ] 2.1 Tests puis `TableStore.update`, `setArchived`, `activity`
+- [x] 2.1 Tests puis `TableStore.update`, `setArchived`, `activity`
 
 ## 3. App
 

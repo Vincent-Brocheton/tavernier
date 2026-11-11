@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart';
 
@@ -91,6 +93,22 @@ final class TableSummary {
   final bool fullSheetsVisible;
 }
 
+/// Entrée de l'activité d'une table (EF-TAB-11) : `config` porte
+/// `{field, from, to}` ; `archived` et `restored` n'ont pas de détail.
+final class TableActivity {
+  const TableActivity({
+    required this.at,
+    required this.authorUserId,
+    required this.kind,
+    required this.detail,
+  });
+
+  final DateTime at;
+  final String? authorUserId;
+  final String kind;
+  final Map<String, Object?> detail;
+}
+
 /// Pack activé dans une table, à sa version figée (EF-TAB-04).
 typedef TablePackRef = ({String packId, String version});
 
@@ -142,6 +160,117 @@ final class TableStore {
     });
     return id;
   }
+
+  /// Enregistre la configuration de la table [id] et date chaque réglage
+  /// changé dans son activité, en une transaction (EF-TAB-11). Le nom et la
+  /// description ne changent pas ici.
+  Future<void> update(
+    String id, {
+    required String authorUserId,
+    required TableSettings settings,
+    required bool fullSheetsVisible,
+  }) async {
+    final before = await load(id, authorUserId);
+    if (before == null) return;
+    final old = before.settings;
+    final changes = <String, (Object, Object)>{
+      'statMethod': (old.statMethod.name, settings.statMethod.name),
+      'startingLevel': (old.startingLevel, settings.startingLevel),
+      'longRest': (old.longRest.name, settings.longRest.name),
+      'hpOnLevel': (old.hpOnLevel.name, settings.hpOnLevel.name),
+      'progression': (old.progression.name, settings.progression.name),
+      'fullSheetsVisible': (before.fullSheetsVisible, fullSheetsVisible),
+    }..removeWhere((_, change) => change.$1 == change.$2);
+    if (changes.isEmpty) return;
+    await _db.transaction(() async {
+      await _db.customStatement(
+        'UPDATE game_table SET stat_method = ?, starting_level = ?, '
+        'long_rest_rule = ?, hp_on_level_rule = ?, progression_mode = ?, '
+        'full_sheets_visible = ? WHERE id = ?',
+        [
+          settings.statMethod.name,
+          settings.startingLevel,
+          settings.longRest.name,
+          settings.hpOnLevel.name,
+          settings.progression.name,
+          if (fullSheetsVisible) 1 else 0,
+          id,
+        ],
+      );
+      for (final MapEntry(key: field, value: (from, to)) in changes.entries) {
+        await _addActivity(id, authorUserId, 'config', {
+          'field': field,
+          'from': from,
+          'to': to,
+        });
+      }
+    });
+  }
+
+  /// Archive la table (lecture seule pour tous) ou la restaure, et le date
+  /// dans son activité (EF-TAB-07).
+  Future<void> setArchived(
+    String id, {
+    required bool archived,
+    required String authorUserId,
+  }) => _db.transaction(() async {
+    await _db.customStatement(
+      'UPDATE game_table SET archived = ? WHERE id = ?',
+      [if (archived) 1 else 0, id],
+    );
+    await _addActivity(
+      id,
+      authorUserId,
+      archived ? 'archived' : 'restored',
+      const {},
+    );
+  });
+
+  /// Activité de la table, la plus récente d'abord.
+  Future<List<TableActivity>> activity(
+    String tableId, {
+    int limit = 20,
+  }) async => [
+    for (final row
+        in await _db
+            .customSelect(
+              'SELECT * FROM table_activity WHERE table_id = ? '
+              // La date d'abord : deux UUID v7 de la même milliseconde ne sont pas
+              // ordonnés.
+              'ORDER BY at DESC, id DESC LIMIT ?',
+              variables: [
+                Variable.withString(tableId),
+                Variable.withInt(limit),
+              ],
+            )
+            .get())
+      TableActivity(
+        at: DateTime.parse(row.read<String>('at')),
+        authorUserId: row.readNullable<String>('author_user_id'),
+        kind: row.read<String>('kind'),
+        detail: jsonDecode(
+          row.readNullable<String>('detail') ?? '{}',
+        ) as Map<String, Object?>,
+      ),
+  ];
+
+  Future<void> _addActivity(
+    String tableId,
+    String authorUserId,
+    String kind,
+    Map<String, Object?> detail,
+  ) => _db.customStatement(
+    'INSERT INTO table_activity (id, table_id, author_user_id, at, kind, '
+    'detail) VALUES (?, ?, ?, ?, ?, ?)',
+    [
+      uuidV7(),
+      tableId,
+      authorUserId,
+      DateTime.now().toUtc().toIso8601String(),
+      kind,
+      jsonEncode(detail),
+    ],
+  );
 
   /// Tables dont [userId] est MJ ou membre, la plus récente d'abord
   /// (identifiants UUID v7).
