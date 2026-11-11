@@ -3047,5 +3047,197 @@
   "methodFailed": "Opération impossible pour le moment. Réessayez dans quelques minutes.",
   "@methodFailed": {
     "description": "Google et méthodes de connexion (US-40, écrans A1, T2, A6)."
+  },
+  "newTable": "Nouvelle table",
+  "@newTable": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "createTable": "Créer la table",
+  "@createTable": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "tableNameLabel": "Nom de la table *",
+  "@tableNameLabel": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "tableDescriptionLabel": "Description",
+  "@tableDescriptionLabel": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "startingLevelLabel": "Niveau de départ des personnages",
+  "@startingLevelLabel": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "startingLevelShort": "Niveau de départ",
+  "@startingLevelShort": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "levelDecrease": "Baisser le niveau de départ",
+  "@levelDecrease": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "levelIncrease": "Monter le niveau de départ",
+  "@levelIncrease": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "statMethodTitle": "Méthode de caractéristiques",
+  "@statMethodTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "statMethodHint": "Imposée à toutes les créations de personnage de la table.",
+  "@statMethodHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "methodStandard": "Valeurs standard",
+  "@methodStandard": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "methodStandardHint": "15, 14, 13, 12, 10, 8 à répartir",
+  "@methodStandardHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "methodPointBuyHint": "27 points, valeurs de 8 à 15",
+  "@methodPointBuyHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "methodRandom": "Génération aléatoire",
+  "@methodRandom": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "methodRandomHint": "4d6, on retire le plus faible, six fois",
+  "@methodRandomHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestTitle": "Repos long",
+  "@longRestTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestFull": "Récupération totale des PV",
+  "@longRestFull": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestFullHint": "Règle de base du SRD",
+  "@longRestFullHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestHitDice": "Récupération par dés de vie",
+  "@longRestHitDice": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestHitDiceHint": "Les PV ne remontent qu’en dépensant des dés de vie",
+  "@longRestHitDiceHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestFullShort": "Récupération totale",
+  "@longRestFullShort": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "longRestHitDiceShort": "Par dés de vie",
+  "@longRestHitDiceShort": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "hpOnLevelTitle": "PV à la montée de niveau",
+  "@hpOnLevelTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "hpAverage": "Moyenne fixe",
+  "@hpAverage": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "hpRoll": "Jet de dé",
+  "@hpRoll": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "hpAverageHint": "La moyenne du dé de vie, plus le modificateur de Constitution, à chaque niveau.",
+  "@hpAverageHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "hpRollHint": "Le joueur lance son dé de vie à chaque niveau.",
+  "@hpRollHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "progressionTitle": "Progression des personnages",
+  "@progressionTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "progressionXp": "Points d’expérience",
+  "@progressionXp": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "progressionMilestones": "Jalons",
+  "@progressionMilestones": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "progressionXpHint": "Les PX des rencontres s’ajoutent aux fiches à la clôture de chaque séance ; le niveau suit les seuils du SRD.",
+  "@progressionXpHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "progressionMilestonesHint": "Aucun PX n’apparaît aux joueurs : vous accordez les niveaux vous-même.",
+  "@progressionMilestonesHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "packsTitle": "Packs actifs",
+  "@packsTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "packsHint": "La version est figée pour la table ; les joueurs reçoivent les packs par la synchronisation.",
+  "@packsHint": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "srdPackName": "SRD 5.2.1",
+  "@srdPackName": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "srdPackAlways": "Toujours actif",
+  "@srdPackAlways": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewTitle": "Aperçu de la carte",
+  "@previewTitle": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewCharacteristics": "Caractéristiques",
+  "@previewCharacteristics": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewLongRest": "Repos long",
+  "@previewLongRest": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewHpPerLevel": "PV par niveau",
+  "@previewHpPerLevel": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewProgression": "Progression",
+  "@previewProgression": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewPacks": "Packs",
+  "@previewPacks": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "previewNext": "Tout reste modifiable dans Configuration. Étape suivante : inviter les joueurs.",
+  "@previewNext": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "youAreGm": "Vous êtes MJ",
+  "@youAreGm": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "youArePlayer": "Vous êtes joueur",
+  "@youArePlayer": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "tablesEmpty": "Aucune table pour l’instant. Créez la vôtre, ou rejoignez celle d’un MJ avec son invitation.",
+  "@tablesEmpty": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "roleGm": "MJ",
+  "@roleGm": {
+    "description": "Créer une table (US-13, écran T8)."
+  },
+  "rolePlayer": "Joueur",
+  "@rolePlayer": {
+    "description": "Créer une table (US-13, écran T8)."
   }
 }

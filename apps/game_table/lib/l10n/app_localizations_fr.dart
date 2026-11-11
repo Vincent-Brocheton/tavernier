@@ -2106,4 +2106,156 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get methodFailed =>
       'Opération impossible pour le moment. Réessayez dans quelques minutes.';
+
+  @override
+  String get newTable => 'Nouvelle table';
+
+  @override
+  String get createTable => 'Créer la table';
+
+  @override
+  String get tableNameLabel => 'Nom de la table *';
+
+  @override
+  String get tableDescriptionLabel => 'Description';
+
+  @override
+  String get startingLevelLabel => 'Niveau de départ des personnages';
+
+  @override
+  String get startingLevelShort => 'Niveau de départ';
+
+  @override
+  String get levelDecrease => 'Baisser le niveau de départ';
+
+  @override
+  String get levelIncrease => 'Monter le niveau de départ';
+
+  @override
+  String get statMethodTitle => 'Méthode de caractéristiques';
+
+  @override
+  String get statMethodHint =>
+      'Imposée à toutes les créations de personnage de la table.';
+
+  @override
+  String get methodStandard => 'Valeurs standard';
+
+  @override
+  String get methodStandardHint => '15, 14, 13, 12, 10, 8 à répartir';
+
+  @override
+  String get methodPointBuyHint => '27 points, valeurs de 8 à 15';
+
+  @override
+  String get methodRandom => 'Génération aléatoire';
+
+  @override
+  String get methodRandomHint => '4d6, on retire le plus faible, six fois';
+
+  @override
+  String get longRestTitle => 'Repos long';
+
+  @override
+  String get longRestFull => 'Récupération totale des PV';
+
+  @override
+  String get longRestFullHint => 'Règle de base du SRD';
+
+  @override
+  String get longRestHitDice => 'Récupération par dés de vie';
+
+  @override
+  String get longRestHitDiceHint =>
+      'Les PV ne remontent qu’en dépensant des dés de vie';
+
+  @override
+  String get longRestFullShort => 'Récupération totale';
+
+  @override
+  String get longRestHitDiceShort => 'Par dés de vie';
+
+  @override
+  String get hpOnLevelTitle => 'PV à la montée de niveau';
+
+  @override
+  String get hpAverage => 'Moyenne fixe';
+
+  @override
+  String get hpRoll => 'Jet de dé';
+
+  @override
+  String get hpAverageHint =>
+      'La moyenne du dé de vie, plus le modificateur de Constitution, à chaque niveau.';
+
+  @override
+  String get hpRollHint => 'Le joueur lance son dé de vie à chaque niveau.';
+
+  @override
+  String get progressionTitle => 'Progression des personnages';
+
+  @override
+  String get progressionXp => 'Points d’expérience';
+
+  @override
+  String get progressionMilestones => 'Jalons';
+
+  @override
+  String get progressionXpHint =>
+      'Les PX des rencontres s’ajoutent aux fiches à la clôture de chaque séance ; le niveau suit les seuils du SRD.';
+
+  @override
+  String get progressionMilestonesHint =>
+      'Aucun PX n’apparaît aux joueurs : vous accordez les niveaux vous-même.';
+
+  @override
+  String get packsTitle => 'Packs actifs';
+
+  @override
+  String get packsHint =>
+      'La version est figée pour la table ; les joueurs reçoivent les packs par la synchronisation.';
+
+  @override
+  String get srdPackName => 'SRD 5.2.1';
+
+  @override
+  String get srdPackAlways => 'Toujours actif';
+
+  @override
+  String get previewTitle => 'Aperçu de la carte';
+
+  @override
+  String get previewCharacteristics => 'Caractéristiques';
+
+  @override
+  String get previewLongRest => 'Repos long';
+
+  @override
+  String get previewHpPerLevel => 'PV par niveau';
+
+  @override
+  String get previewProgression => 'Progression';
+
+  @override
+  String get previewPacks => 'Packs';
+
+  @override
+  String get previewNext =>
+      'Tout reste modifiable dans Configuration. Étape suivante : inviter les joueurs.';
+
+  @override
+  String get youAreGm => 'Vous êtes MJ';
+
+  @override
+  String get youArePlayer => 'Vous êtes joueur';
+
+  @override
+  String get tablesEmpty =>
+      'Aucune table pour l’instant. Créez la vôtre, ou rejoignez celle d’un MJ avec son invitation.';
+
+  @override
+  String get roleGm => 'MJ';
+
+  @override
+  String get rolePlayer => 'Joueur';
 }
