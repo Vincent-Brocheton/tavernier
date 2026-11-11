@@ -101,6 +101,78 @@ void main() {
       test('table absente : null', () async {
         expect(await store.load('absente', _gm), isNull);
       });
+
+      test('configuration : enregistrée, chaque changement daté', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await store.update(
+          id,
+          authorUserId: _gm,
+          settings: _brumeval.copyWith(
+            statMethod: ScoreMethod.pointBuy,
+            startingLevel: 4,
+          ),
+          fullSheetsVisible: true,
+        );
+        final table = await store.load(id, _gm);
+        expect(table!.settings.statMethod, ScoreMethod.pointBuy);
+        expect(table.settings.startingLevel, 4);
+        expect(table.fullSheetsVisible, isTrue);
+        final activity = await store.activity(id);
+        expect(
+          {for (final a in activity) a.detail['field']: a.detail},
+          {
+            'statMethod': {
+              'field': 'statMethod',
+              'from': 'standardArray',
+              'to': 'pointBuy',
+            },
+            'startingLevel': {'field': 'startingLevel', 'from': 3, 'to': 4},
+            'fullSheetsVisible': {
+              'field': 'fullSheetsVisible',
+              'from': false,
+              'to': true,
+            },
+          },
+        );
+        expect(activity.map((a) => a.kind).toSet(), {'config'});
+        expect(activity.map((a) => a.authorUserId).toSet(), {_gm});
+      });
+
+      test('rien de changé : aucune activité', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await store.update(
+          id,
+          authorUserId: _gm,
+          settings: _brumeval,
+          fullSheetsVisible: false,
+        );
+        expect(await store.activity(id), isEmpty);
+      });
+
+      test('archivage puis restauration, datés', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await store.setArchived(id, archived: true, authorUserId: _gm);
+        expect((await store.load(id, _gm))!.archived, isTrue);
+        await store.setArchived(id, archived: false, authorUserId: _gm);
+        expect((await store.load(id, _gm))!.archived, isFalse);
+        // La plus récente d'abord.
+        expect((await store.activity(id)).map((a) => a.kind), [
+          'restored',
+          'archived',
+        ]);
+      });
     });
   }
 }

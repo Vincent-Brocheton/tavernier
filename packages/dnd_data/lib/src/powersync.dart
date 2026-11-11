@@ -14,6 +14,7 @@ const syncedTables = {
   'table_invite',
   'table_pack',
   'table_banned_entity',
+  'table_activity',
   'character',
   'character_base_scores',
   'character_background_choice',

@@ -18292,6 +18292,411 @@ class TableBannedEntitiesCompanion
   }
 }
 
+class $TableActivitiesTable extends TableActivities
+    with TableInfo<$TableActivitiesTable, TableActivityRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $TableActivitiesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
+    'authorUserId',
+  );
+  @override
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _atMeta = const VerificationMeta('at');
+  @override
+  late final GeneratedColumn<DateTime> at = GeneratedColumn<DateTime>(
+    'at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _detailMeta = const VerificationMeta('detail');
+  @override
+  late final GeneratedColumn<String> detail = GeneratedColumn<String>(
+    'detail',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    authorUserId,
+    at,
+    kind,
+    detail,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'table_activity';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<TableActivityRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('author_user_id')) {
+      context.handle(
+        _authorUserIdMeta,
+        authorUserId.isAcceptableOrUnknown(
+          data['author_user_id']!,
+          _authorUserIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('at')) {
+      context.handle(_atMeta, at.isAcceptableOrUnknown(data['at']!, _atMeta));
+    } else if (isInserting) {
+      context.missing(_atMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('detail')) {
+      context.handle(
+        _detailMeta,
+        detail.isAcceptableOrUnknown(data['detail']!, _detailMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  TableActivityRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return TableActivityRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      authorUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_user_id'],
+      ),
+      at: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}at'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      detail: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}detail'],
+      )!,
+    );
+  }
+
+  @override
+  $TableActivitiesTable createAlias(String alias) {
+    return $TableActivitiesTable(attachedDatabase, alias);
+  }
+}
+
+class TableActivityRow extends DataClass
+    implements Insertable<TableActivityRow> {
+  final String id;
+  final String tableId;
+  final String? authorUserId;
+  final DateTime at;
+  final String kind;
+  final String detail;
+  const TableActivityRow({
+    required this.id,
+    required this.tableId,
+    this.authorUserId,
+    required this.at,
+    required this.kind,
+    required this.detail,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    if (!nullToAbsent || authorUserId != null) {
+      map['author_user_id'] = Variable<String>(authorUserId);
+    }
+    map['at'] = Variable<DateTime>(at);
+    map['kind'] = Variable<String>(kind);
+    map['detail'] = Variable<String>(detail);
+    return map;
+  }
+
+  TableActivitiesCompanion toCompanion(bool nullToAbsent) {
+    return TableActivitiesCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      authorUserId: authorUserId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorUserId),
+      at: Value(at),
+      kind: Value(kind),
+      detail: Value(detail),
+    );
+  }
+
+  factory TableActivityRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return TableActivityRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
+      at: serializer.fromJson<DateTime>(json['at']),
+      kind: serializer.fromJson<String>(json['kind']),
+      detail: serializer.fromJson<String>(json['detail']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'authorUserId': serializer.toJson<String?>(authorUserId),
+      'at': serializer.toJson<DateTime>(at),
+      'kind': serializer.toJson<String>(kind),
+      'detail': serializer.toJson<String>(detail),
+    };
+  }
+
+  TableActivityRow copyWith({
+    String? id,
+    String? tableId,
+    Value<String?> authorUserId = const Value.absent(),
+    DateTime? at,
+    String? kind,
+    String? detail,
+  }) => TableActivityRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
+    at: at ?? this.at,
+    kind: kind ?? this.kind,
+    detail: detail ?? this.detail,
+  );
+  TableActivityRow copyWithCompanion(TableActivitiesCompanion data) {
+    return TableActivityRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      authorUserId: data.authorUserId.present
+          ? data.authorUserId.value
+          : this.authorUserId,
+      at: data.at.present ? data.at.value : this.at,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      detail: data.detail.present ? data.detail.value : this.detail,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TableActivityRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('at: $at, ')
+          ..write('kind: $kind, ')
+          ..write('detail: $detail')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, tableId, authorUserId, at, kind, detail);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is TableActivityRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.authorUserId == this.authorUserId &&
+          other.at == this.at &&
+          other.kind == this.kind &&
+          other.detail == this.detail);
+}
+
+class TableActivitiesCompanion extends UpdateCompanion<TableActivityRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String?> authorUserId;
+  final Value<DateTime> at;
+  final Value<String> kind;
+  final Value<String> detail;
+  final Value<int> rowid;
+  const TableActivitiesCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.authorUserId = const Value.absent(),
+    this.at = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.detail = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  TableActivitiesCompanion.insert({
+    required String id,
+    required String tableId,
+    this.authorUserId = const Value.absent(),
+    required DateTime at,
+    required String kind,
+    this.detail = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       at = Value(at),
+       kind = Value(kind);
+  static Insertable<TableActivityRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? authorUserId,
+    Expression<DateTime>? at,
+    Expression<String>? kind,
+    Expression<String>? detail,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (authorUserId != null) 'author_user_id': authorUserId,
+      if (at != null) 'at': at,
+      if (kind != null) 'kind': kind,
+      if (detail != null) 'detail': detail,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  TableActivitiesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String?>? authorUserId,
+    Value<DateTime>? at,
+    Value<String>? kind,
+    Value<String>? detail,
+    Value<int>? rowid,
+  }) {
+    return TableActivitiesCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      authorUserId: authorUserId ?? this.authorUserId,
+      at: at ?? this.at,
+      kind: kind ?? this.kind,
+      detail: detail ?? this.detail,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (authorUserId.present) {
+      map['author_user_id'] = Variable<String>(authorUserId.value);
+    }
+    if (at.present) {
+      map['at'] = Variable<DateTime>(at.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (detail.present) {
+      map['detail'] = Variable<String>(detail.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TableActivitiesCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('at: $at, ')
+          ..write('kind: $kind, ')
+          ..write('detail: $detail, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $CharactersTable extends Characters
     with TableInfo<$CharactersTable, CharacterRow> {
   @override
@@ -27469,6 +27874,9 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $TablePacksTable tablePacks = $TablePacksTable(this);
   late final $TableBannedEntitiesTable tableBannedEntities =
       $TableBannedEntitiesTable(this);
+  late final $TableActivitiesTable tableActivities = $TableActivitiesTable(
+    this,
+  );
   late final $CharactersTable characters = $CharactersTable(this);
   late final $CharacterBaseScoresTable characterBaseScores =
       $CharacterBaseScoresTable(this);
@@ -27552,6 +27960,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     tableInvites,
     tablePacks,
     tableBannedEntities,
+    tableActivities,
     characters,
     characterBaseScores,
     characterBackgroundChoices,
@@ -44542,6 +44951,246 @@ typedef $$TableBannedEntitiesTableProcessedTableManager =
       TableBannedEntityRow,
       PrefetchHooks Function()
     >;
+typedef $$TableActivitiesTableCreateCompanionBuilder =
+    TableActivitiesCompanion Function({
+      required String id,
+      required String tableId,
+      Value<String?> authorUserId,
+      required DateTime at,
+      required String kind,
+      Value<String> detail,
+      Value<int> rowid,
+    });
+typedef $$TableActivitiesTableUpdateCompanionBuilder =
+    TableActivitiesCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String?> authorUserId,
+      Value<DateTime> at,
+      Value<String> kind,
+      Value<String> detail,
+      Value<int> rowid,
+    });
+
+class $$TableActivitiesTableFilterComposer
+    extends Composer<_$TavernierDatabase, $TableActivitiesTable> {
+  $$TableActivitiesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get at => $composableBuilder(
+    column: $table.at,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get detail => $composableBuilder(
+    column: $table.detail,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$TableActivitiesTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $TableActivitiesTable> {
+  $$TableActivitiesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get at => $composableBuilder(
+    column: $table.at,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get detail => $composableBuilder(
+    column: $table.detail,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$TableActivitiesTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $TableActivitiesTable> {
+  $$TableActivitiesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get at =>
+      $composableBuilder(column: $table.at, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get detail =>
+      $composableBuilder(column: $table.detail, builder: (column) => column);
+}
+
+class $$TableActivitiesTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $TableActivitiesTable,
+          TableActivityRow,
+          $$TableActivitiesTableFilterComposer,
+          $$TableActivitiesTableOrderingComposer,
+          $$TableActivitiesTableAnnotationComposer,
+          $$TableActivitiesTableCreateCompanionBuilder,
+          $$TableActivitiesTableUpdateCompanionBuilder,
+          (
+            TableActivityRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $TableActivitiesTable,
+              TableActivityRow
+            >,
+          ),
+          TableActivityRow,
+          PrefetchHooks Function()
+        > {
+  $$TableActivitiesTableTableManager(
+    _$TavernierDatabase db,
+    $TableActivitiesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$TableActivitiesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$TableActivitiesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$TableActivitiesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String?> authorUserId = const Value.absent(),
+                Value<DateTime> at = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> detail = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => TableActivitiesCompanion(
+                id: id,
+                tableId: tableId,
+                authorUserId: authorUserId,
+                at: at,
+                kind: kind,
+                detail: detail,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                Value<String?> authorUserId = const Value.absent(),
+                required DateTime at,
+                required String kind,
+                Value<String> detail = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => TableActivitiesCompanion.insert(
+                id: id,
+                tableId: tableId,
+                authorUserId: authorUserId,
+                at: at,
+                kind: kind,
+                detail: detail,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$TableActivitiesTable, TableActivityRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $TableActivitiesTable,
+                    TableActivityRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$TableActivitiesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $TableActivitiesTable,
+      TableActivityRow,
+      $$TableActivitiesTableFilterComposer,
+      $$TableActivitiesTableOrderingComposer,
+      $$TableActivitiesTableAnnotationComposer,
+      $$TableActivitiesTableCreateCompanionBuilder,
+      $$TableActivitiesTableUpdateCompanionBuilder,
+      (
+        TableActivityRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $TableActivitiesTable,
+          TableActivityRow
+        >,
+      ),
+      TableActivityRow,
+      PrefetchHooks Function()
+    >;
 typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   required String id,
   Value<String?> tableId,
@@ -50349,6 +50998,8 @@ class $TavernierDatabaseManager {
       $$TablePacksTableTableManager(_db, _db.tablePacks);
   $$TableBannedEntitiesTableTableManager get tableBannedEntities =>
       $$TableBannedEntitiesTableTableManager(_db, _db.tableBannedEntities);
+  $$TableActivitiesTableTableManager get tableActivities =>
+      $$TableActivitiesTableTableManager(_db, _db.tableActivities);
   $$CharactersTableTableManager get characters =>
       $$CharactersTableTableManager(_db, _db.characters);
   $$CharacterBaseScoresTableTableManager get characterBaseScores =>

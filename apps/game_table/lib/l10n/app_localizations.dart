@@ -3774,6 +3774,180 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Joueur'**
   String get rolePlayer;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vue d’ensemble'**
+  String get tabOverview;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Configuration'**
+  String get tabConfiguration;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Création des personnages'**
+  String get characterCreationSection;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règles de jeu'**
+  String get gameRulesSection;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Visibilité entre joueurs'**
+  String get visibilitySection;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir les fiches complètes des autres PJ'**
+  String get fullSheetsLabel;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'En lecture seule. Désactivé : chaque joueur voit nom, portrait, espèce, classe, niveau et état de santé qualitatif, sans PV chiffrés.'**
+  String get fullSheetsHint;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvertes'**
+  String get fullSheetsOpen;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermées'**
+  String get fullSheetsClosed;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce changement ne touche pas les fiches existantes'**
+  String get methodChangeTitle;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'{method} s’appliquera aux prochaines créations. Les fiches de la table gardent leurs caractéristiques ; un personnage libre rattaché plus tard sera comparé à la nouvelle méthode.'**
+  String methodChangeBody(String method);
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer aux jalons garde les PX déjà acquis sur les fiches, mais ils n’évoluent plus ; vous accordez ensuite les niveaux vous-même.'**
+  String get milestonesNote;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Zone sensible'**
+  String get sensitiveZone;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Archiver la table'**
+  String get archiveTable;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout passe en lecture seule pour tous les membres. Restaurable à tout moment.'**
+  String get archiveHint;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Archiver'**
+  String get archiveAction;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Restaurer la table'**
+  String get restoreTable;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'La table redevient modifiable pour tous les membres.'**
+  String get restoreHint;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Restaurer'**
+  String get restoreAction;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table archivée : lecture seule pour tous les membres.'**
+  String get archivedBanner;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifications non enregistrées'**
+  String get unsavedTitle;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'{label} : {from} → {to}'**
+  String changeLine(String label, String from, String to);
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Qui est prévenu'**
+  String get whoIsNotifiedTitle;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les joueurs voient la nouvelle règle dans la vue de la table à leur prochaine synchronisation. Chaque changement est daté dans l’activité de la table.'**
+  String get whoIsNotifiedBody;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthode'**
+  String get fieldMethod;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Activité'**
+  String get activityTitle;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun changement pour l’instant.'**
+  String get activityEmpty;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table archivée'**
+  String get activityArchived;
+
+  /// Configuration et activité d’une table (US-13, écran F6).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table restaurée'**
+  String get activityRestored;
 }
 
 class _AppLocalizationsDelegate

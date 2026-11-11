@@ -33,6 +33,43 @@ extension TableLabels on AppLocalizations {
     Progression.milestones => progressionMilestones,
   };
 
+  /// Nom d'un réglage dans l'activité et les modifications non enregistrées.
+  String settingLabel(String field) => switch (field) {
+    'statMethod' => fieldMethod,
+    'startingLevel' => startingLevelShort,
+    'longRest' => previewLongRest,
+    'hpOnLevel' => previewHpPerLevel,
+    'progression' => previewProgression,
+    'fullSheetsVisible' => visibilitySection,
+    _ => field,
+  };
+
+  /// Valeur d'un réglage, telle que stockée dans l'activité.
+  String settingValue(String field, Object? value) {
+    T? named<T extends Enum>(List<T> values) =>
+        values.asNameMap()[value.toString()];
+    return switch (field) {
+      'statMethod' => switch (named(ScoreMethod.values)) {
+        final method? => statMethod(method),
+        null => '$value',
+      },
+      'longRest' => switch (named(LongRestRule.values)) {
+        final rule? => longRestShort(rule),
+        null => '$value',
+      },
+      'hpOnLevel' => switch (named(HpOnLevel.values)) {
+        final rule? => hpOnLevel(rule),
+        null => '$value',
+      },
+      'progression' => switch (named(Progression.values)) {
+        final mode? => progression(mode),
+        null => '$value',
+      },
+      'fullSheetsVisible' => value == true ? fullSheetsOpen : fullSheetsClosed,
+      _ => '$value',
+    };
+  }
+
   String role(TableRole role) => switch (role) {
     TableRole.gm => roleGm,
     TableRole.player => rolePlayer,
