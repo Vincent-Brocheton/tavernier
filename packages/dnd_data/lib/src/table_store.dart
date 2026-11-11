@@ -182,7 +182,7 @@ final class TableStore {
       settings: TableSettings(
         name: row.read<String>('name'),
         description: row.readNullable<String>('description'),
-        startingLevel: row.read<int>('starting_level'),
+        startingLevel: row.readNullable<int>('starting_level') ?? 1,
         statMethod: byName(
           ScoreMethod.values,
           'stat_method',
@@ -207,8 +207,8 @@ final class TableStore {
       role: row.readNullable<String>('gm_user_id') == userId
           ? TableRole.gm
           : TableRole.player,
-      archived: row.read<bool>('archived'),
-      fullSheetsVisible: row.read<bool>('full_sheets_visible'),
+      archived: row.readNullable<bool>('archived') ?? false,
+      fullSheetsVisible: row.readNullable<bool>('full_sheets_visible') ?? false,
     );
   }
 }
