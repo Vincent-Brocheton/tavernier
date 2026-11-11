@@ -10,6 +10,6 @@
 
 ## 3. App
 
-- [ ] 3.1 Onglets de la table, Configuration [F6] ; tests
-- [ ] 3.2 Activité dans la vue d'ensemble ; tests
+- [x] 3.1 Onglets de la table, Configuration [F6] ; tests
+- [x] 3.2 Activité dans la vue d'ensemble ; tests
 - [ ] 3.3 Vérification dans le navigateur

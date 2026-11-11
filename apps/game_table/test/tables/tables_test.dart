@@ -12,6 +12,7 @@ import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/tables/create_table_page.dart';
+import 'package:game_table/tables/table_labels.dart';
 import 'package:game_table/tables/table_page.dart';
 import 'package:game_table/tables/tables_tab.dart';
 import 'package:go_router/go_router.dart';
@@ -39,6 +40,7 @@ Future<TavernierDatabase> _pump(
   WidgetTester tester, {
   Size size = const Size(390, 1800),
   Future<void> Function(TavernierDatabase)? seed,
+  String initialLocation = '/',
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -47,6 +49,7 @@ Future<TavernierDatabase> _pump(
   addTearDown(database.close);
   await seed?.call(database);
   final router = GoRouter(
+    initialLocation: initialLocation,
     routes: [
       GoRoute(
         path: '/',
@@ -83,7 +86,7 @@ Future<TavernierDatabase> _pump(
     ),
   );
   await tester.pumpAndSettle();
-  l10n = AppLocalizations.of(tester.element(find.byType(TablesTab)));
+  l10n = AppLocalizations.of(tester.element(find.byType(Scaffold).first));
   return database;
 }
 
@@ -99,6 +102,46 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
   await tester.ensureVisible(finder);
   await tester.pumpAndSettle();
   await tester.tap(finder);
+  await tester.pumpAndSettle();
+}
+
+const _brumeval = TableSettings(
+  name: 'Brumeval',
+  statMethod: ScoreMethod.standardArray,
+);
+
+/// Une table de [gm], ouverte sur sa page ; rend la base et l'identifiant.
+Future<(TavernierDatabase, String)> _openTable(
+  WidgetTester tester, {
+  String gm = '00000000-0000-0000-0000-00000000000a',
+  Size size = const Size(390, 1800),
+}) async {
+  late String id;
+  final database = await _pump(
+    tester,
+    size: size,
+    seed: (database) async {
+      id = await TableStore(database)
+          .create(gmUserId: gm, settings: _brumeval, packs: const []);
+      if (gm != _gm.id) {
+        await database.customStatement(
+          'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+          "VALUES ('m9', ?, ?, 'player', '2026-11-11T10:00:00Z')",
+          [id, _gm.id],
+        );
+      }
+    },
+    initialLocation: '/tables/brumeval',
+  );
+  // L'identifiant n'est connu qu'après la graine : on y navigue ensuite.
+  GoRouter.of(tester.element(find.byType(TablePage))).go('/tables/$id');
+  await tester.pumpAndSettle();
+  return (database, id);
+}
+
+Future<void> _choose<T>(WidgetTester tester, String label) async {
+  await _tap(tester, find.byType(DropdownButtonFormField<T>).first);
+  await tester.tap(find.text(label).last);
   await tester.pumpAndSettle();
 }
 
@@ -194,5 +237,100 @@ void main() {
     await tester.pump();
     // Le nom, dans le champ et dans l'aperçu.
     expect(find.text('Brumeval'), findsNWidgets(2));
+  });
+  testWidgets('configuration : changement signalé, enregistré, daté', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(tester);
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    expect(find.text(l10n.unsavedTitle), findsNothing);
+
+    await _choose<ScoreMethod>(tester, l10n.statMethod(ScoreMethod.pointBuy));
+    expect(find.text(l10n.methodChangeTitle), findsOneWidget);
+    expect(find.text(l10n.unsavedTitle), findsOneWidget);
+    expect(
+      find.text(
+        l10n.changeLine(
+          l10n.fieldMethod,
+          l10n.statMethod(ScoreMethod.standardArray),
+          l10n.statMethod(ScoreMethod.pointBuy),
+        ),
+      ),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.accountSave));
+    expect(find.text(l10n.unsavedTitle), findsNothing);
+    final table = await TableStore(database).load(id, _gm.id);
+    expect(table!.settings.statMethod, ScoreMethod.pointBuy);
+
+    // L'activité, dans la vue d'ensemble.
+    await _tap(tester, find.text(l10n.tabOverview));
+    expect(
+      find.text(
+        l10n.changeLine(
+          l10n.fieldMethod,
+          l10n.statMethod(ScoreMethod.standardArray),
+          l10n.statMethod(ScoreMethod.pointBuy),
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text(l10n.activityEmpty), findsNothing);
+  });
+
+  testWidgets('configuration : « Annuler » rend la configuration enregistrée', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(tester);
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    await _choose<ScoreMethod>(tester, l10n.statMethod(ScoreMethod.pointBuy));
+    await _tap(tester, find.widgetWithText(TextButton, l10n.cancel));
+    expect(find.text(l10n.unsavedTitle), findsNothing);
+    expect(find.text(l10n.methodChangeTitle), findsNothing);
+    expect(
+      (await TableStore(database).load(id, _gm.id))!.settings.statMethod,
+      ScoreMethod.standardArray,
+    );
+    expect(await TableStore(database).activity(id), isEmpty);
+  });
+
+  testWidgets('archivage : lecture seule, puis restauration', (tester) async {
+    final (database, id) = await _openTable(tester);
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    await _tap(tester, find.widgetWithText(OutlinedButton, l10n.archiveAction));
+    expect(find.text(l10n.archivedBanner), findsOneWidget);
+    expect(
+      tester
+          .widget<DropdownButtonFormField<ScoreMethod>>(
+            find.byType(DropdownButtonFormField<ScoreMethod>),
+          )
+          .onChanged,
+      isNull,
+    );
+    expect((await TableStore(database).load(id, _gm.id))!.archived, isTrue);
+
+    await _tap(tester, find.widgetWithText(OutlinedButton, l10n.restoreAction));
+    expect(find.text(l10n.archivedBanner), findsNothing);
+    expect((await TableStore(database).activity(id)).map((a) => a.kind), [
+      'restored',
+      'archived',
+    ]);
+  });
+
+  testWidgets('joueur : pas d\'onglet Configuration', (tester) async {
+    await _openTable(tester, gm: '00000000-0000-0000-0000-00000000000b');
+    expect(find.text(l10n.youArePlayer.toUpperCase()), findsOneWidget);
+    expect(find.text(l10n.tabOverview), findsOneWidget);
+    expect(find.text(l10n.tabConfiguration), findsNothing);
+    expect(find.text(l10n.activityEmpty), findsOneWidget);
+  });
+
+  testWidgets('desktop : configuration et panneau côte à côte', (tester) async {
+    await _openTable(tester, size: const Size(1440, 1100));
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    await _choose<ScoreMethod>(tester, l10n.statMethod(ScoreMethod.pointBuy));
+    expect(find.text(l10n.unsavedTitle), findsOneWidget);
+    expect(find.text(l10n.whoIsNotifiedTitle), findsOneWidget);
   });
 }

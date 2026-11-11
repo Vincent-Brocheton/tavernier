@@ -2258,4 +2258,102 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get rolePlayer => 'Joueur';
+
+  @override
+  String get tabOverview => 'Vue d’ensemble';
+
+  @override
+  String get tabConfiguration => 'Configuration';
+
+  @override
+  String get characterCreationSection => 'Création des personnages';
+
+  @override
+  String get gameRulesSection => 'Règles de jeu';
+
+  @override
+  String get visibilitySection => 'Visibilité entre joueurs';
+
+  @override
+  String get fullSheetsLabel => 'Ouvrir les fiches complètes des autres PJ';
+
+  @override
+  String get fullSheetsHint =>
+      'En lecture seule. Désactivé : chaque joueur voit nom, portrait, espèce, classe, niveau et état de santé qualitatif, sans PV chiffrés.';
+
+  @override
+  String get fullSheetsOpen => 'Ouvertes';
+
+  @override
+  String get fullSheetsClosed => 'Fermées';
+
+  @override
+  String get methodChangeTitle =>
+      'Ce changement ne touche pas les fiches existantes';
+
+  @override
+  String methodChangeBody(String method) {
+    return '$method s’appliquera aux prochaines créations. Les fiches de la table gardent leurs caractéristiques ; un personnage libre rattaché plus tard sera comparé à la nouvelle méthode.';
+  }
+
+  @override
+  String get milestonesNote =>
+      'Passer aux jalons garde les PX déjà acquis sur les fiches, mais ils n’évoluent plus ; vous accordez ensuite les niveaux vous-même.';
+
+  @override
+  String get sensitiveZone => 'Zone sensible';
+
+  @override
+  String get archiveTable => 'Archiver la table';
+
+  @override
+  String get archiveHint =>
+      'Tout passe en lecture seule pour tous les membres. Restaurable à tout moment.';
+
+  @override
+  String get archiveAction => 'Archiver';
+
+  @override
+  String get restoreTable => 'Restaurer la table';
+
+  @override
+  String get restoreHint =>
+      'La table redevient modifiable pour tous les membres.';
+
+  @override
+  String get restoreAction => 'Restaurer';
+
+  @override
+  String get archivedBanner =>
+      'Table archivée : lecture seule pour tous les membres.';
+
+  @override
+  String get unsavedTitle => 'Modifications non enregistrées';
+
+  @override
+  String changeLine(String label, String from, String to) {
+    return '$label : $from → $to';
+  }
+
+  @override
+  String get whoIsNotifiedTitle => 'Qui est prévenu';
+
+  @override
+  String get whoIsNotifiedBody =>
+      'Les joueurs voient la nouvelle règle dans la vue de la table à leur prochaine synchronisation. Chaque changement est daté dans l’activité de la table.';
+
+  @override
+  String get fieldMethod => 'Méthode';
+
+  @override
+  String get activityTitle => 'Activité';
+
+  @override
+  String get activityEmpty => 'Aucun changement pour l’instant.';
+
+  @override
+  String get activityArchived => 'Table archivée';
+
+  @override
+  String get activityRestored => 'Table restaurée';
 }

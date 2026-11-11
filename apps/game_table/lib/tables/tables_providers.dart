@@ -27,6 +27,12 @@ final tableProvider = FutureProvider.family<TableSummary?, String>((
   return ref.watch(tableStoreProvider).load(id, userId);
 });
 
+/// Activité d'une table, la plus récente d'abord (EF-TAB-11).
+final tableActivityProvider =
+    FutureProvider.family<List<TableActivity>, String>(
+      (ref, id) => ref.watch(tableStoreProvider).activity(id),
+    );
+
 /// Packs actifs d'une nouvelle table : le contenu de l'app, à sa version
 /// (EF-TAB-04). Au MVP, le pack SRD seul.
 final defaultTablePacksProvider = FutureProvider<List<TablePackRef>>((

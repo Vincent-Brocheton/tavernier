@@ -3239,5 +3239,137 @@
   "rolePlayer": "Joueur",
   "@rolePlayer": {
     "description": "Créer une table (US-13, écran T8)."
+  },
+  "tabOverview": "Vue d’ensemble",
+  "@tabOverview": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "tabConfiguration": "Configuration",
+  "@tabConfiguration": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "characterCreationSection": "Création des personnages",
+  "@characterCreationSection": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "gameRulesSection": "Règles de jeu",
+  "@gameRulesSection": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "visibilitySection": "Visibilité entre joueurs",
+  "@visibilitySection": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "fullSheetsLabel": "Ouvrir les fiches complètes des autres PJ",
+  "@fullSheetsLabel": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "fullSheetsHint": "En lecture seule. Désactivé : chaque joueur voit nom, portrait, espèce, classe, niveau et état de santé qualitatif, sans PV chiffrés.",
+  "@fullSheetsHint": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "fullSheetsOpen": "Ouvertes",
+  "@fullSheetsOpen": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "fullSheetsClosed": "Fermées",
+  "@fullSheetsClosed": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "methodChangeTitle": "Ce changement ne touche pas les fiches existantes",
+  "@methodChangeTitle": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "methodChangeBody": "{method} s’appliquera aux prochaines créations. Les fiches de la table gardent leurs caractéristiques ; un personnage libre rattaché plus tard sera comparé à la nouvelle méthode.",
+  "@methodChangeBody": {
+    "description": "Configuration et activité d’une table (US-13, écran F6).",
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "milestonesNote": "Passer aux jalons garde les PX déjà acquis sur les fiches, mais ils n’évoluent plus ; vous accordez ensuite les niveaux vous-même.",
+  "@milestonesNote": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "sensitiveZone": "Zone sensible",
+  "@sensitiveZone": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "archiveTable": "Archiver la table",
+  "@archiveTable": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "archiveHint": "Tout passe en lecture seule pour tous les membres. Restaurable à tout moment.",
+  "@archiveHint": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "archiveAction": "Archiver",
+  "@archiveAction": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "restoreTable": "Restaurer la table",
+  "@restoreTable": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "restoreHint": "La table redevient modifiable pour tous les membres.",
+  "@restoreHint": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "restoreAction": "Restaurer",
+  "@restoreAction": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "archivedBanner": "Table archivée : lecture seule pour tous les membres.",
+  "@archivedBanner": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "unsavedTitle": "Modifications non enregistrées",
+  "@unsavedTitle": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "changeLine": "{label} : {from} → {to}",
+  "@changeLine": {
+    "description": "Configuration et activité d’une table (US-13, écran F6).",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "whoIsNotifiedTitle": "Qui est prévenu",
+  "@whoIsNotifiedTitle": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "whoIsNotifiedBody": "Les joueurs voient la nouvelle règle dans la vue de la table à leur prochaine synchronisation. Chaque changement est daté dans l’activité de la table.",
+  "@whoIsNotifiedBody": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "fieldMethod": "Méthode",
+  "@fieldMethod": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "activityTitle": "Activité",
+  "@activityTitle": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "activityEmpty": "Aucun changement pour l’instant.",
+  "@activityEmpty": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "activityArchived": "Table archivée",
+  "@activityArchived": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "activityRestored": "Table restaurée",
+  "@activityRestored": {
+    "description": "Configuration et activité d’une table (US-13, écran F6)."
   }
 }
