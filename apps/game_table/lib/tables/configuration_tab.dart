@@ -52,32 +52,38 @@ class _ConfigurationTabState extends ConsumerState<ConfigurationTab> {
     ..invalidate(tableActivityProvider(widget.table.id))
     ..invalidate(myTablesProvider);
 
-  Future<void> _save() async {
+  /// Écrit avec le compte connecté ; les boutons restent inactifs pendant
+  /// l'écriture, et reviennent même si elle échoue.
+  Future<void> _write(
+    Future<void> Function(TableStore store, String userId) write,
+  ) async {
     final userId = ref.read(currentUserProvider).value?.id;
     if (userId == null) return;
     setState(() => _busy = true);
-    await ref
-        .read(tableStoreProvider)
-        .update(
-          widget.table.id,
-          authorUserId: userId,
-          settings: _settings,
-          fullSheetsVisible: _fullSheets,
-        );
-    _refresh();
-    if (mounted) setState(() => _busy = false);
+    try {
+      await write(ref.read(tableStoreProvider), userId);
+    } finally {
+      _refresh();
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
-  Future<void> _setArchived(bool archived) async {
-    final userId = ref.read(currentUserProvider).value?.id;
-    if (userId == null) return;
-    setState(() => _busy = true);
-    await ref
-        .read(tableStoreProvider)
-        .setArchived(widget.table.id, archived: archived, authorUserId: userId);
-    _refresh();
-    if (mounted) setState(() => _busy = false);
-  }
+  Future<void> _save() => _write(
+    (store, userId) => store.update(
+      widget.table.id,
+      authorUserId: userId,
+      settings: _settings,
+      fullSheetsVisible: _fullSheets,
+    ),
+  );
+
+  Future<void> _setArchived(bool archived) => _write(
+    (store, userId) => store.setArchived(
+      widget.table.id,
+      archived: archived,
+      authorUserId: userId,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
