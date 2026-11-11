@@ -173,18 +173,36 @@ final class TableStore {
       'LEFT JOIN table_member m ON m.table_id = g.id AND m.user_id = ?1 ';
 
   TableSummary _summary(QueryRow row, String userId) {
-    T byName<T extends Enum>(List<T> values, String column) =>
-        values.byName(row.read<String>(column));
+    // Une valeur inconnue (écrite ailleurs, ou plus récente) prend la valeur
+    // par défaut au lieu de faire échouer toute la liste.
+    T byName<T extends Enum>(List<T> values, String column, T fallback) =>
+        values.asNameMap()[row.read<String>(column)] ?? fallback;
     return TableSummary(
       id: row.read<String>('id'),
       settings: TableSettings(
         name: row.read<String>('name'),
         description: row.readNullable<String>('description'),
         startingLevel: row.read<int>('starting_level'),
-        statMethod: byName(ScoreMethod.values, 'stat_method'),
-        longRest: byName(LongRestRule.values, 'long_rest_rule'),
-        hpOnLevel: byName(HpOnLevel.values, 'hp_on_level_rule'),
-        progression: byName(Progression.values, 'progression_mode'),
+        statMethod: byName(
+          ScoreMethod.values,
+          'stat_method',
+          ScoreMethod.pointBuy,
+        ),
+        longRest: byName(
+          LongRestRule.values,
+          'long_rest_rule',
+          LongRestRule.fullHitPoints,
+        ),
+        hpOnLevel: byName(
+          HpOnLevel.values,
+          'hp_on_level_rule',
+          HpOnLevel.average,
+        ),
+        progression: byName(
+          Progression.values,
+          'progression_mode',
+          Progression.xp,
+        ),
       ),
       role: row.readNullable<String>('gm_user_id') == userId
           ? TableRole.gm

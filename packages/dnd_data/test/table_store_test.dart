@@ -86,6 +86,18 @@ void main() {
         expect(await store.list('inconnu'), isEmpty);
       });
 
+      test('valeur inconnue : valeur par défaut, la liste tient', () async {
+        await db.customStatement(
+          'INSERT INTO game_table (id, gm_user_id, name, stat_method, '
+          'long_rest_rule, hp_on_level_rule, progression_mode) '
+          "VALUES ('t1', ?, 'Ancienne', 'point_buy', 'full', 'average', 'xp')",
+          [_gm],
+        );
+        final [table] = await store.list(_gm);
+        expect(table.settings.statMethod, ScoreMethod.pointBuy);
+        expect(table.settings.longRest, LongRestRule.fullHitPoints);
+      });
+
       test('table absente : null', () async {
         expect(await store.load('absente', _gm), isNull);
       });
