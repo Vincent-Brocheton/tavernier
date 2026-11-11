@@ -3296,6 +3296,14 @@ class GameTable extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
   late final GeneratedColumn<String> statMethod = GeneratedColumn<String>(
     'stat_method',
     aliasedName,
@@ -3361,6 +3369,7 @@ class GameTable extends Table with TableInfo {
     id,
     gmUserId,
     name,
+    description,
     statMethod,
     longRestRule,
     hpOnLevelRule,

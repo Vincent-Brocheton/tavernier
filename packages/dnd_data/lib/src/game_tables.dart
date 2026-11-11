@@ -31,6 +31,7 @@ class GameTables extends Table with IdKey {
   String get tableName => 'game_table';
   TextColumn get gmUserId => text().nullable()();
   TextColumn get name => text()();
+  TextColumn get description => text().nullable()();
   TextColumn get statMethod => text()();
   TextColumn get longRestRule => text()();
   TextColumn get hpOnLevelRule => text()();

@@ -16337,6 +16337,17 @@ class $GameTablesTable extends GameTables
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _statMethodMeta = const VerificationMeta(
     'statMethod',
   );
@@ -16428,6 +16439,7 @@ class $GameTablesTable extends GameTables
     id,
     gmUserId,
     name,
+    description,
     statMethod,
     longRestRule,
     hpOnLevelRule,
@@ -16466,6 +16478,15 @@ class $GameTablesTable extends GameTables
       );
     } else if (isInserting) {
       context.missing(_nameMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
     }
     if (data.containsKey('stat_method')) {
       context.handle(
@@ -16553,6 +16574,10 @@ class $GameTablesTable extends GameTables
         DriftSqlType.string,
         data['${effectivePrefix}name'],
       )!,
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
       statMethod: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}stat_method'],
@@ -16594,6 +16619,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
   final String id;
   final String? gmUserId;
   final String name;
+  final String? description;
   final String statMethod;
   final String longRestRule;
   final String hpOnLevelRule;
@@ -16605,6 +16631,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
     required this.id,
     this.gmUserId,
     required this.name,
+    this.description,
     required this.statMethod,
     required this.longRestRule,
     required this.hpOnLevelRule,
@@ -16621,6 +16648,9 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
       map['gm_user_id'] = Variable<String>(gmUserId);
     }
     map['name'] = Variable<String>(name);
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
     map['stat_method'] = Variable<String>(statMethod);
     map['long_rest_rule'] = Variable<String>(longRestRule);
     map['hp_on_level_rule'] = Variable<String>(hpOnLevelRule);
@@ -16638,6 +16668,9 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
           ? const Value.absent()
           : Value(gmUserId),
       name: Value(name),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
       statMethod: Value(statMethod),
       longRestRule: Value(longRestRule),
       hpOnLevelRule: Value(hpOnLevelRule),
@@ -16657,6 +16690,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
       id: serializer.fromJson<String>(json['id']),
       gmUserId: serializer.fromJson<String?>(json['gmUserId']),
       name: serializer.fromJson<String>(json['name']),
+      description: serializer.fromJson<String?>(json['description']),
       statMethod: serializer.fromJson<String>(json['statMethod']),
       longRestRule: serializer.fromJson<String>(json['longRestRule']),
       hpOnLevelRule: serializer.fromJson<String>(json['hpOnLevelRule']),
@@ -16673,6 +16707,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
       'id': serializer.toJson<String>(id),
       'gmUserId': serializer.toJson<String?>(gmUserId),
       'name': serializer.toJson<String>(name),
+      'description': serializer.toJson<String?>(description),
       'statMethod': serializer.toJson<String>(statMethod),
       'longRestRule': serializer.toJson<String>(longRestRule),
       'hpOnLevelRule': serializer.toJson<String>(hpOnLevelRule),
@@ -16687,6 +16722,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
     String? id,
     Value<String?> gmUserId = const Value.absent(),
     String? name,
+    Value<String?> description = const Value.absent(),
     String? statMethod,
     String? longRestRule,
     String? hpOnLevelRule,
@@ -16698,6 +16734,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
     id: id ?? this.id,
     gmUserId: gmUserId.present ? gmUserId.value : this.gmUserId,
     name: name ?? this.name,
+    description: description.present ? description.value : this.description,
     statMethod: statMethod ?? this.statMethod,
     longRestRule: longRestRule ?? this.longRestRule,
     hpOnLevelRule: hpOnLevelRule ?? this.hpOnLevelRule,
@@ -16711,6 +16748,9 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
       id: data.id.present ? data.id.value : this.id,
       gmUserId: data.gmUserId.present ? data.gmUserId.value : this.gmUserId,
       name: data.name.present ? data.name.value : this.name,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
       statMethod: data.statMethod.present
           ? data.statMethod.value
           : this.statMethod,
@@ -16739,6 +16779,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
           ..write('id: $id, ')
           ..write('gmUserId: $gmUserId, ')
           ..write('name: $name, ')
+          ..write('description: $description, ')
           ..write('statMethod: $statMethod, ')
           ..write('longRestRule: $longRestRule, ')
           ..write('hpOnLevelRule: $hpOnLevelRule, ')
@@ -16755,6 +16796,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
     id,
     gmUserId,
     name,
+    description,
     statMethod,
     longRestRule,
     hpOnLevelRule,
@@ -16770,6 +16812,7 @@ class GameTableRow extends DataClass implements Insertable<GameTableRow> {
           other.id == this.id &&
           other.gmUserId == this.gmUserId &&
           other.name == this.name &&
+          other.description == this.description &&
           other.statMethod == this.statMethod &&
           other.longRestRule == this.longRestRule &&
           other.hpOnLevelRule == this.hpOnLevelRule &&
@@ -16783,6 +16826,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
   final Value<String> id;
   final Value<String?> gmUserId;
   final Value<String> name;
+  final Value<String?> description;
   final Value<String> statMethod;
   final Value<String> longRestRule;
   final Value<String> hpOnLevelRule;
@@ -16795,6 +16839,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
     this.id = const Value.absent(),
     this.gmUserId = const Value.absent(),
     this.name = const Value.absent(),
+    this.description = const Value.absent(),
     this.statMethod = const Value.absent(),
     this.longRestRule = const Value.absent(),
     this.hpOnLevelRule = const Value.absent(),
@@ -16808,6 +16853,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
     required String id,
     this.gmUserId = const Value.absent(),
     required String name,
+    this.description = const Value.absent(),
     required String statMethod,
     required String longRestRule,
     required String hpOnLevelRule,
@@ -16826,6 +16872,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
     Expression<String>? id,
     Expression<String>? gmUserId,
     Expression<String>? name,
+    Expression<String>? description,
     Expression<String>? statMethod,
     Expression<String>? longRestRule,
     Expression<String>? hpOnLevelRule,
@@ -16839,6 +16886,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
       if (id != null) 'id': id,
       if (gmUserId != null) 'gm_user_id': gmUserId,
       if (name != null) 'name': name,
+      if (description != null) 'description': description,
       if (statMethod != null) 'stat_method': statMethod,
       if (longRestRule != null) 'long_rest_rule': longRestRule,
       if (hpOnLevelRule != null) 'hp_on_level_rule': hpOnLevelRule,
@@ -16854,6 +16902,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
     Value<String>? id,
     Value<String?>? gmUserId,
     Value<String>? name,
+    Value<String?>? description,
     Value<String>? statMethod,
     Value<String>? longRestRule,
     Value<String>? hpOnLevelRule,
@@ -16867,6 +16916,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
       id: id ?? this.id,
       gmUserId: gmUserId ?? this.gmUserId,
       name: name ?? this.name,
+      description: description ?? this.description,
       statMethod: statMethod ?? this.statMethod,
       longRestRule: longRestRule ?? this.longRestRule,
       hpOnLevelRule: hpOnLevelRule ?? this.hpOnLevelRule,
@@ -16889,6 +16939,9 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
     }
     if (statMethod.present) {
       map['stat_method'] = Variable<String>(statMethod.value);
@@ -16923,6 +16976,7 @@ class GameTablesCompanion extends UpdateCompanion<GameTableRow> {
           ..write('id: $id, ')
           ..write('gmUserId: $gmUserId, ')
           ..write('name: $name, ')
+          ..write('description: $description, ')
           ..write('statMethod: $statMethod, ')
           ..write('longRestRule: $longRestRule, ')
           ..write('hpOnLevelRule: $hpOnLevelRule, ')
@@ -43348,6 +43402,7 @@ typedef $$GameTablesTableCreateCompanionBuilder = GameTablesCompanion Function({
   required String id,
   Value<String?> gmUserId,
   required String name,
+  Value<String?> description,
   required String statMethod,
   required String longRestRule,
   required String hpOnLevelRule,
@@ -43361,6 +43416,7 @@ typedef $$GameTablesTableUpdateCompanionBuilder = GameTablesCompanion Function({
   Value<String> id,
   Value<String?> gmUserId,
   Value<String> name,
+  Value<String?> description,
   Value<String> statMethod,
   Value<String> longRestRule,
   Value<String> hpOnLevelRule,
@@ -43392,6 +43448,11 @@ class $$GameTablesTableFilterComposer
 
   ColumnFilters<String> get name => $composableBuilder(
     column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -43455,6 +43516,11 @@ class $$GameTablesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get statMethod => $composableBuilder(
     column: $table.statMethod,
     builder: (column) => ColumnOrderings(column),
@@ -43508,6 +43574,11 @@ class $$GameTablesTableAnnotationComposer
 
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get statMethod => $composableBuilder(
     column: $table.statMethod,
@@ -43577,6 +43648,7 @@ class $$GameTablesTableTableManager
                 Value<String> id = const Value.absent(),
                 Value<String?> gmUserId = const Value.absent(),
                 Value<String> name = const Value.absent(),
+                Value<String?> description = const Value.absent(),
                 Value<String> statMethod = const Value.absent(),
                 Value<String> longRestRule = const Value.absent(),
                 Value<String> hpOnLevelRule = const Value.absent(),
@@ -43589,6 +43661,7 @@ class $$GameTablesTableTableManager
                 id: id,
                 gmUserId: gmUserId,
                 name: name,
+                description: description,
                 statMethod: statMethod,
                 longRestRule: longRestRule,
                 hpOnLevelRule: hpOnLevelRule,
@@ -43603,6 +43676,7 @@ class $$GameTablesTableTableManager
                 required String id,
                 Value<String?> gmUserId = const Value.absent(),
                 required String name,
+                Value<String?> description = const Value.absent(),
                 required String statMethod,
                 required String longRestRule,
                 required String hpOnLevelRule,
@@ -43615,6 +43689,7 @@ class $$GameTablesTableTableManager
                 id: id,
                 gmUserId: gmUserId,
                 name: name,
+                description: description,
                 statMethod: statMethod,
                 longRestRule: longRestRule,
                 hpOnLevelRule: hpOnLevelRule,
