@@ -7,4 +7,4 @@
 
 - [x] 2.1 « Nouvelle table » [T8] ; tests
 - [x] 2.2 Liste des tables de l'onglet Tables, page de la table ; tests
-- [ ] 2.3 Vérification dans le navigateur
+- [x] 2.3 Vérification dans le navigateur
