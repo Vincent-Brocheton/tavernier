@@ -41,7 +41,7 @@ Aucune.
 ## Impact
 
 - `backend/supabase/migrations/`, `backend/supabase/tests/`, `backend/powersync/sync-config.yaml` et son test.
-- `packages/dnd_data` : table `pc_slot` (schéma Drift v2), `TableStore`, `CharacterStore`.
+- `packages/dnd_data` : table `pc_slot` (instantané Drift v1 régénéré), `TableStore`, `CharacterStore`.
 - `apps/game_table` : Membres, vue d'ensemble, création, onglet Personnages ; ARB ; tests.
 
 **À faire par le porteur de projet** : redéployer les règles de synchronisation PowerSync (nouveau flux `pc_slot`).

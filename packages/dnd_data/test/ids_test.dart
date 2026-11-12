@@ -29,4 +29,10 @@ void main() {
     final second = uuidV7(at: DateTime.utc(2026, 11, 6, 0, 0, 1));
     expect(first.compareTo(second), isNegative);
   });
+
+  test('identifiants successifs : strictement croissants', () {
+    final ids = [for (var i = 0; i < 1000; i++) uuidV7()];
+    expect(ids, [...ids]..sort());
+    expect(ids.toSet(), hasLength(1000));
+  });
 }

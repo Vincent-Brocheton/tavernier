@@ -118,6 +118,37 @@ void _tests(Future<TavernierDatabase> Function() open) {
     });
   });
 
+  test('fiche de table : rattachée à la création, jamais effacée', () async {
+    final aldric = CharacterInput.fromJson(aldricJson());
+    await store.save('a', aldric, tableId: 't1');
+    await store.save('a', aldric.copyWith(name: 'Aldric Varenne'));
+    final row = await db
+        .customSelect("SELECT table_id, status FROM character WHERE id = 'a'")
+        .getSingle();
+    expect(row.read<String>('table_id'), 't1');
+    expect(row.read<String>('status'), 'draft');
+
+    await store.setStatus('a', 'submitted');
+    expect(await store.status('a'), 'submitted');
+  });
+
+  test('liste : les fiches de l\'utilisateur, pas celles des autres', () async {
+    final aldric = CharacterInput.fromJson(aldricJson());
+    await store.save('mienne', aldric);
+    await store.save('envoyee', aldric);
+    await store.save('autre', aldric);
+    await db.customStatement(
+      "UPDATE character SET owner_user_id = 'moi' WHERE id = 'envoyee'",
+    );
+    await db.customStatement(
+      "UPDATE character SET owner_user_id = 'hugo' WHERE id = 'autre'",
+    );
+    expect((await store.list(ownerUserId: 'moi')).map((c) => c.id), [
+      'envoyee',
+      'mienne',
+    ]);
+  });
+
   test('liste : du plus ancien au plus récent, par identifiant', () async {
     final aldric = CharacterInput.fromJson(aldricJson());
     final older = uuidV7(at: DateTime.utc(2026));

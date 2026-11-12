@@ -3765,6 +3765,82 @@ class TableActivity extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
+class PcSlot extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  PcSlot(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> playerUserId = GeneratedColumn<String>(
+    'player_user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    playerUserId,
+    characterId,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'pc_slot';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  PcSlot createAlias(String alias) {
+    return PcSlot(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
 class Character extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5673,6 +5749,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final TablePack tablePack = TablePack(this);
   late final TableBannedEntity tableBannedEntity = TableBannedEntity(this);
   late final TableActivity tableActivity = TableActivity(this);
+  late final PcSlot pcSlot = PcSlot(this);
   late final Character character = Character(this);
   late final CharacterBaseScores characterBaseScores = CharacterBaseScores(
     this,
@@ -5748,6 +5825,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     tablePack,
     tableBannedEntity,
     tableActivity,
+    pcSlot,
     character,
     characterBaseScores,
     characterBackgroundChoice,

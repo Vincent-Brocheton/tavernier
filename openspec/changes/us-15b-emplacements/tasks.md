@@ -5,8 +5,8 @@
 
 ## 2. Données
 
-- [ ] 2.1 Table Drift `pc_slot` (schéma v2, migration)
-- [ ] 2.2 Tests puis emplacements dans `TableStore`, fiche rattachée, statut et liste par propriétaire dans `CharacterStore`
+- [x] 2.1 Table Drift `pc_slot` (instantané v1 régénéré)
+- [x] 2.2 Tests puis emplacements dans `TableStore`, fiche rattachée, statut et liste par propriétaire dans `CharacterStore`
 
 ## 3. App
 

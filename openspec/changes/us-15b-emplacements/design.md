@@ -22,7 +22,7 @@ Le trigger de retrait passe par une fonction `security definer` : le garde laiss
 
 ## Base locale
 
-- Nouvelle table Drift `PcSlots` (`pc_slot`), synchronisée, sans clé étrangère (vue PowerSync). Le schéma passe en v2, avec un instantané et sa migration (`make-migrations`).
+- Nouvelle table Drift `PcSlots` (`pc_slot`), synchronisée, sans clé étrangère (vue PowerSync). Le schéma reste en v1, instantané régénéré : l'app n'est pas publiée (même choix qu'en US-13).
 - `TableStore` :
   - `createSlot(tableId, playerUserId)`, `deleteSlot(id)` ;
   - `watchSlots(tableId)` : emplacements avec le nom et le statut de leur fiche (jointure) ;

@@ -1,12 +1,23 @@
 import 'dart:math';
 
+/// Dernier horodatage donné sans [uuidV7.at].
+var _lastMillis = 0;
+
 /// UUID v7 (RFC 9562) : 48 bits d'horodatage, puis de l'aléa. Les données
-/// utilisateur reçoivent cet identifiant (cahier §10).
+/// utilisateur reçoivent cet identifiant (cahier §10). Sans [at], les
+/// identifiants d'un même processus croissent strictement : dans la même
+/// milliseconde, l'horodatage avance d'une unité (RFC 9562, §6.2), pour que
+/// l'ordre des identifiants reste celui de leur création.
 String uuidV7({DateTime? at, Random? random}) {
   final source = random ?? Random.secure();
   final bytes = List<int>.generate(16, (_) => source.nextInt(256));
+  var time =
+      at?.millisecondsSinceEpoch ??
+      (_lastMillis = max(
+        DateTime.now().millisecondsSinceEpoch,
+        _lastMillis + 1,
+      ));
   // Divisions et non décalages : sur le Web, ceux-ci s'arrêtent à 32 bits.
-  var time = (at ?? DateTime.now()).millisecondsSinceEpoch;
   for (var i = 5; i >= 0; i--) {
     bytes[i] = time % 256;
     time ~/= 256;

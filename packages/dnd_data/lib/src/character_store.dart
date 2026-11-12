@@ -28,116 +28,122 @@ final class CharacterStore {
   final TavernierDatabase _db;
 
   /// Enregistre [character] sous [id] ; un enregistrement existant est mis
-  /// à jour sans toucher à son état de jeu ni à son historique.
-  Future<void> save(String id, CharacterInput character) => _db.transaction(
-    () async {
-      final c = character.toJson();
-      final base = c['base_scores']! as Map<String, Object?>;
-      final columns = {
-        'kind': character.kind,
-        'name': character.name,
-        'player': character.player,
-        'species_id': character.speciesId,
-        'species_choices': jsonEncode(character.speciesChoices),
-        'background_id': character.backgroundId,
-        'xp': character.xp,
-        'score_rolls': base['rolls'] == null ? null : jsonEncode(base['rolls']),
-        'coins': jsonEncode(character.coins),
-        'alignment': character.alignment,
-        'appearance': character.appearance,
-        'personality': character.personality,
-        'backstory': character.backstory,
-      };
-      await _upsert('character', 'id', id, columns, {'status': 'draft'});
-      // Lignes voulues, par table : seules les différences s'écrivent, pour
-      // ne pas écraser ce qu'un autre appareil a modifié (ENF-03).
-      final wanted = {
-        for (final t in _inputTables) t: <String, Map<String, Object?>>{},
-      };
-      void insert(String table, String key, Map<String, Object?> row) =>
-          wanted[table]!['$id:$table:$key'] = {'character_id': id, ...row};
+  /// à jour sans toucher à son état de jeu ni à son historique. [tableId]
+  /// rattache une fiche neuve à une table ; il n'est jamais effacé ensuite.
+  Future<void> save(
+    String id,
+    CharacterInput character, {
+    String? tableId,
+  }) => _db.transaction(() async {
+    final c = character.toJson();
+    final base = c['base_scores']! as Map<String, Object?>;
+    final columns = {
+      'kind': character.kind,
+      'name': character.name,
+      'player': character.player,
+      'species_id': character.speciesId,
+      'species_choices': jsonEncode(character.speciesChoices),
+      'background_id': character.backgroundId,
+      'xp': character.xp,
+      'score_rolls': base['rolls'] == null ? null : jsonEncode(base['rolls']),
+      'coins': jsonEncode(character.coins),
+      'alignment': character.alignment,
+      'appearance': character.appearance,
+      'personality': character.personality,
+      'backstory': character.backstory,
+    };
+    await _upsert('character', 'id', id, columns, {
+      'status': 'draft',
+      'table_id': ?tableId,
+    });
+    // Lignes voulues, par table : seules les différences s'écrivent, pour
+    // ne pas écraser ce qu'un autre appareil a modifié (ENF-03).
+    final wanted = {
+      for (final t in _inputTables) t: <String, Map<String, Object?>>{},
+    };
+    void insert(String table, String key, Map<String, Object?> row) =>
+        wanted[table]!['$id:$table:$key'] = {'character_id': id, ...row};
 
-      for (final code in abilityCodes) {
-        insert('character_base_scores', code, {
-          'ability_id': code,
-          'base': character.baseScores.of(code),
-          'method': base['method'],
-        });
-      }
-      final bg = character.backgroundChoice;
-      insert('character_background_choice', 'bg', {
-        'distribution': bg.distribution,
-        'bonuses': jsonEncode(bg.bonuses),
-        'tool_choice': bg.toolChoice,
+    for (final code in abilityCodes) {
+      insert('character_base_scores', code, {
+        'ability_id': code,
+        'base': character.baseScores.of(code),
+        'method': base['method'],
       });
-      for (final (i, cl) in character.classLevels.indexed) {
-        insert('character_class_level', '$i', {
-          'class_id': cl.classId,
-          'level': cl.level,
-          'subclass_id': cl.subclassId,
-          'hp_roll': cl.hpRoll == null ? null : jsonEncode(cl.hpRoll),
-          'skill_choices': jsonEncode(cl.skillChoices),
-          'expertise': jsonEncode(cl.expertise),
-          'position': i,
+    }
+    final bg = character.backgroundChoice;
+    insert('character_background_choice', 'bg', {
+      'distribution': bg.distribution,
+      'bonuses': jsonEncode(bg.bonuses),
+      'tool_choice': bg.toolChoice,
+    });
+    for (final (i, cl) in character.classLevels.indexed) {
+      insert('character_class_level', '$i', {
+        'class_id': cl.classId,
+        'level': cl.level,
+        'subclass_id': cl.subclassId,
+        'hp_roll': cl.hpRoll == null ? null : jsonEncode(cl.hpRoll),
+        'skill_choices': jsonEncode(cl.skillChoices),
+        'expertise': jsonEncode(cl.expertise),
+        'position': i,
+      });
+    }
+    for (final (i, f) in character.feats.indexed) {
+      insert('character_feat', '$i', {
+        'feat_id': f.featId,
+        'source_type': f.sourceType,
+        'source_ref': f.sourceRef,
+        'choices': f.choices == null ? null : jsonEncode(f.choices),
+        'position': i,
+      });
+    }
+    for (final (i, m) in character.weaponMasteries.indexed) {
+      insert('character_weapon_mastery', '$i', {
+        'weapon_id': m.weaponId,
+        'slot_index': m.slotIndex,
+      });
+    }
+    for (final (i, item) in character.items.indexed) {
+      insert('character_item', '$i', {
+        'item_id': item.itemId,
+        'quantity': item.quantity,
+        'equipped': item.equipped,
+        'attuned': item.attuned,
+        'position': i,
+      });
+    }
+    final spells = character.spells;
+    for (final (source, list) in [
+      ('cantrip', spells.cantrips),
+      ('class', {...spells.spellbook, ...spells.prepared}),
+    ]) {
+      for (final (i, spell) in list.indexed) {
+        // Clé ordonnée : la relecture trie par id (une vue n'a pas de rowid).
+        insert('character_spell', '$source:${i.toString().padLeft(4, '0')}', {
+          'spell_id': spell,
+          'source': source,
+          'prepared': spells.prepared.contains(spell),
+          'in_spellbook': spells.spellbook.contains(spell),
+          'class_id': spells.classes[spell],
         });
       }
-      for (final (i, f) in character.feats.indexed) {
-        insert('character_feat', '$i', {
-          'feat_id': f.featId,
-          'source_type': f.sourceType,
-          'source_ref': f.sourceRef,
-          'choices': f.choices == null ? null : jsonEncode(f.choices),
-          'position': i,
-        });
-      }
-      for (final (i, m) in character.weaponMasteries.indexed) {
-        insert('character_weapon_mastery', '$i', {
-          'weapon_id': m.weaponId,
-          'slot_index': m.slotIndex,
-        });
-      }
-      for (final (i, item) in character.items.indexed) {
-        insert('character_item', '$i', {
-          'item_id': item.itemId,
-          'quantity': item.quantity,
-          'equipped': item.equipped,
-          'attuned': item.attuned,
-          'position': i,
-        });
-      }
-      final spells = character.spells;
-      for (final (source, list) in [
-        ('cantrip', spells.cantrips),
-        ('class', {...spells.spellbook, ...spells.prepared}),
-      ]) {
-        for (final (i, spell) in list.indexed) {
-          // Clé ordonnée : la relecture trie par id (une vue n'a pas de rowid).
-          insert('character_spell', '$source:${i.toString().padLeft(4, '0')}', {
-            'spell_id': spell,
-            'source': source,
-            'prepared': spells.prepared.contains(spell),
-            'in_spellbook': spells.spellbook.contains(spell),
-            'class_id': spells.classes[spell],
-          });
-        }
-      }
-      for (final (i, language) in character.languages.indexed) {
-        insert('character_language', '$i', {
-          'language_id': language,
-          'position': i,
-        });
-      }
-      for (final MapEntry(:key, :value) in character.choices.entries) {
-        insert('character_choice', key, {
-          'choice_key': key,
-          'selections': jsonEncode(value),
-        });
-      }
-      for (final MapEntry(key: table, value: rows) in wanted.entries) {
-        await _writeDifference(table, id, rows);
-      }
-    },
-  );
+    }
+    for (final (i, language) in character.languages.indexed) {
+      insert('character_language', '$i', {
+        'language_id': language,
+        'position': i,
+      });
+    }
+    for (final MapEntry(:key, :value) in character.choices.entries) {
+      insert('character_choice', key, {
+        'choice_key': key,
+        'selections': jsonEncode(value),
+      });
+    }
+    for (final MapEntry(key: table, value: rows) in wanted.entries) {
+      await _writeDifference(table, id, rows);
+    }
+  });
 
   /// Personnages enregistrés, du plus ancien au plus récent.
   /// État de jeu de [id] ; vide si rien n'a encore été dépensé.
@@ -248,9 +254,38 @@ final class CharacterStore {
     await _db.customStatement('DELETE FROM character WHERE id = ?', [id]);
   });
 
-  Future<List<({String id, CharacterInput character})>> list() async {
+  /// Statut de la fiche : `draft`, `submitted`, `validated`,
+  /// `changes_requested` ou `archived`.
+  Future<String?> status(String id) async =>
+      (await _db
+              .customSelect(
+                'SELECT status FROM character WHERE id = ?',
+                variables: [Variable.withString(id)],
+              )
+              .getSingleOrNull())
+          ?.read<String>('status');
+
+  /// Change le statut ; le serveur n'accepte que les passages permis.
+  Future<void> setStatus(String id, String status) => _db.customStatement(
+    'UPDATE character SET status = ? WHERE id = ?',
+    [status, id],
+  );
+
+  /// Personnages de l'appareil. Avec [ownerUserId], seulement ceux de cet
+  /// utilisateur et ceux pas encore envoyés : un MJ reçoit aussi les fiches
+  /// de ses joueurs.
+  Future<List<({String id, CharacterInput character})>> list({
+    String? ownerUserId,
+  }) async {
     final rows = await _db
-        .customSelect('SELECT id FROM character ORDER BY id')
+        .customSelect(
+          'SELECT id FROM character '
+          '${ownerUserId == null ? '' : 'WHERE owner_user_id IS NULL OR owner_user_id = ? '}'
+          'ORDER BY id',
+          variables: [
+            if (ownerUserId != null) Variable.withString(ownerUserId),
+          ],
+        )
         .get();
     return [
       for (final row in rows)
