@@ -4566,6 +4566,149 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Conflit résolu'**
   String get syncConflict;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Conflit résolu à la synchronisation.'**
+  String get conflictBannerTitle;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{author} a réglé {field} à {kept} ; votre valeur ({replaced}) a été remplacée.'**
+  String conflictBannerBody(
+    String author,
+    String field,
+    String kept,
+    String replaced,
+  );
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'En combat, la version du MJ prime.'**
+  String get conflictGmPriority;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir l’historique'**
+  String get conflictSeeHistory;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'OK'**
+  String get conflictOk;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un autre appareil'**
+  String get conflictSomeone;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Conflit résolu : {field}'**
+  String historyConflict(String field);
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Gardé : {kept} · Remplacé : {replaced}'**
+  String historyConflictAuthors(String kept, String replaced);
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV'**
+  String get fieldHp;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Épuisement'**
+  String get fieldExhaustion;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inspiration héroïque'**
+  String get fieldInspiration;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration'**
+  String get fieldConcentration;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ressources'**
+  String get fieldResources;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom'**
+  String get fieldName;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'PX'**
+  String get fieldXp;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Monnaie'**
+  String get fieldCoins;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Alignement'**
+  String get fieldAlignment;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Apparence'**
+  String get fieldAppearance;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnalité'**
+  String get fieldPersonality;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Histoire'**
+  String get fieldBackstory;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Oui'**
+  String get valueYes;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Non'**
+  String get valueNo;
+
+  /// Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aucune'**
+  String get valueNone;
 }
 
 class _AppLocalizationsDelegate

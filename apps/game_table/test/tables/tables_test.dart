@@ -860,4 +860,53 @@ void main() {
     final [summary] = await TableStore(database).watchGroup(id).first;
     expect(summary.health, Health.unhurt);
   });
+  _testTable('historique : conflit résolu, valeur remplacée barrée', (
+    tester,
+  ) async {
+    final (database, _) = await _openTable(tester);
+    await CharacterStore(database).save('c1', _aldric());
+    await database.customStatement(
+      'INSERT INTO profile (id, pseudonym, locale, settings) VALUES '
+      "(?, 'Camille', 'fr', '{}'), (?, 'Hugo', 'fr', '{}')",
+      [_gm.id, _hugo],
+    );
+    await database.customStatement(
+      'INSERT INTO character_change_log (id, character_id, author_user_id, '
+      "timestamp, diff) VALUES ('k1', 'c1', ?, '2026-11-12T10:00:00.000Z', ?)",
+      [
+        _gm.id,
+        '{"kind": "conflict", "table": "character_state", '
+            '"field": "hp_current", "kept": 34, "kept_by": "${_gm.id}", '
+            '"replaced": 39, "replaced_by": "$_hugo"}',
+      ],
+    );
+    unawaited(
+      GoRouter.of(tester.element(find.byType(TablePage)))
+          .push(historyPath('c1')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Conflit résolu : PV'), findsOneWidget);
+    // Text.rich enveloppe le texte : on cherche le fragment « 39 » barré.
+    bool struck39(InlineSpan root) {
+      var found = false;
+      root.visitChildren((span) {
+        if (span is TextSpan &&
+            span.text == '39' &&
+            span.style?.decoration == TextDecoration.lineThrough) {
+          found = true;
+        }
+        return !found;
+      });
+      return found;
+    }
+
+    final struck = find.byWidgetPredicate(
+      (w) => w is RichText && struck39(w.text),
+    );
+    expect(struck, findsOneWidget);
+    expect(
+      find.text(l10n.historyConflictAuthors('Camille', 'Hugo')),
+      findsOneWidget,
+    );
+  });
 }

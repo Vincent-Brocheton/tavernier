@@ -92,11 +92,23 @@ final class CharacterSummary {
 /// Entrée de l'historique d'une fiche (`character_change_log`).
 final class CharacterHistoryEntry {
   const CharacterHistoryEntry({
+    this.id = '',
+    this.characterId = '',
     required this.at,
     required this.authorUserId,
     required this.detail,
   });
 
+  static CharacterHistoryEntry fromRow(QueryRow row) => CharacterHistoryEntry(
+    id: row.read<String>('id'),
+    characterId: row.read<String>('character_id'),
+    at: DateTime.parse(row.read<String>('timestamp')),
+    authorUserId: row.readNullable<String>('author_user_id'),
+    detail: jsonDecode(row.read<String>('diff')) as Map<String, Object?>,
+  );
+
+  final String id;
+  final String characterId;
   final DateTime at;
   final String? authorUserId;
   final Map<String, Object?> detail;
@@ -418,12 +430,34 @@ final class CharacterStore {
               variables: [Variable.withString(id)],
             )
             .get())
-      CharacterHistoryEntry(
-        at: DateTime.parse(row.read<String>('timestamp')),
-        authorUserId: row.readNullable<String>('author_user_id'),
-        detail: jsonDecode(row.read<String>('diff')) as Map<String, Object?>,
-      ),
+      CharacterHistoryEntry.fromRow(row),
   ];
+
+  /// Conflits qui ont remplacé une valeur de [userId] (US-16), le plus
+  /// récent d'abord, à jour à chaque synchronisation.
+  Stream<List<CharacterHistoryEntry>> watchConflicts(String userId) => _db
+      .customSelect(
+        'SELECT * FROM character_change_log '
+        "WHERE json_extract(diff, '\$.kind') = 'conflict' "
+        "AND json_extract(diff, '\$.replaced_by') = ? "
+        'ORDER BY timestamp DESC, id DESC',
+        variables: [Variable.withString(userId)],
+        readsFrom: {_db.characterChangeLogs},
+      )
+      .watch()
+      .map(
+        (rows) => [for (final row in rows) CharacterHistoryEntry.fromRow(row)],
+      );
+
+  /// Pseudonyme de [userId], s'il est connu de l'appareil.
+  Future<String?> pseudonymOf(String userId) async =>
+      (await _db
+              .customSelect(
+                'SELECT pseudonym FROM profile WHERE id = ?',
+                variables: [Variable.withString(userId)],
+              )
+              .getSingleOrNull())
+          ?.read<String>('pseudonym');
 
   /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
   /// statut ; `null` si elle n'existe pas.

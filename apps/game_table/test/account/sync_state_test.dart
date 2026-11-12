@@ -14,6 +14,7 @@ import 'package:game_table/account/sync_state.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations_fr.dart';
 import 'package:game_table/main.dart';
+import 'package:game_table/sheet/conflicts.dart';
 import 'package:material_ui/material_ui.dart';
 
 import 'fakes.dart';
@@ -28,6 +29,7 @@ List<Override> _overrides({
     connecting: false,
   ),
   int pending = 0,
+  List<CharacterHistoryEntry> conflicts = const [],
 }) {
   final gateway = FakeGateway(signedIn: signedIn);
   return [
@@ -36,6 +38,7 @@ List<Override> _overrides({
     onlineProvider.overrideWith((ref) => Stream.value(online)),
     powerSyncConnectionProvider.overrideWith((ref) => Stream.value(connection)),
     pendingUploadsCountProvider.overrideWith((ref) => Stream.value(pending)),
+    myConflictsProvider.overrideWith((ref) => Stream.value(conflicts)),
   ];
 }
 
@@ -50,6 +53,24 @@ Future<({SyncIndicatorState state, int pending})?> _state(
 }
 
 void main() {
+  test('conflit pas encore vu : avant tout le reste', () async {
+    final sync = await _state(
+      _overrides(
+        online: false,
+        conflicts: [
+          CharacterHistoryEntry(
+            id: 'k1',
+            at: DateTime.utc(2026, 11, 12),
+            authorUserId: 'mj',
+            detail: const {'kind': 'conflict'},
+          ),
+        ],
+      ),
+    );
+    expect(sync?.state, SyncIndicatorState.conflict);
+    expect(syncLabel(_l10n, sync!), 'Conflit résolu');
+  });
+
   test('sans compte : pas d\'indicateur', () async {
     expect(await _state(_overrides(signedIn: false)), isNull);
   });

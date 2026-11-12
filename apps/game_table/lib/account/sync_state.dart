@@ -5,6 +5,7 @@ import 'package:powersync/powersync.dart' show SyncStatus;
 
 import '../creation/creation_providers.dart';
 import '../l10n/app_localizations.dart';
+import '../sheet/conflicts.dart';
 import 'account_providers.dart';
 
 /// Connexion au service de synchronisation ; `null` sans PowerSync (base
@@ -48,7 +49,10 @@ final syncIndicatorProvider =
       final pending = ref.watch(pendingUploadsCountProvider).value ?? 0;
       final connected =
           connection != null && (connection.connected || connection.connecting);
-      final state = !online || !connected
+      // Un conflit pas encore vu passe avant le reste (ENF-02).
+      final state = ref.watch(unseenConflictsProvider).isNotEmpty
+          ? SyncIndicatorState.conflict
+          : !online || !connected
           ? SyncIndicatorState.offline
           : pending > 0
           ? SyncIndicatorState.pending

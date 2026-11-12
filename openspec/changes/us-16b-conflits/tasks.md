@@ -10,5 +10,5 @@
 
 ## 3. App
 
-- [ ] 3.1 Conflits non vus, bandeau de la fiche, indicateur ; tests
-- [ ] 3.2 Historique : valeur remplacée barrée ; tests
+- [x] 3.1 Conflits non vus, bandeau de la fiche, indicateur ; tests
+- [x] 3.2 Historique : valeur remplacée barrée ; tests

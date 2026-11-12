@@ -173,6 +173,31 @@ void _tests(Future<TavernierDatabase> Function() open) {
     expect(history.first.authorUserId, 'mj');
   });
 
+  test(
+    'conflits : ceux qui ont remplacé une valeur de l\'utilisateur',
+    () async {
+      await store.save('a', CharacterInput.fromJson(aldricJson()));
+      for (final (id, replacedBy) in [('k1', 'hugo'), ('k2', 'ines')]) {
+        await db.customStatement(
+          'INSERT INTO character_change_log (id, character_id, author_user_id, '
+          'timestamp, diff) VALUES (?, ?, ?, ?, ?)',
+          [
+            id,
+            'a',
+            'mj',
+            '2026-11-12T10:00:00.000Z',
+            '{"kind": "conflict", "field": "hp_current", "kept": 34, '
+                '"replaced": 39, "replaced_by": "$replacedBy"}',
+          ],
+        );
+      }
+      final [conflict] = await store.watchConflicts('hugo').first;
+      expect(conflict.id, 'k1');
+      expect(conflict.characterId, 'a');
+      expect(conflict.detail['kept'], 34);
+    },
+  );
+
   test('liste : du plus ancien au plus récent, par identifiant', () async {
     final aldric = CharacterInput.fromJson(aldricJson());
     final older = uuidV7(at: DateTime.utc(2026));
