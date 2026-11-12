@@ -4,6 +4,7 @@ import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart';
 
 import 'database.dart';
+import 'ids.dart';
 import 'powersync.dart';
 
 /// Tables qui contiennent l'entrée stockée d'un personnage ; l'état de jeu,
@@ -19,6 +20,19 @@ const _inputTables = [
   'character_language',
   'character_choice',
 ];
+
+/// Entrée de l'historique d'une fiche (`character_change_log`).
+final class CharacterHistoryEntry {
+  const CharacterHistoryEntry({
+    required this.at,
+    required this.authorUserId,
+    required this.detail,
+  });
+
+  final DateTime at;
+  final String? authorUserId;
+  final Map<String, Object?> detail;
+}
 
 /// Écrit et relit un personnage stocké (`CharacterInput`) dans les tables
 /// `character_*` (cahier §11.2). Aucun calcul de règles ici.
@@ -274,6 +288,73 @@ final class CharacterStore {
     ]);
     _db.markTablesUpdated({_db.characters});
   }
+
+  /// Personnages libres de [ownerUserId] : sans table, non archivés, à lui ou
+  /// pas encore envoyés (cahier §4.3).
+  Future<List<({String id, String name})>> freeCharacters(
+    String ownerUserId,
+  ) async => [
+    for (final row
+        in await _db
+            .customSelect(
+              'SELECT id, name FROM character WHERE table_id IS NULL '
+              "AND status <> 'archived' "
+              'AND (owner_user_id IS NULL OR owner_user_id = ?) ORDER BY id',
+              variables: [Variable.withString(ownerUserId)],
+            )
+            .get())
+      (id: row.read<String>('id'), name: row.read<String>('name')),
+  ];
+
+  /// Rattache un personnage libre à [tableId] et l'envoie au MJ pour
+  /// revalidation, avec un message facultatif.
+  Future<void> attach(String id, String tableId, String? message) => _update(
+    id,
+    {'table_id': tableId, 'status': 'submitted', 'submit_message': message},
+  );
+
+  /// Inscrit des dérogations du MJ dans l'historique de la fiche, sans
+  /// notification (cahier §4.3). Chaque entrée : `check`, `table`, `sheet`,
+  /// `message` facultatif.
+  Future<void> addDerogations(
+    String id,
+    String authorUserId,
+    List<Map<String, Object?>> derogations,
+  ) async {
+    await _db.transaction(() async {
+      for (final derogation in derogations) {
+        await _db.customStatement(
+          'INSERT INTO character_change_log (id, character_id, '
+          'author_user_id, timestamp, diff) VALUES (?, ?, ?, ?, ?)',
+          [
+            uuidV7(),
+            id,
+            authorUserId,
+            DateTime.now().toUtc().toIso8601String(),
+            jsonEncode({'kind': 'derogation', ...derogation}),
+          ],
+        );
+      }
+    });
+    _db.markTablesUpdated({_db.characterChangeLogs});
+  }
+
+  /// Historique de la fiche, le plus récent d'abord.
+  Future<List<CharacterHistoryEntry>> history(String id) async => [
+    for (final row
+        in await _db
+            .customSelect(
+              'SELECT * FROM character_change_log WHERE character_id = ? '
+              'ORDER BY timestamp DESC, id DESC',
+              variables: [Variable.withString(id)],
+            )
+            .get())
+      CharacterHistoryEntry(
+        at: DateTime.parse(row.read<String>('timestamp')),
+        authorUserId: row.readNullable<String>('author_user_id'),
+        detail: jsonDecode(row.read<String>('diff')) as Map<String, Object?>,
+      ),
+  ];
 
   /// Envoie la fiche au MJ, avec un message facultatif (US-15).
   Future<void> submit(String id, String? message) =>

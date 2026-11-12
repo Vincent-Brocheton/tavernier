@@ -4,7 +4,7 @@
 
 ## 2. Données
 
-- [ ] 2.1 Tests puis `freeCharacters`, `attach`, `addDerogations`, `history`
+- [x] 2.1 Tests puis `freeCharacters`, `attach`, `addDerogations`, `history`
 
 ## 3. App
 
