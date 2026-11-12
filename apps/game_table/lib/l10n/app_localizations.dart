@@ -4212,6 +4212,102 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Valeur de {ability}'**
   String assignValueLabel(String ability);
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthode imposée par la table : {method}'**
+  String methodImposed(String method);
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon personnage'**
+  String get myCharacterTitle;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer ma fiche'**
+  String get createMySheet;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer au MJ'**
+  String get submitToGm;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre'**
+  String get withdrawSheet;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Montez la fiche au niveau {level} avant de l’envoyer.'**
+  String reachStartingLevel(int level);
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} · {status}'**
+  String sheetLevelStatus(int level, String status);
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attribuer un emplacement'**
+  String get assignSlot;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l’emplacement'**
+  String get removeSlot;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacement libre'**
+  String get slotEmpty;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'en création'**
+  String get statusDraft;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'à valider'**
+  String get statusSubmitted;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'validée'**
+  String get statusValidated;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'corrections demandées'**
+  String get statusChangesRequested;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'archivée'**
+  String get statusArchived;
+
+  /// Emplacements de PJ et fiches de table (US-15, cahier §4.3).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ({status})'**
+  String slotLineOf(String name, String status);
 }
 
 class _AppLocalizationsDelegate

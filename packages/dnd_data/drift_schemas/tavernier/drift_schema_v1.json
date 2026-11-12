@@ -4139,6 +4139,73 @@
       "references": [],
       "type": "table",
       "data": {
+        "name": "pc_slot",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "player_user_id",
+            "getter_name": "playerUserId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "character_id",
+            "getter_name": "characterId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 43,
+      "references": [],
+      "type": "table",
+      "data": {
         "name": "character",
         "was_declared_in_moor": false,
         "columns": [
@@ -4332,7 +4399,7 @@
       }
     },
     {
-      "id": 43,
+      "id": 44,
       "references": [],
       "type": "table",
       "data": {
@@ -4405,7 +4472,7 @@
       }
     },
     {
-      "id": 44,
+      "id": 45,
       "references": [],
       "type": "table",
       "data": {
@@ -4487,7 +4554,7 @@
       }
     },
     {
-      "id": 45,
+      "id": 46,
       "references": [],
       "type": "table",
       "data": {
@@ -4600,7 +4667,7 @@
       }
     },
     {
-      "id": 46,
+      "id": 47,
       "references": [],
       "type": "table",
       "data": {
@@ -4687,7 +4754,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 48,
       "references": [],
       "type": "table",
       "data": {
@@ -4744,7 +4811,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 49,
       "references": [],
       "type": "table",
       "data": {
@@ -4839,7 +4906,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 50,
       "references": [],
       "type": "table",
       "data": {
@@ -4934,7 +5001,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 51,
       "references": [],
       "type": "table",
       "data": {
@@ -5060,7 +5127,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 52,
       "references": [],
       "type": "table",
       "data": {
@@ -5137,7 +5204,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 53,
       "references": [],
       "type": "table",
       "data": {
@@ -5204,7 +5271,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 54,
       "references": [],
       "type": "table",
       "data": {
@@ -5261,7 +5328,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 55,
       "references": [],
       "type": "table",
       "data": {
@@ -5324,7 +5391,7 @@
       }
     },
     {
-      "id": 55,
+      "id": 56,
       "references": [],
       "type": "table",
       "data": {
@@ -5401,7 +5468,7 @@
       }
     },
     {
-      "id": 56,
+      "id": 57,
       "references": [],
       "type": "table",
       "data": {
@@ -5458,9 +5525,9 @@
       }
     },
     {
-      "id": 57,
+      "id": 58,
       "references": [
-        56
+        57
       ],
       "type": "table",
       "data": {
@@ -5543,9 +5610,9 @@
       }
     },
     {
-      "id": 58,
+      "id": 59,
       "references": [
-        57
+        58
       ],
       "type": "table",
       "data": {
@@ -5692,9 +5759,9 @@
       }
     },
     {
-      "id": 59,
+      "id": 60,
       "references": [
-        57
+        58
       ],
       "type": "table",
       "data": {
@@ -5797,7 +5864,7 @@
       }
     },
     {
-      "id": 60,
+      "id": 61,
       "references": [],
       "type": "table",
       "data": {
@@ -5888,7 +5955,7 @@
       }
     },
     {
-      "id": 61,
+      "id": 62,
       "references": [],
       "type": "table",
       "data": {
@@ -6301,6 +6368,15 @@
         {
           "dialect": "sqlite",
           "sql": "CREATE TABLE IF NOT EXISTS \"table_activity\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, \"at\" TEXT NOT NULL, \"kind\" TEXT NOT NULL, \"detail\" TEXT NOT NULL DEFAULT '{}', PRIMARY KEY (\"id\"));"
+        }
+      ]
+    },
+    {
+      "name": "pc_slot",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"pc_slot\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"player_user_id\" TEXT NOT NULL, \"character_id\" TEXT NULL, \"created_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

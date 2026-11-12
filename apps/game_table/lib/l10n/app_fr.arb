@@ -3588,5 +3588,95 @@
         "type": "String"
       }
     }
+  },
+  "methodImposed": "Méthode imposée par la table : {method}",
+  "@methodImposed": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3).",
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "myCharacterTitle": "Mon personnage",
+  "@myCharacterTitle": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "createMySheet": "Créer ma fiche",
+  "@createMySheet": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "submitToGm": "Envoyer au MJ",
+  "@submitToGm": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "withdrawSheet": "Reprendre",
+  "@withdrawSheet": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "reachStartingLevel": "Montez la fiche au niveau {level} avant de l’envoyer.",
+  "@reachStartingLevel": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3).",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "sheetLevelStatus": "Niveau {level} · {status}",
+  "@sheetLevelStatus": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3).",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "assignSlot": "Attribuer un emplacement",
+  "@assignSlot": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "removeSlot": "Retirer l’emplacement",
+  "@removeSlot": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "slotEmpty": "Emplacement libre",
+  "@slotEmpty": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "statusDraft": "en création",
+  "@statusDraft": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "statusSubmitted": "à valider",
+  "@statusSubmitted": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "statusValidated": "validée",
+  "@statusValidated": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "statusChangesRequested": "corrections demandées",
+  "@statusChangesRequested": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "statusArchived": "archivée",
+  "@statusArchived": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3)."
+  },
+  "slotLineOf": "{name} ({status})",
+  "@slotLineOf": {
+    "description": "Emplacements de PJ et fiches de table (US-15, cahier §4.3).",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../l10n/app_localizations.dart';
 import '../tables/table_labels.dart';
+import '../tables/tables_providers.dart';
 import 'abilities_step.dart';
 import 'background_step.dart';
 import 'class_step.dart';
@@ -19,13 +20,40 @@ import 'subchoices.dart';
 import 'subchoices_step.dart';
 import 'summary_step.dart';
 
-/// Assistant de création en 9 étapes (cahier §5.1, [P1]–[P9]).
+/// Assistant de création en 9 étapes (cahier §5.1, [P1]–[P9]). Ouvert
+/// depuis un emplacement de PJ ([tableId], [slotId]), il suit la table
+/// (US-15, cahier §4.3).
 class CreationPage extends ConsumerWidget {
-  const CreationPage({super.key});
+  const CreationPage({super.key, this.tableId, this.slotId});
+
+  final String? tableId;
+  final String? slotId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    if (tableId case final tableId? when slotId != null) {
+      final table = ref.watch(tableProvider(tableId)).value;
+      if (table == null) {
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      }
+      if (ref.watch(creationProvider.select((d) => d.table)) == null) {
+        Future.microtask(
+          () => ref
+              .read(creationProvider.notifier)
+              .update(
+                (d) => d.forTable(
+                  TableConstraint(
+                    tableId: tableId,
+                    slotId: slotId!,
+                    method: table.settings.statMethod,
+                    startingLevel: table.settings.startingLevel,
+                  ),
+                ),
+              ),
+        );
+      }
+    }
     return Scaffold(
       body: SafeArea(
         child: ref

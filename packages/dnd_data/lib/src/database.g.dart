@@ -18697,6 +18697,380 @@ class TableActivitiesCompanion extends UpdateCompanion<TableActivityRow> {
   }
 }
 
+class $PcSlotsTable extends PcSlots with TableInfo<$PcSlotsTable, PcSlotRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PcSlotsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _playerUserIdMeta = const VerificationMeta(
+    'playerUserId',
+  );
+  @override
+  late final GeneratedColumn<String> playerUserId = GeneratedColumn<String>(
+    'player_user_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    playerUserId,
+    characterId,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'pc_slot';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PcSlotRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('player_user_id')) {
+      context.handle(
+        _playerUserIdMeta,
+        playerUserId.isAcceptableOrUnknown(
+          data['player_user_id']!,
+          _playerUserIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_playerUserIdMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PcSlotRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PcSlotRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      playerUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}player_user_id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
+    );
+  }
+
+  @override
+  $PcSlotsTable createAlias(String alias) {
+    return $PcSlotsTable(attachedDatabase, alias);
+  }
+}
+
+class PcSlotRow extends DataClass implements Insertable<PcSlotRow> {
+  final String id;
+  final String tableId;
+  final String playerUserId;
+  final String? characterId;
+  final DateTime? createdAt;
+  const PcSlotRow({
+    required this.id,
+    required this.tableId,
+    required this.playerUserId,
+    this.characterId,
+    this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['player_user_id'] = Variable<String>(playerUserId);
+    if (!nullToAbsent || characterId != null) {
+      map['character_id'] = Variable<String>(characterId);
+    }
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
+    return map;
+  }
+
+  PcSlotsCompanion toCompanion(bool nullToAbsent) {
+    return PcSlotsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      playerUserId: Value(playerUserId),
+      characterId: characterId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(characterId),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+    );
+  }
+
+  factory PcSlotRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PcSlotRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      playerUserId: serializer.fromJson<String>(json['playerUserId']),
+      characterId: serializer.fromJson<String?>(json['characterId']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'playerUserId': serializer.toJson<String>(playerUserId),
+      'characterId': serializer.toJson<String?>(characterId),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
+    };
+  }
+
+  PcSlotRow copyWith({
+    String? id,
+    String? tableId,
+    String? playerUserId,
+    Value<String?> characterId = const Value.absent(),
+    Value<DateTime?> createdAt = const Value.absent(),
+  }) => PcSlotRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    playerUserId: playerUserId ?? this.playerUserId,
+    characterId: characterId.present ? characterId.value : this.characterId,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+  );
+  PcSlotRow copyWithCompanion(PcSlotsCompanion data) {
+    return PcSlotRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      playerUserId: data.playerUserId.present
+          ? data.playerUserId.value
+          : this.playerUserId,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PcSlotRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('playerUserId: $playerUserId, ')
+          ..write('characterId: $characterId, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, tableId, playerUserId, characterId, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PcSlotRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.playerUserId == this.playerUserId &&
+          other.characterId == this.characterId &&
+          other.createdAt == this.createdAt);
+}
+
+class PcSlotsCompanion extends UpdateCompanion<PcSlotRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> playerUserId;
+  final Value<String?> characterId;
+  final Value<DateTime?> createdAt;
+  final Value<int> rowid;
+  const PcSlotsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.playerUserId = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PcSlotsCompanion.insert({
+    required String id,
+    required String tableId,
+    required String playerUserId,
+    this.characterId = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       playerUserId = Value(playerUserId);
+  static Insertable<PcSlotRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? playerUserId,
+    Expression<String>? characterId,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (playerUserId != null) 'player_user_id': playerUserId,
+      if (characterId != null) 'character_id': characterId,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PcSlotsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? playerUserId,
+    Value<String?>? characterId,
+    Value<DateTime?>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return PcSlotsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      playerUserId: playerUserId ?? this.playerUserId,
+      characterId: characterId ?? this.characterId,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (playerUserId.present) {
+      map['player_user_id'] = Variable<String>(playerUserId.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PcSlotsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('playerUserId: $playerUserId, ')
+          ..write('characterId: $characterId, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $CharactersTable extends Characters
     with TableInfo<$CharactersTable, CharacterRow> {
   @override
@@ -27877,6 +28251,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $TableActivitiesTable tableActivities = $TableActivitiesTable(
     this,
   );
+  late final $PcSlotsTable pcSlots = $PcSlotsTable(this);
   late final $CharactersTable characters = $CharactersTable(this);
   late final $CharacterBaseScoresTable characterBaseScores =
       $CharacterBaseScoresTable(this);
@@ -27961,6 +28336,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     tablePacks,
     tableBannedEntities,
     tableActivities,
+    pcSlots,
     characters,
     characterBaseScores,
     characterBackgroundChoices,
@@ -45191,6 +45567,217 @@ typedef $$TableActivitiesTableProcessedTableManager =
       TableActivityRow,
       PrefetchHooks Function()
     >;
+typedef $$PcSlotsTableCreateCompanionBuilder = PcSlotsCompanion Function({
+  required String id,
+  required String tableId,
+  required String playerUserId,
+  Value<String?> characterId,
+  Value<DateTime?> createdAt,
+  Value<int> rowid,
+});
+typedef $$PcSlotsTableUpdateCompanionBuilder = PcSlotsCompanion Function({
+  Value<String> id,
+  Value<String> tableId,
+  Value<String> playerUserId,
+  Value<String?> characterId,
+  Value<DateTime?> createdAt,
+  Value<int> rowid,
+});
+
+class $$PcSlotsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $PcSlotsTable> {
+  $$PcSlotsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get playerUserId => $composableBuilder(
+    column: $table.playerUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$PcSlotsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $PcSlotsTable> {
+  $$PcSlotsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get playerUserId => $composableBuilder(
+    column: $table.playerUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$PcSlotsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $PcSlotsTable> {
+  $$PcSlotsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get playerUserId => $composableBuilder(
+    column: $table.playerUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$PcSlotsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $PcSlotsTable,
+          PcSlotRow,
+          $$PcSlotsTableFilterComposer,
+          $$PcSlotsTableOrderingComposer,
+          $$PcSlotsTableAnnotationComposer,
+          $$PcSlotsTableCreateCompanionBuilder,
+          $$PcSlotsTableUpdateCompanionBuilder,
+          (
+            PcSlotRow,
+            BaseReferences<_$TavernierDatabase, $PcSlotsTable, PcSlotRow>,
+          ),
+          PcSlotRow,
+          PrefetchHooks Function()
+        > {
+  $$PcSlotsTableTableManager(_$TavernierDatabase db, $PcSlotsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PcSlotsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PcSlotsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PcSlotsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> playerUserId = const Value.absent(),
+                Value<String?> characterId = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PcSlotsCompanion(
+                id: id,
+                tableId: tableId,
+                playerUserId: playerUserId,
+                characterId: characterId,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String playerUserId,
+                Value<String?> characterId = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PcSlotsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                playerUserId: playerUserId,
+                characterId: characterId,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$PcSlotsTable, PcSlotRow>(table),
+                  BaseReferences<_$TavernierDatabase, $PcSlotsTable, PcSlotRow>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$PcSlotsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $PcSlotsTable,
+      PcSlotRow,
+      $$PcSlotsTableFilterComposer,
+      $$PcSlotsTableOrderingComposer,
+      $$PcSlotsTableAnnotationComposer,
+      $$PcSlotsTableCreateCompanionBuilder,
+      $$PcSlotsTableUpdateCompanionBuilder,
+      (
+        PcSlotRow,
+        BaseReferences<_$TavernierDatabase, $PcSlotsTable, PcSlotRow>,
+      ),
+      PcSlotRow,
+      PrefetchHooks Function()
+    >;
 typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   required String id,
   Value<String?> tableId,
@@ -51000,6 +51587,8 @@ class $TavernierDatabaseManager {
       $$TableBannedEntitiesTableTableManager(_db, _db.tableBannedEntities);
   $$TableActivitiesTableTableManager get tableActivities =>
       $$TableActivitiesTableTableManager(_db, _db.tableActivities);
+  $$PcSlotsTableTableManager get pcSlots =>
+      $$PcSlotsTableTableManager(_db, _db.pcSlots);
   $$CharactersTableTableManager get characters =>
       $$CharactersTableTableManager(_db, _db.characters);
   $$CharacterBaseScoresTableTableManager get characterBaseScores =>

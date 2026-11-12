@@ -140,6 +140,12 @@ class _MethodChoice extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
+    if (draft.table != null) {
+      return Text(
+        l10n.methodImposed(l10n.statMethod(draft.method)),
+        style: text.titleMedium,
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -205,18 +211,22 @@ class _Assign extends ConsumerWidget {
             spacing: AppSpacing.sm,
             runSpacing: AppSpacing.sm,
             children: [
-              FilledButton.icon(
-                onPressed: () {
-                  final generator = Random();
-                  notifier.update(
-                    (d) => d.withRolls([
-                      for (var i = 0; i < 6; i++) roll4d6DropLowest(generator),
-                    ]),
-                  );
-                },
-                icon: const Icon(Icons.casino_outlined),
-                label: Text(l10n.rollDice),
-              ),
+              // Dans une table, un seul lancer : on ne relance pas jusqu'à
+              // de meilleures valeurs.
+              if (draft.table == null || draft.rolls == null)
+                FilledButton.icon(
+                  onPressed: () {
+                    final generator = Random();
+                    notifier.update(
+                      (d) => d.withRolls([
+                        for (var i = 0; i < 6; i++)
+                          roll4d6DropLowest(generator),
+                      ]),
+                    );
+                  },
+                  icon: const Icon(Icons.casino_outlined),
+                  label: Text(l10n.rollDice),
+                ),
               OutlinedButton(
                 onPressed: () => _enterRolls(context, ref),
                 child: Text(l10n.enterRolls),

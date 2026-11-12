@@ -2524,4 +2524,60 @@ class AppLocalizationsFr extends AppLocalizations {
   String assignValueLabel(String ability) {
     return 'Valeur de $ability';
   }
+
+  @override
+  String methodImposed(String method) {
+    return 'Méthode imposée par la table : $method';
+  }
+
+  @override
+  String get myCharacterTitle => 'Mon personnage';
+
+  @override
+  String get createMySheet => 'Créer ma fiche';
+
+  @override
+  String get submitToGm => 'Envoyer au MJ';
+
+  @override
+  String get withdrawSheet => 'Reprendre';
+
+  @override
+  String reachStartingLevel(int level) {
+    return 'Montez la fiche au niveau $level avant de l’envoyer.';
+  }
+
+  @override
+  String sheetLevelStatus(int level, String status) {
+    return 'Niveau $level · $status';
+  }
+
+  @override
+  String get assignSlot => 'Attribuer un emplacement';
+
+  @override
+  String get removeSlot => 'Retirer l’emplacement';
+
+  @override
+  String get slotEmpty => 'Emplacement libre';
+
+  @override
+  String get statusDraft => 'en création';
+
+  @override
+  String get statusSubmitted => 'à valider';
+
+  @override
+  String get statusValidated => 'validée';
+
+  @override
+  String get statusChangesRequested => 'corrections demandées';
+
+  @override
+  String get statusArchived => 'archivée';
+
+  @override
+  String slotLineOf(String name, String status) {
+    return '$name ($status)';
+  }
 }

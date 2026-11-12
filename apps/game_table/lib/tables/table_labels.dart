@@ -70,6 +70,21 @@ extension TableLabels on AppLocalizations {
     };
   }
 
+  /// Statut d'une fiche de table (US-15).
+  String characterStatus(String? status) => switch (status) {
+    'submitted' => statusSubmitted,
+    'validated' => statusValidated,
+    'changes_requested' => statusChangesRequested,
+    'archived' => statusArchived,
+    _ => statusDraft,
+  };
+
+  /// Ligne d'un emplacement : « Aldric Varenne (en création) ».
+  String slotLine(PcSlot slot) => switch (slot.characterName) {
+    final name? => slotLineOf(name, characterStatus(slot.status)),
+    null => slotEmpty,
+  };
+
   String role(TableRole role) => switch (role) {
     TableRole.gm => roleGm,
     TableRole.player => rolePlayer,

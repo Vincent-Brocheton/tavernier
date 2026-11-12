@@ -35,6 +35,22 @@ enum MissingChoice {
   rules,
 }
 
+/// Table d'une création ouverte depuis un emplacement de PJ (US-15) : la
+/// méthode est imposée, la fiche y est rattachée.
+final class TableConstraint {
+  const TableConstraint({
+    required this.tableId,
+    required this.slotId,
+    required this.method,
+    required this.startingLevel,
+  });
+
+  final String tableId;
+  final String slotId;
+  final ScoreMethod method;
+  final int startingLevel;
+}
+
 /// Valeurs standard (SRD p. 21), des plus hautes aux plus basses.
 const standardArray = [15, 14, 13, 12, 10, 8];
 
@@ -70,6 +86,7 @@ final class CreationDraft {
     },
     this.method = ScoreMethod.pointBuy,
     this.rolls,
+    this.table,
     this.distribution = '2-1',
     this.bonuses = const {},
     this.classSkills = const [],
@@ -110,6 +127,9 @@ final class CreationDraft {
 
   /// Jets de la génération aléatoire ; `null` tant qu'ils ne sont pas faits.
   final List<int>? rolls;
+
+  /// Table qui impose sa méthode ; `null` pour un personnage libre.
+  final TableConstraint? table;
 
   /// `2-1` ou `1-1-1`.
   final String distribution;
@@ -158,7 +178,8 @@ final class CreationDraft {
 
   /// Change de méthode : 8 partout en points, le tableau standard réparti,
   /// ou les valeurs actuelles en attendant les jets.
-  CreationDraft withMethod(ScoreMethod value) => value == method
+  CreationDraft withMethod(ScoreMethod value) =>
+      value == method || table != null
       ? this
       : _with(
           method: value,
@@ -171,6 +192,10 @@ final class CreationDraft {
             ScoreMethod.random => scores,
           },
         );
+
+  /// Création pour une table : sa méthode, imposée.
+  CreationDraft forTable(TableConstraint value) =>
+      withMethod(value.method)._with(table: value);
 
   /// Garde les jets et les répartit du plus haut au plus bas, de la Force au
   /// Charisme.
@@ -441,6 +466,7 @@ final class CreationDraft {
     ScoreMethod? method,
     List<int>? rolls,
     bool clearRolls = false,
+    TableConstraint? table,
     String? distribution,
     Map<String, int>? bonuses,
     List<String>? classSkills,
@@ -474,6 +500,7 @@ final class CreationDraft {
     scores: scores ?? this.scores,
     method: method ?? this.method,
     rolls: clearRolls ? null : rolls ?? this.rolls,
+    table: table ?? this.table,
     distribution: distribution ?? this.distribution,
     bonuses: bonuses ?? this.bonuses,
     classSkills: classSkills ?? this.classSkills,

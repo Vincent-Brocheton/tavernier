@@ -136,6 +136,29 @@ final class TableMemberInfo {
   final TableRole role;
 }
 
+/// Emplacement de PJ (US-15), avec la fiche qui le remplit.
+final class PcSlot {
+  const PcSlot({
+    required this.id,
+    required this.playerUserId,
+    this.characterId,
+    this.characterName,
+    this.status,
+    this.level,
+  });
+
+  final String id;
+  final String playerUserId;
+  final String? characterId;
+  final String? characterName;
+
+  /// Statut de la fiche (`draft`, `submitted`…), `null` sans fiche.
+  final String? status;
+
+  /// Niveau total de la fiche (somme des niveaux de classe).
+  final int? level;
+}
+
 /// Pack activé dans une table, à sa version figée (EF-TAB-04).
 typedef TablePackRef = ({String packId, String version});
 
@@ -395,6 +418,52 @@ final class TableStore {
               role: row.read<String>('role') == 'gm'
                   ? TableRole.gm
                   : TableRole.player,
+            ),
+        ],
+      );
+
+  /// Attribue un emplacement de PJ à [playerUserId] ; rend son identifiant.
+  Future<String> createSlot(String tableId, String playerUserId) async {
+    final id = uuidV7();
+    await _write(
+      'INSERT INTO pc_slot (id, table_id, player_user_id, created_at) '
+      'VALUES (?, ?, ?, ?)',
+      [id, tableId, playerUserId, DateTime.now().toUtc().toIso8601String()],
+    );
+    return id;
+  }
+
+  Future<void> deleteSlot(String id) =>
+      _write('DELETE FROM pc_slot WHERE id = ?', [id]);
+
+  /// Place la fiche [characterId] dans l'emplacement [slotId].
+  Future<void> fillSlot(String slotId, String characterId) => _write(
+    'UPDATE pc_slot SET character_id = ? WHERE id = ?',
+    [characterId, slotId],
+  );
+
+  /// Emplacements de la table, dans l'ordre d'attribution, avec leur fiche.
+  Stream<List<PcSlot>> watchSlots(String tableId) => _db
+      .customSelect(
+        'SELECT s.id, s.player_user_id, s.character_id, c.name, c.status, '
+        '(SELECT sum(l.level) FROM character_class_level l '
+        'WHERE l.character_id = s.character_id) AS level '
+        'FROM pc_slot s LEFT JOIN character c ON c.id = s.character_id '
+        'WHERE s.table_id = ? ORDER BY s.created_at, s.id',
+        variables: [Variable.withString(tableId)],
+        readsFrom: {_db.pcSlots, _db.characters, _db.characterClassLevels},
+      )
+      .watch()
+      .map(
+        (rows) => [
+          for (final row in rows)
+            PcSlot(
+              id: row.read<String>('id'),
+              playerUserId: row.read<String>('player_user_id'),
+              characterId: row.readNullable<String>('character_id'),
+              characterName: row.readNullable<String>('name'),
+              status: row.readNullable<String>('status'),
+              level: row.readNullable<int>('level'),
             ),
         ],
       );

@@ -282,6 +282,8 @@ class _MemberList extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
     final members = ref.watch(tableMembersProvider(table.id)).value ?? [];
+    final slots = ref.watch(tableSlotsProvider(table.id)).value ?? [];
+    final store = ref.read(tableStoreProvider);
     final gm = table.role == TableRole.gm;
     return Card(
       margin: EdgeInsets.zero,
@@ -296,27 +298,56 @@ class _MemberList extends ConsumerWidget {
                 builder: (context) {
                   final name = member.pseudonym ?? l10n.memberUnknown;
                   final role = l10n.role(member.role);
-                  return ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: CircleAvatar(
-                      child: Text(name.characters.first.toUpperCase()),
-                    ),
-                    title: Text(name),
-                    subtitle: Text(
-                      member.userId == me ? l10n.memberYou(role) : role,
-                    ),
-                    trailing:
-                        gm && member.role == TableRole.player && !table.archived
-                        ? PopupMenuButton<void>(
-                            itemBuilder: (_) => [
-                              PopupMenuItem(
-                                onTap: () =>
-                                    _remove(context, ref, member, name),
-                                child: Text(l10n.removeMember),
-                              ),
-                            ],
-                          )
-                        : null,
+                  final editable = gm && !table.archived;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: CircleAvatar(
+                          child: Text(name.characters.first.toUpperCase()),
+                        ),
+                        title: Text(name),
+                        subtitle: Text(
+                          member.userId == me ? l10n.memberYou(role) : role,
+                        ),
+                        trailing: editable
+                            ? PopupMenuButton<void>(
+                                itemBuilder: (_) => [
+                                  PopupMenuItem(
+                                    onTap: () => store.createSlot(
+                                      table.id,
+                                      member.userId,
+                                    ),
+                                    child: Text(l10n.assignSlot),
+                                  ),
+                                  if (member.role == TableRole.player)
+                                    PopupMenuItem(
+                                      onTap: () =>
+                                          _remove(context, ref, member, name),
+                                      child: Text(l10n.removeMember),
+                                    ),
+                                ],
+                              )
+                            : null,
+                      ),
+                      // Ses emplacements, sous le membre (cahier §4.3).
+                      for (final slot in slots)
+                        if (slot.playerUserId == member.userId)
+                          ListTile(
+                            dense: true,
+                            contentPadding: const EdgeInsets.only(left: 56),
+                            leading: const Icon(Icons.person_outline),
+                            title: Text(l10n.slotLine(slot)),
+                            trailing: editable && slot.characterId == null
+                                ? IconButton(
+                                    tooltip: l10n.removeSlot,
+                                    onPressed: () => store.deleteSlot(slot.id),
+                                    icon: const Icon(Icons.close),
+                                  )
+                                : null,
+                          ),
+                    ],
                   );
                 },
               ),

@@ -53,6 +53,7 @@ part 'database.g.dart';
     TablePacks,
     TableBannedEntities,
     TableActivities,
+    PcSlots,
     Characters,
     CharacterBaseScores,
     CharacterBackgroundChoices,

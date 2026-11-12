@@ -387,7 +387,7 @@ void main() {
     expect(find.text(l10n.memberYou(l10n.roleGm)), findsOneWidget);
     expect(find.text('Hugo'), findsOneWidget);
 
-    await _tap(tester, find.byType(PopupMenuButton<void>));
+    await _tap(tester, find.byType(PopupMenuButton<void>).last);
     await _tap(tester, find.text(l10n.removeMember));
     expect(find.text(l10n.removeMemberTitle('Hugo')), findsOneWidget);
     await _tap(tester, find.widgetWithText(FilledButton, l10n.removeAction));
@@ -469,5 +469,96 @@ void main() {
     expect(find.text(l10n.joinWaiting), findsOneWidget);
     expect(find.text(l10n.joinWaitingHint), findsOneWidget);
     expect(gateway.joins, isEmpty);
+  });
+  _testTable('emplacements : le MJ en attribue, en retire un vide', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(tester);
+    await database.customStatement(
+      'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+      "VALUES ('m8', ?, '00000000-0000-0000-0000-00000000000b', 'player', "
+      "'2026-11-11T10:00:00Z')",
+      [id],
+    );
+    await database.customStatement(
+      'INSERT INTO profile (id, pseudonym, locale, settings) VALUES '
+      "('00000000-0000-0000-0000-00000000000b', 'Hugo', 'fr', '{}')",
+    );
+    await _tap(tester, find.text(l10n.tabMembers));
+    await _tap(tester, find.byType(PopupMenuButton<void>).last);
+    await _tap(tester, find.text(l10n.assignSlot));
+    expect(find.text(l10n.slotEmpty), findsOneWidget);
+    final [slot] = await TableStore(database).watchSlots(id).first;
+    expect(slot.playerUserId, '00000000-0000-0000-0000-00000000000b');
+
+    await _tap(tester, find.byTooltip(l10n.removeSlot));
+    expect(find.text(l10n.slotEmpty), findsNothing);
+  });
+
+  _testTable('mon personnage : créer, puis envoyer au MJ et reprendre', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(
+      tester,
+      gm: '00000000-0000-0000-0000-00000000000b',
+    );
+    final store = TableStore(database);
+    final slot = await store.createSlot(id, _gm.id);
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.myCharacterTitle), findsOneWidget);
+    expect(find.text(l10n.createMySheet), findsOneWidget);
+
+    await database.customStatement(
+      'INSERT INTO character (id, table_id, kind, name, species_id, '
+      "background_id, status) VALUES ('c1', ?, 'pc', 'Aldric', "
+      "'srd:species:human', 'srd:background:soldier', 'draft')",
+      [id],
+    );
+    await store.fillSlot(slot, 'c1');
+    await tester.pumpAndSettle();
+    expect(find.text('Aldric'), findsOneWidget);
+    expect(
+      find.text(l10n.sheetLevelStatus(1, l10n.statusDraft)),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.text(l10n.submitToGm));
+    expect(await CharacterStore(database).status('c1'), 'submitted');
+    expect(find.text(l10n.withdrawSheet), findsOneWidget);
+    await _tap(tester, find.text(l10n.withdrawSheet));
+    expect(await CharacterStore(database).status('c1'), 'draft');
+  });
+
+  _testTable('mon personnage : niveau de départ à atteindre avant l\'envoi', (
+    tester,
+  ) async {
+    late String id;
+    await _pump(
+      tester,
+      seed: (database) async {
+        id = await TableStore(database).create(
+          gmUserId: '00000000-0000-0000-0000-00000000000b',
+          settings: _brumeval.copyWith(startingLevel: 3),
+          packs: const [],
+        );
+        await database.customStatement(
+          'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+          "VALUES ('m9', ?, ?, 'player', '2026-11-11T10:00:00Z')",
+          [id, _gm.id],
+        );
+        await database.customStatement(
+          'INSERT INTO character (id, table_id, kind, name, species_id, '
+          "background_id, status) VALUES ('c1', ?, 'pc', 'Aldric', "
+          "'srd:species:human', 'srd:background:soldier', 'draft')",
+          [id],
+        );
+        final slot = await TableStore(database).createSlot(id, _gm.id);
+        await TableStore(database).fillSlot(slot, 'c1');
+      },
+    );
+    GoRouter.of(tester.element(find.byType(TablesTab))).go('/tables/$id');
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.reachStartingLevel(3)), findsOneWidget);
+    expect(find.text(l10n.submitToGm), findsNothing);
   });
 }

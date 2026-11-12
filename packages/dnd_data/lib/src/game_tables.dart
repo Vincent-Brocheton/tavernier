@@ -96,6 +96,16 @@ class TableActivities extends Table with IdKey, TableOwned {
   TextColumn get detail => text().withDefault(const Constant('{}'))();
 }
 
+/// Emplacement de PJ attribué par le MJ à un joueur (US-15, cahier §4.3).
+@DataClassName('PcSlotRow')
+class PcSlots extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'pc_slot';
+  TextColumn get playerUserId => text()();
+  TextColumn get characterId => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().nullable()();
+}
+
 @DataClassName('TableBannedEntityRow')
 class TableBannedEntities extends Table with IdKey, TableOwned {
   @override

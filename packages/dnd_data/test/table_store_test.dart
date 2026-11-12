@@ -236,6 +236,43 @@ void main() {
         ]);
       });
 
+      test('emplacements : attribués, remplis, niveau et statut', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        final first = await store.createSlot(id, _player);
+        final second = await store.createSlot(id, _player);
+        expect((await store.watchSlots(id).first).map((s) => s.id), [
+          first,
+          second,
+        ]);
+
+        await db.customStatement(
+          'INSERT INTO character (id, table_id, kind, name, species_id, '
+          "background_id, status) VALUES ('c1', ?, 'pc', 'Aldric', "
+          "'srd:species:human', 'srd:background:soldier', 'draft')",
+          [id],
+        );
+        await db.customStatement(
+          'INSERT INTO character_class_level (id, character_id, class_id, '
+          "level, position) VALUES ('l1', 'c1', 'srd:class:fighter', 2, 0), "
+          "('l2', 'c1', 'srd:class:rogue', 1, 1)",
+        );
+        await store.fillSlot(first, 'c1');
+        final [filled, empty] = await store.watchSlots(id).first;
+        expect(filled.characterId, 'c1');
+        expect(filled.characterName, 'Aldric');
+        expect(filled.status, 'draft');
+        expect(filled.level, 3);
+        expect(filled.playerUserId, _player);
+        expect(empty.characterId, isNull);
+
+        await store.deleteSlot(second);
+        expect((await store.watchSlots(id).first).length, 1);
+      });
+
       test('liste réactive : une table créée apparaît', () async {
         final lists = store.watchList(_gm);
         final seen = expectLater(

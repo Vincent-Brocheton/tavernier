@@ -15,6 +15,7 @@ const syncedTables = {
   'table_pack',
   'table_banned_entity',
   'table_activity',
+  'pc_slot',
   'character',
   'character_base_scores',
   'character_background_choice',
