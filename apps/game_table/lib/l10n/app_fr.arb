@@ -3956,5 +3956,124 @@
   "syncConflict": "Conflit résolu",
   "@syncConflict": {
     "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14)."
+  },
+  "conflictBannerTitle": "Conflit résolu à la synchronisation.",
+  "@conflictBannerTitle": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "conflictBannerBody": "{author} a réglé {field} à {kept} ; votre valeur ({replaced}) a été remplacée.",
+  "@conflictBannerBody": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).",
+    "placeholders": {
+      "author": {
+        "type": "String"
+      },
+      "field": {
+        "type": "String"
+      },
+      "kept": {
+        "type": "String"
+      },
+      "replaced": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictGmPriority": "En combat, la version du MJ prime.",
+  "@conflictGmPriority": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "conflictSeeHistory": "Voir l’historique",
+  "@conflictSeeHistory": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "conflictOk": "OK",
+  "@conflictOk": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "conflictSomeone": "Un autre appareil",
+  "@conflictSomeone": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "historyConflict": "Conflit résolu : {field}",
+  "@historyConflict": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).",
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "historyConflictAuthors": "Gardé : {kept} · Remplacé : {replaced}",
+  "@historyConflictAuthors": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2).",
+    "placeholders": {
+      "kept": {
+        "type": "String"
+      },
+      "replaced": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldHp": "PV",
+  "@fieldHp": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldExhaustion": "Épuisement",
+  "@fieldExhaustion": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldInspiration": "Inspiration héroïque",
+  "@fieldInspiration": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldConcentration": "Concentration",
+  "@fieldConcentration": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldResources": "Ressources",
+  "@fieldResources": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldName": "Nom",
+  "@fieldName": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldXp": "PX",
+  "@fieldXp": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldCoins": "Monnaie",
+  "@fieldCoins": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldAlignment": "Alignement",
+  "@fieldAlignment": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldAppearance": "Apparence",
+  "@fieldAppearance": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldPersonality": "Personnalité",
+  "@fieldPersonality": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "fieldBackstory": "Histoire",
+  "@fieldBackstory": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "valueYes": "Oui",
+  "@valueYes": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "valueNo": "Non",
+  "@valueNo": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "valueNone": "aucune",
+  "@valueNone": {
+    "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
   }
 }

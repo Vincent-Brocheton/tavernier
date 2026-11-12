@@ -61,6 +61,10 @@ final class SupabaseConnector extends PowerSyncBackendConnector {
           'table': entry.table,
           'id': entry.id,
           'data': _forPostgres(entry),
+          // Valeurs que l'appareil remplaçait : le serveur y reconnaît un
+          // conflit (US-16).
+          if (entry.previousValues case final old?)
+            'old': _booleans(entry.table, old),
         },
     ];
     final discarded = await _client.rpc<List<dynamic>>(
@@ -88,16 +92,21 @@ final class SupabaseConnector extends PowerSyncBackendConnector {
   /// le propriétaire d'un personnage créé sans compte, que le serveur
   /// exige.
   Map<String, Object?> _forPostgres(CrudEntry entry) {
-    final booleans = syncedBooleanColumns[entry.table] ?? const {};
-    final data = {
-      for (final MapEntry(:key, :value) in (entry.opData ?? const {}).entries)
-        key: booleans.contains(key) && value is int ? value != 0 : value,
-    };
+    final data = _booleans(entry.table, entry.opData ?? const {});
     if (entry.op == UpdateType.put &&
         entry.table == 'character' &&
         data['owner_user_id'] == null) {
       data['owner_user_id'] = _client.auth.currentUser?.id;
     }
     return data;
+  }
+
+  /// Booléens en `true`/`false` pour Postgres (0/1 en local).
+  Map<String, Object?> _booleans(String table, Map<String, Object?> row) {
+    final booleans = syncedBooleanColumns[table] ?? const {};
+    return {
+      for (final MapEntry(:key, :value) in row.entries)
+        key: booleans.contains(key) && value is int ? value != 0 : value,
+    };
   }
 }

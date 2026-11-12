@@ -10,6 +10,7 @@ import '../creation/details_step.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
+import 'conflicts.dart';
 import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
@@ -113,6 +114,7 @@ class _Sheet extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _ConflictBanner(id: id),
           Padding(
             padding: EdgeInsets.all(AppSpacing.sm),
             child: Row(
@@ -398,6 +400,73 @@ class _SkillsTab extends StatelessWidget {
               ),
         ],
       ],
+    );
+  }
+}
+
+/// Conflit résolu [P16] : une valeur du joueur a été remplacée à la
+/// synchronisation ; « Voir l'historique » ou « OK » (EF-PJ-13, ENF-03).
+class _ConflictBanner extends ConsumerWidget {
+  const _ConflictBanner({required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final mine = [
+      for (final c in ref.watch(unseenConflictsProvider))
+        if (c.characterId == id) c,
+    ];
+    if (mine.isEmpty) return const SizedBox.shrink();
+    final latest = mine.first.detail;
+    final keptBy = '${latest['kept_by'] ?? ''}';
+    final author =
+        ref.watch(pseudonymOfProvider(keptBy)).value ?? l10n.conflictSomeone;
+    final gmPriority = latest['table'] == 'character_state';
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.sm,
+        AppSpacing.sm,
+        AppSpacing.sm,
+        0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          StatusBanner(
+            kind: StatusBannerKind.alert,
+            icon: Icons.warning_amber_outlined,
+            title: l10n.conflictBannerTitle,
+            message: [
+              l10n.conflictBannerBody(
+                author,
+                l10n.conflictField(latest['field']),
+                l10n.conflictValue(latest['kept']),
+                l10n.conflictValue(latest['replaced']),
+              ),
+              if (gmPriority && author != l10n.conflictSomeone)
+                l10n.conflictGmPriority,
+            ].join(' '),
+          ),
+          Wrap(
+            alignment: WrapAlignment.end,
+            spacing: AppSpacing.sm,
+            children: [
+              TextButton(
+                onPressed: () => context.push(historyPath(id)),
+                child: Text(l10n.conflictSeeHistory),
+              ),
+              TextButton(
+                onPressed: () => ref
+                    .read(seenConflictsProvider.notifier)
+                    .markSeen(mine.map((c) => c.id)),
+                child: Text(l10n.conflictOk),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

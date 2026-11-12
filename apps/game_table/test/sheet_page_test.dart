@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
+import 'package:game_table/sheet/conflicts.dart';
 import 'package:game_table/sheet/sheet_page.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -68,6 +69,7 @@ Future<void> _open(
   int level = 1,
   String? subclass,
   String? owner,
+  List<CharacterHistoryEntry> conflicts = const [],
 }) async {
   tester.view.physicalSize = Size(width, 2000);
   tester.view.devicePixelRatio = 1;
@@ -94,6 +96,7 @@ Future<void> _open(
       overrides: [
         contentProvider.overrideWith((ref) => _content),
         characterStoreProvider.overrideWith((ref) => store),
+        myConflictsProvider.overrideWith((ref) => Stream.value(conflicts)),
       ],
       child: MaterialApp(
         theme: AppTheme.dark,
@@ -110,6 +113,37 @@ Future<void> _open(
 }
 
 void main() {
+  final conflict = CharacterHistoryEntry(
+    id: 'k1',
+    characterId: 'a',
+    at: DateTime.utc(2026, 11, 12, 10),
+    authorUserId: 'mj',
+    detail: const {
+      'kind': 'conflict',
+      'table': 'character_state',
+      'field': 'hp_current',
+      'kept': 34,
+      'kept_by': 'mj',
+      'replaced': 39,
+      'replaced_by': 'hugo',
+    },
+  );
+
+  testWidgets('conflit résolu : bandeau, puis OK', (tester) async {
+    await _open(tester, 1440, conflicts: [conflict]);
+    expect(find.text('Conflit résolu à la synchronisation.'), findsOneWidget);
+    expect(
+      find.textContaining(
+        'a réglé PV à 34 ; votre valeur (39) a été remplacée.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Voir l’historique'), findsOneWidget);
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    expect(find.text('Conflit résolu à la synchronisation.'), findsNothing);
+  });
+
   testWidgets('fiche d\'un autre joueur : lecture seule', (tester) async {
     await _open(tester, 1440, owner: 'hugo');
     expect(find.text('Monter au niveau 2'), findsNothing);

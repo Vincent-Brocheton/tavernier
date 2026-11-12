@@ -2760,4 +2760,84 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get syncConflict => 'Conflit résolu';
+
+  @override
+  String get conflictBannerTitle => 'Conflit résolu à la synchronisation.';
+
+  @override
+  String conflictBannerBody(
+    String author,
+    String field,
+    String kept,
+    String replaced,
+  ) {
+    return '$author a réglé $field à $kept ; votre valeur ($replaced) a été remplacée.';
+  }
+
+  @override
+  String get conflictGmPriority => 'En combat, la version du MJ prime.';
+
+  @override
+  String get conflictSeeHistory => 'Voir l’historique';
+
+  @override
+  String get conflictOk => 'OK';
+
+  @override
+  String get conflictSomeone => 'Un autre appareil';
+
+  @override
+  String historyConflict(String field) {
+    return 'Conflit résolu : $field';
+  }
+
+  @override
+  String historyConflictAuthors(String kept, String replaced) {
+    return 'Gardé : $kept · Remplacé : $replaced';
+  }
+
+  @override
+  String get fieldHp => 'PV';
+
+  @override
+  String get fieldExhaustion => 'Épuisement';
+
+  @override
+  String get fieldInspiration => 'Inspiration héroïque';
+
+  @override
+  String get fieldConcentration => 'Concentration';
+
+  @override
+  String get fieldResources => 'Ressources';
+
+  @override
+  String get fieldName => 'Nom';
+
+  @override
+  String get fieldXp => 'PX';
+
+  @override
+  String get fieldCoins => 'Monnaie';
+
+  @override
+  String get fieldAlignment => 'Alignement';
+
+  @override
+  String get fieldAppearance => 'Apparence';
+
+  @override
+  String get fieldPersonality => 'Personnalité';
+
+  @override
+  String get fieldBackstory => 'Histoire';
+
+  @override
+  String get valueYes => 'Oui';
+
+  @override
+  String get valueNo => 'Non';
+
+  @override
+  String get valueNone => 'aucune';
 }
