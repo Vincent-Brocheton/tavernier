@@ -165,7 +165,7 @@ class _CodeBoxes extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final style = AppTypography.numeric(
-      Theme.of(context).textTheme.headlineSmall!,
+      Theme.of(context).textTheme.titleLarge!,
     );
     final code = controller.text;
     return SizedBox(

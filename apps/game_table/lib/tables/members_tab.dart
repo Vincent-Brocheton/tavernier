@@ -171,7 +171,7 @@ class InviteCard extends ConsumerWidget {
             Flexible(
               child: SelectableText(
                 invite.code,
-                style: AppTypography.numeric(text.headlineMedium!)
+                style: AppTypography.numeric(text.titleLarge!)
                     .copyWith(letterSpacing: 8),
               ),
             ),

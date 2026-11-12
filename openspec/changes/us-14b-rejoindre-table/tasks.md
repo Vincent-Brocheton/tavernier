@@ -6,4 +6,4 @@
 ## 2. App
 
 - [x] 2.1 Page « Rejoindre une table » [T12], route, bouton dans l'onglet Tables ; tests
-- [ ] 2.2 Vérification dans le navigateur
+- [x] 2.2 Vérification dans le navigateur
