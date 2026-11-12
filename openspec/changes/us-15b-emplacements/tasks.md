@@ -1,7 +1,7 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP : emplacements (droits du MJ et du joueur), fiche rattachée à une table dont on est membre, passages de statut permis et refusés, archivage au retrait
-- [ ] 1.2 Migration `pc_slot`, gardes, publication ; règles de synchronisation et leur test
+- [x] 1.1 Tests pgTAP : emplacements (droits du MJ et du joueur), fiche rattachée à une table dont on est membre, passages de statut permis et refusés, archivage au retrait
+- [x] 1.2 Migration `pc_slot`, gardes, publication ; règles de synchronisation et leur test
 
 ## 2. Données
 
