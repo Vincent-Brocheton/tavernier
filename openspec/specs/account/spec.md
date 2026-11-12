@@ -155,3 +155,21 @@ Le compte SHALL montrer ses méthodes (Google, mot de passe), permettre de lier 
 #### Scenario: E-mail d'un compte Google sans mot de passe
 - **WHEN** le compte n'a pas de mot de passe
 - **THEN** l'e-mail est verrouillé avec « Fourni par Google. Pour en changer, ajoutez d'abord un mot de passe. »
+
+### Requirement: État de synchronisation affiché
+Avec un compte connecté, l'écran principal SHALL montrer l'état de synchronisation (ENF-02) : hors ligne sans réseau ou sans connexion au service de synchronisation, avec le nombre de modifications en attente s'il y en a ; en attente quand des modifications partent ; synchronisé sinon. Sans compte, il SHALL ne rien montrer.
+
+#### Scenario: Hors ligne avec modifications
+- **WHEN** l'appareil est hors ligne avec 3 modifications en attente
+- **THEN** l'indicateur affiche « Hors-ligne · 3 modifications en attente »
+
+#### Scenario: Synchronisé
+- **WHEN** l'appareil est connecté sans modification en attente
+- **THEN** l'indicateur affiche « Synchronisé »
+
+### Requirement: Conflit dans l'indicateur
+L'indicateur de synchronisation SHALL passer à « Conflit résolu » tant qu'un conflit qui a remplacé une valeur de l'utilisateur n'a pas été vu, avant tout autre état.
+
+#### Scenario: Conflit non vu
+- **WHEN** un conflit a remplacé une valeur de l'utilisateur et n'a pas été vu
+- **THEN** l'indicateur affiche « Conflit résolu »

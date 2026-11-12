@@ -317,3 +317,10 @@ Les identifiants UUID v7 créés par un même processus SHALL croître stricteme
 #### Scenario: Rien de changé
 - **WHEN** le même résumé est publié deux fois
 - **THEN** une seule écriture part
+
+### Requirement: Valeurs remplacées envoyées
+Les modifications de la fiche et de son état de jeu SHALL partir avec les valeurs qu'elles remplacent sur l'appareil, pour que le serveur reconnaisse un conflit.
+
+#### Scenario: PV modifiés
+- **WHEN** l'appareil passe les PV de 29 à 39
+- **THEN** l'envoi porte 39 et la valeur remplacée 29

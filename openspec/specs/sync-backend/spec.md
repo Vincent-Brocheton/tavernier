@@ -238,3 +238,25 @@ Le serveur SHALL laisser les membres d'une table lire les résumés de ses fiche
 #### Scenario: Lecture
 - **WHEN** un membre lit les résumés
 - **THEN** il voit ceux de sa table, sans PV chiffrés
+
+### Requirement: Fusion entre les comptes d'une table
+Des modifications faites hors ligne par le MJ et deux joueurs d'une même table, sur trois appareils, SHALL toutes arriver au serveur à la reconnexion, et chaque appareil SHALL recevoir celles qu'il a le droit de lire (critère de sortie de M2).
+
+#### Scenario: MJ et deux joueurs
+- **WHEN** le MJ change un réglage de la table et chaque joueur modifie sa fiche, hors ligne, puis tous se reconnectent
+- **THEN** le serveur a les trois modifications, chaque joueur a le réglage, le MJ a les deux fiches, et aucune écriture n'est écartée
+
+### Requirement: Conflits détectés et tracés
+Le serveur SHALL reconnaître un conflit quand une modification de fiche ou d'état de jeu remplace, pour un champ, une valeur différente de celle que l'appareil avait. Le dernier écrit SHALL gagner, sauf sur l'état de jeu quand la valeur en place vient du MJ de la table et l'écriture d'un autre : la valeur du MJ SHALL rester. Chaque conflit SHALL inscrire dans l'historique de la fiche le champ, la valeur gardée et la valeur remplacée, avec leurs auteurs.
+
+#### Scenario: Le MJ prime en combat
+- **WHEN** le MJ a réglé les PV d'Aldric à 34 pendant que le joueur, hors ligne, les passait de 29 à 39
+- **THEN** les PV restent à 34 et l'historique trace la valeur 39 remplacée
+
+#### Scenario: Dernier écrit gagnant
+- **WHEN** deux appareils renomment la même fiche hors ligne
+- **THEN** le dernier envoyé gagne, et l'historique trace le nom remplacé
+
+#### Scenario: Pas de conflit
+- **WHEN** une modification remplace la valeur que le serveur a
+- **THEN** aucune entrée de conflit n'est inscrite
