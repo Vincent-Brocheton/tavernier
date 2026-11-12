@@ -17,6 +17,17 @@ final class FakeGateway implements AccountGateway {
   final resets = <String>[];
   final updates = <(String, bool)>[];
 
+  /// Réponse de `join_table` ; une exception simule l'absence de réseau.
+  ({String? tableId, String? error}) Function(String code) joinReply = (_) =>
+      (tableId: 't1', error: null);
+  final joins = <String>[];
+
+  @override
+  Future<({String? tableId, String? error})> joinTable(String code) async {
+    joins.add(code);
+    return joinReply(code);
+  }
+
   @override
   User? get user => !signedIn
       ? null

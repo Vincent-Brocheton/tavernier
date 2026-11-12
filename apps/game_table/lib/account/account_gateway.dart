@@ -210,6 +210,19 @@ class AccountGateway {
   /// Vrai si le compte a un mot de passe (un compte Google n'en a pas).
   Future<bool> hasPassword() => _client.rpc<bool>('has_password');
 
+  /// Rejoint la table d'une invitation (EF-TAB-05) : rend la table, ou le
+  /// motif du refus du serveur. Lève une exception sans réseau.
+  Future<({String? tableId, String? error})> joinTable(String code) async {
+    final result = await _client.rpc<Map<String, dynamic>>(
+      'join_table',
+      params: {'code': code},
+    );
+    return (
+      tableId: result['table_id'] as String?,
+      error: result['error'] as String?,
+    );
+  }
+
   /// Identité Google liée au compte, ou `null`.
   UserIdentity? get googleIdentity =>
       user?.identities?.where((i) => i.provider == 'google').firstOrNull;
