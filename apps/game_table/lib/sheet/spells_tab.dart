@@ -8,6 +8,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'rule_text.dart';
+import 'sheet_access.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
 import 'spell_changes_sheet.dart';
@@ -124,13 +125,14 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
                 ],
               ),
             ),
-            TextButton(
-              onPressed: () => _store(endConcentration(_latest)),
-              child: Text(
-                l10n.endConcentration,
-                style: TextStyle(color: colors.onConcentrationContainer),
+            if (SheetAccess.editableOf(context))
+              TextButton(
+                onPressed: () => _store(endConcentration(_latest)),
+                child: Text(
+                  l10n.endConcentration,
+                  style: TextStyle(color: colors.onConcentrationContainer),
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -215,37 +217,38 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
             l10n.spellbookCount(spells.where((s) => s.inSpellbook).length),
             style: text.bodyMedium,
           ),
-        Wrap(
-          spacing: AppSpacing.xs,
-          children: [
-            TextButton(
-              onPressed: () => showAdaptiveSheet(
-                context,
-                SpellChangesSheet(
-                  content: _content,
-                  character: widget.character,
-                  classId: classId,
-                  preparedMax: casting.preparedMax,
-                  onSave: _saveCharacter,
-                ),
-              ),
-              child: Text(l10n.changeSpells),
-            ),
-            if (spellbookSize(classId) > 0)
+        if (SheetAccess.editableOf(context))
+          Wrap(
+            spacing: AppSpacing.xs,
+            children: [
               TextButton(
                 onPressed: () => showAdaptiveSheet(
                   context,
-                  SpellCopySheet(
+                  SpellChangesSheet(
                     content: _content,
                     character: widget.character,
                     classId: classId,
+                    preparedMax: casting.preparedMax,
                     onSave: _saveCharacter,
                   ),
                 ),
-                child: Text(l10n.copySpellAction),
+                child: Text(l10n.changeSpells),
               ),
-          ],
-        ),
+              if (spellbookSize(classId) > 0)
+                TextButton(
+                  onPressed: () => showAdaptiveSheet(
+                    context,
+                    SpellCopySheet(
+                      content: _content,
+                      character: widget.character,
+                      classId: classId,
+                      onSave: _saveCharacter,
+                    ),
+                  ),
+                  child: Text(l10n.copySpellAction),
+                ),
+            ],
+          ),
         SizedBox(height: AppSpacing.sm),
       ],
     ];
@@ -316,7 +319,10 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
   ) {
     final several = _sheet.spellcasting.length > 1;
     final castable = data.level == 0 || spell.prepared || spell.alwaysPrepared;
-    final options = castable
+    // En lecture seule, le détail du sort se lit sans le lancer.
+    final options = !SheetAccess.editableOf(context)
+        ? const <CastOption>[]
+        : castable
         ? castOptions(data, _sheet, _play, spellId: spell.id)
         : [
             // Savoir rituel : le grimoire suffit, sans préparer le sort.

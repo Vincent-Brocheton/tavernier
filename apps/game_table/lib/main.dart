@@ -27,6 +27,7 @@ import 'sheet/sheet_page.dart';
 import 'tables/create_table_page.dart';
 import 'tables/join_page.dart';
 import 'tables/pending_join.dart';
+import 'tables/summary_publisher.dart';
 import 'tables/table_page.dart';
 import 'tables/tables_tab.dart';
 
@@ -158,6 +159,8 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
     ref.watch(syncProvider);
     // Demande pour rejoindre une table, gardée jusqu'au réseau (EF-TAB-08).
     ref.listen(pendingJoinProvider, (_, _) {});
+    // Résumés des fiches de table, pour le groupe (EF-TAB-09).
+    ref.listen(summaryPublisherProvider, (_, _) {});
     final textScale = ref.watch(deviceSettingsProvider).textScale;
     return MaterialApp.router(
       routerConfig: _router,

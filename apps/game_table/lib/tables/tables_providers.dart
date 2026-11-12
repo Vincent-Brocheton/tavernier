@@ -35,6 +35,12 @@ final tableSlotsProvider = StreamProvider.family<List<PcSlot>, String>(
   (ref, id) => ref.watch(tableStoreProvider).watchSlots(id),
 );
 
+/// Résumés des fiches d'une table (EF-TAB-09).
+final tableGroupProvider =
+    StreamProvider.family<List<CharacterSummary>, String>(
+      (ref, id) => ref.watch(tableStoreProvider).watchGroup(id),
+    );
+
 /// Invitation en cours d'une table, pour son MJ.
 final tableInviteProvider = StreamProvider.family<TableInvite?, String>(
   (ref, id) => ref.watch(tableStoreProvider).watchInvite(id),

@@ -4506,6 +4506,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{date} · {author}'**
   String historyAuthor(String date, String author);
+
+  /// Résumé du groupe (US-15, EF-TAB-09, écran T13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le groupe'**
+  String get groupTitle;
+
+  /// Résumé du groupe (US-15, EF-TAB-09, écran T13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Indemne'**
+  String get healthUnhurt;
+
+  /// Résumé du groupe (US-15, EF-TAB-09, écran T13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Blessé'**
+  String get healthWounded;
+
+  /// Résumé du groupe (US-15, EF-TAB-09, écran T13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Gravement blessé'**
+  String get healthBadly;
+
+  /// Résumé du groupe (US-15, EF-TAB-09, écran T13).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PV exacts des autres joueurs restent visibles du MJ seulement.'**
+  String get groupHpNote;
 }
 
 class _AppLocalizationsDelegate

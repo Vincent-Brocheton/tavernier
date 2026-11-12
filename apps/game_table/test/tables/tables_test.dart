@@ -16,6 +16,7 @@ import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/sheet/history_page.dart';
 import 'package:game_table/tables/create_table_page.dart';
 import 'package:game_table/tables/join_page.dart';
+import 'package:game_table/tables/summary_publisher.dart';
 import 'package:game_table/tables/table_labels.dart';
 import 'package:game_table/tables/table_page.dart';
 import 'package:game_table/tables/tables_tab.dart';
@@ -798,5 +799,65 @@ void main() {
     expect(slot.characterId, 'kael');
     expect(slot.status, 'submitted');
     expect(await CharacterStore(database).freeCharacters(_gm.id), isEmpty);
+  });
+  _testTable('groupe : les autres PJ, état qualitatif sans chiffres', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(tester);
+    final characters = CharacterStore(database);
+    await characters.save(
+      'c1',
+      _aldric().copyWith(name: 'Thalia'),
+      tableId: id,
+    );
+    await characters.saveState('c1', const PlayState(hpCurrent: 5));
+    await publishSummaryOf(
+      characters,
+      _content,
+      id: 'c1',
+      tableId: id,
+      ownerUserId: _hugo,
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.groupTitle), findsOneWidget);
+    expect(find.text('Thalia'), findsOneWidget);
+    expect(find.text(l10n.healthBadly), findsOneWidget);
+    // Aucun chiffre de PV sur la ligne de Thalia.
+    expect(
+      find.descendant(
+        of: find.widgetWithText(ListTile, 'Thalia'),
+        matching: find.textContaining(RegExp(r'\d+ ?/ ?\d+|PV')),
+      ),
+      findsNothing,
+    );
+    expect(find.text(l10n.groupHpNote), findsOneWidget);
+    final tile = find.widgetWithText(ListTile, 'Thalia');
+    expect(tester.widget<ListTile>(tile).onTap, isNull);
+
+    await TableStore(database).update(
+      id,
+      authorUserId: _gm.id,
+      settings: _brumeval,
+      fullSheetsVisible: true,
+    );
+    await tester.pumpAndSettle();
+    expect(tester.widget<ListTile>(tile).onTap, isNotNull);
+  });
+
+  _testTable('groupe : ses propres PJ n\'y figurent pas', (tester) async {
+    final (database, id) = await _openTable(tester);
+    final characters = CharacterStore(database);
+    await characters.save('c1', _aldric(), tableId: id);
+    await publishSummaryOf(
+      characters,
+      _content,
+      id: 'c1',
+      tableId: id,
+      ownerUserId: _gm.id,
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.groupTitle), findsNothing);
+    final [summary] = await TableStore(database).watchGroup(id).first;
+    expect(summary.health, Health.unhurt);
   });
 }

@@ -106,6 +106,20 @@ class PcSlots extends Table with IdKey, TableOwned {
   DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
+/// Résumé d'une fiche de table, lu par les autres joueurs (US-15,
+/// EF-TAB-09) : `id` est celui de la fiche ; aucun PV chiffré.
+@DataClassName('CharacterSummaryRow')
+class CharacterSummaries extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'character_summary';
+  TextColumn get ownerUserId => text().nullable()();
+  TextColumn get name => text()();
+  TextColumn get speciesId => text()();
+  TextColumn get classes => text().withDefault(const Constant('[]'))(); // JSON
+  TextColumn get health => text()();
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+}
+
 @DataClassName('TableBannedEntityRow')
 class TableBannedEntities extends Table with IdKey, TableOwned {
   @override

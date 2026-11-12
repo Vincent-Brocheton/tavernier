@@ -21,6 +21,74 @@ const _inputTables = [
   'character_choice',
 ];
 
+/// État de santé qualitatif d'un PJ, vu par les autres joueurs (EF-TAB-09).
+enum Health { unhurt, wounded, badly }
+
+/// Indemne au maximum de PV, blessé au-dessus de la moitié, gravement blessé
+/// à la moitié ou moins (EF-TAB-09).
+Health healthOf(int current, int max) => current >= max
+    ? Health.unhurt
+    : current * 2 > max
+    ? Health.wounded
+    : Health.badly;
+
+/// Résumé d'une fiche de table (US-15) : ce que les autres joueurs en voient.
+final class CharacterSummary {
+  const CharacterSummary({
+    required this.id,
+    required this.tableId,
+    required this.ownerUserId,
+    required this.name,
+    required this.speciesId,
+    required this.classes,
+    required this.health,
+  });
+
+  final String id;
+  final String tableId;
+  final String? ownerUserId;
+  final String name;
+  final String speciesId;
+  final List<({String classId, int level})> classes;
+  final Health health;
+
+  String get _classesJson => jsonEncode([
+    for (final c in classes) {'class_id': c.classId, 'level': c.level},
+  ]);
+
+  static CharacterSummary fromRow(QueryRow row) => CharacterSummary(
+    id: row.read<String>('id'),
+    tableId: row.read<String>('table_id'),
+    ownerUserId: row.readNullable<String>('owner_user_id'),
+    name: row.read<String>('name'),
+    speciesId: row.read<String>('species_id'),
+    classes: [
+      for (final c in jsonDecode(
+        row.readNullable<String>('classes') ?? '[]',
+      ) as List<Object?>)
+        if (c case {'class_id': final String id, 'level': final int level})
+          (classId: id, level: level),
+    ],
+    health:
+        Health.values.asNameMap()[row.read<String>('health')] ?? Health.unhurt,
+  );
+
+  @override
+  bool operator ==(Object other) =>
+      other is CharacterSummary &&
+      other.id == id &&
+      other.tableId == tableId &&
+      other.ownerUserId == ownerUserId &&
+      other.name == name &&
+      other.speciesId == speciesId &&
+      other._classesJson == _classesJson &&
+      other.health == health;
+
+  @override
+  int get hashCode =>
+      Object.hash(id, tableId, ownerUserId, name, speciesId, _classesJson);
+}
+
 /// Entrée de l'historique d'une fiche (`character_change_log`).
 final class CharacterHistoryEntry {
   const CharacterHistoryEntry({
@@ -200,6 +268,8 @@ final class CharacterStore {
           'heroic_inspiration': state.heroicInspiration,
         };
         await _upsert('character_state', 'character_id', id, columns);
+        // Le résumé du groupe suit les PV (US-15).
+        _db.markTablesUpdated({_db.characterStates});
       });
 
   /// Amène les lignes de [table] de la fiche [id] à [wanted] (par
@@ -260,12 +330,18 @@ final class CharacterStore {
   /// cascade.
   Future<void> delete(String id) => _db.transaction(() async {
     for (final table in [
-      ...syncedTables.where((t) => t.startsWith('character_')),
+      ...syncedTables.where(
+        (t) => t.startsWith('character_') && t != 'character_summary',
+      ),
     ]) {
       await _db.customStatement('DELETE FROM $table WHERE character_id = ?', [
         id,
       ]);
     }
+    // Le résumé a pour identifiant celui de la fiche.
+    await _db.customStatement('DELETE FROM character_summary WHERE id = ?', [
+      id,
+    ]);
     await _db.customStatement('DELETE FROM character WHERE id = ?', [id]);
   });
 
@@ -348,6 +424,50 @@ final class CharacterStore {
         detail: jsonDecode(row.read<String>('diff')) as Map<String, Object?>,
       ),
   ];
+
+  /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
+  /// statut ; `null` si elle n'existe pas.
+  Future<({String? ownerUserId, String? gmUserId, String status})?> access(
+    String id,
+  ) async {
+    final row = await _db
+        .customSelect(
+          'SELECT c.owner_user_id, c.status, g.gm_user_id FROM character c '
+          'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
+          variables: [Variable.withString(id)],
+        )
+        .getSingleOrNull();
+    return row == null
+        ? null
+        : (
+            ownerUserId: row.readNullable<String>('owner_user_id'),
+            gmUserId: row.readNullable<String>('gm_user_id'),
+            status: row.read<String>('status'),
+          );
+  }
+
+  /// Publie le résumé d'une fiche de table, seulement s'il a changé : rien
+  /// ne part au serveur pour rien. Rend `true` s'il a été écrit.
+  Future<bool> publishSummary(CharacterSummary summary) async {
+    final row = await _db
+        .customSelect(
+          'SELECT * FROM character_summary WHERE id = ?',
+          variables: [Variable.withString(summary.id)],
+        )
+        .getSingleOrNull();
+    if (row != null && CharacterSummary.fromRow(row) == summary) return false;
+    await _upsert('character_summary', 'id', summary.id, {
+      'table_id': summary.tableId,
+      'owner_user_id': summary.ownerUserId,
+      'name': summary.name,
+      'species_id': summary.speciesId,
+      'classes': summary._classesJson,
+      'health': summary.health.name,
+      'updated_at': DateTime.now().toUtc().toIso8601String(),
+    });
+    _db.markTablesUpdated({_db.characterSummaries});
+    return true;
+  }
 
   /// Envoie la fiche au MJ, avec un message facultatif (US-15).
   Future<void> submit(String id, String? message) =>

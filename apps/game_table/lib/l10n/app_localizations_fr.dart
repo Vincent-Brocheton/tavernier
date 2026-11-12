@@ -2719,4 +2719,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String historyAuthor(String date, String author) {
     return '$date · $author';
   }
+
+  @override
+  String get groupTitle => 'Le groupe';
+
+  @override
+  String get healthUnhurt => 'Indemne';
+
+  @override
+  String get healthWounded => 'Blessé';
+
+  @override
+  String get healthBadly => 'Gravement blessé';
+
+  @override
+  String get groupHpNote =>
+      'Les PV exacts des autres joueurs restent visibles du MJ seulement.';
 }

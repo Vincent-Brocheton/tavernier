@@ -19071,6 +19071,520 @@ class PcSlotsCompanion extends UpdateCompanion<PcSlotRow> {
   }
 }
 
+class $CharacterSummariesTable extends CharacterSummaries
+    with TableInfo<$CharacterSummariesTable, CharacterSummaryRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CharacterSummariesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _ownerUserIdMeta = const VerificationMeta(
+    'ownerUserId',
+  );
+  @override
+  late final GeneratedColumn<String> ownerUserId = GeneratedColumn<String>(
+    'owner_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _speciesIdMeta = const VerificationMeta(
+    'speciesId',
+  );
+  @override
+  late final GeneratedColumn<String> speciesId = GeneratedColumn<String>(
+    'species_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _classesMeta = const VerificationMeta(
+    'classes',
+  );
+  @override
+  late final GeneratedColumn<String> classes = GeneratedColumn<String>(
+    'classes',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _healthMeta = const VerificationMeta('health');
+  @override
+  late final GeneratedColumn<String> health = GeneratedColumn<String>(
+    'health',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    ownerUserId,
+    name,
+    speciesId,
+    classes,
+    health,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'character_summary';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CharacterSummaryRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('owner_user_id')) {
+      context.handle(
+        _ownerUserIdMeta,
+        ownerUserId.isAcceptableOrUnknown(
+          data['owner_user_id']!,
+          _ownerUserIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('species_id')) {
+      context.handle(
+        _speciesIdMeta,
+        speciesId.isAcceptableOrUnknown(data['species_id']!, _speciesIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_speciesIdMeta);
+    }
+    if (data.containsKey('classes')) {
+      context.handle(
+        _classesMeta,
+        classes.isAcceptableOrUnknown(data['classes']!, _classesMeta),
+      );
+    }
+    if (data.containsKey('health')) {
+      context.handle(
+        _healthMeta,
+        health.isAcceptableOrUnknown(data['health']!, _healthMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_healthMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CharacterSummaryRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CharacterSummaryRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      ownerUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}owner_user_id'],
+      ),
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      speciesId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}species_id'],
+      )!,
+      classes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}classes'],
+      )!,
+      health: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}health'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      ),
+    );
+  }
+
+  @override
+  $CharacterSummariesTable createAlias(String alias) {
+    return $CharacterSummariesTable(attachedDatabase, alias);
+  }
+}
+
+class CharacterSummaryRow extends DataClass
+    implements Insertable<CharacterSummaryRow> {
+  final String id;
+  final String tableId;
+  final String? ownerUserId;
+  final String name;
+  final String speciesId;
+  final String classes;
+  final String health;
+  final DateTime? updatedAt;
+  const CharacterSummaryRow({
+    required this.id,
+    required this.tableId,
+    this.ownerUserId,
+    required this.name,
+    required this.speciesId,
+    required this.classes,
+    required this.health,
+    this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    if (!nullToAbsent || ownerUserId != null) {
+      map['owner_user_id'] = Variable<String>(ownerUserId);
+    }
+    map['name'] = Variable<String>(name);
+    map['species_id'] = Variable<String>(speciesId);
+    map['classes'] = Variable<String>(classes);
+    map['health'] = Variable<String>(health);
+    if (!nullToAbsent || updatedAt != null) {
+      map['updated_at'] = Variable<DateTime>(updatedAt);
+    }
+    return map;
+  }
+
+  CharacterSummariesCompanion toCompanion(bool nullToAbsent) {
+    return CharacterSummariesCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      ownerUserId: ownerUserId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(ownerUserId),
+      name: Value(name),
+      speciesId: Value(speciesId),
+      classes: Value(classes),
+      health: Value(health),
+      updatedAt: updatedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updatedAt),
+    );
+  }
+
+  factory CharacterSummaryRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CharacterSummaryRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      ownerUserId: serializer.fromJson<String?>(json['ownerUserId']),
+      name: serializer.fromJson<String>(json['name']),
+      speciesId: serializer.fromJson<String>(json['speciesId']),
+      classes: serializer.fromJson<String>(json['classes']),
+      health: serializer.fromJson<String>(json['health']),
+      updatedAt: serializer.fromJson<DateTime?>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'ownerUserId': serializer.toJson<String?>(ownerUserId),
+      'name': serializer.toJson<String>(name),
+      'speciesId': serializer.toJson<String>(speciesId),
+      'classes': serializer.toJson<String>(classes),
+      'health': serializer.toJson<String>(health),
+      'updatedAt': serializer.toJson<DateTime?>(updatedAt),
+    };
+  }
+
+  CharacterSummaryRow copyWith({
+    String? id,
+    String? tableId,
+    Value<String?> ownerUserId = const Value.absent(),
+    String? name,
+    String? speciesId,
+    String? classes,
+    String? health,
+    Value<DateTime?> updatedAt = const Value.absent(),
+  }) => CharacterSummaryRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    ownerUserId: ownerUserId.present ? ownerUserId.value : this.ownerUserId,
+    name: name ?? this.name,
+    speciesId: speciesId ?? this.speciesId,
+    classes: classes ?? this.classes,
+    health: health ?? this.health,
+    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+  );
+  CharacterSummaryRow copyWithCompanion(CharacterSummariesCompanion data) {
+    return CharacterSummaryRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      ownerUserId: data.ownerUserId.present
+          ? data.ownerUserId.value
+          : this.ownerUserId,
+      name: data.name.present ? data.name.value : this.name,
+      speciesId: data.speciesId.present ? data.speciesId.value : this.speciesId,
+      classes: data.classes.present ? data.classes.value : this.classes,
+      health: data.health.present ? data.health.value : this.health,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CharacterSummaryRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('ownerUserId: $ownerUserId, ')
+          ..write('name: $name, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('classes: $classes, ')
+          ..write('health: $health, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    ownerUserId,
+    name,
+    speciesId,
+    classes,
+    health,
+    updatedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CharacterSummaryRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.ownerUserId == this.ownerUserId &&
+          other.name == this.name &&
+          other.speciesId == this.speciesId &&
+          other.classes == this.classes &&
+          other.health == this.health &&
+          other.updatedAt == this.updatedAt);
+}
+
+class CharacterSummariesCompanion extends UpdateCompanion<CharacterSummaryRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String?> ownerUserId;
+  final Value<String> name;
+  final Value<String> speciesId;
+  final Value<String> classes;
+  final Value<String> health;
+  final Value<DateTime?> updatedAt;
+  final Value<int> rowid;
+  const CharacterSummariesCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.ownerUserId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.speciesId = const Value.absent(),
+    this.classes = const Value.absent(),
+    this.health = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CharacterSummariesCompanion.insert({
+    required String id,
+    required String tableId,
+    this.ownerUserId = const Value.absent(),
+    required String name,
+    required String speciesId,
+    this.classes = const Value.absent(),
+    required String health,
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       name = Value(name),
+       speciesId = Value(speciesId),
+       health = Value(health);
+  static Insertable<CharacterSummaryRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? ownerUserId,
+    Expression<String>? name,
+    Expression<String>? speciesId,
+    Expression<String>? classes,
+    Expression<String>? health,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (ownerUserId != null) 'owner_user_id': ownerUserId,
+      if (name != null) 'name': name,
+      if (speciesId != null) 'species_id': speciesId,
+      if (classes != null) 'classes': classes,
+      if (health != null) 'health': health,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CharacterSummariesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String?>? ownerUserId,
+    Value<String>? name,
+    Value<String>? speciesId,
+    Value<String>? classes,
+    Value<String>? health,
+    Value<DateTime?>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return CharacterSummariesCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      ownerUserId: ownerUserId ?? this.ownerUserId,
+      name: name ?? this.name,
+      speciesId: speciesId ?? this.speciesId,
+      classes: classes ?? this.classes,
+      health: health ?? this.health,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (ownerUserId.present) {
+      map['owner_user_id'] = Variable<String>(ownerUserId.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (speciesId.present) {
+      map['species_id'] = Variable<String>(speciesId.value);
+    }
+    if (classes.present) {
+      map['classes'] = Variable<String>(classes.value);
+    }
+    if (health.present) {
+      map['health'] = Variable<String>(health.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CharacterSummariesCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('ownerUserId: $ownerUserId, ')
+          ..write('name: $name, ')
+          ..write('speciesId: $speciesId, ')
+          ..write('classes: $classes, ')
+          ..write('health: $health, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $CharactersTable extends Characters
     with TableInfo<$CharactersTable, CharacterRow> {
   @override
@@ -28368,6 +28882,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     this,
   );
   late final $PcSlotsTable pcSlots = $PcSlotsTable(this);
+  late final $CharacterSummariesTable characterSummaries =
+      $CharacterSummariesTable(this);
   late final $CharactersTable characters = $CharactersTable(this);
   late final $CharacterBaseScoresTable characterBaseScores =
       $CharacterBaseScoresTable(this);
@@ -28453,6 +28969,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     tableBannedEntities,
     tableActivities,
     pcSlots,
+    characterSummaries,
     characters,
     characterBaseScores,
     characterBackgroundChoices,
@@ -45894,6 +46411,289 @@ typedef $$PcSlotsTableProcessedTableManager =
       PcSlotRow,
       PrefetchHooks Function()
     >;
+typedef $$CharacterSummariesTableCreateCompanionBuilder =
+    CharacterSummariesCompanion Function({
+      required String id,
+      required String tableId,
+      Value<String?> ownerUserId,
+      required String name,
+      required String speciesId,
+      Value<String> classes,
+      required String health,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+typedef $$CharacterSummariesTableUpdateCompanionBuilder =
+    CharacterSummariesCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String?> ownerUserId,
+      Value<String> name,
+      Value<String> speciesId,
+      Value<String> classes,
+      Value<String> health,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$CharacterSummariesTableFilterComposer
+    extends Composer<_$TavernierDatabase, $CharacterSummariesTable> {
+  $$CharacterSummariesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get ownerUserId => $composableBuilder(
+    column: $table.ownerUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get classes => $composableBuilder(
+    column: $table.classes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get health => $composableBuilder(
+    column: $table.health,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$CharacterSummariesTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $CharacterSummariesTable> {
+  $$CharacterSummariesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get ownerUserId => $composableBuilder(
+    column: $table.ownerUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get speciesId => $composableBuilder(
+    column: $table.speciesId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get classes => $composableBuilder(
+    column: $table.classes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get health => $composableBuilder(
+    column: $table.health,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CharacterSummariesTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $CharacterSummariesTable> {
+  $$CharacterSummariesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get ownerUserId => $composableBuilder(
+    column: $table.ownerUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get speciesId =>
+      $composableBuilder(column: $table.speciesId, builder: (column) => column);
+
+  GeneratedColumn<String> get classes =>
+      $composableBuilder(column: $table.classes, builder: (column) => column);
+
+  GeneratedColumn<String> get health =>
+      $composableBuilder(column: $table.health, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$CharacterSummariesTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $CharacterSummariesTable,
+          CharacterSummaryRow,
+          $$CharacterSummariesTableFilterComposer,
+          $$CharacterSummariesTableOrderingComposer,
+          $$CharacterSummariesTableAnnotationComposer,
+          $$CharacterSummariesTableCreateCompanionBuilder,
+          $$CharacterSummariesTableUpdateCompanionBuilder,
+          (
+            CharacterSummaryRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterSummariesTable,
+              CharacterSummaryRow
+            >,
+          ),
+          CharacterSummaryRow,
+          PrefetchHooks Function()
+        > {
+  $$CharacterSummariesTableTableManager(
+    _$TavernierDatabase db,
+    $CharacterSummariesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CharacterSummariesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CharacterSummariesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CharacterSummariesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String?> ownerUserId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String> speciesId = const Value.absent(),
+                Value<String> classes = const Value.absent(),
+                Value<String> health = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CharacterSummariesCompanion(
+                id: id,
+                tableId: tableId,
+                ownerUserId: ownerUserId,
+                name: name,
+                speciesId: speciesId,
+                classes: classes,
+                health: health,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                Value<String?> ownerUserId = const Value.absent(),
+                required String name,
+                required String speciesId,
+                Value<String> classes = const Value.absent(),
+                required String health,
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CharacterSummariesCompanion.insert(
+                id: id,
+                tableId: tableId,
+                ownerUserId: ownerUserId,
+                name: name,
+                speciesId: speciesId,
+                classes: classes,
+                health: health,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CharacterSummariesTable, CharacterSummaryRow>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterSummariesTable,
+                    CharacterSummaryRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$CharacterSummariesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $CharacterSummariesTable,
+      CharacterSummaryRow,
+      $$CharacterSummariesTableFilterComposer,
+      $$CharacterSummariesTableOrderingComposer,
+      $$CharacterSummariesTableAnnotationComposer,
+      $$CharacterSummariesTableCreateCompanionBuilder,
+      $$CharacterSummariesTableUpdateCompanionBuilder,
+      (
+        CharacterSummaryRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterSummariesTable,
+          CharacterSummaryRow
+        >,
+      ),
+      CharacterSummaryRow,
+      PrefetchHooks Function()
+    >;
 typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   required String id,
   Value<String?> tableId,
@@ -51747,6 +52547,8 @@ class $TavernierDatabaseManager {
       $$TableActivitiesTableTableManager(_db, _db.tableActivities);
   $$PcSlotsTableTableManager get pcSlots =>
       $$PcSlotsTableTableManager(_db, _db.pcSlots);
+  $$CharacterSummariesTableTableManager get characterSummaries =>
+      $$CharacterSummariesTableTableManager(_db, _db.characterSummaries);
   $$CharactersTableTableManager get characters =>
       $$CharactersTableTableManager(_db, _db.characters);
   $$CharacterBaseScoresTableTableManager get characterBaseScores =>

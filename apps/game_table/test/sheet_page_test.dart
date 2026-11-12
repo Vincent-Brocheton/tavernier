@@ -67,6 +67,7 @@ Future<void> _open(
   String id = 'a',
   int level = 1,
   String? subclass,
+  String? owner,
 }) async {
   tester.view.physicalSize = Size(width, 2000);
   tester.view.devicePixelRatio = 1;
@@ -82,6 +83,12 @@ Future<void> _open(
       ],
     ),
   );
+  if (owner != null) {
+    await database.customStatement(
+      "UPDATE character SET owner_user_id = ? WHERE id = 'a'",
+      [owner],
+    );
+  }
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
@@ -103,6 +110,25 @@ Future<void> _open(
 }
 
 void main() {
+  testWidgets('fiche d\'un autre joueur : lecture seule', (tester) async {
+    await _open(tester, 1440, owner: 'hugo');
+    expect(find.text('Monter au niveau 2'), findsNothing);
+    expect(find.text('Repos court'), findsNothing);
+    expect(find.text('Historique'), findsOneWidget);
+    expect(
+      tester
+          .widget<IconButton>(find.widgetWithIcon(IconButton, Icons.remove))
+          .onPressed,
+      isNull,
+    );
+  });
+
+  testWidgets('sa propre fiche : modifiable', (tester) async {
+    await _open(tester, 1440);
+    expect(find.text('Monter au niveau 2'), findsOneWidget);
+    expect(find.text('Repos court'), findsOneWidget);
+  });
+
   for (final width in [390.0, 1440.0]) {
     testWidgets('$width dp : en-tête, 7 onglets, valeurs de [D1]', (
       tester,

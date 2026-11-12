@@ -191,7 +191,9 @@ void _tests(Future<TavernierDatabase> Function() open) {
     await store.save('b', aldric);
     await store.delete('a');
     expect(await store.load('a'), isNull);
-    for (final table in syncedTables.where((t) => t.startsWith('character_'))) {
+    for (final table in syncedTables.where(
+      (t) => t.startsWith('character_') && t != 'character_summary',
+    )) {
       final rows = await db
           .customSelect(
             'SELECT count(*) AS n FROM $table WHERE character_id = ?',

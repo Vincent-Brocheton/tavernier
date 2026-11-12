@@ -3841,6 +3841,110 @@ class PcSlot extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
+class CharacterSummary extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  CharacterSummary(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> ownerUserId = GeneratedColumn<String>(
+    'owner_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> speciesId = GeneratedColumn<String>(
+    'species_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> classes = GeneratedColumn<String>(
+    'classes',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'[]\'',
+    defaultValue: const CustomExpression('\'[]\''),
+  );
+  late final GeneratedColumn<String> health = GeneratedColumn<String>(
+    'health',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> updatedAt = GeneratedColumn<String>(
+    'updated_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    ownerUserId,
+    name,
+    speciesId,
+    classes,
+    health,
+    updatedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'character_summary';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  CharacterSummary createAlias(String alias) {
+    return CharacterSummary(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
 class Character extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5768,6 +5872,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final TableBannedEntity tableBannedEntity = TableBannedEntity(this);
   late final TableActivity tableActivity = TableActivity(this);
   late final PcSlot pcSlot = PcSlot(this);
+  late final CharacterSummary characterSummary = CharacterSummary(this);
   late final Character character = Character(this);
   late final CharacterBaseScores characterBaseScores = CharacterBaseScores(
     this,
@@ -5844,6 +5949,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     tableBannedEntity,
     tableActivity,
     pcSlot,
+    characterSummary,
     character,
     characterBaseScores,
     characterBackgroundChoice,
