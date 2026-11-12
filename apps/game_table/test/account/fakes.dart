@@ -199,6 +199,12 @@ final class FakeSession implements SessionActions {
   Future<void> renameProfile(String userId, String pseudonym) async =>
       renames.add(pseudonym);
 
+  final avatars = <String?>[];
+
+  @override
+  Future<void> setAvatar(String userId, String? avatar) async =>
+      avatars.add(avatar);
+
   @override
   Future<int> pendingUploads() async => pending;
 

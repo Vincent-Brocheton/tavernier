@@ -3301,6 +3301,18 @@ abstract class AppLocalizations {
   /// **'Image carrée, compressée à 200 Ko. Visible des membres de vos tables.'**
   String get avatarHint;
 
+  /// Retire l'avatar du profil [A5].
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer'**
+  String get avatarRemove;
+
+  /// Fichier choisi illisible comme image [A5].
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette image ne peut pas être lue. Choisissez une image JPEG, PNG ou WebP.'**
+  String get avatarUnreadable;
+
   /// Modifier le compte (US-40, écran A5).
   ///
   /// In fr, this message translates to:

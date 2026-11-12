@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../l10n/app_localizations.dart';
 import 'account_gateway.dart';
 import 'account_providers.dart';
+import 'avatar.dart';
 import 'new_password_field.dart';
 
 /// Modifier le compte [A5] : pseudonyme (hors ligne compris), e-mail et mot
@@ -27,6 +28,11 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
   var _nextValid = false;
   var _initialized = false;
   var _busy = false;
+
+  /// Avatar choisi sur cet écran (`null` : retiré) ; vaut l'avatar enregistré
+  /// tant que [_avatarTouched] est faux.
+  String? _avatar;
+  var _avatarTouched = false;
 
   /// Message d'erreur affiché en tête, ou `null`.
   String? _error;
@@ -51,6 +57,23 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
       _email.text.trim().isNotEmpty &&
       _email.text.trim().toLowerCase() != _savedEmail.toLowerCase();
   bool get _passwordChanged => _next.text.isNotEmpty;
+  bool get _avatarChanged =>
+      _avatarTouched && _avatar != ref.read(avatarProvider).value;
+
+  Future<void> _pickAvatar() async {
+    final l10n = AppLocalizations.of(context);
+    try {
+      final avatar = await ref.read(avatarPickerProvider)();
+      if (avatar == null || !mounted) return;
+      setState(() {
+        _avatar = avatar;
+        _avatarTouched = true;
+        _error = null;
+      });
+    } on FormatException {
+      if (mounted) setState(() => _error = l10n.avatarUnreadable);
+    }
+  }
 
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context);
@@ -70,6 +93,9 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
       await ref
           .read(sessionActionsProvider)
           .renameProfile(user.id, _pseudonym.text);
+    }
+    if (_avatarChanged) {
+      await ref.read(sessionActionsProvider).setAvatar(user.id, _avatar);
     }
     String? sentTo;
     if (_emailChanged) {
@@ -117,6 +143,7 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
     final pseudonym = ref.watch(pseudonymProvider).value;
+    final avatar = _avatarTouched ? _avatar : ref.watch(avatarProvider).value;
     if (!_initialized && pseudonym != null) {
       _initialized = true;
       _pseudonym.text = pseudonym;
@@ -132,7 +159,10 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
         !_busy &&
         !emptyPseudonym &&
         passwordReady &&
-        (_pseudonymChanged || _emailChanged || _passwordChanged);
+        (_pseudonymChanged ||
+            _avatarChanged ||
+            _emailChanged ||
+            _passwordChanged);
 
     Widget card(String title, List<Widget> children) => Card(
       margin: EdgeInsets.zero,
@@ -184,16 +214,25 @@ class _EditAccountPageState extends ConsumerState<EditAccountPage> {
                 card(l10n.profileSection, [
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    leading: CircleAvatar(
+                    leading: ProfileAvatar(
                       radius: 28,
-                      child: Text(
-                        _pseudonym.text.isEmpty
-                            ? '?'
-                            : _pseudonym.text.characters.first.toUpperCase(),
-                      ),
+                      pseudonym: _pseudonym.text,
+                      avatar: avatar,
                     ),
                     title: Text(l10n.avatarLabel),
                     subtitle: Text(l10n.avatarHint),
+                    onTap: _busy ? null : _pickAvatar,
+                    trailing: avatar == null
+                        ? null
+                        : TextButton(
+                            onPressed: _busy
+                                ? null
+                                : () => setState(() {
+                                    _avatar = null;
+                                    _avatarTouched = true;
+                                  }),
+                            child: Text(l10n.avatarRemove),
+                          ),
                   ),
                   SizedBox(height: AppSpacing.sm),
                   TextField(

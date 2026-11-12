@@ -23,6 +23,8 @@ dependencies:
   flutter_riverpod: ^3.5.0
   go_router: ^18.1.3
   http: ^1.6.0
+  image: ^4.12.0
+  image_picker: ^1.2.4
   intl: any
   material_ui: ^1.8.0
   path: ^1.9.1
