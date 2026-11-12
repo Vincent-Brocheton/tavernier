@@ -4074,6 +4074,84 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Retirer un joueur archive sa fiche, sans la supprimer.'**
   String get removeNote;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre une table'**
+  String get joinTitle;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre'**
+  String get joinTable;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez le code à 6 caractères donné par votre MJ.'**
+  String get joinCodeHint;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Code de la table'**
+  String get joinCodeLabel;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de réseau.'**
+  String get joinOfflineTitle;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre une table demande une connexion, une seule fois. Le code est gardé : la demande partira dès que le réseau revient.'**
+  String get joinOfflineBody;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente du réseau…'**
+  String get joinWaiting;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'En attendant, vous pouvez créer un personnage libre.'**
+  String get joinWaitingHint;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un compte est nécessaire pour rejoindre une table. Le code est gardé : la demande partira une fois connecté.'**
+  String get joinNeedsAccount;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce code ne correspond à aucune invitation. Vérifiez-le auprès de votre MJ.'**
+  String get joinErrorInvalid;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette invitation a expiré ou a été révoquée. Demandez un nouveau code à votre MJ.'**
+  String get joinErrorExpired;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette table est archivée : elle n’accepte plus de joueurs.'**
+  String get joinErrorArchived;
+
+  /// Rejoindre une table (US-14, écrans T4 et T12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Trop d’essais. Réessayez dans une heure.'**
+  String get joinErrorTooMany;
 }
 
 class _AppLocalizationsDelegate

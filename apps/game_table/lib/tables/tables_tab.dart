@@ -73,10 +73,21 @@ class TablesTab extends ConsumerWidget {
                   ),
                 ),
             SizedBox(height: AppSpacing.md),
-            FilledButton.icon(
-              onPressed: () => context.push('/tables/nouvelle'),
-              icon: const Icon(Icons.add),
-              label: Text(l10n.newTable),
+            Wrap(
+              spacing: AppSpacing.sm,
+              runSpacing: AppSpacing.sm,
+              children: [
+                FilledButton.icon(
+                  onPressed: () => context.push('/rejoindre'),
+                  icon: const Icon(Icons.login),
+                  label: Text(l10n.joinTable),
+                ),
+                OutlinedButton.icon(
+                  onPressed: () => context.push('/tables/nouvelle'),
+                  icon: const Icon(Icons.add),
+                  label: Text(l10n.newTable),
+                ),
+              ],
             ),
           ],
         ),

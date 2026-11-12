@@ -12,6 +12,7 @@ import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/tables/create_table_page.dart';
+import 'package:game_table/tables/join_page.dart';
 import 'package:game_table/tables/table_labels.dart';
 import 'package:game_table/tables/table_page.dart';
 import 'package:game_table/tables/tables_tab.dart';
@@ -41,6 +42,8 @@ Future<TavernierDatabase> _pump(
   Size size = const Size(390, 1800),
   Future<void> Function(TavernierDatabase)? seed,
   String initialLocation = '/',
+  FakeGateway? gateway,
+  bool online = true,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -59,6 +62,11 @@ Future<TavernierDatabase> _pump(
         path: '/tables/nouvelle',
         builder: (_, _) => const CreateTablePage(),
       ),
+      GoRoute(path: '/rejoindre', builder: (_, _) => const JoinPage()),
+      GoRoute(
+        path: '/rejoindre/:code',
+        builder: (_, state) => JoinPage(code: state.pathParameters['code']),
+      ),
       GoRoute(
         path: '/tables/:id',
         builder: (_, state) => TablePage(id: state.pathParameters['id']!),
@@ -69,7 +77,8 @@ Future<TavernierDatabase> _pump(
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
-        accountGatewayProvider.overrideWithValue(FakeGateway()),
+        accountGatewayProvider.overrideWithValue(gateway ?? FakeGateway()),
+        onlineProvider.overrideWith((ref) => Stream.value(online)),
         currentUserProvider.overrideWith((ref) => Stream.value(_gm)),
         databaseProvider.overrideWithValue(database),
         contentProvider.overrideWith((ref) => _content),
@@ -131,10 +140,9 @@ Future<(TavernierDatabase, String)> _openTable(
         );
       }
     },
-    initialLocation: '/tables/brumeval',
   );
   // L'identifiant n'est connu qu'après la graine : on y navigue ensuite.
-  GoRouter.of(tester.element(find.byType(TablePage))).go('/tables/$id');
+  GoRouter.of(tester.element(find.byType(TablesTab))).go('/tables/$id');
   await tester.pumpAndSettle();
   return (database, id);
 }
@@ -404,5 +412,62 @@ void main() {
     expect(find.text(l10n.inviteTitle), findsNothing);
     expect(find.byType(PopupMenuButton<void>), findsNothing);
     expect(find.text(l10n.removeNote), findsNothing);
+  });
+  _testTable('rejoindre par le lien : la table s\'ouvre', (tester) async {
+    late String id;
+    final gateway = FakeGateway();
+    await _pump(
+      tester,
+      gateway: gateway,
+      seed: (database) async {
+        id = await TableStore(database).create(
+          gmUserId: '00000000-0000-0000-0000-00000000000b',
+          settings: _brumeval,
+          packs: const [],
+        );
+        await database.customStatement(
+          'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+          "VALUES ('m9', ?, ?, 'player', '2026-11-11T10:00:00Z')",
+          [id, _gm.id],
+        );
+      },
+    );
+    gateway.joinReply = (_) => (tableId: id, error: null);
+    GoRouter.of(tester.element(find.byType(TablesTab))).go('/rejoindre/k7q4zp');
+    await tester.pumpAndSettle();
+    expect(gateway.joins, ['K7Q4ZP']);
+    expect(find.byType(TablePage), findsOneWidget);
+    expect(find.text(l10n.youArePlayer.toUpperCase()), findsOneWidget);
+  });
+
+  _testTable('rejoindre, code saisi refusé : le motif', (tester) async {
+    final gateway = FakeGateway()
+      ..joinReply = (_) => (tableId: null, error: 'expired_code');
+    await _pump(tester, gateway: gateway);
+    await _tap(tester, find.text(l10n.joinTable));
+    expect(find.byType(JoinPage), findsOneWidget);
+    final join = find.widgetWithText(FilledButton, l10n.joinTable);
+    expect(tester.widget<FilledButton>(join).onPressed, isNull);
+
+    await tester.enterText(find.byType(TextField), 'k7q4z');
+    await tester.pump();
+    expect(tester.widget<FilledButton>(join).onPressed, isNull);
+    await tester.enterText(find.byType(TextField), 'k7q4zp');
+    await tester.pump();
+    expect(find.text('Z'), findsOneWidget);
+    await _tap(tester, join);
+    expect(gateway.joins, ['K7Q4ZP']);
+    expect(find.text(l10n.joinErrorExpired), findsOneWidget);
+  });
+
+  _testTable('rejoindre hors ligne : en attente du réseau', (tester) async {
+    final gateway = FakeGateway();
+    await _pump(tester, gateway: gateway, online: false);
+    GoRouter.of(tester.element(find.byType(TablesTab))).go('/rejoindre/K7Q4ZP');
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.joinOfflineTitle), findsOneWidget);
+    expect(find.text(l10n.joinWaiting), findsOneWidget);
+    expect(find.text(l10n.joinWaitingHint), findsOneWidget);
+    expect(gateway.joins, isEmpty);
   });
 }

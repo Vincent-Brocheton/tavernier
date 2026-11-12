@@ -2440,4 +2440,50 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get removeNote =>
       'Retirer un joueur archive sa fiche, sans la supprimer.';
+
+  @override
+  String get joinTitle => 'Rejoindre une table';
+
+  @override
+  String get joinTable => 'Rejoindre';
+
+  @override
+  String get joinCodeHint =>
+      'Saisissez le code à 6 caractères donné par votre MJ.';
+
+  @override
+  String get joinCodeLabel => 'Code de la table';
+
+  @override
+  String get joinOfflineTitle => 'Pas de réseau.';
+
+  @override
+  String get joinOfflineBody =>
+      'Rejoindre une table demande une connexion, une seule fois. Le code est gardé : la demande partira dès que le réseau revient.';
+
+  @override
+  String get joinWaiting => 'En attente du réseau…';
+
+  @override
+  String get joinWaitingHint =>
+      'En attendant, vous pouvez créer un personnage libre.';
+
+  @override
+  String get joinNeedsAccount =>
+      'Un compte est nécessaire pour rejoindre une table. Le code est gardé : la demande partira une fois connecté.';
+
+  @override
+  String get joinErrorInvalid =>
+      'Ce code ne correspond à aucune invitation. Vérifiez-le auprès de votre MJ.';
+
+  @override
+  String get joinErrorExpired =>
+      'Cette invitation a expiré ou a été révoquée. Demandez un nouveau code à votre MJ.';
+
+  @override
+  String get joinErrorArchived =>
+      'Cette table est archivée : elle n’accepte plus de joueurs.';
+
+  @override
+  String get joinErrorTooMany => 'Trop d’essais. Réessayez dans une heure.';
 }
