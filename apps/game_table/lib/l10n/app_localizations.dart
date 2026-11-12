@@ -4536,6 +4536,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Les PV exacts des autres joueurs restent visibles du MJ seulement.'**
   String get groupHpNote;
+
+  /// Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).
+  ///
+  /// In fr, this message translates to:
+  /// **'Synchronisé'**
+  String get syncSynced;
+
+  /// Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 modification en attente} other{{count} modifications en attente}}'**
+  String syncPending(int count);
+
+  /// Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors-ligne'**
+  String get syncOffline;
+
+  /// Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors-ligne · {pending}'**
+  String syncOfflinePending(String pending);
+
+  /// Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).
+  ///
+  /// In fr, this message translates to:
+  /// **'Conflit résolu'**
+  String get syncConflict;
 }
 
 class _AppLocalizationsDelegate

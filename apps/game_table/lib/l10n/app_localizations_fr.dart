@@ -2735,4 +2735,29 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get groupHpNote =>
       'Les PV exacts des autres joueurs restent visibles du MJ seulement.';
+
+  @override
+  String get syncSynced => 'Synchronisé';
+
+  @override
+  String syncPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count modifications en attente',
+      one: '1 modification en attente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get syncOffline => 'Hors-ligne';
+
+  @override
+  String syncOfflinePending(String pending) {
+    return 'Hors-ligne · $pending';
+  }
+
+  @override
+  String get syncConflict => 'Conflit résolu';
 }
