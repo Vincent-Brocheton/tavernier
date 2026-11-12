@@ -10,12 +10,12 @@
 
 ## Rejoindre (serveur)
 
-`join_table(code text) returns text`, `security definer` :
+`join_table(code text) returns jsonb`, `security definer`, rend `{"table_id": …}` ou `{"error": "<motif>"}` :
 1. compte les échecs de l'appelant dans l'heure (`join_attempt`) : 10 ou plus → `too_many_attempts` ;
 2. cherche l'invitation par code (en majuscules) : absente → `invalid_code`, révoquée ou expirée → `expired_code`, table archivée → `archived_table`. Chaque échec est noté ;
 3. ajoute `table_member` (rôle `player`) s'il n'y est pas déjà, et rend `table_id`.
 
-Les motifs passent par `raise exception … using errcode = 'P0001', hint = '<motif>'` : l'app les lit dans le `hint`.
+La fonction rend le motif au lieu de lever une exception : une exception annulerait aussi l'échec noté dans `join_attempt`.
 
 `join_attempt(user_id, at)` n'a aucune règle de lecture ni d'écriture : seule la fonction y touche.
 

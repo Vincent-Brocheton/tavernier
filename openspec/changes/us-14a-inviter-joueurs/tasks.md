@@ -1,7 +1,7 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP : rejoindre (code valide, inconnu, expiré, révoqué, table archivée, déjà membre, freinage), retrait d'un joueur (fiche archivée, lecture seule)
-- [ ] 1.2 Migration : `join_table`, `join_attempt`, trigger de retrait, `can_write_character`
+- [x] 1.1 Tests pgTAP : rejoindre (code valide, inconnu, expiré, révoqué, table archivée, déjà membre, freinage), retrait d'un joueur (fiche archivée, lecture seule)
+- [x] 1.2 Migration : `join_table`, `join_attempt`, trigger de retrait, `can_write_character`
 
 ## 2. Données
 
