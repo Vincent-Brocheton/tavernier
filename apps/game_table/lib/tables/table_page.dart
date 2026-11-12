@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
+import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'configuration_tab.dart';
 import 'members_tab.dart';
@@ -146,6 +147,7 @@ class _Overview extends ConsumerWidget {
               for (final slot in mine) _MySlot(table: table, slot: slot),
               SizedBox(height: AppSpacing.md),
             ],
+            _Group(table: table),
             TableSummaryCard(settings: table.settings, showName: false),
             SizedBox(height: AppSpacing.md),
             Text(l10n.activityTitle, style: text.titleMedium),
@@ -361,6 +363,95 @@ class _SubmitDialogState extends State<_SubmitDialog> {
           onPressed: () => Navigator.pop(context, _message.text.trim()),
           child: Text(l10n.submitAction),
         ),
+      ],
+    );
+  }
+}
+
+/// « Le groupe » [T13] : les autres PJ, avec leur état de santé qualitatif,
+/// jamais leurs PV chiffrés (EF-TAB-09). Fiches complètes ouvertes par le MJ :
+/// toucher un PJ ouvre sa fiche, en lecture seule.
+class _Group extends ConsumerWidget {
+  const _Group({required this.table});
+
+  final TableSummary table;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final colors = GameColors.of(context);
+    final content = ref.watch(contentProvider).value;
+    final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
+    final others = [
+      for (final summary
+          in ref.watch(tableGroupProvider(table.id)).value ??
+              const <CharacterSummary>[])
+        if (summary.ownerUserId != me) summary,
+    ];
+    if (others.isEmpty || content == null) return const SizedBox.shrink();
+    (IconData, Color, String) health(Health value) => switch (value) {
+      Health.unhurt => (Icons.favorite_border, colors.heal, l10n.healthUnhurt),
+      Health.wounded => (
+        Icons.heart_broken_outlined,
+        colors.alert,
+        l10n.healthWounded,
+      ),
+      Health.badly => (Icons.heart_broken, colors.damage, l10n.healthBadly),
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(l10n.groupTitle, style: text.titleMedium),
+        SizedBox(height: AppSpacing.sm),
+        Card(
+          margin: EdgeInsets.zero,
+          child: Column(
+            children: [
+              for (final pc in others)
+                Builder(
+                  builder: (context) {
+                    final (icon, color, label) = health(pc.health);
+                    return ListTile(
+                      leading: CircleAvatar(
+                        child: Text(pc.name.characters.first.toUpperCase()),
+                      ),
+                      title: Text(pc.name),
+                      subtitle: Text(
+                        [
+                          namesOf(content, [pc.speciesId]),
+                          for (final c in pc.classes)
+                            l10n.classLevel(
+                              namesOf(content, [c.classId]),
+                              c.level,
+                            ),
+                        ].join(' · '),
+                      ),
+                      // Icône et libellé : la couleur ne porte jamais seule
+                      // l'information.
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(icon, size: 18, color: color),
+                          SizedBox(width: AppSpacing.xs),
+                          Text(
+                            label,
+                            style: text.labelLarge!.copyWith(color: color),
+                          ),
+                        ],
+                      ),
+                      onTap: table.fullSheetsVisible
+                          ? () => context.push('/characters/${pc.id}')
+                          : null,
+                    );
+                  },
+                ),
+            ],
+          ),
+        ),
+        SizedBox(height: AppSpacing.xs),
+        Text(l10n.groupHpNote, style: text.bodySmall),
+        SizedBox(height: AppSpacing.md),
       ],
     );
   }

@@ -425,6 +425,27 @@ final class CharacterStore {
       ),
   ];
 
+  /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
+  /// statut ; `null` si elle n'existe pas.
+  Future<({String? ownerUserId, String? gmUserId, String status})?> access(
+    String id,
+  ) async {
+    final row = await _db
+        .customSelect(
+          'SELECT c.owner_user_id, c.status, g.gm_user_id FROM character c '
+          'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
+          variables: [Variable.withString(id)],
+        )
+        .getSingleOrNull();
+    return row == null
+        ? null
+        : (
+            ownerUserId: row.readNullable<String>('owner_user_id'),
+            gmUserId: row.readNullable<String>('gm_user_id'),
+            status: row.read<String>('status'),
+          );
+  }
+
   /// Publie le résumé d'une fiche de table, seulement s'il a changé : rien
   /// ne part au serveur pour rien. Rend `true` s'il a été écrit.
   Future<bool> publishSummary(CharacterSummary summary) async {

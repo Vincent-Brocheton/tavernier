@@ -8,6 +8,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'rest_sheet.dart';
+import 'sheet_access.dart';
 import 'sheet_page.dart';
 import 'simple_roll.dart';
 
@@ -84,38 +85,46 @@ class InventoryTab extends ConsumerWidget {
       title: Text(entity?.name ?? item.itemId),
       subtitle: subtitle.isEmpty ? null : Text(subtitle),
       trailing: Text(l10n.itemQuantity(item.quantity)),
-      onTap: () => showAdaptiveSheet(
-        context,
-        _ItemSheet(
-          entity: entity,
-          item: item,
-          onUse: consumableOf(entity) == null
-              ? null
-              : () => showAdaptiveSheet(
-                  context,
-                  _ConsumableSheet(
-                    entity: entity!,
-                    consumable: consumableOf(entity)!,
-                    quantity: item.quantity,
-                    sheet: sheet,
-                    state: play,
-                    onUse: (state) {
-                      savePlayState(ref, id, state);
-                      _save(
-                        ref,
-                        setItemQuantity(character, index, item.quantity - 1),
-                      );
-                    },
-                  ),
-                ),
-          blockAttunement:
-              !item.attuned && sheet.attunedCount >= sheet.attunementSlots,
-          onEquip: () => _save(ref, toggleEquipped(character, content, index)),
-          onAttune: () => _save(ref, toggleAttuned(character, index)),
-          onQuantity: (quantity) =>
-              _save(ref, setItemQuantity(character, index, quantity)),
-        ),
-      ),
+      onTap: !SheetAccess.editableOf(context)
+          ? null
+          : () => showAdaptiveSheet(
+              context,
+              _ItemSheet(
+                entity: entity,
+                item: item,
+                onUse: consumableOf(entity) == null
+                    ? null
+                    : () => showAdaptiveSheet(
+                        context,
+                        _ConsumableSheet(
+                          entity: entity!,
+                          consumable: consumableOf(entity)!,
+                          quantity: item.quantity,
+                          sheet: sheet,
+                          state: play,
+                          onUse: (state) {
+                            savePlayState(ref, id, state);
+                            _save(
+                              ref,
+                              setItemQuantity(
+                                character,
+                                index,
+                                item.quantity - 1,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                blockAttunement:
+                    !item.attuned &&
+                    sheet.attunedCount >= sheet.attunementSlots,
+                onEquip: () =>
+                    _save(ref, toggleEquipped(character, content, index)),
+                onAttune: () => _save(ref, toggleAttuned(character, index)),
+                onQuantity: (quantity) =>
+                    _save(ref, setItemQuantity(character, index, quantity)),
+              ),
+            ),
     );
   }
 
@@ -143,15 +152,18 @@ class InventoryTab extends ConsumerWidget {
               StatTile(
                 value: '${character.coins[code] ?? 0}',
                 label: _coinName(l10n, code),
-                onTap: () => showAdaptiveSheet(
-                  context,
-                  _CoinSheet(
-                    name: _coinName(l10n, code),
-                    amount: character.coins[code] ?? 0,
-                    onSave: (amount) =>
-                        _save(ref, setCoin(character, code, amount)),
-                  ),
-                ),
+                // Lecture seule : la tuile ne fait que montrer la somme.
+                onTap: !SheetAccess.editableOf(context)
+                    ? () {}
+                    : () => showAdaptiveSheet(
+                        context,
+                        _CoinSheet(
+                          name: _coinName(l10n, code),
+                          amount: character.coins[code] ?? 0,
+                          onSave: (amount) =>
+                              _save(ref, setCoin(character, code, amount)),
+                        ),
+                      ),
               ),
           ],
         ),
@@ -172,19 +184,20 @@ class InventoryTab extends ConsumerWidget {
           for (final index in bag) _row(context, ref, l10n, index),
           SizedBox(height: AppSpacing.sm),
         ],
-        Align(
-          alignment: Alignment.centerLeft,
-          child: FilledButton(
-            onPressed: () => showAdaptiveSheet(
-              context,
-              _AddItemSheet(
-                content: content,
-                onAdd: (id) => _save(ref, addItem(character, id)),
+        if (SheetAccess.editableOf(context))
+          Align(
+            alignment: Alignment.centerLeft,
+            child: FilledButton(
+              onPressed: () => showAdaptiveSheet(
+                context,
+                _AddItemSheet(
+                  content: content,
+                  onAdd: (id) => _save(ref, addItem(character, id)),
+                ),
               ),
+              child: Text(l10n.addItem),
             ),
-            child: Text(l10n.addItem),
           ),
-        ),
       ],
     );
   }

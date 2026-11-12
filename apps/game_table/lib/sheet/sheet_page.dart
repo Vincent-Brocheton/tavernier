@@ -14,6 +14,7 @@ import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
 import 'rest_sheet.dart';
+import 'sheet_access.dart';
 import 'sheet_breakdowns.dart';
 import 'spells_tab.dart';
 
@@ -43,10 +44,10 @@ class SheetPage extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: switch ((content, character)) {
-          (final content?, AsyncData(value: final character?)) => _Sheet(
-            id: id,
-            content: content,
-            character: character,
+          (final content?, AsyncData(value: final character?)) => SheetAccess(
+            // Lecture seule tant que les droits ne sont pas connus.
+            editable: ref.watch(sheetEditableProvider(id)).value ?? false,
+            child: _Sheet(id: id, content: content, character: character),
           ),
           (_, AsyncData(value: null)) ||
           (_, AsyncError()) => const CharacterNotFound(),
@@ -153,14 +154,17 @@ class _Sheet extends StatelessWidget {
               spacing: AppSpacing.xs,
               runSpacing: AppSpacing.xs,
               children: [
-                if (sheet.level < maxCharacterLevel)
+                if (SheetAccess.editableOf(context) &&
+                    sheet.level < maxCharacterLevel)
                   FilledButton(
                     onPressed: () => context.push(levelUpPath(id)),
                     child: Text(l10n.levelUpTo(sheet.level + 1)),
                   ),
                 for (final (kind, label) in [
-                  (RestKind.short, l10n.shortRest),
-                  (RestKind.long, l10n.longRest),
+                  if (SheetAccess.editableOf(context))
+                    (RestKind.short, l10n.shortRest),
+                  if (SheetAccess.editableOf(context))
+                    (RestKind.long, l10n.longRest),
                 ])
                   OutlinedButton(
                     onPressed: () => showAdaptiveSheet(

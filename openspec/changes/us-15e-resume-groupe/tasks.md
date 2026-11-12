@@ -9,6 +9,6 @@
 
 ## 3. App
 
-- [ ] 3.1 Publication des résumés ; tests
-- [ ] 3.2 « Le groupe » dans la vue d'ensemble ; tests
-- [ ] 3.3 Fiche en lecture seule ; tests
+- [x] 3.1 Publication des résumés ; tests
+- [x] 3.2 « Le groupe » dans la vue d'ensemble ; tests
+- [x] 3.3 Fiche en lecture seule ; tests

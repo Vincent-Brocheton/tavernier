@@ -3906,5 +3906,25 @@
         "type": "String"
       }
     }
+  },
+  "groupTitle": "Le groupe",
+  "@groupTitle": {
+    "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
+  },
+  "healthUnhurt": "Indemne",
+  "@healthUnhurt": {
+    "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
+  },
+  "healthWounded": "Blessé",
+  "@healthWounded": {
+    "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
+  },
+  "healthBadly": "Gravement blessé",
+  "@healthBadly": {
+    "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
+  },
+  "groupHpNote": "Les PV exacts des autres joueurs restent visibles du MJ seulement.",
+  "@groupHpNote": {
+    "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
   }
 }

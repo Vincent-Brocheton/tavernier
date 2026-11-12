@@ -5,7 +5,7 @@ La vue d'ensemble d'une table SHALL montrer les autres PJ : nom, espèce, classe
 
 #### Scenario: Blessé
 - **WHEN** Thalia a 20 PV sur 33
-- **THEN** le groupe affiche Thalia « Blessée », sans chiffres
+- **THEN** le groupe affiche Thalia « Blessé », sans chiffres
 
 #### Scenario: Fiches fermées
 - **WHEN** le MJ n'a pas ouvert les fiches complètes

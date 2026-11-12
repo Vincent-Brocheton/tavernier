@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import 'sheet_access.dart';
 import 'sheet_features.dart';
 import 'sheet_page.dart';
 import 'simple_roll.dart';
@@ -31,11 +32,12 @@ class HitPointsTracker extends ConsumerWidget {
     void change(int delta) =>
         savePlayState(ref, id, changeHitPoints(play, sheet, delta));
     final current = hitPoints(play, sheet);
+    final editable = SheetAccess.editableOf(context);
     return Row(
       children: [
         IconButton(
           tooltip: l10n.loseHitPoint,
-          onPressed: current > 0 ? () => change(-1) : null,
+          onPressed: editable && current > 0 ? () => change(-1) : null,
           icon: const Icon(Icons.remove),
         ),
         Text(
@@ -45,7 +47,7 @@ class HitPointsTracker extends ConsumerWidget {
         IconButton(
           tooltip: l10n.gainHitPoint,
           onPressed: current < sheet.hitPointsMax.value
-              ? () => change(1)
+              ? (editable ? () => change(1) : null)
               : null,
           icon: const Icon(Icons.add),
         ),
@@ -72,10 +74,11 @@ class InspirationTracker extends ConsumerWidget {
       children: [
         Icon(has ? Icons.star : Icons.star_border, size: 20),
         Text(has ? l10n.inspirationHeld : l10n.inspirationNone),
-        TextButton(
-          onPressed: () => savePlayState(ref, id, play.withInspiration(!has)),
-          child: Text(has ? l10n.useResource : l10n.receiveInspiration),
-        ),
+        if (SheetAccess.editableOf(context))
+          TextButton(
+            onPressed: () => savePlayState(ref, id, play.withInspiration(!has)),
+            child: Text(has ? l10n.useResource : l10n.receiveInspiration),
+          ),
       ],
     );
   }
@@ -112,7 +115,7 @@ class ResourceTracker extends ConsumerWidget {
         if (label != null)
           Text(label!, style: Theme.of(context).textTheme.bodySmall),
         TextButton(
-          onPressed: left > 0
+          onPressed: left > 0 && SheetAccess.editableOf(context)
               ? () => savePlayState(
                   ref,
                   id,
