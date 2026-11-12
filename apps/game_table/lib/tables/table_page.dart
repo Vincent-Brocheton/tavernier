@@ -6,12 +6,14 @@ import 'package:material_ui/material_ui.dart';
 
 import '../l10n/app_localizations.dart';
 import 'configuration_tab.dart';
+import 'members_tab.dart';
 import 'table_labels.dart';
 import 'table_summary_card.dart';
 import 'tables_providers.dart';
 
 /// Page d'une table (US-13) : le rôle, le nom et la description, puis les
-/// onglets « Vue d'ensemble » (réglages et activité) et, pour le MJ,
+/// onglets « Vue d'ensemble » (réglages et activité), « Membres » et, pour le
+/// MJ,
 /// « Configuration » [F6].
 class TablePage extends ConsumerWidget {
   const TablePage({super.key, required this.id});
@@ -28,7 +30,7 @@ class TablePage extends ConsumerWidget {
     return DefaultTabController(
       // Une clé par rôle : le nombre d'onglets en dépend.
       key: ValueKey(gm),
-      length: gm ? 2 : 1,
+      length: gm ? 3 : 2,
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -73,6 +75,7 @@ class TablePage extends ConsumerWidget {
                       tabAlignment: TabAlignment.start,
                       tabs: [
                         Tab(text: l10n.tabOverview),
+                        Tab(text: l10n.tabMembers),
                         if (gm) Tab(text: l10n.tabConfiguration),
                       ],
                     ),
@@ -80,6 +83,7 @@ class TablePage extends ConsumerWidget {
                       child: TabBarView(
                         children: [
                           _Overview(table: table),
+                          MembersTab(table: table),
                           if (gm) ConfigurationTab(table: table),
                         ],
                       ),

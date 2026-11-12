@@ -47,10 +47,8 @@ class _ConfigurationTabState extends ConsumerState<ConfigurationTab> {
     _revision++;
   });
 
-  void _refresh() => ref
-    ..invalidate(tableProvider(widget.table.id))
-    ..invalidate(tableActivityProvider(widget.table.id))
-    ..invalidate(myTablesProvider);
+  // La table et la liste se tiennent à jour ; l'activité, pas encore.
+  void _refresh() => ref.invalidate(tableActivityProvider(widget.table.id));
 
   /// Écrit avec le compte connecté ; les boutons restent inactifs pendant
   /// l'écriture, et reviennent même si elle échoue.

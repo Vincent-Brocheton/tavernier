@@ -3948,6 +3948,132 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Table restaurée'**
   String get activityRestored;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Membres'**
+  String get tabMembers;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inviter des joueurs'**
+  String get inviteTitle;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faites scanner le QR à la table, ou envoyez le lien. Le joueur a besoin du réseau pour rejoindre.'**
+  String get inviteHint;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer une invitation'**
+  String get inviteCreate;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune invitation en cours. Une invitation vaut 7 jours.'**
+  String get inviteNone;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Code'**
+  String get inviteCodeLabel;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Copier le code'**
+  String get inviteCopyCode;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Copier le lien'**
+  String get inviteCopyLink;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager…'**
+  String get inviteShare;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoignez « {table} » sur Tavernier : {link} (code {code})'**
+  String inviteShareText(String table, String link, String code);
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Copié'**
+  String get inviteCopied;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'{days, plural, =0{Expire aujourd’hui} =1{Expire dans 1 jour} other{Expire dans {days} jours}}'**
+  String inviteExpires(int days);
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Révoquer'**
+  String get inviteRevoke;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Membres {count}'**
+  String membersCount(int count);
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'{role} · vous'**
+  String memberYou(String role);
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Membre'**
+  String get memberUnknown;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer de la table'**
+  String get removeMember;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer {name} ?'**
+  String removeMemberTitle(String name);
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sa fiche dans cette table est archivée, sans être supprimée. Une nouvelle invitation lui permettra de revenir.'**
+  String get removeMemberBody;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer'**
+  String get removeAction;
+
+  /// Membres et invitations d’une table (US-14, écrans T10 et T11).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer un joueur archive sa fiche, sans la supprimer.'**
+  String get removeNote;
 }
 
 class _AppLocalizationsDelegate

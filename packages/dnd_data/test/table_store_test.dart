@@ -173,6 +173,78 @@ void main() {
           'archived',
         ]);
       });
+
+      test('invitation : une seule en cours, code sans ambiguïté', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        final first = await store.createInvite(id);
+        final second = await store.createInvite(id);
+        expect(second.code, matches(RegExp(r'^[A-HJKMNP-Z2-9]{6}$')));
+        expect(
+          second.expiresAt.difference(DateTime.now()).inHours,
+          inInclusiveRange(167, 168),
+        );
+        expect((await store.watchInvite(id).first)?.id, second.id);
+        expect(second.id, isNot(first.id));
+
+        await store.revokeInvite(second.id);
+        expect(await store.watchInvite(id).first, isNull);
+      });
+
+      test('invitation expirée : plus en cours', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await db.customStatement(
+          'INSERT INTO table_invite (id, table_id, code, expires_at, revoked) '
+          "VALUES ('i1', ?, 'K7Q4ZP', '2026-01-01T00:00:00.000Z', 0)",
+          [id],
+        );
+        expect(await store.watchInvite(id).first, isNull);
+      });
+
+      test('membres : MJ d\'abord, pseudonymes, retrait', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await db.customStatement(
+          'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+          "VALUES ('m9', ?, ?, 'player', '2026-11-11T10:00:00Z')",
+          [id, _player],
+        );
+        await db.customStatement(
+          'INSERT INTO profile (id, pseudonym, locale, settings) '
+          "VALUES (?, 'Camille', 'fr', '{}'), (?, 'Hugo', 'fr', '{}')",
+          [_gm, _player],
+        );
+        final members = await store.watchMembers(id).first;
+        expect(members.map((m) => (m.pseudonym, m.role)), [
+          ('Camille', TableRole.gm),
+          ('Hugo', TableRole.player),
+        ]);
+
+        await store.removeMember(id, _player);
+        expect((await store.watchMembers(id).first).map((m) => m.userId), [
+          _gm,
+        ]);
+      });
+
+      test('liste réactive : une table créée apparaît', () async {
+        final lists = store.watchList(_gm);
+        final seen = expectLater(
+          lists.map((list) => list.length),
+          emitsThrough(1),
+        );
+        await store.create(gmUserId: _gm, settings: _brumeval, packs: [_srd]);
+        await seen;
+      });
     });
   }
 }

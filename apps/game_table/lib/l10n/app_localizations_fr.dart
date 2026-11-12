@@ -2356,4 +2356,88 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get activityRestored => 'Table restaurée';
+
+  @override
+  String get tabMembers => 'Membres';
+
+  @override
+  String get inviteTitle => 'Inviter des joueurs';
+
+  @override
+  String get inviteHint =>
+      'Faites scanner le QR à la table, ou envoyez le lien. Le joueur a besoin du réseau pour rejoindre.';
+
+  @override
+  String get inviteCreate => 'Créer une invitation';
+
+  @override
+  String get inviteNone =>
+      'Aucune invitation en cours. Une invitation vaut 7 jours.';
+
+  @override
+  String get inviteCodeLabel => 'Code';
+
+  @override
+  String get inviteCopyCode => 'Copier le code';
+
+  @override
+  String get inviteCopyLink => 'Copier le lien';
+
+  @override
+  String get inviteShare => 'Partager…';
+
+  @override
+  String inviteShareText(String table, String link, String code) {
+    return 'Rejoignez « $table » sur Tavernier : $link (code $code)';
+  }
+
+  @override
+  String get inviteCopied => 'Copié';
+
+  @override
+  String inviteExpires(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Expire dans $days jours',
+      one: 'Expire dans 1 jour',
+      zero: 'Expire aujourd’hui',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get inviteRevoke => 'Révoquer';
+
+  @override
+  String membersCount(int count) {
+    return 'Membres $count';
+  }
+
+  @override
+  String memberYou(String role) {
+    return '$role · vous';
+  }
+
+  @override
+  String get memberUnknown => 'Membre';
+
+  @override
+  String get removeMember => 'Retirer de la table';
+
+  @override
+  String removeMemberTitle(String name) {
+    return 'Retirer $name ?';
+  }
+
+  @override
+  String get removeMemberBody =>
+      'Sa fiche dans cette table est archivée, sans être supprimée. Une nouvelle invitation lui permettra de revenir.';
+
+  @override
+  String get removeAction => 'Retirer';
+
+  @override
+  String get removeNote =>
+      'Retirer un joueur archive sa fiche, sans la supprimer.';
 }

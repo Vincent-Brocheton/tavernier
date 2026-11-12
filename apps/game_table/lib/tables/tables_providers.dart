@@ -11,21 +11,29 @@ final tableStoreProvider = Provider<TableStore>(
 );
 
 /// Tables de l'utilisateur connecté, MJ ou membre ; vide sans compte.
-final myTablesProvider = FutureProvider<List<TableSummary>>((ref) async {
+final myTablesProvider = StreamProvider<List<TableSummary>>((ref) {
   final userId = ref.watch(currentUserProvider.select((u) => u.value?.id));
-  if (userId == null) return const [];
-  return ref.watch(tableStoreProvider).list(userId);
+  if (userId == null) return Stream.value(const []);
+  return ref.watch(tableStoreProvider).watchList(userId);
 });
 
-/// Une table vue par l'utilisateur connecté.
-final tableProvider = FutureProvider.family<TableSummary?, String>((
-  ref,
-  id,
-) async {
+/// Une table vue par l'utilisateur connecté, tenue à jour.
+final tableProvider = StreamProvider.family<TableSummary?, String>((ref, id) {
   final userId = ref.watch(currentUserProvider.select((u) => u.value?.id));
-  if (userId == null) return null;
-  return ref.watch(tableStoreProvider).load(id, userId);
+  if (userId == null) return Stream.value(null);
+  return ref.watch(tableStoreProvider).watch(id, userId);
 });
+
+/// Membres d'une table, le MJ d'abord.
+final tableMembersProvider =
+    StreamProvider.family<List<TableMemberInfo>, String>(
+      (ref, id) => ref.watch(tableStoreProvider).watchMembers(id),
+    );
+
+/// Invitation en cours d'une table, pour son MJ.
+final tableInviteProvider = StreamProvider.family<TableInvite?, String>(
+  (ref, id) => ref.watch(tableStoreProvider).watchInvite(id),
+);
 
 /// Activité d'une table, la plus récente d'abord (EF-TAB-11).
 final tableActivityProvider =

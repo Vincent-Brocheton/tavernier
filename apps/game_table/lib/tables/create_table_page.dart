@@ -52,7 +52,6 @@ class _CreateTablePageState extends ConsumerState<CreateTablePage> {
           settings: _settings,
           packs: await ref.read(defaultTablePacksProvider.future),
         );
-    ref.invalidate(myTablesProvider);
     if (mounted) context.pushReplacement('/tables/$id');
   }
 

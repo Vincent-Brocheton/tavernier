@@ -3371,5 +3371,120 @@
   "activityRestored": "Table restaurée",
   "@activityRestored": {
     "description": "Configuration et activité d’une table (US-13, écran F6)."
+  },
+  "tabMembers": "Membres",
+  "@tabMembers": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteTitle": "Inviter des joueurs",
+  "@inviteTitle": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteHint": "Faites scanner le QR à la table, ou envoyez le lien. Le joueur a besoin du réseau pour rejoindre.",
+  "@inviteHint": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteCreate": "Créer une invitation",
+  "@inviteCreate": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteNone": "Aucune invitation en cours. Une invitation vaut 7 jours.",
+  "@inviteNone": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteCodeLabel": "Code",
+  "@inviteCodeLabel": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteCopyCode": "Copier le code",
+  "@inviteCopyCode": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteCopyLink": "Copier le lien",
+  "@inviteCopyLink": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteShare": "Partager…",
+  "@inviteShare": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteShareText": "Rejoignez « {table} » sur Tavernier : {link} (code {code})",
+  "@inviteShareText": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11).",
+    "placeholders": {
+      "table": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteCopied": "Copié",
+  "@inviteCopied": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "inviteExpires": "{days, plural, =0{Expire aujourd’hui} =1{Expire dans 1 jour} other{Expire dans {days} jours}}",
+  "@inviteExpires": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11).",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteRevoke": "Révoquer",
+  "@inviteRevoke": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "membersCount": "Membres {count}",
+  "@membersCount": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "memberYou": "{role} · vous",
+  "@memberYou": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11).",
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "memberUnknown": "Membre",
+  "@memberUnknown": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "removeMember": "Retirer de la table",
+  "@removeMember": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "removeMemberTitle": "Retirer {name} ?",
+  "@removeMemberTitle": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11).",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberBody": "Sa fiche dans cette table est archivée, sans être supprimée. Une nouvelle invitation lui permettra de revenir.",
+  "@removeMemberBody": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "removeAction": "Retirer",
+  "@removeAction": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "removeNote": "Retirer un joueur archive sa fiche, sans la supprimer.",
+  "@removeNote": {
+    "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
   }
 }
