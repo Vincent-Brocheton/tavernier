@@ -55,3 +55,52 @@ Le MJ SHALL archiver la table, qui passe en lecture seule pour tous, et SHALL po
 #### Scenario: Archivée
 - **WHEN** la table est archivée
 - **THEN** la configuration est verrouillée, et seul « Restaurer » reste disponible
+
+### Requirement: Membres d'une table
+L'app SHALL montrer à chaque membre la liste des membres de la table, avec leur pseudonyme et leur rôle, le MJ en premier. Le MJ SHALL pouvoir retirer un joueur après confirmation ; sa fiche est archivée, pas supprimée (EF-TAB-06).
+
+#### Scenario: Liste
+- **WHEN** un membre ouvre l'onglet « Membres »
+- **THEN** il voit chaque membre, son pseudonyme et son rôle
+
+#### Scenario: Retrait
+- **WHEN** le MJ retire un joueur et confirme
+- **THEN** le joueur n'est plus membre de la table
+
+#### Scenario: Joueur
+- **WHEN** un joueur ouvre l'onglet « Membres »
+- **THEN** il ne voit ni l'invitation ni l'action de retrait
+
+### Requirement: Invitation
+Le MJ SHALL pouvoir créer une invitation valable 7 jours, avec un code de 6 caractères sans caractère ambigu, un lien et un QR code de ce lien. Il SHALL pouvoir copier le lien, le partager et révoquer l'invitation (EF-TAB-05). Créer une invitation SHALL révoquer celle en cours.
+
+#### Scenario: Création
+- **WHEN** le MJ crée une invitation
+- **THEN** l'app montre le code, le QR du lien et « Expire dans 7 jours »
+
+#### Scenario: Révocation
+- **WHEN** le MJ révoque l'invitation
+- **THEN** elle n'est plus proposée, et l'app offre d'en créer une autre
+
+#### Scenario: Expiration
+- **WHEN** l'invitation a plus de 7 jours
+- **THEN** elle n'est plus proposée
+
+### Requirement: Rejoindre une table
+L'utilisateur SHALL pouvoir rejoindre une table par le lien d'une invitation ou en saisissant son code de 6 caractères. Rejoindre exige le réseau et un compte : sinon, la demande SHALL être gardée sur l'appareil et partir d'elle-même au retour du réseau ou à la connexion (EF-TAB-08). Un refus du serveur SHALL être expliqué selon son motif.
+
+#### Scenario: Lien
+- **WHEN** l'utilisateur connecté, en ligne, ouvre le lien d'une invitation valide
+- **THEN** il devient joueur de la table et la page de la table s'ouvre
+
+#### Scenario: Hors ligne
+- **WHEN** l'utilisateur saisit un code sans réseau
+- **THEN** l'app affiche « En attente du réseau… », garde le code, et la demande part au retour du réseau
+
+#### Scenario: Sans compte
+- **WHEN** l'utilisateur ouvre le lien sans être connecté
+- **THEN** l'app garde le code et propose de se connecter ; la demande part à la connexion
+
+#### Scenario: Code refusé
+- **WHEN** le serveur refuse le code (inconnu, expiré, table archivée, trop d'essais)
+- **THEN** l'app affiche le motif et oublie le code
