@@ -54,6 +54,7 @@ part 'database.g.dart';
     TableBannedEntities,
     TableActivities,
     PcSlots,
+    CharacterSummaries,
     Characters,
     CharacterBaseScores,
     CharacterBackgroundChoices,

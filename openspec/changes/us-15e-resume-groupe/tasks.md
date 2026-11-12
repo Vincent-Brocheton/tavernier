@@ -4,8 +4,8 @@
 
 ## 2. Données
 
-- [ ] 2.1 Table Drift, instantané régénéré
-- [ ] 2.2 Tests puis `publishSummary`, `watchGroup`, `healthOf`
+- [x] 2.1 Table Drift, instantané régénéré
+- [x] 2.2 Tests puis `publishSummary`, `watchGroup`, `healthOf`
 
 ## 3. App
 

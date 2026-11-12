@@ -321,6 +321,33 @@ void main() {
         },
       );
 
+      test(
+        'résumés : publiés seulement s\'ils changent, lus par table',
+        () async {
+          final characters = CharacterStore(db);
+          const thalia = CharacterSummary(
+            id: 'c1',
+            tableId: 't1',
+            ownerUserId: 'thalia',
+            name: 'Thalia',
+            speciesId: 'srd:species:elf',
+            classes: [(classId: 'srd:class:rogue', level: 1)],
+            health: Health.wounded,
+          );
+          expect(await characters.publishSummary(thalia), isTrue);
+          expect(await characters.publishSummary(thalia), isFalse);
+          expect(await store.watchGroup('t1').first, [thalia]);
+          expect(await store.watchGroup('t2').first, isEmpty);
+        },
+      );
+
+      test('état de santé : seuils de EF-TAB-09', () {
+        expect(healthOf(33, 33), Health.unhurt);
+        expect(healthOf(17, 33), Health.wounded);
+        expect(healthOf(16, 33), Health.badly);
+        expect(healthOf(0, 33), Health.badly);
+      });
+
       test('liste réactive : une table créée apparaît', () async {
         final lists = store.watchList(_gm);
         final seen = expectLater(

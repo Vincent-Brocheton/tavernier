@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart';
 
+import 'character_store.dart';
 import 'database.dart';
 import 'ids.dart';
 
@@ -483,6 +484,17 @@ final class TableStore {
       slotId,
     ]);
   });
+
+  /// Résumés des fiches de la table, par nom (EF-TAB-09).
+  Stream<List<CharacterSummary>> watchGroup(String tableId) => _db
+      .customSelect(
+        'SELECT * FROM character_summary WHERE table_id = ? '
+        'ORDER BY name COLLATE NOCASE, id',
+        variables: [Variable.withString(tableId)],
+        readsFrom: {_db.characterSummaries},
+      )
+      .watch()
+      .map((rows) => [for (final row in rows) CharacterSummary.fromRow(row)]);
 
   /// Emplacements de la table, dans l'ordre d'attribution, avec leur fiche.
   Stream<List<PcSlot>> watchSlots(String tableId) => _db
