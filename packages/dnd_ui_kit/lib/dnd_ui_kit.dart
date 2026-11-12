@@ -11,6 +11,7 @@ export 'src/game_icons.dart';
 export 'src/layout.dart';
 export 'src/selection_card.dart';
 export 'src/sheet_kit.dart';
+export 'src/sync_indicator.dart';
 export 'src/theme.dart';
 export 'src/tokens.dart';
 export 'src/wizard.dart';

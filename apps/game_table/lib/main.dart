@@ -15,6 +15,7 @@ import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
 import 'account/profile_page.dart';
 import 'account/sign_in_page.dart';
+import 'account/sync_state.dart';
 import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
@@ -220,16 +221,31 @@ class _ShellState extends ConsumerState<_Shell> {
       (GameIcons.navigation['homebrew']!, l10n.navHomebrew),
     ];
     final pseudonym = ref.watch(pseudonymProvider).value;
+    final sync = ref.watch(syncIndicatorProvider);
+    final phone =
+        formFactorOf(MediaQuery.sizeOf(context).width) == FormFactor.phone;
     return AdaptiveNavigationScaffold(
-      account: IconButton(
-        tooltip: l10n.profileTitle,
-        onPressed: () => context.push('/profil'),
-        icon: CircleAvatar(
-          radius: 18,
-          child: pseudonym == null || pseudonym.isEmpty
-              ? const Icon(Icons.person_outline)
-              : Text(pseudonym.characters.first.toUpperCase()),
-        ),
+      account: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // État de la synchronisation, discret et jamais bloquant (ENF-02).
+          if (sync != null)
+            SyncIndicator(
+              state: sync.state,
+              label: syncLabel(l10n, sync),
+              compact: phone,
+            ),
+          IconButton(
+            tooltip: l10n.profileTitle,
+            onPressed: () => context.push('/profil'),
+            icon: CircleAvatar(
+              radius: 18,
+              child: pseudonym == null || pseudonym.isEmpty
+                  ? const Icon(Icons.person_outline)
+                  : Text(pseudonym.characters.first.toUpperCase()),
+            ),
+          ),
+        ],
       ),
       selectedIndex: _selected,
       onDestinationSelected: (i) => setState(() => _selected = i),

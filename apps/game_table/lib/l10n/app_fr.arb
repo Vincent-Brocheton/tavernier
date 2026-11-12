@@ -3926,5 +3926,35 @@
   "groupHpNote": "Les PV exacts des autres joueurs restent visibles du MJ seulement.",
   "@groupHpNote": {
     "description": "Résumé du groupe (US-15, EF-TAB-09, écran T13)."
+  },
+  "syncSynced": "Synchronisé",
+  "@syncSynced": {
+    "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14)."
+  },
+  "syncPending": "{count, plural, =1{1 modification en attente} other{{count} modifications en attente}}",
+  "@syncPending": {
+    "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "syncOffline": "Hors-ligne",
+  "@syncOffline": {
+    "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14)."
+  },
+  "syncOfflinePending": "Hors-ligne · {pending}",
+  "@syncOfflinePending": {
+    "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14).",
+    "placeholders": {
+      "pending": {
+        "type": "String"
+      }
+    }
+  },
+  "syncConflict": "Conflit résolu",
+  "@syncConflict": {
+    "description": "Indicateur de synchronisation (US-16, ENF-02, COMPOSANTS §2.14)."
   }
 }
