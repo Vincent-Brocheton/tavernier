@@ -1,13 +1,17 @@
 import 'package:dnd_data/dnd_data.dart';
+import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../account/account_providers.dart';
+import '../creation/creation_providers.dart';
+import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'table_labels.dart';
 import 'tables_providers.dart';
@@ -30,6 +34,11 @@ class MembersTab extends ConsumerWidget {
     final desktop =
         formFactorOf(MediaQuery.sizeOf(context).width) == FormFactor.desktop;
     final members = _MemberList(table: table);
+    final hasReview =
+        gm &&
+        (ref.watch(tableSlotsProvider(table.id)).value ?? const <PcSlot>[]).any(
+          (s) => s.status == 'submitted',
+        );
     if (gm && desktop) {
       return Align(
         alignment: Alignment.topLeft,
@@ -50,6 +59,10 @@ class MembersTab extends ConsumerWidget {
               ),
               SizedBox(width: AppSpacing.md),
               Expanded(child: members),
+              if (hasReview) ...[
+                SizedBox(width: AppSpacing.md),
+                SizedBox(width: 360, child: ReviewPanel(table: table)),
+              ],
             ],
           ),
         ),
@@ -58,6 +71,7 @@ class MembersTab extends ConsumerWidget {
     return ListView(
       padding: EdgeInsets.all(AppSpacing.md),
       children: [
+        if (hasReview) ReviewPanel(table: table),
         // Sur téléphone, l'invitation s'ouvre dans une feuille [T11].
         if (gm && !table.archived) ...[
           FilledButton.icon(
@@ -276,6 +290,35 @@ class _MemberList extends ConsumerWidget {
     }
   }
 
+  /// Transfère l'emplacement et sa fiche à un autre membre (cahier §4.3).
+  Future<void> _transfer(
+    BuildContext context,
+    WidgetRef ref,
+    PcSlot slot,
+    List<TableMemberInfo> members,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final target = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(l10n.transferTitle(slot.characterName ?? '')),
+        children: [
+          for (final member in members)
+            if (member.userId != slot.playerUserId)
+              SimpleDialogOption(
+                onPressed: () => Navigator.pop(context, member.userId),
+                child: Text(member.pseudonym ?? l10n.memberUnknown),
+              ),
+        ],
+      ),
+    );
+    if (target != null) {
+      await ref
+          .read(tableStoreProvider)
+          .transferSlot(slot.id, slot.characterId!, target);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -339,13 +382,22 @@ class _MemberList extends ConsumerWidget {
                             contentPadding: const EdgeInsets.only(left: 56),
                             leading: const Icon(Icons.person_outline),
                             title: Text(l10n.slotLine(slot)),
-                            trailing: editable && slot.characterId == null
+                            trailing: !editable
+                                ? null
+                                : slot.characterId == null
                                 ? IconButton(
                                     tooltip: l10n.removeSlot,
                                     onPressed: () => store.deleteSlot(slot.id),
                                     icon: const Icon(Icons.close),
                                   )
-                                : null,
+                                : slot.status == 'archived'
+                                ? null
+                                : IconButton(
+                                    tooltip: l10n.transferSlot,
+                                    onPressed: () =>
+                                        _transfer(context, ref, slot, members),
+                                    icon: const Icon(Icons.swap_horiz),
+                                  ),
                           ),
                     ],
                   );
@@ -355,6 +407,202 @@ class _MemberList extends ConsumerWidget {
               SizedBox(height: AppSpacing.sm),
               Text(l10n.removeNote, style: text.bodySmall),
             ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Fiche relue localement, pour les contrôles du panneau de revue.
+final _reviewedCharacterProvider = FutureProvider.autoDispose
+    .family<CharacterInput?, String>(
+      (ref, id) => ref.watch(characterStoreProvider).load(id),
+    );
+
+/// Panneau « Fiche à valider » [T10] : une carte par fiche envoyée.
+class ReviewPanel extends ConsumerWidget {
+  const ReviewPanel({super.key, required this.table});
+
+  final TableSummary table;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final slots = [
+      for (final slot
+          in ref.watch(tableSlotsProvider(table.id)).value ?? const <PcSlot>[])
+        if (slot.status == 'submitted' && slot.characterId != null) slot,
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final slot in slots)
+          _ReviewCard(key: ValueKey(slot.id), table: table, slot: slot),
+      ],
+    );
+  }
+}
+
+class _ReviewCard extends ConsumerStatefulWidget {
+  const _ReviewCard({super.key, required this.table, required this.slot});
+
+  final TableSummary table;
+  final PcSlot slot;
+
+  @override
+  ConsumerState<_ReviewCard> createState() => _ReviewCardState();
+}
+
+class _ReviewCardState extends ConsumerState<_ReviewCard> {
+  final _comment = TextEditingController();
+
+  @override
+  void dispose() {
+    _comment.dispose();
+    super.dispose();
+  }
+
+  Future<void> _review({required bool validated}) => ref
+      .read(characterStoreProvider)
+      .review(
+        widget.slot.characterId!,
+        validated: validated,
+        comment: _comment.text.trim().isEmpty ? null : _comment.text.trim(),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final slot = widget.slot;
+    final settings = widget.table.settings;
+    final input = ref
+        .watch(_reviewedCharacterProvider(slot.characterId!))
+        .value;
+    final content = ref.watch(contentProvider).value;
+    final player =
+        (ref.watch(tableMembersProvider(widget.table.id)).value ?? const [])
+            .where((m) => m.userId == slot.playerUserId)
+            .firstOrNull
+            ?.pseudonym ??
+        l10n.memberUnknown;
+    final name = slot.characterName ?? '';
+
+    Widget check(bool ok, String label) => Padding(
+      padding: EdgeInsets.only(top: AppSpacing.xs),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            ok ? Icons.check_circle : Icons.error,
+            size: 20,
+            color: ok ? scheme.primary : scheme.error,
+          ),
+          SizedBox(width: AppSpacing.sm),
+          Expanded(child: Text(label, style: text.bodyMedium)),
+        ],
+      ),
+    );
+
+    final checks = <Widget>[];
+    if (input != null && content != null) {
+      final method = input.baseScores.method;
+      checks.add(
+        check(
+          method == settings.statMethod,
+          method == settings.statMethod
+              ? l10n.checkMethod(l10n.statMethod(method))
+              : l10n.checkMethodWrong(
+                  l10n.statMethod(method),
+                  l10n.statMethod(settings.statMethod),
+                ),
+        ),
+      );
+      final level = input.classLevels.fold(0, (sum, c) => sum + c.level);
+      checks.add(
+        check(
+          level == settings.startingLevel,
+          level == settings.startingLevel
+              ? l10n.checkLevel(level)
+              : l10n.checkLevelWrong(level, settings.startingLevel),
+        ),
+      );
+      final errors = computeSheet(input, content).integrityErrors;
+      if (errors.isEmpty) {
+        checks.add(check(true, l10n.checkRules));
+      } else {
+        for (final error in errors) {
+          checks.add(check(false, error.message));
+        }
+      }
+    }
+    final classes = input == null || content == null
+        ? ''
+        : [
+            for (final c in input.classLevels)
+              l10n.classLevel(namesOf(content, [c.classId]), c.level),
+          ].join(' / ');
+    final background = input == null || content == null
+        ? ''
+        : namesOf(content, [input.backgroundId]);
+
+    return Card(
+      margin: EdgeInsets.only(bottom: AppSpacing.md),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: scheme.tertiary),
+        borderRadius: BorderRadius.circular(AppRadii.lg),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(l10n.reviewTitle, style: text.labelLarge),
+            SizedBox(height: AppSpacing.sm),
+            Text(name, style: text.titleLarge),
+            Text(
+              l10n.reviewBy(classes, background, player),
+              style: text.bodySmall,
+            ),
+            ...checks,
+            if (slot.submitMessage case final message?) ...[
+              SizedBox(height: AppSpacing.sm),
+              Text(l10n.playerMessage(player, message), style: text.bodyMedium),
+            ],
+            SizedBox(height: AppSpacing.md),
+            TextField(
+              controller: _comment,
+              maxLines: 3,
+              decoration: InputDecoration(labelText: l10n.reviewCommentLabel),
+              onChanged: (_) => setState(() {}),
+            ),
+            SizedBox(height: AppSpacing.sm),
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: AppSpacing.sm,
+              runSpacing: AppSpacing.sm,
+              children: [
+                OutlinedButton(
+                  onPressed: _comment.text.trim().isEmpty
+                      ? null
+                      : () => _review(validated: false),
+                  child: Text(l10n.requestChanges),
+                ),
+                FilledButton(
+                  onPressed: () => _review(validated: true),
+                  child: Text(l10n.validateSheet),
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () =>
+                    context.push('/characters/${slot.characterId}'),
+                child: Text(l10n.openFullSheet),
+              ),
+            ),
           ],
         ),
       ),

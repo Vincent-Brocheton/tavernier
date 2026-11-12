@@ -1,4 +1,5 @@
 // Spec tables : « Création d'une table », « Liste des tables » (US-13).
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -36,6 +37,48 @@ const _gm = User(
 );
 
 late AppLocalizations l10n;
+
+/// Aldric de [D1], au niveau 1 en acquisition par points.
+CharacterInput _aldric() => CharacterInput.fromJson(
+  (jsonDecode(
+        File('../../packages/dnd_rules/test/fixtures/d1/aldric_n1.json')
+            .readAsStringSync(),
+      ) as Map<String, Object?>)['input']!
+      as Map<String, Object?>,
+);
+
+const _hugo = '00000000-0000-0000-0000-00000000000b';
+
+/// Table du MJ connecté, avec Hugo et sa fiche Aldric dans un emplacement.
+Future<(TavernierDatabase, String, String)> _withAldric(
+  WidgetTester tester, {
+  required String status,
+  String? message,
+  Size size = const Size(1440, 1100),
+}) async {
+  final (database, id) = await _openTable(tester, size: size);
+  await database.customStatement(
+    'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+    "VALUES ('m8', ?, ?, 'player', '2026-11-11T10:00:00Z')",
+    [id, _hugo],
+  );
+  await database.customStatement(
+    'INSERT INTO profile (id, pseudonym, locale, settings) VALUES '
+    "(?, 'Camille', 'fr', '{}'), (?, 'Hugo', 'fr', '{}')",
+    [_gm.id, _hugo],
+  );
+  await CharacterStore(database).save('c1', _aldric(), tableId: id);
+  await database.customStatement(
+    'UPDATE character SET owner_user_id = ?, status = ?, submit_message = ? '
+    "WHERE id = 'c1'",
+    [_hugo, status, message],
+  );
+  final store = TableStore(database);
+  await store.fillSlot(await store.createSlot(id, _hugo), 'c1');
+  await tester.pumpAndSettle();
+  await _tap(tester, find.text(l10n.tabMembers));
+  return (database, id, 'c1');
+}
 
 Future<TavernierDatabase> _pump(
   WidgetTester tester, {
@@ -523,6 +566,7 @@ void main() {
     );
 
     await _tap(tester, find.text(l10n.submitToGm));
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.submitAction));
     expect(await CharacterStore(database).status('c1'), 'submitted');
     expect(find.text(l10n.withdrawSheet), findsOneWidget);
     await _tap(tester, find.text(l10n.withdrawSheet));
@@ -560,5 +604,103 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(l10n.reachStartingLevel(3)), findsOneWidget);
     expect(find.text(l10n.submitToGm), findsNothing);
+  });
+  _testTable('revue : contrôles, message, corrections avec commentaire', (
+    tester,
+  ) async {
+    final (database, _, character) = await _withAldric(
+      tester,
+      status: 'submitted',
+      message: 'Je garde l\'épée longue.',
+    );
+    expect(find.text(l10n.reviewTitle), findsOneWidget);
+    expect(
+      find.text(l10n.checkMethod(l10n.statMethod(ScoreMethod.pointBuy))),
+      findsNothing,
+    );
+    // La table impose les valeurs standard : Aldric est en points.
+    expect(
+      find.text(
+        l10n.checkMethodWrong(
+          l10n.statMethod(ScoreMethod.pointBuy),
+          l10n.statMethod(ScoreMethod.standardArray),
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text(l10n.checkLevel(1)), findsOneWidget);
+    expect(find.text(l10n.checkRules), findsOneWidget);
+    expect(
+      find.text(l10n.playerMessage('Hugo', 'Je garde l\'épée longue.')),
+      findsOneWidget,
+    );
+
+    final changes = find.widgetWithText(OutlinedButton, l10n.requestChanges);
+    expect(tester.widget<OutlinedButton>(changes).onPressed, isNull);
+    await tester.enterText(
+      find.widgetWithText(TextField, l10n.reviewCommentLabel),
+      'Passe aux valeurs standard.',
+    );
+    await tester.pump();
+    await _tap(tester, changes);
+    expect(
+      await CharacterStore(database).status(character),
+      'changes_requested',
+    );
+    expect(find.text(l10n.reviewTitle), findsNothing);
+  });
+
+  _testTable('revue : le MJ valide', (tester) async {
+    final (database, _, character) = await _withAldric(
+      tester,
+      status: 'submitted',
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.validateSheet));
+    expect(await CharacterStore(database).status(character), 'validated');
+    expect(
+      find.text(l10n.slotLineOf('Aldric Varenne', l10n.statusValidated)),
+      findsOneWidget,
+    );
+  });
+
+  _testTable('transfert : l\'emplacement et la fiche passent au MJ', (
+    tester,
+  ) async {
+    final (database, id, _) = await _withAldric(tester, status: 'draft');
+    await _tap(tester, find.byTooltip(l10n.transferSlot));
+    expect(find.text(l10n.transferTitle('Aldric Varenne')), findsOneWidget);
+    await _tap(tester, find.text('Camille').last);
+    final [slot] = await TableStore(database).watchSlots(id).first;
+    expect(slot.playerUserId, _gm.id);
+  });
+
+  _testTable('joueur : envoi avec message, puis commentaire du MJ', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(
+      tester,
+      gm: '00000000-0000-0000-0000-00000000000b',
+    );
+    await CharacterStore(database).save('c1', _aldric(), tableId: id);
+    final store = TableStore(database);
+    await store.fillSlot(await store.createSlot(id, _gm.id), 'c1');
+    await tester.pumpAndSettle();
+
+    await _tap(tester, find.text(l10n.submitToGm));
+    await tester.enterText(
+      find.widgetWithText(TextField, l10n.submitMessageLabel),
+      'Prêt pour la séance 1.',
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.submitAction));
+    final [submitted] = await store.watchSlots(id).first;
+    expect(submitted.status, 'submitted');
+    expect(submitted.submitMessage, 'Prêt pour la séance 1.');
+
+    await CharacterStore(database)
+        .review('c1', validated: false, comment: 'Remplace la botte.');
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.correctionsTitle), findsOneWidget);
+    expect(find.text('Remplace la botte.'), findsOneWidget);
+    expect(find.text(l10n.submitToGm), findsOneWidget);
   });
 }

@@ -177,6 +177,19 @@ class _MySlot extends ConsumerWidget {
   final TableSummary table;
   final PcSlot slot;
 
+  /// Envoi au MJ, avec un message facultatif ([T10] : « Message de Hugo »).
+  Future<void> _submit(BuildContext context, WidgetRef ref, String id) async {
+    final message = await showDialog<String>(
+      context: context,
+      builder: (_) => const _SubmitDialog(),
+    );
+    if (message != null) {
+      await ref
+          .read(characterStoreProvider)
+          .submit(id, message.isEmpty ? null : message);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -201,6 +214,12 @@ class _MySlot extends ConsumerWidget {
           ),
         )
       else ...[
+        if (slot.status == 'changes_requested' && slot.reviewComment != null)
+          StatusBanner(
+            kind: StatusBannerKind.alert,
+            title: l10n.correctionsTitle,
+            message: slot.reviewComment!,
+          ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           leading: CircleAvatar(
@@ -224,14 +243,14 @@ class _MySlot extends ConsumerWidget {
             'draft' || 'changes_requested' => Align(
               alignment: Alignment.centerRight,
               child: FilledButton(
-                onPressed: () => characters.setStatus(id, 'submitted'),
+                onPressed: () => _submit(context, ref, id),
                 child: Text(l10n.submitToGm),
               ),
             ),
             'submitted' => Align(
               alignment: Alignment.centerRight,
               child: OutlinedButton(
-                onPressed: () => characters.setStatus(id, 'draft'),
+                onPressed: () => characters.withdraw(id),
                 child: Text(l10n.withdrawSheet),
               ),
             ),
@@ -248,6 +267,48 @@ class _MySlot extends ConsumerWidget {
           children: children,
         ),
       ),
+    );
+  }
+}
+
+/// Message facultatif pour le MJ ; rend le message (vide compris) à l'envoi,
+/// `null` à l'annulation.
+class _SubmitDialog extends StatefulWidget {
+  const _SubmitDialog();
+
+  @override
+  State<_SubmitDialog> createState() => _SubmitDialogState();
+}
+
+class _SubmitDialogState extends State<_SubmitDialog> {
+  final _message = TextEditingController();
+
+  @override
+  void dispose() {
+    _message.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return AlertDialog(
+      title: Text(l10n.submitToGm),
+      content: TextField(
+        controller: _message,
+        maxLines: 3,
+        decoration: InputDecoration(labelText: l10n.submitMessageLabel),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, _message.text.trim()),
+          child: Text(l10n.submitAction),
+        ),
+      ],
     );
   }
 }

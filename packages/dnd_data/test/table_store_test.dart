@@ -273,6 +273,54 @@ void main() {
         expect((await store.watchSlots(id).first).length, 1);
       });
 
+      test(
+        'revue et transfert : message, commentaire, nouveau joueur',
+        () async {
+          final id = await store.create(
+            gmUserId: _gm,
+            settings: _brumeval,
+            packs: [_srd],
+          );
+          final slot = await store.createSlot(id, _player);
+          await db.customStatement(
+            'INSERT INTO character (id, table_id, owner_user_id, kind, name, '
+            "species_id, background_id, status) VALUES ('c1', ?, ?, 'pc', "
+            "'Aldric', 'srd:species:human', 'srd:background:soldier', 'draft')",
+            [id, _player],
+          );
+          await store.fillSlot(slot, 'c1');
+          final characters = CharacterStore(db);
+
+          await characters.submit('c1', 'Je garde l\'épée longue.');
+          var [filled] = await store.watchSlots(id).first;
+          expect(filled.status, 'submitted');
+          expect(filled.submitMessage, 'Je garde l\'épée longue.');
+
+          await characters.review(
+            'c1',
+            validated: false,
+            comment: 'Remplace la botte.',
+          );
+          [filled] = await store.watchSlots(id).first;
+          expect(filled.status, 'changes_requested');
+          expect(filled.reviewComment, 'Remplace la botte.');
+
+          await characters.submit('c1', null);
+          await characters.review('c1', validated: true, comment: null);
+          expect(await characters.status('c1'), 'validated');
+
+          await store.transferSlot(slot, 'c1', _gm);
+          [filled] = await store.watchSlots(id).first;
+          expect(filled.playerUserId, _gm);
+          final owner = await db
+              .customSelect(
+                "SELECT owner_user_id FROM character WHERE id = 'c1'",
+              )
+              .getSingle();
+          expect(owner.read<String>('owner_user_id'), _gm);
+        },
+      );
+
       test('liste réactive : une table créée apparaît', () async {
         final lists = store.watchList(_gm);
         final seen = expectLater(

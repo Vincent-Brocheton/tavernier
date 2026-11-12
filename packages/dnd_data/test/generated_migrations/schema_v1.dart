@@ -3927,6 +3927,22 @@ class Character extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> submitMessage = GeneratedColumn<String>(
+    'submit_message',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
+  late final GeneratedColumn<String> reviewComment = GeneratedColumn<String>(
+    'review_comment',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
   late final GeneratedColumn<int> xp = GeneratedColumn<int>(
     'xp',
     aliasedName,
@@ -4005,6 +4021,8 @@ class Character extends Table with TableInfo {
     speciesChoices,
     backgroundId,
     status,
+    submitMessage,
+    reviewComment,
     xp,
     levelUnlock,
     scoreRolls,
