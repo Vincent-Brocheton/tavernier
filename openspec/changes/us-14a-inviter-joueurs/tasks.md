@@ -5,8 +5,8 @@
 
 ## 2. Données
 
-- [ ] 2.1 Tests puis invitations (`createInvite`, `watchInvite`, `revokeInvite`), membres (`watchMembers`, `removeMember`)
-- [ ] 2.2 Tests puis requêtes réactives des tables (`watchList`, `watch`)
+- [x] 2.1 Tests puis invitations (`createInvite`, `watchInvite`, `revokeInvite`), membres (`watchMembers`, `removeMember`)
+- [x] 2.2 Tests puis requêtes réactives des tables (`watchList`, `watch`)
 
 ## 3. App
 

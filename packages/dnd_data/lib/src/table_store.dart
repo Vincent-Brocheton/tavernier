@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart';
@@ -109,6 +110,32 @@ final class TableActivity {
   final Map<String, Object?> detail;
 }
 
+/// Invitation en cours d'une table (EF-TAB-05).
+final class TableInvite {
+  const TableInvite({
+    required this.id,
+    required this.code,
+    required this.expiresAt,
+  });
+
+  final String id;
+  final String code;
+  final DateTime expiresAt;
+}
+
+/// Membre d'une table, avec son pseudonyme quand son profil est connu.
+final class TableMemberInfo {
+  const TableMemberInfo({
+    required this.userId,
+    required this.pseudonym,
+    required this.role,
+  });
+
+  final String userId;
+  final String? pseudonym;
+  final TableRole role;
+}
+
 /// Pack activé dans une table, à sa version figée (EF-TAB-04).
 typedef TablePackRef = ({String packId, String version});
 
@@ -128,7 +155,7 @@ final class TableStore {
   }) async {
     final id = uuidV7();
     await _db.transaction(() async {
-      await _db.customStatement(
+      await _write(
         'INSERT INTO game_table (id, gm_user_id, name, description, '
         'stat_method, long_rest_rule, hp_on_level_rule, starting_level, '
         'progression_mode, full_sheets_visible, archived) '
@@ -145,13 +172,13 @@ final class TableStore {
           settings.progression.name,
         ],
       );
-      await _db.customStatement(
+      await _write(
         'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
         "VALUES (?, ?, ?, 'gm', ?)",
         [uuidV7(), id, gmUserId, DateTime.now().toUtc().toIso8601String()],
       );
       for (final pack in packs) {
-        await _db.customStatement(
+        await _write(
           'INSERT INTO table_pack (id, table_id, pack_id, pinned_version) '
           'VALUES (?, ?, ?, ?)',
           [uuidV7(), id, pack.packId, pack.version],
@@ -183,7 +210,7 @@ final class TableStore {
     }..removeWhere((_, change) => change.$1 == change.$2);
     if (changes.isEmpty) return;
     await _db.transaction(() async {
-      await _db.customStatement(
+      await _write(
         'UPDATE game_table SET stat_method = ?, starting_level = ?, '
         'long_rest_rule = ?, hp_on_level_rule = ?, progression_mode = ?, '
         'full_sheets_visible = ? WHERE id = ?',
@@ -214,10 +241,10 @@ final class TableStore {
     required bool archived,
     required String authorUserId,
   }) => _db.transaction(() async {
-    await _db.customStatement(
-      'UPDATE game_table SET archived = ? WHERE id = ?',
-      [if (archived) 1 else 0, id],
-    );
+    await _write('UPDATE game_table SET archived = ? WHERE id = ?', [
+      if (archived) 1 else 0,
+      id,
+    ]);
     await _addActivity(
       id,
       authorUserId,
@@ -225,6 +252,19 @@ final class TableStore {
       const {},
     );
   });
+
+  /// Écrit et prévient les requêtes observées de la table touchée, que
+  /// `customStatement` laisserait sans nouvelle.
+  Future<void> _write(String sql, List<Object?> args) {
+    final table = RegExp(r'^(?:INSERT INTO|UPDATE|DELETE FROM) (\w+)')
+        .firstMatch(sql)!
+        .group(1);
+    return _db.customUpdate(
+      sql,
+      variables: [for (final arg in args) Variable<Object>(arg)],
+      updates: {_db.allTables.firstWhere((t) => t.actualTableName == table)},
+    );
+  }
 
   /// Activité de la table, la plus récente d'abord.
   Future<List<TableActivity>> activity(
@@ -259,7 +299,7 @@ final class TableStore {
     String authorUserId,
     String kind,
     Map<String, Object?> detail,
-  ) => _db.customStatement(
+  ) => _write(
     'INSERT INTO table_activity (id, table_id, author_user_id, at, kind, '
     'detail) VALUES (?, ?, ?, ?, ?, ?)',
     [
@@ -271,6 +311,120 @@ final class TableStore {
       jsonEncode(detail),
     ],
   );
+
+  /// Durée de validité d'une invitation (EF-TAB-05).
+  static const inviteLifetime = Duration(days: 7);
+
+  /// Sans 0, O, 1, I ni L, qu'on confond à la lecture.
+  static const _codeAlphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+
+  /// Crée une invitation de la table [tableId], valable 7 jours, en révoquant
+  /// celle en cours : un seul code actif par table. Une collision de code
+  /// (31⁶ possibilités) est refusée par le serveur à l'envoi.
+  Future<TableInvite> createInvite(String tableId) async {
+    final random = Random.secure();
+    final invite = TableInvite(
+      id: uuidV7(),
+      code: String.fromCharCodes([
+        for (var i = 0; i < 6; i++)
+          _codeAlphabet.codeUnitAt(random.nextInt(_codeAlphabet.length)),
+      ]),
+      expiresAt: DateTime.now().toUtc().add(inviteLifetime),
+    );
+    await _db.transaction(() async {
+      await _write(
+        'UPDATE table_invite SET revoked = 1 '
+        'WHERE table_id = ? AND NOT revoked',
+        [tableId],
+      );
+      await _write(
+        'INSERT INTO table_invite (id, table_id, code, expires_at, revoked) '
+        'VALUES (?, ?, ?, ?, 0)',
+        [invite.id, tableId, invite.code, invite.expiresAt.toIso8601String()],
+      );
+    });
+    return invite;
+  }
+
+  /// L'invitation en cours de la table : ni révoquée, ni expirée.
+  Stream<TableInvite?> watchInvite(String tableId) => _db
+      .customSelect(
+        'SELECT * FROM table_invite WHERE table_id = ?',
+        variables: [Variable.withString(tableId)],
+        readsFrom: {_db.tableInvites},
+      )
+      .watch()
+      .map((rows) {
+        final now = DateTime.now();
+        final current = [
+          for (final row in rows)
+            if (!(row.readNullable<bool>('revoked') ?? false))
+              TableInvite(
+                id: row.read<String>('id'),
+                code: row.read<String>('code'),
+                expiresAt: DateTime.parse(row.read<String>('expires_at')),
+              ),
+        ].where((invite) => invite.expiresAt.isAfter(now));
+        return current.isEmpty
+            ? null
+            : current.reduce(
+                (a, b) => a.expiresAt.isAfter(b.expiresAt) ? a : b,
+              );
+      });
+
+  Future<void> revokeInvite(String inviteId) =>
+      _write('UPDATE table_invite SET revoked = 1 WHERE id = ?', [inviteId]);
+
+  /// Membres de la table, le MJ d'abord, puis par pseudonyme.
+  Stream<List<TableMemberInfo>> watchMembers(String tableId) => _db
+      .customSelect(
+        'SELECT m.user_id, m.role, p.pseudonym FROM table_member m '
+        'LEFT JOIN profile p ON p.id = m.user_id WHERE m.table_id = ? '
+        "ORDER BY CASE m.role WHEN 'gm' THEN 0 ELSE 1 END, "
+        'p.pseudonym COLLATE NOCASE',
+        variables: [Variable.withString(tableId)],
+        readsFrom: {_db.tableMembers, _db.profiles},
+      )
+      .watch()
+      .map(
+        (rows) => [
+          for (final row in rows)
+            TableMemberInfo(
+              userId: row.read<String>('user_id'),
+              pseudonym: row.readNullable<String>('pseudonym'),
+              role: row.read<String>('role') == 'gm'
+                  ? TableRole.gm
+                  : TableRole.player,
+            ),
+        ],
+      );
+
+  /// Retire [userId] de la table ; le serveur archive ses fiches (EF-TAB-06).
+  Future<void> removeMember(String tableId, String userId) => _write(
+    'DELETE FROM table_member WHERE table_id = ? AND user_id = ?',
+    [tableId, userId],
+  );
+
+  /// [list], tenue à jour à chaque changement de la base.
+  Stream<List<TableSummary>> watchList(String userId) => _db
+      .customSelect(
+        '${_select}WHERE g.gm_user_id = ?1 OR m.user_id = ?1 '
+        'ORDER BY g.id DESC',
+        variables: [Variable.withString(userId)],
+        readsFrom: {_db.gameTables, _db.tableMembers},
+      )
+      .watch()
+      .map((rows) => [for (final row in rows) _summary(row, userId)]);
+
+  /// [load], tenue à jour à chaque changement de la base.
+  Stream<TableSummary?> watch(String id, String userId) => _db
+      .customSelect(
+        '${_select}WHERE g.id = ?2',
+        variables: [Variable.withString(userId), Variable.withString(id)],
+        readsFrom: {_db.gameTables, _db.tableMembers},
+      )
+      .watch()
+      .map((rows) => rows.isEmpty ? null : _summary(rows.first, userId));
 
   /// Tables dont [userId] est MJ ou membre, la plus récente d'abord
   /// (identifiants UUID v7).
