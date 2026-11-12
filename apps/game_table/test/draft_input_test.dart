@@ -126,6 +126,37 @@ void main() {
     }
   });
 
+  test('génération aléatoire : méthode et jets enregistrés, sans erreur', () {
+    final draft = const CreationDraft()
+        .selectClass('srd:class:fighter')
+        .selectBackground('srd:background:soldier')
+        .selectTool('srd:tool:dice-set')
+        .selectSpecies('srd:species:human', const ['M', 'S'])
+        .selectSize('M')
+        .toggleLanguage('srd:language:dwarvish')
+        .toggleLanguage('srd:language:orc')
+        .selectOriginFeat('srd:feat:alert')
+        .selectFightingStyle('srd:feat:defense')
+        .toggleClassSkill('srd:skill:perception', 2)
+        .toggleClassSkill('srd:skill:survival', 2)
+        .toggleMastery('srd:weapon:longsword', 3)
+        .toggleMastery('srd:weapon:javelin', 3)
+        .toggleMastery('srd:weapon:battleaxe', 3)
+        .togglePick('skillful', 'srd:skill:insight', 1)
+        .selectClassEquipment(0)
+        .selectBackgroundEquipment(0)
+        .withDetails(name: 'Aldric Varenne')
+        .withMethod(ScoreMethod.random)
+        .withRolls([16, 9, 13, 11, 7, 14])
+        .setBonus('str', 2)
+        .setBonus('con', 1);
+    final input = toCharacterInput(draft, _content);
+    expect(input.baseScores.method, ScoreMethod.random);
+    expect(input.baseScores.rolls, [16, 9, 13, 11, 7, 14]);
+    expect(input.baseScores.strength, 16);
+    expect(computeSheet(input, _content).integrityErrors, isEmpty);
+  });
+
   test('Aldric : les valeurs de la fixture [D1]', () {
     final fixture = jsonDecode(
       File('../../packages/dnd_rules/test/fixtures/d1/aldric_n1.json')

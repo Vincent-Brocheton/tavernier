@@ -88,9 +88,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stepLanguagesHint => 'Commun + 2';
 
   @override
-  String get stepAbilitiesHint => 'Acquisition par points';
-
-  @override
   String get stepSubchoicesHint => 'Compétences, bottes, don';
 
   @override
@@ -366,9 +363,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String introAbilities(int points) {
-    return 'Répartissez vos $points points, puis appliquez les bonus de votre Historique.';
-  }
+  String get introAbilities =>
+      'Fixez vos six valeurs selon la méthode choisie, puis appliquez les bonus de votre Historique.';
 
   @override
   String backgroundBonus(String background) {
@@ -2486,4 +2482,46 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get joinErrorTooMany => 'Trop d’essais. Réessayez dans une heure.';
+
+  @override
+  String get scoreMethodTitle => 'Méthode';
+
+  @override
+  String get missingRolls =>
+      'Lancez les dés ou saisissez vos jets pour obtenir vos six valeurs.';
+
+  @override
+  String get rollDice => 'Lancer';
+
+  @override
+  String get enterRolls => 'Saisir mes jets';
+
+  @override
+  String get enterRollsTitle => 'Vos six jets';
+
+  @override
+  String get enterRollsHint =>
+      'Pour chaque jet : 4d6, on retire le plus faible. Valeurs de 3 à 18.';
+
+  @override
+  String rollLabel(int number) {
+    return 'Jet $number';
+  }
+
+  @override
+  String get rollsValidate => 'Valider';
+
+  @override
+  String rollsSummary(String values) {
+    return 'Jets : $values';
+  }
+
+  @override
+  String get assignHint =>
+      'Choisissez une valeur pour chaque caractéristique ; une valeur déjà prise passe à l’autre.';
+
+  @override
+  String assignValueLabel(String ability) {
+    return 'Valeur de $ability';
+  }
 }

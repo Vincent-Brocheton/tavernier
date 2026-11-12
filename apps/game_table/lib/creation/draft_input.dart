@@ -97,7 +97,8 @@ CharacterInput toCharacterInput(CreationDraft draft, ActiveContent content) {
     speciesChoices: {'size': draft.size!},
     backgroundId: draft.backgroundId!,
     baseScores: BaseScores(
-      method: ScoreMethod.pointBuy,
+      method: draft.method,
+      rolls: draft.method == ScoreMethod.random ? draft.rolls : null,
       strength: s['str']!,
       dexterity: s['dex']!,
       constitution: s['con']!,

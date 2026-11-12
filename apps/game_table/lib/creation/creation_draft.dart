@@ -19,6 +19,9 @@ enum MissingChoice {
   languages,
   points,
 
+  /// Génération aléatoire : les jets ne sont pas encore faits.
+  rolls,
+
   /// Un bonus porte sur une caractéristique que l'Historique n'autorise pas.
   bonusInvalid,
   bonus,
@@ -30,6 +33,15 @@ enum MissingChoice {
 
   /// `computeSheet` signale une erreur d'intégrité.
   rules,
+}
+
+/// Valeurs standard (SRD p. 21), des plus hautes aux plus basses.
+const standardArray = [15, 14, 13, 12, 10, 8];
+
+/// Un jet de génération aléatoire : 4d6, sans le plus faible (SRD p. 21).
+int roll4d6DropLowest(Random random) {
+  final dice = [for (var i = 0; i < 4; i++) random.nextInt(6) + 1]..sort();
+  return dice.skip(1).reduce((a, b) => a + b);
 }
 
 /// Répartitions des bonus d'Historique (SRD p. 87).
@@ -56,6 +68,8 @@ final class CreationDraft {
       'wis': 8,
       'cha': 8,
     },
+    this.method = ScoreMethod.pointBuy,
+    this.rolls,
     this.distribution = '2-1',
     this.bonuses = const {},
     this.classSkills = const [],
@@ -88,8 +102,14 @@ final class CreationDraft {
   /// Langues choisies, sans le Commun.
   final List<String> languages;
 
-  /// Valeurs achetées, avant bonus.
+  /// Valeurs de base, avant bonus, quelle que soit la méthode.
   final Map<String, int> scores;
+
+  /// Méthode de caractéristiques (SRD p. 21-22).
+  final ScoreMethod method;
+
+  /// Jets de la génération aléatoire ; `null` tant qu'ils ne sont pas faits.
+  final List<int>? rolls;
 
   /// `2-1` ou `1-1-1`.
   final String distribution;
@@ -128,6 +148,50 @@ final class CreationDraft {
   final String backstory;
 
   int get remainingPoints => pointBuyBudget - pointBuySpent(scores);
+
+  /// Valeurs encore à fixer : points à dépenser, ou jets à faire.
+  bool get scoresMissing => switch (method) {
+    ScoreMethod.pointBuy => remainingPoints != 0,
+    ScoreMethod.standardArray => false,
+    ScoreMethod.random => rolls == null,
+  };
+
+  /// Change de méthode : 8 partout en points, le tableau standard réparti,
+  /// ou les valeurs actuelles en attendant les jets.
+  CreationDraft withMethod(ScoreMethod value) => value == method
+      ? this
+      : _with(
+          method: value,
+          clearRolls: true,
+          scores: switch (value) {
+            ScoreMethod.pointBuy => {for (final c in abilityCodes) c: 8},
+            ScoreMethod.standardArray => {
+              for (final (i, c) in abilityCodes.indexed) c: standardArray[i],
+            },
+            ScoreMethod.random => scores,
+          },
+        );
+
+  /// Garde les jets et les répartit du plus haut au plus bas, de la Force au
+  /// Charisme.
+  CreationDraft withRolls(List<int> value) {
+    final sorted = [...value]..sort((a, b) => b - a);
+    return _with(
+      rolls: value,
+      scores: {for (final (i, c) in abilityCodes.indexed) c: sorted[i]},
+    );
+  }
+
+  /// Donne [value] à [code] ; la caractéristique qui l'avait reprend
+  /// l'ancienne valeur de [code] (valeurs standard et jets).
+  CreationDraft assign(String code, int value) {
+    final previous = scores[code]!;
+    final holder = abilityCodes.firstWhere(
+      (c) => c != code && scores[c] == value,
+      orElse: () => code,
+    );
+    return _with(scores: {...scores, holder: previous, code: value});
+  }
 
   /// Une autre classe efface ses sous-choix : leurs options ne sont plus
   /// les mêmes.
@@ -374,6 +438,9 @@ final class CreationDraft {
     bool clearSize = false,
     List<String>? languages,
     Map<String, int>? scores,
+    ScoreMethod? method,
+    List<int>? rolls,
+    bool clearRolls = false,
     String? distribution,
     Map<String, int>? bonuses,
     List<String>? classSkills,
@@ -405,6 +472,8 @@ final class CreationDraft {
     size: clearSize ? null : size ?? this.size,
     languages: languages ?? this.languages,
     scores: scores ?? this.scores,
+    method: method ?? this.method,
+    rolls: clearRolls ? null : rolls ?? this.rolls,
     distribution: distribution ?? this.distribution,
     bonuses: bonuses ?? this.bonuses,
     classSkills: classSkills ?? this.classSkills,
@@ -468,7 +537,11 @@ MissingChoice? missingAt(CreationDraft draft, int step, ActiveContent content) {
           ? MissingChoice.languages
           : null;
     case 4:
-      if (draft.remainingPoints != 0) return MissingChoice.points;
+      if (draft.scoresMissing) {
+        return draft.method == ScoreMethod.random
+            ? MissingChoice.rolls
+            : MissingChoice.points;
+      }
       final eligible = eligibleAbilities(draft, content);
       if (draft.bonuses.keys.any((code) => !eligible.contains(code))) {
         return MissingChoice.bonusInvalid;

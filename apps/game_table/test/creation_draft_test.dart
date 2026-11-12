@@ -178,6 +178,56 @@ void main() {
     });
   });
 
+  group('méthodes de caractéristiques', () {
+    test(
+      'valeurs standard : réparties d\'emblée, étape complète en points',
+      () {
+        final draft = start.withMethod(ScoreMethod.standardArray);
+        expect(draft.method, ScoreMethod.standardArray);
+        expect(draft.scores.values.toList()..sort(), [8, 10, 12, 13, 14, 15]);
+        expect(draft.scores['str'], 15);
+        expect(draft.scoresMissing, isFalse);
+      },
+    );
+
+    test('échange : la valeur prise passe à l\'autre caractéristique', () {
+      final draft = start
+          .withMethod(ScoreMethod.standardArray)
+          .assign('cha', 15);
+      expect(draft.scores['cha'], 15);
+      expect(draft.scores['str'], 8);
+      expect(draft.scores.values.toList()..sort(), [8, 10, 12, 13, 14, 15]);
+    });
+
+    test('aléatoire : bloquée sans jets, puis jets répartis', () {
+      final draft = start.withMethod(ScoreMethod.random);
+      expect(draft.scoresMissing, isTrue);
+      final rolled = draft.withRolls([9, 17, 12, 8, 14, 11]);
+      expect(rolled.scoresMissing, isFalse);
+      expect(rolled.rolls, [9, 17, 12, 8, 14, 11]);
+      expect(
+        [for (final c in abilityCodes) rolled.scores[c]],
+        [17, 14, 12, 11, 9, 8],
+      );
+      expect(rolled.assign('cha', 17).scores['str'], 8);
+    });
+
+    test('4d6 sans le plus faible : de 3 à 18', () {
+      final random = Random(7);
+      for (var i = 0; i < 200; i++) {
+        expect(roll4d6DropLowest(random), inInclusiveRange(3, 18));
+      }
+    });
+
+    test('retour aux points : toutes les valeurs à 8', () {
+      final draft = start
+          .withMethod(ScoreMethod.standardArray)
+          .withMethod(ScoreMethod.pointBuy);
+      expect(draft.scores.values.toSet(), {8});
+      expect(draft.rolls, isNull);
+    });
+  });
+
   group('bonus d’Historique', () {
     final step5 = _aldricScores(
       _throughSpecies()
