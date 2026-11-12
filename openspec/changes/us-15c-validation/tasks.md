@@ -1,7 +1,7 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP : message et commentaire réservés, transfert par le MJ seul vers un membre, emplacements supprimés au retrait
-- [ ] 1.2 Migration
+- [x] 1.1 Tests pgTAP : message et commentaire réservés, transfert par le MJ seul vers un membre, emplacements supprimés au retrait
+- [x] 1.2 Migration
 
 ## 2. Données
 
