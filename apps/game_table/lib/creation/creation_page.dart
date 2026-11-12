@@ -259,6 +259,7 @@ String? _reason(
     startingLanguageChoices - draft.languages.length,
   ),
   MissingChoice.points => l10n.missingPoints(draft.remainingPoints),
+  MissingChoice.rolls => l10n.missingRolls,
   MissingChoice.bonusInvalid => l10n.missingBonusInvalid,
   MissingChoice.bonus => l10n.missingBonus,
   MissingChoice.subchoices => l10n.missingSubchoice(

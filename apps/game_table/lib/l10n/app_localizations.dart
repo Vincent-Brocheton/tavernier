@@ -4152,6 +4152,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Trop d’essais. Réessayez dans une heure.'**
   String get joinErrorTooMany;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthode'**
+  String get scoreMethodTitle;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancez les dés ou saisissez vos jets pour obtenir vos six valeurs.'**
+  String get missingRolls;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer'**
+  String get rollDice;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisir mes jets'**
+  String get enterRolls;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos six jets'**
+  String get enterRollsTitle;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour chaque jet : 4d6, on retire le plus faible. Valeurs de 3 à 18.'**
+  String get enterRollsHint;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet {number}'**
+  String rollLabel(int number);
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get rollsValidate;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets : {values}'**
+  String rollsSummary(String values);
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une valeur pour chaque caractéristique ; une valeur déjà prise passe à l’autre.'**
+  String get assignHint;
+
+  /// Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).
+  ///
+  /// In fr, this message translates to:
+  /// **'Valeur de {ability}'**
+  String assignValueLabel(String ability);
 }
 
 class _AppLocalizationsDelegate

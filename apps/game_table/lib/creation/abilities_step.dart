@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../l10n/app_localizations.dart';
+import '../tables/table_labels.dart';
 import 'creation_draft.dart';
 import 'creation_providers.dart';
 import 'step_layout.dart';
@@ -45,35 +48,54 @@ class AbilitiesStep extends ConsumerWidget {
             ),
             SizedBox(height: AppSpacing.md),
           ],
-          Align(
-            alignment: Alignment.centerLeft,
-            child: SuggestButton(
-              onApply: () {
-                final id = draft.classId!;
-                final scores = suggestedScores(
-                  id,
-                  content.entity(id)!.data as ClassData,
-                );
-                final top = abilityCodes.toList()
-                  ..sort((a, b) => scores[b]!.compareTo(scores[a]!));
-                ref
-                    .read(creationProvider.notifier)
-                    .update(
-                      (d) => d.withSuggestedScores(
-                        scores,
-                        suggestedBonuses(scores, eligible),
-                      ),
-                    );
-                return l10n.suggestScoresReason(
-                  _name(top.first),
-                  _name(top[1]),
-                );
-              },
+          if (draft.method != ScoreMethod.random || draft.rolls != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SuggestButton(
+                onApply: () {
+                  final id = draft.classId!;
+                  final scores = suggestedScores(
+                    id,
+                    content.entity(id)!.data as ClassData,
+                  );
+                  final top = abilityCodes.toList()
+                    ..sort((a, b) => scores[b]!.compareTo(scores[a]!));
+                  // Jets : les plus hauts aux caractéristiques suggérées.
+                  final values = switch (draft.rolls) {
+                    final rolls? when draft.method == ScoreMethod.random => {
+                      for (final (i, code) in top.indexed)
+                        code: ([...rolls]..sort((a, b) => b - a))[i],
+                    },
+                    _ => scores,
+                  };
+                  ref
+                      .read(creationProvider.notifier)
+                      .update(
+                        (d) => d.withSuggestedScores(
+                          values,
+                          suggestedBonuses(values, eligible),
+                        ),
+                      );
+                  return l10n.suggestScoresReason(
+                    _name(top.first),
+                    _name(top[1]),
+                  );
+                },
+              ),
             ),
-          ),
           SizedBox(height: AppSpacing.sm),
           _Section(
-            child: _PointBuy(draft: draft, name: _name),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _MethodChoice(draft: draft),
+                SizedBox(height: AppSpacing.md),
+                if (draft.method == ScoreMethod.pointBuy)
+                  _PointBuy(draft: draft, name: _name)
+                else
+                  _Assign(draft: draft, name: _name),
+              ],
+            ),
           ),
           SizedBox(height: AppSpacing.md),
           _Section(
@@ -106,6 +128,194 @@ class _Section extends StatelessWidget {
     ),
     child: child,
   );
+}
+
+/// Méthode de caractéristiques (SRD p. 21-22), avec son rappel.
+class _MethodChoice extends ConsumerWidget {
+  const _MethodChoice({required this.draft});
+
+  final CreationDraft draft;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(l10n.scoreMethodTitle, style: text.titleMedium),
+        SizedBox(height: AppSpacing.sm),
+        SegmentedButton<ScoreMethod>(
+          segments: [
+            for (final method in [
+              ScoreMethod.pointBuy,
+              ScoreMethod.standardArray,
+              ScoreMethod.random,
+            ])
+              ButtonSegment(
+                value: method,
+                label: Text(l10n.statMethod(method)),
+              ),
+          ],
+          selected: {draft.method},
+          showSelectedIcon: false,
+          onSelectionChanged: (selection) => ref
+              .read(creationProvider.notifier)
+              .update((d) => d.withMethod(selection.single)),
+        ),
+        SizedBox(height: AppSpacing.xs),
+        Text(l10n.statMethodDetail(draft.method), style: text.bodySmall),
+      ],
+    );
+  }
+}
+
+/// Valeurs standard ou jets à répartir : une liste par caractéristique ;
+/// une valeur déjà prise passe à l'autre.
+class _Assign extends ConsumerWidget {
+  const _Assign({required this.draft, required this.name});
+
+  final CreationDraft draft;
+  final String Function(String) name;
+
+  Future<void> _enterRolls(BuildContext context, WidgetRef ref) async {
+    final rolls = await showDialog<List<int>>(
+      context: context,
+      builder: (_) => const _RollsDialog(),
+    );
+    if (rolls != null) {
+      ref.read(creationProvider.notifier).update((d) => d.withRolls(rolls));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final notifier = ref.read(creationProvider.notifier);
+    final random = draft.method == ScoreMethod.random;
+    final pool = random ? draft.rolls : standardArray;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (random) ...[
+          Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              FilledButton.icon(
+                onPressed: () {
+                  final generator = Random();
+                  notifier.update(
+                    (d) => d.withRolls([
+                      for (var i = 0; i < 6; i++) roll4d6DropLowest(generator),
+                    ]),
+                  );
+                },
+                icon: const Icon(Icons.casino_outlined),
+                label: Text(l10n.rollDice),
+              ),
+              OutlinedButton(
+                onPressed: () => _enterRolls(context, ref),
+                child: Text(l10n.enterRolls),
+              ),
+            ],
+          ),
+          if (draft.rolls case final rolls?) ...[
+            SizedBox(height: AppSpacing.sm),
+            Text(l10n.rollsSummary(rolls.join(', ')), style: text.bodyMedium),
+          ],
+        ],
+        if (pool != null) ...[
+          SizedBox(height: AppSpacing.sm),
+          Text(l10n.assignHint, style: text.bodySmall),
+          SizedBox(height: AppSpacing.sm),
+          CardGrid(
+            minWidth: 250,
+            children: [
+              for (final code in abilityCodes)
+                DropdownButtonFormField<int>(
+                  // La clé suit la valeur : un échange met l'autre liste à jour.
+                  key: ValueKey((code, draft.scores[code], pool)),
+                  initialValue: draft.scores[code],
+                  decoration: InputDecoration(labelText: name(code)),
+                  items: [
+                    for (final value in {
+                      ...pool,
+                    }.toList()..sort((a, b) => b - a))
+                      DropdownMenuItem(value: value, child: Text('$value')),
+                  ],
+                  onChanged: (value) =>
+                      notifier.update((d) => d.assign(code, value!)),
+                ),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+/// Six jets faits avec de vrais dés, de 3 à 18 (« Saisir mon jet »).
+class _RollsDialog extends StatefulWidget {
+  const _RollsDialog();
+
+  @override
+  State<_RollsDialog> createState() => _RollsDialogState();
+}
+
+class _RollsDialogState extends State<_RollsDialog> {
+  final _controllers = [for (var i = 0; i < 6; i++) TextEditingController()];
+
+  @override
+  void dispose() {
+    for (final controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  List<int>? get _rolls {
+    final values = [for (final c in _controllers) int.tryParse(c.text.trim())];
+    return values.every((v) => v != null && v >= 3 && v <= 18)
+        ? values.cast<int>()
+        : null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final rolls = _rolls;
+    return AlertDialog(
+      title: Text(l10n.enterRollsTitle),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(l10n.enterRollsHint),
+            for (final (i, controller) in _controllers.indexed)
+              TextField(
+                controller: controller,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(labelText: l10n.rollLabel(i + 1)),
+                onChanged: (_) => setState(() {}),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: rolls == null ? null : () => Navigator.pop(context, rolls),
+          child: Text(l10n.rollsValidate),
+        ),
+      ],
+    );
+  }
 }
 
 class _PointBuy extends ConsumerWidget {

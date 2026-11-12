@@ -298,6 +298,74 @@ void main() {
       });
     }
 
+    for (final width in [390.0, 1440.0]) {
+      testWidgets('$width dp : valeurs standard, échange, Suivant', (
+        tester,
+      ) async {
+        await toAbilities(tester, width);
+        await _tap(tester, 'Valeurs standard');
+        expect(find.text('15, 14, 13, 12, 10, 8 à répartir'), findsOneWidget);
+        expect(find.byType(DropdownButtonFormField<int>), findsNWidgets(6));
+        final charisma = find.widgetWithText(
+          DropdownButtonFormField<int>,
+          'Charisme',
+        );
+        await tester.ensureVisible(charisma);
+        await tester.pumpAndSettle();
+        await tester.tap(charisma);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('15').last);
+        await tester.pumpAndSettle();
+        int valueOf(String ability) => tester
+            .widget<DropdownButtonFormField<int>>(
+              find.widgetWithText(DropdownButtonFormField<int>, ability),
+            )
+            .initialValue!;
+        expect(valueOf('Charisme'), 15);
+        expect(valueOf('Force'), 8);
+        await _tapBonus(tester, '+2 sur Constitution');
+        await _tapBonus(tester, '+1 sur Dextérité');
+        expect(_next(tester).onPressed, isNotNull);
+        expect(tester.takeException(), isNull);
+      });
+    }
+
+    testWidgets('génération aléatoire : bloquée, puis jets saisis', (
+      tester,
+    ) async {
+      await toAbilities(tester, 1440);
+      await _tap(tester, 'Génération aléatoire');
+      expect(
+        find.text(
+          'Lancez les dés ou saisissez vos jets pour obtenir vos six valeurs.',
+        ),
+        findsOneWidget,
+      );
+      expect(find.byType(DropdownButtonFormField<int>), findsNothing);
+
+      await _tap(tester, 'Saisir mes jets');
+      final validate = find.widgetWithText(FilledButton, 'Valider');
+      for (final (i, value) in ['16', '9', '13', '11', '7', '19'].indexed) {
+        await tester.enterText(find.byType(TextField).at(i), value);
+      }
+      await tester.pump();
+      expect(tester.widget<FilledButton>(validate).onPressed, isNull);
+      await tester.enterText(find.byType(TextField).at(5), '14');
+      await tester.pump();
+      await tester.tap(validate);
+      await tester.pumpAndSettle();
+      expect(find.text('Jets : 16, 9, 13, 11, 7, 14'), findsOneWidget);
+      expect(find.byType(DropdownButtonFormField<int>), findsNWidgets(6));
+    });
+
+    testWidgets('génération aléatoire : Lancer tire six jets', (tester) async {
+      await toAbilities(tester, 1440);
+      await _tap(tester, 'Génération aléatoire');
+      await _tap(tester, 'Lancer');
+      expect(find.textContaining('Jets : '), findsOneWidget);
+      expect(find.byType(DropdownButtonFormField<int>), findsNWidgets(6));
+    });
+
     testWidgets('Suggérer : 27 points, bonus posés, tout Suivant', (
       tester,
     ) async {

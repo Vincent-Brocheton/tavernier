@@ -3538,5 +3538,64 @@
   "joinErrorTooMany": "Trop d’essais. Réessayez dans une heure.",
   "@joinErrorTooMany": {
     "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "scoreMethodTitle": "Méthode",
+  "@scoreMethodTitle": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "missingRolls": "Lancez les dés ou saisissez vos jets pour obtenir vos six valeurs.",
+  "@missingRolls": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "rollDice": "Lancer",
+  "@rollDice": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "enterRolls": "Saisir mes jets",
+  "@enterRolls": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "enterRollsTitle": "Vos six jets",
+  "@enterRollsTitle": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "enterRollsHint": "Pour chaque jet : 4d6, on retire le plus faible. Valeurs de 3 à 18.",
+  "@enterRollsHint": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "rollLabel": "Jet {number}",
+  "@rollLabel": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "rollsValidate": "Valider",
+  "@rollsValidate": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "rollsSummary": "Jets : {values}",
+  "@rollsSummary": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).",
+    "placeholders": {
+      "values": {
+        "type": "String"
+      }
+    }
+  },
+  "assignHint": "Choisissez une valeur pour chaque caractéristique ; une valeur déjà prise passe à l’autre.",
+  "@assignHint": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22)."
+  },
+  "assignValueLabel": "Valeur de {ability}",
+  "@assignValueLabel": {
+    "description": "Méthodes de caractéristiques à la création (US-15, SRD p. 21-22).",
+    "placeholders": {
+      "ability": {
+        "type": "String"
+      }
+    }
   }
 }
