@@ -143,9 +143,10 @@ final class CharacterStore {
     for (final MapEntry(key: table, value: rows) in wanted.entries) {
       await _writeDifference(table, id, rows);
     }
+    // Les requêtes observées (emplacements d'une table) voient la fiche.
+    _db.markTablesUpdated({_db.characters, _db.characterClassLevels});
   });
 
-  /// Personnages enregistrés, du plus ancien au plus récent.
   /// État de jeu de [id] ; vide si rien n'a encore été dépensé.
   Future<PlayState> loadState(String id) async {
     final rows = await _db
@@ -266,10 +267,13 @@ final class CharacterStore {
           ?.read<String>('status');
 
   /// Change le statut ; le serveur n'accepte que les passages permis.
-  Future<void> setStatus(String id, String status) => _db.customStatement(
-    'UPDATE character SET status = ? WHERE id = ?',
-    [status, id],
-  );
+  Future<void> setStatus(String id, String status) async {
+    await _db.customStatement('UPDATE character SET status = ? WHERE id = ?', [
+      status,
+      id,
+    ]);
+    _db.markTablesUpdated({_db.characters});
+  }
 
   /// Personnages de l'appareil. Avec [ownerUserId], seulement ceux de cet
   /// utilisateur et ceux pas encore envoyés : un MJ reçoit aussi les fiches

@@ -332,7 +332,10 @@ void main() {
       database = TavernierDatabase(NativeDatabase.memory());
       store = CharacterStore(database);
       container = ProviderContainer(
-        overrides: [characterStoreProvider.overrideWith((ref) => store)],
+        overrides: [
+          characterStoreProvider.overrideWith((ref) => store),
+          databaseProvider.overrideWithValue(database),
+        ],
       );
       addTearDown(container.dispose);
       addTearDown(database.close);
@@ -349,6 +352,34 @@ void main() {
       ]);
       expect(results, [true, true]);
       expect(await store.list(), hasLength(1));
+    });
+
+    test('fiche de table : rattachée, emplacement rempli', () async {
+      final tables = TableStore(database);
+      final tableId = await tables.create(
+        gmUserId: 'mj',
+        settings: const TableSettings(name: 'Brumeval'),
+        packs: const [],
+      );
+      final slotId = await tables.createSlot(tableId, 'hugo');
+      notifier.update(
+        (d) => d.forTable(
+          TableConstraint(
+            tableId: tableId,
+            slotId: slotId,
+            method: ScoreMethod.pointBuy,
+            startingLevel: 1,
+          ),
+        ),
+      );
+      expect(await notifier.save(_content), isTrue);
+      final [slot] = await tables.watchSlots(tableId).first;
+      expect(slot.characterId, isNotNull);
+      expect(slot.status, 'draft');
+      final row = await database
+          .customSelect('SELECT table_id FROM character')
+          .getSingle();
+      expect(row.read<String>('table_id'), tableId);
     });
 
     test('réessayer ne crée pas de doublon', () async {

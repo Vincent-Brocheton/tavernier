@@ -30,6 +30,11 @@ final tableMembersProvider =
       (ref, id) => ref.watch(tableStoreProvider).watchMembers(id),
     );
 
+/// Emplacements de PJ d'une table, avec leur fiche (US-15).
+final tableSlotsProvider = StreamProvider.family<List<PcSlot>, String>(
+  (ref, id) => ref.watch(tableStoreProvider).watchSlots(id),
+);
+
 /// Invitation en cours d'une table, pour son MJ.
 final tableInviteProvider = StreamProvider.family<TableInvite?, String>(
   (ref, id) => ref.watch(tableStoreProvider).watchInvite(id),

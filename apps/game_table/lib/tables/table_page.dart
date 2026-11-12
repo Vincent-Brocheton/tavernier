@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../account/account_providers.dart';
+import '../creation/creation_providers.dart';
 import '../l10n/app_localizations.dart';
 import 'configuration_tab.dart';
 import 'members_tab.dart';
@@ -109,6 +111,12 @@ class _Overview extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final material = MaterialLocalizations.of(context);
     final activity = ref.watch(tableActivityProvider(table.id)).value;
+    final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
+    final mine = [
+      for (final slot
+          in ref.watch(tableSlotsProvider(table.id)).value ?? const <PcSlot>[])
+        if (slot.playerUserId == me) slot,
+    ];
     String describe(TableActivity entry) => switch (entry.kind) {
       'archived' => l10n.activityArchived,
       'restored' => l10n.activityRestored,
@@ -132,6 +140,12 @@ class _Overview extends ConsumerWidget {
               ),
               SizedBox(height: AppSpacing.md),
             ],
+            if (mine.isNotEmpty) ...[
+              Text(l10n.myCharacterTitle, style: text.titleMedium),
+              SizedBox(height: AppSpacing.sm),
+              for (final slot in mine) _MySlot(table: table, slot: slot),
+              SizedBox(height: AppSpacing.md),
+            ],
             TableSummaryCard(settings: table.settings, showName: false),
             SizedBox(height: AppSpacing.md),
             Text(l10n.activityTitle, style: text.titleMedium),
@@ -149,6 +163,89 @@ class _Overview extends ConsumerWidget {
                 ),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Un emplacement du joueur (US-15, cahier §4.3) : « Créer ma fiche », ou
+/// la fiche, son statut et son envoi au MJ.
+class _MySlot extends ConsumerWidget {
+  const _MySlot({required this.table, required this.slot});
+
+  final TableSummary table;
+  final PcSlot slot;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final characters = ref.read(characterStoreProvider);
+    final id = slot.characterId;
+    final level = slot.level ?? 1;
+    final start = table.settings.startingLevel;
+    final children = <Widget>[
+      if (id == null)
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.person_add_alt),
+          title: Text(l10n.slotEmpty),
+          trailing: FilledButton(
+            onPressed: table.archived
+                ? null
+                : () => context.push(
+                    '/characters/new?table=${table.id}&slot=${slot.id}',
+                  ),
+            child: Text(l10n.createMySheet),
+          ),
+        )
+      else ...[
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: CircleAvatar(
+            child: Text(
+              (slot.characterName ?? '?').characters.first.toUpperCase(),
+            ),
+          ),
+          title: Text(slot.characterName ?? ''),
+          subtitle: Text(
+            l10n.sheetLevelStatus(level, l10n.characterStatus(slot.status)),
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.push('/characters/$id'),
+        ),
+        if (!table.archived)
+          switch (slot.status) {
+            'draft' || 'changes_requested' when level < start => Text(
+              l10n.reachStartingLevel(start),
+              style: text.bodySmall,
+            ),
+            'draft' || 'changes_requested' => Align(
+              alignment: Alignment.centerRight,
+              child: FilledButton(
+                onPressed: () => characters.setStatus(id, 'submitted'),
+                child: Text(l10n.submitToGm),
+              ),
+            ),
+            'submitted' => Align(
+              alignment: Alignment.centerRight,
+              child: OutlinedButton(
+                onPressed: () => characters.setStatus(id, 'draft'),
+                child: Text(l10n.withdrawSheet),
+              ),
+            ),
+            _ => const SizedBox.shrink(),
+          },
+      ],
+    ];
+    return Card(
+      margin: EdgeInsets.only(bottom: AppSpacing.sm),
+      child: Padding(
+        padding: EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: children,
         ),
       ),
     );

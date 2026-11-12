@@ -219,6 +219,23 @@ void main() {
       }
     });
 
+    test('table : méthode imposée, plus de changement', () {
+      final draft = start.forTable(
+        const TableConstraint(
+          tableId: 't1',
+          slotId: 's1',
+          method: ScoreMethod.standardArray,
+          startingLevel: 1,
+        ),
+      );
+      expect(draft.method, ScoreMethod.standardArray);
+      expect(
+        draft.withMethod(ScoreMethod.pointBuy).method,
+        ScoreMethod.standardArray,
+      );
+      expect(draft.selectClass('srd:class:fighter').table?.slotId, 's1');
+    });
+
     test('retour aux points : toutes les valeurs à 8', () {
       final draft = start
           .withMethod(ScoreMethod.standardArray)

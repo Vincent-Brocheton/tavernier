@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/main.dart';
+import 'package:game_table/tables/tables_providers.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -206,6 +207,68 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining('Votre classe décide'), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('table en génération aléatoire : méthode imposée, un lancer', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1440, 1300);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    final database = TavernierDatabase(NativeDatabase.memory());
+    addTearDown(database.close);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          contentProvider.overrideWith((ref) => _content),
+          characterStoreProvider.overrideWith(
+            (ref) => CharacterStore(database),
+          ),
+          tableProvider('t1').overrideWith(
+            (ref) => Stream.value(
+              const TableSummary(
+                id: 't1',
+                settings: TableSettings(
+                  name: 'Brumeval',
+                  statMethod: ScoreMethod.random,
+                ),
+                role: TableRole.player,
+                archived: false,
+                fullSheetsVisible: false,
+              ),
+            ),
+          ),
+        ],
+        child: const GameTableApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    GoRouter.of(tester.element(find.byType(Scaffold).first))
+        .go('/characters/new?table=t1&slot=s1');
+    await tester.pumpAndSettle();
+    await _tap(tester, 'Guerrier');
+    await tester.tap(find.byType(FilledButton).last);
+    await tester.pumpAndSettle();
+    await _tap(tester, 'Criminel');
+    await tester.tap(find.byType(FilledButton).last);
+    await tester.pumpAndSettle();
+    await _tap(tester, 'Nain');
+    await tester.tap(find.byType(FilledButton).last);
+    await tester.pumpAndSettle();
+    await _tap(tester, 'Orc');
+    await _tap(tester, 'Elfique');
+    await tester.tap(find.byType(FilledButton).last);
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Méthode imposée par la table : Génération aléatoire'),
+      findsOneWidget,
+    );
+    expect(find.byType(ChoiceChip), findsNothing);
+    await _tap(tester, 'Lancer');
+    expect(find.textContaining('Jets : '), findsOneWidget);
+    expect(find.text('Lancer'), findsNothing);
+    expect(find.text('Saisir mes jets'), findsOneWidget);
   });
 
   group('étapes Langues et Caractéristiques', () {

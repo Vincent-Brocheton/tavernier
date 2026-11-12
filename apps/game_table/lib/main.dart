@@ -95,7 +95,14 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
         path: '/nouveau-mot-de-passe',
         builder: (_, _) => const NewPasswordPage(),
       ),
-      GoRoute(path: '/characters/new', builder: (_, _) => const CreationPage()),
+      GoRoute(
+        path: '/characters/new',
+        // Depuis un emplacement de PJ : ?table=…&slot=… (US-15).
+        builder: (_, state) => CreationPage(
+          tableId: state.uri.queryParameters['table'],
+          slotId: state.uri.queryParameters['slot'],
+        ),
+      ),
       GoRoute(
         path: '/characters/:id',
         builder: (_, state) => SheetPage(id: state.pathParameters['id']!),
