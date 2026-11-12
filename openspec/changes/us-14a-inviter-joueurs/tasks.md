@@ -10,6 +10,6 @@
 
 ## 3. App
 
-- [ ] 3.1 Fournisseurs réactifs ; onglet Membres et retrait ; tests
-- [ ] 3.2 Carte d'invitation (QR, code, copier, partager, expiration, révoquer) ; tests
+- [x] 3.1 Fournisseurs réactifs ; onglet Membres et retrait ; tests
+- [x] 3.2 Carte d'invitation (QR, code, copier, partager, expiration, révoquer) ; tests
 - [ ] 3.3 Vérification dans le navigateur

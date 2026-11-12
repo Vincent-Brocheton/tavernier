@@ -145,20 +145,29 @@ Future<void> _choose<T>(WidgetTester tester, String label) async {
   await tester.pumpAndSettle();
 }
 
+/// [testWidgets], qui démonte l'app avant la fin : drift ferme ses requêtes
+/// observées par un minuteur, qui doit partir avant la vérification finale.
+void _testTable(String description, Future<void> Function(WidgetTester) body) =>
+    testWidgets(description, (tester) async {
+      await body(tester);
+      await tester.pumpWidget(const SizedBox());
+      await tester.pump(Duration.zero);
+    });
+
 void main() {
-  testWidgets('aucune table : invitation à en créer une', (tester) async {
+  _testTable('aucune table : invitation à en créer une', (tester) async {
     await _pump(tester);
     expect(find.text(l10n.tablesEmpty), findsOneWidget);
     expect(find.text(l10n.newTable), findsOneWidget);
   });
 
-  testWidgets('nom vide : « Créer la table » désactivé', (tester) async {
+  _testTable('nom vide : « Créer la table » désactivé', (tester) async {
     await _pump(tester);
     await _tap(tester, find.text(l10n.newTable));
     expect(_canCreate(tester), isFalse);
   });
 
-  testWidgets('création : réglages choisis, MJ, pack SRD figé', (tester) async {
+  _testTable('création : réglages choisis, MJ, pack SRD figé', (tester) async {
     final database = await _pump(tester);
     await _tap(tester, find.text(l10n.newTable));
     await tester.enterText(
@@ -208,7 +217,7 @@ void main() {
     );
   });
 
-  testWidgets('liste : la table, avec le rôle, ouvre sa page', (tester) async {
+  _testTable('liste : la table, avec le rôle, ouvre sa page', (tester) async {
     await _pump(
       tester,
       seed: (database) => TableStore(database).create(
@@ -224,7 +233,7 @@ void main() {
     expect(find.byType(TablePage), findsOneWidget);
   });
 
-  testWidgets('desktop : aperçu de la carte au fil de la saisie [T8]', (
+  _testTable('desktop : aperçu de la carte au fil de la saisie [T8]', (
     tester,
   ) async {
     await _pump(tester, size: const Size(1440, 1100));
@@ -238,7 +247,7 @@ void main() {
     // Le nom, dans le champ et dans l'aperçu.
     expect(find.text('Brumeval'), findsNWidgets(2));
   });
-  testWidgets('configuration : changement signalé, enregistré, daté', (
+  _testTable('configuration : changement signalé, enregistré, daté', (
     tester,
   ) async {
     final (database, id) = await _openTable(tester);
@@ -279,7 +288,7 @@ void main() {
     expect(find.text(l10n.activityEmpty), findsNothing);
   });
 
-  testWidgets('configuration : « Annuler » rend la configuration enregistrée', (
+  _testTable('configuration : « Annuler » rend la configuration enregistrée', (
     tester,
   ) async {
     final (database, id) = await _openTable(tester);
@@ -295,7 +304,7 @@ void main() {
     expect(await TableStore(database).activity(id), isEmpty);
   });
 
-  testWidgets('archivage : lecture seule, puis restauration', (tester) async {
+  _testTable('archivage : lecture seule, puis restauration', (tester) async {
     final (database, id) = await _openTable(tester);
     await _tap(tester, find.text(l10n.tabConfiguration));
     await _tap(tester, find.widgetWithText(OutlinedButton, l10n.archiveAction));
@@ -318,7 +327,7 @@ void main() {
     ]);
   });
 
-  testWidgets('joueur : pas d\'onglet Configuration', (tester) async {
+  _testTable('joueur : pas d\'onglet Configuration', (tester) async {
     await _openTable(tester, gm: '00000000-0000-0000-0000-00000000000b');
     expect(find.text(l10n.youArePlayer.toUpperCase()), findsOneWidget);
     expect(find.text(l10n.tabOverview), findsOneWidget);
@@ -326,11 +335,74 @@ void main() {
     expect(find.text(l10n.activityEmpty), findsOneWidget);
   });
 
-  testWidgets('desktop : configuration et panneau côte à côte', (tester) async {
+  _testTable('desktop : configuration et panneau côte à côte', (tester) async {
     await _openTable(tester, size: const Size(1440, 1100));
     await _tap(tester, find.text(l10n.tabConfiguration));
     await _choose<ScoreMethod>(tester, l10n.statMethod(ScoreMethod.pointBuy));
     expect(find.text(l10n.unsavedTitle), findsOneWidget);
     expect(find.text(l10n.whoIsNotifiedTitle), findsOneWidget);
+  });
+  _testTable('membres : invitation créée, code, 7 jours, révocation', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(
+      tester,
+      size: const Size(1440, 1100),
+    );
+    await _tap(tester, find.text(l10n.tabMembers));
+    await _tap(tester, find.text(l10n.inviteCreate));
+    final invite = (await TableStore(database).watchInvite(id).first)!;
+    expect(find.text(invite.code), findsOneWidget);
+    expect(find.text(l10n.inviteExpires(7)), findsOneWidget);
+
+    await _tap(tester, find.text(l10n.inviteRevoke));
+    expect(find.text(invite.code), findsNothing);
+    expect(find.text(l10n.inviteCreate), findsOneWidget);
+  });
+
+  _testTable('membres : pseudonymes, le MJ retire un joueur', (tester) async {
+    final (database, id) = await _openTable(tester);
+    await database.customStatement(
+      'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+      "VALUES ('m8', ?, '00000000-0000-0000-0000-00000000000b', 'player', "
+      "'2026-11-11T10:00:00Z')",
+      [id],
+    );
+    await database.customStatement(
+      'INSERT INTO profile (id, pseudonym, locale, settings) VALUES '
+      "(?, 'Camille', 'fr', '{}'), "
+      "('00000000-0000-0000-0000-00000000000b', 'Hugo', 'fr', '{}')",
+      [_gm.id],
+    );
+    await _tap(tester, find.text(l10n.tabMembers));
+    expect(find.text(l10n.membersCount(2)), findsOneWidget);
+    expect(find.text(l10n.memberYou(l10n.roleGm)), findsOneWidget);
+    expect(find.text('Hugo'), findsOneWidget);
+
+    await _tap(tester, find.byType(PopupMenuButton<void>));
+    await _tap(tester, find.text(l10n.removeMember));
+    expect(find.text(l10n.removeMemberTitle('Hugo')), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.removeAction));
+    expect(find.text('Hugo'), findsNothing);
+    expect(find.text(l10n.membersCount(1)), findsOneWidget);
+  });
+
+  _testTable('membres, téléphone : l\'invitation dans une feuille', (
+    tester,
+  ) async {
+    await _openTable(tester);
+    await _tap(tester, find.text(l10n.tabMembers));
+    await _tap(tester, find.text(l10n.inviteTitle));
+    expect(find.text(l10n.inviteHint), findsOneWidget);
+    await _tap(tester, find.text(l10n.inviteCreate));
+    expect(find.text(l10n.inviteExpires(7)), findsOneWidget);
+  });
+
+  _testTable('membres, joueur : ni invitation ni retrait', (tester) async {
+    await _openTable(tester, gm: '00000000-0000-0000-0000-00000000000b');
+    await _tap(tester, find.text(l10n.tabMembers));
+    expect(find.text(l10n.inviteTitle), findsNothing);
+    expect(find.byType(PopupMenuButton<void>), findsNothing);
+    expect(find.text(l10n.removeNote), findsNothing);
   });
 }
