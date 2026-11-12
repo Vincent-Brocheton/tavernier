@@ -104,7 +104,9 @@ begin
                   row_data := row_data - k;
                   insert into public.character_change_log
                     (id, character_id, author_user_id, diff)
-                  values (gen_random_uuid()::text, sheet, holder,
+                  -- Inscrite par celui qui envoie (règle de l'historique) ;
+                  -- le MJ figure dans kept_by.
+                  values (gen_random_uuid()::text, sheet, writer,
                     jsonb_build_object('kind', 'conflict', 'table', t,
                       'field', k, 'kept', cur->k, 'kept_by', holder,
                       'replaced', o->'data'->k, 'replaced_by', writer)::text);

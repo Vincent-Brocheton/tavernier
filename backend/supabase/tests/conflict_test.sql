@@ -72,8 +72,8 @@ select is(
 select is(
   (select author_user_id from character_change_log
    where diff::jsonb ->> 'kind' = 'conflict')::text,
-  '00000000-0000-0000-0000-0000000000c7',
-  'l''entrée a pour auteur celui dont la valeur est gardée');
+  '00000000-0000-0000-0000-0000000000c8',
+  'l''entrée est inscrite par l''appareil qui envoie');
 
 -- Sur la fiche, le dernier écrit gagne.
 select pg_temp.as_user('00000000-0000-0000-0000-0000000000c7');

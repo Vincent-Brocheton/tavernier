@@ -11,7 +11,7 @@
 - `apply_crud` : sur un `PATCH` de ces deux tables qui porte `old`, avant d'écrire, il lit la ligne en place (`to_jsonb`). Pour chaque champ de `data` présent dans `old` dont la valeur en place diffère de `old` :
   - sur `character_state`, si l'auteur du champ est le MJ de la table et que l'appelant ne l'est pas, le champ est retiré de l'écriture : la valeur du MJ reste ;
   - sinon, le champ s'écrit (dernier écrit gagnant) ;
-  - dans les deux cas, une entrée part dans `character_change_log`, avec pour auteur celui dont la valeur est gardée :
+  - dans les deux cas, une entrée part dans `character_change_log`. Son auteur est celui qui envoie : la règle de l'historique interdit d'écrire au nom d'un autre. L'auteur de la valeur gardée est dans `kept_by` :
 
     `{"kind": "conflict", "table", "field", "kept", "kept_by", "replaced", "replaced_by"}`
 
