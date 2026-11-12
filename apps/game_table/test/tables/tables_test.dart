@@ -766,7 +766,12 @@ void main() {
       findsOneWidget,
     );
     expect(
-      find.text(l10n.historyValues('standardArray', 'pointBuy')),
+      find.text(
+        l10n.historyValues(
+          l10n.statMethod(ScoreMethod.standardArray),
+          l10n.statMethod(ScoreMethod.pointBuy),
+        ),
+      ),
       findsOneWidget,
     );
     expect(find.textContaining('Camille'), findsOneWidget);

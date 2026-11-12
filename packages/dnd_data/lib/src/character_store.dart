@@ -306,13 +306,6 @@ final class CharacterStore {
       (id: row.read<String>('id'), name: row.read<String>('name')),
   ];
 
-  /// Rattache un personnage libre à [tableId] et l'envoie au MJ pour
-  /// revalidation, avec un message facultatif.
-  Future<void> attach(String id, String tableId, String? message) => _update(
-    id,
-    {'table_id': tableId, 'status': 'submitted', 'submit_message': message},
-  );
-
   /// Inscrit des dérogations du MJ dans l'historique de la fiche, sans
   /// notification (cahier §4.3). Chaque entrée : `check`, `table`, `sheet`,
   /// `message` facultatif.

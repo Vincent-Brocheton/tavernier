@@ -223,8 +223,14 @@ class _MySlot extends ConsumerWidget {
       builder: (_) => const _SubmitDialog(),
     );
     if (message == null) return;
-    await characters.attach(chosen, table.id, message.isEmpty ? null : message);
-    await ref.read(tableStoreProvider).fillSlot(slot.id, chosen);
+    await ref
+        .read(tableStoreProvider)
+        .attachToSlot(
+          slot.id,
+          table.id,
+          chosen,
+          message.isEmpty ? null : message,
+        );
   }
 
   @override

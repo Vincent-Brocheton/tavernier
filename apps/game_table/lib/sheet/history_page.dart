@@ -54,6 +54,13 @@ class HistoryPage extends ConsumerWidget {
     };
   }
 
+  /// Valeur d'un écart, telle qu'un joueur la lit.
+  String _value(AppLocalizations l10n, Object? check, Object? value) =>
+      switch ((check, ScoreMethod.values.asNameMap()['$value'])) {
+        ('method', final method?) => l10n.statMethod(method),
+        _ => '$value',
+      };
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -100,8 +107,16 @@ class HistoryPage extends ConsumerWidget {
                               SizedBox(height: AppSpacing.xs),
                               Text(
                                 l10n.historyValues(
-                                  '${entry.detail['table']}',
-                                  '${entry.detail['sheet']}',
+                                  _value(
+                                    l10n,
+                                    entry.detail['check'],
+                                    entry.detail['table'],
+                                  ),
+                                  _value(
+                                    l10n,
+                                    entry.detail['check'],
+                                    entry.detail['sheet'],
+                                  ),
                                 ),
                                 style: text.bodyMedium,
                               ),

@@ -159,7 +159,7 @@ void _tests(Future<TavernierDatabase> Function() open) {
     );
     expect((await store.freeCharacters('leo')).map((c) => c.id), ['kael']);
 
-    await store.attach('kael', 't1', 'Je vous rejoins.');
+    await TableStore(db).attachToSlot('s1', 't1', 'kael', 'Je vous rejoins.');
     expect(await store.freeCharacters('leo'), isEmpty);
     expect(await store.status('kael'), 'submitted');
 
