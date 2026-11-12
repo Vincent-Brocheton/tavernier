@@ -1,6 +1,6 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP puis migration : une table à la fois, dérogation écrite par le MJ et lue par le joueur
+- [x] 1.1 Tests pgTAP puis migration : une table à la fois, dérogation écrite par le MJ et lue par le joueur
 
 ## 2. Données
 
