@@ -9,4 +9,4 @@
 
 ## 3. Scénario
 
-- [ ] 3.1 Test d'intégration : MJ et deux joueurs, trois comptes, hors ligne puis reconnexion
+- [x] 3.1 Test d'intégration : MJ et deux joueurs, trois comptes, hors ligne puis reconnexion

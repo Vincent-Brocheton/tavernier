@@ -1,4 +1,5 @@
-// Spec sync-backend : « Envoi des écritures », « Fusion sans perte ».
+// Spec sync-backend : « Envoi des écritures », « Fusion sans perte »,
+// « Fusion entre les comptes d'une table ».
 // Contre Supabase et PowerSync locaux (job CI « Base Supabase ») ; sans
 // SUPABASE_URL, SUPABASE_ANON_KEY et POWERSYNC_URL, le test se saute.
 import 'dart:io';
@@ -167,6 +168,117 @@ void main() {
     },
     skip: skip,
     timeout: const Timeout(Duration(minutes: 3)),
+  );
+
+  test(
+    'MJ et deux joueurs, trois comptes, hors ligne : rien ne se perd',
+    () async {
+      final [gm, p1, p2] = [
+        for (final who in ['mj', 'joueur1', 'joueur2'])
+          await _Device.signedIn(await _newAccount(who)),
+      ];
+      addTearDown(() async {
+        for (final d in [gm, p1, p2]) {
+          await d.close();
+        }
+      });
+      for (final d in [gm, p1, p2]) {
+        await d.connect();
+      }
+
+      // Le MJ crée la table et son invitation.
+      final tables = TableStore(gm.db);
+      final tableId = await tables.create(
+        gmUserId: gm.client.auth.currentUser!.id,
+        settings: const TableSettings(name: 'Brumeval'),
+        packs: const [],
+      );
+      final invite = await tables.createInvite(tableId);
+      await _until(
+        () async =>
+            (await gm.client
+                    .from('table_invite')
+                    .select('id')
+                    .eq('id', invite.id))
+                .isNotEmpty,
+        'invitation sur le serveur',
+      );
+
+      // Les joueurs rejoignent, puis créent leur fiche dans la table.
+      final aldric = CharacterInput.fromJson(aldricJson());
+      final ids = <_Device, String>{};
+      for (final player in [p1, p2]) {
+        final joined = await player.client.rpc<Map<String, dynamic>>(
+          'join_table',
+          params: {'code': invite.code},
+        );
+        expect(joined['table_id'], tableId);
+        final me = player.client.auth.currentUser!.id;
+        await _until(
+          () async => await TableStore(player.db).load(tableId, me) != null,
+          'table reçue par le joueur',
+        );
+        final id = uuidV7();
+        ids[player] = id;
+        await player.store.save(id, aldric, tableId: tableId);
+      }
+      for (final id in ids.values) {
+        await _until(
+          () async => await gm.store.load(id) == aldric,
+          'fiche reçue par le MJ',
+        );
+      }
+
+      // Hors ligne : le MJ change un réglage, chaque joueur sa fiche.
+      for (final d in [gm, p1, p2]) {
+        await d.disconnect();
+      }
+      final gmId = gm.client.auth.currentUser!.id;
+      await tables.update(
+        tableId,
+        authorUserId: gmId,
+        settings: const TableSettings(name: 'Brumeval', startingLevel: 3),
+        fullSheetsVisible: false,
+      );
+      await p1.store.save(ids[p1]!, aldric.copyWith(name: 'Aldric le Brave'));
+      await p2.store.saveState(ids[p2]!, const PlayState(hpCurrent: 4));
+
+      for (final d in [gm, p1, p2]) {
+        await d.connect();
+      }
+      for (final player in [p1, p2]) {
+        final me = player.client.auth.currentUser!.id;
+        await _until(
+          () async =>
+              (await TableStore(
+                player.db,
+              ).load(tableId, me))?.settings.startingLevel ==
+              3,
+          'réglage du MJ reçu par le joueur',
+        );
+      }
+      await _until(
+        () async => (await gm.store.load(ids[p1]!))?.name == 'Aldric le Brave',
+        'fiche du joueur 1 reçue par le MJ',
+      );
+      await _until(
+        () async => (await gm.store.loadState(ids[p2]!)).hpCurrent == 4,
+        'PV du joueur 2 reçus par le MJ',
+      );
+      final server = await gm.client
+          .from('game_table')
+          .select('starting_level')
+          .eq('id', tableId)
+          .single();
+      expect(server['starting_level'], 3);
+      // Fiches fermées : un joueur ne reçoit pas celle de l'autre.
+      expect(await p1.store.load(ids[p2]!), isNull);
+      for (final d in [gm, p1, p2]) {
+        expect(d.discarded, isEmpty);
+      }
+    },
+    skip: skip,
+    timeout: const Timeout(Duration(minutes: 4)),
   );
 
   test(
