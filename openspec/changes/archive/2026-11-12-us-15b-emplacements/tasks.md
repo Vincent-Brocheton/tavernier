@@ -13,4 +13,4 @@
 - [x] 3.1 Emplacements dans l'onglet Membres ; tests
 - [x] 3.2 Création contrainte depuis un emplacement ; tests
 - [x] 3.3 « Mon personnage » et envoi au MJ ; liste des personnages par propriétaire ; tests
-- [ ] 3.4 Vérification dans le navigateur
+- [x] 3.4 Vérification dans le navigateur

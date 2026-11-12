@@ -864,3 +864,17 @@ Partout où un jet est attendu, l'écran SHALL proposer « Saisir mon jet » et 
 #### Scenario: Modification
 - **WHEN** il change le résultat lancé avant de valider
 - **THEN** sa valeur est retenue
+
+### Requirement: Historique de la fiche
+La fiche SHALL donner accès à une page « Historique », qui liste ses entrées de la plus récente à la plus ancienne, avec auteur et date. Une dérogation SHALL y montrer l'écart, la valeur de la table et celle de la fiche, et le message du MJ.
+
+#### Scenario: Dérogation consultée
+- **WHEN** le joueur ouvre l'historique de Kael
+- **THEN** il lit « Dérogation : niveau 3 accepté », par Camille (MJ), avec 1 → 3
+
+### Requirement: Fiche en lecture seule
+Une fiche que l'utilisateur ne peut pas modifier (celle d'un autre joueur, ouverte par le MJ, ou une fiche archivée) SHALL s'afficher sans montée de niveau, sans repos et sans actions qui écrivent dans l'inventaire ou les sorts.
+
+#### Scenario: Fiche d'un autre joueur
+- **WHEN** un joueur ouvre la fiche de Mira
+- **THEN** il la consulte, sans « Monter au niveau 2 » ni repos

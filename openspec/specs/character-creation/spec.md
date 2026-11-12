@@ -304,3 +304,45 @@ Le Récapitulatif SHALL lister toutes les compétences maîtrisées, dans l'ordr
 #### Scenario: Identifiant à tiret
 - **WHEN** le personnage maîtrise Escamotage
 - **THEN** Escamotage apparaît au Récapitulatif
+
+### Requirement: Méthode de caractéristiques
+L'étape Caractéristiques SHALL proposer les trois méthodes du SRD : acquisition par points, valeurs standard (15, 14, 13, 12, 10, 8) et génération aléatoire (4d6 sans le plus faible, six fois). La méthode et les jets SHALL être enregistrés avec le personnage.
+
+#### Scenario: Valeurs standard
+- **WHEN** le joueur choisit les valeurs standard
+- **THEN** les six valeurs sont réparties et l'étape est complète
+
+#### Scenario: Échange
+- **WHEN** le joueur donne à la Force la valeur de la Dextérité
+- **THEN** la Dextérité reçoit l'ancienne valeur de la Force
+
+#### Scenario: Jets à faire
+- **WHEN** le joueur choisit la génération aléatoire sans avoir lancé
+- **THEN** l'étape reste bloquée, avec la raison
+
+#### Scenario: Lancer
+- **WHEN** le joueur lance les dés
+- **THEN** six valeurs de 3 à 18 sont tirées et réparties, la plus haute en Force
+
+#### Scenario: Saisir ses jets
+- **WHEN** le joueur saisit six valeurs de 3 à 18
+- **THEN** ce sont ses jets ; une valeur hors bornes empêche de valider
+
+#### Scenario: Enregistrement
+- **WHEN** un personnage créé par génération aléatoire est enregistré
+- **THEN** sa fiche garde la méthode et les jets, et le moteur ne relève aucune erreur
+
+### Requirement: Création contrainte par la table
+Ouverte depuis un emplacement, la création SHALL imposer la méthode de caractéristiques de la table, sans choix, n'autoriser qu'un seul « Lancer » en génération aléatoire, et rattacher le personnage enregistré à la table et à l'emplacement.
+
+#### Scenario: Méthode imposée
+- **WHEN** la table impose les valeurs standard
+- **THEN** l'étape Caractéristiques montre « Méthode imposée par la table : Valeurs standard », sans autre choix
+
+#### Scenario: Un seul lancer
+- **WHEN** le joueur a lancé les dés dans une table en génération aléatoire
+- **THEN** « Lancer » n'est plus proposé
+
+#### Scenario: Rattachement
+- **WHEN** le joueur enregistre son personnage
+- **THEN** la fiche porte la table et remplit l'emplacement

@@ -266,3 +266,54 @@ Les listes de tables, une table, ses membres et son invitation SHALL se mettre �
 #### Scenario: Écriture locale
 - **WHEN** une table est créée pendant qu'on observe la liste
 - **THEN** la liste la montre sans nouvelle demande
+
+### Requirement: Emplacements et fiches de table
+`TableStore` SHALL créer, remplir et supprimer les emplacements de PJ, et les rendre avec le nom, le statut et le niveau de leur fiche, à jour à chaque changement. `CharacterStore` SHALL rattacher une fiche neuve à une table sans jamais effacer ce rattachement, changer son statut, et ne lister que les fiches de l'utilisateur et celles pas encore envoyées.
+
+#### Scenario: Emplacement rempli
+- **WHEN** une fiche de niveau 3 remplit un emplacement
+- **THEN** l'emplacement rend son nom, son statut et le niveau 3
+
+#### Scenario: Fiches d'un autre
+- **WHEN** le MJ a reçu la fiche d'un joueur
+- **THEN** elle n'apparaît pas dans sa liste de personnages
+
+### Requirement: Identifiants ordonnés
+Les identifiants UUID v7 créés par un même processus SHALL croître strictement, même dans la même milliseconde.
+
+#### Scenario: Mille identifiants
+- **WHEN** mille identifiants sont créés d'affilée
+- **THEN** ils sont triés et tous différents
+
+### Requirement: Revue et transfert des fiches de table
+`CharacterStore` SHALL envoyer une fiche avec un message, la valider ou demander des corrections avec un commentaire, et la reprendre. `TableStore` SHALL transférer un emplacement et sa fiche à un autre joueur, et rendre le message et le commentaire avec chaque emplacement.
+
+#### Scenario: Corrections
+- **WHEN** le MJ demande des corrections avec un commentaire
+- **THEN** l'emplacement rend le statut `changes_requested` et le commentaire
+
+#### Scenario: Transfert
+- **WHEN** le MJ transfère un emplacement
+- **THEN** l'emplacement et la fiche ont le nouveau joueur
+
+### Requirement: Personnages libres et historique
+`CharacterStore` SHALL lister les personnages libres d'un utilisateur, en rattacher un à une table en l'envoyant au MJ, inscrire des dérogations dans l'historique et rendre l'historique, le plus récent d'abord.
+
+#### Scenario: Rattachement
+- **WHEN** un personnage libre est rattaché
+- **THEN** il n'est plus libre, et son statut est `submitted`
+
+#### Scenario: Historique
+- **WHEN** deux dérogations sont inscrites
+- **THEN** l'historique les rend, la dernière d'abord
+
+### Requirement: Résumés publiés
+`CharacterStore` SHALL publier le résumé d'une fiche de table seulement s'il a changé. `TableStore` SHALL rendre les résumés d'une table, à jour à chaque changement. L'état de santé qualitatif SHALL valoir « indemne » au maximum de PV, « blessé » au-dessus de la moitié, « gravement blessé » à la moitié ou moins.
+
+#### Scenario: Seuils
+- **WHEN** les PV sont 33/33, 17/33 puis 16/33
+- **THEN** l'état est indemne, blessé, puis gravement blessé
+
+#### Scenario: Rien de changé
+- **WHEN** le même résumé est publié deux fois
+- **THEN** une seule écriture part

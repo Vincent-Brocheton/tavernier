@@ -175,3 +175,66 @@ Quand un joueur quitte une table ou en est retiré, le serveur SHALL passer ses 
 #### Scenario: Fiche archivée
 - **WHEN** le propriétaire modifie une fiche archivée
 - **THEN** le serveur refuse
+
+### Requirement: Emplacements au serveur
+Le serveur SHALL laisser les membres lire les emplacements de leur table, le MJ les créer et les supprimer, et le joueur d'un emplacement n'y placer qu'une fiche à lui de la même table. Les emplacements SHALL être synchronisés vers les membres.
+
+#### Scenario: Joueur
+- **WHEN** un joueur crée un emplacement
+- **THEN** le serveur refuse
+
+#### Scenario: Fiche d'un autre
+- **WHEN** un joueur place dans son emplacement la fiche d'un autre
+- **THEN** le serveur refuse
+
+### Requirement: Statut d'une fiche de table
+Le serveur SHALL n'accepter que ces passages : le propriétaire envoie (`draft` ou `changes_requested` → `submitted`) ou reprend (`submitted` → `draft`) ; le MJ de la table valide ou demande des corrections sur une fiche envoyée. Une fiche SHALL n'être rattachée qu'à une table dont son propriétaire est membre.
+
+#### Scenario: Envoi
+- **WHEN** le propriétaire envoie sa fiche
+- **THEN** elle passe `submitted`
+
+#### Scenario: Validation par soi-même
+- **WHEN** le propriétaire passe sa fiche à `validated`
+- **THEN** le serveur refuse
+
+#### Scenario: Table étrangère
+- **WHEN** un utilisateur rattache sa fiche à une table dont il n'est pas membre
+- **THEN** le serveur refuse
+
+### Requirement: Revue et transfert au serveur
+Le serveur SHALL réserver le message d'envoi au propriétaire de la fiche, le commentaire de revue au MJ, et le changement de propriétaire au MJ de la table, vers un membre, sur une fiche non archivée. Au retrait d'un joueur, ses emplacements SHALL être supprimés.
+
+#### Scenario: Commentaire du joueur
+- **WHEN** le joueur écrit le commentaire de revue
+- **THEN** le serveur refuse
+
+#### Scenario: Transfert vers un inconnu
+- **WHEN** le MJ donne la fiche à un utilisateur hors de la table
+- **THEN** le serveur refuse
+
+#### Scenario: Retrait
+- **WHEN** le MJ retire un joueur
+- **THEN** ses emplacements disparaissent, sa fiche reste archivée
+
+### Requirement: Une table à la fois
+Le serveur SHALL refuser de changer la table d'une fiche déjà rattachée. Le MJ SHALL pouvoir inscrire une dérogation dans l'historique d'une fiche de sa table, et le propriétaire la lire.
+
+#### Scenario: Seconde table
+- **WHEN** le propriétaire rattache à une autre table une fiche déjà rattachée
+- **THEN** le serveur refuse
+
+#### Scenario: Dérogation
+- **WHEN** le MJ inscrit une dérogation
+- **THEN** le propriétaire la lit dans l'historique
+
+### Requirement: Résumés des fiches au serveur
+Le serveur SHALL laisser les membres d'une table lire les résumés de ses fiches, et seuls le propriétaire et le MJ les écrire, pour la table de la fiche. Les résumés SHALL être synchronisés vers les membres.
+
+#### Scenario: Autre joueur
+- **WHEN** un joueur écrit le résumé de la fiche d'un autre
+- **THEN** le serveur refuse
+
+#### Scenario: Lecture
+- **WHEN** un membre lit les résumés
+- **THEN** il voit ceux de sa table, sans PV chiffrés
