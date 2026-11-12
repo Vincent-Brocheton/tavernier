@@ -464,6 +464,26 @@ final class TableStore {
         ]);
       });
 
+  /// Rattache le personnage libre [characterId] à la table de l'emplacement
+  /// [slotId], l'y place et l'envoie au MJ, en une transaction : une coupure
+  /// ne le laisse jamais ni libre ni placé (cahier §4.3).
+  Future<void> attachToSlot(
+    String slotId,
+    String tableId,
+    String characterId,
+    String? message,
+  ) => _db.transaction(() async {
+    await _write(
+      "UPDATE character SET table_id = ?, status = 'submitted', "
+      'submit_message = ? WHERE id = ?',
+      [tableId, message, characterId],
+    );
+    await _write('UPDATE pc_slot SET character_id = ? WHERE id = ?', [
+      characterId,
+      slotId,
+    ]);
+  });
+
   /// Emplacements de la table, dans l'ordre d'attribution, avec leur fiche.
   Stream<List<PcSlot>> watchSlots(String tableId) => _db
       .customSelect(

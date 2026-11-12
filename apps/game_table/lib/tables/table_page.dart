@@ -190,6 +190,49 @@ class _MySlot extends ConsumerWidget {
     }
   }
 
+  /// Rattache un personnage libre à l'emplacement, et l'envoie au MJ pour
+  /// revalidation (cahier §4.3).
+  Future<void> _attach(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final me = ref.read(currentUserProvider).value?.id;
+    if (me == null) return;
+    final characters = ref.read(characterStoreProvider);
+    final free = await characters.freeCharacters(me);
+    if (!context.mounted) return;
+    final chosen = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(l10n.attachTitle),
+        children: [
+          if (free.isEmpty)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              child: Text(l10n.attachNone),
+            ),
+          for (final character in free)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, character.id),
+              child: Text(character.name),
+            ),
+        ],
+      ),
+    );
+    if (chosen == null || !context.mounted) return;
+    final message = await showDialog<String>(
+      context: context,
+      builder: (_) => const _SubmitDialog(),
+    );
+    if (message == null) return;
+    await ref
+        .read(tableStoreProvider)
+        .attachToSlot(
+          slot.id,
+          table.id,
+          chosen,
+          message.isEmpty ? null : message,
+        );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
@@ -199,21 +242,31 @@ class _MySlot extends ConsumerWidget {
     final level = slot.level ?? 1;
     final start = table.settings.startingLevel;
     final children = <Widget>[
-      if (id == null)
+      if (id == null) ...[
         ListTile(
           contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.person_add_alt),
           title: Text(l10n.slotEmpty),
-          trailing: FilledButton(
-            onPressed: table.archived
-                ? null
-                : () => context.push(
-                    '/characters/new?table=${table.id}&slot=${slot.id}',
-                  ),
-            child: Text(l10n.createMySheet),
+        ),
+        if (!table.archived)
+          Wrap(
+            alignment: WrapAlignment.end,
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              OutlinedButton(
+                onPressed: () => _attach(context, ref),
+                child: Text(l10n.attachFree),
+              ),
+              FilledButton(
+                onPressed: () => context.push(
+                  '/characters/new?table=${table.id}&slot=${slot.id}',
+                ),
+                child: Text(l10n.createMySheet),
+              ),
+            ],
           ),
-        )
-      else ...[
+      ] else ...[
         if (slot.status == 'changes_requested' && slot.reviewComment != null)
           StatusBanner(
             kind: StatusBannerKind.alert,

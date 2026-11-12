@@ -149,6 +149,30 @@ void _tests(Future<TavernierDatabase> Function() open) {
     ]);
   });
 
+  test('personnages libres, rattachement, dérogations', () async {
+    final aldric = CharacterInput.fromJson(aldricJson());
+    await store.save('kael', aldric);
+    await store.save('table', aldric, tableId: 't0');
+    await store.save('autre', aldric);
+    await db.customStatement(
+      "UPDATE character SET owner_user_id = 'hugo' WHERE id = 'autre'",
+    );
+    expect((await store.freeCharacters('leo')).map((c) => c.id), ['kael']);
+
+    await TableStore(db).attachToSlot('s1', 't1', 'kael', 'Je vous rejoins.');
+    expect(await store.freeCharacters('leo'), isEmpty);
+    expect(await store.status('kael'), 'submitted');
+
+    await store.addDerogations('kael', 'mj', [
+      {'check': 'level', 'table': '1', 'sheet': '3', 'message': 'Bienvenue'},
+      {'check': 'method', 'table': 'pointBuy', 'sheet': 'random'},
+    ]);
+    final history = await store.history('kael');
+    expect(history.map((e) => e.detail['check']), ['method', 'level']);
+    expect(history.first.detail['kind'], 'derogation');
+    expect(history.first.authorUserId, 'mj');
+  });
+
   test('liste : du plus ancien au plus récent, par identifiant', () async {
     final aldric = CharacterInput.fromJson(aldricJson());
     final older = uuidV7(at: DateTime.utc(2026));

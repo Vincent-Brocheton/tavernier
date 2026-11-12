@@ -21,6 +21,7 @@ import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
 import 'settings/crash_consent_dialog.dart';
 import 'settings/device_settings.dart';
+import 'sheet/history_page.dart';
 import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
 import 'tables/create_table_page.dart';
@@ -102,6 +103,10 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
           tableId: state.uri.queryParameters['table'],
           slotId: state.uri.queryParameters['slot'],
         ),
+      ),
+      GoRoute(
+        path: '/characters/:id/historique',
+        builder: (_, state) => HistoryPage(id: state.pathParameters['id']!),
       ),
       GoRoute(
         path: '/characters/:id',

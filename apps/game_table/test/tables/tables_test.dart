@@ -1,4 +1,5 @@
 // Spec tables : « Création d'une table », « Liste des tables » (US-13).
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -12,6 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
+import 'package:game_table/sheet/history_page.dart';
 import 'package:game_table/tables/create_table_page.dart';
 import 'package:game_table/tables/join_page.dart';
 import 'package:game_table/tables/table_labels.dart';
@@ -106,6 +108,10 @@ Future<TavernierDatabase> _pump(
         builder: (_, _) => const CreateTablePage(),
       ),
       GoRoute(path: '/rejoindre', builder: (_, _) => const JoinPage()),
+      GoRoute(
+        path: '/characters/:id/historique',
+        builder: (_, state) => HistoryPage(id: state.pathParameters['id']!),
+      ),
       GoRoute(
         path: '/rejoindre/:code',
         builder: (_, state) => JoinPage(code: state.pathParameters['code']),
@@ -702,5 +708,95 @@ void main() {
     expect(find.text(l10n.correctionsTitle), findsOneWidget);
     expect(find.text('Remplace la botte.'), findsOneWidget);
     expect(find.text(l10n.submitToGm), findsOneWidget);
+  });
+  _testTable(
+    'écarts : une correction, message obligatoire, pas de dérogation',
+    (tester) async {
+      final (database, _, character) = await _withAldric(
+        tester,
+        status: 'submitted',
+      );
+      // La méthode diffère (points contre valeurs standard) : dérogation par
+      // défaut ; le MJ la passe en correction.
+      await _tap(tester, find.text(l10n.correction).first);
+      final send = find.widgetWithText(
+        FilledButton,
+        l10n.requestChangesCount(1),
+      );
+      expect(tester.widget<FilledButton>(send).onPressed, isNull);
+      await tester.enterText(
+        find.widgetWithText(TextField, l10n.reviewCommentLabel),
+        'Valeurs standard, s\'il te plaît.',
+      );
+      await tester.pump();
+      await _tap(tester, send);
+      expect(
+        await CharacterStore(database).status(character),
+        'changes_requested',
+      );
+      expect(await CharacterStore(database).history(character), isEmpty);
+    },
+  );
+
+  _testTable('écarts : validés en dérogation, inscrits à l\'historique', (
+    tester,
+  ) async {
+    final (database, _, character) = await _withAldric(
+      tester,
+      status: 'submitted',
+    );
+    expect(find.text(l10n.derogationsNote(1)), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.validateSheet));
+    expect(await CharacterStore(database).status(character), 'validated');
+    final [entry] = await CharacterStore(database).history(character);
+    expect(entry.detail['check'], 'method');
+    expect(entry.detail['table'], 'standardArray');
+    expect(entry.detail['sheet'], 'pointBuy');
+    expect(entry.authorUserId, _gm.id);
+
+    unawaited(
+      GoRouter.of(tester.element(find.byType(TablePage)))
+          .push(historyPath(character)),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.text(
+        l10n.historyDerogationMethod(l10n.statMethod(ScoreMethod.pointBuy)),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        l10n.historyValues(
+          l10n.statMethod(ScoreMethod.standardArray),
+          l10n.statMethod(ScoreMethod.pointBuy),
+        ),
+      ),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Camille'), findsOneWidget);
+  });
+
+  _testTable('personnage libre : rattaché, envoyé, emplacement rempli', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(
+      tester,
+      gm: '00000000-0000-0000-0000-00000000000b',
+    );
+    await CharacterStore(database)
+        .save('kael', _aldric().copyWith(name: 'Kael'));
+    final store = TableStore(database);
+    await store.createSlot(id, _gm.id);
+    await tester.pumpAndSettle();
+
+    await _tap(tester, find.text(l10n.attachFree));
+    expect(find.text(l10n.attachTitle), findsOneWidget);
+    await _tap(tester, find.text('Kael'));
+    await _tap(tester, find.widgetWithText(FilledButton, l10n.submitAction));
+    final [slot] = await store.watchSlots(id).first;
+    expect(slot.characterId, 'kael');
+    expect(slot.status, 'submitted');
+    expect(await CharacterStore(database).freeCharacters(_gm.id), isEmpty);
   });
 }

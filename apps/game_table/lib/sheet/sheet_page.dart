@@ -11,6 +11,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'features_tab.dart';
+import 'history_page.dart';
 import 'inventory_tab.dart';
 import 'rest_sheet.dart';
 import 'sheet_breakdowns.dart';
@@ -174,6 +175,11 @@ class _Sheet extends StatelessWidget {
                     ),
                     child: Text(label),
                   ),
+                TextButton.icon(
+                  onPressed: () => context.push(historyPath(id)),
+                  icon: const Icon(Icons.history),
+                  label: Text(l10n.historyTitle),
+                ),
               ],
             ),
           ),

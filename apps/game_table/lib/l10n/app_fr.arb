@@ -3796,5 +3796,115 @@
         "type": "String"
       }
     }
+  },
+  "attachFree": "Rattacher un personnage libre",
+  "@attachFree": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "attachTitle": "Personnage à rattacher",
+  "@attachTitle": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "attachNone": "Aucun personnage libre : créez-en un depuis Personnages.",
+  "@attachNone": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "derogation": "Dérogation",
+  "@derogation": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "correction": "Correction",
+  "@correction": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "requestChangesCount": "Demander des corrections ({count})",
+  "@requestChangesCount": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "derogationsNote": "{count, plural, =0{Aucune dérogation.} =1{1 dérogation sera inscrite dans l’historique de la fiche.} other{{count} dérogations seront inscrites dans l’historique de la fiche.}} Un personnage n’est rattaché qu’à une table à la fois.",
+  "@derogationsNote": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyTitle": "Historique",
+  "@historyTitle": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "historyEmpty": "Aucune entrée pour l’instant.",
+  "@historyEmpty": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "historyDerogationLevel": "Dérogation : niveau {level} accepté",
+  "@historyDerogationLevel": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "historyDerogationMethod": "Dérogation : {method} acceptée",
+  "@historyDerogationMethod": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "historyDerogationRule": "Dérogation : {rule}",
+  "@historyDerogationRule": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "historyValues": "Table : {table} · Fiche : {sheet}",
+  "@historyValues": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "table": {
+        "type": "String"
+      },
+      "sheet": {
+        "type": "String"
+      }
+    }
+  },
+  "historyMessage": "Message du MJ : « {message} »",
+  "@historyMessage": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "historyNoNotification": "Aucune notification envoyée ; trace conservée ici.",
+  "@historyNoNotification": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2)."
+  },
+  "historyAuthor": "{date} · {author}",
+  "@historyAuthor": {
+    "description": "Personnage libre, dérogations et historique (US-15, écrans T14 et N2).",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "author": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -4410,6 +4410,102 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Transférer {name} à'**
   String transferTitle(String name);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rattacher un personnage libre'**
+  String get attachFree;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnage à rattacher'**
+  String get attachTitle;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun personnage libre : créez-en un depuis Personnages.'**
+  String get attachNone;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dérogation'**
+  String get derogation;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Correction'**
+  String get correction;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Demander des corrections ({count})'**
+  String requestChangesCount(int count);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucune dérogation.} =1{1 dérogation sera inscrite dans l’historique de la fiche.} other{{count} dérogations seront inscrites dans l’historique de la fiche.}} Un personnage n’est rattaché qu’à une table à la fois.'**
+  String derogationsNote(int count);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get historyTitle;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune entrée pour l’instant.'**
+  String get historyEmpty;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dérogation : niveau {level} accepté'**
+  String historyDerogationLevel(String level);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dérogation : {method} acceptée'**
+  String historyDerogationMethod(String method);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dérogation : {rule}'**
+  String historyDerogationRule(String rule);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table : {table} · Fiche : {sheet}'**
+  String historyValues(String table, String sheet);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Message du MJ : « {message} »'**
+  String historyMessage(String message);
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune notification envoyée ; trace conservée ici.'**
+  String get historyNoNotification;
+
+  /// Personnage libre, dérogations et historique (US-15, écrans T14 et N2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{date} · {author}'**
+  String historyAuthor(String date, String author);
 }
 
 class _AppLocalizationsDelegate
