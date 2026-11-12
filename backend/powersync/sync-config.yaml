@@ -26,6 +26,7 @@ streams:
       - SELECT * FROM table_banned_entity WHERE table_id IN mes_tables
       - SELECT * FROM table_activity WHERE table_id IN mes_tables
       - SELECT * FROM pc_slot WHERE table_id IN mes_tables
+      - SELECT * FROM character_summary WHERE table_id IN mes_tables
       - SELECT * FROM table_invite WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
 
   # Une fiche : son propriétaire, le MJ de sa table, et les membres quand la

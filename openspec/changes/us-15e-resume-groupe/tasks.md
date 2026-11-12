@@ -1,6 +1,6 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP puis migration `character_summary` ; règles de synchronisation et leur test
+- [x] 1.1 Tests pgTAP puis migration `character_summary` ; règles de synchronisation et leur test
 
 ## 2. Données
 

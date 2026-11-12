@@ -53,6 +53,9 @@ insert into character (id, table_id, owner_user_id, kind, name, species_id,
 insert into character_state (id, character_id) values ('s1', 'c1'), ('s2', 'c2');
 insert into pc_slot (id, table_id, player_user_id, character_id)
   values ('e1', 't1', '${id[joueur1]}', 'c1');
+insert into character_summary (id, table_id, owner_user_id, name, species_id,
+  health) values ('c1', 't1', '${id[joueur1]}', 'Brunhild', 'srd:species:dwarf',
+  'wounded');
 insert into character_item (id, character_id, item_id, quantity, equipped,
   attuned, position) values ('o1', 'c1', 'srd:item:rope', 1, false, false, 0);
 SQL
@@ -91,7 +94,7 @@ expect() {
 
 profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
 table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
-  table_activity/a1 pc_slot/e1)
+  table_activity/a1 pc_slot/e1 character_summary/c1)
 c1=(character/c1 character_state/s1 character_item/o1)
 c2=(character/c2 character_state/s2)
 
