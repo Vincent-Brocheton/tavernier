@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_gateway.dart';
 import 'package:game_table/account/account_providers.dart';
+import 'package:game_table/account/avatar.dart';
 import 'package:game_table/account/edit_account_page.dart';
 import 'package:game_table/account/password_policy.dart';
 import 'package:game_table/l10n/app_localizations.dart';
@@ -21,8 +22,10 @@ late AppLocalizations l10n;
 Future<void> _pump(
   WidgetTester tester,
   FakeGateway gateway,
-  FakeSession session,
-) async {
+  FakeSession session, {
+  String? avatar,
+  Future<String?> Function()? picker,
+}) async {
   tester.view.physicalSize = const Size(390, 1400);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -45,6 +48,8 @@ Future<void> _pump(
         accountGatewayProvider.overrideWithValue(gateway),
         sessionActionsProvider.overrideWithValue(session),
         pseudonymProvider.overrideWith((ref) async => 'Hugo'),
+        avatarProvider.overrideWith((ref) => Stream.value(avatar)),
+        if (picker != null) avatarPickerProvider.overrideWithValue(picker),
         breachedPasswordsProvider.overrideWithValue(
           BreachedPasswords(MockClient((_) async => http.Response('', 200))),
         ),
@@ -100,6 +105,60 @@ void main() {
     await _save(tester);
     expect(session.renames, ['Hugo le Brave']);
     expect(find.text('profil'), findsOneWidget);
+  });
+
+  // Un pixel PNG.
+  const image =
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+  testWidgets('avatar choisi : aperçu, puis enregistré', (tester) async {
+    final session = FakeSession(0);
+    await _pump(tester, FakeGateway(), session, picker: () async => image);
+    await tester.tap(find.text(l10n.avatarLabel));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<ProfileAvatar>(find.byType(ProfileAvatar)).avatar,
+      image,
+    );
+    expect(find.text(l10n.avatarRemove), findsOneWidget);
+    await _save(tester);
+    expect(session.avatars, [image]);
+    expect(find.text('profil'), findsOneWidget);
+  });
+
+  testWidgets('avatar retiré : l’initiale revient', (tester) async {
+    final session = FakeSession(0);
+    await _pump(tester, FakeGateway(), session, avatar: image);
+    await tester.tap(find.text(l10n.avatarRemove));
+    await tester.pumpAndSettle();
+    expect(find.text('H'), findsOneWidget);
+    await _save(tester);
+    expect(session.avatars, [null]);
+  });
+
+  testWidgets('image illisible : message, avatar inchangé', (tester) async {
+    await _pump(
+      tester,
+      FakeGateway(),
+      FakeSession(0),
+      picker: () async => throw const FormatException('illisible'),
+    );
+    await tester.tap(find.text(l10n.avatarLabel));
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.avatarUnreadable), findsOneWidget);
+    expect(_canSave(tester), isFalse);
+  });
+
+  testWidgets('sélection annulée : rien ne change', (tester) async {
+    await _pump(
+      tester,
+      FakeGateway(),
+      FakeSession(0),
+      picker: () async => null,
+    );
+    await tester.tap(find.text(l10n.avatarLabel));
+    await tester.pumpAndSettle();
+    expect(_canSave(tester), isFalse);
   });
 
   testWidgets('pseudonyme vide : refusé', (tester) async {

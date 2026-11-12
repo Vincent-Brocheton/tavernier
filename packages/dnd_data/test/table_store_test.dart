@@ -220,14 +220,15 @@ void main() {
           [id, _player],
         );
         await db.customStatement(
-          'INSERT INTO profile (id, pseudonym, locale, settings) '
-          "VALUES (?, 'Camille', 'fr', '{}'), (?, 'Hugo', 'fr', '{}')",
+          'INSERT INTO profile (id, pseudonym, avatar, locale, settings) '
+          "VALUES (?, 'Camille', NULL, 'fr', '{}'), "
+          "(?, 'Hugo', 'data:image/jpeg;base64,AA==', 'fr', '{}')",
           [_gm, _player],
         );
         final members = await store.watchMembers(id).first;
-        expect(members.map((m) => (m.pseudonym, m.role)), [
-          ('Camille', TableRole.gm),
-          ('Hugo', TableRole.player),
+        expect(members.map((m) => (m.pseudonym, m.role, m.avatar)), [
+          ('Camille', TableRole.gm, null),
+          ('Hugo', TableRole.player, 'data:image/jpeg;base64,AA=='),
         ]);
 
         await store.removeMember(id, _player);

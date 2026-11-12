@@ -10,6 +10,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' show AuthChangeEvent;
 import 'account/account_providers.dart';
 import 'account/age_page.dart';
 import 'account/auth_links.dart';
+import 'account/avatar.dart';
 import 'account/edit_account_page.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
@@ -238,11 +239,10 @@ class _ShellState extends ConsumerState<_Shell> {
           IconButton(
             tooltip: l10n.profileTitle,
             onPressed: () => context.push('/profil'),
-            icon: CircleAvatar(
+            icon: ProfileAvatar(
               radius: 18,
-              child: pseudonym == null || pseudonym.isEmpty
-                  ? const Icon(Icons.person_outline)
-                  : Text(pseudonym.characters.first.toUpperCase()),
+              pseudonym: pseudonym,
+              avatar: ref.watch(avatarProvider).value,
             ),
           ),
         ],

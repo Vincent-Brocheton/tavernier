@@ -10,6 +10,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../account/account_providers.dart';
+import '../account/avatar.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
@@ -347,8 +348,9 @@ class _MemberList extends ConsumerWidget {
                     children: [
                       ListTile(
                         contentPadding: EdgeInsets.zero,
-                        leading: CircleAvatar(
-                          child: Text(name.characters.first.toUpperCase()),
+                        leading: ProfileAvatar(
+                          pseudonym: name,
+                          avatar: member.avatar,
                         ),
                         title: Text(name),
                         subtitle: Text(

@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import '../l10n/app_localizations.dart';
 import '../settings/device_settings.dart';
 import 'account_providers.dart';
+import 'avatar.dart';
 import 'devices.dart';
 
 /// Section du profil, sur desktop [A7].
@@ -68,6 +69,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ? l10n.profileSignedOut
           : pseudonym ?? user.email ?? '',
       email: user?.email,
+      avatar: ref.watch(avatarProvider).value,
     );
     final signOut = user == null
         ? null
@@ -190,13 +192,16 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   }
 }
 
-/// Initiale, pseudonyme et e-mail.
+/// Avatar, pseudonyme et e-mail.
 class _ProfileHeader extends StatelessWidget {
   const _ProfileHeader({
     required this.signedIn,
     required this.name,
     this.email,
+    this.avatar,
   });
+
+  final String? avatar;
 
   final bool signedIn;
   final String name;
@@ -207,11 +212,10 @@ class _ProfileHeader extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
+      leading: ProfileAvatar(
         radius: 28,
-        child: !signedIn || name.isEmpty
-            ? const Icon(Icons.person_outline)
-            : Text(name.characters.first.toUpperCase()),
+        pseudonym: signedIn ? name : null,
+        avatar: signedIn ? avatar : null,
       ),
       title: Text(name, style: text.titleMedium),
       subtitle: email == null ? null : Text(email!),

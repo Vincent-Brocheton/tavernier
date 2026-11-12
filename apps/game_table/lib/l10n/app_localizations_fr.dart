@@ -2002,6 +2002,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Image carrée, compressée à 200 Ko. Visible des membres de vos tables.';
 
   @override
+  String get avatarRemove => 'Retirer';
+
+  @override
+  String get avatarUnreadable =>
+      'Cette image ne peut pas être lue. Choisissez une image JPEG, PNG ou WebP.';
+
+  @override
   String get pseudonymHint =>
       'Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.';
 

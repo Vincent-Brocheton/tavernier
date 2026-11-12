@@ -2909,6 +2909,14 @@
   "@avatarHint": {
     "description": "Modifier le compte (US-40, écran A5)."
   },
+  "avatarRemove": "Retirer",
+  "@avatarRemove": {
+    "description": "Retire l'avatar du profil [A5]."
+  },
+  "avatarUnreadable": "Cette image ne peut pas être lue. Choisissez une image JPEG, PNG ou WebP.",
+  "@avatarUnreadable": {
+    "description": "Fichier choisi illisible comme image [A5]."
+  },
   "pseudonymHint": "Visible des autres membres. Modifiable hors-ligne : la modification part à la synchronisation.",
   "@pseudonymHint": {
     "description": "Modifier le compte (US-40, écran A5)."

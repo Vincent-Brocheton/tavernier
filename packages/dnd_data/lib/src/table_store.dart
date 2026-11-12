@@ -130,10 +130,14 @@ final class TableMemberInfo {
     required this.userId,
     required this.pseudonym,
     required this.role,
+    this.avatar,
   });
 
   final String userId;
   final String? pseudonym;
+
+  /// Image du profil en data URI, s'il y en a une.
+  final String? avatar;
   final TableRole role;
 }
 
@@ -410,7 +414,7 @@ final class TableStore {
   /// Membres de la table, le MJ d'abord, puis par pseudonyme.
   Stream<List<TableMemberInfo>> watchMembers(String tableId) => _db
       .customSelect(
-        'SELECT m.user_id, m.role, p.pseudonym FROM table_member m '
+        'SELECT m.user_id, m.role, p.pseudonym, p.avatar FROM table_member m '
         'LEFT JOIN profile p ON p.id = m.user_id WHERE m.table_id = ? '
         "ORDER BY CASE m.role WHEN 'gm' THEN 0 ELSE 1 END, "
         'p.pseudonym COLLATE NOCASE',
@@ -424,6 +428,7 @@ final class TableStore {
             TableMemberInfo(
               userId: row.read<String>('user_id'),
               pseudonym: row.readNullable<String>('pseudonym'),
+              avatar: row.readNullable<String>('avatar'),
               role: row.read<String>('role') == 'gm'
                   ? TableRole.gm
                   : TableRole.player,

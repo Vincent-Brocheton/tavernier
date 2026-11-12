@@ -104,6 +104,22 @@ final pseudonymProvider = FutureProvider<String?>((ref) async {
   return row?.read<String>('pseudonym');
 });
 
+/// Avatar de l'utilisateur connecté (data URI), d'après son profil local ;
+/// suit la synchronisation (un changement fait sur un autre appareil).
+final avatarProvider = StreamProvider<String?>((ref) {
+  final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
+  if (me == null) return Stream.value(null);
+  final database = ref.watch(databaseProvider);
+  return database
+      .customSelect(
+        'SELECT avatar FROM profile WHERE id = ?',
+        variables: [Variable.withString(me)],
+        readsFrom: {database.profiles},
+      )
+      .watchSingleOrNull()
+      .map((row) => row?.readNullable<String>('avatar'));
+});
+
 /// Connecte la base PowerSync tant qu'un utilisateur est connecté, et la
 /// déconnecte sinon. À surveiller depuis la racine de l'app.
 final syncProvider = Provider<void>((ref) {
@@ -163,6 +179,18 @@ class SessionActions {
       [pseudonym.trim(), userId],
     );
     _ref.invalidate(pseudonymProvider);
+  }
+
+  /// Change l'avatar (data URI, `null` pour le retirer) dans la base de
+  /// l'appareil : hors ligne compris, il part à la synchronisation
+  /// (EF-CPT-09). Les listes de membres observées sont prévenues.
+  Future<void> setAvatar(String userId, String? avatar) async {
+    final database = _ref.read(databaseProvider);
+    await database.customUpdate(
+      'UPDATE profile SET avatar = ? WHERE id = ?',
+      variables: [Variable<String>(avatar), Variable.withString(userId)],
+      updates: {database.profiles},
+    );
   }
 
   /// Déconnecte un autre appareil : il ne peut plus prolonger sa connexion.
