@@ -5,4 +5,4 @@
 ## 2. Interface
 
 - [x] 2.1 Choix de la méthode, répartition, « Lancer » et « Saisir mes jets », suggestion ; tests
-- [ ] 2.2 Vérification dans le navigateur
+- [x] 2.2 Vérification dans le navigateur

@@ -250,12 +250,6 @@ abstract class AppLocalizations {
   /// **'Commun + 2'**
   String get stepLanguagesHint;
 
-  /// Sous-libellé de l’étape 5.
-  ///
-  /// In fr, this message translates to:
-  /// **'Acquisition par points'**
-  String get stepAbilitiesHint;
-
   /// Sous-libellé de l’étape 6.
   ///
   /// In fr, this message translates to:
@@ -733,8 +727,8 @@ abstract class AppLocalizations {
   /// Introduction de l’étape 5.
   ///
   /// In fr, this message translates to:
-  /// **'Répartissez vos {points} points, puis appliquez les bonus de votre Historique.'**
-  String introAbilities(int points);
+  /// **'Fixez vos six valeurs selon la méthode choisie, puis appliquez les bonus de votre Historique.'**
+  String get introAbilities;
 
   /// Titre de section.
   ///

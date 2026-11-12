@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../l10n/app_localizations.dart';
+import '../tables/table_labels.dart';
 import 'abilities_step.dart';
 import 'background_step.dart';
 import 'class_step.dart';
@@ -236,7 +237,7 @@ String? _intro(AppLocalizations l10n, int step) => switch (step) {
   1 => l10n.introBackground,
   2 => l10n.introSpecies,
   3 => l10n.introLanguages,
-  4 => l10n.introAbilities(pointBuyBudget),
+  4 => l10n.introAbilities,
   5 => l10n.introSubchoices,
   6 => l10n.introEquipment,
   7 => l10n.introDetails,
@@ -311,7 +312,10 @@ List<WizardStep> _steps(
                 ...draft.languages,
               ].map((id) => content.entity(id)?.name ?? id).join(', '),
       ),
-      WizardStep(label: l10n.stepAbilities, detail: l10n.stepAbilitiesHint),
+      WizardStep(
+        label: l10n.stepAbilities,
+        detail: l10n.statMethod(draft.method),
+      ),
       WizardStep(label: l10n.stepSubchoices, detail: l10n.stepSubchoicesHint),
       WizardStep(label: l10n.stepEquipment, detail: l10n.stepEquipmentHint),
       WizardStep(label: l10n.stepDetails, detail: l10n.stepDetailsHint),

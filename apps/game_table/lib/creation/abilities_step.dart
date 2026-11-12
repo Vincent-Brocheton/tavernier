@@ -145,23 +145,25 @@ class _MethodChoice extends ConsumerWidget {
       children: [
         Text(l10n.scoreMethodTitle, style: text.titleMedium),
         SizedBox(height: AppSpacing.sm),
-        SegmentedButton<ScoreMethod>(
-          segments: [
+        // Des puces qui passent à la ligne : les libellés restent entiers,
+        // même sur téléphone.
+        Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
+          children: [
             for (final method in [
               ScoreMethod.pointBuy,
               ScoreMethod.standardArray,
               ScoreMethod.random,
             ])
-              ButtonSegment(
-                value: method,
+              ChoiceChip(
                 label: Text(l10n.statMethod(method)),
+                selected: draft.method == method,
+                onSelected: (_) => ref
+                    .read(creationProvider.notifier)
+                    .update((d) => d.withMethod(method)),
               ),
           ],
-          selected: {draft.method},
-          showSelectedIcon: false,
-          onSelectionChanged: (selection) => ref
-              .read(creationProvider.notifier)
-              .update((d) => d.withMethod(selection.single)),
         ),
         SizedBox(height: AppSpacing.xs),
         Text(l10n.statMethodDetail(draft.method), style: text.bodySmall),

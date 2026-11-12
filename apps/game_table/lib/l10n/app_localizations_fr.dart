@@ -88,9 +88,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get stepLanguagesHint => 'Commun + 2';
 
   @override
-  String get stepAbilitiesHint => 'Acquisition par points';
-
-  @override
   String get stepSubchoicesHint => 'Compétences, bottes, don';
 
   @override
@@ -366,9 +363,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String introAbilities(int points) {
-    return 'Répartissez vos $points points, puis appliquez les bonus de votre Historique.';
-  }
+  String get introAbilities =>
+      'Fixez vos six valeurs selon la méthode choisie, puis appliquez les bonus de votre Historique.';
 
   @override
   String backgroundBonus(String background) {

@@ -104,10 +104,6 @@
   "@stepLanguagesHint": {
     "description": "Sous-libellé de l’étape 4."
   },
-  "stepAbilitiesHint": "Acquisition par points",
-  "@stepAbilitiesHint": {
-    "description": "Sous-libellé de l’étape 5."
-  },
   "stepSubchoicesHint": "Compétences, bottes, don",
   "@stepSubchoicesHint": {
     "description": "Sous-libellé de l’étape 6."
@@ -525,14 +521,9 @@
       }
     }
   },
-  "introAbilities": "Répartissez vos {points} points, puis appliquez les bonus de votre Historique.",
+  "introAbilities": "Fixez vos six valeurs selon la méthode choisie, puis appliquez les bonus de votre Historique.",
   "@introAbilities": {
-    "description": "Introduction de l’étape 5.",
-    "placeholders": {
-      "points": {
-        "type": "int"
-      }
-    }
+    "description": "Introduction de l’étape 5."
   },
   "backgroundBonus": "Bonus d’Historique · {background}",
   "@backgroundBonus": {
