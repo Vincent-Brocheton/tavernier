@@ -1,7 +1,7 @@
 ## 1. Serveur
 
-- [ ] 1.1 Tests pgTAP : dernier écrit gagnant tracé, MJ prioritaire sur l'état de jeu, pas de conflit sans écriture concurrente
-- [ ] 1.2 Migration : `updated_by`, `apply_crud` avec `old`
+- [x] 1.1 Tests pgTAP : dernier écrit gagnant tracé, MJ prioritaire sur l'état de jeu, pas de conflit sans écriture concurrente
+- [x] 1.2 Migration : `updated_by`, `apply_crud` avec `old`
 
 ## 2. Données
 
