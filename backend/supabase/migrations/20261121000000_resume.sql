@@ -37,3 +37,19 @@ create policy character_summary_delete on public.character_summary
 for delete to authenticated using (public.can_write_character(id));
 
 alter publication powersync add table public.character_summary;
+
+-- Retrait d'un joueur : fiches archivées, emplacements et résumés supprimés.
+-- Le groupe ne montre plus un PJ parti.
+create or replace function public.archive_member_characters() returns trigger
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  update public.character set status = 'archived'
+  where table_id = old.table_id and owner_user_id = old.user_id;
+  delete from public.pc_slot
+  where table_id = old.table_id and player_user_id = old.user_id;
+  delete from public.character_summary
+  where table_id = old.table_id and owner_user_id = old.user_id;
+  return old;
+end
+$$;

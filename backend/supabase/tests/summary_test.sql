@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(6);
+select plan(7);
 
 insert into auth.users (id, email) values
   ('00000000-0000-0000-0000-0000000000b1', 'mj@test.local'),
@@ -64,6 +64,13 @@ select pg_temp.as_user('00000000-0000-0000-0000-0000000000b4');
 select is((select count(*) from character_summary)::int, 0,
   'un inconnu ne lit rien');
 reset role;
+
+-- Retrait : le résumé quitte le groupe.
+select pg_temp.as_user('00000000-0000-0000-0000-0000000000b1');
+delete from table_member where id = 'm3';
+reset role;
+select is((select count(*) from character_summary where id = 'thalia')::int, 0,
+  'au retrait, le résumé disparaît');
 
 select * from finish();
 rollback;
