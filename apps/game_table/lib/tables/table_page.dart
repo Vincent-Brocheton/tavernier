@@ -38,8 +38,9 @@ class TablePage extends ConsumerWidget {
           ),
         ),
         body: SafeArea(
+          // Table rejointe à l'instant : elle arrive par la synchronisation.
           child: table == null
-              ? const SizedBox.shrink()
+              ? const Center(child: CircularProgressIndicator())
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

@@ -24,6 +24,8 @@ import 'settings/device_settings.dart';
 import 'sheet/level_up_page.dart';
 import 'sheet/sheet_page.dart';
 import 'tables/create_table_page.dart';
+import 'tables/join_page.dart';
+import 'tables/pending_join.dart';
 import 'tables/table_page.dart';
 import 'tables/tables_tab.dart';
 
@@ -67,6 +69,12 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       ),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
       GoRoute(path: '/age', builder: (_, _) => const AgePage()),
+      // Lien d'invitation (EF-TAB-05) et saisie du code.
+      GoRoute(path: '/rejoindre', builder: (_, _) => const JoinPage()),
+      GoRoute(
+        path: '/rejoindre/:code',
+        builder: (_, state) => JoinPage(code: state.pathParameters['code']),
+      ),
       GoRoute(
         path: '/tables/nouvelle',
         builder: (_, _) => const CreateTablePage(),
@@ -136,6 +144,8 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
   Widget build(BuildContext context) {
     // Synchronisation tant qu'un utilisateur est connecté (T-05).
     ref.watch(syncProvider);
+    // Demande pour rejoindre une table, gardée jusqu'au réseau (EF-TAB-08).
+    ref.listen(pendingJoinProvider, (_, _) {});
     final textScale = ref.watch(deviceSettingsProvider).textScale;
     return MaterialApp.router(
       routerConfig: _router,

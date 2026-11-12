@@ -3486,5 +3486,57 @@
   "removeNote": "Retirer un joueur archive sa fiche, sans la supprimer.",
   "@removeNote": {
     "description": "Membres et invitations d’une table (US-14, écrans T10 et T11)."
+  },
+  "joinTitle": "Rejoindre une table",
+  "@joinTitle": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinTable": "Rejoindre",
+  "@joinTable": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinCodeHint": "Saisissez le code à 6 caractères donné par votre MJ.",
+  "@joinCodeHint": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinCodeLabel": "Code de la table",
+  "@joinCodeLabel": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinOfflineTitle": "Pas de réseau.",
+  "@joinOfflineTitle": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinOfflineBody": "Rejoindre une table demande une connexion, une seule fois. Le code est gardé : la demande partira dès que le réseau revient.",
+  "@joinOfflineBody": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinWaiting": "En attente du réseau…",
+  "@joinWaiting": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinWaitingHint": "En attendant, vous pouvez créer un personnage libre.",
+  "@joinWaitingHint": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinNeedsAccount": "Un compte est nécessaire pour rejoindre une table. Le code est gardé : la demande partira une fois connecté.",
+  "@joinNeedsAccount": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinErrorInvalid": "Ce code ne correspond à aucune invitation. Vérifiez-le auprès de votre MJ.",
+  "@joinErrorInvalid": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinErrorExpired": "Cette invitation a expiré ou a été révoquée. Demandez un nouveau code à votre MJ.",
+  "@joinErrorExpired": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinErrorArchived": "Cette table est archivée : elle n’accepte plus de joueurs.",
+  "@joinErrorArchived": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
+  },
+  "joinErrorTooMany": "Trop d’essais. Réessayez dans une heure.",
+  "@joinErrorTooMany": {
+    "description": "Rejoindre une table (US-14, écrans T4 et T12)."
   }
 }
