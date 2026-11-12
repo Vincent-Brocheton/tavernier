@@ -15,7 +15,7 @@ import 'tables_providers.dart';
 /// Lien d'invitation ; sur le Web seulement, faute d'adresse publique de
 /// l'app ailleurs : le code suffit alors.
 String? inviteLink(String code) =>
-    kIsWeb ? '${Uri.base.origin}/#/rejoindre/$code' : null;
+    kIsWeb ? '${Uri.base.removeFragment()}#/rejoindre/$code' : null;
 
 /// Onglet « Membres » [T10] : l'invitation (MJ) et la liste des membres.
 class MembersTab extends ConsumerWidget {
@@ -194,15 +194,24 @@ class InviteCard extends ConsumerWidget {
                 child: Text(l10n.inviteCopyLink),
               ),
               OutlinedButton(
-                onPressed: () => SharePlus.instance.share(
-                  ShareParams(
-                    text: l10n.inviteShareText(
-                      table.settings.name,
-                      link,
-                      invite.code,
-                    ),
-                  ),
-                ),
+                // Sans partage dans ce navigateur : le lien est copié.
+                onPressed: () => SharePlus.instance
+                    .share(
+                      ShareParams(
+                        text: l10n.inviteShareText(
+                          table.settings.name,
+                          link,
+                          invite.code,
+                        ),
+                      ),
+                    )
+                    .catchError((Object _) {
+                      copy(link);
+                      return const ShareResult(
+                        '',
+                        ShareResultStatus.unavailable,
+                      );
+                    }),
                 child: Text(l10n.inviteShare),
               ),
             ],
