@@ -8,6 +8,6 @@
 
 ## 3. App
 
-- [ ] 3.1 Rattacher un personnage libre depuis un emplacement ; tests
-- [ ] 3.2 Écarts : dérogation ou correction, inscription à l'historique ; tests
-- [ ] 3.3 Page « Historique » ; tests
+- [x] 3.1 Rattacher un personnage libre depuis un emplacement ; tests
+- [x] 3.2 Écarts : dérogation ou correction, inscription à l'historique ; tests
+- [x] 3.3 Page « Historique » ; tests

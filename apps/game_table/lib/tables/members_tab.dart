@@ -443,6 +443,34 @@ class ReviewPanel extends ConsumerWidget {
   }
 }
 
+/// Contrôle d'une fiche envoyée (us-15c, us-15d) : en échec, le MJ l'accepte
+/// en dérogation ou demande une correction ([T14]).
+final class _Check {
+  const _Check(this.key, this.label, {this.table, this.sheet})
+    : ok = table == sheet;
+
+  const _Check.failed(this.key, this.label)
+    : ok = false,
+      table = null,
+      sheet = null;
+
+  const _Check.passed(this.key, this.label)
+    : ok = true,
+      table = null,
+      sheet = null;
+
+  final String key;
+  final String label;
+  final bool ok;
+
+  /// Valeurs de la table et de la fiche, pour l'historique.
+  final String? table;
+  final String? sheet;
+
+  /// Une erreur de règles se corrige d'abord ; méthode et niveau se dérogent.
+  bool get derogationByDefault => !key.startsWith('rule');
+}
+
 class _ReviewCard extends ConsumerStatefulWidget {
   const _ReviewCard({super.key, required this.table, required this.slot});
 
@@ -456,19 +484,74 @@ class _ReviewCard extends ConsumerStatefulWidget {
 class _ReviewCardState extends ConsumerState<_ReviewCard> {
   final _comment = TextEditingController();
 
+  /// Choix du MJ par écart : vrai pour une dérogation.
+  final _derogation = <String, bool>{};
+
   @override
   void dispose() {
     _comment.dispose();
     super.dispose();
   }
 
-  Future<void> _review({required bool validated}) => ref
-      .read(characterStoreProvider)
-      .review(
-        widget.slot.characterId!,
-        validated: validated,
-        comment: _comment.text.trim().isEmpty ? null : _comment.text.trim(),
-      );
+  List<_Check> _checks(
+    AppLocalizations l10n,
+    CharacterInput input,
+    ActiveContent content,
+  ) {
+    final settings = widget.table.settings;
+    final method = input.baseScores.method;
+    final level = input.classLevels.fold(0, (sum, c) => sum + c.level);
+    final errors = computeSheet(input, content).integrityErrors;
+    return [
+      _Check(
+        'method',
+        method == settings.statMethod
+            ? l10n.checkMethod(l10n.statMethod(method))
+            : l10n.checkMethodWrong(
+                l10n.statMethod(method),
+                l10n.statMethod(settings.statMethod),
+              ),
+        table: settings.statMethod.name,
+        sheet: method.name,
+      ),
+      _Check(
+        'level',
+        level == settings.startingLevel
+            ? l10n.checkLevel(level)
+            : l10n.checkLevelWrong(level, settings.startingLevel),
+        table: '${settings.startingLevel}',
+        sheet: '$level',
+      ),
+      if (errors.isEmpty)
+        _Check.passed('rules', l10n.checkRules)
+      else
+        for (final (i, error) in errors.indexed)
+          _Check.failed('rule$i', error.message),
+    ];
+  }
+
+  Future<void> _send(List<_Check> gaps, int corrections) async {
+    final slot = widget.slot;
+    final id = slot.characterId!;
+    final me = ref.read(currentUserProvider).value?.id;
+    final comment = _comment.text.trim().isEmpty ? null : _comment.text.trim();
+    final characters = ref.read(characterStoreProvider);
+    final derogations = [
+      for (final gap in gaps)
+        if (_derogation[gap.key] ?? gap.derogationByDefault)
+          {
+            'check': gap.key,
+            'label': gap.label,
+            'table': ?gap.table,
+            'sheet': ?gap.sheet,
+            'message': ?comment,
+          },
+    ];
+    if (derogations.isNotEmpty && me != null) {
+      await characters.addDerogations(id, me, derogations);
+    }
+    await characters.review(id, validated: corrections == 0, comment: comment);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -476,7 +559,6 @@ class _ReviewCardState extends ConsumerState<_ReviewCard> {
     final text = Theme.of(context).textTheme;
     final scheme = Theme.of(context).colorScheme;
     final slot = widget.slot;
-    final settings = widget.table.settings;
     final input = ref
         .watch(_reviewedCharacterProvider(slot.characterId!))
         .value;
@@ -488,55 +570,58 @@ class _ReviewCardState extends ConsumerState<_ReviewCard> {
             ?.pseudonym ??
         l10n.memberUnknown;
     final name = slot.characterName ?? '';
+    final checks = input == null || content == null
+        ? const <_Check>[]
+        : _checks(l10n, input, content);
+    final gaps = [
+      for (final c in checks)
+        if (!c.ok) c,
+    ];
+    final corrections = gaps
+        .where((g) => !(_derogation[g.key] ?? g.derogationByDefault))
+        .length;
+    final commented = _comment.text.trim().isNotEmpty;
 
-    Widget check(bool ok, String label) => Padding(
+    Widget row(_Check check) => Padding(
       padding: EdgeInsets.only(top: AppSpacing.xs),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Icon(
-            ok ? Icons.check_circle : Icons.error,
-            size: 20,
-            color: ok ? scheme.primary : scheme.error,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                check.ok ? Icons.check_circle : Icons.error,
+                size: 20,
+                color: check.ok ? scheme.primary : scheme.error,
+              ),
+              SizedBox(width: AppSpacing.sm),
+              Expanded(child: Text(check.label, style: text.bodyMedium)),
+            ],
           ),
-          SizedBox(width: AppSpacing.sm),
-          Expanded(child: Text(label, style: text.bodyMedium)),
+          if (!check.ok)
+            Padding(
+              padding: EdgeInsets.only(left: 28, top: AppSpacing.xs),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: SegmentedButton<bool>(
+                  segments: [
+                    ButtonSegment(value: true, label: Text(l10n.derogation)),
+                    ButtonSegment(value: false, label: Text(l10n.correction)),
+                  ],
+                  selected: {
+                    _derogation[check.key] ?? check.derogationByDefault,
+                  },
+                  showSelectedIcon: false,
+                  onSelectionChanged: (choice) =>
+                      setState(() => _derogation[check.key] = choice.single),
+                ),
+              ),
+            ),
         ],
       ),
     );
 
-    final checks = <Widget>[];
-    if (input != null && content != null) {
-      final method = input.baseScores.method;
-      checks.add(
-        check(
-          method == settings.statMethod,
-          method == settings.statMethod
-              ? l10n.checkMethod(l10n.statMethod(method))
-              : l10n.checkMethodWrong(
-                  l10n.statMethod(method),
-                  l10n.statMethod(settings.statMethod),
-                ),
-        ),
-      );
-      final level = input.classLevels.fold(0, (sum, c) => sum + c.level);
-      checks.add(
-        check(
-          level == settings.startingLevel,
-          level == settings.startingLevel
-              ? l10n.checkLevel(level)
-              : l10n.checkLevelWrong(level, settings.startingLevel),
-        ),
-      );
-      final errors = computeSheet(input, content).integrityErrors;
-      if (errors.isEmpty) {
-        checks.add(check(true, l10n.checkRules));
-      } else {
-        for (final error in errors) {
-          checks.add(check(false, error.message));
-        }
-      }
-    }
     final classes = input == null || content == null
         ? ''
         : [
@@ -565,7 +650,7 @@ class _ReviewCardState extends ConsumerState<_ReviewCard> {
               l10n.reviewBy(classes, background, player),
               style: text.bodySmall,
             ),
-            ...checks,
+            for (final check in checks) row(check),
             if (slot.submitMessage case final message?) ...[
               SizedBox(height: AppSpacing.sm),
               Text(l10n.playerMessage(player, message), style: text.bodyMedium),
@@ -577,21 +662,33 @@ class _ReviewCardState extends ConsumerState<_ReviewCard> {
               decoration: InputDecoration(labelText: l10n.reviewCommentLabel),
               onChanged: (_) => setState(() {}),
             ),
+            if (gaps.isNotEmpty) ...[
+              SizedBox(height: AppSpacing.xs),
+              Text(
+                l10n.derogationsNote(gaps.length - corrections),
+                style: text.bodySmall,
+              ),
+            ],
             SizedBox(height: AppSpacing.sm),
             Wrap(
               alignment: WrapAlignment.end,
               spacing: AppSpacing.sm,
               runSpacing: AppSpacing.sm,
               children: [
-                OutlinedButton(
-                  onPressed: _comment.text.trim().isEmpty
-                      ? null
-                      : () => _review(validated: false),
-                  child: Text(l10n.requestChanges),
-                ),
+                if (corrections == 0)
+                  OutlinedButton(
+                    onPressed: commented ? () => _send(const [], 1) : null,
+                    child: Text(l10n.requestChanges),
+                  ),
                 FilledButton(
-                  onPressed: () => _review(validated: true),
-                  child: Text(l10n.validateSheet),
+                  onPressed: corrections > 0 && !commented
+                      ? null
+                      : () => _send(gaps, corrections),
+                  child: Text(
+                    corrections > 0
+                        ? l10n.requestChangesCount(corrections)
+                        : l10n.validateSheet,
+                  ),
                 ),
               ],
             ),

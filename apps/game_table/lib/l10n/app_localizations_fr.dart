@@ -2645,4 +2645,78 @@ class AppLocalizationsFr extends AppLocalizations {
   String transferTitle(String name) {
     return 'Transférer $name à';
   }
+
+  @override
+  String get attachFree => 'Rattacher un personnage libre';
+
+  @override
+  String get attachTitle => 'Personnage à rattacher';
+
+  @override
+  String get attachNone =>
+      'Aucun personnage libre : créez-en un depuis Personnages.';
+
+  @override
+  String get derogation => 'Dérogation';
+
+  @override
+  String get correction => 'Correction';
+
+  @override
+  String requestChangesCount(int count) {
+    return 'Demander des corrections ($count)';
+  }
+
+  @override
+  String derogationsNote(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count dérogations seront inscrites dans l’historique de la fiche.',
+      one: '1 dérogation sera inscrite dans l’historique de la fiche.',
+      zero: 'Aucune dérogation.',
+    );
+    return '$_temp0 Un personnage n’est rattaché qu’à une table à la fois.';
+  }
+
+  @override
+  String get historyTitle => 'Historique';
+
+  @override
+  String get historyEmpty => 'Aucune entrée pour l’instant.';
+
+  @override
+  String historyDerogationLevel(String level) {
+    return 'Dérogation : niveau $level accepté';
+  }
+
+  @override
+  String historyDerogationMethod(String method) {
+    return 'Dérogation : $method acceptée';
+  }
+
+  @override
+  String historyDerogationRule(String rule) {
+    return 'Dérogation : $rule';
+  }
+
+  @override
+  String historyValues(String table, String sheet) {
+    return 'Table : $table · Fiche : $sheet';
+  }
+
+  @override
+  String historyMessage(String message) {
+    return 'Message du MJ : « $message »';
+  }
+
+  @override
+  String get historyNoNotification =>
+      'Aucune notification envoyée ; trace conservée ici.';
+
+  @override
+  String historyAuthor(String date, String author) {
+    return '$date · $author';
+  }
 }
