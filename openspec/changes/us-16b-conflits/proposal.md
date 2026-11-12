@@ -38,7 +38,7 @@ Aucune.
 
 ## Impact
 
-- `backend/supabase/migrations/` (`apply_crud`, `updated_by`), `backend/supabase/tests/`.
+- `backend/supabase/migrations/` (`apply_crud`, `field_authors`), `backend/supabase/tests/`.
 - `packages/dnd_data` : schéma PowerSync (valeurs précédentes), `SupabaseConnector`, `CharacterStore`.
 - `apps/game_table` : fiche, historique, indicateur ; ARB ; tests.
 

@@ -51,8 +51,18 @@ final Schema powerSyncSchema = Schema([
       ],
       // Une mise à jour sans changement n'est pas envoyée.
       ignoreEmptyUpdates: true,
+      // Les valeurs remplacées partent avec la modification : le serveur y
+      // reconnaît un conflit (US-16, ENF-03).
+      trackPreviousValues: conflictTrackedTables.contains(table.actualTableName)
+          ? const TrackPreviousValuesOptions(onlyWhenChanged: true)
+          : null,
     ),
 ]);
+
+/// Tables dont les conflits se détectent et se tracent (US-16) : la fiche et
+/// son état de jeu. Les autres tables de la fiche sont des lignes qui
+/// s'ajoutent ou se retirent, sans écrasement.
+const conflictTrackedTables = {'character', 'character_state'};
 
 /// Colonnes booléennes des [syncedTables] : 0/1 en local, `true`/`false`
 /// pour Postgres.

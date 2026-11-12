@@ -7,9 +7,9 @@
 
 ## Serveur
 
-- `character.updated_by` et `character_state.updated_by` (uuid) : remplis par un trigger avec `auth.uid()` à chaque écriture d'un utilisateur. Non synchronisés : ils ne servent qu'au serveur.
+- `character.field_authors` et `character_state.field_authors` (jsonb, champ → uuid) : l'auteur de la dernière écriture de chaque champ, tenu par un trigger avec `auth.uid()`. Par champ et non par ligne : une autre modification de la même ligne ne doit pas effacer l'auteur des PV. Non lus par l'app.
 - `apply_crud` : sur un `PATCH` de ces deux tables qui porte `old`, avant d'écrire, il lit la ligne en place (`to_jsonb`). Pour chaque champ de `data` présent dans `old` dont la valeur en place diffère de `old` :
-  - sur `character_state`, si `updated_by` est le MJ de la table et que l'appelant ne l'est pas, le champ est retiré de l'écriture : la valeur du MJ reste ;
+  - sur `character_state`, si l'auteur du champ est le MJ de la table et que l'appelant ne l'est pas, le champ est retiré de l'écriture : la valeur du MJ reste ;
   - sinon, le champ s'écrit (dernier écrit gagnant) ;
   - dans les deux cas, une entrée part dans `character_change_log`, avec pour auteur celui dont la valeur est gardée :
 

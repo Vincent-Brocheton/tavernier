@@ -1,5 +1,5 @@
 // Spec sync-backend : « Envoi des écritures », « Fusion sans perte »,
-// « Fusion entre les comptes d'une table ».
+// « Fusion entre les comptes d'une table », « Conflits détectés et tracés ».
 // Contre Supabase et PowerSync locaux (job CI « Base Supabase ») ; sans
 // SUPABASE_URL, SUPABASE_ANON_KEY et POWERSYNC_URL, le test se saute.
 import 'dart:io';
@@ -279,6 +279,100 @@ void main() {
     },
     skip: skip,
     timeout: const Timeout(Duration(minutes: 4)),
+  );
+
+  test(
+    'PV changés hors ligne par le MJ et le joueur : la version du MJ prime',
+    () async {
+      final gm = await _Device.signedIn(await _newAccount('mj-conflit'));
+      final player = await _Device.signedIn(
+        await _newAccount('joueur-conflit'),
+      );
+      addTearDown(() async {
+        await gm.close();
+        await player.close();
+      });
+      for (final d in [gm, player]) {
+        await d.connect();
+      }
+      final tables = TableStore(gm.db);
+      final tableId = await tables.create(
+        gmUserId: gm.client.auth.currentUser!.id,
+        settings: const TableSettings(name: 'Brumeval'),
+        packs: const [],
+      );
+      final invite = await tables.createInvite(tableId);
+      await _until(
+        () async =>
+            (await gm.client
+                    .from('table_invite')
+                    .select('id')
+                    .eq('id', invite.id))
+                .isNotEmpty,
+        'invitation sur le serveur',
+      );
+      await player.client.rpc<Map<String, dynamic>>(
+        'join_table',
+        params: {'code': invite.code},
+      );
+      final me = player.client.auth.currentUser!.id;
+      await _until(
+        () async => await TableStore(player.db).load(tableId, me) != null,
+        'table reçue',
+      );
+      final id = uuidV7();
+      await player.store.save(
+        id,
+        CharacterInput.fromJson(aldricJson()),
+        tableId: tableId,
+      );
+      await player.store.saveState(id, const PlayState(hpCurrent: 29));
+      await _until(
+        () async => (await gm.store.loadState(id)).hpCurrent == 29,
+        'état reçu par le MJ',
+      );
+
+      // Hors ligne tous deux : le MJ règle les PV à 34, le joueur à 39.
+      await gm.disconnect();
+      await player.disconnect();
+      await gm.store.saveState(id, const PlayState(hpCurrent: 34));
+      await player.store.saveState(id, const PlayState(hpCurrent: 39));
+      await gm.connect();
+      final state = gm.client.from('character_state');
+      await _until(
+        () async =>
+            (await state
+                .select('hp_current')
+                .eq('id', id)
+                .single())['hp_current'] ==
+            34,
+        'PV du MJ sur le serveur',
+      );
+      await player.connect();
+      await _until(
+        () async =>
+            (await player.store.history(id))
+                .any((e) => e.detail['kind'] == 'conflict'),
+        'conflit reçu par le joueur',
+      );
+      await _until(
+        () async => (await player.store.loadState(id)).hpCurrent == 34,
+        'PV du MJ reçus par le joueur',
+      );
+      final [conflict] = [
+        for (final e in await player.store.history(id))
+          if (e.detail['kind'] == 'conflict') e.detail,
+      ];
+      expect(conflict['field'], 'hp_current');
+      expect(conflict['kept'], 34);
+      expect(conflict['replaced'], 39);
+      expect(conflict['replaced_by'], me);
+      for (final d in [gm, player]) {
+        expect(d.discarded, isEmpty);
+      }
+    },
+    skip: skip,
+    timeout: const Timeout(Duration(minutes: 3)),
   );
 
   test(

@@ -43,6 +43,19 @@ void main() {
     expect(queued.read<int>('n'), greaterThan(0));
   });
 
+  test('PV modifiés : la valeur remplacée part avec la modification', () async {
+    final store = CharacterStore(db);
+    await store.save('a', CharacterInput.fromJson(aldricJson()));
+    await store.saveState('a', const PlayState(hpCurrent: 29));
+    await store.saveState('a', const PlayState(hpCurrent: 39));
+    final powerSync = (await db.powerSync)!;
+    final entries = (await powerSync.getCrudBatch(limit: 1000))!.crud;
+    final patch = entries.lastWhere(
+      (e) => e.table == 'character_state' && e.opData?['hp_current'] == 39,
+    );
+    expect(patch.previousValues, {'hp_current': 29});
+  });
+
   group('enregistrement par différence', () {
     late CharacterStore store;
     late CharacterInput aldric;

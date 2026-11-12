@@ -1,12 +1,12 @@
 ## 1. Serveur
 
 - [x] 1.1 Tests pgTAP : dernier écrit gagnant tracé, MJ prioritaire sur l'état de jeu, pas de conflit sans écriture concurrente
-- [x] 1.2 Migration : `updated_by`, `apply_crud` avec `old`
+- [x] 1.2 Migration : `field_authors`, `apply_crud` avec `old`
 
 ## 2. Données
 
-- [ ] 2.1 Valeurs précédentes dans le schéma et le connecteur ; tests
-- [ ] 2.2 Scénario d'intégration : PV changés par le MJ et le joueur hors ligne, le MJ prime
+- [x] 2.1 Valeurs précédentes dans le schéma et le connecteur ; tests
+- [x] 2.2 Scénario d'intégration : PV changés par le MJ et le joueur hors ligne, le MJ prime
 
 ## 3. App
 
