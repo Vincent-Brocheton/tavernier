@@ -135,8 +135,14 @@ class Characters extends Table with IdKey {
   TextColumn get speciesChoices => text().withDefault(const Constant('{}'))();
   TextColumn get backgroundId => text()();
 
-  /// `draft`, `submitted` ou `validated`.
+  /// `draft`, `submitted`, `validated`, `changes_requested` ou `archived`.
   TextColumn get status => text()();
+
+  /// Message du joueur à l'envoi au MJ (US-15).
+  TextColumn get submitMessage => text().nullable()();
+
+  /// Commentaire du MJ à la revue (US-15).
+  TextColumn get reviewComment => text().nullable()();
   IntColumn get xp => integer().withDefault(const Constant(0))();
 
   /// Origine et niveau déverrouillé (§11.2 `level_unlock`), JSON.

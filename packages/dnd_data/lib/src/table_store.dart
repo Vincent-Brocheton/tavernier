@@ -145,6 +145,8 @@ final class PcSlot {
     this.characterName,
     this.status,
     this.level,
+    this.submitMessage,
+    this.reviewComment,
   });
 
   final String id;
@@ -157,6 +159,12 @@ final class PcSlot {
 
   /// Niveau total de la fiche (somme des niveaux de classe).
   final int? level;
+
+  /// Message du joueur à l'envoi.
+  final String? submitMessage;
+
+  /// Commentaire du MJ à la revue.
+  final String? reviewComment;
 }
 
 /// Pack activé dans une table, à sa version figée (EF-TAB-04).
@@ -442,10 +450,25 @@ final class TableStore {
     [characterId, slotId],
   );
 
+  /// Transfère l'emplacement [slotId] et sa fiche [characterId] à [userId]
+  /// (cahier §4.3, point 5), en une transaction.
+  Future<void> transferSlot(String slotId, String characterId, String userId) =>
+      _db.transaction(() async {
+        await _write('UPDATE character SET owner_user_id = ? WHERE id = ?', [
+          userId,
+          characterId,
+        ]);
+        await _write('UPDATE pc_slot SET player_user_id = ? WHERE id = ?', [
+          userId,
+          slotId,
+        ]);
+      });
+
   /// Emplacements de la table, dans l'ordre d'attribution, avec leur fiche.
   Stream<List<PcSlot>> watchSlots(String tableId) => _db
       .customSelect(
         'SELECT s.id, s.player_user_id, s.character_id, c.name, c.status, '
+        'c.submit_message, c.review_comment, '
         '(SELECT sum(l.level) FROM character_class_level l '
         'WHERE l.character_id = s.character_id) AS level '
         'FROM pc_slot s LEFT JOIN character c ON c.id = s.character_id '
@@ -464,6 +487,8 @@ final class TableStore {
               characterName: row.readNullable<String>('name'),
               status: row.readNullable<String>('status'),
               level: row.readNullable<int>('level'),
+              submitMessage: row.readNullable<String>('submit_message'),
+              reviewComment: row.readNullable<String>('review_comment'),
             ),
         ],
       );

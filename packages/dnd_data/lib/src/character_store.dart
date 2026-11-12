@@ -275,6 +275,32 @@ final class CharacterStore {
     _db.markTablesUpdated({_db.characters});
   }
 
+  /// Envoie la fiche au MJ, avec un message facultatif (US-15).
+  Future<void> submit(String id, String? message) =>
+      _update(id, {'status': 'submitted', 'submit_message': message});
+
+  /// Reprend une fiche envoyée.
+  Future<void> withdraw(String id) => setStatus(id, 'draft');
+
+  /// Revue du MJ : fiche validée, ou corrections demandées avec [comment].
+  Future<void> review(
+    String id, {
+    required bool validated,
+    required String? comment,
+  }) => _update(id, {
+    'status': validated ? 'validated' : 'changes_requested',
+    'review_comment': comment,
+  });
+
+  Future<void> _update(String id, Map<String, Object?> columns) async {
+    await _db.customStatement(
+      'UPDATE character SET ${columns.keys.map((c) => '$c = ?').join(', ')} '
+      'WHERE id = ?',
+      [...columns.values, id],
+    );
+    _db.markTablesUpdated({_db.characters});
+  }
+
   /// Personnages de l'appareil. Avec [ownerUserId], seulement ceux de cet
   /// utilisateur et ceux pas encore envoyés : un MJ reçoit aussi les fiches
   /// de ses joueurs.

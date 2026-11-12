@@ -19178,6 +19178,28 @@ class $CharactersTable extends Characters
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _submitMessageMeta = const VerificationMeta(
+    'submitMessage',
+  );
+  @override
+  late final GeneratedColumn<String> submitMessage = GeneratedColumn<String>(
+    'submit_message',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _reviewCommentMeta = const VerificationMeta(
+    'reviewComment',
+  );
+  @override
+  late final GeneratedColumn<String> reviewComment = GeneratedColumn<String>(
+    'review_comment',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _xpMeta = const VerificationMeta('xp');
   @override
   late final GeneratedColumn<int> xp = GeneratedColumn<int>(
@@ -19276,6 +19298,8 @@ class $CharactersTable extends Characters
     speciesChoices,
     backgroundId,
     status,
+    submitMessage,
+    reviewComment,
     xp,
     levelUnlock,
     scoreRolls,
@@ -19374,6 +19398,24 @@ class $CharactersTable extends Characters
       );
     } else if (isInserting) {
       context.missing(_statusMeta);
+    }
+    if (data.containsKey('submit_message')) {
+      context.handle(
+        _submitMessageMeta,
+        submitMessage.isAcceptableOrUnknown(
+          data['submit_message']!,
+          _submitMessageMeta,
+        ),
+      );
+    }
+    if (data.containsKey('review_comment')) {
+      context.handle(
+        _reviewCommentMeta,
+        reviewComment.isAcceptableOrUnknown(
+          data['review_comment']!,
+          _reviewCommentMeta,
+        ),
+      );
     }
     if (data.containsKey('xp')) {
       context.handle(_xpMeta, xp.isAcceptableOrUnknown(data['xp']!, _xpMeta));
@@ -19475,6 +19517,14 @@ class $CharactersTable extends Characters
         DriftSqlType.string,
         data['${effectivePrefix}status'],
       )!,
+      submitMessage: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}submit_message'],
+      ),
+      reviewComment: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}review_comment'],
+      ),
       xp: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}xp'],
@@ -19531,8 +19581,14 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
   final String speciesChoices;
   final String backgroundId;
 
-  /// `draft`, `submitted` ou `validated`.
+  /// `draft`, `submitted`, `validated`, `changes_requested` ou `archived`.
   final String status;
+
+  /// Message du joueur à l'envoi au MJ (US-15).
+  final String? submitMessage;
+
+  /// Commentaire du MJ à la revue (US-15).
+  final String? reviewComment;
   final int xp;
 
   /// Origine et niveau déverrouillé (§11.2 `level_unlock`), JSON.
@@ -19558,6 +19614,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     required this.speciesChoices,
     required this.backgroundId,
     required this.status,
+    this.submitMessage,
+    this.reviewComment,
     required this.xp,
     this.levelUnlock,
     this.scoreRolls,
@@ -19586,6 +19644,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     map['species_choices'] = Variable<String>(speciesChoices);
     map['background_id'] = Variable<String>(backgroundId);
     map['status'] = Variable<String>(status);
+    if (!nullToAbsent || submitMessage != null) {
+      map['submit_message'] = Variable<String>(submitMessage);
+    }
+    if (!nullToAbsent || reviewComment != null) {
+      map['review_comment'] = Variable<String>(reviewComment);
+    }
     map['xp'] = Variable<int>(xp);
     if (!nullToAbsent || levelUnlock != null) {
       map['level_unlock'] = Variable<String>(levelUnlock);
@@ -19627,6 +19691,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       speciesChoices: Value(speciesChoices),
       backgroundId: Value(backgroundId),
       status: Value(status),
+      submitMessage: submitMessage == null && nullToAbsent
+          ? const Value.absent()
+          : Value(submitMessage),
+      reviewComment: reviewComment == null && nullToAbsent
+          ? const Value.absent()
+          : Value(reviewComment),
       xp: Value(xp),
       levelUnlock: levelUnlock == null && nullToAbsent
           ? const Value.absent()
@@ -19666,6 +19736,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       speciesChoices: serializer.fromJson<String>(json['speciesChoices']),
       backgroundId: serializer.fromJson<String>(json['backgroundId']),
       status: serializer.fromJson<String>(json['status']),
+      submitMessage: serializer.fromJson<String?>(json['submitMessage']),
+      reviewComment: serializer.fromJson<String?>(json['reviewComment']),
       xp: serializer.fromJson<int>(json['xp']),
       levelUnlock: serializer.fromJson<String?>(json['levelUnlock']),
       scoreRolls: serializer.fromJson<String?>(json['scoreRolls']),
@@ -19690,6 +19762,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
       'speciesChoices': serializer.toJson<String>(speciesChoices),
       'backgroundId': serializer.toJson<String>(backgroundId),
       'status': serializer.toJson<String>(status),
+      'submitMessage': serializer.toJson<String?>(submitMessage),
+      'reviewComment': serializer.toJson<String?>(reviewComment),
       'xp': serializer.toJson<int>(xp),
       'levelUnlock': serializer.toJson<String?>(levelUnlock),
       'scoreRolls': serializer.toJson<String?>(scoreRolls),
@@ -19712,6 +19786,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     String? speciesChoices,
     String? backgroundId,
     String? status,
+    Value<String?> submitMessage = const Value.absent(),
+    Value<String?> reviewComment = const Value.absent(),
     int? xp,
     Value<String?> levelUnlock = const Value.absent(),
     Value<String?> scoreRolls = const Value.absent(),
@@ -19731,6 +19807,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     speciesChoices: speciesChoices ?? this.speciesChoices,
     backgroundId: backgroundId ?? this.backgroundId,
     status: status ?? this.status,
+    submitMessage: submitMessage.present
+        ? submitMessage.value
+        : this.submitMessage,
+    reviewComment: reviewComment.present
+        ? reviewComment.value
+        : this.reviewComment,
     xp: xp ?? this.xp,
     levelUnlock: levelUnlock.present ? levelUnlock.value : this.levelUnlock,
     scoreRolls: scoreRolls.present ? scoreRolls.value : this.scoreRolls,
@@ -19758,6 +19840,12 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
           ? data.backgroundId.value
           : this.backgroundId,
       status: data.status.present ? data.status.value : this.status,
+      submitMessage: data.submitMessage.present
+          ? data.submitMessage.value
+          : this.submitMessage,
+      reviewComment: data.reviewComment.present
+          ? data.reviewComment.value
+          : this.reviewComment,
       xp: data.xp.present ? data.xp.value : this.xp,
       levelUnlock: data.levelUnlock.present
           ? data.levelUnlock.value
@@ -19790,6 +19878,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
           ..write('speciesChoices: $speciesChoices, ')
           ..write('backgroundId: $backgroundId, ')
           ..write('status: $status, ')
+          ..write('submitMessage: $submitMessage, ')
+          ..write('reviewComment: $reviewComment, ')
           ..write('xp: $xp, ')
           ..write('levelUnlock: $levelUnlock, ')
           ..write('scoreRolls: $scoreRolls, ')
@@ -19814,6 +19904,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
     speciesChoices,
     backgroundId,
     status,
+    submitMessage,
+    reviewComment,
     xp,
     levelUnlock,
     scoreRolls,
@@ -19837,6 +19929,8 @@ class CharacterRow extends DataClass implements Insertable<CharacterRow> {
           other.speciesChoices == this.speciesChoices &&
           other.backgroundId == this.backgroundId &&
           other.status == this.status &&
+          other.submitMessage == this.submitMessage &&
+          other.reviewComment == this.reviewComment &&
           other.xp == this.xp &&
           other.levelUnlock == this.levelUnlock &&
           other.scoreRolls == this.scoreRolls &&
@@ -19858,6 +19952,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
   final Value<String> speciesChoices;
   final Value<String> backgroundId;
   final Value<String> status;
+  final Value<String?> submitMessage;
+  final Value<String?> reviewComment;
   final Value<int> xp;
   final Value<String?> levelUnlock;
   final Value<String?> scoreRolls;
@@ -19878,6 +19974,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     this.speciesChoices = const Value.absent(),
     this.backgroundId = const Value.absent(),
     this.status = const Value.absent(),
+    this.submitMessage = const Value.absent(),
+    this.reviewComment = const Value.absent(),
     this.xp = const Value.absent(),
     this.levelUnlock = const Value.absent(),
     this.scoreRolls = const Value.absent(),
@@ -19899,6 +19997,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     this.speciesChoices = const Value.absent(),
     required String backgroundId,
     required String status,
+    this.submitMessage = const Value.absent(),
+    this.reviewComment = const Value.absent(),
     this.xp = const Value.absent(),
     this.levelUnlock = const Value.absent(),
     this.scoreRolls = const Value.absent(),
@@ -19925,6 +20025,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     Expression<String>? speciesChoices,
     Expression<String>? backgroundId,
     Expression<String>? status,
+    Expression<String>? submitMessage,
+    Expression<String>? reviewComment,
     Expression<int>? xp,
     Expression<String>? levelUnlock,
     Expression<String>? scoreRolls,
@@ -19946,6 +20048,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
       if (speciesChoices != null) 'species_choices': speciesChoices,
       if (backgroundId != null) 'background_id': backgroundId,
       if (status != null) 'status': status,
+      if (submitMessage != null) 'submit_message': submitMessage,
+      if (reviewComment != null) 'review_comment': reviewComment,
       if (xp != null) 'xp': xp,
       if (levelUnlock != null) 'level_unlock': levelUnlock,
       if (scoreRolls != null) 'score_rolls': scoreRolls,
@@ -19969,6 +20073,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     Value<String>? speciesChoices,
     Value<String>? backgroundId,
     Value<String>? status,
+    Value<String?>? submitMessage,
+    Value<String?>? reviewComment,
     Value<int>? xp,
     Value<String?>? levelUnlock,
     Value<String?>? scoreRolls,
@@ -19990,6 +20096,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
       speciesChoices: speciesChoices ?? this.speciesChoices,
       backgroundId: backgroundId ?? this.backgroundId,
       status: status ?? this.status,
+      submitMessage: submitMessage ?? this.submitMessage,
+      reviewComment: reviewComment ?? this.reviewComment,
       xp: xp ?? this.xp,
       levelUnlock: levelUnlock ?? this.levelUnlock,
       scoreRolls: scoreRolls ?? this.scoreRolls,
@@ -20035,6 +20143,12 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
     if (status.present) {
       map['status'] = Variable<String>(status.value);
     }
+    if (submitMessage.present) {
+      map['submit_message'] = Variable<String>(submitMessage.value);
+    }
+    if (reviewComment.present) {
+      map['review_comment'] = Variable<String>(reviewComment.value);
+    }
     if (xp.present) {
       map['xp'] = Variable<int>(xp.value);
     }
@@ -20078,6 +20192,8 @@ class CharactersCompanion extends UpdateCompanion<CharacterRow> {
           ..write('speciesChoices: $speciesChoices, ')
           ..write('backgroundId: $backgroundId, ')
           ..write('status: $status, ')
+          ..write('submitMessage: $submitMessage, ')
+          ..write('reviewComment: $reviewComment, ')
           ..write('xp: $xp, ')
           ..write('levelUnlock: $levelUnlock, ')
           ..write('scoreRolls: $scoreRolls, ')
@@ -45789,6 +45905,8 @@ typedef $$CharactersTableCreateCompanionBuilder = CharactersCompanion Function({
   Value<String> speciesChoices,
   required String backgroundId,
   required String status,
+  Value<String?> submitMessage,
+  Value<String?> reviewComment,
   Value<int> xp,
   Value<String?> levelUnlock,
   Value<String?> scoreRolls,
@@ -45810,6 +45928,8 @@ typedef $$CharactersTableUpdateCompanionBuilder = CharactersCompanion Function({
   Value<String> speciesChoices,
   Value<String> backgroundId,
   Value<String> status,
+  Value<String?> submitMessage,
+  Value<String?> reviewComment,
   Value<int> xp,
   Value<String?> levelUnlock,
   Value<String?> scoreRolls,
@@ -45877,6 +45997,16 @@ class $$CharactersTableFilterComposer
 
   ColumnFilters<String> get status => $composableBuilder(
     column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get submitMessage => $composableBuilder(
+    column: $table.submitMessage,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get reviewComment => $composableBuilder(
+    column: $table.reviewComment,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -45980,6 +46110,16 @@ class $$CharactersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get submitMessage => $composableBuilder(
+    column: $table.submitMessage,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get reviewComment => $composableBuilder(
+    column: $table.reviewComment,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get xp => $composableBuilder(
     column: $table.xp,
     builder: (column) => ColumnOrderings(column),
@@ -46066,6 +46206,16 @@ class $$CharactersTableAnnotationComposer
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
 
+  GeneratedColumn<String> get submitMessage => $composableBuilder(
+    column: $table.submitMessage,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get reviewComment => $composableBuilder(
+    column: $table.reviewComment,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<int> get xp =>
       $composableBuilder(column: $table.xp, builder: (column) => column);
 
@@ -46140,6 +46290,8 @@ class $$CharactersTableTableManager
                 Value<String> speciesChoices = const Value.absent(),
                 Value<String> backgroundId = const Value.absent(),
                 Value<String> status = const Value.absent(),
+                Value<String?> submitMessage = const Value.absent(),
+                Value<String?> reviewComment = const Value.absent(),
                 Value<int> xp = const Value.absent(),
                 Value<String?> levelUnlock = const Value.absent(),
                 Value<String?> scoreRolls = const Value.absent(),
@@ -46160,6 +46312,8 @@ class $$CharactersTableTableManager
                 speciesChoices: speciesChoices,
                 backgroundId: backgroundId,
                 status: status,
+                submitMessage: submitMessage,
+                reviewComment: reviewComment,
                 xp: xp,
                 levelUnlock: levelUnlock,
                 scoreRolls: scoreRolls,
@@ -46182,6 +46336,8 @@ class $$CharactersTableTableManager
                 Value<String> speciesChoices = const Value.absent(),
                 required String backgroundId,
                 required String status,
+                Value<String?> submitMessage = const Value.absent(),
+                Value<String?> reviewComment = const Value.absent(),
                 Value<int> xp = const Value.absent(),
                 Value<String?> levelUnlock = const Value.absent(),
                 Value<String?> scoreRolls = const Value.absent(),
@@ -46202,6 +46358,8 @@ class $$CharactersTableTableManager
                 speciesChoices: speciesChoices,
                 backgroundId: backgroundId,
                 status: status,
+                submitMessage: submitMessage,
+                reviewComment: reviewComment,
                 xp: xp,
                 levelUnlock: levelUnlock,
                 scoreRolls: scoreRolls,

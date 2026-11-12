@@ -4310,6 +4310,26 @@
             "dsl_features": []
           },
           {
+            "name": "submit_message",
+            "getter_name": "submitMessage",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "review_comment",
+            "getter_name": "reviewComment",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "xp",
             "getter_name": "xp",
             "moor_type": "int",
@@ -6385,7 +6405,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, \"coins\" TEXT NOT NULL DEFAULT '{}', \"alignment\" TEXT NULL, \"appearance\" TEXT NULL, \"personality\" TEXT NULL, \"backstory\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"character\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NULL, \"owner_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"player\" TEXT NULL, \"species_id\" TEXT NOT NULL, \"species_choices\" TEXT NOT NULL DEFAULT '{}', \"background_id\" TEXT NOT NULL, \"status\" TEXT NOT NULL, \"submit_message\" TEXT NULL, \"review_comment\" TEXT NULL, \"xp\" INTEGER NOT NULL DEFAULT 0, \"level_unlock\" TEXT NULL, \"score_rolls\" TEXT NULL, \"coins\" TEXT NOT NULL DEFAULT '{}', \"alignment\" TEXT NULL, \"appearance\" TEXT NULL, \"personality\" TEXT NULL, \"backstory\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

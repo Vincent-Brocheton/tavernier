@@ -5,8 +5,8 @@
 
 ## 2. Données
 
-- [ ] 2.1 Colonnes Drift, instantané régénéré
-- [ ] 2.2 Tests puis `submit`, `review`, `withdraw`, `transferSlot`, message et commentaire des emplacements
+- [x] 2.1 Colonnes Drift, instantané régénéré
+- [x] 2.2 Tests puis `submit`, `review`, `withdraw`, `transferSlot`, message et commentaire des emplacements
 
 ## 3. App
 
