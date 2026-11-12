@@ -2580,4 +2580,69 @@ class AppLocalizationsFr extends AppLocalizations {
   String slotLineOf(String name, String status) {
     return '$name ($status)';
   }
+
+  @override
+  String get submitMessageLabel => 'Message pour le MJ (facultatif)';
+
+  @override
+  String get submitAction => 'Envoyer';
+
+  @override
+  String get correctionsTitle => 'Corrections demandées par le MJ';
+
+  @override
+  String get reviewTitle => 'Fiche à valider';
+
+  @override
+  String reviewBy(String classes, String background, String player) {
+    return '$classes · $background · par $player';
+  }
+
+  @override
+  String checkMethod(String method) {
+    return 'Méthode de la table respectée : $method';
+  }
+
+  @override
+  String checkMethodWrong(String actual, String expected) {
+    return '$actual au lieu de $expected';
+  }
+
+  @override
+  String checkLevel(int level) {
+    return 'Niveau de départ : $level';
+  }
+
+  @override
+  String checkLevelWrong(int actual, int expected) {
+    return 'Niveau $actual au lieu du niveau de départ $expected';
+  }
+
+  @override
+  String get checkRules => 'Règles respectées';
+
+  @override
+  String playerMessage(String player, String message) {
+    return 'Message de $player : « $message »';
+  }
+
+  @override
+  String get reviewCommentLabel => 'Commentaire (requis pour des corrections)';
+
+  @override
+  String get requestChanges => 'Demander des corrections';
+
+  @override
+  String get validateSheet => 'Valider';
+
+  @override
+  String get openFullSheet => 'Ouvrir la fiche complète';
+
+  @override
+  String get transferSlot => 'Transférer à…';
+
+  @override
+  String transferTitle(String name) {
+    return 'Transférer $name à';
+  }
 }

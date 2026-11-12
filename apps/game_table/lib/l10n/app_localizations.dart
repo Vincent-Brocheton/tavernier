@@ -4308,6 +4308,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{name} ({status})'**
   String slotLineOf(String name, String status);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Message pour le MJ (facultatif)'**
+  String get submitMessageLabel;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get submitAction;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrections demandées par le MJ'**
+  String get correctionsTitle;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche à valider'**
+  String get reviewTitle;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'{classes} · {background} · par {player}'**
+  String reviewBy(String classes, String background, String player);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Méthode de la table respectée : {method}'**
+  String checkMethod(String method);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'{actual} au lieu de {expected}'**
+  String checkMethodWrong(String actual, String expected);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de départ : {level}'**
+  String checkLevel(int level);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {actual} au lieu du niveau de départ {expected}'**
+  String checkLevelWrong(int actual, int expected);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règles respectées'**
+  String get checkRules;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Message de {player} : « {message} »'**
+  String playerMessage(String player, String message);
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Commentaire (requis pour des corrections)'**
+  String get reviewCommentLabel;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Demander des corrections'**
+  String get requestChanges;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get validateSheet;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir la fiche complète'**
+  String get openFullSheet;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Transférer à…'**
+  String get transferSlot;
+
+  /// Revue des fiches de table et transfert (US-15, écran T10).
+  ///
+  /// In fr, this message translates to:
+  /// **'Transférer {name} à'**
+  String transferTitle(String name);
 }
 
 class _AppLocalizationsDelegate

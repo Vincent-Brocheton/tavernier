@@ -10,6 +10,6 @@
 
 ## 3. App
 
-- [ ] 3.1 Envoi avec message ; commentaire du MJ côté joueur ; tests
-- [ ] 3.2 Panneau « Fiche à valider » (contrôles, valider, corrections) ; tests
-- [ ] 3.3 Transfert d'un PJ ; tests
+- [x] 3.1 Envoi avec message ; commentaire du MJ côté joueur ; tests
+- [x] 3.2 Panneau « Fiche à valider » (contrôles, valider, corrections) ; tests
+- [x] 3.3 Transfert d'un PJ ; tests

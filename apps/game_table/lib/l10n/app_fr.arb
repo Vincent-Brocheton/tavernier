@@ -3678,5 +3678,123 @@
         "type": "String"
       }
     }
+  },
+  "submitMessageLabel": "Message pour le MJ (facultatif)",
+  "@submitMessageLabel": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "submitAction": "Envoyer",
+  "@submitAction": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "correctionsTitle": "Corrections demandées par le MJ",
+  "@correctionsTitle": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "reviewTitle": "Fiche à valider",
+  "@reviewTitle": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "reviewBy": "{classes} · {background} · par {player}",
+  "@reviewBy": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "classes": {
+        "type": "String"
+      },
+      "background": {
+        "type": "String"
+      },
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "checkMethod": "Méthode de la table respectée : {method}",
+  "@checkMethod": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "checkMethodWrong": "{actual} au lieu de {expected}",
+  "@checkMethodWrong": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "actual": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "checkLevel": "Niveau de départ : {level}",
+  "@checkLevel": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "checkLevelWrong": "Niveau {actual} au lieu du niveau de départ {expected}",
+  "@checkLevelWrong": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "actual": {
+        "type": "int"
+      },
+      "expected": {
+        "type": "int"
+      }
+    }
+  },
+  "checkRules": "Règles respectées",
+  "@checkRules": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "playerMessage": "Message de {player} : « {message} »",
+  "@playerMessage": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "player": {
+        "type": "String"
+      },
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "reviewCommentLabel": "Commentaire (requis pour des corrections)",
+  "@reviewCommentLabel": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "requestChanges": "Demander des corrections",
+  "@requestChanges": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "validateSheet": "Valider",
+  "@validateSheet": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "openFullSheet": "Ouvrir la fiche complète",
+  "@openFullSheet": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "transferSlot": "Transférer à…",
+  "@transferSlot": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10)."
+  },
+  "transferTitle": "Transférer {name} à",
+  "@transferTitle": {
+    "description": "Revue des fiches de table et transfert (US-15, écran T10).",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }
