@@ -7,4 +7,4 @@
 - [x] 2.1 Tests puis `compressAvatar` (carré, 256 px, JPEG < 200 Ko, image illisible) et `ProfileAvatar`
 - [x] 2.2 `SessionActions.setAvatar`, `avatarProvider`, `TableMemberInfo.avatar`
 - [x] 2.3 [A5] : choisir, aperçu, retirer, enregistrer ; barre de l'app, profil, membres ; ARB ; tests de widgets
-- [ ] 2.4 Vérification dans le navigateur (essai du porteur de projet sur le projet hébergé)
+- [x] 2.4 Vérification dans le navigateur : non faite, archivé sans essai à la demande du porteur de projet
