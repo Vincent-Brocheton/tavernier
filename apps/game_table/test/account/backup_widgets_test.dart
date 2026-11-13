@@ -1,4 +1,5 @@
 // Spec account : « Mes données », « Rappel de sauvegarde » (US-17, [A7], [G6]).
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dnd_data/dnd_data.dart';
@@ -16,14 +17,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final _now = DateTime.utc(2026, 11, 13, 12);
 
-Future<List<String>> _pump(WidgetTester tester, Widget child) async {
+late TavernierDatabase _database;
+
+Future<List<String>> _pump(
+  WidgetTester tester,
+  Widget child, {
+  Uint8List? open,
+}) async {
   SharedPreferences.setMockInitialValues({
     'first_launch_at': _now
         .subtract(const Duration(days: 32))
         .toIso8601String(),
   });
   final prefs = await SharedPreferences.getInstance();
-  final database = TavernierDatabase(NativeDatabase.memory());
+  final database = _database = TavernierDatabase(NativeDatabase.memory());
   final saved = <String>[];
   await tester.pumpWidget(
     ProviderScope(
@@ -33,6 +40,7 @@ Future<List<String>> _pump(WidgetTester tester, Widget child) async {
         clockProvider.overrideWithValue(() => _now),
         lastSyncedAtProvider.overrideWith((ref) => Stream.value(null)),
         hasUserDataProvider.overrideWith((ref) async => true),
+        openFileProvider.overrideWithValue(() async => open),
         saveFileProvider.overrideWithValue((
           String name,
           Uint8List _,
@@ -96,5 +104,77 @@ void main() {
     await tester.pumpAndSettle();
     expect(saved, hasLength(1));
     expect(find.text('Aucune sauvegarde depuis 32 jours'), findsNothing);
+  });
+
+  group('import', () {
+    final export = utf8.encode(
+      jsonEncode({
+        'format': 'tavernier-export',
+        'version': 1,
+        'tables': {
+          'character': [
+            {
+              'id': 'a',
+              'name': 'Aldric',
+              'kind': 'pc',
+              'species_id': 'srd:species:human',
+              'background_id': 'srd:background:soldier',
+              'status': 'draft',
+            },
+          ],
+        },
+      }),
+    );
+
+    Future<int> characters() async =>
+        (await _database.customSelect('SELECT id FROM character').get()).length;
+
+    Future<void> importAndAnswer(WidgetTester tester, String answer) async {
+      await tester.tap(find.text('Importer une sauvegarde'));
+      await tester.pumpAndSettle();
+      expect(find.text('Importer cette sauvegarde ?'), findsOneWidget);
+      await tester.runAsync(() async {
+        await tester.tap(find.text(answer));
+        await Future<void>.delayed(const Duration(milliseconds: 200));
+      });
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('confirmé : ajouté, et compté', (tester) async {
+      await _pump(tester, const MyDataSection(), open: export);
+      await importAndAnswer(tester, 'Importer');
+      expect(
+        find.text('1 élément ajouté, aucun déjà présent.'),
+        findsOneWidget,
+      );
+      expect(await tester.runAsync(characters), 1);
+    });
+
+    testWidgets('annulé : rien importé', (tester) async {
+      await _pump(tester, const MyDataSection(), open: export);
+      await importAndAnswer(tester, 'Annuler');
+      expect(find.byType(SnackBar), findsNothing);
+      expect(await tester.runAsync(characters), 0);
+    });
+
+    testWidgets('fichier refusé : dit pourquoi', (tester) async {
+      await _pump(
+        tester,
+        const MyDataSection(),
+        open: utf8.encode('{"format": "autre"}'),
+      );
+      await importAndAnswer(tester, 'Importer');
+      expect(
+        find.text('Ce fichier n’est pas une sauvegarde de Tavernier.'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('aucun fichier choisi : pas de confirmation', (tester) async {
+      await _pump(tester, const MyDataSection());
+      await tester.tap(find.text('Importer une sauvegarde'));
+      await tester.pumpAndSettle();
+      expect(find.byType(AlertDialog), findsNothing);
+    });
   });
 }

@@ -4113,6 +4113,38 @@
   "@exportFailed": {
     "description": "Mes données (US-17)."
   },
+  "importDataAction": "Importer une sauvegarde",
+  "@importDataAction": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
+  "importConfirmTitle": "Importer cette sauvegarde ?",
+  "@importConfirmTitle": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
+  "importConfirmBody": "Les éléments absents de cet appareil seront ajoutés. Ceux qui y sont déjà restent tels quels.",
+  "@importConfirmBody": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
+  "importConfirm": "Importer",
+  "@importConfirm": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
+  "importDone": "{added, plural, =0{Aucun élément ajouté} =1{1 élément ajouté} other{{added} éléments ajoutés}}, {kept, plural, =0{aucun déjà présent} =1{1 déjà présent} other{{kept} déjà présents}}.",
+  "@importDone": {
+    "description": "Mes données (US-17, ENF-12).",
+    "placeholders": {
+      "added": {"type": "int"},
+      "kept": {"type": "int"}
+    }
+  },
+  "importRefused": "Ce fichier n’est pas une sauvegarde de Tavernier.",
+  "@importRefused": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
+  "importFailed": "L’import a échoué. Réessayez.",
+  "@importFailed": {
+    "description": "Mes données (US-17, ENF-12)."
+  },
   "backupReminderTitle": "Aucune sauvegarde depuis {days} jours",
   "@backupReminderTitle": {
     "description": "Bandeau [G6] (US-17, ENF-12).",

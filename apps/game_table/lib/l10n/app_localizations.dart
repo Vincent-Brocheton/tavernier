@@ -4758,6 +4758,48 @@ abstract class AppLocalizations {
   /// **'L’export a échoué. Réessayez.'**
   String get exportFailed;
 
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer une sauvegarde'**
+  String get importDataAction;
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer cette sauvegarde ?'**
+  String get importConfirmTitle;
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les éléments absents de cet appareil seront ajoutés. Ceux qui y sont déjà restent tels quels.'**
+  String get importConfirmBody;
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer'**
+  String get importConfirm;
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'{added, plural, =0{Aucun élément ajouté} =1{1 élément ajouté} other{{added} éléments ajoutés}}, {kept, plural, =0{aucun déjà présent} =1{1 déjà présent} other{{kept} déjà présents}}.'**
+  String importDone(int added, int kept);
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce fichier n’est pas une sauvegarde de Tavernier.'**
+  String get importRefused;
+
+  /// Mes données (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’import a échoué. Réessayez.'**
+  String get importFailed;
+
   /// Bandeau [G6] (US-17, ENF-12).
   ///
   /// In fr, this message translates to:

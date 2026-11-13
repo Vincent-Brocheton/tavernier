@@ -17,7 +17,44 @@ Future<void> exportMyData(BuildContext context, WidgetRef ref) async {
   }
 }
 
-/// Export des données et date du dernier export.
+/// Choisit une sauvegarde, fait confirmer, l'importe et dit ce qui a été
+/// ajouté, ou pourquoi le fichier est refusé.
+Future<void> importMyData(BuildContext context, WidgetRef ref) async {
+  final messenger = ScaffoldMessenger.of(context);
+  final l10n = AppLocalizations.of(context);
+  final bytes = await ref.read(openFileProvider)();
+  if (bytes == null || !context.mounted) return;
+  final confirmed = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(l10n.importConfirmTitle),
+      content: Text(l10n.importConfirmBody),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: Text(l10n.cancel),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: Text(l10n.importConfirm),
+        ),
+      ],
+    ),
+  );
+  if (confirmed != true) return;
+  String message;
+  try {
+    final result = await ref.read(dataBackupProvider).import(bytes);
+    message = l10n.importDone(result.added, result.kept);
+  } on FormatException {
+    message = l10n.importRefused;
+  } on Exception {
+    message = l10n.importFailed;
+  }
+  messenger.showSnackBar(SnackBar(content: Text(message)));
+}
+
+/// Export et import des données, date du dernier export.
 class MyDataSection extends ConsumerWidget {
   const MyDataSection({super.key});
 
@@ -40,13 +77,21 @@ class MyDataSection extends ConsumerWidget {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         SizedBox(height: AppSpacing.sm),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: OutlinedButton.icon(
-            onPressed: () => exportMyData(context, ref),
-            icon: const Icon(Icons.download_outlined),
-            label: Text(l10n.exportDataAction),
-          ),
+        Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
+          children: [
+            OutlinedButton.icon(
+              onPressed: () => exportMyData(context, ref),
+              icon: const Icon(Icons.download_outlined),
+              label: Text(l10n.exportDataAction),
+            ),
+            OutlinedButton.icon(
+              onPressed: () => importMyData(context, ref),
+              icon: const Icon(Icons.upload_file_outlined),
+              label: Text(l10n.importDataAction),
+            ),
+          ],
         ),
       ],
     );

@@ -2870,6 +2870,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String get exportFailed => 'L’export a échoué. Réessayez.';
 
   @override
+  String get importDataAction => 'Importer une sauvegarde';
+
+  @override
+  String get importConfirmTitle => 'Importer cette sauvegarde ?';
+
+  @override
+  String get importConfirmBody =>
+      'Les éléments absents de cet appareil seront ajoutés. Ceux qui y sont déjà restent tels quels.';
+
+  @override
+  String get importConfirm => 'Importer';
+
+  @override
+  String importDone(int added, int kept) {
+    String _temp0 = intl.Intl.pluralLogic(
+      added,
+      locale: localeName,
+      other: '$added éléments ajoutés',
+      one: '1 élément ajouté',
+      zero: 'Aucun élément ajouté',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      kept,
+      locale: localeName,
+      other: '$kept déjà présents',
+      one: '1 déjà présent',
+      zero: 'aucun déjà présent',
+    );
+    return '$_temp0, $_temp1.';
+  }
+
+  @override
+  String get importRefused =>
+      'Ce fichier n’est pas une sauvegarde de Tavernier.';
+
+  @override
+  String get importFailed => 'L’import a échoué. Réessayez.';
+
+  @override
   String backupReminderTitle(int days) {
     return 'Aucune sauvegarde depuis $days jours';
   }
