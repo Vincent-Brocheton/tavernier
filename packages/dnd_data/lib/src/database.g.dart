@@ -25937,6 +25937,665 @@ class CharacterChoicesCompanion extends UpdateCompanion<CharacterChoiceRow> {
   }
 }
 
+class $CharacterProposalsTable extends CharacterProposals
+    with TableInfo<$CharacterProposalsTable, CharacterProposalRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CharacterProposalsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
+    'authorUserId',
+  );
+  @override
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _changeMeta = const VerificationMeta('change');
+  @override
+  late final GeneratedColumn<String> change = GeneratedColumn<String>(
+    'change',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _reasonMeta = const VerificationMeta('reason');
+  @override
+  late final GeneratedColumn<String> reason = GeneratedColumn<String>(
+    'reason',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('pending'),
+  );
+  static const VerificationMeta _replyMeta = const VerificationMeta('reply');
+  @override
+  late final GeneratedColumn<String> reply = GeneratedColumn<String>(
+    'reply',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _decidedAtMeta = const VerificationMeta(
+    'decidedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> decidedAt = GeneratedColumn<DateTime>(
+    'decided_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    characterId,
+    tableId,
+    authorUserId,
+    kind,
+    change,
+    reason,
+    status,
+    reply,
+    createdAt,
+    decidedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'character_proposal';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CharacterProposalRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_characterIdMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('author_user_id')) {
+      context.handle(
+        _authorUserIdMeta,
+        authorUserId.isAcceptableOrUnknown(
+          data['author_user_id']!,
+          _authorUserIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('change')) {
+      context.handle(
+        _changeMeta,
+        change.isAcceptableOrUnknown(data['change']!, _changeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_changeMeta);
+    }
+    if (data.containsKey('reason')) {
+      context.handle(
+        _reasonMeta,
+        reason.isAcceptableOrUnknown(data['reason']!, _reasonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_reasonMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('reply')) {
+      context.handle(
+        _replyMeta,
+        reply.isAcceptableOrUnknown(data['reply']!, _replyMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('decided_at')) {
+      context.handle(
+        _decidedAtMeta,
+        decidedAt.isAcceptableOrUnknown(data['decided_at']!, _decidedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CharacterProposalRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CharacterProposalRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      authorUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_user_id'],
+      ),
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      change: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}change'],
+      )!,
+      reason: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}reason'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      reply: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}reply'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      decidedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}decided_at'],
+      ),
+    );
+  }
+
+  @override
+  $CharacterProposalsTable createAlias(String alias) {
+    return $CharacterProposalsTable(attachedDatabase, alias);
+  }
+}
+
+class CharacterProposalRow extends DataClass
+    implements Insertable<CharacterProposalRow> {
+  final String id;
+  final String characterId;
+  final String tableId;
+  final String? authorUserId;
+  final String kind;
+  final String change;
+  final String reason;
+  final String status;
+  final String? reply;
+  final DateTime createdAt;
+  final DateTime? decidedAt;
+  const CharacterProposalRow({
+    required this.id,
+    required this.characterId,
+    required this.tableId,
+    this.authorUserId,
+    required this.kind,
+    required this.change,
+    required this.reason,
+    required this.status,
+    this.reply,
+    required this.createdAt,
+    this.decidedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['character_id'] = Variable<String>(characterId);
+    map['table_id'] = Variable<String>(tableId);
+    if (!nullToAbsent || authorUserId != null) {
+      map['author_user_id'] = Variable<String>(authorUserId);
+    }
+    map['kind'] = Variable<String>(kind);
+    map['change'] = Variable<String>(change);
+    map['reason'] = Variable<String>(reason);
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || reply != null) {
+      map['reply'] = Variable<String>(reply);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    if (!nullToAbsent || decidedAt != null) {
+      map['decided_at'] = Variable<DateTime>(decidedAt);
+    }
+    return map;
+  }
+
+  CharacterProposalsCompanion toCompanion(bool nullToAbsent) {
+    return CharacterProposalsCompanion(
+      id: Value(id),
+      characterId: Value(characterId),
+      tableId: Value(tableId),
+      authorUserId: authorUserId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorUserId),
+      kind: Value(kind),
+      change: Value(change),
+      reason: Value(reason),
+      status: Value(status),
+      reply: reply == null && nullToAbsent
+          ? const Value.absent()
+          : Value(reply),
+      createdAt: Value(createdAt),
+      decidedAt: decidedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(decidedAt),
+    );
+  }
+
+  factory CharacterProposalRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CharacterProposalRow(
+      id: serializer.fromJson<String>(json['id']),
+      characterId: serializer.fromJson<String>(json['characterId']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      change: serializer.fromJson<String>(json['change']),
+      reason: serializer.fromJson<String>(json['reason']),
+      status: serializer.fromJson<String>(json['status']),
+      reply: serializer.fromJson<String?>(json['reply']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      decidedAt: serializer.fromJson<DateTime?>(json['decidedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'characterId': serializer.toJson<String>(characterId),
+      'tableId': serializer.toJson<String>(tableId),
+      'authorUserId': serializer.toJson<String?>(authorUserId),
+      'kind': serializer.toJson<String>(kind),
+      'change': serializer.toJson<String>(change),
+      'reason': serializer.toJson<String>(reason),
+      'status': serializer.toJson<String>(status),
+      'reply': serializer.toJson<String?>(reply),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'decidedAt': serializer.toJson<DateTime?>(decidedAt),
+    };
+  }
+
+  CharacterProposalRow copyWith({
+    String? id,
+    String? characterId,
+    String? tableId,
+    Value<String?> authorUserId = const Value.absent(),
+    String? kind,
+    String? change,
+    String? reason,
+    String? status,
+    Value<String?> reply = const Value.absent(),
+    DateTime? createdAt,
+    Value<DateTime?> decidedAt = const Value.absent(),
+  }) => CharacterProposalRow(
+    id: id ?? this.id,
+    characterId: characterId ?? this.characterId,
+    tableId: tableId ?? this.tableId,
+    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
+    kind: kind ?? this.kind,
+    change: change ?? this.change,
+    reason: reason ?? this.reason,
+    status: status ?? this.status,
+    reply: reply.present ? reply.value : this.reply,
+    createdAt: createdAt ?? this.createdAt,
+    decidedAt: decidedAt.present ? decidedAt.value : this.decidedAt,
+  );
+  CharacterProposalRow copyWithCompanion(CharacterProposalsCompanion data) {
+    return CharacterProposalRow(
+      id: data.id.present ? data.id.value : this.id,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      authorUserId: data.authorUserId.present
+          ? data.authorUserId.value
+          : this.authorUserId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      change: data.change.present ? data.change.value : this.change,
+      reason: data.reason.present ? data.reason.value : this.reason,
+      status: data.status.present ? data.status.value : this.status,
+      reply: data.reply.present ? data.reply.value : this.reply,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      decidedAt: data.decidedAt.present ? data.decidedAt.value : this.decidedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CharacterProposalRow(')
+          ..write('id: $id, ')
+          ..write('characterId: $characterId, ')
+          ..write('tableId: $tableId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('kind: $kind, ')
+          ..write('change: $change, ')
+          ..write('reason: $reason, ')
+          ..write('status: $status, ')
+          ..write('reply: $reply, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('decidedAt: $decidedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    characterId,
+    tableId,
+    authorUserId,
+    kind,
+    change,
+    reason,
+    status,
+    reply,
+    createdAt,
+    decidedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CharacterProposalRow &&
+          other.id == this.id &&
+          other.characterId == this.characterId &&
+          other.tableId == this.tableId &&
+          other.authorUserId == this.authorUserId &&
+          other.kind == this.kind &&
+          other.change == this.change &&
+          other.reason == this.reason &&
+          other.status == this.status &&
+          other.reply == this.reply &&
+          other.createdAt == this.createdAt &&
+          other.decidedAt == this.decidedAt);
+}
+
+class CharacterProposalsCompanion
+    extends UpdateCompanion<CharacterProposalRow> {
+  final Value<String> id;
+  final Value<String> characterId;
+  final Value<String> tableId;
+  final Value<String?> authorUserId;
+  final Value<String> kind;
+  final Value<String> change;
+  final Value<String> reason;
+  final Value<String> status;
+  final Value<String?> reply;
+  final Value<DateTime> createdAt;
+  final Value<DateTime?> decidedAt;
+  final Value<int> rowid;
+  const CharacterProposalsCompanion({
+    this.id = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.authorUserId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.change = const Value.absent(),
+    this.reason = const Value.absent(),
+    this.status = const Value.absent(),
+    this.reply = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.decidedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CharacterProposalsCompanion.insert({
+    required String id,
+    required String characterId,
+    required String tableId,
+    this.authorUserId = const Value.absent(),
+    required String kind,
+    required String change,
+    required String reason,
+    this.status = const Value.absent(),
+    this.reply = const Value.absent(),
+    required DateTime createdAt,
+    this.decidedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       characterId = Value(characterId),
+       tableId = Value(tableId),
+       kind = Value(kind),
+       change = Value(change),
+       reason = Value(reason),
+       createdAt = Value(createdAt);
+  static Insertable<CharacterProposalRow> custom({
+    Expression<String>? id,
+    Expression<String>? characterId,
+    Expression<String>? tableId,
+    Expression<String>? authorUserId,
+    Expression<String>? kind,
+    Expression<String>? change,
+    Expression<String>? reason,
+    Expression<String>? status,
+    Expression<String>? reply,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? decidedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (characterId != null) 'character_id': characterId,
+      if (tableId != null) 'table_id': tableId,
+      if (authorUserId != null) 'author_user_id': authorUserId,
+      if (kind != null) 'kind': kind,
+      if (change != null) 'change': change,
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status,
+      if (reply != null) 'reply': reply,
+      if (createdAt != null) 'created_at': createdAt,
+      if (decidedAt != null) 'decided_at': decidedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CharacterProposalsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? characterId,
+    Value<String>? tableId,
+    Value<String?>? authorUserId,
+    Value<String>? kind,
+    Value<String>? change,
+    Value<String>? reason,
+    Value<String>? status,
+    Value<String?>? reply,
+    Value<DateTime>? createdAt,
+    Value<DateTime?>? decidedAt,
+    Value<int>? rowid,
+  }) {
+    return CharacterProposalsCompanion(
+      id: id ?? this.id,
+      characterId: characterId ?? this.characterId,
+      tableId: tableId ?? this.tableId,
+      authorUserId: authorUserId ?? this.authorUserId,
+      kind: kind ?? this.kind,
+      change: change ?? this.change,
+      reason: reason ?? this.reason,
+      status: status ?? this.status,
+      reply: reply ?? this.reply,
+      createdAt: createdAt ?? this.createdAt,
+      decidedAt: decidedAt ?? this.decidedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (authorUserId.present) {
+      map['author_user_id'] = Variable<String>(authorUserId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (change.present) {
+      map['change'] = Variable<String>(change.value);
+    }
+    if (reason.present) {
+      map['reason'] = Variable<String>(reason.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (reply.present) {
+      map['reply'] = Variable<String>(reply.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (decidedAt.present) {
+      map['decided_at'] = Variable<DateTime>(decidedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CharacterProposalsCompanion(')
+          ..write('id: $id, ')
+          ..write('characterId: $characterId, ')
+          ..write('tableId: $tableId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('kind: $kind, ')
+          ..write('change: $change, ')
+          ..write('reason: $reason, ')
+          ..write('status: $status, ')
+          ..write('reply: $reply, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('decidedAt: $decidedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $NpcStatblocksTable extends NpcStatblocks
     with TableInfo<$NpcStatblocksTable, NpcStatblockRow> {
   @override
@@ -28910,6 +29569,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $CharacterChoicesTable characterChoices = $CharacterChoicesTable(
     this,
   );
+  late final $CharacterProposalsTable characterProposals =
+      $CharacterProposalsTable(this);
   late final $NpcStatblocksTable npcStatblocks = $NpcStatblocksTable(this);
   late final $SessionsTable sessions = $SessionsTable(this);
   late final $EncountersTable encounters = $EncountersTable(this);
@@ -28983,6 +29644,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     characterChangeLogs,
     characterLanguages,
     characterChoices,
+    characterProposals,
     npcStatblocks,
     sessions,
     encounters,
@@ -50219,6 +50881,348 @@ typedef $$CharacterChoicesTableProcessedTableManager =
       CharacterChoiceRow,
       PrefetchHooks Function()
     >;
+typedef $$CharacterProposalsTableCreateCompanionBuilder =
+    CharacterProposalsCompanion Function({
+      required String id,
+      required String characterId,
+      required String tableId,
+      Value<String?> authorUserId,
+      required String kind,
+      required String change,
+      required String reason,
+      Value<String> status,
+      Value<String?> reply,
+      required DateTime createdAt,
+      Value<DateTime?> decidedAt,
+      Value<int> rowid,
+    });
+typedef $$CharacterProposalsTableUpdateCompanionBuilder =
+    CharacterProposalsCompanion Function({
+      Value<String> id,
+      Value<String> characterId,
+      Value<String> tableId,
+      Value<String?> authorUserId,
+      Value<String> kind,
+      Value<String> change,
+      Value<String> reason,
+      Value<String> status,
+      Value<String?> reply,
+      Value<DateTime> createdAt,
+      Value<DateTime?> decidedAt,
+      Value<int> rowid,
+    });
+
+class $$CharacterProposalsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $CharacterProposalsTable> {
+  $$CharacterProposalsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get change => $composableBuilder(
+    column: $table.change,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get reason => $composableBuilder(
+    column: $table.reason,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get reply => $composableBuilder(
+    column: $table.reply,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get decidedAt => $composableBuilder(
+    column: $table.decidedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$CharacterProposalsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $CharacterProposalsTable> {
+  $$CharacterProposalsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get change => $composableBuilder(
+    column: $table.change,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get reason => $composableBuilder(
+    column: $table.reason,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get reply => $composableBuilder(
+    column: $table.reply,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get decidedAt => $composableBuilder(
+    column: $table.decidedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CharacterProposalsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $CharacterProposalsTable> {
+  $$CharacterProposalsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get change =>
+      $composableBuilder(column: $table.change, builder: (column) => column);
+
+  GeneratedColumn<String> get reason =>
+      $composableBuilder(column: $table.reason, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get reply =>
+      $composableBuilder(column: $table.reply, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get decidedAt =>
+      $composableBuilder(column: $table.decidedAt, builder: (column) => column);
+}
+
+class $$CharacterProposalsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $CharacterProposalsTable,
+          CharacterProposalRow,
+          $$CharacterProposalsTableFilterComposer,
+          $$CharacterProposalsTableOrderingComposer,
+          $$CharacterProposalsTableAnnotationComposer,
+          $$CharacterProposalsTableCreateCompanionBuilder,
+          $$CharacterProposalsTableUpdateCompanionBuilder,
+          (
+            CharacterProposalRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CharacterProposalsTable,
+              CharacterProposalRow
+            >,
+          ),
+          CharacterProposalRow,
+          PrefetchHooks Function()
+        > {
+  $$CharacterProposalsTableTableManager(
+    _$TavernierDatabase db,
+    $CharacterProposalsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CharacterProposalsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CharacterProposalsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CharacterProposalsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> characterId = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String?> authorUserId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> change = const Value.absent(),
+                Value<String> reason = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> reply = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime?> decidedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CharacterProposalsCompanion(
+                id: id,
+                characterId: characterId,
+                tableId: tableId,
+                authorUserId: authorUserId,
+                kind: kind,
+                change: change,
+                reason: reason,
+                status: status,
+                reply: reply,
+                createdAt: createdAt,
+                decidedAt: decidedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String characterId,
+                required String tableId,
+                Value<String?> authorUserId = const Value.absent(),
+                required String kind,
+                required String change,
+                required String reason,
+                Value<String> status = const Value.absent(),
+                Value<String?> reply = const Value.absent(),
+                required DateTime createdAt,
+                Value<DateTime?> decidedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CharacterProposalsCompanion.insert(
+                id: id,
+                characterId: characterId,
+                tableId: tableId,
+                authorUserId: authorUserId,
+                kind: kind,
+                change: change,
+                reason: reason,
+                status: status,
+                reply: reply,
+                createdAt: createdAt,
+                decidedAt: decidedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CharacterProposalsTable, CharacterProposalRow>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CharacterProposalsTable,
+                    CharacterProposalRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$CharacterProposalsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $CharacterProposalsTable,
+      CharacterProposalRow,
+      $$CharacterProposalsTableFilterComposer,
+      $$CharacterProposalsTableOrderingComposer,
+      $$CharacterProposalsTableAnnotationComposer,
+      $$CharacterProposalsTableCreateCompanionBuilder,
+      $$CharacterProposalsTableUpdateCompanionBuilder,
+      (
+        CharacterProposalRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CharacterProposalsTable,
+          CharacterProposalRow
+        >,
+      ),
+      CharacterProposalRow,
+      PrefetchHooks Function()
+    >;
 typedef $$NpcStatblocksTableCreateCompanionBuilder =
     NpcStatblocksCompanion Function({
       required String id,
@@ -52582,6 +53586,8 @@ class $TavernierDatabaseManager {
       $$CharacterLanguagesTableTableManager(_db, _db.characterLanguages);
   $$CharacterChoicesTableTableManager get characterChoices =>
       $$CharacterChoicesTableTableManager(_db, _db.characterChoices);
+  $$CharacterProposalsTableTableManager get characterProposals =>
+      $$CharacterProposalsTableTableManager(_db, _db.characterProposals);
   $$NpcStatblocksTableTableManager get npcStatblocks =>
       $$NpcStatblocksTableTableManager(_db, _db.npcStatblocks);
   $$SessionsTableTableManager get sessions =>

@@ -312,6 +312,21 @@ class CharacterChangeLogs extends Table with IdKey, CharacterOwned {
   TextColumn get diff => text()(); // JSON
 }
 
+/// Proposition structurelle du MJ (US-34, EF-PJ-16).
+@DataClassName('CharacterProposalRow')
+class CharacterProposals extends Table with IdKey, CharacterOwned, TableOwned {
+  @override
+  String get tableName => 'character_proposal';
+  TextColumn get authorUserId => text().nullable()();
+  TextColumn get kind => text()();
+  TextColumn get change => text()(); // JSON
+  TextColumn get reason => text()();
+  TextColumn get status => text().withDefault(const Constant('pending'))();
+  TextColumn get reply => text().nullable()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get decidedAt => dateTime().nullable()();
+}
+
 @DataClassName('CharacterLanguageRow')
 class CharacterLanguages extends Table with IdKey, CharacterOwned {
   @override

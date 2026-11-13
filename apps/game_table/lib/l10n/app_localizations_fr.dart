@@ -2985,4 +2985,84 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get deleteAccountOffline =>
       'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.';
+
+  @override
+  String proposalTitle(String gm, String summary) {
+    return '$gm propose : $summary';
+  }
+
+  @override
+  String get proposalSomeone => 'Le MJ';
+
+  @override
+  String proposalReplaceFeat(String from, String to) {
+    return 'remplacer le don $from par $to';
+  }
+
+  @override
+  String get proposalChangeSheet => 'modifier la fiche';
+
+  @override
+  String proposalReason(String reason) {
+    return 'Motif : « $reason »';
+  }
+
+  @override
+  String get proposalValue => 'Valeur';
+
+  @override
+  String get proposalBefore => 'Avant';
+
+  @override
+  String get proposalAfter => 'Après';
+
+  @override
+  String get proposalFeatRow => 'Don';
+
+  @override
+  String get proposalSkillsRow => 'Maîtrises';
+
+  @override
+  String proposalSkillsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count compétences',
+      one: '1 compétence',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String proposalSkillsAdded(String skills) {
+    return '+ $skills';
+  }
+
+  @override
+  String proposalSkillsRemoved(String skills) {
+    return '− $skills';
+  }
+
+  @override
+  String get proposalRefuseMessage => 'Message si vous refusez';
+
+  @override
+  String get proposalRefuse => 'Refuser';
+
+  @override
+  String get proposalAccept => 'Accepter';
+
+  @override
+  String get proposalAcceptNote =>
+      'L’acceptation applique la modification et l’inscrit dans l’historique de la fiche.';
+
+  @override
+  String historyProposal(String summary) {
+    return 'Proposition acceptée : $summary';
+  }
+
+  @override
+  String historyProposalBy(String gm, String reason) {
+    return 'Proposée par $gm · Motif : « $reason »';
+  }
 }

@@ -198,6 +198,84 @@ void _tests(Future<TavernierDatabase> Function() open) {
     },
   );
 
+  group('propositions du MJ (US-34)', () {
+    late CharacterInput aldric;
+    setUp(() async {
+      aldric = CharacterInput.fromJson(aldricJson());
+      await store.save('a', aldric, tableId: 't');
+      await store.saveState('a', const PlayState(hpCurrent: 7));
+    });
+
+    Future<CharacterProposal> propose() async {
+      await store.propose(
+        characterId: 'a',
+        tableId: 't',
+        authorUserId: 'camille',
+        kind: 'feat',
+        change: {
+          'feats': [
+            for (final f in aldric.feats)
+              f.featId == 'srd:feat:alert'
+                  ? {...f.toJson(), 'feat_id': 'srd:feat:skilled'}
+                  : f.toJson(),
+          ],
+        },
+        reason: 'Ton passé à la garde des Marches.',
+      );
+      return (await store.watchPendingProposals('a').first).single;
+    }
+
+    test('en attente, relue', () async {
+      final proposal = await propose();
+      expect(proposal.authorUserId, 'camille');
+      expect(proposal.kind, 'feat');
+      expect(proposal.reason, 'Ton passé à la garde des Marches.');
+      expect(proposal.status, 'pending');
+    });
+
+    test('appliquée : seuls les champs proposés changent', () async {
+      final proposal = await propose();
+      final after = proposal.applyTo(aldric);
+      expect(after.feats.map((f) => f.featId), contains('srd:feat:skilled'));
+      expect(
+        after.feats.map((f) => f.featId),
+        isNot(contains('srd:feat:alert')),
+      );
+      expect(after.copyWith(feats: aldric.feats), aldric);
+    });
+
+    test('acceptée : fiche modifiée, état de jeu gardé, historique', () async {
+      final proposal = await propose();
+      await store.acceptProposal(proposal, playerUserId: 'hugo');
+      final saved = (await store.load('a'))!;
+      expect(saved.feats.map((f) => f.featId), contains('srd:feat:skilled'));
+      expect((await store.loadState('a')).hpCurrent, 7);
+      expect(await store.watchPendingProposals('a').first, isEmpty);
+      final [entry] = await store.history('a');
+      expect(entry.authorUserId, 'hugo');
+      expect(entry.detail, {
+        'kind': 'proposal',
+        'proposal_kind': 'feat',
+        'proposed_by': 'camille',
+        'reason': 'Ton passé à la garde des Marches.',
+        'removed': ['srd:feat:alert'],
+        'added': ['srd:feat:skilled'],
+      });
+    });
+
+    test('refusée : fiche inchangée, message gardé', () async {
+      final proposal = await propose();
+      await store.refuseProposal(proposal.id, 'Je garde Vigilant.');
+      expect(await store.load('a'), aldric);
+      expect(await store.watchPendingProposals('a').first, isEmpty);
+      final row = await db
+          .customSelect('SELECT status, reply FROM character_proposal')
+          .getSingle();
+      expect(row.read<String>('status'), 'refused');
+      expect(row.read<String>('reply'), 'Je garde Vigilant.');
+    });
+  });
+
   test('liste : du plus ancien au plus récent, par identifiant', () async {
     final aldric = CharacterInput.fromJson(aldricJson());
     final older = uuidV7(at: DateTime.utc(2026));
