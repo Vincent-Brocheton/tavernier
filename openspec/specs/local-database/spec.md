@@ -357,3 +357,28 @@ La base SHALL contrôler le fichier en entier avant toute écriture et refuser, 
 #### Scenario: Colonne inconnue
 - **WHEN** une ligne porte une colonne que la base ne connaît pas
 - **THEN** la colonne est ignorée et la ligne est importée
+
+### Requirement: Propositions stockées
+La base locale SHALL garder les propositions du MJ, avec leur modification : des champs de premier niveau de la fiche, au format JSON. Elle SHALL donner les propositions en attente d'une fiche, de la plus ancienne à la plus récente.
+
+#### Scenario: En attente
+- **WHEN** Camille propose une modification de la fiche d'Aldric
+- **THEN** la proposition figure dans les propositions en attente d'Aldric
+
+### Requirement: Réponse à une proposition
+Accepter SHALL appliquer les champs proposés à la fiche sans toucher à son état de jeu, inscrire une entrée « proposition » dans l'historique et clore la proposition. Refuser SHALL clore la proposition avec le message du joueur, sans toucher à la fiche.
+
+#### Scenario: Acceptée
+- **WHEN** Hugo accepte de remplacer Vigilant par Doué, à 7 PV
+- **THEN** la fiche a Doué, garde 7 PV, et son historique porte la proposition
+
+#### Scenario: Refusée
+- **WHEN** Hugo refuse
+- **THEN** la fiche est inchangée et la proposition n'est plus en attente
+
+### Requirement: Propositions d'une fiche pour son MJ
+La base locale SHALL donner toutes les propositions d'une fiche, de la plus récente à la plus ancienne, avec la réponse du joueur. L'accès à une fiche SHALL dire aussi à quelle table elle appartient.
+
+#### Scenario: Refus relu
+- **WHEN** Hugo a refusé avec un message
+- **THEN** la plus récente proposition de la fiche est refusée, avec ce message

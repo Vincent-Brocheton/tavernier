@@ -896,3 +896,70 @@ La fiche d'une table dont le MJ a supprimé son compte SHALL s'afficher en lectu
 #### Scenario: Table sans MJ
 - **WHEN** Hugo ouvre sa fiche de Brumeval, dont le MJ a supprimé son compte
 - **THEN** la fiche est en lecture seule
+
+### Requirement: Fiche en attente de validation, jouable
+La fiche envoyée au MJ ou à corriger SHALL rester modifiable par son propriétaire (EF-PJ-20). Pour lui, elle SHALL afficher en tête le bandeau « En attente de validation par <MJ> · utilisable en jeu », qui rappelle que les corrections ne font perdre ni PV ni emplacements. Une fiche à corriger SHALL montrer en plus le commentaire du MJ.
+
+#### Scenario: Fiche envoyée
+- **WHEN** Léo ouvre Kael, envoyée à Camille
+- **THEN** il lit « En attente de validation par Camille · utilisable en jeu », et peut toujours modifier ses PV
+
+#### Scenario: Fiche à corriger
+- **WHEN** Camille a demandé « Remplacer Sommeil »
+- **THEN** Léo lit « Corrections demandées » et « Remplacer Sommeil » sous le bandeau
+
+#### Scenario: Fiche validée
+- **WHEN** la fiche est validée
+- **THEN** aucun bandeau d'attente ne s'affiche
+
+#### Scenario: Fiche vue par le MJ
+- **WHEN** Camille ouvre la fiche envoyée de Kael
+- **THEN** le bandeau d'attente ne s'affiche pas
+
+### Requirement: Proposition du MJ reçue
+La fiche SHALL afficher à son propriétaire, en tête, la plus ancienne proposition du MJ en attente ([F4b], EF-PJ-16) : qui propose et quoi, le motif, l'aperçu avant et après des valeurs touchées, un champ « Message si vous refusez », « Refuser » et « Accepter ». Les autres utilisateurs, MJ compris, ne la voient pas sur la fiche.
+
+#### Scenario: Aperçu
+- **WHEN** Camille propose à Hugo de remplacer Vigilant par Doué
+- **THEN** Hugo lit « Camille propose : remplacer le don Vigilant par Doué », le motif, et l'Initiative et les maîtrises avant et après
+
+#### Scenario: Acceptée
+- **WHEN** Hugo accepte
+- **THEN** l'encadré disparaît et la fiche a Doué
+
+#### Scenario: Refusée
+- **WHEN** Hugo refuse avec un message
+- **THEN** l'encadré disparaît et la fiche est inchangée
+
+### Requirement: Proposition acceptée dans l'historique
+L'historique de la fiche SHALL montrer une proposition acceptée : « Proposition acceptée : remplacer le don Vigilant par Doué », puis qui l'a proposée et son motif.
+
+#### Scenario: Historique
+- **WHEN** Hugo ouvre l'historique après avoir accepté
+- **THEN** il lit « Proposée par Camille · Motif : « … » »
+
+### Requirement: Proposition du MJ envoyée
+Le MJ d'une table SHALL pouvoir, depuis la fiche d'un de ses joueurs, proposer de remplacer un don d'origine ou un style de combat ([F4a], EF-PJ-16). Les dons proposés SHALL être de la même catégorie, ni le don remplacé ni un don déjà pris, sauf s'il est répétable. Les choix du don proposé SHALL être faits avant l'envoi. L'écran SHALL montrer l'aperçu avant et après, et n'envoyer la proposition qu'avec un motif.
+
+#### Scenario: Bouton
+- **WHEN** Camille, MJ, ouvre la fiche d'Aldric, à Hugo
+- **THEN** elle voit « Proposer une modification » ; Hugo ne le voit pas sur sa propre fiche
+
+#### Scenario: Envoi
+- **WHEN** Camille propose Doué à la place de Vigilant, avec Histoire, Médecine et Dressage, et un motif
+- **THEN** la proposition part en attente pour Hugo, et l'aperçu montrait l'Initiative de +3 à +1
+
+#### Scenario: Motif vide
+- **WHEN** le motif est vide
+- **THEN** « Envoyer la proposition » est inactif
+
+### Requirement: Réponse lue par le MJ
+Sur la fiche de son joueur, le MJ SHALL voir que sa dernière proposition attend une réponse, ou que le joueur l'a refusée, avec son message.
+
+#### Scenario: En attente
+- **WHEN** Hugo n'a pas encore répondu
+- **THEN** Camille lit « Proposition envoyée à Hugo : en attente de sa réponse. »
+
+#### Scenario: Refusée
+- **WHEN** Hugo a refusé avec « Je garde Vigilant. »
+- **THEN** Camille lit « Hugo a refusé votre proposition » et son message
