@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dnd_data/dnd_data.dart';
+import 'package:drift/drift.dart' show driftRuntimeOptions;
 import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -57,6 +58,8 @@ Future<ProviderContainer> _container({
 String _ago(int days) => _now.subtract(Duration(days: days)).toIso8601String();
 
 void main() {
+  // L'import se vérifie entre deux bases ouvertes ensemble.
+  driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
   test('32 jours sans synchronisation ni export : rappel', () async {
     final container = await _container(
       prefs: {'last_export_at': _ago(40), 'first_launch_at': _ago(90)},
@@ -136,5 +139,35 @@ void main() {
     );
     expect(container.read(lastExportProvider), isNull);
     expect(container.read(backupReminderProvider), isNull);
+  });
+
+  test('import : l’export restauré sur un appareil vide', () async {
+    final saved = <(String, Uint8List)>[];
+    final source = await _container(saved: saved);
+    await source.read(dataBackupProvider).export();
+    final target = await _container(withCharacter: false);
+    final result = await target
+        .read(dataBackupProvider)
+        .import(saved.single.$2);
+    expect(result.added, 1);
+    expect(result.kept, 0);
+    final name = await target
+        .read(databaseProvider)
+        .customSelect('SELECT name FROM character')
+        .getSingle();
+    expect(name.read<String>('name'), 'Aldric');
+  });
+
+  test('import : fichier qui n’est pas un export, refusé', () async {
+    final container = await _container();
+    final backup = container.read(dataBackupProvider);
+    for (final bytes in [
+      utf8.encode('pas du JSON'),
+      utf8.encode('[1, 2]'),
+      utf8.encode('{"format": "autre"}'),
+      Uint8List.fromList([0xff, 0xfe]),
+    ]) {
+      await expectLater(backup.import(bytes), throwsFormatException);
+    }
   });
 }
