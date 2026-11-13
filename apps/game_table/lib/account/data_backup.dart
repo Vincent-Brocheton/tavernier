@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dnd_data/dnd_data.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../creation/creation_providers.dart';
@@ -20,6 +21,24 @@ final saveFileProvider =
     Provider<Future<bool> Function(String name, Uint8List bytes, String type)>(
       (ref) => platform.saveFile,
     );
+
+/// Choisit un fichier JSON et rend son contenu ; `null` si l'utilisateur a
+/// renoncé.
+final openFileProvider = Provider<Future<Uint8List?> Function()>(
+  (ref) => () async {
+    final file = await openFile(
+      acceptedTypeGroups: const [
+        XTypeGroup(
+          label: 'JSON',
+          extensions: ['json'],
+          mimeTypes: ['application/json'],
+          uniformTypeIdentifiers: ['public.json'],
+        ),
+      ],
+    );
+    return file?.readAsBytes();
+  },
+);
 
 /// Au-delà, l'accueil rappelle de sauvegarder (ENF-12).
 const backupReminderDays = 30;
@@ -132,5 +151,15 @@ class DataBackup {
     );
     // Partage refermé sans rien enregistrer : pas une sauvegarde.
     if (saved) _ref.read(lastExportProvider.notifier).record(now);
+  }
+
+  /// Importe un export : ajoute ce qui manque, garde ce qui est déjà là.
+  /// Lève une [FormatException] si le fichier n'est pas un export lisible.
+  Future<UserDataImport> import(Uint8List bytes) async {
+    final data = jsonDecode(utf8.decode(bytes));
+    if (data is! Map<String, Object?>) {
+      throw const FormatException('pas un export Tavernier');
+    }
+    return importUserData(_ref.read(databaseProvider), data);
   }
 }
