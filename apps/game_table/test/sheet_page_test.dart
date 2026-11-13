@@ -69,6 +69,7 @@ Future<void> _open(
   int level = 1,
   String? subclass,
   String? owner,
+  bool gmLessTable = false,
   List<CharacterHistoryEntry> conflicts = const [],
 }) async {
   tester.view.physicalSize = Size(width, 2000);
@@ -89,6 +90,16 @@ Future<void> _open(
     await database.customStatement(
       "UPDATE character SET owner_user_id = ? WHERE id = 'a'",
       [owner],
+    );
+  }
+  if (gmLessTable) {
+    await database.customStatement(
+      'INSERT INTO game_table (id, name, stat_method, long_rest_rule, '
+      "hp_on_level_rule, progression_mode) VALUES ('t', 'Brumeval', "
+      "'pointBuy', 'fullHitPoints', 'average', 'xp')",
+    );
+    await database.customStatement(
+      "UPDATE character SET table_id = 't' WHERE id = 'a'",
     );
   }
   await tester.pumpWidget(
@@ -155,6 +166,14 @@ void main() {
           .onPressed,
       isNull,
     );
+  });
+
+  testWidgets('table dont le MJ a supprimé son compte : lecture seule', (
+    tester,
+  ) async {
+    await _open(tester, 1440, gmLessTable: true);
+    expect(find.text('Monter au niveau 2'), findsNothing);
+    expect(find.text('Repos court'), findsNothing);
   });
 
   testWidgets('sa propre fiche : modifiable', (tester) async {

@@ -2922,4 +2922,67 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get backupExportNow => 'Exporter maintenant';
+
+  @override
+  String get deleteAccountTitle => 'Supprimer le compte';
+
+  @override
+  String get deleteAccountHint =>
+      'Un export de vos données vous sera proposé avant la suppression.';
+
+  @override
+  String deleteAccountGmTables(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Vous êtes MJ de $count tables.',
+      one: 'Vous êtes MJ de 1 table.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get deleteAccountAction => 'Supprimer mon compte…';
+
+  @override
+  String get deleteAccountBackupTitle => 'D’abord, gardez une copie';
+
+  @override
+  String get deleteAccountBackupBody =>
+      'Fiches, tables, packs et notes, dans un fichier JSON que vous pourrez réimporter.';
+
+  @override
+  String get deleteAccountWhatHappens => 'Ce qui va se passer';
+
+  @override
+  String get deleteAccountCharacters =>
+      'Vos personnages sont retirés des tables où ils jouent.';
+
+  @override
+  String get deleteAccountTables =>
+      'Les tables dont vous êtes MJ restent en place pour leurs joueurs, mais sans MJ.';
+
+  @override
+  String get deleteAccountPacks =>
+      'Les packs que vous avez publiés restent disponibles, attribués à « auteur supprimé ».';
+
+  @override
+  String get deleteAccountServers =>
+      'Le compte et ses données sont effacés des serveurs sous 30 jours.';
+
+  @override
+  String get deleteAccountConfirmLabel => 'Tapez SUPPRIMER pour confirmer';
+
+  @override
+  String get deleteAccountConfirmWord => 'SUPPRIMER';
+
+  @override
+  String get deleteAccountFinal => 'La suppression est définitive.';
+
+  @override
+  String get deleteAccountConfirm => 'Supprimer définitivement';
+
+  @override
+  String get deleteAccountOffline =>
+      'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.';
 }

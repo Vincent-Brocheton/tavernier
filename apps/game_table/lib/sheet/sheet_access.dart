@@ -16,7 +16,8 @@ final sheetEditableProvider = FutureProvider.autoDispose.family<bool, String>((
   final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
   final access = await ref.watch(characterStoreProvider).access(id);
   if (access == null) return true;
-  if (access.status == 'archived') return false;
+  // Fiche archivée, ou table dont le MJ a supprimé son compte : figée.
+  if (access.status == 'archived' || access.gmLess) return false;
   return access.ownerUserId == null ||
       access.ownerUserId == me ||
       (me != null && access.gmUserId == me);

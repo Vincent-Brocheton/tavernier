@@ -12,6 +12,7 @@ import 'account/age_page.dart';
 import 'account/auth_links.dart';
 import 'account/avatar.dart';
 import 'account/backup_widgets.dart';
+import 'account/delete_account_page.dart';
 import 'account/edit_account_page.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
@@ -91,6 +92,10 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       GoRoute(
         path: '/profil/compte',
         builder: (_, _) => const EditAccountPage(),
+      ),
+      GoRoute(
+        path: '/profil/supprimer',
+        builder: (_, _) => const DeleteAccountPage(),
       ),
       GoRoute(
         path: '/connexion/mot-de-passe-oublie',

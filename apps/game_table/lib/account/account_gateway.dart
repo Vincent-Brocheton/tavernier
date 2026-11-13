@@ -207,6 +207,10 @@ class AccountGateway {
     return ok;
   }
 
+  /// Supprime le compte au serveur (EF-CPT-04) : ses fiches, appartenances
+  /// et emplacements partent avec lui. Lève une exception sans réseau.
+  Future<void> deleteAccount() => _client.rpc<void>('delete_my_account');
+
   /// Vrai si le compte a un mot de passe (un compte Google n'en a pas).
   Future<bool> hasPassword() => _client.rpc<bool>('has_password');
 
