@@ -23,6 +23,27 @@ final sheetEditableProvider = FutureProvider.autoDispose.family<bool, String>((
       (me != null && access.gmUserId == me);
 });
 
+/// Fiche en attente de validation [J12] (EF-PJ-20), vue par son
+/// propriétaire : le MJ qui doit la valider et, pour une fiche à corriger,
+/// son commentaire ; `null` hors attente ou pour un autre utilisateur.
+final sheetPendingProvider = FutureProvider.autoDispose
+    .family<({String? gmUserId, String? comment})?, String>((ref, id) async {
+      final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
+      final access = await ref.watch(characterStoreProvider).access(id);
+      if (access == null ||
+          (access.ownerUserId != null && access.ownerUserId != me)) {
+        return null;
+      }
+      return switch (access.status) {
+        'submitted' => (gmUserId: access.gmUserId, comment: null),
+        'changes_requested' => (
+          gmUserId: access.gmUserId,
+          comment: access.reviewComment,
+        ),
+        _ => null,
+      };
+    });
+
 /// Transmet aux onglets de la fiche si elle se modifie.
 class SheetAccess extends InheritedWidget {
   const SheetAccess({super.key, required this.editable, required super.child});

@@ -160,7 +160,14 @@ final gmProposalViewProvider = FutureProvider.autoDispose
       final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
       final access = await ref.watch(characterStoreProvider).access(id);
       if (me == null || access == null) return null;
-      final (:tableId, :ownerUserId, :gmUserId, :status, gmLess: _) = access;
+      final (
+        :tableId,
+        :ownerUserId,
+        :gmUserId,
+        :status,
+        reviewComment: _,
+        gmLess: _,
+      ) = access;
       if (tableId == null ||
           ownerUserId == null ||
           gmUserId != me ||
