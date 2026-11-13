@@ -4232,5 +4232,18 @@
   "deleteAccountOffline": "Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.",
   "@deleteAccountOffline": {
     "description": "Suppression du compte [T15]."
+  },
+  "pendingValidationTitle": "En attente de validation par {gm} · utilisable en jeu",
+  "@pendingValidationTitle": {
+    "description": "Bandeau [J12] d'une fiche envoyée au MJ ou à corriger.",
+    "placeholders": {"gm": {"type": "String"}}
+  },
+  "pendingValidationGm": "le MJ",
+  "@pendingValidationGm": {
+    "description": "MJ dont le pseudonyme n'est pas connu, dans le bandeau [J12]."
+  },
+  "pendingValidationBody": "Les corrections demandées s’appliqueront après la séance, sans perdre vos PV ni vos emplacements utilisés.",
+  "@pendingValidationBody": {
+    "description": "Texte du bandeau [J12]."
   }
 }

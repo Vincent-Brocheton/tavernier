@@ -305,6 +305,10 @@ void main() {
           [filled] = await store.watchSlots(id).first;
           expect(filled.status, 'changes_requested');
           expect(filled.reviewComment, 'Remplace la botte.');
+          expect(
+            (await characters.access('c1'))!.reviewComment,
+            'Remplace la botte.',
+          );
 
           await characters.submit('c1', null);
           await characters.review('c1', validated: true, comment: null);

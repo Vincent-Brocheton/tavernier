@@ -2985,4 +2985,16 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get deleteAccountOffline =>
       'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.';
+
+  @override
+  String pendingValidationTitle(String gm) {
+    return 'En attente de validation par $gm · utilisable en jeu';
+  }
+
+  @override
+  String get pendingValidationGm => 'le MJ';
+
+  @override
+  String get pendingValidationBody =>
+      'Les corrections demandées s’appliqueront après la séance, sans perdre vos PV ni vos emplacements utilisés.';
 }

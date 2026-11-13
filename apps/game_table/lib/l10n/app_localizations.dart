@@ -4919,6 +4919,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.'**
   String get deleteAccountOffline;
+
+  /// Bandeau [J12] d'une fiche envoyée au MJ ou à corriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de validation par {gm} · utilisable en jeu'**
+  String pendingValidationTitle(String gm);
+
+  /// MJ dont le pseudonyme n'est pas connu, dans le bandeau [J12].
+  ///
+  /// In fr, this message translates to:
+  /// **'le MJ'**
+  String get pendingValidationGm;
+
+  /// Texte du bandeau [J12].
+  ///
+  /// In fr, this message translates to:
+  /// **'Les corrections demandées s’appliqueront après la séance, sans perdre vos PV ni vos emplacements utilisés.'**
+  String get pendingValidationBody;
 }
 
 class _AppLocalizationsDelegate

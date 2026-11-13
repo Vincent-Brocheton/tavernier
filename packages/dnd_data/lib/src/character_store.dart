@@ -460,13 +460,21 @@ final class CharacterStore {
           ?.read<String>('pseudonym');
 
   /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
-  /// statut, et si sa table connue n'a plus de MJ (compte supprimé) ;
-  /// `null` si elle n'existe pas.
-  Future<({String? ownerUserId, String? gmUserId, String status, bool gmLess})?>
+  /// statut et le commentaire de revue du MJ, et si sa table connue n'a plus
+  /// de MJ (compte supprimé) ; `null` si elle n'existe pas.
+  Future<
+    ({
+      String? ownerUserId,
+      String? gmUserId,
+      String status,
+      String? reviewComment,
+      bool gmLess,
+    })?
+  >
   access(String id) async {
     final row = await _db
         .customSelect(
-          'SELECT c.owner_user_id, c.status, g.gm_user_id, '
+          'SELECT c.owner_user_id, c.status, c.review_comment, g.gm_user_id, '
           '(g.id IS NOT NULL AND g.gm_user_id IS NULL) AS gm_less '
           'FROM character c '
           'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
@@ -479,6 +487,7 @@ final class CharacterStore {
             ownerUserId: row.readNullable<String>('owner_user_id'),
             gmUserId: row.readNullable<String>('gm_user_id'),
             status: row.read<String>('status'),
+            reviewComment: row.readNullable<String>('review_comment'),
             gmLess: row.read<bool>('gm_less'),
           );
   }
