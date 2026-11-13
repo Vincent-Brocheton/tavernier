@@ -324,3 +324,36 @@ Les modifications de la fiche et de son état de jeu SHALL partir avec les valeu
 #### Scenario: PV modifiés
 - **WHEN** l'appareil passe les PV de 29 à 39
 - **THEN** l'envoi porte 39 et la valeur remplacée 29
+
+### Requirement: Export des données de l'utilisateur
+La base SHALL produire un export JSON de toutes les données de l'utilisateur qu'elle contient : profil, tables et leurs membres, emplacements, personnages avec tout leur détail et leur historique, PNJ, séances, rencontres et notes (ENF-10, ENF-12). L'export SHALL porter un format et une version, et la liste des packs de contenu installés sans leur contenu. Le contenu de règles SHALL en être exclu.
+
+#### Scenario: Personnage exporté
+- **WHEN** l'utilisateur a enregistré Aldric et exporte ses données
+- **THEN** l'export contient la ligne d'Aldric dans `character`, ses niveaux de classe et ses objets, avec les valeurs enregistrées
+
+#### Scenario: Contenu de règles exclu
+- **WHEN** le pack SRD est installé
+- **THEN** l'export cite le pack SRD et sa version, mais ne contient aucun sort, aucune classe ni aucun monstre
+
+### Requirement: Import des données de l'utilisateur
+La base SHALL importer un export `tavernier-export` en ajoutant les lignes absentes, table par table, et SHALL garder telle quelle toute ligne déjà présente avec le même identifiant (ENF-12). L'import SHALL rendre le nombre de lignes ajoutées et de lignes déjà présentes.
+
+#### Scenario: Restauration sur une base vide
+- **WHEN** l'export contenant Aldric est importé dans une base vide
+- **THEN** Aldric, ses niveaux de classe et ses objets s'y retrouvent avec les mêmes valeurs
+
+#### Scenario: Ligne déjà présente gardée
+- **WHEN** Aldric a été renommé sur l'appareil après l'export, puis l'export est importé
+- **THEN** Aldric garde son nouveau nom, et sa ligne compte parmi les lignes déjà présentes
+
+### Requirement: Contrôle du fichier importé
+La base SHALL contrôler le fichier en entier avant toute écriture et refuser, sans rien écrire, un fichier d'un autre format, d'une version plus récente ou aux lignes mal formées. Les tables et les colonnes inconnues SHALL être ignorées.
+
+#### Scenario: Fichier refusé
+- **WHEN** le fichier n'est pas un `tavernier-export`, vient d'une version plus récente ou contient une ligne sans identifiant
+- **THEN** l'import est refusé et la base n'a pas changé
+
+#### Scenario: Colonne inconnue
+- **WHEN** une ligne porte une colonne que la base ne connaît pas
+- **THEN** la colonne est ignorée et la ligne est importée

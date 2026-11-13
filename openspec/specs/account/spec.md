@@ -196,3 +196,40 @@ L'utilisateur SHALL pouvoir choisir une image comme avatar, y compris hors ligne
 #### Scenario: Fichier illisible
 - **WHEN** le fichier choisi n'est pas une image lisible
 - **THEN** un message le dit et l'avatar ne change pas
+
+### Requirement: Mes données
+Le profil SHALL proposer « Exporter mes données », qui enregistre l'export JSON dans un fichier (téléchargement sur le Web, feuille de partage sur téléphone), et SHALL afficher la date du dernier export fait sur l'appareil (ENF-10, ENF-12).
+
+#### Scenario: Export depuis le profil
+- **WHEN** l'utilisateur touche « Exporter mes données »
+- **THEN** un fichier `tavernier-export-<date>.json` est proposé, et la date du dernier export s'affiche
+
+### Requirement: Rappel de sauvegarde
+L'accueil SHALL afficher « Aucune sauvegarde depuis N jours » lorsque, sur cet appareil, il n'y a eu ni synchronisation ni export depuis 30 jours et qu'il existe au moins un personnage ou une table (ENF-12, [G6]). « Plus tard » SHALL masquer le bandeau jusqu'au prochain lancement ; « Exporter maintenant » SHALL lancer l'export.
+
+#### Scenario: 32 jours sans sauvegarde
+- **WHEN** la dernière synchronisation et le dernier export datent de 32 jours et qu'un personnage existe
+- **THEN** l'accueil affiche « Aucune sauvegarde depuis 32 jours »
+
+#### Scenario: Synchronisé récemment
+- **WHEN** la dernière synchronisation date d'hier
+- **THEN** aucun rappel ne s'affiche
+
+#### Scenario: Rien à sauvegarder
+- **WHEN** l'appareil n'a ni personnage ni table
+- **THEN** aucun rappel ne s'affiche
+
+### Requirement: Importer une sauvegarde
+« Mes données » SHALL proposer « Importer une sauvegarde » (ENF-12). Après le choix d'un fichier, une confirmation SHALL dire que les éléments absents de l'appareil seront ajoutés et que ceux déjà présents seront gardés. Une fois l'import fait, l'app SHALL afficher le nombre d'éléments ajoutés et déjà présents. Un fichier refusé SHALL être signalé, sans rien changer.
+
+#### Scenario: Import confirmé
+- **WHEN** l'utilisateur choisit un export puis confirme
+- **THEN** les éléments manquants sont ajoutés et l'app affiche combien l'ont été
+
+#### Scenario: Import annulé
+- **WHEN** l'utilisateur ferme le choix du fichier ou annule la confirmation
+- **THEN** rien n'est importé
+
+#### Scenario: Fichier refusé
+- **WHEN** le fichier choisi n'est pas un export de Tavernier
+- **THEN** un message le dit et rien n'est importé
