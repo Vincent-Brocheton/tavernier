@@ -4721,6 +4721,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'aucune'**
   String get valueNone;
+
+  /// Section du profil [A7] (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes données'**
+  String get myDataSection;
+
+  /// Mes données [A7], [T15] (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiches, tables et notes, dans un fichier JSON que vous pourrez réimporter.'**
+  String get exportDataHint;
+
+  /// Mes données [A7], [T15] (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Exporter mes données'**
+  String get exportDataAction;
+
+  /// Mes données (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun export sur cet appareil.'**
+  String get exportNever;
+
+  /// Mes données (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dernier export : {date}.'**
+  String exportLast(String date);
+
+  /// Mes données (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’export a échoué. Réessayez.'**
+  String get exportFailed;
+
+  /// Bandeau [G6] (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune sauvegarde depuis {days} jours'**
+  String backupReminderTitle(int days);
+
+  /// Bandeau [G6] (US-17, ENF-12).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ni synchronisation ni export sur cet appareil. Exportez vos données pour ne rien perdre.'**
+  String get backupReminderBody;
+
+  /// Bandeau [G6] (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus tard'**
+  String get backupLater;
+
+  /// Bandeau [G6] (US-17).
+  ///
+  /// In fr, this message translates to:
+  /// **'Exporter maintenant'**
+  String get backupExportNow;
 }
 
 class _AppLocalizationsDelegate

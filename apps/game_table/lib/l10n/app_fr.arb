@@ -4083,5 +4083,55 @@
   "valueNone": "aucune",
   "@valueNone": {
     "description": "Conflits de synchronisation (US-16, ENF-03, EF-PJ-13, écrans P16 et N2)."
+  },
+  "myDataSection": "Mes données",
+  "@myDataSection": {
+    "description": "Section du profil [A7] (US-17)."
+  },
+  "exportDataHint": "Fiches, tables et notes, dans un fichier JSON que vous pourrez réimporter.",
+  "@exportDataHint": {
+    "description": "Mes données [A7], [T15] (US-17)."
+  },
+  "exportDataAction": "Exporter mes données",
+  "@exportDataAction": {
+    "description": "Mes données [A7], [T15] (US-17)."
+  },
+  "exportNever": "Aucun export sur cet appareil.",
+  "@exportNever": {
+    "description": "Mes données (US-17)."
+  },
+  "exportLast": "Dernier export : {date}.",
+  "@exportLast": {
+    "description": "Mes données (US-17).",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "exportFailed": "L’export a échoué. Réessayez.",
+  "@exportFailed": {
+    "description": "Mes données (US-17)."
+  },
+  "backupReminderTitle": "Aucune sauvegarde depuis {days} jours",
+  "@backupReminderTitle": {
+    "description": "Bandeau [G6] (US-17, ENF-12).",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "backupReminderBody": "Ni synchronisation ni export sur cet appareil. Exportez vos données pour ne rien perdre.",
+  "@backupReminderBody": {
+    "description": "Bandeau [G6] (US-17, ENF-12)."
+  },
+  "backupLater": "Plus tard",
+  "@backupLater": {
+    "description": "Bandeau [G6] (US-17)."
+  },
+  "backupExportNow": "Exporter maintenant",
+  "@backupExportNow": {
+    "description": "Bandeau [G6] (US-17)."
   }
 }
