@@ -889,3 +889,10 @@ Quand une valeur du joueur a été remplacée à la synchronisation, sa fiche SH
 #### Scenario: Historique
 - **WHEN** le joueur ouvre l'historique
 - **THEN** il lit « Conflit résolu : PV », 39 barré, puis 34
+
+### Requirement: Fiche d'une table sans MJ
+La fiche d'une table dont le MJ a supprimé son compte SHALL s'afficher en lecture seule, y compris pour son propriétaire (EF-CPT-04, décision du 25 octobre 2026). Une fiche dont la table n'est pas encore connue de l'appareil SHALL garder ses droits habituels.
+
+#### Scenario: Table sans MJ
+- **WHEN** Hugo ouvre sa fiche de Brumeval, dont le MJ a supprimé son compte
+- **THEN** la fiche est en lecture seule
