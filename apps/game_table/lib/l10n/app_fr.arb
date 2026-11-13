@@ -4133,5 +4133,72 @@
   "backupExportNow": "Exporter maintenant",
   "@backupExportNow": {
     "description": "Bandeau [G6] (US-17)."
+  },
+  "deleteAccountTitle": "Supprimer le compte",
+  "@deleteAccountTitle": {
+    "description": "Suppression du compte [T15], [A7] (US-17, EF-CPT-04)."
+  },
+  "deleteAccountHint": "Un export de vos données vous sera proposé avant la suppression.",
+  "@deleteAccountHint": {
+    "description": "Profil [A7] (US-17, EF-CPT-04)."
+  },
+  "deleteAccountGmTables": "{count, plural, =1{Vous êtes MJ de 1 table.} other{Vous êtes MJ de {count} tables.}}",
+  "@deleteAccountGmTables": {
+    "description": "Profil [A7] (US-17, EF-CPT-04).",
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "deleteAccountAction": "Supprimer mon compte…",
+  "@deleteAccountAction": {
+    "description": "Profil [T14], [A7] (US-17, EF-CPT-04)."
+  },
+  "deleteAccountBackupTitle": "D’abord, gardez une copie",
+  "@deleteAccountBackupTitle": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountBackupBody": "Fiches, tables, packs et notes, dans un fichier JSON que vous pourrez réimporter.",
+  "@deleteAccountBackupBody": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountWhatHappens": "Ce qui va se passer",
+  "@deleteAccountWhatHappens": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountCharacters": "Vos personnages sont retirés des tables où ils jouent.",
+  "@deleteAccountCharacters": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountTables": "Les tables dont vous êtes MJ restent en place pour leurs joueurs, mais sans MJ.",
+  "@deleteAccountTables": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountPacks": "Les packs que vous avez publiés restent disponibles, attribués à « auteur supprimé ».",
+  "@deleteAccountPacks": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountServers": "Le compte et ses données sont effacés des serveurs sous 30 jours.",
+  "@deleteAccountServers": {
+    "description": "Suppression du compte [T15], ENF-10."
+  },
+  "deleteAccountConfirmLabel": "Tapez SUPPRIMER pour confirmer",
+  "@deleteAccountConfirmLabel": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountConfirmWord": "SUPPRIMER",
+  "@deleteAccountConfirmWord": {
+    "description": "Mot à taper pour confirmer la suppression [T15]."
+  },
+  "deleteAccountFinal": "La suppression est définitive.",
+  "@deleteAccountFinal": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountConfirm": "Supprimer définitivement",
+  "@deleteAccountConfirm": {
+    "description": "Suppression du compte [T15]."
+  },
+  "deleteAccountOffline": "Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.",
+  "@deleteAccountOffline": {
+    "description": "Suppression du compte [T15]."
   }
 }

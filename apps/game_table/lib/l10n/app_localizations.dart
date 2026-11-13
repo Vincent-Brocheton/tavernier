@@ -4781,6 +4781,102 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Exporter maintenant'**
   String get backupExportNow;
+
+  /// Suppression du compte [T15], [A7] (US-17, EF-CPT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le compte'**
+  String get deleteAccountTitle;
+
+  /// Profil [A7] (US-17, EF-CPT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un export de vos données vous sera proposé avant la suppression.'**
+  String get deleteAccountHint;
+
+  /// Profil [A7] (US-17, EF-CPT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Vous êtes MJ de 1 table.} other{Vous êtes MJ de {count} tables.}}'**
+  String deleteAccountGmTables(int count);
+
+  /// Profil [T14], [A7] (US-17, EF-CPT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer mon compte…'**
+  String get deleteAccountAction;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'D’abord, gardez une copie'**
+  String get deleteAccountBackupTitle;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiches, tables, packs et notes, dans un fichier JSON que vous pourrez réimporter.'**
+  String get deleteAccountBackupBody;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qui va se passer'**
+  String get deleteAccountWhatHappens;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos personnages sont retirés des tables où ils jouent.'**
+  String get deleteAccountCharacters;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Les tables dont vous êtes MJ restent en place pour leurs joueurs, mais sans MJ.'**
+  String get deleteAccountTables;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Les packs que vous avez publiés restent disponibles, attribués à « auteur supprimé ».'**
+  String get deleteAccountPacks;
+
+  /// Suppression du compte [T15], ENF-10.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le compte et ses données sont effacés des serveurs sous 30 jours.'**
+  String get deleteAccountServers;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Tapez SUPPRIMER pour confirmer'**
+  String get deleteAccountConfirmLabel;
+
+  /// Mot à taper pour confirmer la suppression [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'SUPPRIMER'**
+  String get deleteAccountConfirmWord;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'La suppression est définitive.'**
+  String get deleteAccountFinal;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer définitivement'**
+  String get deleteAccountConfirm;
+
+  /// Suppression du compte [T15].
+  ///
+  /// In fr, this message translates to:
+  /// **'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.'**
+  String get deleteAccountOffline;
 }
 
 class _AppLocalizationsDelegate

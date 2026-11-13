@@ -6,6 +6,7 @@ import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
+import 'package:game_table/account/delete_account_page.dart';
 import 'package:game_table/account/profile_page.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
@@ -38,9 +39,11 @@ Future<void> _pumpProfile(
   WidgetTester tester, {
   required SharedPreferences prefs,
   FakeSession? session,
+  int gmTables = 0,
+  bool signedIn = true,
 }) async {
   // Tout le profil construit, « Se déconnecter » compris.
-  tester.view.physicalSize = const Size(390, 1600);
+  tester.view.physicalSize = const Size(390, 2000);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   final router = GoRouter(
@@ -48,6 +51,10 @@ Future<void> _pumpProfile(
     routes: [
       GoRoute(path: '/', builder: (_, _) => const Text('accueil')),
       GoRoute(path: '/profil', builder: (_, _) => const ProfilePage()),
+      GoRoute(
+        path: '/profil/supprimer',
+        builder: (_, _) => const DeleteAccountPage(),
+      ),
     ],
   );
   addTearDown(router.dispose);
@@ -55,8 +62,11 @@ Future<void> _pumpProfile(
     ProviderScope(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
-        currentUserProvider.overrideWith((ref) => Stream.value(_user)),
+        currentUserProvider.overrideWith(
+          (ref) => Stream.value(signedIn ? _user : null),
+        ),
         pseudonymProvider.overrideWith((ref) async => 'Hugo'),
+        gmTableCountProvider.overrideWith((ref) async => gmTables),
         if (session != null) sessionActionsProvider.overrideWithValue(session),
       ],
       child: MaterialApp.router(
@@ -117,6 +127,22 @@ void main() {
   });
 
   group('profil et réglages [T5]', () {
+    testWidgets('supprimer le compte [A7] : tables de MJ, puis [T15]', (
+      tester,
+    ) async {
+      await _pumpProfile(tester, prefs: await _prefs({}), gmTables: 1);
+      expect(find.textContaining('Vous êtes MJ de 1 table.'), findsOneWidget);
+      await tester.ensureVisible(find.text('Supprimer mon compte…'));
+      await tester.tap(find.text('Supprimer mon compte…'));
+      await tester.pumpAndSettle();
+      expect(find.byType(DeleteAccountPage), findsOneWidget);
+    });
+
+    testWidgets('sans compte : pas de suppression proposée', (tester) async {
+      await _pumpProfile(tester, prefs: await _prefs({}), signedIn: false);
+      expect(find.text('Supprimer mon compte…'), findsNothing);
+    });
+
     testWidgets('en-tête : pseudonyme et e-mail', (tester) async {
       await _pumpProfile(tester, prefs: await _prefs({}));
       expect(find.text('Hugo'), findsOneWidget);

@@ -199,6 +199,14 @@ class SessionActions {
     params: {'target': id},
   );
 
+  /// Supprime le compte au serveur, puis efface les données synchronisées de
+  /// l'appareil et ferme la session. Si le serveur ne répond pas, rien n'est
+  /// effacé et l'exception remonte.
+  Future<void> deleteAccount() async {
+    await _ref.read(accountGatewayProvider)!.deleteAccount();
+    await signOut();
+  }
+
   /// Arrête la synchronisation, efface les données synchronisées de
   /// l'appareil (le compte suivant n'en voit rien), puis ferme la session.
   /// Le contenu de règles reste.

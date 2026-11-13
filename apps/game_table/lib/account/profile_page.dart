@@ -1,8 +1,10 @@
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
+import 'package:drift/drift.dart' show Variable;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../creation/creation_providers.dart';
 import '../l10n/app_localizations.dart';
 import '../settings/device_settings.dart';
 import 'account_providers.dart';
@@ -101,6 +103,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ],
               SizedBox(height: AppSpacing.md),
               const _DataSection(),
+              if (user != null) ...[
+                SizedBox(height: AppSpacing.md),
+                const _DeleteAccountSection(),
+              ],
               SizedBox(height: AppSpacing.lg),
               ?signOut,
             ],
@@ -180,7 +186,15 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               _Section.display => const _DisplaySection(),
                               _Section.privacy => const _PrivacySection(),
                               _Section.devices => const _DevicesSection(),
-                              _Section.data => const _DataSection(),
+                              _Section.data => Column(
+                                children: [
+                                  const _DataSection(),
+                                  if (user != null) ...[
+                                    SizedBox(height: AppSpacing.md),
+                                    const _DeleteAccountSection(),
+                                  ],
+                                ],
+                              ),
                             },
                           ],
                         ),
@@ -269,6 +283,53 @@ class _DataSection extends StatelessWidget {
     title: AppLocalizations.of(context).myDataSection,
     children: const [MyDataSection()],
   );
+}
+
+/// Tables dont le compte connecté est MJ, lues à l'ouverture du profil.
+final gmTableCountProvider = FutureProvider.autoDispose<int>((ref) async {
+  final me = ref.watch(currentUserProvider).value?.id;
+  if (me == null) return 0;
+  final row = await ref
+      .watch(databaseProvider)
+      .customSelect(
+        'SELECT COUNT(*) AS n FROM game_table WHERE gm_user_id = ?',
+        variables: [Variable.withString(me)],
+      )
+      .getSingle();
+  return row.read<int>('n');
+});
+
+/// Supprimer le compte [A7], [T14] : ouvre [T15] (EF-CPT-04).
+class _DeleteAccountSection extends ConsumerWidget {
+  const _DeleteAccountSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final gmTables = ref.watch(gmTableCountProvider).value ?? 0;
+    return _SectionCard(
+      title: l10n.deleteAccountTitle,
+      children: [
+        Text(
+          [
+            if (gmTables > 0) l10n.deleteAccountGmTables(gmTables),
+            l10n.deleteAccountHint,
+          ].join(' '),
+        ),
+        SizedBox(height: AppSpacing.sm),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.error,
+            ),
+            onPressed: () => context.push('/profil/supprimer'),
+            child: Text(l10n.deleteAccountAction),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 /// Langue, taille du texte, thème (EF-CPT-03).

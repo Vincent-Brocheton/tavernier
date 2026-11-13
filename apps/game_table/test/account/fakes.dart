@@ -91,6 +91,15 @@ final class FakeGateway implements AccountGateway {
   @override
   Future<bool> hasPassword() async => hasPasswordValue;
 
+  /// Faux : le serveur ne répond pas à la suppression.
+  bool deleteFails = false;
+
+  @override
+  Future<void> deleteAccount() async {
+    if (deleteFails) throw Exception('hors ligne');
+    calls.add('delete');
+  }
+
   @override
   UserIdentity? get googleIdentity => !google
       ? null
@@ -207,6 +216,17 @@ final class FakeSession implements SessionActions {
 
   @override
   Future<int> pendingUploads() async => pending;
+
+  /// Faux : le serveur ne répond pas à la suppression.
+  var deleteFails = false;
+  var deleted = false;
+
+  @override
+  Future<void> deleteAccount() async {
+    if (deleteFails) throw Exception('hors ligne');
+    deleted = true;
+    signedOut = true;
+  }
 
   @override
   Future<void> signOut() async => signedOut = true;
