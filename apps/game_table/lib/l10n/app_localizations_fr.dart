@@ -3077,4 +3077,66 @@ class AppLocalizationsFr extends AppLocalizations {
   String historyProposalBy(String gm, String reason) {
     return 'Proposée par $gm · Motif : « $reason »';
   }
+
+  @override
+  String get proposalAction => 'Proposer une modification';
+
+  @override
+  String proposalPageTitle(String player) {
+    return 'Proposer une modification à $player';
+  }
+
+  @override
+  String get proposalPlayer => 'le joueur';
+
+  @override
+  String proposalPageIntro(String name) {
+    return '$name · hors combat, une modification structurelle passe par l’accord du joueur.';
+  }
+
+  @override
+  String get proposalNoFeat =>
+      'Cette fiche n’a pas de don d’origine ni de style de combat à remplacer.';
+
+  @override
+  String get proposalTypeFeat => 'Type : don';
+
+  @override
+  String get proposalReplace => 'Remplacer';
+
+  @override
+  String get proposalBy => 'Par';
+
+  @override
+  String get proposalEligibleHint =>
+      'Seuls les dons éligibles sont proposés : même catégorie, pas déjà pris.';
+
+  @override
+  String proposalChoose(int count, int picked) {
+    return 'Choisir $count ($picked/$count)';
+  }
+
+  @override
+  String get proposalReasonLabel => 'Motif (obligatoire, visible du joueur)';
+
+  @override
+  String get proposalSend => 'Envoyer la proposition';
+
+  @override
+  String proposalSent(String player) {
+    return 'Proposition envoyée à $player.';
+  }
+
+  @override
+  String proposalPending(String player) {
+    return 'Proposition envoyée à $player : en attente de sa réponse.';
+  }
+
+  @override
+  String proposalRefused(String player) {
+    return '$player a refusé votre proposition';
+  }
+
+  @override
+  String get proposalRefusedNoReply => 'Sans message.';
 }

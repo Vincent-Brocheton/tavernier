@@ -263,6 +263,10 @@ void main() {
         status: 'submitted',
       );
       expect(find.text(waiting), findsNothing);
+      // La vue du MJ observe ses propositions : drift ferme la requête par
+      // un minuteur, qui doit partir avant la vérification finale.
+      await tester.pumpWidget(const SizedBox());
+      await tester.pump(Duration.zero);
     });
   });
 

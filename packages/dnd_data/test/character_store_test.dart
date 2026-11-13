@@ -274,6 +274,15 @@ void _tests(Future<TavernierDatabase> Function() open) {
       expect(row.read<String>('status'), 'refused');
       expect(row.read<String>('reply'), 'Je garde Vigilant.');
     });
+
+    test('vues du MJ : la plus récente d’abord, avec la réponse', () async {
+      final proposal = await propose();
+      await store.refuseProposal(proposal.id, 'Je garde Vigilant.');
+      final [latest] = await store.watchProposals('a').first;
+      expect(latest.status, 'refused');
+      expect(latest.reply, 'Je garde Vigilant.');
+      expect((await store.access('a'))!.tableId, 't');
+    });
   });
 
   test('liste : du plus ancien au plus récent, par identifiant', () async {
