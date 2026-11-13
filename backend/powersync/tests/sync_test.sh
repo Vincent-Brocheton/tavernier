@@ -58,6 +58,9 @@ insert into character_summary (id, table_id, owner_user_id, name, species_id,
   'wounded');
 insert into character_item (id, character_id, item_id, quantity, equipped,
   attuned, position) values ('o1', 'c1', 'srd:item:rope', 1, false, false, 0);
+insert into character_proposal (id, character_id, table_id, author_user_id,
+  kind, change, reason) values ('x1', 'c1', 't1', '${id[mj]}', 'feat', '{}',
+  'Motif');
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -96,12 +99,14 @@ profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
 table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
   table_activity/a1 pc_slot/e1 character_summary/c1)
 c1=(character/c1 character_state/s1 character_item/o1)
+# La proposition faite à joueur1 : à lui et au MJ seulement.
+proposal=(character_proposal/x1)
 c2=(character/c2 character_state/s2)
 
 expect mj "le MJ reçoit sa table, ses invitations et toutes les fiches" \
-  "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}"
+  "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}"
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
-  "${profiles[@]}" "${table[@]}" "${c1[@]}"
+  "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}"
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \
   "${profiles[@]}" "${table[@]}" "${c2[@]}"
 expect inconnu "un inconnu ne reçoit que son profil" "profile/${id[inconnu]}"

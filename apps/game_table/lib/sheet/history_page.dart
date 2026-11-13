@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../creation/creation_providers.dart';
+import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../tables/table_labels.dart';
 import 'conflicts.dart';
@@ -27,6 +28,7 @@ final _historyProvider = FutureProvider.autoDispose
         for (final e in entries) ...[
           if (e.detail['kept_by'] case final String id) id,
           if (e.detail['replaced_by'] case final String id) id,
+          if (e.detail['proposed_by'] case final String id) id,
         ],
       }) {
         if (await store.pseudonymOf(author) case final pseudonym?) {
@@ -43,8 +45,23 @@ class HistoryPage extends ConsumerWidget {
 
   final String id;
 
-  String _title(AppLocalizations l10n, Map<String, Object?> detail) {
+  String _title(
+    AppLocalizations l10n,
+    ActiveContent? content,
+    Map<String, Object?> detail,
+  ) {
     final sheet = '${detail['sheet']}';
+    if (detail['kind'] == 'proposal') {
+      String names(Object? ids) => content == null
+          ? '${(ids as List?)?.join(', ')}'
+          : namesOf(content, [...?(ids as List?)?.map((e) => '$e')]);
+      return l10n.historyProposal(
+        l10n.proposalReplaceFeat(
+          names(detail['removed']),
+          names(detail['added']),
+        ),
+      );
+    }
     if (detail['kind'] == 'conflict') {
       return l10n.historyConflict(l10n.conflictField(detail['field']));
     }
@@ -72,6 +89,7 @@ class HistoryPage extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final material = MaterialLocalizations.of(context);
     final history = ref.watch(_historyProvider(id)).value;
+    final content = ref.watch(contentProvider).value;
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -96,7 +114,7 @@ class HistoryPage extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              _title(l10n, entry.detail),
+                              _title(l10n, content, entry.detail),
                               style: text.titleMedium,
                             ),
                             Text(
@@ -108,6 +126,16 @@ class HistoryPage extends ConsumerWidget {
                               ),
                               style: text.bodySmall,
                             ),
+                            if (entry.detail['kind'] == 'proposal')
+                              Text(
+                                l10n.historyProposalBy(
+                                  history.authors[entry
+                                          .detail['proposed_by']] ??
+                                      l10n.roleGm,
+                                  '${entry.detail['reason']}',
+                                ),
+                                style: text.bodyMedium,
+                              ),
                             if (entry.detail['kind'] == 'conflict') ...[
                               SizedBox(height: AppSpacing.xs),
                               // EF-PJ-13 : la valeur écrasée reste visible,

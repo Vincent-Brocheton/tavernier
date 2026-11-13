@@ -30,6 +30,7 @@ const syncedTables = {
   'character_change_log',
   'character_language',
   'character_choice',
+  'character_proposal',
 };
 
 /// Schéma PowerSync des [syncedTables], dérivé des tables Drift : une

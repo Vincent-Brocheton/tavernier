@@ -14,6 +14,7 @@ import 'conflicts.dart';
 import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
+import 'proposal_banner.dart';
 import 'rest_sheet.dart';
 import 'sheet_access.dart';
 import 'sheet_breakdowns.dart';
@@ -116,6 +117,7 @@ class _Sheet extends StatelessWidget {
         children: [
           _ConflictBanner(id: id),
           _PendingBanner(id: id),
+          ProposalBanner(id: id, content: content, character: character),
           Padding(
             padding: EdgeInsets.all(AppSpacing.sm),
             child: Row(

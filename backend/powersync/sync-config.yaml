@@ -49,3 +49,11 @@ streams:
       - SELECT * FROM character_change_log WHERE character_id IN fiches_lues
       - SELECT * FROM character_language WHERE character_id IN fiches_lues
       - SELECT * FROM character_choice WHERE character_id IN fiches_lues
+
+  # Propositions du MJ (US-34) : au propriétaire de la fiche et au MJ de sa
+  # table, jamais aux autres membres.
+  propositions:
+    auto_subscribe: true
+    queries:
+      - SELECT * FROM character_proposal WHERE character_id IN (SELECT id FROM character WHERE owner_user_id = auth.user_id())
+      - SELECT * FROM character_proposal WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
