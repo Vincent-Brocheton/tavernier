@@ -7,10 +7,11 @@ import '../l10n/app_localizations.dart';
 import '../settings/device_settings.dart';
 import 'account_providers.dart';
 import 'avatar.dart';
+import 'backup_widgets.dart';
 import 'devices.dart';
 
 /// Section du profil, sur desktop [A7].
-enum _Section { display, privacy, devices }
+enum _Section { display, privacy, devices, data }
 
 /// Profil et réglages : une colonne sur téléphone [T5] ; sur desktop [A7],
 /// les sections à gauche et la section choisie à droite. Affichage
@@ -98,6 +99,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 SizedBox(height: AppSpacing.md),
                 const _DevicesSection(),
               ],
+              SizedBox(height: AppSpacing.md),
+              const _DataSection(),
               SizedBox(height: AppSpacing.lg),
               ?signOut,
             ],
@@ -140,6 +143,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             (_Section.privacy, l10n.privacySection),
                             if (user != null)
                               (_Section.devices, l10n.devicesSection),
+                            (_Section.data, l10n.myDataSection),
                           ])
                             ListTile(
                               title: Text(label),
@@ -176,6 +180,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               _Section.display => const _DisplaySection(),
                               _Section.privacy => const _PrivacySection(),
                               _Section.devices => const _DevicesSection(),
+                              _Section.data => const _DataSection(),
                             },
                           ],
                         ),
@@ -253,6 +258,17 @@ class _SectionCard extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Mes données [A7] : export (ENF-10, ENF-12).
+class _DataSection extends StatelessWidget {
+  const _DataSection();
+
+  @override
+  Widget build(BuildContext context) => _SectionCard(
+    title: AppLocalizations.of(context).myDataSection,
+    children: const [MyDataSection()],
+  );
 }
 
 /// Langue, taille du texte, thème (EF-CPT-03).

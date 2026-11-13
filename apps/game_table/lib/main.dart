@@ -11,6 +11,7 @@ import 'account/account_providers.dart';
 import 'account/age_page.dart';
 import 'account/auth_links.dart';
 import 'account/avatar.dart';
+import 'account/backup_widgets.dart';
 import 'account/edit_account_page.dart';
 import 'account/forgot_password_page.dart';
 import 'account/new_password_page.dart';
@@ -276,19 +277,35 @@ class _HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            l10n.appTitle,
-            style: text.displaySmall!.copyWith(
-              color: Theme.of(context).colorScheme.tertiary,
+    return Column(
+      children: [
+        // Rappel de sauvegarde [G6] (ENF-12).
+        Padding(
+          padding: EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.md,
+            AppSpacing.md,
+            0,
+          ),
+          child: const BackupReminderBanner(),
+        ),
+        Expanded(
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  l10n.appTitle,
+                  style: text.displaySmall!.copyWith(
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                ),
+                Text(l10n.appTagline, style: text.bodyLarge),
+              ],
             ),
           ),
-          Text(l10n.appTagline, style: text.bodyLarge),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

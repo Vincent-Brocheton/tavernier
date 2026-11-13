@@ -2847,4 +2847,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get valueNone => 'aucune';
+
+  @override
+  String get myDataSection => 'Mes données';
+
+  @override
+  String get exportDataHint =>
+      'Fiches, tables et notes, dans un fichier JSON que vous pourrez réimporter.';
+
+  @override
+  String get exportDataAction => 'Exporter mes données';
+
+  @override
+  String get exportNever => 'Aucun export sur cet appareil.';
+
+  @override
+  String exportLast(String date) {
+    return 'Dernier export : $date.';
+  }
+
+  @override
+  String get exportFailed => 'L’export a échoué. Réessayez.';
+
+  @override
+  String backupReminderTitle(int days) {
+    return 'Aucune sauvegarde depuis $days jours';
+  }
+
+  @override
+  String get backupReminderBody =>
+      'Ni synchronisation ni export sur cet appareil. Exportez vos données pour ne rien perdre.';
+
+  @override
+  String get backupLater => 'Plus tard';
+
+  @override
+  String get backupExportNow => 'Exporter maintenant';
 }
