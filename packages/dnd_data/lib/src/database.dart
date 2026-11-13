@@ -68,6 +68,7 @@ part 'database.g.dart';
     CharacterChangeLogs,
     CharacterLanguages,
     CharacterChoices,
+    CharacterProposals,
     NpcStatblocks,
     Sessions,
     Encounters,

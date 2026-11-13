@@ -114,6 +114,53 @@ final class CharacterHistoryEntry {
   final Map<String, Object?> detail;
 }
 
+/// Proposition structurelle du MJ (`character_proposal`, US-34, EF-PJ-16) :
+/// des champs de premier niveau de la fiche remplacés, avec un motif.
+final class CharacterProposal {
+  const CharacterProposal({
+    required this.id,
+    required this.characterId,
+    required this.tableId,
+    required this.authorUserId,
+    required this.kind,
+    required this.change,
+    required this.reason,
+    required this.status,
+  });
+
+  static CharacterProposal fromRow(QueryRow row) => CharacterProposal(
+    id: row.read<String>('id'),
+    characterId: row.read<String>('character_id'),
+    tableId: row.read<String>('table_id'),
+    authorUserId: row.readNullable<String>('author_user_id'),
+    kind: row.read<String>('kind'),
+    change: jsonDecode(row.read<String>('change')) as Map<String, Object?>,
+    reason: row.read<String>('reason'),
+    status: row.read<String>('status'),
+  );
+
+  final String id;
+  final String characterId;
+  final String tableId;
+  final String? authorUserId;
+
+  /// `feat` : un don remplacé.
+  final String kind;
+
+  /// Champs de `CharacterInput` remplacés, au format JSON.
+  final Map<String, Object?> change;
+  final String reason;
+
+  /// `pending`, `accepted` ou `refused`.
+  final String status;
+
+  /// [character] avec les champs proposés.
+  CharacterInput applyTo(CharacterInput character) => CharacterInput.fromJson({
+    ...jsonDecode(jsonEncode(character)) as Map<String, Object?>,
+    ...change,
+  });
+}
+
 /// Écrit et relit un personnage stocké (`CharacterInput`) dans les tables
 /// `character_*` (cahier §11.2). Aucun calcul de règles ici.
 final class CharacterStore {
@@ -419,6 +466,100 @@ final class CharacterStore {
     });
     _db.markTablesUpdated({_db.characterChangeLogs});
   }
+
+  /// Propose [change] pour la fiche [characterId] (le MJ, lot c de US-34).
+  Future<void> propose({
+    required String characterId,
+    required String tableId,
+    required String authorUserId,
+    required String kind,
+    required Map<String, Object?> change,
+    required String reason,
+  }) async {
+    await _db.customStatement(
+      'INSERT INTO character_proposal (id, character_id, table_id, '
+      'author_user_id, kind, change, reason, status, created_at) '
+      "VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?)",
+      [
+        uuidV7(),
+        characterId,
+        tableId,
+        authorUserId,
+        kind,
+        jsonEncode(change),
+        reason,
+        DateTime.now().toUtc().toIso8601String(),
+      ],
+    );
+    _db.markTablesUpdated({_db.characterProposals});
+  }
+
+  /// Propositions en attente pour la fiche [characterId], la plus ancienne
+  /// d'abord.
+  Stream<List<CharacterProposal>> watchPendingProposals(String characterId) =>
+      _db
+          .customSelect(
+            'SELECT * FROM character_proposal WHERE character_id = ? '
+            "AND status = 'pending' ORDER BY created_at, id",
+            variables: [Variable.withString(characterId)],
+            readsFrom: {_db.characterProposals},
+          )
+          .watch()
+          .map((rows) => [for (final r in rows) CharacterProposal.fromRow(r)]);
+
+  /// Le joueur accepte : la fiche prend les champs proposés, sans perdre son
+  /// état de jeu, et l'historique garde les dons retirés et ajoutés.
+  Future<void> acceptProposal(
+    CharacterProposal proposal, {
+    required String playerUserId,
+  }) async {
+    final before = (await load(proposal.characterId))!;
+    final after = proposal.applyTo(before);
+    await save(proposal.characterId, after);
+    final beforeFeats = {for (final f in before.feats) f.featId};
+    final afterFeats = {for (final f in after.feats) f.featId};
+    final now = DateTime.now().toUtc().toIso8601String();
+    await _db.transaction(() async {
+      await _db.customStatement(
+        'INSERT INTO character_change_log (id, character_id, '
+        'author_user_id, timestamp, diff) VALUES (?, ?, ?, ?, ?)',
+        [
+          uuidV7(),
+          proposal.characterId,
+          playerUserId,
+          now,
+          jsonEncode({
+            'kind': 'proposal',
+            'proposal_kind': proposal.kind,
+            'proposed_by': proposal.authorUserId,
+            'reason': proposal.reason,
+            'removed': [...beforeFeats.difference(afterFeats)],
+            'added': [...afterFeats.difference(beforeFeats)],
+          }),
+        ],
+      );
+      await _decide(proposal.id, 'accepted', null, now);
+    });
+    _db.markTablesUpdated({_db.characterChangeLogs, _db.characterProposals});
+  }
+
+  /// Le joueur refuse, avec un message facultatif pour le MJ.
+  Future<void> refuseProposal(String id, String? reply) async {
+    await _decide(
+      id,
+      'refused',
+      reply,
+      DateTime.now().toUtc().toIso8601String(),
+    );
+    _db.markTablesUpdated({_db.characterProposals});
+  }
+
+  Future<void> _decide(String id, String status, String? reply, String at) =>
+      _db.customStatement(
+        'UPDATE character_proposal SET status = ?, reply = ?, decided_at = ? '
+        'WHERE id = ?',
+        [status, reply, at, id],
+      );
 
   /// Historique de la fiche, le plus récent d'abord.
   Future<List<CharacterHistoryEntry>> history(String id) async => [

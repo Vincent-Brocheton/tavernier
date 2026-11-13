@@ -4232,5 +4232,67 @@
   "deleteAccountOffline": "Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.",
   "@deleteAccountOffline": {
     "description": "Suppression du compte [T15]."
+  },
+  "proposalTitle": "{gm} propose : {summary}",
+  "@proposalTitle": {
+    "description": "Titre de la proposition du MJ [F4b].",
+    "placeholders": {"gm": {"type": "String"}, "summary": {"type": "String"}}
+  },
+  "proposalSomeone": "Le MJ",
+  "@proposalSomeone": {"description": "Auteur inconnu d'une proposition [F4b]."},
+  "proposalReplaceFeat": "remplacer le don {from} par {to}",
+  "@proposalReplaceFeat": {
+    "description": "Résumé d'une proposition de don [F4b].",
+    "placeholders": {"from": {"type": "String"}, "to": {"type": "String"}}
+  },
+  "proposalChangeSheet": "modifier la fiche",
+  "@proposalChangeSheet": {"description": "Résumé d'une autre proposition [F4b]."},
+  "proposalReason": "Motif : « {reason} »",
+  "@proposalReason": {
+    "description": "Motif de la proposition [F4b].",
+    "placeholders": {"reason": {"type": "String"}}
+  },
+  "proposalValue": "Valeur",
+  "@proposalValue": {"description": "En-tête de l'aperçu [F4b]."},
+  "proposalBefore": "Avant",
+  "@proposalBefore": {"description": "En-tête de l'aperçu [F4b]."},
+  "proposalAfter": "Après",
+  "@proposalAfter": {"description": "En-tête de l'aperçu [F4b]."},
+  "proposalFeatRow": "Don",
+  "@proposalFeatRow": {"description": "Ligne de l'aperçu [F4b]."},
+  "proposalSkillsRow": "Maîtrises",
+  "@proposalSkillsRow": {"description": "Ligne de l'aperçu [F4b]."},
+  "proposalSkillsCount": "{count, plural, =1{1 compétence} other{{count} compétences}}",
+  "@proposalSkillsCount": {
+    "description": "Compétences maîtrisées avant la proposition [F4b].",
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "proposalSkillsAdded": "+ {skills}",
+  "@proposalSkillsAdded": {
+    "description": "Compétences ajoutées [F4b].",
+    "placeholders": {"skills": {"type": "String"}}
+  },
+  "proposalSkillsRemoved": "− {skills}",
+  "@proposalSkillsRemoved": {
+    "description": "Compétences retirées [F4b].",
+    "placeholders": {"skills": {"type": "String"}}
+  },
+  "proposalRefuseMessage": "Message si vous refusez",
+  "@proposalRefuseMessage": {"description": "Champ de réponse [F4b]."},
+  "proposalRefuse": "Refuser",
+  "@proposalRefuse": {"description": "Bouton [F4b]."},
+  "proposalAccept": "Accepter",
+  "@proposalAccept": {"description": "Bouton [F4b]."},
+  "proposalAcceptNote": "L’acceptation applique la modification et l’inscrit dans l’historique de la fiche.",
+  "@proposalAcceptNote": {"description": "Note sous les boutons [F4b]."},
+  "historyProposal": "Proposition acceptée : {summary}",
+  "@historyProposal": {
+    "description": "Entrée d'historique d'une proposition acceptée.",
+    "placeholders": {"summary": {"type": "String"}}
+  },
+  "historyProposalBy": "Proposée par {gm} · Motif : « {reason} »",
+  "@historyProposalBy": {
+    "description": "Détail d'une proposition acceptée dans l'historique.",
+    "placeholders": {"gm": {"type": "String"}, "reason": {"type": "String"}}
   }
 }

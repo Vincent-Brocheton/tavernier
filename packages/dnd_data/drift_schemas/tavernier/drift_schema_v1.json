@@ -5512,6 +5512,133 @@
       "references": [],
       "type": "table",
       "data": {
+        "name": "character_proposal",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "character_id",
+            "getter_name": "characterId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "author_user_id",
+            "getter_name": "authorUserId",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "change",
+            "getter_name": "change",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reason",
+            "getter_name": "reason",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "status",
+            "getter_name": "status",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'pending\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "reply",
+            "getter_name": "reply",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "decided_at",
+            "getter_name": "decidedAt",
+            "moor_type": "dateTime",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "references": [],
+      "type": "table",
+      "data": {
         "name": "npc_statblock",
         "was_declared_in_moor": false,
         "columns": [
@@ -5585,7 +5712,7 @@
       }
     },
     {
-      "id": 58,
+      "id": 59,
       "references": [],
       "type": "table",
       "data": {
@@ -5642,9 +5769,9 @@
       }
     },
     {
-      "id": 59,
+      "id": 60,
       "references": [
-        58
+        59
       ],
       "type": "table",
       "data": {
@@ -5727,9 +5854,9 @@
       }
     },
     {
-      "id": 60,
+      "id": 61,
       "references": [
-        59
+        60
       ],
       "type": "table",
       "data": {
@@ -5876,9 +6003,9 @@
       }
     },
     {
-      "id": 61,
+      "id": 62,
       "references": [
-        59
+        60
       ],
       "type": "table",
       "data": {
@@ -5981,7 +6108,7 @@
       }
     },
     {
-      "id": 62,
+      "id": 63,
       "references": [],
       "type": "table",
       "data": {
@@ -6072,7 +6199,7 @@
       }
     },
     {
-      "id": 63,
+      "id": 64,
       "references": [],
       "type": "table",
       "data": {
@@ -6620,6 +6747,15 @@
         {
           "dialect": "sqlite",
           "sql": "CREATE TABLE IF NOT EXISTS \"character_choice\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"choice_key\" TEXT NOT NULL, \"selections\" TEXT NOT NULL, PRIMARY KEY (\"id\"), UNIQUE (\"character_id\", \"choice_key\"));"
+        }
+      ]
+    },
+    {
+      "name": "character_proposal",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"character_proposal\" (\"id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, \"kind\" TEXT NOT NULL, \"change\" TEXT NOT NULL, \"reason\" TEXT NOT NULL, \"status\" TEXT NOT NULL DEFAULT 'pending', \"reply\" TEXT NULL, \"created_at\" TEXT NOT NULL, \"decided_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

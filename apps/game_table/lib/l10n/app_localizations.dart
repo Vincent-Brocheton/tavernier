@@ -4919,6 +4919,120 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Le serveur ne répond pas : rien n’a été supprimé. Réessayez une fois connecté.'**
   String get deleteAccountOffline;
+
+  /// Titre de la proposition du MJ [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'{gm} propose : {summary}'**
+  String proposalTitle(String gm, String summary);
+
+  /// Auteur inconnu d'une proposition [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Le MJ'**
+  String get proposalSomeone;
+
+  /// Résumé d'une proposition de don [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'remplacer le don {from} par {to}'**
+  String proposalReplaceFeat(String from, String to);
+
+  /// Résumé d'une autre proposition [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'modifier la fiche'**
+  String get proposalChangeSheet;
+
+  /// Motif de la proposition [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif : « {reason} »'**
+  String proposalReason(String reason);
+
+  /// En-tête de l'aperçu [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Valeur'**
+  String get proposalValue;
+
+  /// En-tête de l'aperçu [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Avant'**
+  String get proposalBefore;
+
+  /// En-tête de l'aperçu [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Après'**
+  String get proposalAfter;
+
+  /// Ligne de l'aperçu [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Don'**
+  String get proposalFeatRow;
+
+  /// Ligne de l'aperçu [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Maîtrises'**
+  String get proposalSkillsRow;
+
+  /// Compétences maîtrisées avant la proposition [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 compétence} other{{count} compétences}}'**
+  String proposalSkillsCount(int count);
+
+  /// Compétences ajoutées [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'+ {skills}'**
+  String proposalSkillsAdded(String skills);
+
+  /// Compétences retirées [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'− {skills}'**
+  String proposalSkillsRemoved(String skills);
+
+  /// Champ de réponse [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Message si vous refusez'**
+  String get proposalRefuseMessage;
+
+  /// Bouton [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser'**
+  String get proposalRefuse;
+
+  /// Bouton [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter'**
+  String get proposalAccept;
+
+  /// Note sous les boutons [F4b].
+  ///
+  /// In fr, this message translates to:
+  /// **'L’acceptation applique la modification et l’inscrit dans l’historique de la fiche.'**
+  String get proposalAcceptNote;
+
+  /// Entrée d'historique d'une proposition acceptée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposition acceptée : {summary}'**
+  String historyProposal(String summary);
+
+  /// Détail d'une proposition acceptée dans l'historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposée par {gm} · Motif : « {reason} »'**
+  String historyProposalBy(String gm, String reason);
 }
 
 class _AppLocalizationsDelegate
