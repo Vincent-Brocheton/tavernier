@@ -27,6 +27,7 @@ import 'settings/crash_consent_dialog.dart';
 import 'settings/device_settings.dart';
 import 'sheet/history_page.dart';
 import 'sheet/level_up_page.dart';
+import 'sheet/proposal_page.dart';
 import 'sheet/sheet_page.dart';
 import 'tables/create_table_page.dart';
 import 'tables/join_page.dart';
@@ -120,6 +121,10 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       GoRoute(
         path: '/characters/:id',
         builder: (_, state) => SheetPage(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/characters/:id/proposer',
+        builder: (_, state) => ProposalPage(id: state.pathParameters['id']!),
       ),
       GoRoute(
         path: '/characters/:id/level-up',

@@ -4294,5 +4294,55 @@
   "@historyProposalBy": {
     "description": "Détail d'une proposition acceptée dans l'historique.",
     "placeholders": {"gm": {"type": "String"}, "reason": {"type": "String"}}
-  }
+  },
+"proposalAction": "Proposer une modification",
+  "@proposalAction": {"description": "Bouton du MJ sur la fiche d'un joueur [F4a]."},
+  "proposalPageTitle": "Proposer une modification à {player}",
+  "@proposalPageTitle": {
+    "description": "Titre de [F4a].",
+    "placeholders": {"player": {"type": "String"}}
+  },
+  "proposalPlayer": "le joueur",
+  "@proposalPlayer": {"description": "Joueur au pseudonyme inconnu [F4a]."},
+  "proposalPageIntro": "{name} · hors combat, une modification structurelle passe par l’accord du joueur.",
+  "@proposalPageIntro": {
+    "description": "Sous-titre de [F4a].",
+    "placeholders": {"name": {"type": "String"}}
+  },
+  "proposalNoFeat": "Cette fiche n’a pas de don d’origine ni de style de combat à remplacer.",
+  "@proposalNoFeat": {"description": "Aucun don remplaçable [F4a]."},
+  "proposalTypeFeat": "Type : don",
+  "@proposalTypeFeat": {"description": "Type de modification [F4a]."},
+  "proposalReplace": "Remplacer",
+  "@proposalReplace": {"description": "Don à remplacer [F4a]."},
+  "proposalBy": "Par",
+  "@proposalBy": {"description": "Don proposé [F4a]."},
+  "proposalEligibleHint": "Seuls les dons éligibles sont proposés : même catégorie, pas déjà pris.",
+  "@proposalEligibleHint": {"description": "Aide sous le don proposé [F4a]."},
+  "proposalChoose": "Choisir {count} ({picked}/{count})",
+  "@proposalChoose": {
+    "description": "Choix du don proposé [F4a].",
+    "placeholders": {"count": {"type": "int"}, "picked": {"type": "int"}}
+  },
+  "proposalReasonLabel": "Motif (obligatoire, visible du joueur)",
+  "@proposalReasonLabel": {"description": "Champ du motif [F4a]."},
+  "proposalSend": "Envoyer la proposition",
+  "@proposalSend": {"description": "Bouton d'envoi [F4a]."},
+  "proposalSent": "Proposition envoyée à {player}.",
+  "@proposalSent": {
+    "description": "Confirmation d'envoi [F4a].",
+    "placeholders": {"player": {"type": "String"}}
+  },
+  "proposalPending": "Proposition envoyée à {player} : en attente de sa réponse.",
+  "@proposalPending": {
+    "description": "État pour le MJ sur la fiche.",
+    "placeholders": {"player": {"type": "String"}}
+  },
+  "proposalRefused": "{player} a refusé votre proposition",
+  "@proposalRefused": {
+    "description": "Refus lu par le MJ sur la fiche.",
+    "placeholders": {"player": {"type": "String"}}
+  },
+  "proposalRefusedNoReply": "Sans message.",
+  "@proposalRefusedNoReply": {"description": "Refus sans message."}
 }

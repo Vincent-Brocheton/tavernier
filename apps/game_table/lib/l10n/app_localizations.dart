@@ -5033,6 +5033,102 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Proposée par {gm} · Motif : « {reason} »'**
   String historyProposalBy(String gm, String reason);
+
+  /// Bouton du MJ sur la fiche d'un joueur [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposer une modification'**
+  String get proposalAction;
+
+  /// Titre de [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposer une modification à {player}'**
+  String proposalPageTitle(String player);
+
+  /// Joueur au pseudonyme inconnu [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'le joueur'**
+  String get proposalPlayer;
+
+  /// Sous-titre de [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · hors combat, une modification structurelle passe par l’accord du joueur.'**
+  String proposalPageIntro(String name);
+
+  /// Aucun don remplaçable [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette fiche n’a pas de don d’origine ni de style de combat à remplacer.'**
+  String get proposalNoFeat;
+
+  /// Type de modification [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Type : don'**
+  String get proposalTypeFeat;
+
+  /// Don à remplacer [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacer'**
+  String get proposalReplace;
+
+  /// Don proposé [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Par'**
+  String get proposalBy;
+
+  /// Aide sous le don proposé [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Seuls les dons éligibles sont proposés : même catégorie, pas déjà pris.'**
+  String get proposalEligibleHint;
+
+  /// Choix du don proposé [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir {count} ({picked}/{count})'**
+  String proposalChoose(int count, int picked);
+
+  /// Champ du motif [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif (obligatoire, visible du joueur)'**
+  String get proposalReasonLabel;
+
+  /// Bouton d'envoi [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer la proposition'**
+  String get proposalSend;
+
+  /// Confirmation d'envoi [F4a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposition envoyée à {player}.'**
+  String proposalSent(String player);
+
+  /// État pour le MJ sur la fiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposition envoyée à {player} : en attente de sa réponse.'**
+  String proposalPending(String player);
+
+  /// Refus lu par le MJ sur la fiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'{player} a refusé votre proposition'**
+  String proposalRefused(String player);
+
+  /// Refus sans message.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans message.'**
+  String get proposalRefusedNoReply;
 }
 
 class _AppLocalizationsDelegate

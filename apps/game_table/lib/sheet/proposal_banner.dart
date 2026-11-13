@@ -107,6 +107,124 @@ List<ProposalRow> proposalRows(
   ];
 }
 
+/// Aperçu avant et après d'une proposition : Valeur, Avant, Après.
+class ProposalPreview extends StatelessWidget {
+  const ProposalPreview({super.key, required this.rows});
+
+  final List<ProposalRow> rows;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    Widget cell(String value, TextStyle? style) => Padding(
+      padding: EdgeInsets.symmetric(vertical: AppSpacing.xs),
+      child: Text(value, style: style),
+    );
+    return Table(
+      columnWidths: const {0: FlexColumnWidth(1.2)},
+      children: [
+        TableRow(
+          children: [
+            for (final h in [
+              l10n.proposalValue,
+              l10n.proposalBefore,
+              l10n.proposalAfter,
+            ])
+              cell(h, text.labelMedium),
+          ],
+        ),
+        for (final row in rows)
+          TableRow(
+            children: [
+              cell(row.label, text.bodyMedium),
+              cell(row.before, text.bodyMedium),
+              cell(
+                row.after,
+                text.bodyMedium!.copyWith(fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
+      ],
+    );
+  }
+}
+
+/// La fiche [id] vue par le MJ de sa table, quand elle est à un joueur : il
+/// peut lui proposer une modification ; `null` sinon.
+final gmProposalViewProvider = FutureProvider.autoDispose
+    .family<({String tableId, String ownerUserId, String me})?, String>((
+      ref,
+      id,
+    ) async {
+      final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
+      final access = await ref.watch(characterStoreProvider).access(id);
+      if (me == null || access == null) return null;
+      final (:tableId, :ownerUserId, :gmUserId, :status, gmLess: _) = access;
+      if (tableId == null ||
+          ownerUserId == null ||
+          gmUserId != me ||
+          ownerUserId == me ||
+          status == 'archived') {
+        return null;
+      }
+      return (tableId: tableId, ownerUserId: ownerUserId, me: me);
+    });
+
+/// Dernière proposition faite pour la fiche [id], pour son MJ.
+final gmLatestProposalProvider = StreamProvider.autoDispose
+    .family<CharacterProposal?, String>((ref, id) async* {
+      final view = await ref.watch(gmProposalViewProvider(id).future);
+      if (view == null) {
+        yield null;
+        return;
+      }
+      yield* ref
+          .watch(characterStoreProvider)
+          .watchProposals(id)
+          .map((all) => all.firstOrNull);
+    });
+
+/// Pour le MJ : sa dernière proposition attend la réponse du joueur, ou il
+/// l'a refusée (avec son message). Une proposition acceptée est dans
+/// l'historique.
+class GmProposalStatus extends ConsumerWidget {
+  const GmProposalStatus({super.key, required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final proposal = ref.watch(gmLatestProposalProvider(id)).value;
+    final owner = ref.watch(gmProposalViewProvider(id)).value?.ownerUserId;
+    if (proposal == null || owner == null || proposal.status == 'accepted') {
+      return const SizedBox.shrink();
+    }
+    final l10n = AppLocalizations.of(context);
+    final player =
+        ref.watch(pseudonymOfProvider(owner)).value ?? l10n.proposalPlayer;
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.sm,
+        AppSpacing.sm,
+        AppSpacing.sm,
+        0,
+      ),
+      child: proposal.status == 'pending'
+          ? StatusBanner(
+              kind: StatusBannerKind.info,
+              icon: Icons.hourglass_empty,
+              message: l10n.proposalPending(player),
+            )
+          : StatusBanner(
+              kind: StatusBannerKind.alert,
+              title: l10n.proposalRefused(player),
+              message: proposal.reply ?? l10n.proposalRefusedNoReply,
+            ),
+    );
+  }
+}
+
 /// Encadré en tête de fiche : la plus ancienne proposition en attente, son
 /// motif, l'aperçu avant et après, « Refuser » (avec message) et
 /// « Accepter ».
@@ -190,10 +308,6 @@ class _ProposalBannerState extends ConsumerState<ProposalBanner> {
     final summary = proposal.kind == 'feat' && feat != null
         ? l10n.proposalReplaceFeat(feat.before, feat.after)
         : l10n.proposalChangeSheet;
-    Widget cell(String value, {TextStyle? style}) => Padding(
-      padding: EdgeInsets.symmetric(vertical: AppSpacing.xs),
-      child: Text(value, style: style),
-    );
     return Padding(
       padding: EdgeInsets.fromLTRB(
         AppSpacing.sm,
@@ -244,34 +358,7 @@ class _ProposalBannerState extends ConsumerState<ProposalBanner> {
                     ),
                   ),
                   if (rows != null && rows.isNotEmpty)
-                    Table(
-                      columnWidths: const {0: FlexColumnWidth(1.2)},
-                      children: [
-                        TableRow(
-                          children: [
-                            for (final h in [
-                              l10n.proposalValue,
-                              l10n.proposalBefore,
-                              l10n.proposalAfter,
-                            ])
-                              cell(h, style: text.labelMedium),
-                          ],
-                        ),
-                        for (final row in rows)
-                          TableRow(
-                            children: [
-                              cell(row.label, style: text.bodyMedium),
-                              cell(row.before, style: text.bodyMedium),
-                              cell(
-                                row.after,
-                                style: text.bodyMedium!.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
-                    ),
+                    ProposalPreview(rows: rows),
                   TextField(
                     controller: _reply,
                     decoration: InputDecoration(

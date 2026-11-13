@@ -126,6 +126,7 @@ final class CharacterProposal {
     required this.change,
     required this.reason,
     required this.status,
+    this.reply,
   });
 
   static CharacterProposal fromRow(QueryRow row) => CharacterProposal(
@@ -137,12 +138,16 @@ final class CharacterProposal {
     change: jsonDecode(row.read<String>('change')) as Map<String, Object?>,
     reason: row.read<String>('reason'),
     status: row.read<String>('status'),
+    reply: row.readNullable<String>('reply'),
   );
 
   final String id;
   final String characterId;
   final String tableId;
   final String? authorUserId;
+
+  /// Message du joueur qui refuse.
+  final String? reply;
 
   /// `feat` : un don remplacé.
   final String kind;
@@ -507,6 +512,18 @@ final class CharacterStore {
           .watch()
           .map((rows) => [for (final r in rows) CharacterProposal.fromRow(r)]);
 
+  /// Toutes les propositions de la fiche [characterId], la plus récente
+  /// d'abord : le MJ y lit l'attente et les réponses.
+  Stream<List<CharacterProposal>> watchProposals(String characterId) => _db
+      .customSelect(
+        'SELECT * FROM character_proposal WHERE character_id = ? '
+        'ORDER BY created_at DESC, id DESC',
+        variables: [Variable.withString(characterId)],
+        readsFrom: {_db.characterProposals},
+      )
+      .watch()
+      .map((rows) => [for (final r in rows) CharacterProposal.fromRow(r)]);
+
   /// Le joueur accepte : la fiche prend les champs proposés, sans perdre son
   /// état de jeu, et l'historique garde les dons retirés et ajoutés.
   Future<void> acceptProposal(
@@ -603,11 +620,19 @@ final class CharacterStore {
   /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
   /// statut, et si sa table connue n'a plus de MJ (compte supprimé) ;
   /// `null` si elle n'existe pas.
-  Future<({String? ownerUserId, String? gmUserId, String status, bool gmLess})?>
+  Future<
+    ({
+      String? ownerUserId,
+      String? tableId,
+      String? gmUserId,
+      String status,
+      bool gmLess,
+    })?
+  >
   access(String id) async {
     final row = await _db
         .customSelect(
-          'SELECT c.owner_user_id, c.status, g.gm_user_id, '
+          'SELECT c.owner_user_id, c.table_id, c.status, g.gm_user_id, '
           '(g.id IS NOT NULL AND g.gm_user_id IS NULL) AS gm_less '
           'FROM character c '
           'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
@@ -618,6 +643,7 @@ final class CharacterStore {
         ? null
         : (
             ownerUserId: row.readNullable<String>('owner_user_id'),
+            tableId: row.readNullable<String>('table_id'),
             gmUserId: row.readNullable<String>('gm_user_id'),
             status: row.read<String>('status'),
             gmLess: row.read<bool>('gm_less'),

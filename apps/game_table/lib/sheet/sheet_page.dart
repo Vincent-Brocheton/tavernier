@@ -15,6 +15,7 @@ import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
 import 'proposal_banner.dart';
+import 'proposal_page.dart';
 import 'rest_sheet.dart';
 import 'sheet_access.dart';
 import 'sheet_breakdowns.dart';
@@ -117,6 +118,7 @@ class _Sheet extends StatelessWidget {
         children: [
           _ConflictBanner(id: id),
           ProposalBanner(id: id, content: content, character: character),
+          GmProposalStatus(id: id),
           Padding(
             padding: EdgeInsets.all(AppSpacing.sm),
             child: Row(
@@ -183,6 +185,7 @@ class _Sheet extends StatelessWidget {
                     ),
                     child: Text(label),
                   ),
+                _ProposeButton(id: id),
                 TextButton.icon(
                   onPressed: () => context.push(historyPath(id)),
                   icon: const Icon(Icons.history),
@@ -402,6 +405,25 @@ class _SkillsTab extends StatelessWidget {
               ),
         ],
       ],
+    );
+  }
+}
+
+/// « Proposer une modification » [F4a], pour le MJ de la table seulement.
+class _ProposeButton extends ConsumerWidget {
+  const _ProposeButton({required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (ref.watch(gmProposalViewProvider(id)).value == null) {
+      return const SizedBox.shrink();
+    }
+    return OutlinedButton.icon(
+      onPressed: () => context.push(proposalPath(id)),
+      icon: const Icon(Icons.edit_note),
+      label: Text(AppLocalizations.of(context).proposalAction),
     );
   }
 }
