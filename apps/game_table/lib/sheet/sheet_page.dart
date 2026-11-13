@@ -116,6 +116,7 @@ class _Sheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _ConflictBanner(id: id),
+          _PendingBanner(id: id),
           ProposalBanner(id: id, content: content, character: character),
           Padding(
             padding: EdgeInsets.all(AppSpacing.sm),
@@ -402,6 +403,51 @@ class _SkillsTab extends StatelessWidget {
               ),
         ],
       ],
+    );
+  }
+}
+
+/// Fiche en attente de validation, jouable [J12] (EF-PJ-20, COMPOSANTS
+/// §2.51), avec les corrections demandées par le MJ.
+class _PendingBanner extends ConsumerWidget {
+  const _PendingBanner({required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pending = ref.watch(sheetPendingProvider(id)).value;
+    if (pending == null) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context);
+    final gm = switch (pending.gmUserId) {
+      final gm? => ref.watch(pseudonymOfProvider(gm)).value,
+      null => null,
+    };
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.sm,
+        AppSpacing.sm,
+        AppSpacing.sm,
+        0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: AppSpacing.sm,
+        children: [
+          StatusBanner(
+            kind: StatusBannerKind.info,
+            icon: Icons.hourglass_empty,
+            title: l10n.pendingValidationTitle(gm ?? l10n.pendingValidationGm),
+            message: l10n.pendingValidationBody,
+          ),
+          if (pending.comment case final comment?)
+            StatusBanner(
+              kind: StatusBannerKind.alert,
+              title: l10n.correctionsTitle,
+              message: comment,
+            ),
+        ],
+      ),
     );
   }
 }

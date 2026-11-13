@@ -8,11 +8,13 @@ import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/sheet/conflicts.dart';
 import 'package:game_table/sheet/sheet_page.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show User;
 
 final _content = ActiveContent([
   readDndpack(File('assets/packs/srd-5.2.1-fr.dndpack').readAsBytesSync()),
@@ -70,6 +72,10 @@ Future<void> _open(
   String? subclass,
   String? owner,
   bool gmLessTable = false,
+  String? gm,
+  String? me,
+  String? status,
+  String? comment,
   List<CharacterHistoryEntry> conflicts = const [],
 }) async {
   tester.view.physicalSize = Size(width, 2000);
@@ -102,12 +108,45 @@ Future<void> _open(
       "UPDATE character SET table_id = 't' WHERE id = 'a'",
     );
   }
+  if (gm != null) {
+    await database.customStatement(
+      'INSERT INTO game_table (id, gm_user_id, name, stat_method, '
+      'long_rest_rule, hp_on_level_rule, progression_mode) VALUES '
+      "('t', ?, 'Brumeval', 'pointBuy', 'fullHitPoints', 'average', 'xp')",
+      [gm],
+    );
+    await database.customStatement(
+      "INSERT INTO profile (id, pseudonym) VALUES (?, 'Camille')",
+      [gm],
+    );
+    await database.customStatement(
+      "UPDATE character SET table_id = 't' WHERE id = 'a'",
+    );
+  }
+  if (status != null) {
+    await database.customStatement(
+      "UPDATE character SET status = ?, review_comment = ? WHERE id = 'a'",
+      [status, comment],
+    );
+  }
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
         contentProvider.overrideWith((ref) => _content),
         characterStoreProvider.overrideWith((ref) => store),
         myConflictsProvider.overrideWith((ref) => Stream.value(conflicts)),
+        if (me != null)
+          currentUserProvider.overrideWith(
+            (ref) => Stream.value(
+              User(
+                id: me,
+                appMetadata: const {},
+                userMetadata: const {},
+                aud: 'authenticated',
+                createdAt: '2026-11-09T10:00:00Z',
+              ),
+            ),
+          ),
       ],
       child: MaterialApp(
         theme: AppTheme.dark,
@@ -174,6 +213,57 @@ void main() {
     await _open(tester, 1440, gmLessTable: true);
     expect(find.text('Monter au niveau 2'), findsNothing);
     expect(find.text('Repos court'), findsNothing);
+  });
+
+  group('fiche en attente de validation [J12]', () {
+    const waiting = 'En attente de validation par Camille · utilisable en jeu';
+
+    testWidgets('envoyée : bandeau, et toujours modifiable', (tester) async {
+      await _open(tester, 390, gm: 'camille', status: 'submitted');
+      expect(find.text(waiting), findsOneWidget);
+      expect(
+        find.textContaining('sans perdre vos PV ni vos emplacements'),
+        findsOneWidget,
+      );
+      expect(
+        tester
+            .widget<IconButton>(find.widgetWithIcon(IconButton, Icons.remove))
+            .onPressed,
+        isNotNull,
+      );
+    });
+
+    testWidgets('à corriger : commentaire du MJ sous le bandeau', (
+      tester,
+    ) async {
+      await _open(
+        tester,
+        390,
+        gm: 'camille',
+        status: 'changes_requested',
+        comment: 'Remplacer Sommeil',
+      );
+      expect(find.text(waiting), findsOneWidget);
+      expect(find.text('Corrections demandées par le MJ'), findsOneWidget);
+      expect(find.text('Remplacer Sommeil'), findsOneWidget);
+    });
+
+    testWidgets('validée : pas de bandeau', (tester) async {
+      await _open(tester, 390, gm: 'camille', status: 'validated');
+      expect(find.text(waiting), findsNothing);
+    });
+
+    testWidgets('vue par le MJ : pas de bandeau', (tester) async {
+      await _open(
+        tester,
+        390,
+        gm: 'camille',
+        me: 'camille',
+        owner: 'leo',
+        status: 'submitted',
+      );
+      expect(find.text(waiting), findsNothing);
+    });
   });
 
   testWidgets('sa propre fiche : modifiable', (tester) async {
