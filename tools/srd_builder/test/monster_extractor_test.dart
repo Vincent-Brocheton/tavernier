@@ -362,6 +362,58 @@ void main() {
     expect(suspects, ['Ogre : dégâts non lus : la cible tombe.']);
   });
 
+  group('relecture', () {
+    // Ogre : Initiative +4 pour Dex −1 et BM +2 ; Massue +9 pour For +4 ;
+    // Ombre : Discrétion +5 pour Dex +2 et BM +2.
+    final skewed = _text
+        .replaceFirst('Initiative −1 (9)', 'Initiative +4 (14)')
+        .replaceFirst(
+          'Massue. Corps à corps : +6',
+          'Massue. Corps à corps : +9',
+        )
+        .replaceFirst('Discrétion +6', 'Discrétion +5');
+
+    test('écarts aux règles de calcul : Initiative, compétence, attaque', () {
+      final m = _extract(skewed);
+      expect(reviewNotes(m['Ogre']!), [
+        'Initiative +4 : Dex -1 plus 0, 1 ou 2 fois BM +2 attendu',
+        'Massue : bonus d’attaque +9, aucune caractéristique plus BM +2 ne '
+            'le donne',
+      ]);
+      expect(reviewNotes(m['Ombre']!), ['Discrétion +5 : +4 ou +6 attendu']);
+      for (final name in ['Dragon rouge adulte', 'Loup-garou']) {
+        expect(reviewNotes(monsters[name]!), isEmpty, reason: name);
+      }
+    });
+
+    test('page d’un profil : celle du pied de page qui suit', () {
+      expect(monsterPages(_text), {
+        'Ogre': 301,
+        'Ombre': 301,
+        'Dragon rouge adulte': 301,
+      });
+    });
+
+    test('fiche : écarts et lectures incertaines avec leur page', () {
+      final suspects = <String>[];
+      final list = extractMonsters(skewed, problems: [], suspects: suspects);
+      final sheet = reviewSheet(list, monsterPages(skewed), [
+        ...suspects,
+        'Loup-garou : suite de « Éraflure » : x',
+      ]);
+      expect(
+        sheet,
+        contains(
+          '- p. 301 — Ogre : Initiative +4 : Dex -1 plus 0, 1 ou 2 fois BM '
+          '+2 attendu\n',
+        ),
+      );
+      expect(sheet, contains('- p. ? — Loup-garou : suite de « Éraflure »'));
+      expect(sheet, contains('- p. ? — Archimage : « FP 12 (8 000 PX'));
+      expect(sheet, contains('| 301 | Ogre, Ombre, Dragon rouge adulte |'));
+    });
+  });
+
   group('commande', () {
     late Directory sources;
     setUp(() => sources = Directory.systemTemp.createTempSync('monsters'));
@@ -379,7 +431,7 @@ void main() {
       readingOrder: _text,
       slugs: slugs,
       sources: sources.path,
-      report: StringBuffer(),
+      review: StringBuffer(),
     );
 
     test('écrit un fichier par profil', () {

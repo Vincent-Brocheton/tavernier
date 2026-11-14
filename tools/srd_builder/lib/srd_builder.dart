@@ -112,9 +112,9 @@ int run(List<String> arguments, StringSink out, StringSink err) {
           help: 'Dossier des sources JSON.',
         )
         ..addOption(
-          'report',
-          defaultsTo: 'build/extract-monsters.txt',
-          help: 'Lectures incertaines, à relire.',
+          'review',
+          defaultsTo: 'docs/srd/RELECTURE_BESTIAIRE.md',
+          help: 'Fiche de relecture du bestiaire.',
         ),
     )
     ..addCommand(
@@ -230,18 +230,19 @@ int run(List<String> arguments, StringSink out, StringSink err) {
     return problems.isEmpty ? 0 : 1;
   }
   if (command.name == 'extract-monsters') {
-    final report = StringBuffer();
+    final review = StringBuffer();
     final problems = extractMonsterSources(
       readingOrder: File(command.option('text')!).readAsStringSync(),
       slugs: readMonsterSlugs(File(command.option('slugs')!)),
       sources: command.option('sources')!,
-      report: report,
+      review: review,
     );
-    File(command.option('report')!)
-      ..parent.createSync(recursive: true)
-      ..writeAsStringSync(report.toString());
     problems.forEach(err.writeln);
-    out.writeln('Rapport : ${command.option('report')}.');
+    if (problems.isNotEmpty) return 1;
+    File(command.option('review')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(review.toString());
+    out.writeln('Fiche de relecture : ${command.option('review')}.');
     return problems.isEmpty ? 0 : 1;
   }
   if (command.name == 'extract-equipment') {
