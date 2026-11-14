@@ -23,6 +23,8 @@ import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
 import 'l10n/app_localizations.dart';
+import 'npcs/new_npc_page.dart';
+import 'npcs/npc_page.dart';
 import 'sessions/session_page.dart';
 import 'settings/crash_consent_dialog.dart';
 import 'settings/device_settings.dart';
@@ -90,6 +92,17 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       GoRoute(
         path: '/tables/:id',
         builder: (_, state) => TablePage(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/tables/:id/pnj/nouveau',
+        builder: (_, state) => NewNpcPage(tableId: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/tables/:id/pnj/:npc',
+        builder: (_, state) => NpcPage(
+          tableId: state.pathParameters['id']!,
+          id: state.pathParameters['npc']!,
+        ),
       ),
       GoRoute(
         path: '/tables/:id/seances/:session',

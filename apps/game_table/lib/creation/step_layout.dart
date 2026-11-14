@@ -173,26 +173,30 @@ List<ContentEntity> sortedEntities(ActiveContent content, String type) =>
 /// 300 sorts.
 final _sorted = Expando<Map<String, List<ContentEntity>>>();
 
+/// [text] en minuscules et sans accents, pour trier ou chercher.
+String foldAccents(String text) =>
+    text.toLowerCase().split('').map((c) => _accents[c] ?? c).join();
+
+const _accents = {
+  'à': 'a',
+  'â': 'a',
+  'ä': 'a',
+  'ç': 'c',
+  'é': 'e',
+  'è': 'e',
+  'ê': 'e',
+  'ë': 'e',
+  'î': 'i',
+  'ï': 'i',
+  'ô': 'o',
+  'ö': 'o',
+  'ù': 'u',
+  'û': 'u',
+  'ü': 'u',
+};
+
 List<ContentEntity> _sort(ActiveContent content, String type) {
-  const accents = {
-    'à': 'a',
-    'â': 'a',
-    'ä': 'a',
-    'ç': 'c',
-    'é': 'e',
-    'è': 'e',
-    'ê': 'e',
-    'ë': 'e',
-    'î': 'i',
-    'ï': 'i',
-    'ô': 'o',
-    'ö': 'o',
-    'ù': 'u',
-    'û': 'u',
-    'ü': 'u',
-  };
-  String key(ContentEntity e) =>
-      e.name.toLowerCase().split('').map((c) => accents[c] ?? c).join();
+  String key(ContentEntity e) => foldAccents(e.name);
   return content.entities.where((e) => e.type == type).toList()
     ..sort((a, b) => key(a).compareTo(key(b)));
 }

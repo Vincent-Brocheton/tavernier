@@ -3328,4 +3328,340 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sessionSaved => 'Enregistrée';
+
+  @override
+  String creatureType(String type) {
+    String _temp0 = intl.Intl.selectLogic(type, {
+      'aberration': 'Aberration',
+      'beast': 'Bête',
+      'celestial': 'Céleste',
+      'construct': 'Artificiel',
+      'dragon': 'Dragon',
+      'elemental': 'Élémentaire',
+      'fey': 'Fée',
+      'fiend': 'Fiélon',
+      'giant': 'Géant',
+      'humanoid': 'Humanoïde',
+      'monstrosity': 'Monstruosité',
+      'ooze': 'Vase',
+      'plant': 'Plante',
+      'undead': 'Mort-vivant',
+      'other': '$type',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String creatureTypes(String type) {
+    String _temp0 = intl.Intl.selectLogic(type, {
+      'aberration': 'Aberrations',
+      'beast': 'Bêtes',
+      'celestial': 'Célestes',
+      'construct': 'Artificiels',
+      'dragon': 'Dragons',
+      'elemental': 'Élémentaires',
+      'fey': 'Fées',
+      'fiend': 'Fiélons',
+      'giant': 'Géants',
+      'humanoid': 'Humanoïdes',
+      'monstrosity': 'Monstruosités',
+      'ooze': 'Vases',
+      'plant': 'Plantes',
+      'undead': 'Morts-vivants',
+      'other': '$type',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String monsterSize(String size) {
+    String _temp0 = intl.Intl.selectLogic(size, {
+      'tiny': 'TP',
+      'small': 'P',
+      'medium': 'M',
+      'large': 'G',
+      'huge': 'TG',
+      'gargantuan': 'Gig',
+      'other': '$size',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String statSizeOr(String first, String second) {
+    return '$first ou $second';
+  }
+
+  @override
+  String statTypeLine(String type, String sizes) {
+    return '$type de taille $sizes';
+  }
+
+  @override
+  String statSwarmLine(String sizes, String types, String swarmSize) {
+    return 'Nuée de taille $sizes de $types de taille $swarmSize';
+  }
+
+  @override
+  String get statAc => 'CA';
+
+  @override
+  String statInitiativeValue(String bonus, int score) {
+    return '$bonus ($score)';
+  }
+
+  @override
+  String get statHp => 'PV';
+
+  @override
+  String statHpValue(int hp, String dice) {
+    return '$hp ($dice)';
+  }
+
+  @override
+  String statSwim(String range) {
+    return 'nage $range';
+  }
+
+  @override
+  String statFly(String range) {
+    return 'vol $range';
+  }
+
+  @override
+  String statClimb(String range) {
+    return 'escalade $range';
+  }
+
+  @override
+  String statBurrow(String range) {
+    return 'creusement $range';
+  }
+
+  @override
+  String get statHover => '(vol stationnaire)';
+
+  @override
+  String statSave(String bonus) {
+    return 'JS $bonus';
+  }
+
+  @override
+  String get statSkills => 'Compétences';
+
+  @override
+  String get statVulnerabilities => 'Vulnérabilités';
+
+  @override
+  String get statResistances => 'Résistances';
+
+  @override
+  String get statImmunities => 'Immunités';
+
+  @override
+  String get statGear => 'Équipement';
+
+  @override
+  String get statSenses => 'Sens';
+
+  @override
+  String statDarkvision(String range) {
+    return 'Vision dans le noir $range';
+  }
+
+  @override
+  String statBlindsight(String range) {
+    return 'Vision aveugle $range';
+  }
+
+  @override
+  String get statBlindBeyond => '(aveugle au-delà)';
+
+  @override
+  String statTremorsense(String range) {
+    return 'Perception des vibrations $range';
+  }
+
+  @override
+  String statTruesight(String range) {
+    return 'Vision lucide $range';
+  }
+
+  @override
+  String statPassive(int value) {
+    return 'Perception passive $value';
+  }
+
+  @override
+  String get statLanguages => 'Langues';
+
+  @override
+  String get statCr => 'FP';
+
+  @override
+  String statCrValue(String cr, String xp, String pb) {
+    return '$cr ($xp PX ; BM $pb)';
+  }
+
+  @override
+  String statCrLairValue(String cr, String xp, String lair, String pb) {
+    return '$cr ($xp PX, ou $lair dans son antre ; BM $pb)';
+  }
+
+  @override
+  String get statTraits => 'Traits';
+
+  @override
+  String get statActions => 'Actions';
+
+  @override
+  String get statBonusActions => 'Actions Bonus';
+
+  @override
+  String get statReactions => 'Réactions';
+
+  @override
+  String get statLegendaryActions => 'Actions Légendaires';
+
+  @override
+  String statLegendaryUses(int uses) {
+    return 'Utilisations d’action Légendaire : $uses.';
+  }
+
+  @override
+  String statLegendaryUsesLair(int uses, int lair) {
+    return 'Utilisations d’action Légendaire : $uses ($lair dans son antre).';
+  }
+
+  @override
+  String statRecharge(String range) {
+    return '(recharge $range)';
+  }
+
+  @override
+  String statPerDay(int uses) {
+    return '($uses/jour)';
+  }
+
+  @override
+  String statPerDayLair(int uses, int lair) {
+    return '($uses/jour, ou $lair/jour dans son antre)';
+  }
+
+  @override
+  String get statRestShortOrLong => '(recharge après un Repos court ou long)';
+
+  @override
+  String get statRestLong => '(recharge après un Repos long)';
+
+  @override
+  String statVariantOf(String monster, String pack) {
+    return 'Variante de « $monster » · $pack';
+  }
+
+  @override
+  String statMonsterMissing(String id) {
+    return 'Monstre introuvable : $id';
+  }
+
+  @override
+  String get attitudeFriendly => 'Amical';
+
+  @override
+  String get attitudeIndifferent => 'Indifférent';
+
+  @override
+  String get attitudeHostile => 'Hostile';
+
+  @override
+  String get tabNpcs => 'PNJ';
+
+  @override
+  String get npcNew => 'Nouveau PNJ';
+
+  @override
+  String npcFilterAll(int count) {
+    return 'Tous · $count';
+  }
+
+  @override
+  String npcFilterHostile(int count) {
+    return 'Hostiles · $count';
+  }
+
+  @override
+  String npcFilterFriendly(int count) {
+    return 'Amicaux · $count';
+  }
+
+  @override
+  String npcFilterIndifferent(int count) {
+    return 'Indifférents · $count';
+  }
+
+  @override
+  String get npcEmpty => 'Aucun PNJ';
+
+  @override
+  String get npcNoFolder => 'Sans dossier';
+
+  @override
+  String npcSummary(String monster, String cr, String source) {
+    return '$monster · FP $cr · $source';
+  }
+
+  @override
+  String get npcStatBlock => 'Bloc de stats';
+
+  @override
+  String get npcStatBlockBody =>
+      'Format monstre : rapide à préparer, idéal pour un adversaire ou un figurant.';
+
+  @override
+  String get npcName => 'Nom *';
+
+  @override
+  String get npcFrom => 'Partir de';
+
+  @override
+  String get npcFromChoose => 'Choisir un monstre';
+
+  @override
+  String get npcMonsterSearch => 'Rechercher un monstre';
+
+  @override
+  String npcMonsterLine(String cr, String source) {
+    return 'FP $cr · $source';
+  }
+
+  @override
+  String npcMonsterValue(String monster, String source) {
+    return '$monster · $source';
+  }
+
+  @override
+  String get npcFolder => 'Dossier';
+
+  @override
+  String get npcAttitudeInitial => 'Attitude initiale';
+
+  @override
+  String get npcCreate => 'Créer le PNJ';
+
+  @override
+  String npcHeader(String table) {
+    return 'PNJ · $table';
+  }
+
+  @override
+  String get npcDuplicate => 'Dupliquer';
+
+  @override
+  String get npcAttitudeTitle => 'Attitude envers le groupe';
+
+  @override
+  String get npcAttitudeHelp => 'Conservée entre les séances.';
+
+  @override
+  String get sourceSrdShort => 'SRD';
 }
