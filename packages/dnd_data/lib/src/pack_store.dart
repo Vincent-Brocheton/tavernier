@@ -31,6 +31,7 @@ const _tableOf = {
   'subclass': 'subclass',
   'feature': 'feature',
   'spell': 'spell',
+  'monster': 'monster',
 };
 
 /// Écrit et relit les packs dans les tables normalisées, et cherche dans le
@@ -228,6 +229,14 @@ final class PackStore {
           'concentration': sp.concentration,
           'ritual': sp.ritual,
         });
+      case final MonsterData mo:
+        row.addAll({
+          'creature_type': mo.toJson()['creature_type'],
+          'challenge_rating': mo.cr,
+          'xp': mo.xp,
+          'intelligence': mo.abilities['int'],
+          'stat_block': jsonEncode(mo.toJson()),
+        });
     }
     insert(_tableOf[entity.type]!, row);
 
@@ -287,6 +296,18 @@ final class PackStore {
             'prof_bonus': l.proficiencyBonus,
             'features': jsonEncode([for (final f in l.features) '$f']),
             'columns': jsonEncode(l.columns),
+          });
+        }
+      case final MonsterData mo:
+        for (final (i, action) in mo.actions.indexed) {
+          final json = action.toJson();
+          child('monster_action', {
+            'monster_id': id,
+            'position': i,
+            'kind': json['kind'],
+            'name': action.name,
+            'recharge': action.uses?.label,
+            'data': jsonEncode(json),
           });
         }
       case final SubclassData s:
@@ -548,6 +569,9 @@ final class PackStore {
               'duration': row['duration'],
               'concentration': row['concentration'] == 1,
             },
+            // Le profil complet ; monster_action n'en est qu'un index.
+            'monster' =>
+              jsonDecode(row['stat_block']! as String) as Map<String, Object?>,
             _ => const <String, Object?>{},
           },
         }..removeWhere((_, value) => value == null);

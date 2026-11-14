@@ -73,3 +73,80 @@ ContentPack validPack() => ContentPack(
     ], 'srd:feat:savage-attacker'),
   ],
 );
+
+/// Loup, SRD 5.2.1 p. 370.
+Map<String, Object?> wolf({
+  Map<String, Object?> data = const {},
+  List<Map<String, Object?>>? actions,
+}) => {
+  'id': 'srd:monster:wolf',
+  'type': 'monster',
+  'name': 'Loup',
+  'data': {
+    'sizes': ['medium'],
+    'creature_type': 'beast',
+    'type_tags': <String>[],
+    'alignment': 'non alignée',
+    'ac': 12,
+    'initiative': 2,
+    'hp': 11,
+    'hit_dice': '2d8 + 2',
+    'speed': {'walk': 40},
+    'hover': false,
+    'abilities': {
+      'str': 14,
+      'dex': 15,
+      'con': 12,
+      'int': 3,
+      'wis': 12,
+      'cha': 6,
+    },
+    'saving_throws': {
+      'str': 2,
+      'dex': 2,
+      'con': 1,
+      'int': -4,
+      'wis': 1,
+      'cha': -2,
+    },
+    'skills': {'srd:skill:stealth': 4, 'srd:skill:perception': 5},
+    'vulnerabilities': <String>[],
+    'resistances': <String>[],
+    'immunities': <String>[],
+    'condition_immunities': <String>[],
+    'gear': <String>[],
+    'senses': {'darkvision': 60},
+    'passive_perception': 15,
+    'languages': 'aucune',
+    'cr': '1/4',
+    'xp': 50,
+    'proficiency_bonus': 2,
+    'actions':
+        actions ??
+        [
+          {
+            'kind': 'trait',
+            'name': 'Tactique de meute',
+            'text': 'Quand au moins un de ses alliés…',
+          },
+          {
+            'kind': 'action',
+            'name': 'Morsure',
+            'attack': {
+              'kind': 'melee',
+              'bonus': 4,
+              'reach': 5,
+              'damage': [
+                {
+                  'average': 5,
+                  'dice': '1d6 + 2',
+                  'type': 'srd:damage-type:piercing',
+                },
+              ],
+            },
+            'text': 'Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2)…',
+          },
+        ],
+    ...data,
+  },
+};

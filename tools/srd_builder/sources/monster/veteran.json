@@ -1,0 +1,106 @@
+{
+  "id": "srd:monster:veteran",
+  "type": "monster",
+  "name": "Vétéran",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 17,
+    "initiative": 3,
+    "hp": 65,
+    "hit_dice": "10d8 + 20",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 13,
+      "con": 14,
+      "int": 10,
+      "wis": 11,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 2,
+      "int": 0,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:athletics": 5,
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arbalète lourde",
+      "clibanion",
+      "épée à deux mains"
+    ],
+    "senses": {},
+    "passive_perception": 12,
+    "languages": "commun et une autre langue",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le soldat effectue deux attaques d’Épée à deux mains ou d’Arbalète lourde."
+      },
+      {
+        "kind": "action",
+        "name": "Épée à deux mains",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Arbalète lourde",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 3,
+          "range": [
+            100,
+            400
+          ],
+          "damage": [
+            {
+              "average": 12,
+              "dice": "2d10 + 1",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +3, portée 30/120 m. Touché : 12 (2d10 + 1) dégâts perforants."
+      },
+      {
+        "kind": "reaction",
+        "name": "Parade",
+        "text": "Déclencheur : le soldat est touché par un jet d’attaque de corps à corps alors qu’il tient une arme. Conséquences : le soldat ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+      }
+    ]
+  }
+}

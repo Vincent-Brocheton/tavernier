@@ -1,0 +1,94 @@
+{
+  "id": "srd:monster:ogre",
+  "type": "monster",
+  "name": "Ogre",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "giant",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 11,
+    "initiative": -1,
+    "hp": 68,
+    "hit_dice": "8d10 + 24",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 8,
+      "con": 16,
+      "int": 5,
+      "wis": 7,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": -1,
+      "con": 3,
+      "int": -3,
+      "wis": -2,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "javelines (3)",
+      "massue"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 8,
+    "languages": "commun, géant",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Massue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts contondants."
+      },
+      {
+        "kind": "action",
+        "name": "Javeline",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 6,
+          "reach": 5,
+          "range": [
+            30,
+            120
+          ],
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +6, allonge 1,50 m ou portée 9/36 m. Touché : 11 (2d6 + 4) dégâts perforants."
+      }
+    ]
+  }
+}

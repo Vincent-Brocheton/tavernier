@@ -6688,4 +6688,2524 @@ $SpellComponentsCopyWith<$Res> get components {
 }
 }
 
+
+/// @nodoc
+mixin _$MonsterSpeed {
+
+ int? get walk; int? get swim; int? get fly; int? get climb; int? get burrow;
+/// Create a copy of MonsterSpeed
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterSpeedCopyWith<MonsterSpeed> get copyWith => _$MonsterSpeedCopyWithImpl<MonsterSpeed>(this as MonsterSpeed, _$identity);
+
+  /// Serializes this MonsterSpeed to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterSpeed;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterSpeed&&(identical(other.walk, _this.walk) || other.walk == _this.walk)&&(identical(other.swim, _this.swim) || other.swim == _this.swim)&&(identical(other.fly, _this.fly) || other.fly == _this.fly)&&(identical(other.climb, _this.climb) || other.climb == _this.climb)&&(identical(other.burrow, _this.burrow) || other.burrow == _this.burrow));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterSpeed;
+  return Object.hash(runtimeType,_this.walk,_this.swim,_this.fly,_this.climb,_this.burrow);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterSpeed;
+  return 'MonsterSpeed(walk: ${_this.walk}, swim: ${_this.swim}, fly: ${_this.fly}, climb: ${_this.climb}, burrow: ${_this.burrow})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterSpeedCopyWith<$Res>  {
+  factory $MonsterSpeedCopyWith(MonsterSpeed value, $Res Function(MonsterSpeed) _then) = _$MonsterSpeedCopyWithImpl;
+@useResult
+$Res call({
+ int? walk, int? swim, int? fly, int? climb, int? burrow
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterSpeedCopyWithImpl<$Res>
+    implements $MonsterSpeedCopyWith<$Res> {
+  _$MonsterSpeedCopyWithImpl(this._self, this._then);
+
+  final MonsterSpeed _self;
+  final $Res Function(MonsterSpeed) _then;
+
+/// Create a copy of MonsterSpeed
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? walk = freezed,Object? swim = freezed,Object? fly = freezed,Object? climb = freezed,Object? burrow = freezed,}) {
+  return _then(MonsterSpeed(
+walk: freezed == walk ? _self.walk : walk // ignore: cast_nullable_to_non_nullable
+as int?,swim: freezed == swim ? _self.swim : swim // ignore: cast_nullable_to_non_nullable
+as int?,fly: freezed == fly ? _self.fly : fly // ignore: cast_nullable_to_non_nullable
+as int?,climb: freezed == climb ? _self.climb : climb // ignore: cast_nullable_to_non_nullable
+as int?,burrow: freezed == burrow ? _self.burrow : burrow // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterSpeed].
+extension MonsterSpeedPatterns on MonsterSpeed {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterSpeed value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterSpeed() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterSpeed value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSpeed():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterSpeed value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSpeed() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? walk,  int? swim,  int? fly,  int? climb,  int? burrow)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterSpeed() when $default != null:
+return $default(_that.walk,_that.swim,_that.fly,_that.climb,_that.burrow);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? walk,  int? swim,  int? fly,  int? climb,  int? burrow)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSpeed():
+return $default(_that.walk,_that.swim,_that.fly,_that.climb,_that.burrow);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? walk,  int? swim,  int? fly,  int? climb,  int? burrow)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSpeed() when $default != null:
+return $default(_that.walk,_that.swim,_that.fly,_that.climb,_that.burrow);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterSpeed implements MonsterSpeed {
+  const _MonsterSpeed({this.walk, this.swim, this.fly, this.climb, this.burrow});
+  factory _MonsterSpeed.fromJson(Map<String, dynamic> json) => _$MonsterSpeedFromJson(json);
+
+@override final  int? walk;
+@override final  int? swim;
+@override final  int? fly;
+@override final  int? climb;
+@override final  int? burrow;
+
+/// Create a copy of MonsterSpeed
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterSpeedCopyWith<_MonsterSpeed> get copyWith => __$MonsterSpeedCopyWithImpl<_MonsterSpeed>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterSpeedToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterSpeed&&(identical(other.walk, walk) || other.walk == walk)&&(identical(other.swim, swim) || other.swim == swim)&&(identical(other.fly, fly) || other.fly == fly)&&(identical(other.climb, climb) || other.climb == climb)&&(identical(other.burrow, burrow) || other.burrow == burrow));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,walk,swim,fly,climb,burrow);
+}
+
+@override
+String toString() {
+    return 'MonsterSpeed(walk: $walk, swim: $swim, fly: $fly, climb: $climb, burrow: $burrow)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterSpeedCopyWith<$Res> implements $MonsterSpeedCopyWith<$Res> {
+  factory _$MonsterSpeedCopyWith(_MonsterSpeed value, $Res Function(_MonsterSpeed) _then) = __$MonsterSpeedCopyWithImpl;
+@override @useResult
+$Res call({
+ int? walk, int? swim, int? fly, int? climb, int? burrow
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterSpeedCopyWithImpl<$Res>
+    implements _$MonsterSpeedCopyWith<$Res> {
+  __$MonsterSpeedCopyWithImpl(this._self, this._then);
+
+  final _MonsterSpeed _self;
+  final $Res Function(_MonsterSpeed) _then;
+
+/// Create a copy of MonsterSpeed
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? walk = freezed,Object? swim = freezed,Object? fly = freezed,Object? climb = freezed,Object? burrow = freezed,}) {
+  return _then(_MonsterSpeed(
+walk: freezed == walk ? _self.walk : walk // ignore: cast_nullable_to_non_nullable
+as int?,swim: freezed == swim ? _self.swim : swim // ignore: cast_nullable_to_non_nullable
+as int?,fly: freezed == fly ? _self.fly : fly // ignore: cast_nullable_to_non_nullable
+as int?,climb: freezed == climb ? _self.climb : climb // ignore: cast_nullable_to_non_nullable
+as int?,burrow: freezed == burrow ? _self.burrow : burrow // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterSenses {
+
+ int? get darkvision; int? get blindsight;/// `true` pour « (aveugle au-delà) » après la Vision aveugle.
+ bool? get blindBeyond; int? get tremorsense; int? get truesight;
+/// Create a copy of MonsterSenses
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterSensesCopyWith<MonsterSenses> get copyWith => _$MonsterSensesCopyWithImpl<MonsterSenses>(this as MonsterSenses, _$identity);
+
+  /// Serializes this MonsterSenses to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterSenses;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterSenses&&(identical(other.darkvision, _this.darkvision) || other.darkvision == _this.darkvision)&&(identical(other.blindsight, _this.blindsight) || other.blindsight == _this.blindsight)&&(identical(other.blindBeyond, _this.blindBeyond) || other.blindBeyond == _this.blindBeyond)&&(identical(other.tremorsense, _this.tremorsense) || other.tremorsense == _this.tremorsense)&&(identical(other.truesight, _this.truesight) || other.truesight == _this.truesight));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterSenses;
+  return Object.hash(runtimeType,_this.darkvision,_this.blindsight,_this.blindBeyond,_this.tremorsense,_this.truesight);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterSenses;
+  return 'MonsterSenses(darkvision: ${_this.darkvision}, blindsight: ${_this.blindsight}, blindBeyond: ${_this.blindBeyond}, tremorsense: ${_this.tremorsense}, truesight: ${_this.truesight})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterSensesCopyWith<$Res>  {
+  factory $MonsterSensesCopyWith(MonsterSenses value, $Res Function(MonsterSenses) _then) = _$MonsterSensesCopyWithImpl;
+@useResult
+$Res call({
+ int? darkvision, int? blindsight, bool? blindBeyond, int? tremorsense, int? truesight
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterSensesCopyWithImpl<$Res>
+    implements $MonsterSensesCopyWith<$Res> {
+  _$MonsterSensesCopyWithImpl(this._self, this._then);
+
+  final MonsterSenses _self;
+  final $Res Function(MonsterSenses) _then;
+
+/// Create a copy of MonsterSenses
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? darkvision = freezed,Object? blindsight = freezed,Object? blindBeyond = freezed,Object? tremorsense = freezed,Object? truesight = freezed,}) {
+  return _then(MonsterSenses(
+darkvision: freezed == darkvision ? _self.darkvision : darkvision // ignore: cast_nullable_to_non_nullable
+as int?,blindsight: freezed == blindsight ? _self.blindsight : blindsight // ignore: cast_nullable_to_non_nullable
+as int?,blindBeyond: freezed == blindBeyond ? _self.blindBeyond : blindBeyond // ignore: cast_nullable_to_non_nullable
+as bool?,tremorsense: freezed == tremorsense ? _self.tremorsense : tremorsense // ignore: cast_nullable_to_non_nullable
+as int?,truesight: freezed == truesight ? _self.truesight : truesight // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterSenses].
+extension MonsterSensesPatterns on MonsterSenses {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterSenses value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterSenses() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterSenses value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSenses():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterSenses value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSenses() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? darkvision,  int? blindsight,  bool? blindBeyond,  int? tremorsense,  int? truesight)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterSenses() when $default != null:
+return $default(_that.darkvision,_that.blindsight,_that.blindBeyond,_that.tremorsense,_that.truesight);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? darkvision,  int? blindsight,  bool? blindBeyond,  int? tremorsense,  int? truesight)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSenses():
+return $default(_that.darkvision,_that.blindsight,_that.blindBeyond,_that.tremorsense,_that.truesight);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? darkvision,  int? blindsight,  bool? blindBeyond,  int? tremorsense,  int? truesight)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSenses() when $default != null:
+return $default(_that.darkvision,_that.blindsight,_that.blindBeyond,_that.tremorsense,_that.truesight);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterSenses implements MonsterSenses {
+  const _MonsterSenses({this.darkvision, this.blindsight, this.blindBeyond, this.tremorsense, this.truesight});
+  factory _MonsterSenses.fromJson(Map<String, dynamic> json) => _$MonsterSensesFromJson(json);
+
+@override final  int? darkvision;
+@override final  int? blindsight;
+/// `true` pour « (aveugle au-delà) » après la Vision aveugle.
+@override final  bool? blindBeyond;
+@override final  int? tremorsense;
+@override final  int? truesight;
+
+/// Create a copy of MonsterSenses
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterSensesCopyWith<_MonsterSenses> get copyWith => __$MonsterSensesCopyWithImpl<_MonsterSenses>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterSensesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterSenses&&(identical(other.darkvision, darkvision) || other.darkvision == darkvision)&&(identical(other.blindsight, blindsight) || other.blindsight == blindsight)&&(identical(other.blindBeyond, blindBeyond) || other.blindBeyond == blindBeyond)&&(identical(other.tremorsense, tremorsense) || other.tremorsense == tremorsense)&&(identical(other.truesight, truesight) || other.truesight == truesight));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,darkvision,blindsight,blindBeyond,tremorsense,truesight);
+}
+
+@override
+String toString() {
+    return 'MonsterSenses(darkvision: $darkvision, blindsight: $blindsight, blindBeyond: $blindBeyond, tremorsense: $tremorsense, truesight: $truesight)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterSensesCopyWith<$Res> implements $MonsterSensesCopyWith<$Res> {
+  factory _$MonsterSensesCopyWith(_MonsterSenses value, $Res Function(_MonsterSenses) _then) = __$MonsterSensesCopyWithImpl;
+@override @useResult
+$Res call({
+ int? darkvision, int? blindsight, bool? blindBeyond, int? tremorsense, int? truesight
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterSensesCopyWithImpl<$Res>
+    implements _$MonsterSensesCopyWith<$Res> {
+  __$MonsterSensesCopyWithImpl(this._self, this._then);
+
+  final _MonsterSenses _self;
+  final $Res Function(_MonsterSenses) _then;
+
+/// Create a copy of MonsterSenses
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? darkvision = freezed,Object? blindsight = freezed,Object? blindBeyond = freezed,Object? tremorsense = freezed,Object? truesight = freezed,}) {
+  return _then(_MonsterSenses(
+darkvision: freezed == darkvision ? _self.darkvision : darkvision // ignore: cast_nullable_to_non_nullable
+as int?,blindsight: freezed == blindsight ? _self.blindsight : blindsight // ignore: cast_nullable_to_non_nullable
+as int?,blindBeyond: freezed == blindBeyond ? _self.blindBeyond : blindBeyond // ignore: cast_nullable_to_non_nullable
+as bool?,tremorsense: freezed == tremorsense ? _self.tremorsense : tremorsense // ignore: cast_nullable_to_non_nullable
+as int?,truesight: freezed == truesight ? _self.truesight : truesight // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterUses {
+
+ int? get perDay; int? get perDayLair; String? get recharge;/// `short_or_long` ou `long`.
+ String? get rest;
+/// Create a copy of MonsterUses
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterUsesCopyWith<MonsterUses> get copyWith => _$MonsterUsesCopyWithImpl<MonsterUses>(this as MonsterUses, _$identity);
+
+  /// Serializes this MonsterUses to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterUses;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterUses&&(identical(other.perDay, _this.perDay) || other.perDay == _this.perDay)&&(identical(other.perDayLair, _this.perDayLair) || other.perDayLair == _this.perDayLair)&&(identical(other.recharge, _this.recharge) || other.recharge == _this.recharge)&&(identical(other.rest, _this.rest) || other.rest == _this.rest));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterUses;
+  return Object.hash(runtimeType,_this.perDay,_this.perDayLair,_this.recharge,_this.rest);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterUses;
+  return 'MonsterUses(perDay: ${_this.perDay}, perDayLair: ${_this.perDayLair}, recharge: ${_this.recharge}, rest: ${_this.rest})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterUsesCopyWith<$Res>  {
+  factory $MonsterUsesCopyWith(MonsterUses value, $Res Function(MonsterUses) _then) = _$MonsterUsesCopyWithImpl;
+@useResult
+$Res call({
+ int? perDay, int? perDayLair, String? recharge, String? rest
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterUsesCopyWithImpl<$Res>
+    implements $MonsterUsesCopyWith<$Res> {
+  _$MonsterUsesCopyWithImpl(this._self, this._then);
+
+  final MonsterUses _self;
+  final $Res Function(MonsterUses) _then;
+
+/// Create a copy of MonsterUses
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? perDay = freezed,Object? perDayLair = freezed,Object? recharge = freezed,Object? rest = freezed,}) {
+  return _then(MonsterUses(
+perDay: freezed == perDay ? _self.perDay : perDay // ignore: cast_nullable_to_non_nullable
+as int?,perDayLair: freezed == perDayLair ? _self.perDayLair : perDayLair // ignore: cast_nullable_to_non_nullable
+as int?,recharge: freezed == recharge ? _self.recharge : recharge // ignore: cast_nullable_to_non_nullable
+as String?,rest: freezed == rest ? _self.rest : rest // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterUses].
+extension MonsterUsesPatterns on MonsterUses {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterUses value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterUses() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterUses value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterUses():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterUses value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterUses() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? perDay,  int? perDayLair,  String? recharge,  String? rest)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterUses() when $default != null:
+return $default(_that.perDay,_that.perDayLair,_that.recharge,_that.rest);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? perDay,  int? perDayLair,  String? recharge,  String? rest)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterUses():
+return $default(_that.perDay,_that.perDayLair,_that.recharge,_that.rest);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? perDay,  int? perDayLair,  String? recharge,  String? rest)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterUses() when $default != null:
+return $default(_that.perDay,_that.perDayLair,_that.recharge,_that.rest);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterUses extends MonsterUses {
+  const _MonsterUses({this.perDay, this.perDayLair, this.recharge, this.rest}): super._();
+  factory _MonsterUses.fromJson(Map<String, dynamic> json) => _$MonsterUsesFromJson(json);
+
+@override final  int? perDay;
+@override final  int? perDayLair;
+@override final  String? recharge;
+/// `short_or_long` ou `long`.
+@override final  String? rest;
+
+/// Create a copy of MonsterUses
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterUsesCopyWith<_MonsterUses> get copyWith => __$MonsterUsesCopyWithImpl<_MonsterUses>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterUsesToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterUses&&(identical(other.perDay, perDay) || other.perDay == perDay)&&(identical(other.perDayLair, perDayLair) || other.perDayLair == perDayLair)&&(identical(other.recharge, recharge) || other.recharge == recharge)&&(identical(other.rest, rest) || other.rest == rest));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,perDay,perDayLair,recharge,rest);
+}
+
+@override
+String toString() {
+    return 'MonsterUses(perDay: $perDay, perDayLair: $perDayLair, recharge: $recharge, rest: $rest)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterUsesCopyWith<$Res> implements $MonsterUsesCopyWith<$Res> {
+  factory _$MonsterUsesCopyWith(_MonsterUses value, $Res Function(_MonsterUses) _then) = __$MonsterUsesCopyWithImpl;
+@override @useResult
+$Res call({
+ int? perDay, int? perDayLair, String? recharge, String? rest
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterUsesCopyWithImpl<$Res>
+    implements _$MonsterUsesCopyWith<$Res> {
+  __$MonsterUsesCopyWithImpl(this._self, this._then);
+
+  final _MonsterUses _self;
+  final $Res Function(_MonsterUses) _then;
+
+/// Create a copy of MonsterUses
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? perDay = freezed,Object? perDayLair = freezed,Object? recharge = freezed,Object? rest = freezed,}) {
+  return _then(_MonsterUses(
+perDay: freezed == perDay ? _self.perDay : perDay // ignore: cast_nullable_to_non_nullable
+as int?,perDayLair: freezed == perDayLair ? _self.perDayLair : perDayLair // ignore: cast_nullable_to_non_nullable
+as int?,recharge: freezed == recharge ? _self.recharge : recharge // ignore: cast_nullable_to_non_nullable
+as String?,rest: freezed == rest ? _self.rest : rest // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterDamage {
+
+ int get average;/// Absent pour des dégâts fixes (« Touché : 1 dégât perforant »).
+ String? get dice;@ContentIdConverter() ContentId get type;
+/// Create a copy of MonsterDamage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterDamageCopyWith<MonsterDamage> get copyWith => _$MonsterDamageCopyWithImpl<MonsterDamage>(this as MonsterDamage, _$identity);
+
+  /// Serializes this MonsterDamage to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterDamage;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterDamage&&(identical(other.average, _this.average) || other.average == _this.average)&&(identical(other.dice, _this.dice) || other.dice == _this.dice)&&(identical(other.type, _this.type) || other.type == _this.type));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterDamage;
+  return Object.hash(runtimeType,_this.average,_this.dice,_this.type);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterDamage;
+  return 'MonsterDamage(average: ${_this.average}, dice: ${_this.dice}, type: ${_this.type})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterDamageCopyWith<$Res>  {
+  factory $MonsterDamageCopyWith(MonsterDamage value, $Res Function(MonsterDamage) _then) = _$MonsterDamageCopyWithImpl;
+@useResult
+$Res call({
+ int average, String? dice,@ContentIdConverter() ContentId type
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterDamageCopyWithImpl<$Res>
+    implements $MonsterDamageCopyWith<$Res> {
+  _$MonsterDamageCopyWithImpl(this._self, this._then);
+
+  final MonsterDamage _self;
+  final $Res Function(MonsterDamage) _then;
+
+/// Create a copy of MonsterDamage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? average = null,Object? dice = freezed,Object? type = null,}) {
+  return _then(MonsterDamage(
+average: null == average ? _self.average : average // ignore: cast_nullable_to_non_nullable
+as int,dice: freezed == dice ? _self.dice : dice // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as ContentId,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterDamage].
+extension MonsterDamagePatterns on MonsterDamage {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterDamage value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterDamage() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterDamage value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterDamage():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterDamage value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterDamage() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int average,  String? dice, @ContentIdConverter()  ContentId type)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterDamage() when $default != null:
+return $default(_that.average,_that.dice,_that.type);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int average,  String? dice, @ContentIdConverter()  ContentId type)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterDamage():
+return $default(_that.average,_that.dice,_that.type);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int average,  String? dice, @ContentIdConverter()  ContentId type)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterDamage() when $default != null:
+return $default(_that.average,_that.dice,_that.type);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterDamage implements MonsterDamage {
+  const _MonsterDamage({required this.average, this.dice, @ContentIdConverter() required this.type});
+  factory _MonsterDamage.fromJson(Map<String, dynamic> json) => _$MonsterDamageFromJson(json);
+
+@override final  int average;
+/// Absent pour des dégâts fixes (« Touché : 1 dégât perforant »).
+@override final  String? dice;
+@override@ContentIdConverter() final  ContentId type;
+
+/// Create a copy of MonsterDamage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterDamageCopyWith<_MonsterDamage> get copyWith => __$MonsterDamageCopyWithImpl<_MonsterDamage>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterDamageToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterDamage&&(identical(other.average, average) || other.average == average)&&(identical(other.dice, dice) || other.dice == dice)&&(identical(other.type, type) || other.type == type));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,average,dice,type);
+}
+
+@override
+String toString() {
+    return 'MonsterDamage(average: $average, dice: $dice, type: $type)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterDamageCopyWith<$Res> implements $MonsterDamageCopyWith<$Res> {
+  factory _$MonsterDamageCopyWith(_MonsterDamage value, $Res Function(_MonsterDamage) _then) = __$MonsterDamageCopyWithImpl;
+@override @useResult
+$Res call({
+ int average, String? dice,@ContentIdConverter() ContentId type
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterDamageCopyWithImpl<$Res>
+    implements _$MonsterDamageCopyWith<$Res> {
+  __$MonsterDamageCopyWithImpl(this._self, this._then);
+
+  final _MonsterDamage _self;
+  final $Res Function(_MonsterDamage) _then;
+
+/// Create a copy of MonsterDamage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? average = null,Object? dice = freezed,Object? type = null,}) {
+  return _then(_MonsterDamage(
+average: null == average ? _self.average : average // ignore: cast_nullable_to_non_nullable
+as int,dice: freezed == dice ? _self.dice : dice // ignore: cast_nullable_to_non_nullable
+as String?,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as ContentId,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterAttack {
+
+ MonsterAttackKind get kind; int get bonus; int? get reach; List<int>? get range; List<MonsterDamage> get damage;
+/// Create a copy of MonsterAttack
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterAttackCopyWith<MonsterAttack> get copyWith => _$MonsterAttackCopyWithImpl<MonsterAttack>(this as MonsterAttack, _$identity);
+
+  /// Serializes this MonsterAttack to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterAttack;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterAttack&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.bonus, _this.bonus) || other.bonus == _this.bonus)&&(identical(other.reach, _this.reach) || other.reach == _this.reach)&&const DeepCollectionEquality().equals(other.range, _this.range)&&const DeepCollectionEquality().equals(other.damage, _this.damage));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterAttack;
+  return Object.hash(runtimeType,_this.kind,_this.bonus,_this.reach,const DeepCollectionEquality().hash(_this.range),const DeepCollectionEquality().hash(_this.damage));
+}
+
+@override
+String toString() {
+  final _this = this as MonsterAttack;
+  return 'MonsterAttack(kind: ${_this.kind}, bonus: ${_this.bonus}, reach: ${_this.reach}, range: ${_this.range}, damage: ${_this.damage})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterAttackCopyWith<$Res>  {
+  factory $MonsterAttackCopyWith(MonsterAttack value, $Res Function(MonsterAttack) _then) = _$MonsterAttackCopyWithImpl;
+@useResult
+$Res call({
+ MonsterAttackKind kind, int bonus, int? reach, List<int>? range, List<MonsterDamage> damage
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterAttackCopyWithImpl<$Res>
+    implements $MonsterAttackCopyWith<$Res> {
+  _$MonsterAttackCopyWithImpl(this._self, this._then);
+
+  final MonsterAttack _self;
+  final $Res Function(MonsterAttack) _then;
+
+/// Create a copy of MonsterAttack
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? bonus = null,Object? reach = freezed,Object? range = freezed,Object? damage = null,}) {
+  return _then(MonsterAttack(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as MonsterAttackKind,bonus: null == bonus ? _self.bonus : bonus // ignore: cast_nullable_to_non_nullable
+as int,reach: freezed == reach ? _self.reach : reach // ignore: cast_nullable_to_non_nullable
+as int?,range: freezed == range ? _self.range : range // ignore: cast_nullable_to_non_nullable
+as List<int>?,damage: null == damage ? _self.damage : damage // ignore: cast_nullable_to_non_nullable
+as List<MonsterDamage>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterAttack].
+extension MonsterAttackPatterns on MonsterAttack {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterAttack value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterAttack() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterAttack value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterAttack():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterAttack value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterAttack() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MonsterAttackKind kind,  int bonus,  int? reach,  List<int>? range,  List<MonsterDamage> damage)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterAttack() when $default != null:
+return $default(_that.kind,_that.bonus,_that.reach,_that.range,_that.damage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MonsterAttackKind kind,  int bonus,  int? reach,  List<int>? range,  List<MonsterDamage> damage)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterAttack():
+return $default(_that.kind,_that.bonus,_that.reach,_that.range,_that.damage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MonsterAttackKind kind,  int bonus,  int? reach,  List<int>? range,  List<MonsterDamage> damage)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterAttack() when $default != null:
+return $default(_that.kind,_that.bonus,_that.reach,_that.range,_that.damage);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterAttack implements MonsterAttack {
+  const _MonsterAttack({required this.kind, required this.bonus, this.reach,  List<int>? range,  List<MonsterDamage> damage = const <MonsterDamage>[]}): _range = range,_damage = damage;
+  factory _MonsterAttack.fromJson(Map<String, dynamic> json) => _$MonsterAttackFromJson(json);
+
+@override final  MonsterAttackKind kind;
+@override final  int bonus;
+@override final  int? reach;
+ final  List<int>? _range;
+@override List<int>? get range {
+  final value = _range;
+  if (value == null) return null;
+  if (_range is EqualUnmodifiableListView) return _range;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<MonsterDamage> _damage;
+@override@JsonKey() List<MonsterDamage> get damage {
+  if (_damage is EqualUnmodifiableListView) return _damage;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_damage);
+}
+
+
+/// Create a copy of MonsterAttack
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterAttackCopyWith<_MonsterAttack> get copyWith => __$MonsterAttackCopyWithImpl<_MonsterAttack>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterAttackToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterAttack&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.bonus, bonus) || other.bonus == bonus)&&(identical(other.reach, reach) || other.reach == reach)&&const DeepCollectionEquality().equals(other.range, _range)&&const DeepCollectionEquality().equals(other.damage, _damage));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,kind,bonus,reach,const DeepCollectionEquality().hash(_range),const DeepCollectionEquality().hash(_damage));
+}
+
+@override
+String toString() {
+    return 'MonsterAttack(kind: $kind, bonus: $bonus, reach: $reach, range: $range, damage: $damage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterAttackCopyWith<$Res> implements $MonsterAttackCopyWith<$Res> {
+  factory _$MonsterAttackCopyWith(_MonsterAttack value, $Res Function(_MonsterAttack) _then) = __$MonsterAttackCopyWithImpl;
+@override @useResult
+$Res call({
+ MonsterAttackKind kind, int bonus, int? reach, List<int>? range, List<MonsterDamage> damage
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterAttackCopyWithImpl<$Res>
+    implements _$MonsterAttackCopyWith<$Res> {
+  __$MonsterAttackCopyWithImpl(this._self, this._then);
+
+  final _MonsterAttack _self;
+  final $Res Function(_MonsterAttack) _then;
+
+/// Create a copy of MonsterAttack
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? bonus = null,Object? reach = freezed,Object? range = freezed,Object? damage = null,}) {
+  return _then(_MonsterAttack(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as MonsterAttackKind,bonus: null == bonus ? _self.bonus : bonus // ignore: cast_nullable_to_non_nullable
+as int,reach: freezed == reach ? _self.reach : reach // ignore: cast_nullable_to_non_nullable
+as int?,range: freezed == range ? _self._range : range // ignore: cast_nullable_to_non_nullable
+as List<int>?,damage: null == damage ? _self._damage : damage // ignore: cast_nullable_to_non_nullable
+as List<MonsterDamage>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterSave {
+
+ String get ability; int get dc;
+/// Create a copy of MonsterSave
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterSaveCopyWith<MonsterSave> get copyWith => _$MonsterSaveCopyWithImpl<MonsterSave>(this as MonsterSave, _$identity);
+
+  /// Serializes this MonsterSave to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterSave;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterSave&&(identical(other.ability, _this.ability) || other.ability == _this.ability)&&(identical(other.dc, _this.dc) || other.dc == _this.dc));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterSave;
+  return Object.hash(runtimeType,_this.ability,_this.dc);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterSave;
+  return 'MonsterSave(ability: ${_this.ability}, dc: ${_this.dc})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterSaveCopyWith<$Res>  {
+  factory $MonsterSaveCopyWith(MonsterSave value, $Res Function(MonsterSave) _then) = _$MonsterSaveCopyWithImpl;
+@useResult
+$Res call({
+ String ability, int dc
+});
+
+
+
+
+}
+/// @nodoc
+class _$MonsterSaveCopyWithImpl<$Res>
+    implements $MonsterSaveCopyWith<$Res> {
+  _$MonsterSaveCopyWithImpl(this._self, this._then);
+
+  final MonsterSave _self;
+  final $Res Function(MonsterSave) _then;
+
+/// Create a copy of MonsterSave
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? ability = null,Object? dc = null,}) {
+  return _then(MonsterSave(
+ability: null == ability ? _self.ability : ability // ignore: cast_nullable_to_non_nullable
+as String,dc: null == dc ? _self.dc : dc // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterSave].
+extension MonsterSavePatterns on MonsterSave {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterSave value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterSave() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterSave value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSave():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterSave value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterSave() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String ability,  int dc)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterSave() when $default != null:
+return $default(_that.ability,_that.dc);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String ability,  int dc)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSave():
+return $default(_that.ability,_that.dc);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String ability,  int dc)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterSave() when $default != null:
+return $default(_that.ability,_that.dc);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterSave implements MonsterSave {
+  const _MonsterSave({required this.ability, required this.dc});
+  factory _MonsterSave.fromJson(Map<String, dynamic> json) => _$MonsterSaveFromJson(json);
+
+@override final  String ability;
+@override final  int dc;
+
+/// Create a copy of MonsterSave
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterSaveCopyWith<_MonsterSave> get copyWith => __$MonsterSaveCopyWithImpl<_MonsterSave>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterSaveToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterSave&&(identical(other.ability, ability) || other.ability == ability)&&(identical(other.dc, dc) || other.dc == dc));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,ability,dc);
+}
+
+@override
+String toString() {
+    return 'MonsterSave(ability: $ability, dc: $dc)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterSaveCopyWith<$Res> implements $MonsterSaveCopyWith<$Res> {
+  factory _$MonsterSaveCopyWith(_MonsterSave value, $Res Function(_MonsterSave) _then) = __$MonsterSaveCopyWithImpl;
+@override @useResult
+$Res call({
+ String ability, int dc
+});
+
+
+
+
+}
+/// @nodoc
+class __$MonsterSaveCopyWithImpl<$Res>
+    implements _$MonsterSaveCopyWith<$Res> {
+  __$MonsterSaveCopyWithImpl(this._self, this._then);
+
+  final _MonsterSave _self;
+  final $Res Function(_MonsterSave) _then;
+
+/// Create a copy of MonsterSave
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? ability = null,Object? dc = null,}) {
+  return _then(_MonsterSave(
+ability: null == ability ? _self.ability : ability // ignore: cast_nullable_to_non_nullable
+as String,dc: null == dc ? _self.dc : dc // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MonsterAction {
+
+ MonsterActionKind get kind; String get name; MonsterUses? get uses; MonsterAttack? get attack; MonsterSave? get save; String get text;
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterActionCopyWith<MonsterAction> get copyWith => _$MonsterActionCopyWithImpl<MonsterAction>(this as MonsterAction, _$identity);
+
+  /// Serializes this MonsterAction to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterAction;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterAction&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.uses, _this.uses) || other.uses == _this.uses)&&(identical(other.attack, _this.attack) || other.attack == _this.attack)&&(identical(other.save, _this.save) || other.save == _this.save)&&(identical(other.text, _this.text) || other.text == _this.text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterAction;
+  return Object.hash(runtimeType,_this.kind,_this.name,_this.uses,_this.attack,_this.save,_this.text);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterAction;
+  return 'MonsterAction(kind: ${_this.kind}, name: ${_this.name}, uses: ${_this.uses}, attack: ${_this.attack}, save: ${_this.save}, text: ${_this.text})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterActionCopyWith<$Res>  {
+  factory $MonsterActionCopyWith(MonsterAction value, $Res Function(MonsterAction) _then) = _$MonsterActionCopyWithImpl;
+@useResult
+$Res call({
+ MonsterActionKind kind, String name, MonsterUses? uses, MonsterAttack? attack, MonsterSave? save, String text
+});
+
+
+$MonsterUsesCopyWith<$Res>? get uses;$MonsterAttackCopyWith<$Res>? get attack;$MonsterSaveCopyWith<$Res>? get save;
+
+}
+/// @nodoc
+class _$MonsterActionCopyWithImpl<$Res>
+    implements $MonsterActionCopyWith<$Res> {
+  _$MonsterActionCopyWithImpl(this._self, this._then);
+
+  final MonsterAction _self;
+  final $Res Function(MonsterAction) _then;
+
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? kind = null,Object? name = null,Object? uses = freezed,Object? attack = freezed,Object? save = freezed,Object? text = null,}) {
+  return _then(MonsterAction(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as MonsterActionKind,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,uses: freezed == uses ? _self.uses : uses // ignore: cast_nullable_to_non_nullable
+as MonsterUses?,attack: freezed == attack ? _self.attack : attack // ignore: cast_nullable_to_non_nullable
+as MonsterAttack?,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as MonsterSave?,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterUsesCopyWith<$Res>? get uses {
+    if (_self.uses == null) {
+    return null;
+  }
+
+  return $MonsterUsesCopyWith<$Res>(_self.uses!, (value) {
+    return _then(_self.copyWith(uses: value));
+  });
+}/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterAttackCopyWith<$Res>? get attack {
+    if (_self.attack == null) {
+    return null;
+  }
+
+  return $MonsterAttackCopyWith<$Res>(_self.attack!, (value) {
+    return _then(_self.copyWith(attack: value));
+  });
+}/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSaveCopyWith<$Res>? get save {
+    if (_self.save == null) {
+    return null;
+  }
+
+  return $MonsterSaveCopyWith<$Res>(_self.save!, (value) {
+    return _then(_self.copyWith(save: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterAction].
+extension MonsterActionPatterns on MonsterAction {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterAction value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterAction() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterAction value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterAction():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterAction value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterAction() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MonsterActionKind kind,  String name,  MonsterUses? uses,  MonsterAttack? attack,  MonsterSave? save,  String text)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterAction() when $default != null:
+return $default(_that.kind,_that.name,_that.uses,_that.attack,_that.save,_that.text);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MonsterActionKind kind,  String name,  MonsterUses? uses,  MonsterAttack? attack,  MonsterSave? save,  String text)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterAction():
+return $default(_that.kind,_that.name,_that.uses,_that.attack,_that.save,_that.text);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MonsterActionKind kind,  String name,  MonsterUses? uses,  MonsterAttack? attack,  MonsterSave? save,  String text)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterAction() when $default != null:
+return $default(_that.kind,_that.name,_that.uses,_that.attack,_that.save,_that.text);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterAction implements MonsterAction {
+  const _MonsterAction({required this.kind, required this.name, this.uses, this.attack, this.save, required this.text});
+  factory _MonsterAction.fromJson(Map<String, dynamic> json) => _$MonsterActionFromJson(json);
+
+@override final  MonsterActionKind kind;
+@override final  String name;
+@override final  MonsterUses? uses;
+@override final  MonsterAttack? attack;
+@override final  MonsterSave? save;
+@override final  String text;
+
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterActionCopyWith<_MonsterAction> get copyWith => __$MonsterActionCopyWithImpl<_MonsterAction>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterActionToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterAction&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.name, name) || other.name == name)&&(identical(other.uses, uses) || other.uses == uses)&&(identical(other.attack, attack) || other.attack == attack)&&(identical(other.save, save) || other.save == save)&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,kind,name,uses,attack,save,text);
+}
+
+@override
+String toString() {
+    return 'MonsterAction(kind: $kind, name: $name, uses: $uses, attack: $attack, save: $save, text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterActionCopyWith<$Res> implements $MonsterActionCopyWith<$Res> {
+  factory _$MonsterActionCopyWith(_MonsterAction value, $Res Function(_MonsterAction) _then) = __$MonsterActionCopyWithImpl;
+@override @useResult
+$Res call({
+ MonsterActionKind kind, String name, MonsterUses? uses, MonsterAttack? attack, MonsterSave? save, String text
+});
+
+
+@override $MonsterUsesCopyWith<$Res>? get uses;@override $MonsterAttackCopyWith<$Res>? get attack;@override $MonsterSaveCopyWith<$Res>? get save;
+
+}
+/// @nodoc
+class __$MonsterActionCopyWithImpl<$Res>
+    implements _$MonsterActionCopyWith<$Res> {
+  __$MonsterActionCopyWithImpl(this._self, this._then);
+
+  final _MonsterAction _self;
+  final $Res Function(_MonsterAction) _then;
+
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? kind = null,Object? name = null,Object? uses = freezed,Object? attack = freezed,Object? save = freezed,Object? text = null,}) {
+  return _then(_MonsterAction(
+kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
+as MonsterActionKind,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,uses: freezed == uses ? _self.uses : uses // ignore: cast_nullable_to_non_nullable
+as MonsterUses?,attack: freezed == attack ? _self.attack : attack // ignore: cast_nullable_to_non_nullable
+as MonsterAttack?,save: freezed == save ? _self.save : save // ignore: cast_nullable_to_non_nullable
+as MonsterSave?,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterUsesCopyWith<$Res>? get uses {
+    if (_self.uses == null) {
+    return null;
+  }
+
+  return $MonsterUsesCopyWith<$Res>(_self.uses!, (value) {
+    return _then(_self.copyWith(uses: value));
+  });
+}/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterAttackCopyWith<$Res>? get attack {
+    if (_self.attack == null) {
+    return null;
+  }
+
+  return $MonsterAttackCopyWith<$Res>(_self.attack!, (value) {
+    return _then(_self.copyWith(attack: value));
+  });
+}/// Create a copy of MonsterAction
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSaveCopyWith<$Res>? get save {
+    if (_self.save == null) {
+    return null;
+  }
+
+  return $MonsterSaveCopyWith<$Res>(_self.save!, (value) {
+    return _then(_self.copyWith(save: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$MonsterData {
+
+ List<MonsterSize> get sizes; CreatureType get creatureType;/// Texte entre parenthèses après le type (« Démon »).
+ List<String> get typeTags; String get alignment; int get ac;/// Texte qui suit la CA.
+ String? get acNote; int get initiative; int get hp; String get hitDice; MonsterSpeed get speed; bool get hover;@JsonKey(fromJson: _sixAbilities) Map<String, int> get abilities;@JsonKey(fromJson: _sixAbilities) Map<String, int> get savingThrows;/// Bonus par identifiant de compétence.
+ Map<String, int> get skills;@ContentIdConverter() List<ContentId> get vulnerabilities;@ContentIdConverter() List<ContentId> get resistances;@ContentIdConverter() List<ContentId> get immunities;@ContentIdConverter() List<ContentId> get conditionImmunities;/// Ligne « Équipement », un objet par entrée.
+ List<String> get gear; MonsterSenses get senses; int get passivePerception;/// Ligne « Langues », telle qu'imprimée.
+ String get languages; String get cr; int get xp; int? get xpLair; int get proficiencyBonus; int? get legendaryUses; int? get legendaryUsesLair; List<MonsterAction> get actions;
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MonsterDataCopyWith<MonsterData> get copyWith => _$MonsterDataCopyWithImpl<MonsterData>(this as MonsterData, _$identity);
+
+  /// Serializes this MonsterData to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as MonsterData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterData&&const DeepCollectionEquality().equals(other.sizes, _this.sizes)&&(identical(other.creatureType, _this.creatureType) || other.creatureType == _this.creatureType)&&const DeepCollectionEquality().equals(other.typeTags, _this.typeTags)&&(identical(other.alignment, _this.alignment) || other.alignment == _this.alignment)&&(identical(other.ac, _this.ac) || other.ac == _this.ac)&&(identical(other.acNote, _this.acNote) || other.acNote == _this.acNote)&&(identical(other.initiative, _this.initiative) || other.initiative == _this.initiative)&&(identical(other.hp, _this.hp) || other.hp == _this.hp)&&(identical(other.hitDice, _this.hitDice) || other.hitDice == _this.hitDice)&&(identical(other.speed, _this.speed) || other.speed == _this.speed)&&(identical(other.hover, _this.hover) || other.hover == _this.hover)&&const DeepCollectionEquality().equals(other.abilities, _this.abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _this.savingThrows)&&const DeepCollectionEquality().equals(other.skills, _this.skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _this.vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _this.resistances)&&const DeepCollectionEquality().equals(other.immunities, _this.immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _this.conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _this.gear)&&(identical(other.senses, _this.senses) || other.senses == _this.senses)&&(identical(other.passivePerception, _this.passivePerception) || other.passivePerception == _this.passivePerception)&&(identical(other.languages, _this.languages) || other.languages == _this.languages)&&(identical(other.cr, _this.cr) || other.cr == _this.cr)&&(identical(other.xp, _this.xp) || other.xp == _this.xp)&&(identical(other.xpLair, _this.xpLair) || other.xpLair == _this.xpLair)&&(identical(other.proficiencyBonus, _this.proficiencyBonus) || other.proficiencyBonus == _this.proficiencyBonus)&&(identical(other.legendaryUses, _this.legendaryUses) || other.legendaryUses == _this.legendaryUses)&&(identical(other.legendaryUsesLair, _this.legendaryUsesLair) || other.legendaryUsesLair == _this.legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _this.actions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as MonsterData;
+  return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_this.sizes),_this.creatureType,const DeepCollectionEquality().hash(_this.typeTags),_this.alignment,_this.ac,_this.acNote,_this.initiative,_this.hp,_this.hitDice,_this.speed,_this.hover,const DeepCollectionEquality().hash(_this.abilities),const DeepCollectionEquality().hash(_this.savingThrows),const DeepCollectionEquality().hash(_this.skills),const DeepCollectionEquality().hash(_this.vulnerabilities),const DeepCollectionEquality().hash(_this.resistances),const DeepCollectionEquality().hash(_this.immunities),const DeepCollectionEquality().hash(_this.conditionImmunities),const DeepCollectionEquality().hash(_this.gear),_this.senses,_this.passivePerception,_this.languages,_this.cr,_this.xp,_this.xpLair,_this.proficiencyBonus,_this.legendaryUses,_this.legendaryUsesLair,const DeepCollectionEquality().hash(_this.actions)]);
+}
+
+@override
+String toString() {
+  final _this = this as MonsterData;
+  return 'MonsterData(sizes: ${_this.sizes}, creatureType: ${_this.creatureType}, typeTags: ${_this.typeTags}, alignment: ${_this.alignment}, ac: ${_this.ac}, acNote: ${_this.acNote}, initiative: ${_this.initiative}, hp: ${_this.hp}, hitDice: ${_this.hitDice}, speed: ${_this.speed}, hover: ${_this.hover}, abilities: ${_this.abilities}, savingThrows: ${_this.savingThrows}, skills: ${_this.skills}, vulnerabilities: ${_this.vulnerabilities}, resistances: ${_this.resistances}, immunities: ${_this.immunities}, conditionImmunities: ${_this.conditionImmunities}, gear: ${_this.gear}, senses: ${_this.senses}, passivePerception: ${_this.passivePerception}, languages: ${_this.languages}, cr: ${_this.cr}, xp: ${_this.xp}, xpLair: ${_this.xpLair}, proficiencyBonus: ${_this.proficiencyBonus}, legendaryUses: ${_this.legendaryUses}, legendaryUsesLair: ${_this.legendaryUsesLair}, actions: ${_this.actions})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MonsterDataCopyWith<$Res>  {
+  factory $MonsterDataCopyWith(MonsterData value, $Res Function(MonsterData) _then) = _$MonsterDataCopyWithImpl;
+@useResult
+$Res call({
+ List<MonsterSize> sizes, CreatureType creatureType, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions
+});
+
+
+$MonsterSpeedCopyWith<$Res> get speed;$MonsterSensesCopyWith<$Res> get senses;
+
+}
+/// @nodoc
+class _$MonsterDataCopyWithImpl<$Res>
+    implements $MonsterDataCopyWith<$Res> {
+  _$MonsterDataCopyWithImpl(this._self, this._then);
+
+  final MonsterData _self;
+  final $Res Function(MonsterData) _then;
+
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? sizes = null,Object? creatureType = null,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,}) {
+  return _then(MonsterData(
+sizes: null == sizes ? _self.sizes : sizes // ignore: cast_nullable_to_non_nullable
+as List<MonsterSize>,creatureType: null == creatureType ? _self.creatureType : creatureType // ignore: cast_nullable_to_non_nullable
+as CreatureType,typeTags: null == typeTags ? _self.typeTags : typeTags // ignore: cast_nullable_to_non_nullable
+as List<String>,alignment: null == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
+as String,ac: null == ac ? _self.ac : ac // ignore: cast_nullable_to_non_nullable
+as int,acNote: freezed == acNote ? _self.acNote : acNote // ignore: cast_nullable_to_non_nullable
+as String?,initiative: null == initiative ? _self.initiative : initiative // ignore: cast_nullable_to_non_nullable
+as int,hp: null == hp ? _self.hp : hp // ignore: cast_nullable_to_non_nullable
+as int,hitDice: null == hitDice ? _self.hitDice : hitDice // ignore: cast_nullable_to_non_nullable
+as String,speed: null == speed ? _self.speed : speed // ignore: cast_nullable_to_non_nullable
+as MonsterSpeed,hover: null == hover ? _self.hover : hover // ignore: cast_nullable_to_non_nullable
+as bool,abilities: null == abilities ? _self.abilities : abilities // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,savingThrows: null == savingThrows ? _self.savingThrows : savingThrows // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,skills: null == skills ? _self.skills : skills // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,vulnerabilities: null == vulnerabilities ? _self.vulnerabilities : vulnerabilities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,resistances: null == resistances ? _self.resistances : resistances // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,immunities: null == immunities ? _self.immunities : immunities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,conditionImmunities: null == conditionImmunities ? _self.conditionImmunities : conditionImmunities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,gear: null == gear ? _self.gear : gear // ignore: cast_nullable_to_non_nullable
+as List<String>,senses: null == senses ? _self.senses : senses // ignore: cast_nullable_to_non_nullable
+as MonsterSenses,passivePerception: null == passivePerception ? _self.passivePerception : passivePerception // ignore: cast_nullable_to_non_nullable
+as int,languages: null == languages ? _self.languages : languages // ignore: cast_nullable_to_non_nullable
+as String,cr: null == cr ? _self.cr : cr // ignore: cast_nullable_to_non_nullable
+as String,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
+as int,xpLair: freezed == xpLair ? _self.xpLair : xpLair // ignore: cast_nullable_to_non_nullable
+as int?,proficiencyBonus: null == proficiencyBonus ? _self.proficiencyBonus : proficiencyBonus // ignore: cast_nullable_to_non_nullable
+as int,legendaryUses: freezed == legendaryUses ? _self.legendaryUses : legendaryUses // ignore: cast_nullable_to_non_nullable
+as int?,legendaryUsesLair: freezed == legendaryUsesLair ? _self.legendaryUsesLair : legendaryUsesLair // ignore: cast_nullable_to_non_nullable
+as int?,actions: null == actions ? _self.actions : actions // ignore: cast_nullable_to_non_nullable
+as List<MonsterAction>,
+  ));
+}
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSpeedCopyWith<$Res> get speed {
+  
+  return $MonsterSpeedCopyWith<$Res>(_self.speed, (value) {
+    return _then(_self.copyWith(speed: value));
+  });
+}/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSensesCopyWith<$Res> get senses {
+  
+  return $MonsterSensesCopyWith<$Res>(_self.senses, (value) {
+    return _then(_self.copyWith(senses: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [MonsterData].
+extension MonsterDataPatterns on MonsterData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MonsterData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MonsterData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MonsterData value)  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MonsterData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MonsterData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MonsterData() when $default != null:
+return $default(_that.sizes,_that.creatureType,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)  $default,) {final _that = this;
+switch (_that) {
+case _MonsterData():
+return $default(_that.sizes,_that.creatureType,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MonsterSize> sizes,  CreatureType creatureType,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)?  $default,) {final _that = this;
+switch (_that) {
+case _MonsterData() when $default != null:
+return $default(_that.sizes,_that.creatureType,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MonsterData implements MonsterData {
+  const _MonsterData({required  List<MonsterSize> sizes, required this.creatureType,  List<String> typeTags = const <String>[], required this.alignment, required this.ac, this.acNote, required this.initiative, required this.hp, required this.hitDice, required this.speed, this.hover = false, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> savingThrows,  Map<String, int> skills = const <String, int>{}, @ContentIdConverter()  List<ContentId> vulnerabilities = const <ContentId>[], @ContentIdConverter()  List<ContentId> resistances = const <ContentId>[], @ContentIdConverter()  List<ContentId> immunities = const <ContentId>[], @ContentIdConverter()  List<ContentId> conditionImmunities = const <ContentId>[],  List<String> gear = const <String>[], this.senses = const MonsterSenses(), required this.passivePerception, required this.languages, required this.cr, required this.xp, this.xpLair, required this.proficiencyBonus, this.legendaryUses, this.legendaryUsesLair,  List<MonsterAction> actions = const <MonsterAction>[]}): _sizes = sizes,_typeTags = typeTags,_abilities = abilities,_savingThrows = savingThrows,_skills = skills,_vulnerabilities = vulnerabilities,_resistances = resistances,_immunities = immunities,_conditionImmunities = conditionImmunities,_gear = gear,_actions = actions;
+  factory _MonsterData.fromJson(Map<String, dynamic> json) => _$MonsterDataFromJson(json);
+
+ final  List<MonsterSize> _sizes;
+@override List<MonsterSize> get sizes {
+  if (_sizes is EqualUnmodifiableListView) return _sizes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_sizes);
+}
+
+@override final  CreatureType creatureType;
+/// Texte entre parenthèses après le type (« Démon »).
+ final  List<String> _typeTags;
+/// Texte entre parenthèses après le type (« Démon »).
+@override@JsonKey() List<String> get typeTags {
+  if (_typeTags is EqualUnmodifiableListView) return _typeTags;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_typeTags);
+}
+
+@override final  String alignment;
+@override final  int ac;
+/// Texte qui suit la CA.
+@override final  String? acNote;
+@override final  int initiative;
+@override final  int hp;
+@override final  String hitDice;
+@override final  MonsterSpeed speed;
+@override@JsonKey() final  bool hover;
+ final  Map<String, int> _abilities;
+@override@JsonKey(fromJson: _sixAbilities) Map<String, int> get abilities {
+  if (_abilities is EqualUnmodifiableMapView) return _abilities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_abilities);
+}
+
+ final  Map<String, int> _savingThrows;
+@override@JsonKey(fromJson: _sixAbilities) Map<String, int> get savingThrows {
+  if (_savingThrows is EqualUnmodifiableMapView) return _savingThrows;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_savingThrows);
+}
+
+/// Bonus par identifiant de compétence.
+ final  Map<String, int> _skills;
+/// Bonus par identifiant de compétence.
+@override@JsonKey() Map<String, int> get skills {
+  if (_skills is EqualUnmodifiableMapView) return _skills;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_skills);
+}
+
+ final  List<ContentId> _vulnerabilities;
+@override@JsonKey()@ContentIdConverter() List<ContentId> get vulnerabilities {
+  if (_vulnerabilities is EqualUnmodifiableListView) return _vulnerabilities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_vulnerabilities);
+}
+
+ final  List<ContentId> _resistances;
+@override@JsonKey()@ContentIdConverter() List<ContentId> get resistances {
+  if (_resistances is EqualUnmodifiableListView) return _resistances;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_resistances);
+}
+
+ final  List<ContentId> _immunities;
+@override@JsonKey()@ContentIdConverter() List<ContentId> get immunities {
+  if (_immunities is EqualUnmodifiableListView) return _immunities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_immunities);
+}
+
+ final  List<ContentId> _conditionImmunities;
+@override@JsonKey()@ContentIdConverter() List<ContentId> get conditionImmunities {
+  if (_conditionImmunities is EqualUnmodifiableListView) return _conditionImmunities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_conditionImmunities);
+}
+
+/// Ligne « Équipement », un objet par entrée.
+ final  List<String> _gear;
+/// Ligne « Équipement », un objet par entrée.
+@override@JsonKey() List<String> get gear {
+  if (_gear is EqualUnmodifiableListView) return _gear;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_gear);
+}
+
+@override@JsonKey() final  MonsterSenses senses;
+@override final  int passivePerception;
+/// Ligne « Langues », telle qu'imprimée.
+@override final  String languages;
+@override final  String cr;
+@override final  int xp;
+@override final  int? xpLair;
+@override final  int proficiencyBonus;
+@override final  int? legendaryUses;
+@override final  int? legendaryUsesLair;
+ final  List<MonsterAction> _actions;
+@override@JsonKey() List<MonsterAction> get actions {
+  if (_actions is EqualUnmodifiableListView) return _actions;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_actions);
+}
+
+
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MonsterDataCopyWith<_MonsterData> get copyWith => __$MonsterDataCopyWithImpl<_MonsterData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MonsterDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterData&&const DeepCollectionEquality().equals(other.sizes, _sizes)&&(identical(other.creatureType, creatureType) || other.creatureType == creatureType)&&const DeepCollectionEquality().equals(other.typeTags, _typeTags)&&(identical(other.alignment, alignment) || other.alignment == alignment)&&(identical(other.ac, ac) || other.ac == ac)&&(identical(other.acNote, acNote) || other.acNote == acNote)&&(identical(other.initiative, initiative) || other.initiative == initiative)&&(identical(other.hp, hp) || other.hp == hp)&&(identical(other.hitDice, hitDice) || other.hitDice == hitDice)&&(identical(other.speed, speed) || other.speed == speed)&&(identical(other.hover, hover) || other.hover == hover)&&const DeepCollectionEquality().equals(other.abilities, _abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _savingThrows)&&const DeepCollectionEquality().equals(other.skills, _skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _resistances)&&const DeepCollectionEquality().equals(other.immunities, _immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _gear)&&(identical(other.senses, senses) || other.senses == senses)&&(identical(other.passivePerception, passivePerception) || other.passivePerception == passivePerception)&&(identical(other.languages, languages) || other.languages == languages)&&(identical(other.cr, cr) || other.cr == cr)&&(identical(other.xp, xp) || other.xp == xp)&&(identical(other.xpLair, xpLair) || other.xpLair == xpLair)&&(identical(other.proficiencyBonus, proficiencyBonus) || other.proficiencyBonus == proficiencyBonus)&&(identical(other.legendaryUses, legendaryUses) || other.legendaryUses == legendaryUses)&&(identical(other.legendaryUsesLair, legendaryUsesLair) || other.legendaryUsesLair == legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _actions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_sizes),creatureType,const DeepCollectionEquality().hash(_typeTags),alignment,ac,acNote,initiative,hp,hitDice,speed,hover,const DeepCollectionEquality().hash(_abilities),const DeepCollectionEquality().hash(_savingThrows),const DeepCollectionEquality().hash(_skills),const DeepCollectionEquality().hash(_vulnerabilities),const DeepCollectionEquality().hash(_resistances),const DeepCollectionEquality().hash(_immunities),const DeepCollectionEquality().hash(_conditionImmunities),const DeepCollectionEquality().hash(_gear),senses,passivePerception,languages,cr,xp,xpLair,proficiencyBonus,legendaryUses,legendaryUsesLair,const DeepCollectionEquality().hash(_actions)]);
+}
+
+@override
+String toString() {
+    return 'MonsterData(sizes: $sizes, creatureType: $creatureType, typeTags: $typeTags, alignment: $alignment, ac: $ac, acNote: $acNote, initiative: $initiative, hp: $hp, hitDice: $hitDice, speed: $speed, hover: $hover, abilities: $abilities, savingThrows: $savingThrows, skills: $skills, vulnerabilities: $vulnerabilities, resistances: $resistances, immunities: $immunities, conditionImmunities: $conditionImmunities, gear: $gear, senses: $senses, passivePerception: $passivePerception, languages: $languages, cr: $cr, xp: $xp, xpLair: $xpLair, proficiencyBonus: $proficiencyBonus, legendaryUses: $legendaryUses, legendaryUsesLair: $legendaryUsesLair, actions: $actions)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MonsterDataCopyWith<$Res> implements $MonsterDataCopyWith<$Res> {
+  factory _$MonsterDataCopyWith(_MonsterData value, $Res Function(_MonsterData) _then) = __$MonsterDataCopyWithImpl;
+@override @useResult
+$Res call({
+ List<MonsterSize> sizes, CreatureType creatureType, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions
+});
+
+
+@override $MonsterSpeedCopyWith<$Res> get speed;@override $MonsterSensesCopyWith<$Res> get senses;
+
+}
+/// @nodoc
+class __$MonsterDataCopyWithImpl<$Res>
+    implements _$MonsterDataCopyWith<$Res> {
+  __$MonsterDataCopyWithImpl(this._self, this._then);
+
+  final _MonsterData _self;
+  final $Res Function(_MonsterData) _then;
+
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? sizes = null,Object? creatureType = null,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,}) {
+  return _then(_MonsterData(
+sizes: null == sizes ? _self._sizes : sizes // ignore: cast_nullable_to_non_nullable
+as List<MonsterSize>,creatureType: null == creatureType ? _self.creatureType : creatureType // ignore: cast_nullable_to_non_nullable
+as CreatureType,typeTags: null == typeTags ? _self._typeTags : typeTags // ignore: cast_nullable_to_non_nullable
+as List<String>,alignment: null == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
+as String,ac: null == ac ? _self.ac : ac // ignore: cast_nullable_to_non_nullable
+as int,acNote: freezed == acNote ? _self.acNote : acNote // ignore: cast_nullable_to_non_nullable
+as String?,initiative: null == initiative ? _self.initiative : initiative // ignore: cast_nullable_to_non_nullable
+as int,hp: null == hp ? _self.hp : hp // ignore: cast_nullable_to_non_nullable
+as int,hitDice: null == hitDice ? _self.hitDice : hitDice // ignore: cast_nullable_to_non_nullable
+as String,speed: null == speed ? _self.speed : speed // ignore: cast_nullable_to_non_nullable
+as MonsterSpeed,hover: null == hover ? _self.hover : hover // ignore: cast_nullable_to_non_nullable
+as bool,abilities: null == abilities ? _self._abilities : abilities // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,savingThrows: null == savingThrows ? _self._savingThrows : savingThrows // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,skills: null == skills ? _self._skills : skills // ignore: cast_nullable_to_non_nullable
+as Map<String, int>,vulnerabilities: null == vulnerabilities ? _self._vulnerabilities : vulnerabilities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,resistances: null == resistances ? _self._resistances : resistances // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,immunities: null == immunities ? _self._immunities : immunities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,conditionImmunities: null == conditionImmunities ? _self._conditionImmunities : conditionImmunities // ignore: cast_nullable_to_non_nullable
+as List<ContentId>,gear: null == gear ? _self._gear : gear // ignore: cast_nullable_to_non_nullable
+as List<String>,senses: null == senses ? _self.senses : senses // ignore: cast_nullable_to_non_nullable
+as MonsterSenses,passivePerception: null == passivePerception ? _self.passivePerception : passivePerception // ignore: cast_nullable_to_non_nullable
+as int,languages: null == languages ? _self.languages : languages // ignore: cast_nullable_to_non_nullable
+as String,cr: null == cr ? _self.cr : cr // ignore: cast_nullable_to_non_nullable
+as String,xp: null == xp ? _self.xp : xp // ignore: cast_nullable_to_non_nullable
+as int,xpLair: freezed == xpLair ? _self.xpLair : xpLair // ignore: cast_nullable_to_non_nullable
+as int?,proficiencyBonus: null == proficiencyBonus ? _self.proficiencyBonus : proficiencyBonus // ignore: cast_nullable_to_non_nullable
+as int,legendaryUses: freezed == legendaryUses ? _self.legendaryUses : legendaryUses // ignore: cast_nullable_to_non_nullable
+as int?,legendaryUsesLair: freezed == legendaryUsesLair ? _self.legendaryUsesLair : legendaryUsesLair // ignore: cast_nullable_to_non_nullable
+as int?,actions: null == actions ? _self._actions : actions // ignore: cast_nullable_to_non_nullable
+as List<MonsterAction>,
+  ));
+}
+
+/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSpeedCopyWith<$Res> get speed {
+  
+  return $MonsterSpeedCopyWith<$Res>(_self.speed, (value) {
+    return _then(_self.copyWith(speed: value));
+  });
+}/// Create a copy of MonsterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MonsterSensesCopyWith<$Res> get senses {
+  
+  return $MonsterSensesCopyWith<$Res>(_self.senses, (value) {
+    return _then(_self.copyWith(senses: value));
+  });
+}
+}
+
 // dart format on
