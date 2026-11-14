@@ -19071,6 +19071,725 @@ class PcSlotsCompanion extends UpdateCompanion<PcSlotRow> {
   }
 }
 
+class $SessionsTable extends Sessions
+    with TableInfo<$SessionsTable, SessionRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SessionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('planned'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    title,
+    date,
+    status,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'session';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SessionRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SessionRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SessionRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}date'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
+    );
+  }
+
+  @override
+  $SessionsTable createAlias(String alias) {
+    return $SessionsTable(attachedDatabase, alias);
+  }
+}
+
+class SessionRow extends DataClass implements Insertable<SessionRow> {
+  final String id;
+  final String tableId;
+  final String title;
+  final String date;
+  final String status;
+  final DateTime? createdAt;
+  const SessionRow({
+    required this.id,
+    required this.tableId,
+    required this.title,
+    required this.date,
+    required this.status,
+    this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['title'] = Variable<String>(title);
+    map['date'] = Variable<String>(date);
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
+    return map;
+  }
+
+  SessionsCompanion toCompanion(bool nullToAbsent) {
+    return SessionsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      title: Value(title),
+      date: Value(date),
+      status: Value(status),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+    );
+  }
+
+  factory SessionRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SessionRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      title: serializer.fromJson<String>(json['title']),
+      date: serializer.fromJson<String>(json['date']),
+      status: serializer.fromJson<String>(json['status']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'title': serializer.toJson<String>(title),
+      'date': serializer.toJson<String>(date),
+      'status': serializer.toJson<String>(status),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
+    };
+  }
+
+  SessionRow copyWith({
+    String? id,
+    String? tableId,
+    String? title,
+    String? date,
+    String? status,
+    Value<DateTime?> createdAt = const Value.absent(),
+  }) => SessionRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    title: title ?? this.title,
+    date: date ?? this.date,
+    status: status ?? this.status,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+  );
+  SessionRow copyWithCompanion(SessionsCompanion data) {
+    return SessionRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      title: data.title.present ? data.title.value : this.title,
+      date: data.date.present ? data.date.value : this.date,
+      status: data.status.present ? data.status.value : this.status,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SessionRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('title: $title, ')
+          ..write('date: $date, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, tableId, title, date, status, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SessionRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.title == this.title &&
+          other.date == this.date &&
+          other.status == this.status &&
+          other.createdAt == this.createdAt);
+}
+
+class SessionsCompanion extends UpdateCompanion<SessionRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> title;
+  final Value<String> date;
+  final Value<String> status;
+  final Value<DateTime?> createdAt;
+  final Value<int> rowid;
+  const SessionsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.title = const Value.absent(),
+    this.date = const Value.absent(),
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SessionsCompanion.insert({
+    required String id,
+    required String tableId,
+    required String title,
+    required String date,
+    this.status = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       title = Value(title),
+       date = Value(date);
+  static Insertable<SessionRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? title,
+    Expression<String>? date,
+    Expression<String>? status,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (title != null) 'title': title,
+      if (date != null) 'date': date,
+      if (status != null) 'status': status,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SessionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? title,
+    Value<String>? date,
+    Value<String>? status,
+    Value<DateTime?>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return SessionsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      title: title ?? this.title,
+      date: date ?? this.date,
+      status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<String>(date.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SessionsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('title: $title, ')
+          ..write('date: $date, ')
+          ..write('status: $status, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $SessionAttendancesTable extends SessionAttendances
+    with TableInfo<$SessionAttendancesTable, SessionAttendanceRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SessionAttendancesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sessionIdMeta = const VerificationMeta(
+    'sessionId',
+  );
+  @override
+  late final GeneratedColumn<String> sessionId = GeneratedColumn<String>(
+    'session_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, tableId, sessionId, characterId];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'session_attendance';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<SessionAttendanceRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('session_id')) {
+      context.handle(
+        _sessionIdMeta,
+        sessionId.isAcceptableOrUnknown(data['session_id']!, _sessionIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sessionIdMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_characterIdMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  SessionAttendanceRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SessionAttendanceRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      sessionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}session_id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      )!,
+    );
+  }
+
+  @override
+  $SessionAttendancesTable createAlias(String alias) {
+    return $SessionAttendancesTable(attachedDatabase, alias);
+  }
+}
+
+class SessionAttendanceRow extends DataClass
+    implements Insertable<SessionAttendanceRow> {
+  final String id;
+  final String tableId;
+  final String sessionId;
+  final String characterId;
+  const SessionAttendanceRow({
+    required this.id,
+    required this.tableId,
+    required this.sessionId,
+    required this.characterId,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['session_id'] = Variable<String>(sessionId);
+    map['character_id'] = Variable<String>(characterId);
+    return map;
+  }
+
+  SessionAttendancesCompanion toCompanion(bool nullToAbsent) {
+    return SessionAttendancesCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      sessionId: Value(sessionId),
+      characterId: Value(characterId),
+    );
+  }
+
+  factory SessionAttendanceRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SessionAttendanceRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      sessionId: serializer.fromJson<String>(json['sessionId']),
+      characterId: serializer.fromJson<String>(json['characterId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'sessionId': serializer.toJson<String>(sessionId),
+      'characterId': serializer.toJson<String>(characterId),
+    };
+  }
+
+  SessionAttendanceRow copyWith({
+    String? id,
+    String? tableId,
+    String? sessionId,
+    String? characterId,
+  }) => SessionAttendanceRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    sessionId: sessionId ?? this.sessionId,
+    characterId: characterId ?? this.characterId,
+  );
+  SessionAttendanceRow copyWithCompanion(SessionAttendancesCompanion data) {
+    return SessionAttendanceRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      sessionId: data.sessionId.present ? data.sessionId.value : this.sessionId,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SessionAttendanceRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('sessionId: $sessionId, ')
+          ..write('characterId: $characterId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, tableId, sessionId, characterId);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SessionAttendanceRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.sessionId == this.sessionId &&
+          other.characterId == this.characterId);
+}
+
+class SessionAttendancesCompanion
+    extends UpdateCompanion<SessionAttendanceRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> sessionId;
+  final Value<String> characterId;
+  final Value<int> rowid;
+  const SessionAttendancesCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.sessionId = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SessionAttendancesCompanion.insert({
+    required String id,
+    required String tableId,
+    required String sessionId,
+    required String characterId,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       sessionId = Value(sessionId),
+       characterId = Value(characterId);
+  static Insertable<SessionAttendanceRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? sessionId,
+    Expression<String>? characterId,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (sessionId != null) 'session_id': sessionId,
+      if (characterId != null) 'character_id': characterId,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SessionAttendancesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? sessionId,
+    Value<String>? characterId,
+    Value<int>? rowid,
+  }) {
+    return SessionAttendancesCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      sessionId: sessionId ?? this.sessionId,
+      characterId: characterId ?? this.characterId,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (sessionId.present) {
+      map['session_id'] = Variable<String>(sessionId.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SessionAttendancesCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('sessionId: $sessionId, ')
+          ..write('characterId: $characterId, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $CharacterSummariesTable extends CharacterSummaries
     with TableInfo<$CharacterSummariesTable, CharacterSummaryRow> {
   @override
@@ -27012,312 +27731,6 @@ class NpcStatblocksCompanion extends UpdateCompanion<NpcStatblockRow> {
   }
 }
 
-class $SessionsTable extends Sessions
-    with TableInfo<$SessionsTable, SessionRow> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $SessionsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-    'id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _tableIdMeta = const VerificationMeta(
-    'tableId',
-  );
-  @override
-  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
-    'table_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _dateMeta = const VerificationMeta('date');
-  @override
-  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
-    'date',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _titleMeta = const VerificationMeta('title');
-  @override
-  late final GeneratedColumn<String> title = GeneratedColumn<String>(
-    'title',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [id, tableId, date, title];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'session';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<SessionRow> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
-    }
-    if (data.containsKey('table_id')) {
-      context.handle(
-        _tableIdMeta,
-        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_tableIdMeta);
-    }
-    if (data.containsKey('date')) {
-      context.handle(
-        _dateMeta,
-        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_dateMeta);
-    }
-    if (data.containsKey('title')) {
-      context.handle(
-        _titleMeta,
-        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_titleMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  SessionRow map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return SessionRow(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      tableId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}table_id'],
-      )!,
-      date: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}date'],
-      )!,
-      title: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}title'],
-      )!,
-    );
-  }
-
-  @override
-  $SessionsTable createAlias(String alias) {
-    return $SessionsTable(attachedDatabase, alias);
-  }
-}
-
-class SessionRow extends DataClass implements Insertable<SessionRow> {
-  final String id;
-  final String tableId;
-  final DateTime date;
-  final String title;
-  const SessionRow({
-    required this.id,
-    required this.tableId,
-    required this.date,
-    required this.title,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<String>(id);
-    map['table_id'] = Variable<String>(tableId);
-    map['date'] = Variable<DateTime>(date);
-    map['title'] = Variable<String>(title);
-    return map;
-  }
-
-  SessionsCompanion toCompanion(bool nullToAbsent) {
-    return SessionsCompanion(
-      id: Value(id),
-      tableId: Value(tableId),
-      date: Value(date),
-      title: Value(title),
-    );
-  }
-
-  factory SessionRow.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return SessionRow(
-      id: serializer.fromJson<String>(json['id']),
-      tableId: serializer.fromJson<String>(json['tableId']),
-      date: serializer.fromJson<DateTime>(json['date']),
-      title: serializer.fromJson<String>(json['title']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<String>(id),
-      'tableId': serializer.toJson<String>(tableId),
-      'date': serializer.toJson<DateTime>(date),
-      'title': serializer.toJson<String>(title),
-    };
-  }
-
-  SessionRow copyWith({
-    String? id,
-    String? tableId,
-    DateTime? date,
-    String? title,
-  }) => SessionRow(
-    id: id ?? this.id,
-    tableId: tableId ?? this.tableId,
-    date: date ?? this.date,
-    title: title ?? this.title,
-  );
-  SessionRow copyWithCompanion(SessionsCompanion data) {
-    return SessionRow(
-      id: data.id.present ? data.id.value : this.id,
-      tableId: data.tableId.present ? data.tableId.value : this.tableId,
-      date: data.date.present ? data.date.value : this.date,
-      title: data.title.present ? data.title.value : this.title,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('SessionRow(')
-          ..write('id: $id, ')
-          ..write('tableId: $tableId, ')
-          ..write('date: $date, ')
-          ..write('title: $title')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(id, tableId, date, title);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is SessionRow &&
-          other.id == this.id &&
-          other.tableId == this.tableId &&
-          other.date == this.date &&
-          other.title == this.title);
-}
-
-class SessionsCompanion extends UpdateCompanion<SessionRow> {
-  final Value<String> id;
-  final Value<String> tableId;
-  final Value<DateTime> date;
-  final Value<String> title;
-  final Value<int> rowid;
-  const SessionsCompanion({
-    this.id = const Value.absent(),
-    this.tableId = const Value.absent(),
-    this.date = const Value.absent(),
-    this.title = const Value.absent(),
-    this.rowid = const Value.absent(),
-  });
-  SessionsCompanion.insert({
-    required String id,
-    required String tableId,
-    required DateTime date,
-    required String title,
-    this.rowid = const Value.absent(),
-  }) : id = Value(id),
-       tableId = Value(tableId),
-       date = Value(date),
-       title = Value(title);
-  static Insertable<SessionRow> custom({
-    Expression<String>? id,
-    Expression<String>? tableId,
-    Expression<DateTime>? date,
-    Expression<String>? title,
-    Expression<int>? rowid,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (tableId != null) 'table_id': tableId,
-      if (date != null) 'date': date,
-      if (title != null) 'title': title,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  SessionsCompanion copyWith({
-    Value<String>? id,
-    Value<String>? tableId,
-    Value<DateTime>? date,
-    Value<String>? title,
-    Value<int>? rowid,
-  }) {
-    return SessionsCompanion(
-      id: id ?? this.id,
-      tableId: tableId ?? this.tableId,
-      date: date ?? this.date,
-      title: title ?? this.title,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<String>(id.value);
-    }
-    if (tableId.present) {
-      map['table_id'] = Variable<String>(tableId.value);
-    }
-    if (date.present) {
-      map['date'] = Variable<DateTime>(date.value);
-    }
-    if (title.present) {
-      map['title'] = Variable<String>(title.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('SessionsCompanion(')
-          ..write('id: $id, ')
-          ..write('tableId: $tableId, ')
-          ..write('date: $date, ')
-          ..write('title: $title, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $EncountersTable extends Encounters
     with TableInfo<$EncountersTable, EncounterRow> {
   @override
@@ -27343,9 +27756,6 @@ class $EncountersTable extends Encounters
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES session (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
@@ -27470,7 +27880,8 @@ class $EncountersTable extends Encounters
 class EncounterRow extends DataClass implements Insertable<EncounterRow> {
   final String id;
 
-  /// Supprimée avec sa séance (donc avec sa table de jeu).
+  /// Séance de la rencontre. Pas de clé étrangère : `session` est une vue
+  /// PowerSync.
   final String? sessionId;
   final String status;
   final String? difficulty;
@@ -29541,6 +29952,9 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     this,
   );
   late final $PcSlotsTable pcSlots = $PcSlotsTable(this);
+  late final $SessionsTable sessions = $SessionsTable(this);
+  late final $SessionAttendancesTable sessionAttendances =
+      $SessionAttendancesTable(this);
   late final $CharacterSummariesTable characterSummaries =
       $CharacterSummariesTable(this);
   late final $CharactersTable characters = $CharactersTable(this);
@@ -29572,7 +29986,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $CharacterProposalsTable characterProposals =
       $CharacterProposalsTable(this);
   late final $NpcStatblocksTable npcStatblocks = $NpcStatblocksTable(this);
-  late final $SessionsTable sessions = $SessionsTable(this);
   late final $EncountersTable encounters = $EncountersTable(this);
   late final $CombatantsTable combatants = $CombatantsTable(this);
   late final $EncounterEventsTable encounterEvents = $EncounterEventsTable(
@@ -29630,6 +30043,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     tableBannedEntities,
     tableActivities,
     pcSlots,
+    sessions,
+    sessionAttendances,
     characterSummaries,
     characters,
     characterBaseScores,
@@ -29646,7 +30061,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     characterChoices,
     characterProposals,
     npcStatblocks,
-    sessions,
     encounters,
     combatants,
     encounterEvents,
@@ -29887,13 +30301,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('entity_text', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'session',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('encounter', kind: UpdateKind.delete)],
     ),
     WritePropagation(
       on: TableUpdateQuery.onTableName(
@@ -47073,6 +47480,439 @@ typedef $$PcSlotsTableProcessedTableManager =
       PcSlotRow,
       PrefetchHooks Function()
     >;
+typedef $$SessionsTableCreateCompanionBuilder = SessionsCompanion Function({
+  required String id,
+  required String tableId,
+  required String title,
+  required String date,
+  Value<String> status,
+  Value<DateTime?> createdAt,
+  Value<int> rowid,
+});
+typedef $$SessionsTableUpdateCompanionBuilder = SessionsCompanion Function({
+  Value<String> id,
+  Value<String> tableId,
+  Value<String> title,
+  Value<String> date,
+  Value<String> status,
+  Value<DateTime?> createdAt,
+  Value<int> rowid,
+});
+
+class $$SessionsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $SessionsTable> {
+  $$SessionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SessionsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $SessionsTable> {
+  $$SessionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get date => $composableBuilder(
+    column: $table.date,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SessionsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $SessionsTable> {
+  $$SessionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<String> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$SessionsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $SessionsTable,
+          SessionRow,
+          $$SessionsTableFilterComposer,
+          $$SessionsTableOrderingComposer,
+          $$SessionsTableAnnotationComposer,
+          $$SessionsTableCreateCompanionBuilder,
+          $$SessionsTableUpdateCompanionBuilder,
+          (
+            SessionRow,
+            BaseReferences<_$TavernierDatabase, $SessionsTable, SessionRow>,
+          ),
+          SessionRow,
+          PrefetchHooks Function()
+        > {
+  $$SessionsTableTableManager(_$TavernierDatabase db, $SessionsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SessionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SessionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SessionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<String> date = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SessionsCompanion(
+                id: id,
+                tableId: tableId,
+                title: title,
+                date: date,
+                status: status,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String title,
+                required String date,
+                Value<String> status = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SessionsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                title: title,
+                date: date,
+                status: status,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$SessionsTable, SessionRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $SessionsTable,
+                    SessionRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SessionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $SessionsTable,
+      SessionRow,
+      $$SessionsTableFilterComposer,
+      $$SessionsTableOrderingComposer,
+      $$SessionsTableAnnotationComposer,
+      $$SessionsTableCreateCompanionBuilder,
+      $$SessionsTableUpdateCompanionBuilder,
+      (
+        SessionRow,
+        BaseReferences<_$TavernierDatabase, $SessionsTable, SessionRow>,
+      ),
+      SessionRow,
+      PrefetchHooks Function()
+    >;
+typedef $$SessionAttendancesTableCreateCompanionBuilder =
+    SessionAttendancesCompanion Function({
+      required String id,
+      required String tableId,
+      required String sessionId,
+      required String characterId,
+      Value<int> rowid,
+    });
+typedef $$SessionAttendancesTableUpdateCompanionBuilder =
+    SessionAttendancesCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String> sessionId,
+      Value<String> characterId,
+      Value<int> rowid,
+    });
+
+class $$SessionAttendancesTableFilterComposer
+    extends Composer<_$TavernierDatabase, $SessionAttendancesTable> {
+  $$SessionAttendancesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$SessionAttendancesTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $SessionAttendancesTable> {
+  $$SessionAttendancesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$SessionAttendancesTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $SessionAttendancesTable> {
+  $$SessionAttendancesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get sessionId =>
+      $composableBuilder(column: $table.sessionId, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+}
+
+class $$SessionAttendancesTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $SessionAttendancesTable,
+          SessionAttendanceRow,
+          $$SessionAttendancesTableFilterComposer,
+          $$SessionAttendancesTableOrderingComposer,
+          $$SessionAttendancesTableAnnotationComposer,
+          $$SessionAttendancesTableCreateCompanionBuilder,
+          $$SessionAttendancesTableUpdateCompanionBuilder,
+          (
+            SessionAttendanceRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $SessionAttendancesTable,
+              SessionAttendanceRow
+            >,
+          ),
+          SessionAttendanceRow,
+          PrefetchHooks Function()
+        > {
+  $$SessionAttendancesTableTableManager(
+    _$TavernierDatabase db,
+    $SessionAttendancesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SessionAttendancesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SessionAttendancesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SessionAttendancesTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> sessionId = const Value.absent(),
+                Value<String> characterId = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => SessionAttendancesCompanion(
+                id: id,
+                tableId: tableId,
+                sessionId: sessionId,
+                characterId: characterId,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String sessionId,
+                required String characterId,
+                Value<int> rowid = const Value.absent(),
+              }) => SessionAttendancesCompanion.insert(
+                id: id,
+                tableId: tableId,
+                sessionId: sessionId,
+                characterId: characterId,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$SessionAttendancesTable, SessionAttendanceRow>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $SessionAttendancesTable,
+                    SessionAttendanceRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$SessionAttendancesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $SessionAttendancesTable,
+      SessionAttendanceRow,
+      $$SessionAttendancesTableFilterComposer,
+      $$SessionAttendancesTableOrderingComposer,
+      $$SessionAttendancesTableAnnotationComposer,
+      $$SessionAttendancesTableCreateCompanionBuilder,
+      $$SessionAttendancesTableUpdateCompanionBuilder,
+      (
+        SessionAttendanceRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $SessionAttendancesTable,
+          SessionAttendanceRow
+        >,
+      ),
+      SessionAttendanceRow,
+      PrefetchHooks Function()
+    >;
 typedef $$CharacterSummariesTableCreateCompanionBuilder =
     CharacterSummariesCompanion Function({
       required String id,
@@ -51463,286 +52303,6 @@ typedef $$NpcStatblocksTableProcessedTableManager =
       NpcStatblockRow,
       PrefetchHooks Function()
     >;
-typedef $$SessionsTableCreateCompanionBuilder = SessionsCompanion Function({
-  required String id,
-  required String tableId,
-  required DateTime date,
-  required String title,
-  Value<int> rowid,
-});
-typedef $$SessionsTableUpdateCompanionBuilder = SessionsCompanion Function({
-  Value<String> id,
-  Value<String> tableId,
-  Value<DateTime> date,
-  Value<String> title,
-  Value<int> rowid,
-});
-
-final class $$SessionsTableReferences
-    extends BaseReferences<_$TavernierDatabase, $SessionsTable, SessionRow> {
-  $$SessionsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static MultiTypedResultKey<$EncountersTable, List<EncounterRow>>
-  _encountersRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
-    db.encounters,
-    aliasName: 'session__id__encounter__session_id',
-  );
-
-  $$EncountersTableProcessedTableManager get encountersRefs {
-    final manager = $$EncountersTableTableManager(
-      $_db,
-      $_db.encounters,
-    ).filter((f) => f.sessionId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_encountersRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
-
-class $$SessionsTableFilterComposer
-    extends Composer<_$TavernierDatabase, $SessionsTable> {
-  $$SessionsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get tableId => $composableBuilder(
-    column: $table.tableId,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get date => $composableBuilder(
-    column: $table.date,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get title => $composableBuilder(
-    column: $table.title,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  Expression<bool> encountersRefs(
-    Expression<bool> Function($$EncountersTableFilterComposer f) f,
-  ) {
-    final $$EncountersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.sessionId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableFilterComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-}
-
-class $$SessionsTableOrderingComposer
-    extends Composer<_$TavernierDatabase, $SessionsTable> {
-  $$SessionsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get tableId => $composableBuilder(
-    column: $table.tableId,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get date => $composableBuilder(
-    column: $table.date,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get title => $composableBuilder(
-    column: $table.title,
-    builder: (column) => ColumnOrderings(column),
-  );
-}
-
-class $$SessionsTableAnnotationComposer
-    extends Composer<_$TavernierDatabase, $SessionsTable> {
-  $$SessionsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<String> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<String> get tableId =>
-      $composableBuilder(column: $table.tableId, builder: (column) => column);
-
-  GeneratedColumn<DateTime> get date =>
-      $composableBuilder(column: $table.date, builder: (column) => column);
-
-  GeneratedColumn<String> get title =>
-      $composableBuilder(column: $table.title, builder: (column) => column);
-
-  Expression<T> encountersRefs<T extends Object>(
-    Expression<T> Function($$EncountersTableAnnotationComposer a) f,
-  ) {
-    final $$EncountersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.sessionId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
-}
-
-class $$SessionsTableTableManager
-    extends
-        RootTableManager<
-          _$TavernierDatabase,
-          $SessionsTable,
-          SessionRow,
-          $$SessionsTableFilterComposer,
-          $$SessionsTableOrderingComposer,
-          $$SessionsTableAnnotationComposer,
-          $$SessionsTableCreateCompanionBuilder,
-          $$SessionsTableUpdateCompanionBuilder,
-          (SessionRow, $$SessionsTableReferences),
-          SessionRow,
-          PrefetchHooks Function({bool encountersRefs})
-        > {
-  $$SessionsTableTableManager(_$TavernierDatabase db, $SessionsTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$SessionsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$SessionsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$SessionsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<String> id = const Value.absent(),
-                Value<String> tableId = const Value.absent(),
-                Value<DateTime> date = const Value.absent(),
-                Value<String> title = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => SessionsCompanion(
-                id: id,
-                tableId: tableId,
-                date: date,
-                title: title,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required String id,
-                required String tableId,
-                required DateTime date,
-                required String title,
-                Value<int> rowid = const Value.absent(),
-              }) => SessionsCompanion.insert(
-                id: id,
-                tableId: tableId,
-                date: date,
-                title: title,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable<$SessionsTable, SessionRow>(table),
-                  $$SessionsTableReferences(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: ({encountersRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [if (encountersRefs) db.encounters],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (encountersRefs)
-                    await $_getPrefetchedDataByColumns<
-                      SessionRow,
-                      $SessionsTable,
-                      EncounterRow,
-                      $EncountersTable
-                    >(
-                      currentTable: table,
-                      referencedTable: $$SessionsTableReferences
-                          ._encountersRefsTable(db),
-                      managerFromTypedResult: (p0) => $$SessionsTableReferences(
-                        db,
-                        table,
-                        p0,
-                      ).encountersRefs,
-                      currentColumn: 'id',
-                      referencedColumn: 'session_id',
-                      typedResults: items,
-                    ),
-                ];
-              },
-            );
-          },
-        ),
-      );
-}
-
-typedef $$SessionsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$TavernierDatabase,
-      $SessionsTable,
-      SessionRow,
-      $$SessionsTableFilterComposer,
-      $$SessionsTableOrderingComposer,
-      $$SessionsTableAnnotationComposer,
-      $$SessionsTableCreateCompanionBuilder,
-      $$SessionsTableUpdateCompanionBuilder,
-      (SessionRow, $$SessionsTableReferences),
-      SessionRow,
-      PrefetchHooks Function({bool encountersRefs})
-    >;
 typedef $$EncountersTableCreateCompanionBuilder = EncountersCompanion Function({
   required String id,
   Value<String?> sessionId,
@@ -51764,23 +52324,6 @@ final class $$EncountersTableReferences
     extends
         BaseReferences<_$TavernierDatabase, $EncountersTable, EncounterRow> {
   $$EncountersTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $SessionsTable _sessionIdTable(_$TavernierDatabase db) =>
-      db.sessions.createAlias('encounter__session_id__session__id');
-
-  $$SessionsTableProcessedTableManager? get sessionId {
-    final $_column = $_itemColumn<String>('session_id');
-    if ($_column == null) return null;
-    final manager = $$SessionsTableTableManager(
-      $_db,
-      $_db.sessions,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_sessionIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
 
   static MultiTypedResultKey<$CombatantsTable, List<CombatantRow>>
   _combatantsRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
@@ -51836,6 +52379,11 @@ class $$EncountersTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get status => $composableBuilder(
     column: $table.status,
     builder: (column) => ColumnFilters(column),
@@ -51850,29 +52398,6 @@ class $$EncountersTableFilterComposer
     column: $table.hpMode,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$SessionsTableFilterComposer get sessionId {
-    final $$SessionsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.sessionId,
-      referencedTable: $db.sessions,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$SessionsTableFilterComposer(
-            $db: $db,
-            $table: $db.sessions,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 
   Expression<bool> combatantsRefs(
     Expression<bool> Function($$CombatantsTableFilterComposer f) f,
@@ -51939,6 +52464,11 @@ class $$EncountersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get status => $composableBuilder(
     column: $table.status,
     builder: (column) => ColumnOrderings(column),
@@ -51953,29 +52483,6 @@ class $$EncountersTableOrderingComposer
     column: $table.hpMode,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$SessionsTableOrderingComposer get sessionId {
-    final $$SessionsTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.sessionId,
-      referencedTable: $db.sessions,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$SessionsTableOrderingComposer(
-            $db: $db,
-            $table: $db.sessions,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$EncountersTableAnnotationComposer
@@ -51990,6 +52497,9 @@ class $$EncountersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get sessionId =>
+      $composableBuilder(column: $table.sessionId, builder: (column) => column);
+
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
 
@@ -52000,29 +52510,6 @@ class $$EncountersTableAnnotationComposer
 
   GeneratedColumn<String> get hpMode =>
       $composableBuilder(column: $table.hpMode, builder: (column) => column);
-
-  $$SessionsTableAnnotationComposer get sessionId {
-    final $$SessionsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.sessionId,
-      referencedTable: $db.sessions,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$SessionsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.sessions,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 
   Expression<T> combatantsRefs<T extends Object>(
     Expression<T> Function($$CombatantsTableAnnotationComposer a) f,
@@ -52089,7 +52576,6 @@ class $$EncountersTableTableManager
           (EncounterRow, $$EncountersTableReferences),
           EncounterRow,
           PrefetchHooks Function({
-            bool sessionId,
             bool combatantsRefs,
             bool encounterEventsRefs,
           })
@@ -52146,47 +52632,14 @@ class $$EncountersTableTableManager
               )
               .toList(),
           prefetchHooksCallback:
-              ({
-                sessionId = false,
-                combatantsRefs = false,
-                encounterEventsRefs = false,
-              }) {
+              ({combatantsRefs = false, encounterEventsRefs = false}) {
                 return PrefetchHooks(
                   db: db,
                   explicitlyWatchedTables: [
                     if (combatantsRefs) db.combatants,
                     if (encounterEventsRefs) db.encounterEvents,
                   ],
-                  addJoins:
-                      <
-                        T extends TableManagerState<
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic,
-                          dynamic
-                        >
-                      >(state) {
-                        if (sessionId) {
-                          state = state.withJoin(
-                            currentTable: table,
-                            currentColumn: table.sessionId,
-                            referencedTable: $$EncountersTableReferences
-                                ._sessionIdTable(db),
-                            referencedColumn: $$EncountersTableReferences
-                                ._sessionIdTable(db)
-                                .id,
-                          ) as T;
-                        }
-
-                        return state;
-                      },
+                  addJoins: null,
                   getPrefetchedDataCallback: (items) async {
                     return [
                       if (combatantsRefs)
@@ -52249,11 +52702,7 @@ typedef $$EncountersTableProcessedTableManager =
       $$EncountersTableUpdateCompanionBuilder,
       (EncounterRow, $$EncountersTableReferences),
       EncounterRow,
-      PrefetchHooks Function({
-        bool sessionId,
-        bool combatantsRefs,
-        bool encounterEventsRefs,
-      })
+      PrefetchHooks Function({bool combatantsRefs, bool encounterEventsRefs})
     >;
 typedef $$CombatantsTableCreateCompanionBuilder = CombatantsCompanion Function({
   required String id,
@@ -53551,6 +54000,10 @@ class $TavernierDatabaseManager {
       $$TableActivitiesTableTableManager(_db, _db.tableActivities);
   $$PcSlotsTableTableManager get pcSlots =>
       $$PcSlotsTableTableManager(_db, _db.pcSlots);
+  $$SessionsTableTableManager get sessions =>
+      $$SessionsTableTableManager(_db, _db.sessions);
+  $$SessionAttendancesTableTableManager get sessionAttendances =>
+      $$SessionAttendancesTableTableManager(_db, _db.sessionAttendances);
   $$CharacterSummariesTableTableManager get characterSummaries =>
       $$CharacterSummariesTableTableManager(_db, _db.characterSummaries);
   $$CharactersTableTableManager get characters =>
@@ -53590,8 +54043,6 @@ class $TavernierDatabaseManager {
       $$CharacterProposalsTableTableManager(_db, _db.characterProposals);
   $$NpcStatblocksTableTableManager get npcStatblocks =>
       $$NpcStatblocksTableTableManager(_db, _db.npcStatblocks);
-  $$SessionsTableTableManager get sessions =>
-      $$SessionsTableTableManager(_db, _db.sessions);
   $$EncountersTableTableManager get encounters =>
       $$EncountersTableTableManager(_db, _db.encounters);
   $$CombatantsTableTableManager get combatants =>
