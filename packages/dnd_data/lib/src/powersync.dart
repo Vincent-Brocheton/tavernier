@@ -18,6 +18,7 @@ const syncedTables = {
   'pc_slot',
   'session',
   'session_attendance',
+  'npc_statblock',
   'character_summary',
   'character',
   'character_base_scores',
