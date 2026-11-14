@@ -1,0 +1,123 @@
+{
+  "id": "srd:monster:clay-golem",
+  "type": "monster",
+  "name": "Golem d’argile",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 14,
+    "initiative": 3,
+    "hp": 123,
+    "hit_dice": "13d10 + 52",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 20,
+      "dex": 9,
+      "con": 18,
+      "int": 3,
+      "wis": 8,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": -1,
+      "con": 4,
+      "int": -4,
+      "wis": -1,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:acid",
+      "srd:damage-type:poison",
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 9,
+    "languages": "commun et une autre langue",
+    "cr": "9",
+    "xp": 5000,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Absorption de l’acide",
+        "text": "Chaque fois que le golem est soumis à des dégâts d’acide, il ne subit aucun dégât et récupère en fait autant de points de vie que les dégâts d’acide ainsi évités."
+      },
+      {
+        "kind": "trait",
+        "name": "Folie furieuse",
+        "text": "Chaque fois que le golem commence son tour En péril, lancez 1d6. Sur un résultat de 6, il devient fou. À chacun de ses tours tant qu’il est dans cet état, le golem attaque la créature la plus proche qu’il voit. Si aucune créature n’est assez proche pour qu’il puisse se déplacer et l’attaquer, le golem s’en prend à un objet. Une fois le golem devenu fou, il continue à l’être jusqu’à sa destruction ou qu’il ne soit plus En péril."
+      },
+      {
+        "kind": "trait",
+        "name": "Forme immuable",
+        "text": "Le golem ne peut pas être métamorphosé."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le golem a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le golem effectue deux attaques de Coup, ou trois attaques de Coup s’il a utilisé Accélération ce tour-ci."
+      },
+      {
+        "kind": "action",
+        "name": "Coup",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "1d10 + 5",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 6,
+              "dice": "1d12",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 1,50 m. Touché : 10 (1d10 + 5) dégâts contondants plus 6 (1d12) dégâts d’acide, et le maximum de points de vie de la cible diminue d’un montant égal aux dégâts d’acide subis."
+      },
+      {
+        "kind": "bonus",
+        "name": "Accélération",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "text": "Le golem entreprend les actions Désengagement et Pointe."
+      }
+    ]
+  }
+}

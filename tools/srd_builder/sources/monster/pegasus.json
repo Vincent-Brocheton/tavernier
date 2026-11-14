@@ -1,0 +1,76 @@
+{
+  "id": "srd:monster:pegasus",
+  "type": "monster",
+  "name": "Pégase",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Chaotique Bon",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 59,
+    "hit_dice": "7d10 + 21",
+    "speed": {
+      "walk": 60,
+      "fly": 90
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 16,
+      "int": 10,
+      "wis": 15,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 4,
+      "con": 5,
+      "int": 0,
+      "wis": 4,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 16,
+    "languages": "comprend le céleste, le commun, l’elfique et le sylvestre, mais ne parle pas",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Sabots",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 7 (1d6 + 4) dégâts contondants plus 5 (2d4) dégâts radiants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "srd:monster:cloaker",
+  "type": "monster",
+  "name": "Manteleur",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "aberration",
+    "type_tags": [],
+    "alignment": "Chaotique Neutre",
+    "ac": 14,
+    "initiative": 5,
+    "hp": 91,
+    "hit_dice": "14d10 + 14",
+    "speed": {
+      "walk": 10,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 15,
+      "con": 12,
+      "int": 13,
+      "wis": 14,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 2,
+      "con": 1,
+      "int": 1,
+      "wis": 2,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 12,
+    "languages": "commun des profondeurs, profond",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Sensibilité à la lumière",
+        "text": "Exposé à une Lumière vive, le manteleur subit le Désavantage aux jets d’attaque."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le manteleur effectue une attaque d’Enveloppement et deux attaques de Queue."
+      },
+      {
+        "kind": "action",
+        "name": "Enveloppement",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "3d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 13 (3d6 + 3) dégâts perforants. Si la cible est une créature de taille G ou inférieure, le manteleur l’enveloppe. Tant que la cible est enveloppée par le manteleur, celle-ci subit l’état Aveuglé et le manteleur ne peut pas effectuer d’attaque d’Enveloppement sur une autre cible. En outre, le manteleur divise par deux les dégâts qu’il subit (arrondis à l’inférieur), et la cible subit le même montant de dégâts.\nPour se décrocher, le manteleur doit dépenser 1,50 m de déplacement. La cible ou une créature dans un rayon de 1,50 m peut entreprendre une action pour tenter de décrocher le manteleur, ce qui nécessite de réussir un test de Force (Athlétisme) DD 14."
+      },
+      {
+        "kind": "action",
+        "name": "Queue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d10 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 8 (1d10 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Fantasmagories",
+        "uses": {
+          "rest": "short_or_long"
+        },
+        "text": "Le manteleur lance le sort image miroir, sans composantes matérielles, la Sagesse étant sa caractéristique d’incantation. Le sort prend fin prématurément si le manteleur démarre son tour sous une Lumière vive."
+      },
+      {
+        "kind": "bonus",
+        "name": "Lamentation",
+        "save": {
+          "ability": "wis",
+          "dc": 13
+        },
+        "text": "JS Sagesse : DD 13, chaque créature dans une Émanation de 18 m centrée sur le manteleur. Échec : la cible subit l’état Effrayé jusqu’à la fin du tour suivant du manteleur. Réussite : la cible est immunisée contre la Lamentation de ce manteleur pendant 24 heures."
+      }
+    ]
+  }
+}

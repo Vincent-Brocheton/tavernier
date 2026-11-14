@@ -1,0 +1,70 @@
+{
+  "id": "srd:monster:bat",
+  "type": "monster",
+  "name": "Chauve-souris",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 1,
+    "hit_dice": "1d4 − 1",
+    "speed": {
+      "walk": 5,
+      "fly": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 2,
+      "dex": 15,
+      "con": 8,
+      "int": 2,
+      "wis": 12,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 2,
+      "con": -1,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 1 dégât perforant."
+      }
+    ]
+  }
+}

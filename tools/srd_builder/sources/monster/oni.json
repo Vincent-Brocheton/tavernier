@@ -1,0 +1,126 @@
+{
+  "id": "srd:monster:oni",
+  "type": "monster",
+  "name": "Oni",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [],
+    "alignment": "Loyal Mauvais",
+    "ac": 17,
+    "initiative": 0,
+    "hp": 119,
+    "hit_dice": "14d10 + 42",
+    "speed": {
+      "walk": 30,
+      "fly": 30
+    },
+    "hover": true,
+    "abilities": {
+      "str": 19,
+      "dex": 11,
+      "con": 16,
+      "int": 14,
+      "wis": 12,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 3,
+      "con": 6,
+      "int": 2,
+      "wis": 4,
+      "cha": 5
+    },
+    "skills": {
+      "srd:skill:arcana": 5,
+      "srd:skill:perception": 4,
+      "srd:skill:deception": 8
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "commun, géant",
+    "cr": "7",
+    "xp": 2900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Régénération",
+        "text": "L’oni récupère 10 points de vie au début de chacun de ses tours s’il lui reste au moins 1 point de vie."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’oni effectue deux attaques de Griffe ou de Rayon de cauchemar. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "1d12 + 4",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 10 (1d12 + 4) dégâts tranchants plus 9 (2d8) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Rayon de cauchemar",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            60
+          ],
+          "damage": [
+            {
+              "average": 9,
+              "dice": "2d6 + 2",
+              "type": "srd:damage-type:psychic"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 18 m. Touché : 9 (2d6 + 2) dégâts psychiques, et la cible subit l’état Effrayé jusqu’au début du tour suivant de l’oni."
+      },
+      {
+        "kind": "action",
+        "name": "Changement d’aspect",
+        "text": "L’oni se transforme en Humanoïde de taille P ou M, en Géant de taille G ou bien retrouve sa forme véritable. Hormis sa catégorie de taille, son profil reste le même, quelle que soit sa forme. Rien de ce qu’il porte n’est transformé."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "L’oni lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 13) :\n1/jour chacun : charme-personne (au 2e niveau), forme gazeuse, sommeil, ténèbres"
+      },
+      {
+        "kind": "bonus",
+        "name": "Invisibilité",
+        "text": "L’oni lance invisibilité sur lui-même, sans composantes de sort, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

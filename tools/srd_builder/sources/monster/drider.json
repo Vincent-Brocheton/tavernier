@@ -1,0 +1,121 @@
+{
+  "id": "srd:monster:drider",
+  "type": "monster",
+  "name": "Drider",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 19,
+    "initiative": 4,
+    "hp": 123,
+    "hit_dice": "13d10 + 52",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 19,
+      "con": 18,
+      "int": 13,
+      "wis": 16,
+      "cha": 12
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 4,
+      "con": 4,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "skills": {
+      "srd:skill:stealth": 10,
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 16,
+    "languages": "commun des profondeurs, elfique",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Marche dans les toiles",
+        "text": "Le drider n’est pas soumis aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile que lui."
+      },
+      {
+        "kind": "trait",
+        "name": "Pattes d’araignée",
+        "text": "Le drider peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+      },
+      {
+        "kind": "trait",
+        "name": "Sensibilité au soleil",
+        "text": "Tant qu’il est exposé à la lumière du soleil, le drider subit le Désavantage aux tests de caractéristique et aux jets d’attaque."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le drider effectue trois attaques, réparties à sa guise entre Patte avant et Décharge toxique."
+      },
+      {
+        "kind": "action",
+        "name": "Patte avant",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 13 (2d8 + 4) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Décharge toxique",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 6,
+          "range": [
+            120
+          ],
+          "damage": [
+            {
+              "average": 13,
+              "dice": "3d6 + 3",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "À distance : +6, portée 36 m. Touché : 13 (3d6 + 3) dégâts de poison."
+      },
+      {
+        "kind": "bonus",
+        "name": "Magie de la Reine Araignée",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "text": "Le drider lance lueurs féeriques, ténèbres ou toile d’araignée, sans composantes matérielles, la Sagesse étant sa caractéristique d’incantation (DD de sauvegarde 14)."
+      }
+    ]
+  }
+}

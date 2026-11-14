@@ -1,0 +1,101 @@
+{
+  "id": "srd:monster:roc",
+  "type": "monster",
+  "name": "Rukh",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 15,
+    "initiative": 8,
+    "hp": 248,
+    "hit_dice": "16d20 + 80",
+    "speed": {
+      "walk": 20,
+      "fly": 120
+    },
+    "hover": false,
+    "abilities": {
+      "str": 28,
+      "dex": 10,
+      "con": 20,
+      "int": 3,
+      "wis": 10,
+      "cha": 9
+    },
+    "saving_throws": {
+      "str": 9,
+      "dex": 4,
+      "con": 5,
+      "int": -4,
+      "wis": 4,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:perception": 8
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 18,
+    "languages": "aucune",
+    "cr": "11",
+    "xp": 7200,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le rukh effectue deux attaques de Bec. Il peut en remplacer une par une attaque de Serres."
+      },
+      {
+        "kind": "action",
+        "name": "Bec",
+        "attack": {
+          "kind": "melee",
+          "bonus": 13,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 28,
+              "dice": "3d12 + 9",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +13, allonge 3 m. Touché : 28 (3d12 + 9) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Serres",
+        "attack": {
+          "kind": "melee",
+          "bonus": 13,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 23,
+              "dice": "4d6 + 9",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +13, allonge 1,50 m. Touché : 23 (4d6 + 9) dégâts tranchants. Si la cible est une créature de taille TG ou inférieure, elle subit l’état Agrippé (évasion DD 19), ainsi que l’état Entravé tant qu’elle est Agrippée."
+      },
+      {
+        "kind": "bonus",
+        "name": "Piqué",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "text": "Si le rukh tient une créature Agrippée, il vole à concurrence de la moitié de sa Vitesse de vol sans provoquer d’attaques d’Opportunité et lâche cette créature."
+      }
+    ]
+  }
+}

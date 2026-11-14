@@ -1,0 +1,75 @@
+{
+  "id": "srd:monster:triceratops",
+  "type": "monster",
+  "name": "Tricératops",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [
+      "Dinosaure"
+    ],
+    "alignment": "non alignée",
+    "ac": 14,
+    "initiative": -1,
+    "hp": 114,
+    "hit_dice": "12d12 + 36",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 22,
+      "dex": 9,
+      "con": 17,
+      "int": 2,
+      "wis": 11,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": -1,
+      "con": 3,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le tricératops effectue deux attaques de Coup de corne."
+      },
+      {
+        "kind": "action",
+        "name": "Coup de corne",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 19,
+              "dice": "2d12 + 6",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 1,50 m. Touché : 19 (2d12 + 6) dégâts perforants. Si la cible est une créature de taille TG ou inférieure et si le tricératops s’est déplacé en ligne droite d’un minimum de 6 m juste avant de la toucher, la cible subit 9 (2d8) dégâts perforants supplémentaires, ainsi que l’état À terre."
+      }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "srd:monster:gold-dragon-wyrmling",
+  "type": "monster",
+  "name": "Dragonnet d’or",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 17,
+    "initiative": 4,
+    "hp": 60,
+    "hit_dice": "8d8 + 24",
+    "speed": {
+      "walk": 30,
+      "swim": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 14,
+      "con": 17,
+      "int": 14,
+      "wis": 11,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 4,
+      "con": 3,
+      "int": 2,
+      "wis": 2,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 10
+    },
+    "passive_perception": 14,
+    "languages": "draconique",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "1d10 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 9 (1d10 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle affaiblissant",
+        "save": {
+          "ability": "str",
+          "dc": 13
+        },
+        "text": "JS Force : DD 13, chaque créature non encore affectée par ce souffle dans un Cône de 4,50 m. Échec : la cible subit le Désavantage aux Tests d20 basés sur la Force et soustrait 2 (1d4) à ses jets de dégâts. Elle réitère le JS à la fin de chacun de ses tours, et met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 13
+        },
+        "text": "JS Dextérité : DD 13, chaque créature dans un Cône de 4,50 m. Échec : 22 (4d10) dégâts de feu. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "srd:monster:giant-constrictor-snake",
+  "type": "monster",
+  "name": "Serpent constricteur géant",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 60,
+    "hit_dice": "8d12 + 8",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 14,
+      "con": 12,
+      "int": 1,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 1,
+      "int": -5,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 10
+    },
+    "passive_perception": 12,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le serpent effectue une attaque de Morsure et recourt à Constriction."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 11 (2d6 + 4) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Constriction",
+        "save": {
+          "ability": "str",
+          "dc": 14
+        },
+        "text": "JS Force : DD 14, une créature de taille G ou inférieure que le serpent voit dans un rayon de 3 m. Échec : 13 (2d8 + 4) dégâts contondants, et la cible subit l’état Agrippé (évasion DD 14)."
+      }
+    ]
+  }
+}

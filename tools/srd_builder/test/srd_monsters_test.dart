@@ -1,10 +1,12 @@
-// Monstres de [D1] (change t-06a-format-monstre). Valeurs relues dans
+// Bestiaire du SRD (changes t-06a-format-monstre et
+// t-06b-extracteur-bestiaire). Valeurs relues dans
 // docs/maquettes/texte/D01-Jeu-De-Donnees.txt et le SRD 5.2.1.
 import 'dart:io';
 import 'dart:isolate';
 
 import 'package:dnd_content/dnd_content.dart';
 import 'package:path/path.dart' as p;
+import 'package:srd_builder/src/monster_extractor.dart';
 import 'package:srd_builder/srd_builder.dart';
 import 'package:test/test.dart';
 
@@ -68,5 +70,59 @@ void main() {
     final parry = monster('bandit-captain').actions.last;
     expect(parry.kind, MonsterActionKind.reaction);
     expect(parry.name, 'Parade');
+  });
+
+  test('330 profils : « Monstres de A à Z » et « Animaux »', () {
+    expect(byId.values.where((e) => e.type == 'monster'), hasLength(330));
+  });
+
+  test('Dragon rouge adulte : FP 17, 18 000 PX (20 000 dans son antre), '
+      '3 utilisations Légendaires (4), Souffle de feu', () {
+    final dragon = monster('adult-red-dragon');
+    expect(dragon.cr, '17');
+    expect(dragon.xp, 18000);
+    expect(dragon.xpLair, 20000);
+    expect(dragon.legendaryUses, 3);
+    expect(dragon.legendaryUsesLair, 4);
+    final breath = dragon.actions.firstWhere((a) => a.name == 'Souffle de feu');
+    expect(breath.uses!.recharge, '5-6');
+    expect((breath.save!.ability, breath.save!.dc), ('dex', 21));
+  });
+
+  test('Nuée de chauves-souris : nuée de taille G de Bêtes de taille TP', () {
+    final swarm = monster('swarm-of-bats');
+    expect(swarm.sizes, [MonsterSize.large]);
+    expect(swarm.swarmSize, MonsterSize.tiny);
+    expect(swarm.creatureType, CreatureType.beast);
+  });
+
+  test('Loup-garou : Vitesse de forme', () {
+    final werewolf = monster('werewolf');
+    expect(werewolf.speed.walk, 30);
+    expect(werewolf.speedNote, '12 m (forme de loup uniquement)');
+  });
+
+  group('contre le SRD en mise en page', () {
+    final layout = File(
+      p.join(_root, '..', '..', 'docs', 'srd', 'FR_SRD_CC_v5.2.1.txt'),
+    ).readAsStringSync().replaceAll(RegExp(r'[ \t]+'), ' ');
+
+    test('chaque nom de monster_slugs.tsv est dans le SRD', () {
+      final slugs = readMonsterSlugs(
+        File(p.join(_root, 'extract', 'monster_slugs.tsv')),
+      );
+      expect(slugs, hasLength(330));
+      expect([
+        for (final name in slugs.keys)
+          if (!layout.contains(name)) name,
+      ], isEmpty);
+    });
+
+    test('chaque coquille corrigée est toujours dans le SRD', () {
+      expect([
+        for (final typo in monsterTypos.keys)
+          if (!layout.contains(typo)) typo,
+      ], isEmpty);
+    });
   });
 }

@@ -1,0 +1,121 @@
+{
+  "id": "srd:monster:priest",
+  "type": "monster",
+  "name": "Prêtre",
+  "data": {
+    "sizes": [
+      "small",
+      "medium"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [
+      "Clerc"
+    ],
+    "alignment": "Neutre",
+    "ac": 13,
+    "initiative": 0,
+    "hp": 38,
+    "hit_dice": "7d8 + 7",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 10,
+      "con": 12,
+      "int": 13,
+      "wis": 16,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 0,
+      "con": 1,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "skills": {
+      "srd:skill:medicine": 7,
+      "srd:skill:perception": 5,
+      "srd:skill:religion": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "chemise de mailles",
+      "masse d’armes",
+      "symbole sacré"
+    ],
+    "senses": {},
+    "passive_perception": 15,
+    "languages": "commun et une autre langue",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le prêtre effectue deux attaques, réparties à sa guise entre Masse d’armes et Flamme radiante."
+      },
+      {
+        "kind": "action",
+        "name": "Masse d’armes",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts contondants plus 5 (2d4) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Flamme radiante",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            60
+          ],
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d10",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 18 m. Touché : 11 (2d10) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le prêtre lance l’un des sorts suivants, la Sagesse étant sa caractéristique d’incantation (DD de sauvegarde 13) :\nÀ volonté : lumière, thaumaturgie\n1/jour : esprits gardiens"
+      },
+      {
+        "kind": "bonus",
+        "name": "Soutien divin",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "Le prêtre lance bénédiction, dissipation de la magie, mot de guérison ou restauration partielle, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

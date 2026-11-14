@@ -1,0 +1,78 @@
+{
+  "id": "srd:monster:giant-rat",
+  "type": "monster",
+  "name": "Rat géant",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 7,
+    "hit_dice": "2d6",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 7,
+      "dex": 16,
+      "con": 11,
+      "int": 2,
+      "wis": 10,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 5,
+      "con": 0,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 12,
+    "languages": "aucune",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’il cible, le rat a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts perforants."
+      }
+    ]
+  }
+}

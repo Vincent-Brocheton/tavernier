@@ -1,0 +1,95 @@
+{
+  "id": "srd:monster:gibbering-mouther",
+  "type": "monster",
+  "name": "Babélien",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "aberration",
+    "type_tags": [],
+    "alignment": "Chaotique Neutre",
+    "ac": 9,
+    "initiative": -1,
+    "hp": 52,
+    "hit_dice": "7d8 + 21",
+    "speed": {
+      "walk": 20,
+      "swim": 20
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 8,
+      "con": 16,
+      "int": 3,
+      "wis": 10,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": -1,
+      "con": 3,
+      "int": -4,
+      "wis": 0,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:prone"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Charabia",
+        "text": "Le babélien bredouille de façon incohérente tant qu’il ne subit pas l’état Neutralisé. JS Sagesse : DD 10, toute créature qui commence son tour dans un rayon de 6 m du babélien alors qu’il bredouille. Échec : la cible lance 1d8 pour déterminer ce qu’elle fait pour le tour en cours :\n1–4. La cible ne fait rien. 5–6. La cible n’entreprend ni action ni action Bonus, et consacre tout son déplacement dans une direction aléatoire. 7–8. La cible effectue une attaque de corps à corps contre une créature déterminée aléatoirement à portée d’allonge (elle ne fait rien si une telle attaque n’est pas possible)."
+      },
+      {
+        "kind": "trait",
+        "name": "Sol aberrant",
+        "text": "Le sol dans une Émanation de 3 m centrée sur le babélien est un Terrain difficile."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 7 (2d6) dégâts perforants. Si la cible est une créature de taille M ou inférieure, elle subit l’état À terre. La cible meurt si cette attaque la fait tomber à 0 point de vie. Son corps est alors absorbé par le babélien en ne laissant que son équipement."
+      },
+      {
+        "kind": "action",
+        "name": "Crachat aveuglant",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 10
+        },
+        "text": "JS Dextérité : DD 10, chaque créature dans une Sphère de 3 m de rayon centrée sur un point dans un rayon de 9 m.\nÉchec : 7 (2d6) dégâts radiants, et la cible subit l’état Aveuglé jusqu’à la fin du tour suivant du babélien."
+      }
+    ]
+  }
+}

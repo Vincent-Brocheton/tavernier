@@ -1,0 +1,106 @@
+{
+  "id": "srd:monster:mage",
+  "type": "monster",
+  "name": "Mage",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [
+      "Magicien"
+    ],
+    "alignment": "Neutre",
+    "ac": 15,
+    "initiative": 2,
+    "hp": 81,
+    "hit_dice": "18d8",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 9,
+      "dex": 14,
+      "con": 11,
+      "int": 17,
+      "wis": 12,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": -1,
+      "dex": 2,
+      "con": 0,
+      "int": 6,
+      "wis": 4,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:arcana": 6,
+      "srd:skill:history": 6,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "baguette"
+    ],
+    "senses": {},
+    "passive_perception": 14,
+    "languages": "commun et trois autres langues",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le mage effectue trois attaques de Jaillissement arcanique."
+      },
+      {
+        "kind": "action",
+        "name": "Jaillissement arcanique",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 6,
+          "reach": 5,
+          "range": [
+            120
+          ],
+          "damage": [
+            {
+              "average": 16,
+              "dice": "3d8 + 3",
+              "type": "srd:damage-type:force"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +6, allonge 1,50 m ou portée 36 m. Touché : 16 (3d8 + 3) dégâts de force."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le mage lance l’un des sorts suivants, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 14) :\nÀ volonté : armure du mage (compris dans la CA), détection de la magie, lumière, main du mage, prestidigitation\n2/jour chacun : boule de feu (au 4e niveau), invisibilité\n1/jour chacun : cône de froid, vol"
+      },
+      {
+        "kind": "bonus",
+        "name": "Foulée brumeuse",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "Le mage lance foulée brumeuse, avec la même caractéristique d’incantation que pour Incantation."
+      },
+      {
+        "kind": "reaction",
+        "name": "Magie protectrice",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "Le mage lance bouclier ou contresort en réponse au déclencheur du sort correspondant, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

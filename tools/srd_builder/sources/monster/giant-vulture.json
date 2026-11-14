@@ -1,0 +1,80 @@
+{
+  "id": "srd:monster:giant-vulture",
+  "type": "monster",
+  "name": "Vautour géant",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Neutre Mauvaise",
+    "ac": 10,
+    "initiative": 0,
+    "hp": 25,
+    "hit_dice": "3d10 + 9",
+    "speed": {
+      "walk": 10,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 10,
+      "con": 16,
+      "int": 6,
+      "wis": 12,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 0,
+      "con": 3,
+      "int": -2,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 13,
+    "languages": "comprend le commun, mais ne parle pas",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’il cible, le vautour a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Incision",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "2d6 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 9 (2d6 + 2) dégâts perforants, et la cible subit l’état Empoisonné jusqu’à la fin de son tour suivant."
+      }
+    ]
+  }
+}

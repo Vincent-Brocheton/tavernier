@@ -1,0 +1,116 @@
+{
+  "id": "srd:monster:frost-giant",
+  "type": "monster",
+  "name": "Géant du givre",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "giant",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 15,
+    "initiative": 2,
+    "hp": 149,
+    "hit_dice": "13d12 + 65",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 9,
+      "con": 21,
+      "int": 9,
+      "wis": 10,
+      "cha": 12
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": -1,
+      "con": 8,
+      "int": -1,
+      "wis": 3,
+      "cha": 4
+    },
+    "skills": {
+      "srd:skill:athletics": 9,
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:cold"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "géant",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le géant effectue deux attaques, réparties à sa guise entre Hache de givre et Grand arc."
+      },
+      {
+        "kind": "action",
+        "name": "Hache de givre",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 19,
+              "dice": "2d12 + 6",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 3 m. Touché : 19 (2d12 + 6) dégâts tranchants plus 9 (2d8) dégâts de froid."
+      },
+      {
+        "kind": "action",
+        "name": "Grand arc",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 9,
+          "range": [
+            150,
+            600
+          ],
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d10 + 6",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "À distance : +9, portée 45/180 m. Touché : 17 (2d10 + 6) dégâts perforants plus 7 (2d6) dégâts de froid, et la Vitesse de la cible est réduite de 3 m jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "bonus",
+        "name": "Cri de guerre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "text": "Le géant ou une créature de son choix parmi celles qui l’entendent ou le voient reçoit 16 (2d10 + 5) points de vie temporaires, ainsi que l’Avantage aux jets d’attaque jusqu’au début du tour suivant du géant."
+      }
+    ]
+  }
+}

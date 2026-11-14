@@ -1,0 +1,87 @@
+{
+  "id": "srd:monster:lemure",
+  "type": "monster",
+  "name": "Lémure",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 9,
+    "initiative": -3,
+    "hp": 9,
+    "hit_dice": "2d8",
+    "speed": {
+      "walk": 20
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 5,
+      "con": 11,
+      "int": 1,
+      "wis": 11,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": -3,
+      "con": 0,
+      "int": -5,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "senses_note": "Vision dans le noir 36 m (perce les Ténèbres magiques)",
+    "passive_perception": 10,
+    "languages": "comprend l’infernal, mais ne parle pas",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Restauration infernale",
+        "text": "Si le lémure meurt dans les Neuf Enfers, il revient à la vie avec tous ses pv en 1d10 jours sauf s’il est tué par une créature sous les effets du sort bénédiction ou si ce qu’il en reste est aspergé d’eau bénite."
+      },
+      {
+        "kind": "action",
+        "name": "Limon abject",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 2 (1d4) dégâts de poison."
+      }
+    ]
+  }
+}

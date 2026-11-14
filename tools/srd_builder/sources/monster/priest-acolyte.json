@@ -1,0 +1,115 @@
+{
+  "id": "srd:monster:priest-acolyte",
+  "type": "monster",
+  "name": "Acolyte",
+  "data": {
+    "sizes": [
+      "small",
+      "medium"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [
+      "Clerc"
+    ],
+    "alignment": "Neutre",
+    "ac": 13,
+    "initiative": 0,
+    "hp": 11,
+    "hit_dice": "2d8 + 2",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 10,
+      "con": 12,
+      "int": 10,
+      "wis": 14,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 0,
+      "con": 1,
+      "int": 0,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:medicine": 4,
+      "srd:skill:religion": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "chemise de mailles",
+      "masse d’armes",
+      "symbole sacré"
+    ],
+    "senses": {},
+    "passive_perception": 12,
+    "languages": "commun",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Masse d’armes",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts contondants plus 2 (1d4) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Flamme radiante",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            60
+          ],
+          "damage": [
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 18 m. Touché : 7 (2d6) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le prêtre lance l’un des sorts suivants, la Sagesse étant sa caractéristique d’incantation :\nÀ volonté : lumière, thaumaturgie"
+      },
+      {
+        "kind": "bonus",
+        "name": "Soutien divin",
+        "uses": {
+          "per_day": 1
+        },
+        "text": "L’acolyte lance bénédiction, mot de guérison ou sanctuaire, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "srd:monster:deva",
+  "type": "monster",
+  "name": "Déva",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [
+      "Ange"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 17,
+    "initiative": 4,
+    "hp": 229,
+    "hit_dice": "27d8 + 108",
+    "speed": {
+      "walk": 30,
+      "fly": 90
+    },
+    "hover": true,
+    "abilities": {
+      "str": 18,
+      "dex": 18,
+      "con": 18,
+      "int": 17,
+      "wis": 20,
+      "cha": 20
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 4,
+      "con": 4,
+      "int": 3,
+      "wis": 9,
+      "cha": 9
+    },
+    "skills": {
+      "srd:skill:insight": 9,
+      "srd:skill:perception": 9
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 19,
+    "languages": "toutes ; télépathie 36 m",
+    "cr": "10",
+    "xp": 5900,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le déva a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration exaltée",
+        "text": "Si le déva meurt hors du Mont Céleste, son corps disparaît et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part sur le Mont Céleste."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le déva effectue deux attaques de Masse sainte."
+      },
+      {
+        "kind": "action",
+        "name": "Masse sainte",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 18,
+              "dice": "4d8",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 1,50 m. Touché : 7 (1d6 + 4) dégâts contondants plus 18 (4d8) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le déva lance l’un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 17) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection du mal et du bien\n1/jour chacun : communion, rappel à la vie"
+      },
+      {
+        "kind": "bonus",
+        "name": "Soutien divin",
+        "uses": {
+          "per_day": 2
+        },
+        "text": "Le déva lance délivrance des malédictions, restauration partielle ou soins, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

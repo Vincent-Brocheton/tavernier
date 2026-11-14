@@ -221,9 +221,50 @@ void main() {
         'srd:monster:wolf.data.actions[0].uses '
             'un seul usage attendu : per_day, recharge ou rest',
         'srd:monster:wolf.data.actions[1].attack '
-            'allonge (corps à corps) ou portée [normale, longue] (à distance) '
-            'attendue',
+            'allonge (corps à corps) ou portée [normale] ou [normale, longue] '
+            '(à distance) attendue',
       ],
     );
+  });
+
+  test('attaque de sort à portée unique acceptée (« portée 36 m »)', () {
+    expect(
+      _messages([
+        wolf(
+          actions: [
+            {
+              'kind': 'action',
+              'name': 'Décharge',
+              'attack': {
+                'kind': 'ranged',
+                'bonus': 7,
+                'range': [120],
+                'damage': <Object?>[],
+              },
+              'text': 'À distance : +7, portée 36 m.',
+            },
+          ],
+        ),
+      ]),
+      isEmpty,
+    );
+  });
+
+  test('nuée et précisions de Vitesse et de sens', () {
+    final json = wolf(
+      data: {
+        'sizes': ['large'],
+        'swarm_size': 'tiny',
+        'speed_note': '12 m (forme de loup uniquement)',
+        'senses_note': 'Vision dans le noir 36 m (perce les Ténèbres magiques)',
+      },
+    );
+    final result = parseEntity(json, 'monster/wolf.json');
+    expect(result.issues, isEmpty);
+    final data = result.entity!.data as MonsterData;
+    expect(data.swarmSize, MonsterSize.tiny);
+    expect(data.speedNote, '12 m (forme de loup uniquement)');
+    expect(data.sensesNote, startsWith('Vision dans le noir'));
+    expect(result.entity!.toJson(), json);
   });
 }

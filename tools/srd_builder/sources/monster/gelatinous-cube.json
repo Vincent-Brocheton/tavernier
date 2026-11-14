@@ -1,0 +1,94 @@
+{
+  "id": "srd:monster:gelatinous-cube",
+  "type": "monster",
+  "name": "Cube gélatineux",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "ooze",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 6,
+    "initiative": -4,
+    "hp": 63,
+    "hit_dice": "6d10 + 30",
+    "speed": {
+      "walk": 15
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 3,
+      "con": 20,
+      "int": 1,
+      "wis": 6,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": -4,
+      "con": 5,
+      "int": -5,
+      "wis": -2,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:deafened",
+      "srd:condition:blinded",
+      "srd:condition:charmed",
+      "srd:condition:exhaustion",
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 8,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Cube de vase",
+        "text": "Le cube emplit la totalité de son espace et il est transparent. D’autres créatures peuvent entrer dans cet espace, mais ce faisant, elles se soumettent à l’Enveloppement du cube en subissant le Désavantage au jet de sauvegarde.\nLes créatures dans le cube bénéficient d’un Abri total, sachant que le cube peut contenir une créature de taille G ou jusqu’à quatre créatures de taille M ou P.\nAu prix d’une action, une créature dans un rayon de 1,50 m du cube peut en extraire une autre ou un objet à condition de réussir un test de Force (Athlétisme) DD 12, l’opération lui infligeant 10 (3d6) dégâts d’acide."
+      },
+      {
+        "kind": "trait",
+        "name": "Transparent",
+        "text": "Même lorsque rien ne cache le cube, une créature doit réussir un test de Sagesse (Perception) DD 15 pour remarquer sa présence si elle ne l’a pas déjà vu se déplacer ni agir."
+      },
+      {
+        "kind": "action",
+        "name": "Pseudopode",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 12,
+              "dice": "3d6 + 2",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 12 (3d6 + 2) dégâts d’acide."
+      },
+      {
+        "kind": "action",
+        "name": "Enveloppement",
+        "text": "Le cube se déplace dans les limites de sa Vitesse sans provoquer d’attaques d’Opportunité. Il peut se déplacer à travers les espaces de créatures de taille G ou inférieure s’il a encore de la place pour les accueillir dans sa masse (voir le trait Cube de vase). JS Dextérité : DD 12, chaque créature dans l’espace de laquelle le cube pénètre pour la première fois de ce déplacement. Échec : 10 (3d6) dégâts d’acide, et la cible est enveloppée. Une cible enveloppée s’asphyxie, ne peut pas lancer de sorts à composante verbale, subit l’état Entravé, ainsi que 10 (3d6) dégâts d’acide au début de chacun des tours du cube. Quand le cube se déplace, la cible enveloppée l’accompagne. Une créature enveloppée peut tenter de s’extraire du cube au prix d’une action et d’un test de Force (Athlétisme) DD 12. En cas de réussite, la cible s’évade dans l’espace inoccupé le plus proche. Réussite : demi-dégâts, et la cible se déplace en un espace inoccupé dans un rayon de 1,50 m du cube. S’il n’y a pas d’espace inoccupé dans ce rayon, la cible rate en fait son JS."
+      }
+    ]
+  }
+}

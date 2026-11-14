@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:bearded-devil",
+  "type": "monster",
+  "name": "Diable barbu",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 58,
+    "hit_dice": "9d8 + 18",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 15,
+      "con": 15,
+      "int": 9,
+      "wis": 11,
+      "cha": 14
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 2,
+      "con": 4,
+      "int": -1,
+      "wis": 0,
+      "cha": 4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:frightened",
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "senses_note": "Vision dans le noir 36 m (perce les Ténèbres magiques)",
+    "passive_perception": 10,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diable a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diable effectue une attaque de Barbe et une de Coutille infernale."
+      },
+      {
+        "kind": "action",
+        "name": "Barbe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d8 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 7 (1d8 + 3) dégâts perforants, et la cible subit l’état Empoisonné jusqu’au début du tour suivant du diable. Tant que persiste l’empoisonnement, la cible ne peut pas récupérer de points de vie."
+      },
+      {
+        "kind": "action",
+        "name": "Coutille infernale",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d10 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 3 m. Touché : 8 (1d10 + 3) dégâts tranchants. Si la cible est une créature et ne souffre pas déjà d’une plaie infernale, elle est soumise à l’effet suivant. JS Constitution : DD 12. Échec : la cible subit une plaie infernale. Ainsi blessée, la cible perd 5 (1d10) points de vie au début de chacun de ses tours. La plaie se referme au bout de 1 minute, si un sort lui restitue des points de vie ou si elle-même ou une créature dans un rayon de 1,50 m d’elle consacre une action à panser la plaie et réussit un test de Sagesse (Médecine) DD 12."
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "srd:monster:giant-boar",
+  "type": "monster",
+  "name": "Sanglier géant",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 0,
+    "hp": 42,
+    "hit_dice": "5d10 + 15",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 10,
+      "con": 16,
+      "int": 2,
+      "wis": 7,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 0,
+      "con": 3,
+      "int": -4,
+      "wis": -2,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 8,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Fureur du péril",
+        "text": "Le sanglier a l’Avantage aux jets d’attaque de corps à corps lorsqu’il est En péril."
+      },
+      {
+        "kind": "action",
+        "name": "Coup de défense",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si le sanglier s’est déplacé en ligne droite d’un minimum de 6 m juste avant de la toucher, la cible subit 7 (2d6) dégâts perforants supplémentaires, ainsi que l’état À terre."
+      }
+    ]
+  }
+}

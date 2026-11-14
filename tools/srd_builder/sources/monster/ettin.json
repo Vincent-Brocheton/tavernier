@@ -1,0 +1,104 @@
+{
+  "id": "srd:monster:ettin",
+  "type": "monster",
+  "name": "Ettin",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "giant",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 12,
+    "initiative": -1,
+    "hp": 85,
+    "hit_dice": "10d10 + 30",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 8,
+      "con": 17,
+      "int": 6,
+      "wis": 10,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": -1,
+      "con": 3,
+      "int": -2,
+      "wis": 0,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:blinded",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:stunned",
+      "srd:condition:unconscious"
+    ],
+    "gear": [
+      "hache d’armes",
+      "morgenstern"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "géant",
+    "cr": "4",
+    "xp": 1100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’ettin effectue une attaque de Hache d’armes et une de Morgenstern."
+      },
+      {
+        "kind": "action",
+        "name": "Hache d’armes",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d8 + 5",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 14 (2d8 + 5) dégâts tranchants. Si la cible est une créature de taille G ou inférieure, elle subit l’état À terre."
+      },
+      {
+        "kind": "action",
+        "name": "Morgenstern",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d8 + 5",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 14 (2d8 + 5) dégâts perforants, et la cible subit le Désavantage à son prochain jet d’attaque intervenant avant la fin de son tour suivant."
+      }
+    ]
+  }
+}

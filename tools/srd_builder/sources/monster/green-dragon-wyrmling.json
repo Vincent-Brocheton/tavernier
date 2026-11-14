@@ -1,0 +1,109 @@
+{
+  "id": "srd:monster:green-dragon-wyrmling",
+  "type": "monster",
+  "name": "Dragonnet vert",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 17,
+    "initiative": 3,
+    "hp": 38,
+    "hit_dice": "7d8 + 7",
+    "speed": {
+      "walk": 30,
+      "swim": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 12,
+      "con": 13,
+      "int": 14,
+      "wis": 11,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 3,
+      "con": 1,
+      "int": 2,
+      "wis": 2,
+      "cha": 1
+    },
+    "skills": {
+      "srd:skill:stealth": 3,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 10
+    },
+    "passive_perception": 14,
+    "languages": "draconique",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d10 + 2",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 7 (1d10 + 2) dégâts tranchants plus 3 (1d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle empoisonné",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 11
+        },
+        "text": "JS Constitution : DD 11, chaque créature dans un Cône de 4,50 m. Échec : 21 (6d6) dégâts de poison. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "srd:monster:satyr",
+  "type": "monster",
+  "name": "Satyre",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fey",
+    "type_tags": [],
+    "alignment": "Chaotique Neutre",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 31,
+    "hit_dice": "7d8",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 12,
+      "dex": 16,
+      "con": 11,
+      "int": 12,
+      "wis": 10,
+      "cha": 14
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": 3,
+      "con": 0,
+      "int": 1,
+      "wis": 0,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 2,
+      "srd:skill:performance": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 12,
+    "languages": "commun, elfique, sylvestre",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le satyre a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Sabots",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts contondants. Si la cible est une créature de taille M ou inférieure, le satyre la repousse en ligne droite d’un maximum de 3 m."
+      },
+      {
+        "kind": "action",
+        "name": "Moquerie",
+        "save": {
+          "ability": "wis",
+          "dc": 12
+        },
+        "text": "JS Sagesse : DD 12, une créature que le satyre voit dans un rayon de 27 m. Échec : 5 (1d6 + 2) dégâts psychiques."
+      }
+    ]
+  }
+}

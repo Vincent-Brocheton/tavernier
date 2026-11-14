@@ -1,0 +1,134 @@
+{
+  "id": "srd:monster:ancient-blue-dragon",
+  "type": "monster",
+  "name": "Dragon bleu vénérable",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 22,
+    "initiative": 14,
+    "hp": 481,
+    "hit_dice": "26d20 + 208",
+    "speed": {
+      "walk": 40,
+      "burrow": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 29,
+      "dex": 10,
+      "con": 27,
+      "int": 18,
+      "wis": 17,
+      "cha": 25
+    },
+    "saving_throws": {
+      "str": 9,
+      "dex": 7,
+      "con": 8,
+      "int": 4,
+      "wis": 10,
+      "cha": 7
+    },
+    "skills": {
+      "srd:skill:stealth": 7,
+      "srd:skill:perception": 17
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:lightning"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 27,
+    "languages": "commun, draconique",
+    "cr": "23",
+    "xp": 50000,
+    "xp_lair": 62000,
+    "proficiency_bonus": 7,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4,
+          "per_day_lair": 5
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation pour lancer fracassement (au 3e niveau)."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 16,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 18,
+              "dice": "2d8 + 9",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 11,
+              "dice": "2d10",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +16, allonge 4,50 m. Touché : 18 (2d8 + 9) dégâts tranchants plus 11 (2d10) dégâts de foudre."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 22) :\nÀ volonté : détection de la magie, fracassement (au 3e niveau), invisibilité, main du mage\n1/jour chacun : communication à distance, scrutation"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de foudre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 23
+        },
+        "text": "JS Dextérité : DD 23, chaque créature dans une Ligne de 36 m de long sur 3 m de large. Échec : 88 (16d10) dégâts de foudre. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "legendary",
+        "name": "Balayage caudal",
+        "text": "Le dragon effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Envol furtif",
+        "text": "Le dragon recourt à Incantation pour lancer invisibilité sur lui-même, et il peut voler à concurrence de la moitié de sa Vitesse de vol. Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Fracas tonitruant",
+        "text": "Le dragon recourt à Incantation pour lancer fracassement (au 3e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

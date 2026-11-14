@@ -1,0 +1,110 @@
+{
+  "id": "srd:monster:air-elemental",
+  "type": "monster",
+  "name": "Élémentaire de l’air",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "elemental",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 15,
+    "initiative": 5,
+    "hp": 90,
+    "hit_dice": "12d10 + 24",
+    "speed": {
+      "walk": 10,
+      "fly": 90
+    },
+    "hover": true,
+    "abilities": {
+      "str": 14,
+      "dex": 20,
+      "con": 14,
+      "int": 6,
+      "wis": 10,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 5,
+      "con": 2,
+      "int": -2,
+      "wis": 0,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:lightning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:poison",
+      "srd:damage-type:thunder"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:unconscious",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "primordial (aérien)",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Corps d’air",
+        "text": "L’élémentaire peut entrer dans l’espace d’une créature et s’y arrêter. Il peut se déplacer dans un espace étroit d’une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’élémentaire effectue deux attaques de Coup tonitruant."
+      },
+      {
+        "kind": "action",
+        "name": "Coup tonitruant",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d8 + 5",
+              "type": "srd:damage-type:thunder"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 3 m. Touché : 14 (2d8 + 5) dégâts de tonnerre."
+      },
+      {
+        "kind": "action",
+        "name": "Tourbillon",
+        "uses": {
+          "recharge": "4-6"
+        },
+        "save": {
+          "ability": "str",
+          "dc": 13
+        },
+        "text": "JS Force : DD 13, une créature de taille M ou inférieure dans l’espace de l’élémentaire. Échec : 24 (4d10 + 2) dégâts de tonnerre, et la cible est repoussée de l’élémentaire de 6 m en ligne droite et subit l’état À terre. Réussite : demi-dégâts uniquement."
+      }
+    ]
+  }
+}

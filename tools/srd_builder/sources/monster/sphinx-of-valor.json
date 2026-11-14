@@ -1,0 +1,159 @@
+{
+  "id": "srd:monster:sphinx-of-valor",
+  "type": "monster",
+  "name": "Sphinx valeureux",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Loyal Neutre",
+    "ac": 17,
+    "initiative": 12,
+    "hp": 199,
+    "hit_dice": "19d10 + 95",
+    "speed": {
+      "walk": 40,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 22,
+      "dex": 10,
+      "con": 20,
+      "int": 16,
+      "wis": 23,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 6,
+      "con": 11,
+      "int": 9,
+      "wis": 12,
+      "cha": 4
+    },
+    "skills": {
+      "srd:skill:arcana": 9,
+      "srd:skill:perception": 12,
+      "srd:skill:religion": 15
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 22,
+    "languages": "céleste, commun",
+    "cr": "17",
+    "xp": 18000,
+    "xp_lair": 20000,
+    "proficiency_bonus": 6,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Insondable",
+        "text": "Nulle magie ne permet d’observer le sphinx à distance ni de détecter ses pensées sans son consentement. Les tests de Sagesse (Intuition) visant à percer ses intentions ou évaluer sa sincérité subissent le Désavantage."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si le sphinx rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le sphinx effectue deux attaques de Griffe et recourt à Rugissement."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 12,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 20,
+              "dice": "4d6 + 6",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +12, allonge 1,50 m. Touché : 20 (4d6 + 6) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le sphinx lance l’un des sorts suivants, sans composantes matérielles, la Sagesse étant sa caractéristique d’incantation (DD de sauvegarde 20) :\nÀ volonté : détection du mal et du bien, thaumaturgie\n1/jour chacun : détection de la magie, dissipation de la magie, festin des héros, restauration suprême, zone de vérité"
+      },
+      {
+        "kind": "action",
+        "name": "Rugissement",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "Le sphinx pousse un rugissement magique. Chaque fois qu’il rugit, il produit un effet différent, comme détaillé ci-après (la séquence est réinitialisée lorsqu’il prend un Repos long) :"
+      },
+      {
+        "kind": "action",
+        "name": "Premier rugissement",
+        "save": {
+          "ability": "wis",
+          "dc": 20
+        },
+        "text": "JS Sagesse : DD 20, chaque ennemi dans une Émanation de 150 m centrée sur le sphinx. Échec : la cible subit l’état Effrayé pendant 1 minute."
+      },
+      {
+        "kind": "action",
+        "name": "Deuxième rugissement",
+        "save": {
+          "ability": "wis",
+          "dc": 20
+        },
+        "text": "JS Sagesse : DD 20, chaque ennemi dans une Émanation de 150 m centrée sur le sphinx. Échec : la cible subit l’état Paralysé et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "action",
+        "name": "Troisième rugissement",
+        "save": {
+          "ability": "con",
+          "dc": 20
+        },
+        "text": "JS Constitution : DD 20, chaque ennemi dans une Émanation de 90 m centrée sur le sphinx. Échec : 44 (8d10) dégâts de tonnerre, et la cible subit l’état À terre. Réussite : demi-dégâts uniquement."
+      },
+      {
+        "kind": "legendary",
+        "name": "Poids des années",
+        "save": {
+          "ability": "con",
+          "dc": 16
+        },
+        "text": "JS Constitution : DD 16, une créature que le sphinx voit dans un rayon de 36 m. Échec : la cible reçoit 1 niveau d’Épuisement. Tant que la cible a le moindre niveau d’Épuisement, elle paraît 3d10 ans plus âgée que la réalité. Échec ou réussite : le sphinx ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Traque arcanique",
+        "text": "Le sphinx se téléporte en un espace inoccupé qu’il voit dans un rayon de 9 m, et il effectue une attaque de Griffe."
+      }
+    ]
+  }
+}

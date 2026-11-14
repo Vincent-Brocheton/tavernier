@@ -1,0 +1,82 @@
+{
+  "id": "srd:monster:flying-sword",
+  "type": "monster",
+  "name": "Épée volante",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 17,
+    "initiative": 4,
+    "hp": 14,
+    "hit_dice": "4d6",
+    "speed": {
+      "walk": 5,
+      "fly": 50
+    },
+    "hover": true,
+    "abilities": {
+      "str": 12,
+      "dex": 15,
+      "con": 11,
+      "int": 1,
+      "wis": 5,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": 4,
+      "con": 0,
+      "int": -5,
+      "wis": -3,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison",
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 7,
+    "languages": "aucune",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Taillade",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 6 (1d8 + 2) dégâts tranchants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "srd:monster:giant-eagle",
+  "type": "monster",
+  "name": "Aigle géant",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Neutre Bon",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 26,
+    "hit_dice": "4d10 + 4",
+    "speed": {
+      "walk": 10,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 17,
+      "con": 13,
+      "int": 8,
+      "wis": 14,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 3,
+      "con": 1,
+      "int": -1,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 16,
+    "languages": "céleste ; comprend le commun et le primordial (aérien) mais ne parle pas",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’aigle effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts tranchants plus 3 (1d6) dégâts radiants."
+      }
+    ]
+  }
+}

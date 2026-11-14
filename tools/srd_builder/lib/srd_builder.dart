@@ -10,6 +10,7 @@ import 'package:dnd_content/dnd_content.dart';
 import 'src/class_extractor.dart';
 import 'src/equipment_extractor.dart';
 import 'src/magic_item_extractor.dart';
+import 'src/monster_extractor.dart';
 import 'src/origin_extractor.dart';
 import 'src/source_loader.dart';
 import 'src/spell_extractor.dart';
@@ -90,6 +91,30 @@ int run(List<String> arguments, StringSink out, StringSink err) {
           'report',
           defaultsTo: 'build/extract-magic-items.txt',
           help: 'Lignes courtes restées dans un texte, à relire.',
+        ),
+    )
+    ..addCommand(
+      'extract-monsters',
+      ArgParser()
+        ..addOption(
+          'text',
+          mandatory: true,
+          help: 'Texte du PDF en ordre de lecture (pdftotext -enc UTF-8).',
+        )
+        ..addOption(
+          'slugs',
+          defaultsTo: 'tools/srd_builder/extract/monster_slugs.tsv',
+          help: 'Correspondance nom français → slug anglais.',
+        )
+        ..addOption(
+          'sources',
+          defaultsTo: defaultSources,
+          help: 'Dossier des sources JSON.',
+        )
+        ..addOption(
+          'report',
+          defaultsTo: 'build/extract-monsters.txt',
+          help: 'Lectures incertaines, à relire.',
         ),
     )
     ..addCommand(
@@ -197,6 +222,21 @@ int run(List<String> arguments, StringSink out, StringSink err) {
       err.writeln(e.message);
       return 1;
     }
+    File(command.option('report')!)
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(report.toString());
+    problems.forEach(err.writeln);
+    out.writeln('Rapport : ${command.option('report')}.');
+    return problems.isEmpty ? 0 : 1;
+  }
+  if (command.name == 'extract-monsters') {
+    final report = StringBuffer();
+    final problems = extractMonsterSources(
+      readingOrder: File(command.option('text')!).readAsStringSync(),
+      slugs: readMonsterSlugs(File(command.option('slugs')!)),
+      sources: command.option('sources')!,
+      report: report,
+    );
     File(command.option('report')!)
       ..parent.createSync(recursive: true)
       ..writeAsStringSync(report.toString());

@@ -197,11 +197,12 @@ List<ContentIssue> _monsterIssues(String path, MonsterData m) {
         ),
       if (a.attack case final at?
           when (at.kind != MonsterAttackKind.ranged && at.reach == null) ||
-              (at.kind != MonsterAttackKind.melee && at.range?.length != 2))
+              (at.kind != MonsterAttackKind.melee &&
+                  !const {1, 2}.contains(at.range?.length)))
         ContentIssue(
           '$path.data.actions[$i].attack',
-          'allonge (corps à corps) ou portée [normale, longue] (à distance) '
-              'attendue',
+          'allonge (corps à corps) ou portée [normale] ou [normale, longue] '
+              '(à distance) attendue',
         ),
     ],
   ];

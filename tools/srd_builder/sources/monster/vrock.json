@@ -1,0 +1,125 @@
+{
+  "id": "srd:monster:vrock",
+  "type": "monster",
+  "name": "Vrock",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Démon"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 15,
+    "initiative": 2,
+    "hp": 152,
+    "hit_dice": "16d10 + 64",
+    "speed": {
+      "walk": 40,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 15,
+      "con": 18,
+      "int": 8,
+      "wis": 13,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 5,
+      "con": 4,
+      "int": -1,
+      "wis": 4,
+      "cha": 2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:fire",
+      "srd:damage-type:lightning",
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 11,
+    "languages": "abyssal ; télépathie 36 m",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le vrock a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration démoniaque",
+        "text": "Si le vrock meurt hors des Abysses, son corps se dissout en ichor et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part dans les Abysses."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le vrock effectue deux attaques de Déchiquetage."
+      },
+      {
+        "kind": "action",
+        "name": "Déchiquetage",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts perforants plus 10 (3d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Piaillement étourdissant",
+        "uses": {
+          "per_day": 1
+        },
+        "save": {
+          "ability": "con",
+          "dc": 15
+        },
+        "text": "JS Constitution : DD 15, chaque créature dans une Émanation de 6 m centrée sur le vrock (les démons réussissent automatiquement). Échec : 10 (3d6) dégâts de tonnerre, et la cible subit l’état Étourdi jusqu’à la fin du tour suivant du vrock."
+      },
+      {
+        "kind": "action",
+        "name": "Spores",
+        "uses": {
+          "recharge": "6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 15
+        },
+        "text": "JS Constitution : DD 15, chaque créature dans une Émanation de 6 m centrée sur le vrock. Échec : la cible subit l’état Empoisonné et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l’effet sur elle-même en cas de réussite. Ainsi Empoisonnée, une cible subit 5 (1d10) dégâts de poison au début de chacun de ses tours. Vider une flasque d’eau bénite sur la cible met prématurément fin à l’effet."
+      }
+    ]
+  }
+}

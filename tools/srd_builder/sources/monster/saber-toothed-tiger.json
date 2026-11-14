@@ -1,0 +1,88 @@
+{
+  "id": "srd:monster:saber-toothed-tiger",
+  "type": "monster",
+  "name": "Tigre à dents de sabre",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 52,
+    "hit_dice": "7d10 + 14",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 17,
+      "con": 15,
+      "int": 3,
+      "wis": 12,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 5,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:stealth": 7,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Saut avec élan",
+        "text": "Avec une prise d’élan de 3 m, le tigre peut franchir jusqu’à 7,50 m lors d’un saut en longueur."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le tigre effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 11 (2d6 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Fuite agile",
+        "text": "Le tigre entreprend l’action Désengagement ou Furtivité."
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "srd:monster:giant-toad",
+  "type": "monster",
+  "name": "Crapaud géant",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 39,
+    "hit_dice": "6d10 + 6",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 13,
+      "con": 13,
+      "int": 2,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 1,
+      "con": 1,
+      "int": -4,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le crapaud peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Saut sans élan",
+        "text": "Les sauts en longueur du crapaud peuvent atteindre 6 m et ses sauts en hauteur 3 m, avec ou sans élan."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts perforants plus 5 (2d4) dégâts de poison. Si la cible est une créature de taille M ou inférieure, elle subit l’état Agrippé (évasion DD 12)."
+      },
+      {
+        "kind": "action",
+        "name": "Engloutissement",
+        "text": "Le crapaud engloutit une cible de taille M ou inférieure qu’il agrippe. Tant qu’elle est engloutie, la cible n’est pas Agrippée mais subit les états Aveuglé et Entravé, et bénéficie d’un Abri total contre les attaques et autres effets émanant de l’extérieur du crapaud. En outre, la cible subit 10 (3d6) dégâts d’acide à la fin de chacun des tours du crapaud. Le crapaud ne peut pas engloutir plus d’une cible à la fois, et il ne peut pas recourir à Morsure quand il maintient une cible engloutie. Si le crapaud meurt, la créature engloutie n’est plus Entravée et peut s’en extraire en dépensant 1,50 m de déplacement, pour se retrouver avec l’état À terre près du cadavre."
+      }
+    ]
+  }
+}

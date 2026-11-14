@@ -1,0 +1,76 @@
+{
+  "id": "srd:monster:venomous-snake",
+  "type": "monster",
+  "name": "Serpent venimeux",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 5,
+    "hit_dice": "2d4",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 2,
+      "dex": 15,
+      "con": 11,
+      "int": 1,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 2,
+      "con": 0,
+      "int": -5,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 10
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d4 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 4 (1d4 + 2) dégâts perforants plus 3 (1d6) dégâts de poison."
+      }
+    ]
+  }
+}

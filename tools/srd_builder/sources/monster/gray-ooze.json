@@ -1,0 +1,96 @@
+{
+  "id": "srd:monster:gray-ooze",
+  "type": "monster",
+  "name": "Vase grise",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "ooze",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 9,
+    "initiative": -2,
+    "hp": 22,
+    "hit_dice": "3d8 + 9",
+    "speed": {
+      "walk": 10,
+      "climb": 10
+    },
+    "hover": false,
+    "abilities": {
+      "str": 12,
+      "dex": 6,
+      "con": 16,
+      "int": 1,
+      "wis": 6,
+      "cha": 2
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": -2,
+      "con": 3,
+      "int": -5,
+      "wis": -2,
+      "cha": -4
+    },
+    "skills": {
+      "srd:skill:stealth": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:acid",
+      "srd:damage-type:fire",
+      "srd:damage-type:cold"
+    ],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:deafened",
+      "srd:condition:blinded",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 8,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Informe",
+        "text": "La vase peut se déplacer dans un espace étroit d’une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+      },
+      {
+        "kind": "trait",
+        "name": "Masse corrosive",
+        "text": "Les projectiles non magiques sont détruits dès qu’ils ont touché la vase et infligé le moindre dégât. Toute arme non magique qui inflige des dégâts à la vase en la touchant physiquement subit aussitôt un malus cumulatif de –1 aux jets d’attaque. L’arme est détruite si ce malus atteint –5. On peut annuler ce malus en lançant le sort réparation sur l’arme.\nLa vase ronge le métal et le bois non magiques à raison de 5 cm d’épaisseur par round."
+      },
+      {
+        "kind": "action",
+        "name": "Pseudopode",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d8 + 1",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 10 (2d8 + 1) dégâts d’acide. Toute armure non magique portée par la cible subit un malus cumulatif de –1 à la CA qu’elle confère. L’armure est détruite si ce malus réduit sa CA à 10. On peut annuler ce malus en lançant le sort réparation sur l’armure."
+      }
+    ]
+  }
+}

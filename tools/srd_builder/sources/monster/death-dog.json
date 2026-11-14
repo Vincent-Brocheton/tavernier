@@ -1,0 +1,85 @@
+{
+  "id": "srd:monster:death-dog",
+  "type": "monster",
+  "name": "Chien du trépas",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Neutre Mauvaise",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 39,
+    "hit_dice": "6d8 + 12",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 14,
+      "con": 14,
+      "int": 3,
+      "wis": 13,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:blinded",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:stunned",
+      "srd:condition:unconscious"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le chien du trépas effectue deux attaques de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d4 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 4 (1d4 + 2) dégâts perforants. Si la cible est une créature, elle est soumise à l’effet suivant. JS Constitution : DD 12. Premier échec : la cible subit l’état Empoisonné. Tant que la cible est Empoisonnée, son maximum de points de vie ne revient pas à la normale quand elle termine un Repos long. La cible réitère le JS toutes les 24 heures et met un terme à l’effet sur elle-même en cas de réussite. Échecs suivants : le maximum de points de vie de la cible Empoisonnée diminue de 5 (1d10)."
+      }
+    ]
+  }
+}

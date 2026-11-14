@@ -1,0 +1,91 @@
+{
+  "id": "srd:monster:nightmare",
+  "type": "monster",
+  "name": "Horriflamme",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 68,
+    "hit_dice": "8d10 + 24",
+    "speed": {
+      "walk": 60,
+      "fly": 90
+    },
+    "hover": true,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 16,
+      "int": 10,
+      "wis": 13,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 3,
+      "int": 0,
+      "wis": 1,
+      "cha": 2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "comprend l’abyssal, le commun et l’infernal, mais ne parle pas",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Illumination",
+        "text": "L’horriflamme émet une Lumière vive sur un rayon de 3 m et une Lumière faible sur 3 m de plus."
+      },
+      {
+        "kind": "trait",
+        "name": "Protection contre les flammes",
+        "text": "L’horriflamme peut octroyer la Résistance aux dégâts de feu à son cavalier tant que celui-ci la chevauche."
+      },
+      {
+        "kind": "action",
+        "name": "Sabots",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts contondants plus 10 (3d6) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Chevauchée éthérée",
+        "text": "L’horriflamme et un maximum de trois créatures consentantes dans un rayon de 1,50 m se téléportent sur le Plan Éthéré depuis le Plan Matériel, ou inversement."
+      }
+    ]
+  }
+}

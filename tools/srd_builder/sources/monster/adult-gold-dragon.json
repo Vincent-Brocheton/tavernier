@@ -1,0 +1,154 @@
+{
+  "id": "srd:monster:adult-gold-dragon",
+  "type": "monster",
+  "name": "Dragon d’or adulte",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 19,
+    "initiative": 14,
+    "hp": 243,
+    "hit_dice": "18d12 + 126",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 27,
+      "dex": 14,
+      "con": 25,
+      "int": 16,
+      "wis": 15,
+      "cha": 24
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 8,
+      "con": 7,
+      "int": 3,
+      "wis": 8,
+      "cha": 7
+    },
+    "skills": {
+      "srd:skill:stealth": 8,
+      "srd:skill:insight": 8,
+      "srd:skill:perception": 14,
+      "srd:skill:persuasion": 13
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 24,
+    "languages": "commun, draconique",
+    "cr": "17",
+    "xp": 18000,
+    "xp_lair": 20000,
+    "proficiency_bonus": 6,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de (A) Incantation pour lancer rayon traçant (au 2e niveau) ou (B) Souffle affaiblissant."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d8 + 8",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 17 (2d8 + 8) dégâts tranchants plus 4 (1d8) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 21, +13 pour toucher) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, rayon traçant (au 2e niveau)\n1/jour chacun : colonne de flamme, zone de vérité"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle affaiblissant",
+        "save": {
+          "ability": "str",
+          "dc": 21
+        },
+        "text": "JS Force : DD 21, chaque créature non encore affectée par ce souffle dans un Cône de 18 m. Échec : la cible subit le Désavantage aux Tests d20 basés sur la Force et soustrait 3 (1d6) à ses jets de dégâts. Elle réitère le JS à la fin de chacun de ses tours, et met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 21
+        },
+        "text": "JS Dextérité : DD 21, chaque créature dans un Cône de 18 m. Échec : 66 (12d10) dégâts de feu. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Bannissement",
+        "save": {
+          "ability": "cha",
+          "dc": 21
+        },
+        "text": "JS Charisme : DD 21, une créature que le dragon voit dans un rayon de 36 m. Échec : 10 (3d6) dégâts de force ; la cible subit l’état Neutralisé et elle est transportée sur un demi-plan qui ne présente pas de danger jusqu’au début du tour suivant du dragon, puis elle réapparaît en un espace inoccupé au choix du dragon dans un rayon de 36 m de celui-ci. Échec ou réussite : Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Lumière traçante",
+        "text": "Le dragon recourt à Incantation pour lancer rayon traçant (au 2e niveau)."
+      }
+    ]
+  }
+}

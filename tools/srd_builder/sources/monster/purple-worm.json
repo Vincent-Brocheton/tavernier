@@ -1,0 +1,113 @@
+{
+  "id": "srd:monster:purple-worm",
+  "type": "monster",
+  "name": "Ver pourpre",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 18,
+    "initiative": 3,
+    "hp": 247,
+    "hit_dice": "15d20 + 90",
+    "speed": {
+      "walk": 50,
+      "burrow": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 28,
+      "dex": 7,
+      "con": 22,
+      "int": 1,
+      "wis": 8,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 9,
+      "dex": -2,
+      "con": 11,
+      "int": -5,
+      "wis": 4,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 30,
+      "tremorsense": 60
+    },
+    "passive_perception": 9,
+    "languages": "aucune",
+    "cr": "15",
+    "xp": 13000,
+    "proficiency_bonus": 5,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Fouisseur",
+        "text": "Le ver peut creuser à travers la roche à concurrence de la moitié de sa Vitesse de fouissement, en laissant un tunnel de 3 m de diamètre dans son sillage."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le ver effectue une attaque de Dard caudal et une de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Dard caudal",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 16,
+              "dice": "2d6 + 9",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 35,
+              "dice": "10d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 16 (2d6 + 9) dégâts perforants plus 35 (10d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 22,
+              "dice": "3d8 + 9",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 22 (3d8 + 9) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 19), ainsi que l’état Entravé tant qu’elle est Agrippée."
+      },
+      {
+        "kind": "bonus",
+        "name": "Engloutissement",
+        "save": {
+          "ability": "str",
+          "dc": 19
+        },
+        "text": "JS Force : DD 19, une créature de taille G ou inférieure Agrippée par le ver (qui peut contenir simultanément un maximum de trois créatures). Échec : la cible est engloutie par le ver, et l’état Agrippé prend fin. Une créature engloutie subit les états Aveuglé et Entravé, bénéficie d’un Abri total contre les attaques et effets émanant de l’extérieur du ver et subit 17 (5d6) dégâts d’acide au début de chacun des tours du ver.\nSi le ver subit 30 dégâts ou plus lors d’un même tour de la part d’une créature engloutie, il doit réussir un jet de sauvegarde de Constitution DD 21 à la fin de ce tour sous peine de régurgiter toutes les créatures englouties, chacune tombant dans un espace situé dans un rayon de 1,50 m du ver et subissant l’état À terre. Si le ver meurt, les créatures englouties ne subissent plus l’état Entravé et peuvent s’extraire du cadavre en dépensant 6 m de déplacement, pour se retrouver avec l’état À terre."
+      }
+    ]
+  }
+}

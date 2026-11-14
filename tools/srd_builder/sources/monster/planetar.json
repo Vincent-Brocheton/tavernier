@@ -1,0 +1,128 @@
+{
+  "id": "srd:monster:planetar",
+  "type": "monster",
+  "name": "Planétar",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [
+      "Ange"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 19,
+    "initiative": 10,
+    "hp": 262,
+    "hit_dice": "21d10 + 147",
+    "speed": {
+      "walk": 40,
+      "fly": 120
+    },
+    "hover": true,
+    "abilities": {
+      "str": 24,
+      "dex": 20,
+      "con": 24,
+      "int": 19,
+      "wis": 22,
+      "cha": 25
+    },
+    "saving_throws": {
+      "str": 12,
+      "dex": 5,
+      "con": 12,
+      "int": 4,
+      "wis": 11,
+      "cha": 12
+    },
+    "skills": {
+      "srd:skill:perception": 11
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 21,
+    "languages": "toutes ; télépathie 36 m",
+    "cr": "16",
+    "xp": 15000,
+    "proficiency_bonus": 5,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le planétar a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration exaltée",
+        "text": "Si le planétar meurt hors du Mont Céleste, son corps disparaît et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part sur le Mont Céleste."
+      },
+      {
+        "kind": "trait",
+        "name": "Vigilance divine",
+        "text": "Le planétar reconnaît un mensonge quand il en entend un."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le planétar effectue trois attaques d’Épée radiante ou recourt deux fois à Éruption bénie."
+      },
+      {
+        "kind": "action",
+        "name": "Épée radiante",
+        "attack": {
+          "kind": "melee",
+          "bonus": 12,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d6 + 7",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 18,
+              "dice": "4d8",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +12, allonge 3 m. Touché : 14 (2d6 + 7) dégâts tranchants plus 18 (4d8) dégâts radiants."
+      },
+      {
+        "kind": "action",
+        "name": "Éruption bénie",
+        "save": {
+          "ability": "dex",
+          "dc": 20
+        },
+        "text": "JS Dextérité : DD 20, chaque ennemi dans une Sphère de 6 m de rayon centrée sur un point que le planétar voit dans un rayon de 36 m. Échec : 24 (7d6) dégâts radiants. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le planétar lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 20) :\nÀ volonté : détection du mal et du bien\n1/jour chacun : communion, contrôle du climat, dissipation du mal et du bien, rappel à la vie"
+      },
+      {
+        "kind": "bonus",
+        "name": "Soutien divin",
+        "uses": {
+          "per_day": 2
+        },
+        "text": "Le planétar lance délivrance des malédictions, invisibilité, restauration partielle ou soins, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

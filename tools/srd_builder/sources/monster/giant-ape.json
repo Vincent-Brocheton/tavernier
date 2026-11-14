@@ -1,0 +1,91 @@
+{
+  "id": "srd:monster:giant-ape",
+  "type": "monster",
+  "name": "Singe géant",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 5,
+    "hp": 168,
+    "hit_dice": "16d12 + 64",
+    "speed": {
+      "walk": 40,
+      "climb": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 14,
+      "con": 18,
+      "int": 5,
+      "wis": 12,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 2,
+      "con": 4,
+      "int": -3,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:athletics": 9,
+      "srd:skill:perception": 4,
+      "srd:skill:survival": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "7",
+    "xp": 2900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le singe effectue deux attaques de Poing."
+      },
+      {
+        "kind": "action",
+        "name": "Poing",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 22,
+              "dice": "3d10 + 6",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 3 m. Touché : 22 (3d10 + 6) dégâts contondants."
+      },
+      {
+        "kind": "action",
+        "name": "Jet de rocher",
+        "uses": {
+          "recharge": "6"
+        },
+        "text": "Le singe projette un rocher en un point qu’il voit dans un rayon de 27 m. JS Dextérité : DD 17, chaque créature dans une Sphère de 1,50 m centrée sur ce point. Échec : 24 (7d6) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l’état À terre. Réussite : demi-dégâts uniquement."
+      },
+      {
+        "kind": "bonus",
+        "name": "Bond",
+        "text": "Le singe effectue un saut d’un maximum de 9 m en dépensant 3 m de déplacement."
+      }
+    ]
+  }
+}

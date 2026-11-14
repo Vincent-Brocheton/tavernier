@@ -1,0 +1,110 @@
+{
+  "id": "srd:monster:treant",
+  "type": "monster",
+  "name": "Sylvanien",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "plant",
+    "type_tags": [],
+    "alignment": "Chaotique Bonne",
+    "ac": 16,
+    "initiative": 3,
+    "hp": 138,
+    "hit_dice": "12d12 + 60",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 8,
+      "con": 21,
+      "int": 12,
+      "wis": 16,
+      "cha": 12
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": -1,
+      "con": 5,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "skills": {},
+    "vulnerabilities": [
+      "srd:damage-type:fire"
+    ],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "commun, druidique, elfique, sylvestre",
+    "cr": "9",
+    "xp": 5000,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Monstre de siège",
+        "text": "Le sylvanien inflige des dégâts doublés aux objets et aux structures."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le sylvanien effectue deux attaques de Coup."
+      },
+      {
+        "kind": "action",
+        "name": "Coup",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 16,
+              "dice": "3d6 + 6",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 1,50 m. Touché : 16 (3d6 + 6) dégâts contondants."
+      },
+      {
+        "kind": "action",
+        "name": "Pluie d’écorce",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 10,
+          "range": [
+            180
+          ],
+          "damage": [
+            {
+              "average": 28,
+              "dice": "4d10 + 6",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +10, portée 54 m. Touché : 28 (4d10 + 6) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Animation des arbres",
+        "uses": {
+          "per_day": 1
+        },
+        "text": "Le sylvanien anime magiquement un ou deux arbres qu’il voit dans un rayon de 18 m. Chaque arbre reprend le profil du sylvanien, si ce n’est que ses valeurs d’Intelligence et de Charisme sont de 1, qu’il ne parle pas et ne dispose pas de la présente action. L’arbre joue son tour juste après le sylvanien, au même rang d’initiative, et obéit à celui-ci. Cette animation dure 1 jour, mais prend fin prématurément si l’arbre ou le sylvanien meurt, ou si les deux se retrouvent éloignés de plus de 36 m. L’arbre prend alors racine, si possible."
+      }
+    ]
+  }
+}

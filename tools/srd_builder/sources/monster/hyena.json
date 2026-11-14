@@ -1,0 +1,77 @@
+{
+  "id": "srd:monster:hyena",
+  "type": "monster",
+  "name": "Hyène",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 5,
+    "hit_dice": "1d8 + 1",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 11,
+      "dex": 13,
+      "con": 12,
+      "int": 2,
+      "wis": 12,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 1,
+      "con": 1,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’elle cible, la hyène a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 3 (1d6) dégâts perforants."
+      }
+    ]
+  }
+}

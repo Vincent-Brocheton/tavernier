@@ -1,0 +1,97 @@
+{
+  "id": "srd:monster:sphinx-of-wonder",
+  "type": "monster",
+  "name": "Sphinx merveilleux",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Loyal Bon",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 24,
+    "hit_dice": "7d4 + 7",
+    "speed": {
+      "walk": 20,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 6,
+      "dex": 17,
+      "con": 13,
+      "int": 15,
+      "wis": 12,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 3,
+      "con": 1,
+      "int": 2,
+      "wis": 1,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:arcana": 4,
+      "srd:skill:stealth": 5,
+      "srd:skill:religion": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:psychic",
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 11,
+    "languages": "céleste, commun",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le sphinx a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts tranchants plus 7 (2d6) dégâts radiants."
+      },
+      {
+        "kind": "reaction",
+        "name": "Accès d’ingéniosité",
+        "uses": {
+          "per_day": 2
+        },
+        "text": "Déclencheur : le sphinx ou une autre créature dans un rayon de 9 m effectue un jet de sauvegarde ou un test de caractéristique. Conséquences : le sphinx ajoute 2 au jet."
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "srd:monster:giant-shark",
+  "type": "monster",
+  "name": "Requin géant",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 92,
+    "hit_dice": "8d12 + 40",
+    "speed": {
+      "walk": 5,
+      "swim": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 11,
+      "con": 21,
+      "int": 1,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 0,
+      "con": 5,
+      "int": -5,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Respiration aquatique",
+        "text": "Le requin ne peut respirer que sous l’eau."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le requin effectue deux attaques de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 22,
+              "dice": "3d10 + 6",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9 (avec Avantage si la cible n’a pas tous ses pv), allonge 1,50 m. Touché : 22 (3d10 + 6) dégâts perforants."
+      }
+    ]
+  }
+}

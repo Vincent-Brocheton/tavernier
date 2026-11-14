@@ -1,0 +1,74 @@
+{
+  "id": "srd:monster:harpy",
+  "type": "monster",
+  "name": "Harpie",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 38,
+    "hit_dice": "7d8 + 7",
+    "speed": {
+      "walk": 20,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 12,
+      "dex": 13,
+      "con": 12,
+      "int": 7,
+      "wis": 10,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": -2,
+      "wis": 0,
+      "cha": 1
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "commun",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "2d4 + 1",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 6 (2d4 + 1) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Chant captivant",
+        "text": "La harpie chante une mélodie magique qui persiste jusqu’à ce que cesse la Concentration de la harpie. JS Sagesse : DD 11, chaque Humanoïde et Géant dans une Émanation de 90 m centrée sur la harpie quand le chant débute. Échec : la cible subit l’état Charmé jusqu’à ce que le chant cesse et réitère le JS à la fin de chacun de ses tours. Tant qu’elle est ainsi Charmée, la cible subit l’état Neutralisé et ignore le Chant captivant des autres harpies. Si la cible se trouve à plus de 1,50 m de la harpie, elle doit à son tour consacrer son déplacement pour se rapprocher du monstre par le chemin le plus direct, jusqu’à terminer dans un rayon de 1,50 m de lui. La cible ne cherche pas à éviter les attaques d’Opportunité, mais si elle doit traverser un terrain dangereux (comme une fosse de lave), elle peut réitérer le JS, même chose chaque fois qu’elle subit des dégâts d’une source autre que la harpie. Réussite : la cible est immunisée contre le Chant captivant de cette harpie pendant 24 heures."
+      }
+    ]
+  }
+}

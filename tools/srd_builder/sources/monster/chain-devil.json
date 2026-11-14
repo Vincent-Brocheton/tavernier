@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:chain-devil",
+  "type": "monster",
+  "name": "Diable des chaînes",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 15,
+    "initiative": 5,
+    "hp": 85,
+    "hit_dice": "10d8 + 40",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 18,
+      "int": 11,
+      "wis": 12,
+      "cha": 14
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 7,
+      "int": 0,
+      "wis": 4,
+      "cha": 2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:cold",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "senses_note": "Vision dans le noir 36 m (perce les Ténèbres magiques)",
+    "passive_perception": 11,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diable a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu’il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diable effectue deux attaques de Chaîne et recourt à Invocation de chaîne infernale."
+      },
+      {
+        "kind": "action",
+        "name": "Chaîne",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 11 (2d6 + 4) dégâts tranchants. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 14) par l’une des deux chaînes, ainsi que l’état Entravé tant qu’elle est Agrippée."
+      },
+      {
+        "kind": "action",
+        "name": "Invocation de chaîne infernale",
+        "text": "Le diable invoque une chaîne de feu afin d’entraver une créature. JS Dextérité : DD 15, une créature que le diable voit dans un rayon de 18 m. Échec : 9 (2d4 + 4) dégâts de feu et la cible subit l’état Entravé jusqu’à la fin du tour suivant du diable, stade auquel la chaîne disparaît. Si la cible est de taille G ou inférieure, le diable la déplace vers lui d’un maximum de 9 m en ligne droite. Réussite : la chaîne disparaît."
+      },
+      {
+        "kind": "reaction",
+        "name": "Regard dérangeant",
+        "text": "Déclencheur : une créature que le diable voit commence son tour dans un rayon de 9 m du diable et peut le voir. Conséquences—JS Sagesse : DD 15, la créature ayant déclenché la Réaction. Échec : la cible subit l’état Effrayé jusqu’à la fin de son tour suivant. Réussite : la cible est immunisée contre le Regard dérangeant de ce diable pendant 24 heures."
+      }
+    ]
+  }
+}

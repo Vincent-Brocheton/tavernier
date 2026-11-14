@@ -1,0 +1,78 @@
+{
+  "id": "srd:monster:hunter-shark",
+  "type": "monster",
+  "name": "Requin-chasseur",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 45,
+    "hit_dice": "6d10 + 12",
+    "speed": {
+      "walk": 5,
+      "swim": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 14,
+      "con": 15,
+      "int": 1,
+      "wis": 10,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 2,
+      "int": -5,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 12,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Respiration aquatique",
+        "text": "Le requin ne peut respirer que sous l’eau."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "3d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6 (avec Avantage si la cible n’a pas tous ses pv), allonge 1,50 m. Touché : 14 (3d6 + 4) dégâts perforants."
+      }
+    ]
+  }
+}

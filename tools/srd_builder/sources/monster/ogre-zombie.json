@@ -1,0 +1,80 @@
+{
+  "id": "srd:monster:ogre-zombie",
+  "type": "monster",
+  "name": "Ogre zombi",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 8,
+    "initiative": -2,
+    "hp": 85,
+    "hit_dice": "9d10 + 36",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 6,
+      "con": 18,
+      "int": 3,
+      "wis": 6,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": -2,
+      "con": 4,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 8,
+    "languages": "comprend le commun et le géant, mais ne parle pas",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Robustesse de la non-vie",
+        "text": "Si des dégâts font tomber le zombi à 0 point de vie, il effectue un jet de sauvegarde de Constitution (DD 5 + les dégâts subis), sauf en cas de dégâts radiants ou de Coup critique. En cas de réussite, le zombi se retrouve en fait à 1 point de vie."
+      },
+      {
+        "kind": "action",
+        "name": "Coup",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts contondants."
+      }
+    ]
+  }
+}

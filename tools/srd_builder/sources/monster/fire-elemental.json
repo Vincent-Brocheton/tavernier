@@ -1,0 +1,111 @@
+{
+  "id": "srd:monster:fire-elemental",
+  "type": "monster",
+  "name": "Élémentaire du feu",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "elemental",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 93,
+    "hit_dice": "11d10 + 33",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 17,
+      "con": 16,
+      "int": 6,
+      "wis": 10,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 3,
+      "con": 3,
+      "int": -2,
+      "wis": 0,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:unconscious",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "primordial (igné)",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Aura de feu",
+        "text": "À la fin de chacun des tours de l’élémentaire, chaque créature dans une Émanation de 3 m centrée sur lui subit 5 (1d10) dégâts de feu. Les créatures et objets inflammables dans l’Émanation s’embrasent."
+      },
+      {
+        "kind": "trait",
+        "name": "Corps de feu",
+        "text": "L’élémentaire peut se déplacer dans un espace étroit d’une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement, et il peut entrer dans l’espace d’une créature et s’y arrêter. La première fois d’un tour qu’il entre dans l’espace d’une créature donnée, celle-ci subit 5 (1d10) dégâts de feu."
+      },
+      {
+        "kind": "trait",
+        "name": "Illumination",
+        "text": "L’élémentaire émet une Lumière vive sur un rayon de 9 m et une Lumière faible sur 9 m de plus."
+      },
+      {
+        "kind": "trait",
+        "name": "Vulnérabilité à l’eau",
+        "text": "L’élémentaire subit 3 (1d6) dégâts de froid par tranche de 1,50 m qu’il parcourt dans l’eau, ainsi que par tranche de 4 litres d’eau dont on l’asperge."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’élémentaire effectue deux attaques de Brûlure."
+      },
+      {
+        "kind": "action",
+        "name": "Brûlure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts de feu. Si la cible est une créature ou un objet inflammable, elle s’embrase."
+      }
+    ]
+  }
+}

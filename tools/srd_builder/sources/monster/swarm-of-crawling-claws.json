@@ -1,0 +1,96 @@
+{
+  "id": "srd:monster:swarm-of-crawling-claws",
+  "type": "monster",
+  "name": "Nuée de sénestres",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "undead",
+    "swarm_size": "tiny",
+    "type_tags": [],
+    "alignment": "Neutre Mauvaise",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 49,
+    "hit_dice": "11d8",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 14,
+      "con": 11,
+      "int": 5,
+      "wis": 10,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 0,
+      "int": -3,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:incapacitated",
+      "srd:condition:stunned",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 30
+    },
+    "passive_perception": 10,
+    "languages": "comprend le commun, mais ne parle pas",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Nuée",
+        "text": "La nuée peut occuper l’espace d’une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour une créature de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+      },
+      {
+        "kind": "action",
+        "name": "Nuée de sénestres",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 20,
+              "dice": "4d8 + 2",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 20 (4d8 + 2) dégâts nécrotiques, ou 11 (2d8 + 2) dégâts nécrotiques si la nuée est En péril. Si la cible est une créature de taille M ou inférieure, elle subit l’état À terre."
+      }
+    ]
+  }
+}

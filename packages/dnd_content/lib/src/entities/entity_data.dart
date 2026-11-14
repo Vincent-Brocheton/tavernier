@@ -612,6 +612,9 @@ abstract class MonsterData with _$MonsterData implements EntityData {
     required List<MonsterSize> sizes,
     required CreatureType creatureType,
 
+    /// Taille des créatures d'une nuée ; [sizes] est celle de la nuée.
+    MonsterSize? swarmSize,
+
     /// Texte entre parenthèses après le type (« Démon »).
     @Default(<String>[]) List<String> typeTags,
     required String alignment,
@@ -623,6 +626,9 @@ abstract class MonsterData with _$MonsterData implements EntityData {
     required int hp,
     required String hitDice,
     required MonsterSpeed speed,
+
+    /// Partie imprimée de la ligne Vitesse que [speed] ne porte pas.
+    String? speedNote,
     @Default(false) bool hover,
     @JsonKey(fromJson: _sixAbilities) required Map<String, int> abilities,
     @JsonKey(fromJson: _sixAbilities) required Map<String, int> savingThrows,
@@ -641,6 +647,9 @@ abstract class MonsterData with _$MonsterData implements EntityData {
     /// Ligne « Équipement », un objet par entrée.
     @Default(<String>[]) List<String> gear,
     @Default(MonsterSenses()) MonsterSenses senses,
+
+    /// Précision imprimée d'un sens, que [senses] ne porte pas.
+    String? sensesNote,
     required int passivePerception,
 
     /// Ligne « Langues », telle qu'imprimée.

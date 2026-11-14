@@ -1,0 +1,111 @@
+{
+  "id": "srd:monster:cloud-giant",
+  "type": "monster",
+  "name": "Géant des nuages",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "giant",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 14,
+    "initiative": 4,
+    "hp": 200,
+    "hit_dice": "16d12 + 96",
+    "speed": {
+      "walk": 40,
+      "fly": 20
+    },
+    "hover": true,
+    "abilities": {
+      "str": 27,
+      "dex": 10,
+      "con": 22,
+      "int": 12,
+      "wis": 16,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 0,
+      "con": 10,
+      "int": 1,
+      "wis": 7,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:insight": 7,
+      "srd:skill:perception": 11
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 21,
+    "languages": "commun, géant",
+    "cr": "9",
+    "xp": 5000,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le géant effectue deux attaques, réparties à sa guise entre Masse d’armes tonitruante et Nuage de tonnerre. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation pour lancer nappe de brouillard."
+      },
+      {
+        "kind": "action",
+        "name": "Masse d’armes tonitruante",
+        "attack": {
+          "kind": "melee",
+          "bonus": 12,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 21,
+              "dice": "3d8 + 8",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:thunder"
+            }
+          ]
+        },
+        "text": "Corps à corps : +12, allonge 3 m. Touché : 21 (3d8 + 8) dégâts contondants plus 7 (2d6) dégâts de tonnerre."
+      },
+      {
+        "kind": "action",
+        "name": "Nuage de tonnerre",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 12,
+          "range": [
+            240
+          ],
+          "damage": [
+            {
+              "average": 18,
+              "dice": "3d6 + 8",
+              "type": "srd:damage-type:thunder"
+            }
+          ]
+        },
+        "text": "À distance : +12, portée 72 m. Touché : 18 (3d6 + 8) dégâts de tonnerre, et la cible subit l’état Neutralisé jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le géant lance l’un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 15) :\nÀ volonté : détection de la magie, lumière, nappe de brouillard\n1/jour chacun : contrôle du climat, forme gazeuse, télékinésie"
+      },
+      {
+        "kind": "bonus",
+        "name": "Foulée brumeuse",
+        "text": "Le géant lance le sort foulée brumeuse avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

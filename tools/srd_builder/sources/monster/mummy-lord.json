@@ -1,0 +1,173 @@
+{
+  "id": "srd:monster:mummy-lord",
+  "type": "monster",
+  "name": "Momie auguste",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "undead",
+    "type_tags": [
+      "Clerc"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 17,
+    "initiative": 10,
+    "hp": 187,
+    "hit_dice": "25d8 + 75",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 10,
+      "con": 17,
+      "int": 11,
+      "wis": 19,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 0,
+      "con": 3,
+      "int": 5,
+      "wis": 9,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:history": 5,
+      "srd:skill:perception": 9,
+      "srd:skill:religion": 5
+    },
+    "vulnerabilities": [
+      "srd:damage-type:fire"
+    ],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 60
+    },
+    "passive_perception": 19,
+    "languages": "commun et trois autres langues",
+    "cr": "15",
+    "xp": 13000,
+    "xp_lair": 15000,
+    "proficiency_bonus": 5,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "La momie a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si la momie rate un jet de sauvegarde, elle peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration funeste",
+        "text": "Si elle est détruite, la momie reçoit un nouveau corps en 24 heures si son cœur est intact, en récupérant tous ses points de vie. Le nouveau corps apparaît en un espace inoccupé dans l’antre de la momie. Le cœur est un objet de taille TP avec le profil suivant : CA 17, 10 pv, Immunité contre tous les dégâts sauf le feu."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "La momie effectue une attaque de Poing putréfié ou de Conduit d’énergie négative, et recourt à Regard effroyable."
+      },
+      {
+        "kind": "action",
+        "name": "Poing putréfié",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d10 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 1,50 m. Touché : 15 (2d10 + 4) dégâts contondants plus 10 (3d6) dégâts nécrotiques. Si la cible est une créature, elle est maudite. Ainsi maudite, la cible ne peut pas récupérer de points de vie et ne reçoit aucun bénéfice en terminant un Repos long, tandis que son maximum de points de vie est réduit de 10 (3d6) toutes les 24 heures. Une créature que cette attaque fait tomber à 0 point de vie meurt, réduite en poussière."
+      },
+      {
+        "kind": "action",
+        "name": "Conduit d’énergie négative",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 9,
+          "range": [
+            60
+          ],
+          "damage": [
+            {
+              "average": 25,
+              "dice": "6d6 + 4",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "À distance : +9, portée 18 m. Touché : 25 (6d6 + 4) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "La momie lance l’un des sorts suivants sans composantes matérielles, le Sagesse étant sa caractéristique d’incantation (DD de sauvegarde 17, +9 pour toucher) :\nÀ volonté : dissipation de la magie, thaumaturgie\n1/jour chacun : animation des morts, contamination, fléau d’insectes (au 7e niveau)"
+      },
+      {
+        "kind": "action",
+        "name": "Regard effroyable",
+        "save": {
+          "ability": "wis",
+          "dc": 17
+        },
+        "text": "JS Sagesse : DD 17, une créature que le momie voit dans un rayon de 18 m. Échec : 25 (6d6 + 4) dégâts psychiques, et la cible subit l’état Paralysé jusqu’à la fin du tour suivant de la momie."
+      },
+      {
+        "kind": "reaction",
+        "name": "Tourbillon de sable",
+        "text": "Déclencheur : la momie est touchée par un jet d’attaque. Conséquences : la momie ajoute 2 à sa CA contre l’attaque, ce qui peut faire rater celle-ci, et se téléporte d’un maximum de 18 m dans un espace inoccupé qu’elle voit. Chaque créature de son choix parmi celles qu’elle voit dans un rayon de 1,50 m de son espace de destination subit l’état Aveuglé jusqu’à la fin du tour suivant de la momie."
+      },
+      {
+        "kind": "legendary",
+        "name": "Frappe nécrotique",
+        "text": "La momie effectue une attaque de Poing putréfié ou de Conduit d’énergie négative."
+      },
+      {
+        "kind": "legendary",
+        "name": "Injonction effroyable",
+        "text": "La momie lance injonction (au 2e niveau), avec la même caractéristique d’incantation que pour Incantation. La momie ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Regard de biais",
+        "text": "La momie recourt à Regard effroyable. La momie ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

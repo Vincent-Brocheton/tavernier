@@ -1,0 +1,75 @@
+{
+  "id": "srd:monster:raven",
+  "type": "monster",
+  "name": "Corbeau",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 2,
+    "hit_dice": "1d4",
+    "speed": {
+      "walk": 10,
+      "fly": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 2,
+      "dex": 14,
+      "con": 10,
+      "int": 5,
+      "wis": 13,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 2,
+      "con": 0,
+      "int": -3,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Imitation",
+        "text": "Le corbeau peut imiter des bruits simples qu’il a entendus, comme un murmure ou des pépiements. Une créature qui l’entend peut se rendre compte qu’il s’agit d’imitations en réussissant un test de Sagesse (Intuition) DD 10."
+      },
+      {
+        "kind": "action",
+        "name": "Bec",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 1 dégât perforant."
+      }
+    ]
+  }
+}

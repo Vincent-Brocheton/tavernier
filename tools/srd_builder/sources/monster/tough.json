@@ -1,0 +1,98 @@
+{
+  "id": "srd:monster:tough",
+  "type": "monster",
+  "name": "Gros-bras",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 12,
+    "initiative": 1,
+    "hp": 32,
+    "hit_dice": "5d8 + 10",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 12,
+      "con": 14,
+      "int": 10,
+      "wis": 10,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 1,
+      "con": 2,
+      "int": 0,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arbalète lourde",
+      "armure de cuir",
+      "masse d’armes"
+    ],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "commun",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’il cible, le gros-bras a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Masse d’armes",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts contondants."
+      },
+      {
+        "kind": "action",
+        "name": "Arbalète lourde",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 3,
+          "range": [
+            100,
+            400
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d10 + 1",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +3, portée 30/120 m. Touché : 6 (1d10 + 1) dégâts perforants."
+      }
+    ]
+  }
+}

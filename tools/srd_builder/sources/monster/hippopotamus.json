@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:hippopotamus",
+  "type": "monster",
+  "name": "Hippopotame",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 14,
+    "initiative": -2,
+    "hp": 82,
+    "hit_dice": "11d10 + 22",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 7,
+      "con": 15,
+      "int": 2,
+      "wis": 12,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 7,
+      "dex": -2,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "4",
+    "xp": 1100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Apnée",
+        "text": "L’hippopotame peut retenir son souffle pendant 10 minutes."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’hippopotame effectue deux attaques de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 16,
+              "dice": "2d10 + 5",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 16 (2d10 + 5) dégâts perforants."
+      }
+    ]
+  }
+}

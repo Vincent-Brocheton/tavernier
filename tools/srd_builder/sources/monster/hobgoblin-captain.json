@@ -1,0 +1,116 @@
+{
+  "id": "srd:monster:hobgoblin-captain",
+  "type": "monster",
+  "name": "Capitaine hobgobelin",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fey",
+    "type_tags": [
+      "Gobelinoïde"
+    ],
+    "alignment": "Loyale Mauvaise",
+    "ac": 17,
+    "initiative": 4,
+    "hp": 58,
+    "hit_dice": "9d8 + 18",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 14,
+      "con": 14,
+      "int": 12,
+      "wis": 10,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 2,
+      "int": 1,
+      "wis": 0,
+      "cha": 1
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arc long",
+      "demi-plate",
+      "épée à deux mains"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "commun, gobelin",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Aura d’autorité",
+        "text": "Tant qu’ils se trouvent dans une Émanation de 3 m centrée sur le hobgobelin et à condition que celui-ci ne subisse pas l’état Neutralisé, le hobgobelin et ses alliés ont l’Avantage aux jets d’attaque et jets de sauvegarde."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le hobgobelin effectue deux attaques, réparties à sa guise entre Épée à deux mains et Arc long."
+      },
+      {
+        "kind": "action",
+        "name": "Épée à deux mains",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "2d6 + 2",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 9 (2d6 + 2) dégâts tranchants plus 3 (1d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Arc long",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            150,
+            600
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 45/180 m. Touché : 6 (1d8 + 2) dégâts perforants plus 5 (2d4) dégâts de poison."
+      }
+    ]
+  }
+}

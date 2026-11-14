@@ -1,0 +1,86 @@
+{
+  "id": "srd:monster:animated-armor",
+  "type": "monster",
+  "name": "Armure animée",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 18,
+    "initiative": 2,
+    "hp": 33,
+    "hit_dice": "6d8 + 6",
+    "speed": {
+      "walk": 25
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 11,
+      "con": 13,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 0,
+      "con": 1,
+      "int": -5,
+      "wis": -4,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison",
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 6,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’armure effectue deux attaques de Coup."
+      },
+      {
+        "kind": "action",
+        "name": "Coup",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts contondants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:white-dragon-wyrmling",
+  "type": "monster",
+  "name": "Dragonnet blanc",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 16,
+    "initiative": 2,
+    "hp": 32,
+    "hit_dice": "5d8 + 10",
+    "speed": {
+      "walk": 30,
+      "burrow": 15,
+      "swim": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 10,
+      "con": 14,
+      "int": 5,
+      "wis": 10,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 2,
+      "int": -3,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:stealth": 2,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:cold"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 10
+    },
+    "passive_perception": 14,
+    "languages": "draconique",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Marche sur la glace",
+        "text": "Le dragon peut parcourir et gravir toute surface gelée sans passer par le moindre test de caractéristique. En outre, tout Terrain difficile composé de glace ou de neige ne lui demande aucune dépense de déplacement supplémentaire."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 6 (1d8 + 2) dégâts tranchants plus 2 (1d4) dégâts de froid."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle glacial",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 12
+        },
+        "text": "JS Constitution : DD 12, chaque créature dans un Cône de 4,50 m. Échec : 22 (5d8) dégâts de froid. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

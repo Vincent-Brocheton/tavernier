@@ -1,0 +1,131 @@
+{
+  "id": "srd:monster:wight",
+  "type": "monster",
+  "name": "Nécronte",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 14,
+    "initiative": 4,
+    "hp": 82,
+    "hit_dice": "11d8 + 33",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 14,
+      "con": 16,
+      "int": 10,
+      "wis": 13,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 3,
+      "int": 0,
+      "wis": 1,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic"
+    ],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [
+      "armure de cuir clouté"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 13,
+    "languages": "commun et une autre langue",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Sensibilité au soleil",
+        "text": "Tant qu’il est exposé à la lumière du soleil, le nécronte subit le Désavantage aux tests de caractéristique et aux jets d’attaque."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le nécronte effectue deux attaques, réparties à sa guise entre Épée nécrotique et Arc nécrotique. Il peut remplacer l’une de ces attaques par une utilisation d’Absorption de vie."
+      },
+      {
+        "kind": "action",
+        "name": "Épée nécrotique",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 6 (1d8 + 2) dégâts tranchants plus 4 (1d8) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Arc nécrotique",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            150,
+            600
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 45/180 m. Touché : 6 (1d8 + 2) dégâts perforants plus 4 (1d8) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Absorption de vie",
+        "save": {
+          "ability": "con",
+          "dc": 13
+        },
+        "text": "JS Constitution : DD 13, une créature dans un rayon de 1,50 m. Échec : 6 (1d8 + 2) dégâts nécrotiques, et le maximum de points de vie de la cible est réduit d’un montant égal aux dégâts nécrotiques subis.\nUn Humanoïde tué par cette attaque se relève 24 heures plus tard comme zombi sous le contrôle du nécronte, sauf si l’Humanoïde est préalablement ramené à la vie ou si son corps est détruit. Le nécronte ne peut ainsi contrôler plus de douze zombis à la fois."
+      }
+    ]
+  }
+}

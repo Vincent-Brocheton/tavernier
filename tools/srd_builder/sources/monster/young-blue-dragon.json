@@ -1,0 +1,102 @@
+{
+  "id": "srd:monster:young-blue-dragon",
+  "type": "monster",
+  "name": "Jeune dragon bleu",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 18,
+    "initiative": 4,
+    "hp": 152,
+    "hit_dice": "16d10 + 64",
+    "speed": {
+      "walk": 40,
+      "burrow": 20,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 10,
+      "con": 19,
+      "int": 14,
+      "wis": 13,
+      "cha": 17
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 4,
+      "con": 4,
+      "int": 2,
+      "wis": 5,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 9
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:lightning"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 19,
+    "languages": "commun, draconique",
+    "cr": "9",
+    "xp": 5000,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 9,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 12,
+              "dice": "2d6 + 5",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 5,
+              "dice": "1d10",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +9, allonge 3 m. Touché : 12 (2d6 + 5) dégâts tranchants plus 5 (1d10) dégâts de foudre."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de foudre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 16
+        },
+        "text": "JS Dextérité : DD 16, chaque créature dans une Ligne de 18 m de long sur 1,50 m de large. Échec : 55 (10d10) dégâts de foudre. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

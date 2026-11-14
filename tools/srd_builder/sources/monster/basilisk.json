@@ -1,0 +1,87 @@
+{
+  "id": "srd:monster:basilisk",
+  "type": "monster",
+  "name": "Basilic",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 15,
+    "initiative": -1,
+    "hp": 52,
+    "hit_dice": "8d8 + 16",
+    "speed": {
+      "walk": 20
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 8,
+      "con": 15,
+      "int": 2,
+      "wis": 8,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": -1,
+      "con": 2,
+      "int": -4,
+      "wis": -1,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 9,
+    "languages": "aucune",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts perforants plus 7 (2d6) dégâts de poison."
+      },
+      {
+        "kind": "bonus",
+        "name": "Regard pétrifiant",
+        "uses": {
+          "recharge": "4-6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 12
+        },
+        "text": "JS Constitution : DD 12, chaque créature dans un Cône de 9 m. Si le basilic voit son reflet dans le Cône, il effectue ce JS. Premier échec : la cible subit l’état Entravé et réitère le JS à la fin de son tour suivant si elle est toujours Entravée ; elle met un terme à l’effet sur elle-même en cas de réussite. Deuxième échec : la cible subit l’état Pétrifié qui remplace l’état Entravé."
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "srd:monster:wyvern",
+  "type": "monster",
+  "name": "Vouivre",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 14,
+    "initiative": 0,
+    "hp": 127,
+    "hit_dice": "15d10 + 45",
+    "speed": {
+      "walk": 30,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 10,
+      "con": 16,
+      "int": 5,
+      "wis": 12,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 0,
+      "con": 3,
+      "int": -3,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "La vouivre effectue une attaque de Dard et une de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Dard",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 24,
+              "dice": "7d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 11 (2d6 + 4) dégâts perforants plus 24 (7d6) dégâts de poison, et la cible subit l’état Empoisonné jusqu’au début du tour suivant de la vouivre."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts perforants."
+      }
+    ]
+  }
+}
