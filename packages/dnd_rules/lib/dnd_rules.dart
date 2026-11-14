@@ -9,6 +9,7 @@ export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
 export 'src/dice.dart';
 export 'src/inventory.dart';
+export 'src/level_unlock.dart';
 export 'src/level_up.dart';
 export 'src/rest.dart';
 export 'src/sheet_spells.dart';

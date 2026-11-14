@@ -160,19 +160,13 @@ final gmProposalViewProvider = FutureProvider.autoDispose
       final me = ref.watch(currentUserProvider.select((u) => u.value?.id));
       final access = await ref.watch(characterStoreProvider).access(id);
       if (me == null || access == null) return null;
-      final (
-        :tableId,
-        :ownerUserId,
-        :gmUserId,
-        :status,
-        reviewComment: _,
-        gmLess: _,
-      ) = access;
+      final tableId = access.tableId;
+      final ownerUserId = access.ownerUserId;
       if (tableId == null ||
           ownerUserId == null ||
-          gmUserId != me ||
+          access.gmUserId != me ||
           ownerUserId == me ||
-          status == 'archived') {
+          access.status == 'archived') {
         return null;
       }
       return (tableId: tableId, ownerUserId: ownerUserId, me: me);

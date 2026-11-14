@@ -460,6 +460,9 @@ void main() {
       expect(find.text('fiche'), findsOneWidget);
       final saved = await _store.load('a');
       expect(saved!.classLevels.single.level, 2);
+      // Montée tracée dans l'historique (US-35, EF-SEA-06).
+      final [entry] = await _store.history('a');
+      expect(entry.detail, {'kind': 'level_up', 'from': 1, 'to': 2});
       expect(tester.takeException(), isNull);
     });
 

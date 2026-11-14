@@ -3139,4 +3139,81 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get proposalRefusedNoReply => 'Sans message.';
+
+  @override
+  String levelUnlockXp(String xp) {
+    return 'Seuil de $xp PX atteint';
+  }
+
+  @override
+  String levelUnlockMilestone(int level, String name) {
+    return 'Niveau $level accordé par $name';
+  }
+
+  @override
+  String levelUnlockOverride(int level, String name) {
+    return 'Niveau $level débloqué par $name (dérogation)';
+  }
+
+  @override
+  String levelUnlockReason(String reason) {
+    return 'Jalon : « $reason »';
+  }
+
+  @override
+  String get levelUnlockGm => 'le MJ';
+
+  @override
+  String get levelUnlockLater => 'Plus tard';
+
+  @override
+  String levelUnlockChip(int level) {
+    return 'Niveau $level';
+  }
+
+  @override
+  String xpProgress(String xp, String next) {
+    return '$xp / $next PX';
+  }
+
+  @override
+  String xpProgressLabel(int level, String xp, String next) {
+    return 'Progression : $xp PX sur $next, niveau $level';
+  }
+
+  @override
+  String levelOverrideAction(int level) {
+    return 'Débloquer le niveau $level';
+  }
+
+  @override
+  String levelOverrideBody(int level, String name) {
+    return '$name pourra monter au niveau $level sans attendre le seuil de PX ni un jalon. La dérogation est inscrite dans l\'historique de la fiche.';
+  }
+
+  @override
+  String get levelOverrideReason => 'Motif (facultatif)';
+
+  @override
+  String get levelOverrideConfirm => 'Débloquer';
+
+  @override
+  String levelOverrideDone(int level) {
+    return 'Niveau $level débloqué.';
+  }
+
+  @override
+  String historyLevelGrant(int level) {
+    return 'Niveau $level accordé';
+  }
+
+  @override
+  String historyLevelOverride(int level) {
+    return 'Niveau $level débloqué (dérogation)';
+  }
+
+  @override
+  String historyLevelUp(int level) {
+    return 'Montée au niveau $level';
+  }
 }

@@ -5147,6 +5147,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Sans message.'**
   String get proposalRefusedNoReply;
+
+  /// Montée déverrouillée par les PX (EF-SEA-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Seuil de {xp} PX atteint'**
+  String levelUnlockXp(String xp);
+
+  /// Montée accordée en jalons.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} accordé par {name}'**
+  String levelUnlockMilestone(int level, String name);
+
+  /// Montée débloquée par dérogation du MJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} débloqué par {name} (dérogation)'**
+  String levelUnlockOverride(int level, String name);
+
+  /// Motif du jalon, visible des joueurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jalon : « {reason} »'**
+  String levelUnlockReason(String reason);
+
+  /// Auteur inconnu d'un niveau accordé.
+  ///
+  /// In fr, this message translates to:
+  /// **'le MJ'**
+  String get levelUnlockGm;
+
+  /// Réduit le bandeau de montée de niveau en puce.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus tard'**
+  String get levelUnlockLater;
+
+  /// Puce de la montée de niveau reportée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level}'**
+  String levelUnlockChip(int level);
+
+  /// Progression en PX vers le niveau suivant.
+  ///
+  /// In fr, this message translates to:
+  /// **'{xp} / {next} PX'**
+  String xpProgress(String xp, String next);
+
+  /// Lecture d'écran de la progression en PX.
+  ///
+  /// In fr, this message translates to:
+  /// **'Progression : {xp} PX sur {next}, niveau {level}'**
+  String xpProgressLabel(int level, String xp, String next);
+
+  /// Dérogation du MJ sur la fiche d'un joueur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer le niveau {level}'**
+  String levelOverrideAction(int level);
+
+  /// Explication de la dérogation.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} pourra monter au niveau {level} sans attendre le seuil de PX ni un jalon. La dérogation est inscrite dans l\'historique de la fiche.'**
+  String levelOverrideBody(int level, String name);
+
+  /// Motif d'une dérogation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif (facultatif)'**
+  String get levelOverrideReason;
+
+  /// Valide la dérogation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer'**
+  String get levelOverrideConfirm;
+
+  /// Confirmation de la dérogation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} débloqué.'**
+  String levelOverrideDone(int level);
+
+  /// Historique : jalon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} accordé'**
+  String historyLevelGrant(int level);
+
+  /// Historique : dérogation de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} débloqué (dérogation)'**
+  String historyLevelOverride(int level);
+
+  /// Historique : montée de niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montée au niveau {level}'**
+  String historyLevelUp(int level);
 }
 
 class _AppLocalizationsDelegate

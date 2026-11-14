@@ -453,24 +453,11 @@ final class CharacterStore {
     String id,
     String authorUserId,
     List<Map<String, Object?>> derogations,
-  ) async {
-    await _db.transaction(() async {
-      for (final derogation in derogations) {
-        await _db.customStatement(
-          'INSERT INTO character_change_log (id, character_id, '
-          'author_user_id, timestamp, diff) VALUES (?, ?, ?, ?, ?)',
-          [
-            uuidV7(),
-            id,
-            authorUserId,
-            DateTime.now().toUtc().toIso8601String(),
-            jsonEncode({'kind': 'derogation', ...derogation}),
-          ],
-        );
-      }
-    });
-    _db.markTablesUpdated({_db.characterChangeLogs});
-  }
+  ) => _db.transaction(() async {
+    for (final derogation in derogations) {
+      await _log(id, authorUserId, {'kind': 'derogation', ...derogation});
+    }
+  });
 
   /// Propose [change] pour la fiche [characterId] (le MJ, lot c de US-34).
   Future<void> propose({
@@ -628,13 +615,16 @@ final class CharacterStore {
       String status,
       String? reviewComment,
       bool gmLess,
+      String? progressionMode,
+      int xp,
+      Map<String, Object?>? levelUnlock,
     })?
   >
   access(String id) async {
     final row = await _db
         .customSelect(
           'SELECT c.owner_user_id, c.table_id, c.status, c.review_comment, '
-          'g.gm_user_id, '
+          'c.xp, c.level_unlock, g.gm_user_id, g.progression_mode, '
           '(g.id IS NOT NULL AND g.gm_user_id IS NULL) AS gm_less '
           'FROM character c '
           'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
@@ -650,7 +640,77 @@ final class CharacterStore {
             status: row.read<String>('status'),
             reviewComment: row.readNullable<String>('review_comment'),
             gmLess: row.read<bool>('gm_less'),
+            progressionMode: row.readNullable<String>('progression_mode'),
+            xp: row.readNullable<int>('xp') ?? 0,
+            levelUnlock: switch (row.readNullable<String>('level_unlock')) {
+              final json? => jsonDecode(json) as Map<String, Object?>,
+              null => null,
+            },
           );
+  }
+
+  /// Le MJ [byUserId] accorde le niveau [level] (`origin` : `milestone`) ou
+  /// le débloque par dérogation (`override`) : `character.level_unlock` et
+  /// une entrée d'historique (US-35, EF-SEA-04 et 05).
+  Future<void> grantLevel(
+    String id, {
+    required int level,
+    required String origin,
+    required String byUserId,
+    String? reason,
+    String? sessionId,
+  }) => _db.transaction(() async {
+    await _update(id, {
+      'level_unlock': jsonEncode({
+        'level': level,
+        'origin': origin,
+        'by': byUserId,
+        'reason': ?reason,
+        'session': ?sessionId,
+      }),
+    });
+    await _log(id, byUserId, {
+      'kind': 'level_grant',
+      'level': level,
+      'origin': origin,
+      'reason': ?reason,
+      'session': ?sessionId,
+    });
+  });
+
+  /// Inscrit une montée de niveau, déverrouillée par [unlock] (EF-SEA-06).
+  Future<void> recordLevelUp(
+    String id, {
+    required String? byUserId,
+    required int from,
+    required int to,
+    LevelUnlock? unlock,
+  }) => _log(id, byUserId, {
+    'kind': 'level_up',
+    'from': from,
+    'to': to,
+    'origin': ?unlock?.origin.name,
+    'by': ?unlock?.by,
+    'reason': ?unlock?.reason,
+  });
+
+  Future<void> _log(
+    String id,
+    String? authorUserId,
+    Map<String, Object?> detail,
+  ) async {
+    await _db.customStatement(
+      'INSERT INTO character_change_log (id, character_id, '
+      'author_user_id, timestamp, diff) VALUES (?, ?, ?, ?, ?)',
+      [
+        uuidV7(),
+        id,
+        authorUserId,
+        DateTime.now().toUtc().toIso8601String(),
+        jsonEncode(detail),
+      ],
+    );
+    _db.markTablesUpdated({_db.characterChangeLogs});
   }
 
   /// Publie le résumé d'une fiche de table, seulement s'il a changé : rien

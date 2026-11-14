@@ -5,10 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../creation/subchoices.dart';
 import '../l10n/app_localizations.dart';
+import 'level_unlock_banner.dart';
 import 'level_up_draft.dart';
 import 'sheet_breakdowns.dart';
 import 'sheet_page.dart';
@@ -211,8 +213,21 @@ class _WizardState extends ConsumerState<_Wizard> {
   Future<void> _save(AppLocalizations l10n, CharacterInput after) async {
     if (_saving) return;
     setState(() => _saving = true);
+    final store = ref.read(characterStoreProvider);
+    final from = computeSheet(_character, _content).level;
     try {
-      await ref.read(characterStoreProvider).save(widget.id, after);
+      final progression = await ref.read(
+        sheetProgressionProvider((id: widget.id, level: from)).future,
+      );
+      await store.save(widget.id, after);
+      // Montée sans validation du MJ, tracée dans l'historique (EF-SEA-06).
+      await store.recordLevelUp(
+        widget.id,
+        byUserId: ref.read(currentUserProvider).value?.id,
+        from: from,
+        to: from + 1,
+        unlock: progression?.unlock,
+      );
     } on Exception {
       if (mounted) {
         setState(() => _saving = false);

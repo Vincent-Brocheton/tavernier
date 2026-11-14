@@ -65,6 +65,14 @@ class HistoryPage extends ConsumerWidget {
     if (detail['kind'] == 'conflict') {
       return l10n.historyConflict(l10n.conflictField(detail['field']));
     }
+    if (detail case {'kind': 'level_grant', 'level': final int level}) {
+      return detail['origin'] == 'override'
+          ? l10n.historyLevelOverride(level)
+          : l10n.historyLevelGrant(level);
+    }
+    if (detail case {'kind': 'level_up', 'to': final int level}) {
+      return l10n.historyLevelUp(level);
+    }
     return switch (detail['check']) {
       'level' => l10n.historyDerogationLevel(sheet),
       'method' => l10n.historyDerogationMethod(
@@ -134,6 +142,14 @@ class HistoryPage extends ConsumerWidget {
                                       l10n.roleGm,
                                   '${entry.detail['reason']}',
                                 ),
+                                style: text.bodyMedium,
+                              ),
+                            if (entry.detail case {
+                              'kind': 'level_grant' || 'level_up',
+                              'reason': final String reason,
+                            })
+                              Text(
+                                l10n.levelUnlockReason(reason),
                                 style: text.bodyMedium,
                               ),
                             if (entry.detail['kind'] == 'conflict') ...[
