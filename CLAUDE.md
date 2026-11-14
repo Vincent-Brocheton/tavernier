@@ -158,7 +158,8 @@ fvm flutter run -d chrome          # depuis apps/game_table
   - **Ce que l'outil réécrit :** chaque profil de « Monstres de A à Z » et « Animaux », en entier (330 fichiers `sources/monster/*.json`).
   - **Slugs :** `extract/monster_slugs.tsv`. Un slug manquant ou une source orpheline arrête l'outil sans rien écrire.
   - **Coquilles du PDF :** corrigées par `monsterTypos` dans `lib/src/monster_extractor.dart` ; un test vérifie que chaque passage fautif est toujours dans le SRD.
-  - **À relire :** `build/extract-monsters.txt` liste les lectures incertaines (dégâts non lus, précisions non reprises, suites de paragraphe).
+  - **Fiche de relecture :** l'outil réécrit `docs/srd/RELECTURE_BESTIAIRE.md` : coquilles corrigées, écarts aux règles de calcul (Initiative, compétences, bonus d'attaque), lectures incertaines, chacun avec sa page, puis les profils par page. Ne pas la modifier à la main.
+  - **Contrôles :** le build du pack refuse un JS, une Perception passive, des PV ou des dégâts moyens incohérents ; `test/srd_monsters_test.dart` relit FP, PX, PV, caractéristiques, JS, CA et Initiative dans `docs/srd/FR_SRD_CC_v5.2.1.txt`.
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

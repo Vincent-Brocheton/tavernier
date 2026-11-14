@@ -165,13 +165,62 @@ int _proficiencyBonusOf(String cr) {
   return value < 5 ? 2 : (value - 1) ~/ 4 + 2;
 }
 
+final _dice = RegExp(r'^(\d+)d(\d+)(?: ?([+−–-]) ?(\d+))?$');
+
+/// Moyenne de « 2d8 + 2 » arrondie à l'inférieur, `null` si illisible.
+int? _average(String dice) {
+  final m = _dice.firstMatch(dice.trim());
+  if (m == null) return null;
+  final k = m[4] == null ? 0 : int.parse(m[4]!) * (m[3] == '+' ? 1 : -1);
+  return (int.parse(m[1]!) * (int.parse(m[2]!) + 1) / 2 + k).floor();
+}
+
+int _modifier(int score) => ((score - 10) / 2).floor();
+
+String _signed(int v) => v < 0 ? '$v' : '+$v';
+
 List<ContentIssue> _monsterIssues(String path, MonsterData m) {
   final xp = _xpByCr[m.cr];
   if (xp == null) {
     return [ContentIssue('$path.data.cr', 'FP inconnu : ${m.cr}')];
   }
   final pb = _proficiencyBonusOf(m.cr);
+  final hpAverage = _average(m.hitDice);
+  final perception =
+      m.skills['srd:skill:perception'] ?? _modifier(m.abilities['wis']!);
   return [
+    for (final MapEntry(key: ability, value: save) in m.savingThrows.entries)
+      if (_modifier(m.abilities[ability]!) case final mod
+          when save != mod && save != mod + pb)
+        ContentIssue(
+          '$path.data.saving_throws.$ability',
+          'JS ${_signed(save)} : ${_signed(mod)} ou ${_signed(mod + pb)} '
+              'attendu (modificateur, plus BM)',
+        ),
+    if (m.passivePerception != 10 + perception)
+      ContentIssue(
+        '$path.data.passive_perception',
+        'Perception passive ${m.passivePerception} : '
+            '${10 + perception} attendu',
+      ),
+    if (hpAverage == null)
+      ContentIssue('$path.data.hit_dice', 'dés illisibles : ${m.hitDice}')
+    else if (hpAverage != m.hp)
+      ContentIssue(
+        '$path.data.hp',
+        'PV ${m.hp} : $hpAverage attendu pour ${m.hitDice}',
+      ),
+    for (final (i, a) in m.actions.indexed)
+      for (final d in a.attack?.damage ?? const <MonsterDamage>[])
+        if (d.dice case final dice? when _average(dice) != d.average)
+          ContentIssue('$path.data.actions[$i].attack', switch (_average(
+            dice,
+          )) {
+            null => 'dés illisibles : $dice',
+            final average =>
+              'dégâts ${d.average} : $average attendu '
+                  'pour $dice',
+          }),
     if (!xp.contains(m.xp))
       ContentIssue(
         '$path.data.xp',

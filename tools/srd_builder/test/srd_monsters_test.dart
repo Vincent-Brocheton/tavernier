@@ -120,9 +120,78 @@ void main() {
 
     test('chaque coquille corrigée est toujours dans le SRD', () {
       expect([
-        for (final typo in monsterTypos.keys)
-          if (!layout.contains(typo)) typo,
+        for (final typo in monsterTypos)
+          if (!layout.contains(typo.wrong)) typo.wrong,
       ], isEmpty);
+    });
+
+    // Seconde lecture, indépendante du texte en ordre de lecture de
+    // l'extracteur : les valeurs imprimées, en multiensembles.
+    test('seconde lecture : FP et PX, PV, caractéristiques et JS, CA et '
+        'Initiative', () {
+      int signed(String s) => int.parse(s.replaceAll(RegExp('[−–]'), '-'));
+      final abilityKeys = {
+        'For': 'str',
+        'Dex': 'dex',
+        'Con': 'con',
+        'Int': 'int',
+        'Sag': 'wis',
+        'Cha': 'cha',
+      };
+      // Le premier « Monstres de A à Z » est celui du sommaire.
+      final bestiary = layout.substring(
+        RegExp('Monstres de A à Z').allMatches(layout).elementAt(1).start,
+      );
+      final printed = <String>[
+        for (final m in RegExp(
+          r'FP (\S+) \((?:PX )?(\d{1,3}(?:[  ]\d{3})*)',
+        ).allMatches(bestiary))
+          'FP ${m[1]} ${m[2]!.replaceAll(RegExp(r'\s'), '')}',
+        for (final m in RegExp(
+          r'Pv (\d+) \((\d+d\d+(?: [+−–-] ?\d+)?)\)',
+        ).allMatches(bestiary))
+          'Pv ${m[1]} ${m[2]}',
+        for (final m in RegExp(
+          r'\b(For|Dex|Con|Int|Sag|Cha) (\d+) [+−–-]\d+ ([+−–-]?\d+)',
+        ).allMatches(bestiary))
+          '${abilityKeys[m[1]]} ${m[2]} ${signed(m[3]!)}',
+        for (final m in RegExp(
+          r'\bCA (\d+)\s+Initiative ([+−–-]\d+)',
+        ).allMatches(bestiary))
+          'CA ${m[1]} ${signed(m[2]!)}',
+      ];
+      final sources = <String>[
+        for (final e in byId.values)
+          if (e.data case final MonsterData d) ...[
+            'FP ${d.cr} ${d.xp}',
+            'Pv ${d.hp} ${d.hitDice}',
+            for (final MapEntry(:key, :value) in d.abilities.entries)
+              '$key $value ${d.savingThrows[key]}',
+            'CA ${d.ac} ${d.initiative}',
+          ],
+      ];
+      List<String> minus(List<String> a, List<String> b) {
+        final rest = [...b];
+        return [
+          for (final x in a)
+            if (!rest.remove(x)) x,
+        ]..sort();
+      }
+
+      // Valeurs fautives du PDF : Archimage et Jeune dragon blanc.
+      expect(minus(printed, sources), ['FP 12 8000', 'int 6 2']);
+      expect(
+        minus(sources, printed),
+        [
+          // Valeurs corrigées.
+          'FP 12 8400',
+          'int 6 -2',
+          // Lignes « CA … Initiative » que la mise en page sépare.
+          'CA 12 1',
+          'CA 13 2',
+          'CA 13 3',
+        ]..sort(),
+      );
     });
   });
 }

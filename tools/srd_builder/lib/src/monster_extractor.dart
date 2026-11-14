@@ -144,23 +144,44 @@ const _sections = {
   'Actions légendaires': 'legendary',
 };
 
-/// Coquilles du PDF, passage fautif → passage corrigé. Un test vérifie que
-/// chaque passage fautif est toujours dans le texte.
-const monsterTypos = {
-  // Jeune dragon blanc (p. 304) : le signe du JS d'Intelligence manque ; le
-  // dragon ne maîtrise pas ce JS, qui vaut donc son modificateur.
-  'Int 6 −2 2 Sag 11 +0 +3 Cha 12 +1 +1':
-      'Int 6 −2 −2 Sag 11 +0 +3 Cha 12 +1 +1',
-  // Fanatique de secte (p. 344) : la parenthèse ouvrante manque.
-  'Arme spirituelle 2/jour).': 'Arme spirituelle (2/jour).',
-  // Archimage (p. 323) : 8 000 PX pour un FP 12, que la table du SRD
-  // (p. 268) et le SRD anglais donnent à 8 400.
-  'FP 12 (8 000 PX ; BM +4)': 'FP 12 (8 400 PX ; BM +4)',
-};
+/// Coquille du PDF : [wrong] dans le profil de [monster] devient [right].
+typedef MonsterTypo = ({
+  String monster,
+  String wrong,
+  String right,
+  String why,
+});
+
+/// Coquilles du PDF. Un test vérifie que chaque passage fautif est toujours
+/// dans le SRD.
+const monsterTypos = <MonsterTypo>[
+  (
+    monster: 'Jeune dragon blanc',
+    wrong: 'Int 6 −2 2 Sag 11 +0 +3 Cha 12 +1 +1',
+    right: 'Int 6 −2 −2 Sag 11 +0 +3 Cha 12 +1 +1',
+    why:
+        'le signe du JS d’Intelligence manque ; le dragon ne maîtrise pas '
+        'ce JS, qui vaut son modificateur',
+  ),
+  (
+    monster: 'Fanatique de secte',
+    wrong: 'Arme spirituelle 2/jour).',
+    right: 'Arme spirituelle (2/jour).',
+    why: 'la parenthèse ouvrante manque',
+  ),
+  (
+    monster: 'Archimage',
+    wrong: 'FP 12 (8 000 PX ; BM +4)',
+    right: 'FP 12 (8 400 PX ; BM +4)',
+    why:
+        '8 000 PX pour un FP 12, que la table du SRD et le SRD anglais '
+        'donnent à 8 400',
+  ),
+];
 
 String _fixTypos(String line) {
-  for (final MapEntry(:key, :value) in monsterTypos.entries) {
-    line = line.replaceFirst(key, value);
+  for (final t in monsterTypos) {
+    line = line.replaceFirst(t.wrong, t.right);
   }
   return line;
 }
@@ -710,7 +731,7 @@ List<String> extractMonsterSources({
   required String readingOrder,
   required Map<String, String> slugs,
   required String sources,
-  required StringSink report,
+  required StringSink review,
 }) {
   final problems = <String>[];
   final suspects = <String>[];
@@ -731,7 +752,7 @@ List<String> extractMonsterSources({
           'source orpheline : ${file.path}',
   ]);
   if (problems.isNotEmpty) return problems;
-  suspects.forEach(report.writeln);
+  review.write(reviewSheet(monsters, monsterPages(readingOrder), suspects));
   for (final m in monsters) {
     final slug = slugs[m.name]!;
     writeJson(File('${folder.path}/$slug.json'), {
@@ -742,4 +763,159 @@ List<String> extractMonsterSources({
     });
   }
   return problems;
+}
+
+/// Caractéristique de chaque compétence (slug).
+const _skillAbilities = {
+  'acrobatics': 'dex',
+  'animal-handling': 'wis',
+  'arcana': 'int',
+  'athletics': 'str',
+  'deception': 'cha',
+  'history': 'int',
+  'insight': 'wis',
+  'intimidation': 'cha',
+  'investigation': 'int',
+  'medicine': 'wis',
+  'nature': 'int',
+  'perception': 'wis',
+  'performance': 'cha',
+  'persuasion': 'cha',
+  'religion': 'int',
+  'sleight-of-hand': 'dex',
+  'stealth': 'dex',
+  'survival': 'wis',
+};
+
+String _plus(int v) => v < 0 ? '$v' : '+$v';
+
+/// Écarts aux règles de calcul du SRD que le SRD lui-même ne suit pas
+/// toujours : Initiative, compétences, bonus d'attaque. À relire, sans
+/// bloquer la construction.
+List<String> reviewNotes(Map<String, Object?> data) {
+  final abilities = data['abilities']! as Map<String, int>;
+  int mod(String ability) => ((abilities[ability]! - 10) / 2).floor();
+  final pb = data['proficiency_bonus']! as int;
+  final dex = mod('dex');
+  final initiative = data['initiative']! as int;
+  return [
+    if (![dex, dex + pb, dex + 2 * pb].contains(initiative))
+      'Initiative ${_plus(initiative)} : Dex ${_plus(dex)} plus 0, 1 ou 2 '
+          'fois BM ${_plus(pb)} attendu',
+    for (final MapEntry(:key, :value)
+        in (data['skills']! as Map<String, int>).entries)
+      if (mod(_skillAbilities[key.split(':').last]!) case final m
+          when value != m + pb && value != m + 2 * pb)
+        '${_skillName(key)} ${_plus(value)} : ${_plus(m + pb)} ou '
+            '${_plus(m + 2 * pb)} attendu',
+    for (final action in data['actions']! as List<Map<String, Object?>>)
+      if (action['attack'] case {'bonus': final int bonus}
+          when !_abilities.values.any((a) => mod(a) + pb == bonus))
+        '${action['name']} : bonus d’attaque ${_plus(bonus)}, aucune '
+            'caractéristique plus BM ${_plus(pb)} ne le donne',
+  ];
+}
+
+String _skillName(String id) =>
+    _skills.entries.firstWhere((e) => id == 'srd:skill:${e.value}').key;
+
+final _pageFooter = RegExp(
+  r'^(?:(\d+)\s+)?Document de Référence du Système 5\.2\.1(?:\s+(\d+))?$',
+);
+
+/// Page de chaque profil de [text] : celle du premier pied de page qui suit
+/// sa ligne de type.
+Map<String, int> monsterPages(String text) {
+  final lines = [
+    for (final l in text.replaceAll('\f', '\n').split('\n'))
+      if (l.trim().isNotEmpty) l.trim(),
+  ];
+  final start = lines.lastIndexOf('Monstres de A à Z');
+  final pages = <String, int>{};
+  final pending = <String>[];
+  for (var i = start + 1; i < lines.length; i++) {
+    if (_typeLine.hasMatch(lines[i])) pending.add(lines[i - 1]);
+    final footer = _pageFooter.firstMatch(lines[i]);
+    if (footer != null) {
+      final page = int.parse(footer[1] ?? footer[2]!);
+      for (final name in pending) {
+        pages.putIfAbsent(name, () => page);
+      }
+      pending.clear();
+    }
+  }
+  return pages;
+}
+
+/// Fiche de relecture `docs/srd/RELECTURE_BESTIAIRE.md`.
+String reviewSheet(
+  List<ExtractedMonster> monsters,
+  Map<String, int> pages,
+  List<String> suspects,
+) {
+  String at(String name) => 'p. ${pages[name] ?? '?'} — $name';
+  final byPage = <int, List<String>>{};
+  for (final m in monsters) {
+    (byPage[pages[m.name] ?? 0] ??= []).add(m.name);
+  }
+  final notes = [
+    for (final m in monsters)
+      for (final note in reviewNotes(m.data)) '- ${at(m.name)} : $note',
+  ];
+  final sheet = StringBuffer()
+    ..writeln('# Relecture du bestiaire (T-06)')
+    ..writeln()
+    ..writeln(
+      'Fiche écrite par `extract-monsters` : ne pas la modifier à la main. '
+      'Le suivi de la relecture se fait sur la carte Trello T-06.',
+    )
+    ..writeln()
+    ..writeln('## Contrôles automatiques')
+    ..writeln()
+    ..writeln(
+      '- **Extraction** : ${monsters.length} profils ; chaque modificateur '
+      'lu concorde avec sa valeur.',
+    )
+    ..writeln(
+      '- **Construction du pack** : FP, PX et BM selon les tables du SRD, '
+      'JS, Perception passive, PV et dégâts moyens.',
+    )
+    ..writeln(
+      '- **Seconde lecture** contre le texte en mise en page : FP et PX, PV '
+      'et dés de vie, caractéristiques et JS, CA et Initiative '
+      '(`tools/srd_builder/test/srd_monsters_test.dart`).',
+    )
+    ..writeln()
+    ..writeln('## À vérifier en priorité')
+    ..writeln()
+    ..writeln('### Coquilles du PDF corrigées')
+    ..writeln();
+  for (final t in monsterTypos) {
+    sheet.writeln(
+      '- ${at(t.monster)} : « ${t.wrong} » lu « ${t.right} » (${t.why}).',
+    );
+  }
+  sheet
+    ..writeln()
+    ..writeln('### Écarts aux règles de calcul')
+    ..writeln()
+    ..writeln(notes.isEmpty ? 'Aucun.' : notes.join('\n'))
+    ..writeln()
+    ..writeln('### Lectures incertaines de l’extracteur')
+    ..writeln();
+  for (final s in suspects) {
+    final name = s.substring(0, s.indexOf(' : '));
+    final rest = s.substring(name.length).replaceAll('\n', ' ⏎ ');
+    sheet.writeln('- ${at(name)}$rest');
+  }
+  sheet
+    ..writeln()
+    ..writeln('## Profils par page')
+    ..writeln()
+    ..writeln('| Page | Profils |')
+    ..writeln('|---|---|');
+  for (final page in byPage.keys.toList()..sort()) {
+    sheet.writeln('| $page | ${byPage[page]!.join(', ')} |');
+  }
+  return sheet.toString();
 }

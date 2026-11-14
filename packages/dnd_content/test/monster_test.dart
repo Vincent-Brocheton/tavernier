@@ -162,6 +162,7 @@ void main() {
         wolf(
           data: {
             'skills': {'srd:skill:arcana': 2},
+            'passive_perception': 11,
             'resistances': ['srd:damage-type:fire'],
             'condition_immunities': ['srd:damage-type:piercing'],
           },
@@ -266,5 +267,107 @@ void main() {
     expect(data.speedNote, '12 m (forme de loup uniquement)');
     expect(data.sensesNote, startsWith('Vision dans le noir'));
     expect(result.entity!.toJson(), json);
+  });
+
+  group('égalités du profil imprimé', () {
+    test('JS : modificateur, ou modificateur plus BM', () {
+      expect(
+        _messages([
+          wolf(
+            data: {
+              'saving_throws': {
+                'str': 2,
+                'dex': 3,
+                'con': 1,
+                'int': -4,
+                'wis': 3,
+                'cha': -2,
+              },
+            },
+          ),
+        ]),
+        [
+          'srd:monster:wolf.data.saving_throws.dex '
+              'JS +3 : +2 ou +4 attendu (modificateur, plus BM)',
+        ],
+      );
+    });
+
+    test('Perception passive : 10 plus Perception, sinon Sagesse', () {
+      expect(
+        _messages([
+          wolf(data: {'passive_perception': 13}),
+        ]),
+        [
+          'srd:monster:wolf.data.passive_perception '
+              'Perception passive 13 : 15 attendu',
+        ],
+      );
+      expect(
+        _messages([
+          wolf(
+            data: {
+              'skills': {'srd:skill:stealth': 4},
+              'passive_perception': 11,
+            },
+          ),
+        ]),
+        isEmpty,
+      );
+    });
+
+    test('PV : moyenne des dés de vie', () {
+      expect(
+        _messages([
+          wolf(data: {'hp': 12}),
+        ]),
+        ['srd:monster:wolf.data.hp PV 12 : 11 attendu pour 2d8 + 2'],
+      );
+      expect(
+        _messages([
+          wolf(data: {'hit_dice': '2d8 plus 2'}),
+        ]),
+        ['srd:monster:wolf.data.hit_dice dés illisibles : 2d8 plus 2'],
+      );
+      // « 1d4 − 1 » imprimé avec le signe moins typographique.
+      expect(
+        _messages([
+          wolf(data: {'hp': 1, 'hit_dice': '1d4 − 1'}),
+        ]),
+        isEmpty,
+      );
+    });
+
+    test('dégâts moyens : moyenne des dés', () {
+      final bite = {
+        'kind': 'action',
+        'name': 'Morsure',
+        'attack': {
+          'kind': 'melee',
+          'bonus': 4,
+          'reach': 5,
+          'damage': [
+            {
+              'average': 6,
+              'dice': '1d6 + 2',
+              'type': 'srd:damage-type:piercing',
+            },
+            {'average': 1, 'type': 'srd:damage-type:piercing'},
+            {'average': 3, 'dice': 'un d6', 'type': 'srd:damage-type:piercing'},
+          ],
+        },
+        'text': 'T',
+      };
+      expect(
+        _messages([
+          wolf(actions: [bite]),
+        ]),
+        [
+          'srd:monster:wolf.data.actions[0].attack '
+              'dégâts 6 : 5 attendu pour 1d6 + 2',
+          'srd:monster:wolf.data.actions[0].attack dés illisibles : un d6',
+        ],
+      );
+    });
   });
 }
