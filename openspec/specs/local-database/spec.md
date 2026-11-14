@@ -426,3 +426,10 @@ Le numéro SHALL suivre l'ordre des dates, puis l'ordre de création pour deux s
 #### Scenario: Séance supprimée
 - **WHEN** le MJ supprime une séance
 - **THEN** ses présences disparaissent avec elle
+
+### Requirement: Séance créée avec ses présences
+`SessionStore.create` SHALL accepter les personnages prévus et les enregistrer avec la séance, en une seule transaction.
+
+#### Scenario: Création avec présences
+- **WHEN** le MJ crée une séance avec Aldric et Mira prévus
+- **THEN** la séance existe, et ses présences sont Aldric et Mira
