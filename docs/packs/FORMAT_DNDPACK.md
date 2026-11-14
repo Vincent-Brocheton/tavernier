@@ -114,6 +114,6 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 
 - identifiants uniques, toute référence résolue dans le pack ou ses dépendances, type de la cible conforme ;
 - Historique : exactement 3 caractéristiques ; son don d'origine est de catégorie `origin` (cahier §11.3) ;
-- Monstre : `cr`, `xp` et `proficiency_bonus` concordent avec les tables « Points d'expérience par facteur de puissance » et « Bonus de maîtrise par facteur de puissance » du SRD ; une action `legendary` exige `legendary_uses` ;
+- Monstre : `cr`, `xp` et `proficiency_bonus` concordent avec les tables « Points d'expérience par facteur de puissance » et « Bonus de maîtrise par facteur de puissance » du SRD ; une action `legendary` exige `legendary_uses` ; un `uses` porte un seul usage ; une attaque au corps à corps a une allonge, une attaque à distance une portée `[normale, longue]` ;
 - à la lecture de l'archive (`readDndpack`, ENF-09) : archive et chaque fichier décompressé ≤ 20 Mo, `entity_count` exact, identifiants uniques, ≤ 10 000 entités, profondeur JSON ≤ 32, somme de contrôle exacte, `format_version` connue. Un pack n'exécute jamais de code.
 - à l'import (M4) : `validatePack(pack, dependencies: …)` vérifie en plus les références, avec les packs dont il dépend.

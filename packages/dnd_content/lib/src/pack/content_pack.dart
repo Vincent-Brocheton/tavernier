@@ -188,5 +188,21 @@ List<ContentIssue> _monsterIssues(String path, MonsterData m) {
         '$path.data.legendary_uses',
         'nombre d’utilisations requis pour une action Légendaire',
       ),
+    for (final (i, a) in m.actions.indexed) ...[
+      if (a.uses case final u?
+          when [u.perDay, u.recharge, u.rest].nonNulls.length != 1)
+        ContentIssue(
+          '$path.data.actions[$i].uses',
+          'un seul usage attendu : per_day, recharge ou rest',
+        ),
+      if (a.attack case final at?
+          when (at.kind != MonsterAttackKind.ranged && at.reach == null) ||
+              (at.kind != MonsterAttackKind.melee && at.range?.length != 2))
+        ContentIssue(
+          '$path.data.actions[$i].attack',
+          'allonge (corps à corps) ou portée [normale, longue] (à distance) '
+              'attendue',
+        ),
+    ],
   ];
 }

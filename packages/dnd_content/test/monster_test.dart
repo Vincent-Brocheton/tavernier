@@ -191,4 +191,39 @@ void main() {
       ],
     );
   });
+
+  test('usage vide ou attaque sans allonge ni portée refusés', () {
+    expect(
+      _messages([
+        wolf(
+          actions: [
+            {
+              'kind': 'trait',
+              'name': 'R',
+              'uses': {'per_day_lair': 4},
+              'text': 'T',
+            },
+            {
+              'kind': 'action',
+              'name': 'Javeline',
+              'attack': {
+                'kind': 'melee_or_ranged',
+                'bonus': 6,
+                'reach': 5,
+                'damage': <Object?>[],
+              },
+              'text': 'T',
+            },
+          ],
+        ),
+      ]),
+      [
+        'srd:monster:wolf.data.actions[0].uses '
+            'un seul usage attendu : per_day, recharge ou rest',
+        'srd:monster:wolf.data.actions[1].attack '
+            'allonge (corps à corps) ou portée [normale, longue] (à distance) '
+            'attendue',
+      ],
+    );
+  });
 }
