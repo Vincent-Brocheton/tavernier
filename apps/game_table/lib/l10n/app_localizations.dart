@@ -5249,6 +5249,156 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Montée au niveau {level}'**
   String historyLevelUp(int level);
+
+  /// Onglet des séances d'une table (US-35, [S1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Séances'**
+  String get tabSessions;
+
+  /// Table sans séance ([S6]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune séance'**
+  String get sessionsEmptyTitle;
+
+  /// Table sans séance ([S6]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Une séance regroupe les rencontres, les notes et les PX d’une soirée de jeu. Préparez-la sur ordinateur ou ici, elle sera jouable sans réseau.'**
+  String get sessionsEmptyBody;
+
+  /// Crée la prochaine séance et ouvre sa préparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparer la séance {number}'**
+  String sessionPrepare(int number);
+
+  /// Crée une séance du jour, en cours (décision 19).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jouer tout de suite, sans préparation'**
+  String get sessionPlayNow;
+
+  /// Fiches validées parmi les emplacements ([S6]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{validated, plural, =0{Aucun joueur sur {total} n’a de fiche validée.} =1{1 joueur sur {total} a une fiche validée.} other{{validated} joueurs sur {total} ont une fiche validée.}} Les autres pourront rejoindre la séance en cours.'**
+  String sessionsValidated(int validated, int total);
+
+  /// Bouton du MJ ([S1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle séance'**
+  String get sessionNew;
+
+  /// Section des séances préparées ou en cours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prochaine'**
+  String get sessionsNext;
+
+  /// Section des séances closes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passées'**
+  String get sessionsPast;
+
+  /// Numéro d'une séance ; aussi son titre par défaut.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance {number}'**
+  String sessionNumber(int number);
+
+  /// Badge d'état d'une séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparée'**
+  String get sessionPlanned;
+
+  /// Badge d'état d'une séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get sessionInProgress;
+
+  /// Badge d'état d'une séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Close'**
+  String get sessionClosed;
+
+  /// Mois du pavé de date (« oct. »).
+  ///
+  /// In fr, this message translates to:
+  /// **'{date}'**
+  String sessionMonth(DateTime date);
+
+  /// Jour du pavé de date.
+  ///
+  /// In fr, this message translates to:
+  /// **'{date}'**
+  String sessionDay(DateTime date);
+
+  /// Date d'une séance (« vendredi 30/10/2026 »).
+  ///
+  /// In fr, this message translates to:
+  /// **'{date}'**
+  String sessionDate(DateTime date);
+
+  /// Vue du joueur ([S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnage attendu : {names}'**
+  String sessionExpected(String names);
+
+  /// Titre de la préparation ([S2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparer la séance'**
+  String get sessionPrepTitle;
+
+  /// Surtitre de la préparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'{table} · Séance {number}'**
+  String sessionPrepHeader(String table, int number);
+
+  /// Champ de la préparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get sessionTitleLabel;
+
+  /// Champ de la préparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date'**
+  String get sessionDateLabel;
+
+  /// Préparation ([S2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Présences prévues'**
+  String get sessionAttendanceTitle;
+
+  /// Préparation ([S2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Préremplies dans chaque rencontre, pour la difficulté et les PX.'**
+  String get sessionAttendanceHelp;
+
+  /// Passe la séance en cours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir la séance'**
+  String get sessionOpen;
+
+  /// État d'enregistrement de la préparation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrée'**
+  String get sessionSaved;
 }
 
 class _AppLocalizationsDelegate

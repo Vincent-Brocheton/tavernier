@@ -8,6 +8,7 @@ import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import '../sessions/sessions_tab.dart';
 import 'configuration_tab.dart';
 import 'members_tab.dart';
 import 'table_labels.dart';
@@ -33,7 +34,7 @@ class TablePage extends ConsumerWidget {
     return DefaultTabController(
       // Une clé par rôle : le nombre d'onglets en dépend.
       key: ValueKey(gm),
-      length: gm ? 3 : 2,
+      length: gm ? 4 : 3,
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -79,6 +80,7 @@ class TablePage extends ConsumerWidget {
                       tabAlignment: TabAlignment.start,
                       tabs: [
                         Tab(text: l10n.tabOverview),
+                        Tab(text: l10n.tabSessions),
                         Tab(text: l10n.tabMembers),
                         if (gm) Tab(text: l10n.tabConfiguration),
                       ],
@@ -87,6 +89,7 @@ class TablePage extends ConsumerWidget {
                       child: TabBarView(
                         children: [
                           _Overview(table: table),
+                          SessionsTab(table: table),
                           MembersTab(table: table),
                           if (gm) ConfigurationTab(table: table),
                         ],

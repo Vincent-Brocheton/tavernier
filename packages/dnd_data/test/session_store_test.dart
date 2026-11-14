@@ -84,6 +84,16 @@ void main() {
         );
       });
 
+      test('création avec ses présences', () async {
+        final id = await store.create(
+          tableId: 't',
+          title: 'Séance 1',
+          date: DateTime(2026, 5, 29),
+          present: ['aldric', 'mira'],
+        );
+        expect(await store.watchAttendance(id).first, {'aldric', 'mira'});
+      });
+
       test('titre et état modifiés', () async {
         final id = await store.create(
           tableId: 't',
