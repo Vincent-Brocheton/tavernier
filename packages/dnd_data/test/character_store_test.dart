@@ -27,6 +27,81 @@ void _tests(Future<TavernierDatabase> Function() open) {
   });
   tearDown(() => db.close());
 
+  group('montée de niveau (US-35)', () {
+    setUp(() async {
+      await db.customStatement(
+        'INSERT INTO game_table (id, gm_user_id, name, stat_method, '
+        'long_rest_rule, hp_on_level_rule, progression_mode) '
+        "VALUES ('t', 'camille', 'Brumeval', 'point_buy', 'full', "
+        "'average', 'milestone')",
+      );
+      await store.save(
+        'a',
+        CharacterInput.fromJson(aldricJson()).copyWith(xp: 7475),
+        tableId: 't',
+      );
+    });
+
+    test('accès : mode de progression, PX, niveau accordé', () async {
+      final access = (await store.access('a'))!;
+      expect(access.progressionMode, 'milestone');
+      expect(access.xp, 7475);
+      expect(access.levelUnlock, isNull);
+    });
+
+    test('niveau accordé : level_unlock et historique', () async {
+      await store.grantLevel(
+        'a',
+        level: 6,
+        origin: 'milestone',
+        byUserId: 'camille',
+        reason: 'Varga capturée, le relais du Sel libéré',
+        sessionId: 's12',
+      );
+      expect((await store.access('a'))!.levelUnlock, {
+        'level': 6,
+        'origin': 'milestone',
+        'by': 'camille',
+        'reason': 'Varga capturée, le relais du Sel libéré',
+        'session': 's12',
+      });
+      final [entry] = await store.history('a');
+      expect(entry.authorUserId, 'camille');
+      expect(entry.detail, {
+        'kind': 'level_grant',
+        'level': 6,
+        'origin': 'milestone',
+        'reason': 'Varga capturée, le relais du Sel libéré',
+        'session': 's12',
+      });
+    });
+
+    test('montée inscrite avec son origine', () async {
+      await store.recordLevelUp(
+        'a',
+        byUserId: 'hugo',
+        from: 5,
+        to: 6,
+        unlock: const LevelUnlock(
+          level: 6,
+          origin: UnlockOrigin.milestone,
+          by: 'camille',
+          reason: 'Varga capturée',
+        ),
+      );
+      final [entry] = await store.history('a');
+      expect(entry.authorUserId, 'hugo');
+      expect(entry.detail, {
+        'kind': 'level_up',
+        'from': 5,
+        'to': 6,
+        'origin': 'milestone',
+        'by': 'camille',
+        'reason': 'Varga capturée',
+      });
+    });
+  });
+
   group('état de jeu', () {
     late CharacterInput aldric;
     setUp(() async {

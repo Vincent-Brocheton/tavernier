@@ -14,6 +14,7 @@ import 'conflicts.dart';
 import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
+import 'level_unlock_banner.dart';
 import 'proposal_banner.dart';
 import 'proposal_page.dart';
 import 'rest_sheet.dart';
@@ -149,6 +150,7 @@ class _Sheet extends StatelessWidget {
                         ].join(' · '),
                         style: text.bodySmall,
                       ),
+                      LevelProgressLine(id: id, level: sheet.level),
                     ],
                   ),
                 ),
@@ -161,12 +163,16 @@ class _Sheet extends StatelessWidget {
               spacing: AppSpacing.xs,
               runSpacing: AppSpacing.xs,
               children: [
-                if (SheetAccess.editableOf(context) &&
-                    sheet.level < maxCharacterLevel)
-                  FilledButton(
-                    onPressed: () => context.push(levelUpPath(id)),
-                    child: Text(l10n.levelUpTo(sheet.level + 1)),
-                  ),
+                FreeLevelUpButton(
+                  id: id,
+                  level: sheet.level,
+                  levelUpPath: levelUpPath(id),
+                ),
+                LevelOverrideButton(
+                  id: id,
+                  name: character.name,
+                  level: sheet.level,
+                ),
                 for (final (kind, label) in [
                   if (SheetAccess.editableOf(context))
                     (RestKind.short, l10n.shortRest),
@@ -274,6 +280,11 @@ class _MainTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          LevelGrantBanner(
+            id: id,
+            level: sheet.level,
+            levelUpPath: levelUpPath(id),
+          ),
           HitPointsTracker(id: id, sheet: sheet),
           InspirationTracker(id: id),
           SizedBox(height: AppSpacing.xs),

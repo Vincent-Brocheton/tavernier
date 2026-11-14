@@ -65,3 +65,14 @@ abstract final class AppSizes {
 
 /// Modificateur signé, avec le vrai signe moins (« −1 », « +3 »).
 String formatSigned(int value) => value < 0 ? '−${-value}' : '+$value';
+
+/// Nombre groupé par milliers à la française, avec une espace fine
+/// insécable (« 7 475 », « 14 000 »).
+String formatThousands(int value) {
+  final digits = '${value.abs()}';
+  final groups = <String>[];
+  for (var end = digits.length; end > 0; end -= 3) {
+    groups.insert(0, digits.substring(end < 3 ? 0 : end - 3, end));
+  }
+  return '${value < 0 ? '−' : ''}${groups.join(' ')}';
+}
