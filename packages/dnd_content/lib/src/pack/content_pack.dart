@@ -33,6 +33,11 @@ const _referenceTypes = <String, Set<String>>{
   'spellcasting_ability': {'ability'},
   'item': {'weapon', 'armor', 'tool', 'item'},
   'source': {'class', 'subclass', 'species', 'feat'},
+  'vulnerabilities': {'damage-type'},
+  'resistances': {'damage-type'},
+  'immunities': {'damage-type'},
+  'condition_immunities': {'condition'},
+  'damage': {'damage-type'},
 };
 
 /// Références (id, types acceptés ou `null` pour tout type) d'une entité.
@@ -56,6 +61,12 @@ Iterable<(String, Set<String>?)> _references(ContentEntity entity) sync* {
   }
 
   yield* scan(entity.data.toJson(), null);
+  // Les compétences d'un monstre sont les clés de `skills`.
+  if (entity.data case MonsterData(:final skills)) {
+    for (final id in skills.keys) {
+      yield (id, {'skill'});
+    }
+  }
   for (final effect in entity.effects) {
     for (final id in effectReferences(effect)) {
       yield (id, null);
@@ -108,6 +119,9 @@ List<ContentIssue> validatePack(
         );
       }
     }
+    if (entity.data case final MonsterData monster) {
+      issues.addAll(_monsterIssues(path, monster));
+    }
     if (entity.data case final BackgroundData background) {
       if (background.abilities.length != 3) {
         issues.add(
@@ -129,4 +143,66 @@ List<ContentIssue> validatePack(
     }
   }
   return issues;
+}
+
+/// PX par FP, table « Points d'expérience par facteur de puissance » du SRD
+/// (FP 0 : 0 ou 10 PX).
+const _xpByCr = <String, List<int>>{
+  '0': [0, 10], '1/8': [25], '1/4': [50], '1/2': [100], '1': [200], //
+  '2': [450], '3': [700], '4': [1100], '5': [1800], '6': [2300], //
+  '7': [2900], '8': [3900], '9': [5000], '10': [5900], '11': [7200], //
+  '12': [8400], '13': [10000], '14': [11500], '15': [13000], //
+  '16': [15000], '17': [18000], '18': [20000], '19': [22000], //
+  '20': [25000], '21': [33000], '22': [41000], '23': [50000], //
+  '24': [62000], '25': [75000], '26': [90000], '27': [105000], //
+  '28': [120000], '29': [135000], '30': [155000],
+};
+
+/// BM par FP, table « Bonus de maîtrise par facteur de puissance » du SRD :
+/// +2 jusqu'à FP 4, puis +1 tous les 4 FP.
+int _proficiencyBonusOf(String cr) {
+  final value = int.tryParse(cr) ?? 0;
+  return value < 5 ? 2 : (value - 1) ~/ 4 + 2;
+}
+
+List<ContentIssue> _monsterIssues(String path, MonsterData m) {
+  final xp = _xpByCr[m.cr];
+  if (xp == null) {
+    return [ContentIssue('$path.data.cr', 'FP inconnu : ${m.cr}')];
+  }
+  final pb = _proficiencyBonusOf(m.cr);
+  return [
+    if (!xp.contains(m.xp))
+      ContentIssue(
+        '$path.data.xp',
+        'FP ${m.cr} : ${xp.join(' ou ')} PX attendus, reçu ${m.xp}',
+      ),
+    if (m.proficiencyBonus != pb)
+      ContentIssue(
+        '$path.data.proficiency_bonus',
+        'FP ${m.cr} : BM +$pb attendu, reçu +${m.proficiencyBonus}',
+      ),
+    if (m.legendaryUses == null &&
+        m.actions.any((a) => a.kind == MonsterActionKind.legendary))
+      ContentIssue(
+        '$path.data.legendary_uses',
+        'nombre d’utilisations requis pour une action Légendaire',
+      ),
+    for (final (i, a) in m.actions.indexed) ...[
+      if (a.uses case final u?
+          when [u.perDay, u.recharge, u.rest].nonNulls.length != 1)
+        ContentIssue(
+          '$path.data.actions[$i].uses',
+          'un seul usage attendu : per_day, recharge ou rest',
+        ),
+      if (a.attack case final at?
+          when (at.kind != MonsterAttackKind.ranged && at.reach == null) ||
+              (at.kind != MonsterAttackKind.melee && at.range?.length != 2))
+        ContentIssue(
+          '$path.data.actions[$i].attack',
+          'allonge (corps à corps) ou portée [normale, longue] (à distance) '
+              'attendue',
+        ),
+    ],
+  ];
 }

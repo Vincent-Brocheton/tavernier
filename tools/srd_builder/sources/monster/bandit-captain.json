@@ -1,0 +1,106 @@
+{
+  "id": "srd:monster:bandit-captain",
+  "type": "monster",
+  "name": "Chef de bande",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 15,
+    "initiative": 3,
+    "hp": 52,
+    "hit_dice": "8d8 + 16",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 16,
+      "con": 14,
+      "int": 14,
+      "wis": 11,
+      "cha": 14
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 5,
+      "con": 2,
+      "int": 2,
+      "wis": 2,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:athletics": 4,
+      "srd:skill:deception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "armure de cuir clouté",
+      "cimeterre",
+      "pistolet"
+    ],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "argot des voleurs, commun",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le bandit effectue deux attaques, réparties à sa guise entre Cimeterre et Pistolet."
+      },
+      {
+        "kind": "action",
+        "name": "Cimeterre",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Pistolet",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            30,
+            90
+          ],
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d10 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 9/27 m. Touché : 8 (1d10 + 3) dégâts perforants."
+      },
+      {
+        "kind": "reaction",
+        "name": "Parade",
+        "text": "Déclencheur : le bandit est touché par un jet d’attaque de corps à corps alors qu’il tient une arme. Conséquences : le bandit ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+      }
+    ]
+  }
+}

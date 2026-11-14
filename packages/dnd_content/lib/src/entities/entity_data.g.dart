@@ -1082,3 +1082,451 @@ const _$SpellSchoolEnumMap = {
   SpellSchool.necromancy: 'necromancy',
   SpellSchool.transmutation: 'transmutation',
 };
+
+_MonsterSpeed _$MonsterSpeedFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MonsterSpeed', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        allowedKeys: const ['walk', 'swim', 'fly', 'climb', 'burrow'],
+      );
+      final val = _MonsterSpeed(
+        walk: $checkedConvert('walk', (v) => (v as num?)?.toInt()),
+        swim: $checkedConvert('swim', (v) => (v as num?)?.toInt()),
+        fly: $checkedConvert('fly', (v) => (v as num?)?.toInt()),
+        climb: $checkedConvert('climb', (v) => (v as num?)?.toInt()),
+        burrow: $checkedConvert('burrow', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$MonsterSpeedToJson(_MonsterSpeed instance) =>
+    <String, dynamic>{
+      'walk': ?instance.walk,
+      'swim': ?instance.swim,
+      'fly': ?instance.fly,
+      'climb': ?instance.climb,
+      'burrow': ?instance.burrow,
+    };
+
+_MonsterSenses _$MonsterSensesFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MonsterSenses', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        allowedKeys: const [
+          'darkvision',
+          'blindsight',
+          'blind_beyond',
+          'tremorsense',
+          'truesight',
+        ],
+      );
+      final val = _MonsterSenses(
+        darkvision: $checkedConvert('darkvision', (v) => (v as num?)?.toInt()),
+        blindsight: $checkedConvert('blindsight', (v) => (v as num?)?.toInt()),
+        blindBeyond: $checkedConvert('blind_beyond', (v) => v as bool?),
+        tremorsense: $checkedConvert(
+          'tremorsense',
+          (v) => (v as num?)?.toInt(),
+        ),
+        truesight: $checkedConvert('truesight', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    }, fieldKeyMap: const {'blindBeyond': 'blind_beyond'});
+
+Map<String, dynamic> _$MonsterSensesToJson(_MonsterSenses instance) =>
+    <String, dynamic>{
+      'darkvision': ?instance.darkvision,
+      'blindsight': ?instance.blindsight,
+      'blind_beyond': ?instance.blindBeyond,
+      'tremorsense': ?instance.tremorsense,
+      'truesight': ?instance.truesight,
+    };
+
+_MonsterUses _$MonsterUsesFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_MonsterUses',
+  json,
+  ($checkedConvert) {
+    $checkKeys(
+      json,
+      allowedKeys: const ['per_day', 'per_day_lair', 'recharge', 'rest'],
+    );
+    final val = _MonsterUses(
+      perDay: $checkedConvert('per_day', (v) => (v as num?)?.toInt()),
+      perDayLair: $checkedConvert('per_day_lair', (v) => (v as num?)?.toInt()),
+      recharge: $checkedConvert('recharge', (v) => v as String?),
+      rest: $checkedConvert('rest', (v) => v as String?),
+    );
+    return val;
+  },
+  fieldKeyMap: const {'perDay': 'per_day', 'perDayLair': 'per_day_lair'},
+);
+
+Map<String, dynamic> _$MonsterUsesToJson(_MonsterUses instance) =>
+    <String, dynamic>{
+      'per_day': ?instance.perDay,
+      'per_day_lair': ?instance.perDayLair,
+      'recharge': ?instance.recharge,
+      'rest': ?instance.rest,
+    };
+
+_MonsterDamage _$MonsterDamageFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MonsterDamage', json, ($checkedConvert) {
+      $checkKeys(json, allowedKeys: const ['average', 'dice', 'type']);
+      final val = _MonsterDamage(
+        average: $checkedConvert('average', (v) => (v as num).toInt()),
+        dice: $checkedConvert('dice', (v) => v as String?),
+        type: $checkedConvert(
+          'type',
+          (v) => const ContentIdConverter().fromJson(v as String),
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$MonsterDamageToJson(_MonsterDamage instance) =>
+    <String, dynamic>{
+      'average': instance.average,
+      'dice': ?instance.dice,
+      'type': const ContentIdConverter().toJson(instance.type),
+    };
+
+_MonsterAttack _$MonsterAttackFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MonsterAttack', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        allowedKeys: const ['kind', 'bonus', 'reach', 'range', 'damage'],
+      );
+      final val = _MonsterAttack(
+        kind: $checkedConvert(
+          'kind',
+          (v) => $enumDecode(_$MonsterAttackKindEnumMap, v),
+        ),
+        bonus: $checkedConvert('bonus', (v) => (v as num).toInt()),
+        reach: $checkedConvert('reach', (v) => (v as num?)?.toInt()),
+        range: $checkedConvert(
+          'range',
+          (v) => (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList(),
+        ),
+        damage: $checkedConvert(
+          'damage',
+          (v) =>
+              (v as List<dynamic>?)
+                  ?.map(
+                    (e) => MonsterDamage.fromJson(e as Map<String, dynamic>),
+                  )
+                  .toList() ??
+              const <MonsterDamage>[],
+        ),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$MonsterAttackToJson(_MonsterAttack instance) =>
+    <String, dynamic>{
+      'kind': _$MonsterAttackKindEnumMap[instance.kind]!,
+      'bonus': instance.bonus,
+      'reach': ?instance.reach,
+      'range': ?instance.range,
+      'damage': instance.damage.map((e) => e.toJson()).toList(),
+    };
+
+const _$MonsterAttackKindEnumMap = {
+  MonsterAttackKind.melee: 'melee',
+  MonsterAttackKind.ranged: 'ranged',
+  MonsterAttackKind.meleeOrRanged: 'melee_or_ranged',
+};
+
+_MonsterSave _$MonsterSaveFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MonsterSave', json, ($checkedConvert) {
+      $checkKeys(json, allowedKeys: const ['ability', 'dc']);
+      final val = _MonsterSave(
+        ability: $checkedConvert('ability', (v) => v as String),
+        dc: $checkedConvert('dc', (v) => (v as num).toInt()),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$MonsterSaveToJson(_MonsterSave instance) =>
+    <String, dynamic>{'ability': instance.ability, 'dc': instance.dc};
+
+_MonsterAction _$MonsterActionFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_MonsterAction', json, ($checkedConvert) {
+  $checkKeys(
+    json,
+    allowedKeys: const ['kind', 'name', 'uses', 'attack', 'save', 'text'],
+  );
+  final val = _MonsterAction(
+    kind: $checkedConvert(
+      'kind',
+      (v) => $enumDecode(_$MonsterActionKindEnumMap, v),
+    ),
+    name: $checkedConvert('name', (v) => v as String),
+    uses: $checkedConvert(
+      'uses',
+      (v) => v == null ? null : MonsterUses.fromJson(v as Map<String, dynamic>),
+    ),
+    attack: $checkedConvert(
+      'attack',
+      (v) =>
+          v == null ? null : MonsterAttack.fromJson(v as Map<String, dynamic>),
+    ),
+    save: $checkedConvert(
+      'save',
+      (v) => v == null ? null : MonsterSave.fromJson(v as Map<String, dynamic>),
+    ),
+    text: $checkedConvert('text', (v) => v as String),
+  );
+  return val;
+});
+
+Map<String, dynamic> _$MonsterActionToJson(_MonsterAction instance) =>
+    <String, dynamic>{
+      'kind': _$MonsterActionKindEnumMap[instance.kind]!,
+      'name': instance.name,
+      'uses': ?instance.uses?.toJson(),
+      'attack': ?instance.attack?.toJson(),
+      'save': ?instance.save?.toJson(),
+      'text': instance.text,
+    };
+
+const _$MonsterActionKindEnumMap = {
+  MonsterActionKind.trait: 'trait',
+  MonsterActionKind.action: 'action',
+  MonsterActionKind.bonus: 'bonus',
+  MonsterActionKind.reaction: 'reaction',
+  MonsterActionKind.legendary: 'legendary',
+};
+
+_MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_MonsterData',
+  json,
+  ($checkedConvert) {
+    $checkKeys(
+      json,
+      allowedKeys: const [
+        'sizes',
+        'creature_type',
+        'type_tags',
+        'alignment',
+        'ac',
+        'ac_note',
+        'initiative',
+        'hp',
+        'hit_dice',
+        'speed',
+        'hover',
+        'abilities',
+        'saving_throws',
+        'skills',
+        'vulnerabilities',
+        'resistances',
+        'immunities',
+        'condition_immunities',
+        'gear',
+        'senses',
+        'passive_perception',
+        'languages',
+        'cr',
+        'xp',
+        'xp_lair',
+        'proficiency_bonus',
+        'legendary_uses',
+        'legendary_uses_lair',
+        'actions',
+      ],
+    );
+    final val = _MonsterData(
+      sizes: $checkedConvert(
+        'sizes',
+        (v) => (v as List<dynamic>)
+            .map((e) => $enumDecode(_$MonsterSizeEnumMap, e))
+            .toList(),
+      ),
+      creatureType: $checkedConvert(
+        'creature_type',
+        (v) => $enumDecode(_$CreatureTypeEnumMap, v),
+      ),
+      typeTags: $checkedConvert(
+        'type_tags',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+            const <String>[],
+      ),
+      alignment: $checkedConvert('alignment', (v) => v as String),
+      ac: $checkedConvert('ac', (v) => (v as num).toInt()),
+      acNote: $checkedConvert('ac_note', (v) => v as String?),
+      initiative: $checkedConvert('initiative', (v) => (v as num).toInt()),
+      hp: $checkedConvert('hp', (v) => (v as num).toInt()),
+      hitDice: $checkedConvert('hit_dice', (v) => v as String),
+      speed: $checkedConvert(
+        'speed',
+        (v) => MonsterSpeed.fromJson(v as Map<String, dynamic>),
+      ),
+      hover: $checkedConvert('hover', (v) => v as bool? ?? false),
+      abilities: $checkedConvert('abilities', (v) => _sixAbilities(v)),
+      savingThrows: $checkedConvert('saving_throws', (v) => _sixAbilities(v)),
+      skills: $checkedConvert(
+        'skills',
+        (v) =>
+            (v as Map<String, dynamic>?)?.map(
+              (k, e) => MapEntry(k, (e as num).toInt()),
+            ) ??
+            const <String, int>{},
+      ),
+      vulnerabilities: $checkedConvert(
+        'vulnerabilities',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      resistances: $checkedConvert(
+        'resistances',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      immunities: $checkedConvert(
+        'immunities',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      conditionImmunities: $checkedConvert(
+        'condition_immunities',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => const ContentIdConverter().fromJson(e as String))
+                .toList() ??
+            const <ContentId>[],
+      ),
+      gear: $checkedConvert(
+        'gear',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ??
+            const <String>[],
+      ),
+      senses: $checkedConvert(
+        'senses',
+        (v) => v == null
+            ? const MonsterSenses()
+            : MonsterSenses.fromJson(v as Map<String, dynamic>),
+      ),
+      passivePerception: $checkedConvert(
+        'passive_perception',
+        (v) => (v as num).toInt(),
+      ),
+      languages: $checkedConvert('languages', (v) => v as String),
+      cr: $checkedConvert('cr', (v) => v as String),
+      xp: $checkedConvert('xp', (v) => (v as num).toInt()),
+      xpLair: $checkedConvert('xp_lair', (v) => (v as num?)?.toInt()),
+      proficiencyBonus: $checkedConvert(
+        'proficiency_bonus',
+        (v) => (v as num).toInt(),
+      ),
+      legendaryUses: $checkedConvert(
+        'legendary_uses',
+        (v) => (v as num?)?.toInt(),
+      ),
+      legendaryUsesLair: $checkedConvert(
+        'legendary_uses_lair',
+        (v) => (v as num?)?.toInt(),
+      ),
+      actions: $checkedConvert(
+        'actions',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => MonsterAction.fromJson(e as Map<String, dynamic>))
+                .toList() ??
+            const <MonsterAction>[],
+      ),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'creatureType': 'creature_type',
+    'typeTags': 'type_tags',
+    'acNote': 'ac_note',
+    'hitDice': 'hit_dice',
+    'savingThrows': 'saving_throws',
+    'conditionImmunities': 'condition_immunities',
+    'passivePerception': 'passive_perception',
+    'xpLair': 'xp_lair',
+    'proficiencyBonus': 'proficiency_bonus',
+    'legendaryUses': 'legendary_uses',
+    'legendaryUsesLair': 'legendary_uses_lair',
+  },
+);
+
+Map<String, dynamic> _$MonsterDataToJson(_MonsterData instance) =>
+    <String, dynamic>{
+      'sizes': instance.sizes.map((e) => _$MonsterSizeEnumMap[e]!).toList(),
+      'creature_type': _$CreatureTypeEnumMap[instance.creatureType]!,
+      'type_tags': instance.typeTags,
+      'alignment': instance.alignment,
+      'ac': instance.ac,
+      'ac_note': ?instance.acNote,
+      'initiative': instance.initiative,
+      'hp': instance.hp,
+      'hit_dice': instance.hitDice,
+      'speed': instance.speed.toJson(),
+      'hover': instance.hover,
+      'abilities': instance.abilities,
+      'saving_throws': instance.savingThrows,
+      'skills': instance.skills,
+      'vulnerabilities': instance.vulnerabilities
+          .map(const ContentIdConverter().toJson)
+          .toList(),
+      'resistances': instance.resistances
+          .map(const ContentIdConverter().toJson)
+          .toList(),
+      'immunities': instance.immunities
+          .map(const ContentIdConverter().toJson)
+          .toList(),
+      'condition_immunities': instance.conditionImmunities
+          .map(const ContentIdConverter().toJson)
+          .toList(),
+      'gear': instance.gear,
+      'senses': instance.senses.toJson(),
+      'passive_perception': instance.passivePerception,
+      'languages': instance.languages,
+      'cr': instance.cr,
+      'xp': instance.xp,
+      'xp_lair': ?instance.xpLair,
+      'proficiency_bonus': instance.proficiencyBonus,
+      'legendary_uses': ?instance.legendaryUses,
+      'legendary_uses_lair': ?instance.legendaryUsesLair,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+    };
+
+const _$MonsterSizeEnumMap = {
+  MonsterSize.tiny: 'tiny',
+  MonsterSize.small: 'small',
+  MonsterSize.medium: 'medium',
+  MonsterSize.large: 'large',
+  MonsterSize.huge: 'huge',
+  MonsterSize.gargantuan: 'gargantuan',
+};
+
+const _$CreatureTypeEnumMap = {
+  CreatureType.aberration: 'aberration',
+  CreatureType.beast: 'beast',
+  CreatureType.celestial: 'celestial',
+  CreatureType.construct: 'construct',
+  CreatureType.dragon: 'dragon',
+  CreatureType.elemental: 'elemental',
+  CreatureType.fey: 'fey',
+  CreatureType.fiend: 'fiend',
+  CreatureType.giant: 'giant',
+  CreatureType.humanoid: 'humanoid',
+  CreatureType.monstrosity: 'monstrosity',
+  CreatureType.ooze: 'ooze',
+  CreatureType.plant: 'plant',
+  CreatureType.undead: 'undead',
+};

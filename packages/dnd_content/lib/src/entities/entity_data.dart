@@ -457,6 +457,207 @@ abstract class SpellData with _$SpellData implements EntityData {
       _$SpellDataFromJson(json);
 }
 
+@JsonEnum(fieldRename: FieldRename.snake)
+enum MonsterSize { tiny, small, medium, large, huge, gargantuan }
+
+@JsonEnum(fieldRename: FieldRename.snake)
+enum CreatureType {
+  aberration,
+  beast,
+  celestial,
+  construct,
+  dragon,
+  elemental,
+  fey,
+  fiend,
+  giant,
+  humanoid,
+  monstrosity,
+  ooze,
+  plant,
+  undead,
+}
+
+/// Section du profil : Traits, Actions, Actions Bonus, Réactions, Actions
+/// Légendaires.
+@JsonEnum(fieldRename: FieldRename.snake)
+enum MonsterActionKind { trait, action, bonus, reaction, legendary }
+
+@JsonEnum(fieldRename: FieldRename.snake)
+enum MonsterAttackKind { melee, ranged, meleeOrRanged }
+
+const _abilityKeys = {'str', 'dex', 'con', 'int', 'wis', 'cha'};
+
+Map<String, int> _sixAbilities(Object? json) {
+  final map = Map<String, int>.from(json! as Map);
+  if (map.length != 6 || !map.keys.toSet().containsAll(_abilityKeys)) {
+    throw ArgumentError('les six caractéristiques attendues : $_abilityKeys');
+  }
+  return map;
+}
+
+/// Vitesses en pieds.
+@freezed
+abstract class MonsterSpeed with _$MonsterSpeed {
+  const factory MonsterSpeed({
+    int? walk,
+    int? swim,
+    int? fly,
+    int? climb,
+    int? burrow,
+  }) = _MonsterSpeed;
+
+  factory MonsterSpeed.fromJson(Map<String, dynamic> json) =>
+      _$MonsterSpeedFromJson(json);
+}
+
+/// Sens, en pieds.
+@freezed
+abstract class MonsterSenses with _$MonsterSenses {
+  const factory MonsterSenses({
+    int? darkvision,
+    int? blindsight,
+
+    /// `true` pour « (aveugle au-delà) » après la Vision aveugle.
+    bool? blindBeyond,
+    int? tremorsense,
+    int? truesight,
+  }) = _MonsterSenses;
+
+  factory MonsterSenses.fromJson(Map<String, dynamic> json) =>
+      _$MonsterSensesFromJson(json);
+}
+
+/// Usages limités : « (2/jour) », « (Recharge 5–6) », « (Recharge après un
+/// Repos court ou long) ».
+@freezed
+abstract class MonsterUses with _$MonsterUses {
+  const factory MonsterUses({
+    int? perDay,
+    int? perDayLair,
+    String? recharge,
+
+    /// `short_or_long` ou `long`.
+    String? rest,
+  }) = _MonsterUses;
+  const MonsterUses._();
+
+  factory MonsterUses.fromJson(Map<String, dynamic> json) =>
+      _$MonsterUsesFromJson(json);
+
+  /// Forme courte gardée dans `monster_action.recharge`.
+  String get label => recharge ?? rest ?? '$perDay/day';
+}
+
+@freezed
+abstract class MonsterDamage with _$MonsterDamage {
+  const factory MonsterDamage({
+    required int average,
+
+    /// Absent pour des dégâts fixes (« Touché : 1 dégât perforant »).
+    String? dice,
+    @ContentIdConverter() required ContentId type,
+  }) = _MonsterDamage;
+
+  factory MonsterDamage.fromJson(Map<String, dynamic> json) =>
+      _$MonsterDamageFromJson(json);
+}
+
+/// Jet d'attaque d'une action, en pieds (allonge, ou portée normale et
+/// longue).
+@freezed
+abstract class MonsterAttack with _$MonsterAttack {
+  const factory MonsterAttack({
+    required MonsterAttackKind kind,
+    required int bonus,
+    int? reach,
+    List<int>? range,
+    @Default(<MonsterDamage>[]) List<MonsterDamage> damage,
+  }) = _MonsterAttack;
+
+  factory MonsterAttack.fromJson(Map<String, dynamic> json) =>
+      _$MonsterAttackFromJson(json);
+}
+
+@freezed
+abstract class MonsterSave with _$MonsterSave {
+  const factory MonsterSave({required String ability, required int dc}) =
+      _MonsterSave;
+
+  factory MonsterSave.fromJson(Map<String, dynamic> json) =>
+      _$MonsterSaveFromJson(json);
+}
+
+/// Trait ou action du profil ; [text] reste la référence de règles.
+@freezed
+abstract class MonsterAction with _$MonsterAction {
+  const factory MonsterAction({
+    required MonsterActionKind kind,
+    required String name,
+    MonsterUses? uses,
+    MonsterAttack? attack,
+    MonsterSave? save,
+    required String text,
+  }) = _MonsterAction;
+
+  factory MonsterAction.fromJson(Map<String, dynamic> json) =>
+      _$MonsterActionFromJson(json);
+}
+
+/// Profil de jeu (cahier §11.1 `monster`), recopié tel qu'imprimé : rien
+/// n'est recalculé.
+@freezed
+abstract class MonsterData with _$MonsterData implements EntityData {
+  const factory MonsterData({
+    required List<MonsterSize> sizes,
+    required CreatureType creatureType,
+
+    /// Texte entre parenthèses après le type (« Démon »).
+    @Default(<String>[]) List<String> typeTags,
+    required String alignment,
+    required int ac,
+
+    /// Texte qui suit la CA.
+    String? acNote,
+    required int initiative,
+    required int hp,
+    required String hitDice,
+    required MonsterSpeed speed,
+    @Default(false) bool hover,
+    @JsonKey(fromJson: _sixAbilities) required Map<String, int> abilities,
+    @JsonKey(fromJson: _sixAbilities) required Map<String, int> savingThrows,
+
+    /// Bonus par identifiant de compétence.
+    @Default(<String, int>{}) Map<String, int> skills,
+    @ContentIdConverter()
+    @Default(<ContentId>[])
+    List<ContentId> vulnerabilities,
+    @ContentIdConverter() @Default(<ContentId>[]) List<ContentId> resistances,
+    @ContentIdConverter() @Default(<ContentId>[]) List<ContentId> immunities,
+    @ContentIdConverter()
+    @Default(<ContentId>[])
+    List<ContentId> conditionImmunities,
+
+    /// Ligne « Équipement », un objet par entrée.
+    @Default(<String>[]) List<String> gear,
+    @Default(MonsterSenses()) MonsterSenses senses,
+    required int passivePerception,
+
+    /// Ligne « Langues », telle qu'imprimée.
+    required String languages,
+    required String cr,
+    required int xp,
+    int? xpLair,
+    required int proficiencyBonus,
+    int? legendaryUses,
+    int? legendaryUsesLair,
+    @Default(<MonsterAction>[]) List<MonsterAction> actions,
+  }) = _MonsterData;
+
+  factory MonsterData.fromJson(Map<String, dynamic> json) =>
+      _$MonsterDataFromJson(json);
+}
+
 /// Lecteur des données de chaque type d'entité.
 final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'ability': AbilityData.fromJson,
@@ -478,4 +679,5 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'subclass': SubclassData.fromJson,
   'feature': FeatureData.fromJson,
   'spell': SpellData.fromJson,
+  'monster': MonsterData.fromJson,
 };

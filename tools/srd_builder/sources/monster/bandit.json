@@ -1,0 +1,93 @@
+{
+  "id": "srd:monster:bandit",
+  "type": "monster",
+  "name": "Bandit",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 12,
+    "initiative": 1,
+    "hp": 11,
+    "hit_dice": "2d8 + 2",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 11,
+      "dex": 12,
+      "con": 12,
+      "int": 10,
+      "wis": 10,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 1,
+      "con": 1,
+      "int": 0,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arbalète légère",
+      "armure de cuir",
+      "cimeterre"
+    ],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "argot des voleurs, commun",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Cimeterre",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d6 + 1",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 4 (1d6 + 1) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Arbalète légère",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 3,
+          "range": [
+            80,
+            320
+          ],
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d8 + 1",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +3, portée 24/96 m. Touché : 5 (1d8 + 1) dégâts perforants."
+      }
+    ]
+  }
+}

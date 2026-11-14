@@ -1,0 +1,78 @@
+{
+  "id": "srd:monster:dire-wolf",
+  "type": "monster",
+  "name": "Loup sanguinaire",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 14,
+    "initiative": 2,
+    "hp": 22,
+    "hit_dice": "3d10 + 6",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 15,
+      "con": 15,
+      "int": 3,
+      "wis": 12,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 2,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’il cible, le loup a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d10 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 8 (1d10 + 3) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l’état À terre."
+      }
+    ]
+  }
+}

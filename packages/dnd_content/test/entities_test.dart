@@ -1,6 +1,8 @@
 import 'package:dnd_content/dnd_content.dart';
 import 'package:test/test.dart';
 
+import 'pack_fixtures.dart';
+
 Map<String, Object?> _longsword() => {
   'id': 'srd:weapon:longsword',
   'type': 'weapon',
@@ -42,8 +44,8 @@ List<String> _issuePaths(Object? json) => parseEntity(
 ).issues.map((i) => i.path).toList();
 
 void main() {
-  test('les 19 types du format sont connus', () {
-    expect(entityTypes, hasLength(19));
+  test('les 20 types du format sont connus', () {
+    expect(entityTypes, hasLength(20));
     expect(
       entityTypes,
       containsAll(['weapon', 'background', 'feature', 'damage-type']),
@@ -363,4 +365,5 @@ final _oneOfEachType = <Map<String, Object?>>[
     },
     'text': {'fr': 'Texte.'},
   },
+  wolf(),
 ];

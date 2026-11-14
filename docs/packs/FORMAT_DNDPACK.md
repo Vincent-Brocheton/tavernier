@@ -61,7 +61,7 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 ```
 
 - `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité. Les slugs `con`, `prn`, `aux`, `nul`, `com1`-`com9`, `lpt1`-`lpt9` sont interdits (noms réservés sous Windows).
-- Types v1 : `ability`, `skill`, `language`, `condition`, `rule`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `magic-item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell` (`spell` et `magic-item` ajoutés par T-04).
+- Types v1 : `ability`, `skill`, `language`, `condition`, `rule`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `magic-item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell`, `monster` (`spell` et `magic-item` ajoutés par T-04, `monster` par T-06).
 - `magic-item` :
   - `category` : `wondrous`, `armor`, `weapon`, `ring`, `wand`, `staff`, `potion`, `scroll` ou `rod` ;
   - `rarity` : `common`, `uncommon`, `rare`, `very_rare`, `legendary`, `artifact`, ou `varies` quand elle dépend de la variante ;
@@ -74,6 +74,17 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `range` : `{kind: self | touch | feet | sight | unlimited | special, feet}` (`feet` seulement pour `kind: feet`, en pieds) ;
   - `components` : `{verbal, somatic, material?}` ; `material_cost_cp?` ; `material_consumed`.
   - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
+- `monster` : profil de jeu, recopié tel qu'imprimé (rien n'est recalculé), distances en pieds :
+  - `sizes` : `tiny`, `small`, `medium`, `large`, `huge`, `gargantuan` (une liste, pour « de taille M ou P ») ;
+  - `creature_type` : `aberration`, `beast`, `celestial`, `construct`, `dragon`, `elemental`, `fey`, `fiend`, `giant`, `humanoid`, `monstrosity`, `ooze`, `plant` ou `undead` ; `type_tags` : texte entre parenthèses (« Démon ») ; `alignment` : texte ;
+  - `ac`, `ac_note?` (texte qui suit la CA), `initiative` (bonus), `hp`, `hit_dice` (« 2d8 + 2 ») ;
+  - `speed` : `{walk?, swim?, fly?, climb?, burrow?}` ; `hover` : vol stationnaire ;
+  - `abilities` et `saving_throws` : les six clés `str`, `dex`, `con`, `int`, `wis`, `cha` (valeurs, puis JS imprimés) ;
+  - `skills` : `{id de compétence: bonus}` ;
+  - `vulnerabilities`, `resistances`, `immunities` : types de dégâts ; `condition_immunities` : états ; `gear` : ligne « Équipement », une entrée par objet ;
+  - `senses` : `{darkvision?, blindsight?, blind_beyond?, tremorsense?, truesight?}` ; `passive_perception` ; `languages` : ligne « Langues », en texte ;
+  - `cr` : chaîne (`"0"`, `"1/8"`, `"1/4"`, `"1/2"`, `"1"`…`"30"`) ; `xp`, `xp_lair?`, `proficiency_bonus` ; `legendary_uses?`, `legendary_uses_lair?` ;
+  - `actions` : liste ordonnée de `{kind, name, uses?, attack?, save?, text}`, avec `kind` = `trait`, `action`, `bonus`, `reaction` ou `legendary` ; `uses` = `{per_day, per_day_lair?}`, `{recharge: "5-6"}` ou `{rest: "short_or_long"}` ; `attack` = `{kind: melee | ranged | melee_or_ranged, bonus, reach?, range?: [normale, longue], damage: [{average, dice?, type}]}` ; `save` = `{ability, dc}`. `text` reste la référence de règles.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
 - `class` (champs ajoutés par T-04 et US-05) :
@@ -103,5 +114,6 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 
 - identifiants uniques, toute référence résolue dans le pack ou ses dépendances, type de la cible conforme ;
 - Historique : exactement 3 caractéristiques ; son don d'origine est de catégorie `origin` (cahier §11.3) ;
+- Monstre : `cr`, `xp` et `proficiency_bonus` concordent avec les tables « Points d'expérience par facteur de puissance » et « Bonus de maîtrise par facteur de puissance » du SRD ; une action `legendary` exige `legendary_uses` ; un `uses` porte un seul usage ; une attaque au corps à corps a une allonge, une attaque à distance une portée `[normale, longue]` ;
 - à la lecture de l'archive (`readDndpack`, ENF-09) : archive et chaque fichier décompressé ≤ 20 Mo, `entity_count` exact, identifiants uniques, ≤ 10 000 entités, profondeur JSON ≤ 32, somme de contrôle exacte, `format_version` connue. Un pack n'exécute jamais de code.
 - à l'import (M4) : `validatePack(pack, dependencies: …)` vérifie en plus les références, avec les packs dont il dépend.
