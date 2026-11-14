@@ -1,0 +1,136 @@
+{
+  "id": "srd:monster:ice-devil",
+  "type": "monster",
+  "name": "Diable gelé",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 18,
+    "initiative": 7,
+    "hp": 228,
+    "hit_dice": "24d10 + 96",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 14,
+      "con": 18,
+      "int": 18,
+      "wis": 15,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 7,
+      "con": 9,
+      "int": 4,
+      "wis": 7,
+      "cha": 9
+    },
+    "skills": {
+      "srd:skill:insight": 7,
+      "srd:skill:perception": 7,
+      "srd:skill:persuasion": 9
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:cold",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 120
+    },
+    "passive_perception": 17,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "14",
+    "xp": 11500,
+    "proficiency_bonus": 5,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diable a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu’il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diable effectue trois attaques de Lance de glace. Il peut en remplacer une par une attaque de Queue."
+      },
+      {
+        "kind": "action",
+        "name": "Lance de glace",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 10,
+          "reach": 5,
+          "range": [
+            30,
+            120
+          ],
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d8 + 5",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +10, allonge 1,50 m ou portée 9/36 m. Touché : 14 (2d8 + 5) dégâts perforants plus 10 (3d6) dégâts de froid. Jusqu’à la fin de son tour suivant, la cible ne peut entreprendre ni action Bonus ni Réaction, sa Vitesse est réduite de 3 m et elle peut se déplacer ou entreprendre son action à son tour, mais pas les deux. Touché ou raté : aussitôt après une attaque à distance, la lance retourne magiquement dans la main du diable."
+      },
+      {
+        "kind": "action",
+        "name": "Queue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "3d6 + 5",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 18,
+              "dice": "4d8",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 3 m. Touché : 15 (3d6 + 5) dégâts contondants plus 18 (4d8) dégâts de froid."
+      },
+      {
+        "kind": "action",
+        "name": "Mur de glace",
+        "uses": {
+          "recharge": "6"
+        },
+        "text": "Le diable lance mur de glace (au 8e niveau) sans composantes de sort, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 17)."
+      }
+    ]
+  }
+}

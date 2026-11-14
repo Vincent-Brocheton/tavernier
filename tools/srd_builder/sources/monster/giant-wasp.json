@@ -1,0 +1,79 @@
+{
+  "id": "srd:monster:giant-wasp",
+  "type": "monster",
+  "name": "Guêpe géante",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 22,
+    "hit_dice": "5d8",
+    "speed": {
+      "walk": 10,
+      "fly": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 14,
+      "con": 10,
+      "int": 1,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 2,
+      "con": 0,
+      "int": -5,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Repli aérien",
+        "text": "La guêpe ne provoque pas d’attaque d’Opportunité lorsqu’elle quitte la zone d’allonge d’un ennemi en volant."
+      },
+      {
+        "kind": "action",
+        "name": "Dard",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts perforants plus 5 (2d4) dégâts de poison."
+      }
+    ]
+  }
+}

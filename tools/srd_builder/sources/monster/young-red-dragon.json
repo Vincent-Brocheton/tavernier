@@ -1,0 +1,102 @@
+{
+  "id": "srd:monster:young-red-dragon",
+  "type": "monster",
+  "name": "Jeune dragon rouge",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 18,
+    "initiative": 4,
+    "hp": 178,
+    "hit_dice": "17d10 + 85",
+    "speed": {
+      "walk": 40,
+      "climb": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 10,
+      "con": 21,
+      "int": 14,
+      "wis": 11,
+      "cha": 19
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 4,
+      "con": 5,
+      "int": 2,
+      "wis": 4,
+      "cha": 4
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 8
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 18,
+    "languages": "commun, draconique",
+    "cr": "10",
+    "xp": 5900,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d6 + 6",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 3 m. Touché : 13 (2d6 + 6) dégâts tranchants plus 3 (1d6) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 17
+        },
+        "text": "JS Dextérité : DD 17, chaque créature dans un Cône de 9 m. Échec : 56 (16d6) dégâts de feu. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

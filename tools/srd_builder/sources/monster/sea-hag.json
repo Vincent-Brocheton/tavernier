@@ -1,0 +1,107 @@
+{
+  "id": "srd:monster:sea-hag",
+  "type": "monster",
+  "name": "Guenaude marine",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fey",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 14,
+    "initiative": 1,
+    "hp": 52,
+    "hit_dice": "7d8 + 21",
+    "speed": {
+      "walk": 30,
+      "swim": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 13,
+      "con": 16,
+      "int": 12,
+      "wis": 12,
+      "cha": 13
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 3,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 11,
+    "languages": "commun, géant, primordial (aquatique)",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "La guenaude peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Laideur effroyable",
+        "save": {
+          "ability": "wis",
+          "dc": 11
+        },
+        "text": "JS Sagesse : DD 11, tout Humanoïde ou Bête qui commence son tour dans un rayon de 9 m de la guenaude et qui voit sa forme véritable. Échec : la cible subit l’état Effrayé jusqu’au début de son tour suivant. Réussite : la cible est immunisée contre la Laideur effroyable de cette guenaude pendant 24 heures."
+      },
+      {
+        "kind": "trait",
+        "name": "Magie d’assemblée",
+        "text": "Tant qu’elle se trouve dans un rayon de 9 m d’au moins deux alliées guenaudes, la guenaude peut lancer l’un des sorts suivants sans composantes matérielles, avec le temps d’incantation normal, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 11) : appel de familier, augure, identification, localisation d’objet, scrutation, serviteur invisible. La guenaude doit terminer un Repos long avant de pouvoir relancer ce sort par ce trait."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Regard mortel",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "wis",
+          "dc": 11
+        },
+        "text": "JS Sagesse : DD 11, une créature Effrayée que la guenaude voit dans un rayon de 9 m. Échec : si la cible a 20 points de vie ou moins, elle tombe à 0 point de vie. Sinon, la cible subit 13 (3d8) dégâts psychiques."
+      },
+      {
+        "kind": "action",
+        "name": "Apparence illusoire",
+        "text": "La guenaude lance déguisement, la Constitution étant sa caractéristique d’incantation (DD de sauvegarde 13). La durée du sort est de 24 heures.\nGuenaude nocturne (tormante)"
+      }
+    ]
+  }
+}

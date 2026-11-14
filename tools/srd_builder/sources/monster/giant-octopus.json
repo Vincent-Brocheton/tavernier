@@ -1,0 +1,87 @@
+{
+  "id": "srd:monster:giant-octopus",
+  "type": "monster",
+  "name": "Pieuvre géante",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 45,
+    "hit_dice": "7d10 + 7",
+    "speed": {
+      "walk": 10,
+      "swim": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 13,
+      "con": 13,
+      "int": 5,
+      "wis": 10,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 1,
+      "int": -3,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Respiration aquatique",
+        "text": "La pieuvre ne peut respirer que sous l’eau. Elle peut retenir son souffle pendant 1 heure hors de l’eau."
+      },
+      {
+        "kind": "action",
+        "name": "Tentacules",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 3 m. Touché : 10 (2d6 + 3) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l’état Agrippé (évasion DD 13) par les huit tentacules. Ainsi Agrippée, la cible subit aussi l’état Entravé."
+      },
+      {
+        "kind": "reaction",
+        "name": "Nuage d’encre",
+        "uses": {
+          "per_day": 1
+        },
+        "text": "Déclencheur : la pieuvre subit des dégâts alors qu’elle est sous l’eau. Conséquences : la pieuvre libère de l’encre qui remplit un Cube de 3 m centré sur elle, et elle se déplace dans les limites de sa Vitesse de nage. Le Cube constitue une zone à Visibilité nulle pendant 1 minute, mais un courant important ou effet comparable disperse l’encre."
+      }
+    ]
+  }
+}

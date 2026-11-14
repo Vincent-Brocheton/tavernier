@@ -1,0 +1,143 @@
+{
+  "id": "srd:monster:ancient-black-dragon",
+  "type": "monster",
+  "name": "Dragon noir vénérable",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 22,
+    "initiative": 16,
+    "hp": 367,
+    "hit_dice": "21d20 + 147",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 27,
+      "dex": 14,
+      "con": 25,
+      "int": 16,
+      "wis": 15,
+      "cha": 22
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 9,
+      "con": 7,
+      "int": 3,
+      "wis": 9,
+      "cha": 6
+    },
+    "skills": {
+      "srd:skill:stealth": 9,
+      "srd:skill:perception": 16
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 26,
+    "languages": "commun, draconique",
+    "cr": "21",
+    "xp": 33000,
+    "xp_lair": 41000,
+    "proficiency_bonus": 7,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4,
+          "per_day_lair": 5
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation pour lancer flèche acide (au 4e niveau)."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 15,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d8 + 8",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +15, allonge 4,50 m. Touché : 17 (2d8 + 8) dégâts tranchants plus 9 (2d8) dégâts d’acide."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 21, +13 pour toucher) :\nÀ volonté : détection de la magie, flèche acide (au 4e niveau), terreur\n1/jour chacun : communication avec les morts, création de mort-vivant, sphère de vitriol (au 5e niveau)"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle d’acide",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 22
+        },
+        "text": "JS Dextérité : DD 22, chaque créature dans une Ligne de 27 m de long sur 3 m de large. Échec : 67 (15d8) dégâts d’acide. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Nuage d’insectes",
+        "save": {
+          "ability": "dex",
+          "dc": 21
+        },
+        "text": "JS Dextérité : DD 21, une créature que le dragon voit dans un rayon de 36 m. Échec : 33 (6d10) dégâts de poison, et la cible subit le Désavantage aux jets de sauvegarde visant à maintenir sa Concentration, jusqu’à la fin de son tour suivant. Échec ou réussite : Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Présence terrifiante",
+        "text": "Le dragon recourt à Incantation pour lancer terreur. Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

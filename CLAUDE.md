@@ -154,6 +154,11 @@ fvm flutter run -d chrome          # depuis apps/game_table
   - **Ce que l'outil réécrit :** le nom, la catégorie, la rareté, la ligne de type, l'harmonisation et le texte. Il garde les `effects`.
   - **Slugs :** `extract/magic_item_slugs.tsv`.
   - **Tables dont la lecture mêle les colonnes :** `extract/magic_item_tables.json`, recopié du texte en mise en page et vérifié par un test. `build/extract-magic-items.txt` liste les lignes courtes restées dans un texte, à relire.
+- **Extraction du bestiaire du SRD** (T-06) : `fvm dart run tools/srd_builder/bin/srd_builder.dart extract-monsters --text <fichier pdftotext>`, depuis la racine du dépôt.
+  - **Ce que l'outil réécrit :** chaque profil de « Monstres de A à Z » et « Animaux », en entier (330 fichiers `sources/monster/*.json`).
+  - **Slugs :** `extract/monster_slugs.tsv`. Un slug manquant ou une source orpheline arrête l'outil sans rien écrire.
+  - **Coquilles du PDF :** corrigées par `monsterTypos` dans `lib/src/monster_extractor.dart` ; un test vérifie que chaque passage fautif est toujours dans le SRD.
+  - **À relire :** `build/extract-monsters.txt` liste les lectures incertaines (dégâts non lus, précisions non reprises, suites de paragraphe).
 - **Pack SRD** : sources dans `tools/srd_builder/sources/<type>/<slug>.json` (format : `docs/packs/FORMAT_DNDPACK.md`, DSL : `docs/dsl/DSL_V1.md`). Le build échoue en listant chaque problème avec son fichier. Slugs anglais, jamais un nom réservé par Windows (`con`, `aux`, `nul`…).
 - **Code généré** (`*.freezed.dart`, `*.g.dart`) : commité ; après une modification des modèles, `cd packages/dnd_content && fvm dart run build_runner build --delete-conflicting-outputs`. Il est exclu de la couverture.
 - **Interface (dnd_ui_kit)** :

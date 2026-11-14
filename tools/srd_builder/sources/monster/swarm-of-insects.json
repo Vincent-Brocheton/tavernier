@@ -1,0 +1,95 @@
+{
+  "id": "srd:monster:swarm-of-insects",
+  "type": "monster",
+  "name": "Nuée d’insectes",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "swarm_size": "tiny",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 19,
+    "hit_dice": "3d8 + 6",
+    "speed": {
+      "walk": 20
+    },
+    "speed_note": "escalade ou vol 6 m (au choix du MJ)",
+    "hover": false,
+    "abilities": {
+      "str": 3,
+      "dex": 13,
+      "con": 14,
+      "int": 1,
+      "wis": 7,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 1,
+      "con": 2,
+      "int": -5,
+      "wis": -2,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:restrained",
+      "srd:condition:stunned",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 30
+    },
+    "passive_perception": 8,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Nuée",
+        "text": "La nuée peut occuper l’espace d’une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour un insecte de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+      },
+      {
+        "kind": "trait",
+        "name": "Pattes d’araignée",
+        "text": "Si la nuée dispose d’une Vitesse d’escalade, la nuée peut peut parcourir les parois les plus difficiles, y compris les plafonds, sans passer par un test de caractéristique."
+      },
+      {
+        "kind": "action",
+        "name": "Morsures",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "2d4 + 1",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 6 (2d4 + 1) dégâts de poison, ou 3 (1d4 + 1) dégâts de poison si la nuée est En péril."
+      }
+    ]
+  }
+}

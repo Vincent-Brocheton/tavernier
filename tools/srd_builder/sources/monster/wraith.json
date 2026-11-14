@@ -1,0 +1,107 @@
+{
+  "id": "srd:monster:wraith",
+  "type": "monster",
+  "name": "Âme-en-peine",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 67,
+    "hit_dice": "9d8 + 27",
+    "speed": {
+      "walk": 5,
+      "fly": 60
+    },
+    "hover": true,
+    "abilities": {
+      "str": 6,
+      "dex": 16,
+      "con": 16,
+      "int": 12,
+      "wis": 14,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 3,
+      "con": 3,
+      "int": 1,
+      "wis": 2,
+      "cha": 2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:acid",
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:fire",
+      "srd:damage-type:cold",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:charmed",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:unconscious",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 12,
+    "languages": "commun et deux autres langues",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Déplacement intangible",
+        "text": "L’âme-en-peine peut traverser d’autres créatures et objets comme s’il s’agissait d’un Terrain difficile. Elle subit 5 (1d10) dégâts de force si elle termine son tour à l’intérieur d’un objet."
+      },
+      {
+        "kind": "trait",
+        "name": "Sensibilité au soleil",
+        "text": "Tant qu’elle est exposée à la lumière du soleil, l’âme-en-peine subit le Désavantage aux tests de caractéristique et aux jets d’attaque."
+      },
+      {
+        "kind": "action",
+        "name": "Absorption de vie",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 21,
+              "dice": "4d8 + 3",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 21 (4d8 + 3) dégâts nécrotiques. Si la cible est une créature, son maximum de points de vie est réduit d’un montant égal aux dégâts subis."
+      },
+      {
+        "kind": "action",
+        "name": "Création de spectre",
+        "text": "L’âme-en-peine cible un Humanoïde dans un rayon de 3 m, mort depuis moins de 1 minute. L’esprit de la cible émerge sous forme de spectre de l’espace de son cadavre ou dans l’espace inoccupé le plus proche. Le spectre est sous le contrôle de l’âme-en-peine. L’âme-en-peine ne peut ainsi contrôler plus de sept spectres à la fois."
+      }
+    ]
+  }
+}

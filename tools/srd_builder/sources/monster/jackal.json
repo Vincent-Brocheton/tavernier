@@ -1,0 +1,73 @@
+{
+  "id": "srd:monster:jackal",
+  "type": "monster",
+  "name": "Chacal",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 3,
+    "hit_dice": "1d6",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 8,
+      "dex": 15,
+      "con": 11,
+      "int": 3,
+      "wis": 12,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": -1,
+      "dex": 2,
+      "con": 0,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 90
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 1,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "dice": "1d4 – 1",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +1, allonge 1,50 m. Touché : 1 (1d4 – 1) dégâts perforants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "srd:monster:young-brass-dragon",
+  "type": "monster",
+  "name": "Jeune dragon d’airain",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Chaotique Bon",
+    "ac": 17,
+    "initiative": 3,
+    "hp": 110,
+    "hit_dice": "13d10 + 39",
+    "speed": {
+      "walk": 40,
+      "burrow": 20,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 10,
+      "con": 17,
+      "int": 12,
+      "wis": 11,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 3,
+      "con": 3,
+      "int": 1,
+      "wis": 3,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 3,
+      "srd:skill:perception": 6,
+      "srd:skill:persuasion": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 16,
+    "languages": "commun, draconique",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer deux de ces attaques par une utilisation de Souffle soporifique."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d10 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 15 (2d10 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 14
+        },
+        "text": "JS Dextérité : DD 14, chaque créature dans une Ligne de 12 m de long sur 1,50 m de large. Échec : 38 (11d6) dégâts de feu. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle soporifique",
+        "save": {
+          "ability": "con",
+          "dc": 14
+        },
+        "text": "JS Constitution : DD 14, chaque créature dans un Cône de 9 m. Échec : la cible subit l’état Neutralisé jusqu’à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l’état Inconscient pendant 1 minute. Cet effet prend fin pour la cible si celle-ci subit des dégâts ou si une créature dans un rayon de 1,50 m consacre une action à la réveiller."
+      }
+    ]
+  }
+}

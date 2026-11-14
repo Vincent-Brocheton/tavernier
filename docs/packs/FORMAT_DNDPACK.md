@@ -75,16 +75,16 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `components` : `{verbal, somatic, material?}` ; `material_cost_cp?` ; `material_consumed`.
   - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
 - `monster` : profil de jeu, recopié tel qu'imprimé (rien n'est recalculé), distances en pieds :
-  - `sizes` : `tiny`, `small`, `medium`, `large`, `huge`, `gargantuan` (une liste, pour « de taille M ou P ») ;
+  - `sizes` : `tiny`, `small`, `medium`, `large`, `huge`, `gargantuan` (une liste, pour « de taille M ou P ») ; `swarm_size?` : taille des créatures d'une nuée (« Nuée de taille G de Bêtes de taille TP » : `sizes` = `[large]`, `swarm_size` = `tiny`) ;
   - `creature_type` : `aberration`, `beast`, `celestial`, `construct`, `dragon`, `elemental`, `fey`, `fiend`, `giant`, `humanoid`, `monstrosity`, `ooze`, `plant` ou `undead` ; `type_tags` : texte entre parenthèses (« Démon ») ; `alignment` : texte ;
   - `ac`, `ac_note?` (texte qui suit la CA), `initiative` (bonus), `hp`, `hit_dice` (« 2d8 + 2 ») ;
-  - `speed` : `{walk?, swim?, fly?, climb?, burrow?}` ; `hover` : vol stationnaire ;
+  - `speed` : `{walk?, swim?, fly?, climb?, burrow?}` ; `hover` : vol stationnaire ; `speed_note?` : partie imprimée de la ligne Vitesse que les nombres ne portent pas (« 12 m (forme de loup uniquement) ») ;
   - `abilities` et `saving_throws` : les six clés `str`, `dex`, `con`, `int`, `wis`, `cha` (valeurs, puis JS imprimés) ;
   - `skills` : `{id de compétence: bonus}` ;
   - `vulnerabilities`, `resistances`, `immunities` : types de dégâts ; `condition_immunities` : états ; `gear` : ligne « Équipement », une entrée par objet ;
-  - `senses` : `{darkvision?, blindsight?, blind_beyond?, tremorsense?, truesight?}` ; `passive_perception` ; `languages` : ligne « Langues », en texte ;
+  - `senses` : `{darkvision?, blindsight?, blind_beyond?, tremorsense?, truesight?}` ; `senses_note?` : précision imprimée d'un sens (« Vision dans le noir 36 m (perce les Ténèbres magiques) ») ; `passive_perception` ; `languages` : ligne « Langues », en texte ;
   - `cr` : chaîne (`"0"`, `"1/8"`, `"1/4"`, `"1/2"`, `"1"`…`"30"`) ; `xp`, `xp_lair?`, `proficiency_bonus` ; `legendary_uses?`, `legendary_uses_lair?` ;
-  - `actions` : liste ordonnée de `{kind, name, uses?, attack?, save?, text}`, avec `kind` = `trait`, `action`, `bonus`, `reaction` ou `legendary` ; `uses` = `{per_day, per_day_lair?}`, `{recharge: "5-6"}` ou `{rest: "short_or_long"}` ; `attack` = `{kind: melee | ranged | melee_or_ranged, bonus, reach?, range?: [normale, longue], damage: [{average, dice?, type}]}` ; `save` = `{ability, dc}`. `text` reste la référence de règles.
+  - `actions` : liste ordonnée de `{kind, name, uses?, attack?, save?, text}`, avec `kind` = `trait`, `action`, `bonus`, `reaction` ou `legendary` ; `uses` = `{per_day, per_day_lair?}`, `{recharge: "5-6"}` ou `{rest: "short_or_long"}` ; `attack` = `{kind: melee | ranged | melee_or_ranged, bonus, reach?, range?: [normale] ou [normale, longue], damage: [{average, dice?, type}]}` ; `save` = `{ability, dc}`. `text` reste la référence de règles.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
 - `class` (champs ajoutés par T-04 et US-05) :

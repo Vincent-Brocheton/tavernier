@@ -1,0 +1,109 @@
+{
+  "id": "srd:monster:ghast",
+  "type": "monster",
+  "name": "Blême",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 36,
+    "hit_dice": "8d8",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 17,
+      "con": 10,
+      "int": 11,
+      "wis": 10,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 3,
+      "con": 0,
+      "int": 0,
+      "wis": 2,
+      "cha": -1
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic"
+    ],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "commun",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Puanteur",
+        "save": {
+          "ability": "con",
+          "dc": 10
+        },
+        "text": "JS Constitution : DD 10, toute créature qui commence son tour dans une Émanation de 1,50 m centrée sur la blême. Échec : la cible subit l’état Empoisonné jusqu’au début de son tour suivant. Réussite : la cible est immunisée contre la puanteur de cette blême pendant 24 heures."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts tranchants. Si la cible est une créature autre qu’un Mort-vivant, elle est soumise à l’effet suivant. JS Constitution : DD 10. Échec : la cible subit l’état Paralysé jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d8 + 3",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 7 (1d8 + 3) dégâts perforants plus 9 (2d8) dégâts nécrotiques."
+      }
+    ]
+  }
+}

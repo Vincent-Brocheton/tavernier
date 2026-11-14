@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:centaur-trooper",
+  "type": "monster",
+  "name": "Soldat centaure",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fey",
+    "type_tags": [],
+    "alignment": "Neutre Bonne",
+    "ac": 16,
+    "initiative": 2,
+    "hp": 45,
+    "hit_dice": "6d10 + 12",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 14,
+      "con": 14,
+      "int": 9,
+      "wis": 13,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 2,
+      "int": -1,
+      "wis": 1,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:athletics": 6,
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arc long",
+      "cuirasse",
+      "pique"
+    ],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "elfique, sylvestre",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le centaure effectue deux attaques, réparties à sa guise entre Pique et Arc long."
+      },
+      {
+        "kind": "action",
+        "name": "Pique",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "1d10 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 9 (1d10 + 4) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Arc long",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            150,
+            600
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 45/180 m. Touché : 6 (1d8 + 2) dégâts perforants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Charge écrasante",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "text": "Le centaure se déplace dans les limites de sa Vitesse sans provoquer d’attaques d’Opportunité et peut traverser les espaces des créatures de taille M ou inférieure. Chaque créature dont l’espace est traversé par le centaure est la cible de l’effet suivant. JS Force : DD 14. Échec : 7 (1d6 + 4) dégâts contondants, et la cible subit l’état À terre."
+      }
+    ]
+  }
+}

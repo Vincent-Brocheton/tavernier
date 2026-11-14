@@ -1,0 +1,71 @@
+{
+  "id": "srd:monster:stirge",
+  "type": "monster",
+  "name": "Strige",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 5,
+    "hit_dice": "2d4",
+    "speed": {
+      "walk": 10,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 4,
+      "dex": 16,
+      "con": 11,
+      "int": 2,
+      "wis": 8,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": -3,
+      "dex": 3,
+      "con": 0,
+      "int": -4,
+      "wis": -1,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 9,
+    "languages": "aucune",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Trompe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts perforants, et la strige se fixe à la cible. Tant qu’elle est ainsi fixée, la strige ne peut pas effectuer d’attaques de Trompe et la cible subit 5 (2d4) dégâts nécrotiques au début de chaque tour de la strige.\nLa strige peut se détacher de la cible en y consacrant 1,50 m de déplacement. La cible ou une créature dans un rayon de 1,50 m d’elle peut décrocher la strige au prix d’une action."
+      }
+    ]
+  }
+}

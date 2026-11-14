@@ -1,0 +1,126 @@
+{
+  "id": "srd:monster:wererat",
+  "type": "monster",
+  "name": "Rat-garou",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [
+      "Lycanthrope"
+    ],
+    "alignment": "Loyale Mauvaise",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 60,
+    "hit_dice": "11d8 + 11",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 16,
+      "con": 12,
+      "int": 11,
+      "wis": 10,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 3,
+      "con": 1,
+      "int": 0,
+      "wis": 0,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arbalète de poing"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "commun (ne parle pas sous forme de rat)",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le rat-garou effectue deux attaques, réparties à sa guise entre Éraflure et Arbalète de poing. Il peut en remplacer une par une attaque de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Éraflure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure (formes de rat et hybride uniquement)",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "2d4 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 8 (2d4 + 3) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l’effet suivant. JS Constitution : DD 11. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un rat-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce rat-garou pendant 24 heures."
+      },
+      {
+        "kind": "action",
+        "name": "Arbalète de poing (forme humanoïde ou hybride uniquement)",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            30,
+            120
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 9/36 m. Touché : 6 (1d6 + 3) dégâts perforants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Changement d’aspect",
+        "text": "Le rat-garou se transforme en hybride rat-humanoïde de taille M ou en rat de taille P, ou bien retrouve sa forme véritable d’humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu’il porte n’est transformé."
+      }
+    ]
+  }
+}

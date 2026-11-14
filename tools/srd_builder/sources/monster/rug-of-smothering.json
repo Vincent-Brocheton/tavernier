@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:rug-of-smothering",
+  "type": "monster",
+  "name": "Tapis étrangleur",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 12,
+    "initiative": 4,
+    "hp": 27,
+    "hit_dice": "5d10",
+    "speed": {
+      "walk": 10
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 14,
+      "con": 10,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 2,
+      "con": 0,
+      "int": -5,
+      "wis": -4,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison",
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 6,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Étouffement",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts contondants. Si la cible est une créature de taille M ou inférieure, le tapis peut lui imposer l’état Agrippé (évasion DD 13) au lieu de lui infliger des dégâts. Tant que la cible est Agrippée, elle subit les états Aveuglé et Entravé, s’asphyxie, et subit 10 (2d6 + 3) dégâts contondants au début de chacun de ses tours. Le tapis ne peut étouffer qu’une créature à la fois.\nTant qu’il agrippe la cible, le tapis ne peut pas entreprendre cette action, il réduit de moitié les dégâts qu’il subit (arrondis à l’inférieur) et la cible subit autant de dégâts que lui."
+      }
+    ]
+  }
+}

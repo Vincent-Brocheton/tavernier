@@ -1307,6 +1307,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       allowedKeys: const [
         'sizes',
         'creature_type',
+        'swarm_size',
         'type_tags',
         'alignment',
         'ac',
@@ -1315,6 +1316,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'hp',
         'hit_dice',
         'speed',
+        'speed_note',
         'hover',
         'abilities',
         'saving_throws',
@@ -1325,6 +1327,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'condition_immunities',
         'gear',
         'senses',
+        'senses_note',
         'passive_perception',
         'languages',
         'cr',
@@ -1347,6 +1350,10 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'creature_type',
         (v) => $enumDecode(_$CreatureTypeEnumMap, v),
       ),
+      swarmSize: $checkedConvert(
+        'swarm_size',
+        (v) => $enumDecodeNullable(_$MonsterSizeEnumMap, v),
+      ),
       typeTags: $checkedConvert(
         'type_tags',
         (v) =>
@@ -1363,6 +1370,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'speed',
         (v) => MonsterSpeed.fromJson(v as Map<String, dynamic>),
       ),
+      speedNote: $checkedConvert('speed_note', (v) => v as String?),
       hover: $checkedConvert('hover', (v) => v as bool? ?? false),
       abilities: $checkedConvert('abilities', (v) => _sixAbilities(v)),
       savingThrows: $checkedConvert('saving_throws', (v) => _sixAbilities(v)),
@@ -1418,6 +1426,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
             ? const MonsterSenses()
             : MonsterSenses.fromJson(v as Map<String, dynamic>),
       ),
+      sensesNote: $checkedConvert('senses_note', (v) => v as String?),
       passivePerception: $checkedConvert(
         'passive_perception',
         (v) => (v as num).toInt(),
@@ -1451,11 +1460,14 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   },
   fieldKeyMap: const {
     'creatureType': 'creature_type',
+    'swarmSize': 'swarm_size',
     'typeTags': 'type_tags',
     'acNote': 'ac_note',
     'hitDice': 'hit_dice',
+    'speedNote': 'speed_note',
     'savingThrows': 'saving_throws',
     'conditionImmunities': 'condition_immunities',
+    'sensesNote': 'senses_note',
     'passivePerception': 'passive_perception',
     'xpLair': 'xp_lair',
     'proficiencyBonus': 'proficiency_bonus',
@@ -1468,6 +1480,7 @@ Map<String, dynamic> _$MonsterDataToJson(_MonsterData instance) =>
     <String, dynamic>{
       'sizes': instance.sizes.map((e) => _$MonsterSizeEnumMap[e]!).toList(),
       'creature_type': _$CreatureTypeEnumMap[instance.creatureType]!,
+      'swarm_size': ?_$MonsterSizeEnumMap[instance.swarmSize],
       'type_tags': instance.typeTags,
       'alignment': instance.alignment,
       'ac': instance.ac,
@@ -1476,6 +1489,7 @@ Map<String, dynamic> _$MonsterDataToJson(_MonsterData instance) =>
       'hp': instance.hp,
       'hit_dice': instance.hitDice,
       'speed': instance.speed.toJson(),
+      'speed_note': ?instance.speedNote,
       'hover': instance.hover,
       'abilities': instance.abilities,
       'saving_throws': instance.savingThrows,
@@ -1494,6 +1508,7 @@ Map<String, dynamic> _$MonsterDataToJson(_MonsterData instance) =>
           .toList(),
       'gear': instance.gear,
       'senses': instance.senses.toJson(),
+      'senses_note': ?instance.sensesNote,
       'passive_perception': instance.passivePerception,
       'languages': instance.languages,
       'cr': instance.cr,

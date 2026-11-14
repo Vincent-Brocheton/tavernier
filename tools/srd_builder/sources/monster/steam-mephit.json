@@ -1,0 +1,106 @@
+{
+  "id": "srd:monster:steam-mephit",
+  "type": "monster",
+  "name": "Méphite vaporeux",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "elemental",
+    "type_tags": [],
+    "alignment": "Neutre Mauvais",
+    "ac": 10,
+    "initiative": 0,
+    "hp": 17,
+    "hit_dice": "5d6",
+    "speed": {
+      "walk": 30,
+      "fly": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 5,
+      "dex": 11,
+      "con": 10,
+      "int": 11,
+      "wis": 10,
+      "cha": 12
+    },
+    "saving_throws": {
+      "str": -3,
+      "dex": 0,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 1
+    },
+    "skills": {
+      "srd:skill:stealth": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "primordial (aquatique, igné)",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Explosion finale",
+        "text": "Le méphite explose quand il meurt. JS Dextérité : DD 10, chaque créature dans une Émanation de 1,50 m centrée sur le méphite. Échec : 5 (2d4) dégâts de feu. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "trait",
+        "name": "Forme floue",
+        "text": "Les jets d’attaque contre le méphite subissent le Désavantage sauf si le méphite subit l’état Neutralisé."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 2 (1d4) dégâts tranchants plus 2 (1d4) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de vapeur",
+        "uses": {
+          "recharge": "6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 10
+        },
+        "text": "JS Constitution : DD 10, chaque créature dans un Cône de 4,50 m. Échec : 5 (2d4) dégâts de feu, et la Vitesse de la cible est réduite de 3 m jusqu’à la fin du tour suivant du méphite. Réussite : demi-dégâts uniquement. Échec ou réussite : être immergé dans l’eau n’octroie pas la Résistance à ces dégâts de feu."
+      }
+    ]
+  }
+}

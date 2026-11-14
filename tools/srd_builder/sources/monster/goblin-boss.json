@@ -1,0 +1,114 @@
+{
+  "id": "srd:monster:goblin-boss",
+  "type": "monster",
+  "name": "Chef gobelin",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "fey",
+    "type_tags": [
+      "Gobelinoïde"
+    ],
+    "alignment": "Chaotique Neutre",
+    "ac": 17,
+    "initiative": 2,
+    "hp": 21,
+    "hit_dice": "6d6",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 15,
+      "con": 10,
+      "int": 10,
+      "wis": 8,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 2,
+      "con": 0,
+      "int": 0,
+      "wis": -1,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:stealth": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arc court",
+      "bouclier",
+      "chemise de mailles",
+      "cimeterre"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 9,
+    "languages": "commun, gobelin",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le gobelin effectue deux attaques, réparties à sa guise entre Cimeterre et Arc court."
+      },
+      {
+        "kind": "action",
+        "name": "Cimeterre",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts tranchants, plus 2 (1d4) dégâts tranchants si le jet d’attaque avait l’Avantage."
+      },
+      {
+        "kind": "action",
+        "name": "Arc court",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            80,
+            320
+          ],
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 24/96 m. Touché : 5 (1d6 + 2) dégâts perforants, plus 2 (1d4) dégâts perforants si le jet d’attaque avait l’Avantage."
+      },
+      {
+        "kind": "bonus",
+        "name": "Fuite agile",
+        "text": "Le gobelin entreprend l’action Désengagement ou Furtivité."
+      },
+      {
+        "kind": "reaction",
+        "name": "Attaque redirigée",
+        "text": "Déclencheur : une créature que le gobelin voit effectue un jet d’attaque contre lui. Conséquences : le gobelin choisit un allié de taille P ou M dans un rayon de 1,50 m. Le gobelin et cet allié échangent leurs places ; l’allié devient la nouvelle cible de l’attaque."
+      }
+    ]
+  }
+}

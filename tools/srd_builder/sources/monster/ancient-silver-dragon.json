@@ -1,0 +1,147 @@
+{
+  "id": "srd:monster:ancient-silver-dragon",
+  "type": "monster",
+  "name": "Dragon d’argent vénérable",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 22,
+    "initiative": 14,
+    "hp": 468,
+    "hit_dice": "24d20 + 216",
+    "speed": {
+      "walk": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 30,
+      "dex": 10,
+      "con": 29,
+      "int": 18,
+      "wis": 15,
+      "cha": 26
+    },
+    "saving_throws": {
+      "str": 10,
+      "dex": 7,
+      "con": 9,
+      "int": 4,
+      "wis": 9,
+      "cha": 8
+    },
+    "skills": {
+      "srd:skill:stealth": 7,
+      "srd:skill:history": 11,
+      "srd:skill:perception": 16
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:cold"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 26,
+    "languages": "commun, draconique",
+    "cr": "23",
+    "xp": 50000,
+    "xp_lair": 62000,
+    "proficiency_bonus": 7,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4,
+          "per_day_lair": 5
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de (A) Incantation pour lancer couteau de glace (au 2e niveau) ou (B) Souffle paralysant."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 17,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 19,
+              "dice": "2d8 + 10",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:cold"
+            }
+          ]
+        },
+        "text": "Corps à corps : +17, allonge 4,50 m. Touché : 19 (2d8 + 10) dégâts tranchants plus 9 (2d8) dégâts de froid."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 23, +15 pour toucher) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), couteau de glace (au 2e niveau), détection de la magie, immobilisation de monstre\n1/jour chacun : contrôle du climat, téléportation, tempête de grêle (au 7e niveau), zone de vérité"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle glacial",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 24
+        },
+        "text": "JS Constitution : DD 24, chaque créature dans un Cône de 27 m. Échec : 67 (15d8) dégâts de froid. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle paralysant",
+        "save": {
+          "ability": "con",
+          "dc": 24
+        },
+        "text": "JS Constitution : DD 24, chaque créature dans un Cône de 27 m. Premier échec : la cible subit l’état Neutralisé jusqu’à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l’état Paralysé et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "On ne bouge plus",
+        "text": "Le dragon recourt à Incantation pour lancer immobilisation de monstre. Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Rafale gelée",
+        "save": {
+          "ability": "dex",
+          "dc": 23
+        },
+        "text": "JS Dextérité : DD 23, chaque créature dans une Ligne de 18 m de long sur 3 m de large. Échec : 14 (4d6) dégâts de froid, et la cible est repoussée du dragon en ligne droite d’un maximum de 9 m. Réussite : demi-dégâts uniquement. Échec ou réussite : Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

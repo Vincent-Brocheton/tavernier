@@ -1,0 +1,80 @@
+{
+  "id": "srd:monster:grimlock",
+  "type": "monster",
+  "name": "Torve",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "aberration",
+    "type_tags": [],
+    "alignment": "Neutre Mauvaise",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 11,
+    "hit_dice": "2d8 + 2",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 12,
+      "con": 12,
+      "int": 9,
+      "wis": 8,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 1,
+      "int": -1,
+      "wis": -1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:athletics": 5,
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 30
+    },
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Gourdin en os",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:psychic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts contondants plus 2 (1d4) dégâts psychiques."
+      }
+    ]
+  }
+}

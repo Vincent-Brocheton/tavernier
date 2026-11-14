@@ -1,0 +1,122 @@
+{
+  "id": "srd:monster:erinyes",
+  "type": "monster",
+  "name": "Érinye",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 18,
+    "initiative": 7,
+    "hp": 178,
+    "hit_dice": "21d8 + 84",
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 16,
+      "con": 18,
+      "int": 14,
+      "wis": 14,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 7,
+      "con": 8,
+      "int": 2,
+      "wis": 2,
+      "cha": 8
+    },
+    "skills": {
+      "srd:skill:perception": 6,
+      "srd:skill:persuasion": 8
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 16,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "12",
+    "xp": 8400,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Corde magique",
+        "text": "L’érinye possède une corde magique. Tant qu’elle la porte sur elle, elle peut recourir à l’action Rets implacables. La corde présente le profil suivant : CA 20, 90 pv, Immunité contre les dégâts psychiques et de poison. La corde est réduite en poussière si elle tombe à 0 point de vie, se trouve à 1,50 m ou plus de l’érinye pendant au moins 1 heure ou si l’érinye meurt. Si la corde subit des dégâts ou est détruite, l’érinye peut la restaurer entièrement en terminant un Repos court ou long."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "L’érinye a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si l’érinye meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse et elle en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’érinye effectue trois attaques d’Épée flétrissante et peut recourir à Rets implacables."
+      },
+      {
+        "kind": "action",
+        "name": "Épée flétrissante",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 11,
+              "dice": "2d10",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts tranchants plus 11 (2d10) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Rets implacables (corde magique requise)",
+        "save": {
+          "ability": "str",
+          "dc": 16
+        },
+        "text": "JS Force : DD 16, une créature que l’érinye voit dans un rayon de 36 m. Échec : 14 (4d6) dégâts de force, et la cible subit l’état Entravé jusqu’à ce que la corde soit détruite, que l’érinye la libère par une action Bonus ou que l’érinye recoure de nouveau à Rets implacables."
+      },
+      {
+        "kind": "reaction",
+        "name": "Parade",
+        "text": "Déclencheur : l’érinye est touchée par un jet d’attaque de corps à corps alors qu’elle tient une arme. Conséquences : l’érinye ajoute 4 à sa CA contre cette attaque, ce qui peut la faire rater."
+      }
+    ]
+  }
+}

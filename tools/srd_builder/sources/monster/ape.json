@@ -1,0 +1,100 @@
+{
+  "id": "srd:monster:ape",
+  "type": "monster",
+  "name": "Grand singe",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 19,
+    "hit_dice": "3d8 + 6",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 14,
+      "con": 14,
+      "int": 6,
+      "wis": 12,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 2,
+      "con": 2,
+      "int": -2,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:athletics": 5,
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le singe effectue deux attaques de Poing."
+      },
+      {
+        "kind": "action",
+        "name": "Poing",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts contondants."
+      },
+      {
+        "kind": "action",
+        "name": "Rocher",
+        "uses": {
+          "recharge": "6"
+        },
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            25,
+            50
+          ],
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 7,50/15 m. Touché : 10 (2d6 + 3) dégâts contondants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "srd:monster:shrieker-fungus",
+  "type": "monster",
+  "name": "Criard",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "plant",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 5,
+    "initiative": -5,
+    "hp": 13,
+    "hit_dice": "3d8",
+    "speed": {
+      "walk": 5
+    },
+    "hover": false,
+    "abilities": {
+      "str": 1,
+      "dex": 1,
+      "con": 10,
+      "int": 1,
+      "wis": 3,
+      "cha": 1
+    },
+    "saving_throws": {
+      "str": -5,
+      "dex": -5,
+      "con": 0,
+      "int": -5,
+      "wis": -4,
+      "cha": -5
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:blinded",
+      "srd:condition:charmed",
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 30
+    },
+    "passive_perception": 6,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 0,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "reaction",
+        "name": "Hurlement",
+        "text": "Déclencheur : une créature ou une source de Lumière vive se déplace dans un rayon de 9 m du criard. Conséquences : le criard émet un hurlement audible dans un rayon de 90 m pendant 1 minute (le cri cesse s’il meurt)."
+      }
+    ]
+  }
+}

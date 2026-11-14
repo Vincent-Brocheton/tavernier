@@ -1,0 +1,95 @@
+{
+  "id": "srd:monster:hill-giant",
+  "type": "monster",
+  "name": "Géant des collines",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "giant",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 105,
+    "hit_dice": "10d12 + 40",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 8,
+      "con": 19,
+      "int": 5,
+      "wis": 9,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": -1,
+      "con": 4,
+      "int": -3,
+      "wis": -1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 12,
+    "languages": "géant",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le géant effectue deux attaques, réparties à sa guise entre Arbre-massue et Lancer de détritus."
+      },
+      {
+        "kind": "action",
+        "name": "Arbre-massue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 18,
+              "dice": "3d8 + 5",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 3 m. Touché : 18 (3d8 + 5) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l’état À terre."
+      },
+      {
+        "kind": "action",
+        "name": "Lancer de détritus",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 8,
+          "range": [
+            60,
+            240
+          ],
+          "damage": [
+            {
+              "average": 16,
+              "dice": "2d10 + 5",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "À distance : +8, portée 18/72 m. Touché : 16 (2d10 + 5) dégâts contondants, et la cible subit l’état Empoisonné jusqu’à la fin de son tour suivant."
+      }
+    ]
+  }
+}

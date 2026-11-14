@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:flying-snake",
+  "type": "monster",
+  "name": "Serpent volant",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 14,
+    "initiative": 2,
+    "hp": 5,
+    "hit_dice": "2d4",
+    "speed": {
+      "walk": 30,
+      "swim": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 4,
+      "dex": 15,
+      "con": 11,
+      "int": 2,
+      "wis": 12,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": -3,
+      "dex": 2,
+      "con": 0,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 10
+    },
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Repli aérien",
+        "text": "Le serpent ne provoque pas d’attaque d’Opportunité lorsqu’il quitte la zone d’allonge d’un ennemi en volant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 1 dégât perforant plus 5 (2d4) dégâts de poison."
+      }
+    ]
+  }
+}

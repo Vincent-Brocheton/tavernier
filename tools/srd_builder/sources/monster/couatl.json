@@ -1,0 +1,105 @@
+{
+  "id": "srd:monster:couatl",
+  "type": "monster",
+  "name": "Couatl",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Loyal Bon",
+    "ac": 19,
+    "initiative": 5,
+    "hp": 60,
+    "hit_dice": "8d8 + 24",
+    "speed": {
+      "walk": 30,
+      "fly": 90
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 20,
+      "con": 17,
+      "int": 18,
+      "wis": 20,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 5,
+      "con": 5,
+      "int": 4,
+      "wis": 7,
+      "cha": 4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:psychic",
+      "srd:damage-type:radiant"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 15,
+    "languages": "toutes ; télépathie 36 m",
+    "cr": "4",
+    "xp": 1100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Esprit protégé",
+        "text": "Rien ne peut lire les pensées du couatl, et les autres créatures ne peuvent communiquer avec lui par télépathie que s’il le permet."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "1d12 + 5",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 11 (1d12 + 5) dégâts perforants, et la cible subit l’état Empoisonné jusqu’à la fin du tour suivant du couatl."
+      },
+      {
+        "kind": "action",
+        "name": "Constriction",
+        "save": {
+          "ability": "str",
+          "dc": 15
+        },
+        "text": "JS Force : DD 15, une créature de taille M ou inférieure que le couatl voit dans un rayon de 1,50 m. Échec : 8 (1d6 + 5) dégâts contondants. La cible subit l’état Agrippé (évasion DD 13), ainsi que l’état Entravé tant qu’elle est Agrippée."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le couatl lance l’un des sorts suivants sans la moindre composante, la Sagesse étant sa caractéristique d’incantation (DD de sauvegarde 15) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, détection des pensées, détection du mal et du bien\n1/jour chacun : création de nourriture et d’eau, restauration suprême, scrutation, sommeil, songe"
+      },
+      {
+        "kind": "bonus",
+        "name": "Soutien divin",
+        "uses": {
+          "per_day": 2
+        },
+        "text": "Le couatl lance bénédiction, restauration partielle ou sanctuaire sans la moindre composante et avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "srd:monster:badger",
+  "type": "monster",
+  "name": "Blaireau",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 0,
+    "hp": 5,
+    "hit_dice": "1d4 + 3",
+    "speed": {
+      "walk": 20,
+      "burrow": 5
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 11,
+      "con": 16,
+      "int": 2,
+      "wis": 12,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 0,
+      "con": 3,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:poison"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 30
+    },
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 1 dégât perforant."
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "srd:monster:pseudodragon",
+  "type": "monster",
+  "name": "Pseudodragon",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [],
+    "alignment": "Neutre Bon",
+    "ac": 14,
+    "initiative": 2,
+    "hp": 10,
+    "hit_dice": "3d4 + 3",
+    "speed": {
+      "walk": 15,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 6,
+      "dex": 15,
+      "con": 13,
+      "int": 10,
+      "wis": 12,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 2,
+      "con": 1,
+      "int": 0,
+      "wis": 1,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 10
+    },
+    "passive_perception": 15,
+    "languages": "comprend le commun et le draconique, mais ne parle pas",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le pseudodragon a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le pseudodragon effectue deux attaques de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d4 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 4 (1d4 + 2) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Dard",
+        "save": {
+          "ability": "con",
+          "dc": 12
+        },
+        "text": "JS Constitution : DD 12, une créature que le pseudodragon voit dans un rayon de 1,50 m. Échec : 5 (2d4) dégâts de poison, et la cible subit l’état Empoisonné pendant 1 heure. Échec de 5 ou plus : Tant qu’elle est Empoisonnée, la cible subit en outre l’état Inconscient, qui prend fin prématurément si la cible subit des dégâts ou si une créature dans un rayon de 1,50 m consacre une action à la réveiller."
+      }
+    ]
+  }
+}

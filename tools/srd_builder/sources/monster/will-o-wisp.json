@@ -1,0 +1,120 @@
+{
+  "id": "srd:monster:will-o-wisp",
+  "type": "monster",
+  "name": "Feu follet",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 19,
+    "initiative": 9,
+    "hp": 27,
+    "hit_dice": "11d4",
+    "speed": {
+      "walk": 5,
+      "fly": 50
+    },
+    "hover": true,
+    "abilities": {
+      "str": 1,
+      "dex": 28,
+      "con": 10,
+      "int": 13,
+      "wis": 14,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": -5,
+      "dex": 9,
+      "con": 0,
+      "int": 1,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:acid",
+      "srd:damage-type:bludgeoning",
+      "srd:damage-type:fire",
+      "srd:damage-type:cold",
+      "srd:damage-type:necrotic",
+      "srd:damage-type:piercing",
+      "srd:damage-type:slashing"
+    ],
+    "immunities": [
+      "srd:damage-type:lightning",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:unconscious",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 12,
+    "languages": "commun et une autre langue",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Déplacement intangible",
+        "text": "Le feu follet peut traverser d’autres créatures et objets comme s’il s’agissait d’un Terrain difficile. Il subit 5 (1d10) dégâts de force s’il termine son tour à l’intérieur d’un objet."
+      },
+      {
+        "kind": "trait",
+        "name": "Fugace",
+        "text": "Le feu follet ne peut rien porter."
+      },
+      {
+        "kind": "trait",
+        "name": "Illumination",
+        "text": "Le feu follet émet une Lumière vive sur un rayon de 6 m et une Lumière faible sur 6 m de plus."
+      },
+      {
+        "kind": "action",
+        "name": "Décharge",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d8 + 2",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 11 (2d8 + 2) dégâts de foudre."
+      },
+      {
+        "kind": "bonus",
+        "name": "Disparition",
+        "text": "Le feu follet et sa lumière ont l’état Invisible jusqu’à ce qu’il rompe sa Concentration sur cet effet, mais l’état prend fin prématurément juste après que le feu follet effectue un jet d’attaque ou recourt à Festin d’essence vitale."
+      },
+      {
+        "kind": "bonus",
+        "name": "Festin d’essence vitale",
+        "save": {
+          "ability": "con",
+          "dc": 10
+        },
+        "text": "JS Constitution : DD 10, une créature vivante à 0 point de vie que le feu follet voit dans un rayon de 1,50 m. Échec : La cible meurt et le feu follet récupère 10 (3d6) points de vie."
+      }
+    ]
+  }
+}

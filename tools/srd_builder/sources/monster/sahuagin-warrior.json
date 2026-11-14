@@ -1,0 +1,101 @@
+{
+  "id": "srd:monster:sahuagin-warrior",
+  "type": "monster",
+  "name": "Combattant sahuagin",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [],
+    "alignment": "Loyal Mauvais",
+    "ac": 12,
+    "initiative": 0,
+    "hp": 22,
+    "hit_dice": "4d8 + 4",
+    "speed": {
+      "walk": 30,
+      "swim": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 13,
+      "dex": 11,
+      "con": 12,
+      "int": 12,
+      "wis": 13,
+      "cha": 9
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": 0,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:acid",
+      "srd:damage-type:cold"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 15,
+    "languages": "sahuagin",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibiose partielle",
+        "text": "Capable de respirer aussi bien sous l’eau qu’à l’air libre, le sahuagin doit s’immerger dans l’eau au moins une fois toutes les 4 heures sous peine de s’asphyxier."
+      },
+      {
+        "kind": "trait",
+        "name": "Frénésie sanguinaire",
+        "text": "Le sahuagin a l’Avantage aux jets d’attaque contre toute créature à laquelle il manque des points de vie."
+      },
+      {
+        "kind": "trait",
+        "name": "Télépathie avec les requins",
+        "text": "Le sahuagin peut contrôler magiquement les requins dans un rayon de 36 m, par le biais d’une télépathie spéciale."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le sahuagin effectue deux attaques de Griffe."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d6 + 1",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 4 (1d6 + 1) dégâts tranchants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Charge aquatique",
+        "text": "Le sahuagin nage en ligne droite dans les limites de sa Vitesse de nage vers un ennemi qu’il voit."
+      }
+    ]
+  }
+}

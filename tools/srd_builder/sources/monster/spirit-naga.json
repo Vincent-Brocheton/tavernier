@@ -1,0 +1,114 @@
+{
+  "id": "srd:monster:spirit-naga",
+  "type": "monster",
+  "name": "Naga corrupteur",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 17,
+    "initiative": 3,
+    "hp": 135,
+    "hit_dice": "18d10 + 36",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 17,
+      "con": 14,
+      "int": 16,
+      "wis": 15,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 6,
+      "con": 5,
+      "int": 3,
+      "wis": 5,
+      "cha": 6
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 12,
+    "languages": "abyssal, commun",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Restauration fiélonne",
+        "text": "S’il meurt, le naga revient à la vie en 1d6 jours et récupère tous ses points de vie. Seul le sort souhait peut empêcher ce trait de fonctionner."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le naga effectue trois attaques, réparties à sa guise entre Morsure et Rayon nécrotique."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 14,
+              "dice": "4d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 7 (1d6 + 4) dégâts perforants plus 14 (4d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Rayon nécrotique",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 6,
+          "range": [
+            60
+          ],
+          "damage": [
+            {
+              "average": 21,
+              "dice": "6d6",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "À distance : +6, portée 18 m. Touché : 21 (6d6) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le naga lance l’un des sorts suivants sans composantes matérielles ni somatiques, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 14) :\nÀ volonté : détection de la magie, illusion mineure, main du mage, respiration aquatique\n2/jour chacun : détection des pensées, éclair (au 4e niveau), immobilisation de personne (au 3e niveau), porte dimensionnelle"
+      }
+    ]
+  }
+}

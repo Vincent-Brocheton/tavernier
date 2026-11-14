@@ -1,0 +1,74 @@
+{
+  "id": "srd:monster:scorpion",
+  "type": "monster",
+  "name": "Scorpion",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 0,
+    "hp": 1,
+    "hit_dice": "1d4 − 1",
+    "speed": {
+      "walk": 10
+    },
+    "hover": false,
+    "abilities": {
+      "str": 2,
+      "dex": 11,
+      "con": 8,
+      "int": 1,
+      "wis": 8,
+      "cha": 2
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 0,
+      "con": -1,
+      "int": -5,
+      "wis": -1,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 10
+    },
+    "passive_perception": 9,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Dard",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 1 dégât perforant plus 3 (1d6) dégâts de poison."
+      }
+    ]
+  }
+}

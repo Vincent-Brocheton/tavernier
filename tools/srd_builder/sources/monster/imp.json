@@ -1,0 +1,105 @@
+{
+  "id": "srd:monster:imp",
+  "type": "monster",
+  "name": "Diablotin",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 21,
+    "hit_dice": "6d4 + 6",
+    "speed": {
+      "walk": 20,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 6,
+      "dex": 17,
+      "con": 13,
+      "int": 11,
+      "wis": 12,
+      "cha": 14
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 3,
+      "con": 1,
+      "int": 0,
+      "wis": 1,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:insight": 3,
+      "srd:skill:deception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "senses_note": "Vision dans le noir 36 m (perce les Ténèbres magiques)",
+    "passive_perception": 11,
+    "languages": "commun, infernal",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diablotin a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Dard",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts perforants plus 7 (2d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Changement d’aspect",
+        "text": "Le diablotin se métamorphose en prenant l’aspect d’un rat (Vitesse 6 m), d’un corbeau (6 m, vol 18 m) ou d’une araignée (6 m, escalade 6 m) ou reprend sa forme véritable. Son profil reste le même sous chaque forme, à l’exception de sa Vitesse. Rien de ce qu’il porte n’est transformé."
+      },
+      {
+        "kind": "action",
+        "name": "Invisibilité",
+        "text": "Le diablotin lance invisibilité sur lui-même, sans composante matérielle, le Charisme étant sa caractéristique d’incantation."
+      }
+    ]
+  }
+}

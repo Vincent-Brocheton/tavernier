@@ -1,0 +1,153 @@
+{
+  "id": "srd:monster:adult-bronze-dragon",
+  "type": "monster",
+  "name": "Dragon de bronze adulte",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 18,
+    "initiative": 10,
+    "hp": 212,
+    "hit_dice": "17d12 + 102",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 25,
+      "dex": 10,
+      "con": 23,
+      "int": 16,
+      "wis": 15,
+      "cha": 20
+    },
+    "saving_throws": {
+      "str": 7,
+      "dex": 5,
+      "con": 6,
+      "int": 3,
+      "wis": 7,
+      "cha": 5
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:insight": 7,
+      "srd:skill:perception": 12
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:lightning"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 22,
+    "languages": "commun, draconique",
+    "cr": "15",
+    "xp": 13000,
+    "xp_lair": 15000,
+    "proficiency_bonus": 5,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de (A) Incantation pour lancer rayon traçant (au 2e niveau) ou (B) Souffle répulsif."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 12,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 16,
+              "dice": "2d8 + 7",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 5,
+              "dice": "1d10",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +12, allonge 3 m. Touché : 16 (2d8 + 7) dégâts tranchants plus 5 (1d10) dégâts de foudre."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 17, +10 pour toucher) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), communication avec les animaux, détection de la magie, illusion mineure, rayon traçant (au 2e niveau), thaumaturgie\n1/jour chacun : détection des pensées, respiration aquatique"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de foudre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 19
+        },
+        "text": "JS Dextérité : DD 19, chaque créature dans une Ligne de 27 m de long sur 1,50 m de large. Échec : 55 (10d10) dégâts de foudre. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle répulsif",
+        "save": {
+          "ability": "str",
+          "dc": 19
+        },
+        "text": "JS Force : DD 19, chaque créature dans un Cône de 9 m. Échec : la cible est repoussée du dragon sur 18 m en ligne droite et subit l’état À terre."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Coup de tonnerre",
+        "save": {
+          "ability": "con",
+          "dc": 17
+        },
+        "text": "JS Constitution : DD 17, chaque créature dans une Sphère de 6 m de rayon centrée sur un point que le dragon voit dans un rayon de 27 m. Échec : 10 (3d6) dégâts de tonnerre, et la cible subit l’état Assourdi jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Lumière traçante",
+        "text": "Le dragon recourt à Incantation pour lancer rayon traçant (au 2e niveau)."
+      }
+    ]
+  }
+}

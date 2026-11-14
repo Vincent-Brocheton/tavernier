@@ -1,0 +1,68 @@
+{
+  "id": "srd:monster:rhinoceros",
+  "type": "monster",
+  "name": "Rhinocéros",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": -1,
+    "hp": 45,
+    "hit_dice": "6d10 + 12",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 8,
+      "con": 15,
+      "int": 2,
+      "wis": 12,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": -1,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Coup de corne",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "2d8 + 5",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 14 (2d8 + 5) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si le rhinocéros s’est déplacé en ligne droite d’un minimum de 6 m juste avant de la toucher, la cible subit 9 (2d8) dégâts perforants supplémentaires, ainsi que l’état À terre."
+      }
+    ]
+  }
+}

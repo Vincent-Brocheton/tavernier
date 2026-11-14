@@ -1,0 +1,94 @@
+{
+  "id": "srd:monster:tyrannosaurus-rex",
+  "type": "monster",
+  "name": "Tyrannosaure",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [
+      "Dinosaure"
+    ],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 136,
+    "hit_dice": "13d12 + 52",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 25,
+      "dex": 10,
+      "con": 19,
+      "int": 2,
+      "wis": 12,
+      "cha": 9
+    },
+    "saving_throws": {
+      "str": 10,
+      "dex": 0,
+      "con": 4,
+      "int": -4,
+      "wis": 4,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le tyrannosaure effectue une attaque de Morsure et une de Queue."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 33,
+              "dice": "4d12 + 7",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 3 m. Touché : 33 (4d12 + 7) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 17). Ainsi Agrippée, la cible subit aussi l’état Entravé et ne peut pas être ciblée par la Queue du tyrannosaure."
+      },
+      {
+        "kind": "action",
+        "name": "Queue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 25,
+              "dice": "4d8 + 7",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 4,50 m. Touché : 25 (4d8 + 7) dégâts contondants. Si la cible est une créature de taille TG ou inférieure, elle subit l’état À terre."
+      }
+    ]
+  }
+}

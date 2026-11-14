@@ -1,0 +1,76 @@
+{
+  "id": "srd:monster:commoner",
+  "type": "monster",
+  "name": "Roturier",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 10,
+    "initiative": 0,
+    "hp": 4,
+    "hit_dice": "1d8",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 10,
+      "con": 10,
+      "int": 10,
+      "wis": 10,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 0,
+      "con": 0,
+      "int": 0,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "gourdin"
+    ],
+    "senses": {},
+    "passive_perception": 10,
+    "languages": "commun",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Formation",
+        "text": "Le roturier possède la maîtrise d’une compétence au choix du MJ et a l’Avantage chaque fois qu’il effectue un test de caractéristique s’appuyant sur cette compétence."
+      },
+      {
+        "kind": "action",
+        "name": "Gourdin",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 2 (1d4) dégâts contondants."
+      }
+    ]
+  }
+}

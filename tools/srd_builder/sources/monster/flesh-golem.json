@@ -1,0 +1,115 @@
+{
+  "id": "srd:monster:flesh-golem",
+  "type": "monster",
+  "name": "Golem de chair",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 9,
+    "initiative": -1,
+    "hp": 127,
+    "hit_dice": "15d8 + 60",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 9,
+      "con": 18,
+      "int": 6,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": -1,
+      "con": 4,
+      "int": -2,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:lightning",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "comprend le commun et une autre langue, mais ne parle pas",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Absorption de la foudre",
+        "text": "Chaque fois que le golem est soumis à des dégâts de foudre, il récupère en fait autant de points de vie que les dégâts de foudre infligés."
+      },
+      {
+        "kind": "trait",
+        "name": "Aversion des flammes",
+        "text": "Si le golem subit des dégâts de feu, il subit le Désavantage aux jets d’attaque et tests de caractéristique jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "trait",
+        "name": "Folie furieuse",
+        "text": "Chaque fois que le golem commence son tour En péril, lancez 1d6. Sur un résultat de 6, il devient fou. À chacun de ses tours tant qu’il est dans cet état, le golem attaque la créature la plus proche qu’il voit. Si aucune créature n’est assez proche pour qu’il puisse se déplacer et l’attaquer, le golem s’en prend à un objet. Une fois le golem devenu fou, il le reste jusqu’à sa destruction ou qu’il ne soit plus En péril.\nLe créateur du golem, s’il est dans un rayon de 18 m du golem fou furieux, peut tenter de l’apaiser au prix d’une action et d’un test de Charisme (Persuasion) DD 15 à condition que le golem l’entende. En cas de réussite, la folie furieuse cesse pour le golem jusqu’au début de son tour suivant, après quoi il est de nouveau soumis aux jets de 1d6 du trait s’il est encore En péril."
+      },
+      {
+        "kind": "trait",
+        "name": "Forme immuable",
+        "text": "Le golem ne peut pas être métamorphosé."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le golem a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le golem effectue deux attaques de Coup."
+      },
+      {
+        "kind": "action",
+        "name": "Coup",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 13 (2d8 + 4) dégâts contondants plus 4 (1d8) dégâts de foudre."
+      }
+    ]
+  }
+}

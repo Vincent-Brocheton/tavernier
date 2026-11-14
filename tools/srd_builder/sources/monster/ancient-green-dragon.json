@@ -1,0 +1,147 @@
+{
+  "id": "srd:monster:ancient-green-dragon",
+  "type": "monster",
+  "name": "Dragon vert vénérable",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 21,
+    "initiative": 15,
+    "hp": 402,
+    "hit_dice": "23d20 + 161",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 27,
+      "dex": 12,
+      "con": 25,
+      "int": 20,
+      "wis": 17,
+      "cha": 22
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 8,
+      "con": 7,
+      "int": 5,
+      "wis": 10,
+      "cha": 6
+    },
+    "skills": {
+      "srd:skill:stealth": 8,
+      "srd:skill:perception": 17,
+      "srd:skill:persuasion": 13,
+      "srd:skill:deception": 13
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 27,
+    "languages": "commun, draconique",
+    "cr": "22",
+    "xp": 41000,
+    "xp_lair": 50000,
+    "proficiency_bonus": 7,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4,
+          "per_day_lair": 5
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation pour lancer épine mentale (au 5e niveau)."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 15,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d8 + 8",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +15, allonge 4,50 m. Touché : 17 (2d8 + 8) dégâts tranchants plus 10 (3d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 21) :\nÀ volonté : détection de la magie, épine mentale (au 5e niveau)\n1/jour chacun : modification de mémoire, quête"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle empoisonné",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "con",
+          "dc": 22
+        },
+        "text": "JS Constitution : DD 22, chaque créature dans un Cône de 27 m. Échec : 77 (22d6) dégâts de poison. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Invasion mentale",
+        "text": "Le dragon recourt à Incantation pour lancer épine mentale (au 5e niveau)."
+      },
+      {
+        "kind": "legendary",
+        "name": "Miasmes nocifs",
+        "save": {
+          "ability": "con",
+          "dc": 21
+        },
+        "text": "JS Constitution : DD 21, chaque créature dans une Sphère de 9 m de rayon centrée sur un point que le dragon voit dans un rayon de 27 m. Échec : 17 (5d6) dégâts de poison, et la cible subit un malus de −2 à la CA jusqu’à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

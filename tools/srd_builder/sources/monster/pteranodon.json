@@ -1,0 +1,78 @@
+{
+  "id": "srd:monster:pteranodon",
+  "type": "monster",
+  "name": "Ptéranodon",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [
+      "Dinosaure"
+    ],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 13,
+    "hit_dice": "3d8",
+    "speed": {
+      "walk": 10,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 12,
+      "dex": 15,
+      "con": 10,
+      "int": 2,
+      "wis": 9,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 1,
+      "dex": 2,
+      "con": 0,
+      "int": -4,
+      "wis": -1,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 1
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Repli aérien",
+        "text": "Le ptéranodon ne provoque pas d’attaque d’Opportunité lorsqu’il quitte la zone d’allonge d’un ennemi en volant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 6 (1d8 + 2) dégâts perforants."
+      }
+    ]
+  }
+}

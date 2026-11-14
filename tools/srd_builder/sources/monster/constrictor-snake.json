@@ -1,0 +1,83 @@
+{
+  "id": "srd:monster:constrictor-snake",
+  "type": "monster",
+  "name": "Serpent constricteur",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 13,
+    "hit_dice": "2d10 + 2",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 14,
+      "con": 12,
+      "int": 1,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 1,
+      "int": -5,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 10
+    },
+    "passive_perception": 12,
+    "languages": "aucune",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d8 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 6 (1d8 + 2) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Constriction",
+        "save": {
+          "ability": "str",
+          "dc": 12
+        },
+        "text": "JS Force : DD 12, une créature de taille M ou inférieure que le serpent voit dans un rayon de 1,50 m. Échec : 7 (3d4) dégâts contondants, et la cible subit l’état Agrippé (évasion DD 12)."
+      }
+    ]
+  }
+}

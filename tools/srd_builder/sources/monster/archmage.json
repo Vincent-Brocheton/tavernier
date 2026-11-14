@@ -1,0 +1,115 @@
+{
+  "id": "srd:monster:archmage",
+  "type": "monster",
+  "name": "Archimage",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [
+      "Magicien"
+    ],
+    "alignment": "Neutre",
+    "ac": 17,
+    "initiative": 7,
+    "hp": 170,
+    "hit_dice": "31d8 + 31",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 14,
+      "con": 12,
+      "int": 20,
+      "wis": 15,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 2,
+      "con": 1,
+      "int": 9,
+      "wis": 6,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:arcana": 13,
+      "srd:skill:history": 9,
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed"
+    ],
+    "gear": [
+      "baguette"
+    ],
+    "senses": {},
+    "passive_perception": 16,
+    "languages": "commun et cinq autres langues",
+    "cr": "12",
+    "xp": 8400,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "L’archimage a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’archimage effectue quatre attaques de Jaillissement arcanique."
+      },
+      {
+        "kind": "action",
+        "name": "Jaillissement arcanique",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 9,
+          "reach": 5,
+          "range": [
+            150
+          ],
+          "damage": [
+            {
+              "average": 27,
+              "dice": "4d10 + 5",
+              "type": "srd:damage-type:force"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +9, allonge 1,50 m ou portée 45 m. Touché : 27 (4d10 + 5) dégâts de force."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "L’archimage lance l’un des sorts suivants, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 17) :\nÀ volonté : armure du mage (compris dans la CA), déguisement, détection de la magie, détection des pensées, invisibilité, lumière, main du mage, prestidigitation\n2/jour chacun : éclair (au 7e niveau), vol\n1/jour chacun : cône de froid (au 9e niveau), esprit impénétrable (lancé avant un combat), scrutation, téléportation"
+      },
+      {
+        "kind": "bonus",
+        "name": "Foulée brumeuse",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "Le mage lance foulée brumeuse, avec la même caractéristique d’incantation que pour Incantation."
+      },
+      {
+        "kind": "reaction",
+        "name": "Magie protectrice",
+        "uses": {
+          "per_day": 3
+        },
+        "text": "L’archimage lance bouclier ou contresort en réponse au déclencheur du sort correspondant, avec la même caractéristique d’incantation que pour Incantation."
+      }
+    ]
+  }
+}

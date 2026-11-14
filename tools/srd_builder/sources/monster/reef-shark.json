@@ -1,0 +1,83 @@
+{
+  "id": "srd:monster:reef-shark",
+  "type": "monster",
+  "name": "Requin de récif",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 22,
+    "hit_dice": "4d8 + 4",
+    "speed": {
+      "walk": 5,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 15,
+      "con": 13,
+      "int": 1,
+      "wis": 10,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 1,
+      "int": -5,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 2
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 30
+    },
+    "passive_perception": 12,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Respiration aquatique",
+        "text": "Le requin ne peut respirer que sous l’eau."
+      },
+      {
+        "kind": "trait",
+        "name": "Tactique de meute",
+        "text": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu’il cible, le requin a l’Avantage au jet d’attaque correspondant."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "2d4 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 7 (2d4 + 2) dégâts perforants."
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "srd:monster:skeleton",
+  "type": "monster",
+  "name": "Squelette",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Loyal Mauvais",
+    "ac": 14,
+    "initiative": 3,
+    "hp": 13,
+    "hit_dice": "2d8 + 4",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 10,
+      "dex": 16,
+      "con": 15,
+      "int": 6,
+      "wis": 8,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 3,
+      "con": 2,
+      "int": -2,
+      "wis": -1,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [
+      "srd:damage-type:bludgeoning"
+    ],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [
+      "arc court",
+      "épée courte"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 9,
+    "languages": "comprend le commun et une autre langue, mais ne parle pas",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Épée courte",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Arc court",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 5,
+          "range": [
+            80,
+            320
+          ],
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +5, portée 24/96 m. Touché : 6 (1d6 + 3) dégâts perforants."
+      }
+    ]
+  }
+}

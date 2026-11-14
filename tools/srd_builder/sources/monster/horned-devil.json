@@ -1,0 +1,129 @@
+{
+  "id": "srd:monster:horned-devil",
+  "type": "monster",
+  "name": "Diable cornu",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 18,
+    "initiative": 7,
+    "hp": 199,
+    "hit_dice": "19d10 + 95",
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 22,
+      "dex": 17,
+      "con": 21,
+      "int": 12,
+      "wis": 16,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 10,
+      "dex": 7,
+      "con": 5,
+      "int": 1,
+      "wis": 7,
+      "cha": 8
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 150
+    },
+    "senses_note": "Vision dans le noir 45 m (perce les Ténèbres magiques)",
+    "passive_perception": 13,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "11",
+    "xp": 7200,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diable a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu’il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diable effectue trois attaques, réparties à sa guise entre Fourche incendiaire et Jet de flammes. Il peut remplacer l’une de ces attaques par une utilisation de Queue infernale."
+      },
+      {
+        "kind": "action",
+        "name": "Fourche incendiaire",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d8 + 6",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 9,
+              "dice": "2d8",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 3 m. Touché : 15 (2d8 + 6) dégâts perforants plus 9 (2d8) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Jet de flammes",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 8,
+          "range": [
+            150
+          ],
+          "damage": [
+            {
+              "average": 26,
+              "dice": "5d8 + 4",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "À distance : +8, portée 45 m. Touché : 26 (5d8 + 4) dégâts de feu. Si la cible est un objet inflammable qui n’est porté par personne, elle s’embrase."
+      },
+      {
+        "kind": "action",
+        "name": "Queue infernale",
+        "save": {
+          "ability": "dex",
+          "dc": 17
+        },
+        "text": "JS Dextérité : DD 17, une créature que le diable voit dans un rayon de 3 m. Échec : 10 (1d8 + 6) dégâts nécrotiques, et la cible subit une plaie infernale si elle n’en a pas déjà une. Ainsi blessée, la cible perd 10 (3d6) points de vie au début de chacun de ses tours. La plaie se referme au bout de 1 minute, si un sort restitue des points de vie à la cible ou si ellemême ou une créature dans un rayon de 1,50 m d’elle consacre une action à panser la plaie et réussit un test de Sagesse (Médecine) DD 17."
+      }
+    ]
+  }
+}

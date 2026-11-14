@@ -1,0 +1,107 @@
+{
+  "id": "srd:monster:young-black-dragon",
+  "type": "monster",
+  "name": "Jeune dragon noir",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 18,
+    "initiative": 5,
+    "hp": 127,
+    "hit_dice": "15d10 + 45",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 14,
+      "con": 17,
+      "int": 12,
+      "wis": 11,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 5,
+      "con": 3,
+      "int": 1,
+      "wis": 3,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 16,
+    "languages": "commun, draconique",
+    "cr": "7",
+    "xp": 2900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "2d4 + 4",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 9 (2d4 + 4) dégâts tranchants plus 3 (1d6) dégâts d’acide."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle d’acide",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 14
+        },
+        "text": "JS Dextérité : DD 14, chaque créature dans une Ligne de 9 m de long sur 1,50 m de large. Échec : 49 (14d6) dégâts d’acide. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

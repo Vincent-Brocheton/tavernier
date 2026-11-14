@@ -1,0 +1,137 @@
+{
+  "id": "srd:monster:sphinx-of-lore",
+  "type": "monster",
+  "name": "Sphinx érudit",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Loyal Neutre",
+    "ac": 17,
+    "initiative": 10,
+    "hp": 170,
+    "hit_dice": "20d10 + 60",
+    "speed": {
+      "walk": 40,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 16,
+      "int": 18,
+      "wis": 18,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 3,
+      "int": 4,
+      "wis": 4,
+      "cha": 4
+    },
+    "skills": {
+      "srd:skill:arcana": 12,
+      "srd:skill:history": 12,
+      "srd:skill:perception": 8,
+      "srd:skill:religion": 12
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [
+      "srd:damage-type:psychic"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 18,
+    "languages": "céleste, commun",
+    "cr": "11",
+    "xp": 7200,
+    "xp_lair": 8400,
+    "proficiency_bonus": 4,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Insondable",
+        "text": "Nulle magie ne permet d’observer le sphinx à distance ni de détecter ses pensées sans son consentement. Les tests de Sagesse (Intuition) visant à percer ses intentions ou évaluer sa sincérité subissent le Désavantage."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si le sphinx rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le sphinx effectue trois attaques de Griffe."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 14,
+              "dice": "3d6 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 1,50 m. Touché : 14 (3d6 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le sphinx lance l’un des sorts suivants sans composantes matérielles, l’Intelligence étant sa caractéristique d’incantation (DD de sauvegarde 16) :\nÀ volonté : détection de la magie, identification, illusion mineure, main du mage, prestidigitation\n1/jour chacun : changement de plan, délivrance des malédictions, dissipation de la magie, don des langues, localisation d’objet, mythes et légendes"
+      },
+      {
+        "kind": "action",
+        "name": "Rugissement débilitant",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "wis",
+          "dc": 16
+        },
+        "text": "JS Sagesse : DD 16, chaque ennemi dans une Émanation de 90 m centrée sur le sphinx. Échec : 35 (10d6) dégâts psychiques, et la cible subit l’état Neutralisé jusqu’au début du tour suivant du sphinx."
+      },
+      {
+        "kind": "legendary",
+        "name": "Poids des années",
+        "save": {
+          "ability": "con",
+          "dc": 16
+        },
+        "text": "JS Constitution : DD 16, une créature que le sphinx voit dans un rayon de 36 m. Échec : la cible reçoit 1 niveau d’Épuisement. Tant que la cible a le moindre niveau d’Épuisement, elle paraît 3d10 ans plus âgée que la réalité. Échec ou réussite : le sphinx ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Traque arcanique",
+        "text": "Le sphinx se téléporte en un espace inoccupé qu’il voit dans un rayon de 9 m, et il effectue une attaque de Griffe."
+      }
+    ]
+  }
+}

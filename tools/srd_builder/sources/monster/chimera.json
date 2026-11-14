@@ -1,0 +1,124 @@
+{
+  "id": "srd:monster:chimera",
+  "type": "monster",
+  "name": "Chimère",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 14,
+    "initiative": 0,
+    "hp": 114,
+    "hit_dice": "12d10 + 48",
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 11,
+      "con": 19,
+      "int": 3,
+      "wis": 14,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 0,
+      "con": 4,
+      "int": -4,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:perception": 8
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 18,
+    "languages": "comprend le draconique, mais ne parle pas",
+    "cr": "6",
+    "xp": 2300,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "La chimère effectue trois attaques : une de Coup de bélier, une de Griffe et une de Morsure. Elle peut remplacer l’attaque de Griffe par une utilisation de son Souffle de feu si disponible."
+      },
+      {
+        "kind": "action",
+        "name": "Coup de bélier",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "1d12 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 10 (1d12 + 4) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l’état À terre."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 7 (1d6 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 11 (2d6 + 4) dégâts perforants, ou 18 (4d6 + 4) dégâts perforants si la chimère avait l’Avantage au jet d’attaque."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 15
+        },
+        "text": "JS Dextérité : DD 15, chaque créature dans un Cône de 4,50 m. Échec : 31 (7d8) dégâts de feu. Réussite : demi-dégâts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:mimic",
+  "type": "monster",
+  "name": "Mimique",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 12,
+    "initiative": 3,
+    "hp": 58,
+    "hit_dice": "9d8 + 18",
+    "speed": {
+      "walk": 20
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 12,
+      "con": 15,
+      "int": 5,
+      "wis": 13,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 2,
+      "int": -3,
+      "wis": 1,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:stealth": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Engluage (forme d’objet uniquement)",
+        "text": "La mimique adhère à tout ce qui la touche. Une créature de taille TG ou inférieure à laquelle la mimique adhère subit l’état Agrippé (évasion DD 13). Les tests de caractéristique visant à s’extraire de cette prise subissent le Désavantage."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d8 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5 (avec Avantage si la cible est Agrippée par la mimique), allonge 1,50 m. Touché : 7 (1d8 + 3) dégâts perforants, ou 12 (2d8 + 3) dégâts perforants si la cible est Agrippée par la mimique, plus 4 (1d8) dégâts d’acide."
+      },
+      {
+        "kind": "action",
+        "name": "Pseudopode",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d8 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 7 (1d8 + 3) dégâts contondants plus 4 (1d8) dégâts d’acide. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 13). Les tests de caractéristique visant à s’extraire de cette prise subissent le Désavantage."
+      },
+      {
+        "kind": "bonus",
+        "name": "Changement d’aspect",
+        "text": "La mimique se transforme en objet de taille M ou P, tout en conservant son profil de jeu, ou bien retrouve son aspect véritable de masse informe. Rien de ce qu’elle porte n’est transformé."
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": "srd:monster:giant-elk",
+  "type": "monster",
+  "name": "Cervidé géant",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "celestial",
+    "type_tags": [],
+    "alignment": "Neutre Bon",
+    "ac": 14,
+    "initiative": 6,
+    "hp": 42,
+    "hit_dice": "5d12 + 10",
+    "speed": {
+      "walk": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 18,
+      "con": 14,
+      "int": 7,
+      "wis": 14,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 6,
+      "con": 2,
+      "int": -2,
+      "wis": 2,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:radiant"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 90
+    },
+    "passive_perception": 14,
+    "languages": "céleste ; comprend le commun, l’elfique et le sylvestre, mais ne les parle pas",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Ramure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:radiant"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 11 (2d6 + 4) dégâts contondants plus 5 (2d4) dégâts radiants. Si la cible est une créature de taille TG ou inférieure et si le cervidé s’est déplacé en ligne droite d’un minimum de 6 m juste avant de la toucher, la cible subit 5 (2d4) dégâts contondants supplémentaires, ainsi que l’état À terre."
+      }
+    ]
+  }
+}

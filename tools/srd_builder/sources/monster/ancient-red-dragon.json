@@ -1,0 +1,134 @@
+{
+  "id": "srd:monster:ancient-red-dragon",
+  "type": "monster",
+  "name": "Dragon rouge vénérable",
+  "data": {
+    "sizes": [
+      "gargantuan"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Chromatique"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 22,
+    "initiative": 14,
+    "hp": 507,
+    "hit_dice": "26d20 + 234",
+    "speed": {
+      "walk": 40,
+      "climb": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 30,
+      "dex": 10,
+      "con": 29,
+      "int": 18,
+      "wis": 15,
+      "cha": 27
+    },
+    "saving_throws": {
+      "str": 10,
+      "dex": 7,
+      "con": 9,
+      "int": 4,
+      "wis": 9,
+      "cha": 8
+    },
+    "skills": {
+      "srd:skill:stealth": 7,
+      "srd:skill:perception": 16
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 26,
+    "languages": "commun, draconique",
+    "cr": "24",
+    "xp": 62000,
+    "xp_lair": 75000,
+    "proficiency_bonus": 7,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4,
+          "per_day_lair": 5
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation d’Incantation pour lancer rayon ardent (au 3e niveau)."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 17,
+          "reach": 15,
+          "damage": [
+            {
+              "average": 19,
+              "dice": "2d8 + 10",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 10,
+              "dice": "3d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +17, allonge 4,50 m. Touché : 19 (2d8 + 10) dégâts tranchants plus 10 (3d6) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 23, +15 pour toucher) :\nÀ volonté : détection de la magie, injonction (au 2e niveau), rayon ardent (au 3e niveau)\n1/jour chacun : boule de feu (au 6e niveau), scrutation"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de feu",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 24
+        },
+        "text": "JS Dextérité : DD 24, chaque créature dans un Cône de 27 m. Échec : 91 (26d6) dégâts de feu. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Autorité naturelle",
+        "text": "Le dragon recourt à Incantation pour lancer injonction (au 2e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Rayons ignés",
+        "text": "Le dragon recourt à Incantation pour lancer rayon ardent (au 3e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

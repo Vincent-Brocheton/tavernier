@@ -1,0 +1,110 @@
+{
+  "id": "srd:monster:shield-guardian",
+  "type": "monster",
+  "name": "Garde animé",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "construct",
+    "type_tags": [],
+    "alignment": "non aligné",
+    "ac": 17,
+    "initiative": -1,
+    "hp": 142,
+    "hit_dice": "15d10 + 60",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 8,
+      "con": 18,
+      "int": 7,
+      "wis": 10,
+      "cha": 3
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": -1,
+      "con": 4,
+      "int": -2,
+      "wis": 0,
+      "cha": -4
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:exhaustion",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 10
+    },
+    "passive_perception": 10,
+    "languages": "comprend les ordres qu’on lui donne, quelle que soit la langue, mais ne parle pas",
+    "cr": "7",
+    "xp": 2900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Pacte magique",
+        "text": "Le garde animé est magiquement lié à une amulette. Tant que le garde et son amulette sont sur le même plan d’existence, le porteur de l’amulette peut ordonner télépathiquement au garde de se rendre auprès de l’objet, l’Artificiel ayant une notion précise de la distance qui le sépare de l’amulette et de sa direction. Si le garde se trouve dans un rayon de 18 m du porteur de l’amulette, la moitié des dégâts subis par le porteur (arrondis au supérieur) sont en fait transférés sur le garde."
+      },
+      {
+        "kind": "trait",
+        "name": "Régénération",
+        "text": "Le garde animé récupère 10 points de vie au début de chacun de ses tours s’il lui reste au moins 1 point de vie."
+      },
+      {
+        "kind": "trait",
+        "name": "Stockage de sort",
+        "text": "Un incantateur qui porte l’amulette du garde animé peut stocker un sort du 4e niveau ou inférieur dans l’Artificiel. Pour ce faire, le porteur doit lancer le sort sur le garde animé en étant à 1,50 m ou moins de lui. Le sort n’a aucun effet immédiat ; il est stocké dans le garde. Tout sort précédemment stocké est perdu quand on en stocke un nouveau. Le garde animé peut lancer le sort stocké avec tous les paramètres choisis par l’incantateur de départ, sans composantes de sort et en prenant la caractéristique d’incantation de cet incantateur. Le sort stocké est alors perdu."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le garde animé effectue deux attaques de Poing."
+      },
+      {
+        "kind": "action",
+        "name": "Poing",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:force"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 11 (2d6 + 4) dégâts contondants plus 7 (2d6) dégâts de force."
+      },
+      {
+        "kind": "reaction",
+        "name": "Protection",
+        "text": "Déclencheur : un jet d’attaque touche le porteur de l’amulette du garde animé alors qu’ils sont dans un rayon de 1,50 m l’un de l’autre. Conséquences : le porteur reçoit un bonus de +5 à la CA, y compris contre l’attaque correspondante (ce qui peut la faire rater), jusqu’au début du tour suivant du garde animé."
+      }
+    ]
+  }
+}

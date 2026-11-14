@@ -1,0 +1,131 @@
+{
+  "id": "srd:monster:weretiger",
+  "type": "monster",
+  "name": "Tigre-garou",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [
+      "Lycanthrope"
+    ],
+    "alignment": "Neutre",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 120,
+    "hit_dice": "16d8 + 48",
+    "speed": {
+      "walk": 30
+    },
+    "speed_note": "12 m (forme de tigre uniquement)",
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 15,
+      "con": 16,
+      "int": 10,
+      "wis": 13,
+      "cha": 11
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 2,
+      "con": 3,
+      "int": 0,
+      "wis": 1,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arc long"
+    ],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 15,
+    "languages": "commun (ne parle pas sous forme de tigre)",
+    "cr": "4",
+    "xp": 1100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le tigre-garou effectue deux attaques, réparties à sa guise entre Éraflure et Arc long. Il peut en remplacer une par une attaque de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Éraflure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 10,
+              "dice": "2d6 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 10 (2d6 + 3) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure (forme de tigre ou hybride uniquement)",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 12,
+              "dice": "2d8 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 12 (2d8 + 3) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l’effet suivant. JS Constitution : DD 13. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un tigre-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce tigre-garou pendant 24 heures."
+      },
+      {
+        "kind": "action",
+        "name": "Arc long (forme humanoïde ou hybride uniquement)",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 4,
+          "range": [
+            150,
+            600
+          ],
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d8 + 2",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "À distance : +4, portée 45/180 m. Touché : 11 (2d8 + 2) dégâts perforants."
+      },
+      {
+        "kind": "bonus",
+        "name": "Affût (forme de tigre ou hybride uniquement)",
+        "text": "Le tigre-garou se déplace dans les limites de sa Vitesse sans provoquer d’attaques d’Opportunité. À la fin de ce déplacement, il peut entreprendre l’action Furtivité."
+      },
+      {
+        "kind": "bonus",
+        "name": "Changement d’aspect",
+        "text": "Le tigre-garou se transforme en hybride tigre-humanoïde de taille G ou en tigre de taille G, ou bien retrouve sa forme véritable d’humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu’il porte n’est transformé."
+      }
+    ]
+  }
+}

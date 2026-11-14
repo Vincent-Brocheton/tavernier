@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:noble",
+  "type": "monster",
+  "name": "Noble",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 15,
+    "initiative": 1,
+    "hp": 9,
+    "hit_dice": "2d8",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 11,
+      "dex": 12,
+      "con": 11,
+      "int": 12,
+      "wis": 14,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 1,
+      "con": 0,
+      "int": 1,
+      "wis": 2,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:insight": 4,
+      "srd:skill:persuasion": 5,
+      "srd:skill:deception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "cuirasse",
+      "rapière"
+    ],
+    "senses": {},
+    "passive_perception": 12,
+    "languages": "commun et deux autres langues",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Rapière",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d8 + 1",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 5 (1d8 + 1) dégâts perforants."
+      },
+      {
+        "kind": "reaction",
+        "name": "Parade",
+        "text": "Déclencheur : le noble est touché par un jet d’attaque de corps à corps alors qu’il tient une arme. Conséquences : le noble ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+      }
+    ]
+  }
+}

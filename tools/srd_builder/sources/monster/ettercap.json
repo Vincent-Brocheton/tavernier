@@ -1,0 +1,129 @@
+{
+  "id": "srd:monster:ettercap",
+  "type": "monster",
+  "name": "Ettercap",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Neutre Mauvaise",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 44,
+    "hit_dice": "8d8 + 8",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 15,
+      "con": 13,
+      "int": 7,
+      "wis": 12,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 2,
+      "con": 1,
+      "int": -2,
+      "wis": 1,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 3,
+      "srd:skill:survival": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 13,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Marche dans les toiles",
+        "text": "L’ettercap n’est pas soumis aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile que lui."
+      },
+      {
+        "kind": "trait",
+        "name": "Pattes d’araignée",
+        "text": "L’ettercap peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’ettercap effectue une attaque de Griffe et une de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "2d4 + 2",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 7 (2d4 + 2) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts perforants plus 2 (1d4) dégâts de poison, et la cible subit l’état Empoisonné jusqu’au début du tour suivant de l’ettercap."
+      },
+      {
+        "kind": "action",
+        "name": "Filandre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 12
+        },
+        "text": "JS Dextérité : DD 12, une créature de taille G ou inférieure que l’ettercap voit dans un rayon de 9 m. Échec : la cible subit l’état Entravé jusqu’à ce que la filandre soit détruite (CA 10 ; 5 pv ; Vulnérabilité aux dégâts de feu ; Immunité contre les dégâts contondants, psychiques et de poison)."
+      },
+      {
+        "kind": "bonus",
+        "name": "Traction",
+        "text": "L’ettercap tire vers lui en ligne droite une créature Entravée par sa Filandre et située dans un rayon de 9 m, en la déplaçant d’un maximum de 7,50 m."
+      }
+    ]
+  }
+}

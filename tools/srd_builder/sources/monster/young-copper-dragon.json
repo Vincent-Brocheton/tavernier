@@ -1,0 +1,107 @@
+{
+  "id": "srd:monster:young-copper-dragon",
+  "type": "monster",
+  "name": "Jeune dragon de cuivre",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Chaotique Bon",
+    "ac": 17,
+    "initiative": 4,
+    "hp": 119,
+    "hit_dice": "14d10 + 42",
+    "speed": {
+      "walk": 40,
+      "climb": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 12,
+      "con": 17,
+      "int": 16,
+      "wis": 13,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 4,
+      "con": 3,
+      "int": 3,
+      "wis": 4,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 7,
+      "srd:skill:deception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 17,
+    "languages": "commun, draconique",
+    "cr": "7",
+    "xp": 2900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de Souffle ralentissant."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d10 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 15 (2d10 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle d’acide",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 14
+        },
+        "text": "JS Dextérité : DD 14, chaque créature dans une Ligne de 12 m de long sur 1,50 m de large. Échec : 40 (9d8) dégâts d’acide. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle ralentissant",
+        "save": {
+          "ability": "con",
+          "dc": 14
+        },
+        "text": "JS Constitution : DD 14, chaque créature dans un Cône de 9 m. Échec : la cible voit sa Vitesse réduite de moitié, ne peut pas jouer de Réaction et peut entreprendre une action ou une action Bonus à son tour, mais pas les deux. L’effet persiste jusqu’à la fin de son tour suivant."
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "srd:monster:azer-sentinel",
+  "type": "monster",
+  "name": "Sentinelle azer",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "elemental",
+    "type_tags": [],
+    "alignment": "Loyal Neutre",
+    "ac": 17,
+    "initiative": 1,
+    "hp": 39,
+    "hit_dice": "6d8 + 12",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 17,
+      "dex": 12,
+      "con": 15,
+      "int": 12,
+      "wis": 13,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 4,
+      "int": 1,
+      "wis": 1,
+      "cha": 0
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "primordial (igné)",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Aura de feu",
+        "text": "À la fin de chaque tour de l’azer, chaque créature qu’il choisit dans une Émanation de 1,50 m centrée sur lui subit 5 (1d10) dégâts de feu, sauf si cet azer subit l’état Neutralisé."
+      },
+      {
+        "kind": "trait",
+        "name": "Illumination",
+        "text": "L’azer projette une Lumière vive sur un rayon de 3 m, et une Lumière faible sur 3 m de plus."
+      },
+      {
+        "kind": "action",
+        "name": "Marteau ardent",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d10 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 3,
+              "dice": "1d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 8 (1d10 + 3) dégâts contondants plus 3 (1d6) dégâts de feu."
+      }
+    ]
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "srd:monster:bone-devil",
+  "type": "monster",
+  "name": "Diable osseux",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 16,
+    "initiative": 7,
+    "hp": 161,
+    "hit_dice": "17d10 + 68",
+    "speed": {
+      "walk": 40,
+      "fly": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 16,
+      "con": 18,
+      "int": 13,
+      "wis": 14,
+      "cha": 16
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 3,
+      "con": 4,
+      "int": 5,
+      "wis": 6,
+      "cha": 7
+    },
+    "skills": {
+      "srd:skill:insight": 6,
+      "srd:skill:deception": 7
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "senses_note": "Vision dans le noir 36 m (perce les Ténèbres magiques)",
+    "passive_perception": 12,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "9",
+    "xp": 5000,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diable a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu’il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diable effectue deux attaques de Griffe et une de Dard infernal."
+      },
+      {
+        "kind": "action",
+        "name": "Dard infernal",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d10 + 4",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 18,
+              "dice": "4d8",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 3 m. Touché : 15 (2d10 + 4) dégâts perforants plus 18 (4d8) dégâts de poison, et la cible subit l’état Empoisonné jusqu’au début du tour suivant du diable. Ainsi Empoisonnée, la cible ne peut pas récupérer de points de vie."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 13,
+              "dice": "2d8 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 3 m. Touché : 13 (2d8 + 4) dégâts tranchants."
+      }
+    ]
+  }
+}

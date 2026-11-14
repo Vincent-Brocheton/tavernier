@@ -1,0 +1,112 @@
+{
+  "id": "srd:monster:young-bronze-dragon",
+  "type": "monster",
+  "name": "Jeune dragon de bronze",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Loyal Bon",
+    "ac": 17,
+    "initiative": 3,
+    "hp": 142,
+    "hit_dice": "15d10 + 60",
+    "speed": {
+      "walk": 40,
+      "swim": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 21,
+      "dex": 10,
+      "con": 19,
+      "int": 14,
+      "wis": 13,
+      "cha": 17
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 3,
+      "con": 4,
+      "int": 2,
+      "wis": 4,
+      "cha": 3
+    },
+    "skills": {
+      "srd:skill:stealth": 3,
+      "srd:skill:insight": 4,
+      "srd:skill:perception": 7
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:lightning"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 30
+    },
+    "passive_perception": 17,
+    "languages": "commun, draconique",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le dragon peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de Souffle répulsif."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 8,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 16,
+              "dice": "2d10 + 5",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +8, allonge 3 m. Touché : 16 (2d10 + 5) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle de foudre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 15
+        },
+        "text": "JS Dextérité : DD 15, chaque créature dans une Ligne de 18 m de long sur 1,50 m de large. Échec : 49 (9d10) dégâts de foudre. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle répulsif",
+        "save": {
+          "ability": "str",
+          "dc": 15
+        },
+        "text": "JS Force : DD 15, chaque créature dans un Cône de 9 m. Échec : la cible est repoussée du dragon sur 12 m en ligne droite et subit l’état À terre."
+      }
+    ]
+  }
+}

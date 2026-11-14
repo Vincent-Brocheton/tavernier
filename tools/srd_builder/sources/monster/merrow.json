@@ -1,0 +1,119 @@
+{
+  "id": "srd:monster:merrow",
+  "type": "monster",
+  "name": "Merrow",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 13,
+    "initiative": 2,
+    "hp": 45,
+    "hit_dice": "6d10 + 12",
+    "speed": {
+      "walk": 10,
+      "swim": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 15,
+      "int": 8,
+      "wis": 10,
+      "cha": 9
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 2,
+      "con": 2,
+      "int": -1,
+      "wis": 0,
+      "cha": -1
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "abyssal, primordial (aquatique)",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le merrow peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le merrow effectue deux attaques, réparties à sa guise entre Griffe, Morsure et Harpon."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "2d4 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 9 (2d4 + 4) dégâts tranchants."
+      },
+      {
+        "kind": "action",
+        "name": "Harpon",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 6,
+          "reach": 5,
+          "range": [
+            20,
+            60
+          ],
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +6, allonge 1,50 m ou portée 6/18 m. Touché : 11 (2d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure, le merrow la tire en ligne droite vers lui d’un maximum de 4,50 m."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d4 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 6 (1d4 + 4) dégâts perforants, et la cible subit l’état Empoisonné jusqu’à la fin du tour suivant du merrow."
+      }
+    ]
+  }
+}

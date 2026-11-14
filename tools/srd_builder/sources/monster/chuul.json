@@ -1,0 +1,101 @@
+{
+  "id": "srd:monster:chuul",
+  "type": "monster",
+  "name": "Chtuul",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "aberration",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvaise",
+    "ac": 16,
+    "initiative": 0,
+    "hp": 76,
+    "hit_dice": "9d10 + 27",
+    "speed": {
+      "walk": 30,
+      "swim": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 10,
+      "con": 16,
+      "int": 5,
+      "wis": 11,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 0,
+      "con": 3,
+      "int": -3,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "comprend le profond, mais ne parle pas",
+    "cr": "4",
+    "xp": 1100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Amphibie",
+        "text": "Le cthuul peut respirer sous l’eau comme à l’air libre."
+      },
+      {
+        "kind": "trait",
+        "name": "Perception de la magie",
+        "text": "Le cthuul perçoit la magie dans un rayon de 36 m. Ce trait fonctionne pour le reste comme le sort détection de la magie, même s’il n’est pas magique en lui-même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le cthuul effectue deux attaques de Pince et recourt à Tentacules paralysants."
+      },
+      {
+        "kind": "action",
+        "name": "Pince",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "1d10 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 9 (1d10 + 4) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 14) par l’une des deux pinces."
+      },
+      {
+        "kind": "action",
+        "name": "Tentacules paralysants",
+        "save": {
+          "ability": "con",
+          "dc": 13
+        },
+        "text": "JS Constitution : DD 13, une créature Agrippée par le chtuul. Échec : la cible subit l’état Empoisonné et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS. Tant qu’elle est ainsi Empoisonnée, la cible subit l’état Paralysé."
+      }
+    ]
+  }
+}

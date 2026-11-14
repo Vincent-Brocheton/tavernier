@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:polar-bear",
+  "type": "monster",
+  "name": "Ours polaire",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 42,
+    "hit_dice": "5d10 + 15",
+    "speed": {
+      "walk": 40,
+      "swim": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 20,
+      "dex": 14,
+      "con": 16,
+      "int": 2,
+      "wis": 13,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": 5,
+      "dex": 2,
+      "con": 3,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 4,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’ours effectue deux attaques de Saignée."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "1d8 + 5",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 9 (1d8 + 5) dégâts tranchants."
+      }
+    ]
+  }
+}

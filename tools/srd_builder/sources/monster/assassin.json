@@ -1,0 +1,124 @@
+{
+  "id": "srd:monster:assassin",
+  "type": "monster",
+  "name": "Assassin",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 16,
+    "initiative": 10,
+    "hp": 97,
+    "hit_dice": "15d8 + 30",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 11,
+      "dex": 18,
+      "con": 14,
+      "int": 16,
+      "wis": 11,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 7,
+      "con": 2,
+      "int": 6,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:acrobatics": 7,
+      "srd:skill:stealth": 10,
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:poison"
+    ],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "arbalète légère",
+      "armure de cuir clouté",
+      "épée courte"
+    ],
+    "senses": {},
+    "passive_perception": 16,
+    "languages": "argot des voleurs, commun",
+    "cr": "8",
+    "xp": 3900,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Esquive totale",
+        "text": "Si l’assassin est soumis à un effet qui lui permet d’effectuer un jet de sauvegarde de Dextérité pour réduire les dégâts de moitié, il ne subit en fait aucun dégât en cas de JS réussi, et seulement la moitié en cas d’échec. Il ne peut pas recourir à ce trait s’il subit l’état Neutralisé."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’assassin effectue trois attaques, réparties à sa guise entre Épée courte et Arbalète légère."
+      },
+      {
+        "kind": "action",
+        "name": "Épée courte",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 17,
+              "dice": "5d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 7 (1d6 + 4) dégâts perforants plus 17 (5d6) dégâts de poison, et la cible subit l’état Empoisonné jusqu’au début du tour suivant de l’assassin."
+      },
+      {
+        "kind": "action",
+        "name": "Arbalète légère",
+        "attack": {
+          "kind": "ranged",
+          "bonus": 7,
+          "range": [
+            80,
+            320
+          ],
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d8 + 4",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 21,
+              "dice": "6d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "À distance : +7, portée 24/96 m. Touché : 8 (1d8 + 4) dégâts perforants plus 21 (6d6) dégâts de poison."
+      },
+      {
+        "kind": "bonus",
+        "name": "Ruse",
+        "text": "L’assassin entreprend l’action Désengagement, Furtivité ou Pointe."
+      }
+    ]
+  }
+}

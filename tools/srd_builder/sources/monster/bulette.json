@@ -1,0 +1,89 @@
+{
+  "id": "srd:monster:bulette",
+  "type": "monster",
+  "name": "Bulette",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 17,
+    "initiative": 0,
+    "hp": 94,
+    "hit_dice": "9d10 + 45",
+    "speed": {
+      "walk": 40,
+      "burrow": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 11,
+      "con": 21,
+      "int": 2,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 0,
+      "con": 5,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 6
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "tremorsense": 120
+    },
+    "passive_perception": 16,
+    "languages": "aucune",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "La bulette effectue deux attaques de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d12 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 1,50 m. Touché : 17 (2d12 + 4) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Saut meurtrier",
+        "text": "Au prix de 1,50 m de déplacement, la bulette saute en un espace situé dans un rayon de 4,50 m et contenant une ou plusieurs créatures de taille G ou inférieure. JS Dextérité : DD 15, chaque créature dans l’espace de destination de la bulette. Échec : 19 (3d12) dégâts contondants, et la cible subit l’état À terre. Réussite : demi-dégâts, et la cible est repoussée sur 1,50 m en ligne droite de la bulette."
+      },
+      {
+        "kind": "bonus",
+        "name": "Bond",
+        "text": "La bulette effectue un saut d’un maximum de 9 m en dépensant 3 m de déplacement."
+      }
+    ]
+  }
+}

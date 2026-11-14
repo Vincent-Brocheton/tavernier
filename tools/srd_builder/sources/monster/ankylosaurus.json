@@ -1,0 +1,75 @@
+{
+  "id": "srd:monster:ankylosaurus",
+  "type": "monster",
+  "name": "Ankylosaure",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "beast",
+    "type_tags": [
+      "Dinosaure"
+    ],
+    "alignment": "non alignée",
+    "ac": 15,
+    "initiative": 0,
+    "hp": 68,
+    "hit_dice": "8d12 + 16",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 11,
+      "con": 15,
+      "int": 2,
+      "wis": 12,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 0,
+      "con": 2,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "3",
+    "xp": 700,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "L’ankylosaure effectue deux attaques de Queue."
+      },
+      {
+        "kind": "action",
+        "name": "Queue",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 9,
+              "dice": "1d10 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 3 m. Touché : 9 (1d10 + 4) dégâts contondants. Si la cible est une créature de taille TG ou inférieure, elle subit l’état À terre."
+      }
+    ]
+  }
+}

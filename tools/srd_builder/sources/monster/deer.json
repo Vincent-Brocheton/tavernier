@@ -1,0 +1,77 @@
+{
+  "id": "srd:monster:deer",
+  "type": "monster",
+  "name": "Petit cervidé",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 4,
+    "hit_dice": "1d8",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 11,
+      "dex": 16,
+      "con": 11,
+      "int": 2,
+      "wis": 14,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 0,
+      "dex": 3,
+      "con": 0,
+      "int": -4,
+      "wis": 2,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Agile",
+        "text": "Le cervidé ne provoque pas d’attaque d’Opportunité lorsqu’il quitte l’allonge d’un ennemi en se déplaçant."
+      },
+      {
+        "kind": "action",
+        "name": "Coup de bélier",
+        "attack": {
+          "kind": "melee",
+          "bonus": 2,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 2,
+              "dice": "1d4",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +2, allonge 1,50 m. Touché : 2 (1d4) dégâts contondants."
+      }
+    ]
+  }
+}

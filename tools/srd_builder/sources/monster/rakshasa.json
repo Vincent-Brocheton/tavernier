@@ -1,0 +1,114 @@
+{
+  "id": "srd:monster:rakshasa",
+  "type": "monster",
+  "name": "Rakshasa",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [],
+    "alignment": "Loyal Mauvais",
+    "ac": 17,
+    "initiative": 8,
+    "hp": 221,
+    "hit_dice": "26d8 + 104",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 17,
+      "con": 18,
+      "int": 13,
+      "wis": 16,
+      "cha": 20
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 3,
+      "con": 4,
+      "int": 1,
+      "wis": 3,
+      "cha": 5
+    },
+    "skills": {
+      "srd:skill:insight": 8,
+      "srd:skill:perception": 8,
+      "srd:skill:deception": 10
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [
+      "srd:condition:charmed",
+      "srd:condition:frightened"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 60
+    },
+    "passive_perception": 18,
+    "languages": "commun, infernal",
+    "cr": "13",
+    "xp": 10000,
+    "proficiency_bonus": 5,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie suprême",
+        "text": "Le rakshasa réussit automatiquement les jets de sauvegarde contre les sorts et autres effets magiques, et les jets d’attaque des sorts le ratent automatiquement. Nul sort ne permet d’observer le rakshasa à distance ni de détecter ses pensées, son type de créature ou son alignement sans son consentement."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration fiélonne",
+        "text": "Si le rakshasa meurt hors des Neuf Enfers, son corps se dissout en ichor et il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv, quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le rakshasa effectue trois attaques de Contact maudit."
+      },
+      {
+        "kind": "action",
+        "name": "Contact maudit",
+        "attack": {
+          "kind": "melee",
+          "bonus": 10,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 12,
+              "dice": "2d6 + 5",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 19,
+              "dice": "3d12",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +10, allonge 1,50 m. Touché : 12 (2d6 + 5) dégâts tranchants plus 19 (3d12) dégâts nécrotiques. Si la cible est une créature, elle est maudite. Une cible ainsi maudite ne tire aucun bénéfice lorsqu’elle termine un Repos court ou long."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le rakshasa lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 18) :\nÀ volonté : déguisement, détection de la magie, détection des pensées, illusion mineure, main du mage\n1/jour chacun : changement de plan, image majeure, invisibilité, vol"
+      },
+      {
+        "kind": "action",
+        "name": "Injonction lugubre",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "wis",
+          "dc": 18
+        },
+        "text": "JS Sagesse : DD 18, chaque ennemi dans une Émanation de 9 m centrée sur le rakshasa. Échec : 28 (8d6) dégâts psychiques, et la cible subit l’état Effrayé et Neutralisé jusqu’au début du tour suivant du rakshasa."
+      }
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "id": "srd:monster:shadow",
+  "type": "monster",
+  "name": "Ombre",
+  "data": {
+    "sizes": [
+      "medium"
+    ],
+    "creature_type": "undead",
+    "type_tags": [],
+    "alignment": "Chaotique Mauvais",
+    "ac": 12,
+    "initiative": 2,
+    "hp": 27,
+    "hit_dice": "5d8 + 5",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 6,
+      "dex": 14,
+      "con": 13,
+      "int": 6,
+      "wis": 10,
+      "cha": 8
+    },
+    "saving_throws": {
+      "str": -2,
+      "dex": 2,
+      "con": 1,
+      "int": -2,
+      "wis": 0,
+      "cha": -1
+    },
+    "skills": {
+      "srd:skill:stealth": 6
+    },
+    "vulnerabilities": [
+      "srd:damage-type:radiant"
+    ],
+    "resistances": [
+      "srd:damage-type:acid",
+      "srd:damage-type:fire",
+      "srd:damage-type:lightning",
+      "srd:damage-type:cold",
+      "srd:damage-type:thunder"
+    ],
+    "immunities": [
+      "srd:damage-type:necrotic",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:prone",
+      "srd:condition:grappled",
+      "srd:condition:frightened",
+      "srd:condition:poisoned",
+      "srd:condition:restrained",
+      "srd:condition:exhaustion",
+      "srd:condition:unconscious",
+      "srd:condition:paralyzed",
+      "srd:condition:petrified"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Informe",
+        "text": "L’ombre peut se déplacer dans un espace étroit d’une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+      },
+      {
+        "kind": "trait",
+        "name": "Morsure du soleil",
+        "text": "Tant qu’elle est exposée à la lumière du soleil, l’ombre subit le Désavantage aux Tests d20."
+      },
+      {
+        "kind": "action",
+        "name": "Caresse dévitalisante",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d6 + 2",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2) dégâts nécrotiques, et la valeur de Force de la cible est réduite de 1d4. La cible meurt si l’effet fait tomber cette valeur à 0. Si un Humanoïde est tué par cette attaque, une ombre émerge de son cadavre 1d4 heures plus tard."
+      },
+      {
+        "kind": "bonus",
+        "name": "Discrétion dans les ombres",
+        "text": "Tant qu’elle reste dans les Ténèbres ou sous une Lumière faible, l’ombre peut entreprendre l’action Furtivité."
+      }
+    ]
+  }
+}

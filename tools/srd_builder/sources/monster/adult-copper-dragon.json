@@ -1,0 +1,148 @@
+{
+  "id": "srd:monster:adult-copper-dragon",
+  "type": "monster",
+  "name": "Dragon de cuivre adulte",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "dragon",
+    "type_tags": [
+      "Métallique"
+    ],
+    "alignment": "Chaotique Bon",
+    "ac": 18,
+    "initiative": 11,
+    "hp": 184,
+    "hit_dice": "16d12 + 80",
+    "speed": {
+      "walk": 40,
+      "climb": 40,
+      "fly": 80
+    },
+    "hover": false,
+    "abilities": {
+      "str": 23,
+      "dex": 12,
+      "con": 21,
+      "int": 18,
+      "wis": 15,
+      "cha": 18
+    },
+    "saving_throws": {
+      "str": 6,
+      "dex": 6,
+      "con": 5,
+      "int": 4,
+      "wis": 7,
+      "cha": 4
+    },
+    "skills": {
+      "srd:skill:stealth": 6,
+      "srd:skill:perception": 12,
+      "srd:skill:deception": 9
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:acid"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120,
+      "blindsight": 60
+    },
+    "passive_perception": 22,
+    "languages": "commun, draconique",
+    "cr": "14",
+    "xp": 11500,
+    "xp_lair": 13000,
+    "proficiency_bonus": 5,
+    "legendary_uses": 3,
+    "legendary_uses_lair": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 3,
+          "per_day_lair": 4
+        },
+        "text": "Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l’une de ces attaques par une utilisation de (A) Incantation pour lancer épine mentale (au 4e niveau) ou (B) Souffle ralentissant."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 11,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 17,
+              "dice": "2d10 + 6",
+              "type": "srd:damage-type:slashing"
+            },
+            {
+              "average": 4,
+              "dice": "1d8",
+              "type": "srd:damage-type:acid"
+            }
+          ]
+        },
+        "text": "Corps à corps : +11, allonge 3 m. Touché : 17 (2d10 + 6) dégâts tranchants plus 4 (1d8) dégâts d’acide."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation",
+        "text": "Le dragon lance l’un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 17) :\nÀ volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, épine mentale (au 4e niveau), illusion mineure\n1/jour chacun : Image majeure, restauration suprême"
+      },
+      {
+        "kind": "action",
+        "name": "Souffle d’acide",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 18
+        },
+        "text": "JS Dextérité : DD 18, chaque créature dans une Ligne de 18 m de long sur 1,50 m de large. Échec : 54 (12d8) dégâts d’acide. Réussite : demi-dégâts."
+      },
+      {
+        "kind": "action",
+        "name": "Souffle ralentissant",
+        "save": {
+          "ability": "con",
+          "dc": 18
+        },
+        "text": "JS Constitution : DD 18, chaque créature dans un Cône de 18 m. Échec : la cible voit sa Vitesse réduite de moitié, ne peut pas jouer de Réaction et peut entreprendre une action ou une action Bonus à son tour, mais pas les deux. L’effet persiste jusqu’à la fin de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Assaut incisif",
+        "text": "Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée."
+      },
+      {
+        "kind": "legendary",
+        "name": "Décharge mentale",
+        "text": "Le dragon recourt à Incantation pour lancer épine mentale (au 4e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      },
+      {
+        "kind": "legendary",
+        "name": "Gloussement magique",
+        "save": {
+          "ability": "cha",
+          "dc": 17
+        },
+        "text": "JS Charisme : DD 17, une créature que le dragon voit dans un rayon de 27 m. Échec : 24 (7d6) dégâts psychiques. Jusqu’à la fin de son tour suivant, la cible lance 1d6 chaque fois qu’elle effectue un test de caractéristique ou un jet d’attaque et soustrait le résultat obtenu au Test d20. Échec ou réussite : Le dragon ne peut alors plus entreprendre cette action jusqu’au début de son tour suivant."
+      }
+    ]
+  }
+}

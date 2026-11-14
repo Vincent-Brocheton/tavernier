@@ -1,0 +1,78 @@
+{
+  "id": "srd:monster:owl",
+  "type": "monster",
+  "name": "Chouette",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 1,
+    "hp": 1,
+    "hit_dice": "1d4 − 1",
+    "speed": {
+      "walk": 5,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 3,
+      "dex": 13,
+      "con": 8,
+      "int": 2,
+      "wis": 12,
+      "cha": 7
+    },
+    "saving_throws": {
+      "str": -4,
+      "dex": 1,
+      "con": -1,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {
+      "srd:skill:stealth": 5,
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "0",
+    "xp": 10,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Repli aérien",
+        "text": "La chouette ne provoque pas d’attaque d’Opportunité lorsqu’elle quitte la zone d’allonge d’un ennemi en volant."
+      },
+      {
+        "kind": "action",
+        "name": "Serres",
+        "attack": {
+          "kind": "melee",
+          "bonus": 3,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 1,
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +3, allonge 1,50 m. Touché : 1 dégât tranchant."
+      }
+    ]
+  }
+}

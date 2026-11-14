@@ -1,0 +1,158 @@
+{
+  "id": "srd:monster:pit-fiend",
+  "type": "monster",
+  "name": "Diantrefosse",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Diable"
+    ],
+    "alignment": "Loyal Mauvais",
+    "ac": 21,
+    "initiative": 14,
+    "hp": 337,
+    "hit_dice": "27d10 + 189",
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 26,
+      "dex": 14,
+      "con": 24,
+      "int": 22,
+      "wis": 18,
+      "cha": 24
+    },
+    "saving_throws": {
+      "str": 8,
+      "dex": 8,
+      "con": 7,
+      "int": 6,
+      "wis": 10,
+      "cha": 7
+    },
+    "skills": {
+      "srd:skill:perception": 10,
+      "srd:skill:persuasion": 19
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "truesight": 120
+    },
+    "passive_perception": 20,
+    "languages": "infernal ; télépathie 36 m",
+    "cr": "20",
+    "xp": 25000,
+    "proficiency_bonus": 6,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Aura de terreur",
+        "text": "Le diantrefosse diffuse une aura dans une Émanation de 6 m tant qu’il ne subit pas l’état Neutralisé. JS Sagesse : DD 21, tout ennemi qui commence son tour dans l’aura. Échec : la cible subit l’état Effrayé jusqu’au début de son tour suivant. Réussite : la cible est immunisée contre l’aura de ce diantrefosse pendant 24 heures."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le diantrefosse a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "trait",
+        "name": "Résistance légendaire",
+        "uses": {
+          "per_day": 4
+        },
+        "text": "Si le diantrefosse rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+      },
+      {
+        "kind": "trait",
+        "name": "Restauration diabolique",
+        "text": "Si le diantrefosse meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu’il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le diantrefosse effectue quatre attaques : deux de Griffe diabolique, une de Masse d’armes ardente et une de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Griffe diabolique",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 26,
+              "dice": "4d8 + 8",
+              "type": "srd:damage-type:necrotic"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 26 (4d8 + 8) dégâts nécrotiques."
+      },
+      {
+        "kind": "action",
+        "name": "Masse d’armes ardente",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 22,
+              "dice": "4d6 + 8",
+              "type": "srd:damage-type:force"
+            },
+            {
+              "average": 21,
+              "dice": "6d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 22 (4d6 + 8) dégâts de force plus 21 (6d6) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 14,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 18,
+              "dice": "3d6 + 8",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +14, allonge 3 m. Touché : 18 (3d6 + 8) dégâts perforants. Si la cible est une créature, elle effectue le jet de sauvegarde suivant. JS Constitution : DD 21. Échec : la cible subit l’état Empoisonné. Ainsi Empoisonnée, la cible ne peut pas récupérer de points de vie, subit 21 (6d6) dégâts de poison au début de chacun de ses tours et réitère le JS à la fin de chacun de ses tours, mettant un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "action",
+        "name": "Incantation du feu des enfers",
+        "uses": {
+          "recharge": "4-6"
+        },
+        "text": "Le diantrefosse lance boule de feu (au 5e niveau) deux fois sans composantes matérielles, le Charisme étant sa caractéristique d’incantation (DD de sauvegarde 21). Il peut remplacer une boule de feu par immobilisation de monstre (au 7e niveau) ou mur de feu."
+      }
+    ]
+  }
+}

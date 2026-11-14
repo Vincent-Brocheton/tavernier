@@ -1,0 +1,332 @@
+# Monstres et animaux du SRD 5.2.1 (FR), p. 272-380 : nom du SRD → slug anglais
+# (change t-06b-extracteur-bestiaire).
+Aboleth	aboleth
+Âme-en-peine	wraith
+Ankheg	ankheg
+Araignée de phase	phase-spider
+Assassin	assassin
+Autrache	axe-beak
+Sentinelle azer	azer-sentinel
+Babélien	gibbering-mouther
+Balor	balor
+Bandit	bandit
+Chef de bande	bandit-captain
+Basilic	basilisk
+Béhir	behir
+Berserker	berserker
+Blême	ghast
+Bulette	bulette
+Soldat centaure	centaur-trooper
+Criard	shrieker-fungus
+Thallophyte violette	violet-fungus
+Chevalier	knight
+Chien du trépas	death-dog
+Chien esquiveur	blink-dog
+Chimère	chimera
+Chtuul	chuul
+Cockatrice	cockatrice
+Couatl	couatl
+Cube gélatineux	gelatinous-cube
+Demi-dragon	half-dragon
+Déva	deva
+Diable barbelé	barbed-devil
+Diable barbu	bearded-devil
+Diable cornu	horned-devil
+Diable des chaînes	chain-devil
+Diable gelé	ice-devil
+Diable osseux	bone-devil
+Diablotin	imp
+Diantrefosse	pit-fiend
+Djinn	djinni
+Doppelganger	doppelganger
+Dragonnet blanc	white-dragon-wyrmling
+Jeune dragon blanc	young-white-dragon
+Dragon blanc adulte	adult-white-dragon
+Dragon blanc vénérable	ancient-white-dragon
+Dragonnet bleu	blue-dragon-wyrmling
+Jeune dragon bleu	young-blue-dragon
+Dragon bleu adulte	adult-blue-dragon
+Dragon bleu vénérable	ancient-blue-dragon
+Dragonnet d’airain	brass-dragon-wyrmling
+Jeune dragon d’airain	young-brass-dragon
+Dragon d’airain adulte	adult-brass-dragon
+Dragon d’airain vénérable	ancient-brass-dragon
+Dragonnet d’argent	silver-dragon-wyrmling
+Jeune dragon d’argent	young-silver-dragon
+Dragon d’argent adulte	adult-silver-dragon
+Dragon d’argent vénérable	ancient-silver-dragon
+Dragonnet d’or	gold-dragon-wyrmling
+Jeune dragon d’or	young-gold-dragon
+Dragon d’or adulte	adult-gold-dragon
+Dragon d’or vénérable	ancient-gold-dragon
+Dragonnet de bronze	bronze-dragon-wyrmling
+Jeune dragon de bronze	young-bronze-dragon
+Dragon de bronze adulte	adult-bronze-dragon
+Dragon de bronze vénérable	ancient-bronze-dragon
+Dragonnet de cuivre	copper-dragon-wyrmling
+Jeune dragon de cuivre	young-copper-dragon
+Dragon de cuivre adulte	adult-copper-dragon
+Dragon de cuivre vénérable	ancient-copper-dragon
+Dragonnet noir	black-dragon-wyrmling
+Jeune dragon noir	young-black-dragon
+Dragon noir adulte	adult-black-dragon
+Dragon noir vénérable	ancient-black-dragon
+Dragonnet rouge	red-dragon-wyrmling
+Jeune dragon rouge	young-red-dragon
+Dragon rouge adulte	adult-red-dragon
+Dragon rouge vénérable	ancient-red-dragon
+Dragonnet vert	green-dragon-wyrmling
+Jeune dragon vert	young-green-dragon
+Dragon vert adulte	adult-green-dragon
+Dragon vert vénérable	ancient-green-dragon
+Dragon-tortue	dragon-turtle
+Dretch	dretch
+Drider	drider
+Druide	druid
+Dryade	dryad
+Éclaireur	scout
+Éfrit	efreeti
+Élémentaire de l’air	air-elemental
+Élémentaire de l’eau	water-elemental
+Élémentaire de la terre	earth-elemental
+Élémentaire du feu	fire-elemental
+Enlaceur	roper
+Érinye	erinyes
+Espion	spy
+Esprit follet	sprite
+Ettercap	ettercap
+Ettin	ettin
+Fantôme	ghost
+Feu follet	will-o-wisp
+Garde animé	shield-guardian
+Garde	guard
+Capitaine de la garde	guard-captain
+Gargouille	gargoyle
+Géant des collines	hill-giant
+Géant des nuages	cloud-giant
+Géant des pierres	stone-giant
+Géant des tempêtes	storm-giant
+Géant du feu	fire-giant
+Géant du givre	frost-giant
+Gelée ocre	ochre-jelly
+Glabrezu	glabrezu
+Gladiateur	gladiator
+Combattant gnoll	gnoll-warrior
+Sbire gobelin	goblin-minion
+Combattant gobelin	goblin-warrior
+Chef gobelin	goblin-boss
+Combattant gobelours	bugbear-warrior
+Traqueur gobelours	bugbear-stalker
+Golem d’argile	clay-golem
+Golem de chair	flesh-golem
+Golem de fer	iron-golem
+Golem de pierre	stone-golem
+Gorgone	gorgon
+Goule	ghoul
+Grick	grick
+Griffon	griffon
+Gros-bras	tough
+Chef gros-bras	tough-boss
+Guenaude marine	sea-hag
+Guenaude nocturne	night-hag
+Guenaude verte	green-hag
+Harpie	harpy
+Hezrou	hezrou
+Hibours	owlbear
+Hippogriffe	hippogriff
+Combattant hobgobelin	hobgoblin-warrior
+Capitaine hobgobelin	hobgoblin-captain
+Homoncule	homunculus
+Horriflamme	nightmare
+Hydre	hydra
+Incube	incubus
+Combattant kobold	kobold-warrior
+Kraken	kraken
+Lamie	lamia
+Lémure	lemure
+Liche	lich
+Licorne	unicorn
+Loup arctique	winter-wolf
+Loup-garou	werewolf
+Mage	mage
+Archimage	archmage
+Magmatique	magmin
+Mante obscure	darkmantle
+Manteleur	cloaker
+Manticore	manticore
+Marilith	marilith
+Méduse	medusa
+Méphite gelé	ice-mephit
+Méphite magmatique	magma-mephit
+Méphite poussiéreux	dust-mephit
+Méphite vaporeux	steam-mephit
+Merrow	merrow
+Mimique	mimic
+Minotaure de Baphomet	minotaur-of-baphomet
+Molosse infernal	hell-hound
+Momie	mummy
+Momie auguste	mummy-lord
+Naga corrupteur	spirit-naga
+Naga gardien	guardian-naga
+Nalfeshnie	nalfeshnee
+Nécronte	wight
+Noble	noble
+Armure animée	animated-armor
+Épée volante	flying-sword
+Tapis étrangleur	rug-of-smothering
+Ogre	ogre
+Ombre	shadow
+Oni	oni
+Otyugh	otyugh
+Ours-garou	werebear
+Oxydeur	rust-monster
+Pégase	pegasus
+Pirate	pirate
+Capitaine pirate	pirate-captain
+Planétar	planetar
+Arbre éveillé	awakened-tree
+Arbuste éveillé	awakened-shrub
+Pouding noir	black-pudding
+Acolyte	priest-acolyte
+Prêtre	priest
+Pseudodragon	pseudodragon
+Quasit	quasit
+Rakshasa	rakshasa
+Rat-garou	wererat
+Remorhaz	remorhaz
+Roturier	commoner
+Rukh	roc
+Combattant sahuagin	sahuagin-warrior
+Salamandre	salamander
+Sanglier-garou	wereboar
+Satyre	satyr
+Sectateur	cultist
+Fanatique de secte	cultist-fanatic
+Nuée de sénestres	swarm-of-crawling-claws
+Solar	solar
+Fantassin	warrior-infantry
+Vétéran	veteran
+Spectre	specter
+Sphinx merveilleux	sphinx-of-wonder
+Sphinx érudit	sphinx-of-lore
+Sphinx valeureux	sphinx-of-valor
+Squelette	skeleton
+Destrier squelette	warhorse-skeleton
+Minotaure squelette	minotaur-skeleton
+Strige	stirge
+Succube	succubus
+Sylvanien	treant
+Tarasque	tarrasque
+Tertre errant	shambling-mound
+Tirailleur thalasséen	merfolk-skirmisher
+Tigre-garou	weretiger
+Torve	grimlock
+Traqueur invisible	invisible-stalker
+Troll	troll
+Abattis de troll	troll-limb
+Familier de vampire	vampire-familiar
+Vampirien	vampire-spawn
+Vampire	vampire
+Vase grise	gray-ooze
+Ver pourpre	purple-worm
+Vouivre	wyvern
+Vrock	vrock
+Worg	worg
+Xorn	xorn
+Zombi	zombie
+Ogre zombi	ogre-zombie
+Aigle	eagle
+Aigle géant	giant-eagle
+Allosaure	allosaurus
+Ankylosaure	ankylosaurus
+Araignée	spider
+Araignée géante	giant-spider
+Araignée-loup géante	giant-wolf-spider
+Archélon	archelon
+Babouin	baboon
+Belette	weasel
+Belette géante	giant-weasel
+Blaireau	badger
+Blaireau géant	giant-badger
+Cervidé géant	giant-elk
+Chacal	jackal
+Chameau	camel
+Chat	cat
+Chauve-souris	bat
+Chauve-souris géante	giant-bat
+Cheval de selle	riding-horse
+Cheval de trait	draft-horse
+Chèvre	goat
+Chèvre géante	giant-goat
+Chouette	owl
+Chouette géante	giant-owl
+Corbeau	raven
+Crabe	crab
+Crabe géant	giant-crab
+Crapaud géant	giant-toad
+Crocodile	crocodile
+Crocodile géant	giant-crocodile
+Destrier	warhorse
+Éléphant	elephant
+Épaulard	killer-whale
+Faucon	hawk
+Faucon de sang	blood-hawk
+Grand cervidé	elk
+Grand singe	ape
+Grenouille	frog
+Grenouille géante	giant-frog
+Guêpe géante	giant-wasp
+Hippocampe	seahorse
+Hippocampe géant	giant-seahorse
+Hippopotame	hippopotamus
+Hyène	hyena
+Hyène géante	giant-hyena
+Lézard	lizard
+Lézard géant	giant-lizard
+Lion	lion
+Loup	wolf
+Loup sanguinaire	dire-wolf
+Mammouth	mammoth
+Mille-pattes géant	giant-centipede
+Molosse	mastiff
+Mule	mule
+Nuée d’insectes	swarm-of-insects
+Nuée de chauves-souris	swarm-of-bats
+Nuée de corbeaux	swarm-of-ravens
+Nuée de piranhas	swarm-of-piranhas
+Nuée de rats	swarm-of-rats
+Nuée de serpents venimeux	swarm-of-venomous-snakes
+Ours brun	brown-bear
+Ours noir	black-bear
+Ours polaire	polar-bear
+Panthère	panther
+Petit cervidé	deer
+Pieuvre	octopus
+Pieuvre géante	giant-octopus
+Piranha	piranha
+Plésiosaure	plesiosaurus
+Poney	pony
+Ptéranodon	pteranodon
+Rat	rat
+Rat géant	giant-rat
+Requin de récif	reef-shark
+Requin géant	giant-shark
+Requin-chasseur	hunter-shark
+Rhinocéros	rhinoceros
+Sanglier	boar
+Sanglier géant	giant-boar
+Scarabée de feu géant	giant-fire-beetle
+Scorpion	scorpion
+Scorpion géant	giant-scorpion
+Serpent constricteur	constrictor-snake
+Serpent constricteur géant	giant-constrictor-snake
+Serpent venimeux	venomous-snake
+Serpent venimeux géant	giant-venomous-snake
+Serpent volant	flying-snake
+Singe géant	giant-ape
+Tigre	tiger
+Tigre à dents de sabre	saber-toothed-tiger
+Tricératops	triceratops
+Tyrannosaure	tyrannosaurus-rex
+Vautour	vulture
+Vautour géant	giant-vulture

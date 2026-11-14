@@ -1,0 +1,70 @@
+{
+  "id": "srd:monster:camel",
+  "type": "monster",
+  "name": "Chameau",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 10,
+    "initiative": -1,
+    "hp": 17,
+    "hit_dice": "2d10 + 6",
+    "speed": {
+      "walk": 50
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 8,
+      "con": 17,
+      "int": 2,
+      "wis": 11,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": -1,
+      "con": 5,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1/8",
+    "xp": 25,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 4,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 4,
+              "dice": "1d4 + 2",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +4, allonge 1,50 m. Touché : 4 (1d4 + 2) dégâts contondants."
+      }
+    ]
+  }
+}

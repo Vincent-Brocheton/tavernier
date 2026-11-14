@@ -1,0 +1,71 @@
+{
+  "id": "srd:monster:giant-bat",
+  "type": "monster",
+  "name": "Chauve-souris géante",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 22,
+    "hit_dice": "4d10",
+    "speed": {
+      "walk": 10,
+      "fly": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 15,
+      "dex": 16,
+      "con": 11,
+      "int": 2,
+      "wis": 12,
+      "cha": 6
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 3,
+      "con": 0,
+      "int": -4,
+      "wis": 1,
+      "cha": -2
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 120
+    },
+    "passive_perception": 11,
+    "languages": "aucune",
+    "cr": "1/4",
+    "xp": 50,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts perforants."
+      }
+    ]
+  }
+}

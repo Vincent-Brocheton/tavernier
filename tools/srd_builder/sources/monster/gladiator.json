@@ -1,0 +1,99 @@
+{
+  "id": "srd:monster:gladiator",
+  "type": "monster",
+  "name": "Gladiateur",
+  "data": {
+    "sizes": [
+      "medium",
+      "small"
+    ],
+    "creature_type": "humanoid",
+    "type_tags": [],
+    "alignment": "Neutre",
+    "ac": 16,
+    "initiative": 5,
+    "hp": 112,
+    "hit_dice": "15d8 + 45",
+    "speed": {
+      "walk": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 15,
+      "con": 16,
+      "int": 10,
+      "wis": 12,
+      "cha": 15
+    },
+    "saving_throws": {
+      "str": 7,
+      "dex": 5,
+      "con": 6,
+      "int": 0,
+      "wis": 4,
+      "cha": 2
+    },
+    "skills": {
+      "srd:skill:athletics": 10,
+      "srd:skill:performance": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [
+      "armure de cuir clouté",
+      "bouclier",
+      "lances (3)"
+    ],
+    "senses": {},
+    "passive_perception": 11,
+    "languages": "commun",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le gladiateur effectue trois attaques de Lance. Il peut remplacer l’une de ces attaques par une utilisation de Coup de bouclier."
+      },
+      {
+        "kind": "action",
+        "name": "Lance",
+        "attack": {
+          "kind": "melee_or_ranged",
+          "bonus": 7,
+          "reach": 5,
+          "range": [
+            20,
+            60
+          ],
+          "damage": [
+            {
+              "average": 11,
+              "dice": "2d6 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps ou à distance : +7, allonge 1,50 m ou portée 6/18 m. Touché : 11 (2d6 + 4) dégâts perforants."
+      },
+      {
+        "kind": "action",
+        "name": "Coup de bouclier",
+        "save": {
+          "ability": "str",
+          "dc": 15
+        },
+        "text": "JS Force : DD 15, une créature dans un rayon de 1,50 m que le gladiateur voit. Échec : 9 (2d4 + 4) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l’état À terre."
+      },
+      {
+        "kind": "reaction",
+        "name": "Parade",
+        "text": "Déclencheur : le gladiateur est touché par un jet d’attaque de corps à corps alors qu’il tient une arme. Conséquences : le gladiateur ajoute 3 à sa CA contre cette attaque, ce qui peut la faire rater."
+      }
+    ]
+  }
+}

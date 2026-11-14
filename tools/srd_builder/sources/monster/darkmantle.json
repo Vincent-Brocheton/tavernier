@@ -1,0 +1,81 @@
+{
+  "id": "srd:monster:darkmantle",
+  "type": "monster",
+  "name": "Mante obscure",
+  "data": {
+    "sizes": [
+      "small"
+    ],
+    "creature_type": "aberration",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 11,
+    "initiative": 3,
+    "hp": 22,
+    "hit_dice": "5d6 + 5",
+    "speed": {
+      "walk": 10,
+      "fly": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 16,
+      "dex": 12,
+      "con": 13,
+      "int": 2,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 3,
+      "dex": 1,
+      "con": 1,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:stealth": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "1/2",
+    "xp": 100,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Écrasement",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 6,
+              "dice": "1d6 + 3",
+              "type": "srd:damage-type:bludgeoning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 6 (1d6 + 3) dégâts contondants, et la mante obscure se fixe à la cible. Si la cible est une créature de taille M ou inférieure et si la mante obscure avait l’Avantage au jet d’attaque, elle recouvre la cible qui subit l’état Aveuglé et s’asphyxie tant que la mante obscure reste ainsi fixée à elle.\nTant qu’elle est fixée à une cible, la mante obscure ne peut attaquer que cette cible mais elle a l’Avantage à ses jets d’attaque contre elle. Sa Vitesse passe à 0, elle ne peut profiter d’aucun bonus de Vitesse et suit les déplacements de sa cible.\nUne créature peut entreprendre une action pour tenter de détacher la mante obscure fixée à elle, ce qui nécessite de réussir un test de Force (Athlétisme) DD 13. À son tour, la mante obscure peut se détacher en y consacrant 1,50 m de déplacement."
+      },
+      {
+        "kind": "action",
+        "name": "Aura de ténèbres",
+        "uses": {
+          "per_day": 1
+        },
+        "text": "Des ténèbres magiques emplissent une Émanation de 4,50 m centrée sur la mante obscure. Cet effet persiste tant que la mante obscure maintient sa Concentration, à concurrence de 10 minutes. La Vision dans le noir échoue à percer cette zone, qu’aucune source de lumière ne parvient à éclairer."
+      }
+    ]
+  }
+}

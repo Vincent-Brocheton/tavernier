@@ -1,0 +1,109 @@
+{
+  "id": "srd:monster:quasit",
+  "type": "monster",
+  "name": "Quasit",
+  "data": {
+    "sizes": [
+      "tiny"
+    ],
+    "creature_type": "fiend",
+    "type_tags": [
+      "Démon"
+    ],
+    "alignment": "Chaotique Mauvais",
+    "ac": 13,
+    "initiative": 3,
+    "hp": 25,
+    "hit_dice": "10d4",
+    "speed": {
+      "walk": 40
+    },
+    "hover": false,
+    "abilities": {
+      "str": 5,
+      "dex": 17,
+      "con": 10,
+      "int": 7,
+      "wis": 10,
+      "cha": 10
+    },
+    "saving_throws": {
+      "str": -3,
+      "dex": 3,
+      "con": 0,
+      "int": -2,
+      "wis": 0,
+      "cha": 0
+    },
+    "skills": {
+      "srd:skill:stealth": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:fire",
+      "srd:damage-type:lightning",
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:poison"
+    ],
+    "condition_immunities": [
+      "srd:condition:poisoned"
+    ],
+    "gear": [],
+    "senses": {
+      "darkvision": 120
+    },
+    "passive_perception": 10,
+    "languages": "abyssal, commun",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Résistance à la magie",
+        "text": "Le quasit a l’Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+      },
+      {
+        "kind": "action",
+        "name": "Saignée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 5,
+              "dice": "1d4 + 3",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 5 (1d4 + 3) dégâts tranchants, et la cible subit l’état Empoisonné jusqu’au début du tour suivant du quasit."
+      },
+      {
+        "kind": "action",
+        "name": "Changement d’aspect",
+        "text": "Le quasit se métamorphose en prenant l’aspect d’une chauve-souris (Vitesse 3 m, vol 12 m), d’un mille-pattes (12 m, escalade 12 m) ou d’un crapaud (12 m, nage 12 m) ou reprend sa forme véritable. Son profil reste le même sous chaque forme, à l’exception de sa Vitesse. Rien de ce qu’il porte n’est transformé."
+      },
+      {
+        "kind": "action",
+        "name": "Frayeur",
+        "uses": {
+          "per_day": 1
+        },
+        "save": {
+          "ability": "wis",
+          "dc": 10
+        },
+        "text": "JS Sagesse : DD 10, une créature dans un rayon de 6 m. Échec : la cible subit l’état Effrayé. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l’effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS."
+      },
+      {
+        "kind": "action",
+        "name": "Invisibilité",
+        "text": "Le quasit lance invisibilité sur lui-même, sans composante matérielle, le Charisme étant sa caractéristique d’incantation."
+      }
+    ]
+  }
+}

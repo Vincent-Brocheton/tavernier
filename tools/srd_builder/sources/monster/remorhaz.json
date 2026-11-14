@@ -1,0 +1,94 @@
+{
+  "id": "srd:monster:remorhaz",
+  "type": "monster",
+  "name": "Remorhaz",
+  "data": {
+    "sizes": [
+      "huge"
+    ],
+    "creature_type": "monstrosity",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 17,
+    "initiative": 5,
+    "hp": 195,
+    "hit_dice": "17d12 + 85",
+    "speed": {
+      "walk": 40,
+      "burrow": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 24,
+      "dex": 13,
+      "con": 21,
+      "int": 4,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 7,
+      "dex": 1,
+      "con": 5,
+      "int": -3,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {},
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [
+      "srd:damage-type:fire",
+      "srd:damage-type:cold"
+    ],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60,
+      "tremorsense": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "11",
+    "xp": 7200,
+    "proficiency_bonus": 4,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Aura de chaleur",
+        "text": "À la fin de chacun des tours du remorhaz, chaque créature dans une Émanation de 1,50 m centrée sur lui subit 16 (3d10) dégâts de feu."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 11,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 18,
+              "dice": "2d10 + 7",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 14,
+              "dice": "4d6",
+              "type": "srd:damage-type:fire"
+            }
+          ]
+        },
+        "text": "Corps à corps : +11, allonge 3 m. Touché : 18 (2d10 + 7) dégâts perforants plus 14 (4d6) dégâts de feu. Si la cible est une créature de taille G ou inférieure, elle subit l’état Agrippé (évasion DD 17), ainsi que l’état Entravé tant qu’elle est Agrippée."
+      },
+      {
+        "kind": "bonus",
+        "name": "Engloutissement",
+        "save": {
+          "ability": "str",
+          "dc": 19
+        },
+        "text": "JS Force : DD 19, une créature de taille G ou inférieure Agrippée par le remorhaz (qui peut contenir simultanément un maximum de deux créatures englouties). Échec : la cible est engloutie par le remorhaz, et l’état Agrippé prend fin. Une créature engloutie subit les états Aveuglé et Entravé, bénéficie d’un Abri total contre les attaques et effets émanant de l’extérieur du remorhaz et subit 10 (3d6) dégâts d’acide plus 10 (3d6) dégâts de feu au début de chacun des tours du monstre.\nSi le remorhaz subit 30 dégâts ou plus lors d’un même tour de la part d’une créature engloutie, il doit réussir un jet de sauvegarde de Constitution DD 15 à la fin de ce tour sous peine de régurgiter toutes les créatures englouties, chacune tombant dans un espace situé dans un rayon de 1,50 m et subissant l’état À terre. Si le remorhaz meurt, les créatures englouties ne subissent plus l’état Entravé et peuvent s’extraire du cadavre en dépensant 4,50 m de déplacement, pour se retrouver avec l’état À terre."
+      }
+    ]
+  }
+}

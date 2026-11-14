@@ -1,0 +1,89 @@
+{
+  "id": "srd:monster:allosaurus",
+  "type": "monster",
+  "name": "Allosaure",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [
+      "Dinosaure"
+    ],
+    "alignment": "non alignée",
+    "ac": 13,
+    "initiative": 1,
+    "hp": 51,
+    "hit_dice": "6d10 + 18",
+    "speed": {
+      "walk": 60
+    },
+    "hover": false,
+    "abilities": {
+      "str": 19,
+      "dex": 13,
+      "con": 17,
+      "int": 2,
+      "wis": 12,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": 1,
+      "con": 3,
+      "int": -4,
+      "wis": 1,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:perception": 5
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {},
+    "passive_perception": 15,
+    "languages": "aucune",
+    "cr": "2",
+    "xp": 450,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "action",
+        "name": "Griffes",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 8,
+              "dice": "1d8 + 4",
+              "type": "srd:damage-type:slashing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 8 (1d8 + 4) dégâts tranchants. Si la cible est une créature de taille G ou inférieure et si l’allosaure s’est déplacé en ligne droite d’un minimum de 9 m juste avant de la toucher, la cible subit l’état À terre et l’allosaure peut effectuer contre elle une attaque de Morsure."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 6,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 15,
+              "dice": "2d10 + 4",
+              "type": "srd:damage-type:piercing"
+            }
+          ]
+        },
+        "text": "Corps à corps : +6, allonge 1,50 m. Touché : 15 (2d10 + 4) dégâts perforants."
+      }
+    ]
+  }
+}

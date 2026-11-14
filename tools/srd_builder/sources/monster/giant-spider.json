@@ -1,0 +1,101 @@
+{
+  "id": "srd:monster:giant-spider",
+  "type": "monster",
+  "name": "Araignée géante",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "beast",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 14,
+    "initiative": 3,
+    "hp": 26,
+    "hit_dice": "4d10 + 4",
+    "speed": {
+      "walk": 30,
+      "climb": 30
+    },
+    "hover": false,
+    "abilities": {
+      "str": 14,
+      "dex": 16,
+      "con": 12,
+      "int": 2,
+      "wis": 11,
+      "cha": 4
+    },
+    "saving_throws": {
+      "str": 2,
+      "dex": 3,
+      "con": 1,
+      "int": -4,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:stealth": 7,
+      "srd:skill:perception": 4
+    },
+    "vulnerabilities": [],
+    "resistances": [],
+    "immunities": [],
+    "condition_immunities": [],
+    "gear": [],
+    "senses": {
+      "darkvision": 60
+    },
+    "passive_perception": 14,
+    "languages": "aucune",
+    "cr": "1",
+    "xp": 200,
+    "proficiency_bonus": 2,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Marche dans les toiles",
+        "text": "L’araignée n’est pas soumise aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile qu’elle."
+      },
+      {
+        "kind": "trait",
+        "name": "Pattes d’araignée",
+        "text": "L’araignée peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+      },
+      {
+        "kind": "action",
+        "name": "Morsure",
+        "attack": {
+          "kind": "melee",
+          "bonus": 5,
+          "reach": 5,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d8 + 3",
+              "type": "srd:damage-type:piercing"
+            },
+            {
+              "average": 7,
+              "dice": "2d6",
+              "type": "srd:damage-type:poison"
+            }
+          ]
+        },
+        "text": "Corps à corps : +5, allonge 1,50 m. Touché : 7 (1d8 + 3) dégâts perforants plus 7 (2d6) dégâts de poison."
+      },
+      {
+        "kind": "action",
+        "name": "Toile d’araignée",
+        "uses": {
+          "recharge": "5-6"
+        },
+        "save": {
+          "ability": "dex",
+          "dc": 13
+        },
+        "text": "JS Dextérité : DD 13, une créature que l’araignée voit dans un rayon de 18 m. Échec : la cible subit l’état Entravé jusqu’à ce que la toile soit détruite (CA 10 ; 5 pv ; Vulnérabilité aux dégâts de feu ; Immunité contre les dégâts psychiques et de poison)."
+      }
+    ]
+  }
+}

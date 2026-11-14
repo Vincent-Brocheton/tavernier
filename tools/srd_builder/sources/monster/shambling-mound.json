@@ -1,0 +1,105 @@
+{
+  "id": "srd:monster:shambling-mound",
+  "type": "monster",
+  "name": "Tertre errant",
+  "data": {
+    "sizes": [
+      "large"
+    ],
+    "creature_type": "plant",
+    "type_tags": [],
+    "alignment": "non alignée",
+    "ac": 15,
+    "initiative": -1,
+    "hp": 110,
+    "hit_dice": "13d10 + 39",
+    "speed": {
+      "walk": 30,
+      "swim": 20
+    },
+    "hover": false,
+    "abilities": {
+      "str": 18,
+      "dex": 8,
+      "con": 16,
+      "int": 5,
+      "wis": 10,
+      "cha": 5
+    },
+    "saving_throws": {
+      "str": 4,
+      "dex": -1,
+      "con": 3,
+      "int": -3,
+      "wis": 0,
+      "cha": -3
+    },
+    "skills": {
+      "srd:skill:stealth": 3
+    },
+    "vulnerabilities": [],
+    "resistances": [
+      "srd:damage-type:fire",
+      "srd:damage-type:cold"
+    ],
+    "immunities": [
+      "srd:damage-type:lightning"
+    ],
+    "condition_immunities": [
+      "srd:condition:deafened",
+      "srd:condition:exhaustion"
+    ],
+    "gear": [],
+    "senses": {
+      "blindsight": 60
+    },
+    "passive_perception": 10,
+    "languages": "aucune",
+    "cr": "5",
+    "xp": 1800,
+    "proficiency_bonus": 3,
+    "actions": [
+      {
+        "kind": "trait",
+        "name": "Absorption de la foudre",
+        "text": "Chaque fois que le tertre errant est soumis à des dégâts de foudre, il récupère en fait autant de points de vie que les dégâts de foudre infligés."
+      },
+      {
+        "kind": "action",
+        "name": "Attaques multiples",
+        "text": "Le tertre errant effectue trois attaques de Vrille électrisée. Il peut remplacer l’une de ces attaques par une utilisation d’Enveloppement."
+      },
+      {
+        "kind": "action",
+        "name": "Vrille électrisée",
+        "attack": {
+          "kind": "melee",
+          "bonus": 7,
+          "reach": 10,
+          "damage": [
+            {
+              "average": 7,
+              "dice": "1d6 + 4",
+              "type": "srd:damage-type:bludgeoning"
+            },
+            {
+              "average": 5,
+              "dice": "2d4",
+              "type": "srd:damage-type:lightning"
+            }
+          ]
+        },
+        "text": "Corps à corps : +7, allonge 3 m. Touché : 7 (1d6 + 4) dégâts contondants plus 5 (2d4) dégâts de foudre. Si la cible est une créature de Taille M ou inférieure, le tertre errant la tire en ligne droite vers lui de 1,50 m."
+      },
+      {
+        "kind": "action",
+        "name": "Enveloppement",
+        "save": {
+          "ability": "str",
+          "dc": 15
+        },
+        "text": "JS Force : DD 15, une créature de taille M ou inférieure dans un rayon de 1,50 m. Échec : la cible est tirée dans l’espace du tertre errant et subit l’état Agrippé (évasion DD 14). Tant qu’elle est Agrippée, la cible subit les états Aveuglé et Entravé, ainsi que 10 (3d6) dégâts de foudre au début de chacun de ses tours. Quand le tertre errant se déplace, la cible Agrippée l’accompagne, sans dépense supplémentaire en déplacement. Si le tertre errant a déjà une créature Agrippée par cette action, il ne peut pas en avoir une autre.\nThalasséen (homme-poisson)"
+      }
+    ]
+  }
+}
