@@ -57,14 +57,32 @@ final class SessionStore {
     updates: {table},
   );
 
-  /// Crée une séance ; rend son identifiant.
+  /// Crée une séance, avec ses personnages prévus [present] ; rend son
+  /// identifiant.
   Future<String> create({
     required String tableId,
     required String title,
     required DateTime date,
     SessionStatus status = SessionStatus.planned,
+    Iterable<String> present = const [],
   }) async {
     final id = uuidV7();
+    await _db.transaction(() async {
+      await _insert(id, tableId, title, date, status);
+      for (final characterId in present) {
+        await setPresent(id, characterId, present: true);
+      }
+    });
+    return id;
+  }
+
+  Future<void> _insert(
+    String id,
+    String tableId,
+    String title,
+    DateTime date,
+    SessionStatus status,
+  ) async {
     await _write(
       'INSERT INTO session (id, table_id, title, date, status, created_at) '
       'VALUES (?, ?, ?, ?, ?, ?)',
@@ -78,7 +96,6 @@ final class SessionStore {
       ],
       _db.sessions,
     );
-    return id;
   }
 
   Future<void> update(

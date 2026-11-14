@@ -3216,4 +3216,116 @@ class AppLocalizationsFr extends AppLocalizations {
   String historyLevelUp(int level) {
     return 'Montée au niveau $level';
   }
+
+  @override
+  String get tabSessions => 'Séances';
+
+  @override
+  String get sessionsEmptyTitle => 'Aucune séance';
+
+  @override
+  String get sessionsEmptyBody =>
+      'Une séance regroupe les rencontres, les notes et les PX d’une soirée de jeu. Préparez-la sur ordinateur ou ici, elle sera jouable sans réseau.';
+
+  @override
+  String sessionPrepare(int number) {
+    return 'Préparer la séance $number';
+  }
+
+  @override
+  String get sessionPlayNow => 'Jouer tout de suite, sans préparation';
+
+  @override
+  String sessionsValidated(int validated, int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      validated,
+      locale: localeName,
+      other: '$validated joueurs sur $total ont une fiche validée.',
+      one: '1 joueur sur $total a une fiche validée.',
+      zero: 'Aucun joueur sur $total n’a de fiche validée.',
+    );
+    return '$_temp0 Les autres pourront rejoindre la séance en cours.';
+  }
+
+  @override
+  String get sessionNew => 'Nouvelle séance';
+
+  @override
+  String get sessionsNext => 'Prochaine';
+
+  @override
+  String get sessionsPast => 'Passées';
+
+  @override
+  String sessionNumber(int number) {
+    return 'Séance $number';
+  }
+
+  @override
+  String get sessionPlanned => 'Préparée';
+
+  @override
+  String get sessionInProgress => 'En cours';
+
+  @override
+  String get sessionClosed => 'Close';
+
+  @override
+  String sessionMonth(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.MMM(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String sessionDay(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.d(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String sessionDate(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat(
+      'EEEE dd/MM/yyyy',
+      localeName,
+    );
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String sessionExpected(String names) {
+    return 'Personnage attendu : $names';
+  }
+
+  @override
+  String get sessionPrepTitle => 'Préparer la séance';
+
+  @override
+  String sessionPrepHeader(String table, int number) {
+    return '$table · Séance $number';
+  }
+
+  @override
+  String get sessionTitleLabel => 'Titre';
+
+  @override
+  String get sessionDateLabel => 'Date';
+
+  @override
+  String get sessionAttendanceTitle => 'Présences prévues';
+
+  @override
+  String get sessionAttendanceHelp =>
+      'Préremplies dans chaque rencontre, pour la difficulté et les PX.';
+
+  @override
+  String get sessionOpen => 'Ouvrir la séance';
+
+  @override
+  String get sessionSaved => 'Enregistrée';
 }
