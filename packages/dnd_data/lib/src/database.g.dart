@@ -27341,6 +27341,24 @@ class $NpcStatblocksTable extends NpcStatblocks
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _folderMeta = const VerificationMeta('folder');
+  @override
+  late final GeneratedColumn<String> folder = GeneratedColumn<String>(
+    'folder',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _monsterIdMeta = const VerificationMeta(
     'monsterId',
   );
@@ -27363,6 +27381,17 @@ class $NpcStatblocksTable extends NpcStatblocks
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _attitudeMeta = const VerificationMeta(
     'attitude',
   );
@@ -27370,9 +27399,10 @@ class $NpcStatblocksTable extends NpcStatblocks
   late final GeneratedColumn<String> attitude = GeneratedColumn<String>(
     'attitude',
     aliasedName,
-    true,
+    false,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
+    defaultValue: const Constant('indifferent'),
   );
   static const VerificationMeta _hiddenInfoMeta = const VerificationMeta(
     'hiddenInfo',
@@ -27381,18 +27411,34 @@ class $NpcStatblocksTable extends NpcStatblocks
   late final GeneratedColumn<String> hiddenInfo = GeneratedColumn<String>(
     'hidden_info',
     aliasedName,
-    true,
+    false,
     type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
     tableId,
+    name,
+    folder,
     monsterId,
     statBlock,
+    characterId,
     attitude,
     hiddenInfo,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -27419,6 +27465,20 @@ class $NpcStatblocksTable extends NpcStatblocks
     } else if (isInserting) {
       context.missing(_tableIdMeta);
     }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('folder')) {
+      context.handle(
+        _folderMeta,
+        folder.isAcceptableOrUnknown(data['folder']!, _folderMeta),
+      );
+    }
     if (data.containsKey('monster_id')) {
       context.handle(
         _monsterIdMeta,
@@ -27431,6 +27491,15 @@ class $NpcStatblocksTable extends NpcStatblocks
         statBlock.isAcceptableOrUnknown(data['stat_block']!, _statBlockMeta),
       );
     }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    }
     if (data.containsKey('attitude')) {
       context.handle(
         _attitudeMeta,
@@ -27441,6 +27510,12 @@ class $NpcStatblocksTable extends NpcStatblocks
       context.handle(
         _hiddenInfoMeta,
         hiddenInfo.isAcceptableOrUnknown(data['hidden_info']!, _hiddenInfoMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
       );
     }
     return context;
@@ -27460,6 +27535,14 @@ class $NpcStatblocksTable extends NpcStatblocks
         DriftSqlType.string,
         data['${effectivePrefix}table_id'],
       )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      folder: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}folder'],
+      ),
       monsterId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}monster_id'],
@@ -27468,13 +27551,21 @@ class $NpcStatblocksTable extends NpcStatblocks
         DriftSqlType.string,
         data['${effectivePrefix}stat_block'],
       ),
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      ),
       attitude: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}attitude'],
-      ),
+      )!,
       hiddenInfo: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}hidden_info'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
       ),
     );
   }
@@ -27488,34 +27579,50 @@ class $NpcStatblocksTable extends NpcStatblocks
 class NpcStatblockRow extends DataClass implements Insertable<NpcStatblockRow> {
   final String id;
   final String tableId;
+  final String name;
+  final String? folder;
   final String? monsterId;
   final String? statBlock;
-  final String? attitude;
-  final String? hiddenInfo;
+  final String? characterId;
+
+  /// `friendly`, `indifferent` ou `hostile`.
+  final String attitude;
+  final String hiddenInfo;
+  final DateTime? createdAt;
   const NpcStatblockRow({
     required this.id,
     required this.tableId,
+    required this.name,
+    this.folder,
     this.monsterId,
     this.statBlock,
-    this.attitude,
-    this.hiddenInfo,
+    this.characterId,
+    required this.attitude,
+    required this.hiddenInfo,
+    this.createdAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['table_id'] = Variable<String>(tableId);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || folder != null) {
+      map['folder'] = Variable<String>(folder);
+    }
     if (!nullToAbsent || monsterId != null) {
       map['monster_id'] = Variable<String>(monsterId);
     }
     if (!nullToAbsent || statBlock != null) {
       map['stat_block'] = Variable<String>(statBlock);
     }
-    if (!nullToAbsent || attitude != null) {
-      map['attitude'] = Variable<String>(attitude);
+    if (!nullToAbsent || characterId != null) {
+      map['character_id'] = Variable<String>(characterId);
     }
-    if (!nullToAbsent || hiddenInfo != null) {
-      map['hidden_info'] = Variable<String>(hiddenInfo);
+    map['attitude'] = Variable<String>(attitude);
+    map['hidden_info'] = Variable<String>(hiddenInfo);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
     }
     return map;
   }
@@ -27524,18 +27631,24 @@ class NpcStatblockRow extends DataClass implements Insertable<NpcStatblockRow> {
     return NpcStatblocksCompanion(
       id: Value(id),
       tableId: Value(tableId),
+      name: Value(name),
+      folder: folder == null && nullToAbsent
+          ? const Value.absent()
+          : Value(folder),
       monsterId: monsterId == null && nullToAbsent
           ? const Value.absent()
           : Value(monsterId),
       statBlock: statBlock == null && nullToAbsent
           ? const Value.absent()
           : Value(statBlock),
-      attitude: attitude == null && nullToAbsent
+      characterId: characterId == null && nullToAbsent
           ? const Value.absent()
-          : Value(attitude),
-      hiddenInfo: hiddenInfo == null && nullToAbsent
+          : Value(characterId),
+      attitude: Value(attitude),
+      hiddenInfo: Value(hiddenInfo),
+      createdAt: createdAt == null && nullToAbsent
           ? const Value.absent()
-          : Value(hiddenInfo),
+          : Value(createdAt),
     );
   }
 
@@ -27547,10 +27660,14 @@ class NpcStatblockRow extends DataClass implements Insertable<NpcStatblockRow> {
     return NpcStatblockRow(
       id: serializer.fromJson<String>(json['id']),
       tableId: serializer.fromJson<String>(json['tableId']),
+      name: serializer.fromJson<String>(json['name']),
+      folder: serializer.fromJson<String?>(json['folder']),
       monsterId: serializer.fromJson<String?>(json['monsterId']),
       statBlock: serializer.fromJson<String?>(json['statBlock']),
-      attitude: serializer.fromJson<String?>(json['attitude']),
-      hiddenInfo: serializer.fromJson<String?>(json['hiddenInfo']),
+      characterId: serializer.fromJson<String?>(json['characterId']),
+      attitude: serializer.fromJson<String>(json['attitude']),
+      hiddenInfo: serializer.fromJson<String>(json['hiddenInfo']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
     );
   }
   @override
@@ -27559,38 +27676,56 @@ class NpcStatblockRow extends DataClass implements Insertable<NpcStatblockRow> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'tableId': serializer.toJson<String>(tableId),
+      'name': serializer.toJson<String>(name),
+      'folder': serializer.toJson<String?>(folder),
       'monsterId': serializer.toJson<String?>(monsterId),
       'statBlock': serializer.toJson<String?>(statBlock),
-      'attitude': serializer.toJson<String?>(attitude),
-      'hiddenInfo': serializer.toJson<String?>(hiddenInfo),
+      'characterId': serializer.toJson<String?>(characterId),
+      'attitude': serializer.toJson<String>(attitude),
+      'hiddenInfo': serializer.toJson<String>(hiddenInfo),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
     };
   }
 
   NpcStatblockRow copyWith({
     String? id,
     String? tableId,
+    String? name,
+    Value<String?> folder = const Value.absent(),
     Value<String?> monsterId = const Value.absent(),
     Value<String?> statBlock = const Value.absent(),
-    Value<String?> attitude = const Value.absent(),
-    Value<String?> hiddenInfo = const Value.absent(),
+    Value<String?> characterId = const Value.absent(),
+    String? attitude,
+    String? hiddenInfo,
+    Value<DateTime?> createdAt = const Value.absent(),
   }) => NpcStatblockRow(
     id: id ?? this.id,
     tableId: tableId ?? this.tableId,
+    name: name ?? this.name,
+    folder: folder.present ? folder.value : this.folder,
     monsterId: monsterId.present ? monsterId.value : this.monsterId,
     statBlock: statBlock.present ? statBlock.value : this.statBlock,
-    attitude: attitude.present ? attitude.value : this.attitude,
-    hiddenInfo: hiddenInfo.present ? hiddenInfo.value : this.hiddenInfo,
+    characterId: characterId.present ? characterId.value : this.characterId,
+    attitude: attitude ?? this.attitude,
+    hiddenInfo: hiddenInfo ?? this.hiddenInfo,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
   NpcStatblockRow copyWithCompanion(NpcStatblocksCompanion data) {
     return NpcStatblockRow(
       id: data.id.present ? data.id.value : this.id,
       tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      name: data.name.present ? data.name.value : this.name,
+      folder: data.folder.present ? data.folder.value : this.folder,
       monsterId: data.monsterId.present ? data.monsterId.value : this.monsterId,
       statBlock: data.statBlock.present ? data.statBlock.value : this.statBlock,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
       attitude: data.attitude.present ? data.attitude.value : this.attitude,
       hiddenInfo: data.hiddenInfo.present
           ? data.hiddenInfo.value
           : this.hiddenInfo,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -27599,72 +27734,111 @@ class NpcStatblockRow extends DataClass implements Insertable<NpcStatblockRow> {
     return (StringBuffer('NpcStatblockRow(')
           ..write('id: $id, ')
           ..write('tableId: $tableId, ')
+          ..write('name: $name, ')
+          ..write('folder: $folder, ')
           ..write('monsterId: $monsterId, ')
           ..write('statBlock: $statBlock, ')
+          ..write('characterId: $characterId, ')
           ..write('attitude: $attitude, ')
-          ..write('hiddenInfo: $hiddenInfo')
+          ..write('hiddenInfo: $hiddenInfo, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, tableId, monsterId, statBlock, attitude, hiddenInfo);
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    name,
+    folder,
+    monsterId,
+    statBlock,
+    characterId,
+    attitude,
+    hiddenInfo,
+    createdAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is NpcStatblockRow &&
           other.id == this.id &&
           other.tableId == this.tableId &&
+          other.name == this.name &&
+          other.folder == this.folder &&
           other.monsterId == this.monsterId &&
           other.statBlock == this.statBlock &&
+          other.characterId == this.characterId &&
           other.attitude == this.attitude &&
-          other.hiddenInfo == this.hiddenInfo);
+          other.hiddenInfo == this.hiddenInfo &&
+          other.createdAt == this.createdAt);
 }
 
 class NpcStatblocksCompanion extends UpdateCompanion<NpcStatblockRow> {
   final Value<String> id;
   final Value<String> tableId;
+  final Value<String> name;
+  final Value<String?> folder;
   final Value<String?> monsterId;
   final Value<String?> statBlock;
-  final Value<String?> attitude;
-  final Value<String?> hiddenInfo;
+  final Value<String?> characterId;
+  final Value<String> attitude;
+  final Value<String> hiddenInfo;
+  final Value<DateTime?> createdAt;
   final Value<int> rowid;
   const NpcStatblocksCompanion({
     this.id = const Value.absent(),
     this.tableId = const Value.absent(),
+    this.name = const Value.absent(),
+    this.folder = const Value.absent(),
     this.monsterId = const Value.absent(),
     this.statBlock = const Value.absent(),
+    this.characterId = const Value.absent(),
     this.attitude = const Value.absent(),
     this.hiddenInfo = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   NpcStatblocksCompanion.insert({
     required String id,
     required String tableId,
+    required String name,
+    this.folder = const Value.absent(),
     this.monsterId = const Value.absent(),
     this.statBlock = const Value.absent(),
+    this.characterId = const Value.absent(),
     this.attitude = const Value.absent(),
     this.hiddenInfo = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
-       tableId = Value(tableId);
+       tableId = Value(tableId),
+       name = Value(name);
   static Insertable<NpcStatblockRow> custom({
     Expression<String>? id,
     Expression<String>? tableId,
+    Expression<String>? name,
+    Expression<String>? folder,
     Expression<String>? monsterId,
     Expression<String>? statBlock,
+    Expression<String>? characterId,
     Expression<String>? attitude,
     Expression<String>? hiddenInfo,
+    Expression<DateTime>? createdAt,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (tableId != null) 'table_id': tableId,
+      if (name != null) 'name': name,
+      if (folder != null) 'folder': folder,
       if (monsterId != null) 'monster_id': monsterId,
       if (statBlock != null) 'stat_block': statBlock,
+      if (characterId != null) 'character_id': characterId,
       if (attitude != null) 'attitude': attitude,
       if (hiddenInfo != null) 'hidden_info': hiddenInfo,
+      if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -27672,19 +27846,27 @@ class NpcStatblocksCompanion extends UpdateCompanion<NpcStatblockRow> {
   NpcStatblocksCompanion copyWith({
     Value<String>? id,
     Value<String>? tableId,
+    Value<String>? name,
+    Value<String?>? folder,
     Value<String?>? monsterId,
     Value<String?>? statBlock,
-    Value<String?>? attitude,
-    Value<String?>? hiddenInfo,
+    Value<String?>? characterId,
+    Value<String>? attitude,
+    Value<String>? hiddenInfo,
+    Value<DateTime?>? createdAt,
     Value<int>? rowid,
   }) {
     return NpcStatblocksCompanion(
       id: id ?? this.id,
       tableId: tableId ?? this.tableId,
+      name: name ?? this.name,
+      folder: folder ?? this.folder,
       monsterId: monsterId ?? this.monsterId,
       statBlock: statBlock ?? this.statBlock,
+      characterId: characterId ?? this.characterId,
       attitude: attitude ?? this.attitude,
       hiddenInfo: hiddenInfo ?? this.hiddenInfo,
+      createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -27698,17 +27880,29 @@ class NpcStatblocksCompanion extends UpdateCompanion<NpcStatblockRow> {
     if (tableId.present) {
       map['table_id'] = Variable<String>(tableId.value);
     }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (folder.present) {
+      map['folder'] = Variable<String>(folder.value);
+    }
     if (monsterId.present) {
       map['monster_id'] = Variable<String>(monsterId.value);
     }
     if (statBlock.present) {
       map['stat_block'] = Variable<String>(statBlock.value);
     }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
     if (attitude.present) {
       map['attitude'] = Variable<String>(attitude.value);
     }
     if (hiddenInfo.present) {
       map['hidden_info'] = Variable<String>(hiddenInfo.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -27721,10 +27915,14 @@ class NpcStatblocksCompanion extends UpdateCompanion<NpcStatblockRow> {
     return (StringBuffer('NpcStatblocksCompanion(')
           ..write('id: $id, ')
           ..write('tableId: $tableId, ')
+          ..write('name: $name, ')
+          ..write('folder: $folder, ')
           ..write('monsterId: $monsterId, ')
           ..write('statBlock: $statBlock, ')
+          ..write('characterId: $characterId, ')
           ..write('attitude: $attitude, ')
           ..write('hiddenInfo: $hiddenInfo, ')
+          ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -52067,20 +52265,28 @@ typedef $$NpcStatblocksTableCreateCompanionBuilder =
     NpcStatblocksCompanion Function({
       required String id,
       required String tableId,
+      required String name,
+      Value<String?> folder,
       Value<String?> monsterId,
       Value<String?> statBlock,
-      Value<String?> attitude,
-      Value<String?> hiddenInfo,
+      Value<String?> characterId,
+      Value<String> attitude,
+      Value<String> hiddenInfo,
+      Value<DateTime?> createdAt,
       Value<int> rowid,
     });
 typedef $$NpcStatblocksTableUpdateCompanionBuilder =
     NpcStatblocksCompanion Function({
       Value<String> id,
       Value<String> tableId,
+      Value<String> name,
+      Value<String?> folder,
       Value<String?> monsterId,
       Value<String?> statBlock,
-      Value<String?> attitude,
-      Value<String?> hiddenInfo,
+      Value<String?> characterId,
+      Value<String> attitude,
+      Value<String> hiddenInfo,
+      Value<DateTime?> createdAt,
       Value<int> rowid,
     });
 
@@ -52103,6 +52309,16 @@ class $$NpcStatblocksTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get folder => $composableBuilder(
+    column: $table.folder,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get monsterId => $composableBuilder(
     column: $table.monsterId,
     builder: (column) => ColumnFilters(column),
@@ -52113,6 +52329,11 @@ class $$NpcStatblocksTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get attitude => $composableBuilder(
     column: $table.attitude,
     builder: (column) => ColumnFilters(column),
@@ -52120,6 +52341,11 @@ class $$NpcStatblocksTableFilterComposer
 
   ColumnFilters<String> get hiddenInfo => $composableBuilder(
     column: $table.hiddenInfo,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -52143,6 +52369,16 @@ class $$NpcStatblocksTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get folder => $composableBuilder(
+    column: $table.folder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get monsterId => $composableBuilder(
     column: $table.monsterId,
     builder: (column) => ColumnOrderings(column),
@@ -52153,6 +52389,11 @@ class $$NpcStatblocksTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get attitude => $composableBuilder(
     column: $table.attitude,
     builder: (column) => ColumnOrderings(column),
@@ -52160,6 +52401,11 @@ class $$NpcStatblocksTableOrderingComposer
 
   ColumnOrderings<String> get hiddenInfo => $composableBuilder(
     column: $table.hiddenInfo,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -52179,11 +52425,22 @@ class $$NpcStatblocksTableAnnotationComposer
   GeneratedColumn<String> get tableId =>
       $composableBuilder(column: $table.tableId, builder: (column) => column);
 
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get folder =>
+      $composableBuilder(column: $table.folder, builder: (column) => column);
+
   GeneratedColumn<String> get monsterId =>
       $composableBuilder(column: $table.monsterId, builder: (column) => column);
 
   GeneratedColumn<String> get statBlock =>
       $composableBuilder(column: $table.statBlock, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get attitude =>
       $composableBuilder(column: $table.attitude, builder: (column) => column);
@@ -52192,6 +52449,9 @@ class $$NpcStatblocksTableAnnotationComposer
     column: $table.hiddenInfo,
     builder: (column) => column,
   );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
 class $$NpcStatblocksTableTableManager
@@ -52233,36 +52493,52 @@ class $$NpcStatblocksTableTableManager
               ({
                 Value<String> id = const Value.absent(),
                 Value<String> tableId = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String?> folder = const Value.absent(),
                 Value<String?> monsterId = const Value.absent(),
                 Value<String?> statBlock = const Value.absent(),
-                Value<String?> attitude = const Value.absent(),
-                Value<String?> hiddenInfo = const Value.absent(),
+                Value<String?> characterId = const Value.absent(),
+                Value<String> attitude = const Value.absent(),
+                Value<String> hiddenInfo = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => NpcStatblocksCompanion(
                 id: id,
                 tableId: tableId,
+                name: name,
+                folder: folder,
                 monsterId: monsterId,
                 statBlock: statBlock,
+                characterId: characterId,
                 attitude: attitude,
                 hiddenInfo: hiddenInfo,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
                 required String id,
                 required String tableId,
+                required String name,
+                Value<String?> folder = const Value.absent(),
                 Value<String?> monsterId = const Value.absent(),
                 Value<String?> statBlock = const Value.absent(),
-                Value<String?> attitude = const Value.absent(),
-                Value<String?> hiddenInfo = const Value.absent(),
+                Value<String?> characterId = const Value.absent(),
+                Value<String> attitude = const Value.absent(),
+                Value<String> hiddenInfo = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => NpcStatblocksCompanion.insert(
                 id: id,
                 tableId: tableId,
+                name: name,
+                folder: folder,
                 monsterId: monsterId,
                 statBlock: statBlock,
+                characterId: characterId,
                 attitude: attitude,
                 hiddenInfo: hiddenInfo,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

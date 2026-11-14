@@ -370,14 +370,23 @@ class CharacterChoices extends Table with IdKey, CharacterOwned {
   ];
 }
 
+/// PNJ du MJ (US-18, EF-PNJ-01 à 03) : bloc de stats (monstre de départ,
+/// bloc JSON) ou fiche complète liée ; attitude et informations cachées.
 @DataClassName('NpcStatblockRow')
 class NpcStatblocks extends Table with IdKey, TableOwned {
   @override
   String get tableName => 'npc_statblock';
+  TextColumn get name => text()();
+  TextColumn get folder => text().nullable()();
   TextColumn get monsterId => text().nullable()();
   TextColumn get statBlock => text().nullable()(); // JSON
-  TextColumn get attitude => text().nullable()();
-  TextColumn get hiddenInfo => text().nullable()(); // JSON
+  TextColumn get characterId => text().nullable()();
+
+  /// `friendly`, `indifferent` ou `hostile`.
+  TextColumn get attitude =>
+      text().withDefault(const Constant('indifferent'))();
+  TextColumn get hiddenInfo => text().withDefault(const Constant('[]'))();
+  DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
 @DataClassName('EncounterRow')

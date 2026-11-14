@@ -5797,6 +5797,26 @@
             "dsl_features": []
           },
           {
+            "name": "name",
+            "getter_name": "name",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "folder",
+            "getter_name": "folder",
+            "moor_type": "string",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "monster_id",
             "getter_name": "monsterId",
             "moor_type": "string",
@@ -5817,8 +5837,8 @@
             "dsl_features": []
           },
           {
-            "name": "attitude",
-            "getter_name": "attitude",
+            "name": "character_id",
+            "getter_name": "characterId",
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
@@ -5827,9 +5847,29 @@
             "dsl_features": []
           },
           {
+            "name": "attitude",
+            "getter_name": "attitude",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'indifferent\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "hidden_info",
             "getter_name": "hiddenInfo",
             "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'[]\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
             "nullable": true,
             "customConstraints": null,
             "default_dart": null,
@@ -6841,7 +6881,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"npc_statblock\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"monster_id\" TEXT NULL, \"stat_block\" TEXT NULL, \"attitude\" TEXT NULL, \"hidden_info\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"npc_statblock\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"name\" TEXT NOT NULL, \"folder\" TEXT NULL, \"monster_id\" TEXT NULL, \"stat_block\" TEXT NULL, \"character_id\" TEXT NULL, \"attitude\" TEXT NOT NULL DEFAULT 'indifferent', \"hidden_info\" TEXT NOT NULL DEFAULT '[]', \"created_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

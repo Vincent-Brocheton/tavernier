@@ -14,7 +14,6 @@ const userDataVersion = 1;
 List<String> userDataTables(TavernierDatabase db) => [
   ...syncedTables,
   for (final TableInfo<Table, Object?> table in [
-    db.npcStatblocks,
     db.encounters,
     db.combatants,
     db.encounterEvents,

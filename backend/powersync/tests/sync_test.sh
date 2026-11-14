@@ -65,6 +65,12 @@ insert into session (id, table_id, title, date)
   values ('se1', 't1', 'Le relais du Sel', '2026-10-30');
 insert into session_attendance (id, session_id, character_id, table_id)
   values ('se1:c1', 'se1', 'c1', 't1');
+insert into character (id, table_id, owner_user_id, kind, name, species_id,
+  background_id, status) values
+  ('n1', 't1', '${id[mj]}', 'npc_full', 'Odran', 'srd:species:human',
+   'srd:background:soldier', 'draft');
+insert into npc_statblock (id, table_id, name, character_id)
+  values ('pnj1', 't1', 'Maître Odran', 'n1');
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -108,8 +114,9 @@ c1=(character/c1 character_state/s1 character_item/o1)
 proposal=(character_proposal/x1)
 c2=(character/c2 character_state/s2)
 
-expect mj "le MJ reçoit sa table, ses invitations et toutes les fiches" \
-  "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}"
+expect mj "le MJ reçoit sa table, ses invitations, toutes les fiches et ses PNJ" \
+  "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}" \
+  character/n1 npc_statblock/pnj1
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
   "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}"
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \

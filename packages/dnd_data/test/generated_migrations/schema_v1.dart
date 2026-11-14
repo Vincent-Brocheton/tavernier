@@ -5534,6 +5534,22 @@ class NpcStatblock extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> folder = GeneratedColumn<String>(
+    'folder',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
+  );
   late final GeneratedColumn<String> monsterId = GeneratedColumn<String>(
     'monster_id',
     aliasedName,
@@ -5550,16 +5566,34 @@ class NpcStatblock extends Table with TableInfo {
     requiredDuringInsert: false,
     $customConstraints: 'NULL',
   );
-  late final GeneratedColumn<String> attitude = GeneratedColumn<String>(
-    'attitude',
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
     aliasedName,
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
     $customConstraints: 'NULL',
   );
+  late final GeneratedColumn<String> attitude = GeneratedColumn<String>(
+    'attitude',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'indifferent\'',
+    defaultValue: const CustomExpression('\'indifferent\''),
+  );
   late final GeneratedColumn<String> hiddenInfo = GeneratedColumn<String>(
     'hidden_info',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'[]\'',
+    defaultValue: const CustomExpression('\'[]\''),
+  );
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+    'created_at',
     aliasedName,
     true,
     type: DriftSqlType.string,
@@ -5570,10 +5604,14 @@ class NpcStatblock extends Table with TableInfo {
   List<GeneratedColumn> get $columns => [
     id,
     tableId,
+    name,
+    folder,
     monsterId,
     statBlock,
+    characterId,
     attitude,
     hiddenInfo,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
