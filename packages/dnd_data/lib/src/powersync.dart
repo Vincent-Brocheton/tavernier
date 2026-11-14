@@ -16,6 +16,8 @@ const syncedTables = {
   'table_banned_entity',
   'table_activity',
   'pc_slot',
+  'session',
+  'session_attendance',
   'character_summary',
   'character',
   'character_base_scores',

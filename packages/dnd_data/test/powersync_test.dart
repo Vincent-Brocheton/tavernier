@@ -116,19 +116,18 @@ void main() {
   });
 
   test(
-    'une séance (M3, locale) se rattache à une table synchronisée',
+    'une rencontre (M3, locale) se rattache à une séance synchronisée',
     () async {
-      await db.customStatement(
-        'INSERT INTO game_table (id, name, stat_method, long_rest_rule, '
-        'hp_on_level_rule, progression_mode) '
-        "VALUES ('t', 'T', 'point_buy', 'full', 'average', 'xp')",
-      );
       await db.customStatement(
         'INSERT INTO session (id, table_id, date, title) '
         "VALUES ('s', 't', '2026-11-08', 'Séance 1')",
       );
-      final session = await db.select(db.sessions).getSingle();
-      expect(session.tableId, 't');
+      await db.customStatement(
+        'INSERT INTO encounter (id, session_id, status, hp_mode) '
+        "VALUES ('e', 's', 'planned', 'average')",
+      );
+      final encounter = await db.select(db.encounters).getSingle();
+      expect(encounter.sessionId, 's');
     },
   );
 

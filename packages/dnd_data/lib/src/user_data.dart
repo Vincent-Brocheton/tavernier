@@ -15,7 +15,6 @@ List<String> userDataTables(TavernierDatabase db) => [
   ...syncedTables,
   for (final TableInfo<Table, Object?> table in [
     db.npcStatblocks,
-    db.sessions,
     db.encounters,
     db.combatants,
     db.encounterEvents,

@@ -106,6 +106,28 @@ class PcSlots extends Table with IdKey, TableOwned {
   DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
+/// Séance d'une table (US-35, EF-SEA-01) : `planned`, `in_progress` ou
+/// `closed`. Son numéro se déduit de l'ordre des dates.
+@DataClassName('SessionRow')
+class Sessions extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'session';
+  TextColumn get title => text()();
+  TextColumn get date => text()(); // AAAA-MM-JJ
+  TextColumn get status => text().withDefault(const Constant('planned'))();
+  DateTimeColumn get createdAt => dateTime().nullable()();
+}
+
+/// Personnage prévu à une séance (EF-SEA-02) ; sans ligne, il est absent.
+/// `id` : `<séance>:<personnage>`.
+@DataClassName('SessionAttendanceRow')
+class SessionAttendances extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'session_attendance';
+  TextColumn get sessionId => text()();
+  TextColumn get characterId => text()();
+}
+
 /// Résumé d'une fiche de table, lu par les autres joueurs (US-15,
 /// EF-TAB-09) : `id` est celui de la fiche ; aucun PV chiffré.
 @DataClassName('CharacterSummaryRow')
@@ -358,25 +380,14 @@ class NpcStatblocks extends Table with IdKey, TableOwned {
   TextColumn get hiddenInfo => text().nullable()(); // JSON
 }
 
-@DataClassName('SessionRow')
-class Sessions extends Table with IdKey, TableOwned {
-  @override
-  String get tableName => 'session';
-  DateTimeColumn get date => dateTime()();
-  TextColumn get title => text()();
-}
-
 @DataClassName('EncounterRow')
 class Encounters extends Table with IdKey {
   @override
   String get tableName => 'encounter';
 
-  /// Supprimée avec sa séance (donc avec sa table de jeu).
-  TextColumn get sessionId => text().nullable().references(
-    Sessions,
-    #id,
-    onDelete: KeyAction.cascade,
-  )();
+  /// Séance de la rencontre. Pas de clé étrangère : `session` est une vue
+  /// PowerSync.
+  TextColumn get sessionId => text().nullable()();
   TextColumn get status => text()();
   TextColumn get difficulty => text().nullable()();
   TextColumn get hpMode => text()();

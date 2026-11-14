@@ -4206,6 +4206,140 @@
       "references": [],
       "type": "table",
       "data": {
+        "name": "session",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "title",
+            "getter_name": "title",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "date",
+            "getter_name": "date",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "status",
+            "getter_name": "status",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'planned\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
+            "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "session_attendance",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "session_id",
+            "getter_name": "sessionId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "character_id",
+            "getter_name": "characterId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "references": [],
+      "type": "table",
+      "data": {
         "name": "character_summary",
         "was_declared_in_moor": false,
         "columns": [
@@ -4299,7 +4433,7 @@
       }
     },
     {
-      "id": 44,
+      "id": 46,
       "references": [],
       "type": "table",
       "data": {
@@ -4516,7 +4650,7 @@
       }
     },
     {
-      "id": 45,
+      "id": 47,
       "references": [],
       "type": "table",
       "data": {
@@ -4589,7 +4723,7 @@
       }
     },
     {
-      "id": 46,
+      "id": 48,
       "references": [],
       "type": "table",
       "data": {
@@ -4671,7 +4805,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 49,
       "references": [],
       "type": "table",
       "data": {
@@ -4784,7 +4918,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 50,
       "references": [],
       "type": "table",
       "data": {
@@ -4871,7 +5005,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 51,
       "references": [],
       "type": "table",
       "data": {
@@ -4928,7 +5062,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 52,
       "references": [],
       "type": "table",
       "data": {
@@ -5023,7 +5157,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 53,
       "references": [],
       "type": "table",
       "data": {
@@ -5118,7 +5252,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 54,
       "references": [],
       "type": "table",
       "data": {
@@ -5244,7 +5378,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 55,
       "references": [],
       "type": "table",
       "data": {
@@ -5321,7 +5455,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 56,
       "references": [],
       "type": "table",
       "data": {
@@ -5388,7 +5522,7 @@
       }
     },
     {
-      "id": 55,
+      "id": 57,
       "references": [],
       "type": "table",
       "data": {
@@ -5445,7 +5579,7 @@
       }
     },
     {
-      "id": 56,
+      "id": 58,
       "references": [],
       "type": "table",
       "data": {
@@ -5508,7 +5642,7 @@
       }
     },
     {
-      "id": 57,
+      "id": 59,
       "references": [],
       "type": "table",
       "data": {
@@ -5635,7 +5769,7 @@
       }
     },
     {
-      "id": 58,
+      "id": 60,
       "references": [],
       "type": "table",
       "data": {
@@ -5712,67 +5846,8 @@
       }
     },
     {
-      "id": 59,
+      "id": 61,
       "references": [],
-      "type": "table",
-      "data": {
-        "name": "session",
-        "was_declared_in_moor": false,
-        "columns": [
-          {
-            "name": "id",
-            "getter_name": "id",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "table_id",
-            "getter_name": "tableId",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "date",
-            "getter_name": "date",
-            "moor_type": "dateTime",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "title",
-            "getter_name": "title",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          }
-        ],
-        "is_virtual": false,
-        "without_rowid": false,
-        "constraints": [],
-        "explicit_pk": [
-          "id"
-        ]
-      }
-    },
-    {
-      "id": 60,
-      "references": [
-        59
-      ],
       "type": "table",
       "data": {
         "name": "encounter",
@@ -5794,25 +5869,9 @@
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES session (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES session (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "session",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "status",
@@ -5854,9 +5913,9 @@
       }
     },
     {
-      "id": 61,
+      "id": 62,
       "references": [
-        60
+        61
       ],
       "type": "table",
       "data": {
@@ -6003,9 +6062,9 @@
       }
     },
     {
-      "id": 62,
+      "id": 63,
       "references": [
-        60
+        61
       ],
       "type": "table",
       "data": {
@@ -6108,7 +6167,7 @@
       }
     },
     {
-      "id": 63,
+      "id": 64,
       "references": [],
       "type": "table",
       "data": {
@@ -6199,7 +6258,7 @@
       }
     },
     {
-      "id": 64,
+      "id": 65,
       "references": [],
       "type": "table",
       "data": {
@@ -6625,6 +6684,24 @@
       ]
     },
     {
+      "name": "session",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"session\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"title\" TEXT NOT NULL, \"date\" TEXT NOT NULL, \"status\" TEXT NOT NULL DEFAULT 'planned', \"created_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
+        }
+      ]
+    },
+    {
+      "name": "session_attendance",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"session_attendance\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"session_id\" TEXT NOT NULL, \"character_id\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+        }
+      ]
+    },
+    {
       "name": "character_summary",
       "sql": [
         {
@@ -6769,20 +6846,11 @@
       ]
     },
     {
-      "name": "session",
-      "sql": [
-        {
-          "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"session\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"date\" TEXT NOT NULL, \"title\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
-        }
-      ]
-    },
-    {
       "name": "encounter",
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"session_id\" TEXT NULL REFERENCES session (id) ON DELETE CASCADE, \"status\" TEXT NOT NULL, \"difficulty\" TEXT NULL, \"hp_mode\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"session_id\" TEXT NULL, \"status\" TEXT NOT NULL, \"difficulty\" TEXT NULL, \"hp_mode\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },
