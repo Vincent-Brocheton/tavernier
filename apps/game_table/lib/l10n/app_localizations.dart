@@ -5939,6 +5939,204 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ouvrir la fiche'**
   String get npcOpenSheet;
+
+  /// Onglet des rencontres d'une table, pour le MJ ([F5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontres'**
+  String get tabEncounters;
+
+  /// Bouton et titre de la création d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle rencontre'**
+  String get encounterNew;
+
+  /// Recherche de l'onglet Rencontres ([F5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une rencontre ou un monstre'**
+  String get encounterSearch;
+
+  /// Filtre de l'onglet Rencontres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes'**
+  String get encounterFilterAll;
+
+  /// Filtre : brouillons et rencontres prêtes.
+  ///
+  /// In fr, this message translates to:
+  /// **'À jouer · {count}'**
+  String encounterFilterToPlay(int count);
+
+  /// Filtre de l'onglet Rencontres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminées'**
+  String get encounterFilterFinished;
+
+  /// Date d'une séance dans l'onglet Rencontres (« vendredi 30 octobre »).
+  ///
+  /// In fr, this message translates to:
+  /// **'{date}'**
+  String encounterSessionDate(DateTime date);
+
+  /// Séance close, après sa date.
+  ///
+  /// In fr, this message translates to:
+  /// **'close'**
+  String get encounterSessionClosed;
+
+  /// Rencontres rangées dans aucune séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans séance'**
+  String get encounterReserve;
+
+  /// Après « Sans séance ».
+  ///
+  /// In fr, this message translates to:
+  /// **'en réserve'**
+  String get encounterReserveHint;
+
+  /// Adversaire en plusieurs exemplaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ×{count}'**
+  String encounterFoe(String name, int count);
+
+  /// Nombre d'exemplaires d'un adversaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'×{count}'**
+  String encounterQuantity(int count);
+
+  /// Monstre ou PNJ supprimé ou d'un pack désactivé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adversaire introuvable'**
+  String get encounterFoeMissing;
+
+  /// Rencontre sans groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun adversaire'**
+  String get encounterNoFoes;
+
+  /// PX d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'{xp} PX'**
+  String encounterXp(String xp);
+
+  /// Difficulté d'une rencontre (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'sous le budget faible'**
+  String get difficultyBelowLow;
+
+  /// Difficulté d'une rencontre (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faible'**
+  String get difficultyLow;
+
+  /// Difficulté d'une rencontre (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modérée'**
+  String get difficultyModerate;
+
+  /// Difficulté d'une rencontre (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Élevée'**
+  String get difficultyHigh;
+
+  /// Badge d'état d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get encounterDraft;
+
+  /// Badge d'état d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prête'**
+  String get encounterReady;
+
+  /// Badge d'état d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get encounterRunning;
+
+  /// Badge d'état d'une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminée'**
+  String get encounterFinished;
+
+  /// Copie une rencontre (EF-REN-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dupliquer'**
+  String get encounterDuplicate;
+
+  /// Range une rencontre en réserve dans une séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ranger dans une séance'**
+  String get encounterMove;
+
+  /// Ouvre une rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir'**
+  String get encounterOpen;
+
+  /// Table sans rencontre, ou filtre sans résultat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune rencontre'**
+  String get encounterEmpty;
+
+  /// Champ de la nouvelle rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance'**
+  String get encounterSession;
+
+  /// Valide la nouvelle rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer la rencontre'**
+  String get encounterCreate;
+
+  /// Panneau latéral de l'onglet Rencontres ([F5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Copie les adversaires, les quantités et le mode de PV dans une nouvelle rencontre à modifier. Les PJ présents viennent de la séance où elle sera rangée.'**
+  String get encounterDuplicateHelp;
+
+  /// Panneau latéral de l'onglet Rencontres ([F5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Budget de difficulté'**
+  String get encounterBudgetTitle;
+
+  /// PJ présents de même niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 personnage de niveau {level}} other{{count} personnages de niveau {level}}}, selon les présences prévues.'**
+  String encounterBudgetSameLevel(int count, int level);
+
+  /// PJ présents de niveaux différents.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 personnage} other{{count} personnages}}, selon les présences prévues.'**
+  String encounterBudgetMixed(int count);
 }
 
 class _AppLocalizationsDelegate
