@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
+import '../encounters/encounters_tab.dart';
 import '../l10n/app_localizations.dart';
 import '../npcs/npcs_tab.dart';
 import '../sessions/sessions_tab.dart';
@@ -35,7 +36,7 @@ class TablePage extends ConsumerWidget {
     return DefaultTabController(
       // Une clé par rôle : le nombre d'onglets en dépend.
       key: ValueKey(gm),
-      length: gm ? 5 : 3,
+      length: gm ? 6 : 3,
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -82,6 +83,7 @@ class TablePage extends ConsumerWidget {
                       tabs: [
                         Tab(text: l10n.tabOverview),
                         Tab(text: l10n.tabSessions),
+                        if (gm) Tab(text: l10n.tabEncounters),
                         if (gm) Tab(text: l10n.tabNpcs),
                         Tab(text: l10n.tabMembers),
                         if (gm) Tab(text: l10n.tabConfiguration),
@@ -92,6 +94,7 @@ class TablePage extends ConsumerWidget {
                         children: [
                           _Overview(table: table),
                           SessionsTab(table: table),
+                          if (gm) EncountersTab(table: table),
                           if (gm) NpcsTab(table: table),
                           MembersTab(table: table),
                           if (gm) ConfigurationTab(table: table),

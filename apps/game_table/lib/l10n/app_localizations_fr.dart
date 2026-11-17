@@ -3715,4 +3715,135 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get npcOpenSheet => 'Ouvrir la fiche';
+
+  @override
+  String get tabEncounters => 'Rencontres';
+
+  @override
+  String get encounterNew => 'Nouvelle rencontre';
+
+  @override
+  String get encounterSearch => 'Rechercher une rencontre ou un monstre';
+
+  @override
+  String get encounterFilterAll => 'Toutes';
+
+  @override
+  String encounterFilterToPlay(int count) {
+    return 'À jouer · $count';
+  }
+
+  @override
+  String get encounterFilterFinished => 'Terminées';
+
+  @override
+  String encounterSessionDate(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.MMMMEEEEd(
+      localeName,
+    );
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String get encounterSessionClosed => 'close';
+
+  @override
+  String get encounterReserve => 'Sans séance';
+
+  @override
+  String get encounterReserveHint => 'en réserve';
+
+  @override
+  String encounterFoe(String name, int count) {
+    return '$name ×$count';
+  }
+
+  @override
+  String encounterQuantity(int count) {
+    return '×$count';
+  }
+
+  @override
+  String get encounterFoeMissing => 'Adversaire introuvable';
+
+  @override
+  String get encounterNoFoes => 'Aucun adversaire';
+
+  @override
+  String encounterXp(String xp) {
+    return '$xp PX';
+  }
+
+  @override
+  String get difficultyBelowLow => 'sous le budget faible';
+
+  @override
+  String get difficultyLow => 'Faible';
+
+  @override
+  String get difficultyModerate => 'Modérée';
+
+  @override
+  String get difficultyHigh => 'Élevée';
+
+  @override
+  String get encounterDraft => 'Brouillon';
+
+  @override
+  String get encounterReady => 'Prête';
+
+  @override
+  String get encounterRunning => 'En cours';
+
+  @override
+  String get encounterFinished => 'Terminée';
+
+  @override
+  String get encounterDuplicate => 'Dupliquer';
+
+  @override
+  String get encounterMove => 'Ranger dans une séance';
+
+  @override
+  String get encounterOpen => 'Ouvrir';
+
+  @override
+  String get encounterEmpty => 'Aucune rencontre';
+
+  @override
+  String get encounterSession => 'Séance';
+
+  @override
+  String get encounterCreate => 'Créer la rencontre';
+
+  @override
+  String get encounterDuplicateHelp =>
+      'Copie les adversaires, les quantités et le mode de PV dans une nouvelle rencontre à modifier. Les PJ présents viennent de la séance où elle sera rangée.';
+
+  @override
+  String get encounterBudgetTitle => 'Budget de difficulté';
+
+  @override
+  String encounterBudgetSameLevel(int count, int level) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count personnages de niveau $level',
+      one: '1 personnage de niveau $level',
+    );
+    return '$_temp0, selon les présences prévues.';
+  }
+
+  @override
+  String encounterBudgetMixed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count personnages',
+      one: '1 personnage',
+    );
+    return '$_temp0, selon les présences prévues.';
+  }
 }
