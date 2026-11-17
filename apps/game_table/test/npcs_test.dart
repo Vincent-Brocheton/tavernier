@@ -343,4 +343,122 @@ void main() {
       ['Sergent Varel', 'Sergent Varel (copie)', 'Varga la Balafrée'],
     );
   });
+
+  _test('informations cachées : ajout trié, validation, état gardé [C2]', (
+    tester,
+  ) async {
+    late String varga;
+    await _open(
+      tester,
+      seed: (store) async {
+        varga = await store.create(
+          tableId: _table,
+          name: 'Varga la Balafrée',
+          monsterId: 'srd:monster:bandit-captain',
+          hiddenInfo: const [
+            HiddenInfo(
+              dc: 15,
+              text: 'Porte le sceau de la Guilde du Sel.',
+              revealed: true,
+            ),
+          ],
+        );
+      },
+      location: (t) => '/tables/$t/pnj/$varga',
+    );
+    expect(find.text('Informations cachées'), findsOneWidget);
+    expect(find.text('Révélée'), findsOneWidget);
+
+    Future<void> fill(String dc, String info) async {
+      await tester.enterText(find.widgetWithText(TextField, 'DD'), dc);
+      await tester.enterText(
+        find.widgetWithText(TextField, 'Information'),
+        info,
+      );
+      await tester.pump();
+    }
+
+    bool canSave() =>
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Enregistrer'),
+            )
+            .onPressed !=
+        null;
+
+    await _tap(tester, find.text('Ajouter un palier'));
+    await fill('0', 'Est la sœur cadette du bourgmestre Hesse.');
+    expect(canSave(), isFalse);
+    await fill('20', '   ');
+    expect(canSave(), isFalse);
+    await fill('20', 'Est la sœur cadette du bourgmestre Hesse.');
+    await _tap(tester, find.text('Enregistrer'));
+
+    await _tap(tester, find.text('Ajouter un palier'));
+    await fill('10', 'Ancienne sergente de la garde de Brumeval.');
+    await _tap(tester, find.text('Enregistrer'));
+
+    Future<List<HiddenInfo>> stored() async {
+      // L'écriture de la base finit hors du temps simulé du test.
+      for (var i = 0; i < 3; i++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 20)),
+        );
+        await tester.pump();
+      }
+      return (await tester.runAsync(
+        () => NpcStore(_db).watchList(_table).first,
+      ))!.single.hiddenInfo;
+    }
+
+    expect([for (final h in await stored()) h.dc], [10, 15, 20]);
+    expect(find.text('Cachée'), findsNWidgets(2));
+
+    // Modifié, le palier révélé le reste.
+    await _tap(tester, find.text('Porte le sceau de la Guilde du Sel.'));
+    await fill('16', 'Porte le sceau de la Guilde du Sel.');
+    await _tap(tester, find.text('Enregistrer'));
+    expect(
+      [for (final h in await stored()) (h.dc, h.revealed)],
+      [(10, false), (16, true), (20, false)],
+    );
+
+    await _tap(tester, find.text('Est la sœur cadette du bourgmestre Hesse.'));
+    await _tap(tester, find.text('Supprimer'));
+    expect([for (final h in await stored()) h.dc], [10, 16]);
+  });
+
+  _test('modifier : nom et dossier, puis sans dossier', (tester) async {
+    await _open(tester, seed: _brumevalNpcs);
+    await _tap(tester, find.text('PNJ'));
+    await _tap(tester, find.text('Sergent Varel'));
+
+    await _tap(tester, find.byTooltip('Modifier'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Sergent Varel de la garde',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Dossier'),
+      'Brumeval',
+    );
+    await _tap(tester, find.text('Enregistrer'));
+    expect(find.text('Sergent Varel de la garde'), findsOneWidget);
+
+    GoRouter.of(tester.element(find.byType(NpcPage))).pop();
+    await tester.pumpAndSettle();
+    expect(find.text('BRUMEVAL'), findsOneWidget);
+
+    await _tap(tester, find.text('Varga la Balafrée'));
+    await _tap(tester, find.byTooltip('Modifier'));
+    await tester.enterText(find.widgetWithText(TextField, 'Dossier'), '');
+    await _tap(tester, find.text('Enregistrer'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    expect(
+      (await _npcs(tester)).firstWhere((n) => n.$1 == 'Varga la Balafrée').$2,
+      isNull,
+    );
+  });
 }

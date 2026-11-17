@@ -5843,6 +5843,78 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'SRD'**
   String get sourceSrdShort;
+
+  /// Section de la fiche d'un PNJ ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations cachées'**
+  String get hiddenInfoTitle;
+
+  /// Sous-titre des informations cachées ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Révélées par l’Étude'**
+  String get hiddenInfoSubtitle;
+
+  /// Ajoute une information cachée ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un palier'**
+  String get hiddenInfoAdd;
+
+  /// Titre de la feuille d'un palier existant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le palier'**
+  String get hiddenInfoEdit;
+
+  /// Degré de difficulté d'un palier.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD'**
+  String get hiddenInfoDc;
+
+  /// Aide du DD d'un palier.
+  ///
+  /// In fr, this message translates to:
+  /// **'De 1 à 30'**
+  String get hiddenInfoDcHelp;
+
+  /// Texte d'un palier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Information'**
+  String get hiddenInfoText;
+
+  /// Supprime un palier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get hiddenInfoDelete;
+
+  /// Valide une feuille de la fiche d'un PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get hiddenInfoSave;
+
+  /// Palier déjà révélé par l'Étude.
+  ///
+  /// In fr, this message translates to:
+  /// **'Révélée'**
+  String get hiddenInfoRevealed;
+
+  /// Palier pas encore révélé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cachée'**
+  String get hiddenInfoHidden;
+
+  /// Nom et dossier d'un PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get npcEdit;
 }
 
 class _AppLocalizationsDelegate

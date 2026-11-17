@@ -3664,4 +3664,40 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sourceSrdShort => 'SRD';
+
+  @override
+  String get hiddenInfoTitle => 'Informations cachées';
+
+  @override
+  String get hiddenInfoSubtitle => 'Révélées par l’Étude';
+
+  @override
+  String get hiddenInfoAdd => 'Ajouter un palier';
+
+  @override
+  String get hiddenInfoEdit => 'Modifier le palier';
+
+  @override
+  String get hiddenInfoDc => 'DD';
+
+  @override
+  String get hiddenInfoDcHelp => 'De 1 à 30';
+
+  @override
+  String get hiddenInfoText => 'Information';
+
+  @override
+  String get hiddenInfoDelete => 'Supprimer';
+
+  @override
+  String get hiddenInfoSave => 'Enregistrer';
+
+  @override
+  String get hiddenInfoRevealed => 'Révélée';
+
+  @override
+  String get hiddenInfoHidden => 'Cachée';
+
+  @override
+  String get npcEdit => 'Modifier';
 }
