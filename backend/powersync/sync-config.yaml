@@ -75,3 +75,4 @@ streams:
     queries:
       - SELECT * FROM encounter WHERE table_id IN tables_mj
       - SELECT * FROM encounter_group WHERE table_id IN tables_mj
+      - SELECT * FROM encounter_event WHERE table_id IN tables_mj

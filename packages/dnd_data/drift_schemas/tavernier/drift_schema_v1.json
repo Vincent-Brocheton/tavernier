@@ -6088,137 +6088,6 @@
       "references": [],
       "type": "table",
       "data": {
-        "name": "combatant",
-        "was_declared_in_moor": false,
-        "columns": [
-          {
-            "name": "id",
-            "getter_name": "id",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "encounter_id",
-            "getter_name": "encounterId",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "kind",
-            "getter_name": "kind",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "ref_id",
-            "getter_name": "refId",
-            "moor_type": "string",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "label",
-            "getter_name": "label",
-            "moor_type": "string",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "initiative",
-            "getter_name": "initiative",
-            "moor_type": "int",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "group_id",
-            "getter_name": "groupId",
-            "moor_type": "string",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "hp",
-            "getter_name": "hp",
-            "moor_type": "int",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "ac",
-            "getter_name": "ac",
-            "moor_type": "int",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "attitude",
-            "getter_name": "attitude",
-            "moor_type": "string",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "visible",
-            "getter_name": "visible",
-            "moor_type": "bool",
-            "nullable": false,
-            "customConstraints": null,
-            "defaultConstraints": "CHECK (\"visible\" IN (0, 1))",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "CHECK (\"visible\" IN (0, 1))"
-            },
-            "default_dart": "const CustomExpression('1')",
-            "default_client_dart": null,
-            "dsl_features": []
-          }
-        ],
-        "is_virtual": false,
-        "without_rowid": false,
-        "constraints": [],
-        "explicit_pk": [
-          "id"
-        ]
-      }
-    },
-    {
-      "id": 64,
-      "references": [],
-      "type": "table",
-      "data": {
         "name": "encounter_event",
         "was_declared_in_moor": false,
         "columns": [
@@ -6233,6 +6102,16 @@
             "dsl_features": []
           },
           {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "encounter_id",
             "getter_name": "encounterId",
             "moor_type": "string",
@@ -6243,18 +6122,8 @@
             "dsl_features": []
           },
           {
-            "name": "round",
-            "getter_name": "round",
-            "moor_type": "int",
-            "nullable": false,
-            "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "actor_id",
-            "getter_name": "actorId",
+            "name": "author_user_id",
+            "getter_name": "authorUserId",
             "moor_type": "string",
             "nullable": true,
             "customConstraints": null,
@@ -6278,14 +6147,14 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "default_dart": null,
+            "default_dart": "const CustomExpression('\\'{}\\'')",
             "default_client_dart": null,
             "dsl_features": []
           },
           {
-            "name": "author_user_id",
-            "getter_name": "authorUserId",
-            "moor_type": "string",
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
             "nullable": true,
             "customConstraints": null,
             "default_dart": null,
@@ -6302,7 +6171,7 @@
       }
     },
     {
-      "id": 65,
+      "id": 64,
       "references": [],
       "type": "table",
       "data": {
@@ -6393,7 +6262,7 @@
       }
     },
     {
-      "id": 66,
+      "id": 65,
       "references": [],
       "type": "table",
       "data": {
@@ -6999,20 +6868,11 @@
       ]
     },
     {
-      "name": "combatant",
-      "sql": [
-        {
-          "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"combatant\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"kind\" TEXT NOT NULL, \"ref_id\" TEXT NULL, \"label\" TEXT NOT NULL, \"initiative\" INTEGER NULL, \"group_id\" TEXT NULL, \"hp\" INTEGER NULL, \"ac\" INTEGER NULL, \"attitude\" TEXT NULL, \"visible\" INTEGER NOT NULL DEFAULT 1 CHECK (\"visible\" IN (0, 1)), PRIMARY KEY (\"id\"));"
-        }
-      ]
-    },
-    {
       "name": "encounter_event",
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"encounter_event\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"round\" INTEGER NOT NULL, \"actor_id\" TEXT NULL, \"type\" TEXT NOT NULL, \"payload\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter_event\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, \"type\" TEXT NOT NULL, \"payload\" TEXT NOT NULL DEFAULT '{}', \"created_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

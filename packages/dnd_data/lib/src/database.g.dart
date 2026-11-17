@@ -28956,658 +28956,6 @@ class EncounterGroupsCompanion extends UpdateCompanion<EncounterGroupRow> {
   }
 }
 
-class $CombatantsTable extends Combatants
-    with TableInfo<$CombatantsTable, CombatantRow> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $CombatantsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-    'id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _encounterIdMeta = const VerificationMeta(
-    'encounterId',
-  );
-  @override
-  late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
-    'encounter_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
-  @override
-  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
-    'kind',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _refIdMeta = const VerificationMeta('refId');
-  @override
-  late final GeneratedColumn<String> refId = GeneratedColumn<String>(
-    'ref_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _labelMeta = const VerificationMeta('label');
-  @override
-  late final GeneratedColumn<String> label = GeneratedColumn<String>(
-    'label',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _initiativeMeta = const VerificationMeta(
-    'initiative',
-  );
-  @override
-  late final GeneratedColumn<int> initiative = GeneratedColumn<int>(
-    'initiative',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _groupIdMeta = const VerificationMeta(
-    'groupId',
-  );
-  @override
-  late final GeneratedColumn<String> groupId = GeneratedColumn<String>(
-    'group_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _hpMeta = const VerificationMeta('hp');
-  @override
-  late final GeneratedColumn<int> hp = GeneratedColumn<int>(
-    'hp',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _acMeta = const VerificationMeta('ac');
-  @override
-  late final GeneratedColumn<int> ac = GeneratedColumn<int>(
-    'ac',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _attitudeMeta = const VerificationMeta(
-    'attitude',
-  );
-  @override
-  late final GeneratedColumn<String> attitude = GeneratedColumn<String>(
-    'attitude',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _visibleMeta = const VerificationMeta(
-    'visible',
-  );
-  @override
-  late final GeneratedColumn<bool> visible = GeneratedColumn<bool>(
-    'visible',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("visible" IN (0, 1))',
-    ),
-    defaultValue: const Constant(true),
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    encounterId,
-    kind,
-    refId,
-    label,
-    initiative,
-    groupId,
-    hp,
-    ac,
-    attitude,
-    visible,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'combatant';
-  @override
-  VerificationContext validateIntegrity(
-    Insertable<CombatantRow> instance, {
-    bool isInserting = false,
-  }) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
-    }
-    if (data.containsKey('encounter_id')) {
-      context.handle(
-        _encounterIdMeta,
-        encounterId.isAcceptableOrUnknown(
-          data['encounter_id']!,
-          _encounterIdMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_encounterIdMeta);
-    }
-    if (data.containsKey('kind')) {
-      context.handle(
-        _kindMeta,
-        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_kindMeta);
-    }
-    if (data.containsKey('ref_id')) {
-      context.handle(
-        _refIdMeta,
-        refId.isAcceptableOrUnknown(data['ref_id']!, _refIdMeta),
-      );
-    }
-    if (data.containsKey('label')) {
-      context.handle(
-        _labelMeta,
-        label.isAcceptableOrUnknown(data['label']!, _labelMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_labelMeta);
-    }
-    if (data.containsKey('initiative')) {
-      context.handle(
-        _initiativeMeta,
-        initiative.isAcceptableOrUnknown(data['initiative']!, _initiativeMeta),
-      );
-    }
-    if (data.containsKey('group_id')) {
-      context.handle(
-        _groupIdMeta,
-        groupId.isAcceptableOrUnknown(data['group_id']!, _groupIdMeta),
-      );
-    }
-    if (data.containsKey('hp')) {
-      context.handle(_hpMeta, hp.isAcceptableOrUnknown(data['hp']!, _hpMeta));
-    }
-    if (data.containsKey('ac')) {
-      context.handle(_acMeta, ac.isAcceptableOrUnknown(data['ac']!, _acMeta));
-    }
-    if (data.containsKey('attitude')) {
-      context.handle(
-        _attitudeMeta,
-        attitude.isAcceptableOrUnknown(data['attitude']!, _attitudeMeta),
-      );
-    }
-    if (data.containsKey('visible')) {
-      context.handle(
-        _visibleMeta,
-        visible.isAcceptableOrUnknown(data['visible']!, _visibleMeta),
-      );
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  CombatantRow map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CombatantRow(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
-      encounterId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}encounter_id'],
-      )!,
-      kind: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}kind'],
-      )!,
-      refId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}ref_id'],
-      ),
-      label: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}label'],
-      )!,
-      initiative: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}initiative'],
-      ),
-      groupId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}group_id'],
-      ),
-      hp: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}hp'],
-      ),
-      ac: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}ac'],
-      ),
-      attitude: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}attitude'],
-      ),
-      visible: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}visible'],
-      )!,
-    );
-  }
-
-  @override
-  $CombatantsTable createAlias(String alias) {
-    return $CombatantsTable(attachedDatabase, alias);
-  }
-}
-
-class CombatantRow extends DataClass implements Insertable<CombatantRow> {
-  final String id;
-
-  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
-  final String encounterId;
-  final String kind;
-  final String? refId;
-  final String label;
-  final int? initiative;
-  final String? groupId;
-  final int? hp;
-  final int? ac;
-  final String? attitude;
-  final bool visible;
-  const CombatantRow({
-    required this.id,
-    required this.encounterId,
-    required this.kind,
-    this.refId,
-    required this.label,
-    this.initiative,
-    this.groupId,
-    this.hp,
-    this.ac,
-    this.attitude,
-    required this.visible,
-  });
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<String>(id);
-    map['encounter_id'] = Variable<String>(encounterId);
-    map['kind'] = Variable<String>(kind);
-    if (!nullToAbsent || refId != null) {
-      map['ref_id'] = Variable<String>(refId);
-    }
-    map['label'] = Variable<String>(label);
-    if (!nullToAbsent || initiative != null) {
-      map['initiative'] = Variable<int>(initiative);
-    }
-    if (!nullToAbsent || groupId != null) {
-      map['group_id'] = Variable<String>(groupId);
-    }
-    if (!nullToAbsent || hp != null) {
-      map['hp'] = Variable<int>(hp);
-    }
-    if (!nullToAbsent || ac != null) {
-      map['ac'] = Variable<int>(ac);
-    }
-    if (!nullToAbsent || attitude != null) {
-      map['attitude'] = Variable<String>(attitude);
-    }
-    map['visible'] = Variable<bool>(visible);
-    return map;
-  }
-
-  CombatantsCompanion toCompanion(bool nullToAbsent) {
-    return CombatantsCompanion(
-      id: Value(id),
-      encounterId: Value(encounterId),
-      kind: Value(kind),
-      refId: refId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(refId),
-      label: Value(label),
-      initiative: initiative == null && nullToAbsent
-          ? const Value.absent()
-          : Value(initiative),
-      groupId: groupId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(groupId),
-      hp: hp == null && nullToAbsent ? const Value.absent() : Value(hp),
-      ac: ac == null && nullToAbsent ? const Value.absent() : Value(ac),
-      attitude: attitude == null && nullToAbsent
-          ? const Value.absent()
-          : Value(attitude),
-      visible: Value(visible),
-    );
-  }
-
-  factory CombatantRow.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CombatantRow(
-      id: serializer.fromJson<String>(json['id']),
-      encounterId: serializer.fromJson<String>(json['encounterId']),
-      kind: serializer.fromJson<String>(json['kind']),
-      refId: serializer.fromJson<String?>(json['refId']),
-      label: serializer.fromJson<String>(json['label']),
-      initiative: serializer.fromJson<int?>(json['initiative']),
-      groupId: serializer.fromJson<String?>(json['groupId']),
-      hp: serializer.fromJson<int?>(json['hp']),
-      ac: serializer.fromJson<int?>(json['ac']),
-      attitude: serializer.fromJson<String?>(json['attitude']),
-      visible: serializer.fromJson<bool>(json['visible']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<String>(id),
-      'encounterId': serializer.toJson<String>(encounterId),
-      'kind': serializer.toJson<String>(kind),
-      'refId': serializer.toJson<String?>(refId),
-      'label': serializer.toJson<String>(label),
-      'initiative': serializer.toJson<int?>(initiative),
-      'groupId': serializer.toJson<String?>(groupId),
-      'hp': serializer.toJson<int?>(hp),
-      'ac': serializer.toJson<int?>(ac),
-      'attitude': serializer.toJson<String?>(attitude),
-      'visible': serializer.toJson<bool>(visible),
-    };
-  }
-
-  CombatantRow copyWith({
-    String? id,
-    String? encounterId,
-    String? kind,
-    Value<String?> refId = const Value.absent(),
-    String? label,
-    Value<int?> initiative = const Value.absent(),
-    Value<String?> groupId = const Value.absent(),
-    Value<int?> hp = const Value.absent(),
-    Value<int?> ac = const Value.absent(),
-    Value<String?> attitude = const Value.absent(),
-    bool? visible,
-  }) => CombatantRow(
-    id: id ?? this.id,
-    encounterId: encounterId ?? this.encounterId,
-    kind: kind ?? this.kind,
-    refId: refId.present ? refId.value : this.refId,
-    label: label ?? this.label,
-    initiative: initiative.present ? initiative.value : this.initiative,
-    groupId: groupId.present ? groupId.value : this.groupId,
-    hp: hp.present ? hp.value : this.hp,
-    ac: ac.present ? ac.value : this.ac,
-    attitude: attitude.present ? attitude.value : this.attitude,
-    visible: visible ?? this.visible,
-  );
-  CombatantRow copyWithCompanion(CombatantsCompanion data) {
-    return CombatantRow(
-      id: data.id.present ? data.id.value : this.id,
-      encounterId: data.encounterId.present
-          ? data.encounterId.value
-          : this.encounterId,
-      kind: data.kind.present ? data.kind.value : this.kind,
-      refId: data.refId.present ? data.refId.value : this.refId,
-      label: data.label.present ? data.label.value : this.label,
-      initiative: data.initiative.present
-          ? data.initiative.value
-          : this.initiative,
-      groupId: data.groupId.present ? data.groupId.value : this.groupId,
-      hp: data.hp.present ? data.hp.value : this.hp,
-      ac: data.ac.present ? data.ac.value : this.ac,
-      attitude: data.attitude.present ? data.attitude.value : this.attitude,
-      visible: data.visible.present ? data.visible.value : this.visible,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('CombatantRow(')
-          ..write('id: $id, ')
-          ..write('encounterId: $encounterId, ')
-          ..write('kind: $kind, ')
-          ..write('refId: $refId, ')
-          ..write('label: $label, ')
-          ..write('initiative: $initiative, ')
-          ..write('groupId: $groupId, ')
-          ..write('hp: $hp, ')
-          ..write('ac: $ac, ')
-          ..write('attitude: $attitude, ')
-          ..write('visible: $visible')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    id,
-    encounterId,
-    kind,
-    refId,
-    label,
-    initiative,
-    groupId,
-    hp,
-    ac,
-    attitude,
-    visible,
-  );
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is CombatantRow &&
-          other.id == this.id &&
-          other.encounterId == this.encounterId &&
-          other.kind == this.kind &&
-          other.refId == this.refId &&
-          other.label == this.label &&
-          other.initiative == this.initiative &&
-          other.groupId == this.groupId &&
-          other.hp == this.hp &&
-          other.ac == this.ac &&
-          other.attitude == this.attitude &&
-          other.visible == this.visible);
-}
-
-class CombatantsCompanion extends UpdateCompanion<CombatantRow> {
-  final Value<String> id;
-  final Value<String> encounterId;
-  final Value<String> kind;
-  final Value<String?> refId;
-  final Value<String> label;
-  final Value<int?> initiative;
-  final Value<String?> groupId;
-  final Value<int?> hp;
-  final Value<int?> ac;
-  final Value<String?> attitude;
-  final Value<bool> visible;
-  final Value<int> rowid;
-  const CombatantsCompanion({
-    this.id = const Value.absent(),
-    this.encounterId = const Value.absent(),
-    this.kind = const Value.absent(),
-    this.refId = const Value.absent(),
-    this.label = const Value.absent(),
-    this.initiative = const Value.absent(),
-    this.groupId = const Value.absent(),
-    this.hp = const Value.absent(),
-    this.ac = const Value.absent(),
-    this.attitude = const Value.absent(),
-    this.visible = const Value.absent(),
-    this.rowid = const Value.absent(),
-  });
-  CombatantsCompanion.insert({
-    required String id,
-    required String encounterId,
-    required String kind,
-    this.refId = const Value.absent(),
-    required String label,
-    this.initiative = const Value.absent(),
-    this.groupId = const Value.absent(),
-    this.hp = const Value.absent(),
-    this.ac = const Value.absent(),
-    this.attitude = const Value.absent(),
-    this.visible = const Value.absent(),
-    this.rowid = const Value.absent(),
-  }) : id = Value(id),
-       encounterId = Value(encounterId),
-       kind = Value(kind),
-       label = Value(label);
-  static Insertable<CombatantRow> custom({
-    Expression<String>? id,
-    Expression<String>? encounterId,
-    Expression<String>? kind,
-    Expression<String>? refId,
-    Expression<String>? label,
-    Expression<int>? initiative,
-    Expression<String>? groupId,
-    Expression<int>? hp,
-    Expression<int>? ac,
-    Expression<String>? attitude,
-    Expression<bool>? visible,
-    Expression<int>? rowid,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (encounterId != null) 'encounter_id': encounterId,
-      if (kind != null) 'kind': kind,
-      if (refId != null) 'ref_id': refId,
-      if (label != null) 'label': label,
-      if (initiative != null) 'initiative': initiative,
-      if (groupId != null) 'group_id': groupId,
-      if (hp != null) 'hp': hp,
-      if (ac != null) 'ac': ac,
-      if (attitude != null) 'attitude': attitude,
-      if (visible != null) 'visible': visible,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  CombatantsCompanion copyWith({
-    Value<String>? id,
-    Value<String>? encounterId,
-    Value<String>? kind,
-    Value<String?>? refId,
-    Value<String>? label,
-    Value<int?>? initiative,
-    Value<String?>? groupId,
-    Value<int?>? hp,
-    Value<int?>? ac,
-    Value<String?>? attitude,
-    Value<bool>? visible,
-    Value<int>? rowid,
-  }) {
-    return CombatantsCompanion(
-      id: id ?? this.id,
-      encounterId: encounterId ?? this.encounterId,
-      kind: kind ?? this.kind,
-      refId: refId ?? this.refId,
-      label: label ?? this.label,
-      initiative: initiative ?? this.initiative,
-      groupId: groupId ?? this.groupId,
-      hp: hp ?? this.hp,
-      ac: ac ?? this.ac,
-      attitude: attitude ?? this.attitude,
-      visible: visible ?? this.visible,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<String>(id.value);
-    }
-    if (encounterId.present) {
-      map['encounter_id'] = Variable<String>(encounterId.value);
-    }
-    if (kind.present) {
-      map['kind'] = Variable<String>(kind.value);
-    }
-    if (refId.present) {
-      map['ref_id'] = Variable<String>(refId.value);
-    }
-    if (label.present) {
-      map['label'] = Variable<String>(label.value);
-    }
-    if (initiative.present) {
-      map['initiative'] = Variable<int>(initiative.value);
-    }
-    if (groupId.present) {
-      map['group_id'] = Variable<String>(groupId.value);
-    }
-    if (hp.present) {
-      map['hp'] = Variable<int>(hp.value);
-    }
-    if (ac.present) {
-      map['ac'] = Variable<int>(ac.value);
-    }
-    if (attitude.present) {
-      map['attitude'] = Variable<String>(attitude.value);
-    }
-    if (visible.present) {
-      map['visible'] = Variable<bool>(visible.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('CombatantsCompanion(')
-          ..write('id: $id, ')
-          ..write('encounterId: $encounterId, ')
-          ..write('kind: $kind, ')
-          ..write('refId: $refId, ')
-          ..write('label: $label, ')
-          ..write('initiative: $initiative, ')
-          ..write('groupId: $groupId, ')
-          ..write('hp: $hp, ')
-          ..write('ac: $ac, ')
-          ..write('attitude: $attitude, ')
-          ..write('visible: $visible, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $EncounterEventsTable extends EncounterEvents
     with TableInfo<$EncounterEventsTable, EncounterEventRow> {
   @override
@@ -29623,6 +28971,17 @@ class $EncounterEventsTable extends EncounterEvents
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _encounterIdMeta = const VerificationMeta(
     'encounterId',
   );
@@ -29634,21 +28993,12 @@ class $EncounterEventsTable extends EncounterEvents
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _roundMeta = const VerificationMeta('round');
-  @override
-  late final GeneratedColumn<int> round = GeneratedColumn<int>(
-    'round',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _actorIdMeta = const VerificationMeta(
-    'actorId',
+  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
+    'authorUserId',
   );
   @override
-  late final GeneratedColumn<String> actorId = GeneratedColumn<String>(
-    'actor_id',
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
     aliasedName,
     true,
     type: DriftSqlType.string,
@@ -29672,28 +29022,29 @@ class $EncounterEventsTable extends EncounterEvents
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
   );
-  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
-    'authorUserId',
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
   );
   @override
-  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
-    'author_user_id',
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
     aliasedName,
     true,
-    type: DriftSqlType.string,
+    type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    tableId,
     encounterId,
-    round,
-    actorId,
+    authorUserId,
     type,
     payload,
-    authorUserId,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -29712,6 +29063,14 @@ class $EncounterEventsTable extends EncounterEvents
     } else if (isInserting) {
       context.missing(_idMeta);
     }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
     if (data.containsKey('encounter_id')) {
       context.handle(
         _encounterIdMeta,
@@ -29723,18 +29082,13 @@ class $EncounterEventsTable extends EncounterEvents
     } else if (isInserting) {
       context.missing(_encounterIdMeta);
     }
-    if (data.containsKey('round')) {
+    if (data.containsKey('author_user_id')) {
       context.handle(
-        _roundMeta,
-        round.isAcceptableOrUnknown(data['round']!, _roundMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_roundMeta);
-    }
-    if (data.containsKey('actor_id')) {
-      context.handle(
-        _actorIdMeta,
-        actorId.isAcceptableOrUnknown(data['actor_id']!, _actorIdMeta),
+        _authorUserIdMeta,
+        authorUserId.isAcceptableOrUnknown(
+          data['author_user_id']!,
+          _authorUserIdMeta,
+        ),
       );
     }
     if (data.containsKey('type')) {
@@ -29750,16 +29104,11 @@ class $EncounterEventsTable extends EncounterEvents
         _payloadMeta,
         payload.isAcceptableOrUnknown(data['payload']!, _payloadMeta),
       );
-    } else if (isInserting) {
-      context.missing(_payloadMeta);
     }
-    if (data.containsKey('author_user_id')) {
+    if (data.containsKey('created_at')) {
       context.handle(
-        _authorUserIdMeta,
-        authorUserId.isAcceptableOrUnknown(
-          data['author_user_id']!,
-          _authorUserIdMeta,
-        ),
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
       );
     }
     return context;
@@ -29775,17 +29124,17 @@ class $EncounterEventsTable extends EncounterEvents
         DriftSqlType.string,
         data['${effectivePrefix}id'],
       )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
       encounterId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}encounter_id'],
       )!,
-      round: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}round'],
-      )!,
-      actorId: attachedDatabase.typeMapping.read(
+      authorUserId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}actor_id'],
+        data['${effectivePrefix}author_user_id'],
       ),
       type: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -29795,9 +29144,9 @@ class $EncounterEventsTable extends EncounterEvents
         DriftSqlType.string,
         data['${effectivePrefix}payload'],
       )!,
-      authorUserId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}author_user_id'],
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
       ),
     );
   }
@@ -29811,36 +29160,36 @@ class $EncounterEventsTable extends EncounterEvents
 class EncounterEventRow extends DataClass
     implements Insertable<EncounterEventRow> {
   final String id;
+  final String tableId;
 
   /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
   final String encounterId;
-  final int round;
-  final String? actorId;
+  final String? authorUserId;
   final String type;
   final String payload;
-  final String? authorUserId;
+  final DateTime? createdAt;
   const EncounterEventRow({
     required this.id,
+    required this.tableId,
     required this.encounterId,
-    required this.round,
-    this.actorId,
+    this.authorUserId,
     required this.type,
     required this.payload,
-    this.authorUserId,
+    this.createdAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
     map['encounter_id'] = Variable<String>(encounterId);
-    map['round'] = Variable<int>(round);
-    if (!nullToAbsent || actorId != null) {
-      map['actor_id'] = Variable<String>(actorId);
+    if (!nullToAbsent || authorUserId != null) {
+      map['author_user_id'] = Variable<String>(authorUserId);
     }
     map['type'] = Variable<String>(type);
     map['payload'] = Variable<String>(payload);
-    if (!nullToAbsent || authorUserId != null) {
-      map['author_user_id'] = Variable<String>(authorUserId);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
     }
     return map;
   }
@@ -29848,16 +29197,16 @@ class EncounterEventRow extends DataClass
   EncounterEventsCompanion toCompanion(bool nullToAbsent) {
     return EncounterEventsCompanion(
       id: Value(id),
+      tableId: Value(tableId),
       encounterId: Value(encounterId),
-      round: Value(round),
-      actorId: actorId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(actorId),
-      type: Value(type),
-      payload: Value(payload),
       authorUserId: authorUserId == null && nullToAbsent
           ? const Value.absent()
           : Value(authorUserId),
+      type: Value(type),
+      payload: Value(payload),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
     );
   }
 
@@ -29868,12 +29217,12 @@ class EncounterEventRow extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return EncounterEventRow(
       id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
       encounterId: serializer.fromJson<String>(json['encounterId']),
-      round: serializer.fromJson<int>(json['round']),
-      actorId: serializer.fromJson<String?>(json['actorId']),
+      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
       type: serializer.fromJson<String>(json['type']),
       payload: serializer.fromJson<String>(json['payload']),
-      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
     );
   }
   @override
@@ -29881,45 +29230,45 @@ class EncounterEventRow extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
       'encounterId': serializer.toJson<String>(encounterId),
-      'round': serializer.toJson<int>(round),
-      'actorId': serializer.toJson<String?>(actorId),
+      'authorUserId': serializer.toJson<String?>(authorUserId),
       'type': serializer.toJson<String>(type),
       'payload': serializer.toJson<String>(payload),
-      'authorUserId': serializer.toJson<String?>(authorUserId),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
     };
   }
 
   EncounterEventRow copyWith({
     String? id,
+    String? tableId,
     String? encounterId,
-    int? round,
-    Value<String?> actorId = const Value.absent(),
+    Value<String?> authorUserId = const Value.absent(),
     String? type,
     String? payload,
-    Value<String?> authorUserId = const Value.absent(),
+    Value<DateTime?> createdAt = const Value.absent(),
   }) => EncounterEventRow(
     id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
     encounterId: encounterId ?? this.encounterId,
-    round: round ?? this.round,
-    actorId: actorId.present ? actorId.value : this.actorId,
+    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
     type: type ?? this.type,
     payload: payload ?? this.payload,
-    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
   EncounterEventRow copyWithCompanion(EncounterEventsCompanion data) {
     return EncounterEventRow(
       id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
       encounterId: data.encounterId.present
           ? data.encounterId.value
           : this.encounterId,
-      round: data.round.present ? data.round.value : this.round,
-      actorId: data.actorId.present ? data.actorId.value : this.actorId,
-      type: data.type.present ? data.type.value : this.type,
-      payload: data.payload.present ? data.payload.value : this.payload,
       authorUserId: data.authorUserId.present
           ? data.authorUserId.value
           : this.authorUserId,
+      type: data.type.present ? data.type.value : this.type,
+      payload: data.payload.present ? data.payload.value : this.payload,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -29927,105 +29276,111 @@ class EncounterEventRow extends DataClass
   String toString() {
     return (StringBuffer('EncounterEventRow(')
           ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
           ..write('encounterId: $encounterId, ')
-          ..write('round: $round, ')
-          ..write('actorId: $actorId, ')
+          ..write('authorUserId: $authorUserId, ')
           ..write('type: $type, ')
           ..write('payload: $payload, ')
-          ..write('authorUserId: $authorUserId')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, encounterId, round, actorId, type, payload, authorUserId);
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    encounterId,
+    authorUserId,
+    type,
+    payload,
+    createdAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is EncounterEventRow &&
           other.id == this.id &&
+          other.tableId == this.tableId &&
           other.encounterId == this.encounterId &&
-          other.round == this.round &&
-          other.actorId == this.actorId &&
+          other.authorUserId == this.authorUserId &&
           other.type == this.type &&
           other.payload == this.payload &&
-          other.authorUserId == this.authorUserId);
+          other.createdAt == this.createdAt);
 }
 
 class EncounterEventsCompanion extends UpdateCompanion<EncounterEventRow> {
   final Value<String> id;
+  final Value<String> tableId;
   final Value<String> encounterId;
-  final Value<int> round;
-  final Value<String?> actorId;
+  final Value<String?> authorUserId;
   final Value<String> type;
   final Value<String> payload;
-  final Value<String?> authorUserId;
+  final Value<DateTime?> createdAt;
   final Value<int> rowid;
   const EncounterEventsCompanion({
     this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
     this.encounterId = const Value.absent(),
-    this.round = const Value.absent(),
-    this.actorId = const Value.absent(),
+    this.authorUserId = const Value.absent(),
     this.type = const Value.absent(),
     this.payload = const Value.absent(),
-    this.authorUserId = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   EncounterEventsCompanion.insert({
     required String id,
+    required String tableId,
     required String encounterId,
-    required int round,
-    this.actorId = const Value.absent(),
-    required String type,
-    required String payload,
     this.authorUserId = const Value.absent(),
+    required String type,
+    this.payload = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
+       tableId = Value(tableId),
        encounterId = Value(encounterId),
-       round = Value(round),
-       type = Value(type),
-       payload = Value(payload);
+       type = Value(type);
   static Insertable<EncounterEventRow> custom({
     Expression<String>? id,
+    Expression<String>? tableId,
     Expression<String>? encounterId,
-    Expression<int>? round,
-    Expression<String>? actorId,
+    Expression<String>? authorUserId,
     Expression<String>? type,
     Expression<String>? payload,
-    Expression<String>? authorUserId,
+    Expression<DateTime>? createdAt,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
       if (encounterId != null) 'encounter_id': encounterId,
-      if (round != null) 'round': round,
-      if (actorId != null) 'actor_id': actorId,
+      if (authorUserId != null) 'author_user_id': authorUserId,
       if (type != null) 'type': type,
       if (payload != null) 'payload': payload,
-      if (authorUserId != null) 'author_user_id': authorUserId,
+      if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   EncounterEventsCompanion copyWith({
     Value<String>? id,
+    Value<String>? tableId,
     Value<String>? encounterId,
-    Value<int>? round,
-    Value<String?>? actorId,
+    Value<String?>? authorUserId,
     Value<String>? type,
     Value<String>? payload,
-    Value<String?>? authorUserId,
+    Value<DateTime?>? createdAt,
     Value<int>? rowid,
   }) {
     return EncounterEventsCompanion(
       id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
       encounterId: encounterId ?? this.encounterId,
-      round: round ?? this.round,
-      actorId: actorId ?? this.actorId,
+      authorUserId: authorUserId ?? this.authorUserId,
       type: type ?? this.type,
       payload: payload ?? this.payload,
-      authorUserId: authorUserId ?? this.authorUserId,
+      createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -30036,14 +29391,14 @@ class EncounterEventsCompanion extends UpdateCompanion<EncounterEventRow> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
     if (encounterId.present) {
       map['encounter_id'] = Variable<String>(encounterId.value);
     }
-    if (round.present) {
-      map['round'] = Variable<int>(round.value);
-    }
-    if (actorId.present) {
-      map['actor_id'] = Variable<String>(actorId.value);
+    if (authorUserId.present) {
+      map['author_user_id'] = Variable<String>(authorUserId.value);
     }
     if (type.present) {
       map['type'] = Variable<String>(type.value);
@@ -30051,8 +29406,8 @@ class EncounterEventsCompanion extends UpdateCompanion<EncounterEventRow> {
     if (payload.present) {
       map['payload'] = Variable<String>(payload.value);
     }
-    if (authorUserId.present) {
-      map['author_user_id'] = Variable<String>(authorUserId.value);
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -30064,12 +29419,12 @@ class EncounterEventsCompanion extends UpdateCompanion<EncounterEventRow> {
   String toString() {
     return (StringBuffer('EncounterEventsCompanion(')
           ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
           ..write('encounterId: $encounterId, ')
-          ..write('round: $round, ')
-          ..write('actorId: $actorId, ')
+          ..write('authorUserId: $authorUserId, ')
           ..write('type: $type, ')
           ..write('payload: $payload, ')
-          ..write('authorUserId: $authorUserId, ')
+          ..write('createdAt: $createdAt, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -30848,7 +30203,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $EncounterGroupsTable encounterGroups = $EncounterGroupsTable(
     this,
   );
-  late final $CombatantsTable combatants = $CombatantsTable(this);
   late final $EncounterEventsTable encounterEvents = $EncounterEventsTable(
     this,
   );
@@ -30924,7 +30278,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     npcStatblocks,
     encounters,
     encounterGroups,
-    combatants,
     encounterEvents,
     notes,
     authorIdentities,
@@ -53773,351 +53126,26 @@ typedef $$EncounterGroupsTableProcessedTableManager =
       EncounterGroupRow,
       PrefetchHooks Function()
     >;
-typedef $$CombatantsTableCreateCompanionBuilder = CombatantsCompanion Function({
-  required String id,
-  required String encounterId,
-  required String kind,
-  Value<String?> refId,
-  required String label,
-  Value<int?> initiative,
-  Value<String?> groupId,
-  Value<int?> hp,
-  Value<int?> ac,
-  Value<String?> attitude,
-  Value<bool> visible,
-  Value<int> rowid,
-});
-typedef $$CombatantsTableUpdateCompanionBuilder = CombatantsCompanion Function({
-  Value<String> id,
-  Value<String> encounterId,
-  Value<String> kind,
-  Value<String?> refId,
-  Value<String> label,
-  Value<int?> initiative,
-  Value<String?> groupId,
-  Value<int?> hp,
-  Value<int?> ac,
-  Value<String?> attitude,
-  Value<bool> visible,
-  Value<int> rowid,
-});
-
-class $$CombatantsTableFilterComposer
-    extends Composer<_$TavernierDatabase, $CombatantsTable> {
-  $$CombatantsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get encounterId => $composableBuilder(
-    column: $table.encounterId,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get kind => $composableBuilder(
-    column: $table.kind,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get refId => $composableBuilder(
-    column: $table.refId,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get label => $composableBuilder(
-    column: $table.label,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get initiative => $composableBuilder(
-    column: $table.initiative,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get groupId => $composableBuilder(
-    column: $table.groupId,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get hp => $composableBuilder(
-    column: $table.hp,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get ac => $composableBuilder(
-    column: $table.ac,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get attitude => $composableBuilder(
-    column: $table.attitude,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get visible => $composableBuilder(
-    column: $table.visible,
-    builder: (column) => ColumnFilters(column),
-  );
-}
-
-class $$CombatantsTableOrderingComposer
-    extends Composer<_$TavernierDatabase, $CombatantsTable> {
-  $$CombatantsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get encounterId => $composableBuilder(
-    column: $table.encounterId,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get kind => $composableBuilder(
-    column: $table.kind,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get refId => $composableBuilder(
-    column: $table.refId,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get label => $composableBuilder(
-    column: $table.label,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get initiative => $composableBuilder(
-    column: $table.initiative,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get groupId => $composableBuilder(
-    column: $table.groupId,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get hp => $composableBuilder(
-    column: $table.hp,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get ac => $composableBuilder(
-    column: $table.ac,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get attitude => $composableBuilder(
-    column: $table.attitude,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<bool> get visible => $composableBuilder(
-    column: $table.visible,
-    builder: (column) => ColumnOrderings(column),
-  );
-}
-
-class $$CombatantsTableAnnotationComposer
-    extends Composer<_$TavernierDatabase, $CombatantsTable> {
-  $$CombatantsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<String> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<String> get encounterId => $composableBuilder(
-    column: $table.encounterId,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get kind =>
-      $composableBuilder(column: $table.kind, builder: (column) => column);
-
-  GeneratedColumn<String> get refId =>
-      $composableBuilder(column: $table.refId, builder: (column) => column);
-
-  GeneratedColumn<String> get label =>
-      $composableBuilder(column: $table.label, builder: (column) => column);
-
-  GeneratedColumn<int> get initiative => $composableBuilder(
-    column: $table.initiative,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get groupId =>
-      $composableBuilder(column: $table.groupId, builder: (column) => column);
-
-  GeneratedColumn<int> get hp =>
-      $composableBuilder(column: $table.hp, builder: (column) => column);
-
-  GeneratedColumn<int> get ac =>
-      $composableBuilder(column: $table.ac, builder: (column) => column);
-
-  GeneratedColumn<String> get attitude =>
-      $composableBuilder(column: $table.attitude, builder: (column) => column);
-
-  GeneratedColumn<bool> get visible =>
-      $composableBuilder(column: $table.visible, builder: (column) => column);
-}
-
-class $$CombatantsTableTableManager
-    extends
-        RootTableManager<
-          _$TavernierDatabase,
-          $CombatantsTable,
-          CombatantRow,
-          $$CombatantsTableFilterComposer,
-          $$CombatantsTableOrderingComposer,
-          $$CombatantsTableAnnotationComposer,
-          $$CombatantsTableCreateCompanionBuilder,
-          $$CombatantsTableUpdateCompanionBuilder,
-          (
-            CombatantRow,
-            BaseReferences<_$TavernierDatabase, $CombatantsTable, CombatantRow>,
-          ),
-          CombatantRow,
-          PrefetchHooks Function()
-        > {
-  $$CombatantsTableTableManager(_$TavernierDatabase db, $CombatantsTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$CombatantsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$CombatantsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$CombatantsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<String> id = const Value.absent(),
-                Value<String> encounterId = const Value.absent(),
-                Value<String> kind = const Value.absent(),
-                Value<String?> refId = const Value.absent(),
-                Value<String> label = const Value.absent(),
-                Value<int?> initiative = const Value.absent(),
-                Value<String?> groupId = const Value.absent(),
-                Value<int?> hp = const Value.absent(),
-                Value<int?> ac = const Value.absent(),
-                Value<String?> attitude = const Value.absent(),
-                Value<bool> visible = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => CombatantsCompanion(
-                id: id,
-                encounterId: encounterId,
-                kind: kind,
-                refId: refId,
-                label: label,
-                initiative: initiative,
-                groupId: groupId,
-                hp: hp,
-                ac: ac,
-                attitude: attitude,
-                visible: visible,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required String id,
-                required String encounterId,
-                required String kind,
-                Value<String?> refId = const Value.absent(),
-                required String label,
-                Value<int?> initiative = const Value.absent(),
-                Value<String?> groupId = const Value.absent(),
-                Value<int?> hp = const Value.absent(),
-                Value<int?> ac = const Value.absent(),
-                Value<String?> attitude = const Value.absent(),
-                Value<bool> visible = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
-              }) => CombatantsCompanion.insert(
-                id: id,
-                encounterId: encounterId,
-                kind: kind,
-                refId: refId,
-                label: label,
-                initiative: initiative,
-                groupId: groupId,
-                hp: hp,
-                ac: ac,
-                attitude: attitude,
-                visible: visible,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (
-                  e.readTable<$CombatantsTable, CombatantRow>(table),
-                  BaseReferences<
-                    _$TavernierDatabase,
-                    $CombatantsTable,
-                    CombatantRow
-                  >(db, table, e),
-                ),
-              )
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$CombatantsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$TavernierDatabase,
-      $CombatantsTable,
-      CombatantRow,
-      $$CombatantsTableFilterComposer,
-      $$CombatantsTableOrderingComposer,
-      $$CombatantsTableAnnotationComposer,
-      $$CombatantsTableCreateCompanionBuilder,
-      $$CombatantsTableUpdateCompanionBuilder,
-      (
-        CombatantRow,
-        BaseReferences<_$TavernierDatabase, $CombatantsTable, CombatantRow>,
-      ),
-      CombatantRow,
-      PrefetchHooks Function()
-    >;
 typedef $$EncounterEventsTableCreateCompanionBuilder =
     EncounterEventsCompanion Function({
       required String id,
+      required String tableId,
       required String encounterId,
-      required int round,
-      Value<String?> actorId,
-      required String type,
-      required String payload,
       Value<String?> authorUserId,
+      required String type,
+      Value<String> payload,
+      Value<DateTime?> createdAt,
       Value<int> rowid,
     });
 typedef $$EncounterEventsTableUpdateCompanionBuilder =
     EncounterEventsCompanion Function({
       Value<String> id,
+      Value<String> tableId,
       Value<String> encounterId,
-      Value<int> round,
-      Value<String?> actorId,
+      Value<String?> authorUserId,
       Value<String> type,
       Value<String> payload,
-      Value<String?> authorUserId,
+      Value<DateTime?> createdAt,
       Value<int> rowid,
     });
 
@@ -54135,18 +53163,18 @@ class $$EncounterEventsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get encounterId => $composableBuilder(
     column: $table.encounterId,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get round => $composableBuilder(
-    column: $table.round,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get actorId => $composableBuilder(
-    column: $table.actorId,
+  ColumnFilters<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -54160,8 +53188,8 @@ class $$EncounterEventsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get authorUserId => $composableBuilder(
-    column: $table.authorUserId,
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -54180,18 +53208,18 @@ class $$EncounterEventsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get encounterId => $composableBuilder(
     column: $table.encounterId,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get round => $composableBuilder(
-    column: $table.round,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get actorId => $composableBuilder(
-    column: $table.actorId,
+  ColumnOrderings<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -54205,8 +53233,8 @@ class $$EncounterEventsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get authorUserId => $composableBuilder(
-    column: $table.authorUserId,
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -54223,16 +53251,18 @@ class $$EncounterEventsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get encounterId => $composableBuilder(
     column: $table.encounterId,
     builder: (column) => column,
   );
 
-  GeneratedColumn<int> get round =>
-      $composableBuilder(column: $table.round, builder: (column) => column);
-
-  GeneratedColumn<String> get actorId =>
-      $composableBuilder(column: $table.actorId, builder: (column) => column);
+  GeneratedColumn<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get type =>
       $composableBuilder(column: $table.type, builder: (column) => column);
@@ -54240,10 +53270,8 @@ class $$EncounterEventsTableAnnotationComposer
   GeneratedColumn<String> get payload =>
       $composableBuilder(column: $table.payload, builder: (column) => column);
 
-  GeneratedColumn<String> get authorUserId => $composableBuilder(
-    column: $table.authorUserId,
-    builder: (column) => column,
-  );
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
 class $$EncounterEventsTableTableManager
@@ -54284,41 +53312,41 @@ class $$EncounterEventsTableTableManager
           updateCompanionCallback:
               ({
                 Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
                 Value<String> encounterId = const Value.absent(),
-                Value<int> round = const Value.absent(),
-                Value<String?> actorId = const Value.absent(),
+                Value<String?> authorUserId = const Value.absent(),
                 Value<String> type = const Value.absent(),
                 Value<String> payload = const Value.absent(),
-                Value<String?> authorUserId = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncounterEventsCompanion(
                 id: id,
+                tableId: tableId,
                 encounterId: encounterId,
-                round: round,
-                actorId: actorId,
+                authorUserId: authorUserId,
                 type: type,
                 payload: payload,
-                authorUserId: authorUserId,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
                 required String id,
+                required String tableId,
                 required String encounterId,
-                required int round,
-                Value<String?> actorId = const Value.absent(),
-                required String type,
-                required String payload,
                 Value<String?> authorUserId = const Value.absent(),
+                required String type,
+                Value<String> payload = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncounterEventsCompanion.insert(
                 id: id,
+                tableId: tableId,
                 encounterId: encounterId,
-                round: round,
-                actorId: actorId,
+                authorUserId: authorUserId,
                 type: type,
                 payload: payload,
-                authorUserId: authorUserId,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -54906,8 +53934,6 @@ class $TavernierDatabaseManager {
       $$EncountersTableTableManager(_db, _db.encounters);
   $$EncounterGroupsTableTableManager get encounterGroups =>
       $$EncounterGroupsTableTableManager(_db, _db.encounterGroups);
-  $$CombatantsTableTableManager get combatants =>
-      $$CombatantsTableTableManager(_db, _db.combatants);
   $$EncounterEventsTableTableManager get encounterEvents =>
       $$EncounterEventsTableTableManager(_db, _db.encounterEvents);
   $$NotesTableTableManager get notes =>

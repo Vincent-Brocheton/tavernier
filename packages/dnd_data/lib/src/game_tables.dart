@@ -425,36 +425,20 @@ class EncounterGroups extends Table with IdKey, TableOwned {
   IntColumn get position => integer().withDefault(const Constant(0))();
 }
 
-@DataClassName('CombatantRow')
-class Combatants extends Table with IdKey {
-  @override
-  String get tableName => 'combatant';
-
-  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
-  TextColumn get encounterId => text()();
-  TextColumn get kind => text()();
-  TextColumn get refId => text().nullable()();
-  TextColumn get label => text()();
-  IntColumn get initiative => integer().nullable()();
-  TextColumn get groupId => text().nullable()();
-  IntColumn get hp => integer().nullable()();
-  IntColumn get ac => integer().nullable()();
-  TextColumn get attitude => text().nullable()();
-  BoolColumn get visible => boolean().withDefault(const Constant(true))();
-}
-
+/// Journal du combat (US-20, cahier §10) : l'état d'une rencontre est la
+/// projection de ses événements, dans l'ordre de leurs identifiants
+/// (UUID v7). Les combattants s'en déduisent.
 @DataClassName('EncounterEventRow')
-class EncounterEvents extends Table with IdKey {
+class EncounterEvents extends Table with IdKey, TableOwned {
   @override
   String get tableName => 'encounter_event';
 
   /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
   TextColumn get encounterId => text()();
-  IntColumn get round => integer()();
-  TextColumn get actorId => text().nullable()();
-  TextColumn get type => text()();
-  TextColumn get payload => text()(); // JSON
   TextColumn get authorUserId => text().nullable()();
+  TextColumn get type => text()();
+  TextColumn get payload => text().withDefault(const Constant('{}'))(); // JSON
+  DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
 @DataClassName('NoteRow')

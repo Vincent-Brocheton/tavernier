@@ -27,7 +27,7 @@ void main() {
     for (final table in syncedTables) {
       expect(await _type(db, table), 'view', reason: table);
     }
-    for (final table in ['content_pack', 'spell', 'class_level', 'combatant']) {
+    for (final table in ['content_pack', 'spell', 'class_level', 'note']) {
       expect(await _type(db, table), 'table', reason: table);
     }
   });
@@ -114,22 +114,6 @@ void main() {
     final member = await db.select(db.tableMembers).getSingle();
     expect(member.joinedAt.toUtc(), DateTime.utc(2026, 11, 8, 17, 38, 43, 123));
   });
-
-  test(
-    'un combattant (M3, local) se rattache à une rencontre synchronisée',
-    () async {
-      await db.customStatement(
-        'INSERT INTO encounter (id, table_id, title) '
-        "VALUES ('e', 't', 'Le relais du Sel')",
-      );
-      await db.customStatement(
-        'INSERT INTO combatant (id, encounter_id, kind, label) '
-        "VALUES ('c', 'e', 'monster', 'Vétéran 1')",
-      );
-      final combatant = await db.select(db.combatants).getSingle();
-      expect(combatant.encounterId, 'e');
-    },
-  );
 
   test('tables synchronisées : celles de la publication Supabase', () {
     final migrations = Directory.fromUri(
