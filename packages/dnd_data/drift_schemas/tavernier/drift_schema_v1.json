@@ -5904,10 +5904,30 @@
             "dsl_features": []
           },
           {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
             "name": "session_id",
             "getter_name": "sessionId",
             "moor_type": "string",
             "nullable": true,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "title",
+            "getter_name": "title",
+            "moor_type": "string",
+            "nullable": false,
             "customConstraints": null,
             "default_dart": null,
             "default_client_dart": null,
@@ -5919,17 +5939,7 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "default_dart": null,
-            "default_client_dart": null,
-            "dsl_features": []
-          },
-          {
-            "name": "difficulty",
-            "getter_name": "difficulty",
-            "moor_type": "string",
-            "nullable": true,
-            "customConstraints": null,
-            "default_dart": null,
+            "default_dart": "const CustomExpression('\\'draft\\'')",
             "default_client_dart": null,
             "dsl_features": []
           },
@@ -5938,6 +5948,26 @@
             "getter_name": "hpMode",
             "moor_type": "string",
             "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('\\'average\\'')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "position",
+            "getter_name": "position",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "created_at",
+            "getter_name": "createdAt",
+            "moor_type": "dateTime",
+            "nullable": true,
             "customConstraints": null,
             "default_dart": null,
             "default_client_dart": null,
@@ -5954,9 +5984,108 @@
     },
     {
       "id": 62,
-      "references": [
-        61
-      ],
+      "references": [],
+      "type": "table",
+      "data": {
+        "name": "encounter_group",
+        "was_declared_in_moor": false,
+        "columns": [
+          {
+            "name": "id",
+            "getter_name": "id",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "table_id",
+            "getter_name": "tableId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "encounter_id",
+            "getter_name": "encounterId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "kind",
+            "getter_name": "kind",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "ref_id",
+            "getter_name": "refId",
+            "moor_type": "string",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": null,
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "quantity",
+            "getter_name": "quantity",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('1')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "shared_initiative",
+            "getter_name": "sharedInitiative",
+            "moor_type": "bool",
+            "nullable": false,
+            "customConstraints": null,
+            "defaultConstraints": "CHECK (\"shared_initiative\" IN (0, 1))",
+            "dialectAwareDefaultConstraints": {
+              "sqlite": "CHECK (\"shared_initiative\" IN (0, 1))"
+            },
+            "default_dart": "const CustomExpression('1')",
+            "default_client_dart": null,
+            "dsl_features": []
+          },
+          {
+            "name": "position",
+            "getter_name": "position",
+            "moor_type": "int",
+            "nullable": false,
+            "customConstraints": null,
+            "default_dart": "const CustomExpression('0')",
+            "default_client_dart": null,
+            "dsl_features": []
+          }
+        ],
+        "is_virtual": false,
+        "without_rowid": false,
+        "constraints": [],
+        "explicit_pk": [
+          "id"
+        ]
+      }
+    },
+    {
+      "id": 63,
+      "references": [],
       "type": "table",
       "data": {
         "name": "combatant",
@@ -5978,25 +6107,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES encounter (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES encounter (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "encounter",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "kind",
@@ -6102,10 +6215,8 @@
       }
     },
     {
-      "id": 63,
-      "references": [
-        61
-      ],
+      "id": 64,
+      "references": [],
       "type": "table",
       "data": {
         "name": "encounter_event",
@@ -6127,25 +6238,9 @@
             "moor_type": "string",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES encounter (id) ON DELETE CASCADE",
-            "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES encounter (id) ON DELETE CASCADE"
-            },
             "default_dart": null,
             "default_client_dart": null,
-            "dsl_features": [
-              {
-                "foreign_key": {
-                  "to": {
-                    "table": "encounter",
-                    "column": "id"
-                  },
-                  "initially_deferred": false,
-                  "on_update": null,
-                  "on_delete": "cascade"
-                }
-              }
-            ]
+            "dsl_features": []
           },
           {
             "name": "round",
@@ -6207,7 +6302,7 @@
       }
     },
     {
-      "id": 64,
+      "id": 65,
       "references": [],
       "type": "table",
       "data": {
@@ -6298,7 +6393,7 @@
       }
     },
     {
-      "id": 65,
+      "id": 66,
       "references": [],
       "type": "table",
       "data": {
@@ -6890,7 +6985,16 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"session_id\" TEXT NULL, \"status\" TEXT NOT NULL, \"difficulty\" TEXT NULL, \"hp_mode\" TEXT NOT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"session_id\" TEXT NULL, \"title\" TEXT NOT NULL, \"status\" TEXT NOT NULL DEFAULT 'draft', \"hp_mode\" TEXT NOT NULL DEFAULT 'average', \"position\" INTEGER NOT NULL DEFAULT 0, \"created_at\" TEXT NULL, PRIMARY KEY (\"id\"));"
+        }
+      ]
+    },
+    {
+      "name": "encounter_group",
+      "sql": [
+        {
+          "dialect": "sqlite",
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter_group\" (\"id\" TEXT NOT NULL, \"table_id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"kind\" TEXT NOT NULL, \"ref_id\" TEXT NOT NULL, \"quantity\" INTEGER NOT NULL DEFAULT 1, \"shared_initiative\" INTEGER NOT NULL DEFAULT 1 CHECK (\"shared_initiative\" IN (0, 1)), \"position\" INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6899,7 +7003,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"combatant\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL REFERENCES encounter (id) ON DELETE CASCADE, \"kind\" TEXT NOT NULL, \"ref_id\" TEXT NULL, \"label\" TEXT NOT NULL, \"initiative\" INTEGER NULL, \"group_id\" TEXT NULL, \"hp\" INTEGER NULL, \"ac\" INTEGER NULL, \"attitude\" TEXT NULL, \"visible\" INTEGER NOT NULL DEFAULT 1 CHECK (\"visible\" IN (0, 1)), PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"combatant\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"kind\" TEXT NOT NULL, \"ref_id\" TEXT NULL, \"label\" TEXT NOT NULL, \"initiative\" INTEGER NULL, \"group_id\" TEXT NULL, \"hp\" INTEGER NULL, \"ac\" INTEGER NULL, \"attitude\" TEXT NULL, \"visible\" INTEGER NOT NULL DEFAULT 1 CHECK (\"visible\" IN (0, 1)), PRIMARY KEY (\"id\"));"
         }
       ]
     },
@@ -6908,7 +7012,7 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"encounter_event\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL REFERENCES encounter (id) ON DELETE CASCADE, \"round\" INTEGER NOT NULL, \"actor_id\" TEXT NULL, \"type\" TEXT NOT NULL, \"payload\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"encounter_event\" (\"id\" TEXT NOT NULL, \"encounter_id\" TEXT NOT NULL, \"round\" INTEGER NOT NULL, \"actor_id\" TEXT NULL, \"type\" TEXT NOT NULL, \"payload\" TEXT NOT NULL, \"author_user_id\" TEXT NULL, PRIMARY KEY (\"id\"));"
         }
       ]
     },

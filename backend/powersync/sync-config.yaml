@@ -66,3 +66,12 @@ streams:
     auto_subscribe: true
     queries:
       - SELECT * FROM npc_statblock WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
+
+  # Rencontres préparées et leurs groupes (US-19) : au MJ de la table seul.
+  rencontres:
+    auto_subscribe: true
+    with:
+      tables_mj: SELECT id FROM game_table WHERE gm_user_id = auth.user_id()
+    queries:
+      - SELECT * FROM encounter WHERE table_id IN tables_mj
+      - SELECT * FROM encounter_group WHERE table_id IN tables_mj

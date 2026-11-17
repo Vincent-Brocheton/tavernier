@@ -19,6 +19,8 @@ const syncedTables = {
   'session',
   'session_attendance',
   'npc_statblock',
+  'encounter',
+  'encounter_group',
   'character_summary',
   'character',
   'character_base_scores',

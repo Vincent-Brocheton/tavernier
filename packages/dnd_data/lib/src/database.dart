@@ -73,6 +73,7 @@ part 'database.g.dart';
     CharacterProposals,
     NpcStatblocks,
     Encounters,
+    EncounterGroups,
     Combatants,
     EncounterEvents,
     Notes,

@@ -27944,6 +27944,17 @@ class $EncountersTable extends Encounters
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _sessionIdMeta = const VerificationMeta(
     'sessionId',
   );
@@ -27955,6 +27966,15 @@ class $EncountersTable extends Encounters
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
   late final GeneratedColumn<String> status = GeneratedColumn<String>(
@@ -27962,18 +27982,8 @@ class $EncountersTable extends Encounters
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _difficultyMeta = const VerificationMeta(
-    'difficulty',
-  );
-  @override
-  late final GeneratedColumn<String> difficulty = GeneratedColumn<String>(
-    'difficulty',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
     requiredDuringInsert: false,
+    defaultValue: const Constant('draft'),
   );
   static const VerificationMeta _hpModeMeta = const VerificationMeta('hpMode');
   @override
@@ -27982,15 +27992,42 @@ class $EncountersTable extends Encounters
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('average'),
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  @override
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    tableId,
     sessionId,
+    title,
     status,
-    difficulty,
     hpMode,
+    position,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -28009,24 +28046,32 @@ class $EncountersTable extends Encounters
     } else if (isInserting) {
       context.missing(_idMeta);
     }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
     if (data.containsKey('session_id')) {
       context.handle(
         _sessionIdMeta,
         sessionId.isAcceptableOrUnknown(data['session_id']!, _sessionIdMeta),
       );
     }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
     if (data.containsKey('status')) {
       context.handle(
         _statusMeta,
         status.isAcceptableOrUnknown(data['status']!, _statusMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_statusMeta);
-    }
-    if (data.containsKey('difficulty')) {
-      context.handle(
-        _difficultyMeta,
-        difficulty.isAcceptableOrUnknown(data['difficulty']!, _difficultyMeta),
       );
     }
     if (data.containsKey('hp_mode')) {
@@ -28034,8 +28079,18 @@ class $EncountersTable extends Encounters
         _hpModeMeta,
         hpMode.isAcceptableOrUnknown(data['hp_mode']!, _hpModeMeta),
       );
-    } else if (isInserting) {
-      context.missing(_hpModeMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
     }
     return context;
   }
@@ -28050,22 +28105,34 @@ class $EncountersTable extends Encounters
         DriftSqlType.string,
         data['${effectivePrefix}id'],
       )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
       sessionId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}session_id'],
       ),
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
       status: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}status'],
       )!,
-      difficulty: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}difficulty'],
-      ),
       hpMode: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}hp_mode'],
       )!,
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
     );
   }
 
@@ -28077,46 +28144,62 @@ class $EncountersTable extends Encounters
 
 class EncounterRow extends DataClass implements Insertable<EncounterRow> {
   final String id;
+  final String tableId;
 
-  /// Séance de la rencontre. Pas de clé étrangère : `session` est une vue
-  /// PowerSync.
+  /// Séance de la rencontre ; `null` : en réserve. Pas de clé étrangère :
+  /// `session` est une vue PowerSync.
   final String? sessionId;
+  final String title;
+
+  /// `draft`, `ready`, `running` ou `finished`.
   final String status;
-  final String? difficulty;
+
+  /// `average` ou `roll` (EF-REN-04).
   final String hpMode;
+  final int position;
+  final DateTime? createdAt;
   const EncounterRow({
     required this.id,
+    required this.tableId,
     this.sessionId,
+    required this.title,
     required this.status,
-    this.difficulty,
     required this.hpMode,
+    required this.position,
+    this.createdAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
     if (!nullToAbsent || sessionId != null) {
       map['session_id'] = Variable<String>(sessionId);
     }
+    map['title'] = Variable<String>(title);
     map['status'] = Variable<String>(status);
-    if (!nullToAbsent || difficulty != null) {
-      map['difficulty'] = Variable<String>(difficulty);
-    }
     map['hp_mode'] = Variable<String>(hpMode);
+    map['position'] = Variable<int>(position);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
     return map;
   }
 
   EncountersCompanion toCompanion(bool nullToAbsent) {
     return EncountersCompanion(
       id: Value(id),
+      tableId: Value(tableId),
       sessionId: sessionId == null && nullToAbsent
           ? const Value.absent()
           : Value(sessionId),
+      title: Value(title),
       status: Value(status),
-      difficulty: difficulty == null && nullToAbsent
-          ? const Value.absent()
-          : Value(difficulty),
       hpMode: Value(hpMode),
+      position: Value(position),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
     );
   }
 
@@ -28127,10 +28210,13 @@ class EncounterRow extends DataClass implements Insertable<EncounterRow> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return EncounterRow(
       id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
       sessionId: serializer.fromJson<String?>(json['sessionId']),
+      title: serializer.fromJson<String>(json['title']),
       status: serializer.fromJson<String>(json['status']),
-      difficulty: serializer.fromJson<String?>(json['difficulty']),
       hpMode: serializer.fromJson<String>(json['hpMode']),
+      position: serializer.fromJson<int>(json['position']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
     );
   }
   @override
@@ -28138,35 +28224,45 @@ class EncounterRow extends DataClass implements Insertable<EncounterRow> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
       'sessionId': serializer.toJson<String?>(sessionId),
+      'title': serializer.toJson<String>(title),
       'status': serializer.toJson<String>(status),
-      'difficulty': serializer.toJson<String?>(difficulty),
       'hpMode': serializer.toJson<String>(hpMode),
+      'position': serializer.toJson<int>(position),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
     };
   }
 
   EncounterRow copyWith({
     String? id,
+    String? tableId,
     Value<String?> sessionId = const Value.absent(),
+    String? title,
     String? status,
-    Value<String?> difficulty = const Value.absent(),
     String? hpMode,
+    int? position,
+    Value<DateTime?> createdAt = const Value.absent(),
   }) => EncounterRow(
     id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
     sessionId: sessionId.present ? sessionId.value : this.sessionId,
+    title: title ?? this.title,
     status: status ?? this.status,
-    difficulty: difficulty.present ? difficulty.value : this.difficulty,
     hpMode: hpMode ?? this.hpMode,
+    position: position ?? this.position,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
   EncounterRow copyWithCompanion(EncountersCompanion data) {
     return EncounterRow(
       id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
       sessionId: data.sessionId.present ? data.sessionId.value : this.sessionId,
+      title: data.title.present ? data.title.value : this.title,
       status: data.status.present ? data.status.value : this.status,
-      difficulty: data.difficulty.present
-          ? data.difficulty.value
-          : this.difficulty,
       hpMode: data.hpMode.present ? data.hpMode.value : this.hpMode,
+      position: data.position.present ? data.position.value : this.position,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
 
@@ -28174,84 +28270,120 @@ class EncounterRow extends DataClass implements Insertable<EncounterRow> {
   String toString() {
     return (StringBuffer('EncounterRow(')
           ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
           ..write('sessionId: $sessionId, ')
+          ..write('title: $title, ')
           ..write('status: $status, ')
-          ..write('difficulty: $difficulty, ')
-          ..write('hpMode: $hpMode')
+          ..write('hpMode: $hpMode, ')
+          ..write('position: $position, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, sessionId, status, difficulty, hpMode);
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    sessionId,
+    title,
+    status,
+    hpMode,
+    position,
+    createdAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is EncounterRow &&
           other.id == this.id &&
+          other.tableId == this.tableId &&
           other.sessionId == this.sessionId &&
+          other.title == this.title &&
           other.status == this.status &&
-          other.difficulty == this.difficulty &&
-          other.hpMode == this.hpMode);
+          other.hpMode == this.hpMode &&
+          other.position == this.position &&
+          other.createdAt == this.createdAt);
 }
 
 class EncountersCompanion extends UpdateCompanion<EncounterRow> {
   final Value<String> id;
+  final Value<String> tableId;
   final Value<String?> sessionId;
+  final Value<String> title;
   final Value<String> status;
-  final Value<String?> difficulty;
   final Value<String> hpMode;
+  final Value<int> position;
+  final Value<DateTime?> createdAt;
   final Value<int> rowid;
   const EncountersCompanion({
     this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
     this.sessionId = const Value.absent(),
+    this.title = const Value.absent(),
     this.status = const Value.absent(),
-    this.difficulty = const Value.absent(),
     this.hpMode = const Value.absent(),
+    this.position = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   EncountersCompanion.insert({
     required String id,
+    required String tableId,
     this.sessionId = const Value.absent(),
-    required String status,
-    this.difficulty = const Value.absent(),
-    required String hpMode,
+    required String title,
+    this.status = const Value.absent(),
+    this.hpMode = const Value.absent(),
+    this.position = const Value.absent(),
+    this.createdAt = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
-       status = Value(status),
-       hpMode = Value(hpMode);
+       tableId = Value(tableId),
+       title = Value(title);
   static Insertable<EncounterRow> custom({
     Expression<String>? id,
+    Expression<String>? tableId,
     Expression<String>? sessionId,
+    Expression<String>? title,
     Expression<String>? status,
-    Expression<String>? difficulty,
     Expression<String>? hpMode,
+    Expression<int>? position,
+    Expression<DateTime>? createdAt,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
       if (sessionId != null) 'session_id': sessionId,
+      if (title != null) 'title': title,
       if (status != null) 'status': status,
-      if (difficulty != null) 'difficulty': difficulty,
       if (hpMode != null) 'hp_mode': hpMode,
+      if (position != null) 'position': position,
+      if (createdAt != null) 'created_at': createdAt,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   EncountersCompanion copyWith({
     Value<String>? id,
+    Value<String>? tableId,
     Value<String?>? sessionId,
+    Value<String>? title,
     Value<String>? status,
-    Value<String?>? difficulty,
     Value<String>? hpMode,
+    Value<int>? position,
+    Value<DateTime?>? createdAt,
     Value<int>? rowid,
   }) {
     return EncountersCompanion(
       id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
       sessionId: sessionId ?? this.sessionId,
+      title: title ?? this.title,
       status: status ?? this.status,
-      difficulty: difficulty ?? this.difficulty,
       hpMode: hpMode ?? this.hpMode,
+      position: position ?? this.position,
+      createdAt: createdAt ?? this.createdAt,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -28262,17 +28394,26 @@ class EncountersCompanion extends UpdateCompanion<EncounterRow> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
     if (sessionId.present) {
       map['session_id'] = Variable<String>(sessionId.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
     }
     if (status.present) {
       map['status'] = Variable<String>(status.value);
     }
-    if (difficulty.present) {
-      map['difficulty'] = Variable<String>(difficulty.value);
-    }
     if (hpMode.present) {
       map['hp_mode'] = Variable<String>(hpMode.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -28284,10 +28425,531 @@ class EncountersCompanion extends UpdateCompanion<EncounterRow> {
   String toString() {
     return (StringBuffer('EncountersCompanion(')
           ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
           ..write('sessionId: $sessionId, ')
+          ..write('title: $title, ')
           ..write('status: $status, ')
-          ..write('difficulty: $difficulty, ')
           ..write('hpMode: $hpMode, ')
+          ..write('position: $position, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $EncounterGroupsTable extends EncounterGroups
+    with TableInfo<$EncounterGroupsTable, EncounterGroupRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $EncounterGroupsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _encounterIdMeta = const VerificationMeta(
+    'encounterId',
+  );
+  @override
+  late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
+    'encounter_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _refIdMeta = const VerificationMeta('refId');
+  @override
+  late final GeneratedColumn<String> refId = GeneratedColumn<String>(
+    'ref_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _quantityMeta = const VerificationMeta(
+    'quantity',
+  );
+  @override
+  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
+    'quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _sharedInitiativeMeta = const VerificationMeta(
+    'sharedInitiative',
+  );
+  @override
+  late final GeneratedColumn<bool> sharedInitiative = GeneratedColumn<bool>(
+    'shared_initiative',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("shared_initiative" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _positionMeta = const VerificationMeta(
+    'position',
+  );
+  @override
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    encounterId,
+    kind,
+    refId,
+    quantity,
+    sharedInitiative,
+    position,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'encounter_group';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<EncounterGroupRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('encounter_id')) {
+      context.handle(
+        _encounterIdMeta,
+        encounterId.isAcceptableOrUnknown(
+          data['encounter_id']!,
+          _encounterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_encounterIdMeta);
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('ref_id')) {
+      context.handle(
+        _refIdMeta,
+        refId.isAcceptableOrUnknown(data['ref_id']!, _refIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_refIdMeta);
+    }
+    if (data.containsKey('quantity')) {
+      context.handle(
+        _quantityMeta,
+        quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta),
+      );
+    }
+    if (data.containsKey('shared_initiative')) {
+      context.handle(
+        _sharedInitiativeMeta,
+        sharedInitiative.isAcceptableOrUnknown(
+          data['shared_initiative']!,
+          _sharedInitiativeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('position')) {
+      context.handle(
+        _positionMeta,
+        position.isAcceptableOrUnknown(data['position']!, _positionMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  EncounterGroupRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return EncounterGroupRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      encounterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}encounter_id'],
+      )!,
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      refId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ref_id'],
+      )!,
+      quantity: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}quantity'],
+      )!,
+      sharedInitiative: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}shared_initiative'],
+      )!,
+      position: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position'],
+      )!,
+    );
+  }
+
+  @override
+  $EncounterGroupsTable createAlias(String alias) {
+    return $EncounterGroupsTable(attachedDatabase, alias);
+  }
+}
+
+class EncounterGroupRow extends DataClass
+    implements Insertable<EncounterGroupRow> {
+  final String id;
+  final String tableId;
+  final String encounterId;
+
+  /// `monster` ou `npc`.
+  final String kind;
+  final String refId;
+  final int quantity;
+  final bool sharedInitiative;
+  final int position;
+  const EncounterGroupRow({
+    required this.id,
+    required this.tableId,
+    required this.encounterId,
+    required this.kind,
+    required this.refId,
+    required this.quantity,
+    required this.sharedInitiative,
+    required this.position,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['encounter_id'] = Variable<String>(encounterId);
+    map['kind'] = Variable<String>(kind);
+    map['ref_id'] = Variable<String>(refId);
+    map['quantity'] = Variable<int>(quantity);
+    map['shared_initiative'] = Variable<bool>(sharedInitiative);
+    map['position'] = Variable<int>(position);
+    return map;
+  }
+
+  EncounterGroupsCompanion toCompanion(bool nullToAbsent) {
+    return EncounterGroupsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      encounterId: Value(encounterId),
+      kind: Value(kind),
+      refId: Value(refId),
+      quantity: Value(quantity),
+      sharedInitiative: Value(sharedInitiative),
+      position: Value(position),
+    );
+  }
+
+  factory EncounterGroupRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return EncounterGroupRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      encounterId: serializer.fromJson<String>(json['encounterId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      refId: serializer.fromJson<String>(json['refId']),
+      quantity: serializer.fromJson<int>(json['quantity']),
+      sharedInitiative: serializer.fromJson<bool>(json['sharedInitiative']),
+      position: serializer.fromJson<int>(json['position']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'encounterId': serializer.toJson<String>(encounterId),
+      'kind': serializer.toJson<String>(kind),
+      'refId': serializer.toJson<String>(refId),
+      'quantity': serializer.toJson<int>(quantity),
+      'sharedInitiative': serializer.toJson<bool>(sharedInitiative),
+      'position': serializer.toJson<int>(position),
+    };
+  }
+
+  EncounterGroupRow copyWith({
+    String? id,
+    String? tableId,
+    String? encounterId,
+    String? kind,
+    String? refId,
+    int? quantity,
+    bool? sharedInitiative,
+    int? position,
+  }) => EncounterGroupRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    encounterId: encounterId ?? this.encounterId,
+    kind: kind ?? this.kind,
+    refId: refId ?? this.refId,
+    quantity: quantity ?? this.quantity,
+    sharedInitiative: sharedInitiative ?? this.sharedInitiative,
+    position: position ?? this.position,
+  );
+  EncounterGroupRow copyWithCompanion(EncounterGroupsCompanion data) {
+    return EncounterGroupRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      encounterId: data.encounterId.present
+          ? data.encounterId.value
+          : this.encounterId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      refId: data.refId.present ? data.refId.value : this.refId,
+      quantity: data.quantity.present ? data.quantity.value : this.quantity,
+      sharedInitiative: data.sharedInitiative.present
+          ? data.sharedInitiative.value
+          : this.sharedInitiative,
+      position: data.position.present ? data.position.value : this.position,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EncounterGroupRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('encounterId: $encounterId, ')
+          ..write('kind: $kind, ')
+          ..write('refId: $refId, ')
+          ..write('quantity: $quantity, ')
+          ..write('sharedInitiative: $sharedInitiative, ')
+          ..write('position: $position')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    encounterId,
+    kind,
+    refId,
+    quantity,
+    sharedInitiative,
+    position,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is EncounterGroupRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.encounterId == this.encounterId &&
+          other.kind == this.kind &&
+          other.refId == this.refId &&
+          other.quantity == this.quantity &&
+          other.sharedInitiative == this.sharedInitiative &&
+          other.position == this.position);
+}
+
+class EncounterGroupsCompanion extends UpdateCompanion<EncounterGroupRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> encounterId;
+  final Value<String> kind;
+  final Value<String> refId;
+  final Value<int> quantity;
+  final Value<bool> sharedInitiative;
+  final Value<int> position;
+  final Value<int> rowid;
+  const EncounterGroupsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.encounterId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.refId = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.sharedInitiative = const Value.absent(),
+    this.position = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  EncounterGroupsCompanion.insert({
+    required String id,
+    required String tableId,
+    required String encounterId,
+    required String kind,
+    required String refId,
+    this.quantity = const Value.absent(),
+    this.sharedInitiative = const Value.absent(),
+    this.position = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       encounterId = Value(encounterId),
+       kind = Value(kind),
+       refId = Value(refId);
+  static Insertable<EncounterGroupRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? encounterId,
+    Expression<String>? kind,
+    Expression<String>? refId,
+    Expression<int>? quantity,
+    Expression<bool>? sharedInitiative,
+    Expression<int>? position,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (encounterId != null) 'encounter_id': encounterId,
+      if (kind != null) 'kind': kind,
+      if (refId != null) 'ref_id': refId,
+      if (quantity != null) 'quantity': quantity,
+      if (sharedInitiative != null) 'shared_initiative': sharedInitiative,
+      if (position != null) 'position': position,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  EncounterGroupsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? encounterId,
+    Value<String>? kind,
+    Value<String>? refId,
+    Value<int>? quantity,
+    Value<bool>? sharedInitiative,
+    Value<int>? position,
+    Value<int>? rowid,
+  }) {
+    return EncounterGroupsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      encounterId: encounterId ?? this.encounterId,
+      kind: kind ?? this.kind,
+      refId: refId ?? this.refId,
+      quantity: quantity ?? this.quantity,
+      sharedInitiative: sharedInitiative ?? this.sharedInitiative,
+      position: position ?? this.position,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (encounterId.present) {
+      map['encounter_id'] = Variable<String>(encounterId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (refId.present) {
+      map['ref_id'] = Variable<String>(refId.value);
+    }
+    if (quantity.present) {
+      map['quantity'] = Variable<int>(quantity.value);
+    }
+    if (sharedInitiative.present) {
+      map['shared_initiative'] = Variable<bool>(sharedInitiative.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<int>(position.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EncounterGroupsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('encounterId: $encounterId, ')
+          ..write('kind: $kind, ')
+          ..write('refId: $refId, ')
+          ..write('quantity: $quantity, ')
+          ..write('sharedInitiative: $sharedInitiative, ')
+          ..write('position: $position, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -28319,9 +28981,6 @@ class $CombatantsTable extends Combatants
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES encounter (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _kindMeta = const VerificationMeta('kind');
   @override
@@ -28574,6 +29233,8 @@ class $CombatantsTable extends Combatants
 
 class CombatantRow extends DataClass implements Insertable<CombatantRow> {
   final String id;
+
+  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
   final String encounterId;
   final String kind;
   final String? refId;
@@ -28972,9 +29633,6 @@ class $EncounterEventsTable extends EncounterEvents
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES encounter (id) ON DELETE CASCADE',
-    ),
   );
   static const VerificationMeta _roundMeta = const VerificationMeta('round');
   @override
@@ -29153,6 +29811,8 @@ class $EncounterEventsTable extends EncounterEvents
 class EncounterEventRow extends DataClass
     implements Insertable<EncounterEventRow> {
   final String id;
+
+  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
   final String encounterId;
   final int round;
   final String? actorId;
@@ -30185,6 +30845,9 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
       $CharacterProposalsTable(this);
   late final $NpcStatblocksTable npcStatblocks = $NpcStatblocksTable(this);
   late final $EncountersTable encounters = $EncountersTable(this);
+  late final $EncounterGroupsTable encounterGroups = $EncounterGroupsTable(
+    this,
+  );
   late final $CombatantsTable combatants = $CombatantsTable(this);
   late final $EncounterEventsTable encounterEvents = $EncounterEventsTable(
     this,
@@ -30260,6 +30923,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     characterProposals,
     npcStatblocks,
     encounters,
+    encounterGroups,
     combatants,
     encounterEvents,
     notes,
@@ -30499,20 +31163,6 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('entity_text', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'encounter',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('combatant', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'encounter',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('encounter_event', kind: UpdateKind.delete)],
     ),
   ]);
   @override
@@ -52581,65 +53231,26 @@ typedef $$NpcStatblocksTableProcessedTableManager =
     >;
 typedef $$EncountersTableCreateCompanionBuilder = EncountersCompanion Function({
   required String id,
+  required String tableId,
   Value<String?> sessionId,
-  required String status,
-  Value<String?> difficulty,
-  required String hpMode,
+  required String title,
+  Value<String> status,
+  Value<String> hpMode,
+  Value<int> position,
+  Value<DateTime?> createdAt,
   Value<int> rowid,
 });
 typedef $$EncountersTableUpdateCompanionBuilder = EncountersCompanion Function({
   Value<String> id,
+  Value<String> tableId,
   Value<String?> sessionId,
+  Value<String> title,
   Value<String> status,
-  Value<String?> difficulty,
   Value<String> hpMode,
+  Value<int> position,
+  Value<DateTime?> createdAt,
   Value<int> rowid,
 });
-
-final class $$EncountersTableReferences
-    extends
-        BaseReferences<_$TavernierDatabase, $EncountersTable, EncounterRow> {
-  $$EncountersTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static MultiTypedResultKey<$CombatantsTable, List<CombatantRow>>
-  _combatantsRefsTable(_$TavernierDatabase db) => MultiTypedResultKey.fromTable(
-    db.combatants,
-    aliasName: 'encounter__id__combatant__encounter_id',
-  );
-
-  $$CombatantsTableProcessedTableManager get combatantsRefs {
-    final manager = $$CombatantsTableTableManager(
-      $_db,
-      $_db.combatants,
-    ).filter((f) => f.encounterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(_combatantsRefsTable($_db));
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-
-  static MultiTypedResultKey<$EncounterEventsTable, List<EncounterEventRow>>
-  _encounterEventsRefsTable(_$TavernierDatabase db) =>
-      MultiTypedResultKey.fromTable(
-        db.encounterEvents,
-        aliasName: 'encounter__id__encounter_event__encounter_id',
-      );
-
-  $$EncounterEventsTableProcessedTableManager get encounterEventsRefs {
-    final manager = $$EncounterEventsTableTableManager(
-      $_db,
-      $_db.encounterEvents,
-    ).filter((f) => f.encounterId.id.sqlEquals($_itemColumn<String>('id')!));
-
-    final cache = $_typedResult.readTableOrNull(
-      _encounterEventsRefsTable($_db),
-    );
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: cache),
-    );
-  }
-}
 
 class $$EncountersTableFilterComposer
     extends Composer<_$TavernierDatabase, $EncountersTable> {
@@ -52655,8 +53266,18 @@ class $$EncountersTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<String> get sessionId => $composableBuilder(
     column: $table.sessionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -52665,65 +53286,20 @@ class $$EncountersTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get difficulty => $composableBuilder(
-    column: $table.difficulty,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<String> get hpMode => $composableBuilder(
     column: $table.hpMode,
     builder: (column) => ColumnFilters(column),
   );
 
-  Expression<bool> combatantsRefs(
-    Expression<bool> Function($$CombatantsTableFilterComposer f) f,
-  ) {
-    final $$CombatantsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.combatants,
-      getReferencedColumn: (t) => t.encounterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CombatantsTableFilterComposer(
-            $db: $db,
-            $table: $db.combatants,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  ColumnFilters<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  Expression<bool> encounterEventsRefs(
-    Expression<bool> Function($$EncounterEventsTableFilterComposer f) f,
-  ) {
-    final $$EncounterEventsTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.encounterEvents,
-      getReferencedColumn: (t) => t.encounterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncounterEventsTableFilterComposer(
-            $db: $db,
-            $table: $db.encounterEvents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$EncountersTableOrderingComposer
@@ -52740,8 +53316,18 @@ class $$EncountersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get sessionId => $composableBuilder(
     column: $table.sessionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -52750,13 +53336,18 @@ class $$EncountersTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get difficulty => $composableBuilder(
-    column: $table.difficulty,
+  ColumnOrderings<String> get hpMode => $composableBuilder(
+    column: $table.hpMode,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get hpMode => $composableBuilder(
-    column: $table.hpMode,
+  ColumnOrderings<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
 }
@@ -52773,69 +53364,26 @@ class $$EncountersTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
   GeneratedColumn<String> get sessionId =>
       $composableBuilder(column: $table.sessionId, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
 
   GeneratedColumn<String> get status =>
       $composableBuilder(column: $table.status, builder: (column) => column);
 
-  GeneratedColumn<String> get difficulty => $composableBuilder(
-    column: $table.difficulty,
-    builder: (column) => column,
-  );
-
   GeneratedColumn<String> get hpMode =>
       $composableBuilder(column: $table.hpMode, builder: (column) => column);
 
-  Expression<T> combatantsRefs<T extends Object>(
-    Expression<T> Function($$CombatantsTableAnnotationComposer a) f,
-  ) {
-    final $$CombatantsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.combatants,
-      getReferencedColumn: (t) => t.encounterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$CombatantsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.combatants,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
 
-  Expression<T> encounterEventsRefs<T extends Object>(
-    Expression<T> Function($$EncounterEventsTableAnnotationComposer a) f,
-  ) {
-    final $$EncounterEventsTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.id,
-      referencedTable: $db.encounterEvents,
-      getReferencedColumn: (t) => t.encounterId,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncounterEventsTableAnnotationComposer(
-            $db: $db,
-            $table: $db.encounterEvents,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return f(composer);
-  }
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
 }
 
 class $$EncountersTableTableManager
@@ -52849,12 +53397,12 @@ class $$EncountersTableTableManager
           $$EncountersTableAnnotationComposer,
           $$EncountersTableCreateCompanionBuilder,
           $$EncountersTableUpdateCompanionBuilder,
-          (EncounterRow, $$EncountersTableReferences),
+          (
+            EncounterRow,
+            BaseReferences<_$TavernierDatabase, $EncountersTable, EncounterRow>,
+          ),
           EncounterRow,
-          PrefetchHooks Function({
-            bool combatantsRefs,
-            bool encounterEventsRefs,
-          })
+          PrefetchHooks Function()
         > {
   $$EncountersTableTableManager(_$TavernierDatabase db, $EncountersTable table)
     : super(
@@ -52870,98 +53418,60 @@ class $$EncountersTableTableManager
           updateCompanionCallback:
               ({
                 Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
                 Value<String?> sessionId = const Value.absent(),
+                Value<String> title = const Value.absent(),
                 Value<String> status = const Value.absent(),
-                Value<String?> difficulty = const Value.absent(),
                 Value<String> hpMode = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion(
                 id: id,
+                tableId: tableId,
                 sessionId: sessionId,
+                title: title,
                 status: status,
-                difficulty: difficulty,
                 hpMode: hpMode,
+                position: position,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
                 required String id,
+                required String tableId,
                 Value<String?> sessionId = const Value.absent(),
-                required String status,
-                Value<String?> difficulty = const Value.absent(),
-                required String hpMode,
+                required String title,
+                Value<String> status = const Value.absent(),
+                Value<String> hpMode = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => EncountersCompanion.insert(
                 id: id,
+                tableId: tableId,
                 sessionId: sessionId,
+                title: title,
                 status: status,
-                difficulty: difficulty,
                 hpMode: hpMode,
+                position: position,
+                createdAt: createdAt,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
                   e.readTable<$EncountersTable, EncounterRow>(table),
-                  $$EncountersTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $EncountersTable,
+                    EncounterRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback:
-              ({combatantsRefs = false, encounterEventsRefs = false}) {
-                return PrefetchHooks(
-                  db: db,
-                  explicitlyWatchedTables: [
-                    if (combatantsRefs) db.combatants,
-                    if (encounterEventsRefs) db.encounterEvents,
-                  ],
-                  addJoins: null,
-                  getPrefetchedDataCallback: (items) async {
-                    return [
-                      if (combatantsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          EncounterRow,
-                          $EncountersTable,
-                          CombatantRow,
-                          $CombatantsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$EncountersTableReferences
-                              ._combatantsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$EncountersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).combatantsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'encounter_id',
-                          typedResults: items,
-                        ),
-                      if (encounterEventsRefs)
-                        await $_getPrefetchedDataByColumns<
-                          EncounterRow,
-                          $EncountersTable,
-                          EncounterEventRow,
-                          $EncounterEventsTable
-                        >(
-                          currentTable: table,
-                          referencedTable: $$EncountersTableReferences
-                              ._encounterEventsRefsTable(db),
-                          managerFromTypedResult: (p0) =>
-                              $$EncountersTableReferences(
-                                db,
-                                table,
-                                p0,
-                              ).encounterEventsRefs,
-                          currentColumn: 'id',
-                          referencedColumn: 'encounter_id',
-                          typedResults: items,
-                        ),
-                    ];
-                  },
-                );
-              },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -52976,9 +53486,292 @@ typedef $$EncountersTableProcessedTableManager =
       $$EncountersTableAnnotationComposer,
       $$EncountersTableCreateCompanionBuilder,
       $$EncountersTableUpdateCompanionBuilder,
-      (EncounterRow, $$EncountersTableReferences),
+      (
+        EncounterRow,
+        BaseReferences<_$TavernierDatabase, $EncountersTable, EncounterRow>,
+      ),
       EncounterRow,
-      PrefetchHooks Function({bool combatantsRefs, bool encounterEventsRefs})
+      PrefetchHooks Function()
+    >;
+typedef $$EncounterGroupsTableCreateCompanionBuilder =
+    EncounterGroupsCompanion Function({
+      required String id,
+      required String tableId,
+      required String encounterId,
+      required String kind,
+      required String refId,
+      Value<int> quantity,
+      Value<bool> sharedInitiative,
+      Value<int> position,
+      Value<int> rowid,
+    });
+typedef $$EncounterGroupsTableUpdateCompanionBuilder =
+    EncounterGroupsCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String> encounterId,
+      Value<String> kind,
+      Value<String> refId,
+      Value<int> quantity,
+      Value<bool> sharedInitiative,
+      Value<int> position,
+      Value<int> rowid,
+    });
+
+class $$EncounterGroupsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $EncounterGroupsTable> {
+  $$EncounterGroupsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get refId => $composableBuilder(
+    column: $table.refId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get sharedInitiative => $composableBuilder(
+    column: $table.sharedInitiative,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$EncounterGroupsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $EncounterGroupsTable> {
+  $$EncounterGroupsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get refId => $composableBuilder(
+    column: $table.refId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get quantity => $composableBuilder(
+    column: $table.quantity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get sharedInitiative => $composableBuilder(
+    column: $table.sharedInitiative,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get position => $composableBuilder(
+    column: $table.position,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$EncounterGroupsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $EncounterGroupsTable> {
+  $$EncounterGroupsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get refId =>
+      $composableBuilder(column: $table.refId, builder: (column) => column);
+
+  GeneratedColumn<int> get quantity =>
+      $composableBuilder(column: $table.quantity, builder: (column) => column);
+
+  GeneratedColumn<bool> get sharedInitiative => $composableBuilder(
+    column: $table.sharedInitiative,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+}
+
+class $$EncounterGroupsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $EncounterGroupsTable,
+          EncounterGroupRow,
+          $$EncounterGroupsTableFilterComposer,
+          $$EncounterGroupsTableOrderingComposer,
+          $$EncounterGroupsTableAnnotationComposer,
+          $$EncounterGroupsTableCreateCompanionBuilder,
+          $$EncounterGroupsTableUpdateCompanionBuilder,
+          (
+            EncounterGroupRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $EncounterGroupsTable,
+              EncounterGroupRow
+            >,
+          ),
+          EncounterGroupRow,
+          PrefetchHooks Function()
+        > {
+  $$EncounterGroupsTableTableManager(
+    _$TavernierDatabase db,
+    $EncounterGroupsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$EncounterGroupsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$EncounterGroupsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$EncounterGroupsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> encounterId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> refId = const Value.absent(),
+                Value<int> quantity = const Value.absent(),
+                Value<bool> sharedInitiative = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => EncounterGroupsCompanion(
+                id: id,
+                tableId: tableId,
+                encounterId: encounterId,
+                kind: kind,
+                refId: refId,
+                quantity: quantity,
+                sharedInitiative: sharedInitiative,
+                position: position,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String encounterId,
+                required String kind,
+                required String refId,
+                Value<int> quantity = const Value.absent(),
+                Value<bool> sharedInitiative = const Value.absent(),
+                Value<int> position = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => EncounterGroupsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                encounterId: encounterId,
+                kind: kind,
+                refId: refId,
+                quantity: quantity,
+                sharedInitiative: sharedInitiative,
+                position: position,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$EncounterGroupsTable, EncounterGroupRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $EncounterGroupsTable,
+                    EncounterGroupRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$EncounterGroupsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $EncounterGroupsTable,
+      EncounterGroupRow,
+      $$EncounterGroupsTableFilterComposer,
+      $$EncounterGroupsTableOrderingComposer,
+      $$EncounterGroupsTableAnnotationComposer,
+      $$EncounterGroupsTableCreateCompanionBuilder,
+      $$EncounterGroupsTableUpdateCompanionBuilder,
+      (
+        EncounterGroupRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $EncounterGroupsTable,
+          EncounterGroupRow
+        >,
+      ),
+      EncounterGroupRow,
+      PrefetchHooks Function()
     >;
 typedef $$CombatantsTableCreateCompanionBuilder = CombatantsCompanion Function({
   required String id,
@@ -53009,29 +53802,6 @@ typedef $$CombatantsTableUpdateCompanionBuilder = CombatantsCompanion Function({
   Value<int> rowid,
 });
 
-final class $$CombatantsTableReferences
-    extends
-        BaseReferences<_$TavernierDatabase, $CombatantsTable, CombatantRow> {
-  $$CombatantsTableReferences(super.$_db, super.$_table, super.$_typedResult);
-
-  static $EncountersTable _encounterIdTable(_$TavernierDatabase db) =>
-      db.encounters.createAlias('combatant__encounter_id__encounter__id');
-
-  $$EncountersTableProcessedTableManager get encounterId {
-    final $_column = $_itemColumn<String>('encounter_id')!;
-
-    final manager = $$EncountersTableTableManager(
-      $_db,
-      $_db.encounters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_encounterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$CombatantsTableFilterComposer
     extends Composer<_$TavernierDatabase, $CombatantsTable> {
   $$CombatantsTableFilterComposer({
@@ -53043,6 +53813,11 @@ class $$CombatantsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -53090,29 +53865,6 @@ class $$CombatantsTableFilterComposer
     column: $table.visible,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$EncountersTableFilterComposer get encounterId {
-    final $$EncountersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableFilterComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CombatantsTableOrderingComposer
@@ -53126,6 +53878,11 @@ class $$CombatantsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -53173,29 +53930,6 @@ class $$CombatantsTableOrderingComposer
     column: $table.visible,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$EncountersTableOrderingComposer get encounterId {
-    final $$EncountersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableOrderingComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CombatantsTableAnnotationComposer
@@ -53209,6 +53943,11 @@ class $$CombatantsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<String> get kind =>
       $composableBuilder(column: $table.kind, builder: (column) => column);
@@ -53238,29 +53977,6 @@ class $$CombatantsTableAnnotationComposer
 
   GeneratedColumn<bool> get visible =>
       $composableBuilder(column: $table.visible, builder: (column) => column);
-
-  $$EncountersTableAnnotationComposer get encounterId {
-    final $$EncountersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$CombatantsTableTableManager
@@ -53274,9 +53990,12 @@ class $$CombatantsTableTableManager
           $$CombatantsTableAnnotationComposer,
           $$CombatantsTableCreateCompanionBuilder,
           $$CombatantsTableUpdateCompanionBuilder,
-          (CombatantRow, $$CombatantsTableReferences),
+          (
+            CombatantRow,
+            BaseReferences<_$TavernierDatabase, $CombatantsTable, CombatantRow>,
+          ),
           CombatantRow,
-          PrefetchHooks Function({bool encounterId})
+          PrefetchHooks Function()
         > {
   $$CombatantsTableTableManager(_$TavernierDatabase db, $CombatantsTable table)
     : super(
@@ -53349,49 +54068,15 @@ class $$CombatantsTableTableManager
               .map(
                 (e) => (
                   e.readTable<$CombatantsTable, CombatantRow>(table),
-                  $$CombatantsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CombatantsTable,
+                    CombatantRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({encounterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (encounterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.encounterId,
-                        referencedTable: $$CombatantsTableReferences
-                            ._encounterIdTable(db),
-                        referencedColumn: $$CombatantsTableReferences
-                            ._encounterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -53406,9 +54091,12 @@ typedef $$CombatantsTableProcessedTableManager =
       $$CombatantsTableAnnotationComposer,
       $$CombatantsTableCreateCompanionBuilder,
       $$CombatantsTableUpdateCompanionBuilder,
-      (CombatantRow, $$CombatantsTableReferences),
+      (
+        CombatantRow,
+        BaseReferences<_$TavernierDatabase, $CombatantsTable, CombatantRow>,
+      ),
       CombatantRow,
-      PrefetchHooks Function({bool encounterId})
+      PrefetchHooks Function()
     >;
 typedef $$EncounterEventsTableCreateCompanionBuilder =
     EncounterEventsCompanion Function({
@@ -53433,37 +54121,6 @@ typedef $$EncounterEventsTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-final class $$EncounterEventsTableReferences
-    extends
-        BaseReferences<
-          _$TavernierDatabase,
-          $EncounterEventsTable,
-          EncounterEventRow
-        > {
-  $$EncounterEventsTableReferences(
-    super.$_db,
-    super.$_table,
-    super.$_typedResult,
-  );
-
-  static $EncountersTable _encounterIdTable(_$TavernierDatabase db) =>
-      db.encounters.createAlias('encounter_event__encounter_id__encounter__id');
-
-  $$EncountersTableProcessedTableManager get encounterId {
-    final $_column = $_itemColumn<String>('encounter_id')!;
-
-    final manager = $$EncountersTableTableManager(
-      $_db,
-      $_db.encounters,
-    ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_encounterIdTable($_db));
-    if (item == null) return manager;
-    return ProcessedTableManager(
-      manager.$state.copyWith(prefetchedData: [item]),
-    );
-  }
-}
-
 class $$EncounterEventsTableFilterComposer
     extends Composer<_$TavernierDatabase, $EncounterEventsTable> {
   $$EncounterEventsTableFilterComposer({
@@ -53475,6 +54132,11 @@ class $$EncounterEventsTableFilterComposer
   });
   ColumnFilters<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -53502,29 +54164,6 @@ class $$EncounterEventsTableFilterComposer
     column: $table.authorUserId,
     builder: (column) => ColumnFilters(column),
   );
-
-  $$EncountersTableFilterComposer get encounterId {
-    final $$EncountersTableFilterComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableFilterComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$EncounterEventsTableOrderingComposer
@@ -53538,6 +54177,11 @@ class $$EncounterEventsTableOrderingComposer
   });
   ColumnOrderings<String> get id => $composableBuilder(
     column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -53565,29 +54209,6 @@ class $$EncounterEventsTableOrderingComposer
     column: $table.authorUserId,
     builder: (column) => ColumnOrderings(column),
   );
-
-  $$EncountersTableOrderingComposer get encounterId {
-    final $$EncountersTableOrderingComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableOrderingComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$EncounterEventsTableAnnotationComposer
@@ -53601,6 +54222,11 @@ class $$EncounterEventsTableAnnotationComposer
   });
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<int> get round =>
       $composableBuilder(column: $table.round, builder: (column) => column);
@@ -53618,29 +54244,6 @@ class $$EncounterEventsTableAnnotationComposer
     column: $table.authorUserId,
     builder: (column) => column,
   );
-
-  $$EncountersTableAnnotationComposer get encounterId {
-    final $$EncountersTableAnnotationComposer composer = $composerBuilder(
-      composer: this,
-      getCurrentColumn: (t) => t.encounterId,
-      referencedTable: $db.encounters,
-      getReferencedColumn: (t) => t.id,
-      builder:
-          (
-            joinBuilder, {
-            $addJoinBuilderToRootComposer,
-            $removeJoinBuilderFromRootComposer,
-          }) => $$EncountersTableAnnotationComposer(
-            $db: $db,
-            $table: $db.encounters,
-            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
-            joinBuilder: joinBuilder,
-            $removeJoinBuilderFromRootComposer:
-                $removeJoinBuilderFromRootComposer,
-          ),
-    );
-    return composer;
-  }
 }
 
 class $$EncounterEventsTableTableManager
@@ -53654,9 +54257,16 @@ class $$EncounterEventsTableTableManager
           $$EncounterEventsTableAnnotationComposer,
           $$EncounterEventsTableCreateCompanionBuilder,
           $$EncounterEventsTableUpdateCompanionBuilder,
-          (EncounterEventRow, $$EncounterEventsTableReferences),
+          (
+            EncounterEventRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $EncounterEventsTable,
+              EncounterEventRow
+            >,
+          ),
           EncounterEventRow,
-          PrefetchHooks Function({bool encounterId})
+          PrefetchHooks Function()
         > {
   $$EncounterEventsTableTableManager(
     _$TavernierDatabase db,
@@ -53715,49 +54325,15 @@ class $$EncounterEventsTableTableManager
               .map(
                 (e) => (
                   e.readTable<$EncounterEventsTable, EncounterEventRow>(table),
-                  $$EncounterEventsTableReferences(db, table, e),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $EncounterEventsTable,
+                    EncounterEventRow
+                  >(db, table, e),
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({encounterId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (encounterId) {
-                      state = state.withJoin(
-                        currentTable: table,
-                        currentColumn: table.encounterId,
-                        referencedTable: $$EncounterEventsTableReferences
-                            ._encounterIdTable(db),
-                        referencedColumn: $$EncounterEventsTableReferences
-                            ._encounterIdTable(db)
-                            .id,
-                      ) as T;
-                    }
-
-                    return state;
-                  },
-              getPrefetchedDataCallback: (items) async {
-                return [];
-              },
-            );
-          },
+          prefetchHooksCallback: null,
         ),
       );
 }
@@ -53772,9 +54348,16 @@ typedef $$EncounterEventsTableProcessedTableManager =
       $$EncounterEventsTableAnnotationComposer,
       $$EncounterEventsTableCreateCompanionBuilder,
       $$EncounterEventsTableUpdateCompanionBuilder,
-      (EncounterEventRow, $$EncounterEventsTableReferences),
+      (
+        EncounterEventRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $EncounterEventsTable,
+          EncounterEventRow
+        >,
+      ),
       EncounterEventRow,
-      PrefetchHooks Function({bool encounterId})
+      PrefetchHooks Function()
     >;
 typedef $$NotesTableCreateCompanionBuilder = NotesCompanion Function({
   required String id,
@@ -54321,6 +54904,8 @@ class $TavernierDatabaseManager {
       $$NpcStatblocksTableTableManager(_db, _db.npcStatblocks);
   $$EncountersTableTableManager get encounters =>
       $$EncountersTableTableManager(_db, _db.encounters);
+  $$EncounterGroupsTableTableManager get encounterGroups =>
+      $$EncounterGroupsTableTableManager(_db, _db.encounterGroups);
   $$CombatantsTableTableManager get combatants =>
       $$CombatantsTableTableManager(_db, _db.combatants);
   $$EncounterEventsTableTableManager get encounterEvents =>
