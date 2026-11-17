@@ -1124,13 +1124,13 @@ abstract class AppLocalizations {
   /// **'CA'**
   String get statArmorClass;
 
-  /// Étapes 7 à 9 de la création.
+  /// Profil.
   ///
   /// In fr, this message translates to:
   /// **'Initiative'**
   String get statInitiative;
 
-  /// Étapes 7 à 9 de la création.
+  /// Profil.
   ///
   /// In fr, this message translates to:
   /// **'Vitesse'**
@@ -5399,6 +5399,450 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Enregistrée'**
   String get sessionSaved;
+
+  /// Type de créature d'un profil (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'{type, select, aberration{Aberration} beast{Bête} celestial{Céleste} construct{Artificiel} dragon{Dragon} elemental{Élémentaire} fey{Fée} fiend{Fiélon} giant{Géant} humanoid{Humanoïde} monstrosity{Monstruosité} ooze{Vase} plant{Plante} undead{Mort-vivant} other{{type}}}'**
+  String creatureType(String type);
+
+  /// Type des créatures d'une nuée.
+  ///
+  /// In fr, this message translates to:
+  /// **'{type, select, aberration{Aberrations} beast{Bêtes} celestial{Célestes} construct{Artificiels} dragon{Dragons} elemental{Élémentaires} fey{Fées} fiend{Fiélons} giant{Géants} humanoid{Humanoïdes} monstrosity{Monstruosités} ooze{Vases} plant{Plantes} undead{Morts-vivants} other{{type}}}'**
+  String creatureTypes(String type);
+
+  /// Catégorie de taille abrégée (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'{size, select, tiny{TP} small{P} medium{M} large{G} huge{TG} gargantuan{Gig} other{{size}}}'**
+  String monsterSize(String size);
+
+  /// Deux tailles possibles.
+  ///
+  /// In fr, this message translates to:
+  /// **'{first} ou {second}'**
+  String statSizeOr(String first, String second);
+
+  /// Ligne de type d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'{type} de taille {sizes}'**
+  String statTypeLine(String type, String sizes);
+
+  /// Ligne de type d'une nuée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nuée de taille {sizes} de {types} de taille {swarmSize}'**
+  String statSwarmLine(String sizes, String types, String swarmSize);
+
+  /// Classe d'armure d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'CA'**
+  String get statAc;
+
+  /// « +3 (13) ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{bonus} ({score})'**
+  String statInitiativeValue(String bonus, int score);
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV'**
+  String get statHp;
+
+  /// « 52 (8d8 + 16) ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{hp} ({dice})'**
+  String statHpValue(int hp, String dice);
+
+  /// Vitesse.
+  ///
+  /// In fr, this message translates to:
+  /// **'nage {range}'**
+  String statSwim(String range);
+
+  /// Vitesse.
+  ///
+  /// In fr, this message translates to:
+  /// **'vol {range}'**
+  String statFly(String range);
+
+  /// Vitesse.
+  ///
+  /// In fr, this message translates to:
+  /// **'escalade {range}'**
+  String statClimb(String range);
+
+  /// Vitesse.
+  ///
+  /// In fr, this message translates to:
+  /// **'creusement {range}'**
+  String statBurrow(String range);
+
+  /// Après la vitesse de vol.
+  ///
+  /// In fr, this message translates to:
+  /// **'(vol stationnaire)'**
+  String get statHover;
+
+  /// Jet de sauvegarde d'une caractéristique.
+  ///
+  /// In fr, this message translates to:
+  /// **'JS {bonus}'**
+  String statSave(String bonus);
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences'**
+  String get statSkills;
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vulnérabilités'**
+  String get statVulnerabilities;
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Résistances'**
+  String get statResistances;
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Immunités'**
+  String get statImmunities;
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Équipement'**
+  String get statGear;
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sens'**
+  String get statSenses;
+
+  /// Sens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision dans le noir {range}'**
+  String statDarkvision(String range);
+
+  /// Sens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision aveugle {range}'**
+  String statBlindsight(String range);
+
+  /// Après la Vision aveugle.
+  ///
+  /// In fr, this message translates to:
+  /// **'(aveugle au-delà)'**
+  String get statBlindBeyond;
+
+  /// Sens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception des vibrations {range}'**
+  String statTremorsense(String range);
+
+  /// Sens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision lucide {range}'**
+  String statTruesight(String range);
+
+  /// Sens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception passive {value}'**
+  String statPassive(int value);
+
+  /// Profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues'**
+  String get statLanguages;
+
+  /// Facteur de puissance.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP'**
+  String get statCr;
+
+  /// « 2 (450 PX ; BM +2) ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{cr} ({xp} PX ; BM {pb})'**
+  String statCrValue(String cr, String xp, String pb);
+
+  /// FP avec les PX dans l'antre.
+  ///
+  /// In fr, this message translates to:
+  /// **'{cr} ({xp} PX, ou {lair} dans son antre ; BM {pb})'**
+  String statCrLairValue(String cr, String xp, String lair, String pb);
+
+  /// Section d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Traits'**
+  String get statTraits;
+
+  /// Section d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions'**
+  String get statActions;
+
+  /// Section d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions Bonus'**
+  String get statBonusActions;
+
+  /// Section d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réactions'**
+  String get statReactions;
+
+  /// Section d'un profil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions Légendaires'**
+  String get statLegendaryActions;
+
+  /// Tête des Actions légendaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisations d’action Légendaire : {uses}.'**
+  String statLegendaryUses(int uses);
+
+  /// Tête des Actions légendaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisations d’action Légendaire : {uses} ({lair} dans son antre).'**
+  String statLegendaryUsesLair(int uses, int lair);
+
+  /// Usage d'une action.
+  ///
+  /// In fr, this message translates to:
+  /// **'(recharge {range})'**
+  String statRecharge(String range);
+
+  /// Usage d'une action.
+  ///
+  /// In fr, this message translates to:
+  /// **'({uses}/jour)'**
+  String statPerDay(int uses);
+
+  /// Usage d'une action.
+  ///
+  /// In fr, this message translates to:
+  /// **'({uses}/jour, ou {lair}/jour dans son antre)'**
+  String statPerDayLair(int uses, int lair);
+
+  /// Usage d'une action.
+  ///
+  /// In fr, this message translates to:
+  /// **'(recharge après un Repos court ou long)'**
+  String get statRestShortOrLong;
+
+  /// Usage d'une action.
+  ///
+  /// In fr, this message translates to:
+  /// **'(recharge après un Repos long)'**
+  String get statRestLong;
+
+  /// Monstre de départ d'un PNJ ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Variante de « {monster} » · {pack}'**
+  String statVariantOf(String monster, String pack);
+
+  /// Monstre d'un pack désactivé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monstre introuvable : {id}'**
+  String statMonsterMissing(String id);
+
+  /// Attitude d'un PNJ (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Amical'**
+  String get attitudeFriendly;
+
+  /// Attitude d'un PNJ (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Indifférent'**
+  String get attitudeIndifferent;
+
+  /// Attitude d'un PNJ (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hostile'**
+  String get attitudeHostile;
+
+  /// Onglet des PNJ d'une table, pour le MJ ([F4]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PNJ'**
+  String get tabNpcs;
+
+  /// Bouton et titre de la création d'un PNJ ([G5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau PNJ'**
+  String get npcNew;
+
+  /// Filtre de la liste des PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous · {count}'**
+  String npcFilterAll(int count);
+
+  /// Filtre de la liste des PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hostiles · {count}'**
+  String npcFilterHostile(int count);
+
+  /// Filtre de la liste des PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Amicaux · {count}'**
+  String npcFilterFriendly(int count);
+
+  /// Filtre de la liste des PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indifférents · {count}'**
+  String npcFilterIndifferent(int count);
+
+  /// Table sans PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun PNJ'**
+  String get npcEmpty;
+
+  /// PNJ rangés dans aucun dossier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans dossier'**
+  String get npcNoFolder;
+
+  /// Ligne d'un PNJ dans la liste ([F4]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{monster} · FP {cr} · {source}'**
+  String npcSummary(String monster, String cr, String source);
+
+  /// Forme d'un PNJ ([G5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloc de stats'**
+  String get npcStatBlock;
+
+  /// Forme d'un PNJ ([G5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Format monstre : rapide à préparer, idéal pour un adversaire ou un figurant.'**
+  String get npcStatBlockBody;
+
+  /// Champ obligatoire du nouveau PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom *'**
+  String get npcName;
+
+  /// Monstre de départ du nouveau PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partir de'**
+  String get npcFrom;
+
+  /// Aucun monstre choisi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir un monstre'**
+  String get npcFromChoose;
+
+  /// Recherche dans le bestiaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un monstre'**
+  String get npcMonsterSearch;
+
+  /// Ligne d'un monstre dans le choix.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {cr} · {source}'**
+  String npcMonsterLine(String cr, String source);
+
+  /// Monstre choisi.
+  ///
+  /// In fr, this message translates to:
+  /// **'{monster} · {source}'**
+  String npcMonsterValue(String monster, String source);
+
+  /// Dossier du PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier'**
+  String get npcFolder;
+
+  /// Nouveau PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attitude initiale'**
+  String get npcAttitudeInitial;
+
+  /// Valide le nouveau PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer le PNJ'**
+  String get npcCreate;
+
+  /// Surtitre de la fiche d'un PNJ ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PNJ · {table}'**
+  String npcHeader(String table);
+
+  /// Copie un PNJ (EF-PNJ-02).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dupliquer'**
+  String get npcDuplicate;
+
+  /// Fiche d'un PNJ ([C2]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attitude envers le groupe'**
+  String get npcAttitudeTitle;
+
+  /// Fiche d'un PNJ (EF-ACT-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Conservée entre les séances.'**
+  String get npcAttitudeHelp;
+
+  /// Source courte d'un monstre du SRD dans une liste ([F4]).
+  ///
+  /// In fr, this message translates to:
+  /// **'SRD'**
+  String get sourceSrdShort;
 }
 
 class _AppLocalizationsDelegate
