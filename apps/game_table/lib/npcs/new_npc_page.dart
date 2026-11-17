@@ -30,6 +30,9 @@ class _NewNpcPageState extends ConsumerState<NewNpcPage> {
   var _attitude = Attitude.indifferent;
   var _saving = false;
 
+  /// Fiche complète (lot d) plutôt que bloc de stats.
+  var _full = false;
+
   @override
   void dispose() {
     _name.dispose();
@@ -37,11 +40,25 @@ class _NewNpcPageState extends ConsumerState<NewNpcPage> {
     super.dispose();
   }
 
-  bool get _ready => _name.text.trim().isNotEmpty && _monster != null;
+  bool get _ready =>
+      _name.text.trim().isNotEmpty && (_full || _monster != null);
 
   Future<void> _create() async {
-    setState(() => _saving = true);
     final folder = _folder.text.trim();
+    if (_full) {
+      // L'assistant des personnages crée la fiche, puis le PNJ lié.
+      final query = Uri(
+        queryParameters: {
+          'pnj': widget.tableId,
+          'nom': _name.text.trim(),
+          if (folder.isNotEmpty) 'dossier': folder,
+          'attitude': _attitude.name,
+        },
+      ).query;
+      context.pushReplacement('/characters/new?$query');
+      return;
+    }
+    setState(() => _saving = true);
     final id = await ref
         .read(npcStoreProvider)
         .create(
@@ -96,37 +113,69 @@ class _NewNpcPageState extends ConsumerState<NewNpcPage> {
                 child: ListView(
                   padding: EdgeInsets.all(AppSpacing.md),
                   children: [
-                    Card(
-                      margin: EdgeInsets.zero,
-                      child: ListTile(
-                        leading: const Icon(Icons.article_outlined),
-                        title: Text(l10n.npcStatBlock),
-                        subtitle: Text(l10n.npcStatBlockBody),
+                    for (final (full, icon, title, body) in [
+                      (
+                        false,
+                        Icons.article_outlined,
+                        l10n.npcStatBlock,
+                        l10n.npcStatBlockBody,
                       ),
-                    ),
+                      (
+                        true,
+                        Icons.person_outline,
+                        l10n.npcFullSheet,
+                        l10n.npcFullSheetBody,
+                      ),
+                    ])
+                      Card(
+                        margin: EdgeInsets.only(bottom: AppSpacing.sm),
+                        shape: _full == full
+                            ? RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  AppRadii.md,
+                                ),
+                                side: BorderSide(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 2,
+                                ),
+                              )
+                            : null,
+                        child: ListTile(
+                          leading: Icon(icon),
+                          title: Text(title),
+                          subtitle: Text(body),
+                          trailing: _full == full
+                              ? const Icon(Icons.check_circle)
+                              : null,
+                          selected: _full == full,
+                          onTap: () => setState(() => _full = full),
+                        ),
+                      ),
                     SizedBox(height: AppSpacing.md),
                     TextField(
                       controller: _name,
                       decoration: InputDecoration(labelText: l10n.npcName),
                       onChanged: (_) => setState(() {}),
                     ),
-                    SizedBox(height: AppSpacing.md),
-                    InkWell(
-                      onTap: () => _chooseMonster(content),
-                      child: InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: l10n.npcFrom,
-                          suffixIcon: const Icon(Icons.search),
-                        ),
-                        child: Text(switch (_monster) {
-                          final m? => l10n.npcMonsterValue(
-                            m.name,
-                            packLabelOf(l10n, content, '${m.id}'),
+                    if (!_full) ...[
+                      SizedBox(height: AppSpacing.md),
+                      InkWell(
+                        onTap: () => _chooseMonster(content),
+                        child: InputDecorator(
+                          decoration: InputDecoration(
+                            labelText: l10n.npcFrom,
+                            suffixIcon: const Icon(Icons.search),
                           ),
-                          null => l10n.npcFromChoose,
-                        }),
+                          child: Text(switch (_monster) {
+                            final m? => l10n.npcMonsterValue(
+                              m.name,
+                              packLabelOf(l10n, content, '${m.id}'),
+                            ),
+                            null => l10n.npcFromChoose,
+                          }),
+                        ),
                       ),
-                    ),
+                    ],
                     SizedBox(height: AppSpacing.md),
                     TextField(
                       controller: _folder,

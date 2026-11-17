@@ -1,6 +1,7 @@
 // Spec tables : « Onglet des PNJ », « Nouveau PNJ en bloc de stats »,
 // « Fiche d'un PNJ en bloc de stats » (US-18, EF-PNJ-01, EF-PNJ-02,
 // EF-ACT-06, [F4], [G5], [C2]).
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -74,6 +75,16 @@ Future<void> _open(
       GoRoute(
         path: '/tables/:id',
         builder: (_, state) => TablePage(id: state.pathParameters['id']!),
+      ),
+      // Assistant et fiche de personnage : ce que le PNJ y envoie.
+      GoRoute(
+        path: '/characters/new',
+        builder: (_, state) => Scaffold(body: Text('assistant ${state.uri}')),
+      ),
+      GoRoute(
+        path: '/characters/:id',
+        builder: (_, state) =>
+            Scaffold(body: Text('fiche ${state.pathParameters['id']}')),
       ),
       GoRoute(
         path: '/tables/:id/pnj/nouveau',
@@ -460,5 +471,71 @@ void main() {
       (await _npcs(tester)).firstWhere((n) => n.$1 == 'Varga la Balafrée').$2,
       isNull,
     );
+  });
+
+  _test('nouveau PNJ en fiche complète : vers l\'assistant [G5]', (
+    tester,
+  ) async {
+    await _open(tester, location: (t) => '/tables/$t/pnj/nouveau');
+    await _tap(tester, find.text('Fiche complète'));
+    expect(find.text('Choisir un monstre'), findsNothing);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Maître Odran',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Dossier'),
+      'Relais du Sel',
+    );
+    await _tap(tester, find.text('Amical'));
+    await _tap(tester, find.text('Créer le PNJ'));
+    final uri = Uri.parse(
+      tester
+          .widget<Text>(find.textContaining('assistant '))
+          .data!
+          .substring('assistant '.length),
+    );
+    expect(uri.path, '/characters/new');
+    expect(uri.queryParameters, {
+      'pnj': _table,
+      'nom': 'Maître Odran',
+      'dossier': 'Relais du Sel',
+      'attitude': 'friendly',
+    });
+  });
+
+  _test('PNJ en fiche complète : niveau, « Ouvrir la fiche », pas de copie', (
+    tester,
+  ) async {
+    late String odran;
+    await _open(
+      tester,
+      seed: (store) async {
+        final input = CharacterInput.fromJson(
+          (jsonDecode(
+                File(
+                  '../../packages/dnd_rules/test/fixtures/d1/'
+                  'aldric_n1.json',
+                ).readAsStringSync(),
+              ) as Map<String, Object?>)['input']!
+              as Map<String, Object?>,
+        );
+        await CharacterStore(_db)
+            .save('odran', input.copyWith(kind: 'npc_full'), tableId: _table);
+        odran = await store.create(
+          tableId: _table,
+          name: 'Maître Odran',
+          characterId: 'odran',
+        );
+      },
+    );
+    await _tap(tester, find.text('PNJ'));
+    expect(find.text('Fiche complète · niveau 1'), findsOneWidget);
+    await _tap(tester, find.text('Maître Odran'));
+    expect(odran, isNotEmpty);
+    expect(find.text('Dupliquer'), findsNothing);
+    expect(find.text('Attitude envers le groupe'), findsOneWidget);
+    await _tap(tester, find.text('Ouvrir la fiche'));
+    expect(find.text('fiche odran'), findsOneWidget);
   });
 }

@@ -3700,4 +3700,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get npcEdit => 'Modifier';
+
+  @override
+  String get npcFullSheet => 'Fiche complète';
+
+  @override
+  String get npcFullSheetBody =>
+      'Même assistant que les personnages joueurs, pour un allié récurrent ou un PNJ qui progresse.';
+
+  @override
+  String npcFullSheetLine(int level) {
+    return 'Fiche complète · niveau $level';
+  }
+
+  @override
+  String get npcOpenSheet => 'Ouvrir la fiche';
 }

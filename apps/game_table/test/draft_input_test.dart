@@ -382,6 +382,29 @@ void main() {
       expect(row.read<String>('table_id'), tableId);
     });
 
+    test('PNJ en fiche complète : fiche npc_full et PNJ lié (US-18)', () async {
+      notifier.npc = (
+        tableId: 't',
+        folder: 'Relais du Sel',
+        attitude: Attitude.friendly,
+      );
+      expect(await notifier.save(_content), isTrue);
+      final sheet = await database
+          .customSelect('SELECT id, kind, table_id FROM character')
+          .getSingle();
+      expect(
+        (sheet.read<String>('kind'), sheet.read<String>('table_id')),
+        ('npc_full', 't'),
+      );
+      final npc = (await NpcStore(database).watchList('t').first).single;
+      expect(
+        (npc.name, npc.folder, npc.attitude, npc.characterId),
+        ('Test', 'Relais du Sel', Attitude.friendly, sheet.read<String>('id')),
+      );
+      // Pas un personnage du MJ.
+      expect(await store.list(), isEmpty);
+    });
+
     test('réessayer ne crée pas de doublon', () async {
       await notifier.save(_content);
       await notifier.save(_content);

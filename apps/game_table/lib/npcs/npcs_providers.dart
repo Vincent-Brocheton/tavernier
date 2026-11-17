@@ -18,6 +18,16 @@ final tableNpcsProvider = StreamProvider.family<List<Npc>, String>(
   (ref, tableId) => ref.watch(npcStoreProvider).watchList(tableId),
 );
 
+/// Niveau de la fiche complète d'un PNJ ; `null` tant qu'elle n'est pas
+/// lue.
+final npcSheetLevelProvider = FutureProvider.autoDispose.family<int?, String>((
+  ref,
+  characterId,
+) async {
+  final input = await ref.watch(characterStoreProvider).load(characterId);
+  return input?.classLevels.fold<int>(0, (sum, c) => sum + c.level);
+});
+
 /// Monstre de départ d'un PNJ dans le contenu actif, s'il y est.
 MonsterData? monsterOf(ActiveContent content, String? id) => switch (id) {
   final id? => content.entity(id)?.data as MonsterData?,

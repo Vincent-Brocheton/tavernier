@@ -5915,6 +5915,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Modifier'**
   String get npcEdit;
+
+  /// Forme d'un PNJ ([G5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche complète'**
+  String get npcFullSheet;
+
+  /// Forme d'un PNJ ([G5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Même assistant que les personnages joueurs, pour un allié récurrent ou un PNJ qui progresse.'**
+  String get npcFullSheetBody;
+
+  /// Ligne d'un PNJ en fiche complète dans la liste.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche complète · niveau {level}'**
+  String npcFullSheetLine(int level);
+
+  /// Ouvre la fiche de personnage d'un PNJ ([F4]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir la fiche'**
+  String get npcOpenSheet;
 }
 
 class _AppLocalizationsDelegate

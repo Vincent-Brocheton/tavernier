@@ -42,6 +42,17 @@ void _tests(Future<TavernierDatabase> Function() open) {
       );
     });
 
+    test('fiche de PNJ : pas de progression de table (US-18)', () async {
+      await store.save(
+        'odran',
+        CharacterInput.fromJson(aldricJson()).copyWith(kind: 'npc_full'),
+        tableId: 't',
+      );
+      final access = (await store.access('odran'))!;
+      expect(access.tableId, 't');
+      expect(access.progressionMode, isNull);
+    });
+
     test('accès : mode de progression, PX, niveau accordé', () async {
       final access = (await store.access('a'))!;
       expect(access.progressionMode, 'milestone');
@@ -212,6 +223,8 @@ void _tests(Future<TavernierDatabase> Function() open) {
     await store.save('mienne', aldric);
     await store.save('envoyee', aldric);
     await store.save('autre', aldric);
+    // Fiche de PNJ du MJ (US-18) : pas un de ses personnages.
+    await store.save('pnj', aldric.copyWith(kind: 'npc_full'));
     await db.customStatement(
       "UPDATE character SET owner_user_id = 'moi' WHERE id = 'envoyee'",
     );
