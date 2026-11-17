@@ -6006,6 +6006,150 @@ abstract class AppLocalizations {
   /// **'{name} ×{count}'**
   String encounterFoe(String name, int count);
 
+  /// Jauge de difficulté ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Difficulté'**
+  String get encounterDifficultyTitle;
+
+  /// Légende de la jauge : PJ présents de même niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} PJ de niveau {level}'**
+  String encounterPartySame(int count, int level);
+
+  /// Légende de la jauge : PJ de niveaux différents.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} PJ'**
+  String encounterPartyMixed(int count);
+
+  /// Rencontre sans PJ présent : pas de budget.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun personnage présent'**
+  String get encounterNoParty;
+
+  /// Passe la rencontre de brouillon à prête.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prête à jouer'**
+  String get encounterReadyToPlay;
+
+  /// Préparation d'une rencontre ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnages présents'**
+  String get encounterPresent;
+
+  /// Préparation d'une rencontre ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Adversaires'**
+  String get encounterFoes;
+
+  /// Mode de PV (EF-REN-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV des monstres'**
+  String get encounterHpMode;
+
+  /// PV moyens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyenne'**
+  String get encounterHpAverage;
+
+  /// PV tirés aux dés au lancement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet au lancement'**
+  String get encounterHpRoll;
+
+  /// Facteur de puissance d'un adversaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {cr}'**
+  String encounterCr(String cr);
+
+  /// Numérotation automatique (EF-REN-02).
+  ///
+  /// In fr, this message translates to:
+  /// **'numérotés {name} 1 à {count}'**
+  String encounterNumbered(String name, int count);
+
+  /// Adversaire en un seul exemplaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'unique'**
+  String get encounterUnique;
+
+  /// Un jet d'initiative pour tout le groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative commune'**
+  String get encounterSharedInitiative;
+
+  /// Infobulle du bouton − d'un groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un de moins'**
+  String get encounterOneLess;
+
+  /// Infobulle du bouton + d'un groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un de plus'**
+  String get encounterOneMore;
+
+  /// Ouvre l'ajout d'adversaires (téléphone).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un adversaire'**
+  String get encounterAddFoe;
+
+  /// Infobulle du bouton + d'un adversaire proposé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter {name}'**
+  String encounterAddNamed(String name);
+
+  /// Recherche de l'ajout d'adversaires ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bestiaire, PNJ'**
+  String get encounterPickerSearch;
+
+  /// Onglet de l'ajout d'adversaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monstres'**
+  String get encounterPickerMonsters;
+
+  /// Filtre de FP inactif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les FP'**
+  String get encounterCrAll;
+
+  /// Filtre de FP.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {min} à {max}'**
+  String encounterCrRange(String min, String max);
+
+  /// Monstre proposé à l'ajout ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{type} · FP {cr} · {xp} PX'**
+  String encounterMonsterLine(String type, String cr, String xp);
+
+  /// Note sous la préparation ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.'**
+  String get encounterBudgetNote;
+
   /// Nombre d'exemplaires d'un adversaire.
   ///
   /// In fr, this message translates to:

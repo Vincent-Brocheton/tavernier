@@ -5,6 +5,7 @@ export 'src/abilities_kit.dart';
 export 'src/accessibility.dart';
 export 'src/account_kit.dart';
 export 'src/adaptive_navigation_scaffold.dart';
+export 'src/difficulty_gauge.dart';
 export 'src/game_colors.dart';
 export 'src/game_icon.dart';
 export 'src/game_icons.dart';

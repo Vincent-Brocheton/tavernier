@@ -14,6 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/encounters/encounter_page.dart';
+import 'package:game_table/encounters/foe_picker.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/tables/table_page.dart';
 import 'package:go_router/go_router.dart';
@@ -255,10 +256,8 @@ void main() {
       ('Les chiens de Varga', _s12, 'draft'),
     );
     expect(find.text('Brumeval · Séance 2'), findsOneWidget);
-    expect(
-      find.text('Aucun adversaire · 0 PX · sous le budget faible'),
-      findsOneWidget,
-    );
+    expect(find.text('Aucun adversaire'), findsOneWidget);
+    expect(find.text('sous le budget faible'), findsOneWidget);
   });
 
   _test('dupliquer, puis ranger la réserve dans une séance', (tester) async {
@@ -290,5 +289,107 @@ void main() {
       find.text('2 personnages de niveau 5, selon les présences prévues.'),
       findsOneWidget,
     );
+  });
+
+  test('FP : « 1/8 » vaut 0,125, et « 2 » plus que « 1/2 »', () {
+    expect(crValue('1/8'), 0.125);
+    expect(crValue('2'), greaterThan(crValue('1/2')));
+    expect(crValue('30'), 30);
+  });
+
+  _test('préparation : jauge, présents, numérotation [C1]', (tester) async {
+    await _open(tester);
+    await _tap(tester, find.text('Ouvrir').first);
+    expect(find.text('Difficulté'), findsOneWidget);
+    expect(find.text('1 400 PX'), findsWidgets);
+    expect(find.text('Faible'), findsWidgets);
+    expect(find.text('2 PJ de niveau 5'), findsOneWidget);
+    expect(find.text('Aldric · Guerrier 5'), findsOneWidget);
+    expect(find.text('FP 3 · numérotés Vétéran 1 à 2'), findsOneWidget);
+
+    await _tap(tester, find.byTooltip('Un de plus'));
+    await _settle(tester);
+    expect(find.text('FP 3 · numérotés Vétéran 1 à 3'), findsOneWidget);
+    expect(find.text('Modérée'), findsWidgets);
+    expect(find.text('2 100 PX'), findsWidgets);
+
+    for (var i = 0; i < 3; i++) {
+      await _tap(tester, find.byTooltip('Un de moins'));
+      await _settle(tester);
+    }
+    expect(find.text('Aucun adversaire'), findsOneWidget);
+  });
+
+  _test('préparation : mode de PV, « Prête à jouer »', (tester) async {
+    await _open(tester);
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Jet au lancement'));
+    await _tap(tester, find.text('Prête à jouer'));
+    await _settle(tester);
+    final row = await tester.runAsync(
+      () => _db
+          .customSelect(
+            'SELECT status, hp_mode FROM encounter WHERE id = ?',
+            variables: [Variable.withString(_relais)],
+          )
+          .getSingle(),
+    );
+    expect(
+      (row!.read<String>('status'), row.read<String>('hp_mode')),
+      ('draft', 'roll'),
+    );
+
+    // « Dupliquer » ouvre la copie.
+    await _tap(tester, find.text('Dupliquer'));
+    await _settle(tester);
+    expect(find.text('Le relais du Sel (copie)'), findsOneWidget);
+  });
+
+  _test('ajout : monstre cherché, puis PNJ [C1]', (tester) async {
+    await _open(tester);
+    await tester.runAsync(
+      () => NpcStore(_db).create(
+        tableId: _table,
+        name: 'Varga la Balafrée',
+        monsterId: 'srd:monster:bandit-captain',
+      ),
+    );
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Ajouter un adversaire'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Bestiaire, PNJ'),
+      'loup SANGUINAIRE',
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Bête · FP 1 · 200 PX'), findsOneWidget);
+    await _tap(tester, find.byTooltip('Ajouter Loup sanguinaire'));
+    await _settle(tester);
+
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Bestiaire, PNJ'),
+      '',
+    );
+    await _tap(tester, find.text('PNJ').last);
+    expect(find.text('Chef de bande · FP 2 · 450 PX'), findsOneWidget);
+    await _tap(tester, find.byTooltip('Ajouter Varga la Balafrée'));
+    await _settle(tester);
+
+    Navigator.of(tester.element(find.byType(FoePicker))).pop();
+    await tester.pumpAndSettle();
+    expect(find.text('Loup sanguinaire'), findsOneWidget);
+    expect(find.text('Varga la Balafrée'), findsOneWidget);
+    // 1 400 + 200 + 450.
+    expect(find.text('2 050 PX'), findsWidgets);
+  });
+
+  _test('préparation, grand écran : ajout en colonne, sans feuille', (
+    tester,
+  ) async {
+    await _open(tester, size: const Size(1440, 1200));
+    await _tap(tester, find.text('Ouvrir').first);
+    expect(find.byType(FoePicker), findsOneWidget);
+    expect(find.text('Ajouter un adversaire'), findsNothing);
+    expect(find.text('Bestiaire, PNJ'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 }

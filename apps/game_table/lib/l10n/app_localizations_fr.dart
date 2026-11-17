@@ -3761,6 +3761,93 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get encounterDifficultyTitle => 'Difficulté';
+
+  @override
+  String encounterPartySame(int count, int level) {
+    return '$count PJ de niveau $level';
+  }
+
+  @override
+  String encounterPartyMixed(int count) {
+    return '$count PJ';
+  }
+
+  @override
+  String get encounterNoParty => 'Aucun personnage présent';
+
+  @override
+  String get encounterReadyToPlay => 'Prête à jouer';
+
+  @override
+  String get encounterPresent => 'Personnages présents';
+
+  @override
+  String get encounterFoes => 'Adversaires';
+
+  @override
+  String get encounterHpMode => 'PV des monstres';
+
+  @override
+  String get encounterHpAverage => 'Moyenne';
+
+  @override
+  String get encounterHpRoll => 'Jet au lancement';
+
+  @override
+  String encounterCr(String cr) {
+    return 'FP $cr';
+  }
+
+  @override
+  String encounterNumbered(String name, int count) {
+    return 'numérotés $name 1 à $count';
+  }
+
+  @override
+  String get encounterUnique => 'unique';
+
+  @override
+  String get encounterSharedInitiative => 'Initiative commune';
+
+  @override
+  String get encounterOneLess => 'Un de moins';
+
+  @override
+  String get encounterOneMore => 'Un de plus';
+
+  @override
+  String get encounterAddFoe => 'Ajouter un adversaire';
+
+  @override
+  String encounterAddNamed(String name) {
+    return 'Ajouter $name';
+  }
+
+  @override
+  String get encounterPickerSearch => 'Bestiaire, PNJ';
+
+  @override
+  String get encounterPickerMonsters => 'Monstres';
+
+  @override
+  String get encounterCrAll => 'Tous les FP';
+
+  @override
+  String encounterCrRange(String min, String max) {
+    return 'FP $min à $max';
+  }
+
+  @override
+  String encounterMonsterLine(String type, String cr, String xp) {
+    return '$type · FP $cr · $xp PX';
+  }
+
+  @override
+  String get encounterBudgetNote =>
+      'Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.';
+
+  @override
   String encounterQuantity(int count) {
     return '×$count';
   }
