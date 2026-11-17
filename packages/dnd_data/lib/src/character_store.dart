@@ -624,7 +624,10 @@ final class CharacterStore {
     final row = await _db
         .customSelect(
           'SELECT c.owner_user_id, c.table_id, c.status, c.review_comment, '
-          'c.xp, c.level_unlock, g.gm_user_id, g.progression_mode, '
+          'c.xp, c.level_unlock, g.gm_user_id, '
+          // Une fiche de PNJ monte librement (US-18).
+          "CASE WHEN c.kind = 'pc' THEN g.progression_mode END "
+          'AS progression_mode, '
           '(g.id IS NOT NULL AND g.gm_user_id IS NULL) AS gm_less '
           'FROM character c '
           'LEFT JOIN game_table g ON g.id = c.table_id WHERE c.id = ?',
@@ -770,8 +773,9 @@ final class CharacterStore {
   }) async {
     final rows = await _db
         .customSelect(
-          'SELECT id FROM character '
-          '${ownerUserId == null ? '' : 'WHERE owner_user_id IS NULL OR owner_user_id = ? '}'
+          // Les fiches de PNJ du MJ (US-18) ne sont pas ses personnages.
+          "SELECT id FROM character WHERE kind = 'pc' "
+          '${ownerUserId == null ? '' : 'AND (owner_user_id IS NULL OR owner_user_id = ?) '}'
           'ORDER BY id',
           variables: [
             if (ownerUserId != null) Variable.withString(ownerUserId),

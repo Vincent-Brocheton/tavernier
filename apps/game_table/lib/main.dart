@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dnd_data/dnd_data.dart' show Attitude;
 import 'package:dnd_ui_kit/dnd_ui_kit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -130,10 +131,23 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       GoRoute(
         path: '/characters/new',
         // Depuis un emplacement de PJ : ?table=…&slot=… (US-15).
-        builder: (_, state) => CreationPage(
-          tableId: state.uri.queryParameters['table'],
-          slotId: state.uri.queryParameters['slot'],
-        ),
+        // PNJ en fiche complète (US-18) : ?pnj=…&nom=…&dossier=…&attitude=…
+        builder: (_, state) {
+          final query = state.uri.queryParameters;
+          return CreationPage(
+            tableId: query['table'],
+            slotId: query['slot'],
+            npc: switch (query['pnj']) {
+              final table? => (
+                tableId: table,
+                folder: query['dossier'],
+                attitude: Attitude.parse(query['attitude']),
+              ),
+              null => null,
+            },
+            npcName: query['nom'],
+          );
+        },
       ),
       GoRoute(
         path: '/characters/:id/historique',

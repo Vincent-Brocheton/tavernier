@@ -24,14 +24,34 @@ import 'summary_step.dart';
 /// depuis un emplacement de PJ ([tableId], [slotId]), il suit la table
 /// (US-15, cahier §4.3).
 class CreationPage extends ConsumerWidget {
-  const CreationPage({super.key, this.tableId, this.slotId});
+  const CreationPage({
+    super.key,
+    this.tableId,
+    this.slotId,
+    this.npc,
+    this.npcName,
+  });
 
   final String? tableId;
   final String? slotId;
 
+  /// PNJ en fiche complète du MJ (US-18) : méthode libre, nom prérempli.
+  final NpcTarget? npc;
+  final String? npcName;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    // Observé ici : le brouillon vit tant que la page est ouverte.
+    final notifier = ref.watch(creationProvider.notifier);
+    if (npc != null && notifier.npc == null) {
+      notifier.npc = npc;
+      if (npcName case final name?) {
+        Future.microtask(
+          () => notifier.update((d) => d.withDetails(name: name)),
+        );
+      }
+    }
     if (tableId case final tableId? when slotId != null) {
       final table = ref.watch(tableProvider(tableId)).value;
       if (table == null) {

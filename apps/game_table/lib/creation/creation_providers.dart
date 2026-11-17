@@ -38,9 +38,17 @@ final creationProvider =
       CreationNotifier.new,
     );
 
+/// PNJ en fiche complète que l'assistant crée (US-18, EF-PNJ-01) : sa
+/// table, son dossier et son attitude.
+typedef NpcTarget = ({String tableId, String? folder, Attitude attitude});
+
 class CreationNotifier extends Notifier<CreationDraft> {
   @override
   CreationDraft build() => const CreationDraft();
+
+  /// Avec une cible, l'assistant crée une fiche de PNJ du MJ, sans
+  /// contrainte de méthode, puis le PNJ lié.
+  NpcTarget? npc;
 
   /// L'identifiant ne change pas : réessayer après un échec ne crée pas de
   /// doublon.
@@ -57,10 +65,33 @@ class CreationNotifier extends Notifier<CreationDraft> {
 
   Future<bool> _write(ActiveContent content) async {
     final table = state.table;
+    final npc = this.npc;
     try {
+      final input = toCharacterInput(state, content);
+      if (npc != null) {
+        // La fiche et son PNJ ensemble : jamais une fiche de PNJ orpheline.
+        final database = ref.read(databaseProvider);
+        await database.transaction(() async {
+          await ref
+              .read(characterStoreProvider)
+              .save(
+                _id,
+                input.copyWith(kind: 'npc_full'),
+                tableId: npc.tableId,
+              );
+          await NpcStore(database).create(
+            tableId: npc.tableId,
+            name: input.name,
+            folder: npc.folder,
+            attitude: npc.attitude,
+            characterId: _id,
+          );
+        });
+        return true;
+      }
       await ref
           .read(characterStoreProvider)
-          .save(_id, toCharacterInput(state, content), tableId: table?.tableId);
+          .save(_id, input, tableId: table?.tableId);
       if (table != null) {
         await ref.read(tableStoreProvider).fillSlot(table.slotId, _id);
       }

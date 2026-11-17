@@ -55,7 +55,8 @@ class NpcPage extends ConsumerWidget {
                 }
               },
             ),
-          if (editable)
+          // Une copie sans sa fiche serait un PNJ vide.
+          if (editable && npc.characterId == null)
             TextButton.icon(
               onPressed: () async {
                 final copy = await store.duplicate(npc.id);
@@ -76,7 +77,19 @@ class NpcPage extends ConsumerWidget {
           child: ListView(
             padding: EdgeInsets.all(AppSpacing.md),
             children: [
-              if (monster == null) ...[
+              if (npc.characterId case final sheet?) ...[
+                Text(npc.name, style: text.headlineSmall),
+                Text(l10n.npcFullSheet, style: text.bodyMedium),
+                SizedBox(height: AppSpacing.sm),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: FilledButton.tonalIcon(
+                    onPressed: () => context.push('/characters/$sheet'),
+                    icon: const Icon(Icons.open_in_new),
+                    label: Text(l10n.npcOpenSheet),
+                  ),
+                ),
+              ] else if (monster == null) ...[
                 Text(npc.name, style: text.headlineSmall),
                 if (npc.monsterId case final missing?)
                   Text(l10n.statMonsterMissing(missing)),

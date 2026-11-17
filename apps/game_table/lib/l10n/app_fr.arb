@@ -4617,5 +4617,13 @@
   "hiddenInfoHidden": "Cachée",
   "@hiddenInfoHidden": {"description": "Palier pas encore révélé."},
   "npcEdit": "Modifier",
-  "@npcEdit": {"description": "Nom et dossier d'un PNJ."}
+  "@npcEdit": {"description": "Nom et dossier d'un PNJ."},
+  "npcFullSheet": "Fiche complète",
+  "@npcFullSheet": {"description": "Forme d'un PNJ ([G5])."},
+  "npcFullSheetBody": "Même assistant que les personnages joueurs, pour un allié récurrent ou un PNJ qui progresse.",
+  "@npcFullSheetBody": {"description": "Forme d'un PNJ ([G5])."},
+  "npcFullSheetLine": "Fiche complète · niveau {level}",
+  "@npcFullSheetLine": {"description": "Ligne d'un PNJ en fiche complète dans la liste.", "placeholders": {"level": {"type": "int"}}},
+  "npcOpenSheet": "Ouvrir la fiche",
+  "@npcOpenSheet": {"description": "Ouvre la fiche de personnage d'un PNJ ([F4])."}
 }

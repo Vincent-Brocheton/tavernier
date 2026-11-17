@@ -134,7 +134,14 @@ class _NpcTile extends ConsumerWidget {
           child: Text(npc.name.characters.first.toUpperCase()),
         ),
         title: Text(npc.name),
-        subtitle: monster == null
+        subtitle: npc.characterId != null
+            ? switch (ref
+                  .watch(npcSheetLevelProvider(npc.characterId!))
+                  .value) {
+                final level? => Text(l10n.npcFullSheetLine(level)),
+                null => Text(l10n.npcFullSheet),
+              }
+            : monster == null
             ? null
             : Text(
                 l10n.npcSummary(

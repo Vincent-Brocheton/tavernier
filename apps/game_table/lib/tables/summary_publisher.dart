@@ -52,6 +52,8 @@ final summaryPublisherProvider = Provider<void>((ref) {
       .customSelect(
         'SELECT id, table_id FROM character WHERE table_id IS NOT NULL '
         "AND status <> 'archived' "
+        // Les fiches de PNJ du MJ (US-18) restent cachées aux joueurs.
+        "AND kind = 'pc' "
         'AND (owner_user_id IS NULL OR owner_user_id = ?)',
         variables: [Variable.withString(me)],
         readsFrom: {
