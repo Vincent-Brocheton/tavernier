@@ -27,7 +27,7 @@ void main() {
     for (final table in syncedTables) {
       expect(await _type(db, table), 'view', reason: table);
     }
-    for (final table in ['content_pack', 'spell', 'class_level', 'encounter']) {
+    for (final table in ['content_pack', 'spell', 'class_level', 'combatant']) {
       expect(await _type(db, table), 'table', reason: table);
     }
   });
@@ -116,18 +116,18 @@ void main() {
   });
 
   test(
-    'une rencontre (M3, locale) se rattache à une séance synchronisée',
+    'un combattant (M3, local) se rattache à une rencontre synchronisée',
     () async {
       await db.customStatement(
-        'INSERT INTO session (id, table_id, date, title) '
-        "VALUES ('s', 't', '2026-11-08', 'Séance 1')",
+        'INSERT INTO encounter (id, table_id, title) '
+        "VALUES ('e', 't', 'Le relais du Sel')",
       );
       await db.customStatement(
-        'INSERT INTO encounter (id, session_id, status, hp_mode) '
-        "VALUES ('e', 's', 'planned', 'average')",
+        'INSERT INTO combatant (id, encounter_id, kind, label) '
+        "VALUES ('c', 'e', 'monster', 'Vétéran 1')",
       );
-      final encounter = await db.select(db.encounters).getSingle();
-      expect(encounter.sessionId, 's');
+      final combatant = await db.select(db.combatants).getSingle();
+      expect(combatant.encounterId, 'e');
     },
   );
 

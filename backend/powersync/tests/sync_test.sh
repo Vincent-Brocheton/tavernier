@@ -71,6 +71,10 @@ insert into character (id, table_id, owner_user_id, kind, name, species_id,
    'srd:background:soldier', 'draft');
 insert into npc_statblock (id, table_id, name, character_id)
   values ('pnj1', 't1', 'Maître Odran', 'n1');
+insert into encounter (id, table_id, session_id, title)
+  values ('r1', 't1', 'se1', 'Le relais du Sel');
+insert into encounter_group (id, encounter_id, table_id, kind, ref_id, quantity)
+  values ('g1', 'r1', 't1', 'monster', 'srd:monster:veteran', 2);
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -116,7 +120,7 @@ c2=(character/c2 character_state/s2)
 
 expect mj "le MJ reçoit sa table, ses invitations, toutes les fiches et ses PNJ" \
   "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}" \
-  character/n1 npc_statblock/pnj1
+  character/n1 npc_statblock/pnj1 encounter/r1 encounter_group/g1
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
   "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}"
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \

@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:dnd_rules/dnd_rules.dart';
 import 'package:test/test.dart';
 
 /// SRD p. 22, « Coût des valeurs de caractéristique ».
@@ -182,20 +183,25 @@ void main() {
       final difficulty = encounter['difficulty'] as String?;
       if (difficulty != null) {
         test('${encounter['name']} : difficulté $difficulty', () {
-          final budget = _map(budgets['${encounter['party_level']}'])
+          final level = encounter['party_level']! as int;
+          final budget = _map(budgets['$level'])
               .map((k, v) => MapEntry(k, v! as int));
-          final total = encounter['xp']! as int;
-          switch (difficulty) {
-            case 'below_low':
-              expect(total, lessThan(budget['low']!));
-            case 'low':
-              expect(total, lessThanOrEqualTo(budget['low']!));
-            case 'moderate':
-              expect(total, greaterThan(budget['low']!));
-              expect(total, lessThanOrEqualTo(budget['moderate']!));
-            default:
-              fail('difficulté inconnue : $difficulty');
-          }
+          // Le moteur retrouve le budget de [D1] et sa difficulté.
+          final engine = encounterBudget(List.filled(4, level));
+          expect(
+            (engine.low, engine.moderate, engine.high),
+            (budget['low'], budget['moderate'], budget['high']),
+          );
+          expect(
+            encounterDifficulty(encounter['xp']! as int, engine),
+            switch (difficulty) {
+              'below_low' => EncounterDifficulty.belowLow,
+              'low' => EncounterDifficulty.low,
+              'moderate' => EncounterDifficulty.moderate,
+              'high' => EncounterDifficulty.high,
+              _ => fail('difficulté inconnue : $difficulty'),
+            },
+          );
         });
       }
     }

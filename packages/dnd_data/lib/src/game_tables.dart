@@ -390,24 +390,48 @@ class NpcStatblocks extends Table with IdKey, TableOwned {
 }
 
 @DataClassName('EncounterRow')
-class Encounters extends Table with IdKey {
+class Encounters extends Table with IdKey, TableOwned {
   @override
   String get tableName => 'encounter';
 
-  /// Séance de la rencontre. Pas de clé étrangère : `session` est une vue
-  /// PowerSync.
+  /// Séance de la rencontre ; `null` : en réserve. Pas de clé étrangère :
+  /// `session` est une vue PowerSync.
   TextColumn get sessionId => text().nullable()();
-  TextColumn get status => text()();
-  TextColumn get difficulty => text().nullable()();
-  TextColumn get hpMode => text()();
+  TextColumn get title => text()();
+
+  /// `draft`, `ready`, `running` ou `finished`.
+  TextColumn get status => text().withDefault(const Constant('draft'))();
+
+  /// `average` ou `roll` (EF-REN-04).
+  TextColumn get hpMode => text().withDefault(const Constant('average'))();
+  IntColumn get position => integer().withDefault(const Constant(0))();
+  DateTimeColumn get createdAt => dateTime().nullable()();
+}
+
+/// Groupe d'adversaires préparé (US-19, EF-REN-02) : un monstre ou un PNJ,
+/// en quantité.
+@DataClassName('EncounterGroupRow')
+class EncounterGroups extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'encounter_group';
+  TextColumn get encounterId => text()();
+
+  /// `monster` ou `npc`.
+  TextColumn get kind => text()();
+  TextColumn get refId => text()();
+  IntColumn get quantity => integer().withDefault(const Constant(1))();
+  BoolColumn get sharedInitiative =>
+      boolean().withDefault(const Constant(true))();
+  IntColumn get position => integer().withDefault(const Constant(0))();
 }
 
 @DataClassName('CombatantRow')
 class Combatants extends Table with IdKey {
   @override
   String get tableName => 'combatant';
-  TextColumn get encounterId =>
-      text().references(Encounters, #id, onDelete: KeyAction.cascade)();
+
+  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
+  TextColumn get encounterId => text()();
   TextColumn get kind => text()();
   TextColumn get refId => text().nullable()();
   TextColumn get label => text()();
@@ -423,8 +447,9 @@ class Combatants extends Table with IdKey {
 class EncounterEvents extends Table with IdKey {
   @override
   String get tableName => 'encounter_event';
-  TextColumn get encounterId =>
-      text().references(Encounters, #id, onDelete: KeyAction.cascade)();
+
+  /// Pas de clé étrangère : `encounter` est une vue PowerSync (US-19).
+  TextColumn get encounterId => text()();
   IntColumn get round => integer()();
   TextColumn get actorId => text().nullable()();
   TextColumn get type => text()();

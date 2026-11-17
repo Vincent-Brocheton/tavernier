@@ -5649,6 +5649,14 @@ class Encounter extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
   late final GeneratedColumn<String> sessionId = GeneratedColumn<String>(
     'session_id',
     aliasedName,
@@ -5657,37 +5665,59 @@ class Encounter extends Table with TableInfo {
     requiredDuringInsert: false,
     $customConstraints: 'NULL',
   );
-  late final GeneratedColumn<String> status = GeneratedColumn<String>(
-    'status',
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
     aliasedName,
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  late final GeneratedColumn<String> difficulty = GeneratedColumn<String>(
-    'difficulty',
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
     aliasedName,
-    true,
+    false,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    $customConstraints: 'NULL',
+    $customConstraints: 'NOT NULL DEFAULT \'draft\'',
+    defaultValue: const CustomExpression('\'draft\''),
   );
   late final GeneratedColumn<String> hpMode = GeneratedColumn<String>(
     'hp_mode',
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'average\'',
+    defaultValue: const CustomExpression('\'average\''),
+  );
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    $customConstraints: 'NULL',
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    tableId,
     sessionId,
+    title,
     status,
-    difficulty,
     hpMode,
+    position,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -5704,6 +5734,113 @@ class Encounter extends Table with TableInfo {
   @override
   Encounter createAlias(String alias) {
     return Encounter(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class EncounterGroup extends Table with TableInfo {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  EncounterGroup(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
+    'encounter_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<String> refId = GeneratedColumn<String>(
+    'ref_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
+    'quantity',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 1',
+    defaultValue: const CustomExpression('1'),
+  );
+  late final GeneratedColumn<int> sharedInitiative = GeneratedColumn<int>(
+    'shared_initiative',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints:
+        'NOT NULL DEFAULT 1 CHECK (shared_initiative IN (0, 1))',
+    defaultValue: const CustomExpression('1'),
+  );
+  late final GeneratedColumn<int> position = GeneratedColumn<int>(
+    'position',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    encounterId,
+    kind,
+    refId,
+    quantity,
+    sharedInitiative,
+    position,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'encounter_group';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
+    throw UnsupportedError('TableInfo.map in schema verification code');
+  }
+
+  @override
+  EncounterGroup createAlias(String alias) {
+    return EncounterGroup(attachedDatabase, alias);
   }
 
   @override
@@ -5731,7 +5868,7 @@ class Combatant extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES encounter(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<String> kind = GeneratedColumn<String>(
     'kind',
@@ -5862,7 +5999,7 @@ class EncounterEvent extends Table with TableInfo {
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL REFERENCES encounter(id)ON DELETE CASCADE',
+    $customConstraints: 'NOT NULL',
   );
   late final GeneratedColumn<int> round = GeneratedColumn<int>(
     'round',
@@ -6154,6 +6291,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final CharacterProposal characterProposal = CharacterProposal(this);
   late final NpcStatblock npcStatblock = NpcStatblock(this);
   late final Encounter encounter = Encounter(this);
+  late final EncounterGroup encounterGroup = EncounterGroup(this);
   late final Combatant combatant = Combatant(this);
   late final EncounterEvent encounterEvent = EncounterEvent(this);
   late final Note note = Note(this);
@@ -6225,6 +6363,7 @@ class DatabaseAtV1 extends GeneratedDatabase {
     characterProposal,
     npcStatblock,
     encounter,
+    encounterGroup,
     combatant,
     encounterEvent,
     note,
@@ -6464,20 +6603,6 @@ class DatabaseAtV1 extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('entity_text', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'encounter',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('combatant', kind: UpdateKind.delete)],
-    ),
-    WritePropagation(
-      on: TableUpdateQuery.onTableName(
-        'encounter',
-        limitUpdateKind: UpdateKind.delete,
-      ),
-      result: [TableUpdate('encounter_event', kind: UpdateKind.delete)],
     ),
   ]);
   @override
