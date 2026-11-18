@@ -142,3 +142,9 @@ final combatStoreProvider = Provider<CombatStore>(
 final combatStateProvider = StreamProvider.family<CombatState, String>(
   (ref, encounterId) => ref.watch(combatStoreProvider).watchState(encounterId),
 );
+
+/// Journal d'un combat, dans l'ordre (« Annuler » vise son dernier
+/// événement effectif).
+final combatEventsProvider = StreamProvider.family<List<CombatEvent>, String>(
+  (ref, encounterId) => ref.watch(combatStoreProvider).watchEvents(encounterId),
+);

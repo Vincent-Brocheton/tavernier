@@ -185,4 +185,18 @@ void main() {
     expect(dragon.max('legendary_resistance'), 3);
     expect(dragon.max('recharge:Souffle d’acide'), 1);
   });
+
+  test('renfort : numéroté après ses semblables', () {
+    expect(
+      reinforcementLabel('Loup sanguinaire', [
+        'Aldric',
+        'Loup sanguinaire 1',
+        'Loup sanguinaire 3',
+      ]),
+      'Loup sanguinaire 4',
+    );
+    expect(reinforcementLabel('Ogre', ['Ogre']), 'Ogre 2');
+    expect(reinforcementLabel('Ogre', ['Ogre mage']), 'Ogre');
+    expect(reinforcementLabel('Bandit', const []), 'Bandit');
+  });
 }

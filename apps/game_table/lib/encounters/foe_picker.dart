@@ -22,10 +22,15 @@ class FoePicker extends ConsumerStatefulWidget {
     super.key,
     required this.tableId,
     required this.encounterId,
+    this.onAdd,
   });
 
   final String tableId;
   final String encounterId;
+
+  /// Ajout d'un adversaire (`monster` ou `npc`) ; par défaut, un groupe de
+  /// la rencontre préparée.
+  final Future<void> Function(String kind, String refId)? onAdd;
 
   @override
   ConsumerState<FoePicker> createState() => _FoePickerState();
@@ -38,9 +43,11 @@ class _FoePickerState extends ConsumerState<FoePicker> {
   /// FP retenus, en indices dans la liste des FP ; `null` : tous.
   RangeValues? _range;
 
-  Future<void> _add(String kind, String refId) => ref
-      .read(encounterStoreProvider)
-      .addGroup(widget.encounterId, kind: kind, refId: refId);
+  Future<void> _add(String kind, String refId) =>
+      widget.onAdd?.call(kind, refId) ??
+      ref
+          .read(encounterStoreProvider)
+          .addGroup(widget.encounterId, kind: kind, refId: refId);
 
   Future<void> _chooseRange(List<String> crs) async {
     var range = _range ?? RangeValues(0, (crs.length - 1).toDouble());

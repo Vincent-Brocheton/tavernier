@@ -6318,6 +6318,180 @@ abstract class AppLocalizations {
   /// **'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.'**
   String get combatOrderNote;
 
+  /// Passe à l'unité suivante (EF-INI-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tour suivant'**
+  String get combatNextTurn;
+
+  /// Annule le dernier événement du combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get combatUndo;
+
+  /// Renfort en cours de combat (EF-INI-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un combattant'**
+  String get combatAdd;
+
+  /// Passe la rencontre « Terminée ».
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer la rencontre'**
+  String get combatFinish;
+
+  /// Confirmation de fin de rencontre.
+  ///
+  /// In fr, this message translates to:
+  /// **'« {title} » passera « Terminée ». Le combat ne pourra plus être mené.'**
+  String combatFinishBody(String title);
+
+  /// Renfort non pris en charge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un PNJ en fiche complète ne peut pas encore rejoindre un combat en cours.'**
+  String get combatCannotJoin;
+
+  /// Renfort ajouté.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} entre dans le combat (initiative {total}).'**
+  String combatJoined(String name, int total);
+
+  /// Résumé du combat ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 combattant} other{{count} combattants}}'**
+  String combatCount(int count);
+
+  /// En-tête d'un groupe ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · initiative commune'**
+  String combatGroupHeader(String name);
+
+  /// Sous-titre d'un monstre ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{type} · FP {cr}'**
+  String combatMonsterLine(String type, String cr);
+
+  /// Sous-titre d'un PJ sans résumé.
+  ///
+  /// In fr, this message translates to:
+  /// **'PJ'**
+  String get combatPcShort;
+
+  /// Rappel de recharge ([C8]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Début du tour · {name} : lancez 1d6 pour {action} (recharge {range}).'**
+  String combatRechargeReminder(String name, String action, String range);
+
+  /// Jet de recharge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer 1d6'**
+  String get combatRollD6;
+
+  /// Rend une capacité sans jet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechargé'**
+  String get combatRechargedManual;
+
+  /// Jet de recharge réussi.
+  ///
+  /// In fr, this message translates to:
+  /// **'{roll} : rechargé.'**
+  String combatRecharged(int roll);
+
+  /// Jet de recharge raté.
+  ///
+  /// In fr, this message translates to:
+  /// **'{roll} : pas encore rechargé.'**
+  String combatNotRecharged(int roll);
+
+  /// Badge de l'unité active.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get combatActive;
+
+  /// PV d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'{hp} / {max}'**
+  String combatHp(int hp, int max);
+
+  /// Classe d'armure d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'CA {ac}'**
+  String combatAc(int ac);
+
+  /// Compteur d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réaction'**
+  String get combatReaction;
+
+  /// Compteur d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions légendaires'**
+  String get combatLegendaryActions;
+
+  /// Compteur d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Résistance légendaire'**
+  String get combatLegendaryResistance;
+
+  /// Capacité à recharge.
+  ///
+  /// In fr, this message translates to:
+  /// **'{action} (recharge)'**
+  String combatRechargeCounter(String action);
+
+  /// Réaction disponible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponible'**
+  String get combatAvailable;
+
+  /// Réaction utilisée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisée'**
+  String get combatUsed;
+
+  /// Unités restantes d'un compteur.
+  ///
+  /// In fr, this message translates to:
+  /// **'{remaining} / {max}'**
+  String combatRemaining(int remaining, int max);
+
+  /// Retire un combattant (EF-INI-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer du combat'**
+  String get combatRemove;
+
+  /// Pion plein d'un compteur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utiliser : {label}'**
+  String combatPipUse(String label);
+
+  /// Pion vide d'un compteur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendre : {label}'**
+  String combatPipRestore(String label);
+
   /// Nombre d'exemplaires d'un adversaire.
   ///
   /// In fr, this message translates to:

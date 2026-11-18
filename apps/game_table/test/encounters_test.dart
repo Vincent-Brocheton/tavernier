@@ -444,8 +444,10 @@ void main() {
 
     await _tap(tester, find.text('Commencer le round 1'));
     await _settle(tester);
-    expect(find.text('Round 1'), findsOneWidget);
-    expect(find.textContaining('Round 1 · tour de '), findsOneWidget);
+    // Écran de combat : le round, et l'unité active « En cours ».
+    expect(find.text('Round 1'), findsWidgets);
+    // Le premier peut être le groupe des vétérans : un badge par membre.
+    expect(find.text('En cours'), findsWidgets);
   });
 
   _test('initiative : égalités et qui décide, surprise d\'un monstre [C3]', (
@@ -550,5 +552,194 @@ void main() {
     expect(find.text('Désavantage'), findsOneWidget);
     // L'ogre, monstre seul, n'a que « surpris » en sous-titre.
     expect(find.text('surpris'), findsOneWidget);
+  });
+
+  /// Combat lancé et commencé : le dragon (22, souffle déjà utilisé),
+  /// Aldric (19), l'ogre (9).
+  Future<void> openCombat(WidgetTester tester) async {
+    await _open(tester);
+    await tester.runAsync(() async {
+      await CombatStore(_db).launch(_relais, authorUserId: _camille, [
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'dragon',
+            'kind': 'monster',
+            'ref_id': 'srd:monster:adult-black-dragon',
+            'label': 'Dragon noir adulte',
+            'bonus': 6,
+            'ac': 19,
+            'hp': 195,
+            'hp_max': 195,
+            'counters': {
+              'legendary_actions': 3,
+              'legendary_resistance': 3,
+              'recharge:Souffle d’acide': 1,
+            },
+          },
+        ),
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'aldric',
+            'kind': 'pc',
+            'ref_id': 'aldric',
+            'label': 'Aldric',
+            'bonus': 4,
+            'ac': 18,
+            'hp': 41,
+            'hp_max': 49,
+          },
+        ),
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'ogre',
+            'kind': 'monster',
+            'ref_id': 'srd:monster:ogre',
+            'label': 'Ogre',
+            'bonus': -1,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'dragon',
+            'dice': [16],
+            'bonus': 6,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'aldric',
+            'dice': [15],
+            'bonus': 4,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'ogre',
+            'dice': [10],
+            'bonus': -1,
+          },
+        ),
+        (
+          CombatEventType.counterUsed,
+          {'combatant': 'dragon', 'counter': 'recharge:Souffle d’acide'},
+        ),
+        (CombatEventType.combatStarted, const <String, Object?>{}),
+      ]);
+    });
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Reprendre le combat'));
+    await _settle(tester);
+  }
+
+  _test('combat : round, en cours, tour suivant, annuler [1a]', (tester) async {
+    await openCombat(tester);
+    expect(find.text('Round 1'), findsWidgets);
+    expect(find.text('3 combattants'), findsOneWidget);
+    expect(find.text('Dragon · FP 14'), findsOneWidget);
+    expect(find.text('PJ · Guerrier 5'), findsOneWidget);
+    expect(find.text('41 / 49'), findsOneWidget);
+    Finder activeCard() =>
+        find.ancestor(of: find.text('En cours'), matching: find.byType(Card));
+    expect(
+      find.descendant(
+        of: activeCard(),
+        matching: find.text('Dragon noir adulte'),
+      ),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.text('Tour suivant'));
+    await _settle(tester);
+    expect(
+      find.descendant(of: activeCard(), matching: find.text('Aldric')),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.byTooltip('Annuler'));
+    await _settle(tester);
+    expect(
+      find.descendant(
+        of: activeCard(),
+        matching: find.text('Dragon noir adulte'),
+      ),
+      findsOneWidget,
+    );
+  });
+
+  _test('recharge : rappel au début du tour, « Rechargé » [C8]', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    expect(
+      find.text(
+        'Début du tour · Dragon noir adulte : lancez 1d6 pour Souffle '
+        'd’acide (recharge 5–6).',
+      ),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Rechargé'));
+    await _settle(tester);
+    expect(find.textContaining('lancez 1d6'), findsNothing);
+  });
+
+  _test('détail : actions légendaires, retrait [C8]', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Dragon noir adulte').first);
+    expect(find.text('Actions légendaires'), findsWidgets);
+    expect(find.text('3 / 3'), findsWidgets);
+    expect(find.text('Disponible'), findsOneWidget);
+    await _tap(
+      tester,
+      find.bySemanticsLabel('Utiliser : Actions légendaires').first,
+    );
+    await _settle(tester);
+    expect(find.text('2 / 3'), findsOneWidget);
+    Navigator.of(tester.element(find.text('2 / 3'))).pop();
+    await tester.pumpAndSettle();
+
+    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, find.text('Retirer du combat'));
+    await _settle(tester);
+    expect(find.text('Ogre'), findsNothing);
+    expect(find.text('2 combattants'), findsOneWidget);
+  });
+
+  _test('renfort numéroté, puis fin de la rencontre', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.byType(PopupMenuButton<String>));
+    await _tap(tester, find.text('Ajouter un combattant'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Bestiaire, PNJ'),
+      'ogre',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.byTooltip('Ajouter Ogre'));
+    await _settle(tester);
+    expect(find.text('Ogre 2'), findsOneWidget);
+    expect(find.textContaining('Ogre 2 entre dans le combat'), findsOneWidget);
+
+    await _tap(tester, find.byType(PopupMenuButton<String>));
+    await _tap(tester, find.text('Terminer la rencontre'));
+    // Confirmation.
+    await _tap(
+      tester,
+      find.widgetWithText(FilledButton, 'Terminer la rencontre'),
+    );
+    await _settle(tester);
+    final status = await tester.runAsync(
+      () => _db
+          .customSelect(
+            'SELECT status FROM encounter WHERE id = ?',
+            variables: [Variable.withString(_relais)],
+          )
+          .getSingle(),
+    );
+    expect(status!.read<String>('status'), 'finished');
   });
 }

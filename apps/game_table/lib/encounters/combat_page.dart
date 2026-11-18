@@ -15,6 +15,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../sessions/sessions_providers.dart';
 import '../tables/tables_providers.dart';
+import 'combat_view.dart';
 import 'encounters_providers.dart';
 import 'launch.dart';
 
@@ -124,6 +125,7 @@ class CombatPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: CloseButton(onPressed: () => context.pop()),
+        actions: starting ? null : combatActions(context, ref, encounter),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -142,15 +144,7 @@ class CombatPage extends ConsumerWidget {
       body: SafeArea(
         child: starting
             ? _Initiative(encounterId: id, tableId: tableId, combat: combat)
-            : Center(
-                child: Text(
-                  l10n.combatTurnOf(
-                    combat.round,
-                    _unitLabel(l10n, combat, combat.active!),
-                  ),
-                  style: text.titleLarge,
-                ),
-              ),
+            : CombatView(encounter: encounter, combat: combat),
       ),
       bottomNavigationBar: starting
           ? SafeArea(
@@ -182,7 +176,19 @@ class CombatPage extends ConsumerWidget {
                 ),
               ),
             )
-          : null,
+          : SafeArea(
+              // « Tour suivant » toujours accessible (EF-INI-05).
+              child: Padding(
+                padding: EdgeInsets.all(AppSpacing.md),
+                child: FilledButton.icon(
+                  onPressed: () => appendCombat(ref, id, [
+                    (CombatEventType.turnAdvanced, const {}),
+                  ]),
+                  icon: const Icon(Icons.skip_next),
+                  label: Text(l10n.combatNextTurn),
+                ),
+              ),
+            ),
     );
   }
 }

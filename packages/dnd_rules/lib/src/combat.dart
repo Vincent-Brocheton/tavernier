@@ -147,6 +147,9 @@ final class Combatant {
   /// Unité du tour : le groupe, ou le combattant seul.
   String get unit => groupId ?? id;
 
+  /// Compteurs suivis, la réaction d'abord.
+  Iterable<String> get counters => _max.keys;
+
   int max(String counter) => _max[counter] ?? 0;
 
   int remaining(String counter) => max(counter) - (_used[counter] ?? 0);
@@ -212,13 +215,7 @@ final class CombatState {
 /// événements dans l'ordre.
 CombatState projectCombat(Iterable<CombatEvent> events) {
   final list = events.toList();
-  // Une annulation annulée ne compte plus : du plus récent au plus ancien.
-  final undone = <String>{};
-  for (final e in list.reversed) {
-    if (e.type == CombatEventType.undo && !undone.contains(e.id)) {
-      undone.add(e.payload['event']! as String);
-    }
-  }
+  final undone = _undone(list);
   final combatants = <Combatant>[];
   final rolls = <String, InitiativeRoll>{};
   List<String>? chosen;
@@ -316,6 +313,29 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     active,
     chosen == null || rolledAfterChoice ? _ties(combatants, order, rolls) : [],
   );
+}
+
+/// Événements annulés : une annulation annulée ne compte plus, d'où le
+/// parcours du plus récent au plus ancien.
+Set<String> _undone(List<CombatEvent> events) {
+  final undone = <String>{};
+  for (final e in events.reversed) {
+    if (e.type == CombatEventType.undo && !undone.contains(e.id)) {
+      undone.add(e.payload['event']! as String);
+    }
+  }
+  return undone;
+}
+
+/// Dernier événement encore effectif (ni annulation, ni annulé), que
+/// « Annuler » vise ; `null` s'il n'y en a pas.
+String? lastUndoable(Iterable<CombatEvent> events) {
+  final list = events.toList();
+  final undone = _undone(list);
+  return list.reversed
+      .where((e) => e.type != CombatEventType.undo && !undone.contains(e.id))
+      .firstOrNull
+      ?.id;
 }
 
 /// Ordre des unités : celui choisi par le MJ, les autres insérées selon

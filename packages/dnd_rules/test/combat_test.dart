@@ -126,6 +126,17 @@ void main() {
     });
   });
 
+  test('dernier événement annulable : après une annulation, le précédent', () {
+    final start = _event(CombatEventType.combatStarted, {});
+    final next = _event(CombatEventType.turnAdvanced, {});
+    expect(lastUndoable([start, next]), next.id);
+    final undo = _event(CombatEventType.undo, {'event': next.id});
+    expect(lastUndoable([start, next, undo]), start.id);
+    final undo2 = _event(CombatEventType.undo, {'event': start.id});
+    expect(lastUndoable([start, next, undo, undo2]), isNull);
+    expect(lastUndoable(const []), isNull);
+  });
+
   group('initiative', () {
     test('[C3] : Avantage d’Aldric, Brannoc surpris en Désavantage', () {
       final state = projectCombat([
@@ -338,6 +349,12 @@ void main() {
       final events = [...dragon(), use('legendary_actions', 2)];
       final dragonState = projectCombat(events).combatant('dragon')!;
       expect(dragonState.max('legendary_actions'), 3);
+      expect(dragonState.counters, [
+        'reaction',
+        'legendary_actions',
+        'legendary_resistance',
+        "recharge:Souffle d'acide",
+      ]);
       expect(dragonState.remaining('legendary_actions'), 1);
       final nextRound = [
         ...events,
