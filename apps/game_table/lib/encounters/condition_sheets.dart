@@ -263,6 +263,8 @@ class _ConditionSheet extends ConsumerWidget {
         Text(
           [
             l10n.conditionLine(c.label, longDuration(l10n, content, combat, i)),
+            if (combat.combatant(i.concentration ?? '') case final caster?)
+              l10n.conditionLinked(caster.label, caster.concentration ?? ''),
             if (i.recurring case final r?)
               l10n.conditionRecurringLine(
                 r.dice,
@@ -339,6 +341,9 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
   var _damageType = 'srd:damage-type:fire';
   var _at = TurnPhase.start;
 
+  /// Lanceur dont la concentration maintient l'état ; `null` : aucun.
+  String? _caster;
+
   @override
   void dispose() {
     _dc.dispose();
@@ -384,6 +389,7 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
               if (_condition == null) 'label': _label.text.trim(),
               'duration': duration,
               if (_exhaustion) 'levels': _levels,
+              'concentration': ?_caster,
               if (_condition == null && _recurring)
                 'recurring': {
                   'dice': _dice.text.trim(),
@@ -406,6 +412,8 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
       return const Center(child: CircularProgressIndicator());
     }
     final targets = [for (final id in widget.targets) ?combat.combatant(id)];
+    // Lanceur qui ne se concentre plus : plus de lien possible.
+    if (combat.combatant(_caster ?? '')?.concentration == null) _caster = null;
     final conditions = sortedEntities(content, 'condition');
     bool immune(String id) =>
         targets.isNotEmpty &&
@@ -683,6 +691,22 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
             ),
           ],
         ],
+        SizedBox(height: AppSpacing.sm),
+        DropdownButtonFormField<String?>(
+          initialValue: _caster,
+          isExpanded: true,
+          decoration: InputDecoration(labelText: l10n.concentrationLink),
+          items: [
+            DropdownMenuItem(child: Text(l10n.concentrationNone)),
+            for (final c in combat.combatants)
+              if (c.concentration case final spell?)
+                DropdownMenuItem(
+                  value: c.id,
+                  child: Text(l10n.concentrationOption(c.label, spell)),
+                ),
+          ],
+          onChanged: (v) => setState(() => _caster = v),
+        ),
         SizedBox(height: AppSpacing.md),
         SizedBox(
           height: 56,

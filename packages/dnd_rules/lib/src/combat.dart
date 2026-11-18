@@ -19,6 +19,9 @@ enum CombatEventType {
   conditionAdded('condition_added'),
   conditionRemoved('condition_removed'),
   conditionSave('condition_save'),
+  concentrationStarted('concentration_started'),
+  concentrationCheck('concentration_check'),
+  concentrationEnded('concentration_ended'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -161,6 +164,7 @@ final class ConditionInstance {
          ),
        ),
        levels = (p['levels'] as int?) ?? 1,
+       concentration = p['concentration'] as String?,
        recurring = switch (p['recurring']) {
          final Map<Object?, Object?> r => RecurringDamage._(
            Map<String, Object?>.from(r),
@@ -174,6 +178,9 @@ final class ConditionInstance {
   final ConditionDuration duration;
   int levels;
   final RecurringDamage? recurring;
+
+  /// Lanceur dont la concentration maintient l'état ; `null` sans lien.
+  final String? concentration;
 
   /// Unité active à la pose (le porteur hors combat), round de la pose (au
   /// moins 1) et numéro du début de tour en cours.
@@ -267,6 +274,15 @@ final class Combatant {
 
   final List<ConditionInstance> _conditions = [];
 
+  /// Sort sur lequel il se concentre ; `null` sans concentration.
+  String? concentration;
+
+  final List<ConcentrationCheck> _checks = [];
+
+  /// Tests de concentration en attente, du plus ancien au plus récent.
+  List<ConcentrationCheck> get concentrationChecks =>
+      List.unmodifiable(_checks);
+
   /// États présents, dans l'ordre de pose.
   List<ConditionInstance> get conditions => List.unmodifiable(_conditions);
 
@@ -320,6 +336,9 @@ final class Combatant {
     );
     tempHp = result.tempAfter;
     hp = result.hpAfter;
+    if (concentration != null && result.taken > 0) {
+      _checks.add((dc: concentrationDc(result.taken), damage: result.taken));
+    }
     // Dégâts subis à 0 PV : un échec, deux sur un coup critique.
     if (kind == CombatantKind.pc && wasDown && result.taken > 0) {
       _fail(critical ? 2 : 1);
@@ -448,6 +467,13 @@ final class CombatState {
   Combatant? combatant(String id) =>
       _combatants.where((c) => c.id == id).firstOrNull;
 
+  /// États maintenus par la concentration de [casterId], porteur par porteur.
+  List<(Combatant, ConditionInstance)> linkedTo(String casterId) => [
+    for (final c in _combatants)
+      for (final i in c._conditions)
+        if (i.concentration == casterId) (c, i),
+  ];
+
   /// Membres d'une unité, dans l'ordre d'ajout.
   List<Combatant> members(String unit) => [
     for (final c in _combatants)
@@ -495,6 +521,16 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
           i.duration.kind == DurationKind.turnEnd &&
           find(i.duration.combatant ?? '')?.unit == unit,
     );
+  }
+
+  /// Fin de la concentration de [caster] : ses tests et ses effets liés.
+  void endConcentration(Combatant caster) {
+    caster
+      ..concentration = null
+      .._checks.clear();
+    for (final c in combatants) {
+      c._conditions.removeWhere((i) => i.concentration == caster.id);
+    }
   }
 
   void startTurn(String? unit) {
@@ -631,6 +667,18 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
           find(p['combatant']! as String)
               ?._removeCondition(p['instance']! as String, null);
         }
+      case CombatEventType.concentrationStarted:
+        final c = find(p['combatant']! as String);
+        if (c == null) break;
+        endConcentration(c);
+        c.concentration = p['spell']! as String;
+      case CombatEventType.concentrationCheck:
+        final c = find(p['combatant']! as String);
+        if (c == null || c._checks.isEmpty) break;
+        c._checks.removeAt(0);
+        if (!((p['success'] as bool?) ?? false)) endConcentration(c);
+      case CombatEventType.concentrationEnded:
+        if (find(p['combatant']! as String) case final c?) endConcentration(c);
       case CombatEventType.undo:
         break;
     }
@@ -828,6 +876,13 @@ bool rechargeSucceeds(String range, int roll) {
 Set<String> _ids(Object? json) => {
   for (final id in (json ?? const <Object?>[]) as List) id as String,
 };
+
+/// Test de concentration en attente : son DD et les dégâts qui l'ont causé.
+typedef ConcentrationCheck = ({int dc, int damage});
+
+/// DD du JS de Constitution pour maintenir la Concentration après [taken]
+/// dégâts (SRD) : 10 ou la moitié, arrondie à l'inférieur, jusqu'à 30.
+int concentrationDc(int taken) => min(30, max(10, taken ~/ 2));
 
 /// Dégâts subis par une cible, et ses PV avant et après.
 typedef DamageResult = ({

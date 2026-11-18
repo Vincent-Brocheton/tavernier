@@ -17,6 +17,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../tables/tables_providers.dart';
 import 'combatant_sheet.dart';
+import 'concentration.dart';
 import 'condition_sheets.dart';
 import 'damage_keypad.dart';
 import 'encounters_providers.dart';
@@ -241,6 +242,7 @@ class _CombatViewState extends ConsumerState<CombatView> {
                 ],
               ),
               TurnStartBanner(encounter: encounter, combat: combat),
+              ConcentrationAlerts(encounter: encounter, combat: combat),
               _RechargeReminder(
                 encounterId: encounter.id,
                 combat: combat,
@@ -587,6 +589,8 @@ class _CombatantCard extends StatelessWidget {
                         combat: combat,
                         combatant: c,
                       ),
+                    if (c.concentration case final spell?)
+                      ConcentrationChip(spell),
                   ],
                 ),
               ),

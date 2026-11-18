@@ -7217,6 +7217,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count, plural, =1{1 personnage} other{{count} personnages}}, selon les présences prévues.'**
   String encounterBudgetMixed(int count);
+
+  /// Puce d'un combattant concentré.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration · {spell}'**
+  String concentrationChip(String spell);
+
+  /// Titre de l'alerte de concentration [1c].
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet de concentration · {name}'**
+  String concentrationCheckTitle(String name);
+
+  /// JS demandé par l'alerte de concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Constitution DD {dc}'**
+  String concentrationCheckDc(int dc);
+
+  /// DD de concentration minimal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{damage} dégâts subis → DD 10 (la moitié, {half}, est plus basse).'**
+  String concentrationWhyTen(int damage, int half);
+
+  /// DD de concentration de la moitié des dégâts.
+  ///
+  /// In fr, this message translates to:
+  /// **'{damage} dégâts subis → DD {dc} (la moitié des dégâts).'**
+  String concentrationWhyHalf(int damage, int dc);
+
+  /// DD de concentration plafonné.
+  ///
+  /// In fr, this message translates to:
+  /// **'{damage} dégâts subis → DD 30 (plafond).'**
+  String concentrationWhyCap(int damage);
+
+  /// Bonus de JS de Constitution, signé.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ajoute {bonus} (CON).'**
+  String concentrationBonus(String name, String bonus);
+
+  /// Conséquence d'une fin de concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'{spell} prend fin.'**
+  String concentrationEndsLine(String spell);
+
+  /// Effets liés retirés, « Béni (Aldric, Thalia) ».
+  ///
+  /// In fr, this message translates to:
+  /// **'Effets retirés : {effects}.'**
+  String concentrationRemovesLine(String effects);
+
+  /// Ce qu'un échec au test de concentration retire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec : {text}'**
+  String concentrationOnFail(String text);
+
+  /// Confirmation de fin de concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre fin à {spell} ?'**
+  String concentrationEndTitle(String spell);
+
+  /// Bouton et titre : commencer une concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se concentrer'**
+  String get concentrationStart;
+
+  /// Champ du sort de concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort'**
+  String get concentrationSpell;
+
+  /// Lien d'un état à une concentration [C5].
+  ///
+  /// In fr, this message translates to:
+  /// **'Lié à un sort de concentration'**
+  String get concentrationLink;
+
+  /// Aucun lien de concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun'**
+  String get concentrationNone;
+
+  /// Combattant concentré proposé au lien [C5].
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · {spell}'**
+  String concentrationOption(String name, String spell);
+
+  /// Fiche d'un état lié [K4].
+  ///
+  /// In fr, this message translates to:
+  /// **'Lié à la concentration · {name} · {spell}'**
+  String conditionLinked(String name, String spell);
+
+  /// Aperçu du pavé pour une cible concentrée.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration : JS de CON DD {dc}'**
+  String keypadConcentration(int dc);
 }
 
 class _AppLocalizationsDelegate
