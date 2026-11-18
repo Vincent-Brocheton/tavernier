@@ -244,4 +244,43 @@ void main() {
     await _rest(tester, 'Repos court');
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('Épuisement 2 [F3a] : puce et Vitesse 6 m', (tester) async {
+    await _open(tester, const PlayState(exhaustion: 2));
+    expect(
+      find.text('Épuisement 2 · −4 aux tests d20 · Vitesse −3 m'),
+      findsOneWidget,
+    );
+    expect(find.text('6 m'), findsOneWidget);
+    await tester.tap(find.byTooltip('Retirer un niveau d’épuisement'));
+    await _settle(tester);
+    expect((await _saved(tester)).exhaustion, 1);
+    expect(find.text('7,50 m'), findsOneWidget);
+  });
+
+  testWidgets('Épuisement 6 [F3b] : confirmation, mort, puis annulée', (
+    tester,
+  ) async {
+    await _open(tester, const PlayState(exhaustion: 5));
+    await tester.tap(find.byTooltip('Ajouter un niveau d’épuisement'));
+    await tester.pumpAndSettle();
+    expect(find.text('Passer au niveau 6 d’épuisement ?'), findsOneWidget);
+    await tester.tap(find.text('Annuler'));
+    await _settle(tester);
+    expect((await _saved(tester)).exhaustion, 5);
+
+    await tester.tap(find.byTooltip('Ajouter un niveau d’épuisement'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Confirmer la mort'));
+    await _settle(tester);
+    expect((await _saved(tester)).exhaustion, 6);
+    expect(find.text('Mort · Épuisement 6'), findsOneWidget);
+    // Fiche figée : plus de repos.
+    expect(find.widgetWithText(OutlinedButton, 'Repos court'), findsNothing);
+
+    await tester.tap(find.byTooltip('Retirer un niveau d’épuisement'));
+    await _settle(tester);
+    expect((await _saved(tester)).exhaustion, 5);
+    expect(find.widgetWithText(OutlinedButton, 'Repos court'), findsOneWidget);
+  });
 }

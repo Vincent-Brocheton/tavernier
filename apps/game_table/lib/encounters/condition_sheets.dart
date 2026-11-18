@@ -12,6 +12,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import '../sheet/rest_sheet.dart';
 import '../sheet/sheet_breakdowns.dart';
 import 'combat_view.dart';
 import 'concentration.dart';
@@ -44,7 +45,7 @@ String conditionName(
   ActiveContent content,
   ConditionInstance i,
 ) => switch (i.condition) {
-  exhaustionCondition => l10n.conditionExhaustion(i.levels),
+  exhaustionCondition => exhaustionLabel(l10n, i.levels),
   final id? => namesOf(content, [id]),
   null => i.label ?? '',
 };

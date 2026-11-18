@@ -6630,12 +6630,6 @@ abstract class AppLocalizations {
   /// **'Indéfinie'**
   String get durationIndefinite;
 
-  /// Puce d'Épuisement.
-  ///
-  /// In fr, this message translates to:
-  /// **'Épuisement {level}'**
-  String conditionExhaustion(int level);
-
   /// Durée courte d'une puce d'état.
   ///
   /// In fr, this message translates to:
@@ -7379,6 +7373,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Met fin à la concentration : {consequence}'**
   String conditionEndsConcentration(String consequence);
+
+  /// Puce d'Épuisement sur la fiche et la carte de combat [F3a] (EF-CON-07).
+  ///
+  /// In fr, this message translates to:
+  /// **'Épuisement {level} · −{penalty} aux tests d20 · Vitesse −{speed}'**
+  String exhaustionChip(int level, int penalty, String speed);
+
+  /// Réglage de la fiche [F3a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau d’épuisement'**
+  String get exhaustionLevel;
+
+  /// Bouton − de la fiche [F3a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer un niveau d’épuisement'**
+  String get exhaustionDecrease;
+
+  /// Bouton + de la fiche [F3a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un niveau d’épuisement'**
+  String get exhaustionIncrease;
+
+  /// Aide de la fiche [F3a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaque niveau d’épuisement retire 2 à tous les tests d20 et 1,50 m à la Vitesse. Un repos long retire un niveau. Au niveau 6, le personnage meurt.'**
+  String get exhaustionHelp;
+
+  /// Confirmation [F3b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer au niveau 6 d’épuisement ?'**
+  String get exhaustionDeathTitle;
+
+  /// Confirmation [F3b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Au niveau 6, {name} meurt. La fiche passe en lecture seule ; retirer un niveau d’épuisement l’annule.'**
+  String exhaustionDeathBody(String name);
+
+  /// Bouton de la confirmation [F3b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer la mort'**
+  String get exhaustionDeathConfirm;
+
+  /// Puce d'un personnage mort d'épuisement (EF-CON-07).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mort · Épuisement 6'**
+  String get exhaustionDead;
 }
 
 class _AppLocalizationsDelegate

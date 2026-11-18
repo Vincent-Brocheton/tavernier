@@ -62,6 +62,14 @@ final class PlayState {
     heroicInspiration: heroicInspiration,
   );
 
+  PlayState withExhaustion(int value) => PlayState(
+    used: used,
+    concentrationSpellId: concentrationSpellId,
+    hpCurrent: hpCurrent,
+    exhaustion: value,
+    heroicInspiration: heroicInspiration,
+  );
+
   PlayState withInspiration(bool value) => PlayState(
     used: used,
     concentrationSpellId: concentrationSpellId,

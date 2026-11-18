@@ -908,12 +908,18 @@ void main() {
     await _tap(tester, find.byTooltip('Un niveau de plus'));
     await _tap(tester, find.text('Ajouter Épuisement'));
     await _settle(tester);
-    expect(chip('Épuisement 2'), findsOneWidget);
-    await _tap(tester, chip('Épuisement 2'));
+    expect(
+      chip('Épuisement 2 · −4 aux tests d20 · Vitesse −3 m'),
+      findsOneWidget,
+    );
+    await _tap(tester, chip('Épuisement 2 · −4 aux tests d20 · Vitesse −3 m'));
     await _tap(tester, find.text('Retirer un niveau'));
     await _settle(tester);
     // La puce, et le titre de la fiche restée ouverte.
-    expect(chip('Épuisement 1'), findsNWidgets(2));
+    expect(
+      chip('Épuisement 1 · −2 aux tests d20 · Vitesse −1,50 m'),
+      findsNWidgets(2),
+    );
   });
 
   _test('état : autre effet « En feu », 1d4 de feu à chaque début de tour', (

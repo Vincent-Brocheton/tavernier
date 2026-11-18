@@ -241,4 +241,28 @@ void main() {
       expect(mira.concentrationChecks, hasLength(1));
     });
   });
+
+  test('Épuisement 6 en combat : mort, et fin de la concentration', () {
+    final state = projectCombat([
+      ..._blessing(),
+      _event(CombatEventType.conditionAdded, {
+        'combatant': 'mira',
+        'instance': 'fatigue',
+        'condition': exhaustionCondition,
+        'levels': 5,
+      }),
+    ]);
+    expect(state.combatant('mira')!.dead, isFalse);
+    final dead = projectCombat([
+      ..._blessing(),
+      _event(CombatEventType.conditionAdded, {
+        'combatant': 'mira',
+        'instance': 'fatigue',
+        'condition': exhaustionCondition,
+        'levels': 6,
+      }),
+    ]);
+    expect(dead.combatant('mira')!.dead, isTrue);
+    expect(dead.combatant('mira')!.concentration, isNull);
+  });
 }

@@ -32,3 +32,22 @@
 
 - **La confirmation EF-CON-06 se fait dans l'aperçu**, avant validation. Une boîte de dialogue en plus après « Appliquer » ralentirait la saisie de dégâts, que EF-PV-01 limite à deux interactions. Le journal reste annulable.
 - **Assommer est proposé pour toute cible unique**. Le pavé ne sait pas si l'attaque est au corps à corps : le libellé le rappelle, et le MJ décide.
+
+## Lot b
+
+- **Moteur** : `computeSheet(character, content, {int exhaustion = 0})`.
+  - Une contribution `exhaustionSource` (−2 × niveau) s'ajoute aux compétences, aux sauvegardes, à l'Initiative et aux attaques (armes, mains nues, sort) ; −5 pieds × niveau s'ajoutent à la Vitesse.
+  - La Perception passive ajoute 2 × niveau pour annuler la pénalité de Perception : le SRD la calcule depuis le modificateur, pas depuis un test d20.
+  - `exhaustionDeath = 6`. En combat, `_addCondition` marque `dead` au niveau 6, et la pose met fin à la concentration.
+  - `PlayState.withExhaustion`.
+- **Fiche** :
+  - `SheetPage` lit l'état de jeu et passe le niveau au calcul ;
+  - la fiche est en lecture seule à partir de 6 ;
+  - `ExhaustionTracker` (onglet Principal) montre la puce et le réglage − / +, plus la confirmation du niveau 6 ([F3b]). Son « − » reste actif sur une fiche morte, si l'utilisateur a le droit de la modifier : c'est l'annulation.
+- **Combat** : la puce de l'état Épuisement reprend le libellé complet (`exhaustionLabel`).
+
+### Choix
+
+- **Mort déduite du niveau**, sans nouveau champ : la colonne `exhaustion` existe déjà, donc pas de changement de schéma.
+- **Annulation par le « − » de la fiche**, et non par l'historique comme le dit [F3b] : l'historique de la fiche n'annule rien aujourd'hui.
+- **Le MJ voit la mort sur la fiche synchronisée** : il n'y a pas de notification à part.

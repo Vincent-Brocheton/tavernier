@@ -227,7 +227,10 @@ void main() {
       );
       expect(
         tester
-            .widget<IconButton>(find.widgetWithIcon(IconButton, Icons.remove))
+            .widget<IconButton>(
+              // Le premier « − » : les PV.
+              find.widgetWithIcon(IconButton, Icons.remove).first,
+            )
             .onPressed,
         isNotNull,
       );
