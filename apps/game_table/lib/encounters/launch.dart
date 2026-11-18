@@ -51,6 +51,7 @@ List<NewCombatEvent> launchEvents({
       'ac': ?sheet?.armorClass.value,
       'hp': ?(info?.hp ?? sheet?.hitPointsMax.value),
       'hp_max': ?sheet?.hitPointsMax.value,
+      'saves': ?sheet?.savingThrows,
     };
   }
 
@@ -147,6 +148,11 @@ Map<String, Object?> profileCombatant({
     'resistances': [for (final id in monster.resistances) '$id'],
     'vulnerabilities': [for (final id in monster.vulnerabilities) '$id'],
     'immunities': [for (final id in monster.immunities) '$id'],
+    // Sauvegardes et immunités d'état, pour les états (EF-CON-01, 02).
+    'saves': monster.savingThrows,
+    'condition_immunities': [
+      for (final id in monster.conditionImmunities) '$id',
+    ],
   };
 }
 
