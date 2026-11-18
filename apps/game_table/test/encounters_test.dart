@@ -14,6 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/encounters/combat_page.dart';
+import 'package:game_table/encounters/combat_view.dart';
 import 'package:game_table/encounters/encounter_page.dart';
 import 'package:game_table/encounters/foe_picker.dart';
 import 'package:game_table/l10n/app_localizations.dart';
@@ -554,6 +555,12 @@ void main() {
     expect(find.text('surpris'), findsOneWidget);
   });
 
+  /// Bouton « Détail » de la carte de [label].
+  Finder detailOf(String label) => find.descendant(
+    of: find.ancestor(of: find.text(label), matching: find.byType(Card)).first,
+    matching: find.byTooltip('Détail'),
+  );
+
   /// Combat lancé et commencé : le dragon (22, souffle déjà utilisé),
   /// Aldric (19), l'ogre (9).
   Future<void> openCombat(WidgetTester tester) async {
@@ -599,6 +606,8 @@ void main() {
             'ref_id': 'srd:monster:ogre',
             'label': 'Ogre',
             'bonus': -1,
+            'hp': 59,
+            'hp_max': 59,
           },
         ),
         (
@@ -690,7 +699,7 @@ void main() {
 
   _test('détail : actions légendaires, retrait [C8]', (tester) async {
     await openCombat(tester);
-    await _tap(tester, find.text('Dragon noir adulte').first);
+    await _tap(tester, detailOf('Dragon noir adulte'));
     expect(find.text('Actions légendaires'), findsWidgets);
     expect(find.text('3 / 3'), findsWidgets);
     expect(find.text('Disponible'), findsOneWidget);
@@ -703,7 +712,7 @@ void main() {
     Navigator.of(tester.element(find.text('2 / 3'))).pop();
     await tester.pumpAndSettle();
 
-    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, detailOf('Ogre'));
     await _tap(tester, find.text('Retirer du combat'));
     await _settle(tester);
     expect(find.text('Ogre'), findsNothing);
@@ -742,4 +751,102 @@ void main() {
     );
     expect(status!.read<String>('status'), 'finished');
   });
+
+  Future<void> keys(WidgetTester tester, String digits) async {
+    for (final d in digits.split('')) {
+      await _tap(tester, find.widgetWithText(OutlinedButton, d));
+    }
+  }
+
+  _test(
+    'pavé : 12 dégâts tranchants sur Aldric, aperçu puis application [1b]',
+    (tester) async {
+      await openCombat(tester);
+      await _tap(tester, find.text('Aldric'));
+      expect(find.textContaining('Cible : Aldric'), findsOneWidget);
+      await _tap(tester, find.byTooltip('Dégâts'));
+      await keys(tester, '12');
+      expect(find.text('41 → 29 / 49 PV'), findsOneWidget);
+      await _tap(tester, find.text('Appliquer 12 dégâts tranchants'));
+      await _settle(tester);
+      expect(find.text('29 / 49'), findsOneWidget);
+    },
+  );
+
+  _test('pavé : addition de dés, puis soins plafonnés', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '7');
+    await _tap(tester, find.widgetWithText(OutlinedButton, '+'));
+    await keys(tester, '5');
+    expect(find.text('Appliquer 12 dégâts tranchants'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Soins'));
+    expect(find.text('41 → 49 / 49 PV'), findsOneWidget);
+    await _tap(tester, find.text('Soigner de 12 PV'));
+    await _settle(tester);
+    expect(find.text('49 / 49'), findsOneWidget);
+  });
+
+  _test('PV temporaires : le plus haut, ou remplacés au choix', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('PV temp.'));
+    await keys(tester, '8');
+    await _tap(tester, find.text('Donner 8 PV temporaires'));
+    await _settle(tester);
+    expect(find.text('+8 PV temp.'), findsOneWidget);
+    await _tap(tester, find.byTooltip('PV temp.'));
+    await keys(tester, '5');
+    expect(find.text('PV temp. 8 → 8'), findsOneWidget);
+    await _tap(tester, find.text('Remplacer les PV temporaires actuels'));
+    expect(find.text('PV temp. 8 → 5'), findsOneWidget);
+    await _tap(tester, find.text('Donner 5 PV temporaires'));
+    await _settle(tester);
+    expect(find.text('+5 PV temp.'), findsOneWidget);
+  });
+
+  _test('deux cibles, « Résistance ½ » : chacune perd 5', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await tester.longPress(find.text('Ogre'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Cibles : Aldric, Ogre'), findsOneWidget);
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '10');
+    await _tap(tester, find.widgetWithText(ChoiceChip, 'Feu'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Résistance ½'));
+    await _tap(tester, find.text('Appliquer 10 dégâts feu'));
+    await _settle(tester);
+    expect(find.text('36 / 49'), findsOneWidget);
+    expect(find.text('54 / 59'), findsOneWidget);
+  });
+
+  _test(
+    '0 PV : Aldric Inconscient, jets contre la mort ; ogre hors de combat',
+    (tester) async {
+      await openCombat(tester);
+      await _tap(tester, find.text('Aldric'));
+      await tester.longPress(find.text('Ogre'));
+      await tester.pumpAndSettle();
+      await _tap(tester, find.byTooltip('Dégâts'));
+      await keys(tester, '99');
+      await _tap(tester, find.text('Appliquer 99 dégâts tranchants'));
+      await _settle(tester);
+      expect(find.text('Inconscient'), findsOneWidget);
+      expect(find.text('Hors de combat'), findsOneWidget);
+      expect(find.byType(DeathSavesRow), findsOneWidget);
+
+      await _tap(tester, detailOf('Aldric'));
+      await _tap(tester, find.text('Échec'));
+      await _settle(tester);
+      expect(
+        tester
+            .widget<DeathSavesRow>(find.byType(DeathSavesRow).last)
+            .combatant
+            .deathFailures,
+        1,
+      );
+    },
+  );
 }

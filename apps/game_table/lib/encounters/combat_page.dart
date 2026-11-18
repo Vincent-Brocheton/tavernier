@@ -176,19 +176,8 @@ class CombatPage extends ConsumerWidget {
                 ),
               ),
             )
-          : SafeArea(
-              // « Tour suivant » toujours accessible (EF-INI-05).
-              child: Padding(
-                padding: EdgeInsets.all(AppSpacing.md),
-                child: FilledButton.icon(
-                  onPressed: () => appendCombat(ref, id, [
-                    (CombatEventType.turnAdvanced, const {}),
-                  ]),
-                  icon: const Icon(Icons.skip_next),
-                  label: Text(l10n.combatNextTurn),
-                ),
-              ),
-            ),
+          // Le combat porte son propre pied (cibles, Tour suivant).
+          : null,
     );
   }
 }
