@@ -4646,4 +4646,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String keypadConcentration(int dc) {
     return 'Concentration : JS de CON DD $dc';
   }
+
+  @override
+  String keypadInstantDeath(int excess, int max) {
+    return 'Mort sur le coup · excédent $excess ≥ PV max $max (dégâts massifs)';
+  }
+
+  @override
+  String keypadDeathAtZero(int taken, int max) {
+    return 'Mort : $taken dégâts à 0 PV ≥ PV max $max';
+  }
+
+  @override
+  String keypadConcentrationEnds(String consequence) {
+    return 'Concentration : $consequence';
+  }
+
+  @override
+  String get keypadKnockOut => 'Assommer';
+
+  @override
+  String keypadKnockOutHelp(String name) {
+    return 'Attaque de corps à corps seulement : $name reste à 1 PV avec l’état Inconscient.';
+  }
+
+  @override
+  String keypadApplyDies(String name) {
+    return 'Appliquer : $name meurt';
+  }
+
+  @override
+  String keypadApplyKnockOut(String name) {
+    return 'Appliquer : assommer $name';
+  }
+
+  @override
+  String get deathStabilized => 'Soutien réussi';
+
+  @override
+  String conditionEndsConcentration(String consequence) {
+    return 'Met fin à la concentration : $consequence';
+  }
 }

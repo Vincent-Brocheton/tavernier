@@ -7325,6 +7325,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Concentration : JS de CON DD {dc}'**
   String keypadConcentration(int dc);
+
+  /// Aperçu du pavé [F2a] (EF-PV-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mort sur le coup · excédent {excess} ≥ PV max {max} (dégâts massifs)'**
+  String keypadInstantDeath(int excess, int max);
+
+  /// Aperçu du pavé, cible déjà à 0 PV (EF-PV-05).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mort : {taken} dégâts à 0 PV ≥ PV max {max}'**
+  String keypadDeathAtZero(int taken, int max);
+
+  /// Aperçu du pavé : la cible tombe et perd sa concentration (EF-CON-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration : {consequence}'**
+  String keypadConcentrationEnds(String consequence);
+
+  /// Bascule du pavé [F2b] (EF-PV-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Assommer'**
+  String get keypadKnockOut;
+
+  /// Aide d'Assommer [F2b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque de corps à corps seulement : {name} reste à 1 PV avec l’état Inconscient.'**
+  String keypadKnockOutHelp(String name);
+
+  /// Bouton du pavé, mort sur le coup [F2a].
+  ///
+  /// In fr, this message translates to:
+  /// **'Appliquer : {name} meurt'**
+  String keypadApplyDies(String name);
+
+  /// Bouton du pavé avec Assommer [F2b].
+  ///
+  /// In fr, this message translates to:
+  /// **'Appliquer : assommer {name}'**
+  String keypadApplyKnockOut(String name);
+
+  /// Stabilisé par un allié, Sagesse (Médecine) DD 10 [F2c].
+  ///
+  /// In fr, this message translates to:
+  /// **'Soutien réussi'**
+  String get deathStabilized;
+
+  /// [C5] : l'état inflige Neutralisé (EF-CON-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Met fin à la concentration : {consequence}'**
+  String conditionEndsConcentration(String consequence);
 }
 
 class _AppLocalizationsDelegate

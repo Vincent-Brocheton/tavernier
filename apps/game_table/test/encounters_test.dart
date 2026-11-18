@@ -831,8 +831,8 @@ void main() {
       await tester.longPress(find.text('Ogre'));
       await tester.pumpAndSettle();
       await _tap(tester, find.byTooltip('Dégâts'));
-      await keys(tester, '99');
-      await _tap(tester, find.text('Appliquer 99 dégâts tranchants'));
+      await keys(tester, '60');
+      await _tap(tester, find.text('Appliquer 60 dégâts tranchants'));
       await _settle(tester);
       expect(find.text('Inconscient'), findsOneWidget);
       expect(find.text('Hors de combat'), findsOneWidget);
@@ -1174,6 +1174,14 @@ void main() {
           'concentration': 'aldric',
         },
       ),
+      // PV temporaires : Aldric reste debout, sa concentration aussi.
+      (
+        CombatEventType.tempHp,
+        {
+          'targets': ['aldric'],
+          'amount': 10,
+        },
+      ),
       (
         CombatEventType.damage,
         {
@@ -1244,6 +1252,74 @@ void main() {
     await _tap(tester, find.widgetWithText(FilledButton, 'Mettre fin'));
     await _settle(tester);
     expect(chip('Béni · 1 rd'), findsNothing);
+    expect(chip('Concentration · Bénédiction'), findsNothing);
+  });
+
+  _test('0 PV [F2a] : mort sur le coup annoncée, puis appliquée', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '9');
+    expect(find.textContaining('Mort sur le coup'), findsNothing);
+    await keys(tester, '0');
+    expect(
+      find.text('Mort sur le coup · excédent 49 ≥ PV max 49 (dégâts massifs)'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Appliquer : Aldric meurt'));
+    await _settle(tester);
+    expect(find.text('Mort'), findsWidgets);
+  });
+
+  _test('Assommer [F2b] : l\'ogre reste à 1 PV, Inconscient', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '20');
+    expect(find.text('Assommer'), findsNothing);
+    await _tap(tester, find.byTooltip('Effacer'));
+    await _tap(tester, find.byTooltip('Effacer'));
+    await keys(tester, '70');
+    await _tap(tester, find.text('Assommer'));
+    await _tap(tester, find.text('Appliquer : assommer Ogre'));
+    await _settle(tester);
+    expect(find.text('1 / 59'), findsOneWidget);
+    expect(find.textContaining('Inconscient'), findsWidgets);
+  });
+
+  _test('concentration : fin annoncée quand Aldric tombe, puis Soutien', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await log(tester, [blessing]);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '41');
+    expect(find.text('Concentration : Bénédiction prend fin.'), findsOneWidget);
+    await _tap(tester, find.text('Appliquer 41 dégâts tranchants'));
+    await _settle(tester);
+    expect(chip('Concentration · Bénédiction'), findsNothing);
+
+    await _tap(tester, detailOf('Aldric'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Soutien réussi'));
+    await _settle(tester);
+    expect(find.text('Inconscient · stabilisé'), findsWidgets);
+  });
+
+  _test('[C5] : Étourdi annonce la fin de la concentration', (tester) async {
+    await openCombat(tester);
+    await log(tester, [blessing]);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('État'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Étourdi'));
+    expect(
+      find.text('Met fin à la concentration : Bénédiction prend fin.'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Ajouter Étourdi'));
+    await _settle(tester);
     expect(chip('Concentration · Bénédiction'), findsNothing);
   });
 }

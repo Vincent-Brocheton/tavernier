@@ -138,9 +138,9 @@ void main() {
       final mira = projectCombat([
         ..._blessing(),
         _hit('mira', 12),
-        _hit('mira', 30),
+        _hit('mira', 24),
       ]).combatant('mira')!;
-      expect([for (final c in mira.concentrationChecks) c.dc], [10, 15]);
+      expect([for (final c in mira.concentrationChecks) c.dc], [10, 12]);
     });
 
     test('sans concentration ou sans dégât subi : aucun test', () {
@@ -159,11 +159,11 @@ void main() {
       final state = projectCombat([
         ..._blessing(),
         _hit('mira', 12),
-        _hit('mira', 30),
+        _hit('mira', 24),
         _check('mira', success: true),
       ]);
       final mira = state.combatant('mira')!;
-      expect([for (final c in mira.concentrationChecks) c.dc], [15]);
+      expect([for (final c in mira.concentrationChecks) c.dc], [12]);
       expect(mira.concentration, 'Bénédiction');
       expect(_on(state, 'thalia'), ['béni-t']);
     });
@@ -172,7 +172,7 @@ void main() {
       final state = projectCombat([
         ..._blessing(),
         _hit('mira', 12),
-        _hit('mira', 30),
+        _hit('mira', 24),
         _check('mira', success: false),
       ]);
       final mira = state.combatant('mira')!;
