@@ -12,6 +12,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../npcs/stat_block_view.dart';
 import 'combat_view.dart';
+import 'condition_sheets.dart';
 import 'encounters_providers.dart';
 
 /// Ouvre le détail du combattant [id] de [encounter].
@@ -105,6 +106,18 @@ class _CombatantDetail extends ConsumerWidget {
         ],
         if (c.stable && c.unconscious) Text(l10n.combatStable),
         if (c.dead) Text(l10n.combatDead),
+        SizedBox(height: AppSpacing.md),
+        Text(l10n.combatConditions, style: text.titleSmall),
+        if (c.conditions.isNotEmpty)
+          ConditionChips(encounter: encounter, combat: combat!, combatant: c),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: () => showAddCondition(context, encounter, {c.id}),
+            icon: const Icon(Icons.add),
+            label: Text(l10n.conditionAddTitle),
+          ),
+        ),
         SizedBox(height: AppSpacing.md),
         for (final counter in c.counters)
           Card(
