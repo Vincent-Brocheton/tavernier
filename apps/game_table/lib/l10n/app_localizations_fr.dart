@@ -4042,6 +4042,181 @@ class AppLocalizationsFr extends AppLocalizations {
       'Sinon, la valeur la plus haute est gardée.';
 
   @override
+  String get combatCondition => 'État';
+
+  @override
+  String get combatConditions => 'États et effets';
+
+  @override
+  String get conditionAddTitle => 'Ajouter un état';
+
+  @override
+  String conditionTargets(int count, String names) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Cibles : $names',
+      one: 'Cible : $names',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get conditionOther => 'Autre effet';
+
+  @override
+  String get conditionOtherLabel => 'Libellé de l\'effet';
+
+  @override
+  String get conditionImmune => 'Immunité';
+
+  @override
+  String conditionAdd(String name) {
+    return 'Ajouter $name';
+  }
+
+  @override
+  String get conditionLevels => 'Niveaux d\'Épuisement';
+
+  @override
+  String get conditionLevelsLess => 'Un niveau de moins';
+
+  @override
+  String get conditionLevelsMore => 'Un niveau de plus';
+
+  @override
+  String get conditionDc => 'DD';
+
+  @override
+  String get conditionSaveAbility => 'Sauvegarde';
+
+  @override
+  String get conditionRecurring => 'Dégâts récurrents';
+
+  @override
+  String get conditionRecurringDice => 'Dés';
+
+  @override
+  String get conditionRecurringType => 'Type de dégâts';
+
+  @override
+  String get conditionDiceInvalid => 'Ex. : 1d4, 2d6 + 3';
+
+  @override
+  String get conditionRecurringStart => 'Début de son tour';
+
+  @override
+  String get conditionRecurringEnd => 'Fin de son tour';
+
+  @override
+  String conditionRecurringLine(String dice, String type, int at) {
+    String _temp0 = intl.Intl.pluralLogic(
+      at,
+      locale: localeName,
+      other: 'à la fin',
+      zero: 'au début',
+    );
+    return '$dice dégâts $type $_temp0 de chacun de ses tours';
+  }
+
+  @override
+  String get durationRounds => 'Nombre de rounds';
+
+  @override
+  String get durationRoundsLess => 'Un round de moins';
+
+  @override
+  String get durationRoundsMore => 'Un round de plus';
+
+  @override
+  String get durationTurnStart => 'Jusqu\'au début du tour de…';
+
+  @override
+  String get durationTurnEnd => 'Jusqu\'à la fin du tour de…';
+
+  @override
+  String get durationSave => 'Jusqu\'à réussite d\'une sauvegarde';
+
+  @override
+  String get durationSaveHelp => 'Rappel à la fin de chacun de ses tours.';
+
+  @override
+  String get durationIndefinite => 'Indéfinie';
+
+  @override
+  String conditionExhaustion(int level) {
+    return 'Épuisement $level';
+  }
+
+  @override
+  String chipRounds(int count) {
+    return '$count rd';
+  }
+
+  @override
+  String chipTurnStart(String name) {
+    return 'début tour $name';
+  }
+
+  @override
+  String chipTurnEnd(String name) {
+    return 'fin tour $name';
+  }
+
+  @override
+  String chipSave(String ability, int dc) {
+    return 'JS $ability DD $dc';
+  }
+
+  @override
+  String longRounds(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'pendant encore $count rounds',
+      one: 'pendant encore 1 round',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String longTurnStart(String name) {
+    return 'jusqu\'au début du tour de $name';
+  }
+
+  @override
+  String longTurnEnd(String name) {
+    return 'jusqu\'à la fin du tour de $name';
+  }
+
+  @override
+  String longSave(String ability, int dc) {
+    return 'jusqu\'à réussite d\'un JS de $ability DD $dc, refait à la fin de chacun de ses tours';
+  }
+
+  @override
+  String get longIndefinite => 'durée indéfinie';
+
+  @override
+  String conditionSource(String source) {
+    return 'État · $source';
+  }
+
+  @override
+  String get conditionInCombat => 'Dans ce combat';
+
+  @override
+  String conditionLine(String name, String duration) {
+    return '$name · $duration';
+  }
+
+  @override
+  String get conditionRemove => 'Retirer l\'état';
+
+  @override
+  String get conditionRemoveLevel => 'Retirer un niveau';
+
+  @override
   String get keypadDouble => 'Vulnérabilité ×2';
 
   @override

@@ -849,4 +849,141 @@ void main() {
       );
     },
   );
+
+  Finder chip(String text) => find.text(text, findRichText: true);
+
+  _test("état : Entravé jusqu'à une sauvegarde, fiche, retrait [C5] [K4]", (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, find.byTooltip('État'));
+    expect(find.text('Cible : Ogre'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Entravé'));
+    expect(
+      find.textContaining('Vitesse 0', findRichText: true),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text("Jusqu'à réussite d'une sauvegarde"));
+    await tester.enterText(find.widgetWithText(TextField, 'DD'), '13');
+    await _tap(tester, find.text('Ajouter Entravé'));
+    await _settle(tester);
+    expect(chip('Entravé · JS FOR DD 13'), findsOneWidget);
+
+    await _tap(tester, chip('Entravé · JS FOR DD 13'));
+    expect(
+      find.text(
+        "Ogre · jusqu'à réussite d'un JS de Force DD 13, refait à la fin de "
+        'chacun de ses tours',
+      ),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Vitesse 0'), findsOneWidget);
+    await _tap(tester, find.text("Retirer l'état"));
+    await _settle(tester);
+    expect(chip('Entravé · JS FOR DD 13'), findsNothing);
+  });
+
+  _test('état : Effrayé 2 rounds sur deux cibles', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await tester.longPress(find.text('Ogre'));
+    await tester.pumpAndSettle();
+    await _tap(tester, find.byTooltip('État'));
+    expect(find.text('Cibles : Aldric, Ogre'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Effrayé'));
+    await _tap(tester, find.byTooltip('Un round de plus'));
+    await _tap(tester, find.text('Ajouter Effrayé'));
+    await _settle(tester);
+    expect(chip('Effrayé · 2 rd'), findsNWidgets(2));
+  });
+
+  _test('état : Épuisement 2, puis un niveau retiré', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('État'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Épuisement'));
+    expect(find.text('Nombre de rounds'), findsNothing);
+    await _tap(tester, find.byTooltip('Un niveau de plus'));
+    await _tap(tester, find.text('Ajouter Épuisement'));
+    await _settle(tester);
+    expect(chip('Épuisement 2'), findsOneWidget);
+    await _tap(tester, chip('Épuisement 2'));
+    await _tap(tester, find.text('Retirer un niveau'));
+    await _settle(tester);
+    // La puce, et le titre de la fiche restée ouverte.
+    expect(chip('Épuisement 1'), findsNWidgets(2));
+  });
+
+  _test('état : autre effet « En feu », 1d4 de feu à chaque début de tour', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, find.byTooltip('État'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Autre effet'));
+    expect(find.text('Ajouter Autre effet'), findsOneWidget);
+    await tester.enterText(
+      find.widgetWithText(TextField, "Libellé de l'effet"),
+      'En feu',
+    );
+    await _tap(tester, find.text('Indéfinie'));
+    await _tap(tester, find.text('Dégâts récurrents'));
+    await _tap(tester, find.text('Ajouter En feu'));
+    await _settle(tester);
+    expect(chip('En feu'), findsOneWidget);
+    await _tap(tester, chip('En feu'));
+    expect(
+      find.text(
+        'Ogre · durée indéfinie\n'
+        '1d4 dégâts feu au début de chacun de ses tours',
+      ),
+      findsOneWidget,
+    );
+  });
+
+  _test('état : un squelette ne peut pas être Empoisonné', (tester) async {
+    await openCombat(tester);
+    await tester.runAsync(
+      () => CombatStore(_db).append(_relais, authorUserId: _camille, [
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'squelette',
+            'kind': 'monster',
+            'label': 'Squelette',
+            'hp': 13,
+            'hp_max': 13,
+            'condition_immunities': [
+              'srd:condition:poisoned',
+              'srd:condition:exhaustion',
+            ],
+          },
+        ),
+      ]),
+    );
+    await _settle(tester);
+    await _tap(tester, find.text('Squelette'));
+    await _tap(tester, find.byTooltip('État'));
+    final poisoned = tester.widget<OutlinedButton>(
+      find.widgetWithText(OutlinedButton, 'Empoisonné'),
+    );
+    expect(poisoned.onPressed, isNull);
+    expect(
+      tester
+          .widget<OutlinedButton>(
+            find.widgetWithText(OutlinedButton, 'Aveuglé'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+  });
+
+  _test('détail : états et « Ajouter un état »', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, detailOf('Ogre'));
+    expect(find.text('États et effets'), findsOneWidget);
+    await _tap(tester, find.text('Ajouter un état'));
+    expect(find.text('Cible : Ogre'), findsOneWidget);
+  });
 }

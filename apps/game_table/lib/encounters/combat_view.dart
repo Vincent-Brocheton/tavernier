@@ -17,6 +17,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../tables/tables_providers.dart';
 import 'combatant_sheet.dart';
+import 'condition_sheets.dart';
 import 'damage_keypad.dart';
 import 'encounters_providers.dart';
 import 'foe_picker.dart';
@@ -262,6 +263,7 @@ class _CombatViewState extends ConsumerState<CombatView> {
                 for (final c in combat.members(unit))
                   _CombatantCard(
                     encounter: encounter,
+                    combat: combat,
                     combatant: c,
                     active: combat.active == unit,
                     targeted: _targets.contains(c.id),
@@ -322,6 +324,18 @@ class _CombatViewState extends ConsumerState<CombatView> {
                               : () => keypad(mode),
                         ),
                       ),
+                    Padding(
+                      padding: EdgeInsets.only(right: AppSpacing.xs),
+                      child: IconButton.filledTonal(
+                        tooltip: l10n.combatCondition,
+                        icon: const Icon(Icons.label_outline),
+                        onPressed: _targets.isEmpty
+                            ? null
+                            : () => showAddCondition(context, encounter, {
+                                ..._targets,
+                              }),
+                      ),
+                    ),
                     Expanded(
                       child: FilledButton.icon(
                         onPressed: () => appendCombat(ref, encounter.id, [
@@ -480,6 +494,7 @@ class _RechargeReminder extends ConsumerWidget {
 class _CombatantCard extends StatelessWidget {
   const _CombatantCard({
     required this.encounter,
+    required this.combat,
     required this.combatant,
     required this.active,
     required this.targeted,
@@ -489,6 +504,7 @@ class _CombatantCard extends StatelessWidget {
   });
 
   final Encounter encounter;
+  final CombatState combat;
   final Combatant combatant;
   final bool active;
   final bool targeted;
@@ -563,6 +579,12 @@ class _CombatantCard extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: AppSpacing.xxs),
                         child: DeathSavesRow(combatant: c),
+                      ),
+                    if (c.conditions.isNotEmpty)
+                      ConditionChips(
+                        encounter: encounter,
+                        combat: combat,
+                        combatant: c,
                       ),
                   ],
                 ),

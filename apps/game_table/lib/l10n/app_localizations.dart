@@ -6462,6 +6462,264 @@ abstract class AppLocalizations {
   /// **'Sinon, la valeur la plus haute est gardée.'**
   String get keypadReplaceTempHelp;
 
+  /// Bouton du pied du combat ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'État'**
+  String get combatCondition;
+
+  /// No description provided for @combatConditions.
+  ///
+  /// In fr, this message translates to:
+  /// **'États et effets'**
+  String get combatConditions;
+
+  /// No description provided for @conditionAddTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un état'**
+  String get conditionAddTitle;
+
+  /// Feuille [C5].
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Cible : {names}} other{Cibles : {names}}}'**
+  String conditionTargets(int count, String names);
+
+  /// No description provided for @conditionOther.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre effet'**
+  String get conditionOther;
+
+  /// No description provided for @conditionOtherLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Libellé de l\'effet'**
+  String get conditionOtherLabel;
+
+  /// No description provided for @conditionImmune.
+  ///
+  /// In fr, this message translates to:
+  /// **'Immunité'**
+  String get conditionImmune;
+
+  /// Bouton principal de [C5].
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter {name}'**
+  String conditionAdd(String name);
+
+  /// No description provided for @conditionLevels.
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveaux d\'Épuisement'**
+  String get conditionLevels;
+
+  /// No description provided for @conditionLevelsLess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un niveau de moins'**
+  String get conditionLevelsLess;
+
+  /// No description provided for @conditionLevelsMore.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un niveau de plus'**
+  String get conditionLevelsMore;
+
+  /// No description provided for @conditionDc.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD'**
+  String get conditionDc;
+
+  /// No description provided for @conditionSaveAbility.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sauvegarde'**
+  String get conditionSaveAbility;
+
+  /// No description provided for @conditionRecurring.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts récurrents'**
+  String get conditionRecurring;
+
+  /// No description provided for @conditionRecurringDice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dés'**
+  String get conditionRecurringDice;
+
+  /// No description provided for @conditionRecurringType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de dégâts'**
+  String get conditionRecurringType;
+
+  /// No description provided for @conditionDiceInvalid.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ex. : 1d4, 2d6 + 3'**
+  String get conditionDiceInvalid;
+
+  /// No description provided for @conditionRecurringStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Début de son tour'**
+  String get conditionRecurringStart;
+
+  /// No description provided for @conditionRecurringEnd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin de son tour'**
+  String get conditionRecurringEnd;
+
+  /// Fiche d'état.
+  ///
+  /// In fr, this message translates to:
+  /// **'{dice} dégâts {type} {at, plural, =0{au début} other{à la fin}} de chacun de ses tours'**
+  String conditionRecurringLine(String dice, String type, int at);
+
+  /// No description provided for @durationRounds.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre de rounds'**
+  String get durationRounds;
+
+  /// No description provided for @durationRoundsLess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un round de moins'**
+  String get durationRoundsLess;
+
+  /// No description provided for @durationRoundsMore.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un round de plus'**
+  String get durationRoundsMore;
+
+  /// No description provided for @durationTurnStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu\'au début du tour de…'**
+  String get durationTurnStart;
+
+  /// No description provided for @durationTurnEnd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu\'à la fin du tour de…'**
+  String get durationTurnEnd;
+
+  /// No description provided for @durationSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu\'à réussite d\'une sauvegarde'**
+  String get durationSave;
+
+  /// No description provided for @durationSaveHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappel à la fin de chacun de ses tours.'**
+  String get durationSaveHelp;
+
+  /// No description provided for @durationIndefinite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indéfinie'**
+  String get durationIndefinite;
+
+  /// Puce d'Épuisement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Épuisement {level}'**
+  String conditionExhaustion(int level);
+
+  /// Durée courte d'une puce d'état.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} rd'**
+  String chipRounds(int count);
+
+  /// No description provided for @chipTurnStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'début tour {name}'**
+  String chipTurnStart(String name);
+
+  /// No description provided for @chipTurnEnd.
+  ///
+  /// In fr, this message translates to:
+  /// **'fin tour {name}'**
+  String chipTurnEnd(String name);
+
+  /// No description provided for @chipSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'JS {ability} DD {dc}'**
+  String chipSave(String ability, int dc);
+
+  /// Durée en clair ([K4]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{pendant encore 1 round} other{pendant encore {count} rounds}}'**
+  String longRounds(int count);
+
+  /// No description provided for @longTurnStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'jusqu\'au début du tour de {name}'**
+  String longTurnStart(String name);
+
+  /// No description provided for @longTurnEnd.
+  ///
+  /// In fr, this message translates to:
+  /// **'jusqu\'à la fin du tour de {name}'**
+  String longTurnEnd(String name);
+
+  /// No description provided for @longSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'jusqu\'à réussite d\'un JS de {ability} DD {dc}, refait à la fin de chacun de ses tours'**
+  String longSave(String ability, int dc);
+
+  /// No description provided for @longIndefinite.
+  ///
+  /// In fr, this message translates to:
+  /// **'durée indéfinie'**
+  String get longIndefinite;
+
+  /// No description provided for @conditionSource.
+  ///
+  /// In fr, this message translates to:
+  /// **'État · {source}'**
+  String conditionSource(String source);
+
+  /// No description provided for @conditionInCombat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dans ce combat'**
+  String get conditionInCombat;
+
+  /// No description provided for @conditionLine.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · {duration}'**
+  String conditionLine(String name, String duration);
+
+  /// No description provided for @conditionRemove.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l\'état'**
+  String get conditionRemove;
+
+  /// No description provided for @conditionRemoveLevel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer un niveau'**
+  String get conditionRemoveLevel;
+
   /// Correction manuelle (EF-PV-04).
   ///
   /// In fr, this message translates to:
