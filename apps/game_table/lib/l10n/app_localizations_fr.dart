@@ -3761,6 +3761,200 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get encounterDifficultyTitle => 'Difficulté';
+
+  @override
+  String encounterPartySame(int count, int level) {
+    return '$count PJ de niveau $level';
+  }
+
+  @override
+  String encounterPartyMixed(int count) {
+    return '$count PJ';
+  }
+
+  @override
+  String get encounterNoParty => 'Aucun personnage présent';
+
+  @override
+  String get encounterReadyToPlay => 'Prête à jouer';
+
+  @override
+  String get encounterPresent => 'Personnages présents';
+
+  @override
+  String get encounterFoes => 'Adversaires';
+
+  @override
+  String get encounterHpMode => 'PV des monstres';
+
+  @override
+  String get encounterHpAverage => 'Moyenne';
+
+  @override
+  String get encounterHpRoll => 'Jet au lancement';
+
+  @override
+  String encounterCr(String cr) {
+    return 'FP $cr';
+  }
+
+  @override
+  String encounterNumbered(String name, int count) {
+    return 'numérotés $name 1 à $count';
+  }
+
+  @override
+  String get encounterUnique => 'unique';
+
+  @override
+  String get encounterSharedInitiative => 'Initiative commune';
+
+  @override
+  String get encounterOneLess => 'Un de moins';
+
+  @override
+  String get encounterOneMore => 'Un de plus';
+
+  @override
+  String get encounterAddFoe => 'Ajouter un adversaire';
+
+  @override
+  String encounterAddNamed(String name) {
+    return 'Ajouter $name';
+  }
+
+  @override
+  String get encounterPickerSearch => 'Bestiaire, PNJ';
+
+  @override
+  String get encounterPickerMonsters => 'Monstres';
+
+  @override
+  String get encounterCrAll => 'Tous les FP';
+
+  @override
+  String encounterCrRange(String min, String max) {
+    return 'FP $min à $max';
+  }
+
+  @override
+  String encounterMonsterLine(String type, String cr, String xp) {
+    return '$type · FP $cr · $xp PX';
+  }
+
+  @override
+  String get encounterBudgetNote =>
+      'Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.';
+
+  @override
+  String get encounterLaunch => 'Lancer la rencontre';
+
+  @override
+  String get encounterResume => 'Reprendre le combat';
+
+  @override
+  String get combatUnreadable =>
+      'Ce combat ne peut pas être lu : mettez l’application à jour.';
+
+  @override
+  String combatLaunching(String title) {
+    return '$title · lancement';
+  }
+
+  @override
+  String get combatInitiative => 'Initiative';
+
+  @override
+  String combatRound(int round) {
+    return 'Round $round';
+  }
+
+  @override
+  String combatTurnOf(int round, String name) {
+    return 'Round $round · tour de $name';
+  }
+
+  @override
+  String get combatAllRolled => 'Tous les jets sont saisis';
+
+  @override
+  String get combatStart => 'Commencer le round 1';
+
+  @override
+  String combatGroupLabel(String name, int count) {
+    return '$name 1–$count';
+  }
+
+  @override
+  String get combatSurprise => 'Surprise';
+
+  @override
+  String get combatSurpriseHelp =>
+      'Les combattants surpris ont le Désavantage au jet d’initiative.';
+
+  @override
+  String combatPc(String player) {
+    return 'PJ · $player';
+  }
+
+  @override
+  String get combatNpc => 'PNJ';
+
+  @override
+  String get combatSurprised => 'surpris';
+
+  @override
+  String get combatAdvantage => 'Avantage';
+
+  @override
+  String get combatDisadvantage => 'Désavantage';
+
+  @override
+  String combatRollDropped(int kept, int dropped) {
+    return '$kept ($dropped)';
+  }
+
+  @override
+  String get combatDie => 'd20';
+
+  @override
+  String get combatEnteredByGm => 'Saisi par le MJ';
+
+  @override
+  String get combatAutoRoll => 'Jet automatique';
+
+  @override
+  String get combatOrder => 'Ordre du tour';
+
+  @override
+  String get combatTieGm => 'Égalité · le MJ décide';
+
+  @override
+  String combatTiePlayers(String players) {
+    return 'Égalité · $players décident';
+  }
+
+  @override
+  String combatPlayersAnd(String first, String second) {
+    return '$first et $second';
+  }
+
+  @override
+  String combatTieGmHelp(int total) {
+    return 'Égalité à $total : vous choisissez l’ordre. Glissez pour le changer.';
+  }
+
+  @override
+  String combatTiePlayersHelp(int total, String players) {
+    return 'Égalité à $total : $players choisissent l’ordre depuis leur téléphone, ou vous le faites pour eux.';
+  }
+
+  @override
+  String get combatOrderNote =>
+      'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.';
+
+  @override
   String encounterQuantity(int count) {
     return '×$count';
   }

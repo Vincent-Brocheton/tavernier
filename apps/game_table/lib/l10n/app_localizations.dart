@@ -6006,6 +6006,318 @@ abstract class AppLocalizations {
   /// **'{name} ×{count}'**
   String encounterFoe(String name, int count);
 
+  /// Jauge de difficulté ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Difficulté'**
+  String get encounterDifficultyTitle;
+
+  /// Légende de la jauge : PJ présents de même niveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} PJ de niveau {level}'**
+  String encounterPartySame(int count, int level);
+
+  /// Légende de la jauge : PJ de niveaux différents.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} PJ'**
+  String encounterPartyMixed(int count);
+
+  /// Rencontre sans PJ présent : pas de budget.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun personnage présent'**
+  String get encounterNoParty;
+
+  /// Passe la rencontre de brouillon à prête.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prête à jouer'**
+  String get encounterReadyToPlay;
+
+  /// Préparation d'une rencontre ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnages présents'**
+  String get encounterPresent;
+
+  /// Préparation d'une rencontre ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Adversaires'**
+  String get encounterFoes;
+
+  /// Mode de PV (EF-REN-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV des monstres'**
+  String get encounterHpMode;
+
+  /// PV moyens.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyenne'**
+  String get encounterHpAverage;
+
+  /// PV tirés aux dés au lancement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet au lancement'**
+  String get encounterHpRoll;
+
+  /// Facteur de puissance d'un adversaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {cr}'**
+  String encounterCr(String cr);
+
+  /// Numérotation automatique (EF-REN-02).
+  ///
+  /// In fr, this message translates to:
+  /// **'numérotés {name} 1 à {count}'**
+  String encounterNumbered(String name, int count);
+
+  /// Adversaire en un seul exemplaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'unique'**
+  String get encounterUnique;
+
+  /// Un jet d'initiative pour tout le groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative commune'**
+  String get encounterSharedInitiative;
+
+  /// Infobulle du bouton − d'un groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un de moins'**
+  String get encounterOneLess;
+
+  /// Infobulle du bouton + d'un groupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un de plus'**
+  String get encounterOneMore;
+
+  /// Ouvre l'ajout d'adversaires (téléphone).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un adversaire'**
+  String get encounterAddFoe;
+
+  /// Infobulle du bouton + d'un adversaire proposé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter {name}'**
+  String encounterAddNamed(String name);
+
+  /// Recherche de l'ajout d'adversaires ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bestiaire, PNJ'**
+  String get encounterPickerSearch;
+
+  /// Onglet de l'ajout d'adversaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monstres'**
+  String get encounterPickerMonsters;
+
+  /// Filtre de FP inactif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les FP'**
+  String get encounterCrAll;
+
+  /// Filtre de FP.
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {min} à {max}'**
+  String encounterCrRange(String min, String max);
+
+  /// Monstre proposé à l'ajout ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{type} · FP {cr} · {xp} PX'**
+  String encounterMonsterLine(String type, String cr, String xp);
+
+  /// Note sous la préparation ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.'**
+  String get encounterBudgetNote;
+
+  /// Crée les combattants et ouvre l'initiative ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer la rencontre'**
+  String get encounterLaunch;
+
+  /// Rencontre en cours : retour au combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre le combat'**
+  String get encounterResume;
+
+  /// Journal avec un événement inconnu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce combat ne peut pas être lu : mettez l’application à jour.'**
+  String get combatUnreadable;
+
+  /// Surtitre de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} · lancement'**
+  String combatLaunching(String title);
+
+  /// Titre de l'écran d'initiative.
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative'**
+  String get combatInitiative;
+
+  /// Round du combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Round {round}'**
+  String combatRound(int round);
+
+  /// Unité active.
+  ///
+  /// In fr, this message translates to:
+  /// **'Round {round} · tour de {name}'**
+  String combatTurnOf(int round, String name);
+
+  /// Initiative prête.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les jets sont saisis'**
+  String get combatAllRolled;
+
+  /// Ouvre le combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer le round 1'**
+  String get combatStart;
+
+  /// Groupe à initiative commune.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} 1–{count}'**
+  String combatGroupLabel(String name, int count);
+
+  /// Section de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Surprise'**
+  String get combatSurprise;
+
+  /// Règle de la surprise (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les combattants surpris ont le Désavantage au jet d’initiative.'**
+  String get combatSurpriseHelp;
+
+  /// Sous-titre d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'PJ · {player}'**
+  String combatPc(String player);
+
+  /// Sous-titre d'un PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'PNJ'**
+  String get combatNpc;
+
+  /// Combattant surpris.
+  ///
+  /// In fr, this message translates to:
+  /// **'surpris'**
+  String get combatSurprised;
+
+  /// Mode du jet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avantage'**
+  String get combatAdvantage;
+
+  /// Mode du jet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désavantage'**
+  String get combatDisadvantage;
+
+  /// Dé gardé et dé écarté.
+  ///
+  /// In fr, this message translates to:
+  /// **'{kept} ({dropped})'**
+  String combatRollDropped(int kept, int dropped);
+
+  /// Saisie du dé gardé d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'d20'**
+  String get combatDie;
+
+  /// Origine du jet d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisi par le MJ'**
+  String get combatEnteredByGm;
+
+  /// Origine du jet d'un monstre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet automatique'**
+  String get combatAutoRoll;
+
+  /// Panneau de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordre du tour'**
+  String get combatOrder;
+
+  /// Badge d'égalité (InitiativeTieBadge).
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité · le MJ décide'**
+  String get combatTieGm;
+
+  /// Badge d'égalité entre PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité · {players} décident'**
+  String combatTiePlayers(String players);
+
+  /// Joueurs qui décident.
+  ///
+  /// In fr, this message translates to:
+  /// **'{first} et {second}'**
+  String combatPlayersAnd(String first, String second);
+
+  /// Égalité tranchée par le MJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité à {total} : vous choisissez l’ordre. Glissez pour le changer.'**
+  String combatTieGmHelp(int total);
+
+  /// Égalité entre PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité à {total} : {players} choisissent l’ordre depuis leur téléphone, ou vous le faites pour eux.'**
+  String combatTiePlayersHelp(int total, String players);
+
+  /// Pied de l'ordre du tour ([C3], décision 25).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.'**
+  String get combatOrderNote;
+
   /// Nombre d'exemplaires d'un adversaire.
   ///
   /// In fr, this message translates to:

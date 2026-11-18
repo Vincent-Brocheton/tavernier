@@ -5849,137 +5849,6 @@ class EncounterGroup extends Table with TableInfo {
   bool get dontWriteConstraints => true;
 }
 
-class Combatant extends Table with TableInfo {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  Combatant(this.attachedDatabase, [this._alias]);
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-    'id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
-    'encounter_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
-    'kind',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  late final GeneratedColumn<String> refId = GeneratedColumn<String>(
-    'ref_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<String> label = GeneratedColumn<String>(
-    'label',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  late final GeneratedColumn<int> initiative = GeneratedColumn<int>(
-    'initiative',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<String> groupId = GeneratedColumn<String>(
-    'group_id',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<int> hp = GeneratedColumn<int>(
-    'hp',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<int> ac = GeneratedColumn<int>(
-    'ac',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<String> attitude = GeneratedColumn<String>(
-    'attitude',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    $customConstraints: 'NULL',
-  );
-  late final GeneratedColumn<int> visible = GeneratedColumn<int>(
-    'visible',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    $customConstraints: 'NOT NULL DEFAULT 1 CHECK (visible IN (0, 1))',
-    defaultValue: const CustomExpression('1'),
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    encounterId,
-    kind,
-    refId,
-    label,
-    initiative,
-    groupId,
-    hp,
-    ac,
-    attitude,
-    visible,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'combatant';
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  Never map(Map<String, dynamic> data, {String? tablePrefix}) {
-    throw UnsupportedError('TableInfo.map in schema verification code');
-  }
-
-  @override
-  Combatant createAlias(String alias) {
-    return Combatant(attachedDatabase, alias);
-  }
-
-  @override
-  List<String> get customConstraints => const ['PRIMARY KEY(id)'];
-  @override
-  bool get dontWriteConstraints => true;
-}
-
 class EncounterEvent extends Table with TableInfo {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -5993,6 +5862,14 @@ class EncounterEvent extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
   late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
     'encounter_id',
     aliasedName,
@@ -6001,16 +5878,8 @@ class EncounterEvent extends Table with TableInfo {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
-  late final GeneratedColumn<int> round = GeneratedColumn<int>(
-    'round',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
-  );
-  late final GeneratedColumn<String> actorId = GeneratedColumn<String>(
-    'actor_id',
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
     aliasedName,
     true,
     type: DriftSqlType.string,
@@ -6030,11 +5899,12 @@ class EncounterEvent extends Table with TableInfo {
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    $customConstraints: 'NOT NULL',
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT \'{}\'',
+    defaultValue: const CustomExpression('\'{}\''),
   );
-  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
-    'author_user_id',
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+    'created_at',
     aliasedName,
     true,
     type: DriftSqlType.string,
@@ -6044,12 +5914,12 @@ class EncounterEvent extends Table with TableInfo {
   @override
   List<GeneratedColumn> get $columns => [
     id,
+    tableId,
     encounterId,
-    round,
-    actorId,
+    authorUserId,
     type,
     payload,
-    authorUserId,
+    createdAt,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -6292,7 +6162,6 @@ class DatabaseAtV1 extends GeneratedDatabase {
   late final NpcStatblock npcStatblock = NpcStatblock(this);
   late final Encounter encounter = Encounter(this);
   late final EncounterGroup encounterGroup = EncounterGroup(this);
-  late final Combatant combatant = Combatant(this);
   late final EncounterEvent encounterEvent = EncounterEvent(this);
   late final Note note = Note(this);
   late final AuthorIdentity authorIdentity = AuthorIdentity(this);
@@ -6364,7 +6233,6 @@ class DatabaseAtV1 extends GeneratedDatabase {
     npcStatblock,
     encounter,
     encounterGroup,
-    combatant,
     encounterEvent,
     note,
     authorIdentity,

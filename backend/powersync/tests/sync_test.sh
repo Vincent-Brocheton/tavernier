@@ -75,6 +75,8 @@ insert into encounter (id, table_id, session_id, title)
   values ('r1', 't1', 'se1', 'Le relais du Sel');
 insert into encounter_group (id, encounter_id, table_id, kind, ref_id, quantity)
   values ('g1', 'r1', 't1', 'monster', 'srd:monster:veteran', 2);
+insert into encounter_event (id, encounter_id, table_id, author_user_id, type)
+  values ('j1', 'r1', 't1', '${id[mj]}', 'combat_started');
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -120,7 +122,8 @@ c2=(character/c2 character_state/s2)
 
 expect mj "le MJ reçoit sa table, ses invitations, toutes les fiches et ses PNJ" \
   "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}" \
-  character/n1 npc_statblock/pnj1 encounter/r1 encounter_group/g1
+  character/n1 npc_statblock/pnj1 encounter/r1 encounter_group/g1 \
+  encounter_event/j1
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
   "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}"
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \

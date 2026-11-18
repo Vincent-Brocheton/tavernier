@@ -74,7 +74,6 @@ part 'database.g.dart';
     NpcStatblocks,
     Encounters,
     EncounterGroups,
-    Combatants,
     EncounterEvents,
     Notes,
     AuthorIdentities,

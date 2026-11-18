@@ -13,11 +13,7 @@ const userDataVersion = 1;
 /// locales de jeu (M3). Les clés de pack (`author_identity`) n'y sont pas.
 List<String> userDataTables(TavernierDatabase db) => [
   ...syncedTables,
-  for (final TableInfo<Table, Object?> table in [
-    db.combatants,
-    db.encounterEvents,
-    db.notes,
-  ])
+  for (final TableInfo<Table, Object?> table in [db.notes])
     table.actualTableName,
 ];
 

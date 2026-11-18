@@ -22,11 +22,19 @@ final tableEncountersProvider = StreamProvider.family<List<Encounter>, String>(
   (ref, tableId) => ref.watch(encounterStoreProvider).watchList(tableId),
 );
 
-/// Un adversaire préparé : nom, nombre, PX d'un exemplaire.
-typedef Foe = ({String name, int quantity, int xp});
+/// Un adversaire préparé : son groupe, son nom, son nombre, son FP (`null`
+/// sans profil), les PX d'un exemplaire et son initiative commune.
+typedef Foe = ({
+  String groupId,
+  String name,
+  int quantity,
+  String? cr,
+  int xp,
+  bool sharedInitiative,
+});
 
-/// Adversaires de [encounter]. Un PNJ prend les PX de son monstre de
-/// départ ; une fiche complète ou une référence introuvable vaut 0 PX.
+/// Adversaires de [encounter]. Un PNJ prend le FP et les PX de son monstre
+/// de départ ; une fiche complète ou une référence introuvable vaut 0 PX.
 List<Foe> foesOf(
   AppLocalizations l10n,
   Encounter encounter,
@@ -34,29 +42,36 @@ List<Foe> foesOf(
   List<Npc> npcs,
 ) => [
   for (final group in encounter.groups)
-    switch (group.kind) {
-      'npc' => switch (npcs.where((n) => n.id == group.refId).firstOrNull) {
-        final npc? => (
-          name: npc.name,
-          quantity: group.quantity,
-          xp: monsterOf(content, npc.monsterId)?.xp ?? 0,
-        ),
-        null => (
-          name: l10n.encounterFoeMissing,
-          quantity: group.quantity,
-          xp: 0,
-        ),
-      },
-      _ => switch (content.entity(group.refId)) {
-        ContentEntity(:final name, data: final MonsterData monster) => (
-          name: name,
-          quantity: group.quantity,
-          xp: monster.xp,
-        ),
-        _ => (name: l10n.encounterFoeMissing, quantity: group.quantity, xp: 0),
-      },
-    },
+    if (_profileOf(l10n, group, content, npcs) case (final name, final monster))
+      (
+        groupId: group.id,
+        name: name,
+        quantity: group.quantity,
+        cr: monster?.cr,
+        xp: monster?.xp ?? 0,
+        sharedInitiative: group.sharedInitiative,
+      ),
 ];
+
+/// Nom et profil d'un groupe : le monstre, ou le monstre de départ d'un PNJ.
+(String, MonsterData?) _profileOf(
+  AppLocalizations l10n,
+  EncounterGroup group,
+  ActiveContent content,
+  List<Npc> npcs,
+) => switch (group.kind) {
+  'npc' => switch (npcs.where((n) => n.id == group.refId).firstOrNull) {
+    final npc? => (npc.name, monsterOf(content, npc.monsterId)),
+    null => (l10n.encounterFoeMissing, null),
+  },
+  _ => switch (content.entity(group.refId)) {
+    ContentEntity(:final name, data: final MonsterData monster) => (
+      name,
+      monster,
+    ),
+    _ => (l10n.encounterFoeMissing, null),
+  },
+};
 
 /// Total des PX des adversaires.
 int xpOfFoes(List<Foe> foes) =>
@@ -117,3 +132,13 @@ String encounterSummary(
       difficultyLabel(l10n, encounterDifficulty(xp, encounterBudget(levels))),
   ].join(' · ');
 }
+
+/// Seule voie d'écriture du journal du combat (cahier §10).
+final combatStoreProvider = Provider<CombatStore>(
+  (ref) => CombatStore(ref.watch(databaseProvider)),
+);
+
+/// État d'un combat : la projection de son journal.
+final combatStateProvider = StreamProvider.family<CombatState, String>(
+  (ref, encounterId) => ref.watch(combatStoreProvider).watchState(encounterId),
+);

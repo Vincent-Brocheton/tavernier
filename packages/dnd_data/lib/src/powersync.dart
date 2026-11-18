@@ -21,6 +21,7 @@ const syncedTables = {
   'npc_statblock',
   'encounter',
   'encounter_group',
+  'encounter_event',
   'character_summary',
   'character',
   'character_base_scores',
