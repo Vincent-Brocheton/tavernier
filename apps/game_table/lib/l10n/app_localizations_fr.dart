@@ -4211,6 +4211,115 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get chipExpires => 'expire';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String turnEndTitle(String name) {
+    return 'Fin du tour · $name';
+  }
+
+  @override
+  String turnStartTitle(String name) {
+    return 'Début du tour · $name';
+  }
+
+  @override
+  String reminderSaveTitle(String name) {
+    return '$name · sauvegarde à refaire';
+  }
+
+  @override
+  String reminderSaveLine(String ability, int dc) {
+    return 'JS de $ability DD $dc';
+  }
+
+  @override
+  String reminderBonus(String bonus) {
+    return 'bonus $bonus';
+  }
+
+  @override
+  String reminderSaveHelp(String name) {
+    return 'Réussite : l\'état $name est retiré.';
+  }
+
+  @override
+  String get reminderRoll => 'Lancer';
+
+  @override
+  String get reminderFailed => 'Échec';
+
+  @override
+  String get reminderSucceeded => 'Réussite';
+
+  @override
+  String reminderRolled(String outcome, int total) {
+    return '$outcome · $total';
+  }
+
+  @override
+  String reminderExpiresTitle(String name) {
+    return '$name · expire';
+  }
+
+  @override
+  String reminderDuration(String duration) {
+    return 'Durée : $duration';
+  }
+
+  @override
+  String get reminderRemoved => 'Retiré';
+
+  @override
+  String reminderRecurringTitle(String name) {
+    return '$name · dégâts récurrents';
+  }
+
+  @override
+  String reminderRecurringLine(String dice, String type) {
+    return '$dice dégâts $type';
+  }
+
+  @override
+  String get reminderApply => 'Lancer et appliquer';
+
+  @override
+  String reminderApplied(int amount) {
+    return '$amount dégâts appliqués';
+  }
+
+  @override
+  String get reminderLater => 'Plus tard';
+
+  @override
+  String reminderNextTurn(String name) {
+    return 'Tour suivant : $name';
+  }
+
+  @override
+  String reminderOf(String name, String bearer) {
+    return '$name ($bearer)';
+  }
+
+  @override
+  String bannerExpired(String name) {
+    return '$name a pris fin.';
+  }
+
+  @override
+  String bannerExpires(String name) {
+    return '$name expire à la fin de ce tour.';
+  }
+
+  @override
+  String bannerRecurring(String name, String dice, String type) {
+    return '$name : $dice dégâts $type';
+  }
+
+  @override
   String get conditionRemove => 'Retirer l\'état';
 
   @override

@@ -59,6 +59,11 @@ String? shortDuration(
   ConditionInstance i,
 ) {
   final d = i.duration;
+  if (d.kind == DurationKind.turnEnd &&
+      combat.active != null &&
+      combat.combatant(d.combatant ?? '')?.unit == combat.active) {
+    return l10n.chipExpires;
+  }
   return switch (d.kind) {
     DurationKind.rounds => l10n.chipRounds(
       max(1, i.round + (d.rounds ?? 0) - combat.round),

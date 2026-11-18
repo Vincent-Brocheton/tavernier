@@ -578,6 +578,7 @@ void main() {
             'ac': 19,
             'hp': 195,
             'hp_max': 195,
+            'saves': {'str': 6, 'dex': 7},
             'counters': {
               'legendary_actions': 3,
               'legendary_resistance': 3,
@@ -985,5 +986,140 @@ void main() {
     expect(find.text('États et effets'), findsOneWidget);
     await _tap(tester, find.text('Ajouter un état'));
     expect(find.text('Cible : Ogre'), findsOneWidget);
+  });
+
+  /// États posés directement au journal de la rencontre.
+  Future<void> pose(
+    WidgetTester tester,
+    List<Map<String, Object?>> conditions,
+  ) async {
+    await tester.runAsync(
+      () => CombatStore(_db).append(_relais, authorUserId: _camille, [
+        for (final (i, c) in conditions.indexed)
+          (CombatEventType.conditionAdded, {'instance': 'i$i', ...c}),
+      ]),
+    );
+    await _settle(tester);
+  }
+
+  Future<void> nextTurnButton(WidgetTester tester) =>
+      _tap(tester, find.widgetWithText(FilledButton, 'Tour suivant'));
+
+  _test('fin de tour [C6] : sauvegarde réussie, Effrayé expire', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await pose(tester, [
+      {
+        'combatant': 'dragon',
+        'condition': 'srd:condition:restrained',
+        'duration': {'kind': 'save', 'dc': 13, 'ability': 'str'},
+      },
+      {
+        'combatant': 'dragon',
+        'condition': 'srd:condition:frightened',
+        'duration': {'kind': 'turn_end', 'combatant': 'dragon'},
+      },
+    ]);
+    await nextTurnButton(tester);
+    expect(find.text('Fin du tour · Dragon noir adulte'), findsOneWidget);
+    expect(find.text('Entravé · sauvegarde à refaire'), findsOneWidget);
+    expect(find.text('JS de Force DD 13 · bonus +6'), findsOneWidget);
+    // Le rappel, et la puce de la carte derrière le dialogue.
+    expect(find.text('Effrayé · expire'), findsNWidgets(2));
+    expect(find.text('Retiré'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, 'Réussite'));
+    await _settle(tester);
+    expect(find.widgetWithText(FilledButton, 'Réussite'), findsNothing);
+    expect(chip('Entravé · JS FOR DD 13'), findsNothing);
+    await _tap(tester, find.text('Tour suivant : Aldric'));
+    await _settle(tester);
+    expect(find.text('Fin du tour · Dragon noir adulte'), findsNothing);
+    expect(chip('Effrayé · expire'), findsNothing);
+    expect(find.textContaining('Effrayé', findRichText: true), findsNothing);
+  });
+
+  _test('fin de tour : « Lancer » d20 + 6 contre DD 13', (tester) async {
+    await openCombat(tester);
+    await pose(tester, [
+      {
+        'combatant': 'dragon',
+        'condition': 'srd:condition:restrained',
+        'duration': {'kind': 'save', 'dc': 13, 'ability': 'str'},
+      },
+    ]);
+    await nextTurnButton(tester);
+    await _tap(tester, find.text('Lancer'));
+    await _settle(tester);
+    expect(find.textContaining(RegExp(r'^(Réussite|Échec) · \d+$')), findsOne);
+  });
+
+  _test('fin de tour : « Plus tard » ne passe pas le tour', (tester) async {
+    await openCombat(tester);
+    await pose(tester, [
+      {
+        'combatant': 'dragon',
+        'condition': 'srd:condition:restrained',
+        'duration': {'kind': 'save', 'dc': 13, 'ability': 'str'},
+      },
+    ]);
+    await nextTurnButton(tester);
+    await _tap(tester, find.text('Plus tard'));
+    expect(find.text('Fin du tour · Dragon noir adulte'), findsNothing);
+    await nextTurnButton(tester);
+    expect(find.text('Fin du tour · Dragon noir adulte'), findsOneWidget);
+  });
+
+  _test('début de tour [1a] : Empoisonné expire à la fin de ce tour ; OK', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await pose(tester, [
+      {
+        'combatant': 'aldric',
+        'condition': 'srd:condition:poisoned',
+        'duration': {'kind': 'turn_end', 'combatant': 'aldric'},
+      },
+      {
+        'combatant': 'ogre',
+        'condition': 'srd:condition:restrained',
+        'duration': {'kind': 'turn_start', 'combatant': 'aldric'},
+      },
+    ]);
+    await nextTurnButton(tester);
+    await _settle(tester);
+    expect(find.text('Début du tour · Aldric'), findsOneWidget);
+    expect(find.text('Empoisonné expire à la fin de ce tour.'), findsOneWidget);
+    expect(find.text('Entravé (Ogre) a pris fin.'), findsOneWidget);
+    expect(chip('Empoisonné · expire'), findsOneWidget);
+    await _tap(tester, find.text('OK'));
+    expect(find.text('Début du tour · Aldric'), findsNothing);
+  });
+
+  _test('début de tour : « En feu », 1d4 de feu lancés et appliqués', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await pose(tester, [
+      {
+        'combatant': 'ogre',
+        'label': 'En feu',
+        'recurring': {
+          'dice': '1d4',
+          'type': 'srd:damage-type:fire',
+          'at': 'start',
+        },
+      },
+    ]);
+    await nextTurnButton(tester);
+    await _settle(tester);
+    await nextTurnButton(tester);
+    await _settle(tester);
+    expect(find.text('Début du tour · Ogre'), findsOneWidget);
+    expect(find.text('En feu : 1d4 dégâts feu'), findsOneWidget);
+    await _tap(tester, find.text('Lancer et appliquer'));
+    await _settle(tester);
+    expect(find.textContaining(RegExp(r'^[1-4] dégâts appliqués$')), findsOne);
+    expect(find.textContaining(RegExp(r'^5[5-8] / 59$')), findsOne);
   });
 }
