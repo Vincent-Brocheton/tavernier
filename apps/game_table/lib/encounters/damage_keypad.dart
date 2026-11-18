@@ -383,14 +383,11 @@ class _Preview extends StatelessWidget {
     final hp = c.hp;
     final max = c.hpMax;
     if (hp == null || max == null) return const SizedBox.shrink();
+    final damage = mode == KeypadMode.damage
+        ? resolveDamage(c, amount, type, half: half, double: double)
+        : null;
     final after = switch (mode) {
-      KeypadMode.damage => resolveDamage(
-        c,
-        amount,
-        type,
-        half: half,
-        double: double,
-      ).hpAfter,
+      KeypadMode.damage => damage!.hpAfter,
       KeypadMode.heal => c.dead ? hp : (hp + amount).clamp(0, max),
       KeypadMode.tempHp => hp,
     };
@@ -417,6 +414,11 @@ class _Preview extends StatelessWidget {
             ),
             SizedBox(height: AppSpacing.xxs),
             HpBar(hp: after, max: max, before: hp),
+            if (damage != null && damage.taken > 0 && c.concentration != null)
+              Text(
+                l10n.keypadConcentration(concentrationDc(damage.taken)),
+                style: text.bodySmall,
+              ),
           ],
         ),
       ),

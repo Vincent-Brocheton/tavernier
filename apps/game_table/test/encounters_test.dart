@@ -1122,4 +1122,128 @@ void main() {
     expect(find.textContaining(RegExp(r'^[1-4] dégâts appliqués$')), findsOne);
     expect(find.textContaining(RegExp(r'^5[5-8] / 59$')), findsOne);
   });
+
+  /// Événements écrits directement au journal de la rencontre.
+  Future<void> log(WidgetTester tester, List<NewCombatEvent> events) async {
+    await tester.runAsync(
+      () => CombatStore(_db).append(_relais, authorUserId: _camille, events),
+    );
+    await _settle(tester);
+  }
+
+  const blessing = (
+    CombatEventType.concentrationStarted,
+    {'combatant': 'aldric', 'spell': 'Bénédiction'},
+  );
+
+  _test('concentration [1c] : aperçu, alerte DD 10, réussite', (tester) async {
+    await openCombat(tester);
+    await log(tester, [blessing]);
+    expect(chip('Concentration · Bénédiction'), findsOneWidget);
+    await _tap(tester, find.text('Aldric'));
+    await _tap(tester, find.byTooltip('Dégâts'));
+    await keys(tester, '12');
+    expect(find.text('Concentration : JS de CON DD 10'), findsOneWidget);
+    await _tap(tester, find.text('Appliquer 12 dégâts tranchants'));
+    await _settle(tester);
+    expect(find.text('Jet de concentration · Aldric'), findsOneWidget);
+    expect(find.text('Constitution DD 10'), findsOneWidget);
+    expect(
+      find.text('12 dégâts subis → DD 10 (la moitié, 6, est plus basse).'),
+      findsOneWidget,
+    );
+    expect(find.text('Échec : Bénédiction prend fin.'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, 'Réussite'));
+    await _settle(tester);
+    expect(find.text('Jet de concentration · Aldric'), findsNothing);
+    expect(chip('Concentration · Bénédiction'), findsOneWidget);
+  });
+
+  _test('concentration : échec confirmé, Béni retiré de l\'ogre', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await log(tester, [
+      blessing,
+      (
+        CombatEventType.conditionAdded,
+        {
+          'combatant': 'ogre',
+          'instance': 'béni',
+          'label': 'Béni',
+          'concentration': 'aldric',
+        },
+      ),
+      (
+        CombatEventType.damage,
+        {
+          'targets': ['aldric'],
+          'amount': 45,
+          'type': 'srd:damage-type:slashing',
+        },
+      ),
+    ]);
+    expect(find.text('Constitution DD 22'), findsOneWidget);
+    expect(
+      find.text('45 dégâts subis → DD 22 (la moitié des dégâts).'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Échec : Bénédiction prend fin. Effets retirés : Béni (Ogre).'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Échec'));
+    expect(find.text('Mettre fin à Bénédiction ?'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, 'Mettre fin'));
+    await _settle(tester);
+    expect(find.text('Jet de concentration · Aldric'), findsNothing);
+    expect(chip('Concentration · Bénédiction'), findsNothing);
+    expect(chip('Béni'), findsNothing);
+  });
+
+  _test('concentration : se concentrer, lier un effet [C5], mettre fin', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await _tap(tester, detailOf('Aldric'));
+    await _tap(tester, find.text('Se concentrer'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Sort'),
+      'Bénédiction',
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, 'Se concentrer'));
+    await _settle(tester);
+    expect(chip('Concentration · Bénédiction'), findsNWidgets(2));
+    await tester.tapAt(const Offset(10, 10));
+    await _settle(tester);
+
+    await _tap(tester, find.text('Ogre'));
+    await _tap(tester, find.byTooltip('État'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Autre effet'));
+    await tester.enterText(
+      find.widgetWithText(TextField, "Libellé de l'effet"),
+      'Béni',
+    );
+    await _tap(tester, find.text('Aucun'));
+    await _tap(tester, find.text('Aldric · Bénédiction').last);
+    await _tap(tester, find.text('Ajouter Béni'));
+    await _settle(tester);
+    await _tap(tester, chip('Béni · 1 rd'));
+    expect(
+      find.textContaining('Lié à la concentration · Aldric · Bénédiction'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Fermer'));
+
+    await _tap(tester, detailOf('Aldric'));
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Mettre fin'));
+    expect(
+      find.text('Bénédiction prend fin. Effets retirés : Béni (Ogre).'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, 'Mettre fin'));
+    await _settle(tester);
+    expect(chip('Béni · 1 rd'), findsNothing);
+    expect(chip('Concentration · Bénédiction'), findsNothing);
+  });
 }

@@ -12,6 +12,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../npcs/stat_block_view.dart';
 import 'combat_view.dart';
+import 'concentration.dart';
 import 'condition_sheets.dart';
 import 'encounters_providers.dart';
 
@@ -117,6 +118,12 @@ class _CombatantDetail extends ConsumerWidget {
             icon: const Icon(Icons.add),
             label: Text(l10n.conditionAddTitle),
           ),
+        ),
+        SizedBox(height: AppSpacing.md),
+        ConcentrationSection(
+          encounter: encounter,
+          combat: combat!,
+          combatant: c,
         ),
         SizedBox(height: AppSpacing.md),
         for (final counter in c.counters)

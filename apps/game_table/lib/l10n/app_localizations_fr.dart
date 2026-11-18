@@ -4564,4 +4564,86 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0, selon les présences prévues.';
   }
+
+  @override
+  String concentrationChip(String spell) {
+    return 'Concentration · $spell';
+  }
+
+  @override
+  String concentrationCheckTitle(String name) {
+    return 'Jet de concentration · $name';
+  }
+
+  @override
+  String concentrationCheckDc(int dc) {
+    return 'Constitution DD $dc';
+  }
+
+  @override
+  String concentrationWhyTen(int damage, int half) {
+    return '$damage dégâts subis → DD 10 (la moitié, $half, est plus basse).';
+  }
+
+  @override
+  String concentrationWhyHalf(int damage, int dc) {
+    return '$damage dégâts subis → DD $dc (la moitié des dégâts).';
+  }
+
+  @override
+  String concentrationWhyCap(int damage) {
+    return '$damage dégâts subis → DD 30 (plafond).';
+  }
+
+  @override
+  String concentrationBonus(String name, String bonus) {
+    return '$name ajoute $bonus (CON).';
+  }
+
+  @override
+  String concentrationEndsLine(String spell) {
+    return '$spell prend fin.';
+  }
+
+  @override
+  String concentrationRemovesLine(String effects) {
+    return 'Effets retirés : $effects.';
+  }
+
+  @override
+  String concentrationOnFail(String text) {
+    return 'Échec : $text';
+  }
+
+  @override
+  String concentrationEndTitle(String spell) {
+    return 'Mettre fin à $spell ?';
+  }
+
+  @override
+  String get concentrationStart => 'Se concentrer';
+
+  @override
+  String get concentrationSpell => 'Sort';
+
+  @override
+  String get concentrationLink => 'Lié à un sort de concentration';
+
+  @override
+  String get concentrationNone => 'Aucun';
+
+  @override
+  String concentrationOption(String name, String spell) {
+    return '$name · $spell';
+  }
+
+  @override
+  String conditionLinked(String name, String spell) {
+    return 'Lié à la concentration · $name · $spell';
+  }
+
+  @override
+  String keypadConcentration(int dc) {
+    return 'Concentration : JS de CON DD $dc';
+  }
 }
