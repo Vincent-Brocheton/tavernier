@@ -3955,6 +3955,128 @@ class AppLocalizationsFr extends AppLocalizations {
       'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.';
 
   @override
+  String get combatNextTurn => 'Tour suivant';
+
+  @override
+  String get combatUndo => 'Annuler';
+
+  @override
+  String get combatAdd => 'Ajouter un combattant';
+
+  @override
+  String get combatFinish => 'Terminer la rencontre';
+
+  @override
+  String combatFinishBody(String title) {
+    return '« $title » passera « Terminée ». Le combat ne pourra plus être mené.';
+  }
+
+  @override
+  String get combatCannotJoin =>
+      'Un PNJ en fiche complète ne peut pas encore rejoindre un combat en cours.';
+
+  @override
+  String combatJoined(String name, int total) {
+    return '$name entre dans le combat (initiative $total).';
+  }
+
+  @override
+  String combatCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count combattants',
+      one: '1 combattant',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String combatGroupHeader(String name) {
+    return '$name · initiative commune';
+  }
+
+  @override
+  String combatMonsterLine(String type, String cr) {
+    return '$type · FP $cr';
+  }
+
+  @override
+  String get combatPcShort => 'PJ';
+
+  @override
+  String combatRechargeReminder(String name, String action, String range) {
+    return 'Début du tour · $name : lancez 1d6 pour $action (recharge $range).';
+  }
+
+  @override
+  String get combatRollD6 => 'Lancer 1d6';
+
+  @override
+  String get combatRechargedManual => 'Rechargé';
+
+  @override
+  String combatRecharged(int roll) {
+    return '$roll : rechargé.';
+  }
+
+  @override
+  String combatNotRecharged(int roll) {
+    return '$roll : pas encore rechargé.';
+  }
+
+  @override
+  String get combatActive => 'En cours';
+
+  @override
+  String combatHp(int hp, int max) {
+    return '$hp / $max';
+  }
+
+  @override
+  String combatAc(int ac) {
+    return 'CA $ac';
+  }
+
+  @override
+  String get combatReaction => 'Réaction';
+
+  @override
+  String get combatLegendaryActions => 'Actions légendaires';
+
+  @override
+  String get combatLegendaryResistance => 'Résistance légendaire';
+
+  @override
+  String combatRechargeCounter(String action) {
+    return '$action (recharge)';
+  }
+
+  @override
+  String get combatAvailable => 'Disponible';
+
+  @override
+  String get combatUsed => 'Utilisée';
+
+  @override
+  String combatRemaining(int remaining, int max) {
+    return '$remaining / $max';
+  }
+
+  @override
+  String get combatRemove => 'Retirer du combat';
+
+  @override
+  String combatPipUse(String label) {
+    return 'Utiliser : $label';
+  }
+
+  @override
+  String combatPipRestore(String label) {
+    return 'Rendre : $label';
+  }
+
+  @override
   String encounterQuantity(int count) {
     return '×$count';
   }

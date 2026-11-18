@@ -86,23 +86,18 @@ List<NewCombatEvent> launchEvents({
           fromSheet(id, kind, label, npc!.characterId!, group: unitGroup),
         ));
       } else {
-        final hp = encounter.hpMode == HpMode.roll
-            ? rollHitPoints(monster.hitDice, random)
-            : monster.hp;
         added.add((
           CombatEventType.combatantAdded,
-          {
-            'id': id,
-            'kind': kind,
-            'ref_id': group.refId,
-            'label': label,
-            'group_id': ?unitGroup,
-            'bonus': monster.initiative,
-            'ac': monster.ac,
-            'hp': hp,
-            'hp_max': hp,
-            'counters': _countersOf(monster),
-          },
+          profileCombatant(
+            id: id,
+            kind: kind,
+            refId: group.refId,
+            label: label,
+            monster: monster,
+            hpMode: encounter.hpMode,
+            random: random,
+            group: unitGroup,
+          ),
         ));
       }
       // Un jet par unité : le groupe à initiative commune, ou chacun.
@@ -120,6 +115,51 @@ List<NewCombatEvent> launchEvents({
     }
   }
   return [...added, ...rolls];
+}
+
+/// Combattant d'un profil de monstre : bonus, CA, PV (moyens ou tirés) et
+/// compteurs.
+Map<String, Object?> profileCombatant({
+  required String id,
+  required String kind,
+  required String refId,
+  required String label,
+  required MonsterData monster,
+  required HpMode hpMode,
+  required Random random,
+  String? group,
+}) {
+  final hp = hpMode == HpMode.roll
+      ? rollHitPoints(monster.hitDice, random)
+      : monster.hp;
+  return {
+    'id': id,
+    'kind': kind,
+    'ref_id': refId,
+    'label': label,
+    'group_id': ?group,
+    'bonus': monster.initiative,
+    'ac': monster.ac,
+    'hp': hp,
+    'hp_max': hp,
+    'counters': _countersOf(monster),
+  };
+}
+
+/// Nom d'un renfort : « Loup sanguinaire 4 » après ses semblables, sinon
+/// son nom seul.
+String reinforcementLabel(String name, Iterable<String> labels) {
+  final pattern = RegExp(
+    '^${RegExp.escape(name)}'
+    r'(?: (\d+))?$',
+  );
+  final numbers = [
+    for (final label in labels)
+      if (pattern.firstMatch(label) case final match?)
+        int.parse(match.group(1) ?? '1'),
+  ];
+  if (numbers.isEmpty) return name;
+  return '$name ${numbers.reduce(max) + 1}';
 }
 
 /// Compteurs d'un profil : actions légendaires, résistances légendaires et
