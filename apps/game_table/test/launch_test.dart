@@ -184,6 +184,8 @@ void main() {
     expect(dragon.max('legendary_actions'), 3);
     expect(dragon.max('legendary_resistance'), 3);
     expect(dragon.max('recharge:Souffle d’acide'), 1);
+    // Défenses du profil : immunisé à l'acide.
+    expect(dragon.immunities, contains('srd:damage-type:acid'));
   });
 
   test('renfort : numéroté après ses semblables', () {
