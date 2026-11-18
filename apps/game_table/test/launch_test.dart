@@ -108,6 +108,9 @@ void main() {
     // [D1] niveau 1 : DEX 13 (+1) et Vigilant (+2, bonus de maîtrise).
     expect(aldric.bonus, 3);
     expect(aldric.initiative, isNull);
+    // Vigilant : il peut échanger son initiative (EF-INI-09).
+    expect(aldric.alert, isTrue);
+    expect(_launch(HpMode.average).combatant('varga:1')!.alert, isFalse);
   });
 
   test('groupes : numérotés, initiative commune, jets automatiques', () {

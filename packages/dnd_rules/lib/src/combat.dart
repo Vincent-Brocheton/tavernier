@@ -23,6 +23,7 @@ enum CombatEventType {
   concentrationStarted('concentration_started'),
   concentrationCheck('concentration_check'),
   concentrationEnded('concentration_ended'),
+  initiativeSwapped('initiative_swapped'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -98,6 +99,9 @@ const legendaryActionsCounter = 'legendary_actions';
 
 /// Épuisement : le seul état cumulatif (SRD), jusqu'au niveau 6.
 const exhaustionCondition = 'srd:condition:exhaustion';
+
+/// Don Vigilant : échange d'initiative (EF-INI-09).
+const alertFeat = 'srd:feat:alert';
 
 /// Inconscient : posé par Assommer.
 const unconsciousCondition = 'srd:condition:unconscious';
@@ -227,6 +231,7 @@ final class Combatant {
     this.immunities = const {},
     this.conditionImmunities = const {},
     this.saves = const {},
+    this.alert = false,
   }) : _max = {reactionCounter: 1, ...counters};
 
   factory Combatant._fromPayload(Map<String, Object?> p) => Combatant._(
@@ -238,6 +243,7 @@ final class Combatant {
     owner: p['owner'] as String?,
     bonus: (p['bonus'] as int?) ?? 0,
     advantage: (p['advantage'] as bool?) ?? false,
+    alert: (p['alert'] as bool?) ?? false,
     ac: p['ac'] as int?,
     hp: p['hp'] as int?,
     hpMax: p['hp_max'] as int?,
@@ -271,6 +277,9 @@ final class Combatant {
 
   /// Avantage au jet d'initiative (don, aptitude).
   final bool advantage;
+
+  /// Don Vigilant : peut échanger son initiative (EF-INI-09).
+  final bool alert;
   final int? ac;
 
   /// PV courants ; `null` si inconnus (fiche illisible).
@@ -320,6 +329,12 @@ final class Combatant {
 
   /// PJ à 0 PV, vivant : Inconscient.
   bool get unconscious => kind == CombatantKind.pc && hp == 0 && !dead;
+
+  /// Neutralisé : par un état qui l'inflige, inconscient ou mort.
+  bool get incapacitated =>
+      dead ||
+      unconscious ||
+      _conditions.any((i) => incapacitatingConditions.contains(i.condition));
 
   /// Monstre ou PNJ à 0 PV : hors de combat, gardé dans l'ordre.
   bool get outOfCombat => kind != CombatantKind.pc && hp == 0;
@@ -506,6 +521,13 @@ final class CombatState {
       for (final i in c._conditions)
         if (i.concentration == casterId) (c, i),
   ];
+
+  /// Vrai si [id], qui a le don Vigilant, peut échanger son initiative avec
+  /// l'allié [other] (SRD, EF-INI-09).
+  bool canSwapInitiative(String id, String other) {
+    final (a, b) = (combatant(id), combatant(other));
+    return a != null && b != null && _canSwap(a, b, round);
+  }
 
   /// Membres d'une unité, dans l'ordre d'ajout.
   List<Combatant> members(String unit) => [
@@ -732,6 +754,20 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         if (!((p['success'] as bool?) ?? false)) endConcentration(c);
       case CombatEventType.concentrationEnded:
         if (find(p['combatant']! as String) case final c?) endConcentration(c);
+      case CombatEventType.initiativeSwapped:
+        final a = find(p['combatant']! as String);
+        final b = find(p['with']! as String);
+        if (a == null || b == null || !_canSwap(a, b, round)) break;
+        final (ua, ub) = (a.unit, b.unit);
+        final roll = rolls[ua]!;
+        rolls[ua] = rolls[ub]!;
+        rolls[ub] = roll;
+        for (final c in combatants) {
+          if (c.unit == ua || c.unit == ub) c.initiative = rolls[c.unit];
+        }
+        if (chosen case final order?) {
+          chosen = [for (final u in order) u == ua ? ub : (u == ub ? ua : u)];
+        }
       case CombatEventType.undo:
         break;
     }
@@ -746,6 +782,18 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     justExpired,
   );
 }
+
+/// Échange de Vigilant (SRD) : avant le round 1, entre deux combattants
+/// distincts qui ont joué l'Initiative, dont [a] a le don, aucun n'étant
+/// Neutralisé.
+bool _canSwap(Combatant a, Combatant b, int round) =>
+    round == 0 &&
+    a.alert &&
+    a.id != b.id &&
+    a.initiative != null &&
+    b.initiative != null &&
+    !a.incapacitated &&
+    !b.incapacitated;
 
 /// Sorte de rappel de tour.
 enum ReminderKind {

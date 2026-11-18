@@ -1328,4 +1328,60 @@ void main() {
     await _settle(tester);
     expect(chip('Concentration · Bénédiction'), findsNothing);
   });
+
+  _test('réaction d\'un PJ : disponible, utilisée, rendue', (tester) async {
+    await openCombat(tester);
+    await _tap(tester, find.text('Réaction disponible'));
+    await _settle(tester);
+    expect(find.text('Réaction utilisée'), findsOneWidget);
+    await _tap(tester, find.text('Réaction utilisée'));
+    await _settle(tester);
+    expect(find.text('Réaction disponible'), findsOneWidget);
+  });
+
+  _test('Vigilant [C3] : Aldric échange son initiative avec Mira', (
+    tester,
+  ) async {
+    await _open(tester);
+    await tester.runAsync(() async {
+      await CombatStore(_db).launch(_relais, authorUserId: _camille, [
+        for (final (id, label, alert) in [
+          ('aldric', 'Aldric', true),
+          ('mira', 'Mira', false),
+        ])
+          (
+            CombatEventType.combatantAdded,
+            {
+              'id': id,
+              'kind': 'pc',
+              'label': label,
+              'hp': 30,
+              'hp_max': 30,
+              'alert': alert,
+            },
+          ),
+        for (final (unit, die) in [('aldric', 19), ('mira', 8)])
+          (
+            CombatEventType.initiativeRolled,
+            {
+              'unit': unit,
+              'dice': [die],
+            },
+          ),
+      ]);
+    });
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Reprendre le combat'));
+    await _settle(tester);
+    expect(find.textContaining('Vigilant · Aldric'), findsOneWidget);
+    expect(find.text('Mira : échanger…'), findsNothing);
+    await _tap(tester, find.text('Aldric : échanger…'));
+    await _tap(tester, find.text('8 ↔ 19'));
+    await _settle(tester);
+    final state = await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first.then(projectCombat),
+    );
+    expect(state!.combatant('aldric')!.initiative!.total, 8);
+    expect(state.order, ['mira', 'aldric']);
+  });
 }

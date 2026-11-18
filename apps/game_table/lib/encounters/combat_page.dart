@@ -257,6 +257,34 @@ class _InitiativeState extends ConsumerState<_Initiative> {
     if (lead.kind != CombatantKind.pc) await _roll(unit, surprised: on);
   }
 
+  /// Choix de l'allié avec qui [a] échange son initiative.
+  Future<void> _swap(Combatant a, List<Combatant> partners) async {
+    final l10n = AppLocalizations.of(context);
+    final other = await showModalBottomSheet<String>(
+      context: context,
+      builder: (sheet) => SafeArea(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            ListTile(title: Text(l10n.alertSwapTitle(a.label))),
+            for (final b in partners)
+              ListTile(
+                title: Text(b.label),
+                trailing: Text(
+                  '${b.initiative?.total} ↔ ${a.initiative?.total}',
+                ),
+                onTap: () => Navigator.pop(sheet, b.id),
+              ),
+          ],
+        ),
+      ),
+    );
+    if (other == null) return;
+    await _append([
+      (CombatEventType.initiativeSwapped, {'combatant': a.id, 'with': other}),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -310,6 +338,52 @@ class _InitiativeState extends ConsumerState<_Initiative> {
         ),
     ];
 
+    // Vigilant ([C3], EF-INI-09) : échange juste après le jet.
+    final alert = [
+      for (final c in _combat.combatants)
+        if (c.alert && c.kind == CombatantKind.pc) c,
+    ];
+    final partners = {
+      for (final a in alert)
+        a.id: [
+          for (final b in _combat.combatants)
+            if (b.kind == CombatantKind.pc &&
+                _combat.canSwapInitiative(a.id, b.id))
+              b,
+        ],
+    };
+    final vigilant = alert.isEmpty
+        ? null
+        : Card(
+            margin: EdgeInsets.only(top: AppSpacing.md),
+            child: Padding(
+              padding: EdgeInsets.all(AppSpacing.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.alertHelp(alert.map((c) => c.label).join(', ')),
+                    style: text.bodySmall,
+                  ),
+                  SizedBox(height: AppSpacing.xs),
+                  Wrap(
+                    spacing: AppSpacing.xs,
+                    runSpacing: AppSpacing.xs,
+                    children: [
+                      for (final a in alert)
+                        OutlinedButton(
+                          onPressed: partners[a.id]!.isEmpty
+                              ? null
+                              : () => _swap(a, partners[a.id]!),
+                          child: Text(l10n.alertSwap(a.label)),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+
     final order = _OrderPanel(
       combat: _combat,
       pseudonyms: pseudonyms,
@@ -325,6 +399,7 @@ class _InitiativeState extends ConsumerState<_Initiative> {
           surprise,
           SizedBox(height: AppSpacing.md),
           ...rows,
+          ?vigilant,
           SizedBox(height: AppSpacing.md),
           order,
         ],
@@ -341,6 +416,7 @@ class _InitiativeState extends ConsumerState<_Initiative> {
               surprise,
               SizedBox(height: AppSpacing.md),
               ...rows,
+              ?vigilant,
             ],
           ),
         ),

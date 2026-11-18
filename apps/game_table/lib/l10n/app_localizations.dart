@@ -7427,6 +7427,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Mort · Épuisement 6'**
   String get exhaustionDead;
+
+  /// Puce d'un PJ (EF-INI-08) ; un appui la dépense.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réaction disponible'**
+  String get combatReactionAvailable;
+
+  /// Puce d'un PJ (EF-INI-08) ; un appui la rend.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réaction utilisée'**
+  String get combatReactionUsed;
+
+  /// Lancement [C3] (EF-INI-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vigilant · {names} : échange d’initiative avec un allié consentant, juste après le jet. Impossible si l’un des deux est Neutralisé.'**
+  String alertHelp(String names);
+
+  /// Bouton de Vigilant [C3].
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : échanger…'**
+  String alertSwap(String name);
+
+  /// Choix de l'allié (Vigilant).
+  ///
+  /// In fr, this message translates to:
+  /// **'Échanger l’initiative de {name} avec…'**
+  String alertSwapTitle(String name);
 }
 
 class _AppLocalizationsDelegate

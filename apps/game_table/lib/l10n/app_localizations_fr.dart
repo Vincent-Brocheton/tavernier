@@ -4714,4 +4714,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get exhaustionDead => 'Mort · Épuisement 6';
+
+  @override
+  String get combatReactionAvailable => 'Réaction disponible';
+
+  @override
+  String get combatReactionUsed => 'Réaction utilisée';
+
+  @override
+  String alertHelp(String names) {
+    return 'Vigilant · $names : échange d’initiative avec un allié consentant, juste après le jet. Impossible si l’un des deux est Neutralisé.';
+  }
+
+  @override
+  String alertSwap(String name) {
+    return '$name : échanger…';
+  }
+
+  @override
+  String alertSwapTitle(String name) {
+    return 'Échanger l’initiative de $name avec…';
+  }
 }
