@@ -16,6 +16,9 @@ enum CombatEventType {
   heal('heal'),
   tempHp('temp_hp'),
   deathSave('death_save'),
+  conditionAdded('condition_added'),
+  conditionRemoved('condition_removed'),
+  conditionSave('condition_save'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -89,6 +92,96 @@ const reactionCounter = 'reaction';
 /// Actions légendaires : rendues au début du tour du combattant.
 const legendaryActionsCounter = 'legendary_actions';
 
+/// Épuisement : le seul état cumulatif (SRD), jusqu'au niveau 6.
+const exhaustionCondition = 'srd:condition:exhaustion';
+
+/// Sorte de durée d'un état (EF-CON-02).
+enum DurationKind {
+  rounds('rounds'),
+  turnStart('turn_start'),
+  turnEnd('turn_end'),
+  save('save'),
+  indefinite('indefinite');
+
+  const DurationKind(this.code);
+
+  final String code;
+}
+
+/// Durée d'un état : [rounds] ; début ou fin du tour de [combatant] ;
+/// sauvegarde de [ability] (`str`…`cha`) contre [dc] ; ou indéfinie.
+final class ConditionDuration {
+  ConditionDuration._(Map<String, Object?> p)
+    : kind = DurationKind.values.firstWhere(
+        (k) => k.code == p['kind'],
+        orElse: () => DurationKind.indefinite,
+      ),
+      rounds = p['rounds'] as int?,
+      combatant = p['combatant'] as String?,
+      dc = p['dc'] as int?,
+      ability = p['ability'] as String?;
+
+  final DurationKind kind;
+  final int? rounds;
+  final String? combatant;
+  final int? dc;
+  final String? ability;
+}
+
+/// Moment d'un tour : son début ou sa fin.
+enum TurnPhase { start, end }
+
+/// Dégâts subis à chaque début ou fin de tour du porteur (« 1d4 » de feu).
+final class RecurringDamage {
+  RecurringDamage._(Map<String, Object?> p)
+    : dice = p['dice']! as String,
+      type = p['type']! as String,
+      at = p['at'] == 'end' ? TurnPhase.end : TurnPhase.start;
+
+  final String dice;
+  final String type;
+  final TurnPhase at;
+}
+
+/// État posé sur un combattant : un des 15 du SRD ([condition]) ou un effet
+/// libellé ([label]), sa durée, ses niveaux (Épuisement) et ses dégâts
+/// récurrents.
+final class ConditionInstance {
+  ConditionInstance._(
+    Map<String, Object?> p, {
+    required this.anchor,
+    required this.round,
+    required this.serial,
+  }) : id = p['instance']! as String,
+       condition = p['condition'] as String?,
+       label = p['label'] as String?,
+       duration = ConditionDuration._(
+         Map<String, Object?>.from(
+           (p['duration'] ?? const {'kind': 'indefinite'}) as Map,
+         ),
+       ),
+       levels = (p['levels'] as int?) ?? 1,
+       recurring = switch (p['recurring']) {
+         final Map<Object?, Object?> r => RecurringDamage._(
+           Map<String, Object?>.from(r),
+         ),
+         _ => null,
+       };
+
+  final String id;
+  final String? condition;
+  final String? label;
+  final ConditionDuration duration;
+  int levels;
+  final RecurringDamage? recurring;
+
+  /// Unité active à la pose (le porteur hors combat), round de la pose (au
+  /// moins 1) et numéro du début de tour en cours.
+  final String anchor;
+  final int round;
+  final int serial;
+}
+
 /// Combattant et ses compteurs, tels que le journal les a laissés.
 final class Combatant {
   Combatant._({
@@ -107,6 +200,8 @@ final class Combatant {
     this.resistances = const {},
     this.vulnerabilities = const {},
     this.immunities = const {},
+    this.conditionImmunities = const {},
+    this.saves = const {},
   }) : _max = {reactionCounter: 1, ...counters};
 
   factory Combatant._fromPayload(Map<String, Object?> p) => Combatant._(
@@ -124,6 +219,12 @@ final class Combatant {
     resistances: _ids(p['resistances']),
     vulnerabilities: _ids(p['vulnerabilities']),
     immunities: _ids(p['immunities']),
+    conditionImmunities: _ids(p['condition_immunities']),
+    saves: {
+      for (final MapEntry(:key, :value)
+          in ((p['saves'] ?? const <String, Object?>{}) as Map).entries)
+        '$key': value as int,
+    },
     counters: {
       for (final MapEntry(:key, :value)
           in ((p['counters'] ?? const <String, Object?>{}) as Map).entries)
@@ -156,6 +257,26 @@ final class Combatant {
   final Set<String> resistances;
   final Set<String> vulnerabilities;
   final Set<String> immunities;
+
+  /// États (`srd:condition:…`) qu'il ne peut pas subir.
+  final Set<String> conditionImmunities;
+
+  /// Bonus de sauvegarde par caractéristique (`str`…`cha`) ; vide si
+  /// inconnus.
+  final Map<String, int> saves;
+
+  final List<ConditionInstance> _conditions = [];
+
+  /// États présents, dans l'ordre de pose.
+  List<ConditionInstance> get conditions => List.unmodifiable(_conditions);
+
+  /// Niveau d'Épuisement, 0 sans cet état.
+  int get exhaustion =>
+      _conditions
+          .where((c) => c.condition == exhaustionCondition)
+          .firstOrNull
+          ?.levels ??
+      0;
 
   /// Jets contre la mort d'un PJ à 0 PV.
   int deathSuccesses = 0;
@@ -230,6 +351,34 @@ final class Combatant {
     }
   }
 
+  /// Un état n'est pas cumulable avec lui-même (SRD) : chaque source garde
+  /// son instance. L'Épuisement, seule exception, gagne des niveaux.
+  void _addCondition(ConditionInstance instance) {
+    if (conditionImmunities.contains(instance.condition)) return;
+    final exhaustion = instance.condition == exhaustionCondition
+        ? _conditions
+              .where((c) => c.condition == exhaustionCondition)
+              .firstOrNull
+        : null;
+    if (exhaustion != null) {
+      exhaustion.levels = min(6, exhaustion.levels + instance.levels);
+    } else {
+      instance.levels = min(6, instance.levels);
+      _conditions.add(instance);
+    }
+  }
+
+  /// Retire l'instance [id], ou [levels] niveaux d'Épuisement.
+  void _removeCondition(String id, int? levels) {
+    final instance = _conditions.where((c) => c.id == id).firstOrNull;
+    if (instance == null) return;
+    if (levels != null && instance.levels > levels) {
+      instance.levels -= levels;
+    } else {
+      _conditions.remove(instance);
+    }
+  }
+
   final Map<String, int> _max;
   final Map<String, int> _used = {};
 
@@ -273,7 +422,11 @@ final class CombatState {
     this.round,
     this.active,
     this.ties,
+    this._justExpired,
   );
+
+  /// États retirés au dernier début de tour, pour son rappel.
+  final List<TurnReminder> _justExpired;
 
   final List<Combatant> _combatants;
 
@@ -313,11 +466,40 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
   var rolledAfterChoice = false;
   var round = 0;
   String? active;
+  // Débuts de tour comptés, pour situer la pose d'un état.
+  var serial = 0;
+  var justExpired = <TurnReminder>[];
 
   Combatant? find(String id) => combatants.where((c) => c.id == id).firstOrNull;
   List<String> currentOrder() => _order(combatants, rolls, chosen);
+
+  /// Retire les états que [expires] désigne ; les renvoie en rappels.
+  List<TurnReminder> expire(bool Function(ConditionInstance) expires) {
+    final gone = [
+      for (final c in combatants)
+        for (final i in c._conditions)
+          if (expires(i)) TurnReminder._(ReminderKind.expired, c, i),
+    ];
+    for (final r in gone) {
+      r.combatant._conditions.remove(r.instance);
+    }
+    return gone;
+  }
+
+  /// Fin du tour de l'unité active : ses états « fin du tour de X » expirent.
+  void endTurn() {
+    if (active == null) return;
+    final unit = active;
+    expire(
+      (i) =>
+          i.duration.kind == DurationKind.turnEnd &&
+          find(i.duration.combatant ?? '')?.unit == unit,
+    );
+  }
+
   void startTurn(String? unit) {
     active = unit;
+    serial++;
     for (final c in combatants) {
       if (c.unit == unit) {
         c
@@ -325,11 +507,23 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
           .._restore(legendaryActionsCounter);
       }
     }
+    final units = combatants.map((c) => c.unit).toSet();
+    justExpired = expire(
+      (i) => switch (i.duration.kind) {
+        DurationKind.turnStart =>
+          find(i.duration.combatant ?? '')?.unit == unit && serial > i.serial,
+        DurationKind.rounds =>
+          (i.anchor == unit || !units.contains(i.anchor)) &&
+              round >= i.round + (i.duration.rounds ?? 0),
+        _ => false,
+      },
+    );
   }
 
   /// Passe à l'unité suivante de [order], au round suivant après la
   /// dernière.
   void advance(List<String> order, String? from) {
+    endTurn();
     if (order.isEmpty) return startTurn(null);
     final index = from == null ? -1 : order.indexOf(from);
     if (index + 1 >= order.length) {
@@ -354,6 +548,7 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         final order = currentOrder();
         final alone = combatants.where((o) => o.unit == c.unit).length == 1;
         if (alone && active == c.unit) {
+          endTurn();
           final next = order.indexOf(c.unit) + 1;
           combatants.remove(c);
           if (next >= order.length) {
@@ -417,6 +612,25 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         }
       case CombatEventType.deathSave:
         find(p['combatant']! as String)?._deathSave(p['outcome']! as String);
+      case CombatEventType.conditionAdded:
+        final c = find(p['combatant']! as String);
+        if (c == null) break;
+        c._addCondition(
+          ConditionInstance._(
+            p,
+            anchor: active ?? c.unit,
+            round: max(round, 1),
+            serial: serial,
+          ),
+        );
+      case CombatEventType.conditionRemoved:
+        find(p['combatant']! as String)
+            ?._removeCondition(p['instance']! as String, p['levels'] as int?);
+      case CombatEventType.conditionSave:
+        if ((p['success'] as bool?) ?? false) {
+          find(p['combatant']! as String)
+              ?._removeCondition(p['instance']! as String, null);
+        }
       case CombatEventType.undo:
         break;
     }
@@ -428,7 +642,58 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     round,
     active,
     chosen == null || rolledAfterChoice ? _ties(combatants, order, rolls) : [],
+    justExpired,
   );
+}
+
+/// Sorte de rappel de tour.
+enum ReminderKind {
+  /// L'état vient d'expirer, au début de ce tour.
+  expired,
+
+  /// L'état expire à la fin de ce tour.
+  expires,
+
+  /// Sauvegarde à refaire, à la fin du tour du porteur.
+  save,
+
+  /// Dégâts récurrents.
+  recurring,
+}
+
+/// Rappel de tour (EF-CON-03) : un état de [combatant] et ce qu'il demande.
+final class TurnReminder {
+  const TurnReminder._(this.kind, this.combatant, this.instance);
+
+  final ReminderKind kind;
+  final Combatant combatant;
+  final ConditionInstance instance;
+
+  /// Bonus du porteur à la sauvegarde demandée ; `null` si inconnu.
+  int? get saveBonus => combatant.saves[instance.duration.ability];
+}
+
+/// Rappels du début ou de la fin du tour de l'unité active, combattant par
+/// combattant, état par état.
+List<TurnReminder> turnReminders(CombatState state, TurnPhase phase) {
+  final active = state.active;
+  if (active == null) return const [];
+  bool endsNow(ConditionInstance i) =>
+      i.duration.kind == DurationKind.turnEnd &&
+      state.combatant(i.duration.combatant ?? '')?.unit == active;
+  return [
+    if (phase == TurnPhase.start) ...state._justExpired,
+    for (final c in state._combatants)
+      for (final i in c._conditions) ...[
+        if (endsNow(i)) TurnReminder._(ReminderKind.expires, c, i),
+        if (c.unit == active &&
+            phase == TurnPhase.end &&
+            i.duration.kind == DurationKind.save)
+          TurnReminder._(ReminderKind.save, c, i),
+        if (c.unit == active && i.recurring?.at == phase)
+          TurnReminder._(ReminderKind.recurring, c, i),
+      ],
+  ];
 }
 
 /// Événements annulés : une annulation annulée ne compte plus, d'où le

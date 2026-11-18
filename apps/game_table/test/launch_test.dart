@@ -188,6 +188,37 @@ void main() {
     expect(dragon.immunities, contains('srd:damage-type:acid'));
   });
 
+  test('sauvegardes : profil du monstre, fiche du PJ ; immunités d\'état', () {
+    final state = _launch(HpMode.average);
+    // Ogre (SRD) : JS FOR +4, CON +3.
+    final ogre = state.combatant('ogre:1')!;
+    expect((ogre.saves['str'], ogre.saves['con']), (4, 3));
+    expect(
+      state.combatant('aldric')!.saves,
+      computeSheet(_aldric(), _content).savingThrows,
+    );
+    expect(state.combatant('aldric')!.saves, hasLength(6));
+    final skeleton = projectCombat([
+      CombatEvent(
+        id: 'e',
+        type: CombatEventType.combatantAdded,
+        payload: profileCombatant(
+          id: 's',
+          kind: 'monster',
+          refId: 'srd:monster:skeleton',
+          label: 'Squelette',
+          monster: _monster('skeleton'),
+          hpMode: HpMode.average,
+          random: Random(1),
+        ),
+      ),
+    ]).combatant('s')!;
+    expect(
+      skeleton.conditionImmunities,
+      containsAll(['srd:condition:poisoned', 'srd:condition:exhaustion']),
+    );
+  });
+
   test('renfort : numéroté après ses semblables', () {
     expect(
       reinforcementLabel('Loup sanguinaire', [
