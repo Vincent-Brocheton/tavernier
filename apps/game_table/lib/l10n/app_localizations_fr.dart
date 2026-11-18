@@ -3955,6 +3955,124 @@ class AppLocalizationsFr extends AppLocalizations {
       'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.';
 
   @override
+  String get combatDamage => 'Dégâts';
+
+  @override
+  String get combatHeal => 'Soins';
+
+  @override
+  String get combatTempHp => 'PV temp.';
+
+  @override
+  String get combatNoTarget =>
+      'Touchez un combattant pour le cibler · appui long pour en cibler plusieurs';
+
+  @override
+  String combatTargets(int count, String names) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Cibles : $names',
+      one: 'Cible : $names',
+    );
+    return '$_temp0 · appui long pour en cibler plusieurs';
+  }
+
+  @override
+  String get combatDead => 'Mort';
+
+  @override
+  String get combatStable => 'Inconscient · stabilisé';
+
+  @override
+  String get combatUnconscious => 'Inconscient';
+
+  @override
+  String get combatOutOfCombat => 'Hors de combat';
+
+  @override
+  String combatTempHpValue(int amount) {
+    return '+$amount PV temp.';
+  }
+
+  @override
+  String get combatDetail => 'Détail';
+
+  @override
+  String get combatDeathSaves => 'Jets contre la mort';
+
+  @override
+  String combatDeathSavesLabel(int successes, int failures) {
+    return 'Jets contre la mort : $successes réussites, $failures échecs';
+  }
+
+  @override
+  String get deathSuccess => 'Réussite';
+
+  @override
+  String get deathFailure => 'Échec';
+
+  @override
+  String get deathNat1 => '1 naturel';
+
+  @override
+  String get deathNat20 => '20 naturel';
+
+  @override
+  String get keypadTargets => 'Cibles';
+
+  @override
+  String get keypadAddTarget => 'Cible';
+
+  @override
+  String get keypadErase => 'Effacer';
+
+  @override
+  String get keypadCritical => 'Coup critique';
+
+  @override
+  String get keypadCriticalHelp =>
+      'Ne change pas le montant saisi ; sur un PJ à 0 PV, compte deux échecs.';
+
+  @override
+  String get keypadReplaceTemp => 'Remplacer les PV temporaires actuels';
+
+  @override
+  String get keypadReplaceTempHelp =>
+      'Sinon, la valeur la plus haute est gardée.';
+
+  @override
+  String get keypadDouble => 'Vulnérabilité ×2';
+
+  @override
+  String get keypadHalf => 'Résistance ½';
+
+  @override
+  String keypadApplyDamage(int amount, String type) {
+    return 'Appliquer $amount dégâts $type';
+  }
+
+  @override
+  String keypadApplyHeal(int amount) {
+    return 'Soigner de $amount PV';
+  }
+
+  @override
+  String keypadApplyTemp(int amount) {
+    return 'Donner $amount PV temporaires';
+  }
+
+  @override
+  String keypadPreview(int before, int after, int max) {
+    return '$before → $after / $max PV';
+  }
+
+  @override
+  String keypadTempPreview(int before, int after) {
+    return 'PV temp. $before → $after';
+  }
+
+  @override
   String get combatNextTurn => 'Tour suivant';
 
   @override

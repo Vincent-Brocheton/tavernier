@@ -17,8 +17,10 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../tables/tables_providers.dart';
 import 'combatant_sheet.dart';
+import 'damage_keypad.dart';
 import 'encounters_providers.dart';
 import 'foe_picker.dart';
+import 'hp_bar.dart';
 import 'launch.dart';
 
 /// Profil d'un combattant : son monstre, ou le monstre de départ d'un PNJ.
@@ -186,15 +188,27 @@ Future<void> _addCombatant(
   ),
 );
 
-/// Combat en cours : rappel de recharge, ordre d'initiative.
-class CombatView extends ConsumerWidget {
+/// Combat en cours : rappel de recharge, ordre d'initiative, cibles, et le
+/// pied « Dégâts / Soins / PV temp. / Tour suivant ».
+class CombatView extends ConsumerStatefulWidget {
   const CombatView({super.key, required this.encounter, required this.combat});
 
   final Encounter encounter;
   final CombatState combat;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CombatView> createState() => _CombatViewState();
+}
+
+class _CombatViewState extends ConsumerState<CombatView> {
+  /// Cibles du pavé : toucher en choisit une, l'appui long en ajoute.
+  final _targets = <String>{};
+
+  Encounter get encounter => widget.encounter;
+  CombatState get combat => widget.combat;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
     final content = ref.watch(contentProvider).value;
@@ -202,49 +216,127 @@ class CombatView extends ConsumerWidget {
     if (content == null || npcs == null) {
       return const Center(child: CircularProgressIndicator());
     }
-    return ListView(
-      padding: EdgeInsets.all(AppSpacing.md),
+    // Un combattant retiré n'est plus une cible.
+    _targets.removeWhere((id) => combat.combatant(id) == null);
+    final targets = [for (final id in _targets) combat.combatant(id)!.label];
+    Future<void> keypad(KeypadMode mode) =>
+        showDamageKeypad(context, encounter, {..._targets}, mode);
+    return Column(
       children: [
-        Wrap(
-          spacing: AppSpacing.sm,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            Chip(label: Text(l10n.combatRound(combat.round))),
-            Text(
-              l10n.combatCount(combat.combatants.length),
-              style: text.bodySmall,
-            ),
-          ],
-        ),
-        _RechargeReminder(
-          encounterId: encounter.id,
-          combat: combat,
-          content: content,
-          npcs: npcs,
-        ),
-        for (final unit in combat.order) ...[
-          if (combat.members(unit).length > 1)
-            Padding(
-              padding: EdgeInsets.only(top: AppSpacing.sm),
-              child: Text(
-                l10n.combatGroupHeader(
-                  combat
-                      .members(unit)
-                      .first
-                      .label
-                      .replaceFirst(RegExp(r' \d+$'), ''),
-                ),
-                style: text.labelMedium,
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.all(AppSpacing.md),
+            children: [
+              Wrap(
+                spacing: AppSpacing.sm,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Chip(label: Text(l10n.combatRound(combat.round))),
+                  Text(
+                    l10n.combatCount(combat.combatants.length),
+                    style: text.bodySmall,
+                  ),
+                ],
               ),
+              _RechargeReminder(
+                encounterId: encounter.id,
+                combat: combat,
+                content: content,
+                npcs: npcs,
+              ),
+              for (final unit in combat.order) ...[
+                if (combat.members(unit).length > 1)
+                  Padding(
+                    padding: EdgeInsets.only(top: AppSpacing.sm),
+                    child: Text(
+                      l10n.combatGroupHeader(
+                        combat
+                            .members(unit)
+                            .first
+                            .label
+                            .replaceFirst(RegExp(r' \d+$'), ''),
+                      ),
+                      style: text.labelMedium,
+                    ),
+                  ),
+                for (final c in combat.members(unit))
+                  _CombatantCard(
+                    encounter: encounter,
+                    combatant: c,
+                    active: combat.active == unit,
+                    targeted: _targets.contains(c.id),
+                    subtitle: _subtitleOf(context, ref, content, npcs, c),
+                    onTap: () => setState(
+                      () => _targets
+                        ..clear()
+                        ..add(c.id),
+                    ),
+                    onLongPress: () => setState(
+                      () => _targets.contains(c.id)
+                          ? _targets.remove(c.id)
+                          : _targets.add(c.id),
+                    ),
+                  ),
+              ],
+            ],
+          ),
+        ),
+        // Pied : cibles, puis Dégâts / Soins / PV temp. et « Tour suivant »,
+        // toujours accessible (EF-INI-05).
+        SafeArea(
+          top: false,
+          child: Padding(
+            padding: EdgeInsets.all(AppSpacing.sm),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  targets.isEmpty
+                      ? l10n.combatNoTarget
+                      : l10n.combatTargets(targets.length, targets.join(', ')),
+                  style: text.bodySmall,
+                ),
+                SizedBox(height: AppSpacing.xs),
+                Row(
+                  children: [
+                    for (final (mode, label, icon) in [
+                      (KeypadMode.damage, l10n.combatDamage, Icons.flash_on),
+                      (
+                        KeypadMode.heal,
+                        l10n.combatHeal,
+                        Icons.add_circle_outline,
+                      ),
+                      (
+                        KeypadMode.tempHp,
+                        l10n.combatTempHp,
+                        Icons.shield_moon_outlined,
+                      ),
+                    ])
+                      Padding(
+                        padding: EdgeInsets.only(right: AppSpacing.xs),
+                        child: IconButton.filledTonal(
+                          tooltip: label,
+                          icon: Icon(icon),
+                          onPressed: _targets.isEmpty
+                              ? null
+                              : () => keypad(mode),
+                        ),
+                      ),
+                    Expanded(
+                      child: FilledButton.icon(
+                        onPressed: () => appendCombat(ref, encounter.id, [
+                          (CombatEventType.turnAdvanced, const {}),
+                        ]),
+                        icon: const Icon(Icons.skip_next),
+                        label: Text(l10n.combatNextTurn),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          for (final c in combat.members(unit))
-            _CombatantCard(
-              encounter: encounter,
-              combatant: c,
-              active: combat.active == unit,
-              subtitle: _subtitleOf(context, ref, content, npcs, c),
-            ),
-        ],
+          ),
+        ),
       ],
     );
   }
@@ -381,19 +473,28 @@ class _RechargeReminder extends ConsumerWidget {
 }
 
 /// Carte de combattant (`CombatantCard`, COMPOSANTS §2.1) : initiative,
-/// nom, sorte, CA, PV ; « En cours » pour l'unité active.
+/// nom, sorte, CA, PV et PV temporaires ; « En cours » pour l'unité active ;
+/// à 0 PV, « Inconscient » et jets contre la mort, « Mort » ou « Hors de
+/// combat ». Toucher la cible, l'appui long en ajoute une, l'icône ouvre
+/// le détail.
 class _CombatantCard extends StatelessWidget {
   const _CombatantCard({
     required this.encounter,
     required this.combatant,
     required this.active,
+    required this.targeted,
     required this.subtitle,
+    required this.onTap,
+    required this.onLongPress,
   });
 
   final Encounter encounter;
   final Combatant combatant;
   final bool active;
+  final bool targeted;
   final String? subtitle;
+  final VoidCallback onTap;
+  final VoidCallback onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -404,17 +505,28 @@ class _CombatantCard extends StatelessWidget {
     final c = combatant;
     final hp = c.hp;
     final hpMax = c.hpMax;
-    return Card(
+    final status = c.dead
+        ? l10n.combatDead
+        : c.unconscious
+        ? (c.stable ? l10n.combatStable : l10n.combatUnconscious)
+        : c.outOfCombat
+        ? l10n.combatOutOfCombat
+        : null;
+    final card = Card(
       margin: EdgeInsets.only(top: AppSpacing.xs),
       color: active ? scheme.primaryContainer : null,
-      shape: active
+      shape: active || targeted
           ? RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadii.md),
-              side: BorderSide(color: scheme.primary, width: 2),
+              side: BorderSide(
+                color: targeted ? scheme.tertiary : scheme.primary,
+                width: 2,
+              ),
             )
           : null,
       child: InkWell(
-        onTap: () => showCombatantSheet(context, encounter, c.id),
+        onTap: onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: EdgeInsets.all(AppSpacing.sm),
           child: Row(
@@ -442,14 +554,16 @@ class _CombatantCard extends StatelessWidget {
                           ),
                       ],
                     ),
-                    if (subtitle case final s?) Text(s, style: text.bodySmall),
+                    Text(status ?? subtitle ?? '', style: text.bodySmall),
                     if (hp != null && hpMax != null && hpMax > 0) ...[
                       SizedBox(height: AppSpacing.xxs),
-                      LinearProgressIndicator(
-                        value: (hp / hpMax).clamp(0.0, 1.0),
-                        color: colors.heal,
-                      ),
+                      HpBar(hp: hp, max: hpMax),
                     ],
+                    if (c.unconscious && !c.stable)
+                      Padding(
+                        padding: EdgeInsets.only(top: AppSpacing.xxs),
+                        child: DeathSavesRow(combatant: c),
+                      ),
                   ],
                 ),
               ),
@@ -467,10 +581,72 @@ class _CombatantCard extends StatelessWidget {
                     ),
                   if (hp != null && hpMax != null)
                     Text(l10n.combatHp(hp, hpMax), style: text.bodySmall),
+                  if (c.tempHp > 0)
+                    Text(
+                      l10n.combatTempHpValue(c.tempHp),
+                      style: text.labelSmall!.copyWith(color: colors.tempHp),
+                    ),
                 ],
+              ),
+              IconButton(
+                tooltip: l10n.combatDetail,
+                icon: const Icon(Icons.info_outline),
+                onPressed: () => showCombatantSheet(context, encounter, c.id),
               ),
             ],
           ),
+        ),
+      ),
+    );
+    // Hors de combat ou mort : la carte reste, estompée.
+    return c.outOfCombat || c.dead ? Opacity(opacity: 0.6, child: card) : card;
+  }
+}
+
+/// Jets contre la mort (`DeathSaves`, COMPOSANTS §2.7) : trois cercles de
+/// réussite, trois carrés d'échec, avec une icône en plus de la couleur.
+class DeathSavesRow extends StatelessWidget {
+  const DeathSavesRow({super.key, required this.combatant});
+
+  final Combatant combatant;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final colors = GameColors.of(context);
+    final scheme = Theme.of(context).colorScheme;
+    Widget mark(bool filled, bool success) => Container(
+      width: 18,
+      height: 18,
+      margin: EdgeInsets.only(right: AppSpacing.xxs),
+      decoration: BoxDecoration(
+        shape: success ? BoxShape.circle : BoxShape.rectangle,
+        color: filled ? (success ? colors.heal : colors.damage) : null,
+        border: Border.all(color: success ? colors.heal : colors.damage),
+      ),
+      child: filled
+          ? Icon(
+              success ? Icons.check : Icons.close,
+              size: 14,
+              color: scheme.surface,
+            )
+          : null,
+    );
+    return Semantics(
+      label: l10n.combatDeathSavesLabel(
+        combatant.deathSuccesses,
+        combatant.deathFailures,
+      ),
+      child: ExcludeSemantics(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < 3; i++)
+              mark(i < combatant.deathSuccesses, true),
+            SizedBox(width: AppSpacing.sm),
+            for (var i = 0; i < 3; i++)
+              mark(i < combatant.deathFailures, false),
+          ],
         ),
       ),
     );

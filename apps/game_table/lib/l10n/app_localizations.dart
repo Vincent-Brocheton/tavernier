@@ -6318,6 +6318,192 @@ abstract class AppLocalizations {
   /// **'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.'**
   String get combatOrderNote;
 
+  /// Ouvre le pavé en dégâts ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts'**
+  String get combatDamage;
+
+  /// Pavé : soins.
+  ///
+  /// In fr, this message translates to:
+  /// **'Soins'**
+  String get combatHeal;
+
+  /// Pavé : PV temporaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV temp.'**
+  String get combatTempHp;
+
+  /// Pied du combat sans cible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Touchez un combattant pour le cibler · appui long pour en cibler plusieurs'**
+  String get combatNoTarget;
+
+  /// Pied du combat ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Cible : {names}} other{Cibles : {names}}} · appui long pour en cibler plusieurs'**
+  String combatTargets(int count, String names);
+
+  /// Combattant mort.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mort'**
+  String get combatDead;
+
+  /// PJ stabilisé (trois réussites).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inconscient · stabilisé'**
+  String get combatStable;
+
+  /// PJ à 0 PV (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inconscient'**
+  String get combatUnconscious;
+
+  /// Monstre à 0 PV ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors de combat'**
+  String get combatOutOfCombat;
+
+  /// PV temporaires d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'+{amount} PV temp.'**
+  String combatTempHpValue(int amount);
+
+  /// Ouvre la feuille d'un combattant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détail'**
+  String get combatDetail;
+
+  /// Feuille d'un PJ Inconscient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets contre la mort'**
+  String get combatDeathSaves;
+
+  /// Lecteur d'écran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets contre la mort : {successes} réussites, {failures} échecs'**
+  String combatDeathSavesLabel(int successes, int failures);
+
+  /// Jet contre la mort réussi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réussite'**
+  String get deathSuccess;
+
+  /// Jet contre la mort raté.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec'**
+  String get deathFailure;
+
+  /// Deux échecs (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'1 naturel'**
+  String get deathNat1;
+
+  /// 1 PV rendu (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'20 naturel'**
+  String get deathNat20;
+
+  /// Pavé ([1b]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Cibles'**
+  String get keypadTargets;
+
+  /// Ajoute une cible au pavé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cible'**
+  String get keypadAddTarget;
+
+  /// Efface le dernier chiffre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer'**
+  String get keypadErase;
+
+  /// Bascule du pavé (EF-PV-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Coup critique'**
+  String get keypadCritical;
+
+  /// Aide du coup critique ([1b]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ne change pas le montant saisi ; sur un PJ à 0 PV, compte deux échecs.'**
+  String get keypadCriticalHelp;
+
+  /// No description provided for @keypadReplaceTemp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacer les PV temporaires actuels'**
+  String get keypadReplaceTemp;
+
+  /// No description provided for @keypadReplaceTempHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sinon, la valeur la plus haute est gardée.'**
+  String get keypadReplaceTempHelp;
+
+  /// Correction manuelle (EF-PV-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vulnérabilité ×2'**
+  String get keypadDouble;
+
+  /// Correction manuelle (EF-PV-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Résistance ½'**
+  String get keypadHalf;
+
+  /// Bouton principal du pavé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appliquer {amount} dégâts {type}'**
+  String keypadApplyDamage(int amount, String type);
+
+  /// Bouton principal du pavé en soins.
+  ///
+  /// In fr, this message translates to:
+  /// **'Soigner de {amount} PV'**
+  String keypadApplyHeal(int amount);
+
+  /// Bouton principal du pavé en PV temporaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donner {amount} PV temporaires'**
+  String keypadApplyTemp(int amount);
+
+  /// Aperçu d'une cible ([1b]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{before} → {after} / {max} PV'**
+  String keypadPreview(int before, int after, int max);
+
+  /// Aperçu des PV temporaires.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV temp. {before} → {after}'**
+  String keypadTempPreview(int before, int after);
+
   /// Passe à l'unité suivante (EF-INI-05).
   ///
   /// In fr, this message translates to:

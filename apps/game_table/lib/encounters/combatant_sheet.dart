@@ -75,6 +75,36 @@ class _CombatantDetail extends ConsumerWidget {
               Text(l10n.combatHp(hp, max)),
           ],
         ),
+        if (c.unconscious && !c.stable) ...[
+          SizedBox(height: AppSpacing.md),
+          Text(l10n.combatDeathSaves, style: text.titleSmall),
+          SizedBox(height: AppSpacing.xs),
+          DeathSavesRow(combatant: c),
+          SizedBox(height: AppSpacing.xs),
+          Wrap(
+            spacing: AppSpacing.xs,
+            runSpacing: AppSpacing.xs,
+            children: [
+              for (final (outcome, label) in [
+                ('success', l10n.deathSuccess),
+                ('failure', l10n.deathFailure),
+                ('nat1', l10n.deathNat1),
+                ('nat20', l10n.deathNat20),
+              ])
+                OutlinedButton(
+                  onPressed: () => appendCombat(ref, encounter.id, [
+                    (
+                      CombatEventType.deathSave,
+                      {'combatant': c.id, 'outcome': outcome},
+                    ),
+                  ]),
+                  child: Text(label),
+                ),
+            ],
+          ),
+        ],
+        if (c.stable && c.unconscious) Text(l10n.combatStable),
+        if (c.dead) Text(l10n.combatDead),
         SizedBox(height: AppSpacing.md),
         for (final counter in c.counters)
           Card(
