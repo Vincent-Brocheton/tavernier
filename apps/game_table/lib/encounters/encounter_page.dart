@@ -14,6 +14,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../sessions/sessions_providers.dart';
 import '../tables/tables_providers.dart';
+import 'combat_page.dart';
 import 'encounters_providers.dart';
 import 'foe_picker.dart';
 
@@ -126,6 +127,29 @@ class EncounterPage extends ConsumerWidget {
             ),
         ],
       ),
+      // En bas : sur téléphone, l'en-tête n'a pas la place.
+      bottomNavigationBar: editable
+          ? SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(AppSpacing.md),
+                child: switch (encounter.status) {
+                  EncounterStatus.draft ||
+                  EncounterStatus.ready => FilledButton.icon(
+                    onPressed: () => launchEncounter(context, ref, encounter),
+                    icon: const Icon(Icons.play_arrow),
+                    label: Text(l10n.encounterLaunch),
+                  ),
+                  EncounterStatus.running => FilledButton.tonalIcon(
+                    onPressed: () =>
+                        context.push('/tables/$tableId/rencontres/$id/combat'),
+                    icon: const Icon(Icons.play_arrow),
+                    label: Text(l10n.encounterResume),
+                  ),
+                  EncounterStatus.finished => const SizedBox.shrink(),
+                },
+              ),
+            )
+          : null,
       body: SafeArea(
         child: wide && editable
             ? Row(

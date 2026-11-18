@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
+import 'package:game_table/encounters/combat_page.dart';
 import 'package:game_table/encounters/encounter_page.dart';
 import 'package:game_table/encounters/foe_picker.dart';
 import 'package:game_table/l10n/app_localizations.dart';
@@ -121,6 +122,13 @@ Future<void> _open(
       GoRoute(
         path: '/tables/:id',
         builder: (_, state) => TablePage(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/tables/:id/rencontres/:encounter/combat',
+        builder: (_, state) => CombatPage(
+          tableId: state.pathParameters['id']!,
+          id: state.pathParameters['encounter']!,
+        ),
       ),
       GoRoute(
         path: '/tables/:id/rencontres/:encounter',
@@ -391,5 +399,156 @@ void main() {
     expect(find.text('Ajouter un adversaire'), findsNothing);
     expect(find.text('Bestiaire, PNJ'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  _test('lancer : en cours, jets des monstres, saisie des PJ, round 1', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Lancer la rencontre'));
+    await _settle(tester);
+    expect(find.text('Le relais du Sel · lancement'), findsOneWidget);
+    expect(find.text('Initiative'), findsOneWidget);
+    final status = await tester.runAsync(
+      () => _db
+          .customSelect(
+            'SELECT status FROM encounter WHERE id = ?',
+            variables: [Variable.withString(_relais)],
+          )
+          .getSingle(),
+    );
+    expect(status!.read<String>('status'), 'running');
+    // Les vétérans ont leur jet automatique ; les PJ attendent la saisie.
+    expect(find.text('Vétéran 1–2'), findsWidgets);
+    expect(find.text('Jet automatique'), findsOneWidget);
+    bool canStart() =>
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Commencer le round 1'),
+            )
+            .onPressed !=
+        null;
+    expect(canStart(), isFalse);
+
+    final dice = find.widgetWithText(TextField, 'd20');
+    expect(dice, findsNWidgets(2));
+    await tester.enterText(dice.first, '15');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await _settle(tester);
+    await tester.enterText(find.widgetWithText(TextField, 'd20'), '8');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await _settle(tester);
+    expect(find.text('Saisi par le MJ'), findsNWidgets(2));
+    expect(find.text('Tous les jets sont saisis'), findsOneWidget);
+
+    await _tap(tester, find.text('Commencer le round 1'));
+    await _settle(tester);
+    expect(find.text('Round 1'), findsOneWidget);
+    expect(find.textContaining('Round 1 · tour de '), findsOneWidget);
+  });
+
+  _test('initiative : égalités et qui décide, surprise d\'un monstre [C3]', (
+    tester,
+  ) async {
+    await _open(tester);
+    await tester.runAsync(() async {
+      await _db.customStatement(
+        'INSERT INTO profile (id, pseudonym, locale, settings) VALUES '
+        "(?, 'Hugo', 'fr', '{}'), ('ines', 'Inès', 'fr', '{}')",
+        [_hugo],
+      );
+      await _db.customStatement(
+        'INSERT INTO table_member (id, table_id, user_id, role, joined_at) '
+        "VALUES ('m2', ?, 'ines', 'player', '2026-11-11T10:00:00Z')",
+        [_table],
+      );
+      Map<String, Object?> added(
+        String id,
+        String label,
+        String kind, {
+        String? owner,
+        String? group,
+        int bonus = 0,
+      }) => {
+        'id': id,
+        'kind': kind,
+        'label': label,
+        'owner': ?owner,
+        'group_id': ?group,
+        'bonus': bonus,
+      };
+      await CombatStore(_db).launch(_relais, authorUserId: _camille, [
+        (
+          CombatEventType.combatantAdded,
+          added('brannoc', 'Brannoc', 'pc', owner: _hugo, bonus: 2),
+        ),
+        (
+          CombatEventType.combatantAdded,
+          added('mira', 'Mira Solen', 'pc', owner: 'ines'),
+        ),
+        (
+          CombatEventType.combatantAdded,
+          added('v1', 'Vétéran 1', 'monster', group: 'vets', bonus: 3),
+        ),
+        (
+          CombatEventType.combatantAdded,
+          added('v2', 'Vétéran 2', 'monster', group: 'vets', bonus: 3),
+        ),
+        (
+          CombatEventType.combatantAdded,
+          added('ogre', 'Ogre', 'monster', bonus: -1),
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'brannoc',
+            'dice': [6],
+            'bonus': 2,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'mira',
+            'dice': [8],
+            'bonus': 0,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'vets',
+            'dice': [12],
+            'bonus': 3,
+          },
+        ),
+        (
+          CombatEventType.initiativeRolled,
+          {
+            'unit': 'ogre',
+            'dice': [16],
+            'bonus': -1,
+          },
+        ),
+      ]);
+    });
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Reprendre le combat'));
+    await _settle(tester);
+    expect(find.text('Égalité · le MJ décide'), findsNWidgets(2));
+    expect(find.text('Égalité · Hugo et Inès décident'), findsNWidgets(2));
+    expect(
+      find.text(
+        'Égalité à 15 : vous choisissez l’ordre. Glissez pour le changer.',
+      ),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.widgetWithText(FilterChip, 'Ogre'));
+    await _settle(tester);
+    expect(find.text('Désavantage'), findsOneWidget);
+    // L'ogre, monstre seul, n'a que « surpris » en sous-titre.
+    expect(find.text('surpris'), findsOneWidget);
   });
 }

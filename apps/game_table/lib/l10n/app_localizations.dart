@@ -6150,6 +6150,174 @@ abstract class AppLocalizations {
   /// **'Budget de PX 2024 : seuil par personnage selon son niveau, additionné pour les personnages présents. La jauge se met à jour à chaque ajout.'**
   String get encounterBudgetNote;
 
+  /// Crée les combattants et ouvre l'initiative ([C1]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer la rencontre'**
+  String get encounterLaunch;
+
+  /// Rencontre en cours : retour au combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre le combat'**
+  String get encounterResume;
+
+  /// Journal avec un événement inconnu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce combat ne peut pas être lu : mettez l’application à jour.'**
+  String get combatUnreadable;
+
+  /// Surtitre de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} · lancement'**
+  String combatLaunching(String title);
+
+  /// Titre de l'écran d'initiative.
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative'**
+  String get combatInitiative;
+
+  /// Round du combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Round {round}'**
+  String combatRound(int round);
+
+  /// Unité active.
+  ///
+  /// In fr, this message translates to:
+  /// **'Round {round} · tour de {name}'**
+  String combatTurnOf(int round, String name);
+
+  /// Initiative prête.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les jets sont saisis'**
+  String get combatAllRolled;
+
+  /// Ouvre le combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer le round 1'**
+  String get combatStart;
+
+  /// Groupe à initiative commune.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} 1–{count}'**
+  String combatGroupLabel(String name, int count);
+
+  /// Section de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Surprise'**
+  String get combatSurprise;
+
+  /// Règle de la surprise (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les combattants surpris ont le Désavantage au jet d’initiative.'**
+  String get combatSurpriseHelp;
+
+  /// Sous-titre d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'PJ · {player}'**
+  String combatPc(String player);
+
+  /// Sous-titre d'un PNJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'PNJ'**
+  String get combatNpc;
+
+  /// Combattant surpris.
+  ///
+  /// In fr, this message translates to:
+  /// **'surpris'**
+  String get combatSurprised;
+
+  /// Mode du jet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avantage'**
+  String get combatAdvantage;
+
+  /// Mode du jet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désavantage'**
+  String get combatDisadvantage;
+
+  /// Dé gardé et dé écarté.
+  ///
+  /// In fr, this message translates to:
+  /// **'{kept} ({dropped})'**
+  String combatRollDropped(int kept, int dropped);
+
+  /// Saisie du dé gardé d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'d20'**
+  String get combatDie;
+
+  /// Origine du jet d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisi par le MJ'**
+  String get combatEnteredByGm;
+
+  /// Origine du jet d'un monstre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet automatique'**
+  String get combatAutoRoll;
+
+  /// Panneau de l'initiative ([C3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordre du tour'**
+  String get combatOrder;
+
+  /// Badge d'égalité (InitiativeTieBadge).
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité · le MJ décide'**
+  String get combatTieGm;
+
+  /// Badge d'égalité entre PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité · {players} décident'**
+  String combatTiePlayers(String players);
+
+  /// Joueurs qui décident.
+  ///
+  /// In fr, this message translates to:
+  /// **'{first} et {second}'**
+  String combatPlayersAnd(String first, String second);
+
+  /// Égalité tranchée par le MJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité à {total} : vous choisissez l’ordre. Glissez pour le changer.'**
+  String combatTieGmHelp(int total);
+
+  /// Égalité entre PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Égalité à {total} : {players} choisissent l’ordre depuis leur téléphone, ou vous le faites pour eux.'**
+  String combatTiePlayersHelp(int total, String players);
+
+  /// Pied de l'ordre du tour ([C3], décision 25).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’ordre par défaut suit le bonus d’initiative, par commodité : ce n’est pas une règle. Entre un monstre et un PJ à égalité, vous tranchez.'**
+  String get combatOrderNote;
+
   /// Nombre d'exemplaires d'un adversaire.
   ///
   /// In fr, this message translates to:

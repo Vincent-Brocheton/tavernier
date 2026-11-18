@@ -58,11 +58,23 @@ enum CombatantKind { pc, monster, npc }
 
 /// Jet d'initiative : d20 gardé, d20 écarté (Avantage, Désavantage), bonus.
 final class InitiativeRoll {
-  const InitiativeRoll({required this.dice, required this.bonus, this.dropped});
+  const InitiativeRoll({
+    required this.dice,
+    required this.bonus,
+    this.dropped,
+    this.mode = RollMode.normal,
+    this.surprised = false,
+  });
 
   final List<int> dice;
   final int? dropped;
   final int bonus;
+
+  /// Avantage ou Désavantage du jet.
+  final RollMode mode;
+
+  /// Combattant surpris (Désavantage, SRD).
+  final bool surprised;
 
   int get total => dice.fold(bonus, (sum, d) => sum + d);
 }
@@ -82,6 +94,7 @@ final class Combatant {
     required this.label,
     required this.bonus,
     required Map<String, int> counters,
+    this.advantage = false,
     this.groupId,
     this.owner,
     this.ac,
@@ -97,6 +110,7 @@ final class Combatant {
     groupId: p['group_id'] as String?,
     owner: p['owner'] as String?,
     bonus: (p['bonus'] as int?) ?? 0,
+    advantage: (p['advantage'] as bool?) ?? false,
     ac: p['ac'] as int?,
     hp: p['hp'] as int?,
     hpMax: p['hp_max'] as int?,
@@ -118,6 +132,9 @@ final class Combatant {
   /// Joueur d'un PJ.
   final String? owner;
   final int bonus;
+
+  /// Avantage au jet d'initiative (don, aptitude).
+  final bool advantage;
   final int? ac;
   final int? hp;
   final int? hpMax;
@@ -265,6 +282,8 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
           dice: [for (final d in p['dice']! as List) d as int],
           dropped: p['dropped'] as int?,
           bonus: (p['bonus'] as int?) ?? 0,
+          mode: RollMode.values.asNameMap()[p['mode']] ?? RollMode.normal,
+          surprised: (p['surprised'] as bool?) ?? false,
         );
         final unit = p['unit']! as String;
         rolls[unit] = roll;

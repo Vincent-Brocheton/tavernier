@@ -132,3 +132,13 @@ String encounterSummary(
       difficultyLabel(l10n, encounterDifficulty(xp, encounterBudget(levels))),
   ].join(' · ');
 }
+
+/// Seule voie d'écriture du journal du combat (cahier §10).
+final combatStoreProvider = Provider<CombatStore>(
+  (ref) => CombatStore(ref.watch(databaseProvider)),
+);
+
+/// État d'un combat : la projection de son journal.
+final combatStateProvider = StreamProvider.family<CombatState, String>(
+  (ref, encounterId) => ref.watch(combatStoreProvider).watchState(encounterId),
+);

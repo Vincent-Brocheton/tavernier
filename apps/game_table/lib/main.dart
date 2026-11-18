@@ -23,6 +23,7 @@ import 'account/sync_state.dart';
 import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
+import 'encounters/combat_page.dart';
 import 'encounters/encounter_page.dart';
 import 'l10n/app_localizations.dart';
 import 'npcs/new_npc_page.dart';
@@ -94,6 +95,13 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
       GoRoute(
         path: '/tables/:id',
         builder: (_, state) => TablePage(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/tables/:id/rencontres/:encounter/combat',
+        builder: (_, state) => CombatPage(
+          tableId: state.pathParameters['id']!,
+          id: state.pathParameters['encounter']!,
+        ),
       ),
       GoRoute(
         path: '/tables/:id/rencontres/:encounter',

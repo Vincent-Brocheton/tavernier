@@ -127,6 +127,34 @@ void main() {
   });
 
   group('initiative', () {
+    test('[C3] : Avantage d’Aldric, Brannoc surpris en Désavantage', () {
+      final state = projectCombat([
+        _event(CombatEventType.combatantAdded, {
+          'id': 'aldric',
+          'kind': 'pc',
+          'label': 'Aldric',
+          'bonus': 4,
+          'advantage': true,
+        }),
+        _add('brannoc', 'Brannoc', kind: 'pc', owner: 'sam', bonus: 2),
+        _event(CombatEventType.initiativeRolled, {
+          'unit': 'brannoc',
+          'dice': [6],
+          'dropped': 14,
+          'bonus': 2,
+          'mode': 'disadvantage',
+          'surprised': true,
+        }),
+      ]);
+      expect(state.combatant('aldric')!.advantage, isTrue);
+      final roll = state.combatant('brannoc')!.initiative!;
+      expect(
+        (roll.mode, roll.surprised, roll.total),
+        (RollMode.disadvantage, true, 8),
+      );
+      expect(state.combatant('brannoc')!.advantage, isFalse);
+    });
+
     test('surprise : Désavantage ; Avantage et Désavantage s\'annulent', () {
       expect(combineRollModes(), RollMode.normal);
       expect(combineRollModes(surprised: true), RollMode.disadvantage);
