@@ -23,6 +23,7 @@ import 'encounters_providers.dart';
 import 'foe_picker.dart';
 import 'hp_bar.dart';
 import 'launch.dart';
+import 'turn_reminders.dart';
 
 /// Profil d'un combattant : son monstre, ou le monstre de départ d'un PNJ.
 MonsterData? monsterOfCombatant(
@@ -239,6 +240,7 @@ class _CombatViewState extends ConsumerState<CombatView> {
                   ),
                 ],
               ),
+              TurnStartBanner(encounter: encounter, combat: combat),
               _RechargeReminder(
                 encounterId: encounter.id,
                 combat: combat,
@@ -338,9 +340,8 @@ class _CombatViewState extends ConsumerState<CombatView> {
                     ),
                     Expanded(
                       child: FilledButton.icon(
-                        onPressed: () => appendCombat(ref, encounter.id, [
-                          (CombatEventType.turnAdvanced, const {}),
-                        ]),
+                        onPressed: () =>
+                            nextTurn(context, ref, encounter, combat),
                         icon: const Icon(Icons.skip_next),
                         label: Text(l10n.combatNextTurn),
                       ),

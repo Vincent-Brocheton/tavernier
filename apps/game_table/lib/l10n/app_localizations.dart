@@ -6708,6 +6708,156 @@ abstract class AppLocalizations {
   /// **'{name} · {duration}'**
   String conditionLine(String name, String duration);
 
+  /// Puce d'un état qui expire à la fin du tour en cours ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'expire'**
+  String get chipExpires;
+
+  /// No description provided for @ok.
+  ///
+  /// In fr, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// Dialogue de fin de tour ([C6]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin du tour · {name}'**
+  String turnEndTitle(String name);
+
+  /// Bandeau de début de tour ([1a]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Début du tour · {name}'**
+  String turnStartTitle(String name);
+
+  /// No description provided for @reminderSaveTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · sauvegarde à refaire'**
+  String reminderSaveTitle(String name);
+
+  /// No description provided for @reminderSaveLine.
+  ///
+  /// In fr, this message translates to:
+  /// **'JS de {ability} DD {dc}'**
+  String reminderSaveLine(String ability, int dc);
+
+  /// No description provided for @reminderBonus.
+  ///
+  /// In fr, this message translates to:
+  /// **'bonus {bonus}'**
+  String reminderBonus(String bonus);
+
+  /// No description provided for @reminderSaveHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réussite : l\'état {name} est retiré.'**
+  String reminderSaveHelp(String name);
+
+  /// No description provided for @reminderRoll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer'**
+  String get reminderRoll;
+
+  /// No description provided for @reminderFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec'**
+  String get reminderFailed;
+
+  /// No description provided for @reminderSucceeded.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réussite'**
+  String get reminderSucceeded;
+
+  /// No description provided for @reminderRolled.
+  ///
+  /// In fr, this message translates to:
+  /// **'{outcome} · {total}'**
+  String reminderRolled(String outcome, int total);
+
+  /// No description provided for @reminderExpiresTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · expire'**
+  String reminderExpiresTitle(String name);
+
+  /// No description provided for @reminderDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée : {duration}'**
+  String reminderDuration(String duration);
+
+  /// No description provided for @reminderRemoved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retiré'**
+  String get reminderRemoved;
+
+  /// No description provided for @reminderRecurringTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · dégâts récurrents'**
+  String reminderRecurringTitle(String name);
+
+  /// No description provided for @reminderRecurringLine.
+  ///
+  /// In fr, this message translates to:
+  /// **'{dice} dégâts {type}'**
+  String reminderRecurringLine(String dice, String type);
+
+  /// No description provided for @reminderApply.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer et appliquer'**
+  String get reminderApply;
+
+  /// No description provided for @reminderApplied.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} dégâts appliqués'**
+  String reminderApplied(int amount);
+
+  /// No description provided for @reminderLater.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus tard'**
+  String get reminderLater;
+
+  /// No description provided for @reminderNextTurn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tour suivant : {name}'**
+  String reminderNextTurn(String name);
+
+  /// No description provided for @reminderOf.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ({bearer})'**
+  String reminderOf(String name, String bearer);
+
+  /// No description provided for @bannerExpired.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} a pris fin.'**
+  String bannerExpired(String name);
+
+  /// No description provided for @bannerExpires.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} expire à la fin de ce tour.'**
+  String bannerExpires(String name);
+
+  /// No description provided for @bannerRecurring.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : {dice} dégâts {type}'**
+  String bannerRecurring(String name, String dice, String type);
+
   /// No description provided for @conditionRemove.
   ///
   /// In fr, this message translates to:
