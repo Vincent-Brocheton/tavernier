@@ -12,6 +12,10 @@ enum CombatEventType {
   turnAdvanced('turn_advanced'),
   counterUsed('counter_used'),
   counterRestored('counter_restored'),
+  damage('damage'),
+  heal('heal'),
+  tempHp('temp_hp'),
+  deathSave('death_save'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -100,6 +104,9 @@ final class Combatant {
     this.ac,
     this.hp,
     this.hpMax,
+    this.resistances = const {},
+    this.vulnerabilities = const {},
+    this.immunities = const {},
   }) : _max = {reactionCounter: 1, ...counters};
 
   factory Combatant._fromPayload(Map<String, Object?> p) => Combatant._(
@@ -114,6 +121,9 @@ final class Combatant {
     ac: p['ac'] as int?,
     hp: p['hp'] as int?,
     hpMax: p['hp_max'] as int?,
+    resistances: _ids(p['resistances']),
+    vulnerabilities: _ids(p['vulnerabilities']),
+    immunities: _ids(p['immunities']),
     counters: {
       for (final MapEntry(:key, :value)
           in ((p['counters'] ?? const <String, Object?>{}) as Map).entries)
@@ -136,8 +146,89 @@ final class Combatant {
   /// Avantage au jet d'initiative (don, aptitude).
   final bool advantage;
   final int? ac;
-  final int? hp;
+
+  /// PV courants ; `null` si inconnus (fiche illisible).
+  int? hp;
   final int? hpMax;
+  int tempHp = 0;
+
+  /// Types de dégâts (`srd:damage-type:…`) de son profil.
+  final Set<String> resistances;
+  final Set<String> vulnerabilities;
+  final Set<String> immunities;
+
+  /// Jets contre la mort d'un PJ à 0 PV.
+  int deathSuccesses = 0;
+  int deathFailures = 0;
+  bool stable = false;
+  bool dead = false;
+
+  /// PJ à 0 PV, vivant : Inconscient.
+  bool get unconscious => kind == CombatantKind.pc && hp == 0 && !dead;
+
+  /// Monstre ou PNJ à 0 PV : hors de combat, gardé dans l'ordre.
+  bool get outOfCombat => kind != CombatantKind.pc && hp == 0;
+
+  void _resetDeathSaves() {
+    deathSuccesses = 0;
+    deathFailures = 0;
+    stable = false;
+  }
+
+  void _fail(int count) {
+    deathFailures = min(3, deathFailures + count);
+    stable = false;
+    if (deathFailures >= 3) dead = true;
+  }
+
+  void _takeDamage(
+    int amount,
+    String type, {
+    required bool critical,
+    required bool half,
+    required bool double,
+  }) {
+    if (hp == null || dead) return;
+    final wasDown = hp == 0;
+    final result = resolveDamage(
+      this,
+      amount,
+      type,
+      half: half,
+      double: double,
+    );
+    tempHp = result.tempAfter;
+    hp = result.hpAfter;
+    // Dégâts subis à 0 PV : un échec, deux sur un coup critique.
+    if (kind == CombatantKind.pc && wasDown && result.taken > 0) {
+      _fail(critical ? 2 : 1);
+    } else if (kind == CombatantKind.pc && !wasDown && hp == 0) {
+      _resetDeathSaves();
+    }
+  }
+
+  void _heal(int amount) {
+    if (hp == null || dead) return;
+    final wasDown = hp == 0;
+    hp = min(hpMax ?? hp! + amount, hp! + amount);
+    if (wasDown && hp! > 0) _resetDeathSaves();
+  }
+
+  void _deathSave(String outcome) {
+    if (!unconscious || stable) return;
+    switch (outcome) {
+      case 'success':
+        deathSuccesses++;
+        if (deathSuccesses >= 3) stable = true;
+      case 'failure':
+        _fail(1);
+      case 'nat1':
+        _fail(2);
+      case 'nat20':
+        hp = 1;
+        _resetDeathSaves();
+    }
+  }
 
   final Map<String, int> _max;
   final Map<String, int> _used = {};
@@ -301,6 +392,31 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
             ?._use(p['counter']! as String, (p['amount'] as int?) ?? 1);
       case CombatEventType.counterRestored:
         find(p['combatant']! as String)?._restore(p['counter']! as String);
+      case CombatEventType.damage:
+        for (final id in p['targets']! as List) {
+          find(id as String)?._takeDamage(
+            p['amount']! as int,
+            (p['type'] as String?) ?? '',
+            critical: (p['critical'] as bool?) ?? false,
+            half: (p['half'] as bool?) ?? false,
+            double: (p['double'] as bool?) ?? false,
+          );
+        }
+      case CombatEventType.heal:
+        for (final id in p['targets']! as List) {
+          find(id as String)?._heal(p['amount']! as int);
+        }
+      case CombatEventType.tempHp:
+        for (final id in p['targets']! as List) {
+          final c = find(id as String);
+          if (c == null) continue;
+          final amount = p['amount']! as int;
+          c.tempHp = (p['replace'] as bool?) ?? false
+              ? amount
+              : max(c.tempHp, amount);
+        }
+      case CombatEventType.deathSave:
+        find(p['combatant']! as String)?._deathSave(p['outcome']! as String);
       case CombatEventType.undo:
         break;
     }
@@ -442,4 +558,47 @@ int rollHitPoints(String hitDice, Random random) =>
 bool rechargeSucceeds(String range, int roll) {
   final bounds = range.split(RegExp('[-–]'));
   return roll >= int.parse(bounds.first) && roll <= int.parse(bounds.last);
+}
+
+Set<String> _ids(Object? json) => {
+  for (final id in (json ?? const <Object?>[]) as List) id as String,
+};
+
+/// Dégâts subis par une cible, et ses PV avant et après.
+typedef DamageResult = ({
+  int taken,
+  int hpBefore,
+  int hpAfter,
+  int tempBefore,
+  int tempAfter,
+});
+
+/// Dégâts de [type] sur [target] (SRD) : l'Immunité les annule ; la
+/// Résistance (du profil ou [half]) les divise par deux, arrondi à
+/// l'inférieur, puis la Vulnérabilité (du profil ou [double]) les double.
+/// Les PV temporaires sont consommés d'abord ; les PV restent ≥ 0. Rien
+/// n'est écrit : sert aussi d'aperçu.
+DamageResult resolveDamage(
+  Combatant target,
+  int amount,
+  String type, {
+  bool half = false,
+  bool double = false,
+}) {
+  var taken = amount;
+  if (target.immunities.contains(type)) {
+    taken = 0;
+  } else {
+    if (half || target.resistances.contains(type)) taken ~/= 2;
+    if (double || target.vulnerabilities.contains(type)) taken *= 2;
+  }
+  final hp = target.hp ?? 0;
+  final absorbed = min(target.tempHp, taken);
+  return (
+    taken: taken,
+    hpBefore: hp,
+    hpAfter: max(0, hp - (taken - absorbed)),
+    tempBefore: target.tempHp,
+    tempAfter: target.tempHp - absorbed,
+  );
 }

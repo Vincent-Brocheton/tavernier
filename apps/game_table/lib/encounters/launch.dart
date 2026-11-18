@@ -143,6 +143,10 @@ Map<String, Object?> profileCombatant({
     'hp': hp,
     'hp_max': hp,
     'counters': _countersOf(monster),
+    // Défenses du profil, appliquées aux dégâts (EF-PV-01).
+    'resistances': [for (final id in monster.resistances) '$id'],
+    'vulnerabilities': [for (final id in monster.vulnerabilities) '$id'],
+    'immunities': [for (final id in monster.immunities) '$id'],
   };
 }
 
