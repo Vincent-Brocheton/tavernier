@@ -45,13 +45,23 @@ class SheetPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final content = ref.watch(contentProvider).asData?.value;
     final character = ref.watch(characterProvider(id));
+    final exhaustion =
+        ref.watch(playStateProvider(id)).asData?.value.exhaustion ?? 0;
     return Scaffold(
       body: SafeArea(
         child: switch ((content, character)) {
           (final content?, AsyncData(value: final character?)) => SheetAccess(
-            // Lecture seule tant que les droits ne sont pas connus.
-            editable: ref.watch(sheetEditableProvider(id)).value ?? false,
-            child: _Sheet(id: id, content: content, character: character),
+            // Lecture seule tant que les droits ne sont pas connus, et
+            // après la mort par Épuisement (EF-CON-07).
+            editable:
+                (ref.watch(sheetEditableProvider(id)).value ?? false) &&
+                exhaustion < exhaustionDeath,
+            child: _Sheet(
+              id: id,
+              content: content,
+              character: character,
+              exhaustion: exhaustion,
+            ),
           ),
           (_, AsyncData(value: null)) ||
           (_, AsyncError()) => const CharacterNotFound(),
@@ -96,17 +106,19 @@ class _Sheet extends StatelessWidget {
     required this.id,
     required this.content,
     required this.character,
+    required this.exhaustion,
   });
 
   final String id;
   final ActiveContent content;
   final CharacterInput character;
+  final int exhaustion;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
-    final sheet = computeSheet(character, content);
+    final sheet = computeSheet(character, content, exhaustion: exhaustion);
     final classes = [
       for (final level in character.classLevels)
         l10n.classLevel(namesOf(content, [level.classId]), level.level),
@@ -217,7 +229,12 @@ class _Sheet extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                _MainTab(id: id, content: content, sheet: sheet),
+                _MainTab(
+                  id: id,
+                  name: character.name,
+                  content: content,
+                  sheet: sheet,
+                ),
                 _SkillsTab(content: content, sheet: sheet),
                 CombatTab(
                   id: id,
@@ -256,11 +273,13 @@ class _Sheet extends StatelessWidget {
 class _MainTab extends StatelessWidget {
   const _MainTab({
     required this.id,
+    required this.name,
     required this.content,
     required this.sheet,
   });
 
   final String id;
+  final String name;
   final ActiveContent content;
   final ComputedSheet sheet;
 
@@ -287,6 +306,7 @@ class _MainTab extends StatelessWidget {
           ),
           HitPointsTracker(id: id, sheet: sheet),
           InspirationTracker(id: id),
+          ExhaustionTracker(id: id, name: name),
           SizedBox(height: AppSpacing.xs),
           Wrap(
             spacing: AppSpacing.xs,

@@ -2,6 +2,12 @@ import 'creation_rules.dart';
 
 /// Une contribution à une valeur calculée (EF-PJ-03) : `base`, un code de
 /// caractéristique ou l'identifiant de l'entité qui contribue.
+/// Libellé de la contribution de l'Épuisement (EF-CON-07).
+const exhaustionSource = 'exhaustion';
+
+/// Niveau d'Épuisement auquel le personnage meurt (SRD).
+const exhaustionDeath = 6;
+
 final class Contribution {
   const Contribution(this.label, this.value);
 

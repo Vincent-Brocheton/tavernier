@@ -4144,11 +4144,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get durationIndefinite => 'Indéfinie';
 
   @override
-  String conditionExhaustion(int level) {
-    return 'Épuisement $level';
-  }
-
-  @override
   String chipRounds(int count) {
     return '$count rd';
   }
@@ -4687,4 +4682,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String conditionEndsConcentration(String consequence) {
     return 'Met fin à la concentration : $consequence';
   }
+
+  @override
+  String exhaustionChip(int level, int penalty, String speed) {
+    return 'Épuisement $level · −$penalty aux tests d20 · Vitesse −$speed';
+  }
+
+  @override
+  String get exhaustionLevel => 'Niveau d’épuisement';
+
+  @override
+  String get exhaustionDecrease => 'Retirer un niveau d’épuisement';
+
+  @override
+  String get exhaustionIncrease => 'Ajouter un niveau d’épuisement';
+
+  @override
+  String get exhaustionHelp =>
+      'Chaque niveau d’épuisement retire 2 à tous les tests d20 et 1,50 m à la Vitesse. Un repos long retire un niveau. Au niveau 6, le personnage meurt.';
+
+  @override
+  String get exhaustionDeathTitle => 'Passer au niveau 6 d’épuisement ?';
+
+  @override
+  String exhaustionDeathBody(String name) {
+    return 'Au niveau 6, $name meurt. La fiche passe en lecture seule ; retirer un niveau d’épuisement l’annule.';
+  }
+
+  @override
+  String get exhaustionDeathConfirm => 'Confirmer la mort';
+
+  @override
+  String get exhaustionDead => 'Mort · Épuisement 6';
 }

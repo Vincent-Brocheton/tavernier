@@ -12,7 +12,10 @@
 
 ## 3. Lot b : Épuisement
 
-- [ ] 3.1 Specs et design du lot b, puis tests et implémentation
+- [x] 3.1 Specs et design du lot b
+- [x] 3.2 Tests puis `computeSheet` avec l'Épuisement ([F3a], [F3b]), Perception passive inchangée, mort au niveau 6 en combat
+- [x] 3.3 Tests de widgets puis puce, réglage, confirmation du niveau 6 et lecture seule sur la fiche ; puce de combat
+- [x] 3.4 Suite complète, revue, PR du lot b
 
 ## 4. Lot c : Réactions et Vigilant
 

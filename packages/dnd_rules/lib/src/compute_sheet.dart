@@ -85,7 +85,15 @@ typedef _Active = ({
 /// Calcule la fiche d'un personnage (cahier §10.3) : fonction pure, sans
 /// base, réseau ni Flutter. Les règles enfreintes sont listées dans
 /// [ComputedSheet.integrityErrors], jamais levées.
-ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
+ComputedSheet computeSheet(
+  CharacterInput character,
+  ActiveContent content, {
+  int exhaustion = 0,
+}) {
+  // SRD, état Épuisement : −2 par niveau aux tests d20.
+  final tired = [
+    if (exhaustion > 0) Contribution(exhaustionSource, -2 * exhaustion),
+  ];
   final errors = <IntegrityError>[];
   final level = character.classLevels.fold(0, (sum, c) => sum + c.level);
   final pb = _proficiencyBonus(level);
@@ -179,6 +187,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final a in ofOp('modify_check'))
         if (a.effect.args['scope'] == 'skill:${skill.id.slug}')
           Contribution(a.source, resolve(a.effect.args['add'], a.level)),
+      ...tired,
     ]);
     skillBreakdown[key] = breakdown;
     skills[key] = breakdown.value;
@@ -259,6 +268,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final a in initiativeEffects)
         if (a.effect.args['add'] case final add?)
           Contribution(a.source, resolve(add, a.level)),
+      ...tired,
     ],
     advantage: initiativeEffects.any((a) => a.effect.args['advantage'] == true),
   );
@@ -384,6 +394,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
             ...attackEffects(
               ranged ? 'ranged_weapon_attack' : 'melee_weapon_attack',
             ),
+            ...tired,
           ]);
           return Attack(
             weaponId: id,
@@ -397,10 +408,11 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
         }(),
     Attack(
       weaponId: 'unarmed',
-      attackBonus: mod('str') + pb,
+      attackBonus: mod('str') + pb - 2 * exhaustion,
       sources: [
         Contribution('str', mod('str')),
         Contribution('proficiency', pb),
+        ...tired,
       ],
       damage: '${1 + mod('str')}',
       damageType: 'bludgeoning',
@@ -443,6 +455,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
           attackBonus: Computed([
             Contribution('proficiency', pb),
             Contribution(code, mod(code)),
+            ...tired,
           ]),
           cantripsKnown: columnsOf(c)['cantrips'] ?? 0,
           preparedMax: columnsOf(c)['prepared_spells'] ?? 0,
@@ -515,6 +528,7 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
           if (a.effect.args['scope'] == 'saving_throws' ||
               a.effect.args['scope'] == 'saving_throw:$code')
             Contribution(a.source, resolve(a.effect.args['add'], a.level)),
+        ...tired,
       ]),
   };
 
@@ -539,7 +553,9 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
     skills: skills,
     skillBreakdown: skillBreakdown,
     skillProficiencies: skillProficiencies,
-    passivePerception: 10 + (skills['perception'] ?? 0),
+    // La Perception passive n'est pas un test d20 : l'Épuisement n'y
+    // touche pas.
+    passivePerception: 10 + (skills['perception'] ?? 0) + 2 * exhaustion,
     initiative: initiative,
     armorClass: armorClass,
     speed: Computed([
@@ -547,6 +563,8 @@ ComputedSheet computeSheet(CharacterInput character, ActiveContent content) {
       for (final a in ofOp('modify_speed'))
         if (a.effect.args['mode'] == 'walk' && applies(a.effect))
           Contribution(a.source, resolve(a.effect.args['value'] ?? 0, a.level)),
+      // SRD, état Épuisement : −1,50 m (5 pieds) par niveau.
+      if (exhaustion > 0) Contribution(exhaustionSource, -5 * exhaustion),
     ]),
     hitPointsMax: hitPointsMax,
     hitDice: [

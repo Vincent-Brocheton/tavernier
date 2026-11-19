@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'computed_sheet.dart';
 import 'dice.dart';
 
 /// Types d'événements du journal de combat (cahier §10) : liste fermée.
@@ -415,6 +416,8 @@ final class Combatant {
       instance.levels = min(6, instance.levels);
       _conditions.add(instance);
     }
+    // SRD : le niveau 6 d'Épuisement tue (EF-CON-07).
+    if (this.exhaustion >= exhaustionDeath) dead = true;
   }
 
   /// Retire l'instance [id], ou [levels] niveaux d'Épuisement.
@@ -563,8 +566,8 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     }
   }
 
-  /// Pose l'état [p] sur [c] ; un état qui inflige Neutralisé met fin à sa
-  /// concentration (EF-CON-06).
+  /// Pose l'état [p] sur [c] ; un état qui inflige Neutralisé, ou la mort
+  /// par Épuisement, met fin à sa concentration (EF-CON-06).
   void addCondition(Combatant c, Map<String, Object?> p) {
     final instance = ConditionInstance._(
       p,
@@ -573,8 +576,9 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
       serial: serial,
     );
     c._addCondition(instance);
-    if (incapacitatingConditions.contains(instance.condition) &&
-        !c.conditionImmunities.contains(instance.condition)) {
+    if (c.dead ||
+        incapacitatingConditions.contains(instance.condition) &&
+            !c.conditionImmunities.contains(instance.condition)) {
       endConcentration(c);
     }
   }

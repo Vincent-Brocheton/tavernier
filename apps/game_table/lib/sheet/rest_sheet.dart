@@ -84,6 +84,90 @@ class InspirationTracker extends ConsumerWidget {
   }
 }
 
+/// « Épuisement 2 · −4 aux tests d20 · Vitesse −3 m » (EF-CON-07, [F3a]).
+String exhaustionLabel(AppLocalizations l10n, int level) =>
+    l10n.exhaustionChip(level, 2 * level, formatFeet(5 * level));
+
+/// Niveau d'Épuisement, sur l'onglet Principal ([F3a], [F3b]). Le niveau 6
+/// tue, après confirmation ; le retirer rend la fiche modifiable.
+class ExhaustionTracker extends ConsumerWidget {
+  const ExhaustionTracker({super.key, required this.id, required this.name});
+
+  final String id;
+  final String name;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final play =
+        ref.watch(playStateProvider(id)).asData?.value ?? const PlayState();
+    final level = play.exhaustion;
+    // La fiche d'un mort est figée, mais son niveau peut redescendre.
+    final editable = ref.watch(sheetEditableProvider(id)).value ?? false;
+    Future<void> set(int value) async {
+      if (value == exhaustionDeath) {
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (dialog) => AlertDialog(
+            title: Text(l10n.exhaustionDeathTitle),
+            content: Text(l10n.exhaustionDeathBody(name)),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialog, false),
+                child: Text(l10n.cancel),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(dialog, true),
+                child: Text(l10n.exhaustionDeathConfirm),
+              ),
+            ],
+          ),
+        );
+        if (confirmed != true) return;
+      }
+      await savePlayState(ref, id, play.withExhaustion(value));
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (level >= exhaustionDeath)
+          Chip(
+            avatar: const Icon(Icons.heart_broken_outlined),
+            label: Text(l10n.exhaustionDead),
+          )
+        else if (level > 0)
+          Chip(
+            avatar: const Icon(Icons.battery_1_bar),
+            label: Text(exhaustionLabel(l10n, level)),
+          ),
+        if (editable)
+          Row(
+            children: [
+              Expanded(child: Text(l10n.exhaustionLevel)),
+              IconButton(
+                tooltip: l10n.exhaustionDecrease,
+                onPressed: level > 0 ? () => set(level - 1) : null,
+                icon: const Icon(Icons.remove),
+              ),
+              Text('$level', style: text.titleMedium),
+              IconButton(
+                tooltip: l10n.exhaustionIncrease,
+                onPressed: level < exhaustionDeath
+                    ? () => set(level + 1)
+                    : null,
+                icon: const Icon(Icons.add),
+              ),
+            ],
+          ),
+        if (editable && level > 0)
+          Text(l10n.exhaustionHelp, style: text.bodySmall),
+      ],
+    );
+  }
+}
+
 /// Utilisations restantes d'une ressource, avec un bouton pour en dépenser.
 class ResourceTracker extends ConsumerWidget {
   const ResourceTracker({

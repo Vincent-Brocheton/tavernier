@@ -42,6 +42,8 @@ final class SheetBreakdowns {
         (label, badge) = (l10n.breakdownProficiency, null);
       case 'expertise':
         (label, badge) = (l10n.expertise, null);
+      case exhaustionSource:
+        (label, badge) = (l10n.exhaustion, null);
       case final code when abilityCodes.contains(code):
         (label, badge) = (l10n.breakdownModifier(_name(code)), null);
       case final id:
