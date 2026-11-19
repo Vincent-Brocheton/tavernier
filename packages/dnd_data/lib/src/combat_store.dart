@@ -78,24 +78,23 @@ final class CombatStore {
       );
 
   /// Journal de [encounterId], dans l'ordre de ses identifiants.
-  Stream<List<CombatEvent>> watchEvents(String encounterId) => _db
+  Stream<List<CombatEvent>> watchEvents(String encounterId) =>
+      watchLog(encounterId)
+          .map((rows) => [for (final (at: _, :event) in rows) event]);
+
+  /// Journal de [encounterId], avec la date d'écriture de chaque événement
+  /// (EF-LOG-01).
+  Stream<List<({DateTime at, CombatEvent event})>> watchLog(
+    String encounterId,
+  ) => _db
       .customSelect(
-        'SELECT id, type, payload FROM encounter_event '
+        'SELECT id, type, payload, created_at FROM encounter_event '
         'WHERE encounter_id = ? ORDER BY id',
         variables: [Variable.withString(encounterId)],
         readsFrom: {_db.encounterEvents},
       )
       .watch()
-      .map(
-        (rows) => [
-          for (final row in rows)
-            CombatEvent.fromJson({
-              'id': row.read<String>('id'),
-              'type': row.read<String>('type'),
-              'payload': jsonDecode(row.read<String>('payload')),
-            }),
-        ],
-      );
+      .map((rows) => [for (final row in rows) _dated(row)]);
 
   /// Événements [type] de toutes les rencontres de [tableId], avec leur
   /// date d'écriture, du plus ancien au plus récent : la mémoire des échecs
@@ -114,26 +113,22 @@ final class CombatStore {
         readsFrom: {_db.encounterEvents},
       )
       .watch()
-      .map(
-        (rows) => [
-          for (final row in rows)
-            (
-              // Sans date (ligne ancienne) : hors de toute fenêtre récente.
-              at:
-                  DateTime.tryParse(
-                    row.readNullable<String>('created_at') ?? '',
-                  ) ??
-                  DateTime.utc(1970),
-              event: CombatEvent.fromJson({
-                'id': row.read<String>('id'),
-                'type': row.read<String>('type'),
-                'payload': jsonDecode(row.read<String>('payload')),
-              }),
-            ),
-        ],
-      );
+      .map((rows) => [for (final row in rows) _dated(row)]);
 
   /// État de la rencontre : la projection de son journal.
   Stream<CombatState> watchState(String encounterId) =>
       watchEvents(encounterId).map(projectCombat);
+
+  /// Événement d'une ligne de `encounter_event`, avec sa date ; une ligne
+  /// sans date passe hors de toute fenêtre récente.
+  static ({DateTime at, CombatEvent event}) _dated(QueryRow row) => (
+    at:
+        DateTime.tryParse(row.readNullable<String>('created_at') ?? '') ??
+        DateTime.utc(1970),
+    event: CombatEvent.fromJson({
+      'id': row.read<String>('id'),
+      'type': row.read<String>('type'),
+      'payload': jsonDecode(row.read<String>('payload')),
+    }),
+  );
 }

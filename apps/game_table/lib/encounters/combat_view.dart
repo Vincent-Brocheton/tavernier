@@ -17,6 +17,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../tables/tables_providers.dart';
 import 'action_assistant.dart';
+import 'combat_journal.dart';
 import 'combatant_sheet.dart';
 import 'concentration.dart';
 import 'condition_sheets.dart';
@@ -73,6 +74,11 @@ List<Widget> combatActions(
       onPressed: combat == null
           ? null
           : () => showActionAssistant(context, encounter, combat),
+    ),
+    IconButton(
+      tooltip: l10n.journalOpen,
+      icon: const Icon(Icons.receipt_long),
+      onPressed: () => showCombatJournal(context, encounter),
     ),
     IconButton(
       tooltip: l10n.combatUndo,
