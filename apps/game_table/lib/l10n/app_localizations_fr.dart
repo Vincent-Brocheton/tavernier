@@ -4929,4 +4929,183 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get observationGmOnly =>
       'Consigné au journal, visible du MJ seul : annoncez la découverte à la table.';
+
+  @override
+  String get journalTitle => 'Journal';
+
+  @override
+  String journalUndoable(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count actions annulables',
+      one: '1 action annulable',
+      zero: 'Aucune action annulable',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get journalAll => 'Tout';
+
+  @override
+  String get journalHp => 'PV';
+
+  @override
+  String get journalConditions => 'États';
+
+  @override
+  String get journalActions => 'Étude';
+
+  @override
+  String journalWhen(int round, String time) {
+    return 'R$round · $time';
+  }
+
+  @override
+  String get journalUndone => 'annulé';
+
+  @override
+  String journalTarget(String name, int before, int after) {
+    return '$name ($before → $after)';
+  }
+
+  @override
+  String journalTargetFallen(String name, int before, int after, String state) {
+    return '$name ($before → $after, $state)';
+  }
+
+  @override
+  String journalJoined(String name) {
+    return '$name entre dans le combat';
+  }
+
+  @override
+  String journalRemoved(String name) {
+    return '$name quitte le combat';
+  }
+
+  @override
+  String journalInitiative(String name) {
+    return '$name : jet d’initiative';
+  }
+
+  @override
+  String get journalOrder => 'Ordre d’initiative choisi';
+
+  @override
+  String get journalStarted => 'Début du combat';
+
+  @override
+  String get journalTurn => 'Tour suivant';
+
+  @override
+  String journalCounterUsed(String name, String counter) {
+    return '$name : $counter utilisée';
+  }
+
+  @override
+  String journalCounterRestored(String name, String counter) {
+    return '$name : $counter rendue';
+  }
+
+  @override
+  String journalDamage(int amount, String type, String targets) {
+    return '$amount dégâts $type : $targets';
+  }
+
+  @override
+  String journalHeal(int amount, String targets) {
+    return '$amount PV rendus : $targets';
+  }
+
+  @override
+  String journalTempHp(int amount, String targets) {
+    return '$amount PV temporaires : $targets';
+  }
+
+  @override
+  String journalDeathSave(String name, String outcome) {
+    return '$name : jet contre la mort, $outcome';
+  }
+
+  @override
+  String journalConditionAdded(String name, String condition) {
+    return '$name : $condition';
+  }
+
+  @override
+  String journalConditionRemoved(String name, String condition) {
+    return '$name : fin de $condition';
+  }
+
+  @override
+  String journalConditionSave(String name, String condition, String result) {
+    return '$name : sauvegarde contre $condition, $result';
+  }
+
+  @override
+  String journalConcentration(String name, String spell) {
+    return '$name se concentre sur $spell';
+  }
+
+  @override
+  String journalConcentrationCheck(String name, String result) {
+    return '$name : test de concentration, $result';
+  }
+
+  @override
+  String journalConcentrationEnded(String name) {
+    return '$name : fin de la concentration';
+  }
+
+  @override
+  String journalSwapped(String name, String other) {
+    return '$name échange son initiative avec $other';
+  }
+
+  @override
+  String journalStudy(
+    String actor,
+    String skill,
+    int total,
+    String target,
+    int count,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count informations révélées',
+      one: '1 information révélée',
+      zero: 'rien de révélé',
+    );
+    return 'Étude — $actor, $skill $total sur $target : $_temp0';
+  }
+
+  @override
+  String journalInfluence(String actor, String target, String result) {
+    return 'Influence de $actor sur $target : $result';
+  }
+
+  @override
+  String get journalInfluenceWilling => 'acceptée sans test';
+
+  @override
+  String get journalInfluenceUnwilling => 'refusée sans test';
+
+  @override
+  String journalObservation(
+    String actor,
+    String skill,
+    int total,
+    String discovery,
+  ) {
+    return 'Observation — $actor, $skill $total : $discovery';
+  }
+
+  @override
+  String get journalUndo => 'Action annulée';
+
+  @override
+  String get journalOpen => 'Journal';
 }

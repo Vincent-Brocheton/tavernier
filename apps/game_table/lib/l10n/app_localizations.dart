@@ -7751,6 +7751,233 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Consigné au journal, visible du MJ seul : annoncez la découverte à la table.'**
   String get observationGmOnly;
+
+  /// Titre du journal de la rencontre (US-25).
+  ///
+  /// In fr, this message translates to:
+  /// **'Journal'**
+  String get journalTitle;
+
+  /// EF-LOG-02.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucune action annulable} =1{1 action annulable} other{{count} actions annulables}}'**
+  String journalUndoable(int count);
+
+  /// Filtre du journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout'**
+  String get journalAll;
+
+  /// Filtre du journal : dégâts, soins, jets contre la mort.
+  ///
+  /// In fr, this message translates to:
+  /// **'PV'**
+  String get journalHp;
+
+  /// Filtre du journal : états et concentration.
+  ///
+  /// In fr, this message translates to:
+  /// **'États'**
+  String get journalConditions;
+
+  /// Filtre du journal : Étude, Influence, Observation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étude'**
+  String get journalActions;
+
+  /// Round et heure d'une entrée : « R3 · 21:42 ».
+  ///
+  /// In fr, this message translates to:
+  /// **'R{round} · {time}'**
+  String journalWhen(int round, String time);
+
+  /// Entrée annulée.
+  ///
+  /// In fr, this message translates to:
+  /// **'annulé'**
+  String get journalUndone;
+
+  /// Cible et ses PV.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ({before} → {after})'**
+  String journalTarget(String name, int before, int after);
+
+  /// Cible tombée.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ({before} → {after}, {state})'**
+  String journalTargetFallen(String name, int before, int after, String state);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} entre dans le combat'**
+  String journalJoined(String name);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} quitte le combat'**
+  String journalRemoved(String name);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : jet d’initiative'**
+  String journalInitiative(String name);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordre d’initiative choisi'**
+  String get journalOrder;
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Début du combat'**
+  String get journalStarted;
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tour suivant'**
+  String get journalTurn;
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : {counter} utilisée'**
+  String journalCounterUsed(String name, String counter);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : {counter} rendue'**
+  String journalCounterRestored(String name, String counter);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} dégâts {type} : {targets}'**
+  String journalDamage(int amount, String type, String targets);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} PV rendus : {targets}'**
+  String journalHeal(int amount, String targets);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} PV temporaires : {targets}'**
+  String journalTempHp(int amount, String targets);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : jet contre la mort, {outcome}'**
+  String journalDeathSave(String name, String outcome);
+
+  /// Journal : état posé.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : {condition}'**
+  String journalConditionAdded(String name, String condition);
+
+  /// Journal : état retiré.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : fin de {condition}'**
+  String journalConditionRemoved(String name, String condition);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : sauvegarde contre {condition}, {result}'**
+  String journalConditionSave(String name, String condition, String result);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} se concentre sur {spell}'**
+  String journalConcentration(String name, String spell);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : test de concentration, {result}'**
+  String journalConcentrationCheck(String name, String result);
+
+  /// Journal.
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : fin de la concentration'**
+  String journalConcentrationEnded(String name);
+
+  /// Journal (Vigilant).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} échange son initiative avec {other}'**
+  String journalSwapped(String name, String other);
+
+  /// Journal (EF-ACT-01).
+  ///
+  /// In fr, this message translates to:
+  /// **'Étude — {actor}, {skill} {total} sur {target} : {count, plural, =0{rien de révélé} =1{1 information révélée} other{{count} informations révélées}}'**
+  String journalStudy(
+    String actor,
+    String skill,
+    int total,
+    String target,
+    int count,
+  );
+
+  /// Journal (EF-ACT-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'Influence de {actor} sur {target} : {result}'**
+  String journalInfluence(String actor, String target, String result);
+
+  /// Journal : cible Disposée.
+  ///
+  /// In fr, this message translates to:
+  /// **'acceptée sans test'**
+  String get journalInfluenceWilling;
+
+  /// Journal : cible Réticente.
+  ///
+  /// In fr, this message translates to:
+  /// **'refusée sans test'**
+  String get journalInfluenceUnwilling;
+
+  /// Journal (EF-ACT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Observation — {actor}, {skill} {total} : {discovery}'**
+  String journalObservation(
+    String actor,
+    String skill,
+    int total,
+    String discovery,
+  );
+
+  /// Journal : annulation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Action annulée'**
+  String get journalUndo;
+
+  /// Bouton du journal dans le combat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Journal'**
+  String get journalOpen;
 }
 
 class _AppLocalizationsDelegate

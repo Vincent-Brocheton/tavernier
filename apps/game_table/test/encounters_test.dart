@@ -1723,4 +1723,50 @@ void main() {
       'npc': varga,
     });
   });
+
+  _test('journal : phrases, rounds, filtres, annulé barré (US-25)', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await log(tester, [
+      (
+        CombatEventType.damage,
+        {
+          'targets': ['aldric'],
+          'amount': 12,
+          'type': 'srd:damage-type:slashing',
+        },
+      ),
+      (
+        CombatEventType.damage,
+        {
+          'targets': ['ogre'],
+          'amount': 59,
+          'type': 'srd:damage-type:bludgeoning',
+        },
+      ),
+    ]);
+    await _tap(tester, find.byTooltip('Annuler'));
+    await _settle(tester);
+    await _tap(tester, find.byTooltip('Journal'));
+    await _settle(tester);
+    expect(find.text('12 dégâts tranchants : Aldric (41 → 29)'), findsOne);
+    // Annulés, des dégâts n'ont pas d'effet sur les PV : la cible seule.
+    final ogre = find.text('59 dégâts contondants : Ogre');
+    expect(ogre, findsOneWidget);
+    expect(
+      tester.widget<Text>(ogre).style?.decoration,
+      TextDecoration.lineThrough,
+    );
+    expect(find.text('Action annulée'), findsOneWidget);
+    expect(find.textContaining(RegExp(r'^R1 · \d\d:\d\d$')), findsWidgets);
+    // 8 événements au lancement, 2 dégâts, dont 1 annulé.
+    expect(find.text('9 actions annulables'), findsOneWidget);
+
+    await _tap(tester, find.widgetWithText(ChoiceChip, 'PV'));
+    expect(find.text('Dragon noir adulte entre dans le combat'), findsNothing);
+    expect(find.text('12 dégâts tranchants : Aldric (41 → 29)'), findsOne);
+    await _tap(tester, find.widgetWithText(ChoiceChip, 'Tout'));
+    expect(find.text('Dragon noir adulte entre dans le combat'), findsOne);
+  });
 }

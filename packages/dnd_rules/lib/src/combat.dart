@@ -548,7 +548,62 @@ final class CombatState {
 
 /// Projette le journal [events] : les annulations d'abord, puis les autres
 /// événements dans l'ordre.
-CombatState projectCombat(Iterable<CombatEvent> events) {
+CombatState projectCombat(Iterable<CombatEvent> events) =>
+    _project(events, null);
+
+/// PV d'un combattant avant et après un événement, et son état après.
+typedef HpChange = ({
+  int? before,
+  int? after,
+  bool unconscious,
+  bool outOfCombat,
+  bool dead,
+});
+
+/// Entrée du journal (EF-LOG-01) : l'événement, son round, s'il est annulé,
+/// et les PV de ses cibles pour des dégâts ou des soins.
+final class JournalEntry {
+  const JournalEntry._(
+    this.event, {
+    required this.round,
+    required this.undone,
+    this.hp = const {},
+  });
+
+  final CombatEvent event;
+  final int round;
+  final bool undone;
+  final Map<String, HpChange> hp;
+}
+
+/// Entrées du journal [events], dans leur ordre : la projection de
+/// [projectCombat], observée événement par événement.
+List<JournalEntry> combatJournal(Iterable<CombatEvent> events) {
+  final journal = <JournalEntry>[];
+  _project(events, journal);
+  return journal;
+}
+
+/// Nom de chaque combattant ajouté, même retiré depuis.
+Map<String, String> combatantLabels(Iterable<CombatEvent> events) => {
+  for (final e in events)
+    if (e.type == CombatEventType.combatantAdded)
+      e.payload['id']! as String: e.payload['label']! as String,
+};
+
+/// Actions qu'« Annuler » peut encore défaire, une à une (EF-LOG-02).
+int undoableCount(Iterable<CombatEvent> events) {
+  final list = events.toList();
+  final undone = _undone(list);
+  return list
+      .where((e) => e.type != CombatEventType.undo && !undone.contains(e.id))
+      .length;
+}
+
+CombatState _project(
+  Iterable<CombatEvent> events,
+  List<JournalEntry>? journal,
+) {
   final list = events.toList();
   final undone = _undone(list);
   final combatants = <Combatant>[];
@@ -653,8 +708,19 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
   }
 
   for (final e in list) {
-    if (undone.contains(e.id) || e.type == CombatEventType.undo) continue;
+    if (undone.contains(e.id) || e.type == CombatEventType.undo) {
+      journal?.add(
+        JournalEntry._(e, round: round, undone: undone.contains(e.id)),
+      );
+      continue;
+    }
     final p = e.payload;
+    final watched =
+        journal != null &&
+            (e.type == CombatEventType.damage || e.type == CombatEventType.heal)
+        ? [for (final id in p['targets']! as List) id as String]
+        : const <String>[];
+    final before = {for (final id in watched) id: find(id)?.hp};
     switch (e.type) {
       case CombatEventType.combatantAdded:
         final c = Combatant._fromPayload(p);
@@ -792,6 +858,24 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
           CombatEventType.undo:
         break;
     }
+    journal?.add(
+      JournalEntry._(
+        e,
+        round: round,
+        undone: false,
+        hp: {
+          for (final id in watched)
+            if (find(id) case final c?)
+              id: (
+                before: before[id],
+                after: c.hp,
+                unconscious: c.unconscious,
+                outOfCombat: c.outOfCombat,
+                dead: c.dead,
+              ),
+        },
+      ),
+    );
   }
   final order = currentOrder();
   return CombatState._(

@@ -32,6 +32,22 @@ void main() {
       Future<EncounterStatus> status() async =>
           (await EncounterStore(db).watchList('t').first).single.status;
 
+      test('journal daté de la rencontre (US-25, EF-LOG-01)', () async {
+        await store.launch(encounter, authorUserId: 'camille', [
+          (CombatEventType.combatantAdded, _combatant('ogre', 'Ogre', -1)),
+          (CombatEventType.combatStarted, const {}),
+        ]);
+        final log = await store.watchLog(encounter).first;
+        expect(
+          [for (final e in log) e.event.type],
+          [CombatEventType.combatantAdded, CombatEventType.combatStarted],
+        );
+        expect(
+          DateTime.now().toUtc().difference(log.last.at).inMinutes,
+          lessThan(1),
+        );
+      });
+
       test('Influences de toute la table, datées (US-24)', () async {
         final other = await EncounterStore(db)
             .create(tableId: 't', title: 'Les chiens de Varga');
