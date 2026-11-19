@@ -122,7 +122,7 @@ class _AssistantState extends ConsumerState<_Assistant> {
     ];
     final actor = widget.combat.combatant(_actor ?? '');
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -150,6 +150,7 @@ class _AssistantState extends ConsumerState<_Assistant> {
             tabs: [
               Tab(text: l10n.actionStudy),
               Tab(text: l10n.actionInfluence),
+              Tab(text: l10n.actionObservation),
             ],
           ),
           Expanded(
@@ -167,6 +168,11 @@ class _AssistantState extends ConsumerState<_Assistant> {
                         key: ValueKey('influence:${actor.id}'),
                         encounter: widget.encounter,
                         combat: widget.combat,
+                        actor: actor,
+                      ),
+                      _Observation(
+                        key: ValueKey('observation:${actor.id}'),
+                        encounter: widget.encounter,
                         actor: actor,
                       ),
                     ],
@@ -714,6 +720,176 @@ class _InfluenceState extends ConsumerState<_Influence> {
             FilledButton(
               onPressed: ready ? save : null,
               child: Text(l10n.influenceSave),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Observation [F3] : test de Sagesse, découverte consignée par le MJ
+/// (EF-ACT-04) ; pas d'informations préparées.
+class _Observation extends ConsumerStatefulWidget {
+  const _Observation({super.key, required this.encounter, required this.actor});
+
+  final Encounter encounter;
+  final Combatant actor;
+
+  @override
+  ConsumerState<_Observation> createState() => _ObservationState();
+}
+
+class _ObservationState extends ConsumerState<_Observation> {
+  final _sought = TextEditingController();
+  final _dc = TextEditingController();
+  final _found = TextEditingController();
+  String? _skill;
+  int? _dice;
+  String? _npc;
+
+  @override
+  void dispose() {
+    _sought.dispose();
+    _dc.dispose();
+    _found.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final content = ref.watch(contentProvider).value;
+    final npcs =
+        ref.watch(tableNpcsProvider(widget.encounter.tableId)).value ??
+        const <Npc>[];
+    final sheet = switch (widget.actor.refId) {
+      final id? => ref.watch(actorSheetProvider(id)).value,
+      null => null,
+    };
+    if (content == null) return const SizedBox.shrink();
+    final skills = skillsOf(content, 'srd:ability:wisdom');
+    final skill =
+        skills.where((s) => '${s.id}' == _skill).firstOrNull ??
+        skills.where((s) => s.id.slug == 'perception').firstOrNull ??
+        skills.firstOrNull;
+    final bonus = skill == null ? 0 : skillBonus(sheet, skill);
+    final total = _dice == null ? null : _dice! + bonus;
+    final dc = int.tryParse(_dc.text);
+    final ready =
+        skill != null && total != null && _found.text.trim().isNotEmpty;
+
+    Future<void> save() async {
+      await appendCombat(ref, widget.encounter.id, [
+        (
+          CombatEventType.observation,
+          {
+            'actor': widget.actor.id,
+            if (_sought.text.trim().isNotEmpty) 'sought': _sought.text.trim(),
+            'skill': '${skill!.id}',
+            'total': total,
+            'dc': ?dc,
+            if (dc != null) 'success': total! >= dc,
+            'discovery': _found.text.trim(),
+            'npc': ?_npc,
+          },
+        ),
+      ]);
+      if (context.mounted) Navigator.pop(context);
+    }
+
+    return ListView(
+      padding: EdgeInsets.all(AppSpacing.md),
+      children: [
+        TextField(
+          controller: _sought,
+          decoration: InputDecoration(labelText: l10n.observationSought),
+        ),
+        SizedBox(height: AppSpacing.md),
+        Text(l10n.observationCheck, style: text.titleSmall),
+        SizedBox(height: AppSpacing.xs),
+        Wrap(
+          spacing: AppSpacing.xs,
+          runSpacing: AppSpacing.xs,
+          children: [
+            for (final s in skills)
+              ChoiceChip(
+                label: Text('${s.name} ${formatSigned(skillBonus(sheet, s))}'),
+                selected: s == skill,
+                onSelected: (_) => setState(() {
+                  _skill = '${s.id}';
+                  _dice = null;
+                }),
+              ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: AppSpacing.xs),
+          child: Text(l10n.observationHelp, style: text.bodySmall),
+        ),
+        SizedBox(height: AppSpacing.md),
+        Text(l10n.actionResult, style: text.titleSmall),
+        SimpleRoll(
+          key: ValueKey(skill?.id),
+          formula: DiceFormula(1, 20, bonus: bonus),
+          bonusLabel: skill?.name,
+          onChanged: (v) => setState(() => _dice = v),
+        ),
+        SizedBox(height: AppSpacing.sm),
+        TextField(
+          controller: _dc,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(labelText: l10n.observationDc),
+          onChanged: (_) => setState(() {}),
+        ),
+        if (total != null && dc != null)
+          Padding(
+            padding: EdgeInsets.only(top: AppSpacing.xs),
+            child: Text(
+              total >= dc ? l10n.reminderSucceeded : l10n.reminderFailed,
+              style: text.titleMedium,
+            ),
+          ),
+        SizedBox(height: AppSpacing.md),
+        TextField(
+          controller: _found,
+          minLines: 2,
+          maxLines: 6,
+          decoration: InputDecoration(labelText: l10n.observationFound),
+          onChanged: (_) => setState(() {}),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: AppSpacing.xs),
+          child: Text(l10n.observationNoPrepared, style: text.bodySmall),
+        ),
+        SizedBox(height: AppSpacing.sm),
+        DropdownButtonFormField<String?>(
+          initialValue: _npc,
+          isExpanded: true,
+          decoration: InputDecoration(labelText: l10n.observationLinkNpc),
+          items: [
+            DropdownMenuItem(child: Text(l10n.concentrationNone)),
+            for (final n in npcs)
+              DropdownMenuItem(value: n.id, child: Text(n.name)),
+          ],
+          onChanged: (v) => setState(() => _npc = v),
+        ),
+        SizedBox(height: AppSpacing.xs),
+        Text(l10n.observationGmOnly, style: text.bodySmall),
+        SizedBox(height: AppSpacing.md),
+        Wrap(
+          alignment: WrapAlignment.end,
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.xs,
+          children: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l10n.cancel),
+            ),
+            FilledButton(
+              onPressed: ready ? save : null,
+              child: Text(l10n.actionLog),
             ),
           ],
         ),

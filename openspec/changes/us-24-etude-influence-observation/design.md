@@ -64,3 +64,17 @@
 - **Le délai se fixe à l'échec** (`retry_hours`), et non par table : c'est ce que dit le SRD, « ou une autre durée définie par le MJ ».
 - **Une réception Disposée ou Réticente n'est pas mémorisée** : sans test, il n'y a pas d'échec au sens du SRD.
 
+## Lot c
+
+- **Onglet Observation** (`_Observation`) :
+  - ce qui est cherché ;
+  - les compétences de Sagesse (`skillsOf`, Perception par défaut) avec l'aide de [F3] ;
+  - le jet simple, le DD (MJ) facultatif, puis la réussite ou l'échec ;
+  - la découverte, obligatoire, et le PNJ lié, facultatif.
+
+  « Consigner » écrit `observation` (`actor`, `sought`, `skill`, `total`, `dc`, `success`, `discovery`, `npc`). Il n'y a pas de moteur de plus : le DD est libre et rien n'est révélé automatiquement.
+
+### Choix
+
+- **« Créer une note » n'est pas proposé** : les notes relèvent de US-26. Le lien au PNJ reste dans l'événement, et le journal (US-25) le montrera.
+

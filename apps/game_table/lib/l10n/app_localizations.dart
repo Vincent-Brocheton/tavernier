@@ -7697,6 +7697,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Enregistrer dans le journal'**
   String get influenceSave;
+
+  /// Onglet de l'assistant [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Observation'**
+  String get actionObservation;
+
+  /// Observation [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qui est cherché'**
+  String get observationSought;
+
+  /// Observation [F3] (EF-ACT-04).
+  ///
+  /// In fr, this message translates to:
+  /// **'Test de Sagesse'**
+  String get observationCheck;
+
+  /// Aide des compétences [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception pour repérer, Survie pour suivre une piste, Intuition pour une intention, Médecine pour un corps.'**
+  String get observationHelp;
+
+  /// DD fixé par le MJ [F3], facultatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD (MJ)'**
+  String get observationDc;
+
+  /// Découverte rédigée par le MJ [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qui est découvert'**
+  String get observationFound;
+
+  /// EF-ACT-04 [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas d’informations préparées pour une Observation : vous consignez ce que le personnage découvre.'**
+  String get observationNoPrepared;
+
+  /// PNJ lié à la découverte [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Lier au PNJ'**
+  String get observationLinkNpc;
+
+  /// Rappel EF-ACT-07 [F3].
+  ///
+  /// In fr, this message translates to:
+  /// **'Consigné au journal, visible du MJ seul : annoncez la découverte à la table.'**
+  String get observationGmOnly;
 }
 
 class _AppLocalizationsDelegate

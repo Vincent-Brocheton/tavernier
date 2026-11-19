@@ -19,4 +19,6 @@
 
 ## 4. Lot c : Observation
 
-- [ ] 4.1 Specs et design du lot c, puis tests et implémentation
+- [x] 4.1 Specs et design du lot c
+- [x] 4.2 Tests de widgets puis onglet Observation [F3] : cherché, compétences de Sagesse, résultat, DD, découverte, PNJ lié
+- [x] 4.3 Suite complète, revue, PR du lot c
