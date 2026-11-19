@@ -1022,6 +1022,585 @@ String toString() {
 
 
 /// @nodoc
+mixin _$RuleData {
+
+/// Compétence suggérée pour l'Étude, par type de créature (SRD,
+/// « Domaines de savoir »).
+@ContentIdConverter() Map<CreatureType, ContentId> get studySkills;/// Façons d'interagir de l'Influence (SRD, « Tests d'Influence »).
+ List<InfluenceCheck> get influenceChecks;
+/// Create a copy of RuleData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RuleDataCopyWith<RuleData> get copyWith => _$RuleDataCopyWithImpl<RuleData>(this as RuleData, _$identity);
+
+  /// Serializes this RuleData to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as RuleData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RuleData&&const DeepCollectionEquality().equals(other.studySkills, _this.studySkills)&&const DeepCollectionEquality().equals(other.influenceChecks, _this.influenceChecks));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as RuleData;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.studySkills),const DeepCollectionEquality().hash(_this.influenceChecks));
+}
+
+@override
+String toString() {
+  final _this = this as RuleData;
+  return 'RuleData(studySkills: ${_this.studySkills}, influenceChecks: ${_this.influenceChecks})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $RuleDataCopyWith<$Res>  {
+  factory $RuleDataCopyWith(RuleData value, $Res Function(RuleData) _then) = _$RuleDataCopyWithImpl;
+@useResult
+$Res call({
+@ContentIdConverter() Map<CreatureType, ContentId> studySkills, List<InfluenceCheck> influenceChecks
+});
+
+
+
+
+}
+/// @nodoc
+class _$RuleDataCopyWithImpl<$Res>
+    implements $RuleDataCopyWith<$Res> {
+  _$RuleDataCopyWithImpl(this._self, this._then);
+
+  final RuleData _self;
+  final $Res Function(RuleData) _then;
+
+/// Create a copy of RuleData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? studySkills = null,Object? influenceChecks = null,}) {
+  return _then(RuleData(
+studySkills: null == studySkills ? _self.studySkills : studySkills // ignore: cast_nullable_to_non_nullable
+as Map<CreatureType, ContentId>,influenceChecks: null == influenceChecks ? _self.influenceChecks : influenceChecks // ignore: cast_nullable_to_non_nullable
+as List<InfluenceCheck>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [RuleData].
+extension RuleDataPatterns on RuleData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RuleData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RuleData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RuleData value)  $default,){
+final _that = this;
+switch (_that) {
+case _RuleData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RuleData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RuleData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@ContentIdConverter()  Map<CreatureType, ContentId> studySkills,  List<InfluenceCheck> influenceChecks)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RuleData() when $default != null:
+return $default(_that.studySkills,_that.influenceChecks);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@ContentIdConverter()  Map<CreatureType, ContentId> studySkills,  List<InfluenceCheck> influenceChecks)  $default,) {final _that = this;
+switch (_that) {
+case _RuleData():
+return $default(_that.studySkills,_that.influenceChecks);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@ContentIdConverter()  Map<CreatureType, ContentId> studySkills,  List<InfluenceCheck> influenceChecks)?  $default,) {final _that = this;
+switch (_that) {
+case _RuleData() when $default != null:
+return $default(_that.studySkills,_that.influenceChecks);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _RuleData implements RuleData {
+  const _RuleData({@ContentIdConverter()  Map<CreatureType, ContentId> studySkills = const <CreatureType, ContentId>{},  List<InfluenceCheck> influenceChecks = const <InfluenceCheck>[]}): _studySkills = studySkills,_influenceChecks = influenceChecks;
+  factory _RuleData.fromJson(Map<String, dynamic> json) => _$RuleDataFromJson(json);
+
+/// Compétence suggérée pour l'Étude, par type de créature (SRD,
+/// « Domaines de savoir »).
+ final  Map<CreatureType, ContentId> _studySkills;
+/// Compétence suggérée pour l'Étude, par type de créature (SRD,
+/// « Domaines de savoir »).
+@override@JsonKey()@ContentIdConverter() Map<CreatureType, ContentId> get studySkills {
+  if (_studySkills is EqualUnmodifiableMapView) return _studySkills;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_studySkills);
+}
+
+/// Façons d'interagir de l'Influence (SRD, « Tests d'Influence »).
+ final  List<InfluenceCheck> _influenceChecks;
+/// Façons d'interagir de l'Influence (SRD, « Tests d'Influence »).
+@override@JsonKey() List<InfluenceCheck> get influenceChecks {
+  if (_influenceChecks is EqualUnmodifiableListView) return _influenceChecks;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_influenceChecks);
+}
+
+
+/// Create a copy of RuleData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RuleDataCopyWith<_RuleData> get copyWith => __$RuleDataCopyWithImpl<_RuleData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$RuleDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RuleData&&const DeepCollectionEquality().equals(other.studySkills, _studySkills)&&const DeepCollectionEquality().equals(other.influenceChecks, _influenceChecks));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_studySkills),const DeepCollectionEquality().hash(_influenceChecks));
+}
+
+@override
+String toString() {
+    return 'RuleData(studySkills: $studySkills, influenceChecks: $influenceChecks)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RuleDataCopyWith<$Res> implements $RuleDataCopyWith<$Res> {
+  factory _$RuleDataCopyWith(_RuleData value, $Res Function(_RuleData) _then) = __$RuleDataCopyWithImpl;
+@override @useResult
+$Res call({
+@ContentIdConverter() Map<CreatureType, ContentId> studySkills, List<InfluenceCheck> influenceChecks
+});
+
+
+
+
+}
+/// @nodoc
+class __$RuleDataCopyWithImpl<$Res>
+    implements _$RuleDataCopyWith<$Res> {
+  __$RuleDataCopyWithImpl(this._self, this._then);
+
+  final _RuleData _self;
+  final $Res Function(_RuleData) _then;
+
+/// Create a copy of RuleData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? studySkills = null,Object? influenceChecks = null,}) {
+  return _then(_RuleData(
+studySkills: null == studySkills ? _self._studySkills : studySkills // ignore: cast_nullable_to_non_nullable
+as Map<CreatureType, ContentId>,influenceChecks: null == influenceChecks ? _self._influenceChecks : influenceChecks // ignore: cast_nullable_to_non_nullable
+as List<InfluenceCheck>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$InfluenceCheck {
+
+ String get id;@ContentIdConverter() ContentId get ability;@ContentIdConverter() ContentId get skill; List<CreatureType> get creatureTypes;
+/// Create a copy of InfluenceCheck
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InfluenceCheckCopyWith<InfluenceCheck> get copyWith => _$InfluenceCheckCopyWithImpl<InfluenceCheck>(this as InfluenceCheck, _$identity);
+
+  /// Serializes this InfluenceCheck to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as InfluenceCheck;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InfluenceCheck&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.ability, _this.ability) || other.ability == _this.ability)&&(identical(other.skill, _this.skill) || other.skill == _this.skill)&&const DeepCollectionEquality().equals(other.creatureTypes, _this.creatureTypes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as InfluenceCheck;
+  return Object.hash(runtimeType,_this.id,_this.ability,_this.skill,const DeepCollectionEquality().hash(_this.creatureTypes));
+}
+
+@override
+String toString() {
+  final _this = this as InfluenceCheck;
+  return 'InfluenceCheck(id: ${_this.id}, ability: ${_this.ability}, skill: ${_this.skill}, creatureTypes: ${_this.creatureTypes})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $InfluenceCheckCopyWith<$Res>  {
+  factory $InfluenceCheckCopyWith(InfluenceCheck value, $Res Function(InfluenceCheck) _then) = _$InfluenceCheckCopyWithImpl;
+@useResult
+$Res call({
+ String id,@ContentIdConverter() ContentId ability,@ContentIdConverter() ContentId skill, List<CreatureType> creatureTypes
+});
+
+
+
+
+}
+/// @nodoc
+class _$InfluenceCheckCopyWithImpl<$Res>
+    implements $InfluenceCheckCopyWith<$Res> {
+  _$InfluenceCheckCopyWithImpl(this._self, this._then);
+
+  final InfluenceCheck _self;
+  final $Res Function(InfluenceCheck) _then;
+
+/// Create a copy of InfluenceCheck
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? ability = null,Object? skill = null,Object? creatureTypes = null,}) {
+  return _then(InfluenceCheck(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,ability: null == ability ? _self.ability : ability // ignore: cast_nullable_to_non_nullable
+as ContentId,skill: null == skill ? _self.skill : skill // ignore: cast_nullable_to_non_nullable
+as ContentId,creatureTypes: null == creatureTypes ? _self.creatureTypes : creatureTypes // ignore: cast_nullable_to_non_nullable
+as List<CreatureType>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [InfluenceCheck].
+extension InfluenceCheckPatterns on InfluenceCheck {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InfluenceCheck value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _InfluenceCheck() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InfluenceCheck value)  $default,){
+final _that = this;
+switch (_that) {
+case _InfluenceCheck():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InfluenceCheck value)?  $default,){
+final _that = this;
+switch (_that) {
+case _InfluenceCheck() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @ContentIdConverter()  ContentId ability, @ContentIdConverter()  ContentId skill,  List<CreatureType> creatureTypes)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _InfluenceCheck() when $default != null:
+return $default(_that.id,_that.ability,_that.skill,_that.creatureTypes);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @ContentIdConverter()  ContentId ability, @ContentIdConverter()  ContentId skill,  List<CreatureType> creatureTypes)  $default,) {final _that = this;
+switch (_that) {
+case _InfluenceCheck():
+return $default(_that.id,_that.ability,_that.skill,_that.creatureTypes);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @ContentIdConverter()  ContentId ability, @ContentIdConverter()  ContentId skill,  List<CreatureType> creatureTypes)?  $default,) {final _that = this;
+switch (_that) {
+case _InfluenceCheck() when $default != null:
+return $default(_that.id,_that.ability,_that.skill,_that.creatureTypes);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _InfluenceCheck implements InfluenceCheck {
+  const _InfluenceCheck({required this.id, @ContentIdConverter() required this.ability, @ContentIdConverter() required this.skill,  List<CreatureType> creatureTypes = const <CreatureType>[]}): _creatureTypes = creatureTypes;
+  factory _InfluenceCheck.fromJson(Map<String, dynamic> json) => _$InfluenceCheckFromJson(json);
+
+@override final  String id;
+@override@ContentIdConverter() final  ContentId ability;
+@override@ContentIdConverter() final  ContentId skill;
+ final  List<CreatureType> _creatureTypes;
+@override@JsonKey() List<CreatureType> get creatureTypes {
+  if (_creatureTypes is EqualUnmodifiableListView) return _creatureTypes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_creatureTypes);
+}
+
+
+/// Create a copy of InfluenceCheck
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$InfluenceCheckCopyWith<_InfluenceCheck> get copyWith => __$InfluenceCheckCopyWithImpl<_InfluenceCheck>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$InfluenceCheckToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _InfluenceCheck&&(identical(other.id, id) || other.id == id)&&(identical(other.ability, ability) || other.ability == ability)&&(identical(other.skill, skill) || other.skill == skill)&&const DeepCollectionEquality().equals(other.creatureTypes, _creatureTypes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id,ability,skill,const DeepCollectionEquality().hash(_creatureTypes));
+}
+
+@override
+String toString() {
+    return 'InfluenceCheck(id: $id, ability: $ability, skill: $skill, creatureTypes: $creatureTypes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$InfluenceCheckCopyWith<$Res> implements $InfluenceCheckCopyWith<$Res> {
+  factory _$InfluenceCheckCopyWith(_InfluenceCheck value, $Res Function(_InfluenceCheck) _then) = __$InfluenceCheckCopyWithImpl;
+@override @useResult
+$Res call({
+ String id,@ContentIdConverter() ContentId ability,@ContentIdConverter() ContentId skill, List<CreatureType> creatureTypes
+});
+
+
+
+
+}
+/// @nodoc
+class __$InfluenceCheckCopyWithImpl<$Res>
+    implements _$InfluenceCheckCopyWith<$Res> {
+  __$InfluenceCheckCopyWithImpl(this._self, this._then);
+
+  final _InfluenceCheck _self;
+  final $Res Function(_InfluenceCheck) _then;
+
+/// Create a copy of InfluenceCheck
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? ability = null,Object? skill = null,Object? creatureTypes = null,}) {
+  return _then(_InfluenceCheck(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,ability: null == ability ? _self.ability : ability // ignore: cast_nullable_to_non_nullable
+as ContentId,skill: null == skill ? _self.skill : skill // ignore: cast_nullable_to_non_nullable
+as ContentId,creatureTypes: null == creatureTypes ? _self._creatureTypes : creatureTypes // ignore: cast_nullable_to_non_nullable
+as List<CreatureType>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$WeaponData {
 
  WeaponCategory get category; WeaponKind get kind; String get damage;@ContentIdConverter() ContentId get damageType; List<String> get properties; String? get versatileDamage; List<int>? get rangeFeet;@ContentIdConverter() ContentId get mastery; double? get weightKg; int get costCp;

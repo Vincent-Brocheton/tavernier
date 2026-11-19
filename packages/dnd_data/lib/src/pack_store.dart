@@ -119,8 +119,14 @@ final class PackStore {
         row['ability_id'] = '$ability';
       case LanguageData(:final category):
         row['category'] = category.name;
+      // Les tables d'une règle se lisent dans le pack (contenu actif), pas
+      // dans la base.
       case EmptyData():
         break;
+      case final RuleData r:
+        if (r.studySkills.isNotEmpty || r.influenceChecks.isNotEmpty) {
+          row['data'] = jsonEncode(r.toJson());
+        }
       case final WeaponData w:
         final json = w.toJson();
         row.addAll({
@@ -572,6 +578,10 @@ final class PackStore {
             // Le profil complet ; monster_action n'en est qu'un index.
             'monster' =>
               jsonDecode(row['stat_block']! as String) as Map<String, Object?>,
+            'rule' => switch (row['data']) {
+              final String json => jsonDecode(json) as Map<String, Object?>,
+              _ => const <String, Object?>{},
+            },
             _ => const <String, Object?>{},
           },
         }..removeWhere((_, value) => value == null);

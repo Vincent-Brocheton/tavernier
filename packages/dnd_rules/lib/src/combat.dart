@@ -24,6 +24,12 @@ enum CombatEventType {
   concentrationCheck('concentration_check'),
   concentrationEnded('concentration_ended'),
   initiativeSwapped('initiative_swapped'),
+
+  /// Traces des assistants du MJ (US-24) : lues par le journal, sans effet
+  /// sur l'état du combat.
+  study('study'),
+  influence('influence'),
+  observation('observation'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -768,7 +774,10 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         if (chosen case final order?) {
           chosen = [for (final u in order) u == ua ? ub : (u == ub ? ua : u)];
         }
-      case CombatEventType.undo:
+      case CombatEventType.study ||
+          CombatEventType.influence ||
+          CombatEventType.observation ||
+          CombatEventType.undo:
         break;
     }
   }

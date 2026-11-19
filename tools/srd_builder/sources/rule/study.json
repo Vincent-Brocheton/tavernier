@@ -1,0 +1,26 @@
+{
+  "id": "srd:rule:study",
+  "type": "rule",
+  "name": "Étude",
+  "data": {
+    "study_skills": {
+      "aberration": "srd:skill:arcana",
+      "construct": "srd:skill:arcana",
+      "elemental": "srd:skill:arcana",
+      "fey": "srd:skill:arcana",
+      "monstrosity": "srd:skill:arcana",
+      "humanoid": "srd:skill:history",
+      "giant": "srd:skill:history",
+      "beast": "srd:skill:nature",
+      "dragon": "srd:skill:nature",
+      "plant": "srd:skill:nature",
+      "ooze": "srd:skill:nature",
+      "celestial": "srd:skill:religion",
+      "fiend": "srd:skill:religion",
+      "undead": "srd:skill:religion"
+    }
+  },
+  "text": {
+    "fr": "Lorsque vous entreprenez l’action Étude, vous effectuez un test d’Intelligence en consultant votre mémoire, un livre, un indice ou une autre source de savoir, à la recherche d’une information importante sur un sujet donné.\nLa table « Domaines de savoir » suggère quelle compétence s’applique à divers domaines de savoir.\nDomaines de savoir\nArcanes : Sorts, objets magiques, symboles occultes, traditions magiques, plans d’existence et certaines créatures (Aberrations, Artificiels, Élémentaires, Fées et Monstruosités)\nHistoire : Événements et personnages historiques, civilisations anciennes, guerres et certaines créatures (Géants et Humanoïdes)\nInvestigation : Pièges, énigmes, messages cryptés et gadgets divers\nNature : Terrain, flore, climat et certaines créatures (Bêtes, Dragons, Plantes et Vases)\nReligion : Divinités, hiérarchies et rites religieux, symboles sacrés, cultes et certaines créatures (Célestes, Fiélons, Morts-vivants)"
+  }
+}

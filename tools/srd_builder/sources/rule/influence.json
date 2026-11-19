@@ -1,0 +1,41 @@
+{
+  "id": "srd:rule:influence",
+  "type": "rule",
+  "name": "Influence",
+  "data": {
+    "influence_checks": [
+      {
+        "id": "intimidate",
+        "ability": "srd:ability:charisma",
+        "skill": "srd:skill:intimidation"
+      },
+      {
+        "id": "persuade",
+        "ability": "srd:ability:charisma",
+        "skill": "srd:skill:persuasion"
+      },
+      {
+        "id": "perform",
+        "ability": "srd:ability:charisma",
+        "skill": "srd:skill:performance"
+      },
+      {
+        "id": "deceive",
+        "ability": "srd:ability:charisma",
+        "skill": "srd:skill:deception"
+      },
+      {
+        "id": "handle",
+        "ability": "srd:ability:wisdom",
+        "skill": "srd:skill:animal-handling",
+        "creature_types": [
+          "beast",
+          "monstrosity"
+        ]
+      }
+    ]
+  },
+  "text": {
+    "fr": "Par l’action Influence, vous incitez un monstre à faire quelque chose. Décrivez ou incarnez la façon dont vous communiquez avec le monstre. Essayez-vous de tromper, d’intimider, d’amuser, de persuader en douceur ? Le MJ détermine alors si le monstre se sent disposé, réticent ou hésitant suite à votre interaction ; ce jugement détermine si un test de caractéristique est nécessaire, comme expliqué ci-dessous.\nDisposé. Si votre requête est en accord avec les désirs du monstre, aucun test de caractéristique n’est nécessaire ; il accède à votre demande par la méthode qu’il préfère.\nRéticent. Si votre requête répugne au monstre ou est contraire à son alignement, aucun test de caractéristique n’est nécessaire ; il vous oppose un refus.\nHésitant. Si vous incitez le monstre à faire quelque chose et qu’il se montre hésitant, vous devez en passer par un test de caractéristique, lequel est affecté par l’attitude du monstre : Indifférent, Amical ou Hostile, chacun de ces termes étant défini dans le présent glossaire. La table Tests d’Influence suggère quel test de caractéristique effectuer en fonction de la façon dont vous interagissez avec le monstre. Le MJ choisit le test, dont le DD par défaut est égal à 15 ou à la valeur d’Intelligence du monstre, selon ce qui est le plus élevé. En cas de réussite, le monstre accomplit ce qui lui est demandé. En cas d’échec, vous devez attendre 24 heures (ou une autre durée définie par le MJ) avant de l’exhorter à nouveau de la même manière.\nTests d’Influence\nCharisme (Intimidation) : Intimider un monstre\nCharisme (Persuasion) : Convaincre un monstre qui vous comprend\nCharisme (Représentation) : Amuser un monstre\nCharisme (Tromperie) : Tromper un monstre qui vous comprend\nSagesse (Dressage) : Amadouer une Bête ou une Monstruosité"
+  }
+}

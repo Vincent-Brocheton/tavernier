@@ -62,6 +62,9 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
 
 - `id` : `{namespace}:{type}:{slug}` ; le `type` de l'id est celui de l'entité. Les slugs `con`, `prn`, `aux`, `nul`, `com1`-`com9`, `lpt1`-`lpt9` sont interdits (noms réservés sous Windows).
 - Types v1 : `ability`, `skill`, `language`, `condition`, `rule`, `damage-type`, `mastery`, `weapon`, `armor`, `tool`, `item`, `magic-item`, `background`, `species`, `feat`, `class`, `subclass`, `feature`, `spell`, `monster` (`spell` et `magic-item` ajoutés par T-04, `monster` par T-06).
+- `rule` : terme du glossaire, sans `data` en général. Ses `data` peuvent porter des tables que les assistants du MJ consultent (US-24, EF-ACT-05). Un pack les remplace en fournissant sa propre entité `rule` avec la même table :
+  - `study_skills` : type de créature (valeurs de `creature_type`) → compétence suggérée pour l'Étude (`srd:rule:study`, table « Domaines de savoir ») ;
+  - `influence_checks` : liste de `{id, ability, skill, creature_types?}`, les façons d'interagir de l'Influence (`srd:rule:influence`, table « Tests d'Influence ») ; sans `creature_types`, l'interaction vaut pour toute cible.
 - `magic-item` :
   - `category` : `wondrous`, `armor`, `weapon`, `ring`, `wand`, `staff`, `potion`, `scroll` ou `rod` ;
   - `rarity` : `common`, `uncommon`, `rare`, `very_rare`, `legendary`, `artifact`, ou `varies` quand elle dépend de la variante ;
