@@ -1,6 +1,7 @@
 /// Moteur de règles pur Dart : computeSheet(), validations, DSL d'effets.
 library;
 
+export 'src/actions.dart';
 export 'src/active_content.dart';
 export 'src/character_input.dart';
 export 'src/combat.dart';

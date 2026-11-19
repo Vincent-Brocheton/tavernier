@@ -67,6 +67,105 @@ _EmptyData _$EmptyDataFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$EmptyDataToJson(_EmptyData instance) =>
     <String, dynamic>{};
 
+_RuleData _$RuleDataFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_RuleData',
+  json,
+  ($checkedConvert) {
+    $checkKeys(json, allowedKeys: const ['study_skills', 'influence_checks']);
+    final val = _RuleData(
+      studySkills: $checkedConvert(
+        'study_skills',
+        (v) =>
+            (v as Map<String, dynamic>?)?.map(
+              (k, e) => MapEntry(
+                $enumDecode(_$CreatureTypeEnumMap, k),
+                const ContentIdConverter().fromJson(e as String),
+              ),
+            ) ??
+            const <CreatureType, ContentId>{},
+      ),
+      influenceChecks: $checkedConvert(
+        'influence_checks',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => InfluenceCheck.fromJson(e as Map<String, dynamic>))
+                .toList() ??
+            const <InfluenceCheck>[],
+      ),
+    );
+    return val;
+  },
+  fieldKeyMap: const {
+    'studySkills': 'study_skills',
+    'influenceChecks': 'influence_checks',
+  },
+);
+
+Map<String, dynamic> _$RuleDataToJson(_RuleData instance) => <String, dynamic>{
+  'study_skills': instance.studySkills.map(
+    (k, e) => MapEntry(
+      _$CreatureTypeEnumMap[k]!,
+      const ContentIdConverter().toJson(e),
+    ),
+  ),
+  'influence_checks': instance.influenceChecks.map((e) => e.toJson()).toList(),
+};
+
+const _$CreatureTypeEnumMap = {
+  CreatureType.aberration: 'aberration',
+  CreatureType.beast: 'beast',
+  CreatureType.celestial: 'celestial',
+  CreatureType.construct: 'construct',
+  CreatureType.dragon: 'dragon',
+  CreatureType.elemental: 'elemental',
+  CreatureType.fey: 'fey',
+  CreatureType.fiend: 'fiend',
+  CreatureType.giant: 'giant',
+  CreatureType.humanoid: 'humanoid',
+  CreatureType.monstrosity: 'monstrosity',
+  CreatureType.ooze: 'ooze',
+  CreatureType.plant: 'plant',
+  CreatureType.undead: 'undead',
+};
+
+_InfluenceCheck _$InfluenceCheckFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_InfluenceCheck', json, ($checkedConvert) {
+      $checkKeys(
+        json,
+        allowedKeys: const ['id', 'ability', 'skill', 'creature_types'],
+      );
+      final val = _InfluenceCheck(
+        id: $checkedConvert('id', (v) => v as String),
+        ability: $checkedConvert(
+          'ability',
+          (v) => const ContentIdConverter().fromJson(v as String),
+        ),
+        skill: $checkedConvert(
+          'skill',
+          (v) => const ContentIdConverter().fromJson(v as String),
+        ),
+        creatureTypes: $checkedConvert(
+          'creature_types',
+          (v) =>
+              (v as List<dynamic>?)
+                  ?.map((e) => $enumDecode(_$CreatureTypeEnumMap, e))
+                  .toList() ??
+              const <CreatureType>[],
+        ),
+      );
+      return val;
+    }, fieldKeyMap: const {'creatureTypes': 'creature_types'});
+
+Map<String, dynamic> _$InfluenceCheckToJson(_InfluenceCheck instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'ability': const ContentIdConverter().toJson(instance.ability),
+      'skill': const ContentIdConverter().toJson(instance.skill),
+      'creature_types': instance.creatureTypes
+          .map((e) => _$CreatureTypeEnumMap[e]!)
+          .toList(),
+    };
+
 _WeaponData _$WeaponDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   '_WeaponData',
   json,
@@ -1527,21 +1626,4 @@ const _$MonsterSizeEnumMap = {
   MonsterSize.large: 'large',
   MonsterSize.huge: 'huge',
   MonsterSize.gargantuan: 'gargantuan',
-};
-
-const _$CreatureTypeEnumMap = {
-  CreatureType.aberration: 'aberration',
-  CreatureType.beast: 'beast',
-  CreatureType.celestial: 'celestial',
-  CreatureType.construct: 'construct',
-  CreatureType.dragon: 'dragon',
-  CreatureType.elemental: 'elemental',
-  CreatureType.fey: 'fey',
-  CreatureType.fiend: 'fiend',
-  CreatureType.giant: 'giant',
-  CreatureType.humanoid: 'humanoid',
-  CreatureType.monstrosity: 'monstrosity',
-  CreatureType.ooze: 'ooze',
-  CreatureType.plant: 'plant',
-  CreatureType.undead: 'undead',
 };

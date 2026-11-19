@@ -16,6 +16,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../tables/tables_providers.dart';
+import 'action_assistant.dart';
 import 'combatant_sheet.dart';
 import 'concentration.dart';
 import 'condition_sheets.dart';
@@ -64,7 +65,15 @@ List<Widget> combatActions(
   final l10n = AppLocalizations.of(context);
   final events = ref.watch(combatEventsProvider(encounter.id)).value;
   final undoable = events == null ? null : lastUndoable(events);
+  final combat = events == null ? null : projectCombat(events);
   return [
+    IconButton(
+      tooltip: l10n.actionAssistant,
+      icon: const Icon(Icons.psychology_outlined),
+      onPressed: combat == null
+          ? null
+          : () => showActionAssistant(context, encounter, combat),
+    ),
     IconButton(
       tooltip: l10n.combatUndo,
       icon: const Icon(Icons.undo),

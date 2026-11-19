@@ -95,6 +95,40 @@ abstract class EmptyData with _$EmptyData implements EntityData {
       _$EmptyDataFromJson(json);
 }
 
+/// Terme de règles, avec des tables que les assistants consultent
+/// (EF-ACT-05) ; vides pour un simple terme du glossaire.
+@freezed
+abstract class RuleData with _$RuleData implements EntityData {
+  const factory RuleData({
+    /// Compétence suggérée pour l'Étude, par type de créature (SRD,
+    /// « Domaines de savoir »).
+    @ContentIdConverter()
+    @Default(<CreatureType, ContentId>{})
+    Map<CreatureType, ContentId> studySkills,
+
+    /// Façons d'interagir de l'Influence (SRD, « Tests d'Influence »).
+    @Default(<InfluenceCheck>[]) List<InfluenceCheck> influenceChecks,
+  }) = _RuleData;
+
+  factory RuleData.fromJson(Map<String, dynamic> json) =>
+      _$RuleDataFromJson(json);
+}
+
+/// Façon d'interagir avec une cible et le test qu'elle demande ; sans
+/// [creatureTypes], elle vaut pour toute cible.
+@freezed
+abstract class InfluenceCheck with _$InfluenceCheck {
+  const factory InfluenceCheck({
+    required String id,
+    @ContentIdConverter() required ContentId ability,
+    @ContentIdConverter() required ContentId skill,
+    @Default(<CreatureType>[]) List<CreatureType> creatureTypes,
+  }) = _InfluenceCheck;
+
+  factory InfluenceCheck.fromJson(Map<String, dynamic> json) =>
+      _$InfluenceCheckFromJson(json);
+}
+
 @freezed
 abstract class WeaponData with _$WeaponData implements EntityData {
   const factory WeaponData({
@@ -673,7 +707,7 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'skill': SkillData.fromJson,
   'language': LanguageData.fromJson,
   'condition': EmptyData.fromJson,
-  'rule': EmptyData.fromJson,
+  'rule': RuleData.fromJson,
   'damage-type': EmptyData.fromJson,
   'mastery': EmptyData.fromJson,
   'weapon': WeaponData.fromJson,

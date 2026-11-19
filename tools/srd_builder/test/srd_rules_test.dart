@@ -11,7 +11,7 @@ void main() {
       .replaceAll(RegExp(r'\s+'), ' ');
   final sources = Directory('sources/rule').listSync().whereType<File>();
 
-  test('six termes de règles', () => expect(sources, hasLength(6)));
+  test('huit termes de règles', () => expect(sources, hasLength(8)));
 
   for (final file in sources) {
     final json = jsonDecode(file.readAsStringSync()) as Map<String, Object?>;
@@ -22,4 +22,38 @@ void main() {
       expect(srd, contains(json['name']));
     });
   }
+
+  // Spec content-pack : « Tables de règles d'une entité rule » (EF-ACT-05).
+  Map<String, Object?> data(String slug) =>
+      (jsonDecode(File('sources/rule/$slug.json').readAsStringSync())
+              as Map<String, Object?>)['data']!
+          as Map<String, Object?>;
+
+  test('Domaines de savoir : une compétence par type de créature', () {
+    final skills = data('study')['study_skills']! as Map<String, Object?>;
+    expect(skills, hasLength(14));
+    expect(skills['humanoid'], 'srd:skill:history');
+    expect(skills['aberration'], 'srd:skill:arcana');
+    expect(skills['dragon'], 'srd:skill:nature');
+    expect(skills['undead'], 'srd:skill:religion');
+  });
+
+  test("Tests d'Influence : cinq façons d'interagir", () {
+    final checks = [
+      for (final c in data('influence')['influence_checks']! as List<Object?>)
+        c! as Map<String, Object?>,
+    ];
+    expect(
+      [for (final c in checks) c['skill']],
+      [
+        'srd:skill:intimidation',
+        'srd:skill:persuasion',
+        'srd:skill:performance',
+        'srd:skill:deception',
+        'srd:skill:animal-handling',
+      ],
+    );
+    expect(checks.last['ability'], 'srd:ability:wisdom');
+    expect(checks.last['creature_types'], ['beast', 'monstrosity']);
+  });
 }

@@ -22,6 +22,8 @@ const _referenceTypes = <String, Set<String>>{
   'damage_type': {'damage-type'},
   'mastery': {'mastery'},
   'origin_feat': {'feat'},
+  'skill': {'skill'},
+  'study_skills': {'skill'},
   'skill_proficiencies': {'skill'},
   'skill_choices': {'skill'},
   'tool_proficiency': {'tool'},

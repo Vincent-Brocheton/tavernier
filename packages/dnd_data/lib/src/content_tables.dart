@@ -91,6 +91,10 @@ class Conditions extends Table with ContentEntityColumns {
 class RuleTerms extends Table with ContentEntityColumns {
   @override
   String get tableName => 'rule_term';
+
+  /// Tables de la règle (`RuleData`, EF-ACT-05), en JSON ; `null` pour un
+  /// simple terme du glossaire (schéma v2).
+  TextColumn get data => text().nullable()();
 }
 
 @DataClassName('DamageTypeRow')

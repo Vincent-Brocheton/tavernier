@@ -1,6 +1,7 @@
 // Spec tables : « Onglet des rencontres », « Créer, dupliquer et ranger une
 // rencontre », « Budget de la prochaine séance » (US-19, EF-REN-01, 03, 05,
 // [F5]).
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -18,6 +19,7 @@ import 'package:game_table/encounters/combat_view.dart';
 import 'package:game_table/encounters/encounter_page.dart';
 import 'package:game_table/encounters/foe_picker.dart';
 import 'package:game_table/l10n/app_localizations.dart';
+import 'package:game_table/sheet/simple_roll.dart';
 import 'package:game_table/tables/table_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
@@ -1383,5 +1385,118 @@ void main() {
     );
     expect(state!.combatant('aldric')!.initiative!.total, 8);
     expect(state.order, ['mira', 'aldric']);
+  });
+
+  _test('Étude [C9] : Thalia, Histoire 16 sur Varga, 2 paliers révélés', (
+    tester,
+  ) async {
+    await _open(tester);
+    late String varga;
+    await tester.runAsync(() async {
+      varga = await NpcStore(_db).create(
+        tableId: _table,
+        name: 'Varga la Balafrée',
+        monsterId: 'srd:monster:bandit-captain',
+        hiddenInfo: const [
+          HiddenInfo(dc: 10, text: 'Ancienne sergente de la garde.'),
+          HiddenInfo(dc: 15, text: 'Porte le sceau de la Guilde du Sel.'),
+          HiddenInfo(dc: 20, text: 'Sœur cadette du bourgmestre Hesse.'),
+        ],
+      );
+    });
+    // Une écriture à la fois : l'écran relit la base entre deux.
+    await _settle(tester);
+    await tester.runAsync(() async {
+      await CombatStore(_db).launch(_relais, authorUserId: _camille, [
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'thalia',
+            'kind': 'pc',
+            'ref_id': 'thalia',
+            'label': 'Thalia',
+            'hp': 33,
+            'hp_max': 33,
+          },
+        ),
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'varga',
+            'kind': 'npc',
+            'ref_id': varga,
+            'label': 'Varga la Balafrée',
+            'hp': 52,
+            'hp_max': 52,
+          },
+        ),
+        for (final unit in ['thalia', 'varga'])
+          (
+            CombatEventType.initiativeRolled,
+            {
+              'unit': unit,
+              'dice': [10],
+            },
+          ),
+        (CombatEventType.combatStarted, const <String, Object?>{}),
+      ]);
+    });
+    await _settle(tester);
+    await tester.runAsync(() async {
+      final fixture = jsonDecode(
+        File('../../packages/dnd_rules/test/fixtures/d1/thalia_n5.json')
+            .readAsStringSync(),
+      ) as Map<String, Object?>;
+      await CharacterStore(_db).save(
+        'thalia',
+        CharacterInput.fromJson(fixture['input']! as Map<String, Object?>),
+      );
+    });
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Reprendre le combat'));
+    await _settle(tester);
+
+    await _tap(tester, find.byTooltip('Étude · Influence · Observation'));
+    await _settle(tester);
+    expect(find.text('Varga la Balafrée · Humanoïde'), findsOneWidget);
+    expect(
+      tester
+          .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, 'Histoire +1'))
+          .selected,
+      isTrue,
+    );
+    expect(
+      find.text('Suggérée : Histoire, le domaine des Humanoïdes et Géants.'),
+      findsOneWidget,
+    );
+    await tester.enterText(
+      find.descendant(
+        of: find.byType(SimpleRoll),
+        matching: find.byType(TextField),
+      ),
+      '15',
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Atteint : sera révélée'), findsNWidgets(2));
+    expect(find.text('Non atteint : reste cachée'), findsOneWidget);
+    await _tap(tester, find.text('Révéler 2 informations'));
+    await _settle(tester);
+
+    final (npc, events) = (await tester.runAsync(
+      () async => (
+        (await NpcStore(_db).watchList(_table).first).single,
+        await CombatStore(_db).watchEvents(_relais).first,
+      ),
+    ))!;
+    expect([for (final h in npc.hiddenInfo) h.revealed], [true, true, false]);
+    final study = events.last;
+    expect(study.type, CombatEventType.study);
+    expect(study.payload, {
+      'actor': 'thalia',
+      'target': 'varga',
+      'skill': 'srd:skill:history',
+      'total': 16,
+      'revealed': [10, 15],
+    });
   });
 }

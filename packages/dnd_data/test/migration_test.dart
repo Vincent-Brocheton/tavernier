@@ -1,6 +1,7 @@
 // Spec local-database : « Migrations versionnées ». Le schéma qu'une base
 // neuve reçoit du code doit être identique à l'instantané de sa version :
 // changer une table sans nouvelle version fait échouer ce test.
+import 'package:dnd_data/dnd_data.dart';
 import 'package:drift_dev/api/migrations_native.dart';
 import 'package:test/test.dart';
 
@@ -34,8 +35,8 @@ List<String> _structure(Iterable<Map<String, Object?>> rows) => [
 ];
 
 void main() {
-  test("le schéma du code est celui de l'instantané v1", () async {
-    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(1);
+  test("le schéma du code est celui de l'instantané v2", () async {
+    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(2);
     addTearDown(snapshot.rawDatabase.close);
     final expected = _structure(snapshot.rawDatabase.select(_structureQuery));
 
@@ -45,7 +46,16 @@ void main() {
       for (final row in await db.customSelect(_structureQuery).get()) row.data,
     ]);
 
-    expect(db.schemaVersion, 1);
+    expect(db.schemaVersion, 2);
     expect(actual, expected);
+  });
+
+  // v2 (US-24) : `rule_term.data`, les tables d'une règle.
+  test('une base v1 monte en v2', () async {
+    final verifier = SchemaVerifier(GeneratedHelper());
+    final schema = await verifier.schemaAt(1);
+    final db = TavernierDatabase(schema.newConnection());
+    addTearDown(db.close);
+    await verifier.migrateAndValidate(db, 2);
   });
 }

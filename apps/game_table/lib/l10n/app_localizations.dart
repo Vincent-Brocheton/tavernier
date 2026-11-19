@@ -7457,6 +7457,120 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Échanger l’initiative de {name} avec…'**
   String alertSwapTitle(String name);
+
+  /// Bouton de l'assistant du MJ dans le combat (US-24).
+  ///
+  /// In fr, this message translates to:
+  /// **'Étude · Influence · Observation'**
+  String get actionAssistant;
+
+  /// Assistant [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnage qui agit'**
+  String get actionActor;
+
+  /// Assistant sans PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun PJ dans ce combat.'**
+  String get actionNoPc;
+
+  /// Onglet de l'assistant [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Étude'**
+  String get actionStudy;
+
+  /// Assistant [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Cible'**
+  String get actionTarget;
+
+  /// Cible et son type de créature [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · {type}'**
+  String actionTargetType(String name, String type);
+
+  /// Assistant [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Résultat'**
+  String get actionResult;
+
+  /// Valide l'assistant sans révélation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consigner'**
+  String get actionLog;
+
+  /// Énumération : « Humanoïdes et Géants ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{items} et {last}'**
+  String andList(String items, String last);
+
+  /// Étude [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Test d’Intelligence'**
+  String get studyCheck;
+
+  /// Compétence suggérée [C9] (SRD, « Domaines de savoir »).
+  ///
+  /// In fr, this message translates to:
+  /// **'Suggérée : {skill}, le domaine des {types}.'**
+  String studySuggested(String skill, String types);
+
+  /// Paliers du PNJ [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations préparées'**
+  String get studyPrepared;
+
+  /// Cible sans paliers [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas d’informations préparées sur cette cible : l’Étude est seulement inscrite au journal.'**
+  String get studyNoInfo;
+
+  /// Palier [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'DD {dc}'**
+  String studyDc(int dc);
+
+  /// Palier atteint [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Atteint : sera révélée'**
+  String get studyReached;
+
+  /// Palier non atteint [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Non atteint : reste cachée'**
+  String get studyNotReached;
+
+  /// Palier révélé auparavant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déjà révélée'**
+  String get studyAlreadyRevealed;
+
+  /// Rappel EF-ACT-07 [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'Les paliers révélés sont ajoutés au journal et marqués sur la fiche du PNJ, visibles du MJ seul : annoncez-les à la table.'**
+  String get studyGmOnly;
+
+  /// Bouton de l'Étude [C9].
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Révéler 1 information} other{Révéler {count} informations}}'**
+  String studyReveal(int count);
 }
 
 class _AppLocalizationsDelegate

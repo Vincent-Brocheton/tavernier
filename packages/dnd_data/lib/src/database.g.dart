@@ -2860,8 +2860,17 @@ class $RuleTermsTable extends RuleTerms
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _dataMeta = const VerificationMeta('data');
   @override
-  List<GeneratedColumn> get $columns => [id, packId, name, extendsId];
+  late final GeneratedColumn<String> data = GeneratedColumn<String>(
+    'data',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, packId, name, extendsId, data];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -2901,6 +2910,12 @@ class $RuleTermsTable extends RuleTerms
         extendsId.isAcceptableOrUnknown(data['extends_id']!, _extendsIdMeta),
       );
     }
+    if (data.containsKey('data')) {
+      context.handle(
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
+    }
     return context;
   }
 
@@ -2926,6 +2941,10 @@ class $RuleTermsTable extends RuleTerms
         DriftSqlType.string,
         data['${effectivePrefix}extends_id'],
       ),
+      data: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}data'],
+      ),
     );
   }
 
@@ -2940,11 +2959,16 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
   final String packId;
   final String name;
   final String? extendsId;
+
+  /// Tables de la règle (`RuleData`, EF-ACT-05), en JSON ; `null` pour un
+  /// simple terme du glossaire (schéma v2).
+  final String? data;
   const RuleTermRow({
     required this.id,
     required this.packId,
     required this.name,
     this.extendsId,
+    this.data,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2954,6 +2978,9 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || extendsId != null) {
       map['extends_id'] = Variable<String>(extendsId);
+    }
+    if (!nullToAbsent || data != null) {
+      map['data'] = Variable<String>(data);
     }
     return map;
   }
@@ -2966,6 +2993,7 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
       extendsId: extendsId == null && nullToAbsent
           ? const Value.absent()
           : Value(extendsId),
+      data: data == null && nullToAbsent ? const Value.absent() : Value(data),
     );
   }
 
@@ -2979,6 +3007,7 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
       packId: serializer.fromJson<String>(json['packId']),
       name: serializer.fromJson<String>(json['name']),
       extendsId: serializer.fromJson<String?>(json['extendsId']),
+      data: serializer.fromJson<String?>(json['data']),
     );
   }
   @override
@@ -2989,6 +3018,7 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
       'packId': serializer.toJson<String>(packId),
       'name': serializer.toJson<String>(name),
       'extendsId': serializer.toJson<String?>(extendsId),
+      'data': serializer.toJson<String?>(data),
     };
   }
 
@@ -2997,11 +3027,13 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
     String? packId,
     String? name,
     Value<String?> extendsId = const Value.absent(),
+    Value<String?> data = const Value.absent(),
   }) => RuleTermRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
     name: name ?? this.name,
     extendsId: extendsId.present ? extendsId.value : this.extendsId,
+    data: data.present ? data.value : this.data,
   );
   RuleTermRow copyWithCompanion(RuleTermsCompanion data) {
     return RuleTermRow(
@@ -3009,6 +3041,7 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
       packId: data.packId.present ? data.packId.value : this.packId,
       name: data.name.present ? data.name.value : this.name,
       extendsId: data.extendsId.present ? data.extendsId.value : this.extendsId,
+      data: data.data.present ? data.data.value : this.data,
     );
   }
 
@@ -3018,13 +3051,14 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
           ..write('id: $id, ')
           ..write('packId: $packId, ')
           ..write('name: $name, ')
-          ..write('extendsId: $extendsId')
+          ..write('extendsId: $extendsId, ')
+          ..write('data: $data')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, packId, name, extendsId);
+  int get hashCode => Object.hash(id, packId, name, extendsId, data);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3032,7 +3066,8 @@ class RuleTermRow extends DataClass implements Insertable<RuleTermRow> {
           other.id == this.id &&
           other.packId == this.packId &&
           other.name == this.name &&
-          other.extendsId == this.extendsId);
+          other.extendsId == this.extendsId &&
+          other.data == this.data);
 }
 
 class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
@@ -3040,12 +3075,14 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
   final Value<String> packId;
   final Value<String> name;
   final Value<String?> extendsId;
+  final Value<String?> data;
   final Value<int> rowid;
   const RuleTermsCompanion({
     this.id = const Value.absent(),
     this.packId = const Value.absent(),
     this.name = const Value.absent(),
     this.extendsId = const Value.absent(),
+    this.data = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   RuleTermsCompanion.insert({
@@ -3053,6 +3090,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
     required String packId,
     required String name,
     this.extendsId = const Value.absent(),
+    this.data = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -3062,6 +3100,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
     Expression<String>? packId,
     Expression<String>? name,
     Expression<String>? extendsId,
+    Expression<String>? data,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -3069,6 +3108,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
       if (packId != null) 'pack_id': packId,
       if (name != null) 'name': name,
       if (extendsId != null) 'extends_id': extendsId,
+      if (data != null) 'data': data,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -3078,6 +3118,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
     Value<String>? packId,
     Value<String>? name,
     Value<String?>? extendsId,
+    Value<String?>? data,
     Value<int>? rowid,
   }) {
     return RuleTermsCompanion(
@@ -3085,6 +3126,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
       packId: packId ?? this.packId,
       name: name ?? this.name,
       extendsId: extendsId ?? this.extendsId,
+      data: data ?? this.data,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -3104,6 +3146,9 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
     if (extendsId.present) {
       map['extends_id'] = Variable<String>(extendsId.value);
     }
+    if (data.present) {
+      map['data'] = Variable<String>(data.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -3117,6 +3162,7 @@ class RuleTermsCompanion extends UpdateCompanion<RuleTermRow> {
           ..write('packId: $packId, ')
           ..write('name: $name, ')
           ..write('extendsId: $extendsId, ')
+          ..write('data: $data, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -35758,6 +35804,7 @@ typedef $$RuleTermsTableCreateCompanionBuilder = RuleTermsCompanion Function({
   required String packId,
   required String name,
   Value<String?> extendsId,
+  Value<String?> data,
   Value<int> rowid,
 });
 typedef $$RuleTermsTableUpdateCompanionBuilder = RuleTermsCompanion Function({
@@ -35765,6 +35812,7 @@ typedef $$RuleTermsTableUpdateCompanionBuilder = RuleTermsCompanion Function({
   Value<String> packId,
   Value<String> name,
   Value<String?> extendsId,
+  Value<String?> data,
   Value<int> rowid,
 });
 
@@ -35811,6 +35859,11 @@ class $$RuleTermsTableFilterComposer
 
   ColumnFilters<String> get extendsId => $composableBuilder(
     column: $table.extendsId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get data => $composableBuilder(
+    column: $table.data,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -35862,6 +35915,11 @@ class $$RuleTermsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -35903,6 +35961,9 @@ class $$RuleTermsTableAnnotationComposer
 
   GeneratedColumn<String> get extendsId =>
       $composableBuilder(column: $table.extendsId, builder: (column) => column);
+
+  GeneratedColumn<String> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
 
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
@@ -35960,12 +36021,14 @@ class $$RuleTermsTableTableManager
                 Value<String> packId = const Value.absent(),
                 Value<String> name = const Value.absent(),
                 Value<String?> extendsId = const Value.absent(),
+                Value<String?> data = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => RuleTermsCompanion(
                 id: id,
                 packId: packId,
                 name: name,
                 extendsId: extendsId,
+                data: data,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -35974,12 +36037,14 @@ class $$RuleTermsTableTableManager
                 required String packId,
                 required String name,
                 Value<String?> extendsId = const Value.absent(),
+                Value<String?> data = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => RuleTermsCompanion.insert(
                 id: id,
                 packId: packId,
                 name: name,
                 extendsId: extendsId,
+                data: data,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

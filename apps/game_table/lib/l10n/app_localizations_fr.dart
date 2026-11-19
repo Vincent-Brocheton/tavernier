@@ -4735,4 +4735,79 @@ class AppLocalizationsFr extends AppLocalizations {
   String alertSwapTitle(String name) {
     return 'Échanger l’initiative de $name avec…';
   }
+
+  @override
+  String get actionAssistant => 'Étude · Influence · Observation';
+
+  @override
+  String get actionActor => 'Personnage qui agit';
+
+  @override
+  String get actionNoPc => 'Aucun PJ dans ce combat.';
+
+  @override
+  String get actionStudy => 'Étude';
+
+  @override
+  String get actionTarget => 'Cible';
+
+  @override
+  String actionTargetType(String name, String type) {
+    return '$name · $type';
+  }
+
+  @override
+  String get actionResult => 'Résultat';
+
+  @override
+  String get actionLog => 'Consigner';
+
+  @override
+  String andList(String items, String last) {
+    return '$items et $last';
+  }
+
+  @override
+  String get studyCheck => 'Test d’Intelligence';
+
+  @override
+  String studySuggested(String skill, String types) {
+    return 'Suggérée : $skill, le domaine des $types.';
+  }
+
+  @override
+  String get studyPrepared => 'Informations préparées';
+
+  @override
+  String get studyNoInfo =>
+      'Pas d’informations préparées sur cette cible : l’Étude est seulement inscrite au journal.';
+
+  @override
+  String studyDc(int dc) {
+    return 'DD $dc';
+  }
+
+  @override
+  String get studyReached => 'Atteint : sera révélée';
+
+  @override
+  String get studyNotReached => 'Non atteint : reste cachée';
+
+  @override
+  String get studyAlreadyRevealed => 'Déjà révélée';
+
+  @override
+  String get studyGmOnly =>
+      'Les paliers révélés sont ajoutés au journal et marqués sur la fiche du PNJ, visibles du MJ seul : annoncez-les à la table.';
+
+  @override
+  String studyReveal(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Révéler $count informations',
+      one: 'Révéler 1 information',
+    );
+    return '$_temp0';
+  }
 }

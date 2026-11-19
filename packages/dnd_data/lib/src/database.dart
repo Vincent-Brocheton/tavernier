@@ -102,7 +102,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -115,6 +115,10 @@ class TavernierDatabase extends _$TavernierDatabase {
         }
         await m.create(entity);
       }
+    },
+    onUpgrade: (m, from, to) async {
+      // v2 (US-24) : tables d'une règle.
+      if (from < 2) await m.addColumn(ruleTerms, ruleTerms.data);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
