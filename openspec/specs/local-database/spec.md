@@ -6,11 +6,11 @@ Base SQLite locale de chaque appareil, source de vérité hors-ligne : elle port
 ## Requirements
 
 ### Requirement: Schéma version 1
-Une base neuve SHALL contenir, en version de schéma 1, toutes les tables du contenu de règles (cahier §11.1, plus `language`, `tool`, `feature`, `species_trait`) et des données de jeu (cahier §11.2, plus `character_language`, `character_choice`).
+Une base neuve SHALL contenir, en version de schéma 2, toutes les tables du contenu de règles (cahier §11.1, plus `language`, `tool`, `feature`, `species_trait`) et des données de jeu (cahier §11.2, plus `character_language`, `character_choice`). La version 2 ajoute la colonne `rule_term.data` (US-24).
 
 #### Scenario: Base neuve
 - **WHEN** la base est ouverte pour la première fois
-- **THEN** sa version de schéma vaut 1 et chacune des tables attendues existe
+- **THEN** sa version de schéma vaut 2 et chacune des tables attendues existe
 
 ### Requirement: Identifiant unique des données synchronisables
 Chaque table de données de jeu SHALL avoir une clé primaire `id` textuelle unique, y compris les tables de liaison, pour rester synchronisable en M2.
@@ -72,7 +72,11 @@ Chaque version du schéma SHALL être figée dans un instantané versionné ; un
 
 #### Scenario: Instantané à jour
 - **WHEN** les tests de migration s'exécutent
-- **THEN** le schéma produit par le code est identique à l'instantané de la version 1
+- **THEN** le schéma produit par le code est identique à l'instantané de la version 2
+
+#### Scenario: Montée de v1 en v2
+- **WHEN** une base en version 1 est ouverte
+- **THEN** elle monte en version 2 avec la colonne `rule_term.data`, et son schéma est celui de l'instantané v2
 
 ### Requirement: Base sur chaque plateforme
 L'application SHALL ouvrir une base persistante sur Web (SQLite WASM), Android et iOS : écrire, fermer, rouvrir et relire les mêmes données, et y exécuter une recherche FTS5 (cahier ENF-06). Sur le Web, cela vaut pour les navigateurs d'ENF-06 : Chrome, Firefox, Safari et Edge.
@@ -509,3 +513,10 @@ La table locale `combatant` SHALL disparaître : les combattants se déduisent d
 #### Scenario: Fin
 - **WHEN** le MJ termine la rencontre
 - **THEN** elle est « Terminée »
+
+### Requirement: Tables d'une règle en base
+L'import d'un pack SHALL garder les tables d'une entité `rule` (`rule_term.data`, JSON), et l'export SHALL les rendre à l'identique.
+
+#### Scenario: Aller-retour du pack SRD
+- **WHEN** le pack SRD est importé puis exporté
+- **THEN** `srd:rule:study` et `srd:rule:influence` gardent leurs tables
