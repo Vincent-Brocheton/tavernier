@@ -14,6 +14,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../sheet/sheet_breakdowns.dart';
 import 'combat_view.dart';
+import 'concentration.dart';
 import 'encounters_providers.dart';
 
 /// Icône d'un état ; `null` : « Autre effet ». Les icônes dessinées de §2.3
@@ -707,6 +708,22 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
           ],
           onChanged: (v) => setState(() => _caster = v),
         ),
+        // EF-CON-06 : un état qui inflige Neutralisé met fin à la
+        // concentration de la cible.
+        if (incapacitatingConditions.contains(_condition))
+          for (final c in targets)
+            if (c.concentration != null &&
+                !c.conditionImmunities.contains(_condition))
+              Padding(
+                padding: EdgeInsets.only(top: AppSpacing.sm),
+                child: Text(
+                  l10n.conditionEndsConcentration(
+                    concentrationConsequence(l10n, content, combat, c),
+                  ),
+                  style: Theme.of(context).textTheme.bodyMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
         SizedBox(height: AppSpacing.md),
         SizedBox(
           height: 56,

@@ -98,6 +98,19 @@ const legendaryActionsCounter = 'legendary_actions';
 /// Épuisement : le seul état cumulatif (SRD), jusqu'au niveau 6.
 const exhaustionCondition = 'srd:condition:exhaustion';
 
+/// Inconscient : posé par Assommer.
+const unconsciousCondition = 'srd:condition:unconscious';
+
+/// États qui infligent Neutralisé (SRD), et mettent donc fin à la
+/// concentration.
+const incapacitatingConditions = {
+  'srd:condition:incapacitated',
+  unconsciousCondition,
+  'srd:condition:paralyzed',
+  'srd:condition:petrified',
+  'srd:condition:stunned',
+};
+
 /// Sorte de durée d'un état (EF-CON-02).
 enum DurationKind {
   rounds('rounds'),
@@ -165,6 +178,7 @@ final class ConditionInstance {
        ),
        levels = (p['levels'] as int?) ?? 1,
        concentration = p['concentration'] as String?,
+       knockedOut = (p['knocked_out'] as bool?) ?? false,
        recurring = switch (p['recurring']) {
          final Map<Object?, Object?> r => RecurringDamage._(
            Map<String, Object?>.from(r),
@@ -181,6 +195,9 @@ final class ConditionInstance {
 
   /// Lanceur dont la concentration maintient l'état ; `null` sans lien.
   final String? concentration;
+
+  /// Inconscient posé par Assommer : un soin le retire.
+  final bool knockedOut;
 
   /// Unité active à la pose (le porteur hors combat), round de la pose (au
   /// moins 1) et numéro du début de tour en cours.
@@ -318,14 +335,17 @@ final class Combatant {
     if (deathFailures >= 3) dead = true;
   }
 
-  void _takeDamage(
+  /// Inflige les dégâts ; vrai si [knockOut] a laissé la cible à 1 PV au
+  /// lieu de 0 (Assommer), l'état Inconscient restant à poser.
+  bool _takeDamage(
     int amount,
     String type, {
     required bool critical,
     required bool half,
     required bool double,
+    required bool knockOut,
   }) {
-    if (hp == null || dead) return;
+    if (hp == null || dead) return false;
     final wasDown = hp == 0;
     final result = resolveDamage(
       this,
@@ -335,23 +355,31 @@ final class Combatant {
       double: double,
     );
     tempHp = result.tempAfter;
-    hp = result.hpAfter;
     if (concentration != null && result.taken > 0) {
       _checks.add((dc: concentrationDc(result.taken), damage: result.taken));
     }
-    // Dégâts subis à 0 PV : un échec, deux sur un coup critique.
-    if (kind == CombatantKind.pc && wasDown && result.taken > 0) {
+    if (knockOut && !wasDown && result.hpAfter == 0) {
+      hp = 1;
+      return true;
+    }
+    hp = result.hpAfter;
+    if (instantDeath(this, result)) {
+      dead = true;
+    } else if (kind == CombatantKind.pc && wasDown && result.taken > 0) {
+      // Dégâts subis à 0 PV : un échec, deux sur un coup critique.
       _fail(critical ? 2 : 1);
     } else if (kind == CombatantKind.pc && !wasDown && hp == 0) {
       _resetDeathSaves();
     }
+    return false;
   }
 
   void _heal(int amount) {
     if (hp == null || dead) return;
-    final wasDown = hp == 0;
+    final before = hp!;
     hp = min(hpMax ?? hp! + amount, hp! + amount);
-    if (wasDown && hp! > 0) _resetDeathSaves();
+    if (before == 0 && hp! > 0) _resetDeathSaves();
+    if (hp! > before) _conditions.removeWhere((i) => i.knockedOut);
   }
 
   void _deathSave(String outcome) {
@@ -367,6 +395,8 @@ final class Combatant {
       case 'nat20':
         hp = 1;
         _resetDeathSaves();
+      case 'stabilized':
+        stable = true;
     }
   }
 
@@ -533,6 +563,22 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     }
   }
 
+  /// Pose l'état [p] sur [c] ; un état qui inflige Neutralisé met fin à sa
+  /// concentration (EF-CON-06).
+  void addCondition(Combatant c, Map<String, Object?> p) {
+    final instance = ConditionInstance._(
+      p,
+      anchor: active ?? c.unit,
+      round: max(round, 1),
+      serial: serial,
+    );
+    c._addCondition(instance);
+    if (incapacitatingConditions.contains(instance.condition) &&
+        !c.conditionImmunities.contains(instance.condition)) {
+      endConcentration(c);
+    }
+  }
+
   void startTurn(String? unit) {
     active = unit;
     serial++;
@@ -625,13 +671,25 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         find(p['combatant']! as String)?._restore(p['counter']! as String);
       case CombatEventType.damage:
         for (final id in p['targets']! as List) {
-          find(id as String)?._takeDamage(
+          final c = find(id as String);
+          if (c == null) continue;
+          final knockedOut = c._takeDamage(
             p['amount']! as int,
             (p['type'] as String?) ?? '',
             critical: (p['critical'] as bool?) ?? false,
             half: (p['half'] as bool?) ?? false,
             double: (p['double'] as bool?) ?? false,
+            knockOut: (p['knock_out'] as bool?) ?? false,
           );
+          if (knockedOut) {
+            addCondition(c, {
+              'instance': '${e.id}:ko',
+              'condition': unconsciousCondition,
+              'knocked_out': true,
+            });
+          } else if (c.hp == 0 && c.concentration != null) {
+            endConcentration(c);
+          }
         }
       case CombatEventType.heal:
         for (final id in p['targets']! as List) {
@@ -649,16 +707,7 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
       case CombatEventType.deathSave:
         find(p['combatant']! as String)?._deathSave(p['outcome']! as String);
       case CombatEventType.conditionAdded:
-        final c = find(p['combatant']! as String);
-        if (c == null) break;
-        c._addCondition(
-          ConditionInstance._(
-            p,
-            anchor: active ?? c.unit,
-            round: max(round, 1),
-            serial: serial,
-          ),
-        );
+        if (find(p['combatant']! as String) case final c?) addCondition(c, p);
       case CombatEventType.conditionRemoved:
         find(p['combatant']! as String)
             ?._removeCondition(p['instance']! as String, p['levels'] as int?);
@@ -922,3 +971,19 @@ DamageResult resolveDamage(
     tempAfter: target.tempHp - absorbed,
   );
 }
+
+/// Mort sur le coup d'un PJ (SRD, « Dégâts massifs ») : tombé à 0 PV avec
+/// un excédent au moins égal à ses PV max, ou, déjà à 0 PV, des dégâts au
+/// moins égaux à ses PV max.
+bool instantDeath(Combatant target, DamageResult r) {
+  final max = target.hpMax;
+  if (target.kind != CombatantKind.pc || target.dead || max == null) {
+    return false;
+  }
+  return r.hpAfter == 0 && r.taken > 0 && damageExcess(r) >= max;
+}
+
+/// Dégâts au-delà des PV temporaires et des PV restants : l'excédent de la
+/// règle des dégâts massifs (SRD), ou, à 0 PV, tous les dégâts subis.
+int damageExcess(DamageResult r) =>
+    r.taken - (r.tempBefore - r.tempAfter) - r.hpBefore;

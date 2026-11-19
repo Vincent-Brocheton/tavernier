@@ -11,6 +11,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_view.dart';
+import 'concentration.dart';
 import 'encounters_providers.dart';
 import 'hp_bar.dart';
 
@@ -66,6 +67,7 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
   var _half = false;
   var _double = false;
   var _replace = false;
+  var _knockOut = false;
 
   int get _amount {
     var total = 0;
@@ -98,7 +100,7 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
     }
   });
 
-  Future<void> _apply() async {
+  Future<void> _apply({required bool knockOut}) async {
     final targets = _targets.toList();
     final amount = _amount;
     await appendCombat(ref, widget.encounter.id, [
@@ -112,6 +114,7 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
             'critical': _critical,
             'half': _half,
             'double': _double,
+            if (knockOut) 'knock_out': true,
           },
         ),
         KeypadMode.heal => (
@@ -147,7 +150,21 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
       KeypadMode.heal => colors.heal,
       KeypadMode.tempHp => colors.tempHp,
     };
+    final single = targets.length == 1 && _mode == KeypadMode.damage
+        ? targets.single
+        : null;
+    final hit = single == null || single.hp == null
+        ? null
+        : resolveDamage(single, amount, _type, half: _half, double: _double);
+    final dies = hit != null && instantDeath(single!, hit);
+    // Cible unique qui tomberait à 0 PV sans mourir : Assommer (EF-PV-06).
+    final falls = hit != null && !dies && hit.hpBefore > 0 && hit.hpAfter == 0
+        ? single
+        : null;
+    final knockOut = _knockOut && falls != null;
     final apply = switch (_mode) {
+      KeypadMode.damage when dies => l10n.keypadApplyDies(single.label),
+      KeypadMode.damage when knockOut => l10n.keypadApplyKnockOut(falls.label),
       KeypadMode.damage => l10n.keypadApplyDamage(
         amount,
         typeName.toLowerCase(),
@@ -271,6 +288,17 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
             half: _half,
             double: _double,
             replace: _replace,
+            concentrationEnd: c.concentration == null
+                ? null
+                : concentrationConsequence(l10n, content, combat, c),
+          ),
+        if (falls case final c?)
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.keypadKnockOut),
+            subtitle: Text(l10n.keypadKnockOutHelp(c.label)),
+            value: _knockOut,
+            onChanged: (v) => setState(() => _knockOut = v),
           ),
         if (_mode == KeypadMode.damage)
           SwitchListTile(
@@ -340,7 +368,9 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
               backgroundColor: color,
               foregroundColor: scheme.surface,
             ),
-            onPressed: amount > 0 && targets.isNotEmpty ? _apply : null,
+            onPressed: amount > 0 && targets.isNotEmpty
+                ? () => _apply(knockOut: knockOut)
+                : null,
             icon: const Icon(Icons.check),
             label: Text(apply),
           ),
@@ -365,6 +395,7 @@ class _Preview extends StatelessWidget {
     required this.half,
     required this.double,
     required this.replace,
+    required this.concentrationEnd,
   });
 
   final Combatant combatant;
@@ -375,10 +406,14 @@ class _Preview extends StatelessWidget {
   final bool double;
   final bool replace;
 
+  /// Ce que la fin de sa concentration retire ; `null` sans concentration.
+  final String? concentrationEnd;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
     final c = combatant;
     final hp = c.hp;
     final max = c.hpMax;
@@ -414,11 +449,21 @@ class _Preview extends StatelessWidget {
             ),
             SizedBox(height: AppSpacing.xxs),
             HpBar(hp: after, max: max, before: hp),
-            if (damage != null && damage.taken > 0 && c.concentration != null)
+            if (damage != null && instantDeath(c, damage))
               Text(
-                l10n.keypadConcentration(concentrationDc(damage.taken)),
-                style: text.bodySmall,
+                damage.hpBefore == 0
+                    ? l10n.keypadDeathAtZero(damageExcess(damage), max)
+                    : l10n.keypadInstantDeath(damageExcess(damage), max),
+                style: text.bodyMedium!.copyWith(color: scheme.error),
               ),
+            if (damage != null && damage.taken > 0)
+              if (concentrationEnd case final end?)
+                Text(
+                  after == 0
+                      ? l10n.keypadConcentrationEnds(end)
+                      : l10n.keypadConcentration(concentrationDc(damage.taken)),
+                  style: text.bodySmall,
+                ),
           ],
         ),
       ),

@@ -92,6 +92,7 @@ class _CombatantDetail extends ConsumerWidget {
                 ('failure', l10n.deathFailure),
                 ('nat1', l10n.deathNat1),
                 ('nat20', l10n.deathNat20),
+                ('stabilized', l10n.deathStabilized),
               ])
                 OutlinedButton(
                   onPressed: () => appendCombat(ref, encounter.id, [
