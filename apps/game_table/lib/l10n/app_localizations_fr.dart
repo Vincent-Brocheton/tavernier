@@ -4899,4 +4899,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get influenceSave => 'Enregistrer dans le journal';
+
+  @override
+  String get actionObservation => 'Observation';
+
+  @override
+  String get observationSought => 'Ce qui est cherché';
+
+  @override
+  String get observationCheck => 'Test de Sagesse';
+
+  @override
+  String get observationHelp =>
+      'Perception pour repérer, Survie pour suivre une piste, Intuition pour une intention, Médecine pour un corps.';
+
+  @override
+  String get observationDc => 'DD (MJ)';
+
+  @override
+  String get observationFound => 'Ce qui est découvert';
+
+  @override
+  String get observationNoPrepared =>
+      'Pas d’informations préparées pour une Observation : vous consignez ce que le personnage découvre.';
+
+  @override
+  String get observationLinkNpc => 'Lier au PNJ';
+
+  @override
+  String get observationGmOnly =>
+      'Consigné au journal, visible du MJ seul : annoncez la découverte à la table.';
 }

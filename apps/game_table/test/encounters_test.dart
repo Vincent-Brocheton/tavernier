@@ -1665,4 +1665,62 @@ void main() {
     ))!;
     expect(npc.attitude, Attitude.friendly);
   });
+
+  _test('Observation [F3] : Perception 13 + 3 contre DD 15, liée à Varga', (
+    tester,
+  ) async {
+    final varga = await influenceSetup(tester);
+    await _tap(tester, find.widgetWithText(Tab, 'Observation'));
+    await _settle(tester);
+    expect(
+      tester
+          .widget<ChoiceChip>(find.widgetWithText(ChoiceChip, 'Perception +3'))
+          .selected,
+      isTrue,
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Ce qui est cherché'),
+      'Des traces autour de l’écurie du relais',
+    );
+    await tester.enterText(
+      find.descendant(
+        of: find.byType(SimpleRoll),
+        matching: find.byType(TextField),
+      ),
+      '13',
+    );
+    await tester.enterText(find.widgetWithText(TextField, 'DD (MJ)'), '15');
+    await tester.pumpAndSettle();
+    expect(find.text('Réussite'), findsOneWidget);
+    // Sans découverte rédigée, rien à consigner.
+    expect(
+      tester
+          .widget<FilledButton>(find.widgetWithText(FilledButton, 'Consigner'))
+          .onPressed,
+      isNull,
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Ce qui est découvert'),
+      'Des ornières de chariots lourds partent vers le gué.',
+    );
+    await _tap(tester, find.text('Aucun'));
+    await _tap(tester, find.text('Varga la Balafrée').last);
+    await _tap(tester, find.widgetWithText(FilledButton, 'Consigner'));
+    await _settle(tester);
+
+    final events = (await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first,
+    ))!;
+    expect(events.last.type, CombatEventType.observation);
+    expect(events.last.payload, {
+      'actor': 'aldric',
+      'sought': 'Des traces autour de l’écurie du relais',
+      'skill': 'srd:skill:perception',
+      'total': 16,
+      'dc': 15,
+      'success': true,
+      'discovery': 'Des ornières de chariots lourds partent vers le gué.',
+      'npc': varga,
+    });
+  });
 }

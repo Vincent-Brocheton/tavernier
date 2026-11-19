@@ -69,3 +69,19 @@ Enregistrer SHALL écrire un événement `influence` (réception, approche, DD, 
 - **WHEN** Varga est Disposée et le MJ la passe Amicale
 - **THEN** la fiche de Varga devient Amicale
 
+### Requirement: Assistant Observation
+L'onglet Observation SHALL proposer :
+- ce qui est cherché ;
+- les compétences de Sagesse avec les bonus du personnage, Perception par défaut, et leur aide ;
+- le résultat, saisi ou lancé, et un DD facultatif fixé par le MJ.
+
+Le MJ SHALL rédiger ce qui est découvert, car il n'y a pas d'informations préparées, et pouvoir le lier à un PNJ (EF-ACT-04). « Consigner » SHALL écrire un événement `observation`, réservé au MJ (EF-ACT-07).
+
+#### Scenario: Traces à l'écurie ([F3])
+- **WHEN** Aldric, Perception +3, obtient 13 contre DD 15, et le MJ consigne les ornières en les liant à Varga
+- **THEN** le journal porte l'Observation, réussie avec 16, sa découverte et le lien au PNJ
+
+#### Scenario: Découverte vide
+- **WHEN** rien n'est rédigé dans « Ce qui est découvert »
+- **THEN** « Consigner » est inactif
+
