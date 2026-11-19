@@ -4810,4 +4810,93 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get actionInfluence => 'Influence';
+
+  @override
+  String influenceAttitude(String attitude) {
+    return 'Attitude : $attitude';
+  }
+
+  @override
+  String influenceStep1(String name) {
+    return '1 · Comment $name reçoit la demande ?';
+  }
+
+  @override
+  String get influenceWilling => 'Disposée';
+
+  @override
+  String get influenceUnwilling => 'Réticente';
+
+  @override
+  String get influenceHesitant => 'Hésitante';
+
+  @override
+  String get influenceWillingHelp => 'Disposée : elle accepte sans test.';
+
+  @override
+  String get influenceUnwillingHelp => 'Réticente : elle refuse sans test.';
+
+  @override
+  String get influenceHesitantHelp => 'Hésitante : un test est nécessaire.';
+
+  @override
+  String get influenceStep2 => '2 · Façon d’interagir';
+
+  @override
+  String influenceApproach(String id) {
+    String _temp0 = intl.Intl.selectLogic(id, {
+      'intimidate': 'Intimider',
+      'persuade': 'Convaincre',
+      'perform': 'Amuser',
+      'deceive': 'Tromper',
+      'handle': 'Amadouer',
+      'other': '$id',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String influenceCheck(String ability, String skill) {
+    return '$ability ($skill)';
+  }
+
+  @override
+  String influenceRecentFailure(String name, int hours, int retry) {
+    return '$name a échoué il y a $hours h : attendre $retry h pour la même approche';
+  }
+
+  @override
+  String get influenceDcLabel => 'DD';
+
+  @override
+  String influenceDcHelp(int intelligence) {
+    return 'DD : 15, ou l’Intelligence de la cible si elle est plus élevée (ici $intelligence).';
+  }
+
+  @override
+  String get influenceDcHelpNoInt =>
+      'DD : 15, ou l’Intelligence de la cible si elle est plus élevée.';
+
+  @override
+  String influenceMode(String mode, String attitude) {
+    return '$mode · $attitude';
+  }
+
+  @override
+  String get influenceRetryLabel =>
+      'Nouvelle tentative identique après (heures)';
+
+  @override
+  String get influenceAttitudeAfter => 'Attitude après l’échange';
+
+  @override
+  String influenceUnchanged(String attitude) {
+    return 'Reste $attitude';
+  }
+
+  @override
+  String get influenceSave => 'Enregistrer dans le journal';
 }

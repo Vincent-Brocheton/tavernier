@@ -67,4 +67,111 @@ void main() {
     expect(state.combatants, isEmpty);
     expect(CombatEventType.parse('study'), CombatEventType.study);
   });
+
+  group('Influence', () {
+    test('DD : 15, ou l\'Intelligence de la cible si elle est plus élevée', () {
+      // [C10] : Varga, INT 14.
+      expect(influenceDc(14), 15);
+      expect(influenceDc(18), 18);
+      expect(influenceDc(null), 15);
+    });
+
+    test('Avantage si Amicale, Désavantage si Hostile (SRD)', () {
+      expect(influenceMode('friendly'), RollMode.advantage);
+      expect(influenceMode('indifferent'), RollMode.normal);
+      expect(influenceMode('hostile'), RollMode.disadvantage);
+    });
+
+    test('Amadouer seulement pour une Bête ou une Monstruosité', () {
+      List<String> ids(CreatureType? type) => [
+        for (final c in influenceChecksFor(content, type)) c.id,
+      ];
+      expect(ids(CreatureType.humanoid), [
+        'intimidate',
+        'persuade',
+        'perform',
+        'deceive',
+      ]);
+      expect(ids(CreatureType.beast), contains('handle'));
+      expect(ids(null), isNot(contains('handle')));
+    });
+
+    group('échec mémorisé (SRD : attendre 24 heures)', () {
+      final at = DateTime.utc(2026, 11, 19, 20);
+      InfluenceAttempt attempt({
+        String actor = 'aldric',
+        String approach = 'persuade',
+        bool success = false,
+        int hours = 24,
+      }) => (
+        at: at,
+        actor: actor,
+        target: 'varga',
+        approach: approach,
+        success: success,
+        retryHours: hours,
+      );
+
+      DateTime? blocked(List<InfluenceAttempt> attempts, DateTime now) =>
+          influenceBlockedUntil(
+            attempts,
+            actor: 'aldric',
+            target: 'varga',
+            approach: 'persuade',
+            now: now,
+          );
+
+      test('[C10] : échec d\'Aldric il y a 2 h', () {
+        expect(
+          blocked([attempt()], at.add(const Duration(hours: 2))),
+          at.add(const Duration(hours: 24)),
+        );
+        expect(blocked([attempt()], at.add(const Duration(hours: 25))), isNull);
+      });
+
+      test('autre personnage, autre approche ou réussite : rien', () {
+        final later = at.add(const Duration(hours: 1));
+        expect(blocked([attempt(actor: 'thalia')], later), isNull);
+        expect(blocked([attempt(approach: 'intimidate')], later), isNull);
+        expect(blocked([attempt(success: true)], later), isNull);
+      });
+
+      test('délai modifié par le MJ', () {
+        expect(
+          blocked([attempt(hours: 1)], at.add(const Duration(hours: 2))),
+          isNull,
+        );
+      });
+    });
+
+    test('l\'attitude d\'une cible suit sa dernière Influence', () {
+      final state = projectCombat([
+        const CombatEvent(
+          id: 'e0',
+          type: CombatEventType.combatantAdded,
+          payload: {'id': 'loup', 'kind': 'monster', 'label': 'Loup'},
+        ),
+        const CombatEvent(
+          id: 'e1',
+          type: CombatEventType.influence,
+          payload: {
+            'actor': 'aldric',
+            'target': 'loup',
+            'attitude': 'friendly',
+          },
+        ),
+      ]);
+      expect(state.combatant('loup')!.attitude, 'friendly');
+      expect(
+        projectCombat([
+          const CombatEvent(
+            id: 'e0',
+            type: CombatEventType.combatantAdded,
+            payload: {'id': 'loup', 'kind': 'monster', 'label': 'Loup'},
+          ),
+        ]).combatant('loup')!.attitude,
+        'indifferent',
+      );
+    });
+  });
 }

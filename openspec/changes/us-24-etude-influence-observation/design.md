@@ -41,3 +41,26 @@
 - **Tables dans une entité `rule`** : c'est la décision du porteur de projet. Un type de plus aurait alourdi la validation à l'import (M4).
 - **Événements sans effet sur la projection** : l'état du combat ne dépend pas d'une Étude. Le journal les lira, et l'annulation n'a pas lieu d'être.
 - **Révélation écrite sur le PNJ** : elle persiste hors du combat, et la fiche du PNJ la montre déjà (US-18).
+
+## Lot b
+
+- **Moteur** (`actions.dart`) :
+  - `influenceDc(int?)`, `influenceMode(attitude)` et `influenceChecksFor(content, type)` ;
+  - `InfluenceAttempt` et `influenceBlockedUntil(...)` : la fin de l'attente après le dernier échec du même acteur, de la même cible et de la même approche ;
+  - `Combatant.attitude` vaut `indifferent` par défaut, puis prend l'`attitude` de la dernière `influence` qui le vise.
+- **Données** : `CombatStore.watchTableEvents(tableId, type)` lit les événements de toutes les rencontres de la table, avec leur `created_at`.
+- **Écran** : l'onglet Influence affiche :
+  - la cible et son attitude, lue sur le PNJ ou, à défaut, sur le combattant ;
+  - l'étape 1 (Disposée, Réticente, Hésitante) ;
+  - l'étape 2 : les façons d'interagir avec leur bonus, ou l'échec récent ; le DD modifiable, avec son aide ; le mode ; le jet simple avec ce mode ;
+  - après un échec, le délai d'attente, modifiable ;
+  - l'attitude après l'échange.
+
+  « Enregistrer dans le journal » écrit l'événement et met à jour l'attitude du PNJ.
+
+### Choix
+
+- **La cible de la mémoire est le PNJ** quand il y en a un : un échec reste connu d'une rencontre à l'autre. Pour un simple monstre, la cible est le combattant.
+- **Le délai se fixe à l'échec** (`retry_hours`), et non par table : c'est ce que dit le SRD, « ou une autre durée définie par le MJ ».
+- **Une réception Disposée ou Réticente n'est pas mémorisée** : sans test, il n'y a pas d'échec au sens du SRD.
+

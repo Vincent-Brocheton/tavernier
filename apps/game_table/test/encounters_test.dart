@@ -1499,4 +1499,170 @@ void main() {
       'revealed': [10, 15],
     });
   });
+
+  /// Aldric (niveau 1 de [D1]) face à Varga, PNJ Hostile, INT 14.
+  Future<String> influenceSetup(WidgetTester tester) async {
+    await _open(tester);
+    late String varga;
+    await tester.runAsync(() async {
+      varga = await NpcStore(_db).create(
+        tableId: _table,
+        name: 'Varga la Balafrée',
+        monsterId: 'srd:monster:bandit-captain',
+        attitude: Attitude.hostile,
+      );
+    });
+    await _settle(tester);
+    await tester.runAsync(() async {
+      await CombatStore(_db).launch(_relais, authorUserId: _camille, [
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'aldric',
+            'kind': 'pc',
+            'ref_id': 'aldric',
+            'label': 'Aldric',
+            'hp': 12,
+            'hp_max': 12,
+          },
+        ),
+        (
+          CombatEventType.combatantAdded,
+          {
+            'id': 'varga',
+            'kind': 'npc',
+            'ref_id': varga,
+            'label': 'Varga la Balafrée',
+            'hp': 52,
+            'hp_max': 52,
+          },
+        ),
+        for (final unit in ['aldric', 'varga'])
+          (
+            CombatEventType.initiativeRolled,
+            {
+              'unit': unit,
+              'dice': [10],
+            },
+          ),
+        (CombatEventType.combatStarted, const <String, Object?>{}),
+      ]);
+    });
+    await _settle(tester);
+    await tester.runAsync(() async {
+      final fixture = jsonDecode(
+        File('../../packages/dnd_rules/test/fixtures/d1/aldric_n1.json')
+            .readAsStringSync(),
+      ) as Map<String, Object?>;
+      await CharacterStore(_db).save(
+        'aldric',
+        CharacterInput.fromJson(fixture['input']! as Map<String, Object?>),
+      );
+    });
+    await _settle(tester);
+    // [C10] : Aldric a échoué à convaincre Varga il y a 2 h.
+    await tester.runAsync(
+      () => _db.customStatement(
+        'INSERT INTO encounter_event (id, encounter_id, table_id, '
+        'author_user_id, type, payload, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [
+          '00000000-0000-7000-8000-000000000001',
+          _relais,
+          _table,
+          _camille,
+          'influence',
+          jsonEncode({
+            'actor': 'aldric',
+            'target': 'varga',
+            'npc': varga,
+            'reception': 'hesitant',
+            'approach': 'persuade',
+            'success': false,
+            'retry_hours': 24,
+          }),
+          DateTime.now()
+              .toUtc()
+              .subtract(const Duration(hours: 2, minutes: 5))
+              .toIso8601String(),
+        ],
+      ),
+    );
+    await _tap(tester, find.text('Ouvrir').first);
+    await _tap(tester, find.text('Reprendre le combat'));
+    await _settle(tester);
+    await _tap(tester, find.byTooltip('Étude · Influence · Observation'));
+    await _settle(tester);
+    await _tap(tester, find.widgetWithText(Tab, 'Influence'));
+    await _settle(tester);
+    return varga;
+  }
+
+  _test('Influence [C10] : Hostile, Désavantage, échec mémorisé', (
+    tester,
+  ) async {
+    final varga = await influenceSetup(tester);
+    expect(find.text('Attitude : Hostile'), findsOneWidget);
+    await _tap(tester, find.text('Hésitante'));
+    expect(find.text('Hésitante : un test est nécessaire.'), findsOneWidget);
+    expect(
+      find.text(
+        'Aldric a échoué il y a 2 h : attendre 24 h pour la même approche',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Charisme (Intimidation)'), findsOneWidget);
+    await _tap(tester, find.text('Intimider'));
+    expect(
+      find.text(
+        'DD : 15, ou l’Intelligence de la cible si elle est plus élevée '
+        '(ici 14).',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Désavantage · Hostile'), findsOneWidget);
+    await tester.enterText(
+      find.descendant(
+        of: find.byType(SimpleRoll),
+        matching: find.byType(TextField),
+      ),
+      '9',
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Échec'), findsOneWidget);
+    expect(find.text('Reste Hostile'), findsOneWidget);
+    await _tap(tester, find.text('Enregistrer dans le journal'));
+    await _settle(tester);
+
+    final events = (await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first,
+    ))!;
+    expect(events.last.type, CombatEventType.influence);
+    expect(events.last.payload, {
+      'actor': 'aldric',
+      'target': 'varga',
+      'npc': varga,
+      'reception': 'hesitant',
+      'approach': 'intimidate',
+      'skill': 'srd:skill:intimidation',
+      'dc': 15,
+      'mode': 'disadvantage',
+      'total': 11,
+      'success': false,
+      'attitude': 'hostile',
+      'retry_hours': 24,
+    });
+  });
+
+  _test('Influence : disposée, Varga devient Amicale', (tester) async {
+    await influenceSetup(tester);
+    await _tap(tester, find.text('Disposée'));
+    expect(find.text('Disposée : elle accepte sans test.'), findsOneWidget);
+    await _tap(tester, find.text('Amical'));
+    await _tap(tester, find.text('Enregistrer dans le journal'));
+    await _settle(tester);
+    final npc = (await tester.runAsync(
+      () async => (await NpcStore(_db).watchList(_table).first).single,
+    ))!;
+    expect(npc.attitude, Attitude.friendly);
+  });
 }
