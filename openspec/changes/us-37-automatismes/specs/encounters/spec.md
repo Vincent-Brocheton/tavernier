@@ -55,3 +55,32 @@ La concentration d'un combattant SHALL prendre fin, avec ses effets liés et ses
 #### Scenario: Assommée
 - **WHEN** Mira, concentrée, est assommée
 - **THEN** elle est à 1 PV, Inconsciente, et sa concentration prend fin
+
+### Requirement: Réaction des PJ
+La carte d'un PJ vivant SHALL montrer « Réaction disponible » ou « Réaction utilisée ». Un appui SHALL dépenser ou rendre la réaction, et elle SHALL revenir au début du tour du PJ, comme pour les monstres.
+
+#### Scenario: Réaction rendue
+- **WHEN** Aldric a utilisé sa réaction, puis son tour commence
+- **THEN** sa carte montre « Réaction disponible »
+
+### Requirement: Échange d'initiative (Vigilant)
+Un événement `initiative_swapped` (`combatant`, `with`) SHALL échanger les initiatives de deux combattants. Il ne vaut que si toutes ces conditions sont réunies :
+- le combat n'a pas commencé ;
+- le premier a le don Vigilant ;
+- les deux ont joué l'Initiative ;
+- aucun des deux n'est Neutralisé.
+
+Un ordre déjà choisi SHALL suivre l'échange. Le lancement SHALL proposer « <nom> : échanger… » pour chaque PJ qui a le don ([C3]).
+
+#### Scenario: Aldric et Mira ([C3])
+- **WHEN** Aldric (19, Vigilant) échange avec Mira (8)
+- **THEN** Aldric a 8, Mira 19, et Mira joue avant lui
+
+#### Scenario: Neutralisé
+- **WHEN** Mira est Étourdie
+- **THEN** l'échange est ignoré
+
+#### Scenario: Combat commencé
+- **WHEN** le round 1 a commencé
+- **THEN** l'échange est ignoré
+

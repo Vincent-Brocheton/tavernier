@@ -19,4 +19,7 @@
 
 ## 4. Lot c : Réactions et Vigilant
 
-- [ ] 4.1 Specs et design du lot c, puis tests et implémentation
+- [x] 4.1 Specs et design du lot c
+- [x] 4.2 Tests puis `initiative_swapped`, `canSwapInitiative`, `incapacitated`, `alert` au lancement
+- [x] 4.3 Tests de widgets puis puce de réaction sur la carte d'un PJ, échange de Vigilant au lancement
+- [x] 4.4 Suite complète, revue, PR du lot c

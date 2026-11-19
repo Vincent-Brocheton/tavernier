@@ -5084,5 +5084,15 @@
   "exhaustionDeathConfirm": "Confirmer la mort",
   "@exhaustionDeathConfirm": {"description": "Bouton de la confirmation [F3b]."},
   "exhaustionDead": "Mort · Épuisement 6",
-  "@exhaustionDead": {"description": "Puce d'un personnage mort d'épuisement (EF-CON-07)."}
+  "@exhaustionDead": {"description": "Puce d'un personnage mort d'épuisement (EF-CON-07)."},
+  "combatReactionAvailable": "Réaction disponible",
+  "@combatReactionAvailable": {"description": "Puce d'un PJ (EF-INI-08) ; un appui la dépense."},
+  "combatReactionUsed": "Réaction utilisée",
+  "@combatReactionUsed": {"description": "Puce d'un PJ (EF-INI-08) ; un appui la rend."},
+  "alertHelp": "Vigilant · {names} : échange d’initiative avec un allié consentant, juste après le jet. Impossible si l’un des deux est Neutralisé.",
+  "@alertHelp": {"description": "Lancement [C3] (EF-INI-09).", "placeholders": {"names": {"type": "String"}}},
+  "alertSwap": "{name} : échanger…",
+  "@alertSwap": {"description": "Bouton de Vigilant [C3].", "placeholders": {"name": {"type": "String"}}},
+  "alertSwapTitle": "Échanger l’initiative de {name} avec…",
+  "@alertSwapTitle": {"description": "Choix de l'allié (Vigilant).", "placeholders": {"name": {"type": "String"}}}
 }

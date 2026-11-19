@@ -48,6 +48,8 @@ List<NewCombatEvent> launchEvents({
       'owner': ?owner,
       'bonus': sheet?.initiative.value ?? 0,
       'advantage': sheet?.initiative.advantage ?? false,
+      'alert':
+          sheet?.initiative.sources.any((c) => c.label == alertFeat) ?? false,
       'ac': ?sheet?.armorClass.value,
       'hp': ?(info?.hp ?? sheet?.hitPointsMax.value),
       'hp_max': ?sheet?.hitPointsMax.value,

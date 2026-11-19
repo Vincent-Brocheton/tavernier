@@ -51,3 +51,18 @@
 - **Mort déduite du niveau**, sans nouveau champ : la colonne `exhaustion` existe déjà, donc pas de changement de schéma.
 - **Annulation par le « − » de la fiche**, et non par l'historique comme le dit [F3b] : l'historique de la fiche n'annule rien aujourd'hui.
 - **Le MJ voit la mort sur la fiche synchronisée** : il n'y a pas de notification à part.
+
+## Lot c
+
+- **Réaction des PJ** : le compteur `reaction` existe déjà pour tout combattant, et il est rendu au début de son tour. La carte d'un PJ porte une `ActionChip` qui écrit `counter_used` ou `counter_restored`.
+- **Vigilant** :
+  - au lancement, `alert` est écrit dans `combatant_added` quand l'Initiative de la fiche a une contribution `srd:feat:alert` ;
+  - `CombatState.canSwapInitiative` et l'événement `initiative_swapped` partagent `_canSwap` : le combat n'a pas commencé, `alert`, deux combattants distincts qui ont joué, aucun `incapacitated` ;
+  - la projection échange les jets des deux unités, et leur place dans un ordre déjà choisi ;
+  - l'écran d'initiative montre la ligne d'aide de [C3] et un bouton par PJ vigilant, puis le choix de l'allié parmi les PJ.
+
+### Choix
+
+- **Les alliés proposés sont les PJ** : le combat ne sait pas quel PNJ est allié.
+- **L'accord de l'allié se donne à la table** : le MJ fait l'échange, depuis son écran.
+

@@ -591,6 +591,8 @@ class _CombatantCard extends StatelessWidget {
                       ),
                     if (c.concentration case final spell?)
                       ConcentrationChip(spell),
+                    if (c.kind == CombatantKind.pc && !c.dead)
+                      _ReactionChip(encounter: encounter, combatant: c),
                   ],
                 ),
               ),
@@ -627,6 +629,40 @@ class _CombatantCard extends StatelessWidget {
     );
     // Hors de combat ou mort : la carte reste, estompée.
     return c.outOfCombat || c.dead ? Opacity(opacity: 0.6, child: card) : card;
+  }
+}
+
+/// « Réaction disponible / utilisée » d'un PJ (EF-INI-08) : un appui la
+/// dépense ou la rend ; elle revient au début de son tour.
+class _ReactionChip extends ConsumerWidget {
+  const _ReactionChip({required this.encounter, required this.combatant});
+
+  final Encounter encounter;
+  final Combatant combatant;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final c = combatant;
+    final available = c.remaining(reactionCounter) > 0;
+    return ActionChip(
+      visualDensity: VisualDensity.compact,
+      avatar: Icon(
+        available ? Icons.bolt : Icons.check_circle_outline,
+        size: 16,
+      ),
+      label: Text(
+        available ? l10n.combatReactionAvailable : l10n.combatReactionUsed,
+      ),
+      onPressed: () => appendCombat(ref, encounter.id, [
+        (
+          available
+              ? CombatEventType.counterUsed
+              : CombatEventType.counterRestored,
+          {'combatant': c.id, 'counter': reactionCounter},
+        ),
+      ]),
+    );
   }
 }
 
