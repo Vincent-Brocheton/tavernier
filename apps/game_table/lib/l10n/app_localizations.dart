@@ -7571,6 +7571,132 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count, plural, =1{Révéler 1 information} other{Révéler {count} informations}}'**
   String studyReveal(int count);
+
+  /// Onglet de l'assistant [C10].
+  ///
+  /// In fr, this message translates to:
+  /// **'Influence'**
+  String get actionInfluence;
+
+  /// Attitude de la cible [C10] (EF-ACT-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attitude : {attitude}'**
+  String influenceAttitude(String attitude);
+
+  /// Étape 1 de l'Influence [C10] (EF-ACT-02).
+  ///
+  /// In fr, this message translates to:
+  /// **'1 · Comment {name} reçoit la demande ?'**
+  String influenceStep1(String name);
+
+  /// Réception (SRD : Disposé).
+  ///
+  /// In fr, this message translates to:
+  /// **'Disposée'**
+  String get influenceWilling;
+
+  /// Réception (SRD : Réticent).
+  ///
+  /// In fr, this message translates to:
+  /// **'Réticente'**
+  String get influenceUnwilling;
+
+  /// Réception (SRD : Hésitant).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hésitante'**
+  String get influenceHesitant;
+
+  /// EF-ACT-02.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disposée : elle accepte sans test.'**
+  String get influenceWillingHelp;
+
+  /// EF-ACT-02.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réticente : elle refuse sans test.'**
+  String get influenceUnwillingHelp;
+
+  /// EF-ACT-02 [C10].
+  ///
+  /// In fr, this message translates to:
+  /// **'Hésitante : un test est nécessaire.'**
+  String get influenceHesitantHelp;
+
+  /// Étape 2 de l'Influence [C10] (EF-ACT-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'2 · Façon d’interagir'**
+  String get influenceStep2;
+
+  /// Façon d'interagir (SRD, « Tests d'Influence »).
+  ///
+  /// In fr, this message translates to:
+  /// **'{id, select, intimidate{Intimider} persuade{Convaincre} perform{Amuser} deceive{Tromper} handle{Amadouer} other{{id}}}'**
+  String influenceApproach(String id);
+
+  /// Test d'une façon d'interagir : « Charisme (Intimidation) ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{ability} ({skill})'**
+  String influenceCheck(String ability, String skill);
+
+  /// Échec mémorisé [C10] (EF-ACT-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} a échoué il y a {hours} h : attendre {retry} h pour la même approche'**
+  String influenceRecentFailure(String name, int hours, int retry);
+
+  /// DD de l'Influence [C10].
+  ///
+  /// In fr, this message translates to:
+  /// **'DD'**
+  String get influenceDcLabel;
+
+  /// Règle du DD [C10] (SRD).
+  ///
+  /// In fr, this message translates to:
+  /// **'DD : 15, ou l’Intelligence de la cible si elle est plus élevée (ici {intelligence}).'**
+  String influenceDcHelp(int intelligence);
+
+  /// Règle du DD, Intelligence inconnue.
+  ///
+  /// In fr, this message translates to:
+  /// **'DD : 15, ou l’Intelligence de la cible si elle est plus élevée.'**
+  String get influenceDcHelpNoInt;
+
+  /// Effet de l'attitude sur le test [C10] : « Désavantage · Hostile ».
+  ///
+  /// In fr, this message translates to:
+  /// **'{mode} · {attitude}'**
+  String influenceMode(String mode, String attitude);
+
+  /// Délai après un échec, 24 h par défaut (SRD), modifiable par le MJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle tentative identique après (heures)'**
+  String get influenceRetryLabel;
+
+  /// [C10] (EF-ACT-03, 06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attitude après l’échange'**
+  String get influenceAttitudeAfter;
+
+  /// Attitude inchangée [C10].
+  ///
+  /// In fr, this message translates to:
+  /// **'Reste {attitude}'**
+  String influenceUnchanged(String attitude);
+
+  /// Bouton de l'Influence [C10].
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer dans le journal'**
+  String get influenceSave;
 }
 
 class _AppLocalizationsDelegate

@@ -30,3 +30,42 @@ Valider SHALL écrire un événement `study` (acteur, cible, compétence, total,
 #### Scenario: Cible sans informations
 - **WHEN** la cible est un monstre sans PNJ
 - **THEN** l'assistant le dit, et valider inscrit seulement l'Étude au journal
+
+### Requirement: Test d'Influence
+Pour une cible Hésitante, le moteur SHALL proposer les façons d'interagir de la table `influence_checks`, filtrées par le type de créature de la cible. Le DD par défaut SHALL valoir 15, ou l'Intelligence de la cible si elle est plus élevée. Le test SHALL avoir l'Avantage contre une cible Amicale et le Désavantage contre une cible Hostile (EF-ACT-03).
+
+#### Scenario: Varga ([C10])
+- **WHEN** Aldric influence Varga, Hostile, d'Intelligence 14
+- **THEN** le DD vaut 15 et le test a le Désavantage
+
+#### Scenario: Amadouer
+- **WHEN** la cible est un Humanoïde
+- **THEN** Amadouer n'est pas proposé ; il l'est pour une Bête
+
+### Requirement: Échec d'Influence mémorisé
+Un échec SHALL être mémorisé par personnage, cible et approche. Une nouvelle tentative identique SHALL être signalée pendant 24 heures, un délai que le MJ peut changer au moment de l'échec. Les tentatives SHALL se lire dans le journal de toutes les rencontres de la table.
+
+#### Scenario: Échec il y a 2 h ([C10])
+- **WHEN** Aldric a échoué à convaincre Varga il y a 2 heures
+- **THEN** Convaincre porte « Aldric a échoué il y a 2 h : attendre 24 h pour la même approche »
+
+#### Scenario: Autre approche
+- **WHEN** Aldric choisit Intimider
+- **THEN** rien n'est signalé
+
+### Requirement: Assistant Influence
+L'onglet Influence SHALL demander comment la cible reçoit la requête (EF-ACT-02) :
+- Disposée : elle accepte sans test ;
+- Réticente : elle refuse sans test ;
+- Hésitante : un test est nécessaire.
+
+Enregistrer SHALL écrire un événement `influence` (réception, approche, DD, mode, total, réussite, attitude après l'échange, délai d'attente), et l'attitude d'un PNJ SHALL être enregistrée sur sa fiche (EF-ACT-06). Un monstre sans PNJ SHALL garder son attitude dans le combat, Indifférent par défaut.
+
+#### Scenario: Échec enregistré ([C10])
+- **WHEN** Aldric, Intimidation +2, obtient 9 contre DD 15
+- **THEN** le journal porte un échec avec Désavantage, total 11, Varga reste Hostile, et l'approche est bloquée 24 h
+
+#### Scenario: Disposée
+- **WHEN** Varga est Disposée et le MJ la passe Amicale
+- **THEN** la fiche de Varga devient Amicale
+

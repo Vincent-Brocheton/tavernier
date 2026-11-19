@@ -97,6 +97,42 @@ final class CombatStore {
         ],
       );
 
+  /// Événements [type] de toutes les rencontres de [tableId], avec leur
+  /// date d'écriture, du plus ancien au plus récent : la mémoire des échecs
+  /// d'Influence en a besoin d'une rencontre à l'autre (EF-ACT-03).
+  Stream<List<({DateTime at, CombatEvent event})>> watchTableEvents(
+    String tableId,
+    CombatEventType type,
+  ) => _db
+      .customSelect(
+        'SELECT id, type, payload, created_at FROM encounter_event '
+        'WHERE table_id = ? AND type = ? ORDER BY id',
+        variables: [
+          Variable.withString(tableId),
+          Variable.withString(type.code),
+        ],
+        readsFrom: {_db.encounterEvents},
+      )
+      .watch()
+      .map(
+        (rows) => [
+          for (final row in rows)
+            (
+              // Sans date (ligne ancienne) : hors de toute fenêtre récente.
+              at:
+                  DateTime.tryParse(
+                    row.readNullable<String>('created_at') ?? '',
+                  ) ??
+                  DateTime.utc(1970),
+              event: CombatEvent.fromJson({
+                'id': row.read<String>('id'),
+                'type': row.read<String>('type'),
+                'payload': jsonDecode(row.read<String>('payload')),
+              }),
+            ),
+        ],
+      );
+
   /// État de la rencontre : la projection de son journal.
   Stream<CombatState> watchState(String encounterId) =>
       watchEvents(encounterId).map(projectCombat);

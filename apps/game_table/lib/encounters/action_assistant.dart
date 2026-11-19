@@ -13,6 +13,7 @@ import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../sheet/simple_roll.dart';
 import 'combat_view.dart';
+import 'encounters_providers.dart';
 
 /// Fiche calculée du personnage [id], avec son Épuisement ; `null` si elle
 /// est illisible.
@@ -29,6 +30,35 @@ final actorSheetProvider = FutureProvider.autoDispose
         return null;
       }
     });
+
+/// Influences passées de la table [tableId], pour la mémoire des échecs
+/// (EF-ACT-03) : la cible est le PNJ s'il y en a un, sinon le combattant.
+final influenceAttemptsProvider = StreamProvider.autoDispose
+    .family<List<InfluenceAttempt>, String>(
+      (ref, tableId) => ref
+          .watch(combatStoreProvider)
+          .watchTableEvents(tableId, CombatEventType.influence)
+          .map(
+            (rows) => [
+              for (final (:at, :event) in rows)
+                if (event.payload case {
+                  'actor': final String actor,
+                  'approach': final String approach,
+                  'success': final bool success,
+                })
+                  (
+                    at: at,
+                    actor: actor,
+                    target:
+                        (event.payload['npc'] ?? event.payload['target'] ?? '')
+                            as String,
+                    approach: approach,
+                    success: success,
+                    retryHours: (event.payload['retry_hours'] as int?) ?? 24,
+                  ),
+            ],
+          ),
+    );
 
 /// Ouvre l'assistant sur le combat [combat] de [encounter].
 Future<void> showActionAssistant(
@@ -92,7 +122,7 @@ class _AssistantState extends ConsumerState<_Assistant> {
     ];
     final actor = widget.combat.combatant(_actor ?? '');
     return DefaultTabController(
-      length: 1,
+      length: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -116,7 +146,12 @@ class _AssistantState extends ConsumerState<_Assistant> {
               ],
             ),
           ),
-          TabBar(tabs: [Tab(text: l10n.actionStudy)]),
+          TabBar(
+            tabs: [
+              Tab(text: l10n.actionStudy),
+              Tab(text: l10n.actionInfluence),
+            ],
+          ),
           Expanded(
             child: actor == null
                 ? Center(child: Text(l10n.actionNoPc, style: text.bodyMedium))
@@ -124,6 +159,12 @@ class _AssistantState extends ConsumerState<_Assistant> {
                     children: [
                       _Study(
                         key: ValueKey(actor.id),
+                        encounter: widget.encounter,
+                        combat: widget.combat,
+                        actor: actor,
+                      ),
+                      _Influence(
+                        key: ValueKey('influence:${actor.id}'),
                         encounter: widget.encounter,
                         combat: widget.combat,
                         actor: actor,
@@ -336,6 +377,343 @@ class _StudyState extends ConsumerState<_Study> {
                     ? l10n.actionLog
                     : l10n.studyReveal(reached.length),
               ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Façon dont la cible reçoit la requête (SRD, « Influence »).
+enum Reception { willing, unwilling, hesitant }
+
+/// Influence [C10] : réception, puis test selon la façon d'interagir.
+class _Influence extends ConsumerStatefulWidget {
+  const _Influence({
+    super.key,
+    required this.encounter,
+    required this.combat,
+    required this.actor,
+  });
+
+  final Encounter encounter;
+  final CombatState combat;
+  final Combatant actor;
+
+  @override
+  ConsumerState<_Influence> createState() => _InfluenceState();
+}
+
+class _InfluenceState extends ConsumerState<_Influence> {
+  late String? _target = widget.combat.combatants
+      .where((c) => c.kind != CombatantKind.pc)
+      .firstOrNull
+      ?.id;
+  Reception? _reception;
+  String? _approach;
+  int? _dice;
+  String? _attitude;
+  final _dc = TextEditingController();
+  final _retry = TextEditingController(text: '24');
+
+  @override
+  void dispose() {
+    _dc.dispose();
+    _retry.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final content = ref.watch(contentProvider).value;
+    final npcs =
+        ref.watch(tableNpcsProvider(widget.encounter.tableId)).value ??
+        const <Npc>[];
+    final attempts =
+        ref.watch(influenceAttemptsProvider(widget.encounter.tableId)).value ??
+        const <InfluenceAttempt>[];
+    final sheet = switch (widget.actor.refId) {
+      final id? => ref.watch(actorSheetProvider(id)).value,
+      null => null,
+    };
+    if (content == null) return const SizedBox.shrink();
+    final targets = [
+      for (final c in widget.combat.combatants)
+        if (c.kind != CombatantKind.pc) c,
+    ];
+    final target = widget.combat.combatant(_target ?? '');
+    final monster = target == null
+        ? null
+        : monsterOfCombatant(content, npcs, target);
+    final npc = npcs.where((n) => n.id == target?.refId).firstOrNull;
+    final attitude = npc?.attitude.name ?? target?.attitude ?? 'indifferent';
+    final after = _attitude ?? attitude;
+    final memoryTarget = npc?.id ?? target?.id ?? '';
+    final checks = influenceChecksFor(content, monster?.creatureType);
+    final check = checks.where((c) => c.id == _approach).firstOrNull;
+    final intelligence = monster?.abilities['int'];
+    final dc = int.tryParse(_dc.text) ?? influenceDc(intelligence);
+    final mode = influenceMode(attitude);
+    int bonusOf(InfluenceCheck c) => switch (content.entity('${c.skill}')) {
+      final skill? => skillBonus(sheet, skill),
+      null => 0,
+    };
+    final bonus = check == null ? 0 : bonusOf(check);
+    final total = _dice == null ? null : _dice! + bonus;
+    final success = switch (_reception) {
+      Reception.willing => true,
+      Reception.unwilling => false,
+      Reception.hesitant => total != null && total >= dc,
+      null => false,
+    };
+    final now = DateTime.now().toUtc();
+    final ready =
+        target != null &&
+        switch (_reception) {
+          Reception.hesitant => check != null && total != null,
+          null => false,
+          _ => true,
+        };
+
+    String attitudeName(String code) => switch (code) {
+      'friendly' => l10n.attitudeFriendly,
+      'hostile' => l10n.attitudeHostile,
+      _ => l10n.attitudeIndifferent,
+    };
+
+    Future<void> save() async {
+      final hesitant = _reception == Reception.hesitant;
+      await appendCombat(ref, widget.encounter.id, [
+        (
+          CombatEventType.influence,
+          {
+            'actor': widget.actor.id,
+            'target': target!.id,
+            'npc': ?npc?.id,
+            'reception': _reception!.name,
+            if (hesitant) ...{
+              'approach': check!.id,
+              'skill': '${check.skill}',
+              'dc': dc,
+              'mode': mode.name,
+              'total': total,
+            },
+            'success': success,
+            'attitude': after,
+            if (hesitant && !success)
+              'retry_hours': int.tryParse(_retry.text) ?? 24,
+          },
+        ),
+      ]);
+      if (npc != null && after != npc.attitude.name) {
+        await ref
+            .read(npcStoreProvider)
+            .update(npc.id, attitude: Attitude.parse(after));
+      }
+      if (context.mounted) Navigator.pop(context);
+    }
+
+    /// Dernier échec qui bloque encore l'approche [c], s'il y en a un.
+    InfluenceAttempt? lastFailure(InfluenceCheck c) {
+      final blocked = influenceBlockedUntil(
+        attempts,
+        actor: widget.actor.id,
+        target: memoryTarget,
+        approach: c.id,
+        now: now,
+      );
+      if (blocked == null) return null;
+      return attempts.lastWhere(
+        (a) =>
+            !a.success &&
+            a.actor == widget.actor.id &&
+            a.target == memoryTarget &&
+            a.approach == c.id,
+      );
+    }
+
+    return ListView(
+      padding: EdgeInsets.all(AppSpacing.md),
+      children: [
+        DropdownButtonFormField<String>(
+          initialValue: _target,
+          isExpanded: true,
+          decoration: InputDecoration(labelText: l10n.actionTarget),
+          items: [
+            for (final c in targets)
+              DropdownMenuItem(value: c.id, child: Text(c.label)),
+          ],
+          onChanged: (v) => setState(() {
+            _target = v;
+            _attitude = null;
+            _approach = null;
+            _dice = null;
+            _dc.clear();
+          }),
+        ),
+        if (target != null)
+          Padding(
+            padding: EdgeInsets.only(top: AppSpacing.xs),
+            child: Text(
+              l10n.influenceAttitude(attitudeName(attitude)),
+              style: text.bodyMedium,
+            ),
+          ),
+        SizedBox(height: AppSpacing.md),
+        Text(l10n.influenceStep1(target?.label ?? ''), style: text.titleSmall),
+        SizedBox(height: AppSpacing.xs),
+        SegmentedButton<Reception>(
+          emptySelectionAllowed: true,
+          segments: [
+            ButtonSegment(
+              value: Reception.willing,
+              label: Text(l10n.influenceWilling),
+            ),
+            ButtonSegment(
+              value: Reception.unwilling,
+              label: Text(l10n.influenceUnwilling),
+            ),
+            ButtonSegment(
+              value: Reception.hesitant,
+              label: Text(l10n.influenceHesitant),
+            ),
+          ],
+          selected: {?_reception},
+          onSelectionChanged: (s) => setState(() => _reception = s.firstOrNull),
+        ),
+        if (_reception case final r?)
+          Padding(
+            padding: EdgeInsets.only(top: AppSpacing.xs),
+            child: Text(switch (r) {
+              Reception.willing => l10n.influenceWillingHelp,
+              Reception.unwilling => l10n.influenceUnwillingHelp,
+              Reception.hesitant => l10n.influenceHesitantHelp,
+            }, style: text.bodySmall),
+          ),
+        if (_reception == Reception.hesitant) ...[
+          SizedBox(height: AppSpacing.md),
+          Text(l10n.influenceStep2, style: text.titleSmall),
+          for (final c in checks)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              selected: c.id == _approach,
+              leading: Icon(
+                c.id == _approach
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_off,
+              ),
+              title: Text(l10n.influenceApproach(c.id)),
+              subtitle: switch (lastFailure(c)) {
+                final failed? => Text(
+                  l10n.influenceRecentFailure(
+                    widget.actor.label,
+                    now.difference(failed.at).inHours,
+                    failed.retryHours,
+                  ),
+                  style: TextStyle(color: scheme.error),
+                ),
+                null => Text(
+                  l10n.influenceCheck(
+                    namesOf(content, ['${c.ability}']),
+                    namesOf(content, ['${c.skill}']),
+                  ),
+                ),
+              },
+              trailing: Text(formatSigned(bonusOf(c))),
+              onTap: () => setState(() {
+                _approach = c.id;
+                _dice = null;
+              }),
+            ),
+          SizedBox(height: AppSpacing.sm),
+          TextField(
+            controller: _dc,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: l10n.influenceDcLabel,
+              hintText: '${influenceDc(intelligence)}',
+              helperText: intelligence == null
+                  ? l10n.influenceDcHelpNoInt
+                  : l10n.influenceDcHelp(intelligence),
+              helperMaxLines: 3,
+            ),
+            onChanged: (_) => setState(() {}),
+          ),
+          if (mode != RollMode.normal)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xs),
+              child: Text(
+                l10n.influenceMode(
+                  mode == RollMode.advantage
+                      ? l10n.combatAdvantage
+                      : l10n.combatDisadvantage,
+                  attitudeName(attitude),
+                ),
+                style: text.bodyMedium,
+              ),
+            ),
+          if (check != null) ...[
+            SizedBox(height: AppSpacing.md),
+            Text(l10n.actionResult, style: text.titleSmall),
+            SimpleRoll(
+              key: ValueKey('${check.id}:${mode.name}'),
+              formula: DiceFormula(1, 20, bonus: bonus, mode: mode),
+              bonusLabel: namesOf(content, ['${check.skill}']),
+              onChanged: (v) => setState(() => _dice = v),
+            ),
+            if (total != null)
+              Text(
+                success ? l10n.reminderSucceeded : l10n.reminderFailed,
+                style: text.titleMedium,
+              ),
+            if (total != null && !success)
+              TextField(
+                controller: _retry,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: l10n.influenceRetryLabel,
+                ),
+              ),
+          ],
+        ],
+        if (_reception != null) ...[
+          SizedBox(height: AppSpacing.md),
+          Text(l10n.influenceAttitudeAfter, style: text.titleSmall),
+          SizedBox(height: AppSpacing.xs),
+          SegmentedButton<String>(
+            segments: [
+              for (final code in ['friendly', 'indifferent', 'hostile'])
+                ButtonSegment(value: code, label: Text(attitudeName(code))),
+            ],
+            selected: {after},
+            onSelectionChanged: (s) => setState(() => _attitude = s.first),
+          ),
+          if (after == attitude)
+            Padding(
+              padding: EdgeInsets.only(top: AppSpacing.xxs),
+              child: Text(
+                l10n.influenceUnchanged(attitudeName(attitude)),
+                style: text.bodySmall,
+              ),
+            ),
+        ],
+        SizedBox(height: AppSpacing.md),
+        Wrap(
+          alignment: WrapAlignment.end,
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.xs,
+          children: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l10n.cancel),
+            ),
+            FilledButton(
+              onPressed: ready ? save : null,
+              child: Text(l10n.influenceSave),
             ),
           ],
         ),

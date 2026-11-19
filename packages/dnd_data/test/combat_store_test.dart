@@ -32,6 +32,29 @@ void main() {
       Future<EncounterStatus> status() async =>
           (await EncounterStore(db).watchList('t').first).single.status;
 
+      test('Influences de toute la table, datées (US-24)', () async {
+        final other = await EncounterStore(db)
+            .create(tableId: 't', title: 'Les chiens de Varga');
+        await store.append(other, authorUserId: 'camille', [
+          (CombatEventType.influence, {'actor': 'aldric', 'success': false}),
+          (CombatEventType.study, {'actor': 'thalia'}),
+        ]);
+        await store.append(encounter, authorUserId: 'camille', [
+          (CombatEventType.influence, {'actor': 'mira', 'success': true}),
+        ]);
+        final events = await store
+            .watchTableEvents('t', CombatEventType.influence)
+            .first;
+        expect(
+          [for (final e in events) e.event.payload['actor']],
+          ['aldric', 'mira'],
+        );
+        expect(
+          DateTime.now().toUtc().difference(events.first.at).inMinutes,
+          lessThan(1),
+        );
+      });
+
       test('lancement : en cours, combattants projetés', () async {
         await store.launch(encounter, authorUserId: 'camille', [
           (CombatEventType.combatantAdded, _combatant('aldric', 'Aldric', 4)),

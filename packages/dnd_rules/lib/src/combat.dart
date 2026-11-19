@@ -307,6 +307,10 @@ final class Combatant {
 
   final List<ConditionInstance> _conditions = [];
 
+  /// Attitude envers le groupe (`friendly`, `indifferent`, `hostile`) :
+  /// Indifférent par défaut (SRD), puis celle de sa dernière Influence.
+  String attitude = 'indifferent';
+
   /// Sort sur lequel il se concentre ; `null` sans concentration.
   String? concentration;
 
@@ -654,6 +658,8 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
     switch (e.type) {
       case CombatEventType.combatantAdded:
         final c = Combatant._fromPayload(p);
+        if (p['attitude'] case final String attitude) c.attitude = attitude;
+        if (p['attitude'] case final String attitude) c.attitude = attitude;
         c.initiative = rolls[c.unit];
         combatants.add(c);
       case CombatEventType.combatantRemoved:
@@ -774,8 +780,14 @@ CombatState projectCombat(Iterable<CombatEvent> events) {
         if (chosen case final order?) {
           chosen = [for (final u in order) u == ua ? ub : (u == ub ? ua : u)];
         }
+      case CombatEventType.influence:
+        if ((find((p['target'] as String?) ?? ''), p['attitude']) case (
+          final c?,
+          final String attitude,
+        )) {
+          c.attitude = attitude;
+        }
       case CombatEventType.study ||
-          CombatEventType.influence ||
           CombatEventType.observation ||
           CombatEventType.undo:
         break;

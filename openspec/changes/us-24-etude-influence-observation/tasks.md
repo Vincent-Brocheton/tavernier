@@ -12,7 +12,10 @@
 
 ## 3. Lot b : Influence
 
-- [ ] 3.1 Specs et design du lot b, puis tests et implémentation
+- [x] 3.1 Specs et design du lot b
+- [x] 3.2 Tests puis `influenceDc`, `influenceMode`, `influenceChecksFor`, `influenceBlockedUntil`, attitude d'un combattant ; `watchTableEvents`
+- [x] 3.3 Tests de widgets puis onglet Influence [C10] : réception, approches et échec récent, DD, mode, résultat, délai, attitude après
+- [x] 3.4 Suite complète, revue, PR du lot b
 
 ## 4. Lot c : Observation
 
