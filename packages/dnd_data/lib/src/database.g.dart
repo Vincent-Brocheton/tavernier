@@ -3952,6 +3952,29 @@ class $WeaponsTable extends Weapons with TableInfo<$WeaponsTable, WeaponRow> {
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _rarityMeta = const VerificationMeta('rarity');
+  @override
+  late final GeneratedColumn<String> rarity = GeneratedColumn<String>(
+    'rarity',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _attunementMeta = const VerificationMeta(
+    'attunement',
+  );
+  @override
+  late final GeneratedColumn<bool> attunement = GeneratedColumn<bool>(
+    'attunement',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("attunement" IN (0, 1))',
+    ),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -3969,6 +3992,8 @@ class $WeaponsTable extends Weapons with TableInfo<$WeaponsTable, WeaponRow> {
     masteryPropertyId,
     weightKg,
     costCp,
+    rarity,
+    attunement,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -4104,6 +4129,18 @@ class $WeaponsTable extends Weapons with TableInfo<$WeaponsTable, WeaponRow> {
     } else if (isInserting) {
       context.missing(_costCpMeta);
     }
+    if (data.containsKey('rarity')) {
+      context.handle(
+        _rarityMeta,
+        rarity.isAcceptableOrUnknown(data['rarity']!, _rarityMeta),
+      );
+    }
+    if (data.containsKey('attunement')) {
+      context.handle(
+        _attunementMeta,
+        attunement.isAcceptableOrUnknown(data['attunement']!, _attunementMeta),
+      );
+    }
     return context;
   }
 
@@ -4173,6 +4210,14 @@ class $WeaponsTable extends Weapons with TableInfo<$WeaponsTable, WeaponRow> {
         DriftSqlType.int,
         data['${effectivePrefix}cost_cp'],
       )!,
+      rarity: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rarity'],
+      ),
+      attunement: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}attunement'],
+      ),
     );
   }
 
@@ -4198,6 +4243,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
   final String masteryPropertyId;
   final double? weightKg;
   final int costCp;
+  final String? rarity;
+  final bool? attunement;
   const WeaponRow({
     required this.id,
     required this.packId,
@@ -4214,6 +4261,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
     required this.masteryPropertyId,
     this.weightKg,
     required this.costCp,
+    this.rarity,
+    this.attunement,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -4243,6 +4292,12 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
       map['weight_kg'] = Variable<double>(weightKg);
     }
     map['cost_cp'] = Variable<int>(costCp);
+    if (!nullToAbsent || rarity != null) {
+      map['rarity'] = Variable<String>(rarity);
+    }
+    if (!nullToAbsent || attunement != null) {
+      map['attunement'] = Variable<bool>(attunement);
+    }
     return map;
   }
 
@@ -4273,6 +4328,12 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
           ? const Value.absent()
           : Value(weightKg),
       costCp: Value(costCp),
+      rarity: rarity == null && nullToAbsent
+          ? const Value.absent()
+          : Value(rarity),
+      attunement: attunement == null && nullToAbsent
+          ? const Value.absent()
+          : Value(attunement),
     );
   }
 
@@ -4297,6 +4358,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
       masteryPropertyId: serializer.fromJson<String>(json['masteryPropertyId']),
       weightKg: serializer.fromJson<double?>(json['weightKg']),
       costCp: serializer.fromJson<int>(json['costCp']),
+      rarity: serializer.fromJson<String?>(json['rarity']),
+      attunement: serializer.fromJson<bool?>(json['attunement']),
     );
   }
   @override
@@ -4318,6 +4381,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
       'masteryPropertyId': serializer.toJson<String>(masteryPropertyId),
       'weightKg': serializer.toJson<double?>(weightKg),
       'costCp': serializer.toJson<int>(costCp),
+      'rarity': serializer.toJson<String?>(rarity),
+      'attunement': serializer.toJson<bool?>(attunement),
     };
   }
 
@@ -4337,6 +4402,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
     String? masteryPropertyId,
     Value<double?> weightKg = const Value.absent(),
     int? costCp,
+    Value<String?> rarity = const Value.absent(),
+    Value<bool?> attunement = const Value.absent(),
   }) => WeaponRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
@@ -4359,6 +4426,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
     masteryPropertyId: masteryPropertyId ?? this.masteryPropertyId,
     weightKg: weightKg.present ? weightKg.value : this.weightKg,
     costCp: costCp ?? this.costCp,
+    rarity: rarity.present ? rarity.value : this.rarity,
+    attunement: attunement.present ? attunement.value : this.attunement,
   );
   WeaponRow copyWithCompanion(WeaponsCompanion data) {
     return WeaponRow(
@@ -4389,6 +4458,10 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
           : this.masteryPropertyId,
       weightKg: data.weightKg.present ? data.weightKg.value : this.weightKg,
       costCp: data.costCp.present ? data.costCp.value : this.costCp,
+      rarity: data.rarity.present ? data.rarity.value : this.rarity,
+      attunement: data.attunement.present
+          ? data.attunement.value
+          : this.attunement,
     );
   }
 
@@ -4409,7 +4482,9 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
           ..write('rangeLongFeet: $rangeLongFeet, ')
           ..write('masteryPropertyId: $masteryPropertyId, ')
           ..write('weightKg: $weightKg, ')
-          ..write('costCp: $costCp')
+          ..write('costCp: $costCp, ')
+          ..write('rarity: $rarity, ')
+          ..write('attunement: $attunement')
           ..write(')'))
         .toString();
   }
@@ -4431,6 +4506,8 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
     masteryPropertyId,
     weightKg,
     costCp,
+    rarity,
+    attunement,
   );
   @override
   bool operator ==(Object other) =>
@@ -4450,7 +4527,9 @@ class WeaponRow extends DataClass implements Insertable<WeaponRow> {
           other.rangeLongFeet == this.rangeLongFeet &&
           other.masteryPropertyId == this.masteryPropertyId &&
           other.weightKg == this.weightKg &&
-          other.costCp == this.costCp);
+          other.costCp == this.costCp &&
+          other.rarity == this.rarity &&
+          other.attunement == this.attunement);
 }
 
 class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
@@ -4469,6 +4548,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
   final Value<String> masteryPropertyId;
   final Value<double?> weightKg;
   final Value<int> costCp;
+  final Value<String?> rarity;
+  final Value<bool?> attunement;
   final Value<int> rowid;
   const WeaponsCompanion({
     this.id = const Value.absent(),
@@ -4486,6 +4567,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
     this.masteryPropertyId = const Value.absent(),
     this.weightKg = const Value.absent(),
     this.costCp = const Value.absent(),
+    this.rarity = const Value.absent(),
+    this.attunement = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   WeaponsCompanion.insert({
@@ -4504,6 +4587,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
     required String masteryPropertyId,
     this.weightKg = const Value.absent(),
     required int costCp,
+    this.rarity = const Value.absent(),
+    this.attunement = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -4531,6 +4616,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
     Expression<String>? masteryPropertyId,
     Expression<double>? weightKg,
     Expression<int>? costCp,
+    Expression<String>? rarity,
+    Expression<bool>? attunement,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -4549,6 +4636,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
       if (masteryPropertyId != null) 'mastery_property_id': masteryPropertyId,
       if (weightKg != null) 'weight_kg': weightKg,
       if (costCp != null) 'cost_cp': costCp,
+      if (rarity != null) 'rarity': rarity,
+      if (attunement != null) 'attunement': attunement,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -4569,6 +4658,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
     Value<String>? masteryPropertyId,
     Value<double?>? weightKg,
     Value<int>? costCp,
+    Value<String?>? rarity,
+    Value<bool?>? attunement,
     Value<int>? rowid,
   }) {
     return WeaponsCompanion(
@@ -4587,6 +4678,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
       masteryPropertyId: masteryPropertyId ?? this.masteryPropertyId,
       weightKg: weightKg ?? this.weightKg,
       costCp: costCp ?? this.costCp,
+      rarity: rarity ?? this.rarity,
+      attunement: attunement ?? this.attunement,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -4639,6 +4732,12 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
     if (costCp.present) {
       map['cost_cp'] = Variable<int>(costCp.value);
     }
+    if (rarity.present) {
+      map['rarity'] = Variable<String>(rarity.value);
+    }
+    if (attunement.present) {
+      map['attunement'] = Variable<bool>(attunement.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -4663,6 +4762,8 @@ class WeaponsCompanion extends UpdateCompanion<WeaponRow> {
           ..write('masteryPropertyId: $masteryPropertyId, ')
           ..write('weightKg: $weightKg, ')
           ..write('costCp: $costCp, ')
+          ..write('rarity: $rarity, ')
+          ..write('attunement: $attunement, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -4788,6 +4889,29 @@ class $ArmorsTable extends Armors with TableInfo<$ArmorsTable, ArmorRow> {
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _rarityMeta = const VerificationMeta('rarity');
+  @override
+  late final GeneratedColumn<String> rarity = GeneratedColumn<String>(
+    'rarity',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _attunementMeta = const VerificationMeta(
+    'attunement',
+  );
+  @override
+  late final GeneratedColumn<bool> attunement = GeneratedColumn<bool>(
+    'attunement',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("attunement" IN (0, 1))',
+    ),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -4801,6 +4925,8 @@ class $ArmorsTable extends Armors with TableInfo<$ArmorsTable, ArmorRow> {
     stealthDisadvantage,
     weightKg,
     costCp,
+    rarity,
+    attunement,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -4899,6 +5025,18 @@ class $ArmorsTable extends Armors with TableInfo<$ArmorsTable, ArmorRow> {
     } else if (isInserting) {
       context.missing(_costCpMeta);
     }
+    if (data.containsKey('rarity')) {
+      context.handle(
+        _rarityMeta,
+        rarity.isAcceptableOrUnknown(data['rarity']!, _rarityMeta),
+      );
+    }
+    if (data.containsKey('attunement')) {
+      context.handle(
+        _attunementMeta,
+        attunement.isAcceptableOrUnknown(data['attunement']!, _attunementMeta),
+      );
+    }
     return context;
   }
 
@@ -4952,6 +5090,14 @@ class $ArmorsTable extends Armors with TableInfo<$ArmorsTable, ArmorRow> {
         DriftSqlType.int,
         data['${effectivePrefix}cost_cp'],
       )!,
+      rarity: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rarity'],
+      ),
+      attunement: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}attunement'],
+      ),
     );
   }
 
@@ -4973,6 +5119,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
   final bool stealthDisadvantage;
   final double weightKg;
   final int costCp;
+  final String? rarity;
+  final bool? attunement;
   const ArmorRow({
     required this.id,
     required this.packId,
@@ -4985,6 +5133,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
     required this.stealthDisadvantage,
     required this.weightKg,
     required this.costCp,
+    this.rarity,
+    this.attunement,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -5006,6 +5156,12 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
     map['stealth_disadvantage'] = Variable<bool>(stealthDisadvantage);
     map['weight_kg'] = Variable<double>(weightKg);
     map['cost_cp'] = Variable<int>(costCp);
+    if (!nullToAbsent || rarity != null) {
+      map['rarity'] = Variable<String>(rarity);
+    }
+    if (!nullToAbsent || attunement != null) {
+      map['attunement'] = Variable<bool>(attunement);
+    }
     return map;
   }
 
@@ -5028,6 +5184,12 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
       stealthDisadvantage: Value(stealthDisadvantage),
       weightKg: Value(weightKg),
       costCp: Value(costCp),
+      rarity: rarity == null && nullToAbsent
+          ? const Value.absent()
+          : Value(rarity),
+      attunement: attunement == null && nullToAbsent
+          ? const Value.absent()
+          : Value(attunement),
     );
   }
 
@@ -5050,6 +5212,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
       ),
       weightKg: serializer.fromJson<double>(json['weightKg']),
       costCp: serializer.fromJson<int>(json['costCp']),
+      rarity: serializer.fromJson<String?>(json['rarity']),
+      attunement: serializer.fromJson<bool?>(json['attunement']),
     );
   }
   @override
@@ -5067,6 +5231,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
       'stealthDisadvantage': serializer.toJson<bool>(stealthDisadvantage),
       'weightKg': serializer.toJson<double>(weightKg),
       'costCp': serializer.toJson<int>(costCp),
+      'rarity': serializer.toJson<String?>(rarity),
+      'attunement': serializer.toJson<bool?>(attunement),
     };
   }
 
@@ -5082,6 +5248,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
     bool? stealthDisadvantage,
     double? weightKg,
     int? costCp,
+    Value<String?> rarity = const Value.absent(),
+    Value<bool?> attunement = const Value.absent(),
   }) => ArmorRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
@@ -5096,6 +5264,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
     stealthDisadvantage: stealthDisadvantage ?? this.stealthDisadvantage,
     weightKg: weightKg ?? this.weightKg,
     costCp: costCp ?? this.costCp,
+    rarity: rarity.present ? rarity.value : this.rarity,
+    attunement: attunement.present ? attunement.value : this.attunement,
   );
   ArmorRow copyWithCompanion(ArmorsCompanion data) {
     return ArmorRow(
@@ -5114,6 +5284,10 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
           : this.stealthDisadvantage,
       weightKg: data.weightKg.present ? data.weightKg.value : this.weightKg,
       costCp: data.costCp.present ? data.costCp.value : this.costCp,
+      rarity: data.rarity.present ? data.rarity.value : this.rarity,
+      attunement: data.attunement.present
+          ? data.attunement.value
+          : this.attunement,
     );
   }
 
@@ -5130,7 +5304,9 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
           ..write('strRequirement: $strRequirement, ')
           ..write('stealthDisadvantage: $stealthDisadvantage, ')
           ..write('weightKg: $weightKg, ')
-          ..write('costCp: $costCp')
+          ..write('costCp: $costCp, ')
+          ..write('rarity: $rarity, ')
+          ..write('attunement: $attunement')
           ..write(')'))
         .toString();
   }
@@ -5148,6 +5324,8 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
     stealthDisadvantage,
     weightKg,
     costCp,
+    rarity,
+    attunement,
   );
   @override
   bool operator ==(Object other) =>
@@ -5163,7 +5341,9 @@ class ArmorRow extends DataClass implements Insertable<ArmorRow> {
           other.strRequirement == this.strRequirement &&
           other.stealthDisadvantage == this.stealthDisadvantage &&
           other.weightKg == this.weightKg &&
-          other.costCp == this.costCp);
+          other.costCp == this.costCp &&
+          other.rarity == this.rarity &&
+          other.attunement == this.attunement);
 }
 
 class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
@@ -5178,6 +5358,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
   final Value<bool> stealthDisadvantage;
   final Value<double> weightKg;
   final Value<int> costCp;
+  final Value<String?> rarity;
+  final Value<bool?> attunement;
   final Value<int> rowid;
   const ArmorsCompanion({
     this.id = const Value.absent(),
@@ -5191,6 +5373,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
     this.stealthDisadvantage = const Value.absent(),
     this.weightKg = const Value.absent(),
     this.costCp = const Value.absent(),
+    this.rarity = const Value.absent(),
+    this.attunement = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ArmorsCompanion.insert({
@@ -5205,6 +5389,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
     required bool stealthDisadvantage,
     required double weightKg,
     required int costCp,
+    this.rarity = const Value.absent(),
+    this.attunement = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -5226,6 +5412,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
     Expression<bool>? stealthDisadvantage,
     Expression<double>? weightKg,
     Expression<int>? costCp,
+    Expression<String>? rarity,
+    Expression<bool>? attunement,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -5241,6 +5429,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
         'stealth_disadvantage': stealthDisadvantage,
       if (weightKg != null) 'weight_kg': weightKg,
       if (costCp != null) 'cost_cp': costCp,
+      if (rarity != null) 'rarity': rarity,
+      if (attunement != null) 'attunement': attunement,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -5257,6 +5447,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
     Value<bool>? stealthDisadvantage,
     Value<double>? weightKg,
     Value<int>? costCp,
+    Value<String?>? rarity,
+    Value<bool?>? attunement,
     Value<int>? rowid,
   }) {
     return ArmorsCompanion(
@@ -5271,6 +5463,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
       stealthDisadvantage: stealthDisadvantage ?? this.stealthDisadvantage,
       weightKg: weightKg ?? this.weightKg,
       costCp: costCp ?? this.costCp,
+      rarity: rarity ?? this.rarity,
+      attunement: attunement ?? this.attunement,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -5311,6 +5505,12 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
     if (costCp.present) {
       map['cost_cp'] = Variable<int>(costCp.value);
     }
+    if (rarity.present) {
+      map['rarity'] = Variable<String>(rarity.value);
+    }
+    if (attunement.present) {
+      map['attunement'] = Variable<bool>(attunement.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -5331,6 +5531,8 @@ class ArmorsCompanion extends UpdateCompanion<ArmorRow> {
           ..write('stealthDisadvantage: $stealthDisadvantage, ')
           ..write('weightKg: $weightKg, ')
           ..write('costCp: $costCp, ')
+          ..write('rarity: $rarity, ')
+          ..write('attunement: $attunement, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -13027,6 +13229,17 @@ class $SpellsTable extends Spells with TableInfo<$SpellsTable, SpellRow> {
       'CHECK ("ritual" IN (0, 1))',
     ),
   );
+  static const VerificationMeta _classesMeta = const VerificationMeta(
+    'classes',
+  );
+  @override
+  late final GeneratedColumn<String> classes = GeneratedColumn<String>(
+    'classes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -13043,6 +13256,7 @@ class $SpellsTable extends Spells with TableInfo<$SpellsTable, SpellRow> {
     duration,
     concentration,
     ritual,
+    classes,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -13173,6 +13387,12 @@ class $SpellsTable extends Spells with TableInfo<$SpellsTable, SpellRow> {
     } else if (isInserting) {
       context.missing(_ritualMeta);
     }
+    if (data.containsKey('classes')) {
+      context.handle(
+        _classesMeta,
+        classes.isAcceptableOrUnknown(data['classes']!, _classesMeta),
+      );
+    }
     return context;
   }
 
@@ -13238,6 +13458,10 @@ class $SpellsTable extends Spells with TableInfo<$SpellsTable, SpellRow> {
         DriftSqlType.bool,
         data['${effectivePrefix}ritual'],
       )!,
+      classes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}classes'],
+      ),
     );
   }
 
@@ -13262,6 +13486,10 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
   final String duration;
   final bool concentration;
   final bool ritual;
+
+  /// Classes citées par un sort homebrew (US-27, schéma v7), en JSON. La
+  /// liste d'une classe reste dans `spell_class`.
+  final String? classes;
   const SpellRow({
     required this.id,
     required this.packId,
@@ -13277,6 +13505,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
     required this.duration,
     required this.concentration,
     required this.ritual,
+    this.classes,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -13299,6 +13528,9 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
     map['duration'] = Variable<String>(duration);
     map['concentration'] = Variable<bool>(concentration);
     map['ritual'] = Variable<bool>(ritual);
+    if (!nullToAbsent || classes != null) {
+      map['classes'] = Variable<String>(classes);
+    }
     return map;
   }
 
@@ -13322,6 +13554,9 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
       duration: Value(duration),
       concentration: Value(concentration),
       ritual: Value(ritual),
+      classes: classes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(classes),
     );
   }
 
@@ -13345,6 +13580,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
       duration: serializer.fromJson<String>(json['duration']),
       concentration: serializer.fromJson<bool>(json['concentration']),
       ritual: serializer.fromJson<bool>(json['ritual']),
+      classes: serializer.fromJson<String?>(json['classes']),
     );
   }
   @override
@@ -13365,6 +13601,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
       'duration': serializer.toJson<String>(duration),
       'concentration': serializer.toJson<bool>(concentration),
       'ritual': serializer.toJson<bool>(ritual),
+      'classes': serializer.toJson<String?>(classes),
     };
   }
 
@@ -13383,6 +13620,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
     String? duration,
     bool? concentration,
     bool? ritual,
+    Value<String?> classes = const Value.absent(),
   }) => SpellRow(
     id: id ?? this.id,
     packId: packId ?? this.packId,
@@ -13400,6 +13638,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
     duration: duration ?? this.duration,
     concentration: concentration ?? this.concentration,
     ritual: ritual ?? this.ritual,
+    classes: classes.present ? classes.value : this.classes,
   );
   SpellRow copyWithCompanion(SpellsCompanion data) {
     return SpellRow(
@@ -13427,6 +13666,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
           ? data.concentration.value
           : this.concentration,
       ritual: data.ritual.present ? data.ritual.value : this.ritual,
+      classes: data.classes.present ? data.classes.value : this.classes,
     );
   }
 
@@ -13446,7 +13686,8 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
           ..write('materialConsumed: $materialConsumed, ')
           ..write('duration: $duration, ')
           ..write('concentration: $concentration, ')
-          ..write('ritual: $ritual')
+          ..write('ritual: $ritual, ')
+          ..write('classes: $classes')
           ..write(')'))
         .toString();
   }
@@ -13467,6 +13708,7 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
     duration,
     concentration,
     ritual,
+    classes,
   );
   @override
   bool operator ==(Object other) =>
@@ -13485,7 +13727,8 @@ class SpellRow extends DataClass implements Insertable<SpellRow> {
           other.materialConsumed == this.materialConsumed &&
           other.duration == this.duration &&
           other.concentration == this.concentration &&
-          other.ritual == this.ritual);
+          other.ritual == this.ritual &&
+          other.classes == this.classes);
 }
 
 class SpellsCompanion extends UpdateCompanion<SpellRow> {
@@ -13503,6 +13746,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
   final Value<String> duration;
   final Value<bool> concentration;
   final Value<bool> ritual;
+  final Value<String?> classes;
   final Value<int> rowid;
   const SpellsCompanion({
     this.id = const Value.absent(),
@@ -13519,6 +13763,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
     this.duration = const Value.absent(),
     this.concentration = const Value.absent(),
     this.ritual = const Value.absent(),
+    this.classes = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   SpellsCompanion.insert({
@@ -13536,6 +13781,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
     required String duration,
     required bool concentration,
     required bool ritual,
+    this.classes = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        packId = Value(packId),
@@ -13564,6 +13810,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
     Expression<String>? duration,
     Expression<bool>? concentration,
     Expression<bool>? ritual,
+    Expression<String>? classes,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -13581,6 +13828,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
       if (duration != null) 'duration': duration,
       if (concentration != null) 'concentration': concentration,
       if (ritual != null) 'ritual': ritual,
+      if (classes != null) 'classes': classes,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -13600,6 +13848,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
     Value<String>? duration,
     Value<bool>? concentration,
     Value<bool>? ritual,
+    Value<String?>? classes,
     Value<int>? rowid,
   }) {
     return SpellsCompanion(
@@ -13617,6 +13866,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
       duration: duration ?? this.duration,
       concentration: concentration ?? this.concentration,
       ritual: ritual ?? this.ritual,
+      classes: classes ?? this.classes,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -13666,6 +13916,9 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
     if (ritual.present) {
       map['ritual'] = Variable<bool>(ritual.value);
     }
+    if (classes.present) {
+      map['classes'] = Variable<String>(classes.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -13689,6 +13942,7 @@ class SpellsCompanion extends UpdateCompanion<SpellRow> {
           ..write('duration: $duration, ')
           ..write('concentration: $concentration, ')
           ..write('ritual: $ritual, ')
+          ..write('classes: $classes, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -38945,6 +39199,8 @@ typedef $$WeaponsTableCreateCompanionBuilder = WeaponsCompanion Function({
   required String masteryPropertyId,
   Value<double?> weightKg,
   required int costCp,
+  Value<String?> rarity,
+  Value<bool?> attunement,
   Value<int> rowid,
 });
 typedef $$WeaponsTableUpdateCompanionBuilder = WeaponsCompanion Function({
@@ -38963,6 +39219,8 @@ typedef $$WeaponsTableUpdateCompanionBuilder = WeaponsCompanion Function({
   Value<String> masteryPropertyId,
   Value<double?> weightKg,
   Value<int> costCp,
+  Value<String?> rarity,
+  Value<bool?> attunement,
   Value<int> rowid,
 });
 
@@ -39064,6 +39322,16 @@ class $$WeaponsTableFilterComposer
 
   ColumnFilters<int> get costCp => $composableBuilder(
     column: $table.costCp,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -39170,6 +39438,16 @@ class $$WeaponsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -39257,6 +39535,14 @@ class $$WeaponsTableAnnotationComposer
   GeneratedColumn<int> get costCp =>
       $composableBuilder(column: $table.costCp, builder: (column) => column);
 
+  GeneratedColumn<String> get rarity =>
+      $composableBuilder(column: $table.rarity, builder: (column) => column);
+
+  GeneratedColumn<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => column,
+  );
+
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -39324,6 +39610,8 @@ class $$WeaponsTableTableManager
                 Value<String> masteryPropertyId = const Value.absent(),
                 Value<double?> weightKg = const Value.absent(),
                 Value<int> costCp = const Value.absent(),
+                Value<String?> rarity = const Value.absent(),
+                Value<bool?> attunement = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => WeaponsCompanion(
                 id: id,
@@ -39341,6 +39629,8 @@ class $$WeaponsTableTableManager
                 masteryPropertyId: masteryPropertyId,
                 weightKg: weightKg,
                 costCp: costCp,
+                rarity: rarity,
+                attunement: attunement,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -39360,6 +39650,8 @@ class $$WeaponsTableTableManager
                 required String masteryPropertyId,
                 Value<double?> weightKg = const Value.absent(),
                 required int costCp,
+                Value<String?> rarity = const Value.absent(),
+                Value<bool?> attunement = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => WeaponsCompanion.insert(
                 id: id,
@@ -39377,6 +39669,8 @@ class $$WeaponsTableTableManager
                 masteryPropertyId: masteryPropertyId,
                 weightKg: weightKg,
                 costCp: costCp,
+                rarity: rarity,
+                attunement: attunement,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -39457,6 +39751,8 @@ typedef $$ArmorsTableCreateCompanionBuilder = ArmorsCompanion Function({
   required bool stealthDisadvantage,
   required double weightKg,
   required int costCp,
+  Value<String?> rarity,
+  Value<bool?> attunement,
   Value<int> rowid,
 });
 typedef $$ArmorsTableUpdateCompanionBuilder = ArmorsCompanion Function({
@@ -39471,6 +39767,8 @@ typedef $$ArmorsTableUpdateCompanionBuilder = ArmorsCompanion Function({
   Value<bool> stealthDisadvantage,
   Value<double> weightKg,
   Value<int> costCp,
+  Value<String?> rarity,
+  Value<bool?> attunement,
   Value<int> rowid,
 });
 
@@ -39552,6 +39850,16 @@ class $$ArmorsTableFilterComposer
 
   ColumnFilters<int> get costCp => $composableBuilder(
     column: $table.costCp,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -39638,6 +39946,16 @@ class $$ArmorsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get rarity => $composableBuilder(
+    column: $table.rarity,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -39705,6 +40023,14 @@ class $$ArmorsTableAnnotationComposer
   GeneratedColumn<int> get costCp =>
       $composableBuilder(column: $table.costCp, builder: (column) => column);
 
+  GeneratedColumn<String> get rarity =>
+      $composableBuilder(column: $table.rarity, builder: (column) => column);
+
+  GeneratedColumn<bool> get attunement => $composableBuilder(
+    column: $table.attunement,
+    builder: (column) => column,
+  );
+
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -39768,6 +40094,8 @@ class $$ArmorsTableTableManager
                 Value<bool> stealthDisadvantage = const Value.absent(),
                 Value<double> weightKg = const Value.absent(),
                 Value<int> costCp = const Value.absent(),
+                Value<String?> rarity = const Value.absent(),
+                Value<bool?> attunement = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ArmorsCompanion(
                 id: id,
@@ -39781,6 +40109,8 @@ class $$ArmorsTableTableManager
                 stealthDisadvantage: stealthDisadvantage,
                 weightKg: weightKg,
                 costCp: costCp,
+                rarity: rarity,
+                attunement: attunement,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -39796,6 +40126,8 @@ class $$ArmorsTableTableManager
                 required bool stealthDisadvantage,
                 required double weightKg,
                 required int costCp,
+                Value<String?> rarity = const Value.absent(),
+                Value<bool?> attunement = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ArmorsCompanion.insert(
                 id: id,
@@ -39809,6 +40141,8 @@ class $$ArmorsTableTableManager
                 stealthDisadvantage: stealthDisadvantage,
                 weightKg: weightKg,
                 costCp: costCp,
+                rarity: rarity,
+                attunement: attunement,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -45709,6 +46043,7 @@ typedef $$SpellsTableCreateCompanionBuilder = SpellsCompanion Function({
   required String duration,
   required bool concentration,
   required bool ritual,
+  Value<String?> classes,
   Value<int> rowid,
 });
 typedef $$SpellsTableUpdateCompanionBuilder = SpellsCompanion Function({
@@ -45726,6 +46061,7 @@ typedef $$SpellsTableUpdateCompanionBuilder = SpellsCompanion Function({
   Value<String> duration,
   Value<bool> concentration,
   Value<bool> ritual,
+  Value<String?> classes,
   Value<int> rowid,
 });
 
@@ -45822,6 +46158,11 @@ class $$SpellsTableFilterComposer
 
   ColumnFilters<bool> get ritual => $composableBuilder(
     column: $table.ritual,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get classes => $composableBuilder(
+    column: $table.classes,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -45923,6 +46264,11 @@ class $$SpellsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get classes => $composableBuilder(
+    column: $table.classes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$ContentPacksTableOrderingComposer get packId {
     final $$ContentPacksTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -46005,6 +46351,9 @@ class $$SpellsTableAnnotationComposer
   GeneratedColumn<bool> get ritual =>
       $composableBuilder(column: $table.ritual, builder: (column) => column);
 
+  GeneratedColumn<String> get classes =>
+      $composableBuilder(column: $table.classes, builder: (column) => column);
+
   $$ContentPacksTableAnnotationComposer get packId {
     final $$ContentPacksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -46071,6 +46420,7 @@ class $$SpellsTableTableManager
                 Value<String> duration = const Value.absent(),
                 Value<bool> concentration = const Value.absent(),
                 Value<bool> ritual = const Value.absent(),
+                Value<String?> classes = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => SpellsCompanion(
                 id: id,
@@ -46087,6 +46437,7 @@ class $$SpellsTableTableManager
                 duration: duration,
                 concentration: concentration,
                 ritual: ritual,
+                classes: classes,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -46105,6 +46456,7 @@ class $$SpellsTableTableManager
                 required String duration,
                 required bool concentration,
                 required bool ritual,
+                Value<String?> classes = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => SpellsCompanion.insert(
                 id: id,
@@ -46121,6 +46473,7 @@ class $$SpellsTableTableManager
                 duration: duration,
                 concentration: concentration,
                 ritual: ritual,
+                classes: classes,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

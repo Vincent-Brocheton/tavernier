@@ -29,6 +29,87 @@ void main() {
       expect(_byId(exported), _byId(srdPack));
     });
 
+    test(
+      'pack homebrew aller-retour : arme magique, sort et ses classes',
+      () async {
+        ContentEntity entity(Map<String, Object?> json) =>
+            parseEntity(json, 'test').entity!;
+        final pack = ContentPack(
+          manifest: const PackManifest(
+            id: '00000000-0000-0000-0000-000000000027',
+            namespace: 'hb',
+            name: 'Gardiens',
+            version: '0.1.0',
+            origin: PackOrigin.local,
+            author: 'Inès',
+            licence: 'CC-BY-4.0',
+            locale: 'fr',
+          ),
+          entities: [
+            entity({
+              'id': 'hb:weapon:warden-axe',
+              'type': 'weapon',
+              'name': 'Hache du veilleur',
+              'extends_id': 'srd:weapon:battleaxe',
+              'data': {
+                'category': 'martial',
+                'kind': 'melee',
+                'damage': '1d8',
+                'damage_type': 'srd:damage-type:slashing',
+                'properties': ['versatile'],
+                'versatile_damage': '1d10',
+                'mastery': 'srd:mastery:topple',
+                'weight_kg': 2.0,
+                'cost_cp': 1000,
+                'rarity': 'uncommon',
+                'attunement': true,
+              },
+            }),
+            entity({
+              'id': 'hb:armor:warden-shield',
+              'type': 'armor',
+              'name': 'Bouclier du veilleur',
+              'data': {
+                'category': 'shield',
+                'base_ac': 2,
+                'weight_kg': 3.0,
+                'cost_cp': 1000,
+                'rarity': 'rare',
+              },
+              'effects': [
+                {'op': 'modify_ac', 'value': 1},
+              ],
+            }),
+            entity({
+              'id': 'hb:spell:mist-lantern',
+              'type': 'spell',
+              'name': 'Lanterne de brume',
+              'data': {
+                'level': 1,
+                'school': 'illusion',
+                'casting_time': 'action',
+                'ritual': false,
+                'range': {'kind': 'feet', 'feet': 60},
+                'components': {'verbal': true, 'somatic': true},
+                'material_consumed': false,
+                'duration': '1 heure',
+                'concentration': false,
+                'classes': ['srd:class:wizard'],
+              },
+              'text': {'fr': 'Une lueur pâle.'},
+            }),
+          ],
+        );
+        await store.importPack(srdPack);
+        await store.importPack(pack);
+        final exported = await store.exportPack(pack.manifest.id);
+        expect(_byId(exported!), _byId(pack));
+        // La liste du Magicien du SRD reste la sienne.
+        final srd = await store.exportPack(srdPack.manifest.id);
+        expect(_byId(srd!), _byId(srdPack));
+      },
+    );
+
     test('réimport : aucune entité en double', () async {
       await store.importPack(srdPack);
       await store.importPack(srdPack);

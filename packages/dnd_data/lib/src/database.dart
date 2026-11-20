@@ -107,7 +107,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -144,6 +144,13 @@ class TavernierDatabase extends _$TavernierDatabase {
       }
       // v6 (US-27) : brouillons homebrew, locaux même sous PowerSync.
       if (from < 6 && to >= 6) await m.createTable(homebrewDrafts);
+      if (from < 7 && to >= 7) {
+        await m.addColumn(weapons, weapons.rarity);
+        await m.addColumn(weapons, weapons.attunement);
+        await m.addColumn(armors, armors.rarity);
+        await m.addColumn(armors, armors.attunement);
+        await m.addColumn(spells, spells.classes);
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

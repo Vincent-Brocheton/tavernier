@@ -34,3 +34,37 @@ L'éditeur d'Historique SHALL exiger exactement 3 caractéristiques, un don de c
 #### Scenario: Don d'une autre catégorie
 - **WHEN** l'auteur choisit un don de catégorie générale comme don d'origine
 - **THEN** le choix est refusé : seuls les dons d'origine sont proposés
+
+### Requirement: Éditeur de Sort
+L'éditeur de Sort SHALL proposer :
+- le niveau (0 à 9) et l'école ;
+- le temps d'incantation et le rituel ;
+- la portée et les composantes ;
+- la durée et la concentration ;
+- les listes de classes, parmi les seules classes qui ont une liste de sorts.
+
+Un sort qui cite une classe SHALL entrer dans la liste de cette classe quand son pack est actif, sans modifier la classe.
+
+#### Scenario: Sort du Magicien
+- **WHEN** l'auteur crée « Lanterne de brume », sort d'Illusion de 1er niveau, pour le Magicien
+- **THEN** le sort cite `srd:class:wizard`, et la liste du Magicien est celle du SRD suivie de ce sort
+
+### Requirement: Éditeur d'Objet
+L'éditeur d'Objet ([H05]) SHALL proposer une arme, une armure, un objet magique ou un objet courant.
+- Une arme SHALL avoir une botte d'arme ; sans elle, la vérification le signale.
+- Une rareté SHALL rendre magique une arme ou une armure. Ses effets s'appliquent quand elle est équipée, et harmonisée si elle le demande.
+
+#### Scenario: Arme sans botte
+- **WHEN** une arme est enregistrée sans botte d'arme
+- **THEN** le brouillon s'enregistre, et la vérification indique « une arme a toujours une botte d'arme »
+
+#### Scenario: Bouclier magique harmonisé
+- **WHEN** Aldric remplace son bouclier par un bouclier peu courant qui demande l'harmonisation et porte « +1 à la CA »
+- **THEN** sa CA passe de 19 à 20 une fois le bouclier harmonisé, et reste à 19 sans harmonisation
+
+### Requirement: Variante d'une entité du SRD
+« Dériver d'une entité du SRD » SHALL copier dans le pack un Don, un Historique, un Sort ou un objet du SRD. La copie reçoit un nouvel identifiant, avec `extends_id` vers l'original. L'original SHALL rester inchangé (EF-HB-02).
+
+#### Scenario: Hache d'armes peu courante
+- **WHEN** l'auteur dérive la Hache d'armes, la nomme « Hache des Marches », la rend peu courante et demande l'harmonisation
+- **THEN** l'entité `…:weapon:hache-des-marches` garde la botte Renversement et cite `srd:weapon:battleaxe`, et la Hache d'armes du SRD n'a toujours pas de rareté

@@ -1123,13 +1123,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get spellCasting => 'Incantation';
 
   @override
-  String get spellRange => 'Portée';
+  String get spellRange => 'Portée *';
 
   @override
   String get spellComponents => 'Composantes';
 
   @override
-  String get spellDuration => 'Durée';
+  String get spellDuration => 'Durée * (ex. 1 heure)';
 
   @override
   String get spellMaterial => 'Composante matérielle';
@@ -6110,4 +6110,234 @@ class AppLocalizationsFr extends AppLocalizations {
   String journalShown(String name) {
     return '$name : visible des joueurs';
   }
+
+  @override
+  String get homebrewDerive => 'Dériver d’une entité du SRD';
+
+  @override
+  String get homebrewDeriveSearch => 'Rechercher dans le SRD';
+
+  @override
+  String homebrewVariantOf(String name) {
+    return 'Variante de $name (SRD) · l’original n’est pas modifié';
+  }
+
+  @override
+  String get itemKind => 'Type *';
+
+  @override
+  String get itemKindWeapon => 'Arme';
+
+  @override
+  String get itemKindArmor => 'Armure';
+
+  @override
+  String get itemKindMagicItem => 'Objet magique';
+
+  @override
+  String get itemKindGear => 'Objet courant';
+
+  @override
+  String get itemCategory => 'Catégorie *';
+
+  @override
+  String get weaponCategorySimple => 'Arme courante';
+
+  @override
+  String get weaponCategoryMartial => 'Arme de guerre';
+
+  @override
+  String get weaponKind => 'Attaque *';
+
+  @override
+  String get weaponKindMelee => 'Corps à corps';
+
+  @override
+  String get weaponKindRanged => 'À distance';
+
+  @override
+  String get weaponDamage => 'Dégâts * (ex. 1d8)';
+
+  @override
+  String get weaponDamageType => 'Type de dégâts *';
+
+  @override
+  String get weaponProperties => 'Propriétés';
+
+  @override
+  String get weaponVersatileDamage => 'Dégâts à deux mains (Polyvalente)';
+
+  @override
+  String get weaponRangeNormal => 'Portée normale en pieds';
+
+  @override
+  String get weaponRangeLong => 'Portée longue en pieds';
+
+  @override
+  String get weaponMastery => 'Botte d’arme *';
+
+  @override
+  String get weaponMasteryRule =>
+      'Règle 2024 : une arme a toujours une botte d’arme.';
+
+  @override
+  String weaponMasteryReuse(String weapon, String mastery) {
+    return 'Reprendre celle de $weapon : $mastery';
+  }
+
+  @override
+  String get weaponBonusHint =>
+      'Un bonus aux jets d’attaque et de dégâts de cette arme s’écrit dans le texte : le DSL v1 ne le calcule pas.';
+
+  @override
+  String get propertyAmmunition => 'Munitions';
+
+  @override
+  String get propertyFinesse => 'Finesse';
+
+  @override
+  String get propertyHeavy => 'Lourde';
+
+  @override
+  String get propertyLight => 'Légère';
+
+  @override
+  String get propertyLoading => 'Chargement';
+
+  @override
+  String get propertyReach => 'Allonge';
+
+  @override
+  String get propertyThrown => 'Lancer';
+
+  @override
+  String get propertyTwoHanded => 'Deux mains';
+
+  @override
+  String get propertyVersatile => 'Polyvalente';
+
+  @override
+  String get itemWeight => 'Poids en kg';
+
+  @override
+  String get itemCost => 'Prix en po *';
+
+  @override
+  String get itemCostOptional => 'Prix en po';
+
+  @override
+  String get itemRarity => 'Rareté';
+
+  @override
+  String get rarityNone => 'Aucune : objet ordinaire';
+
+  @override
+  String get rarityCommon => 'Courant';
+
+  @override
+  String get rarityUncommon => 'Peu courant';
+
+  @override
+  String get rarityRare => 'Rare';
+
+  @override
+  String get rarityVeryRare => 'Très rare';
+
+  @override
+  String get rarityLegendary => 'Légendaire';
+
+  @override
+  String get rarityArtifact => 'Artefact';
+
+  @override
+  String get itemAttunement => 'Harmonisation requise';
+
+  @override
+  String get armorCategoryLight => 'Armure légère';
+
+  @override
+  String get armorCategoryMedium => 'Armure intermédiaire';
+
+  @override
+  String get armorCategoryHeavy => 'Armure lourde';
+
+  @override
+  String get armorCategoryShield => 'Bouclier';
+
+  @override
+  String get armorBaseAc => 'CA de base *';
+
+  @override
+  String get armorDexCap =>
+      'Plafond du modificateur de Dextérité (vide : sans limite)';
+
+  @override
+  String get armorStrength => 'Force requise';
+
+  @override
+  String get armorStealth => 'Désavantage aux tests de Discrétion';
+
+  @override
+  String get magicTypeLine => 'Ligne de type * (ex. Objet merveilleux, rare)';
+
+  @override
+  String get magicWondrous => 'Objet merveilleux';
+
+  @override
+  String get magicArmor => 'Armure';
+
+  @override
+  String get magicWeapon => 'Arme';
+
+  @override
+  String get magicRing => 'Anneau';
+
+  @override
+  String get magicWand => 'Baguette';
+
+  @override
+  String get magicStaff => 'Bâton';
+
+  @override
+  String get magicPotion => 'Potion';
+
+  @override
+  String get magicScroll => 'Parchemin';
+
+  @override
+  String get magicRod => 'Sceptre';
+
+  @override
+  String get spellLevel => 'Niveau *';
+
+  @override
+  String get spellCantrip => 'Sort mineur';
+
+  @override
+  String get spellSchool => 'École *';
+
+  @override
+  String get spellCastingTime => 'Temps d’incantation * (ex. action)';
+
+  @override
+  String get rangeFeetKind => 'Distance';
+
+  @override
+  String get componentVerbalName => 'Verbale';
+
+  @override
+  String get componentSomaticName => 'Somatique';
+
+  @override
+  String get spellMaterialCost => 'Coût du matériel en po';
+
+  @override
+  String get spellMaterialConsumed => 'Matériel consommé';
+
+  @override
+  String get spellClasses => 'Listes de classes';
+
+  @override
+  String get spellHigherLevelHint =>
+      'Les effets à niveau supérieur s’écrivent dans le texte, comme dans le SRD.';
 }

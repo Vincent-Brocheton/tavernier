@@ -1951,25 +1951,25 @@ abstract class AppLocalizations {
   /// **'Incantation'**
   String get spellCasting;
 
-  /// Onglet Sorts.
+  /// Éditeurs homebrew (US-27 lot b).
   ///
   /// In fr, this message translates to:
-  /// **'Portée'**
+  /// **'Portée *'**
   String get spellRange;
 
-  /// Onglet Sorts.
+  /// Éditeurs homebrew (US-27 lot b).
   ///
   /// In fr, this message translates to:
   /// **'Composantes'**
   String get spellComponents;
 
-  /// Onglet Sorts.
+  /// Éditeurs homebrew (US-27 lot b).
   ///
   /// In fr, this message translates to:
-  /// **'Durée'**
+  /// **'Durée * (ex. 1 heure)'**
   String get spellDuration;
 
-  /// Onglet Sorts.
+  /// Éditeurs homebrew (US-27 lot b).
   ///
   /// In fr, this message translates to:
   /// **'Composante matérielle'**
@@ -9550,6 +9550,450 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{name} : visible des joueurs'**
   String journalShown(String name);
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dériver d’une entité du SRD'**
+  String get homebrewDerive;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher dans le SRD'**
+  String get homebrewDeriveSearch;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Variante de {name} (SRD) · l’original n’est pas modifié'**
+  String homebrewVariantOf(String name);
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type *'**
+  String get itemKind;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Arme'**
+  String get itemKindWeapon;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure'**
+  String get itemKindArmor;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objet magique'**
+  String get itemKindMagicItem;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objet courant'**
+  String get itemKindGear;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie *'**
+  String get itemCategory;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Arme courante'**
+  String get weaponCategorySimple;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Arme de guerre'**
+  String get weaponCategoryMartial;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque *'**
+  String get weaponKind;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Corps à corps'**
+  String get weaponKindMelee;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'À distance'**
+  String get weaponKindRanged;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts * (ex. 1d8)'**
+  String get weaponDamage;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de dégâts *'**
+  String get weaponDamageType;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Propriétés'**
+  String get weaponProperties;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts à deux mains (Polyvalente)'**
+  String get weaponVersatileDamage;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Portée normale en pieds'**
+  String get weaponRangeNormal;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Portée longue en pieds'**
+  String get weaponRangeLong;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Botte d’arme *'**
+  String get weaponMastery;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règle 2024 : une arme a toujours une botte d’arme.'**
+  String get weaponMasteryRule;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre celle de {weapon} : {mastery}'**
+  String weaponMasteryReuse(String weapon, String mastery);
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un bonus aux jets d’attaque et de dégâts de cette arme s’écrit dans le texte : le DSL v1 ne le calcule pas.'**
+  String get weaponBonusHint;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Munitions'**
+  String get propertyAmmunition;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Finesse'**
+  String get propertyFinesse;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lourde'**
+  String get propertyHeavy;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Légère'**
+  String get propertyLight;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement'**
+  String get propertyLoading;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Allonge'**
+  String get propertyReach;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer'**
+  String get propertyThrown;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Deux mains'**
+  String get propertyTwoHanded;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Polyvalente'**
+  String get propertyVersatile;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Poids en kg'**
+  String get itemWeight;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix en po *'**
+  String get itemCost;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix en po'**
+  String get itemCostOptional;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rareté'**
+  String get itemRarity;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune : objet ordinaire'**
+  String get rarityNone;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Courant'**
+  String get rarityCommon;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Peu courant'**
+  String get rarityUncommon;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rare'**
+  String get rarityRare;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Très rare'**
+  String get rarityVeryRare;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Légendaire'**
+  String get rarityLegendary;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Artefact'**
+  String get rarityArtifact;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Harmonisation requise'**
+  String get itemAttunement;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure légère'**
+  String get armorCategoryLight;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure intermédiaire'**
+  String get armorCategoryMedium;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure lourde'**
+  String get armorCategoryHeavy;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bouclier'**
+  String get armorCategoryShield;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'CA de base *'**
+  String get armorBaseAc;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Plafond du modificateur de Dextérité (vide : sans limite)'**
+  String get armorDexCap;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Force requise'**
+  String get armorStrength;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Désavantage aux tests de Discrétion'**
+  String get armorStealth;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ligne de type * (ex. Objet merveilleux, rare)'**
+  String get magicTypeLine;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objet merveilleux'**
+  String get magicWondrous;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure'**
+  String get magicArmor;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Arme'**
+  String get magicWeapon;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Anneau'**
+  String get magicRing;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Baguette'**
+  String get magicWand;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bâton'**
+  String get magicStaff;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Potion'**
+  String get magicPotion;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Parchemin'**
+  String get magicScroll;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sceptre'**
+  String get magicRod;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau *'**
+  String get spellLevel;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort mineur'**
+  String get spellCantrip;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'École *'**
+  String get spellSchool;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps d’incantation * (ex. action)'**
+  String get spellCastingTime;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Distance'**
+  String get rangeFeetKind;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Verbale'**
+  String get componentVerbalName;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Somatique'**
+  String get componentSomaticName;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Coût du matériel en po'**
+  String get spellMaterialCost;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Matériel consommé'**
+  String get spellMaterialConsumed;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Listes de classes'**
+  String get spellClasses;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les effets à niveau supérieur s’écrivent dans le texte, comme dans le SRD.'**
+  String get spellHigherLevelHint;
 }
 
 class _AppLocalizationsDelegate

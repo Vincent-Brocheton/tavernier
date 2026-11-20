@@ -103,6 +103,27 @@ void main() {
     expect(issues.single.path, contains('category'));
   });
 
+  test('Arme sans botte : la règle 2024 est signalée', () {
+    final issues = checkDraft(manifest, [
+      {
+        'id': 'gardiens:weapon:hache',
+        'type': 'weapon',
+        'name': 'Hache',
+        'data': {
+          'category': 'martial',
+          'kind': 'melee',
+          'damage': '1d8',
+          'damage_type': 'srd:damage-type:slashing',
+          'cost_cp': 1000,
+        },
+      },
+    ], dependencies: srd);
+    expect(
+      issues.map((i) => i.message),
+      contains('une arme a toujours une botte d’arme'),
+    );
+  });
+
   test('identifiants : slug sans accents, unique dans le pack', () {
     expect(slugOf('Gardiens des Marches'), 'gardiens-des-marches');
     expect(

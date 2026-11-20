@@ -1603,7 +1603,9 @@ as List<CreatureType>,
 /// @nodoc
 mixin _$WeaponData {
 
- WeaponCategory get category; WeaponKind get kind; String get damage;@ContentIdConverter() ContentId get damageType; List<String> get properties; String? get versatileDamage; List<int>? get rangeFeet;@ContentIdConverter() ContentId get mastery; double? get weightKg; int get costCp;
+ WeaponCategory get category; WeaponKind get kind; String get damage;@ContentIdConverter() ContentId get damageType; List<String> get properties; String? get versatileDamage; List<int>? get rangeFeet;@ContentIdConverter() ContentId get mastery; double? get weightKg; int get costCp;/// Objet magique fondé sur cette arme (homebrew, US-27) : rareté, et
+/// harmonisation requise. Sans rareté, l'arme est ordinaire.
+ Rarity? get rarity; bool? get attunement;
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1617,20 +1619,20 @@ $WeaponDataCopyWith<WeaponData> get copyWith => _$WeaponDataCopyWithImpl<WeaponD
 @override
 bool operator ==(Object other) {
   final _this = this as WeaponData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeaponData&&(identical(other.category, _this.category) || other.category == _this.category)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.damage, _this.damage) || other.damage == _this.damage)&&(identical(other.damageType, _this.damageType) || other.damageType == _this.damageType)&&const DeepCollectionEquality().equals(other.properties, _this.properties)&&(identical(other.versatileDamage, _this.versatileDamage) || other.versatileDamage == _this.versatileDamage)&&const DeepCollectionEquality().equals(other.rangeFeet, _this.rangeFeet)&&(identical(other.mastery, _this.mastery) || other.mastery == _this.mastery)&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeaponData&&(identical(other.category, _this.category) || other.category == _this.category)&&(identical(other.kind, _this.kind) || other.kind == _this.kind)&&(identical(other.damage, _this.damage) || other.damage == _this.damage)&&(identical(other.damageType, _this.damageType) || other.damageType == _this.damageType)&&const DeepCollectionEquality().equals(other.properties, _this.properties)&&(identical(other.versatileDamage, _this.versatileDamage) || other.versatileDamage == _this.versatileDamage)&&const DeepCollectionEquality().equals(other.rangeFeet, _this.rangeFeet)&&(identical(other.mastery, _this.mastery) || other.mastery == _this.mastery)&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp)&&(identical(other.rarity, _this.rarity) || other.rarity == _this.rarity)&&(identical(other.attunement, _this.attunement) || other.attunement == _this.attunement));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as WeaponData;
-  return Object.hash(runtimeType,_this.category,_this.kind,_this.damage,_this.damageType,const DeepCollectionEquality().hash(_this.properties),_this.versatileDamage,const DeepCollectionEquality().hash(_this.rangeFeet),_this.mastery,_this.weightKg,_this.costCp);
+  return Object.hash(runtimeType,_this.category,_this.kind,_this.damage,_this.damageType,const DeepCollectionEquality().hash(_this.properties),_this.versatileDamage,const DeepCollectionEquality().hash(_this.rangeFeet),_this.mastery,_this.weightKg,_this.costCp,_this.rarity,_this.attunement);
 }
 
 @override
 String toString() {
   final _this = this as WeaponData;
-  return 'WeaponData(category: ${_this.category}, kind: ${_this.kind}, damage: ${_this.damage}, damageType: ${_this.damageType}, properties: ${_this.properties}, versatileDamage: ${_this.versatileDamage}, rangeFeet: ${_this.rangeFeet}, mastery: ${_this.mastery}, weightKg: ${_this.weightKg}, costCp: ${_this.costCp})';
+  return 'WeaponData(category: ${_this.category}, kind: ${_this.kind}, damage: ${_this.damage}, damageType: ${_this.damageType}, properties: ${_this.properties}, versatileDamage: ${_this.versatileDamage}, rangeFeet: ${_this.rangeFeet}, mastery: ${_this.mastery}, weightKg: ${_this.weightKg}, costCp: ${_this.costCp}, rarity: ${_this.rarity}, attunement: ${_this.attunement})';
 }
 
 
@@ -1641,7 +1643,7 @@ abstract mixin class $WeaponDataCopyWith<$Res>  {
   factory $WeaponDataCopyWith(WeaponData value, $Res Function(WeaponData) _then) = _$WeaponDataCopyWithImpl;
 @useResult
 $Res call({
- WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp
+ WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp, Rarity? rarity, bool? attunement
 });
 
 
@@ -1658,7 +1660,7 @@ class _$WeaponDataCopyWithImpl<$Res>
 
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,Object? rarity = freezed,Object? attunement = freezed,}) {
   return _then(WeaponData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as WeaponCategory,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
@@ -1670,7 +1672,9 @@ as String?,rangeFeet: freezed == rangeFeet ? _self.rangeFeet : rangeFeet // igno
 as List<int>?,mastery: null == mastery ? _self.mastery : mastery // ignore: cast_nullable_to_non_nullable
 as ContentId,weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double?,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
-as int,
+as int,rarity: freezed == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity?,attunement: freezed == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -1755,10 +1759,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp,  Rarity? rarity,  bool? attunement)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WeaponData() when $default != null:
-return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   return orElse();
 
 }
@@ -1776,10 +1780,10 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp,  Rarity? rarity,  bool? attunement)  $default,) {final _that = this;
 switch (_that) {
 case _WeaponData():
-return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1796,10 +1800,10 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WeaponCategory category,  WeaponKind kind,  String damage, @ContentIdConverter()  ContentId damageType,  List<String> properties,  String? versatileDamage,  List<int>? rangeFeet, @ContentIdConverter()  ContentId mastery,  double? weightKg,  int costCp,  Rarity? rarity,  bool? attunement)?  $default,) {final _that = this;
 switch (_that) {
 case _WeaponData() when $default != null:
-return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.properties,_that.versatileDamage,_that.rangeFeet,_that.mastery,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   return null;
 
 }
@@ -1811,7 +1815,7 @@ return $default(_that.category,_that.kind,_that.damage,_that.damageType,_that.pr
 @JsonSerializable()
 
 class _WeaponData implements WeaponData {
-  const _WeaponData({required this.category, required this.kind, required this.damage, @ContentIdConverter() required this.damageType,  List<String> properties = const <String>[], this.versatileDamage,  List<int>? rangeFeet, @ContentIdConverter() required this.mastery, this.weightKg, required this.costCp}): _properties = properties,_rangeFeet = rangeFeet;
+  const _WeaponData({required this.category, required this.kind, required this.damage, @ContentIdConverter() required this.damageType,  List<String> properties = const <String>[], this.versatileDamage,  List<int>? rangeFeet, @ContentIdConverter() required this.mastery, this.weightKg, required this.costCp, this.rarity, this.attunement}): _properties = properties,_rangeFeet = rangeFeet;
   factory _WeaponData.fromJson(Map<String, dynamic> json) => _$WeaponDataFromJson(json);
 
 @override final  WeaponCategory category;
@@ -1838,6 +1842,10 @@ class _WeaponData implements WeaponData {
 @override@ContentIdConverter() final  ContentId mastery;
 @override final  double? weightKg;
 @override final  int costCp;
+/// Objet magique fondé sur cette arme (homebrew, US-27) : rareté, et
+/// harmonisation requise. Sans rareté, l'arme est ordinaire.
+@override final  Rarity? rarity;
+@override final  bool? attunement;
 
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
@@ -1852,18 +1860,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeaponData&&(identical(other.category, category) || other.category == category)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.damage, damage) || other.damage == damage)&&(identical(other.damageType, damageType) || other.damageType == damageType)&&const DeepCollectionEquality().equals(other.properties, _properties)&&(identical(other.versatileDamage, versatileDamage) || other.versatileDamage == versatileDamage)&&const DeepCollectionEquality().equals(other.rangeFeet, _rangeFeet)&&(identical(other.mastery, mastery) || other.mastery == mastery)&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeaponData&&(identical(other.category, category) || other.category == category)&&(identical(other.kind, kind) || other.kind == kind)&&(identical(other.damage, damage) || other.damage == damage)&&(identical(other.damageType, damageType) || other.damageType == damageType)&&const DeepCollectionEquality().equals(other.properties, _properties)&&(identical(other.versatileDamage, versatileDamage) || other.versatileDamage == versatileDamage)&&const DeepCollectionEquality().equals(other.rangeFeet, _rangeFeet)&&(identical(other.mastery, mastery) || other.mastery == mastery)&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp)&&(identical(other.rarity, rarity) || other.rarity == rarity)&&(identical(other.attunement, attunement) || other.attunement == attunement));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,category,kind,damage,damageType,const DeepCollectionEquality().hash(_properties),versatileDamage,const DeepCollectionEquality().hash(_rangeFeet),mastery,weightKg,costCp);
+    return Object.hash(runtimeType,category,kind,damage,damageType,const DeepCollectionEquality().hash(_properties),versatileDamage,const DeepCollectionEquality().hash(_rangeFeet),mastery,weightKg,costCp,rarity,attunement);
 }
 
 @override
 String toString() {
-    return 'WeaponData(category: $category, kind: $kind, damage: $damage, damageType: $damageType, properties: $properties, versatileDamage: $versatileDamage, rangeFeet: $rangeFeet, mastery: $mastery, weightKg: $weightKg, costCp: $costCp)';
+    return 'WeaponData(category: $category, kind: $kind, damage: $damage, damageType: $damageType, properties: $properties, versatileDamage: $versatileDamage, rangeFeet: $rangeFeet, mastery: $mastery, weightKg: $weightKg, costCp: $costCp, rarity: $rarity, attunement: $attunement)';
 }
 
 
@@ -1874,7 +1882,7 @@ abstract mixin class _$WeaponDataCopyWith<$Res> implements $WeaponDataCopyWith<$
   factory _$WeaponDataCopyWith(_WeaponData value, $Res Function(_WeaponData) _then) = __$WeaponDataCopyWithImpl;
 @override @useResult
 $Res call({
- WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp
+ WeaponCategory category, WeaponKind kind, String damage,@ContentIdConverter() ContentId damageType, List<String> properties, String? versatileDamage, List<int>? rangeFeet,@ContentIdConverter() ContentId mastery, double? weightKg, int costCp, Rarity? rarity, bool? attunement
 });
 
 
@@ -1891,7 +1899,7 @@ class __$WeaponDataCopyWithImpl<$Res>
 
 /// Create a copy of WeaponData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? kind = null,Object? damage = null,Object? damageType = null,Object? properties = null,Object? versatileDamage = freezed,Object? rangeFeet = freezed,Object? mastery = null,Object? weightKg = freezed,Object? costCp = null,Object? rarity = freezed,Object? attunement = freezed,}) {
   return _then(_WeaponData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as WeaponCategory,kind: null == kind ? _self.kind : kind // ignore: cast_nullable_to_non_nullable
@@ -1903,7 +1911,9 @@ as String?,rangeFeet: freezed == rangeFeet ? _self._rangeFeet : rangeFeet // ign
 as List<int>?,mastery: null == mastery ? _self.mastery : mastery // ignore: cast_nullable_to_non_nullable
 as ContentId,weightKg: freezed == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double?,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
-as int,
+as int,rarity: freezed == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity?,attunement: freezed == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -1915,7 +1925,9 @@ as int,
 mixin _$ArmorData {
 
  ArmorCategory get category; int get baseAc;/// Plafond du modificateur de DEX : absent = sans limite, 0 = ignoré.
- int? get dexCap; int? get strRequirement; bool get stealthDisadvantage; double get weightKg; int get costCp;
+ int? get dexCap; int? get strRequirement; bool get stealthDisadvantage; double get weightKg; int get costCp;/// Objet magique fondé sur cette armure (homebrew, US-27) : rareté, et
+/// harmonisation requise. Sans rareté, l'armure est ordinaire.
+ Rarity? get rarity; bool? get attunement;
 /// Create a copy of ArmorData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1929,20 +1941,20 @@ $ArmorDataCopyWith<ArmorData> get copyWith => _$ArmorDataCopyWithImpl<ArmorData>
 @override
 bool operator ==(Object other) {
   final _this = this as ArmorData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArmorData&&(identical(other.category, _this.category) || other.category == _this.category)&&(identical(other.baseAc, _this.baseAc) || other.baseAc == _this.baseAc)&&(identical(other.dexCap, _this.dexCap) || other.dexCap == _this.dexCap)&&(identical(other.strRequirement, _this.strRequirement) || other.strRequirement == _this.strRequirement)&&(identical(other.stealthDisadvantage, _this.stealthDisadvantage) || other.stealthDisadvantage == _this.stealthDisadvantage)&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArmorData&&(identical(other.category, _this.category) || other.category == _this.category)&&(identical(other.baseAc, _this.baseAc) || other.baseAc == _this.baseAc)&&(identical(other.dexCap, _this.dexCap) || other.dexCap == _this.dexCap)&&(identical(other.strRequirement, _this.strRequirement) || other.strRequirement == _this.strRequirement)&&(identical(other.stealthDisadvantage, _this.stealthDisadvantage) || other.stealthDisadvantage == _this.stealthDisadvantage)&&(identical(other.weightKg, _this.weightKg) || other.weightKg == _this.weightKg)&&(identical(other.costCp, _this.costCp) || other.costCp == _this.costCp)&&(identical(other.rarity, _this.rarity) || other.rarity == _this.rarity)&&(identical(other.attunement, _this.attunement) || other.attunement == _this.attunement));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as ArmorData;
-  return Object.hash(runtimeType,_this.category,_this.baseAc,_this.dexCap,_this.strRequirement,_this.stealthDisadvantage,_this.weightKg,_this.costCp);
+  return Object.hash(runtimeType,_this.category,_this.baseAc,_this.dexCap,_this.strRequirement,_this.stealthDisadvantage,_this.weightKg,_this.costCp,_this.rarity,_this.attunement);
 }
 
 @override
 String toString() {
   final _this = this as ArmorData;
-  return 'ArmorData(category: ${_this.category}, baseAc: ${_this.baseAc}, dexCap: ${_this.dexCap}, strRequirement: ${_this.strRequirement}, stealthDisadvantage: ${_this.stealthDisadvantage}, weightKg: ${_this.weightKg}, costCp: ${_this.costCp})';
+  return 'ArmorData(category: ${_this.category}, baseAc: ${_this.baseAc}, dexCap: ${_this.dexCap}, strRequirement: ${_this.strRequirement}, stealthDisadvantage: ${_this.stealthDisadvantage}, weightKg: ${_this.weightKg}, costCp: ${_this.costCp}, rarity: ${_this.rarity}, attunement: ${_this.attunement})';
 }
 
 
@@ -1953,7 +1965,7 @@ abstract mixin class $ArmorDataCopyWith<$Res>  {
   factory $ArmorDataCopyWith(ArmorData value, $Res Function(ArmorData) _then) = _$ArmorDataCopyWithImpl;
 @useResult
 $Res call({
- ArmorCategory category, int baseAc, int? dexCap, int? strRequirement, bool stealthDisadvantage, double weightKg, int costCp
+ ArmorCategory category, int baseAc, int? dexCap, int? strRequirement, bool stealthDisadvantage, double weightKg, int costCp, Rarity? rarity, bool? attunement
 });
 
 
@@ -1970,7 +1982,7 @@ class _$ArmorDataCopyWithImpl<$Res>
 
 /// Create a copy of ArmorData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? baseAc = null,Object? dexCap = freezed,Object? strRequirement = freezed,Object? stealthDisadvantage = null,Object? weightKg = null,Object? costCp = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? baseAc = null,Object? dexCap = freezed,Object? strRequirement = freezed,Object? stealthDisadvantage = null,Object? weightKg = null,Object? costCp = null,Object? rarity = freezed,Object? attunement = freezed,}) {
   return _then(ArmorData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as ArmorCategory,baseAc: null == baseAc ? _self.baseAc : baseAc // ignore: cast_nullable_to_non_nullable
@@ -1979,7 +1991,9 @@ as int?,strRequirement: freezed == strRequirement ? _self.strRequirement : strRe
 as int?,stealthDisadvantage: null == stealthDisadvantage ? _self.stealthDisadvantage : stealthDisadvantage // ignore: cast_nullable_to_non_nullable
 as bool,weightKg: null == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
-as int,
+as int,rarity: freezed == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity?,attunement: freezed == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -2064,10 +2078,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp,  Rarity? rarity,  bool? attunement)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ArmorData() when $default != null:
-return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   return orElse();
 
 }
@@ -2085,10 +2099,10 @@ return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp,  Rarity? rarity,  bool? attunement)  $default,) {final _that = this;
 switch (_that) {
 case _ArmorData():
-return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2105,10 +2119,10 @@ return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ArmorCategory category,  int baseAc,  int? dexCap,  int? strRequirement,  bool stealthDisadvantage,  double weightKg,  int costCp,  Rarity? rarity,  bool? attunement)?  $default,) {final _that = this;
 switch (_that) {
 case _ArmorData() when $default != null:
-return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp);case _:
+return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_that.stealthDisadvantage,_that.weightKg,_that.costCp,_that.rarity,_that.attunement);case _:
   return null;
 
 }
@@ -2120,7 +2134,7 @@ return $default(_that.category,_that.baseAc,_that.dexCap,_that.strRequirement,_t
 @JsonSerializable()
 
 class _ArmorData implements ArmorData {
-  const _ArmorData({required this.category, required this.baseAc, this.dexCap, this.strRequirement, this.stealthDisadvantage = false, required this.weightKg, required this.costCp});
+  const _ArmorData({required this.category, required this.baseAc, this.dexCap, this.strRequirement, this.stealthDisadvantage = false, required this.weightKg, required this.costCp, this.rarity, this.attunement});
   factory _ArmorData.fromJson(Map<String, dynamic> json) => _$ArmorDataFromJson(json);
 
 @override final  ArmorCategory category;
@@ -2131,6 +2145,10 @@ class _ArmorData implements ArmorData {
 @override@JsonKey() final  bool stealthDisadvantage;
 @override final  double weightKg;
 @override final  int costCp;
+/// Objet magique fondé sur cette armure (homebrew, US-27) : rareté, et
+/// harmonisation requise. Sans rareté, l'armure est ordinaire.
+@override final  Rarity? rarity;
+@override final  bool? attunement;
 
 /// Create a copy of ArmorData
 /// with the given fields replaced by the non-null parameter values.
@@ -2145,18 +2163,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ArmorData&&(identical(other.category, category) || other.category == category)&&(identical(other.baseAc, baseAc) || other.baseAc == baseAc)&&(identical(other.dexCap, dexCap) || other.dexCap == dexCap)&&(identical(other.strRequirement, strRequirement) || other.strRequirement == strRequirement)&&(identical(other.stealthDisadvantage, stealthDisadvantage) || other.stealthDisadvantage == stealthDisadvantage)&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ArmorData&&(identical(other.category, category) || other.category == category)&&(identical(other.baseAc, baseAc) || other.baseAc == baseAc)&&(identical(other.dexCap, dexCap) || other.dexCap == dexCap)&&(identical(other.strRequirement, strRequirement) || other.strRequirement == strRequirement)&&(identical(other.stealthDisadvantage, stealthDisadvantage) || other.stealthDisadvantage == stealthDisadvantage)&&(identical(other.weightKg, weightKg) || other.weightKg == weightKg)&&(identical(other.costCp, costCp) || other.costCp == costCp)&&(identical(other.rarity, rarity) || other.rarity == rarity)&&(identical(other.attunement, attunement) || other.attunement == attunement));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,category,baseAc,dexCap,strRequirement,stealthDisadvantage,weightKg,costCp);
+    return Object.hash(runtimeType,category,baseAc,dexCap,strRequirement,stealthDisadvantage,weightKg,costCp,rarity,attunement);
 }
 
 @override
 String toString() {
-    return 'ArmorData(category: $category, baseAc: $baseAc, dexCap: $dexCap, strRequirement: $strRequirement, stealthDisadvantage: $stealthDisadvantage, weightKg: $weightKg, costCp: $costCp)';
+    return 'ArmorData(category: $category, baseAc: $baseAc, dexCap: $dexCap, strRequirement: $strRequirement, stealthDisadvantage: $stealthDisadvantage, weightKg: $weightKg, costCp: $costCp, rarity: $rarity, attunement: $attunement)';
 }
 
 
@@ -2167,7 +2185,7 @@ abstract mixin class _$ArmorDataCopyWith<$Res> implements $ArmorDataCopyWith<$Re
   factory _$ArmorDataCopyWith(_ArmorData value, $Res Function(_ArmorData) _then) = __$ArmorDataCopyWithImpl;
 @override @useResult
 $Res call({
- ArmorCategory category, int baseAc, int? dexCap, int? strRequirement, bool stealthDisadvantage, double weightKg, int costCp
+ ArmorCategory category, int baseAc, int? dexCap, int? strRequirement, bool stealthDisadvantage, double weightKg, int costCp, Rarity? rarity, bool? attunement
 });
 
 
@@ -2184,7 +2202,7 @@ class __$ArmorDataCopyWithImpl<$Res>
 
 /// Create a copy of ArmorData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? baseAc = null,Object? dexCap = freezed,Object? strRequirement = freezed,Object? stealthDisadvantage = null,Object? weightKg = null,Object? costCp = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? baseAc = null,Object? dexCap = freezed,Object? strRequirement = freezed,Object? stealthDisadvantage = null,Object? weightKg = null,Object? costCp = null,Object? rarity = freezed,Object? attunement = freezed,}) {
   return _then(_ArmorData(
 category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as ArmorCategory,baseAc: null == baseAc ? _self.baseAc : baseAc // ignore: cast_nullable_to_non_nullable
@@ -2193,7 +2211,9 @@ as int?,strRequirement: freezed == strRequirement ? _self.strRequirement : strRe
 as int?,stealthDisadvantage: null == stealthDisadvantage ? _self.stealthDisadvantage : stealthDisadvantage // ignore: cast_nullable_to_non_nullable
 as bool,weightKg: null == weightKg ? _self.weightKg : weightKg // ignore: cast_nullable_to_non_nullable
 as double,costCp: null == costCp ? _self.costCp : costCp // ignore: cast_nullable_to_non_nullable
-as int,
+as int,rarity: freezed == rarity ? _self.rarity : rarity // ignore: cast_nullable_to_non_nullable
+as Rarity?,attunement: freezed == attunement ? _self.attunement : attunement // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -6936,7 +6956,9 @@ mixin _$SpellData {
 
 @JsonKey(fromJson: _spellLevel) int get level; SpellSchool get school;/// Temps d'incantation, tel que dans le SRD (« action », « 1 minute »…).
  String get castingTime; bool get ritual;@JsonKey(fromJson: _spellRange) SpellRange get range; SpellComponents get components; int? get materialCostCp; bool get materialConsumed;/// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
- String get duration; bool get concentration;
+ String get duration; bool get concentration;/// Classes dont la liste reçoit ce sort (homebrew, US-27) ; le SRD laisse
+/// la liste à la classe.
+@ContentIdConverter() List<ContentId>? get classes;
 /// Create a copy of SpellData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6950,20 +6972,20 @@ $SpellDataCopyWith<SpellData> get copyWith => _$SpellDataCopyWithImpl<SpellData>
 @override
 bool operator ==(Object other) {
   final _this = this as SpellData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellData&&(identical(other.level, _this.level) || other.level == _this.level)&&(identical(other.school, _this.school) || other.school == _this.school)&&(identical(other.castingTime, _this.castingTime) || other.castingTime == _this.castingTime)&&(identical(other.ritual, _this.ritual) || other.ritual == _this.ritual)&&(identical(other.range, _this.range) || other.range == _this.range)&&(identical(other.components, _this.components) || other.components == _this.components)&&(identical(other.materialCostCp, _this.materialCostCp) || other.materialCostCp == _this.materialCostCp)&&(identical(other.materialConsumed, _this.materialConsumed) || other.materialConsumed == _this.materialConsumed)&&(identical(other.duration, _this.duration) || other.duration == _this.duration)&&(identical(other.concentration, _this.concentration) || other.concentration == _this.concentration));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SpellData&&(identical(other.level, _this.level) || other.level == _this.level)&&(identical(other.school, _this.school) || other.school == _this.school)&&(identical(other.castingTime, _this.castingTime) || other.castingTime == _this.castingTime)&&(identical(other.ritual, _this.ritual) || other.ritual == _this.ritual)&&(identical(other.range, _this.range) || other.range == _this.range)&&(identical(other.components, _this.components) || other.components == _this.components)&&(identical(other.materialCostCp, _this.materialCostCp) || other.materialCostCp == _this.materialCostCp)&&(identical(other.materialConsumed, _this.materialConsumed) || other.materialConsumed == _this.materialConsumed)&&(identical(other.duration, _this.duration) || other.duration == _this.duration)&&(identical(other.concentration, _this.concentration) || other.concentration == _this.concentration)&&const DeepCollectionEquality().equals(other.classes, _this.classes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as SpellData;
-  return Object.hash(runtimeType,_this.level,_this.school,_this.castingTime,_this.ritual,_this.range,_this.components,_this.materialCostCp,_this.materialConsumed,_this.duration,_this.concentration);
+  return Object.hash(runtimeType,_this.level,_this.school,_this.castingTime,_this.ritual,_this.range,_this.components,_this.materialCostCp,_this.materialConsumed,_this.duration,_this.concentration,const DeepCollectionEquality().hash(_this.classes));
 }
 
 @override
 String toString() {
   final _this = this as SpellData;
-  return 'SpellData(level: ${_this.level}, school: ${_this.school}, castingTime: ${_this.castingTime}, ritual: ${_this.ritual}, range: ${_this.range}, components: ${_this.components}, materialCostCp: ${_this.materialCostCp}, materialConsumed: ${_this.materialConsumed}, duration: ${_this.duration}, concentration: ${_this.concentration})';
+  return 'SpellData(level: ${_this.level}, school: ${_this.school}, castingTime: ${_this.castingTime}, ritual: ${_this.ritual}, range: ${_this.range}, components: ${_this.components}, materialCostCp: ${_this.materialCostCp}, materialConsumed: ${_this.materialConsumed}, duration: ${_this.duration}, concentration: ${_this.concentration}, classes: ${_this.classes})';
 }
 
 
@@ -6974,7 +6996,7 @@ abstract mixin class $SpellDataCopyWith<$Res>  {
   factory $SpellDataCopyWith(SpellData value, $Res Function(SpellData) _then) = _$SpellDataCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration
+@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration,@ContentIdConverter() List<ContentId>? classes
 });
 
 
@@ -6991,7 +7013,7 @@ class _$SpellDataCopyWithImpl<$Res>
 
 /// Create a copy of SpellData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,Object? classes = freezed,}) {
   return _then(SpellData(
 level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
 as int,school: null == school ? _self.school : school // ignore: cast_nullable_to_non_nullable
@@ -7003,7 +7025,8 @@ as SpellComponents,materialCostCp: freezed == materialCostCp ? _self.materialCos
 as int?,materialConsumed: null == materialConsumed ? _self.materialConsumed : materialConsumed // ignore: cast_nullable_to_non_nullable
 as bool,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as String,concentration: null == concentration ? _self.concentration : concentration // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,classes: freezed == classes ? _self.classes : classes // ignore: cast_nullable_to_non_nullable
+as List<ContentId>?,
   ));
 }
 /// Create a copy of SpellData
@@ -7106,10 +7129,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration, @ContentIdConverter()  List<ContentId>? classes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SpellData() when $default != null:
-return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration,_that.classes);case _:
   return orElse();
 
 }
@@ -7127,10 +7150,10 @@ return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration, @ContentIdConverter()  List<ContentId>? classes)  $default,) {final _that = this;
 switch (_that) {
 case _SpellData():
-return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration,_that.classes);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -7147,10 +7170,10 @@ return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.ra
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: _spellLevel)  int level,  SpellSchool school,  String castingTime,  bool ritual, @JsonKey(fromJson: _spellRange)  SpellRange range,  SpellComponents components,  int? materialCostCp,  bool materialConsumed,  String duration,  bool concentration, @ContentIdConverter()  List<ContentId>? classes)?  $default,) {final _that = this;
 switch (_that) {
 case _SpellData() when $default != null:
-return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration);case _:
+return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.range,_that.components,_that.materialCostCp,_that.materialConsumed,_that.duration,_that.concentration,_that.classes);case _:
   return null;
 
 }
@@ -7162,7 +7185,7 @@ return $default(_that.level,_that.school,_that.castingTime,_that.ritual,_that.ra
 @JsonSerializable()
 
 class _SpellData implements SpellData {
-  const _SpellData({@JsonKey(fromJson: _spellLevel) required this.level, required this.school, required this.castingTime, required this.ritual, @JsonKey(fromJson: _spellRange) required this.range, required this.components, this.materialCostCp, required this.materialConsumed, required this.duration, required this.concentration});
+  const _SpellData({@JsonKey(fromJson: _spellLevel) required this.level, required this.school, required this.castingTime, required this.ritual, @JsonKey(fromJson: _spellRange) required this.range, required this.components, this.materialCostCp, required this.materialConsumed, required this.duration, required this.concentration, @ContentIdConverter()  List<ContentId>? classes}): _classes = classes;
   factory _SpellData.fromJson(Map<String, dynamic> json) => _$SpellDataFromJson(json);
 
 @override@JsonKey(fromJson: _spellLevel) final  int level;
@@ -7177,6 +7200,19 @@ class _SpellData implements SpellData {
 /// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
 @override final  String duration;
 @override final  bool concentration;
+/// Classes dont la liste reçoit ce sort (homebrew, US-27) ; le SRD laisse
+/// la liste à la classe.
+ final  List<ContentId>? _classes;
+/// Classes dont la liste reçoit ce sort (homebrew, US-27) ; le SRD laisse
+/// la liste à la classe.
+@override@ContentIdConverter() List<ContentId>? get classes {
+  final value = _classes;
+  if (value == null) return null;
+  if (_classes is EqualUnmodifiableListView) return _classes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of SpellData
 /// with the given fields replaced by the non-null parameter values.
@@ -7191,18 +7227,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellData&&(identical(other.level, level) || other.level == level)&&(identical(other.school, school) || other.school == school)&&(identical(other.castingTime, castingTime) || other.castingTime == castingTime)&&(identical(other.ritual, ritual) || other.ritual == ritual)&&(identical(other.range, range) || other.range == range)&&(identical(other.components, components) || other.components == components)&&(identical(other.materialCostCp, materialCostCp) || other.materialCostCp == materialCostCp)&&(identical(other.materialConsumed, materialConsumed) || other.materialConsumed == materialConsumed)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.concentration, concentration) || other.concentration == concentration));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SpellData&&(identical(other.level, level) || other.level == level)&&(identical(other.school, school) || other.school == school)&&(identical(other.castingTime, castingTime) || other.castingTime == castingTime)&&(identical(other.ritual, ritual) || other.ritual == ritual)&&(identical(other.range, range) || other.range == range)&&(identical(other.components, components) || other.components == components)&&(identical(other.materialCostCp, materialCostCp) || other.materialCostCp == materialCostCp)&&(identical(other.materialConsumed, materialConsumed) || other.materialConsumed == materialConsumed)&&(identical(other.duration, duration) || other.duration == duration)&&(identical(other.concentration, concentration) || other.concentration == concentration)&&const DeepCollectionEquality().equals(other.classes, _classes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,level,school,castingTime,ritual,range,components,materialCostCp,materialConsumed,duration,concentration);
+    return Object.hash(runtimeType,level,school,castingTime,ritual,range,components,materialCostCp,materialConsumed,duration,concentration,const DeepCollectionEquality().hash(_classes));
 }
 
 @override
 String toString() {
-    return 'SpellData(level: $level, school: $school, castingTime: $castingTime, ritual: $ritual, range: $range, components: $components, materialCostCp: $materialCostCp, materialConsumed: $materialConsumed, duration: $duration, concentration: $concentration)';
+    return 'SpellData(level: $level, school: $school, castingTime: $castingTime, ritual: $ritual, range: $range, components: $components, materialCostCp: $materialCostCp, materialConsumed: $materialConsumed, duration: $duration, concentration: $concentration, classes: $classes)';
 }
 
 
@@ -7213,7 +7249,7 @@ abstract mixin class _$SpellDataCopyWith<$Res> implements $SpellDataCopyWith<$Re
   factory _$SpellDataCopyWith(_SpellData value, $Res Function(_SpellData) _then) = __$SpellDataCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration
+@JsonKey(fromJson: _spellLevel) int level, SpellSchool school, String castingTime, bool ritual,@JsonKey(fromJson: _spellRange) SpellRange range, SpellComponents components, int? materialCostCp, bool materialConsumed, String duration, bool concentration,@ContentIdConverter() List<ContentId>? classes
 });
 
 
@@ -7230,7 +7266,7 @@ class __$SpellDataCopyWithImpl<$Res>
 
 /// Create a copy of SpellData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? level = null,Object? school = null,Object? castingTime = null,Object? ritual = null,Object? range = null,Object? components = null,Object? materialCostCp = freezed,Object? materialConsumed = null,Object? duration = null,Object? concentration = null,Object? classes = freezed,}) {
   return _then(_SpellData(
 level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
 as int,school: null == school ? _self.school : school // ignore: cast_nullable_to_non_nullable
@@ -7242,7 +7278,8 @@ as SpellComponents,materialCostCp: freezed == materialCostCp ? _self.materialCos
 as int?,materialConsumed: null == materialConsumed ? _self.materialConsumed : materialConsumed // ignore: cast_nullable_to_non_nullable
 as bool,duration: null == duration ? _self.duration : duration // ignore: cast_nullable_to_non_nullable
 as String,concentration: null == concentration ? _self.concentration : concentration // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,classes: freezed == classes ? _self._classes : classes // ignore: cast_nullable_to_non_nullable
+as List<ContentId>?,
   ));
 }
 

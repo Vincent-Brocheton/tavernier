@@ -17,4 +17,23 @@ final class ActiveContent {
   ContentEntity? entity(String id) => _byId[id];
 
   Iterable<ContentEntity> get entities => _byId.values;
+
+  /// Liste de sorts de [classId] : celle de la classe, puis les sorts
+  /// homebrew qui citent la classe (US-27).
+  List<ContentId> spellList(String classId) => [
+    ...?(entity(classId)?.data as ClassData?)?.spellList,
+    ...?_extraSpells[classId],
+  ];
+
+  late final Map<String, List<ContentId>> _extraSpells = () {
+    final byClass = <String, List<ContentId>>{};
+    for (final e in entities) {
+      if (e.data case SpellData(:final classes?)) {
+        for (final c in classes) {
+          (byClass['$c'] ??= []).add(e.id);
+        }
+      }
+    }
+    return byClass;
+  }();
 }

@@ -124,6 +124,9 @@ class Weapons extends Table with ContentEntityColumns {
   TextColumn get masteryPropertyId => text()();
   RealColumn get weightKg => real().nullable()();
   IntColumn get costCp => integer()();
+  // Arme ou armure magique du homebrew (US-27, schéma v7).
+  TextColumn get rarity => text().nullable()();
+  BoolColumn get attunement => boolean().nullable()();
 }
 
 @DataClassName('ArmorRow')
@@ -137,6 +140,9 @@ class Armors extends Table with ContentEntityColumns {
   BoolColumn get stealthDisadvantage => boolean()();
   RealColumn get weightKg => real()();
   IntColumn get costCp => integer()();
+  // Arme ou armure magique du homebrew (US-27, schéma v7).
+  TextColumn get rarity => text().nullable()();
+  BoolColumn get attunement => boolean().nullable()();
 }
 
 @DataClassName('ToolRow')
@@ -346,6 +352,10 @@ class Spells extends Table with ContentEntityColumns {
   TextColumn get duration => text()();
   BoolColumn get concentration => boolean()();
   BoolColumn get ritual => boolean()();
+
+  /// Classes citées par un sort homebrew (US-27, schéma v7), en JSON. La
+  /// liste d'une classe reste dans `spell_class`.
+  TextColumn get classes => text().nullable()();
 }
 
 @DataClassName('SpellClassRow')

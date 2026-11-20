@@ -21,7 +21,7 @@ String _coinName(AppLocalizations l10n, String code) => switch (code) {
 };
 
 bool _needsAttunement(ContentEntity? entity) =>
-    entity?.data is MagicItemData && (entity!.data as MagicItemData).attunement;
+    requiresAttunement(entity?.data);
 
 /// Une arme, une armure et un objet magique se portent.
 bool _wearable(ContentEntity? entity) =>
