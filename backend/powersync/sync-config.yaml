@@ -76,3 +76,13 @@ streams:
       - SELECT * FROM encounter WHERE table_id IN tables_mj
       - SELECT * FROM encounter_group WHERE table_id IN tables_mj
       - SELECT * FROM encounter_event WHERE table_id IN tables_mj
+
+  # Vue du combat pour les joueurs (US-36) : aux membres de la table ; les
+  # demandes des joueurs, au MJ et à leur auteur.
+  combat_joueur:
+    auto_subscribe: true
+    queries:
+      - SELECT * FROM combat_view WHERE table_id IN (SELECT table_id FROM table_member WHERE user_id = auth.user_id())
+      - SELECT * FROM combat_request WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
+      - SELECT * FROM combat_request WHERE author_user_id = auth.user_id()
+

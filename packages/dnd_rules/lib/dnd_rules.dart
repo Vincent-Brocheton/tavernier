@@ -15,6 +15,7 @@ export 'src/encounter_summary.dart';
 export 'src/inventory.dart';
 export 'src/level_unlock.dart';
 export 'src/level_up.dart';
+export 'src/player_view.dart';
 export 'src/rest.dart';
 export 'src/sheet_spells.dart';
 export 'src/spell_changes.dart';

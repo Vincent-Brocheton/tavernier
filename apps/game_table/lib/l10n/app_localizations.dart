@@ -8128,6 +8128,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Rencontre close : {xp} PX'**
   String journalFinished(String xp);
+
+  /// Journal (US-36, EF-VJ-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : masqué aux joueurs'**
+  String journalHidden(String name);
+
+  /// Journal (US-36, EF-VJ-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : visible des joueurs'**
+  String journalShown(String name);
 }
 
 class _AppLocalizationsDelegate

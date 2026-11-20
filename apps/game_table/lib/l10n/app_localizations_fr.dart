@@ -5221,4 +5221,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String journalFinished(String xp) {
     return 'Rencontre close : $xp PX';
   }
+
+  @override
+  String journalHidden(String name) {
+    return '$name : masqué aux joueurs';
+  }
+
+  @override
+  String journalShown(String name) {
+    return '$name : visible des joueurs';
+  }
 }
