@@ -162,4 +162,124 @@ void main() {
       'dead': false,
     });
   });
+
+  group('demandes du joueur', () {
+    final base = projectCombat(events);
+    // Les maps se comparent en profondeur dans une liste, pas dans un record.
+    List<List<Object>> apply(
+      String type,
+      Map<String, Object?> payload, {
+      String character = 'aldric',
+      CombatState? state,
+    }) => [
+      for (final (t, p) in requestEvents(
+        state ?? base,
+        id: 'q1',
+        character: character,
+        type: type,
+        payload: payload,
+      ))
+        [t, p],
+    ];
+
+    test('des dégâts visent son seul PJ, avec la référence', () {
+      final out = apply('damage', {
+        'targets': ['mira', 'chef'],
+        'amount': 7,
+        'type': 'srd:damage-type:slashing',
+        'knock_out': true,
+      });
+      expect(out, [
+        [
+          CombatEventType.damage,
+          {
+            'targets': ['aldric'],
+            'amount': 7,
+            'type': 'srd:damage-type:slashing',
+            'request': 'q1',
+          },
+        ],
+      ]);
+      final after = projectCombat([
+        ...events,
+        for (final [t as CombatEventType, p as Map<String, Object?>] in out)
+          _event(t, p),
+      ]);
+      // 5 PV temporaires d'abord, puis 2 PV.
+      expect(after.combatant('aldric')!.hp, 39);
+    });
+
+    test('soins et PV temporaires', () {
+      expect(apply('heal', {'amount': 3}), [
+        [
+          CombatEventType.heal,
+          {
+            'targets': ['aldric'],
+            'amount': 3,
+            'request': 'q1',
+          },
+        ],
+      ]);
+      expect(apply('temp_hp', {'amount': 8}), [
+        [
+          CombatEventType.tempHp,
+          {
+            'targets': ['aldric'],
+            'amount': 8,
+            'request': 'q1',
+          },
+        ],
+      ]);
+    });
+
+    test('refusée : type non permis, montant invalide, PJ absent', () {
+      expect(apply('combatant_removed', {'combatant': 'aldric'}), isEmpty);
+      expect(apply('undo', {'event': 'e0001'}), isEmpty);
+      expect(apply('damage', {'amount': 0}), isEmpty);
+      expect(apply('heal', {'amount': 'x'}), isEmpty);
+      expect(apply('heal', {'amount': 3}, character: 'kael'), isEmpty);
+      expect(apply('inconnu', const {}), isEmpty);
+    });
+
+    test('jet contre la mort, seulement à terre et instable', () {
+      expect(apply('death_save', {'outcome': 'success'}), isEmpty);
+      final down = projectCombat([
+        ...events,
+        _event(CombatEventType.damage, {
+          'targets': ['aldric'],
+          'amount': 46,
+          'type': 'srd:damage-type:slashing',
+        }),
+      ]);
+      expect(apply('death_save', {'outcome': 'nat20'}, state: down), [
+        [
+          CombatEventType.deathSave,
+          {'combatant': 'aldric', 'outcome': 'nat20', 'request': 'q1'},
+        ],
+      ]);
+      expect(apply('death_save', {'outcome': 'x'}, state: down), isEmpty);
+    });
+
+    test("test de concentration, seulement s'il est en attente", () {
+      expect(apply('concentration_check', {'success': true}), isEmpty);
+      final pending = projectCombat([
+        ...events,
+        _event(CombatEventType.concentrationStarted, {
+          'combatant': 'aldric',
+          'spell': 'Bénédiction',
+        }),
+        _event(CombatEventType.damage, {
+          'targets': ['aldric'],
+          'amount': 10,
+          'type': 'srd:damage-type:slashing',
+        }),
+      ]);
+      expect(apply('concentration_check', {'success': false}, state: pending), [
+        [
+          CombatEventType.concentrationCheck,
+          {'combatant': 'aldric', 'success': false, 'request': 'q1'},
+        ],
+      ]);
+    });
+  });
 }

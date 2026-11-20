@@ -106,3 +106,74 @@ int? turnsUntil(Map<String, Object?> view, String character) {
   if (mine == null || active < 0) return null;
   return (units.indexOf(mine['unit']) - active) % units.length;
 }
+
+/// Événements à ajouter au journal pour la demande [id] du joueur de la
+/// fiche [character] (US-36, EF-VJ-05, 06). La demande ne vise que son PJ :
+/// - `damage` (`amount`, `type`), `heal` et `temp_hp` (`amount` > 0) ;
+/// - `death_save` (`outcome`), s'il est à terre et instable ;
+/// - `concentration_check` (`success`), si un test est en attente.
+///
+/// Tout le reste, ou une demande dépassée par l'état du MJ, ne donne rien :
+/// la version du MJ prime.
+List<(CombatEventType, Map<String, Object?>)> requestEvents(
+  CombatState state, {
+  required String id,
+  required String character,
+  required String type,
+  required Map<String, Object?> payload,
+}) {
+  final c = state.combatants
+      .where((c) => c.kind == CombatantKind.pc && c.refId == character)
+      .firstOrNull;
+  if (c == null) return const [];
+  final amount = switch (payload['amount']) {
+    final int n when n > 0 => n,
+    _ => null,
+  };
+  final event = switch ((type, amount)) {
+    ('damage', final amount?) => (
+      CombatEventType.damage,
+      {
+        'targets': [c.id],
+        'amount': amount,
+        if (payload['type'] case final String t) 'type': t,
+      },
+    ),
+    ('heal', final amount?) => (
+      CombatEventType.heal,
+      {
+        'targets': [c.id],
+        'amount': amount,
+      },
+    ),
+    ('temp_hp', final amount?) => (
+      CombatEventType.tempHp,
+      {
+        'targets': [c.id],
+        'amount': amount,
+      },
+    ),
+    ('death_save', _)
+        when c.unconscious &&
+            !c.stable &&
+            !c.dead &&
+            _deathOutcomes.contains(payload['outcome']) =>
+      (
+        CombatEventType.deathSave,
+        {'combatant': c.id, 'outcome': payload['outcome']},
+      ),
+    ('concentration_check', _)
+        when c.concentrationChecks.isNotEmpty && payload['success'] is bool =>
+      (
+        CombatEventType.concentrationCheck,
+        {'combatant': c.id, 'success': payload['success']},
+      ),
+    _ => null,
+  };
+  if (event == null) return const [];
+  return [
+    (event.$1, {...event.$2, 'request': id}),
+  ];
+}
+
+const _deathOutcomes = {'success', 'failure', 'nat1', 'nat20'};

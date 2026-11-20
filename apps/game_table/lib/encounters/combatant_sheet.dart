@@ -77,6 +77,20 @@ class _CombatantDetail extends ConsumerWidget {
               Text(l10n.combatHp(hp, max)),
           ],
         ),
+        if (c.kind != CombatantKind.pc)
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            secondary: const Icon(Icons.visibility_off_outlined),
+            title: Text(l10n.combatHideFromPlayers),
+            subtitle: Text(l10n.combatHideFromPlayersHint),
+            value: c.hidden,
+            onChanged: (hidden) => appendCombat(ref, encounter.id, [
+              (
+                CombatEventType.combatantHidden,
+                {'combatant': c.id, 'hidden': hidden},
+              ),
+            ]),
+          ),
         if (c.unconscious && !c.stable) ...[
           SizedBox(height: AppSpacing.md),
           Text(l10n.combatDeathSaves, style: text.titleSmall),

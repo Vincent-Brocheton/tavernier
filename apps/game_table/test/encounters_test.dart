@@ -1816,4 +1816,95 @@ void main() {
     expect(find.text('+700 PX'), findsOneWidget);
     expect(find.text('Clore et ranger dans la séance'), findsNothing);
   });
+
+  // Spec encounters : « Vue des joueurs publiée », « Demandes des joueurs
+  // appliquées », « Masquer aux joueurs » (US-36, EF-VJ-03, 06).
+  Future<Map<String, Object?>?> view(WidgetTester tester) async =>
+      (await tester.runAsync(() => CombatViewStore(_db).watch(_relais).first))
+          ?.payload;
+
+  List<Object?> labels(Map<String, Object?>? view) => [
+    for (final o in view!['order']! as List) (o as Map)['label'],
+  ];
+
+  _test('vue des joueurs : publiée, demande appliquée, retirée à la fin', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    expect(labels(await view(tester)), contains('Dragon noir adulte'));
+
+    String? request;
+    await tester.runAsync(() async {
+      request = await CombatRequestStore(_db).send(
+        encounterId: _relais,
+        tableId: _table,
+        characterId: 'aldric',
+        authorUserId: _hugo,
+        type: 'damage',
+        payload: {
+          'targets': ['dragon'],
+          'amount': 5,
+          'type': 'srd:damage-type:slashing',
+        },
+      );
+    });
+    await _settle(tester);
+    final events = (await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first,
+    ))!;
+    expect(events.last.type, CombatEventType.damage);
+    expect(events.last.payload, {
+      'targets': ['aldric'],
+      'amount': 5,
+      'type': 'srd:damage-type:slashing',
+      'request': request,
+    });
+    final pending = await tester.runAsync(
+      () => CombatRequestStore(_db).watch(_relais).first,
+    );
+    expect(pending, isEmpty);
+    final pcs = (await view(tester))!['pcs']! as Map<String, Object?>;
+    expect((pcs['aldric']! as Map)['hp'], 36);
+
+    // Une demande refusée est retirée sans rien écrire.
+    await tester.runAsync(
+      () => CombatRequestStore(_db).send(
+        encounterId: _relais,
+        tableId: _table,
+        characterId: 'aldric',
+        authorUserId: _hugo,
+        type: 'undo',
+        payload: {'event': events.last.id},
+      ),
+    );
+    await _settle(tester);
+    final after = (await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first,
+    ))!;
+    expect(after.length, events.length);
+    expect(
+      await tester.runAsync(() => CombatRequestStore(_db).watch(_relais).first),
+      isEmpty,
+    );
+
+    await _tap(tester, find.byType(PopupMenuButton<String>));
+    await _tap(tester, find.text('Terminer la rencontre'));
+    await _settle(tester);
+    await _tap(tester, find.text('Clore et ranger dans la séance'));
+    await _settle(tester);
+    expect(await view(tester), isNull);
+  });
+
+  _test('Masquer aux joueurs : le dragon quitte la vue, puis revient', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await _tap(tester, detailOf('Dragon noir adulte'));
+    await _tap(tester, find.text('Masquer aux joueurs'));
+    await _settle(tester);
+    expect(labels(await view(tester)), isNot(contains('Dragon noir adulte')));
+    await _tap(tester, find.text('Masquer aux joueurs'));
+    await _settle(tester);
+    expect(labels(await view(tester)), contains('Dragon noir adulte'));
+  });
 }

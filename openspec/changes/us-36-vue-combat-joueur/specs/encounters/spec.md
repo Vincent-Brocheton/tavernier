@@ -22,3 +22,34 @@ Elle SHALL ne porter ni journal, ni Étude, ni PV, CA ou profil d'un adversaire,
 #### Scenario: Concentration en attente
 - **WHEN** Mira, concentrée sur Bénédiction, subit 4 dégâts
 - **THEN** sa vue porte Bénédiction et un test DD 10 en attente
+
+### Requirement: Demandes des joueurs appliquées par le MJ
+`requestEvents(state, id, character, type, payload)` SHALL traduire une demande du joueur en événements du journal, portant `request` (l'id de la demande), et ne visant que le PJ de la fiche `character` :
+- `damage` (`amount`, `type`), `heal` et `temp_hp`, avec un `amount` entier positif ;
+- `death_save` (`outcome` : `success`, `failure`, `nat1` ou `nat20`), si le PJ est à terre, instable et vivant ;
+- `concentration_check` (`success`), si un test de concentration est en attente.
+
+Tout autre type, une valeur invalide, un PJ absent ou une demande que l'état du MJ a dépassée SHALL ne rien donner : la version du MJ prime (EF-VJ-06).
+
+#### Scenario: Dégâts demandés par Hugo
+- **WHEN** Hugo demande 7 dégâts tranchants pour Aldric, en visant d'autres combattants
+- **THEN** seul Aldric les subit : ses 5 PV temporaires, puis 2 PV, et l'événement porte la référence de la demande
+
+#### Scenario: Demande dépassée
+- **WHEN** Hugo envoie un jet contre la mort alors qu'Aldric est debout
+- **THEN** rien n'est écrit
+
+### Requirement: Liaison du combat côté MJ
+Tant que la page du combat est ouverte chez le MJ et la rencontre en cours, l'appareil du MJ SHALL publier `playerCombatView` à chaque changement du journal, et appliquer chaque demande reçue une seule fois, puis la retirer, même refusée. La clôture de la rencontre SHALL retirer la vue. La fiche d'un adversaire SHALL porter l'interrupteur « Masquer aux joueurs » (`combatant_hidden`).
+
+#### Scenario: Demande appliquée
+- **WHEN** une demande de 5 dégâts d'Hugo arrive pendant le combat
+- **THEN** le journal porte les dégâts d'Aldric avec la référence, la demande est retirée et la vue publiée montre Aldric à 36 PV
+
+#### Scenario: Fin de la rencontre
+- **WHEN** le MJ clôt la rencontre
+- **THEN** la vue publiée disparaît
+
+#### Scenario: Dragon masqué
+- **WHEN** le MJ active « Masquer aux joueurs » sur le dragon, puis le désactive
+- **THEN** le dragon quitte l'ordre de la vue publiée, puis y revient
