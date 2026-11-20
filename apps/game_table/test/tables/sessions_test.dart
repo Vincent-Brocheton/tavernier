@@ -303,4 +303,67 @@ void main() {
     );
     expect(find.text('Ouvrir la séance'), findsNothing);
   });
+
+  // Spec tables : « Repos de groupe » (US-38, EF-PJ-19, [J9]).
+  _test('repos de groupe [J9] : déclenché, suivi, clos', (tester) async {
+    await _open(
+      tester,
+      seed: (store) => store.create(
+        tableId: _table,
+        title: 'Le relais du Sel',
+        date: DateTime(2026, 10, 30),
+        status: SessionStatus.inProgress,
+        present: ['aldric', 'mira'],
+      ),
+    );
+    await _tap(tester, find.text('Le relais du Sel'));
+    expect(find.text('Repos pour le groupe'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(OutlinedButton, 'Repos court'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    final rest = (await tester.runAsync(
+      () => GroupRestStore(_db).watchOpen(_table).first,
+    ))!.single;
+    expect(rest.kind, 'short');
+    expect(rest.characters, unorderedEquals(['aldric', 'mira']));
+    expect(find.text('Repos court en cours'), findsOneWidget);
+    expect(find.text('En attente'), findsNWidgets(2));
+    expect(find.text('Faire pour Mira Solen'), findsOneWidget);
+
+    // Hugo termine pour Aldric.
+    await tester.runAsync(
+      () => GroupRestStore(_db).markDone(
+        restId: rest.id,
+        tableId: _table,
+        characterId: 'aldric',
+        authorUserId: _hugo,
+        summary: {'hit_dice': 2, 'hp_before': 34, 'hp_after': 49},
+      ),
+    );
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Terminé'), findsOneWidget);
+    expect(find.text('2 dés de vie dépensés · PV 34 → 49'), findsOneWidget);
+
+    await _tap(tester, find.text('Clore le repos'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      await tester.runAsync(() => GroupRestStore(_db).watchOpen(_table).first),
+      isEmpty,
+    );
+    expect(find.widgetWithText(OutlinedButton, 'Repos court'), findsOneWidget);
+  });
+
+  _test('séance prévue : pas de repos de groupe', (tester) async {
+    await _open(tester, seed: _twoSessions);
+    await _tap(tester, find.text('Le relais du Sel'));
+    expect(find.text('Repos pour le groupe'), findsNothing);
+  });
 }

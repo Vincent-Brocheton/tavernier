@@ -7056,6 +7056,96 @@ abstract class AppLocalizations {
   /// **'{remaining} / {max}'**
   String combatRemaining(int remaining, int max);
 
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos pour le groupe'**
+  String get groupRestTitle;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PJ présents reçoivent l’écran de repos sur leur fiche.'**
+  String get groupRestHelp;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun PJ présent à la séance.'**
+  String get groupRestNoPresent;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos court en cours'**
+  String get groupRestOpenShort;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos long en cours'**
+  String get groupRestOpenLong;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminé'**
+  String get groupRestDone;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get groupRestWaiting;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faire pour {name}'**
+  String groupRestDoFor(String name);
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Clore le repos'**
+  String get groupRestClose;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{dice, plural, =0{PV {before} → {after}} =1{1 dé de vie dépensé · PV {before} → {after}} other{{dice} dés de vie dépensés · PV {before} → {after}}}'**
+  String groupRestSummary(int dice, int before, int after);
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{gm} lance un repos court pour le groupe.'**
+  String groupRestBannerShort(String gm);
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{gm} lance un repos long pour le groupe.'**
+  String groupRestBannerLong(String gm);
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · demandé par {gm}'**
+  String groupRestOrigin(String name, String gm);
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faire le repos'**
+  String get groupRestDo;
+
+  /// Repos de groupe (US-38, EF-PJ-19, [J9], [J10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le MJ'**
+  String get groupRestGm;
+
   /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
   ///
   /// In fr, this message translates to:
