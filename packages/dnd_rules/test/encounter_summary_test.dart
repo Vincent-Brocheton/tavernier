@@ -124,4 +124,16 @@ void main() {
     expect(summary.awarded, {'aldric': 400});
     expect(summary.xpTotal, 450);
   });
+
+  test('[S4] : PX de la séance 12, Kael absent', () {
+    // Embuscade : 300 PX pour 4 ; le relais du Sel : 3 000 PX pour 4.
+    const ambush = {'aldric': 75, 'mira': 75, 'thalia': 75, 'brannoc': 75};
+    const relay = {'aldric': 750, 'mira': 750, 'thalia': 750, 'brannoc': 750};
+    expect(sessionXp([ambush, relay, null]), {
+      'aldric': 825,
+      'mira': 825,
+      'thalia': 825,
+      'brannoc': 825,
+    });
+  });
 }

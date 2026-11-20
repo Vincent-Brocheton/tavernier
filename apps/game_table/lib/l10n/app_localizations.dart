@@ -7560,6 +7560,204 @@ abstract class AppLocalizations {
   /// **'Écarter l’autre version'**
   String get noteConflictDiscard;
 
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance en cours'**
+  String get sessionRunningTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontres'**
+  String get sessionEncountersTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune rencontre dans cette séance.'**
+  String get sessionNoEncounters;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Clore la séance'**
+  String get sessionClose;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Clore la séance {number}'**
+  String closeTitle(int number);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{rencontre jouée} other{rencontres jouées}}'**
+  String closePlayed(int count);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PX au total'**
+  String get closeXpTotal;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PX par personnage présent'**
+  String get closeXpEach;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'rounds au total'**
+  String get closeRounds;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontres jouées'**
+  String get closePlayedTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{rounds} rounds · {xp} PX'**
+  String closePlayedLine(int rounds, String xp);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{rounds} rounds'**
+  String closePlayedLineMilestone(int rounds);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontres non jouées'**
+  String get closeUnplayedTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reporter à la séance {number}'**
+  String closeReport(int number);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Garder sans séance'**
+  String get closeKeep;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get closeDelete;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Points d’expérience'**
+  String get closeXpTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Somme des PX de chaque rencontre, partagés entre les personnages présents à cette rencontre.'**
+  String get closeXpHint;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{from} → {to} / {next} (niv. {level})'**
+  String closeXpLine(String from, String to, String next, int level);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{from} → {to}'**
+  String closeXpLineMax(String from, String to);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'absent'**
+  String get closeAbsent;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PX s’ajoutent aux fiches à la clôture et sont inscrits dans leur historique. Quand un seuil de niveau est atteint, le joueur reçoit une proposition de montée de niveau.'**
+  String get closeXpFoot;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jalon atteint'**
+  String get closeMilestoneTitle;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table en progression par jalons : pas de PX, vous choisissez qui passe au niveau suivant.'**
+  String get closeMilestoneHint;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif (visible des joueurs)'**
+  String get closeReason;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposer la montée de niveau à'**
+  String get closeGrantTo;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'présent'**
+  String get closePresent;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'absent ce soir'**
+  String get closeAbsentTonight;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'déjà accordé'**
+  String get closeAlreadyGranted;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{from} → {to}'**
+  String closeLevels(int from, int to);
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaque joueur coché reçoit une proposition de montée de niveau, qu’il accepte puis réalise avec l’assistant. Le jalon est inscrit dans l’historique des fiches.'**
+  String get closeMilestoneFoot;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenir à la séance'**
+  String get closeBack;
+
+  /// Séance en cours et clôture (US-35 lot d, EF-SEA-03, 04, [S3], [S4], [S7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{amount} PX ({from} → {to})'**
+  String historyXp(int amount, int from, int to);
+
   /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
   ///
   /// In fr, this message translates to:

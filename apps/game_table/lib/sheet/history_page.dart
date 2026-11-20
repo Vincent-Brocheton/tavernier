@@ -70,6 +70,14 @@ class HistoryPage extends ConsumerWidget {
           ? l10n.historyLevelOverride(level)
           : l10n.historyLevelGrant(level);
     }
+    if (detail case {
+      'kind': 'xp',
+      'amount': final int amount,
+      'from': final int from,
+      'to': final int to,
+    }) {
+      return l10n.historyXp(amount, from, to);
+    }
     if (detail case {'kind': 'level_up', 'to': final int level}) {
       return l10n.historyLevelUp(level);
     }

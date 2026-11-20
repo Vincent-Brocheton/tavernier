@@ -10,9 +10,11 @@ import 'package:material_ui/material_ui.dart';
 
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
+import '../encounters/encounters_providers.dart';
 import '../l10n/app_localizations.dart';
 import '../tables/tables_providers.dart';
 import 'group_rest.dart';
+import 'session_close.dart';
 import 'sessions_providers.dart';
 
 class SessionPage extends ConsumerStatefulWidget {
@@ -100,6 +102,12 @@ class _SessionPageState extends ConsumerState<SessionPage> {
     };
     final present =
         ref.watch(sessionAttendanceProvider(widget.id)).value ?? const {};
+    final encounters = [
+      for (final e
+          in ref.watch(tableEncountersProvider(widget.tableId)).value ??
+              const <Encounter>[])
+        if (e.sessionId == widget.id) e,
+    ];
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -115,7 +123,9 @@ class _SessionPageState extends ConsumerState<SessionPage> {
               style: text.bodySmall,
             ),
             Text(
-              l10n.sessionPrepTitle,
+              session.status == SessionStatus.inProgress
+                  ? l10n.sessionRunningTitle
+                  : l10n.sessionPrepTitle,
               style: text.titleLarge!.copyWith(color: scheme.tertiary),
             ),
           ],
@@ -128,20 +138,35 @@ class _SessionPageState extends ConsumerState<SessionPage> {
         ],
       ),
       // Sous le contenu : sur téléphone, la barre du haut n'a pas la place.
-      bottomNavigationBar: session.status == SessionStatus.planned
-          ? SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(AppSpacing.md),
-                child: FilledButton(
-                  onPressed: () => _store.update(
-                    session.id,
-                    status: SessionStatus.inProgress,
+      bottomNavigationBar: switch (session.status) {
+        SessionStatus.planned => SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(AppSpacing.md),
+            child: FilledButton(
+              onPressed: () =>
+                  _store.update(session.id, status: SessionStatus.inProgress),
+              child: Text(l10n.sessionOpen),
+            ),
+          ),
+        ),
+        SessionStatus.inProgress => SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(AppSpacing.md),
+            child: FilledButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => CloseSessionPage(
+                    tableId: widget.tableId,
+                    sessionId: session.id,
                   ),
-                  child: Text(l10n.sessionOpen),
                 ),
               ),
-            )
-          : null,
+              child: Text(l10n.sessionClose),
+            ),
+          ),
+        ),
+        SessionStatus.closed => null,
+      },
       body: SafeArea(
         child: Align(
           alignment: Alignment.topCenter,
@@ -173,6 +198,27 @@ class _SessionPageState extends ConsumerState<SessionPage> {
                 Text(l10n.sessionAttendanceHelp, style: text.bodySmall),
                 SizedBox(height: AppSpacing.sm),
                 if (session.status == SessionStatus.inProgress) ...[
+                  Text(l10n.sessionEncountersTitle, style: text.titleMedium),
+                  SizedBox(height: AppSpacing.xs),
+                  if (encounters.isEmpty)
+                    Text(l10n.sessionNoEncounters, style: text.bodySmall),
+                  for (final e in encounters)
+                    Card(
+                      margin: EdgeInsets.only(bottom: AppSpacing.xs),
+                      child: ListTile(
+                        title: Text(e.title),
+                        trailing: Text(switch (e.status) {
+                          EncounterStatus.draft => l10n.encounterDraft,
+                          EncounterStatus.ready => l10n.encounterReady,
+                          EncounterStatus.running => l10n.encounterRunning,
+                          EncounterStatus.finished => l10n.encounterFinished,
+                        }),
+                        onTap: () => context.push(
+                          '/tables/${widget.tableId}/rencontres/${e.id}',
+                        ),
+                      ),
+                    ),
+                  SizedBox(height: AppSpacing.lg),
                   GroupRestPanel(
                     tableId: widget.tableId,
                     sessionId: session.id,
