@@ -4648,6 +4648,158 @@ class AppLocalizationsFr extends AppLocalizations {
   String get playerCombatHpField => 'Points de vie';
 
   @override
+  String get notesSearch => 'Rechercher dans mes notes';
+
+  @override
+  String get notesPrivacyHint =>
+      'Privées par défaut. Vous pouvez partager une note avec la table, en lecture seule pour les autres.';
+
+  @override
+  String get notesFilterAll => 'Toutes';
+
+  @override
+  String get notesScopeTable => 'Table';
+
+  @override
+  String get notesScopeSessions => 'Séances';
+
+  @override
+  String get notesScopeNpcs => 'PNJ';
+
+  @override
+  String get notesScopeEncounters => 'Rencontres';
+
+  @override
+  String notesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notes sur cet appareil · recherche hors-ligne',
+      one: '1 note sur cet appareil · recherche hors-ligne',
+      zero: 'Aucune note sur cet appareil',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notesResults(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count résultats · recherche hors-ligne',
+      one: '1 résultat · recherche hors-ligne',
+      zero: 'Aucun résultat · recherche hors-ligne',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get notesNew => 'Nouvelle note';
+
+  @override
+  String get notesEmptyTitle => 'Aucune note personnelle';
+
+  @override
+  String get notesEmptyBody =>
+      'Notez ce que vous apprenez en jeu : un nom, un indice, une promesse. Vos notes sont privées par défaut, partageables avec la table, et consultables hors-ligne.';
+
+  @override
+  String get notesSharedChip => 'Partagée avec la table';
+
+  @override
+  String notesSharedBy(String name) {
+    return 'Partagée par $name · lecture seule';
+  }
+
+  @override
+  String get notesConflictChip => 'Deux versions à fusionner';
+
+  @override
+  String get notesToday => 'aujourd’hui';
+
+  @override
+  String notesDate(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMM', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$dateString';
+  }
+
+  @override
+  String notesSessionLabel(int number) {
+    return 'Séance $number';
+  }
+
+  @override
+  String notesSessionHeader(int number, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat('d MMM', localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Séance $number · $dateString';
+  }
+
+  @override
+  String get notesUntitled => 'Sans titre';
+
+  @override
+  String get notesNoTable =>
+      'Les notes se prennent sur un personnage rattaché à une table.';
+
+  @override
+  String get notesSomeone => 'un membre';
+
+  @override
+  String get noteTitle => 'Titre';
+
+  @override
+  String get noteContent => 'Texte';
+
+  @override
+  String get noteAttachment => 'Rattachée à';
+
+  @override
+  String get noteShare => 'Partager avec la table';
+
+  @override
+  String get noteShareHint => 'En lecture seule pour les autres membres.';
+
+  @override
+  String get notePrivateHint =>
+      'Privée : vous seul la voyez, sur tous vos appareils.';
+
+  @override
+  String get noteSave => 'Enregistrer';
+
+  @override
+  String get noteDelete => 'Supprimer la note';
+
+  @override
+  String get noteBold => 'Gras';
+
+  @override
+  String get noteList => 'Liste';
+
+  @override
+  String get noteLink => 'Lien vers un PNJ ou une rencontre';
+
+  @override
+  String get noteLinkTitle => 'Insérer un lien';
+
+  @override
+  String get noteLinkHint =>
+      'Seuls les PNJ et rencontres présents sur cet appareil sont proposés. Recherche hors-ligne.';
+
+  @override
+  String get noteConflictTitle =>
+      'Une autre version a été écrite sur un autre appareil';
+
+  @override
+  String get noteConflictAppend => 'Ajouter à mon texte';
+
+  @override
+  String get noteConflictDiscard => 'Écarter l’autre version';
+
+  @override
   String get combatHideFromPlayers => 'Masquer aux joueurs';
 
   @override

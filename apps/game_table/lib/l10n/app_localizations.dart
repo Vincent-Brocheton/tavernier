@@ -7332,6 +7332,234 @@ abstract class AppLocalizations {
   /// **'Points de vie'**
   String get playerCombatHpField;
 
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher dans mes notes'**
+  String get notesSearch;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Privées par défaut. Vous pouvez partager une note avec la table, en lecture seule pour les autres.'**
+  String get notesPrivacyHint;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes'**
+  String get notesFilterAll;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table'**
+  String get notesScopeTable;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Séances'**
+  String get notesScopeSessions;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PNJ'**
+  String get notesScopeNpcs;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontres'**
+  String get notesScopeEncounters;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucune note sur cet appareil} =1{1 note sur cet appareil · recherche hors-ligne} other{{count} notes sur cet appareil · recherche hors-ligne}}'**
+  String notesCount(int count);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucun résultat · recherche hors-ligne} =1{1 résultat · recherche hors-ligne} other{{count} résultats · recherche hors-ligne}}'**
+  String notesResults(int count);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle note'**
+  String get notesNew;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune note personnelle'**
+  String get notesEmptyTitle;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Notez ce que vous apprenez en jeu : un nom, un indice, une promesse. Vos notes sont privées par défaut, partageables avec la table, et consultables hors-ligne.'**
+  String get notesEmptyBody;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Partagée avec la table'**
+  String get notesSharedChip;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Partagée par {name} · lecture seule'**
+  String notesSharedBy(String name);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Deux versions à fusionner'**
+  String get notesConflictChip;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'aujourd’hui'**
+  String get notesToday;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{date}'**
+  String notesDate(DateTime date);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance {number}'**
+  String notesSessionLabel(int number);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance {number} · {date}'**
+  String notesSessionHeader(int number, DateTime date);
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans titre'**
+  String get notesUntitled;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les notes se prennent sur un personnage rattaché à une table.'**
+  String get notesNoTable;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'un membre'**
+  String get notesSomeone;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get noteTitle;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Texte'**
+  String get noteContent;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rattachée à'**
+  String get noteAttachment;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager avec la table'**
+  String get noteShare;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'En lecture seule pour les autres membres.'**
+  String get noteShareHint;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Privée : vous seul la voyez, sur tous vos appareils.'**
+  String get notePrivateHint;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get noteSave;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer la note'**
+  String get noteDelete;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Gras'**
+  String get noteBold;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste'**
+  String get noteList;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lien vers un PNJ ou une rencontre'**
+  String get noteLink;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Insérer un lien'**
+  String get noteLinkTitle;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Seuls les PNJ et rencontres présents sur cet appareil sont proposés. Recherche hors-ligne.'**
+  String get noteLinkHint;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Une autre version a été écrite sur un autre appareil'**
+  String get noteConflictTitle;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter à mon texte'**
+  String get noteConflictAppend;
+
+  /// Notes (US-26, EF-NOT-01 à 06, [N3] à [N7]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Écarter l’autre version'**
+  String get noteConflictDiscard;
+
   /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
   ///
   /// In fr, this message translates to:

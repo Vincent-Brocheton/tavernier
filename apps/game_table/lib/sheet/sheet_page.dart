@@ -11,6 +11,7 @@ import '../creation/details_step.dart';
 import '../creation/step_layout.dart';
 import '../encounters/player_combat.dart';
 import '../l10n/app_localizations.dart';
+import '../notes/notes_view.dart';
 import '../sessions/group_rest.dart';
 import 'combat_tab.dart';
 import 'conflicts.dart';
@@ -179,7 +180,6 @@ class _Sheet extends StatelessWidget {
       for (final level in character.classLevels)
         l10n.classLevel(namesOf(content, [level.classId]), level.level),
     ].join(' / ');
-    final soon = Center(child: Text(l10n.comingSoon));
     return DefaultTabController(
       length: _tabCount,
       child: Column(
@@ -317,7 +317,7 @@ class _Sheet extends StatelessWidget {
                   character: character,
                   sheet: sheet,
                 ),
-                soon,
+                SheetNotesTab(id: id),
               ],
             ),
           ),
