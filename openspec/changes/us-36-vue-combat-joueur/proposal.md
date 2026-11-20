@@ -2,7 +2,7 @@
 
 ## Why
 
-Carte Trello US-36 : la vue combat du joueur. Exigences : **EF-VJ-01** à **EF-VJ-06** ; cahier §6.2 et §6.3 ; planches [J1], [J2] et [J3].
+Carte Trello [US-36](https://trello.com/c/K0yDlEbb) : la vue combat du joueur. Exigences : **EF-VJ-01** à **EF-VJ-06** ; cahier §6.2 et §6.3 ; planches [J1], [J2] et [J3].
 
 Le journal de combat est réservé au MJ, par la RLS `is_table_gm` et le flux PowerSync `tables_mj`. Le téléphone du joueur ne peut donc ni suivre le combat ni y répondre. Lui envoyer le journal pour le filtrer sur place exposerait ce qu'il ne doit pas voir : le journal lui-même, l'Étude, les PV et la CA des adversaires, les adversaires cachés (EF-VJ-03, EF-ACT-07).
 
