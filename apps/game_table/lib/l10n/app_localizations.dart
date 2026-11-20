@@ -7758,6 +7758,36 @@ abstract class AppLocalizations {
   /// **'+{amount} PX ({from} → {to})'**
   String historyXp(int amount, int from, int to);
 
+  /// Séance close, vue du joueur (US-35 lot e, EF-SEA-07, [S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{amount} PX pour {name}'**
+  String sessionGainXp(String amount, String name);
+
+  /// Séance close, vue du joueur (US-35 lot e, EF-SEA-07, [S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{xp} / {next} PX · niveau {level} à {next}'**
+  String sessionGainProgress(String xp, String next, int level);
+
+  /// Séance close, vue du joueur (US-35 lot e, EF-SEA-07, [S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} accordé à {name}'**
+  String sessionGainLevel(int level, String name);
+
+  /// Séance close, vue du joueur (US-35 lot e, EF-SEA-07, [S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PX sont ajoutés à votre fiche et inscrits dans son historique.'**
+  String get sessionGainHint;
+
+  /// Séance close, vue du joueur (US-35 lot e, EF-SEA-07, [S5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes de cette séance'**
+  String get sessionNotesTitle;
+
   /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
   ///
   /// In fr, this message translates to:

@@ -4927,6 +4927,28 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String sessionGainXp(String amount, String name) {
+    return '+$amount PX pour $name';
+  }
+
+  @override
+  String sessionGainProgress(String xp, String next, int level) {
+    return '$xp / $next PX · niveau $level à $next';
+  }
+
+  @override
+  String sessionGainLevel(int level, String name) {
+    return 'Niveau $level accordé à $name';
+  }
+
+  @override
+  String get sessionGainHint =>
+      'Les PX sont ajoutés à votre fiche et inscrits dans son historique.';
+
+  @override
+  String get sessionNotesTitle => 'Notes de cette séance';
+
+  @override
   String get combatHideFromPlayers => 'Masquer aux joueurs';
 
   @override

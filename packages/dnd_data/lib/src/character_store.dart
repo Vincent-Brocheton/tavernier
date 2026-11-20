@@ -578,6 +578,22 @@ final class CharacterStore {
       CharacterHistoryEntry.fromRow(row),
   ];
 
+  /// PX ajoutés et niveaux accordés à la clôture de la séance [sessionId]
+  /// (EF-SEA-07), à jour à chaque synchronisation.
+  Stream<List<CharacterHistoryEntry>> watchSessionGains(String sessionId) => _db
+      .customSelect(
+        'SELECT * FROM character_change_log '
+        "WHERE json_extract(diff, '\$.session') = ? "
+        "AND json_extract(diff, '\$.kind') IN ('xp', 'level_grant') "
+        'ORDER BY timestamp, id',
+        variables: [Variable.withString(sessionId)],
+        readsFrom: {_db.characterChangeLogs},
+      )
+      .watch()
+      .map(
+        (rows) => [for (final row in rows) CharacterHistoryEntry.fromRow(row)],
+      );
+
   /// Conflits qui ont remplacé une valeur de [userId] (US-16), le plus
   /// récent d'abord, à jour à chaque synchronisation.
   Stream<List<CharacterHistoryEntry>> watchConflicts(String userId) => _db
