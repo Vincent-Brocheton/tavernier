@@ -11,7 +11,9 @@ Un adversaire SHALL être visible des joueurs par défaut. L'événement `combat
 `playerCombatView(state)` SHALL rendre, en JSON :
 - le round et l'unité active ;
 - l'ordre des combattants visibles : un adversaire avec son seul nom, un PJ avec sa fiche, son joueur et sa santé qualitative ;
-- pour chaque PJ, ses PV, PV temporaires, états et leur durée, sa concentration, sa réaction, ses jets contre la mort et ses tests de concentration en attente.
+- pour chaque PJ, ses PV, PV temporaires, états et leur durée restante, sa concentration, sa réaction, ses jets contre la mort et ses tests de concentration en attente.
+
+L'appareil du MJ y ajoute le titre de la rencontre, que le joueur ne lit pas.
 
 Elle SHALL ne porter ni journal, ni Étude, ni PV, CA ou profil d'un adversaire, ni adversaire masqué (EF-VJ-03). `turnsUntil(view, fiche)` SHALL donner le nombre de tours avant celui du PJ, un par unité (EF-VJ-02).
 
@@ -27,7 +29,11 @@ Elle SHALL ne porter ni journal, ni Étude, ni PV, CA ou profil d'un adversaire,
 `requestEvents(state, id, character, type, payload)` SHALL traduire une demande du joueur en événements du journal, portant `request` (l'id de la demande), et ne visant que le PJ de la fiche `character` :
 - `damage` (`amount`, `type`), `heal` et `temp_hp`, avec un `amount` entier positif ;
 - `death_save` (`outcome` : `success`, `failure`, `nat1` ou `nat20`), si le PJ est à terre, instable et vivant ;
-- `concentration_check` (`success`), si un test de concentration est en attente.
+- `concentration_check` (`success`), si un test de concentration est en attente ;
+- `concentration_started` (`spell`) et `concentration_ended`, s'il est concentré ;
+- `turn_advanced`, si c'est son tour.
+
+`deathSaveOutcome(d20)` SHALL donner l'issue d'un jet contre la mort (SRD) : 1 compte deux échecs, 20 rend 1 PV, 10 ou plus réussit.
 
 Tout autre type, une valeur invalide, un PJ absent ou une demande que l'état du MJ a dépassée SHALL ne rien donner : la version du MJ prime (EF-VJ-06).
 
@@ -53,3 +59,36 @@ Tant que la page du combat est ouverte chez le MJ et la rencontre en cours, l'ap
 #### Scenario: Dragon masqué
 - **WHEN** le MJ active « Masquer aux joueurs » sur le dragon, puis le désactive
 - **THEN** le dragon quitte l'ordre de la vue publiée, puis y revient
+
+### Requirement: Écran « En combat » du joueur
+Quand une vue publiée montre le PJ du joueur connecté, sa fiche SHALL s'ouvrir sur l'écran « En combat » ; « Fiche complète » SHALL ramener à la fiche, qui garde un bandeau « Revenir au combat » (EF-VJ-01). Le MJ qui ouvre la fiche reste sur la fiche.
+
+L'écran SHALL montrer :
+- le bandeau : titre et round, tour en cours et « vous jouez dans n tours » ; à son tour, « C'est votre tour », l'économie d'actions à cocher et « Finir mon tour » (EF-VJ-02) ;
+- l'ordre simplifié de la vue (EF-VJ-03) ;
+- son PJ : PV, PV temporaires, concentration, réaction, Dégâts, Soins et PV temp., états reçus avec leur source et leur durée ; ses attaques et ressources, et ses sorts, dont la concentration est relayée au MJ (EF-VJ-04) ;
+- les jets demandés : test de concentration (DD, bonus de JS de CON) et jet contre la mort, saisis ou lancés (EF-VJ-05) ;
+- hors-ligne, le dernier état connu et « Hors-ligne : dites vos changements au MJ » ; les demandes en attente sont comptées (EF-VJ-06).
+
+Chaque changement du joueur SHALL partir en demande (`combat_request`).
+
+#### Scenario: [J1]
+- **WHEN** Hugo ouvre la fiche d'Aldric au round 3, tour du Chef de bande
+- **THEN** il lit « Tour : Chef de bande · vous jouez dans 2 tours », 41 / 49, +5 PV temp., Réaction disponible, Béni de Mira Solen pour 8 rounds, et l'ordre sans PV des adversaires
+
+#### Scenario: Dégâts envoyés
+- **WHEN** Hugo saisit 7 dégâts
+- **THEN** une demande `damage` de 7 part pour Aldric, et « 1 changement en attente du MJ » s'affiche
+
+#### Scenario: [J2]
+- **WHEN** c'est le tour d'Aldric
+- **THEN** « C'est votre tour » s'affiche avec Action, Action Bonus, Réaction et Déplacement à cocher, et « Finir mon tour » envoie `turn_advanced`
+
+#### Scenario: [J5]
+- **WHEN** Aldric doit un test de concentration DD 10 et Hugo saisit 6 (JS de CON +4)
+- **THEN** une réussite part chez le MJ
+
+#### Scenario: [J3]
+- **WHEN** l'appareil est hors-ligne
+- **THEN** le bandeau porte « dernier état connu » et l'avertissement hors-ligne, sans « vous jouez dans »
+

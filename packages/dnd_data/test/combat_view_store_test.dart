@@ -47,6 +47,32 @@ void main() {
         expect(await store.watch('relais').first, isNull);
       });
 
+      test('vue où figure un PJ (EF-VJ-01)', () async {
+        final store = CombatViewStore(db);
+        expect(await store.watchCharacter('aldric').first, isNull);
+        await store.publish(
+          encounterId: 'relais',
+          tableId: 't',
+          payload: {
+            'round': 1,
+            'pcs': {'aldric': <String, Object?>{}},
+          },
+        );
+        await store.publish(
+          encounterId: 'gue',
+          tableId: 't2',
+          payload: {
+            'round': 2,
+            'pcs': {'thalia': <String, Object?>{}},
+          },
+        );
+        expect(
+          (await store.watchCharacter('aldric').first)!.encounterId,
+          'relais',
+        );
+        expect(await store.watchCharacter('mira').first, isNull);
+      });
+
       test('demandes envoyées dans l\'ordre, puis retirées', () async {
         final store = CombatRequestStore(db);
         final first = await store.send(

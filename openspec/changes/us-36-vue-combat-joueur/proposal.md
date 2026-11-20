@@ -24,7 +24,7 @@ La carte est livrée en trois lots.
   - Les règles PowerSync et les tests de droits (pgTAP, flux).
 - **Base locale** : les deux tables synchronisées, au schéma v3, avec leur migration.
 - **Dépôts** :
-  - `CombatViewStore` : publier, et suivre la vue d'une rencontre en cours ;
+  - `CombatViewStore` : publier, et suivre la vue d'une rencontre en cours ou celle d'un PJ ;
   - `CombatRequestStore` : envoyer une demande, et suivre celles d'une rencontre.
 - **Moteur** :
   - l'événement `combatant_hidden` : un adversaire masqué ou rendu visible ;

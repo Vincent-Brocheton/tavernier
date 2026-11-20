@@ -4456,6 +4456,135 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String playerCombatTitle(String title, int round) {
+    return '$title · round $round';
+  }
+
+  @override
+  String playerCombatLastKnown(String time) {
+    return 'dernier état connu $time';
+  }
+
+  @override
+  String playerCombatTurnOf(String name) {
+    return 'Tour : $name';
+  }
+
+  @override
+  String playerCombatIn(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'vous jouez dans $count tours',
+      one: 'vous jouez au prochain tour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get playerCombatYourTurn => 'C’est votre tour';
+
+  @override
+  String get playerCombatNotStarted => 'Initiative en cours';
+
+  @override
+  String get economyAction => 'Action';
+
+  @override
+  String get economyReaction => 'Réaction';
+
+  @override
+  String get economyMove => 'Déplacement';
+
+  @override
+  String get playerCombatOffline =>
+      'Hors-ligne : dites vos changements au MJ. Ils partiront à la reconnexion ; si le MJ a modifié la même valeur, sa version prime.';
+
+  @override
+  String get playerCombatOfflineOrder =>
+      'L’ordre du tour et les états des autres combattants ne se mettent plus à jour sans réseau.';
+
+  @override
+  String playerCombatPending(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count changements en attente du MJ',
+      one: '1 changement en attente du MJ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get playerCombatTabMine => 'Mon personnage';
+
+  @override
+  String get playerCombatTabActions => 'Actions';
+
+  @override
+  String get playerCombatOrder => 'Ordre du tour';
+
+  @override
+  String get playerCombatYou => 'vous';
+
+  @override
+  String get playerCombatPlaying => 'joue en ce moment';
+
+  @override
+  String get playerCombatFoe => 'Adversaire';
+
+  @override
+  String playerCombatPc(String player) {
+    return 'PJ · $player';
+  }
+
+  @override
+  String get playerCombatFoesNote =>
+      'Adversaires : nom seul, ni PV ni CA. Pas de journal.';
+
+  @override
+  String get playerCombatSheet => 'Fiche complète';
+
+  @override
+  String get playerCombatEndTurn => 'Finir mon tour';
+
+  @override
+  String playerCombatBanner(String title) {
+    return 'En combat · $title';
+  }
+
+  @override
+  String get playerCombatBack => 'Revenir au combat';
+
+  @override
+  String playerCombatFrom(String name) {
+    return 'de $name · concentration';
+  }
+
+  @override
+  String get playerCombatSaveRequested => 'Jet de sauvegarde demandé';
+
+  @override
+  String playerCombatConcentrationOn(String spell, int dc) {
+    return 'Concentration sur $spell · DD $dc';
+  }
+
+  @override
+  String playerCombatDamageTaken(int damage) {
+    return 'Vous avez subi $damage dégâts';
+  }
+
+  @override
+  String get playerCombatRollNote =>
+      'Le résultat part chez le MJ, qui peut aussi le saisir pour vous.';
+
+  @override
+  String get playerCombatSend => 'Envoyer au MJ';
+
+  @override
+  String get playerCombatHpField => 'Points de vie';
+
+  @override
   String get combatHideFromPlayers => 'Masquer aux joueurs';
 
   @override

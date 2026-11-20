@@ -1,6 +1,8 @@
 // Vue du combat du joueur (US-36, EF-VJ-02 à 04) : ce que l'appareil du MJ
 // publie, sans journal, ni Étude, ni PV ou CA des adversaires, ni
 // adversaires masqués (EF-VJ-03, EF-ACT-07).
+import 'dart:math';
+
 import 'combat.dart';
 
 /// État de santé qualitatif d'un PJ (EF-TAB-09), et sa chute.
@@ -37,7 +39,14 @@ Map<String, Object?> playerCombatView(CombatState state) {
           'label': ?i.label,
           'levels': i.levels,
           'duration': i.duration.kind.code,
-          'rounds': ?i.duration.rounds,
+          // Rounds restants, comme sur la puce du MJ.
+          'rounds': ?switch (i.duration.rounds) {
+            final rounds? => max(1, i.round + rounds - state.round),
+            null => null,
+          },
+          'of': ?state.combatant(i.duration.combatant ?? '')?.label,
+          'ability': ?i.duration.ability,
+          'dc': ?i.duration.dc,
           'concentration': ?switch (i.concentration) {
             final caster? => state.combatant(caster)?.label,
             null => null,
@@ -111,7 +120,10 @@ int? turnsUntil(Map<String, Object?> view, String character) {
 /// fiche [character] (US-36, EF-VJ-05, 06). La demande ne vise que son PJ :
 /// - `damage` (`amount`, `type`), `heal` et `temp_hp` (`amount` > 0) ;
 /// - `death_save` (`outcome`), s'il est à terre et instable ;
-/// - `concentration_check` (`success`), si un test est en attente.
+/// - `concentration_check` (`success`), si un test est en attente ;
+/// - `concentration_started` (`spell`, son nom) et `concentration_ended`,
+///   s'il est concentré ;
+/// - `turn_advanced`, si c'est son tour.
 ///
 /// Tout le reste, ou une demande dépassée par l'état du MJ, ne donne rien :
 /// la version du MJ prime.
@@ -128,6 +140,10 @@ List<(CombatEventType, Map<String, Object?>)> requestEvents(
   if (c == null) return const [];
   final amount = switch (payload['amount']) {
     final int n when n > 0 => n,
+    _ => null,
+  };
+  final spell = switch (payload['spell']) {
+    final String s when s.isNotEmpty => s,
     _ => null,
   };
   final event = switch ((type, amount)) {
@@ -168,6 +184,18 @@ List<(CombatEventType, Map<String, Object?>)> requestEvents(
         CombatEventType.concentrationCheck,
         {'combatant': c.id, 'success': payload['success']},
       ),
+    ('concentration_started', _) when spell != null => (
+      CombatEventType.concentrationStarted,
+      {'combatant': c.id, 'spell': spell},
+    ),
+    ('concentration_ended', _) when c.concentration != null => (
+      CombatEventType.concentrationEnded,
+      {'combatant': c.id},
+    ),
+    ('turn_advanced', _) when state.active == c.unit => (
+      CombatEventType.turnAdvanced,
+      <String, Object?>{},
+    ),
     _ => null,
   };
   if (event == null) return const [];
@@ -177,3 +205,12 @@ List<(CombatEventType, Map<String, Object?>)> requestEvents(
 }
 
 const _deathOutcomes = {'success', 'failure', 'nat1', 'nat20'};
+
+/// Issue d'un jet contre la mort pour le d20 [d20] (SRD) : 1 compte deux
+/// échecs, 20 rend 1 PV, 10 ou plus est une réussite.
+String deathSaveOutcome(int d20) => switch (d20) {
+  1 => 'nat1',
+  20 => 'nat20',
+  >= 10 => 'success',
+  _ => 'failure',
+};

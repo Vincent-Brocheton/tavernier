@@ -5,9 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 
+import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
 import '../creation/details_step.dart';
 import '../creation/step_layout.dart';
+import '../encounters/player_combat.dart';
 import '../l10n/app_localizations.dart';
 import 'combat_tab.dart';
 import 'conflicts.dart';
@@ -35,18 +37,36 @@ final playStateProvider = FutureProvider.autoDispose.family<PlayState, String>(
 
 const _tabCount = 7;
 
-/// Fiche d'un personnage [2a], [2c].
-class SheetPage extends ConsumerWidget {
+/// Fiche d'un personnage [2a], [2c]. Le joueur dont le PJ est en combat
+/// voit d'abord l'écran « En combat » (US-36, EF-VJ-01).
+class SheetPage extends ConsumerStatefulWidget {
   const SheetPage({super.key, required this.id});
 
   final String id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SheetPage> createState() => _SheetPageState();
+}
+
+class _SheetPageState extends ConsumerState<SheetPage> {
+  /// « Fiche complète » choisi pendant le combat.
+  bool _sheetChosen = false;
+
+  String get id => widget.id;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final content = ref.watch(contentProvider).asData?.value;
     final character = ref.watch(characterProvider(id));
     final exhaustion =
         ref.watch(playStateProvider(id)).asData?.value.exhaustion ?? 0;
+    final view = ref.watch(characterCombatProvider(id)).value;
+    final inCombat = isMyCombat(
+      view,
+      id,
+      ref.watch(currentUserProvider).value?.id,
+    );
     return Scaffold(
       body: SafeArea(
         child: switch ((content, character)) {
@@ -56,12 +76,47 @@ class SheetPage extends ConsumerWidget {
             editable:
                 (ref.watch(sheetEditableProvider(id)).value ?? false) &&
                 exhaustion < exhaustionDeath,
-            child: _Sheet(
-              id: id,
-              content: content,
-              character: character,
-              exhaustion: exhaustion,
-            ),
+            child: inCombat && !_sheetChosen
+                ? PlayerCombatScreen(
+                    id: id,
+                    content: content,
+                    character: character,
+                    sheet: computeSheet(
+                      character,
+                      content,
+                      exhaustion: exhaustion,
+                    ),
+                    view: view!,
+                    onSheet: () => setState(() => _sheetChosen = true),
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (inCombat)
+                        MaterialBanner(
+                          content: Text(
+                            l10n.playerCombatBanner(
+                              (view!.payload['title'] as String?) ?? '',
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  setState(() => _sheetChosen = false),
+                              child: Text(l10n.playerCombatBack),
+                            ),
+                          ],
+                        ),
+                      Expanded(
+                        child: _Sheet(
+                          id: id,
+                          content: content,
+                          character: character,
+                          exhaustion: exhaustion,
+                        ),
+                      ),
+                    ],
+                  ),
           ),
           (_, AsyncData(value: null)) ||
           (_, AsyncError()) => const CharacterNotFound(),

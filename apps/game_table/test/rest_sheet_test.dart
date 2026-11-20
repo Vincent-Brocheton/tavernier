@@ -77,6 +77,7 @@ Future<void> _open(
       overrides: [
         contentProvider.overrideWith((ref) => _content),
         characterStoreProvider.overrideWith((ref) => _store),
+        databaseProvider.overrideWith((ref) => database),
       ],
       child: MaterialApp.router(
         theme: AppTheme.dark,
@@ -100,9 +101,18 @@ Future<void> _rest(WidgetTester tester, String label) async {
   await tester.pumpAndSettle();
 }
 
+/// Démonte l'app avant la fin : drift ferme par un minuteur ses requêtes
+/// observées (dont la vue du combat que suit la fiche).
+void _test(String description, Future<void> Function(WidgetTester) body) =>
+    testWidgets(description, (tester) async {
+      await body(tester);
+      await tester.pumpWidget(const SizedBox());
+      await tester.pump(const Duration(seconds: 1));
+    });
+
 void main() {
   // Guerrier 3 : 10 + 2 × 6 + 3 × 2 = 28 PV, 3 d10.
-  testWidgets('PV actuels modifiables', (tester) async {
+  _test('PV actuels modifiables', (tester) async {
     await _open(tester, const PlayState());
     expect(find.text('PV 28 / 28'), findsOneWidget);
     await tester.tap(find.byTooltip('Perdre 1 PV'));
@@ -111,7 +121,7 @@ void main() {
     expect((await _saved(tester)).hpCurrent, 27);
   });
 
-  testWidgets('repos court : un dé saisi', (tester) async {
+  _test('repos court : un dé saisi', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
     expect(find.text('restants : 3 / 3 d10'), findsOneWidget);
@@ -128,7 +138,7 @@ void main() {
     expect(state.usedOf(hitDieResource('d10')), 1);
   });
 
-  testWidgets('jet hors du dé : refusé', (tester) async {
+  _test('jet hors du dé : refusé', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
     await tester.enterText(find.byType(TextField), '11');
@@ -139,7 +149,7 @@ void main() {
     expect(button.onPressed, isNull);
   });
 
-  testWidgets('lancer un dé : soigne', (tester) async {
+  _test('lancer un dé : soigne', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
     await tester.tap(find.widgetWithText(OutlinedButton, 'Lancer'));
@@ -149,7 +159,7 @@ void main() {
     expect(find.text('restants : 2 / 3 d10'), findsOneWidget);
   });
 
-  testWidgets('annuler : rien ne change', (tester) async {
+  _test('annuler : rien ne change', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10));
     await _rest(tester, 'Repos court');
     await tester.tap(find.widgetWithText(OutlinedButton, 'Lancer'));
@@ -163,7 +173,7 @@ void main() {
     expect(state.used, isEmpty);
   });
 
-  testWidgets('repos court : ressource récupérée', (tester) async {
+  _test('repos court : ressource récupérée', (tester) async {
     await _open(tester, const PlayState(used: {_secondWind: 2}));
     await _rest(tester, 'Repos court');
     expect(find.text('Second souffle'), findsOneWidget);
@@ -173,7 +183,7 @@ void main() {
     expect((await _saved(tester)).usedOf(_secondWind), 1);
   });
 
-  testWidgets('0 PV : repos bloqué', (tester) async {
+  _test('0 PV : repos bloqué', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 0));
     await _rest(tester, 'Repos long');
     expect(find.text('Il faut au moins 1 PV pour se reposer.'), findsOneWidget);
@@ -183,7 +193,7 @@ void main() {
     expect(button.onPressed, isNull);
   });
 
-  testWidgets('repos long [P13]', (tester) async {
+  _test('repos long [P13]', (tester) async {
     await _open(
       tester,
       PlayState(
@@ -207,7 +217,7 @@ void main() {
     expect(state.concentrationSpellId, isNull);
   });
 
-  testWidgets('ressource dépensée depuis Aptitudes', (tester) async {
+  _test('ressource dépensée depuis Aptitudes', (tester) async {
     await _open(tester, const PlayState());
     await tester.tap(find.text('Aptitudes'));
     await tester.pumpAndSettle();
@@ -222,7 +232,7 @@ void main() {
     expect((await _saved(tester)).usedOf(_secondWind), 1);
   });
 
-  testWidgets('Inspiration : recevoir puis utiliser', (tester) async {
+  _test('Inspiration : recevoir puis utiliser', (tester) async {
     await _open(tester, const PlayState());
     expect(find.text('Pas d’Inspiration héroïque'), findsOneWidget);
     await tester.tap(find.text('Recevoir'));
@@ -233,19 +243,19 @@ void main() {
     expect((await _saved(tester)).heroicInspiration, isFalse);
   });
 
-  testWidgets('repos long d\'un humain : Inspiration obtenue', (tester) async {
+  _test('repos long d\'un humain : Inspiration obtenue', (tester) async {
     await _open(tester, const PlayState());
     await _rest(tester, 'Repos long');
     expect(find.text('Obtenue'), findsOneWidget);
   });
 
-  testWidgets('format téléphone', (tester) async {
+  _test('format téléphone', (tester) async {
     await _open(tester, const PlayState(hpCurrent: 10), width: 390);
     await _rest(tester, 'Repos court');
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Épuisement 2 [F3a] : puce et Vitesse 6 m', (tester) async {
+  _test('Épuisement 2 [F3a] : puce et Vitesse 6 m', (tester) async {
     await _open(tester, const PlayState(exhaustion: 2));
     expect(
       find.text('Épuisement 2 · −4 aux tests d20 · Vitesse −3 m'),
@@ -258,7 +268,7 @@ void main() {
     expect(find.text('7,50 m'), findsOneWidget);
   });
 
-  testWidgets('Épuisement 6 [F3b] : confirmation, mort, puis annulée', (
+  _test('Épuisement 6 [F3b] : confirmation, mort, puis annulée', (
     tester,
   ) async {
     await _open(tester, const PlayState(exhaustion: 5));

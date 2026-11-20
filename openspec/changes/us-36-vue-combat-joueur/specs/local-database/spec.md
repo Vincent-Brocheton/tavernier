@@ -25,7 +25,7 @@ Chaque version du schéma SHALL être figée dans un instantané versionné ; un
 ## ADDED Requirements
 
 ### Requirement: Vue du combat et demandes en base
-`CombatViewStore` SHALL publier la vue d'une rencontre (sans la réécrire si elle n'a pas changé), la suivre et la retirer. `CombatRequestStore` SHALL envoyer une demande, suivre celles d'une rencontre dans l'ordre d'envoi et retirer une demande appliquée. Sous PowerSync, ces tables SHALL être synchronisées.
+`CombatViewStore` SHALL publier la vue d'une rencontre (sans la réécrire si elle n'a pas changé), la suivre, suivre la plus récente où figure un PJ, et la retirer. `CombatRequestStore` SHALL envoyer une demande, suivre celles d'une rencontre dans l'ordre d'envoi et retirer une demande appliquée. Sous PowerSync, ces tables SHALL être synchronisées.
 
 #### Scenario: Vue inchangée
 - **WHEN** la même vue est publiée deux fois
@@ -34,3 +34,8 @@ Chaque version du schéma SHALL être figée dans un instantané versionné ; un
 #### Scenario: Demandes dans l'ordre
 - **WHEN** Hugo envoie des dégâts puis des soins
 - **THEN** ils se lisent dans cet ordre, et un retrait n'enlève que la demande visée
+
+#### Scenario: Vue d'un PJ
+- **WHEN** deux vues sont publiées, l'une avec Aldric, l'autre avec Thalia
+- **THEN** la vue suivie pour Aldric est la première, et Mira n'en a aucune
+

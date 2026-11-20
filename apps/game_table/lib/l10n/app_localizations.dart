@@ -7056,6 +7056,192 @@ abstract class AppLocalizations {
   /// **'{remaining} / {max}'**
   String combatRemaining(int remaining, int max);
 
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} · round {round}'**
+  String playerCombatTitle(String title, int round);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'dernier état connu {time}'**
+  String playerCombatLastKnown(String time);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tour : {name}'**
+  String playerCombatTurnOf(String name);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{vous jouez au prochain tour} other{vous jouez dans {count} tours}}'**
+  String playerCombatIn(int count);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'C’est votre tour'**
+  String get playerCombatYourTurn;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Initiative en cours'**
+  String get playerCombatNotStarted;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Action'**
+  String get economyAction;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Réaction'**
+  String get economyReaction;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déplacement'**
+  String get economyMove;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors-ligne : dites vos changements au MJ. Ils partiront à la reconnexion ; si le MJ a modifié la même valeur, sa version prime.'**
+  String get playerCombatOffline;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’ordre du tour et les états des autres combattants ne se mettent plus à jour sans réseau.'**
+  String get playerCombatOfflineOrder;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 changement en attente du MJ} other{{count} changements en attente du MJ}}'**
+  String playerCombatPending(int count);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon personnage'**
+  String get playerCombatTabMine;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Actions'**
+  String get playerCombatTabActions;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordre du tour'**
+  String get playerCombatOrder;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'vous'**
+  String get playerCombatYou;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'joue en ce moment'**
+  String get playerCombatPlaying;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Adversaire'**
+  String get playerCombatFoe;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PJ · {player}'**
+  String playerCombatPc(String player);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Adversaires : nom seul, ni PV ni CA. Pas de journal.'**
+  String get playerCombatFoesNote;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiche complète'**
+  String get playerCombatSheet;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Finir mon tour'**
+  String get playerCombatEndTurn;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'En combat · {title}'**
+  String playerCombatBanner(String title);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenir au combat'**
+  String get playerCombatBack;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'de {name} · concentration'**
+  String playerCombatFrom(String name);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet de sauvegarde demandé'**
+  String get playerCombatSaveRequested;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Concentration sur {spell} · DD {dc}'**
+  String playerCombatConcentrationOn(String spell, int dc);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez subi {damage} dégâts'**
+  String playerCombatDamageTaken(int damage);
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le résultat part chez le MJ, qui peut aussi le saisir pour vous.'**
+  String get playerCombatRollNote;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer au MJ'**
+  String get playerCombatSend;
+
+  /// Écran « En combat » du joueur (US-36, [J1] à [J3]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Points de vie'**
+  String get playerCombatHpField;
+
   /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
   ///
   /// In fr, this message translates to:
