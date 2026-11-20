@@ -82,8 +82,9 @@ create policy combat_request_delete on public.combat_request for delete
 to authenticated using (public.is_table_gm(table_id));
 
 -- La demande vise une rencontre de sa table.
+-- En `security definer` : le joueur ne lit pas les rencontres (RLS du MJ).
 create function public.guard_combat_request() returns trigger
-language plpgsql set search_path = ''
+language plpgsql security definer set search_path = ''
 as $$
 begin
   if not exists (
