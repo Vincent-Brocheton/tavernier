@@ -25,6 +25,9 @@ enum CombatEventType {
   concentrationEnded('concentration_ended'),
   initiativeSwapped('initiative_swapped'),
 
+  /// Adversaire masqué aux joueurs, ou rendu visible (US-36, EF-VJ-03).
+  combatantHidden('combatant_hidden'),
+
   /// Traces des assistants du MJ (US-24) : lues par le journal, sans effet
   /// sur l'état du combat.
   study('study'),
@@ -309,6 +312,9 @@ final class Combatant {
   final Map<String, int> saves;
 
   final List<ConditionInstance> _conditions = [];
+
+  /// Masqué aux joueurs (EF-VJ-03) : visible par défaut.
+  bool hidden = false;
 
   /// Attitude envers le groupe (`friendly`, `indifferent`, `hostile`) :
   /// Indifférent par défaut (SRD), puis celle de sa dernière Influence.
@@ -849,6 +855,9 @@ CombatState _project(
         if (chosen case final order?) {
           chosen = [for (final u in order) u == ua ? ub : (u == ub ? ua : u)];
         }
+      case CombatEventType.combatantHidden:
+        find(p['combatant']! as String)?.hidden =
+            (p['hidden'] as bool?) ?? true;
       case CombatEventType.influence:
         if ((find((p['target'] as String?) ?? ''), p['attitude']) case (
           final c?,

@@ -295,6 +295,10 @@ final class JournalPhrases {
       CombatEventType.concentrationEnded => l10n.journalConcentrationEnded(
         _name(p['combatant']),
       ),
+      CombatEventType.combatantHidden =>
+        p['hidden'] == false
+            ? l10n.journalShown(_name(p['combatant']))
+            : l10n.journalHidden(_name(p['combatant'])),
       CombatEventType.initiativeSwapped => l10n.journalSwapped(
         _name(p['combatant']),
         _name(p['with']),

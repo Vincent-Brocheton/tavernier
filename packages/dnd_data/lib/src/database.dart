@@ -75,6 +75,8 @@ part 'database.g.dart';
     Encounters,
     EncounterGroups,
     EncounterEvents,
+    CombatViews,
+    CombatRequests,
     Notes,
     AuthorIdentities,
   ],
@@ -102,7 +104,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -119,6 +121,12 @@ class TavernierDatabase extends _$TavernierDatabase {
     onUpgrade: (m, from, to) async {
       // v2 (US-24) : tables d'une règle.
       if (from < 2) await m.addColumn(ruleTerms, ruleTerms.data);
+      // v3 (US-36) : vue du combat et demandes des joueurs. Avec PowerSync,
+      // ce sont des vues qu'il crée lui-même.
+      if (from < 3 && !syncedTablesByPowerSync) {
+        await m.createTable(combatViews);
+        await m.createTable(combatRequests);
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

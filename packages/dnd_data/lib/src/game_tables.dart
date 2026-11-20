@@ -441,6 +441,33 @@ class EncounterEvents extends Table with IdKey, TableOwned {
   DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
+/// Vue du combat pour les joueurs (US-36) : publiée par l'appareil du MJ,
+/// une par rencontre (son identifiant est celui de la rencontre).
+@DataClassName('CombatViewRow')
+class CombatViews extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'combat_view';
+  TextColumn get payload => text().withDefault(const Constant('{}'))(); // JSON
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+}
+
+/// Demande d'un joueur pour son PJ (US-36, EF-VJ-05, 06) : l'appareil du MJ
+/// l'applique au journal.
+@DataClassName('CombatRequestRow')
+class CombatRequests extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'combat_request';
+
+  /// Pas de clé étrangère : `encounter` et `character` sont des vues
+  /// PowerSync.
+  TextColumn get encounterId => text()();
+  TextColumn get characterId => text()();
+  TextColumn get authorUserId => text().nullable()();
+  TextColumn get type => text()();
+  TextColumn get payload => text().withDefault(const Constant('{}'))(); // JSON
+  DateTimeColumn get createdAt => dateTime().nullable()();
+}
+
 @DataClassName('NoteRow')
 class Notes extends Table with IdKey {
   @override

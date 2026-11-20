@@ -77,6 +77,9 @@ insert into encounter_group (id, encounter_id, table_id, kind, ref_id, quantity)
   values ('g1', 'r1', 't1', 'monster', 'srd:monster:veteran', 2);
 insert into encounter_event (id, encounter_id, table_id, author_user_id, type)
   values ('j1', 'r1', 't1', '${id[mj]}', 'combat_started');
+insert into combat_view (id, table_id, payload) values ('r1', 't1', '{}');
+insert into combat_request (id, encounter_id, table_id, character_id,
+  author_user_id, type) values ('q1', 'r1', 't1', 'c1', '${id[joueur1]}', 'heal');
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -114,7 +117,7 @@ expect() {
 profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
 table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
   table_activity/a1 pc_slot/e1 character_summary/c1
-  session/se1 session_attendance/se1:c1)
+  session/se1 session_attendance/se1:c1 combat_view/r1)
 c1=(character/c1 character_state/s1 character_item/o1)
 # La proposition faite à joueur1 : à lui et au MJ seulement.
 proposal=(character_proposal/x1)
@@ -123,9 +126,9 @@ c2=(character/c2 character_state/s2)
 expect mj "le MJ reçoit sa table, ses invitations, toutes les fiches et ses PNJ" \
   "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}" \
   character/n1 npc_statblock/pnj1 encounter/r1 encounter_group/g1 \
-  encounter_event/j1
+  encounter_event/j1 combat_request/q1
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
-  "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}"
+  "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}" combat_request/q1
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \
   "${profiles[@]}" "${table[@]}" "${c2[@]}"
 expect inconnu "un inconnu ne reçoit que son profil" "profile/${id[inconnu]}"

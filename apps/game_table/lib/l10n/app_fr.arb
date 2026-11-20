@@ -5314,5 +5314,9 @@
   "summaryShow": "Résumé de la rencontre",
   "@summaryShow": {"description": "Rencontre terminée : ouvre le résumé."},
   "journalFinished": "Rencontre close : {xp} PX",
-  "@journalFinished": {"description": "Journal : clôture.", "placeholders": {"xp": {"type": "String"}}}
+  "@journalFinished": {"description": "Journal : clôture.", "placeholders": {"xp": {"type": "String"}}},
+  "journalHidden": "{name} : masqué aux joueurs",
+  "@journalHidden": {"description": "Journal (US-36, EF-VJ-03).", "placeholders": {"name": {"type": "String"}}},
+  "journalShown": "{name} : visible des joueurs",
+  "@journalShown": {"description": "Journal (US-36, EF-VJ-03).", "placeholders": {"name": {"type": "String"}}}
 }

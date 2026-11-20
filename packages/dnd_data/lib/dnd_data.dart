@@ -3,6 +3,7 @@ library;
 
 export 'src/character_store.dart';
 export 'src/combat_store.dart';
+export 'src/combat_view_store.dart';
 export 'src/content_tables.dart';
 export 'src/database.dart';
 export 'src/encounter_store.dart';

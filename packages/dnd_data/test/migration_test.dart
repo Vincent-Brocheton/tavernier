@@ -35,8 +35,8 @@ List<String> _structure(Iterable<Map<String, Object?>> rows) => [
 ];
 
 void main() {
-  test("le schéma du code est celui de l'instantané v2", () async {
-    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(2);
+  test("le schéma du code est celui de l'instantané v3", () async {
+    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(3);
     addTearDown(snapshot.rawDatabase.close);
     final expected = _structure(snapshot.rawDatabase.select(_structureQuery));
 
@@ -46,16 +46,19 @@ void main() {
       for (final row in await db.customSelect(_structureQuery).get()) row.data,
     ]);
 
-    expect(db.schemaVersion, 2);
+    expect(db.schemaVersion, 3);
     expect(actual, expected);
   });
 
-  // v2 (US-24) : `rule_term.data`, les tables d'une règle.
-  test('une base v1 monte en v2', () async {
-    final verifier = SchemaVerifier(GeneratedHelper());
-    final schema = await verifier.schemaAt(1);
-    final db = TavernierDatabase(schema.newConnection());
-    addTearDown(db.close);
-    await verifier.migrateAndValidate(db, 2);
-  });
+  // v2 (US-24) : `rule_term.data`, les tables d'une règle ; v3 (US-36) :
+  // `combat_view` et `combat_request`.
+  for (final (from, to) in [(1, 2), (1, 3), (2, 3)]) {
+    test('une base v$from monte en v$to', () async {
+      final verifier = SchemaVerifier(GeneratedHelper());
+      final schema = await verifier.schemaAt(from);
+      final db = TavernierDatabase(schema.newConnection());
+      addTearDown(db.close);
+      await verifier.migrateAndValidate(db, to);
+    });
+  }
 }

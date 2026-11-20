@@ -29477,6 +29477,844 @@ class EncounterEventsCompanion extends UpdateCompanion<EncounterEventRow> {
   }
 }
 
+class $CombatViewsTable extends CombatViews
+    with TableInfo<$CombatViewsTable, CombatViewRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CombatViewsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _payloadMeta = const VerificationMeta(
+    'payload',
+  );
+  @override
+  late final GeneratedColumn<String> payload = GeneratedColumn<String>(
+    'payload',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, tableId, payload, updatedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'combat_view';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CombatViewRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('payload')) {
+      context.handle(
+        _payloadMeta,
+        payload.isAcceptableOrUnknown(data['payload']!, _payloadMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CombatViewRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CombatViewRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      payload: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}payload'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      ),
+    );
+  }
+
+  @override
+  $CombatViewsTable createAlias(String alias) {
+    return $CombatViewsTable(attachedDatabase, alias);
+  }
+}
+
+class CombatViewRow extends DataClass implements Insertable<CombatViewRow> {
+  final String id;
+  final String tableId;
+  final String payload;
+  final DateTime? updatedAt;
+  const CombatViewRow({
+    required this.id,
+    required this.tableId,
+    required this.payload,
+    this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['payload'] = Variable<String>(payload);
+    if (!nullToAbsent || updatedAt != null) {
+      map['updated_at'] = Variable<DateTime>(updatedAt);
+    }
+    return map;
+  }
+
+  CombatViewsCompanion toCompanion(bool nullToAbsent) {
+    return CombatViewsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      payload: Value(payload),
+      updatedAt: updatedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updatedAt),
+    );
+  }
+
+  factory CombatViewRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CombatViewRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      payload: serializer.fromJson<String>(json['payload']),
+      updatedAt: serializer.fromJson<DateTime?>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'payload': serializer.toJson<String>(payload),
+      'updatedAt': serializer.toJson<DateTime?>(updatedAt),
+    };
+  }
+
+  CombatViewRow copyWith({
+    String? id,
+    String? tableId,
+    String? payload,
+    Value<DateTime?> updatedAt = const Value.absent(),
+  }) => CombatViewRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    payload: payload ?? this.payload,
+    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+  );
+  CombatViewRow copyWithCompanion(CombatViewsCompanion data) {
+    return CombatViewRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      payload: data.payload.present ? data.payload.value : this.payload,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CombatViewRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('payload: $payload, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, tableId, payload, updatedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CombatViewRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.payload == this.payload &&
+          other.updatedAt == this.updatedAt);
+}
+
+class CombatViewsCompanion extends UpdateCompanion<CombatViewRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> payload;
+  final Value<DateTime?> updatedAt;
+  final Value<int> rowid;
+  const CombatViewsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.payload = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CombatViewsCompanion.insert({
+    required String id,
+    required String tableId,
+    this.payload = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId);
+  static Insertable<CombatViewRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? payload,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (payload != null) 'payload': payload,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CombatViewsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? payload,
+    Value<DateTime?>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return CombatViewsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      payload: payload ?? this.payload,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (payload.present) {
+      map['payload'] = Variable<String>(payload.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CombatViewsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('payload: $payload, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CombatRequestsTable extends CombatRequests
+    with TableInfo<$CombatRequestsTable, CombatRequestRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CombatRequestsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _encounterIdMeta = const VerificationMeta(
+    'encounterId',
+  );
+  @override
+  late final GeneratedColumn<String> encounterId = GeneratedColumn<String>(
+    'encounter_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
+    'authorUserId',
+  );
+  @override
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _payloadMeta = const VerificationMeta(
+    'payload',
+  );
+  @override
+  late final GeneratedColumn<String> payload = GeneratedColumn<String>(
+    'payload',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    encounterId,
+    characterId,
+    authorUserId,
+    type,
+    payload,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'combat_request';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<CombatRequestRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('encounter_id')) {
+      context.handle(
+        _encounterIdMeta,
+        encounterId.isAcceptableOrUnknown(
+          data['encounter_id']!,
+          _encounterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_encounterIdMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_characterIdMeta);
+    }
+    if (data.containsKey('author_user_id')) {
+      context.handle(
+        _authorUserIdMeta,
+        authorUserId.isAcceptableOrUnknown(
+          data['author_user_id']!,
+          _authorUserIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('payload')) {
+      context.handle(
+        _payloadMeta,
+        payload.isAcceptableOrUnknown(data['payload']!, _payloadMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  CombatRequestRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return CombatRequestRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      encounterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}encounter_id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      )!,
+      authorUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_user_id'],
+      ),
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      payload: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}payload'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
+    );
+  }
+
+  @override
+  $CombatRequestsTable createAlias(String alias) {
+    return $CombatRequestsTable(attachedDatabase, alias);
+  }
+}
+
+class CombatRequestRow extends DataClass
+    implements Insertable<CombatRequestRow> {
+  final String id;
+  final String tableId;
+
+  /// Pas de clé étrangère : `encounter` et `character` sont des vues
+  /// PowerSync.
+  final String encounterId;
+  final String characterId;
+  final String? authorUserId;
+  final String type;
+  final String payload;
+  final DateTime? createdAt;
+  const CombatRequestRow({
+    required this.id,
+    required this.tableId,
+    required this.encounterId,
+    required this.characterId,
+    this.authorUserId,
+    required this.type,
+    required this.payload,
+    this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['encounter_id'] = Variable<String>(encounterId);
+    map['character_id'] = Variable<String>(characterId);
+    if (!nullToAbsent || authorUserId != null) {
+      map['author_user_id'] = Variable<String>(authorUserId);
+    }
+    map['type'] = Variable<String>(type);
+    map['payload'] = Variable<String>(payload);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
+    return map;
+  }
+
+  CombatRequestsCompanion toCompanion(bool nullToAbsent) {
+    return CombatRequestsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      encounterId: Value(encounterId),
+      characterId: Value(characterId),
+      authorUserId: authorUserId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorUserId),
+      type: Value(type),
+      payload: Value(payload),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+    );
+  }
+
+  factory CombatRequestRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return CombatRequestRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      encounterId: serializer.fromJson<String>(json['encounterId']),
+      characterId: serializer.fromJson<String>(json['characterId']),
+      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
+      type: serializer.fromJson<String>(json['type']),
+      payload: serializer.fromJson<String>(json['payload']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'encounterId': serializer.toJson<String>(encounterId),
+      'characterId': serializer.toJson<String>(characterId),
+      'authorUserId': serializer.toJson<String?>(authorUserId),
+      'type': serializer.toJson<String>(type),
+      'payload': serializer.toJson<String>(payload),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
+    };
+  }
+
+  CombatRequestRow copyWith({
+    String? id,
+    String? tableId,
+    String? encounterId,
+    String? characterId,
+    Value<String?> authorUserId = const Value.absent(),
+    String? type,
+    String? payload,
+    Value<DateTime?> createdAt = const Value.absent(),
+  }) => CombatRequestRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    encounterId: encounterId ?? this.encounterId,
+    characterId: characterId ?? this.characterId,
+    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
+    type: type ?? this.type,
+    payload: payload ?? this.payload,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+  );
+  CombatRequestRow copyWithCompanion(CombatRequestsCompanion data) {
+    return CombatRequestRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      encounterId: data.encounterId.present
+          ? data.encounterId.value
+          : this.encounterId,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      authorUserId: data.authorUserId.present
+          ? data.authorUserId.value
+          : this.authorUserId,
+      type: data.type.present ? data.type.value : this.type,
+      payload: data.payload.present ? data.payload.value : this.payload,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CombatRequestRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('encounterId: $encounterId, ')
+          ..write('characterId: $characterId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('type: $type, ')
+          ..write('payload: $payload, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    encounterId,
+    characterId,
+    authorUserId,
+    type,
+    payload,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CombatRequestRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.encounterId == this.encounterId &&
+          other.characterId == this.characterId &&
+          other.authorUserId == this.authorUserId &&
+          other.type == this.type &&
+          other.payload == this.payload &&
+          other.createdAt == this.createdAt);
+}
+
+class CombatRequestsCompanion extends UpdateCompanion<CombatRequestRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> encounterId;
+  final Value<String> characterId;
+  final Value<String?> authorUserId;
+  final Value<String> type;
+  final Value<String> payload;
+  final Value<DateTime?> createdAt;
+  final Value<int> rowid;
+  const CombatRequestsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.encounterId = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.authorUserId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.payload = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  CombatRequestsCompanion.insert({
+    required String id,
+    required String tableId,
+    required String encounterId,
+    required String characterId,
+    this.authorUserId = const Value.absent(),
+    required String type,
+    this.payload = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       encounterId = Value(encounterId),
+       characterId = Value(characterId),
+       type = Value(type);
+  static Insertable<CombatRequestRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? encounterId,
+    Expression<String>? characterId,
+    Expression<String>? authorUserId,
+    Expression<String>? type,
+    Expression<String>? payload,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (encounterId != null) 'encounter_id': encounterId,
+      if (characterId != null) 'character_id': characterId,
+      if (authorUserId != null) 'author_user_id': authorUserId,
+      if (type != null) 'type': type,
+      if (payload != null) 'payload': payload,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  CombatRequestsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? encounterId,
+    Value<String>? characterId,
+    Value<String?>? authorUserId,
+    Value<String>? type,
+    Value<String>? payload,
+    Value<DateTime?>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return CombatRequestsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      encounterId: encounterId ?? this.encounterId,
+      characterId: characterId ?? this.characterId,
+      authorUserId: authorUserId ?? this.authorUserId,
+      type: type ?? this.type,
+      payload: payload ?? this.payload,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (encounterId.present) {
+      map['encounter_id'] = Variable<String>(encounterId.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (authorUserId.present) {
+      map['author_user_id'] = Variable<String>(authorUserId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (payload.present) {
+      map['payload'] = Variable<String>(payload.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CombatRequestsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('encounterId: $encounterId, ')
+          ..write('characterId: $characterId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('type: $type, ')
+          ..write('payload: $payload, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -30252,6 +31090,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $EncounterEventsTable encounterEvents = $EncounterEventsTable(
     this,
   );
+  late final $CombatViewsTable combatViews = $CombatViewsTable(this);
+  late final $CombatRequestsTable combatRequests = $CombatRequestsTable(this);
   late final $NotesTable notes = $NotesTable(this);
   late final $AuthorIdentitiesTable authorIdentities = $AuthorIdentitiesTable(
     this,
@@ -30325,6 +31165,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     encounters,
     encounterGroups,
     encounterEvents,
+    combatViews,
+    combatRequests,
     notes,
     authorIdentities,
   ];
@@ -53452,6 +54294,484 @@ typedef $$EncounterEventsTableProcessedTableManager =
       EncounterEventRow,
       PrefetchHooks Function()
     >;
+typedef $$CombatViewsTableCreateCompanionBuilder =
+    CombatViewsCompanion Function({
+      required String id,
+      required String tableId,
+      Value<String> payload,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+typedef $$CombatViewsTableUpdateCompanionBuilder =
+    CombatViewsCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String> payload,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$CombatViewsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $CombatViewsTable> {
+  $$CombatViewsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get payload => $composableBuilder(
+    column: $table.payload,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$CombatViewsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $CombatViewsTable> {
+  $$CombatViewsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get payload => $composableBuilder(
+    column: $table.payload,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CombatViewsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $CombatViewsTable> {
+  $$CombatViewsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get payload =>
+      $composableBuilder(column: $table.payload, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$CombatViewsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $CombatViewsTable,
+          CombatViewRow,
+          $$CombatViewsTableFilterComposer,
+          $$CombatViewsTableOrderingComposer,
+          $$CombatViewsTableAnnotationComposer,
+          $$CombatViewsTableCreateCompanionBuilder,
+          $$CombatViewsTableUpdateCompanionBuilder,
+          (
+            CombatViewRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CombatViewsTable,
+              CombatViewRow
+            >,
+          ),
+          CombatViewRow,
+          PrefetchHooks Function()
+        > {
+  $$CombatViewsTableTableManager(
+    _$TavernierDatabase db,
+    $CombatViewsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CombatViewsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CombatViewsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CombatViewsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> payload = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CombatViewsCompanion(
+                id: id,
+                tableId: tableId,
+                payload: payload,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                Value<String> payload = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CombatViewsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                payload: payload,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CombatViewsTable, CombatViewRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CombatViewsTable,
+                    CombatViewRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$CombatViewsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $CombatViewsTable,
+      CombatViewRow,
+      $$CombatViewsTableFilterComposer,
+      $$CombatViewsTableOrderingComposer,
+      $$CombatViewsTableAnnotationComposer,
+      $$CombatViewsTableCreateCompanionBuilder,
+      $$CombatViewsTableUpdateCompanionBuilder,
+      (
+        CombatViewRow,
+        BaseReferences<_$TavernierDatabase, $CombatViewsTable, CombatViewRow>,
+      ),
+      CombatViewRow,
+      PrefetchHooks Function()
+    >;
+typedef $$CombatRequestsTableCreateCompanionBuilder =
+    CombatRequestsCompanion Function({
+      required String id,
+      required String tableId,
+      required String encounterId,
+      required String characterId,
+      Value<String?> authorUserId,
+      required String type,
+      Value<String> payload,
+      Value<DateTime?> createdAt,
+      Value<int> rowid,
+    });
+typedef $$CombatRequestsTableUpdateCompanionBuilder =
+    CombatRequestsCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String> encounterId,
+      Value<String> characterId,
+      Value<String?> authorUserId,
+      Value<String> type,
+      Value<String> payload,
+      Value<DateTime?> createdAt,
+      Value<int> rowid,
+    });
+
+class $$CombatRequestsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $CombatRequestsTable> {
+  $$CombatRequestsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get payload => $composableBuilder(
+    column: $table.payload,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$CombatRequestsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $CombatRequestsTable> {
+  $$CombatRequestsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get payload => $composableBuilder(
+    column: $table.payload,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$CombatRequestsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $CombatRequestsTable> {
+  $$CombatRequestsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get encounterId => $composableBuilder(
+    column: $table.encounterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get payload =>
+      $composableBuilder(column: $table.payload, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$CombatRequestsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $CombatRequestsTable,
+          CombatRequestRow,
+          $$CombatRequestsTableFilterComposer,
+          $$CombatRequestsTableOrderingComposer,
+          $$CombatRequestsTableAnnotationComposer,
+          $$CombatRequestsTableCreateCompanionBuilder,
+          $$CombatRequestsTableUpdateCompanionBuilder,
+          (
+            CombatRequestRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $CombatRequestsTable,
+              CombatRequestRow
+            >,
+          ),
+          CombatRequestRow,
+          PrefetchHooks Function()
+        > {
+  $$CombatRequestsTableTableManager(
+    _$TavernierDatabase db,
+    $CombatRequestsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$CombatRequestsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$CombatRequestsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$CombatRequestsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> encounterId = const Value.absent(),
+                Value<String> characterId = const Value.absent(),
+                Value<String?> authorUserId = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<String> payload = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CombatRequestsCompanion(
+                id: id,
+                tableId: tableId,
+                encounterId: encounterId,
+                characterId: characterId,
+                authorUserId: authorUserId,
+                type: type,
+                payload: payload,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String encounterId,
+                required String characterId,
+                Value<String?> authorUserId = const Value.absent(),
+                required String type,
+                Value<String> payload = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => CombatRequestsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                encounterId: encounterId,
+                characterId: characterId,
+                authorUserId: authorUserId,
+                type: type,
+                payload: payload,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$CombatRequestsTable, CombatRequestRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $CombatRequestsTable,
+                    CombatRequestRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$CombatRequestsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $CombatRequestsTable,
+      CombatRequestRow,
+      $$CombatRequestsTableFilterComposer,
+      $$CombatRequestsTableOrderingComposer,
+      $$CombatRequestsTableAnnotationComposer,
+      $$CombatRequestsTableCreateCompanionBuilder,
+      $$CombatRequestsTableUpdateCompanionBuilder,
+      (
+        CombatRequestRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $CombatRequestsTable,
+          CombatRequestRow
+        >,
+      ),
+      CombatRequestRow,
+      PrefetchHooks Function()
+    >;
 typedef $$NotesTableCreateCompanionBuilder = NotesCompanion Function({
   required String id,
   required String ownerUserId,
@@ -54001,6 +55321,10 @@ class $TavernierDatabaseManager {
       $$EncounterGroupsTableTableManager(_db, _db.encounterGroups);
   $$EncounterEventsTableTableManager get encounterEvents =>
       $$EncounterEventsTableTableManager(_db, _db.encounterEvents);
+  $$CombatViewsTableTableManager get combatViews =>
+      $$CombatViewsTableTableManager(_db, _db.combatViews);
+  $$CombatRequestsTableTableManager get combatRequests =>
+      $$CombatRequestsTableTableManager(_db, _db.combatRequests);
   $$NotesTableTableManager get notes =>
       $$NotesTableTableManager(_db, _db.notes);
   $$AuthorIdentitiesTableTableManager get authorIdentities =>
