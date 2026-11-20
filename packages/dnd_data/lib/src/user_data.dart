@@ -11,11 +11,7 @@ const userDataVersion = 1;
 
 /// Tables des données de l'utilisateur : les synchronisées et les tables
 /// locales de jeu (M3). Les clés de pack (`author_identity`) n'y sont pas.
-List<String> userDataTables(TavernierDatabase db) => [
-  ...syncedTables,
-  for (final TableInfo<Table, Object?> table in [db.notes])
-    table.actualTableName,
-];
+List<String> userDataTables(TavernierDatabase db) => [...syncedTables];
 
 /// Export JSON des données de l'utilisateur : chaque ligne telle qu'en base,
 /// et les packs installés sans leur contenu.

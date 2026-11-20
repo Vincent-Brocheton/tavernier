@@ -26,6 +26,7 @@ const syncedTables = {
   'combat_request',
   'group_rest',
   'group_rest_done',
+  'note',
   'character_summary',
   'character',
   'character_base_scores',
@@ -70,10 +71,15 @@ final Schema powerSyncSchema = Schema([
     ),
 ]);
 
-/// Tables dont les conflits se détectent et se tracent (US-16) : la fiche et
-/// son état de jeu. Les autres tables de la fiche sont des lignes qui
+Schema _schemaWithout(String table) => Schema([
+  for (final t in powerSyncSchema.tables)
+    if (t.name != table) t,
+]);
+
+/// Tables dont les conflits se détectent et se tracent : la fiche et son
+/// état de jeu (US-16), les notes (US-26, EF-NOT-06). Les autres tables de la fiche sont des lignes qui
 /// s'ajoutent ou se retirent, sans écrasement.
-const conflictTrackedTables = {'character', 'character_state'};
+const conflictTrackedTables = {'character', 'character_state', 'note'};
 
 /// Colonnes booléennes des [syncedTables] : 0/1 en local, `true`/`false`
 /// pour Postgres.
@@ -98,8 +104,16 @@ final _syncedDriftTables = [
 /// sur le Web). La fermer ferme aussi la base PowerSync.
 TavernierDatabase openPowerSyncTavernierDatabase(Future<String> path) {
   final powerSync = path.then((p) async {
-    final db = PowerSyncDatabase(schema: powerSyncSchema, path: p);
+    // Avant la v5, `note` était une table locale : PowerSync ne peut pas
+    // poser sa vue sur elle. On ouvre sans elle, on la retire, puis on
+    // passe au schéma complet.
+    final db = PowerSyncDatabase(schema: _schemaWithout('note'), path: p);
     await db.initialize();
+    final note = await db.getOptional(
+      "SELECT type FROM sqlite_master WHERE name = 'note'",
+    );
+    if (note?['type'] == 'table') await db.execute('DROP TABLE note');
+    await db.updateSchema(powerSyncSchema);
     return db;
   });
   return TavernierDatabase(

@@ -106,7 +106,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -122,17 +122,24 @@ class TavernierDatabase extends _$TavernierDatabase {
     },
     onUpgrade: (m, from, to) async {
       // v2 (US-24) : tables d'une règle.
-      if (from < 2) await m.addColumn(ruleTerms, ruleTerms.data);
+      if (from < 2 && to >= 2) await m.addColumn(ruleTerms, ruleTerms.data);
       // v3 (US-36) : vue du combat et demandes des joueurs. Avec PowerSync,
       // ce sont des vues qu'il crée lui-même.
-      if (from < 3 && !syncedTablesByPowerSync) {
+      if (from < 3 && to >= 3 && !syncedTablesByPowerSync) {
         await m.createTable(combatViews);
         await m.createTable(combatRequests);
       }
       // v4 (US-38) : repos de groupe.
-      if (from < 4 && !syncedTablesByPowerSync) {
+      if (from < 4 && to >= 4 && !syncedTablesByPowerSync) {
         await m.createTable(groupRests);
         await m.createTable(groupRestDones);
+      }
+      // v5 (US-26) : notes synchronisées, avec titre, date et conflit. Avec
+      // PowerSync, la table locale est remplacée par sa vue à l'ouverture.
+      if (from < 5 && to >= 5 && !syncedTablesByPowerSync) {
+        await m.addColumn(notes, notes.title);
+        await m.addColumn(notes, notes.updatedAt);
+        await m.addColumn(notes, notes.conflict);
       }
     },
     beforeOpen: (details) async {

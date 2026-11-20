@@ -5,6 +5,7 @@ import 'dart:isolate';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart' show Variable;
+import 'package:powersync/powersync.dart' show PowerSyncDatabase, Schema;
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -27,9 +28,40 @@ void main() {
     for (final table in syncedTables) {
       expect(await _type(db, table), 'view', reason: table);
     }
-    for (final table in ['content_pack', 'spell', 'class_level', 'note']) {
+    for (final table in [
+      'content_pack',
+      'spell',
+      'class_level',
+      'author_identity',
+    ]) {
       expect(await _type(db, table), 'table', reason: table);
     }
+  });
+
+  test('avant la v5 : la table locale `note` cède la place à sa vue', () async {
+    final dir = await Directory.systemTemp.createTemp('tavernier');
+    final path = '${dir.path}/ancienne.db';
+    final old = PowerSyncDatabase(
+      schema: Schema([
+        for (final t in powerSyncSchema.tables)
+          if (t.name != 'note') t,
+      ]),
+      path: path,
+    );
+    await old.initialize();
+    await old.execute(
+      'CREATE TABLE note (id TEXT PRIMARY KEY, owner_user_id TEXT, '
+      'table_id TEXT, scope TEXT, ref_id TEXT, content TEXT, private INTEGER)',
+    );
+    await old.close();
+
+    final reopened = openPowerSyncTavernierDatabase(Future.value(path));
+    addTearDown(reopened.close);
+    expect(await _type(reopened, 'note'), 'view');
+    await NoteStore(
+      reopened,
+    ).create(ownerUserId: 'hugo', tableId: 't', scope: 'table', content: 'x');
+    expect(await NoteStore(reopened).watchVisible('hugo').first, hasLength(1));
   });
 
   test('écriture hors ligne : relue, et en attente dans la file', () async {

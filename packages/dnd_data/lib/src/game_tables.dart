@@ -496,6 +496,8 @@ class GroupRestDones extends Table with IdKey, TableOwned {
   DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
+/// Note (US-26, EF-NOT-01 à 06) : texte en Markdown réduit, privée par
+/// défaut, partageable avec la table en lecture seule.
 @DataClassName('NoteRow')
 class Notes extends Table with IdKey {
   @override
@@ -508,6 +510,11 @@ class Notes extends Table with IdKey {
   TextColumn get refId => text().nullable()();
   TextColumn get content => text()();
   BoolColumn get private => boolean().withDefault(const Constant(true))();
+  TextColumn get title => text().withDefault(const Constant(''))();
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+
+  /// L'autre version d'une note modifiée sur deux appareils (EF-NOT-06).
+  TextColumn get conflict => text().nullable()();
 }
 
 @DataClassName('AuthorIdentityRow')
