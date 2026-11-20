@@ -77,6 +77,8 @@ part 'database.g.dart';
     EncounterEvents,
     CombatViews,
     CombatRequests,
+    GroupRests,
+    GroupRestDones,
     Notes,
     AuthorIdentities,
   ],
@@ -104,7 +106,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -126,6 +128,11 @@ class TavernierDatabase extends _$TavernierDatabase {
       if (from < 3 && !syncedTablesByPowerSync) {
         await m.createTable(combatViews);
         await m.createTable(combatRequests);
+      }
+      // v4 (US-38) : repos de groupe.
+      if (from < 4 && !syncedTablesByPowerSync) {
+        await m.createTable(groupRests);
+        await m.createTable(groupRestDones);
       }
     },
     beforeOpen: (details) async {

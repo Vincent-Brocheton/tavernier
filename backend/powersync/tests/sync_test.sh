@@ -80,6 +80,10 @@ insert into encounter_event (id, encounter_id, table_id, author_user_id, type)
 insert into combat_view (id, table_id, payload) values ('r1', 't1', '{}');
 insert into combat_request (id, encounter_id, table_id, character_id,
   author_user_id, type) values ('q1', 'r1', 't1', 'c1', '${id[joueur1]}', 'heal');
+insert into group_rest (id, table_id, session_id, kind, characters)
+  values ('gr1', 't1', 'se1', 'short', '["c1"]');
+insert into group_rest_done (id, rest_id, table_id, character_id,
+  author_user_id) values ('gd1', 'gr1', 't1', 'c1', '${id[joueur1]}');
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -117,7 +121,8 @@ expect() {
 profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
 table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
   table_activity/a1 pc_slot/e1 character_summary/c1
-  session/se1 session_attendance/se1:c1 combat_view/r1)
+  session/se1 session_attendance/se1:c1 combat_view/r1
+  group_rest/gr1 group_rest_done/gd1)
 c1=(character/c1 character_state/s1 character_item/o1)
 # La proposition faite à joueur1 : à lui et au MJ seulement.
 proposal=(character_proposal/x1)

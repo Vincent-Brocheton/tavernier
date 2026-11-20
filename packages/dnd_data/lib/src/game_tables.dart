@@ -468,6 +468,34 @@ class CombatRequests extends Table with IdKey, TableOwned {
   DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
+/// Repos de groupe (US-38, EF-PJ-19) : déclenché par le MJ pour des PJ.
+@DataClassName('GroupRestRow')
+class GroupRests extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'group_rest';
+  TextColumn get sessionId => text().nullable()();
+
+  /// `short` ou `long`.
+  TextColumn get kind => text()();
+  TextColumn get characters => text().withDefault(const Constant('[]'))();
+  DateTimeColumn get createdAt => dateTime().nullable()();
+  DateTimeColumn get closedAt => dateTime().nullable()();
+}
+
+/// Fin d'un repos de groupe pour un PJ, avec son récapitulatif (US-38).
+@DataClassName('GroupRestDoneRow')
+class GroupRestDones extends Table with IdKey, TableOwned {
+  @override
+  String get tableName => 'group_rest_done';
+
+  /// Pas de clé étrangère : les tables visées sont des vues PowerSync.
+  TextColumn get restId => text()();
+  TextColumn get characterId => text()();
+  TextColumn get authorUserId => text().nullable()();
+  TextColumn get summary => text().withDefault(const Constant('{}'))(); // JSON
+  DateTimeColumn get createdAt => dateTime().nullable()();
+}
+
 @DataClassName('NoteRow')
 class Notes extends Table with IdKey {
   @override

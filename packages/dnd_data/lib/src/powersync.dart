@@ -24,6 +24,8 @@ const syncedTables = {
   'encounter_event',
   'combat_view',
   'combat_request',
+  'group_rest',
+  'group_rest_done',
   'character_summary',
   'character',
   'character_base_scores',

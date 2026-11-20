@@ -30,6 +30,9 @@ streams:
       # Séances et présences prévues (US-35) : à tous les membres.
       - SELECT * FROM session WHERE table_id IN mes_tables
       - SELECT * FROM session_attendance WHERE table_id IN mes_tables
+      # Repos de groupe (US-38) : le repos et qui a terminé, à tous.
+      - SELECT * FROM group_rest WHERE table_id IN mes_tables
+      - SELECT * FROM group_rest_done WHERE table_id IN mes_tables
       - SELECT * FROM table_invite WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
 
   # Une fiche : son propriétaire, le MJ de sa table, et les membres quand la
