@@ -4364,11 +4364,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get combatFinish => 'Terminer la rencontre';
 
   @override
-  String combatFinishBody(String title) {
-    return '« $title » passera « Terminée ». Le combat ne pourra plus être mené.';
-  }
-
-  @override
   String get combatCannotJoin =>
       'Un PNJ en fiche complète ne peut pas encore rejoindre un combat en cours.';
 
@@ -5108,4 +5103,122 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get journalOpen => 'Journal';
+
+  @override
+  String get summaryTitle => 'Fin de rencontre';
+
+  @override
+  String summaryRounds(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'rounds',
+      one: 'round',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get summaryXpTotal => 'PX au total';
+
+  @override
+  String summaryFallenCount(int fallen, int total) {
+    return '$fallen / $total';
+  }
+
+  @override
+  String get summaryFoesFallen => 'adversaires tombés';
+
+  @override
+  String get summaryXpTitle => 'PX gagnés';
+
+  @override
+  String summaryXpTrack(String before, String after) {
+    return '$before → $after PX';
+  }
+
+  @override
+  String summaryXpGain(String xp) {
+    return '+$xp PX';
+  }
+
+  @override
+  String get summaryXpUnit => 'PX';
+
+  @override
+  String summaryXpHelp(String total, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count personnages',
+      one: '1 personnage',
+    );
+    return '$total PX pour la rencontre, répartis entre $_temp0. Modifiable avant de clore.';
+  }
+
+  @override
+  String get summaryFallenTitle => 'Combattants tombés';
+
+  @override
+  String get summaryNobodyFell => 'Personne n’est tombé.';
+
+  @override
+  String summaryRound(int round) {
+    return 'round $round';
+  }
+
+  @override
+  String summaryKnockedOut(int round) {
+    return 'Assommé au round $round (1 PV, Inconscient)';
+  }
+
+  @override
+  String summaryPcLabel(String name) {
+    return '$name (PJ)';
+  }
+
+  @override
+  String summaryPcDown(int round) {
+    return '0 PV au round $round';
+  }
+
+  @override
+  String summaryPcStable(int round) {
+    return '0 PV au round $round · stabilisé';
+  }
+
+  @override
+  String summaryPcDead(int round) {
+    return '0 PV au round $round · mort';
+  }
+
+  @override
+  String get summaryMoments => 'Moments notés au journal';
+
+  @override
+  String summaryMoment(int round, String text) {
+    return 'R$round · $text';
+  }
+
+  @override
+  String summarySeeEvents(int count) {
+    return 'Voir les $count événements';
+  }
+
+  @override
+  String get summaryBack => 'Revenir au combat';
+
+  @override
+  String get summaryClose => 'Clore la rencontre';
+
+  @override
+  String get summaryCloseInSession => 'Clore et ranger dans la séance';
+
+  @override
+  String get summaryShow => 'Résumé de la rencontre';
+
+  @override
+  String journalFinished(String xp) {
+    return 'Rencontre close : $xp PX';
+  }
 }

@@ -321,6 +321,9 @@ final class JournalPhrases {
         (p['total'] as int?) ?? 0,
         '${p['discovery'] ?? ''}',
       ),
+      CombatEventType.encounterFinished => l10n.journalFinished(
+        formatThousands((p['xp_total'] as int?) ?? 0),
+      ),
       CombatEventType.undo => l10n.journalUndo,
     };
   }

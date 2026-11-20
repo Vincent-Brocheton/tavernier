@@ -22,6 +22,7 @@ import 'combatant_sheet.dart';
 import 'concentration.dart';
 import 'condition_sheets.dart';
 import 'damage_keypad.dart';
+import 'encounter_summary.dart';
 import 'encounters_providers.dart';
 import 'foe_picker.dart';
 import 'hp_bar.dart';
@@ -94,26 +95,9 @@ List<Widget> combatActions(
         if (action == 'add') {
           await _addCombatant(context, ref, encounter);
         } else {
-          final confirmed = await showDialog<bool>(
-            context: context,
-            builder: (dialog) => AlertDialog(
-              title: Text(l10n.combatFinish),
-              content: Text(l10n.combatFinishBody(encounter.title)),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(dialog, false),
-                  child: Text(l10n.cancel),
-                ),
-                FilledButton(
-                  onPressed: () => Navigator.pop(dialog, true),
-                  child: Text(l10n.combatFinish),
-                ),
-              ],
-            ),
-          );
-          if (confirmed != true) return;
-          await ref.read(combatStoreProvider).finish(encounter.id);
-          if (context.mounted) context.pop();
+          // Le résumé [C11] tient lieu de confirmation (EF-LOG-03).
+          final closed = await showEncounterSummary(context, encounter);
+          if (closed && context.mounted) context.pop();
         }
       },
       itemBuilder: (_) => [

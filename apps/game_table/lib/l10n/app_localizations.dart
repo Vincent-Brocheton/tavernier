@@ -6930,12 +6930,6 @@ abstract class AppLocalizations {
   /// **'Terminer la rencontre'**
   String get combatFinish;
 
-  /// Confirmation de fin de rencontre.
-  ///
-  /// In fr, this message translates to:
-  /// **'« {title} » passera « Terminée ». Le combat ne pourra plus être mené.'**
-  String combatFinishBody(String title);
-
   /// Renfort non pris en charge.
   ///
   /// In fr, this message translates to:
@@ -7978,6 +7972,162 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Journal'**
   String get journalOpen;
+
+  /// En-tête du résumé [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'Fin de rencontre'**
+  String get summaryTitle;
+
+  /// Libellé sous le nombre de rounds [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{round} other{rounds}}'**
+  String summaryRounds(int count);
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'PX au total'**
+  String get summaryXpTotal;
+
+  /// Adversaires tombés sur présents [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'{fallen} / {total}'**
+  String summaryFallenCount(int fallen, int total);
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'adversaires tombés'**
+  String get summaryFoesFallen;
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'PX gagnés'**
+  String get summaryXpTitle;
+
+  /// PX d'un PJ avant et après [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'{before} → {after} PX'**
+  String summaryXpTrack(String before, String after);
+
+  /// PX retenus d'un PJ.
+  ///
+  /// In fr, this message translates to:
+  /// **'+{xp} PX'**
+  String summaryXpGain(String xp);
+
+  /// Unité du champ de PX.
+  ///
+  /// In fr, this message translates to:
+  /// **'PX'**
+  String get summaryXpUnit;
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'{total} PX pour la rencontre, répartis entre {count, plural, =1{1 personnage} other{{count} personnages}}. Modifiable avant de clore.'**
+  String summaryXpHelp(String total, int count);
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'Combattants tombés'**
+  String get summaryFallenTitle;
+
+  /// Résumé sans chute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Personne n’est tombé.'**
+  String get summaryNobodyFell;
+
+  /// Round d'une chute [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'round {round}'**
+  String summaryRound(int round);
+
+  /// [C11] (EF-PV-06).
+  ///
+  /// In fr, this message translates to:
+  /// **'Assommé au round {round} (1 PV, Inconscient)'**
+  String summaryKnockedOut(int round);
+
+  /// PJ tombé [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} (PJ)'**
+  String summaryPcLabel(String name);
+
+  /// PJ tombé [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'0 PV au round {round}'**
+  String summaryPcDown(int round);
+
+  /// PJ tombé puis stabilisé [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'0 PV au round {round} · stabilisé'**
+  String summaryPcStable(int round);
+
+  /// PJ mort [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'0 PV au round {round} · mort'**
+  String summaryPcDead(int round);
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'Moments notés au journal'**
+  String get summaryMoments;
+
+  /// Moment noté [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'R{round} · {text}'**
+  String summaryMoment(int round, String text);
+
+  /// Ouvre le journal [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir les {count} événements'**
+  String summarySeeEvents(int count);
+
+  /// [C11].
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenir au combat'**
+  String get summaryBack;
+
+  /// Clôture sans séance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clore la rencontre'**
+  String get summaryClose;
+
+  /// Clôture [C11] (EF-LOG-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'Clore et ranger dans la séance'**
+  String get summaryCloseInSession;
+
+  /// Rencontre terminée : ouvre le résumé.
+  ///
+  /// In fr, this message translates to:
+  /// **'Résumé de la rencontre'**
+  String get summaryShow;
+
+  /// Journal : clôture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontre close : {xp} PX'**
+  String journalFinished(String xp);
 }
 
 class _AppLocalizationsDelegate

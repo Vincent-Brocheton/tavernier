@@ -15,6 +15,7 @@ import '../npcs/npcs_providers.dart';
 import '../sessions/sessions_providers.dart';
 import '../tables/tables_providers.dart';
 import 'combat_page.dart';
+import 'encounter_summary.dart';
 import 'encounters_providers.dart';
 import 'foe_picker.dart';
 
@@ -145,7 +146,15 @@ class EncounterPage extends ConsumerWidget {
                     icon: const Icon(Icons.play_arrow),
                     label: Text(l10n.encounterResume),
                   ),
-                  EncounterStatus.finished => const SizedBox.shrink(),
+                  EncounterStatus.finished => OutlinedButton.icon(
+                    onPressed: () => showEncounterSummary(
+                      context,
+                      encounter,
+                      readOnly: true,
+                    ),
+                    icon: const Icon(Icons.summarize_outlined),
+                    label: Text(l10n.summaryShow),
+                  ),
                 },
               ),
             )

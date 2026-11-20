@@ -7,4 +7,7 @@
 
 ## 2. Lot b : résumé de fin
 
-- [ ] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.1 Specs et design du lot b
+- [x] 2.2 Tests puis `summarizeEncounter` (rounds, chutes et rounds, PJ tombés, PX des adversaires présents, moments), `encounter_finished`
+- [x] 2.3 Tests de widgets puis page de fin [C11], clôture, résumé d'une rencontre terminée ; ARB
+- [x] 2.4 Suite complète, revue, PR du lot b
