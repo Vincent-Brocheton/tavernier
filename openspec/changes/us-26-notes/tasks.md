@@ -6,4 +6,5 @@
 
 ## 2. Lot b : écrans
 
-- [ ] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.2 Suite complète, revue, PR du lot b

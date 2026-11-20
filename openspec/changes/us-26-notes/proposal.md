@@ -59,3 +59,5 @@ Aucune.
 ## Hors périmètre
 
 - **Notes sans table** : le schéma les permet (`table_id` nul), mais aucun écran n'en crée.
+- **Pluriels dans la recherche** (« sceaux » pour « sceau », [N6]) : la recherche replie accents et casse, sans racinisation.
+- **Badge « En attente de synchronisation »** sur une carte ([N4]) : l'indicateur de synchronisation général le montre.

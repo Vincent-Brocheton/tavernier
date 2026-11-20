@@ -23,6 +23,15 @@
   Sans cela, PowerSync refuse de poser sa vue sur l'ancienne table locale. Elle n'a jamais été écrite par l'app.
 - **`NoteStore`** : `create` (privée), `update`, `resolve`, `delete` et `watchVisible`.
 
+## Lot b
+
+- **`notes/note_markdown.dart`** : `NoteText` (gras, puces, liens actifs avec `onLink`) et `notePlainText` (extrait et recherche).
+- **`notes/notes_view.dart`** :
+  - `NotesView` : recherche (`foldAccents`), filtres comptés, groupes (une séance par groupe, puis PNJ, rencontres, table) et « Nouvelle note » ;
+  - `SheetNotesTab` : la table de la fiche, ou un message hors table.
+- **`notes/note_editor.dart`** : `NoteEditor`, plein écran. Barre gras, liste et lien (`_LinkPicker`, sur les PNJ et rencontres de l'appareil). Partage, suppression, fusion du conflit. Lecture seule pour la note d'un autre.
+- **Branchements** : un onglet Notes sur la table du MJ, et l'onglet Notes de la fiche, qui était vide.
+
 ## Choix
 
 - **Markdown réduit** : lisible tel quel, cherchable par simple texte, exportable.
