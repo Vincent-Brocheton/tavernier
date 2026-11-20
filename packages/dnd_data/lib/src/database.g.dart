@@ -30315,6 +30315,948 @@ class CombatRequestsCompanion extends UpdateCompanion<CombatRequestRow> {
   }
 }
 
+class $GroupRestsTable extends GroupRests
+    with TableInfo<$GroupRestsTable, GroupRestRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GroupRestsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sessionIdMeta = const VerificationMeta(
+    'sessionId',
+  );
+  @override
+  late final GeneratedColumn<String> sessionId = GeneratedColumn<String>(
+    'session_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _kindMeta = const VerificationMeta('kind');
+  @override
+  late final GeneratedColumn<String> kind = GeneratedColumn<String>(
+    'kind',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _charactersMeta = const VerificationMeta(
+    'characters',
+  );
+  @override
+  late final GeneratedColumn<String> characters = GeneratedColumn<String>(
+    'characters',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _closedAtMeta = const VerificationMeta(
+    'closedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> closedAt = GeneratedColumn<DateTime>(
+    'closed_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    sessionId,
+    kind,
+    characters,
+    createdAt,
+    closedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'group_rest';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GroupRestRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('session_id')) {
+      context.handle(
+        _sessionIdMeta,
+        sessionId.isAcceptableOrUnknown(data['session_id']!, _sessionIdMeta),
+      );
+    }
+    if (data.containsKey('kind')) {
+      context.handle(
+        _kindMeta,
+        kind.isAcceptableOrUnknown(data['kind']!, _kindMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_kindMeta);
+    }
+    if (data.containsKey('characters')) {
+      context.handle(
+        _charactersMeta,
+        characters.isAcceptableOrUnknown(data['characters']!, _charactersMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('closed_at')) {
+      context.handle(
+        _closedAtMeta,
+        closedAt.isAcceptableOrUnknown(data['closed_at']!, _closedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  GroupRestRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GroupRestRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      sessionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}session_id'],
+      ),
+      kind: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}kind'],
+      )!,
+      characters: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}characters'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
+      closedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}closed_at'],
+      ),
+    );
+  }
+
+  @override
+  $GroupRestsTable createAlias(String alias) {
+    return $GroupRestsTable(attachedDatabase, alias);
+  }
+}
+
+class GroupRestRow extends DataClass implements Insertable<GroupRestRow> {
+  final String id;
+  final String tableId;
+  final String? sessionId;
+
+  /// `short` ou `long`.
+  final String kind;
+  final String characters;
+  final DateTime? createdAt;
+  final DateTime? closedAt;
+  const GroupRestRow({
+    required this.id,
+    required this.tableId,
+    this.sessionId,
+    required this.kind,
+    required this.characters,
+    this.createdAt,
+    this.closedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    if (!nullToAbsent || sessionId != null) {
+      map['session_id'] = Variable<String>(sessionId);
+    }
+    map['kind'] = Variable<String>(kind);
+    map['characters'] = Variable<String>(characters);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
+    if (!nullToAbsent || closedAt != null) {
+      map['closed_at'] = Variable<DateTime>(closedAt);
+    }
+    return map;
+  }
+
+  GroupRestsCompanion toCompanion(bool nullToAbsent) {
+    return GroupRestsCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      sessionId: sessionId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sessionId),
+      kind: Value(kind),
+      characters: Value(characters),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+      closedAt: closedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(closedAt),
+    );
+  }
+
+  factory GroupRestRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GroupRestRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      sessionId: serializer.fromJson<String?>(json['sessionId']),
+      kind: serializer.fromJson<String>(json['kind']),
+      characters: serializer.fromJson<String>(json['characters']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
+      closedAt: serializer.fromJson<DateTime?>(json['closedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'sessionId': serializer.toJson<String?>(sessionId),
+      'kind': serializer.toJson<String>(kind),
+      'characters': serializer.toJson<String>(characters),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
+      'closedAt': serializer.toJson<DateTime?>(closedAt),
+    };
+  }
+
+  GroupRestRow copyWith({
+    String? id,
+    String? tableId,
+    Value<String?> sessionId = const Value.absent(),
+    String? kind,
+    String? characters,
+    Value<DateTime?> createdAt = const Value.absent(),
+    Value<DateTime?> closedAt = const Value.absent(),
+  }) => GroupRestRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    sessionId: sessionId.present ? sessionId.value : this.sessionId,
+    kind: kind ?? this.kind,
+    characters: characters ?? this.characters,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+    closedAt: closedAt.present ? closedAt.value : this.closedAt,
+  );
+  GroupRestRow copyWithCompanion(GroupRestsCompanion data) {
+    return GroupRestRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      sessionId: data.sessionId.present ? data.sessionId.value : this.sessionId,
+      kind: data.kind.present ? data.kind.value : this.kind,
+      characters: data.characters.present
+          ? data.characters.value
+          : this.characters,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      closedAt: data.closedAt.present ? data.closedAt.value : this.closedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupRestRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('sessionId: $sessionId, ')
+          ..write('kind: $kind, ')
+          ..write('characters: $characters, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('closedAt: $closedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    sessionId,
+    kind,
+    characters,
+    createdAt,
+    closedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GroupRestRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.sessionId == this.sessionId &&
+          other.kind == this.kind &&
+          other.characters == this.characters &&
+          other.createdAt == this.createdAt &&
+          other.closedAt == this.closedAt);
+}
+
+class GroupRestsCompanion extends UpdateCompanion<GroupRestRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String?> sessionId;
+  final Value<String> kind;
+  final Value<String> characters;
+  final Value<DateTime?> createdAt;
+  final Value<DateTime?> closedAt;
+  final Value<int> rowid;
+  const GroupRestsCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.sessionId = const Value.absent(),
+    this.kind = const Value.absent(),
+    this.characters = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.closedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  GroupRestsCompanion.insert({
+    required String id,
+    required String tableId,
+    this.sessionId = const Value.absent(),
+    required String kind,
+    this.characters = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.closedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       kind = Value(kind);
+  static Insertable<GroupRestRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? sessionId,
+    Expression<String>? kind,
+    Expression<String>? characters,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? closedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (sessionId != null) 'session_id': sessionId,
+      if (kind != null) 'kind': kind,
+      if (characters != null) 'characters': characters,
+      if (createdAt != null) 'created_at': createdAt,
+      if (closedAt != null) 'closed_at': closedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  GroupRestsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String?>? sessionId,
+    Value<String>? kind,
+    Value<String>? characters,
+    Value<DateTime?>? createdAt,
+    Value<DateTime?>? closedAt,
+    Value<int>? rowid,
+  }) {
+    return GroupRestsCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      sessionId: sessionId ?? this.sessionId,
+      kind: kind ?? this.kind,
+      characters: characters ?? this.characters,
+      createdAt: createdAt ?? this.createdAt,
+      closedAt: closedAt ?? this.closedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (sessionId.present) {
+      map['session_id'] = Variable<String>(sessionId.value);
+    }
+    if (kind.present) {
+      map['kind'] = Variable<String>(kind.value);
+    }
+    if (characters.present) {
+      map['characters'] = Variable<String>(characters.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (closedAt.present) {
+      map['closed_at'] = Variable<DateTime>(closedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupRestsCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('sessionId: $sessionId, ')
+          ..write('kind: $kind, ')
+          ..write('characters: $characters, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('closedAt: $closedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $GroupRestDonesTable extends GroupRestDones
+    with TableInfo<$GroupRestDonesTable, GroupRestDoneRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $GroupRestDonesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _tableIdMeta = const VerificationMeta(
+    'tableId',
+  );
+  @override
+  late final GeneratedColumn<String> tableId = GeneratedColumn<String>(
+    'table_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _restIdMeta = const VerificationMeta('restId');
+  @override
+  late final GeneratedColumn<String> restId = GeneratedColumn<String>(
+    'rest_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _characterIdMeta = const VerificationMeta(
+    'characterId',
+  );
+  @override
+  late final GeneratedColumn<String> characterId = GeneratedColumn<String>(
+    'character_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _authorUserIdMeta = const VerificationMeta(
+    'authorUserId',
+  );
+  @override
+  late final GeneratedColumn<String> authorUserId = GeneratedColumn<String>(
+    'author_user_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _summaryMeta = const VerificationMeta(
+    'summary',
+  );
+  @override
+  late final GeneratedColumn<String> summary = GeneratedColumn<String>(
+    'summary',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    restId,
+    characterId,
+    authorUserId,
+    summary,
+    createdAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'group_rest_done';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<GroupRestDoneRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('table_id')) {
+      context.handle(
+        _tableIdMeta,
+        tableId.isAcceptableOrUnknown(data['table_id']!, _tableIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_tableIdMeta);
+    }
+    if (data.containsKey('rest_id')) {
+      context.handle(
+        _restIdMeta,
+        restId.isAcceptableOrUnknown(data['rest_id']!, _restIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_restIdMeta);
+    }
+    if (data.containsKey('character_id')) {
+      context.handle(
+        _characterIdMeta,
+        characterId.isAcceptableOrUnknown(
+          data['character_id']!,
+          _characterIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_characterIdMeta);
+    }
+    if (data.containsKey('author_user_id')) {
+      context.handle(
+        _authorUserIdMeta,
+        authorUserId.isAcceptableOrUnknown(
+          data['author_user_id']!,
+          _authorUserIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('summary')) {
+      context.handle(
+        _summaryMeta,
+        summary.isAcceptableOrUnknown(data['summary']!, _summaryMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  GroupRestDoneRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return GroupRestDoneRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      tableId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}table_id'],
+      )!,
+      restId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}rest_id'],
+      )!,
+      characterId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}character_id'],
+      )!,
+      authorUserId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_user_id'],
+      ),
+      summary: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}summary'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      ),
+    );
+  }
+
+  @override
+  $GroupRestDonesTable createAlias(String alias) {
+    return $GroupRestDonesTable(attachedDatabase, alias);
+  }
+}
+
+class GroupRestDoneRow extends DataClass
+    implements Insertable<GroupRestDoneRow> {
+  final String id;
+  final String tableId;
+
+  /// Pas de clé étrangère : les tables visées sont des vues PowerSync.
+  final String restId;
+  final String characterId;
+  final String? authorUserId;
+  final String summary;
+  final DateTime? createdAt;
+  const GroupRestDoneRow({
+    required this.id,
+    required this.tableId,
+    required this.restId,
+    required this.characterId,
+    this.authorUserId,
+    required this.summary,
+    this.createdAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['table_id'] = Variable<String>(tableId);
+    map['rest_id'] = Variable<String>(restId);
+    map['character_id'] = Variable<String>(characterId);
+    if (!nullToAbsent || authorUserId != null) {
+      map['author_user_id'] = Variable<String>(authorUserId);
+    }
+    map['summary'] = Variable<String>(summary);
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime>(createdAt);
+    }
+    return map;
+  }
+
+  GroupRestDonesCompanion toCompanion(bool nullToAbsent) {
+    return GroupRestDonesCompanion(
+      id: Value(id),
+      tableId: Value(tableId),
+      restId: Value(restId),
+      characterId: Value(characterId),
+      authorUserId: authorUserId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorUserId),
+      summary: Value(summary),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+    );
+  }
+
+  factory GroupRestDoneRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return GroupRestDoneRow(
+      id: serializer.fromJson<String>(json['id']),
+      tableId: serializer.fromJson<String>(json['tableId']),
+      restId: serializer.fromJson<String>(json['restId']),
+      characterId: serializer.fromJson<String>(json['characterId']),
+      authorUserId: serializer.fromJson<String?>(json['authorUserId']),
+      summary: serializer.fromJson<String>(json['summary']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'tableId': serializer.toJson<String>(tableId),
+      'restId': serializer.toJson<String>(restId),
+      'characterId': serializer.toJson<String>(characterId),
+      'authorUserId': serializer.toJson<String?>(authorUserId),
+      'summary': serializer.toJson<String>(summary),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
+    };
+  }
+
+  GroupRestDoneRow copyWith({
+    String? id,
+    String? tableId,
+    String? restId,
+    String? characterId,
+    Value<String?> authorUserId = const Value.absent(),
+    String? summary,
+    Value<DateTime?> createdAt = const Value.absent(),
+  }) => GroupRestDoneRow(
+    id: id ?? this.id,
+    tableId: tableId ?? this.tableId,
+    restId: restId ?? this.restId,
+    characterId: characterId ?? this.characterId,
+    authorUserId: authorUserId.present ? authorUserId.value : this.authorUserId,
+    summary: summary ?? this.summary,
+    createdAt: createdAt.present ? createdAt.value : this.createdAt,
+  );
+  GroupRestDoneRow copyWithCompanion(GroupRestDonesCompanion data) {
+    return GroupRestDoneRow(
+      id: data.id.present ? data.id.value : this.id,
+      tableId: data.tableId.present ? data.tableId.value : this.tableId,
+      restId: data.restId.present ? data.restId.value : this.restId,
+      characterId: data.characterId.present
+          ? data.characterId.value
+          : this.characterId,
+      authorUserId: data.authorUserId.present
+          ? data.authorUserId.value
+          : this.authorUserId,
+      summary: data.summary.present ? data.summary.value : this.summary,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupRestDoneRow(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('restId: $restId, ')
+          ..write('characterId: $characterId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('summary: $summary, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    tableId,
+    restId,
+    characterId,
+    authorUserId,
+    summary,
+    createdAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is GroupRestDoneRow &&
+          other.id == this.id &&
+          other.tableId == this.tableId &&
+          other.restId == this.restId &&
+          other.characterId == this.characterId &&
+          other.authorUserId == this.authorUserId &&
+          other.summary == this.summary &&
+          other.createdAt == this.createdAt);
+}
+
+class GroupRestDonesCompanion extends UpdateCompanion<GroupRestDoneRow> {
+  final Value<String> id;
+  final Value<String> tableId;
+  final Value<String> restId;
+  final Value<String> characterId;
+  final Value<String?> authorUserId;
+  final Value<String> summary;
+  final Value<DateTime?> createdAt;
+  final Value<int> rowid;
+  const GroupRestDonesCompanion({
+    this.id = const Value.absent(),
+    this.tableId = const Value.absent(),
+    this.restId = const Value.absent(),
+    this.characterId = const Value.absent(),
+    this.authorUserId = const Value.absent(),
+    this.summary = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  GroupRestDonesCompanion.insert({
+    required String id,
+    required String tableId,
+    required String restId,
+    required String characterId,
+    this.authorUserId = const Value.absent(),
+    this.summary = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       tableId = Value(tableId),
+       restId = Value(restId),
+       characterId = Value(characterId);
+  static Insertable<GroupRestDoneRow> custom({
+    Expression<String>? id,
+    Expression<String>? tableId,
+    Expression<String>? restId,
+    Expression<String>? characterId,
+    Expression<String>? authorUserId,
+    Expression<String>? summary,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (tableId != null) 'table_id': tableId,
+      if (restId != null) 'rest_id': restId,
+      if (characterId != null) 'character_id': characterId,
+      if (authorUserId != null) 'author_user_id': authorUserId,
+      if (summary != null) 'summary': summary,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  GroupRestDonesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? tableId,
+    Value<String>? restId,
+    Value<String>? characterId,
+    Value<String?>? authorUserId,
+    Value<String>? summary,
+    Value<DateTime?>? createdAt,
+    Value<int>? rowid,
+  }) {
+    return GroupRestDonesCompanion(
+      id: id ?? this.id,
+      tableId: tableId ?? this.tableId,
+      restId: restId ?? this.restId,
+      characterId: characterId ?? this.characterId,
+      authorUserId: authorUserId ?? this.authorUserId,
+      summary: summary ?? this.summary,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (tableId.present) {
+      map['table_id'] = Variable<String>(tableId.value);
+    }
+    if (restId.present) {
+      map['rest_id'] = Variable<String>(restId.value);
+    }
+    if (characterId.present) {
+      map['character_id'] = Variable<String>(characterId.value);
+    }
+    if (authorUserId.present) {
+      map['author_user_id'] = Variable<String>(authorUserId.value);
+    }
+    if (summary.present) {
+      map['summary'] = Variable<String>(summary.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('GroupRestDonesCompanion(')
+          ..write('id: $id, ')
+          ..write('tableId: $tableId, ')
+          ..write('restId: $restId, ')
+          ..write('characterId: $characterId, ')
+          ..write('authorUserId: $authorUserId, ')
+          ..write('summary: $summary, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -31092,6 +32034,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   );
   late final $CombatViewsTable combatViews = $CombatViewsTable(this);
   late final $CombatRequestsTable combatRequests = $CombatRequestsTable(this);
+  late final $GroupRestsTable groupRests = $GroupRestsTable(this);
+  late final $GroupRestDonesTable groupRestDones = $GroupRestDonesTable(this);
   late final $NotesTable notes = $NotesTable(this);
   late final $AuthorIdentitiesTable authorIdentities = $AuthorIdentitiesTable(
     this,
@@ -31167,6 +32111,8 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     encounterEvents,
     combatViews,
     combatRequests,
+    groupRests,
+    groupRestDones,
     notes,
     authorIdentities,
   ];
@@ -54772,6 +55718,514 @@ typedef $$CombatRequestsTableProcessedTableManager =
       CombatRequestRow,
       PrefetchHooks Function()
     >;
+typedef $$GroupRestsTableCreateCompanionBuilder = GroupRestsCompanion Function({
+  required String id,
+  required String tableId,
+  Value<String?> sessionId,
+  required String kind,
+  Value<String> characters,
+  Value<DateTime?> createdAt,
+  Value<DateTime?> closedAt,
+  Value<int> rowid,
+});
+typedef $$GroupRestsTableUpdateCompanionBuilder = GroupRestsCompanion Function({
+  Value<String> id,
+  Value<String> tableId,
+  Value<String?> sessionId,
+  Value<String> kind,
+  Value<String> characters,
+  Value<DateTime?> createdAt,
+  Value<DateTime?> closedAt,
+  Value<int> rowid,
+});
+
+class $$GroupRestsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $GroupRestsTable> {
+  $$GroupRestsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characters => $composableBuilder(
+    column: $table.characters,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get closedAt => $composableBuilder(
+    column: $table.closedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$GroupRestsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $GroupRestsTable> {
+  $$GroupRestsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sessionId => $composableBuilder(
+    column: $table.sessionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get kind => $composableBuilder(
+    column: $table.kind,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characters => $composableBuilder(
+    column: $table.characters,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get closedAt => $composableBuilder(
+    column: $table.closedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$GroupRestsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $GroupRestsTable> {
+  $$GroupRestsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get sessionId =>
+      $composableBuilder(column: $table.sessionId, builder: (column) => column);
+
+  GeneratedColumn<String> get kind =>
+      $composableBuilder(column: $table.kind, builder: (column) => column);
+
+  GeneratedColumn<String> get characters => $composableBuilder(
+    column: $table.characters,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get closedAt =>
+      $composableBuilder(column: $table.closedAt, builder: (column) => column);
+}
+
+class $$GroupRestsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $GroupRestsTable,
+          GroupRestRow,
+          $$GroupRestsTableFilterComposer,
+          $$GroupRestsTableOrderingComposer,
+          $$GroupRestsTableAnnotationComposer,
+          $$GroupRestsTableCreateCompanionBuilder,
+          $$GroupRestsTableUpdateCompanionBuilder,
+          (
+            GroupRestRow,
+            BaseReferences<_$TavernierDatabase, $GroupRestsTable, GroupRestRow>,
+          ),
+          GroupRestRow,
+          PrefetchHooks Function()
+        > {
+  $$GroupRestsTableTableManager(_$TavernierDatabase db, $GroupRestsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$GroupRestsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$GroupRestsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$GroupRestsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String?> sessionId = const Value.absent(),
+                Value<String> kind = const Value.absent(),
+                Value<String> characters = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<DateTime?> closedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroupRestsCompanion(
+                id: id,
+                tableId: tableId,
+                sessionId: sessionId,
+                kind: kind,
+                characters: characters,
+                createdAt: createdAt,
+                closedAt: closedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                Value<String?> sessionId = const Value.absent(),
+                required String kind,
+                Value<String> characters = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<DateTime?> closedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroupRestsCompanion.insert(
+                id: id,
+                tableId: tableId,
+                sessionId: sessionId,
+                kind: kind,
+                characters: characters,
+                createdAt: createdAt,
+                closedAt: closedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$GroupRestsTable, GroupRestRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $GroupRestsTable,
+                    GroupRestRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$GroupRestsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $GroupRestsTable,
+      GroupRestRow,
+      $$GroupRestsTableFilterComposer,
+      $$GroupRestsTableOrderingComposer,
+      $$GroupRestsTableAnnotationComposer,
+      $$GroupRestsTableCreateCompanionBuilder,
+      $$GroupRestsTableUpdateCompanionBuilder,
+      (
+        GroupRestRow,
+        BaseReferences<_$TavernierDatabase, $GroupRestsTable, GroupRestRow>,
+      ),
+      GroupRestRow,
+      PrefetchHooks Function()
+    >;
+typedef $$GroupRestDonesTableCreateCompanionBuilder =
+    GroupRestDonesCompanion Function({
+      required String id,
+      required String tableId,
+      required String restId,
+      required String characterId,
+      Value<String?> authorUserId,
+      Value<String> summary,
+      Value<DateTime?> createdAt,
+      Value<int> rowid,
+    });
+typedef $$GroupRestDonesTableUpdateCompanionBuilder =
+    GroupRestDonesCompanion Function({
+      Value<String> id,
+      Value<String> tableId,
+      Value<String> restId,
+      Value<String> characterId,
+      Value<String?> authorUserId,
+      Value<String> summary,
+      Value<DateTime?> createdAt,
+      Value<int> rowid,
+    });
+
+class $$GroupRestDonesTableFilterComposer
+    extends Composer<_$TavernierDatabase, $GroupRestDonesTable> {
+  $$GroupRestDonesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get restId => $composableBuilder(
+    column: $table.restId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get summary => $composableBuilder(
+    column: $table.summary,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$GroupRestDonesTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $GroupRestDonesTable> {
+  $$GroupRestDonesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tableId => $composableBuilder(
+    column: $table.tableId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get restId => $composableBuilder(
+    column: $table.restId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get summary => $composableBuilder(
+    column: $table.summary,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$GroupRestDonesTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $GroupRestDonesTable> {
+  $$GroupRestDonesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get tableId =>
+      $composableBuilder(column: $table.tableId, builder: (column) => column);
+
+  GeneratedColumn<String> get restId =>
+      $composableBuilder(column: $table.restId, builder: (column) => column);
+
+  GeneratedColumn<String> get characterId => $composableBuilder(
+    column: $table.characterId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get authorUserId => $composableBuilder(
+    column: $table.authorUserId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get summary =>
+      $composableBuilder(column: $table.summary, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$GroupRestDonesTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $GroupRestDonesTable,
+          GroupRestDoneRow,
+          $$GroupRestDonesTableFilterComposer,
+          $$GroupRestDonesTableOrderingComposer,
+          $$GroupRestDonesTableAnnotationComposer,
+          $$GroupRestDonesTableCreateCompanionBuilder,
+          $$GroupRestDonesTableUpdateCompanionBuilder,
+          (
+            GroupRestDoneRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $GroupRestDonesTable,
+              GroupRestDoneRow
+            >,
+          ),
+          GroupRestDoneRow,
+          PrefetchHooks Function()
+        > {
+  $$GroupRestDonesTableTableManager(
+    _$TavernierDatabase db,
+    $GroupRestDonesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$GroupRestDonesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$GroupRestDonesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$GroupRestDonesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> tableId = const Value.absent(),
+                Value<String> restId = const Value.absent(),
+                Value<String> characterId = const Value.absent(),
+                Value<String?> authorUserId = const Value.absent(),
+                Value<String> summary = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroupRestDonesCompanion(
+                id: id,
+                tableId: tableId,
+                restId: restId,
+                characterId: characterId,
+                authorUserId: authorUserId,
+                summary: summary,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String tableId,
+                required String restId,
+                required String characterId,
+                Value<String?> authorUserId = const Value.absent(),
+                Value<String> summary = const Value.absent(),
+                Value<DateTime?> createdAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => GroupRestDonesCompanion.insert(
+                id: id,
+                tableId: tableId,
+                restId: restId,
+                characterId: characterId,
+                authorUserId: authorUserId,
+                summary: summary,
+                createdAt: createdAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$GroupRestDonesTable, GroupRestDoneRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $GroupRestDonesTable,
+                    GroupRestDoneRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$GroupRestDonesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $GroupRestDonesTable,
+      GroupRestDoneRow,
+      $$GroupRestDonesTableFilterComposer,
+      $$GroupRestDonesTableOrderingComposer,
+      $$GroupRestDonesTableAnnotationComposer,
+      $$GroupRestDonesTableCreateCompanionBuilder,
+      $$GroupRestDonesTableUpdateCompanionBuilder,
+      (
+        GroupRestDoneRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $GroupRestDonesTable,
+          GroupRestDoneRow
+        >,
+      ),
+      GroupRestDoneRow,
+      PrefetchHooks Function()
+    >;
 typedef $$NotesTableCreateCompanionBuilder = NotesCompanion Function({
   required String id,
   required String ownerUserId,
@@ -55325,6 +56779,10 @@ class $TavernierDatabaseManager {
       $$CombatViewsTableTableManager(_db, _db.combatViews);
   $$CombatRequestsTableTableManager get combatRequests =>
       $$CombatRequestsTableTableManager(_db, _db.combatRequests);
+  $$GroupRestsTableTableManager get groupRests =>
+      $$GroupRestsTableTableManager(_db, _db.groupRests);
+  $$GroupRestDonesTableTableManager get groupRestDones =>
+      $$GroupRestDonesTableTableManager(_db, _db.groupRestDones);
   $$NotesTableTableManager get notes =>
       $$NotesTableTableManager(_db, _db.notes);
   $$AuthorIdentitiesTableTableManager get authorIdentities =>
