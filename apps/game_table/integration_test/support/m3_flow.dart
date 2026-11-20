@@ -184,6 +184,9 @@ Future<void> playM3(WidgetTester tester) async {
     await tester.pumpAndSettle();
     await tester.enterText(field.first, d20);
     await tester.testTextInput.receiveAction(TextInputAction.done);
+    // Le champ s'enregistre aussi en perdant le focus : Safari ne transmet
+    // pas toujours la validation du clavier.
+    FocusManager.instance.primaryFocus?.unfocus();
     await _settle(tester);
   }
   expect(find.text('Tous les jets sont saisis'), findsOneWidget);
