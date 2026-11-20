@@ -30,6 +30,9 @@ enum CombatEventType {
   study('study'),
   influence('influence'),
   observation('observation'),
+
+  /// Clôture de la rencontre (US-25, EF-LOG-03) : rounds et PX retenus.
+  encounterFinished('encounter_finished'),
   undo('undo');
 
   const CombatEventType(this.code);
@@ -855,6 +858,7 @@ CombatState _project(
         }
       case CombatEventType.study ||
           CombatEventType.observation ||
+          CombatEventType.encounterFinished ||
           CombatEventType.undo:
         break;
     }

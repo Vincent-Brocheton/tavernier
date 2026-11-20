@@ -738,11 +738,9 @@ void main() {
 
     await _tap(tester, find.byType(PopupMenuButton<String>));
     await _tap(tester, find.text('Terminer la rencontre'));
-    // Confirmation.
-    await _tap(
-      tester,
-      find.widgetWithText(FilledButton, 'Terminer la rencontre'),
-    );
+    // Le résumé [C11] tient lieu de confirmation.
+    await _settle(tester);
+    await _tap(tester, find.text('Clore et ranger dans la séance'));
     await _settle(tester);
     final status = await tester.runAsync(
       () => _db
@@ -1768,5 +1766,54 @@ void main() {
     expect(find.text('12 dégâts tranchants : Aldric (41 → 29)'), findsOne);
     await _tap(tester, find.widgetWithText(ChoiceChip, 'Tout'));
     expect(find.text('Dragon noir adulte entre dans le combat'), findsOne);
+  });
+
+  _test('fin [C11] : résumé, PX modifiés, clôture, résumé relu', (
+    tester,
+  ) async {
+    await openCombat(tester);
+    await log(tester, [
+      (
+        CombatEventType.damage,
+        {
+          'targets': ['ogre'],
+          'amount': 59,
+          'type': 'srd:damage-type:bludgeoning',
+        },
+      ),
+    ]);
+    await _tap(tester, find.byType(PopupMenuButton<String>));
+    await _tap(tester, find.text('Terminer la rencontre'));
+    await _settle(tester);
+    expect(find.text('Fin de rencontre'), findsOneWidget);
+    // Dragon noir adulte 11 500 + Ogre 450, encore dans le combat.
+    expect(find.text('11 950'), findsOneWidget);
+    expect(find.text('1 / 2'), findsOneWidget);
+    expect(find.text('round 1'), findsOneWidget);
+    expect(
+      find.text(
+        '11 950 PX pour la rencontre, répartis entre 1 personnage. '
+        'Modifiable avant de clore.',
+      ),
+      findsOneWidget,
+    );
+    await tester.enterText(find.widgetWithText(TextField, '11950'), '700');
+    await _tap(tester, find.text('Clore et ranger dans la séance'));
+    await _settle(tester);
+
+    final events = (await tester.runAsync(
+      () => CombatStore(_db).watchEvents(_relais).first,
+    ))!;
+    expect(events.last.type, CombatEventType.encounterFinished);
+    expect(events.last.payload, {
+      'rounds': 1,
+      'xp_total': 11950,
+      'xp': {'aldric': 700},
+    });
+    expect(find.text('Résumé de la rencontre'), findsOneWidget);
+    await _tap(tester, find.text('Résumé de la rencontre'));
+    await _settle(tester);
+    expect(find.text('+700 PX'), findsOneWidget);
+    expect(find.text('Clore et ranger dans la séance'), findsNothing);
   });
 }

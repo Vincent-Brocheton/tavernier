@@ -35,3 +35,24 @@
 
 - **Projection unique** : le journal réutilise la boucle de `projectCombat`, pour que les PV affichés soient exactement ceux de l'état.
 - **Feuille plutôt qu'onglet** : [TB1] montre un onglet sur tablette, mais une feuille couvre toutes les largeurs sans réorganiser l'écran de combat.
+
+## Lot b
+
+- **Moteur** (`encounter_summary.dart`, `dnd_rules`) :
+  - `summarizeEncounter(events, xpOf:)` rend `EncounterSummary`, avec `rounds`, `foes`, `fallen`, `downedPcs`, `xpTotal`, `moments` et `awarded` (les PX de `encounter_finished`, s'il y en a un) ;
+  - `FallenCombatant` porte `{id, label, round, knockedOut, dead, stable}`. Le round d'une chute vient de `combatJournal` : la première entrée de dégâts qui fait passer la cible de plus de 0 à 0 PV, ou à 1 PV avec `knock_out` ;
+  - `xpOf` est fourni par l'app (PX du profil du monstre ou du PNJ) : le moteur ne lit pas le contenu ;
+  - nouveau type `encounter_finished`, ignoré par la projection.
+- **Écran** (`encounter_summary.dart`, app) :
+  - la page « Fin de rencontre » [C11] montre le titre, les rounds, les PX au total et les adversaires tombés ;
+  - les PX par PJ, avec un champ chacun et « 6 725 → 7 475 PX » quand la fiche est lisible ;
+  - les combattants tombés et les moments notés ;
+  - « Voir les n événements » ouvre le journal ;
+  - « Clore et ranger dans la séance » (ou « Clore la rencontre » sans séance) et « Revenir au combat ».
+  - « Terminer la rencontre », dans le menu du combat, ouvre cette page à la place de la confirmation. Une rencontre terminée montre « Résumé de la rencontre », en lecture seule, avec les PX retenus.
+
+### Choix
+
+- **PX par défaut** : ceux des adversaires encore dans le combat à la fin. C'est la seule règle qui donne les deux totaux de [D1] : Bandit 4 « a fui » sans être retiré, alors que Varga en fuite a été retirée. Le MJ corrige avant de clore.
+- **Les PX ne vont pas encore sur les fiches** : la clôture de la séance (US-35, lot d) les attribuera à partir de `encounter_finished`.
+

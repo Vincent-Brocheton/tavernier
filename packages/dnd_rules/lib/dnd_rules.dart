@@ -11,6 +11,7 @@ export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
 export 'src/dice.dart';
 export 'src/encounter_budget.dart';
+export 'src/encounter_summary.dart';
 export 'src/inventory.dart';
 export 'src/level_unlock.dart';
 export 'src/level_up.dart';
