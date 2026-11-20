@@ -31337,6 +31337,38 @@ class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
     ),
     defaultValue: const Constant(true),
   );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _conflictMeta = const VerificationMeta(
+    'conflict',
+  );
+  @override
+  late final GeneratedColumn<String> conflict = GeneratedColumn<String>(
+    'conflict',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -31346,6 +31378,9 @@ class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
     refId,
     content,
     private,
+    title,
+    updatedAt,
+    conflict,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -31409,6 +31444,24 @@ class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
         private.isAcceptableOrUnknown(data['private']!, _privateMeta),
       );
     }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('conflict')) {
+      context.handle(
+        _conflictMeta,
+        conflict.isAcceptableOrUnknown(data['conflict']!, _conflictMeta),
+      );
+    }
     return context;
   }
 
@@ -31446,6 +31499,18 @@ class $NotesTable extends Notes with TableInfo<$NotesTable, NoteRow> {
         DriftSqlType.bool,
         data['${effectivePrefix}private'],
       )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      ),
+      conflict: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}conflict'],
+      ),
     );
   }
 
@@ -31465,6 +31530,11 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
   final String? refId;
   final String content;
   final bool private;
+  final String title;
+  final DateTime? updatedAt;
+
+  /// L'autre version d'une note modifiée sur deux appareils (EF-NOT-06).
+  final String? conflict;
   const NoteRow({
     required this.id,
     required this.ownerUserId,
@@ -31473,6 +31543,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
     this.refId,
     required this.content,
     required this.private,
+    required this.title,
+    this.updatedAt,
+    this.conflict,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -31488,6 +31561,13 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
     }
     map['content'] = Variable<String>(content);
     map['private'] = Variable<bool>(private);
+    map['title'] = Variable<String>(title);
+    if (!nullToAbsent || updatedAt != null) {
+      map['updated_at'] = Variable<DateTime>(updatedAt);
+    }
+    if (!nullToAbsent || conflict != null) {
+      map['conflict'] = Variable<String>(conflict);
+    }
     return map;
   }
 
@@ -31504,6 +31584,13 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
           : Value(refId),
       content: Value(content),
       private: Value(private),
+      title: Value(title),
+      updatedAt: updatedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updatedAt),
+      conflict: conflict == null && nullToAbsent
+          ? const Value.absent()
+          : Value(conflict),
     );
   }
 
@@ -31520,6 +31607,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
       refId: serializer.fromJson<String?>(json['refId']),
       content: serializer.fromJson<String>(json['content']),
       private: serializer.fromJson<bool>(json['private']),
+      title: serializer.fromJson<String>(json['title']),
+      updatedAt: serializer.fromJson<DateTime?>(json['updatedAt']),
+      conflict: serializer.fromJson<String?>(json['conflict']),
     );
   }
   @override
@@ -31533,6 +31623,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
       'refId': serializer.toJson<String?>(refId),
       'content': serializer.toJson<String>(content),
       'private': serializer.toJson<bool>(private),
+      'title': serializer.toJson<String>(title),
+      'updatedAt': serializer.toJson<DateTime?>(updatedAt),
+      'conflict': serializer.toJson<String?>(conflict),
     };
   }
 
@@ -31544,6 +31637,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
     Value<String?> refId = const Value.absent(),
     String? content,
     bool? private,
+    String? title,
+    Value<DateTime?> updatedAt = const Value.absent(),
+    Value<String?> conflict = const Value.absent(),
   }) => NoteRow(
     id: id ?? this.id,
     ownerUserId: ownerUserId ?? this.ownerUserId,
@@ -31552,6 +31648,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
     refId: refId.present ? refId.value : this.refId,
     content: content ?? this.content,
     private: private ?? this.private,
+    title: title ?? this.title,
+    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+    conflict: conflict.present ? conflict.value : this.conflict,
   );
   NoteRow copyWithCompanion(NotesCompanion data) {
     return NoteRow(
@@ -31564,6 +31663,9 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
       refId: data.refId.present ? data.refId.value : this.refId,
       content: data.content.present ? data.content.value : this.content,
       private: data.private.present ? data.private.value : this.private,
+      title: data.title.present ? data.title.value : this.title,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      conflict: data.conflict.present ? data.conflict.value : this.conflict,
     );
   }
 
@@ -31576,14 +31678,27 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
           ..write('scope: $scope, ')
           ..write('refId: $refId, ')
           ..write('content: $content, ')
-          ..write('private: $private')
+          ..write('private: $private, ')
+          ..write('title: $title, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('conflict: $conflict')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, ownerUserId, tableId, scope, refId, content, private);
+  int get hashCode => Object.hash(
+    id,
+    ownerUserId,
+    tableId,
+    scope,
+    refId,
+    content,
+    private,
+    title,
+    updatedAt,
+    conflict,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -31594,7 +31709,10 @@ class NoteRow extends DataClass implements Insertable<NoteRow> {
           other.scope == this.scope &&
           other.refId == this.refId &&
           other.content == this.content &&
-          other.private == this.private);
+          other.private == this.private &&
+          other.title == this.title &&
+          other.updatedAt == this.updatedAt &&
+          other.conflict == this.conflict);
 }
 
 class NotesCompanion extends UpdateCompanion<NoteRow> {
@@ -31605,6 +31723,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
   final Value<String?> refId;
   final Value<String> content;
   final Value<bool> private;
+  final Value<String> title;
+  final Value<DateTime?> updatedAt;
+  final Value<String?> conflict;
   final Value<int> rowid;
   const NotesCompanion({
     this.id = const Value.absent(),
@@ -31614,6 +31735,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
     this.refId = const Value.absent(),
     this.content = const Value.absent(),
     this.private = const Value.absent(),
+    this.title = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.conflict = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   NotesCompanion.insert({
@@ -31624,6 +31748,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
     this.refId = const Value.absent(),
     required String content,
     this.private = const Value.absent(),
+    this.title = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.conflict = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        ownerUserId = Value(ownerUserId),
@@ -31637,6 +31764,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
     Expression<String>? refId,
     Expression<String>? content,
     Expression<bool>? private,
+    Expression<String>? title,
+    Expression<DateTime>? updatedAt,
+    Expression<String>? conflict,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -31647,6 +31777,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
       if (refId != null) 'ref_id': refId,
       if (content != null) 'content': content,
       if (private != null) 'private': private,
+      if (title != null) 'title': title,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (conflict != null) 'conflict': conflict,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -31659,6 +31792,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
     Value<String?>? refId,
     Value<String>? content,
     Value<bool>? private,
+    Value<String>? title,
+    Value<DateTime?>? updatedAt,
+    Value<String?>? conflict,
     Value<int>? rowid,
   }) {
     return NotesCompanion(
@@ -31669,6 +31805,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
       refId: refId ?? this.refId,
       content: content ?? this.content,
       private: private ?? this.private,
+      title: title ?? this.title,
+      updatedAt: updatedAt ?? this.updatedAt,
+      conflict: conflict ?? this.conflict,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -31697,6 +31836,15 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
     if (private.present) {
       map['private'] = Variable<bool>(private.value);
     }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (conflict.present) {
+      map['conflict'] = Variable<String>(conflict.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -31713,6 +31861,9 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
           ..write('refId: $refId, ')
           ..write('content: $content, ')
           ..write('private: $private, ')
+          ..write('title: $title, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('conflict: $conflict, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -56234,6 +56385,9 @@ typedef $$NotesTableCreateCompanionBuilder = NotesCompanion Function({
   Value<String?> refId,
   required String content,
   Value<bool> private,
+  Value<String> title,
+  Value<DateTime?> updatedAt,
+  Value<String?> conflict,
   Value<int> rowid,
 });
 typedef $$NotesTableUpdateCompanionBuilder = NotesCompanion Function({
@@ -56244,6 +56398,9 @@ typedef $$NotesTableUpdateCompanionBuilder = NotesCompanion Function({
   Value<String?> refId,
   Value<String> content,
   Value<bool> private,
+  Value<String> title,
+  Value<DateTime?> updatedAt,
+  Value<String?> conflict,
   Value<int> rowid,
 });
 
@@ -56288,6 +56445,21 @@ class $$NotesTableFilterComposer
 
   ColumnFilters<bool> get private => $composableBuilder(
     column: $table.private,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get conflict => $composableBuilder(
+    column: $table.conflict,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -56335,6 +56507,21 @@ class $$NotesTableOrderingComposer
     column: $table.private,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get conflict => $composableBuilder(
+    column: $table.conflict,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$NotesTableAnnotationComposer
@@ -56368,6 +56555,15 @@ class $$NotesTableAnnotationComposer
 
   GeneratedColumn<bool> get private =>
       $composableBuilder(column: $table.private, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<String> get conflict =>
+      $composableBuilder(column: $table.conflict, builder: (column) => column);
 }
 
 class $$NotesTableTableManager
@@ -56405,6 +56601,9 @@ class $$NotesTableTableManager
                 Value<String?> refId = const Value.absent(),
                 Value<String> content = const Value.absent(),
                 Value<bool> private = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<String?> conflict = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => NotesCompanion(
                 id: id,
@@ -56414,6 +56613,9 @@ class $$NotesTableTableManager
                 refId: refId,
                 content: content,
                 private: private,
+                title: title,
+                updatedAt: updatedAt,
+                conflict: conflict,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -56425,6 +56627,9 @@ class $$NotesTableTableManager
                 Value<String?> refId = const Value.absent(),
                 required String content,
                 Value<bool> private = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<String?> conflict = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => NotesCompanion.insert(
                 id: id,
@@ -56434,6 +56639,9 @@ class $$NotesTableTableManager
                 refId: refId,
                 content: content,
                 private: private,
+                title: title,
+                updatedAt: updatedAt,
+                conflict: conflict,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

@@ -89,3 +89,10 @@ streams:
       - SELECT * FROM combat_request WHERE table_id IN (SELECT id FROM game_table WHERE gm_user_id = auth.user_id())
       - SELECT * FROM combat_request WHERE author_user_id = auth.user_id()
 
+  # Notes (US-26, EF-NOT-02, 04) : les siennes, et celles partagées avec ses
+  # tables.
+  notes:
+    auto_subscribe: true
+    queries:
+      - SELECT * FROM note WHERE owner_user_id = auth.user_id()
+      - SELECT * FROM note WHERE private = false AND table_id IN (SELECT table_id FROM table_member WHERE user_id = auth.user_id())

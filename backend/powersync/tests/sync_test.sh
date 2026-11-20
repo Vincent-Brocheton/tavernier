@@ -84,6 +84,10 @@ insert into group_rest (id, table_id, session_id, kind, characters)
   values ('gr1', 't1', 'se1', 'short', '["c1"]');
 insert into group_rest_done (id, rest_id, table_id, character_id,
   author_user_id) values ('gd1', 'gr1', 't1', 'c1', '${id[joueur1]}');
+insert into note (id, owner_user_id, table_id, scope, content) values
+  ('nm', '${id[mj]}', 't1', 'session', 'Préparation');
+insert into note (id, owner_user_id, table_id, scope, content, private) values
+  ('nj', '${id[joueur1]}', 't1', 'table', 'Dette envers Brug', false);
 SQL
 
 # Flux ---------------------------------------------------------------------------
@@ -122,7 +126,7 @@ profiles=("profile/${id[mj]}" "profile/${id[joueur1]}" "profile/${id[joueur2]}")
 table=(game_table/t1 table_member/m0 table_member/m1 table_member/m2 table_pack/p1
   table_activity/a1 pc_slot/e1 character_summary/c1
   session/se1 session_attendance/se1:c1 combat_view/r1
-  group_rest/gr1 group_rest_done/gd1)
+  group_rest/gr1 group_rest_done/gd1 note/nj)
 c1=(character/c1 character_state/s1 character_item/o1)
 # La proposition faite à joueur1 : à lui et au MJ seulement.
 proposal=(character_proposal/x1)
@@ -131,7 +135,7 @@ c2=(character/c2 character_state/s2)
 expect mj "le MJ reçoit sa table, ses invitations, toutes les fiches et ses PNJ" \
   "${profiles[@]}" "${table[@]}" table_invite/i1 "${c1[@]}" "${c2[@]}" "${proposal[@]}" \
   character/n1 npc_statblock/pnj1 encounter/r1 encounter_group/g1 \
-  encounter_event/j1 combat_request/q1
+  encounter_event/j1 combat_request/q1 note/nm
 expect joueur1 "un joueur reçoit sa table et sa fiche, pas celle des autres" \
   "${profiles[@]}" "${table[@]}" "${c1[@]}" "${proposal[@]}" combat_request/q1
 expect joueur2 "l'autre joueur reçoit sa seule fiche" \

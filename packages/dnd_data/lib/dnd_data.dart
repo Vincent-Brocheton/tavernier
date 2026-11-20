@@ -10,6 +10,7 @@ export 'src/encounter_store.dart';
 export 'src/game_tables.dart';
 export 'src/group_rest_store.dart';
 export 'src/ids.dart';
+export 'src/note_store.dart';
 export 'src/npc_store.dart';
 export 'src/pack_store.dart';
 export 'src/powersync.dart';

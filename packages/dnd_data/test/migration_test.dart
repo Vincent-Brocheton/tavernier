@@ -35,8 +35,8 @@ List<String> _structure(Iterable<Map<String, Object?>> rows) => [
 ];
 
 void main() {
-  test("le schéma du code est celui de l'instantané v4", () async {
-    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(4);
+  test("le schéma du code est celui de l'instantané v5", () async {
+    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(5);
     addTearDown(snapshot.rawDatabase.close);
     final expected = _structure(snapshot.rawDatabase.select(_structureQuery));
 
@@ -46,14 +46,22 @@ void main() {
       for (final row in await db.customSelect(_structureQuery).get()) row.data,
     ]);
 
-    expect(db.schemaVersion, 4);
+    expect(db.schemaVersion, 5);
     expect(actual, expected);
   });
 
   // v2 (US-24) : `rule_term.data`, les tables d'une règle ; v3 (US-36) :
   // `combat_view` et `combat_request` ; v4 (US-38) : `group_rest` et
-  // `group_rest_done`.
-  for (final (from, to) in [(1, 2), (1, 3), (2, 3), (1, 4), (3, 4)]) {
+  // `group_rest_done` ; v5 (US-26) : `note.title`, `updated_at`, `conflict`.
+  for (final (from, to) in [
+    (1, 2),
+    (1, 3),
+    (2, 3),
+    (1, 4),
+    (3, 4),
+    (1, 5),
+    (4, 5),
+  ]) {
     test('une base v$from monte en v$to', () async {
       final verifier = SchemaVerifier(GeneratedHelper());
       final schema = await verifier.schemaAt(from);
