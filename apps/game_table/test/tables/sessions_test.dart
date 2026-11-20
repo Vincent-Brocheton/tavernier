@@ -46,6 +46,7 @@ Future<void> _open(
   WidgetTester tester, {
   String me = _camille,
   Future<void> Function(SessionStore)? seed,
+  Progression progression = Progression.xp,
 }) async {
   tester.view.physicalSize = const Size(390, 1600);
   tester.view.devicePixelRatio = 1;
@@ -56,7 +57,7 @@ Future<void> _open(
     final tables = TableStore(_db);
     _table = await tables.create(
       gmUserId: _camille,
-      settings: const TableSettings(name: 'Brumeval'),
+      settings: TableSettings(name: 'Brumeval', progression: progression),
       packs: const [],
     );
     for (final (id, user) in [('m1', _hugo), ('m2', _ines)]) {
@@ -365,5 +366,134 @@ void main() {
     await _open(tester, seed: _twoSessions);
     await _tap(tester, find.text('Le relais du Sel'));
     expect(find.text('Repos pour le groupe'), findsNothing);
+  });
+
+  // Spec tables : « Clôture d'une séance » (US-35 lot d, EF-SEA-03, 04,
+  // [S4], [S7]).
+  late String s12;
+  late String reported;
+
+  /// Séance 1 en cours, Aldric et Mira présents ; l'embuscade (75 PX chacun)
+  /// et le relais du Sel (750 PX chacun) joués, « Les chiens de Varga »
+  /// non jouée ; séance 2 prévue.
+  Future<void> played(SessionStore store) async {
+    s12 = await store.create(
+      tableId: _table,
+      title: 'Le relais du Sel',
+      date: DateTime(2026, 10, 30),
+      status: SessionStatus.inProgress,
+      present: ['aldric', 'mira'],
+    );
+    await store.create(
+      tableId: _table,
+      title: 'La suite',
+      date: DateTime(2026, 11, 13),
+    );
+    final encounters = EncounterStore(_db);
+    for (final (title, xp) in [('Embuscade', 75), ('Le relais', 750)]) {
+      final id = await encounters.create(
+        tableId: _table,
+        title: title,
+        sessionId: s12,
+      );
+      await encounters.update(id, status: EncounterStatus.finished);
+      await CombatStore(_db).append(id, authorUserId: _camille, [
+        (
+          CombatEventType.encounterFinished,
+          {
+            'rounds': 4,
+            'xp_total': xp * 2,
+            'xp': {'aldric': xp, 'mira': xp},
+          },
+        ),
+      ]);
+    }
+    reported = await encounters.create(
+      tableId: _table,
+      title: 'Les chiens de Varga',
+      sessionId: s12,
+    );
+  }
+
+  _test('[S4] : PX ajoutés, rencontre reportée, séance close', (tester) async {
+    await _open(tester, seed: played);
+    await _tap(tester, find.text('Le relais du Sel'));
+    expect(find.text('Séance en cours'), findsOneWidget);
+    expect(find.text('Les chiens de Varga'), findsOneWidget);
+    await _tap(tester, find.text('Clore la séance'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('1\u202f650'), findsOneWidget);
+    expect(find.text('825'), findsOneWidget);
+    expect(find.text('+825'), findsNWidgets(2));
+    expect(find.text('0 → 825 / 14\u202f000 (niv. 6)'), findsNWidgets(2));
+    // Les rounds viennent du journal, vide ici.
+    expect(find.text('0 rounds · 150 PX'), findsOneWidget);
+    expect(find.text('Reporter à la séance 2'), findsOneWidget);
+
+    await _tap(tester, find.widgetWithText(FilledButton, 'Clore la séance 1'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    final store = CharacterStore(_db);
+    expect((await tester.runAsync(() => store.access('aldric')))!.xp, 825);
+    final [entry] = (await tester.runAsync(() => store.history('mira')))!;
+    expect(entry.detail, {
+      'kind': 'xp',
+      'amount': 825,
+      'from': 0,
+      'to': 825,
+      'session': s12,
+    });
+    final sessions = await _sessions(tester);
+    expect(
+      sessions.firstWhere((s) => s.id == s12).status,
+      SessionStatus.closed,
+    );
+    final moved = (await tester.runAsync(
+      () => EncounterStore(_db).watchList(_table).first,
+    ))!.firstWhere((e) => e.id == reported);
+    expect(moved.sessionId, sessions.firstWhere((s) => s.id != s12).id);
+  });
+
+  _test('[S7] : jalon accordé aux cochés, avec son motif', (tester) async {
+    await _open(tester, seed: played, progression: Progression.milestones);
+    await _tap(tester, find.text('Le relais du Sel'));
+    await _tap(tester, find.text('Clore la séance'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Jalon atteint'), findsOneWidget);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Motif (visible des joueurs)'),
+      'Varga capturée',
+    );
+    await _tap(tester, find.text('Mira Solen'));
+    await _tap(tester, find.text('Garder sans séance'));
+    await _tap(tester, find.widgetWithText(FilledButton, 'Clore la séance 1'));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    final store = CharacterStore(_db);
+    expect((await tester.runAsync(() => store.access('aldric')))!.levelUnlock, {
+      'level': 6,
+      'origin': 'milestone',
+      'by': _camille,
+      'reason': 'Varga capturée',
+      'session': s12,
+    });
+    expect(
+      (await tester.runAsync(() => store.access('mira')))!.levelUnlock,
+      isNull,
+    );
+    final kept = (await tester.runAsync(
+      () => EncounterStore(_db).watchList(_table).first,
+    ))!.firstWhere((e) => e.id == reported);
+    expect(kept.sessionId, isNull);
   });
 }

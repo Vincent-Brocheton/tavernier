@@ -681,6 +681,26 @@ final class CharacterStore {
     });
   });
 
+  /// Le MJ [byUserId] ajoute [amount] PX à la fiche [id], à la clôture de
+  /// la séance [sessionId] ; l'ajout est inscrit dans l'historique
+  /// (EF-SEA-03).
+  Future<void> addXp(
+    String id, {
+    required int amount,
+    required String byUserId,
+    String? sessionId,
+  }) => _db.transaction(() async {
+    final from = (await access(id))?.xp ?? 0;
+    await _update(id, {'xp': from + amount});
+    await _log(id, byUserId, {
+      'kind': 'xp',
+      'amount': amount,
+      'from': from,
+      'to': from + amount,
+      'session': ?sessionId,
+    });
+  });
+
   /// Inscrit une montée de niveau, déverrouillée par [unlock] (EF-SEA-06).
   Future<void> recordLevelUp(
     String id, {

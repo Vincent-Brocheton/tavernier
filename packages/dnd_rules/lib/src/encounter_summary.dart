@@ -130,3 +130,16 @@ EncounterSummary summarizeEncounter(
     },
   );
 }
+
+/// PX d'une séance par fiche (EF-SEA-03) : la somme des PX accordés à la
+/// clôture de chaque rencontre jouée, déjà partagés entre ses présents. Un
+/// absent de toutes les rencontres n'y figure pas.
+Map<String, int> sessionXp(Iterable<Map<String, int>?> awarded) {
+  final total = <String, int>{};
+  for (final xp in awarded) {
+    for (final MapEntry(:key, :value) in (xp ?? const {}).entries) {
+      total[key] = (total[key] ?? 0) + value;
+    }
+  }
+  return total;
+}

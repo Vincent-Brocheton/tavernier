@@ -87,6 +87,25 @@ void _tests(Future<TavernierDatabase> Function() open) {
       });
     });
 
+    test('PX ajoutés à la clôture : fiche et historique (EF-SEA-03)', () async {
+      await store.addXp(
+        'a',
+        amount: 825,
+        byUserId: 'camille',
+        sessionId: 's12',
+      );
+      expect((await store.access('a'))!.xp, 8300);
+      final [entry] = await store.history('a');
+      expect(entry.authorUserId, 'camille');
+      expect(entry.detail, {
+        'kind': 'xp',
+        'amount': 825,
+        'from': 7475,
+        'to': 8300,
+        'session': 's12',
+      });
+    });
+
     test('montée inscrite avec son origine', () async {
       await store.recordLevelUp(
         'a',

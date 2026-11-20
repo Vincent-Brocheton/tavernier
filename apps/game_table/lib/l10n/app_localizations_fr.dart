@@ -4800,6 +4800,133 @@ class AppLocalizationsFr extends AppLocalizations {
   String get noteConflictDiscard => 'Écarter l’autre version';
 
   @override
+  String get sessionRunningTitle => 'Séance en cours';
+
+  @override
+  String get sessionEncountersTitle => 'Rencontres';
+
+  @override
+  String get sessionNoEncounters => 'Aucune rencontre dans cette séance.';
+
+  @override
+  String get sessionClose => 'Clore la séance';
+
+  @override
+  String closeTitle(int number) {
+    return 'Clore la séance $number';
+  }
+
+  @override
+  String closePlayed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'rencontres jouées',
+      one: 'rencontre jouée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get closeXpTotal => 'PX au total';
+
+  @override
+  String get closeXpEach => 'PX par personnage présent';
+
+  @override
+  String get closeRounds => 'rounds au total';
+
+  @override
+  String get closePlayedTitle => 'Rencontres jouées';
+
+  @override
+  String closePlayedLine(int rounds, String xp) {
+    return '$rounds rounds · $xp PX';
+  }
+
+  @override
+  String closePlayedLineMilestone(int rounds) {
+    return '$rounds rounds';
+  }
+
+  @override
+  String get closeUnplayedTitle => 'Rencontres non jouées';
+
+  @override
+  String closeReport(int number) {
+    return 'Reporter à la séance $number';
+  }
+
+  @override
+  String get closeKeep => 'Garder sans séance';
+
+  @override
+  String get closeDelete => 'Supprimer';
+
+  @override
+  String get closeXpTitle => 'Points d’expérience';
+
+  @override
+  String get closeXpHint =>
+      'Somme des PX de chaque rencontre, partagés entre les personnages présents à cette rencontre.';
+
+  @override
+  String closeXpLine(String from, String to, String next, int level) {
+    return '$from → $to / $next (niv. $level)';
+  }
+
+  @override
+  String closeXpLineMax(String from, String to) {
+    return '$from → $to';
+  }
+
+  @override
+  String get closeAbsent => 'absent';
+
+  @override
+  String get closeXpFoot =>
+      'Les PX s’ajoutent aux fiches à la clôture et sont inscrits dans leur historique. Quand un seuil de niveau est atteint, le joueur reçoit une proposition de montée de niveau.';
+
+  @override
+  String get closeMilestoneTitle => 'Jalon atteint';
+
+  @override
+  String get closeMilestoneHint =>
+      'Table en progression par jalons : pas de PX, vous choisissez qui passe au niveau suivant.';
+
+  @override
+  String get closeReason => 'Motif (visible des joueurs)';
+
+  @override
+  String get closeGrantTo => 'Proposer la montée de niveau à';
+
+  @override
+  String get closePresent => 'présent';
+
+  @override
+  String get closeAbsentTonight => 'absent ce soir';
+
+  @override
+  String get closeAlreadyGranted => 'déjà accordé';
+
+  @override
+  String closeLevels(int from, int to) {
+    return '$from → $to';
+  }
+
+  @override
+  String get closeMilestoneFoot =>
+      'Chaque joueur coché reçoit une proposition de montée de niveau, qu’il accepte puis réalise avec l’assistant. Le jalon est inscrit dans l’historique des fiches.';
+
+  @override
+  String get closeBack => 'Revenir à la séance';
+
+  @override
+  String historyXp(int amount, int from, int to) {
+    return '+$amount PX ($from → $to)';
+  }
+
+  @override
   String get combatHideFromPlayers => 'Masquer aux joueurs';
 
   @override
