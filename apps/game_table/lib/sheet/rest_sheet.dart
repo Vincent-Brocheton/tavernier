@@ -225,6 +225,8 @@ class RestSheet extends ConsumerStatefulWidget {
     required this.content,
     required this.character,
     required this.sheet,
+    this.origin,
+    this.onFinished,
   });
 
   final String id;
@@ -232,6 +234,13 @@ class RestSheet extends ConsumerStatefulWidget {
   final ActiveContent content;
   final CharacterInput character;
   final ComputedSheet sheet;
+
+  /// Origine d'un repos de groupe, en tête ([J10]).
+  final String? origin;
+
+  /// Appelé après « Terminer » avec le récapitulatif : dés de vie dépensés,
+  /// PV avant et après (US-38).
+  final ValueChanged<Map<String, Object?>>? onFinished;
 
   @override
   ConsumerState<RestSheet> createState() => _RestSheetState();
@@ -340,6 +349,8 @@ class _RestSheetState extends ConsumerState<RestSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (widget.origin case final origin?)
+            Text(origin, style: text.labelMedium),
           Text(
             short ? l10n.shortRest : l10n.longRest,
             style: text.headlineSmall,
@@ -404,9 +415,18 @@ class _RestSheetState extends ConsumerState<RestSheet> {
               ),
               FilledButton(
                 onPressed: allowed
-                    ? () {
-                        savePlayState(ref, widget.id, after);
-                        Navigator.of(context).pop();
+                    ? () async {
+                        await savePlayState(ref, widget.id, after);
+                        widget.onFinished?.call({
+                          'hit_dice': [
+                            for (final dice in _sheet.hitDice)
+                              hitDiceLeft(_start, dice) -
+                                  hitDiceLeft(_state, dice),
+                          ].fold<int>(0, (a, b) => a + b),
+                          'hp_before': hitPoints(_start, _sheet),
+                          'hp_after': hitPoints(after, _sheet),
+                        });
+                        if (context.mounted) Navigator.of(context).pop();
                       }
                     : null,
                 child: Text(short ? l10n.finishShortRest : l10n.finishLongRest),

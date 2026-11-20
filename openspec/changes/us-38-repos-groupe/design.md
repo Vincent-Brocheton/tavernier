@@ -21,6 +21,15 @@
 - **Schéma v4** : `createTable` dans la migration, sauf sous PowerSync. Avec l'instantané `drift_schema_v4.json` et les tests de montée v1 → v4 et v3 → v4.
 - **`GroupRestStore`** : `start`, `close`, `markDone`, `watchOpen`, `watchForCharacter` (avec `json_each`) et `watchDone`.
 
+## Lot b
+
+- **`RestSheet`** prend `origin` (en tête) et `onFinished`, appelé après « Terminer » avec `hit_dice`, `hp_before` et `hp_after`.
+- **`sessions/group_rest.dart`** :
+  - `GroupRestPanel`, sur la page d'une séance en cours ;
+  - `GroupRestBanner`, sur la fiche, pour qui peut la modifier ;
+  - `openGroupRest` attend la fiche et l'état de jeu, puis ouvre l'écran de repos et signale la fin au nom de l'utilisateur (le joueur, ou le MJ pour « Faire pour… »).
+- **Nom du MJ** : celui du membre MJ de la table, ou « Le MJ ».
+
 ## Choix
 
 - **Les PJ visés en JSON** dans le repos : le MJ les coche une fois, sans table de liaison.

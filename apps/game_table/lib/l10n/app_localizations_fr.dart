@@ -4456,6 +4456,69 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get groupRestTitle => 'Repos pour le groupe';
+
+  @override
+  String get groupRestHelp =>
+      'Les PJ présents reçoivent l’écran de repos sur leur fiche.';
+
+  @override
+  String get groupRestNoPresent => 'Aucun PJ présent à la séance.';
+
+  @override
+  String get groupRestOpenShort => 'Repos court en cours';
+
+  @override
+  String get groupRestOpenLong => 'Repos long en cours';
+
+  @override
+  String get groupRestDone => 'Terminé';
+
+  @override
+  String get groupRestWaiting => 'En attente';
+
+  @override
+  String groupRestDoFor(String name) {
+    return 'Faire pour $name';
+  }
+
+  @override
+  String get groupRestClose => 'Clore le repos';
+
+  @override
+  String groupRestSummary(int dice, int before, int after) {
+    String _temp0 = intl.Intl.pluralLogic(
+      dice,
+      locale: localeName,
+      other: '$dice dés de vie dépensés · PV $before → $after',
+      one: '1 dé de vie dépensé · PV $before → $after',
+      zero: 'PV $before → $after',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String groupRestBannerShort(String gm) {
+    return '$gm lance un repos court pour le groupe.';
+  }
+
+  @override
+  String groupRestBannerLong(String gm) {
+    return '$gm lance un repos long pour le groupe.';
+  }
+
+  @override
+  String groupRestOrigin(String name, String gm) {
+    return '$name · demandé par $gm';
+  }
+
+  @override
+  String get groupRestDo => 'Faire le repos';
+
+  @override
+  String get groupRestGm => 'Le MJ';
+
+  @override
   String playerCombatTitle(String title, int round) {
     return '$title · round $round';
   }

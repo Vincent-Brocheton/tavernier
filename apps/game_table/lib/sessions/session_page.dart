@@ -12,6 +12,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../tables/tables_providers.dart';
+import 'group_rest.dart';
 import 'sessions_providers.dart';
 
 class SessionPage extends ConsumerStatefulWidget {
@@ -171,6 +172,15 @@ class _SessionPageState extends ConsumerState<SessionPage> {
                 Text(l10n.sessionAttendanceTitle, style: text.titleMedium),
                 Text(l10n.sessionAttendanceHelp, style: text.bodySmall),
                 SizedBox(height: AppSpacing.sm),
+                if (session.status == SessionStatus.inProgress) ...[
+                  GroupRestPanel(
+                    tableId: widget.tableId,
+                    sessionId: session.id,
+                    present: present,
+                    group: group,
+                  ),
+                  SizedBox(height: AppSpacing.lg),
+                ],
                 Card(
                   margin: EdgeInsets.zero,
                   child: Column(

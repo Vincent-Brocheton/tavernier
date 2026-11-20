@@ -11,6 +11,7 @@ import '../creation/details_step.dart';
 import '../creation/step_layout.dart';
 import '../encounters/player_combat.dart';
 import '../l10n/app_localizations.dart';
+import '../sessions/group_rest.dart';
 import 'combat_tab.dart';
 import 'conflicts.dart';
 import 'features_tab.dart';
@@ -186,6 +187,7 @@ class _Sheet extends StatelessWidget {
         children: [
           _ConflictBanner(id: id),
           _PendingBanner(id: id),
+          GroupRestBanner(id: id, name: character.name),
           ProposalBanner(id: id, content: content, character: character),
           GmProposalStatus(id: id),
           Padding(
