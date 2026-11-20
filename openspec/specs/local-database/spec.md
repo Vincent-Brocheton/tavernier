@@ -6,11 +6,11 @@ Base SQLite locale de chaque appareil, source de vérité hors-ligne : elle port
 ## Requirements
 
 ### Requirement: Schéma version 1
-Une base neuve SHALL contenir, en version de schéma 3, toutes les tables du contenu de règles (cahier §11.1, plus `language`, `tool`, `feature`, `species_trait`) et des données de jeu (cahier §11.2, plus `character_language`, `character_choice`). La version 2 ajoute la colonne `rule_term.data` (US-24). La version 3 ajoute `combat_view` et `combat_request` (US-36).
+Une base neuve SHALL contenir, en version de schéma 4, toutes les tables du contenu de règles (cahier §11.1, plus `language`, `tool`, `feature`, `species_trait`) et des données de jeu (cahier §11.2, plus `character_language`, `character_choice`). La version 2 ajoute la colonne `rule_term.data` (US-24). La version 3 ajoute `combat_view` et `combat_request` (US-36). La version 4 ajoute `group_rest` et `group_rest_done` (US-38).
 
 #### Scenario: Base neuve
 - **WHEN** la base est ouverte pour la première fois
-- **THEN** sa version de schéma vaut 3 et chacune des tables attendues existe
+- **THEN** sa version de schéma vaut 4 et chacune des tables attendues existe
 
 ### Requirement: Identifiant unique des données synchronisables
 Chaque table de données de jeu SHALL avoir une clé primaire `id` textuelle unique, y compris les tables de liaison, pour rester synchronisable en M2.
@@ -72,7 +72,7 @@ Chaque version du schéma SHALL être figée dans un instantané versionné ; un
 
 #### Scenario: Instantané à jour
 - **WHEN** les tests de migration s'exécutent
-- **THEN** le schéma produit par le code est identique à l'instantané de la version 3
+- **THEN** le schéma produit par le code est identique à l'instantané de la version 4
 
 #### Scenario: Montée de v1 en v2
 - **WHEN** une base en version 1 est ouverte
@@ -81,6 +81,10 @@ Chaque version du schéma SHALL être figée dans un instantané versionné ; un
 #### Scenario: Montée vers v3
 - **WHEN** une base en version 1 ou 2 est ouverte
 - **THEN** elle monte en version 3, et son schéma est celui de l'instantané v3
+
+#### Scenario: Montée vers v4
+- **WHEN** une base en version 1 ou 3 est ouverte
+- **THEN** elle monte en version 4, et son schéma est celui de l'instantané v4
 
 ### Requirement: Base sur chaque plateforme
 L'application SHALL ouvrir une base persistante sur Web (SQLite WASM), Android et iOS : écrire, fermer, rouvrir et relire les mêmes données, et y exécuter une recherche FTS5 (cahier ENF-06). Sur le Web, cela vaut pour les navigateurs d'ENF-06 : Chrome, Firefox, Safari et Edge.
@@ -539,3 +543,10 @@ L'import d'un pack SHALL garder les tables d'une entité `rule` (`rule_term.data
 #### Scenario: Vue d'un PJ
 - **WHEN** deux vues sont publiées, l'une avec Aldric, l'autre avec Thalia
 - **THEN** la vue suivie pour Aldric est la première, et Mira n'en a aucune
+
+### Requirement: Repos de groupe en base
+`GroupRestStore` SHALL déclencher un repos pour des PJ, le clore, et signaler la fin d'un PJ avec son récapitulatif. Il SHALL suivre les repos ouverts d'une table, le repos ouvert qui attend encore un PJ, et les récapitulatifs d'un repos par PJ. Sous PowerSync, ces tables SHALL être synchronisées.
+
+#### Scenario: Repos suivi
+- **WHEN** un repos court est déclenché pour Aldric et Mira, puis Aldric le termine
+- **THEN** il n'attend plus que Mira, le récapitulatif d'Aldric se lit, et après la clôture il n'attend plus personne
