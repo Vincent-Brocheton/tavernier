@@ -18,6 +18,7 @@ import '../tables/tables_providers.dart';
 import 'combat_view.dart';
 import 'encounters_providers.dart';
 import 'launch.dart';
+import 'player_sync.dart';
 
 /// Lance [encounter] : ses combattants, les jets automatiques, l'état « En
 /// cours » ; puis ouvre l'écran d'initiative.
@@ -103,6 +104,8 @@ class CombatPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
     final state = ref.watch(combatStateProvider(id));
+    // La vue des joueurs et leurs demandes, tant que le MJ est sur le combat.
+    ref.watch(combatPlayerSyncProvider((tableId: tableId, encounterId: id)));
     final encounter =
         (ref.watch(tableEncountersProvider(tableId)).value ??
                 const <Encounter>[])

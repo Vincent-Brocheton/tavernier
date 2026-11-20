@@ -13,6 +13,7 @@ import '../npcs/npcs_providers.dart';
 import 'combat_journal.dart';
 import 'combat_view.dart';
 import 'encounters_providers.dart';
+import 'player_sync.dart';
 
 /// Fiche d'un PJ, pour ses PX et sa classe ; `null` si illisible.
 final _pcInputProvider = FutureProvider.autoDispose
@@ -105,6 +106,8 @@ class _EncounterSummaryPageState extends ConsumerState<EncounterSummaryPage> {
         ),
       ]);
       await ref.read(combatStoreProvider).finish(encounter.id);
+      // Les joueurs quittent l'écran « En combat ».
+      await ref.read(combatViewStoreProvider).remove(encounter.id);
       if (context.mounted) Navigator.pop(context, true);
     }
 

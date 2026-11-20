@@ -7056,6 +7056,18 @@ abstract class AppLocalizations {
   /// **'{remaining} / {max}'**
   String combatRemaining(int remaining, int max);
 
+  /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
+  ///
+  /// In fr, this message translates to:
+  /// **'Masquer aux joueurs'**
+  String get combatHideFromPlayers;
+
+  /// Précision sous « Masquer aux joueurs ».
+  ///
+  /// In fr, this message translates to:
+  /// **'Absent de l’ordre affiché sur leurs téléphones'**
+  String get combatHideFromPlayersHint;
+
   /// Retire un combattant (EF-INI-06).
   ///
   /// In fr, this message translates to:

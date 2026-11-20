@@ -34,8 +34,18 @@
   - `pcs` est indexé par l'id de la fiche du PJ.
 - **`turnsUntil`** compte les unités distinctes de l'ordre visible.
 
+## Lot b
+
+- **Moteur** : `requestEvents` (`player_view.dart`) traduit une demande en événements, avec la liste fermée de la spec ; il réécrit la cible avec le seul combattant du PJ et ne garde que les champs permis (un joueur ne peut pas « Assommer » ni annuler).
+- **App** (`encounters/player_sync.dart`) :
+  - `combatPlayerSyncProvider` : la page du combat l'écoute ; il publie la vue quand la rencontre est en cours, et passe les demandes au journal ;
+  - un ensemble des demandes prises en charge évite d'appliquer deux fois une demande dont le retrait n'est pas encore lu ;
+  - la clôture ([C11]) retire la vue après `finish`.
+- **« Masquer aux joueurs »** : un interrupteur sur la fiche d'un adversaire ([C8]).
+
 ## Choix
 
 - **La vue est calculée par le MJ** : rien de caché n'atteint le téléphone du joueur. C'est le motif de `character_summary`.
 - **Un JSON plutôt que des colonnes** : la vue suit le moteur, sans migration pour chaque champ.
-- **Les demandes sont retirées une fois appliquées** : le journal du MJ en garde la trace, avec l'id de la demande (lot b).
+- **Les demandes sont retirées une fois appliquées** : le journal du MJ en garde la trace, avec l'id de la demande.
+- **La liaison vit avec la page du combat** : c'est là que le MJ mène le combat. Hors de la page, les demandes attendent.

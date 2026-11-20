@@ -4456,6 +4456,13 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get combatHideFromPlayers => 'Masquer aux joueurs';
+
+  @override
+  String get combatHideFromPlayersHint =>
+      'Absent de l’ordre affiché sur leurs téléphones';
+
+  @override
   String get combatRemove => 'Retirer du combat';
 
   @override

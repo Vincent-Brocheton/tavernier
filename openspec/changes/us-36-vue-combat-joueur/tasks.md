@@ -7,7 +7,8 @@
 
 ## 2. Lot b : côté MJ
 
-- [ ] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.2 Suite complète, revue, PR du lot b
 
 ## 3. Lot c : écran du joueur
 
