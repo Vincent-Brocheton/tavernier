@@ -90,6 +90,19 @@ final class CombatViewStore {
       .watch()
       .map((rows) => rows.isEmpty ? null : _view(rows.single));
 
+  /// Vue la plus récente où figure le PJ [characterId] ; `null` s'il
+  /// n'est dans aucun combat en cours (EF-VJ-01).
+  Stream<PublishedCombatView?> watchCharacter(String characterId) => _db
+      .customSelect(
+        'SELECT * FROM combat_view '
+        r"WHERE json_extract(payload, '$.pcs.' || json_quote(?)) IS NOT NULL "
+        'ORDER BY updated_at DESC LIMIT 1',
+        variables: [Variable.withString(characterId)],
+        readsFrom: {_db.combatViews},
+      )
+      .watch()
+      .map((rows) => rows.isEmpty ? null : _view(rows.single));
+
   static PublishedCombatView _view(QueryRow row) => (
     encounterId: row.read<String>('id'),
     tableId: row.read<String>('table_id'),

@@ -32,6 +32,7 @@ Future<void> _open(
   CharacterInput character, {
   double width = 1440,
   PlayState? play,
+  ValueChanged<String?>? onConcentration,
 }) async {
   tester.view.physicalSize = Size(width, 2400);
   tester.view.devicePixelRatio = 1;
@@ -59,6 +60,7 @@ Future<void> _open(
             content: _content,
             character: character,
             sheet: computeSheet(character, _content),
+            onConcentration: onConcentration,
           ),
         ),
       ),
@@ -196,6 +198,19 @@ void main() {
           .concentrationSpellId,
       isNull,
     );
+  });
+
+  testWidgets('en combat : concentration relayée au MJ (US-36)', (
+    tester,
+  ) async {
+    final relayed = <String?>[];
+    await _open(tester, mira, onConcentration: relayed.add);
+    await _openSpell(tester, 'Bénédiction');
+    await tester.tap(_castButton);
+    await _settle(tester);
+    await tester.tap(find.text('Mettre fin'));
+    await _settle(tester);
+    expect(relayed, ['Bénédiction', null]);
   });
 
   testWidgets('second sort : confirmation puis remplacement', (tester) async {

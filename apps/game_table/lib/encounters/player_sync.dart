@@ -28,22 +28,22 @@ final _applying = <String>{};
 /// rencontre en cours et applique les demandes de ses joueurs.
 final combatPlayerSyncProvider = Provider.autoDispose
     .family<void, ({String tableId, String encounterId})>((ref, key) {
-      final running =
-          ref
-              .watch(tableEncountersProvider(key.tableId))
-              .value
-              ?.where((e) => e.id == key.encounterId)
-              .firstOrNull
-              ?.status ==
-          EncounterStatus.running;
+      final encounter = ref
+          .watch(tableEncountersProvider(key.tableId))
+          .value
+          ?.where((e) => e.id == key.encounterId)
+          .firstOrNull;
       final state = ref.watch(combatStateProvider(key.encounterId)).value;
-      if (!running || state == null) return;
+      if (encounter?.status != EncounterStatus.running || state == null) {
+        return;
+      }
       ref
           .read(combatViewStoreProvider)
           .publish(
             encounterId: key.encounterId,
             tableId: key.tableId,
-            payload: playerCombatView(state),
+            // Le joueur ne lit pas les rencontres : le titre vient avec.
+            payload: {...playerCombatView(state), 'title': encounter!.title},
           );
       final requests = ref.watch(combatRequestsProvider(key.encounterId)).value;
       final combat = ref.read(combatStoreProvider);

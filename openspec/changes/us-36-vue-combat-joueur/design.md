@@ -43,9 +43,21 @@
   - la clôture ([C11]) retire la vue après `finish`.
 - **« Masquer aux joueurs »** : un interrupteur sur la fiche d'un adversaire ([C8]).
 
+## Lot c
+
+- **Moteur** : `requestEvents` accepte aussi `concentration_started`, `concentration_ended` et `turn_advanced` ; `deathSaveOutcome` ; la vue porte la durée restante des états (`rounds`, `of`, `ability`, `dc`).
+- **Données** : `CombatViewStore.watchCharacter` cherche le PJ dans `payload.pcs` (`json_extract`).
+- **App** :
+  - `encounters/player_combat.dart` : `PlayerCombatScreen`, en trois onglets (« Mon personnage », « Actions » = `CombatTab`, « Sorts » = `SpellsTab`) ;
+  - `SheetPage` bascule sur l'écran quand `isMyCombat` (le joueur est le propriétaire du PJ dans la vue) ;
+  - `SpellsTab.onConcentration` relaie le sort à concentration lancé ou terminé ;
+  - l'état hors-ligne vient de `syncIndicatorProvider`.
+
 ## Choix
 
 - **La vue est calculée par le MJ** : rien de caché n'atteint le téléphone du joueur. C'est le motif de `character_summary`.
 - **Un JSON plutôt que des colonnes** : la vue suit le moteur, sans migration pour chaque champ.
 - **Les demandes sont retirées une fois appliquées** : le journal du MJ en garde la trace, avec l'id de la demande.
+- **Réutiliser les onglets de la fiche** pour les attaques, ressources et sorts : mêmes calculs, même décompte des emplacements, même confirmation de concentration (EF-PJ-09).
+- **L'économie d'actions** reste sur le téléphone : le MJ n'en a pas besoin.
 - **La liaison vit avec la page du combat** : c'est là que le MJ mène le combat. Hors de la page, les demandes attendent.

@@ -46,12 +46,17 @@ class SpellsTab extends ConsumerStatefulWidget {
     required this.content,
     required this.character,
     required this.sheet,
+    this.onConcentration,
   });
 
   final String id;
   final ActiveContent content;
   final CharacterInput character;
   final ComputedSheet sheet;
+
+  /// En combat : le nom du sort à concentration lancé, ou `null` quand la
+  /// concentration prend fin (US-36, EF-VJ-04).
+  final ValueChanged<String?>? onConcentration;
 
   @override
   ConsumerState<SpellsTab> createState() => _SpellsTabState();
@@ -127,7 +132,10 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
             ),
             if (SheetAccess.editableOf(context))
               TextButton(
-                onPressed: () => _store(endConcentration(_latest)),
+                onPressed: () async {
+                  await _store(endConcentration(_latest));
+                  widget.onConcentration?.call(null);
+                },
                 child: Text(
                   l10n.endConcentration,
                   style: TextStyle(color: colors.onConcentrationContainer),
@@ -337,7 +345,10 @@ class _SpellsTabState extends ConsumerState<SpellsTab> {
         data: data,
         options: options,
         replaced: replacedConcentration(spell.id, data, _latest),
-        onCast: (option) => _store(castSpell(_latest, spell.id, data, option)),
+        onCast: (option) async {
+          await _store(castSpell(_latest, spell.id, data, option));
+          if (data.concentration) widget.onConcentration?.call(entity.name);
+        },
         name: _name,
       ),
     );

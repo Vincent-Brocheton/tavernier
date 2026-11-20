@@ -65,6 +65,18 @@ void main() {
       'combatant': 'cache',
       'hidden': true,
     }),
+    _event(CombatEventType.concentrationStarted, {
+      'combatant': 'mira',
+      'spell': 'Bénédiction',
+    }),
+    // Béni, posé au round 1 pour 10 rounds.
+    _event(CombatEventType.conditionAdded, {
+      'combatant': 'aldric',
+      'instance': 'beni',
+      'label': 'Béni',
+      'duration': {'kind': 'rounds', 'rounds': 10},
+      'concentration': 'mira',
+    }),
     for (var i = 0; i < 6 * 2 + 1; i++) _event(CombatEventType.turnAdvanced),
   ];
 
@@ -100,6 +112,17 @@ void main() {
     expect(aldric['temp_hp'], 5);
     expect(aldric['reaction'], isTrue);
     expect(aldric['concentration'], isNull);
+    // « Béni · de Mira · concentration · 8 rounds ».
+    expect(aldric['conditions'], [
+      {
+        'instance': 'beni',
+        'label': 'Béni',
+        'levels': 1,
+        'duration': 'rounds',
+        'rounds': 8,
+        'concentration': 'Mira Solen',
+      },
+    ]);
   });
 
   test('masqué puis rendu visible', () {
@@ -281,5 +304,51 @@ void main() {
         ],
       ]);
     });
+
+    test('concentration commencée, finie ; fin de tour à son seul tour', () {
+      expect(apply('concentration_started', {'spell': 'Bénédiction'}), [
+        [
+          CombatEventType.concentrationStarted,
+          {'combatant': 'aldric', 'spell': 'Bénédiction', 'request': 'q1'},
+        ],
+      ]);
+      expect(apply('concentration_started', {'spell': ''}), isEmpty);
+      expect(apply('concentration_ended', const {}), isEmpty);
+      final concentrating = projectCombat([
+        ...events,
+        _event(CombatEventType.concentrationStarted, {
+          'combatant': 'aldric',
+          'spell': 'Bénédiction',
+        }),
+      ]);
+      expect(apply('concentration_ended', const {}, state: concentrating), [
+        [
+          CombatEventType.concentrationEnded,
+          {'combatant': 'aldric', 'request': 'q1'},
+        ],
+      ]);
+      // [J1] : c'est le tour du Chef de bande, pas d'Aldric.
+      expect(apply('turn_advanced', const {}), isEmpty);
+      final mine = projectCombat([
+        ...events,
+        _event(CombatEventType.turnAdvanced),
+        _event(CombatEventType.turnAdvanced),
+      ]);
+      expect(mine.active, 'aldric');
+      expect(apply('turn_advanced', const {}, state: mine), [
+        [
+          CombatEventType.turnAdvanced,
+          {'request': 'q1'},
+        ],
+      ]);
+    });
+  });
+
+  test('jet contre la mort : 1, 20, 10 ou plus (SRD)', () {
+    expect(deathSaveOutcome(1), 'nat1');
+    expect(deathSaveOutcome(9), 'failure');
+    expect(deathSaveOutcome(10), 'success');
+    expect(deathSaveOutcome(19), 'success');
+    expect(deathSaveOutcome(20), 'nat20');
   });
 }

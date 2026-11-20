@@ -12,4 +12,5 @@
 
 ## 3. Lot c : écran du joueur
 
-- [ ] 3.1 Specs et design du lot c, puis tests et implémentation
+- [x] 3.1 Specs et design du lot c, puis tests et implémentation
+- [x] 3.2 Suite complète, revue, PR du lot c
