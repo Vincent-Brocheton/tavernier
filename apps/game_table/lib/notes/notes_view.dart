@@ -100,10 +100,18 @@ Future<void> openNote(
 /// Notes de [tableId] : recherche, filtres, groupes et « Nouvelle note ».
 /// [gm] rend actifs les liens vers les PNJ et les rencontres.
 class NotesView extends ConsumerStatefulWidget {
-  const NotesView({super.key, required this.tableId, this.gm = false});
+  const NotesView({
+    super.key,
+    required this.tableId,
+    this.gm = false,
+    this.sessionId,
+  });
 
   final String tableId;
   final bool gm;
+
+  /// Seulement les notes de cette séance, où va une note neuve ([S5]).
+  final String? sessionId;
 
   @override
   ConsumerState<NotesView> createState() => _NotesViewState();
@@ -124,7 +132,15 @@ class _NotesViewState extends ConsumerState<NotesView> {
     final l10n = AppLocalizations.of(context);
     final text = Theme.of(context).textTheme;
     final me = ref.watch(currentUserProvider).value?.id;
-    final notes = ref.watch(tableNotesProvider(widget.tableId)).value;
+    final notes = ref
+        .watch(tableNotesProvider(widget.tableId))
+        .value
+        ?.where(
+          (n) =>
+              widget.sessionId == null ||
+              (n.scope == 'session' && n.refId == widget.sessionId),
+        )
+        .toList();
     final targets = noteTargets(ref, widget.tableId);
     if (notes == null) return const Center(child: CircularProgressIndicator());
     final query = foldAccents(_search.text.trim());
@@ -162,7 +178,7 @@ class _NotesViewState extends ConsumerState<NotesView> {
         onPressed: () => openNote(
           context,
           tableId: widget.tableId,
-          defaultSession: session?.id,
+          defaultSession: widget.sessionId ?? session?.id,
         ),
         icon: const Icon(Icons.add),
         label: Text(l10n.notesNew),

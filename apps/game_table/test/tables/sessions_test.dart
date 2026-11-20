@@ -496,4 +496,84 @@ void main() {
     ))!.firstWhere((e) => e.id == reported);
     expect(kept.sessionId, isNull);
   });
+
+  // Spec tables : « Séance close vue par le joueur » (US-35 lot e,
+  // EF-SEA-07, [S5]).
+  _test('[S5] : PX gagnés par Aldric et notes de la séance', (tester) async {
+    await _open(
+      tester,
+      me: _hugo,
+      seed: (store) async {
+        final s12 = await store.create(
+          tableId: _table,
+          title: 'Le relais du Sel',
+          date: DateTime(2026, 10, 30),
+          status: SessionStatus.closed,
+          present: ['aldric', 'mira'],
+        );
+        await CharacterStore(_db)
+            .addXp('aldric', amount: 825, byUserId: _camille, sessionId: s12);
+        await CharacterStore(_db)
+            .addXp('mira', amount: 825, byUserId: _camille, sessionId: s12);
+        final notes = NoteStore(_db);
+        final shared = await notes.create(
+          ownerUserId: _camille,
+          tableId: _table,
+          scope: 'session',
+          refId: s12,
+          title: 'Calendrier et factions',
+          content: 'La Guilde du Sel.',
+        );
+        await notes.update(shared, private: false);
+        await notes.create(
+          ownerUserId: _camille,
+          tableId: _table,
+          scope: 'session',
+          refId: s12,
+          title: 'Préparation',
+          content: 'Privée.',
+        );
+      },
+    );
+    expect(find.text('+825 PX pour Aldric Varenne'), findsOneWidget);
+    // Mira est jouée par Inès : ses PX ne regardent pas Hugo.
+    expect(find.text('+825 PX pour Mira Solen'), findsNothing);
+    expect(
+      find.text('825 / 14\u202f000 PX · niveau 6 à 14\u202f000'),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.text('Le relais du Sel'));
+    expect(find.text('NOTES DE CETTE SÉANCE'), findsOneWidget);
+    expect(find.text('Calendrier et factions'), findsOneWidget);
+    expect(find.text('Préparation'), findsNothing);
+    expect(find.text('Partagée par Camille · lecture seule'), findsOneWidget);
+  });
+
+  _test('[S5] en jalons : niveau accordé, sans PX', (tester) async {
+    await _open(
+      tester,
+      me: _hugo,
+      progression: Progression.milestones,
+      seed: (store) async {
+        final s12 = await store.create(
+          tableId: _table,
+          title: 'Le relais du Sel',
+          date: DateTime(2026, 10, 30),
+          status: SessionStatus.closed,
+        );
+        await CharacterStore(_db).grantLevel(
+          'aldric',
+          level: 6,
+          origin: 'milestone',
+          byUserId: _camille,
+          reason: 'Varga capturée',
+          sessionId: s12,
+        );
+      },
+    );
+    expect(find.text('Niveau 6 accordé à Aldric Varenne'), findsOneWidget);
+    expect(find.text('Jalon : « Varga capturée »'), findsOneWidget);
+    expect(find.textContaining('PX'), findsNothing);
+  });
 }

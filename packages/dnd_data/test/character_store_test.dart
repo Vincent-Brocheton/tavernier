@@ -106,6 +106,19 @@ void _tests(Future<TavernierDatabase> Function() open) {
       });
     });
 
+    test("gains d'une séance : PX et jalon (EF-SEA-07)", () async {
+      await store.addXp(
+        'a',
+        amount: 825,
+        byUserId: 'camille',
+        sessionId: 's12',
+      );
+      await store.addXp('a', amount: 10, byUserId: 'camille', sessionId: 's11');
+      final [gain] = await store.watchSessionGains('s12').first;
+      expect(gain.characterId, 'a');
+      expect(gain.detail['amount'], 825);
+    });
+
     test('montée inscrite avec son origine', () async {
       await store.recordLevelUp(
         'a',
