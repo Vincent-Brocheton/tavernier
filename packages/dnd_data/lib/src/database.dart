@@ -80,6 +80,7 @@ part 'database.g.dart';
     GroupRests,
     GroupRestDones,
     Notes,
+    HomebrewDrafts,
     AuthorIdentities,
   ],
   include: {'content_search.drift'},
@@ -106,7 +107,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -141,6 +142,8 @@ class TavernierDatabase extends _$TavernierDatabase {
         await m.addColumn(notes, notes.updatedAt);
         await m.addColumn(notes, notes.conflict);
       }
+      // v6 (US-27) : brouillons homebrew, locaux même sous PowerSync.
+      if (from < 6 && to >= 6) await m.createTable(homebrewDrafts);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

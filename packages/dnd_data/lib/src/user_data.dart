@@ -9,9 +9,12 @@ import 'powersync.dart';
 const userDataFormat = 'tavernier-export';
 const userDataVersion = 1;
 
-/// Tables des données de l'utilisateur : les synchronisées et les tables
-/// locales de jeu (M3). Les clés de pack (`author_identity`) n'y sont pas.
-List<String> userDataTables(TavernierDatabase db) => [...syncedTables];
+/// Tables des données de l'utilisateur : les synchronisées et ses
+/// brouillons homebrew. Les clés de pack (`author_identity`) n'y sont pas.
+List<String> userDataTables(TavernierDatabase db) => [
+  ...syncedTables,
+  db.homebrewDrafts.actualTableName,
+];
 
 /// Export JSON des données de l'utilisateur : chaque ligne telle qu'en base,
 /// et les packs installés sans leur contenu.

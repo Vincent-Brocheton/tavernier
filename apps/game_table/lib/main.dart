@@ -25,6 +25,7 @@ import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
 import 'encounters/combat_page.dart';
 import 'encounters/encounter_page.dart';
+import 'homebrew/homebrew_page.dart';
 import 'l10n/app_localizations.dart';
 import 'npcs/new_npc_page.dart';
 import 'npcs/npc_page.dart';
@@ -324,6 +325,7 @@ class _ShellState extends ConsumerState<_Shell> {
           0 => const _HomePage(),
           1 => const TablesTab(),
           2 => const _CharactersPage(),
+          4 => const HomebrewPage(),
           _ => _PlaceholderPage(destinations[_selected].$2),
         },
       ),

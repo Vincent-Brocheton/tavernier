@@ -31,8 +31,8 @@ void main() {
   setUp(() => db = memoryDatabase());
   tearDown(() => db.close());
 
-  test('base neuve : version 5 et tables du contenu', () async {
-    expect(db.schemaVersion, 5);
+  test('base neuve : version 6 et tables du contenu', () async {
+    expect(db.schemaVersion, 6);
     expect(await tableNames(db), containsAll(contentTables));
   });
 

@@ -8,4 +8,5 @@ export 'src/entities/content_entity.dart';
 export 'src/entities/entity_data.dart';
 export 'src/pack/content_pack.dart';
 export 'src/pack/dndpack_archive.dart';
+export 'src/pack/homebrew.dart';
 export 'src/pack/manifest.dart';

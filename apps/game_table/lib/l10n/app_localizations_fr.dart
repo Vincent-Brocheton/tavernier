@@ -4949,6 +4949,385 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sessionNotesTitle => 'Notes de cette séance';
 
   @override
+  String get typeFeat => 'Don';
+
+  @override
+  String get typeBackground => 'Historique';
+
+  @override
+  String get typeSpecies => 'Espèce';
+
+  @override
+  String get typeClass => 'Classe';
+
+  @override
+  String get typeSubclass => 'Sous-classe';
+
+  @override
+  String get typeSpell => 'Sort';
+
+  @override
+  String get typeItem => 'Objet';
+
+  @override
+  String get typeMonster => 'Monstre';
+
+  @override
+  String get homebrewNewPack => 'Nouveau pack';
+
+  @override
+  String get homebrewPackName => 'Nom du pack';
+
+  @override
+  String get homebrewCreate => 'Créer';
+
+  @override
+  String get homebrewAuthor => 'Auteur inconnu';
+
+  @override
+  String get homebrewChoosePack => 'Dans quel pack ?';
+
+  @override
+  String get homebrewMyPacks => 'Mes packs';
+
+  @override
+  String get homebrewNoPack => 'Aucun pack pour l’instant.';
+
+  @override
+  String get homebrewDraft => 'brouillon';
+
+  @override
+  String homebrewEntityCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count entités',
+      one: '1 entité',
+      zero: 'aucune entité',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homebrewReady => 'Prêt à publier';
+
+  @override
+  String get homebrewReadyHint => 'Les mêmes contrôles que le SRD passent.';
+
+  @override
+  String homebrewIssueCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count points à corriger',
+      one: '1 point à corriger',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homebrewIncluded => 'Inclus';
+
+  @override
+  String get homebrewLocked => 'verrouillé';
+
+  @override
+  String get homebrewCreateEntity => 'Créer une entité';
+
+  @override
+  String get homebrewCreateEntityHint =>
+      'Formulaires guidés, règles 2024 appliquées.';
+
+  @override
+  String get homebrewManifest => 'Pack';
+
+  @override
+  String get homebrewDeletePack => 'Supprimer le pack';
+
+  @override
+  String get homebrewDeletePackHint =>
+      'Le brouillon et ses entités disparaissent de cet appareil.';
+
+  @override
+  String get homebrewSavedOnDevice => 'Enregistré sur l’appareil';
+
+  @override
+  String get homebrewAddEntity => 'Ajouter une entité';
+
+  @override
+  String get homebrewCheckTitle => 'Vérification';
+
+  @override
+  String get homebrewCheckHint =>
+      'Les mêmes contrôles que pour le SRD : une entité qui ne passe pas ne peut pas être publiée, ni casser une fiche.';
+
+  @override
+  String get homebrewDeleteEntity => 'Supprimer l’entité';
+
+  @override
+  String get homebrewFieldName => 'Nom *';
+
+  @override
+  String get homebrewFieldText => 'Texte (ce que le joueur lira)';
+
+  @override
+  String get homebrewFeatCategory => 'Catégorie *';
+
+  @override
+  String get featOrigin => 'Origine';
+
+  @override
+  String get featGeneral => 'Général';
+
+  @override
+  String get featFightingStyle => 'Style de combat';
+
+  @override
+  String get featEpicBoon => 'Faveur épique';
+
+  @override
+  String get homebrewFeatMinLevel => 'Niveau minimal';
+
+  @override
+  String get homebrewFeatRepeatable => 'Répétable';
+
+  @override
+  String homebrewPickCount(String title, int count, int max) {
+    return '$title · $count / $max';
+  }
+
+  @override
+  String get homebrewBackgroundAbilities => 'Caractéristiques';
+
+  @override
+  String get homebrewBackgroundAbilitiesRule =>
+      'Règle 2024 : exactement 3 caractéristiques.';
+
+  @override
+  String get homebrewOriginFeat => 'Don d’origine *';
+
+  @override
+  String get homebrewBackgroundSkills => 'Compétences';
+
+  @override
+  String get homebrewBackgroundSkillsRule => 'Règle 2024 : 2 compétences.';
+
+  @override
+  String get homebrewBackgroundTool => 'Outil';
+
+  @override
+  String get homebrewGoldA => 'Or de l’option A';
+
+  @override
+  String get homebrewGoldB => 'Or de l’option B';
+
+  @override
+  String get effectsTitle => 'Effets';
+
+  @override
+  String get effectAdd => 'Ajouter un effet';
+
+  @override
+  String get effectAddTitle => 'Ajouter un effet';
+
+  @override
+  String get effectClosedList =>
+      'Liste fermée : pas de formule libre, pas de code.';
+
+  @override
+  String get effectRemove => 'Retirer l’effet';
+
+  @override
+  String get effectPreview => 'Ce que le joueur lira';
+
+  @override
+  String get effectSave => 'Enregistrer l’effet';
+
+  @override
+  String get opAbilityBonus => 'Augmenter une caractéristique';
+
+  @override
+  String get opGrantProficiency => 'Accorder une maîtrise';
+
+  @override
+  String get opGrantExpertise => 'Accorder l’Expertise';
+
+  @override
+  String get opModifyAc => 'Modifier la Classe d’armure';
+
+  @override
+  String get opModifySpeed => 'Modifier la Vitesse';
+
+  @override
+  String get opModifyHpMax => 'Augmenter les PV maximum';
+
+  @override
+  String get opGrantSense => 'Accorder un sens';
+
+  @override
+  String get opGrantDefense => 'Résistance ou immunité';
+
+  @override
+  String get opModifyInitiative => 'Modifier l’Initiative';
+
+  @override
+  String get opGrantAdvantage => 'Accorder l’Avantage';
+
+  @override
+  String effectAbilityBonus(String value, String ability, int max) {
+    return '+$value en $ability (maximum $max)';
+  }
+
+  @override
+  String effectProficiency(String target) {
+    return 'Maîtrise : $target';
+  }
+
+  @override
+  String effectExpertise(String skill) {
+    return 'Expertise : $skill';
+  }
+
+  @override
+  String effectAc(String value) {
+    return '+$value à la Classe d’armure';
+  }
+
+  @override
+  String effectSpeed(String distance, String mode) {
+    return '+$distance de Vitesse $mode';
+  }
+
+  @override
+  String effectHpPerLevel(String value) {
+    return '+$value PV maximum par niveau';
+  }
+
+  @override
+  String effectHpFlat(String value) {
+    return '+$value PV maximum';
+  }
+
+  @override
+  String effectDefense(String kind, String target) {
+    return '$kind : $target';
+  }
+
+  @override
+  String get effectResistance => 'Résistance';
+
+  @override
+  String get effectImmunity => 'Immunité';
+
+  @override
+  String effectInitiativeBonus(String value) {
+    return '+$value à l’Initiative';
+  }
+
+  @override
+  String get effectInitiative => 'l’Initiative';
+
+  @override
+  String effectAdvantage(String target) {
+    return 'Avantage à $target';
+  }
+
+  @override
+  String effectSavingThrow(String ability) {
+    return 'JS de $ability';
+  }
+
+  @override
+  String get effectAllSaves => 'tous les jets de sauvegarde';
+
+  @override
+  String get effectWhenAlways => 'Toujours';
+
+  @override
+  String get effectWhenArmor => 'tant que vous portez une armure';
+
+  @override
+  String get effectWhenNoArmor => 'tant que vous ne portez pas d’armure';
+
+  @override
+  String get effectWhenShield => 'tant que vous portez un bouclier';
+
+  @override
+  String get effectFieldAbility => 'Caractéristique';
+
+  @override
+  String get effectFieldValue => 'Valeur';
+
+  @override
+  String get effectFieldMax => 'Maximum';
+
+  @override
+  String get effectFieldKind => 'Type';
+
+  @override
+  String get effectFieldTarget => 'Cible';
+
+  @override
+  String get effectFieldWhen => 'Condition';
+
+  @override
+  String get effectFieldMode => 'Déplacement';
+
+  @override
+  String get effectFieldFeet => 'Distance en pieds (5 pieds = 1,5 m)';
+
+  @override
+  String get effectFieldPerLevel => 'Par niveau';
+
+  @override
+  String get effectFieldFlat => 'En une fois';
+
+  @override
+  String get effectFieldSense => 'Sens';
+
+  @override
+  String get proficiencySkill => 'Compétence';
+
+  @override
+  String get proficiencyTool => 'Outil';
+
+  @override
+  String get proficiencyWeaponCategory => 'Catégorie d’armes';
+
+  @override
+  String get proficiencyArmor => 'Armures';
+
+  @override
+  String get proficiencySave => 'Jet de sauvegarde';
+
+  @override
+  String get proficiencyLanguage => 'Langue';
+
+  @override
+  String get speedWalk => 'au sol';
+
+  @override
+  String get speedClimb => 'd’escalade';
+
+  @override
+  String get speedSwim => 'de nage';
+
+  @override
+  String get speedFly => 'de vol';
+
+  @override
+  String get senseDarkvision => 'Vision dans le noir';
+
+  @override
+  String get senseBlindsight => 'Vision aveugle';
+
+  @override
+  String get senseTremorsense => 'Perception des vibrations';
+
+  @override
+  String get senseTruesight => 'Vision lucide';
+
+  @override
   String get combatHideFromPlayers => 'Masquer aux joueurs';
 
   @override

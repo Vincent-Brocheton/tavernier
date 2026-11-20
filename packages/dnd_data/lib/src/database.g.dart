@@ -31870,6 +31870,270 @@ class NotesCompanion extends UpdateCompanion<NoteRow> {
   }
 }
 
+class $HomebrewDraftsTable extends HomebrewDrafts
+    with TableInfo<$HomebrewDraftsTable, HomebrewDraftRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $HomebrewDraftsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _packMeta = const VerificationMeta('pack');
+  @override
+  late final GeneratedColumn<String> pack = GeneratedColumn<String>(
+    'pack',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, pack, updatedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'homebrew_draft';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<HomebrewDraftRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pack')) {
+      context.handle(
+        _packMeta,
+        pack.isAcceptableOrUnknown(data['pack']!, _packMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_packMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  HomebrewDraftRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return HomebrewDraftRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      pack: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pack'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      ),
+    );
+  }
+
+  @override
+  $HomebrewDraftsTable createAlias(String alias) {
+    return $HomebrewDraftsTable(attachedDatabase, alias);
+  }
+}
+
+class HomebrewDraftRow extends DataClass
+    implements Insertable<HomebrewDraftRow> {
+  final String id;
+  final String pack;
+  final DateTime? updatedAt;
+  const HomebrewDraftRow({
+    required this.id,
+    required this.pack,
+    this.updatedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['pack'] = Variable<String>(pack);
+    if (!nullToAbsent || updatedAt != null) {
+      map['updated_at'] = Variable<DateTime>(updatedAt);
+    }
+    return map;
+  }
+
+  HomebrewDraftsCompanion toCompanion(bool nullToAbsent) {
+    return HomebrewDraftsCompanion(
+      id: Value(id),
+      pack: Value(pack),
+      updatedAt: updatedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updatedAt),
+    );
+  }
+
+  factory HomebrewDraftRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return HomebrewDraftRow(
+      id: serializer.fromJson<String>(json['id']),
+      pack: serializer.fromJson<String>(json['pack']),
+      updatedAt: serializer.fromJson<DateTime?>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'pack': serializer.toJson<String>(pack),
+      'updatedAt': serializer.toJson<DateTime?>(updatedAt),
+    };
+  }
+
+  HomebrewDraftRow copyWith({
+    String? id,
+    String? pack,
+    Value<DateTime?> updatedAt = const Value.absent(),
+  }) => HomebrewDraftRow(
+    id: id ?? this.id,
+    pack: pack ?? this.pack,
+    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+  );
+  HomebrewDraftRow copyWithCompanion(HomebrewDraftsCompanion data) {
+    return HomebrewDraftRow(
+      id: data.id.present ? data.id.value : this.id,
+      pack: data.pack.present ? data.pack.value : this.pack,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HomebrewDraftRow(')
+          ..write('id: $id, ')
+          ..write('pack: $pack, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, pack, updatedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HomebrewDraftRow &&
+          other.id == this.id &&
+          other.pack == this.pack &&
+          other.updatedAt == this.updatedAt);
+}
+
+class HomebrewDraftsCompanion extends UpdateCompanion<HomebrewDraftRow> {
+  final Value<String> id;
+  final Value<String> pack;
+  final Value<DateTime?> updatedAt;
+  final Value<int> rowid;
+  const HomebrewDraftsCompanion({
+    this.id = const Value.absent(),
+    this.pack = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  HomebrewDraftsCompanion.insert({
+    required String id,
+    required String pack,
+    this.updatedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       pack = Value(pack);
+  static Insertable<HomebrewDraftRow> custom({
+    Expression<String>? id,
+    Expression<String>? pack,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (pack != null) 'pack': pack,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  HomebrewDraftsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? pack,
+    Value<DateTime?>? updatedAt,
+    Value<int>? rowid,
+  }) {
+    return HomebrewDraftsCompanion(
+      id: id ?? this.id,
+      pack: pack ?? this.pack,
+      updatedAt: updatedAt ?? this.updatedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (pack.present) {
+      map['pack'] = Variable<String>(pack.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HomebrewDraftsCompanion(')
+          ..write('id: $id, ')
+          ..write('pack: $pack, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $AuthorIdentitiesTable extends AuthorIdentities
     with TableInfo<$AuthorIdentitiesTable, AuthorIdentityRow> {
   @override
@@ -32188,6 +32452,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $GroupRestsTable groupRests = $GroupRestsTable(this);
   late final $GroupRestDonesTable groupRestDones = $GroupRestDonesTable(this);
   late final $NotesTable notes = $NotesTable(this);
+  late final $HomebrewDraftsTable homebrewDrafts = $HomebrewDraftsTable(this);
   late final $AuthorIdentitiesTable authorIdentities = $AuthorIdentitiesTable(
     this,
   );
@@ -32265,6 +32530,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     groupRests,
     groupRestDones,
     notes,
+    homebrewDrafts,
     authorIdentities,
   ];
   @override
@@ -56675,6 +56941,187 @@ typedef $$NotesTableProcessedTableManager =
       NoteRow,
       PrefetchHooks Function()
     >;
+typedef $$HomebrewDraftsTableCreateCompanionBuilder =
+    HomebrewDraftsCompanion Function({
+      required String id,
+      required String pack,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+typedef $$HomebrewDraftsTableUpdateCompanionBuilder =
+    HomebrewDraftsCompanion Function({
+      Value<String> id,
+      Value<String> pack,
+      Value<DateTime?> updatedAt,
+      Value<int> rowid,
+    });
+
+class $$HomebrewDraftsTableFilterComposer
+    extends Composer<_$TavernierDatabase, $HomebrewDraftsTable> {
+  $$HomebrewDraftsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get pack => $composableBuilder(
+    column: $table.pack,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$HomebrewDraftsTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $HomebrewDraftsTable> {
+  $$HomebrewDraftsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get pack => $composableBuilder(
+    column: $table.pack,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$HomebrewDraftsTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $HomebrewDraftsTable> {
+  $$HomebrewDraftsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get pack =>
+      $composableBuilder(column: $table.pack, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$HomebrewDraftsTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $HomebrewDraftsTable,
+          HomebrewDraftRow,
+          $$HomebrewDraftsTableFilterComposer,
+          $$HomebrewDraftsTableOrderingComposer,
+          $$HomebrewDraftsTableAnnotationComposer,
+          $$HomebrewDraftsTableCreateCompanionBuilder,
+          $$HomebrewDraftsTableUpdateCompanionBuilder,
+          (
+            HomebrewDraftRow,
+            BaseReferences<
+              _$TavernierDatabase,
+              $HomebrewDraftsTable,
+              HomebrewDraftRow
+            >,
+          ),
+          HomebrewDraftRow,
+          PrefetchHooks Function()
+        > {
+  $$HomebrewDraftsTableTableManager(
+    _$TavernierDatabase db,
+    $HomebrewDraftsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$HomebrewDraftsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$HomebrewDraftsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$HomebrewDraftsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> pack = const Value.absent(),
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => HomebrewDraftsCompanion(
+                id: id,
+                pack: pack,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String pack,
+                Value<DateTime?> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => HomebrewDraftsCompanion.insert(
+                id: id,
+                pack: pack,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$HomebrewDraftsTable, HomebrewDraftRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $HomebrewDraftsTable,
+                    HomebrewDraftRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$HomebrewDraftsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $HomebrewDraftsTable,
+      HomebrewDraftRow,
+      $$HomebrewDraftsTableFilterComposer,
+      $$HomebrewDraftsTableOrderingComposer,
+      $$HomebrewDraftsTableAnnotationComposer,
+      $$HomebrewDraftsTableCreateCompanionBuilder,
+      $$HomebrewDraftsTableUpdateCompanionBuilder,
+      (
+        HomebrewDraftRow,
+        BaseReferences<
+          _$TavernierDatabase,
+          $HomebrewDraftsTable,
+          HomebrewDraftRow
+        >,
+      ),
+      HomebrewDraftRow,
+      PrefetchHooks Function()
+    >;
 typedef $$AuthorIdentitiesTableCreateCompanionBuilder =
     AuthorIdentitiesCompanion Function({
       required String id,
@@ -56993,6 +57440,8 @@ class $TavernierDatabaseManager {
       $$GroupRestDonesTableTableManager(_db, _db.groupRestDones);
   $$NotesTableTableManager get notes =>
       $$NotesTableTableManager(_db, _db.notes);
+  $$HomebrewDraftsTableTableManager get homebrewDrafts =>
+      $$HomebrewDraftsTableTableManager(_db, _db.homebrewDrafts);
   $$AuthorIdentitiesTableTableManager get authorIdentities =>
       $$AuthorIdentitiesTableTableManager(_db, _db.authorIdentities);
 }
