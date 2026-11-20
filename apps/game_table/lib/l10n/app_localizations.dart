@@ -7788,6 +7788,672 @@ abstract class AppLocalizations {
   /// **'Notes de cette séance'**
   String get sessionNotesTitle;
 
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Don'**
+  String get typeFeat;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get typeBackground;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Espèce'**
+  String get typeSpecies;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe'**
+  String get typeClass;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-classe'**
+  String get typeSubclass;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort'**
+  String get typeSpell;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objet'**
+  String get typeItem;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Monstre'**
+  String get typeMonster;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau pack'**
+  String get homebrewNewPack;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du pack'**
+  String get homebrewPackName;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer'**
+  String get homebrewCreate;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Auteur inconnu'**
+  String get homebrewAuthor;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dans quel pack ?'**
+  String get homebrewChoosePack;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes packs'**
+  String get homebrewMyPacks;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun pack pour l’instant.'**
+  String get homebrewNoPack;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'brouillon'**
+  String get homebrewDraft;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{aucune entité} =1{1 entité} other{{count} entités}}'**
+  String homebrewEntityCount(int count);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Prêt à publier'**
+  String get homebrewReady;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les mêmes contrôles que le SRD passent.'**
+  String get homebrewReadyHint;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 point à corriger} other{{count} points à corriger}}'**
+  String homebrewIssueCount(int count);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Inclus'**
+  String get homebrewIncluded;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'verrouillé'**
+  String get homebrewLocked;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer une entité'**
+  String get homebrewCreateEntity;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Formulaires guidés, règles 2024 appliquées.'**
+  String get homebrewCreateEntityHint;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Pack'**
+  String get homebrewManifest;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer le pack'**
+  String get homebrewDeletePack;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le brouillon et ses entités disparaissent de cet appareil.'**
+  String get homebrewDeletePackHint;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistré sur l’appareil'**
+  String get homebrewSavedOnDevice;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une entité'**
+  String get homebrewAddEntity;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification'**
+  String get homebrewCheckTitle;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les mêmes contrôles que pour le SRD : une entité qui ne passe pas ne peut pas être publiée, ni casser une fiche.'**
+  String get homebrewCheckHint;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer l’entité'**
+  String get homebrewDeleteEntity;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom *'**
+  String get homebrewFieldName;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Texte (ce que le joueur lira)'**
+  String get homebrewFieldText;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie *'**
+  String get homebrewFeatCategory;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Origine'**
+  String get featOrigin;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Général'**
+  String get featGeneral;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Style de combat'**
+  String get featFightingStyle;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Faveur épique'**
+  String get featEpicBoon;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau minimal'**
+  String get homebrewFeatMinLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Répétable'**
+  String get homebrewFeatRepeatable;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} · {count} / {max}'**
+  String homebrewPickCount(String title, int count, int max);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques'**
+  String get homebrewBackgroundAbilities;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règle 2024 : exactement 3 caractéristiques.'**
+  String get homebrewBackgroundAbilitiesRule;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Don d’origine *'**
+  String get homebrewOriginFeat;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences'**
+  String get homebrewBackgroundSkills;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règle 2024 : 2 compétences.'**
+  String get homebrewBackgroundSkillsRule;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Outil'**
+  String get homebrewBackgroundTool;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Or de l’option A'**
+  String get homebrewGoldA;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Or de l’option B'**
+  String get homebrewGoldB;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Effets'**
+  String get effectsTitle;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un effet'**
+  String get effectAdd;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un effet'**
+  String get effectAddTitle;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste fermée : pas de formule libre, pas de code.'**
+  String get effectClosedList;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l’effet'**
+  String get effectRemove;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce que le joueur lira'**
+  String get effectPreview;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer l’effet'**
+  String get effectSave;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Augmenter une caractéristique'**
+  String get opAbilityBonus;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder une maîtrise'**
+  String get opGrantProficiency;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder l’Expertise'**
+  String get opGrantExpertise;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la Classe d’armure'**
+  String get opModifyAc;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la Vitesse'**
+  String get opModifySpeed;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Augmenter les PV maximum'**
+  String get opModifyHpMax;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder un sens'**
+  String get opGrantSense;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Résistance ou immunité'**
+  String get opGrantDefense;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier l’Initiative'**
+  String get opModifyInitiative;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder l’Avantage'**
+  String get opGrantAdvantage;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} en {ability} (maximum {max})'**
+  String effectAbilityBonus(String value, String ability, int max);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Maîtrise : {target}'**
+  String effectProficiency(String target);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Expertise : {skill}'**
+  String effectExpertise(String skill);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} à la Classe d’armure'**
+  String effectAc(String value);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{distance} de Vitesse {mode}'**
+  String effectSpeed(String distance, String mode);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} PV maximum par niveau'**
+  String effectHpPerLevel(String value);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} PV maximum'**
+  String effectHpFlat(String value);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{kind} : {target}'**
+  String effectDefense(String kind, String target);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Résistance'**
+  String get effectResistance;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Immunité'**
+  String get effectImmunity;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} à l’Initiative'**
+  String effectInitiativeBonus(String value);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'l’Initiative'**
+  String get effectInitiative;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Avantage à {target}'**
+  String effectAdvantage(String target);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'JS de {ability}'**
+  String effectSavingThrow(String ability);
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'tous les jets de sauvegarde'**
+  String get effectAllSaves;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Toujours'**
+  String get effectWhenAlways;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'tant que vous portez une armure'**
+  String get effectWhenArmor;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'tant que vous ne portez pas d’armure'**
+  String get effectWhenNoArmor;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'tant que vous portez un bouclier'**
+  String get effectWhenShield;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique'**
+  String get effectFieldAbility;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Valeur'**
+  String get effectFieldValue;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Maximum'**
+  String get effectFieldMax;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type'**
+  String get effectFieldKind;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Cible'**
+  String get effectFieldTarget;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Condition'**
+  String get effectFieldWhen;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déplacement'**
+  String get effectFieldMode;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Distance en pieds (5 pieds = 1,5 m)'**
+  String get effectFieldFeet;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Par niveau'**
+  String get effectFieldPerLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'En une fois'**
+  String get effectFieldFlat;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sens'**
+  String get effectFieldSense;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétence'**
+  String get proficiencySkill;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Outil'**
+  String get proficiencyTool;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Catégorie d’armes'**
+  String get proficiencyWeaponCategory;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armures'**
+  String get proficiencyArmor;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet de sauvegarde'**
+  String get proficiencySave;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue'**
+  String get proficiencyLanguage;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'au sol'**
+  String get speedWalk;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'d’escalade'**
+  String get speedClimb;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'de nage'**
+  String get speedSwim;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'de vol'**
+  String get speedFly;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision dans le noir'**
+  String get senseDarkvision;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision aveugle'**
+  String get senseBlindsight;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception des vibrations'**
+  String get senseTremorsense;
+
+  /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision lucide'**
+  String get senseTruesight;
+
   /// Masque un adversaire de la vue des joueurs (US-36, EF-VJ-03).
   ///
   /// In fr, this message translates to:

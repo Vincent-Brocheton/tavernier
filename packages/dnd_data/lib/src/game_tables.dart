@@ -517,6 +517,16 @@ class Notes extends Table with IdKey {
   TextColumn get conflict => text().nullable()();
 }
 
+/// Brouillon d'un pack homebrew (US-27) : le manifeste et les entités en
+/// JSON brut, même incomplets. Local, jamais synchronisé.
+@DataClassName('HomebrewDraftRow')
+class HomebrewDrafts extends Table with IdKey {
+  @override
+  String get tableName => 'homebrew_draft';
+  TextColumn get pack => text()(); // JSON {manifest, entities}
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+}
+
 @DataClassName('AuthorIdentityRow')
 class AuthorIdentities extends Table with IdKey {
   @override
