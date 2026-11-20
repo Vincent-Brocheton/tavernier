@@ -182,11 +182,11 @@ Future<void> playM3(WidgetTester tester) async {
     await _reveal(tester, field);
     await tester.ensureVisible(field.first);
     await tester.pumpAndSettle();
-    await tester.enterText(field.first, d20);
-    await tester.testTextInput.receiveAction(TextInputAction.done);
-    // Le champ s'enregistre aussi en perdant le focus : Safari ne transmet
-    // pas toujours la validation du clavier.
-    FocusManager.instance.primaryFocus?.unfocus();
+    // Sur le Web sans fenêtre, enterText n'atteint pas le champ : on écrit
+    // par le champ lui-même, puis on valide, comme le ferait le clavier.
+    final input = tester.widget<TextField>(field.first);
+    input.controller!.text = d20;
+    input.onSubmitted!(d20);
     await _settle(tester);
   }
   expect(find.text('Tous les jets sont saisis'), findsOneWidget);
