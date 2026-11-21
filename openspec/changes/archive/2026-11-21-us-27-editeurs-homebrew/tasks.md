@@ -34,4 +34,4 @@
 - [x] 4.2 Tests puis format : `study_reveals`, `validatePack`, index `study_reveal`
 - [x] 4.3 Tests puis `checkDraft` : Intelligence obligatoire
 - [x] 4.4 Tests puis éditeur de Monstre, paliers d'Étude du PNJ et de l'assistant
-- [ ] 4.5 Suite complète, revue, PR du lot d
+- [x] 4.5 Suite complète, revue, PR du lot d

@@ -405,3 +405,72 @@ Leurs compétences et caractéristiques SHALL être des références contrôlée
 #### Scenario: Référence inconnue
 - **WHEN** une table cite `srd:skill:inexistante`
 - **THEN** le pack est refusé
+
+### Requirement: Niveaux des aptitudes de sous-classe
+Une `class` SHALL pouvoir porter `subclass_feature_levels`, les niveaux où sa sous-classe accorde ses aptitudes, en commençant par `subclass_level`. L'extracteur du SRD SHALL les lire dans les lignes « Aptitude de sous-classe » de la table de chaque classe. Chaque sous-classe du SRD SHALL avoir ses aptitudes à ces niveaux, et à tous. Un pack sans ce champ SHALL se lire comme avant.
+
+#### Scenario: Guerrier du SRD
+- **WHEN** le pack SRD est construit
+- **THEN** le Guerrier a pour niveaux de sous-classe 3, 7, 10, 15 et 18, ceux des aptitudes du Champion
+
+#### Scenario: Pack antérieur
+- **WHEN** un pack dont les classes n'ont pas `subclass_feature_levels` est lu
+- **THEN** il se lit sans problème, avec une liste vide
+
+### Requirement: Paliers d'Étude d'un monstre
+Un `monster` SHALL pouvoir porter `study_reveals`, une liste `{dc, text}` : ce qu'apprend un test d'Étude d'au moins ce DD. `validatePack` SHALL refuser deux paliers de même DD, un DD inférieur à 1 ou un texte vide. Un monstre sans ce champ SHALL se lire comme avant.
+
+#### Scenario: Deux paliers au même DD
+- **WHEN** un monstre a deux paliers de DD 15
+- **THEN** la vérification indique « palier d’Étude : un DD par palier, et un texte »
+
+### Requirement: Pack signé
+Un manifeste SHALL pouvoir porter `description`, `author_public_key` (clé publique Ed25519, base64) et `signature` (signature Ed25519, base64). Le message signé SHALL être le JSON du manifeste sans `signature`, avec `checksum` et `entity_count`, encodé comme dans l'archive. `verifyPackSignature` SHALL accepter un manifeste signé par la clé qu'il cite, et refuser :
+- un manifeste modifié après la signature ;
+- un manifeste sans signature ;
+- une signature faite par une autre clé.
+
+#### Scenario: Pack signé relu
+- **WHEN** un pack est signé, écrit en `.dndpack` puis relu
+- **THEN** sa signature est valide pour la clé publique de son auteur
+
+#### Scenario: Pack modifié
+- **WHEN** la version d'un manifeste signé est changée
+- **THEN** sa signature n'est plus valide
+
+### Requirement: Versions d'un pack
+`nextVersion` SHALL donner la version suivante (EF-HB-11) :
+- un correctif augmente le dernier nombre (2.1.0 → 2.1.1) ;
+- une mineure augmente le deuxième et remet le dernier à zéro (2.1.0 → 2.2.0) ;
+- une majeure augmente le premier et remet les autres à zéro (2.1.0 → 3.0.0).
+
+`packChanges` SHALL lister les entités ajoutées, modifiées et retirées entre deux versions.
+
+#### Scenario: Mineure
+- **WHEN** l'auteur choisit une version mineure depuis 2.1.0
+- **THEN** la version publiée est 2.2.0
+
+### Requirement: Aperçu d'un import
+`inspectImport` SHALL rendre, pour un pack lu, la nature de l'import face aux versions installées :
+- nouveau : identifiant inconnu ;
+- mise à jour : même identifiant, même clé, version absente ;
+- pack distinct : même identifiant, autre clé ;
+- déjà installé : même identifiant, même clé, même version.
+
+Il SHALL aussi rendre :
+- la validité de la signature ;
+- les dépendances manquantes ;
+- les problèmes de `validatePack` ;
+- les changements depuis la dernière version installée du même auteur ;
+- les conflits de noms avec les autres packs.
+
+#### Scenario: Autre auteur
+- **WHEN** un pack de même identifiant qu'un pack installé est signé par une autre clé
+- **THEN** l'import est un pack distinct
+
+### Requirement: Changer l'identité d'un pack
+`rebrandPack` SHALL donner à un pack un nouvel identifiant, un nouvel espace de noms et un nouveau nom, et réécrire chaque identifiant d'entité et chaque référence à l'ancien espace de noms. Les références vers d'autres packs ne changent pas. La signature et la clé d'auteur sont retirées : le pack obtenu n'est plus celui de l'auteur.
+
+#### Scenario: Références suivies
+- **WHEN** un pack `gardiens` dont la sous-classe cite `gardiens:feature:rempart` et `srd:class:fighter` prend l'espace de noms `gardiens-karl`
+- **THEN** la sous-classe cite `gardiens-karl:feature:rempart` et toujours `srd:class:fighter`

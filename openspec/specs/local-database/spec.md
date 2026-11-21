@@ -583,3 +583,86 @@ L'import d'un pack SHALL garder les tables d'une entité `rule` (`rule_term.data
 #### Scenario: Deux séances
 - **WHEN** Aldric gagne 825 PX à la séance 12 et 10 PX à la séance 11
 - **THEN** les gains de la séance 12 ne portent que les 825 PX d'Aldric
+
+### Requirement: Brouillons homebrew
+`HomebrewStore` SHALL créer, enregistrer, lister et supprimer des brouillons de packs. Chacun est gardé en entier, en JSON, dans la table locale `homebrew_draft`, non synchronisée, même s'il ne passe pas encore les validations. Un brouillon relu SHALL être identique au pack enregistré.
+
+#### Scenario: Aller-retour
+- **WHEN** un brouillon avec un Don et un Historique incomplet est enregistré, puis relu
+- **THEN** il est identique, entités et manifeste compris
+
+### Requirement: Arme magique et listes de classes d'un sort
+Le schéma v7 SHALL garder la rareté et l'harmonisation d'une arme ou d'une armure, et les classes citées par un sort. L'export d'un pack importé SHALL rendre ces champs à l'identique, sans changer la liste de sorts d'une classe d'un autre pack.
+
+#### Scenario: Aller-retour d'un pack homebrew
+- **WHEN** un pack avec une hache peu courante harmonisée, un bouclier rare et un sort du Magicien est importé après le SRD, puis exporté
+- **THEN** les deux packs exportés sont identiques à ceux qui ont été importés
+
+### Requirement: Niveaux de sous-classe d'une classe
+Le schéma v8 SHALL garder les niveaux d'aptitude de sous-classe d'une classe (`player_class.subclass_feature_levels`). L'export d'un pack importé SHALL les rendre à l'identique ; une base v7 SHALL monter en v8.
+
+#### Scenario: Aller-retour du SRD
+- **WHEN** le pack SRD est importé puis exporté
+- **THEN** le Guerrier exporté a pour niveaux de sous-classe 3, 7, 10, 15 et 18
+
+### Requirement: Paliers d'Étude indexés
+L'import d'un pack SHALL écrire les paliers d'Étude d'un monstre dans `study_reveal` (monstre, DD, texte), et l'export SHALL les rendre à l'identique.
+
+#### Scenario: Aller-retour d'un monstre homebrew
+- **WHEN** un monstre à deux paliers d'Étude est importé, puis exporté
+- **THEN** il est identique, et `study_reveal` porte ses deux paliers
+
+### Requirement: Clé de l'auteur
+`AuthorKeyStore` SHALL créer une seule paire Ed25519 par appareil, à la première demande, puis rendre toujours la même. Elle est gardée dans la table locale `author_key`, non synchronisée, même sous PowerSync.
+
+#### Scenario: Même clé
+- **WHEN** la clé est demandée deux fois
+- **THEN** la même clé publique est rendue, et `author_key` n'a qu'une ligne
+
+### Requirement: Pack signé gardé
+Le schéma v9 SHALL garder la description, la signature et la clé publique de l'auteur d'un pack (`content_pack`). L'export d'un pack importé SHALL les rendre à l'identique ; une base v8 SHALL monter en v9.
+
+#### Scenario: Aller-retour d'un pack signé
+- **WHEN** un pack signé est importé puis exporté
+- **THEN** son manifeste exporté a la même description, la même clé publique et la même signature, et la signature reste valide
+
+### Requirement: Fichiers de packs par version
+La table locale `pack_file` (schéma v10, non synchronisée) SHALL garder chaque version importée d'un pack, telle que reçue :
+- identifiant local et identifiant source ;
+- version, espace de noms et nom dans la bibliothèque ;
+- clé de l'auteur, empreinte, fichier ;
+- renommages.
+
+`PackLibrary.install` SHALL y écrire la version, et mettre les tables de contenu à cette version si c'est la plus récente de ce pack. Les versions précédentes SHALL rester lisibles par `PackLibrary.version`.
+
+#### Scenario: Deux versions
+- **WHEN** la 0.1.0 puis la 0.2.0 d'un pack sont installées
+- **THEN** les tables de contenu portent la 0.2.0, et la 0.1.0 se relit telle qu'importée
+
+#### Scenario: Pack distinct
+- **WHEN** un pack d'un autre auteur est installé sous l'espace de noms `gardiens-karl`
+- **THEN** les tables de contenu portent ses entités sous cet espace de noms, à côté de celles du pack d'origine
+
+### Requirement: Empreinte d'un pack de table
+Le schéma v11 SHALL garder l'empreinte du fichier d'un pack activé sur une table (`table_pack.file_sha256`). `TableStore` SHALL :
+- activer un pack sur une table, à une version et avec une empreinte, ou changer sa version ;
+- le retirer ;
+- suivre les packs actifs de toutes mes tables.
+
+#### Scenario: Activer puis changer de version
+- **WHEN** un pack est activé en 0.1.0 sur une table, puis passé en 0.2.0
+- **THEN** la table n'a qu'une ligne pour ce pack, en 0.2.0, avec l'empreinte de la 0.2.0
+
+### Requirement: Entités bannies d'une table
+`TableStore` SHALL bannir et rétablir une entité pour une table (une ligne de `table_banned_entity` par entité et par table), et suivre les entités bannies d'une table.
+
+#### Scenario: Bannir deux fois
+- **WHEN** Sommeil est banni deux fois, puis rétabli
+- **THEN** la table n'a eu qu'une ligne pour Sommeil, puis aucune
+
+### Requirement: Références de contenu d'une fiche
+`CharacterStore` SHALL lire et écrire les références de contenu d'une fiche (`character_content_ref`). Il SHALL inscrire le choix du joueur, migrer ou garder, dans `character_change_log`, et lister les fiches d'une table qui utilisent des entités données d'un pack.
+
+#### Scenario: Migrer
+- **WHEN** le joueur migre une entité vers 0.2.0
+- **THEN** la référence porte 0.2.0 et le nouvel instantané, et le journal a une ligne `content_update` avec le choix
