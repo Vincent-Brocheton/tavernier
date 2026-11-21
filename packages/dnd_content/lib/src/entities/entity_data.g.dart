@@ -1433,6 +1433,19 @@ const _$MonsterActionKindEnumMap = {
   MonsterActionKind.legendary: 'legendary',
 };
 
+_StudyReveal _$StudyRevealFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_StudyReveal', json, ($checkedConvert) {
+      $checkKeys(json, allowedKeys: const ['dc', 'text']);
+      final val = _StudyReveal(
+        dc: $checkedConvert('dc', (v) => (v as num).toInt()),
+        text: $checkedConvert('text', (v) => v as String),
+      );
+      return val;
+    });
+
+Map<String, dynamic> _$StudyRevealToJson(_StudyReveal instance) =>
+    <String, dynamic>{'dc': instance.dc, 'text': instance.text};
+
 _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   '_MonsterData',
   json,
@@ -1472,6 +1485,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'legendary_uses',
         'legendary_uses_lair',
         'actions',
+        'study_reveals',
       ],
     );
     final val = _MonsterData(
@@ -1590,6 +1604,14 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
                 .toList() ??
             const <MonsterAction>[],
       ),
+      studyReveals: $checkedConvert(
+        'study_reveals',
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map((e) => StudyReveal.fromJson(e as Map<String, dynamic>))
+                .toList() ??
+            const <StudyReveal>[],
+      ),
     );
     return val;
   },
@@ -1608,6 +1630,7 @@ _MonsterData _$MonsterDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     'proficiencyBonus': 'proficiency_bonus',
     'legendaryUses': 'legendary_uses',
     'legendaryUsesLair': 'legendary_uses_lair',
+    'studyReveals': 'study_reveals',
   },
 );
 
@@ -1653,6 +1676,7 @@ Map<String, dynamic> _$MonsterDataToJson(_MonsterData instance) =>
       'legendary_uses': ?instance.legendaryUses,
       'legendary_uses_lair': ?instance.legendaryUsesLair,
       'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'study_reveals': instance.studyReveals.map((e) => e.toJson()).toList(),
     };
 
 const _$MonsterSizeEnumMap = {

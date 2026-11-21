@@ -59,6 +59,10 @@ Décisions du porteur de projet du 21 novembre 2026 :
 
 ### Lot d : Monstre
 
+Décisions du porteur de projet du 21 novembre 2026 :
+- **Paliers d'Étude dans le format** : `monster` reçoit `study_reveals` (`[{dc, text}]`), facultatif, indexé dans la table `study_reveal` du cahier §11, qui existe déjà : pas de migration. Un PNJ créé depuis le monstre les reçoit en informations cachées, et l'assistant d'Étude les lit pour un monstre sans PNJ.
+- **CA calculée par l'éditeur seul** : le format ne change pas. L'éditeur écrit `ac` et la formule dans `ac_note` (« Armure de cuir clouté, Bouclier ») ; une CA naturelle garde son libellé dans `ac_note`.
+
 Le bloc de stats complet :
 - type, FP et PX, actions et légendaires ;
 - informations d'Étude par palier ;

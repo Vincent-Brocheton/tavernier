@@ -110,6 +110,53 @@ void main() {
       },
     );
 
+    test('monstre homebrew : paliers d’Étude gardés et indexés', () async {
+      final wolf = srdPack.entities.firstWhere(
+        (e) => '${e.id}' == 'srd:monster:wolf',
+      );
+      final json = wolf.toJson();
+      final monster = parseEntity({
+        ...json,
+        'id': 'hb:monster:mist-wolf',
+        'data': {
+          ...json['data']! as Map<String, Object?>,
+          'study_reveals': [
+            {'dc': 10, 'text': 'Il chasse en meute.'},
+            {'dc': 15, 'text': 'La brume le cache.'},
+          ],
+        },
+      }, 'test').entity!;
+      final pack = ContentPack(
+        manifest: const PackManifest(
+          id: '00000000-0000-0000-0000-000000000028',
+          namespace: 'hb',
+          name: 'Bestiaire',
+          version: '0.1.0',
+          origin: PackOrigin.local,
+          author: 'Inès',
+          licence: 'CC-BY-4.0',
+          locale: 'fr',
+        ),
+        entities: [monster],
+      );
+      await store.importPack(srdPack);
+      await store.importPack(pack);
+      expect(_byId((await store.exportPack(pack.manifest.id))!), _byId(pack));
+      final rows = await db
+          .customSelect(
+            'SELECT dc, reveal_text FROM study_reveal '
+            "WHERE monster_id = 'hb:monster:mist-wolf' ORDER BY dc",
+          )
+          .get();
+      expect(
+        [for (final r in rows) r.data],
+        [
+          {'dc': 10, 'reveal_text': 'Il chasse en meute.'},
+          {'dc': 15, 'reveal_text': 'La brume le cache.'},
+        ],
+      );
+    });
+
     test('réimport : aucune entité en double', () async {
       await store.importPack(srdPack);
       await store.importPack(srdPack);

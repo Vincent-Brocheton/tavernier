@@ -10,3 +10,10 @@ Une `class` SHALL pouvoir porter `subclass_feature_levels`, les niveaux où sa s
 #### Scenario: Pack antérieur
 - **WHEN** un pack dont les classes n'ont pas `subclass_feature_levels` est lu
 - **THEN** il se lit sans problème, avec une liste vide
+
+### Requirement: Paliers d'Étude d'un monstre
+Un `monster` SHALL pouvoir porter `study_reveals`, une liste `{dc, text}` : ce qu'apprend un test d'Étude d'au moins ce DD. `validatePack` SHALL refuser deux paliers de même DD, un DD inférieur à 1 ou un texte vide. Un monstre sans ce champ SHALL se lire comme avant.
+
+#### Scenario: Deux paliers au même DD
+- **WHEN** un monstre a deux paliers de DD 15
+- **THEN** la vérification indique « palier d’Étude : un DD par palier, et un texte »

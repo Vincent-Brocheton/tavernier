@@ -9402,6 +9402,360 @@ abstract class AppLocalizations {
   /// **'Autre niveau…'**
   String get subclassOtherLevel;
 
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tailles'**
+  String get monsterSizes;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'{size, select, tiny{Très petite (TP)} small{Petite (P)} medium{Moyenne (M)} large{Grande (G)} huge{Très grande (TG)} gargantuan{Gigantesque (Gig)} other{{size}}}'**
+  String monsterSizeName(String size);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Précision du type (facultatif, ex. Démon)'**
+  String get monsterTypeTags;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Alignement'**
+  String get monsterAlignment;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe d’armure'**
+  String get monsterAcTitle;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armure portée'**
+  String get monsterArmor;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune : CA naturelle'**
+  String get monsterNaturalAc;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'CA {ac} ({formula})'**
+  String monsterAcWorn(int ac, String formula);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Libellé (ex. armure naturelle)'**
+  String get monsterAcLabel;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vide : le modificateur de Dextérité ({mod}).'**
+  String monsterInitiativeHint(int mod);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dés de vie (ex. 10d8 + 20)'**
+  String get monsterHitDice;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV moyens : {hp}'**
+  String monsterHpAverage(int hp);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les PV sont la moyenne des dés de vie.'**
+  String get monsterHitDiceHint;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Au sol (pieds)'**
+  String get monsterSpeedWalk;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vol (pieds)'**
+  String get monsterSpeedFly;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nage (pieds)'**
+  String get monsterSpeedSwim;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Escalade (pieds)'**
+  String get monsterSpeedClimb;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Creusement (pieds)'**
+  String get monsterSpeedBurrow;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vol stationnaire'**
+  String get monsterHover;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques'**
+  String get monsterAbilities;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’Intelligence fixe le DD d’Influence : elle est obligatoire.'**
+  String get monsterIntelligenceHint;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets de sauvegarde maîtrisés (+{pb})'**
+  String monsterSaves(int pb);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences maîtrisées (+{pb})'**
+  String monsterSkills(int pb);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Immunités aux états'**
+  String get monsterConditionImmunities;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision dans le noir (pieds)'**
+  String get monsterDarkvision;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision aveugle (pieds)'**
+  String get monsterBlindsight;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception des vibrations (pieds)'**
+  String get monsterTremorsense;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision lucide (pieds)'**
+  String get monsterTruesight;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Facteur de puissance'**
+  String get monsterCr;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'{xp} PX · bonus de maîtrise +{pb}'**
+  String monsterCrHint(int xp, int pb);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Traits et actions'**
+  String get monsterActionsTitle;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un trait ou une action'**
+  String get monsterActionAdd;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer'**
+  String get monsterActionRemove;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisations d’action Légendaire'**
+  String get monsterLegendaryUses;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations d’Étude'**
+  String get monsterStudyTitle;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qu’apprend un test d’Étude, palier par palier. Un PNJ créé depuis ce monstre les reçoit en informations cachées.'**
+  String get monsterStudyHint;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'DD {dc}'**
+  String monsterStudyDc(int dc);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un palier'**
+  String get monsterStudyAdd;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer le palier'**
+  String get monsterStudyRemove;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'DD du palier'**
+  String get monsterStudyDcField;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce qu’il révèle'**
+  String get monsterStudyText;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Trait ou action'**
+  String get monsterActionTitle;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get monsterActionSave;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Section du profil'**
+  String get monsterActionKind;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Usages'**
+  String get monsterUses;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Illimités'**
+  String get monsterUsesNone;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Par jour'**
+  String get monsterUsesPerDay;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Recharge'**
+  String get monsterUsesRecharge;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre par jour'**
+  String get monsterUsesPerDayCount;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Recharge (ex. 5–6)'**
+  String get monsterUsesRechargeRange;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet d’attaque'**
+  String get monsterAttack;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque'**
+  String get monsterAttackKind;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus d’attaque'**
+  String get monsterAttackBonus;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Allonge (pieds)'**
+  String get monsterAttackReach;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts (ex. 2d6 + 3)'**
+  String get monsterDamageDice;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts moyens : {average}'**
+  String monsterDamageAverage(int average);
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet de sauvegarde'**
+  String get monsterSaveTitle;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique'**
+  String get monsterSaveAbility;
+
+  /// Homebrew (US-27, cahier §7.1, lot d : Monstre).
+  ///
+  /// In fr, this message translates to:
+  /// **'DD'**
+  String get monsterSaveDc;
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:

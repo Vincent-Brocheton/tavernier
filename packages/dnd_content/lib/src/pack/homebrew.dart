@@ -143,6 +143,14 @@ List<ContentIssue> _editorRules(Map<String, Object?> json, String path) {
         ContentIssue('$path.data.sizes', 'une espèce a au moins une taille'),
     ],
     'class' => _classRules(data, path),
+    // Le DD d'Influence se lit sur l'Intelligence (cahier §7.1).
+    'monster' => [
+      if ((data['abilities'] as Map?)?['int'] is! int)
+        ContentIssue(
+          '$path.data.abilities.int',
+          'un monstre a une valeur d’Intelligence (DD d’Influence)',
+        ),
+    ],
     _ => const [],
   };
 }

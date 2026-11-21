@@ -5911,6 +5911,212 @@ class AppLocalizationsFr extends AppLocalizations {
   String get subclassOtherLevel => 'Autre niveau…';
 
   @override
+  String get monsterSizes => 'Tailles';
+
+  @override
+  String monsterSizeName(String size) {
+    String _temp0 = intl.Intl.selectLogic(size, {
+      'tiny': 'Très petite (TP)',
+      'small': 'Petite (P)',
+      'medium': 'Moyenne (M)',
+      'large': 'Grande (G)',
+      'huge': 'Très grande (TG)',
+      'gargantuan': 'Gigantesque (Gig)',
+      'other': '$size',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get monsterTypeTags => 'Précision du type (facultatif, ex. Démon)';
+
+  @override
+  String get monsterAlignment => 'Alignement';
+
+  @override
+  String get monsterAcTitle => 'Classe d’armure';
+
+  @override
+  String get monsterArmor => 'Armure portée';
+
+  @override
+  String get monsterNaturalAc => 'Aucune : CA naturelle';
+
+  @override
+  String monsterAcWorn(int ac, String formula) {
+    return 'CA $ac ($formula)';
+  }
+
+  @override
+  String get monsterAcLabel => 'Libellé (ex. armure naturelle)';
+
+  @override
+  String monsterInitiativeHint(int mod) {
+    return 'Vide : le modificateur de Dextérité ($mod).';
+  }
+
+  @override
+  String get monsterHitDice => 'Dés de vie (ex. 10d8 + 20)';
+
+  @override
+  String monsterHpAverage(int hp) {
+    return 'PV moyens : $hp';
+  }
+
+  @override
+  String get monsterHitDiceHint => 'Les PV sont la moyenne des dés de vie.';
+
+  @override
+  String get monsterSpeedWalk => 'Au sol (pieds)';
+
+  @override
+  String get monsterSpeedFly => 'Vol (pieds)';
+
+  @override
+  String get monsterSpeedSwim => 'Nage (pieds)';
+
+  @override
+  String get monsterSpeedClimb => 'Escalade (pieds)';
+
+  @override
+  String get monsterSpeedBurrow => 'Creusement (pieds)';
+
+  @override
+  String get monsterHover => 'Vol stationnaire';
+
+  @override
+  String get monsterAbilities => 'Caractéristiques';
+
+  @override
+  String get monsterIntelligenceHint =>
+      'L’Intelligence fixe le DD d’Influence : elle est obligatoire.';
+
+  @override
+  String monsterSaves(int pb) {
+    return 'Jets de sauvegarde maîtrisés (+$pb)';
+  }
+
+  @override
+  String monsterSkills(int pb) {
+    return 'Compétences maîtrisées (+$pb)';
+  }
+
+  @override
+  String get monsterConditionImmunities => 'Immunités aux états';
+
+  @override
+  String get monsterDarkvision => 'Vision dans le noir (pieds)';
+
+  @override
+  String get monsterBlindsight => 'Vision aveugle (pieds)';
+
+  @override
+  String get monsterTremorsense => 'Perception des vibrations (pieds)';
+
+  @override
+  String get monsterTruesight => 'Vision lucide (pieds)';
+
+  @override
+  String get monsterCr => 'Facteur de puissance';
+
+  @override
+  String monsterCrHint(int xp, int pb) {
+    return '$xp PX · bonus de maîtrise +$pb';
+  }
+
+  @override
+  String get monsterActionsTitle => 'Traits et actions';
+
+  @override
+  String get monsterActionAdd => 'Ajouter un trait ou une action';
+
+  @override
+  String get monsterActionRemove => 'Retirer';
+
+  @override
+  String get monsterLegendaryUses => 'Utilisations d’action Légendaire';
+
+  @override
+  String get monsterStudyTitle => 'Informations d’Étude';
+
+  @override
+  String get monsterStudyHint =>
+      'Ce qu’apprend un test d’Étude, palier par palier. Un PNJ créé depuis ce monstre les reçoit en informations cachées.';
+
+  @override
+  String monsterStudyDc(int dc) {
+    return 'DD $dc';
+  }
+
+  @override
+  String get monsterStudyAdd => 'Ajouter un palier';
+
+  @override
+  String get monsterStudyRemove => 'Retirer le palier';
+
+  @override
+  String get monsterStudyDcField => 'DD du palier';
+
+  @override
+  String get monsterStudyText => 'Ce qu’il révèle';
+
+  @override
+  String get monsterActionTitle => 'Trait ou action';
+
+  @override
+  String get monsterActionSave => 'Enregistrer';
+
+  @override
+  String get monsterActionKind => 'Section du profil';
+
+  @override
+  String get monsterUses => 'Usages';
+
+  @override
+  String get monsterUsesNone => 'Illimités';
+
+  @override
+  String get monsterUsesPerDay => 'Par jour';
+
+  @override
+  String get monsterUsesRecharge => 'Recharge';
+
+  @override
+  String get monsterUsesPerDayCount => 'Nombre par jour';
+
+  @override
+  String get monsterUsesRechargeRange => 'Recharge (ex. 5–6)';
+
+  @override
+  String get monsterAttack => 'Jet d’attaque';
+
+  @override
+  String get monsterAttackKind => 'Attaque';
+
+  @override
+  String get monsterAttackBonus => 'Bonus d’attaque';
+
+  @override
+  String get monsterAttackReach => 'Allonge (pieds)';
+
+  @override
+  String get monsterDamageDice => 'Dégâts (ex. 2d6 + 3)';
+
+  @override
+  String monsterDamageAverage(int average) {
+    return 'Dégâts moyens : $average';
+  }
+
+  @override
+  String get monsterSaveTitle => 'Jet de sauvegarde';
+
+  @override
+  String get monsterSaveAbility => 'Caractéristique';
+
+  @override
+  String get monsterSaveDc => 'DD';
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override

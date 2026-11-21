@@ -92,6 +92,7 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `senses` : `{darkvision?, blindsight?, blind_beyond?, tremorsense?, truesight?}` ; `senses_note?` : précision imprimée d'un sens (« Vision dans le noir 36 m (perce les Ténèbres magiques) ») ; `passive_perception` ; `languages` : ligne « Langues », en texte ;
   - `cr` : chaîne (`"0"`, `"1/8"`, `"1/4"`, `"1/2"`, `"1"`…`"30"`) ; `xp`, `xp_lair?`, `proficiency_bonus` ; `legendary_uses?`, `legendary_uses_lair?` ;
   - `actions` : liste ordonnée de `{kind, name, uses?, attack?, save?, text}`, avec `kind` = `trait`, `action`, `bonus`, `reaction` ou `legendary` ; `uses` = `{per_day, per_day_lair?}`, `{recharge: "5-6"}` ou `{rest: "short_or_long"}` ; `attack` = `{kind: melee | ranged | melee_or_ranged, bonus, reach?, range?: [normale] ou [normale, longue], damage: [{average, dice?, type}]}` ; `save` = `{ability, dc}`. `text` reste la référence de règles.
+  - `study_reveals?` (homebrew, US-27) : informations d'Étude par palier, `[{dc, text}]`, un DD par palier. Un PNJ créé depuis le monstre les reçoit en informations cachées.
 - `data` : champs propres au type, **tout champ inconnu rend l'entité invalide**.
 - `effects` : opérations du DSL v1 uniquement.
 - `class` (champs ajoutés par T-04 et US-05) :

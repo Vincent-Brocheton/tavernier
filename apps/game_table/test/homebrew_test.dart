@@ -3,7 +3,7 @@
 // [H01] à [H03]) ; « Éditeur de Sort », « Éditeur d'Objet », « Variante
 // d'une entité du SRD » (lot b, [H05]) ; « Éditeur d'Espèce », ressource et
 // choix imbriqué (lot b2) ; « Éditeur de Sous-classe » ([H02]) et
-// « Éditeur de Classe » (lot c).
+// « Éditeur de Classe » (lot c) ; « Éditeur de Monstre » (lot d).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -89,16 +89,15 @@ Future<void> _newPack(WidgetTester tester) async {
 }
 
 void main() {
-  _test('[H01] : SRD inclus, nouveau pack 0.1.0, types à venir grisés', (
+  _test('[H01] : SRD inclus, nouveau pack 0.1.0, les 8 types éditables', (
     tester,
   ) async {
     await _open(tester);
     expect(find.text('Aucun pack pour l’instant.'), findsOneWidget);
     expect(find.textContaining('verrouillé'), findsOneWidget);
-    final monsterChip = tester.widget<ActionChip>(
-      find.widgetWithText(ActionChip, 'Monstre'),
-    );
-    expect(monsterChip.onPressed, isNull);
+    for (final chip in tester.widgetList<ActionChip>(find.byType(ActionChip))) {
+      expect(chip.onPressed, isNotNull);
+    }
 
     await _newPack(tester);
     expect(find.text('Gardiens des Marches'), findsOneWidget);
@@ -633,5 +632,115 @@ void main() {
       },
     });
     expect(entities[1]['data'], {'source': id, 'level': 1});
+  });
+
+  _test('Monstre : CA portée, FP, PV moyens et paliers d’Étude', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Monstre'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Loup des brumes',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Alignement *'),
+      'Non aligné',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Dextérité'),
+      '15',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Armure portée'));
+    await _tap(tester, find.text('Armure de cuir clouté').last);
+    await _tap(tester, find.widgetWithText(SwitchListTile, 'Bouclier'));
+    expect(
+      find.text('CA 16 (Armure de cuir clouté, Bouclier)'),
+      findsOneWidget,
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Dés de vie (ex. 10d8 + 20) *'),
+      '2d8 + 2',
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('PV moyens : 11'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilterChip, 'Perception'));
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Langues *'),
+      'aucune',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Facteur de puissance *'));
+    await _tap(tester, find.text('1/4').last);
+    expect(find.text('50 PX · bonus de maîtrise +2'), findsOneWidget);
+
+    // Une attaque : ses dégâts moyens se calculent.
+    await _tap(tester, find.text('Ajouter un trait ou une action'));
+    await tester.enterText(find.widgetWithText(TextField, 'Nom *'), 'Morsure');
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      'Corps à corps : +4, allonge 1,50 m.',
+    );
+    await _tap(tester, find.text('Jet d’attaque'));
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Bonus d’attaque'),
+      '4',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Dégâts (ex. 2d6 + 3)'),
+      '1d6 + 2',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Type de dégâts *'));
+    await _tap(tester, find.text('Perforants').last);
+    expect(find.text('Dégâts moyens : 5'), findsOneWidget);
+    await _tap(tester, find.text('Enregistrer'));
+    expect(find.text('Morsure'), findsOneWidget);
+
+    // Un palier d'Étude.
+    await _tap(tester, find.text('Ajouter un palier'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'DD du palier'),
+      '10',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Ce qu’il révèle'),
+      'Il chasse en meute dans la brume.',
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, 'Ajouter un palier'));
+    expect(find.text('DD 10'), findsOneWidget);
+    await _tap(tester, find.text('Enregistrer'));
+
+    final monster = (await _draft(tester)).entities.single;
+    expect(monster['id'], 'gardiens-des-marches:monster:loup-des-brumes');
+    final data = monster['data']! as Map<String, Object?>;
+    expect(data['ac'], 16);
+    expect(data['ac_note'], 'Armure de cuir clouté, Bouclier');
+    expect(data['hp'], 11);
+    expect(data['initiative'], 2);
+    expect(data['xp'], 50);
+    expect(data['proficiency_bonus'], 2);
+    expect(data['skills'], {'srd:skill:perception': 2});
+    expect(data['passive_perception'], 12);
+    expect((data['saving_throws']! as Map)['dex'], 2);
+    expect(data['study_reveals'], [
+      {'dc': 10, 'text': 'Il chasse en meute dans la brume.'},
+    ]);
+    expect((data['actions']! as List).single, {
+      'kind': 'action',
+      'name': 'Morsure',
+      'text': 'Corps à corps : +4, allonge 1,50 m.',
+      'attack': {
+        'kind': 'melee',
+        'bonus': 4,
+        'reach': 5,
+        'damage': [
+          {'dice': '1d6 + 2', 'type': 'srd:damage-type:piercing', 'average': 5},
+        ],
+      },
+    });
+    expect(find.text('Prêt à publier'), findsOneWidget);
   });
 }

@@ -26,8 +26,12 @@
 - [x] 3.2 Tests puis format : `subclass_feature_levels`, extracteur et Guerrier, base v8
 - [x] 3.3 Tests puis `checkDraft` : progression de classe et niveaux de sous-classe (EF-HB-11)
 - [x] 3.4 Tests puis éditeurs de Classe et de Sous-classe [H02], aptitudes possédées
-- [ ] 3.5 Suite complète, revue, PR du lot c
+- [x] 3.5 Suite complète, revue, PR du lot c
 
 ## 4. Lot d : Monstre
 
-- [ ] 4.1 Specs et design du lot d, puis tests et implémentation
+- [x] 4.1 Specs et design du lot d
+- [x] 4.2 Tests puis format : `study_reveals`, `validatePack`, index `study_reveal`
+- [x] 4.3 Tests puis `checkDraft` : Intelligence obligatoire
+- [x] 4.4 Tests puis éditeur de Monstre, paliers d'Étude du PNJ et de l'assistant
+- [ ] 4.5 Suite complète, revue, PR du lot d

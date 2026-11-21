@@ -20,3 +20,10 @@ Le schéma v8 SHALL garder les niveaux d'aptitude de sous-classe d'une classe (`
 #### Scenario: Aller-retour du SRD
 - **WHEN** le pack SRD est importé puis exporté
 - **THEN** le Guerrier exporté a pour niveaux de sous-classe 3, 7, 10, 15 et 18
+
+### Requirement: Paliers d'Étude indexés
+L'import d'un pack SHALL écrire les paliers d'Étude d'un monstre dans `study_reveal` (monstre, DD, texte), et l'export SHALL les rendre à l'identique.
+
+#### Scenario: Aller-retour d'un monstre homebrew
+- **WHEN** un monstre à deux paliers d'Étude est importé, puis exporté
+- **THEN** il est identique, et `study_reveal` porte ses deux paliers

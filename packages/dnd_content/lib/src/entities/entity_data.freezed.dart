@@ -9375,6 +9375,279 @@ $MonsterSaveCopyWith<$Res>? get save {
 
 
 /// @nodoc
+mixin _$StudyReveal {
+
+ int get dc; String get text;
+/// Create a copy of StudyReveal
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StudyRevealCopyWith<StudyReveal> get copyWith => _$StudyRevealCopyWithImpl<StudyReveal>(this as StudyReveal, _$identity);
+
+  /// Serializes this StudyReveal to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as StudyReveal;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StudyReveal&&(identical(other.dc, _this.dc) || other.dc == _this.dc)&&(identical(other.text, _this.text) || other.text == _this.text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as StudyReveal;
+  return Object.hash(runtimeType,_this.dc,_this.text);
+}
+
+@override
+String toString() {
+  final _this = this as StudyReveal;
+  return 'StudyReveal(dc: ${_this.dc}, text: ${_this.text})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $StudyRevealCopyWith<$Res>  {
+  factory $StudyRevealCopyWith(StudyReveal value, $Res Function(StudyReveal) _then) = _$StudyRevealCopyWithImpl;
+@useResult
+$Res call({
+ int dc, String text
+});
+
+
+
+
+}
+/// @nodoc
+class _$StudyRevealCopyWithImpl<$Res>
+    implements $StudyRevealCopyWith<$Res> {
+  _$StudyRevealCopyWithImpl(this._self, this._then);
+
+  final StudyReveal _self;
+  final $Res Function(StudyReveal) _then;
+
+/// Create a copy of StudyReveal
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? dc = null,Object? text = null,}) {
+  return _then(StudyReveal(
+dc: null == dc ? _self.dc : dc // ignore: cast_nullable_to_non_nullable
+as int,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [StudyReveal].
+extension StudyRevealPatterns on StudyReveal {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StudyReveal value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StudyReveal() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StudyReveal value)  $default,){
+final _that = this;
+switch (_that) {
+case _StudyReveal():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StudyReveal value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StudyReveal() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int dc,  String text)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StudyReveal() when $default != null:
+return $default(_that.dc,_that.text);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int dc,  String text)  $default,) {final _that = this;
+switch (_that) {
+case _StudyReveal():
+return $default(_that.dc,_that.text);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int dc,  String text)?  $default,) {final _that = this;
+switch (_that) {
+case _StudyReveal() when $default != null:
+return $default(_that.dc,_that.text);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _StudyReveal implements StudyReveal {
+  const _StudyReveal({required this.dc, required this.text});
+  factory _StudyReveal.fromJson(Map<String, dynamic> json) => _$StudyRevealFromJson(json);
+
+@override final  int dc;
+@override final  String text;
+
+/// Create a copy of StudyReveal
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StudyRevealCopyWith<_StudyReveal> get copyWith => __$StudyRevealCopyWithImpl<_StudyReveal>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StudyRevealToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _StudyReveal&&(identical(other.dc, dc) || other.dc == dc)&&(identical(other.text, text) || other.text == text));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,dc,text);
+}
+
+@override
+String toString() {
+    return 'StudyReveal(dc: $dc, text: $text)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StudyRevealCopyWith<$Res> implements $StudyRevealCopyWith<$Res> {
+  factory _$StudyRevealCopyWith(_StudyReveal value, $Res Function(_StudyReveal) _then) = __$StudyRevealCopyWithImpl;
+@override @useResult
+$Res call({
+ int dc, String text
+});
+
+
+
+
+}
+/// @nodoc
+class __$StudyRevealCopyWithImpl<$Res>
+    implements _$StudyRevealCopyWith<$Res> {
+  __$StudyRevealCopyWithImpl(this._self, this._then);
+
+  final _StudyReveal _self;
+  final $Res Function(_StudyReveal) _then;
+
+/// Create a copy of StudyReveal
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? dc = null,Object? text = null,}) {
+  return _then(_StudyReveal(
+dc: null == dc ? _self.dc : dc // ignore: cast_nullable_to_non_nullable
+as int,text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$MonsterData {
 
  List<MonsterSize> get sizes; CreatureType get creatureType;/// Taille des créatures d'une nuée ; [sizes] est celle de la nuée.
@@ -9385,7 +9658,8 @@ mixin _$MonsterData {
  Map<String, int> get skills;@ContentIdConverter() List<ContentId> get vulnerabilities;@ContentIdConverter() List<ContentId> get resistances;@ContentIdConverter() List<ContentId> get immunities;@ContentIdConverter() List<ContentId> get conditionImmunities;/// Ligne « Équipement », un objet par entrée.
  List<String> get gear; MonsterSenses get senses;/// Précision imprimée d'un sens, que [senses] ne porte pas.
  String? get sensesNote; int get passivePerception;/// Ligne « Langues », telle qu'imprimée.
- String get languages; String get cr; int get xp; int? get xpLair; int get proficiencyBonus; int? get legendaryUses; int? get legendaryUsesLair; List<MonsterAction> get actions;
+ String get languages; String get cr; int get xp; int? get xpLair; int get proficiencyBonus; int? get legendaryUses; int? get legendaryUsesLair; List<MonsterAction> get actions;/// Informations d'Étude par palier, du DD le plus bas au plus haut.
+ List<StudyReveal> get studyReveals;
 /// Create a copy of MonsterData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9399,20 +9673,20 @@ $MonsterDataCopyWith<MonsterData> get copyWith => _$MonsterDataCopyWithImpl<Mons
 @override
 bool operator ==(Object other) {
   final _this = this as MonsterData;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterData&&const DeepCollectionEquality().equals(other.sizes, _this.sizes)&&(identical(other.creatureType, _this.creatureType) || other.creatureType == _this.creatureType)&&(identical(other.swarmSize, _this.swarmSize) || other.swarmSize == _this.swarmSize)&&const DeepCollectionEquality().equals(other.typeTags, _this.typeTags)&&(identical(other.alignment, _this.alignment) || other.alignment == _this.alignment)&&(identical(other.ac, _this.ac) || other.ac == _this.ac)&&(identical(other.acNote, _this.acNote) || other.acNote == _this.acNote)&&(identical(other.initiative, _this.initiative) || other.initiative == _this.initiative)&&(identical(other.hp, _this.hp) || other.hp == _this.hp)&&(identical(other.hitDice, _this.hitDice) || other.hitDice == _this.hitDice)&&(identical(other.speed, _this.speed) || other.speed == _this.speed)&&(identical(other.speedNote, _this.speedNote) || other.speedNote == _this.speedNote)&&(identical(other.hover, _this.hover) || other.hover == _this.hover)&&const DeepCollectionEquality().equals(other.abilities, _this.abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _this.savingThrows)&&const DeepCollectionEquality().equals(other.skills, _this.skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _this.vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _this.resistances)&&const DeepCollectionEquality().equals(other.immunities, _this.immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _this.conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _this.gear)&&(identical(other.senses, _this.senses) || other.senses == _this.senses)&&(identical(other.sensesNote, _this.sensesNote) || other.sensesNote == _this.sensesNote)&&(identical(other.passivePerception, _this.passivePerception) || other.passivePerception == _this.passivePerception)&&(identical(other.languages, _this.languages) || other.languages == _this.languages)&&(identical(other.cr, _this.cr) || other.cr == _this.cr)&&(identical(other.xp, _this.xp) || other.xp == _this.xp)&&(identical(other.xpLair, _this.xpLair) || other.xpLair == _this.xpLair)&&(identical(other.proficiencyBonus, _this.proficiencyBonus) || other.proficiencyBonus == _this.proficiencyBonus)&&(identical(other.legendaryUses, _this.legendaryUses) || other.legendaryUses == _this.legendaryUses)&&(identical(other.legendaryUsesLair, _this.legendaryUsesLair) || other.legendaryUsesLair == _this.legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _this.actions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MonsterData&&const DeepCollectionEquality().equals(other.sizes, _this.sizes)&&(identical(other.creatureType, _this.creatureType) || other.creatureType == _this.creatureType)&&(identical(other.swarmSize, _this.swarmSize) || other.swarmSize == _this.swarmSize)&&const DeepCollectionEquality().equals(other.typeTags, _this.typeTags)&&(identical(other.alignment, _this.alignment) || other.alignment == _this.alignment)&&(identical(other.ac, _this.ac) || other.ac == _this.ac)&&(identical(other.acNote, _this.acNote) || other.acNote == _this.acNote)&&(identical(other.initiative, _this.initiative) || other.initiative == _this.initiative)&&(identical(other.hp, _this.hp) || other.hp == _this.hp)&&(identical(other.hitDice, _this.hitDice) || other.hitDice == _this.hitDice)&&(identical(other.speed, _this.speed) || other.speed == _this.speed)&&(identical(other.speedNote, _this.speedNote) || other.speedNote == _this.speedNote)&&(identical(other.hover, _this.hover) || other.hover == _this.hover)&&const DeepCollectionEquality().equals(other.abilities, _this.abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _this.savingThrows)&&const DeepCollectionEquality().equals(other.skills, _this.skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _this.vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _this.resistances)&&const DeepCollectionEquality().equals(other.immunities, _this.immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _this.conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _this.gear)&&(identical(other.senses, _this.senses) || other.senses == _this.senses)&&(identical(other.sensesNote, _this.sensesNote) || other.sensesNote == _this.sensesNote)&&(identical(other.passivePerception, _this.passivePerception) || other.passivePerception == _this.passivePerception)&&(identical(other.languages, _this.languages) || other.languages == _this.languages)&&(identical(other.cr, _this.cr) || other.cr == _this.cr)&&(identical(other.xp, _this.xp) || other.xp == _this.xp)&&(identical(other.xpLair, _this.xpLair) || other.xpLair == _this.xpLair)&&(identical(other.proficiencyBonus, _this.proficiencyBonus) || other.proficiencyBonus == _this.proficiencyBonus)&&(identical(other.legendaryUses, _this.legendaryUses) || other.legendaryUses == _this.legendaryUses)&&(identical(other.legendaryUsesLair, _this.legendaryUsesLair) || other.legendaryUsesLair == _this.legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _this.actions)&&const DeepCollectionEquality().equals(other.studyReveals, _this.studyReveals));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as MonsterData;
-  return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_this.sizes),_this.creatureType,_this.swarmSize,const DeepCollectionEquality().hash(_this.typeTags),_this.alignment,_this.ac,_this.acNote,_this.initiative,_this.hp,_this.hitDice,_this.speed,_this.speedNote,_this.hover,const DeepCollectionEquality().hash(_this.abilities),const DeepCollectionEquality().hash(_this.savingThrows),const DeepCollectionEquality().hash(_this.skills),const DeepCollectionEquality().hash(_this.vulnerabilities),const DeepCollectionEquality().hash(_this.resistances),const DeepCollectionEquality().hash(_this.immunities),const DeepCollectionEquality().hash(_this.conditionImmunities),const DeepCollectionEquality().hash(_this.gear),_this.senses,_this.sensesNote,_this.passivePerception,_this.languages,_this.cr,_this.xp,_this.xpLair,_this.proficiencyBonus,_this.legendaryUses,_this.legendaryUsesLair,const DeepCollectionEquality().hash(_this.actions)]);
+  return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_this.sizes),_this.creatureType,_this.swarmSize,const DeepCollectionEquality().hash(_this.typeTags),_this.alignment,_this.ac,_this.acNote,_this.initiative,_this.hp,_this.hitDice,_this.speed,_this.speedNote,_this.hover,const DeepCollectionEquality().hash(_this.abilities),const DeepCollectionEquality().hash(_this.savingThrows),const DeepCollectionEquality().hash(_this.skills),const DeepCollectionEquality().hash(_this.vulnerabilities),const DeepCollectionEquality().hash(_this.resistances),const DeepCollectionEquality().hash(_this.immunities),const DeepCollectionEquality().hash(_this.conditionImmunities),const DeepCollectionEquality().hash(_this.gear),_this.senses,_this.sensesNote,_this.passivePerception,_this.languages,_this.cr,_this.xp,_this.xpLair,_this.proficiencyBonus,_this.legendaryUses,_this.legendaryUsesLair,const DeepCollectionEquality().hash(_this.actions),const DeepCollectionEquality().hash(_this.studyReveals)]);
 }
 
 @override
 String toString() {
   final _this = this as MonsterData;
-  return 'MonsterData(sizes: ${_this.sizes}, creatureType: ${_this.creatureType}, swarmSize: ${_this.swarmSize}, typeTags: ${_this.typeTags}, alignment: ${_this.alignment}, ac: ${_this.ac}, acNote: ${_this.acNote}, initiative: ${_this.initiative}, hp: ${_this.hp}, hitDice: ${_this.hitDice}, speed: ${_this.speed}, speedNote: ${_this.speedNote}, hover: ${_this.hover}, abilities: ${_this.abilities}, savingThrows: ${_this.savingThrows}, skills: ${_this.skills}, vulnerabilities: ${_this.vulnerabilities}, resistances: ${_this.resistances}, immunities: ${_this.immunities}, conditionImmunities: ${_this.conditionImmunities}, gear: ${_this.gear}, senses: ${_this.senses}, sensesNote: ${_this.sensesNote}, passivePerception: ${_this.passivePerception}, languages: ${_this.languages}, cr: ${_this.cr}, xp: ${_this.xp}, xpLair: ${_this.xpLair}, proficiencyBonus: ${_this.proficiencyBonus}, legendaryUses: ${_this.legendaryUses}, legendaryUsesLair: ${_this.legendaryUsesLair}, actions: ${_this.actions})';
+  return 'MonsterData(sizes: ${_this.sizes}, creatureType: ${_this.creatureType}, swarmSize: ${_this.swarmSize}, typeTags: ${_this.typeTags}, alignment: ${_this.alignment}, ac: ${_this.ac}, acNote: ${_this.acNote}, initiative: ${_this.initiative}, hp: ${_this.hp}, hitDice: ${_this.hitDice}, speed: ${_this.speed}, speedNote: ${_this.speedNote}, hover: ${_this.hover}, abilities: ${_this.abilities}, savingThrows: ${_this.savingThrows}, skills: ${_this.skills}, vulnerabilities: ${_this.vulnerabilities}, resistances: ${_this.resistances}, immunities: ${_this.immunities}, conditionImmunities: ${_this.conditionImmunities}, gear: ${_this.gear}, senses: ${_this.senses}, sensesNote: ${_this.sensesNote}, passivePerception: ${_this.passivePerception}, languages: ${_this.languages}, cr: ${_this.cr}, xp: ${_this.xp}, xpLair: ${_this.xpLair}, proficiencyBonus: ${_this.proficiencyBonus}, legendaryUses: ${_this.legendaryUses}, legendaryUsesLair: ${_this.legendaryUsesLair}, actions: ${_this.actions}, studyReveals: ${_this.studyReveals})';
 }
 
 
@@ -9423,7 +9697,7 @@ abstract mixin class $MonsterDataCopyWith<$Res>  {
   factory $MonsterDataCopyWith(MonsterData value, $Res Function(MonsterData) _then) = _$MonsterDataCopyWithImpl;
 @useResult
 $Res call({
- List<MonsterSize> sizes, CreatureType creatureType, MonsterSize? swarmSize, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, String? speedNote, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, String? sensesNote, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions
+ List<MonsterSize> sizes, CreatureType creatureType, MonsterSize? swarmSize, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, String? speedNote, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, String? sensesNote, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions, List<StudyReveal> studyReveals
 });
 
 
@@ -9440,7 +9714,7 @@ class _$MonsterDataCopyWithImpl<$Res>
 
 /// Create a copy of MonsterData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? sizes = null,Object? creatureType = null,Object? swarmSize = freezed,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? speedNote = freezed,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? sensesNote = freezed,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? sizes = null,Object? creatureType = null,Object? swarmSize = freezed,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? speedNote = freezed,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? sensesNote = freezed,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,Object? studyReveals = null,}) {
   return _then(MonsterData(
 sizes: null == sizes ? _self.sizes : sizes // ignore: cast_nullable_to_non_nullable
 as List<MonsterSize>,creatureType: null == creatureType ? _self.creatureType : creatureType // ignore: cast_nullable_to_non_nullable
@@ -9474,7 +9748,8 @@ as int?,proficiencyBonus: null == proficiencyBonus ? _self.proficiencyBonus : pr
 as int,legendaryUses: freezed == legendaryUses ? _self.legendaryUses : legendaryUses // ignore: cast_nullable_to_non_nullable
 as int?,legendaryUsesLair: freezed == legendaryUsesLair ? _self.legendaryUsesLair : legendaryUsesLair // ignore: cast_nullable_to_non_nullable
 as int?,actions: null == actions ? _self.actions : actions // ignore: cast_nullable_to_non_nullable
-as List<MonsterAction>,
+as List<MonsterAction>,studyReveals: null == studyReveals ? _self.studyReveals : studyReveals // ignore: cast_nullable_to_non_nullable
+as List<StudyReveal>,
   ));
 }
 /// Create a copy of MonsterData
@@ -9577,10 +9852,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions,  List<StudyReveal> studyReveals)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MonsterData() when $default != null:
-return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions,_that.studyReveals);case _:
   return orElse();
 
 }
@@ -9598,10 +9873,10 @@ return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions,  List<StudyReveal> studyReveals)  $default,) {final _that = this;
 switch (_that) {
 case _MonsterData():
-return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions,_that.studyReveals);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -9618,10 +9893,10 @@ return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<MonsterSize> sizes,  CreatureType creatureType,  MonsterSize? swarmSize,  List<String> typeTags,  String alignment,  int ac,  String? acNote,  int initiative,  int hp,  String hitDice,  MonsterSpeed speed,  String? speedNote,  bool hover, @JsonKey(fromJson: _sixAbilities)  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities)  Map<String, int> savingThrows,  Map<String, int> skills, @ContentIdConverter()  List<ContentId> vulnerabilities, @ContentIdConverter()  List<ContentId> resistances, @ContentIdConverter()  List<ContentId> immunities, @ContentIdConverter()  List<ContentId> conditionImmunities,  List<String> gear,  MonsterSenses senses,  String? sensesNote,  int passivePerception,  String languages,  String cr,  int xp,  int? xpLair,  int proficiencyBonus,  int? legendaryUses,  int? legendaryUsesLair,  List<MonsterAction> actions,  List<StudyReveal> studyReveals)?  $default,) {final _that = this;
 switch (_that) {
 case _MonsterData() when $default != null:
-return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions);case _:
+return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_that.alignment,_that.ac,_that.acNote,_that.initiative,_that.hp,_that.hitDice,_that.speed,_that.speedNote,_that.hover,_that.abilities,_that.savingThrows,_that.skills,_that.vulnerabilities,_that.resistances,_that.immunities,_that.conditionImmunities,_that.gear,_that.senses,_that.sensesNote,_that.passivePerception,_that.languages,_that.cr,_that.xp,_that.xpLair,_that.proficiencyBonus,_that.legendaryUses,_that.legendaryUsesLair,_that.actions,_that.studyReveals);case _:
   return null;
 
 }
@@ -9633,7 +9908,7 @@ return $default(_that.sizes,_that.creatureType,_that.swarmSize,_that.typeTags,_t
 @JsonSerializable()
 
 class _MonsterData implements MonsterData {
-  const _MonsterData({required  List<MonsterSize> sizes, required this.creatureType, this.swarmSize,  List<String> typeTags = const <String>[], required this.alignment, required this.ac, this.acNote, required this.initiative, required this.hp, required this.hitDice, required this.speed, this.speedNote, this.hover = false, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> savingThrows,  Map<String, int> skills = const <String, int>{}, @ContentIdConverter()  List<ContentId> vulnerabilities = const <ContentId>[], @ContentIdConverter()  List<ContentId> resistances = const <ContentId>[], @ContentIdConverter()  List<ContentId> immunities = const <ContentId>[], @ContentIdConverter()  List<ContentId> conditionImmunities = const <ContentId>[],  List<String> gear = const <String>[], this.senses = const MonsterSenses(), this.sensesNote, required this.passivePerception, required this.languages, required this.cr, required this.xp, this.xpLair, required this.proficiencyBonus, this.legendaryUses, this.legendaryUsesLair,  List<MonsterAction> actions = const <MonsterAction>[]}): _sizes = sizes,_typeTags = typeTags,_abilities = abilities,_savingThrows = savingThrows,_skills = skills,_vulnerabilities = vulnerabilities,_resistances = resistances,_immunities = immunities,_conditionImmunities = conditionImmunities,_gear = gear,_actions = actions;
+  const _MonsterData({required  List<MonsterSize> sizes, required this.creatureType, this.swarmSize,  List<String> typeTags = const <String>[], required this.alignment, required this.ac, this.acNote, required this.initiative, required this.hp, required this.hitDice, required this.speed, this.speedNote, this.hover = false, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> abilities, @JsonKey(fromJson: _sixAbilities) required  Map<String, int> savingThrows,  Map<String, int> skills = const <String, int>{}, @ContentIdConverter()  List<ContentId> vulnerabilities = const <ContentId>[], @ContentIdConverter()  List<ContentId> resistances = const <ContentId>[], @ContentIdConverter()  List<ContentId> immunities = const <ContentId>[], @ContentIdConverter()  List<ContentId> conditionImmunities = const <ContentId>[],  List<String> gear = const <String>[], this.senses = const MonsterSenses(), this.sensesNote, required this.passivePerception, required this.languages, required this.cr, required this.xp, this.xpLair, required this.proficiencyBonus, this.legendaryUses, this.legendaryUsesLair,  List<MonsterAction> actions = const <MonsterAction>[],  List<StudyReveal> studyReveals = const <StudyReveal>[]}): _sizes = sizes,_typeTags = typeTags,_abilities = abilities,_savingThrows = savingThrows,_skills = skills,_vulnerabilities = vulnerabilities,_resistances = resistances,_immunities = immunities,_conditionImmunities = conditionImmunities,_gear = gear,_actions = actions,_studyReveals = studyReveals;
   factory _MonsterData.fromJson(Map<String, dynamic> json) => _$MonsterDataFromJson(json);
 
  final  List<MonsterSize> _sizes;
@@ -9745,6 +10020,15 @@ class _MonsterData implements MonsterData {
   return EqualUnmodifiableListView(_actions);
 }
 
+/// Informations d'Étude par palier, du DD le plus bas au plus haut.
+ final  List<StudyReveal> _studyReveals;
+/// Informations d'Étude par palier, du DD le plus bas au plus haut.
+@override@JsonKey() List<StudyReveal> get studyReveals {
+  if (_studyReveals is EqualUnmodifiableListView) return _studyReveals;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_studyReveals);
+}
+
 
 /// Create a copy of MonsterData
 /// with the given fields replaced by the non-null parameter values.
@@ -9759,18 +10043,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterData&&const DeepCollectionEquality().equals(other.sizes, _sizes)&&(identical(other.creatureType, creatureType) || other.creatureType == creatureType)&&(identical(other.swarmSize, swarmSize) || other.swarmSize == swarmSize)&&const DeepCollectionEquality().equals(other.typeTags, _typeTags)&&(identical(other.alignment, alignment) || other.alignment == alignment)&&(identical(other.ac, ac) || other.ac == ac)&&(identical(other.acNote, acNote) || other.acNote == acNote)&&(identical(other.initiative, initiative) || other.initiative == initiative)&&(identical(other.hp, hp) || other.hp == hp)&&(identical(other.hitDice, hitDice) || other.hitDice == hitDice)&&(identical(other.speed, speed) || other.speed == speed)&&(identical(other.speedNote, speedNote) || other.speedNote == speedNote)&&(identical(other.hover, hover) || other.hover == hover)&&const DeepCollectionEquality().equals(other.abilities, _abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _savingThrows)&&const DeepCollectionEquality().equals(other.skills, _skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _resistances)&&const DeepCollectionEquality().equals(other.immunities, _immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _gear)&&(identical(other.senses, senses) || other.senses == senses)&&(identical(other.sensesNote, sensesNote) || other.sensesNote == sensesNote)&&(identical(other.passivePerception, passivePerception) || other.passivePerception == passivePerception)&&(identical(other.languages, languages) || other.languages == languages)&&(identical(other.cr, cr) || other.cr == cr)&&(identical(other.xp, xp) || other.xp == xp)&&(identical(other.xpLair, xpLair) || other.xpLair == xpLair)&&(identical(other.proficiencyBonus, proficiencyBonus) || other.proficiencyBonus == proficiencyBonus)&&(identical(other.legendaryUses, legendaryUses) || other.legendaryUses == legendaryUses)&&(identical(other.legendaryUsesLair, legendaryUsesLair) || other.legendaryUsesLair == legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _actions));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MonsterData&&const DeepCollectionEquality().equals(other.sizes, _sizes)&&(identical(other.creatureType, creatureType) || other.creatureType == creatureType)&&(identical(other.swarmSize, swarmSize) || other.swarmSize == swarmSize)&&const DeepCollectionEquality().equals(other.typeTags, _typeTags)&&(identical(other.alignment, alignment) || other.alignment == alignment)&&(identical(other.ac, ac) || other.ac == ac)&&(identical(other.acNote, acNote) || other.acNote == acNote)&&(identical(other.initiative, initiative) || other.initiative == initiative)&&(identical(other.hp, hp) || other.hp == hp)&&(identical(other.hitDice, hitDice) || other.hitDice == hitDice)&&(identical(other.speed, speed) || other.speed == speed)&&(identical(other.speedNote, speedNote) || other.speedNote == speedNote)&&(identical(other.hover, hover) || other.hover == hover)&&const DeepCollectionEquality().equals(other.abilities, _abilities)&&const DeepCollectionEquality().equals(other.savingThrows, _savingThrows)&&const DeepCollectionEquality().equals(other.skills, _skills)&&const DeepCollectionEquality().equals(other.vulnerabilities, _vulnerabilities)&&const DeepCollectionEquality().equals(other.resistances, _resistances)&&const DeepCollectionEquality().equals(other.immunities, _immunities)&&const DeepCollectionEquality().equals(other.conditionImmunities, _conditionImmunities)&&const DeepCollectionEquality().equals(other.gear, _gear)&&(identical(other.senses, senses) || other.senses == senses)&&(identical(other.sensesNote, sensesNote) || other.sensesNote == sensesNote)&&(identical(other.passivePerception, passivePerception) || other.passivePerception == passivePerception)&&(identical(other.languages, languages) || other.languages == languages)&&(identical(other.cr, cr) || other.cr == cr)&&(identical(other.xp, xp) || other.xp == xp)&&(identical(other.xpLair, xpLair) || other.xpLair == xpLair)&&(identical(other.proficiencyBonus, proficiencyBonus) || other.proficiencyBonus == proficiencyBonus)&&(identical(other.legendaryUses, legendaryUses) || other.legendaryUses == legendaryUses)&&(identical(other.legendaryUsesLair, legendaryUsesLair) || other.legendaryUsesLair == legendaryUsesLair)&&const DeepCollectionEquality().equals(other.actions, _actions)&&const DeepCollectionEquality().equals(other.studyReveals, _studyReveals));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_sizes),creatureType,swarmSize,const DeepCollectionEquality().hash(_typeTags),alignment,ac,acNote,initiative,hp,hitDice,speed,speedNote,hover,const DeepCollectionEquality().hash(_abilities),const DeepCollectionEquality().hash(_savingThrows),const DeepCollectionEquality().hash(_skills),const DeepCollectionEquality().hash(_vulnerabilities),const DeepCollectionEquality().hash(_resistances),const DeepCollectionEquality().hash(_immunities),const DeepCollectionEquality().hash(_conditionImmunities),const DeepCollectionEquality().hash(_gear),senses,sensesNote,passivePerception,languages,cr,xp,xpLair,proficiencyBonus,legendaryUses,legendaryUsesLair,const DeepCollectionEquality().hash(_actions)]);
+    return Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_sizes),creatureType,swarmSize,const DeepCollectionEquality().hash(_typeTags),alignment,ac,acNote,initiative,hp,hitDice,speed,speedNote,hover,const DeepCollectionEquality().hash(_abilities),const DeepCollectionEquality().hash(_savingThrows),const DeepCollectionEquality().hash(_skills),const DeepCollectionEquality().hash(_vulnerabilities),const DeepCollectionEquality().hash(_resistances),const DeepCollectionEquality().hash(_immunities),const DeepCollectionEquality().hash(_conditionImmunities),const DeepCollectionEquality().hash(_gear),senses,sensesNote,passivePerception,languages,cr,xp,xpLair,proficiencyBonus,legendaryUses,legendaryUsesLair,const DeepCollectionEquality().hash(_actions),const DeepCollectionEquality().hash(_studyReveals)]);
 }
 
 @override
 String toString() {
-    return 'MonsterData(sizes: $sizes, creatureType: $creatureType, swarmSize: $swarmSize, typeTags: $typeTags, alignment: $alignment, ac: $ac, acNote: $acNote, initiative: $initiative, hp: $hp, hitDice: $hitDice, speed: $speed, speedNote: $speedNote, hover: $hover, abilities: $abilities, savingThrows: $savingThrows, skills: $skills, vulnerabilities: $vulnerabilities, resistances: $resistances, immunities: $immunities, conditionImmunities: $conditionImmunities, gear: $gear, senses: $senses, sensesNote: $sensesNote, passivePerception: $passivePerception, languages: $languages, cr: $cr, xp: $xp, xpLair: $xpLair, proficiencyBonus: $proficiencyBonus, legendaryUses: $legendaryUses, legendaryUsesLair: $legendaryUsesLair, actions: $actions)';
+    return 'MonsterData(sizes: $sizes, creatureType: $creatureType, swarmSize: $swarmSize, typeTags: $typeTags, alignment: $alignment, ac: $ac, acNote: $acNote, initiative: $initiative, hp: $hp, hitDice: $hitDice, speed: $speed, speedNote: $speedNote, hover: $hover, abilities: $abilities, savingThrows: $savingThrows, skills: $skills, vulnerabilities: $vulnerabilities, resistances: $resistances, immunities: $immunities, conditionImmunities: $conditionImmunities, gear: $gear, senses: $senses, sensesNote: $sensesNote, passivePerception: $passivePerception, languages: $languages, cr: $cr, xp: $xp, xpLair: $xpLair, proficiencyBonus: $proficiencyBonus, legendaryUses: $legendaryUses, legendaryUsesLair: $legendaryUsesLair, actions: $actions, studyReveals: $studyReveals)';
 }
 
 
@@ -9781,7 +10065,7 @@ abstract mixin class _$MonsterDataCopyWith<$Res> implements $MonsterDataCopyWith
   factory _$MonsterDataCopyWith(_MonsterData value, $Res Function(_MonsterData) _then) = __$MonsterDataCopyWithImpl;
 @override @useResult
 $Res call({
- List<MonsterSize> sizes, CreatureType creatureType, MonsterSize? swarmSize, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, String? speedNote, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, String? sensesNote, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions
+ List<MonsterSize> sizes, CreatureType creatureType, MonsterSize? swarmSize, List<String> typeTags, String alignment, int ac, String? acNote, int initiative, int hp, String hitDice, MonsterSpeed speed, String? speedNote, bool hover,@JsonKey(fromJson: _sixAbilities) Map<String, int> abilities,@JsonKey(fromJson: _sixAbilities) Map<String, int> savingThrows, Map<String, int> skills,@ContentIdConverter() List<ContentId> vulnerabilities,@ContentIdConverter() List<ContentId> resistances,@ContentIdConverter() List<ContentId> immunities,@ContentIdConverter() List<ContentId> conditionImmunities, List<String> gear, MonsterSenses senses, String? sensesNote, int passivePerception, String languages, String cr, int xp, int? xpLair, int proficiencyBonus, int? legendaryUses, int? legendaryUsesLair, List<MonsterAction> actions, List<StudyReveal> studyReveals
 });
 
 
@@ -9798,7 +10082,7 @@ class __$MonsterDataCopyWithImpl<$Res>
 
 /// Create a copy of MonsterData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? sizes = null,Object? creatureType = null,Object? swarmSize = freezed,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? speedNote = freezed,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? sensesNote = freezed,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? sizes = null,Object? creatureType = null,Object? swarmSize = freezed,Object? typeTags = null,Object? alignment = null,Object? ac = null,Object? acNote = freezed,Object? initiative = null,Object? hp = null,Object? hitDice = null,Object? speed = null,Object? speedNote = freezed,Object? hover = null,Object? abilities = null,Object? savingThrows = null,Object? skills = null,Object? vulnerabilities = null,Object? resistances = null,Object? immunities = null,Object? conditionImmunities = null,Object? gear = null,Object? senses = null,Object? sensesNote = freezed,Object? passivePerception = null,Object? languages = null,Object? cr = null,Object? xp = null,Object? xpLair = freezed,Object? proficiencyBonus = null,Object? legendaryUses = freezed,Object? legendaryUsesLair = freezed,Object? actions = null,Object? studyReveals = null,}) {
   return _then(_MonsterData(
 sizes: null == sizes ? _self._sizes : sizes // ignore: cast_nullable_to_non_nullable
 as List<MonsterSize>,creatureType: null == creatureType ? _self.creatureType : creatureType // ignore: cast_nullable_to_non_nullable
@@ -9832,7 +10116,8 @@ as int?,proficiencyBonus: null == proficiencyBonus ? _self.proficiencyBonus : pr
 as int,legendaryUses: freezed == legendaryUses ? _self.legendaryUses : legendaryUses // ignore: cast_nullable_to_non_nullable
 as int?,legendaryUsesLair: freezed == legendaryUsesLair ? _self.legendaryUsesLair : legendaryUsesLair // ignore: cast_nullable_to_non_nullable
 as int?,actions: null == actions ? _self._actions : actions // ignore: cast_nullable_to_non_nullable
-as List<MonsterAction>,
+as List<MonsterAction>,studyReveals: null == studyReveals ? _self._studyReveals : studyReveals // ignore: cast_nullable_to_non_nullable
+as List<StudyReveal>,
   ));
 }
 

@@ -324,6 +324,13 @@ final class PackStore {
             'data': jsonEncode(json),
           });
         }
+        for (final r in mo.studyReveals) {
+          child('study_reveal', {
+            'monster_id': id,
+            'dc': r.dc,
+            'reveal_text': r.text,
+          });
+        }
       case final SubclassData s:
         for (final (i, feature) in s.features.indexed) {
           child('subclass_feature', {

@@ -48,6 +48,7 @@ late String _table;
 Future<void> _open(
   WidgetTester tester, {
   String me = _camille,
+  ActiveContent? content,
   Future<void> Function(NpcStore)? seed,
   String Function(String table)? location,
 }) async {
@@ -107,7 +108,7 @@ Future<void> _open(
         onlineProvider.overrideWith((ref) => Stream.value(true)),
         currentUserProvider.overrideWith((ref) => Stream.value(_user(me))),
         databaseProvider.overrideWithValue(_db),
-        contentProvider.overrideWith((ref) => _content),
+        contentProvider.overrideWith((ref) => content ?? _content),
       ],
       child: MaterialApp.router(
         routerConfig: router,
@@ -333,6 +334,64 @@ void main() {
       find.text('Variante de « Chef de bande » · SRD 5.2.1'),
       findsOneWidget,
     );
+  });
+
+  _test('nouveau PNJ d’un monstre homebrew : ses paliers d’Étude (US-27)', (
+    tester,
+  ) async {
+    final wolf = _content.entity('srd:monster:wolf')!.toJson();
+    final homebrew = ContentPack(
+      manifest: const PackManifest(
+        id: '00000000-0000-0000-0000-000000000027',
+        namespace: 'hb',
+        name: 'Bestiaire des brumes',
+        version: '0.1.0',
+        origin: PackOrigin.local,
+        author: 'Inès',
+        licence: 'CC-BY-4.0',
+        locale: 'fr',
+      ),
+      entities: [
+        parseEntity({
+          ...wolf,
+          'id': 'hb:monster:mist-wolf',
+          'name': 'Loup des brumes',
+          'data': {
+            ...wolf['data']! as Map<String, Object?>,
+            'study_reveals': [
+              {'dc': 10, 'text': 'Il chasse en meute.'},
+              {'dc': 15, 'text': 'La brume le cache.'},
+            ],
+          },
+        }, 'test').entity!,
+      ],
+    );
+    await _open(
+      tester,
+      content: ActiveContent([..._content.packs, homebrew]),
+      location: (t) => '/tables/$t/pnj/nouveau',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Grisaille',
+    );
+    await _tap(tester, find.text('Choisir un monstre'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Rechercher un monstre'),
+      'loup des brumes',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Loup des brumes'));
+    await _tap(tester, find.text('Créer le PNJ'));
+
+    final row = await tester.runAsync(
+      () =>
+          _db.customSelect('SELECT hidden_info FROM npc_statblock').getSingle(),
+    );
+    expect(jsonDecode(row!.read<String>('hidden_info')), [
+      {'dc': 10, 'text': 'Il chasse en meute.', 'revealed': false},
+      {'dc': 15, 'text': 'La brume le cache.', 'revealed': false},
+    ]);
   });
 
   _test('fiche : attitude enregistrée, duplication', (tester) async {

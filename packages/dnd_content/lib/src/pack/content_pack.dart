@@ -150,7 +150,7 @@ List<ContentIssue> validatePack(
 
 /// PX par FP, table « Points d'expérience par facteur de puissance » du SRD
 /// (FP 0 : 0 ou 10 PX).
-const _xpByCr = <String, List<int>>{
+const xpByChallenge = <String, List<int>>{
   '0': [0, 10], '1/8': [25], '1/4': [50], '1/2': [100], '1': [200], //
   '2': [450], '3': [700], '4': [1100], '5': [1800], '6': [2300], //
   '7': [2900], '8': [3900], '9': [5000], '10': [5900], '11': [7200], //
@@ -163,7 +163,7 @@ const _xpByCr = <String, List<int>>{
 
 /// BM par FP, table « Bonus de maîtrise par facteur de puissance » du SRD :
 /// +2 jusqu'à FP 4, puis +1 tous les 4 FP.
-int _proficiencyBonusOf(String cr) {
+int proficiencyBonusOfChallenge(String cr) {
   final value = int.tryParse(cr) ?? 0;
   return value < 5 ? 2 : (value - 1) ~/ 4 + 2;
 }
@@ -171,7 +171,7 @@ int _proficiencyBonusOf(String cr) {
 final _dice = RegExp(r'^(\d+)d(\d+)(?: ?([+−–-]) ?(\d+))?$');
 
 /// Moyenne de « 2d8 + 2 » arrondie à l'inférieur, `null` si illisible.
-int? _average(String dice) {
+int? averageOfDice(String dice) {
   final m = _dice.firstMatch(dice.trim());
   if (m == null) return null;
   final k = m[4] == null ? 0 : int.parse(m[4]!) * (m[3] == '+' ? 1 : -1);
@@ -183,12 +183,12 @@ int _modifier(int score) => ((score - 10) / 2).floor();
 String _signed(int v) => v < 0 ? '$v' : '+$v';
 
 List<ContentIssue> _monsterIssues(String path, MonsterData m) {
-  final xp = _xpByCr[m.cr];
+  final xp = xpByChallenge[m.cr];
   if (xp == null) {
     return [ContentIssue('$path.data.cr', 'FP inconnu : ${m.cr}')];
   }
-  final pb = _proficiencyBonusOf(m.cr);
-  final hpAverage = _average(m.hitDice);
+  final pb = proficiencyBonusOfChallenge(m.cr);
+  final hpAverage = averageOfDice(m.hitDice);
   final perception =
       m.skills['srd:skill:perception'] ?? _modifier(m.abilities['wis']!);
   return [
@@ -215,8 +215,8 @@ List<ContentIssue> _monsterIssues(String path, MonsterData m) {
       ),
     for (final (i, a) in m.actions.indexed)
       for (final d in a.attack?.damage ?? const <MonsterDamage>[])
-        if (d.dice case final dice? when _average(dice) != d.average)
-          ContentIssue('$path.data.actions[$i].attack', switch (_average(
+        if (d.dice case final dice? when averageOfDice(dice) != d.average)
+          ContentIssue('$path.data.actions[$i].attack', switch (averageOfDice(
             dice,
           )) {
             null => 'dés illisibles : $dice',
@@ -240,6 +240,14 @@ List<ContentIssue> _monsterIssues(String path, MonsterData m) {
         '$path.data.legendary_uses',
         'nombre d’utilisations requis pour une action Légendaire',
       ),
+    for (final (i, r) in m.studyReveals.indexed)
+      if (r.dc < 1 ||
+          r.text.trim().isEmpty ||
+          m.studyReveals.take(i).any((o) => o.dc == r.dc))
+        ContentIssue(
+          '$path.data.study_reveals[$i]',
+          'palier d’Étude : un DD par palier, et un texte',
+        ),
     for (final (i, a) in m.actions.indexed) ...[
       if (a.uses case final u?
           when [u.perDay, u.recharge, u.rest].nonNulls.length != 1)
