@@ -517,6 +517,28 @@ class $ContentPacksTable extends ContentPacks
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _descriptionMeta = const VerificationMeta(
+    'description',
+  );
+  @override
+  late final GeneratedColumn<String> description = GeneratedColumn<String>(
+    'description',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _authorPublicKeyMeta = const VerificationMeta(
+    'authorPublicKey',
+  );
+  @override
+  late final GeneratedColumn<String> authorPublicKey = GeneratedColumn<String>(
+    'author_public_key',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -532,6 +554,8 @@ class $ContentPacksTable extends ContentPacks
     entityCount,
     checksum,
     signature,
+    description,
+    authorPublicKey,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -644,6 +668,24 @@ class $ContentPacksTable extends ContentPacks
         signature.isAcceptableOrUnknown(data['signature']!, _signatureMeta),
       );
     }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('author_public_key')) {
+      context.handle(
+        _authorPublicKeyMeta,
+        authorPublicKey.isAcceptableOrUnknown(
+          data['author_public_key']!,
+          _authorPublicKeyMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -705,6 +747,14 @@ class $ContentPacksTable extends ContentPacks
         DriftSqlType.string,
         data['${effectivePrefix}signature'],
       ),
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
+      authorPublicKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_public_key'],
+      ),
     );
   }
 
@@ -728,6 +778,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
   final int? entityCount;
   final String? checksum;
   final String? signature;
+  final String? description;
+  final String? authorPublicKey;
   const ContentPackRow({
     required this.id,
     required this.namespace,
@@ -742,6 +794,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     this.entityCount,
     this.checksum,
     this.signature,
+    this.description,
+    this.authorPublicKey,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -766,6 +820,12 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     }
     if (!nullToAbsent || signature != null) {
       map['signature'] = Variable<String>(signature);
+    }
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
+    if (!nullToAbsent || authorPublicKey != null) {
+      map['author_public_key'] = Variable<String>(authorPublicKey);
     }
     return map;
   }
@@ -793,6 +853,12 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
       signature: signature == null && nullToAbsent
           ? const Value.absent()
           : Value(signature),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
+      authorPublicKey: authorPublicKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorPublicKey),
     );
   }
 
@@ -815,6 +881,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
       entityCount: serializer.fromJson<int?>(json['entityCount']),
       checksum: serializer.fromJson<String?>(json['checksum']),
       signature: serializer.fromJson<String?>(json['signature']),
+      description: serializer.fromJson<String?>(json['description']),
+      authorPublicKey: serializer.fromJson<String?>(json['authorPublicKey']),
     );
   }
   @override
@@ -834,6 +902,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
       'entityCount': serializer.toJson<int?>(entityCount),
       'checksum': serializer.toJson<String?>(checksum),
       'signature': serializer.toJson<String?>(signature),
+      'description': serializer.toJson<String?>(description),
+      'authorPublicKey': serializer.toJson<String?>(authorPublicKey),
     };
   }
 
@@ -851,6 +921,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     Value<int?> entityCount = const Value.absent(),
     Value<String?> checksum = const Value.absent(),
     Value<String?> signature = const Value.absent(),
+    Value<String?> description = const Value.absent(),
+    Value<String?> authorPublicKey = const Value.absent(),
   }) => ContentPackRow(
     id: id ?? this.id,
     namespace: namespace ?? this.namespace,
@@ -865,6 +937,10 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     entityCount: entityCount.present ? entityCount.value : this.entityCount,
     checksum: checksum.present ? checksum.value : this.checksum,
     signature: signature.present ? signature.value : this.signature,
+    description: description.present ? description.value : this.description,
+    authorPublicKey: authorPublicKey.present
+        ? authorPublicKey.value
+        : this.authorPublicKey,
   );
   ContentPackRow copyWithCompanion(ContentPacksCompanion data) {
     return ContentPackRow(
@@ -887,6 +963,12 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           : this.entityCount,
       checksum: data.checksum.present ? data.checksum.value : this.checksum,
       signature: data.signature.present ? data.signature.value : this.signature,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
+      authorPublicKey: data.authorPublicKey.present
+          ? data.authorPublicKey.value
+          : this.authorPublicKey,
     );
   }
 
@@ -905,7 +987,9 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           ..write('locale: $locale, ')
           ..write('entityCount: $entityCount, ')
           ..write('checksum: $checksum, ')
-          ..write('signature: $signature')
+          ..write('signature: $signature, ')
+          ..write('description: $description, ')
+          ..write('authorPublicKey: $authorPublicKey')
           ..write(')'))
         .toString();
   }
@@ -925,6 +1009,8 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
     entityCount,
     checksum,
     signature,
+    description,
+    authorPublicKey,
   );
   @override
   bool operator ==(Object other) =>
@@ -942,7 +1028,9 @@ class ContentPackRow extends DataClass implements Insertable<ContentPackRow> {
           other.locale == this.locale &&
           other.entityCount == this.entityCount &&
           other.checksum == this.checksum &&
-          other.signature == this.signature);
+          other.signature == this.signature &&
+          other.description == this.description &&
+          other.authorPublicKey == this.authorPublicKey);
 }
 
 class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
@@ -959,6 +1047,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
   final Value<int?> entityCount;
   final Value<String?> checksum;
   final Value<String?> signature;
+  final Value<String?> description;
+  final Value<String?> authorPublicKey;
   final Value<int> rowid;
   const ContentPacksCompanion({
     this.id = const Value.absent(),
@@ -974,6 +1064,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     this.entityCount = const Value.absent(),
     this.checksum = const Value.absent(),
     this.signature = const Value.absent(),
+    this.description = const Value.absent(),
+    this.authorPublicKey = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   ContentPacksCompanion.insert({
@@ -990,6 +1082,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     this.entityCount = const Value.absent(),
     this.checksum = const Value.absent(),
     this.signature = const Value.absent(),
+    this.description = const Value.absent(),
+    this.authorPublicKey = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        namespace = Value(namespace),
@@ -1014,6 +1108,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     Expression<int>? entityCount,
     Expression<String>? checksum,
     Expression<String>? signature,
+    Expression<String>? description,
+    Expression<String>? authorPublicKey,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1030,6 +1126,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
       if (entityCount != null) 'entity_count': entityCount,
       if (checksum != null) 'checksum': checksum,
       if (signature != null) 'signature': signature,
+      if (description != null) 'description': description,
+      if (authorPublicKey != null) 'author_public_key': authorPublicKey,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1048,6 +1146,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     Value<int?>? entityCount,
     Value<String?>? checksum,
     Value<String?>? signature,
+    Value<String?>? description,
+    Value<String?>? authorPublicKey,
     Value<int>? rowid,
   }) {
     return ContentPacksCompanion(
@@ -1064,6 +1164,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
       entityCount: entityCount ?? this.entityCount,
       checksum: checksum ?? this.checksum,
       signature: signature ?? this.signature,
+      description: description ?? this.description,
+      authorPublicKey: authorPublicKey ?? this.authorPublicKey,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1110,6 +1212,12 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
     if (signature.present) {
       map['signature'] = Variable<String>(signature.value);
     }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (authorPublicKey.present) {
+      map['author_public_key'] = Variable<String>(authorPublicKey.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1132,6 +1240,8 @@ class ContentPacksCompanion extends UpdateCompanion<ContentPackRow> {
           ..write('entityCount: $entityCount, ')
           ..write('checksum: $checksum, ')
           ..write('signature: $signature, ')
+          ..write('description: $description, ')
+          ..write('authorPublicKey: $authorPublicKey, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -32659,6 +32769,265 @@ class AuthorIdentitiesCompanion extends UpdateCompanion<AuthorIdentityRow> {
   }
 }
 
+class $AuthorKeysTable extends AuthorKeys
+    with TableInfo<$AuthorKeysTable, AuthorKeyRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AuthorKeysTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _seedMeta = const VerificationMeta('seed');
+  @override
+  late final GeneratedColumn<String> seed = GeneratedColumn<String>(
+    'seed',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _publicKeyMeta = const VerificationMeta(
+    'publicKey',
+  );
+  @override
+  late final GeneratedColumn<String> publicKey = GeneratedColumn<String>(
+    'public_key',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, seed, publicKey];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'author_key';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<AuthorKeyRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('seed')) {
+      context.handle(
+        _seedMeta,
+        seed.isAcceptableOrUnknown(data['seed']!, _seedMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_seedMeta);
+    }
+    if (data.containsKey('public_key')) {
+      context.handle(
+        _publicKeyMeta,
+        publicKey.isAcceptableOrUnknown(data['public_key']!, _publicKeyMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_publicKeyMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AuthorKeyRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AuthorKeyRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      seed: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}seed'],
+      )!,
+      publicKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}public_key'],
+      )!,
+    );
+  }
+
+  @override
+  $AuthorKeysTable createAlias(String alias) {
+    return $AuthorKeysTable(attachedDatabase, alias);
+  }
+}
+
+class AuthorKeyRow extends DataClass implements Insertable<AuthorKeyRow> {
+  final String id;
+  final String seed;
+  final String publicKey;
+  const AuthorKeyRow({
+    required this.id,
+    required this.seed,
+    required this.publicKey,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['seed'] = Variable<String>(seed);
+    map['public_key'] = Variable<String>(publicKey);
+    return map;
+  }
+
+  AuthorKeysCompanion toCompanion(bool nullToAbsent) {
+    return AuthorKeysCompanion(
+      id: Value(id),
+      seed: Value(seed),
+      publicKey: Value(publicKey),
+    );
+  }
+
+  factory AuthorKeyRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AuthorKeyRow(
+      id: serializer.fromJson<String>(json['id']),
+      seed: serializer.fromJson<String>(json['seed']),
+      publicKey: serializer.fromJson<String>(json['publicKey']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'seed': serializer.toJson<String>(seed),
+      'publicKey': serializer.toJson<String>(publicKey),
+    };
+  }
+
+  AuthorKeyRow copyWith({String? id, String? seed, String? publicKey}) =>
+      AuthorKeyRow(
+        id: id ?? this.id,
+        seed: seed ?? this.seed,
+        publicKey: publicKey ?? this.publicKey,
+      );
+  AuthorKeyRow copyWithCompanion(AuthorKeysCompanion data) {
+    return AuthorKeyRow(
+      id: data.id.present ? data.id.value : this.id,
+      seed: data.seed.present ? data.seed.value : this.seed,
+      publicKey: data.publicKey.present ? data.publicKey.value : this.publicKey,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuthorKeyRow(')
+          ..write('id: $id, ')
+          ..write('seed: $seed, ')
+          ..write('publicKey: $publicKey')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, seed, publicKey);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AuthorKeyRow &&
+          other.id == this.id &&
+          other.seed == this.seed &&
+          other.publicKey == this.publicKey);
+}
+
+class AuthorKeysCompanion extends UpdateCompanion<AuthorKeyRow> {
+  final Value<String> id;
+  final Value<String> seed;
+  final Value<String> publicKey;
+  final Value<int> rowid;
+  const AuthorKeysCompanion({
+    this.id = const Value.absent(),
+    this.seed = const Value.absent(),
+    this.publicKey = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  AuthorKeysCompanion.insert({
+    required String id,
+    required String seed,
+    required String publicKey,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       seed = Value(seed),
+       publicKey = Value(publicKey);
+  static Insertable<AuthorKeyRow> custom({
+    Expression<String>? id,
+    Expression<String>? seed,
+    Expression<String>? publicKey,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (seed != null) 'seed': seed,
+      if (publicKey != null) 'public_key': publicKey,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  AuthorKeysCompanion copyWith({
+    Value<String>? id,
+    Value<String>? seed,
+    Value<String>? publicKey,
+    Value<int>? rowid,
+  }) {
+    return AuthorKeysCompanion(
+      id: id ?? this.id,
+      seed: seed ?? this.seed,
+      publicKey: publicKey ?? this.publicKey,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (seed.present) {
+      map['seed'] = Variable<String>(seed.value);
+    }
+    if (publicKey.present) {
+      map['public_key'] = Variable<String>(publicKey.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AuthorKeysCompanion(')
+          ..write('id: $id, ')
+          ..write('seed: $seed, ')
+          ..write('publicKey: $publicKey, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$TavernierDatabase extends GeneratedDatabase {
   _$TavernierDatabase(QueryExecutor e) : super(e);
   $TavernierDatabaseManager get managers => $TavernierDatabaseManager(this);
@@ -32767,6 +33136,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
   late final $AuthorIdentitiesTable authorIdentities = $AuthorIdentitiesTable(
     this,
   );
+  late final $AuthorKeysTable authorKeys = $AuthorKeysTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -32843,6 +33213,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     notes,
     homebrewDrafts,
     authorIdentities,
+    authorKeys,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -33313,6 +33684,8 @@ typedef $$ContentPacksTableCreateCompanionBuilder =
       Value<int?> entityCount,
       Value<String?> checksum,
       Value<String?> signature,
+      Value<String?> description,
+      Value<String?> authorPublicKey,
       Value<int> rowid,
     });
 typedef $$ContentPacksTableUpdateCompanionBuilder =
@@ -33330,6 +33703,8 @@ typedef $$ContentPacksTableUpdateCompanionBuilder =
       Value<int?> entityCount,
       Value<String?> checksum,
       Value<String?> signature,
+      Value<String?> description,
+      Value<String?> authorPublicKey,
       Value<int> rowid,
     });
 
@@ -34062,6 +34437,16 @@ class $$ContentPacksTableFilterComposer
 
   ColumnFilters<String> get signature => $composableBuilder(
     column: $table.signature,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -34968,6 +35353,16 @@ class $$ContentPacksTableOrderingComposer
     column: $table.signature,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ContentPacksTableAnnotationComposer
@@ -35023,6 +35418,16 @@ class $$ContentPacksTableAnnotationComposer
 
   GeneratedColumn<String> get signature =>
       $composableBuilder(column: $table.signature, builder: (column) => column);
+
+  GeneratedColumn<String> get description => $composableBuilder(
+    column: $table.description,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
+    builder: (column) => column,
+  );
 
   Expression<T> packDependenciesRefs<T extends Object>(
     Expression<T> Function($$PackDependenciesTableAnnotationComposer a) f,
@@ -35936,6 +36341,8 @@ class $$ContentPacksTableTableManager
                 Value<int?> entityCount = const Value.absent(),
                 Value<String?> checksum = const Value.absent(),
                 Value<String?> signature = const Value.absent(),
+                Value<String?> description = const Value.absent(),
+                Value<String?> authorPublicKey = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ContentPacksCompanion(
                 id: id,
@@ -35951,6 +36358,8 @@ class $$ContentPacksTableTableManager
                 entityCount: entityCount,
                 checksum: checksum,
                 signature: signature,
+                description: description,
+                authorPublicKey: authorPublicKey,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -35968,6 +36377,8 @@ class $$ContentPacksTableTableManager
                 Value<int?> entityCount = const Value.absent(),
                 Value<String?> checksum = const Value.absent(),
                 Value<String?> signature = const Value.absent(),
+                Value<String?> description = const Value.absent(),
+                Value<String?> authorPublicKey = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => ContentPacksCompanion.insert(
                 id: id,
@@ -35983,6 +36394,8 @@ class $$ContentPacksTableTableManager
                 entityCount: entityCount,
                 checksum: checksum,
                 signature: signature,
+                description: description,
+                authorPublicKey: authorPublicKey,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -57715,6 +58128,175 @@ typedef $$AuthorIdentitiesTableProcessedTableManager =
       AuthorIdentityRow,
       PrefetchHooks Function()
     >;
+typedef $$AuthorKeysTableCreateCompanionBuilder = AuthorKeysCompanion Function({
+  required String id,
+  required String seed,
+  required String publicKey,
+  Value<int> rowid,
+});
+typedef $$AuthorKeysTableUpdateCompanionBuilder = AuthorKeysCompanion Function({
+  Value<String> id,
+  Value<String> seed,
+  Value<String> publicKey,
+  Value<int> rowid,
+});
+
+class $$AuthorKeysTableFilterComposer
+    extends Composer<_$TavernierDatabase, $AuthorKeysTable> {
+  $$AuthorKeysTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get seed => $composableBuilder(
+    column: $table.seed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get publicKey => $composableBuilder(
+    column: $table.publicKey,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$AuthorKeysTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $AuthorKeysTable> {
+  $$AuthorKeysTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get seed => $composableBuilder(
+    column: $table.seed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get publicKey => $composableBuilder(
+    column: $table.publicKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$AuthorKeysTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $AuthorKeysTable> {
+  $$AuthorKeysTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get seed =>
+      $composableBuilder(column: $table.seed, builder: (column) => column);
+
+  GeneratedColumn<String> get publicKey =>
+      $composableBuilder(column: $table.publicKey, builder: (column) => column);
+}
+
+class $$AuthorKeysTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $AuthorKeysTable,
+          AuthorKeyRow,
+          $$AuthorKeysTableFilterComposer,
+          $$AuthorKeysTableOrderingComposer,
+          $$AuthorKeysTableAnnotationComposer,
+          $$AuthorKeysTableCreateCompanionBuilder,
+          $$AuthorKeysTableUpdateCompanionBuilder,
+          (
+            AuthorKeyRow,
+            BaseReferences<_$TavernierDatabase, $AuthorKeysTable, AuthorKeyRow>,
+          ),
+          AuthorKeyRow,
+          PrefetchHooks Function()
+        > {
+  $$AuthorKeysTableTableManager(_$TavernierDatabase db, $AuthorKeysTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AuthorKeysTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AuthorKeysTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AuthorKeysTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> seed = const Value.absent(),
+                Value<String> publicKey = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => AuthorKeysCompanion(
+                id: id,
+                seed: seed,
+                publicKey: publicKey,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String seed,
+                required String publicKey,
+                Value<int> rowid = const Value.absent(),
+              }) => AuthorKeysCompanion.insert(
+                id: id,
+                seed: seed,
+                publicKey: publicKey,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$AuthorKeysTable, AuthorKeyRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $AuthorKeysTable,
+                    AuthorKeyRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$AuthorKeysTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $AuthorKeysTable,
+      AuthorKeyRow,
+      $$AuthorKeysTableFilterComposer,
+      $$AuthorKeysTableOrderingComposer,
+      $$AuthorKeysTableAnnotationComposer,
+      $$AuthorKeysTableCreateCompanionBuilder,
+      $$AuthorKeysTableUpdateCompanionBuilder,
+      (
+        AuthorKeyRow,
+        BaseReferences<_$TavernierDatabase, $AuthorKeysTable, AuthorKeyRow>,
+      ),
+      AuthorKeyRow,
+      PrefetchHooks Function()
+    >;
 
 class $TavernierDatabaseManager {
   final _$TavernierDatabase _db;
@@ -57875,4 +58457,6 @@ class $TavernierDatabaseManager {
       $$HomebrewDraftsTableTableManager(_db, _db.homebrewDrafts);
   $$AuthorIdentitiesTableTableManager get authorIdentities =>
       $$AuthorIdentitiesTableTableManager(_db, _db.authorIdentities);
+  $$AuthorKeysTableTableManager get authorKeys =>
+      $$AuthorKeysTableTableManager(_db, _db.authorKeys);
 }

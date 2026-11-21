@@ -43,8 +43,11 @@ L'archive est **déterministe** : mêmes sources, mêmes octets (ordre des fichi
 | `dependencies` | liste | `{id, version_range}` (cahier §11.1 `pack_dependency`) |
 | `entity_count` | entier | calculé au build |
 | `checksum` | chaîne | `sha256:<hex>` des octets de `entities.json` |
+| `description` | chaîne | facultative (EF-HB-04, US-29) |
+| `author_public_key` | chaîne | facultative : clé publique Ed25519 de l'auteur, en base64 (32 octets) |
+| `signature` | chaîne | facultative : signature Ed25519, en base64 (64 octets), du manifeste sans ce champ |
 
-La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
+**Signature (EF-HB-05, US-29)** : le message signé est le JSON du manifeste sans `signature`, avec `entity_count`, `checksum` et `author_public_key`, encodé comme `manifest.json` (indenté de 2 espaces, UTF-8). `checksum` couvre `entities.json`, donc la signature couvre tout le pack. La clé est celle de l'appareil de l'auteur : un pack ne se met à jour que par la même clé (EF-HB-07).
 
 ## Entité
 

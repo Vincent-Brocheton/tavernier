@@ -527,6 +527,17 @@ class HomebrewDrafts extends Table with IdKey {
   DateTimeColumn get updatedAt => dateTime().nullable()();
 }
 
+/// Clé Ed25519 de l'auteur sur cet appareil (US-29, EF-HB-05) : sa graine
+/// privée et sa clé publique, en base64. Locale, jamais synchronisée ni
+/// exportée.
+@DataClassName('AuthorKeyRow')
+class AuthorKeys extends Table with IdKey {
+  @override
+  String get tableName => 'author_key';
+  TextColumn get seed => text()();
+  TextColumn get publicKey => text()();
+}
+
 @DataClassName('AuthorIdentityRow')
 class AuthorIdentities extends Table with IdKey {
   @override

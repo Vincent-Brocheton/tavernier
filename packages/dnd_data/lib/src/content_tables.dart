@@ -23,6 +23,8 @@ class ContentPacks extends Table {
   IntColumn get entityCount => integer().nullable()();
   TextColumn get checksum => text().nullable()();
   TextColumn get signature => text().nullable()();
+  TextColumn get description => text().nullable()();
+  TextColumn get authorPublicKey => text().nullable()();
 
   @override
   Set<Column<Object>> get primaryKey => {id};

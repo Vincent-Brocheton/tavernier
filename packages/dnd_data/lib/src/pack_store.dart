@@ -78,6 +78,9 @@ final class PackStore {
       'locale': m.locale,
       'entity_count': m.entityCount,
       'checksum': m.checksum,
+      'signature': m.signature,
+      'description': m.description,
+      'author_public_key': m.authorPublicKey,
     });
     for (final d in m.dependencies) {
       insert('pack_dependency', {
@@ -390,6 +393,9 @@ final class PackStore {
       locale: p['locale']! as String,
       entityCount: p['entity_count'] as int?,
       checksum: p['checksum'] as String?,
+      description: p['description'] as String?,
+      authorPublicKey: p['author_public_key'] as String?,
+      signature: p['signature'] as String?,
       dependencies: [
         for (final d in deps)
           (

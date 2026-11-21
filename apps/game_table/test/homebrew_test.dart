@@ -4,7 +4,8 @@
 // d'une entité du SRD » (lot b, [H05]) ; « Éditeur d'Espèce », ressource et
 // choix imbriqué (lot b2) ; « Éditeur de Sous-classe » ([H02]) et
 // « Éditeur de Classe » (lot c) ; « Éditeur de Monstre » (lot d) ;
-// « Bac à sable d'une entité » (US-28, [H04]).
+// « Bac à sable d'une entité » (US-28, [H04]) ; « Publier une version »,
+// « Export signé » (US-29, [H06]).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -15,6 +16,7 @@ import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
+import 'package:game_table/account/data_backup.dart' show saveFileProvider;
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/creation/step_layout.dart';
 import 'package:game_table/homebrew/homebrew_page.dart';
@@ -26,6 +28,9 @@ final _content = ActiveContent([
 ]);
 
 late TavernierDatabase _db;
+
+/// Dernier fichier passé à la feuille de partage.
+(String, List<int>)? _saved;
 
 Future<void> _open(WidgetTester tester) async {
   tester.view.physicalSize = const Size(390, 2400);
@@ -39,6 +44,10 @@ Future<void> _open(WidgetTester tester) async {
         databaseProvider.overrideWithValue(_db),
         contentProvider.overrideWith((ref) => _content),
         pseudonymProvider.overrideWith((ref) async => 'Inès'),
+        saveFileProvider.overrideWithValue((name, bytes, _) async {
+          _saved = (name, bytes);
+          return true;
+        }),
       ],
       child: MaterialApp(
         theme: AppTheme.dark,
@@ -851,5 +860,71 @@ void main() {
     await _tap(tester, find.byTooltip('Tester sur un personnage'));
     expect(find.text('Tester « Loup des brumes »'), findsOneWidget);
     expect(find.textContaining('Morsure', findRichText: true), findsWidgets);
+  });
+
+  _test('[H06] publier 0.1.0, exporter signé, puis une mineure', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    Map<String, Object?> feat(String slug, String name) => {
+      'id': 'gardiens-des-marches:feat:$slug',
+      'type': 'feat',
+      'name': name,
+      'data': {'category': 'origin'},
+      'text': {'fr': '$name : texte.'},
+    };
+    Future<void> seed(List<Map<String, Object?>> entities) async {
+      final draft = await _draft(tester);
+      await tester.runAsync(
+        () =>
+            HomebrewStore(_db)
+                .save(draft.id, manifest: draft.manifest, entities: entities),
+      );
+      await _settle(tester);
+    }
+
+    await seed([feat('veilleur', 'Veilleur')]);
+    await _tap(tester, find.text('Gardiens des Marches'));
+    await _tap(tester, find.text('Publier une version'));
+    expect(find.text('Première version : 0.1.0'), findsOneWidget);
+    FilledButton publish() => tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Publier la version 0.1.0'),
+    );
+    expect(publish().onPressed, isNull);
+    await _tap(tester, find.byType(CheckboxListTile));
+    expect(publish().onPressed, isNotNull);
+    await _tap(tester, find.text('Publier la version 0.1.0'));
+    await _settle(tester);
+    expect(find.text('0.1.0 → 0.2.0'), findsOneWidget);
+    expect(find.text('Aucun changement depuis cette version.'), findsOneWidget);
+
+    // Le fichier exporté se relit, signé par la clé de l'appareil.
+    await _tap(tester, find.text('Exporter le .dndpack signé (0.1.0)'));
+    expect(_saved!.$1, 'gardiens-des-marches-0.1.0.dndpack');
+    final exported = readDndpack(_saved!.$2);
+    expect(exported.manifest.version, '0.1.0');
+    expect(exported.entities.single.name, 'Veilleur');
+    expect(
+      await tester.runAsync(() => verifyPackSignature(exported.manifest)),
+      isTrue,
+    );
+
+    // Un Don de plus : version mineure.
+    await _tap(tester, find.byType(CloseButton));
+    await seed([feat('veilleur', 'Veilleur'), feat('guetteur', 'Guetteur')]);
+    await _tap(tester, find.text('Publier une version'));
+    expect(find.text('0.1.0 → 0.2.0'), findsOneWidget);
+    expect(find.text('Guetteur'), findsOneWidget);
+    expect(find.text('AJOUTÉ'), findsOneWidget);
+    await _tap(tester, find.byType(CheckboxListTile));
+    await _tap(tester, find.text('Publier la version 0.2.0'));
+    await _settle(tester);
+    final stored = await tester.runAsync(
+      () => PackStore(_db).exportPack(exported.manifest.id),
+    );
+    expect(stored!.manifest.version, '0.2.0');
+    expect(stored.manifest.authorPublicKey, exported.manifest.authorPublicKey);
+    expect((await _draft(tester)).manifest['version'], '0.2.0');
   });
 }

@@ -10,7 +10,8 @@ const userDataFormat = 'tavernier-export';
 const userDataVersion = 1;
 
 /// Tables des données de l'utilisateur : les synchronisées et ses
-/// brouillons homebrew. Les clés de pack (`author_identity`) n'y sont pas.
+/// brouillons homebrew. Les clés de pack (`author_identity`, `author_key`)
+/// n'y sont pas.
 List<String> userDataTables(TavernierDatabase db) => [
   ...syncedTables,
   db.homebrewDrafts.actualTableName,
