@@ -3,7 +3,8 @@
 // [H01] à [H03]) ; « Éditeur de Sort », « Éditeur d'Objet », « Variante
 // d'une entité du SRD » (lot b, [H05]) ; « Éditeur d'Espèce », ressource et
 // choix imbriqué (lot b2) ; « Éditeur de Sous-classe » ([H02]) et
-// « Éditeur de Classe » (lot c) ; « Éditeur de Monstre » (lot d).
+// « Éditeur de Classe » (lot c) ; « Éditeur de Monstre » (lot d) ;
+// « Bac à sable d'une entité » (US-28, [H04]).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -742,5 +743,113 @@ void main() {
       },
     });
     expect(find.text('Prêt à publier'), findsOneWidget);
+  });
+
+  /// Une ligne du bac à sable : ses textes.
+  List<String> sandboxRow(WidgetTester tester, String label) => [
+    for (final t in tester.widgetList<Text>(
+      find.descendant(
+        of: find.ancestor(
+          of: find.text(label),
+          matching: find.byType(ListTile),
+        ),
+        matching: find.byType(Text),
+      ),
+    ))
+      t.data ?? '',
+  ];
+
+  _test('[H04] Gardien du rempart : +1 CA bouclier porté, sans fiche réelle', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Sous-classe'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Gardien du rempart',
+    );
+    await _tap(tester, find.text('Classe parente *'));
+    await _tap(tester, find.text('Guerrier').last);
+    await _tap(tester, find.text('Ajouter une aptitude au niveau 3'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Rempart vivant',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      '+1 CA tant que vous portez un bouclier.',
+    );
+    await _tap(tester, find.text('Ajouter un effet'));
+    await _tap(tester, find.text('Modifier la Classe d’armure'));
+    await tester.enterText(find.widgetWithText(TextFormField, 'Valeur'), '1');
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Condition'));
+    await _tap(tester, find.text('tant que vous portez un bouclier').last);
+    await _tap(tester, find.text('Enregistrer l’effet'));
+    await _tap(tester, find.text('Enregistrer l’aptitude'));
+
+    // Testée sans être enregistrée.
+    await _tap(tester, find.byTooltip('Tester sur un personnage'));
+    expect(find.text('Tester « Gardien du rempart »'), findsOneWidget);
+    expect(
+      find.text('Bac à sable : aucune fiche réelle n’est modifiée'),
+      findsOneWidget,
+    );
+    expect(find.text('Guerrier prétiré (Humain, Soldat)'), findsOneWidget);
+    expect(find.text('5'), findsWidgets);
+    // Cotte de mailles 16 + bouclier 2, puis Rempart vivant.
+    expect(sandboxRow(tester, 'Classe d’armure'), [
+      'Classe d’armure',
+      'Source : Rempart vivant',
+      '18',
+      '19',
+    ]);
+    expect(
+      find.text('Toutes les valeurs se calculent sans erreur au niveau 5.'),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        '· progression incomplète : aucune aptitude aux niveaux 7, 10, 15, 18',
+      ),
+      findsOneWidget,
+    );
+
+    await _tap(tester, find.text('Porte un bouclier'));
+    expect(sandboxRow(tester, 'Classe d’armure'), [
+      'Classe d’armure',
+      '',
+      '16',
+      '16',
+    ]);
+    await _tap(tester, find.text('Retour à l’éditeur'));
+    expect(find.text('Rempart vivant'), findsOneWidget);
+    expect((await _draft(tester)).entities, isEmpty);
+  });
+
+  _test('[H04] monstre : aperçu de son profil', (tester) async {
+    await _open(tester);
+    await _newPack(tester);
+    final draft = await _draft(tester);
+    final wolf = _content.entity('srd:monster:wolf')!.toJson();
+    await tester.runAsync(
+      () => HomebrewStore(_db).save(
+        draft.id,
+        manifest: draft.manifest,
+        entities: [
+          {
+            ...wolf,
+            'id': 'gardiens-des-marches:monster:loup-des-brumes',
+            'name': 'Loup des brumes',
+          },
+        ],
+      ),
+    );
+    await _settle(tester);
+    await _tap(tester, find.text('Loup des brumes'));
+    await _tap(tester, find.byTooltip('Tester sur un personnage'));
+    expect(find.text('Tester « Loup des brumes »'), findsOneWidget);
+    expect(find.textContaining('Morsure', findRichText: true), findsWidgets);
   });
 }

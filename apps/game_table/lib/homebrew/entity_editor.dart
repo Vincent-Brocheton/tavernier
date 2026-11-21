@@ -21,6 +21,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'effect_editor.dart';
 import 'homebrew_page.dart';
+import 'sandbox_page.dart';
 
 part 'class_editor.dart';
 part 'monster_editor.dart';
@@ -232,7 +233,9 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
     _ => true,
   };
 
-  Future<void> _save() async {
+  /// Le brouillon tel qu'il serait enregistré, et l'identifiant de
+  /// l'entité : `_save` l'écrit, le bac à sable ([H04]) le lit.
+  (List<Map<String, Object?>>, String) _draftEntities() {
     final content = ref.read(contentProvider).value;
     final taken = [for (final e in widget.draft.entities) '${e['id']}'];
     final id =
@@ -300,22 +303,46 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
       if (_hasEffects && _effects.isNotEmpty) 'effects': _effects,
       if (_text.text.trim().isNotEmpty) 'text': {'fr': _text.text.trim()},
     };
+    return (
+      [
+        for (final e in widget.draft.entities)
+          if (e['id'] == _previousId) ...[
+            entity,
+            ...owned,
+          ] else if (!_ownFeature(e, id))
+            e,
+        if (_previousId == null) ...[entity, ...owned],
+      ],
+      id,
+    );
+  }
+
+  Future<void> _save() async {
+    final (entities, _) = _draftEntities();
     await ref
         .read(homebrewStoreProvider)
         .save(
           widget.draft.id,
           manifest: widget.draft.manifest,
-          entities: [
-            for (final e in widget.draft.entities)
-              if (e['id'] == _previousId) ...[
-                entity,
-                ...owned,
-              ] else if (!_ownFeature(e, id))
-                e,
-            if (_previousId == null) ...[entity, ...owned],
-          ],
+          entities: entities,
         );
     if (mounted) Navigator.pop(context);
+  }
+
+  /// « Tester sur un personnage » ([H04], US-28) : l'entité telle qu'elle
+  /// est à l'écran, sans enregistrer.
+  Future<void> _test() {
+    final (entities, id) = _draftEntities();
+    return Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        builder: (_) => SandboxPage(
+          manifest: widget.draft.manifest,
+          entities: entities,
+          entityId: id,
+        ),
+      ),
+    );
   }
 
   /// Supprimer une espèce, une classe ou une sous-classe retire aussi ses
@@ -429,6 +456,12 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
               tooltip: l10n.homebrewDeleteEntity,
               icon: const Icon(Icons.delete_outline),
               onPressed: _delete,
+            ),
+          if (sandboxTypes.contains(_type))
+            IconButton(
+              tooltip: l10n.sandboxTest,
+              icon: const Icon(Icons.science_outlined),
+              onPressed: _test,
             ),
           TextButton(onPressed: _save, child: Text(l10n.noteSave)),
         ],
