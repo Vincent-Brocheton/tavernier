@@ -6117,6 +6117,103 @@ class AppLocalizationsFr extends AppLocalizations {
   String get monsterSaveDc => 'DD';
 
   @override
+  String get sandboxTest => 'Tester sur un personnage';
+
+  @override
+  String sandboxDraft(String pack) {
+    return '$pack · brouillon';
+  }
+
+  @override
+  String sandboxTitle(String name) {
+    return 'Tester « $name »';
+  }
+
+  @override
+  String get sandboxBanner =>
+      'Bac à sable : aucune fiche réelle n’est modifiée';
+
+  @override
+  String get sandboxUnreadable =>
+      'L’entité ne se lit pas encore : corrigez ces problèmes pour la tester.';
+
+  @override
+  String get sandboxCharacter => 'Personnage de test';
+
+  @override
+  String get sandboxBase => 'Base';
+
+  @override
+  String sandboxPregen(String className) {
+    return '$className prétiré (Humain, Soldat)';
+  }
+
+  @override
+  String get sandboxLevel => 'Niveau';
+
+  @override
+  String get sandboxShield => 'Porte un bouclier';
+
+  @override
+  String get sandboxHint =>
+      'Changez le niveau ou l’équipement pour vérifier chaque aptitude et ses conditions.';
+
+  @override
+  String get sandboxResult => 'Résultat du test';
+
+  @override
+  String sandboxFailed(String error) {
+    return 'Le calcul échoue : $error';
+  }
+
+  @override
+  String sandboxOk(int level) {
+    return 'Toutes les valeurs se calculent sans erreur au niveau $level.';
+  }
+
+  @override
+  String get sandboxToFix => 'Reste à corriger avant de publier';
+
+  @override
+  String get sandboxBack => 'Retour à l’éditeur';
+
+  @override
+  String get sandboxAc => 'Classe d’armure';
+
+  @override
+  String get sandboxHp => 'PV max';
+
+  @override
+  String get sandboxPassive => 'Perception passive';
+
+  @override
+  String sandboxSave(String ability) {
+    return 'JS de $ability';
+  }
+
+  @override
+  String get sandboxDarkvision => 'Vision dans le noir';
+
+  @override
+  String get sandboxAttacks => 'Attaques par action Attaque';
+
+  @override
+  String sandboxAttack(String weapon) {
+    return 'Attaque, $weapon';
+  }
+
+  @override
+  String sandboxSource(String names) {
+    return 'Source : $names';
+  }
+
+  @override
+  String get sandboxChanged => 'change';
+
+  @override
+  String get sandboxSame => 'inchangé';
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override

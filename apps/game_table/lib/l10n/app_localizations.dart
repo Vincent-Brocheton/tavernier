@@ -9756,6 +9756,162 @@ abstract class AppLocalizations {
   /// **'DD'**
   String get monsterSaveDc;
 
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tester sur un personnage'**
+  String get sandboxTest;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{pack} · brouillon'**
+  String sandboxDraft(String pack);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tester « {name} »'**
+  String sandboxTitle(String name);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bac à sable : aucune fiche réelle n’est modifiée'**
+  String get sandboxBanner;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’entité ne se lit pas encore : corrigez ces problèmes pour la tester.'**
+  String get sandboxUnreadable;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnage de test'**
+  String get sandboxCharacter;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Base'**
+  String get sandboxBase;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{className} prétiré (Humain, Soldat)'**
+  String sandboxPregen(String className);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau'**
+  String get sandboxLevel;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Porte un bouclier'**
+  String get sandboxShield;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changez le niveau ou l’équipement pour vérifier chaque aptitude et ses conditions.'**
+  String get sandboxHint;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Résultat du test'**
+  String get sandboxResult;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le calcul échoue : {error}'**
+  String sandboxFailed(String error);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes les valeurs se calculent sans erreur au niveau {level}.'**
+  String sandboxOk(int level);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reste à corriger avant de publier'**
+  String get sandboxToFix;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour à l’éditeur'**
+  String get sandboxBack;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe d’armure'**
+  String get sandboxAc;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'PV max'**
+  String get sandboxHp;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Perception passive'**
+  String get sandboxPassive;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'JS de {ability}'**
+  String sandboxSave(String ability);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vision dans le noir'**
+  String get sandboxDarkvision;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaques par action Attaque'**
+  String get sandboxAttacks;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaque, {weapon}'**
+  String sandboxAttack(String weapon);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Source : {names}'**
+  String sandboxSource(String names);
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'change'**
+  String get sandboxChanged;
+
+  /// Bac à sable homebrew (US-28, EF-HB-03, [H04]).
+  ///
+  /// In fr, this message translates to:
+  /// **'inchangé'**
+  String get sandboxSame;
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:
