@@ -10,6 +10,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import '../src/pop_if_current.dart';
 import 'combat_view.dart';
 import 'concentration.dart';
 import 'encounters_providers.dart';
@@ -127,7 +128,7 @@ class _DamageKeypadState extends ConsumerState<DamageKeypad> {
         ),
       },
     ]);
-    if (mounted) Navigator.pop(context);
+    if (mounted) popIfCurrent(context);
   }
 
   @override

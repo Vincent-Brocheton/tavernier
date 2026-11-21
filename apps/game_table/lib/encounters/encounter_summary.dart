@@ -10,6 +10,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
+import '../src/pop_if_current.dart';
 import 'combat_journal.dart';
 import 'combat_view.dart';
 import 'encounters_providers.dart';
@@ -108,7 +109,7 @@ class _EncounterSummaryPageState extends ConsumerState<EncounterSummaryPage> {
       await ref.read(combatStoreProvider).finish(encounter.id);
       // Les joueurs quittent l'écran « En combat ».
       await ref.read(combatViewStoreProvider).remove(encounter.id);
-      if (context.mounted) Navigator.pop(context, true);
+      if (context.mounted) popIfCurrent(context, true);
     }
 
     Widget stat(String value, String label) => Expanded(

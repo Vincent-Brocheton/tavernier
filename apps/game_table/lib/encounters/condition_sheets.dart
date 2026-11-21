@@ -14,6 +14,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../sheet/rest_sheet.dart';
 import '../sheet/sheet_breakdowns.dart';
+import '../src/pop_if_current.dart';
 import 'combat_view.dart';
 import 'concentration.dart';
 import 'encounters_providers.dart';
@@ -401,7 +402,7 @@ class _AddConditionState extends ConsumerState<_AddCondition> {
             },
           ),
     ]);
-    if (mounted) Navigator.pop(context);
+    if (mounted) popIfCurrent(context);
   }
 
   @override
