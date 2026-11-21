@@ -129,6 +129,13 @@ List<ContentIssue> _editorRules(Map<String, Object?> json, String path) {
           'un Historique accorde exactement 2 compétences',
         ),
     ],
+    'weapon' => [
+      if (data['mastery'] == null)
+        ContentIssue(
+          '$path.data.mastery',
+          'une arme a toujours une botte d’arme',
+        ),
+    ],
     _ => const [],
   };
 }

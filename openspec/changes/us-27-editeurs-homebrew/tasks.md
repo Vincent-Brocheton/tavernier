@@ -7,9 +7,14 @@
 - [x] 1.5 Éditeurs de Don et d'Historique
 - [x] 1.6 Suite complète, revue, PR du lot a
 
-## 2. Lot b : Espèce, Sort, Objet, variantes
+## 2. Lot b : Sort, Objet, variantes, puis Espèce
 
-- [ ] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.1 Specs et design du lot b1
+- [x] 2.2 Tests puis format : `rarity` et `attunement` des armes et armures, `classes` des sorts ; base v7
+- [x] 2.3 Tests puis moteur : effets d'un objet équipé, `ActiveContent.spellList`
+- [x] 2.4 Éditeurs de Sort et d'Objet [H05], variante d'une entité SRD
+- [ ] 2.5 Suite complète, revue, PR du lot b1
+- [ ] 2.6 Lot b2 : Espèce et opérations imbriquées de l'éditeur d'effets
 
 ## 3. Lot c : Classe et Sous-classe
 

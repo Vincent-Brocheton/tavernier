@@ -96,7 +96,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: supabase/setup-cli@v1
         with:
-          version: latest
+          version: 3.2.0
       # Supabase local dans Docker : migrations appliquées sur une base vierge,
       # puis tests pgTAP des droits (cahier §12.2).
       - name: Démarrer Supabase
@@ -163,7 +163,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: supabase/setup-cli@v1
         with:
-          version: latest
+          version: 3.2.0
       - name: Secrets présents ?
         id: ready
         run: |

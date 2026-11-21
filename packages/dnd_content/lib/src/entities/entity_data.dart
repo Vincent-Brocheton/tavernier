@@ -142,6 +142,11 @@ abstract class WeaponData with _$WeaponData implements EntityData {
     @ContentIdConverter() required ContentId mastery,
     double? weightKg,
     required int costCp,
+
+    /// Objet magique fondé sur cette arme (homebrew, US-27) : rareté, et
+    /// harmonisation requise. Sans rareté, l'arme est ordinaire.
+    Rarity? rarity,
+    bool? attunement,
   }) = _WeaponData;
 
   factory WeaponData.fromJson(Map<String, dynamic> json) =>
@@ -160,6 +165,11 @@ abstract class ArmorData with _$ArmorData implements EntityData {
     @Default(false) bool stealthDisadvantage,
     required double weightKg,
     required int costCp,
+
+    /// Objet magique fondé sur cette armure (homebrew, US-27) : rareté, et
+    /// harmonisation requise. Sans rareté, l'armure est ordinaire.
+    Rarity? rarity,
+    bool? attunement,
   }) = _ArmorData;
 
   factory ArmorData.fromJson(Map<String, dynamic> json) =>
@@ -485,6 +495,10 @@ abstract class SpellData with _$SpellData implements EntityData {
     /// Durée, telle que dans le SRD (« instantanée », « 1 heure »…).
     required String duration,
     required bool concentration,
+
+    /// Classes dont la liste reçoit ce sort (homebrew, US-27) ; le SRD laisse
+    /// la liste à la classe.
+    @ContentIdConverter() List<ContentId>? classes,
   }) = _SpellData;
 
   factory SpellData.fromJson(Map<String, dynamic> json) =>
@@ -723,4 +737,22 @@ final Map<String, EntityData Function(Map<String, dynamic>)> dataReaders = {
   'feature': FeatureData.fromJson,
   'spell': SpellData.fromJson,
   'monster': MonsterData.fromJson,
+};
+
+/// Vrai quand l'objet n'agit qu'harmonisé : objet magique, ou arme et armure
+/// magiques du homebrew.
+bool requiresAttunement(EntityData? data) => switch (data) {
+  MagicItemData(:final attunement) => attunement,
+  WeaponData(:final attunement) => attunement ?? false,
+  ArmorData(:final attunement) => attunement ?? false,
+  _ => false,
+};
+
+/// Vrai pour un objet dont les effets agissent équipé : objet magique, ou
+/// arme et armure qui ont une rareté (homebrew).
+bool isMagicItem(EntityData? data) => switch (data) {
+  MagicItemData() => true,
+  WeaponData(:final rarity) => rarity != null,
+  ArmorData(:final rarity) => rarity != null,
+  _ => false,
 };

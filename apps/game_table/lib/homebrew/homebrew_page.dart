@@ -9,6 +9,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
+import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'entity_editor.dart';
 
@@ -37,19 +38,42 @@ const entityTypes = [
   'monster',
 ];
 
-/// Types dont l'éditeur est livré (lot a).
-const editableTypes = {'feat', 'background'};
+/// Types dont l'éditeur est livré (lots a et b).
+const editableTypes = {'feat', 'background', 'spell', 'item'};
 
-String typeLabel(AppLocalizations l10n, String type) => switch (type) {
-  'feat' => l10n.typeFeat,
-  'background' => l10n.typeBackground,
-  'species' => l10n.typeSpecies,
-  'class' => l10n.typeClass,
-  'subclass' => l10n.typeSubclass,
-  'spell' => l10n.typeSpell,
-  'item' => l10n.typeItem,
-  _ => l10n.typeMonster,
+/// Le type de [H01] d'un type d'entité : arme, armure, objet magique et
+/// objet courant sont des « Objet ».
+String uiTypeOf(String type) => switch (type) {
+  'weapon' || 'armor' || 'magic-item' => 'item',
+  _ => type,
 };
+
+/// Type d'entité qu'ouvre « Créer » pour [uiType] : un objet commence en
+/// arme, son genre se change dans l'éditeur.
+String editorTypeOf(String uiType) => uiType == 'item' ? 'weapon' : uiType;
+
+/// Types d'entités du SRD dont un pack peut faire une variante (EF-HB-02).
+const derivableTypes = {
+  'feat',
+  'background',
+  'spell',
+  'weapon',
+  'armor',
+  'magic-item',
+  'item',
+};
+
+String typeLabel(AppLocalizations l10n, String type) =>
+    switch (uiTypeOf(type)) {
+      'feat' => l10n.typeFeat,
+      'background' => l10n.typeBackground,
+      'species' => l10n.typeSpecies,
+      'class' => l10n.typeClass,
+      'subclass' => l10n.typeSubclass,
+      'spell' => l10n.typeSpell,
+      'item' => l10n.typeItem,
+      _ => l10n.typeMonster,
+    };
 
 /// Le pack SRD de l'appareil.
 PackManifest? srdManifestOf(ActiveContent content) => content.packs
@@ -172,7 +196,7 @@ class HomebrewPage extends ConsumerWidget {
     if (id == null || !context.mounted) return;
     final draft = await ref.read(draftProvider(id).future);
     if (draft == null || !context.mounted) return;
-    await openEntityEditor(context, draft: draft, type: type);
+    await openEntityEditor(context, draft: draft, type: editorTypeOf(type));
   }
 
   @override
@@ -329,7 +353,9 @@ class PackPage extends ConsumerWidget {
         children: [
           Text(l10n.homebrewSavedOnDevice, style: text.bodySmall),
           for (final type in entityTypes)
-            if (draft.entities.where((e) => e['type'] == type).toList()
+            if (draft.entities
+                    .where((e) => uiTypeOf('${e['type']}') == type)
+                    .toList()
                 case final ofType when ofType.isNotEmpty) ...[
               SizedBox(height: AppSpacing.sm),
               Text(
@@ -346,7 +372,7 @@ class PackPage extends ConsumerWidget {
                       ? () => openEntityEditor(
                           context,
                           draft: draft,
-                          type: type,
+                          type: '${e['type']}',
                           entity: e,
                         )
                       : null,
@@ -362,11 +388,22 @@ class PackPage extends ConsumerWidget {
                 ActionChip(
                   label: Text(typeLabel(l10n, type)),
                   onPressed: editableTypes.contains(type)
-                      ? () =>
-                            openEntityEditor(context, draft: draft, type: type)
+                      ? () => openEntityEditor(
+                          context,
+                          draft: draft,
+                          type: editorTypeOf(type),
+                        )
                       : null,
                 ),
             ],
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: () => _derive(context, draft, content),
+              icon: const Icon(Icons.call_split),
+              label: Text(l10n.homebrewDerive),
+            ),
           ),
           SizedBox(height: AppSpacing.lg),
           Text(l10n.homebrewCheckTitle, style: text.titleMedium),
@@ -387,6 +424,92 @@ class PackPage extends ConsumerWidget {
               ),
           Text(l10n.homebrewCheckHint, style: text.bodySmall),
         ],
+      ),
+    );
+  }
+}
+
+/// Variante d'une entité du SRD (EF-HB-02) : la copie s'ouvre dans
+/// l'éditeur, sans identifiant, avec `extends_id` ; l'original ne change pas.
+Future<void> _derive(
+  BuildContext context,
+  HomebrewDraft draft,
+  ActiveContent content,
+) async {
+  final srd = [
+    for (final e in content.entities)
+      if (e.id.namespace == 'srd' && derivableTypes.contains(e.type)) e,
+  ]..sort((a, b) => foldAccents(a.name).compareTo(foldAccents(b.name)));
+  final chosen = await showModalBottomSheet<ContentEntity>(
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => _SrdPicker(entities: srd),
+  );
+  if (chosen == null || !context.mounted) return;
+  await openEntityEditor(
+    context,
+    draft: draft,
+    type: chosen.type,
+    entity: {...chosen.toJson()..remove('id'), 'extends_id': '${chosen.id}'},
+  );
+}
+
+/// Recherche d'une entité du SRD par son nom.
+class _SrdPicker extends StatefulWidget {
+  const _SrdPicker({required this.entities});
+
+  final List<ContentEntity> entities;
+
+  @override
+  State<_SrdPicker> createState() => _SrdPickerState();
+}
+
+class _SrdPickerState extends State<_SrdPicker> {
+  String _query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final query = foldAccents(_query.trim());
+    final hits = [
+      for (final e in widget.entities)
+        if (foldAccents(e.name).contains(query)) e,
+    ].take(50);
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: AppSpacing.md,
+          right: AppSpacing.md,
+          top: AppSpacing.md,
+          bottom: MediaQuery.viewInsetsOf(context).bottom,
+        ),
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.7,
+          child: Column(
+            children: [
+              TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: l10n.homebrewDeriveSearch,
+                  prefixIcon: const Icon(Icons.search),
+                ),
+                onChanged: (v) => setState(() => _query = v),
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    for (final e in hits)
+                      ListTile(
+                        title: Text(e.name),
+                        subtitle: Text(typeLabel(l10n, e.type)),
+                        onTap: () => Navigator.pop(context, e),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -6,3 +6,10 @@
 #### Scenario: Aller-retour
 - **WHEN** un brouillon avec un Don et un Historique incomplet est enregistré, puis relu
 - **THEN** il est identique, entités et manifeste compris
+
+### Requirement: Arme magique et listes de classes d'un sort
+Le schéma v7 SHALL garder la rareté et l'harmonisation d'une arme ou d'une armure, et les classes citées par un sort. L'export d'un pack importé SHALL rendre ces champs à l'identique, sans changer la liste de sorts d'une classe d'un autre pack.
+
+#### Scenario: Aller-retour d'un pack homebrew
+- **WHEN** un pack avec une hache peu courante harmonisée, un bouclier rare et un sort du Magicien est importé après le SRD, puis exporté
+- **THEN** les deux packs exportés sont identiques à ceux qui ont été importés

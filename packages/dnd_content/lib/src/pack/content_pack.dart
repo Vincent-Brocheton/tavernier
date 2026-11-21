@@ -40,6 +40,7 @@ const _referenceTypes = <String, Set<String>>{
   'immunities': {'damage-type'},
   'condition_immunities': {'condition'},
   'damage': {'damage-type'},
+  'classes': {'class'},
 };
 
 /// Références (id, types acceptés ou `null` pour tout type) d'une entité.

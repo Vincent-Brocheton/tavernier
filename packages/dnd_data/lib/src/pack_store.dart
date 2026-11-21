@@ -141,6 +141,8 @@ final class PackStore {
           'mastery_property_id': '${w.mastery}',
           'weight_kg': w.weightKg,
           'cost_cp': w.costCp,
+          'rarity': json['rarity'],
+          'attunement': w.attunement,
         });
       case final ArmorData a:
         row.addAll({
@@ -151,6 +153,8 @@ final class PackStore {
           'stealth_disadvantage': a.stealthDisadvantage,
           'weight_kg': a.weightKg,
           'cost_cp': a.costCp,
+          'rarity': a.toJson()['rarity'],
+          'attunement': a.attunement,
         });
       case final ToolData t:
         row.addAll({
@@ -234,6 +238,9 @@ final class PackStore {
           'duration': sp.duration,
           'concentration': sp.concentration,
           'ritual': sp.ritual,
+          'classes': json['classes'] == null
+              ? null
+              : jsonEncode(json['classes']),
         });
       case final MonsterData mo:
         row.addAll({
@@ -460,6 +467,7 @@ final class PackStore {
               'mastery': row['mastery_property_id'],
               'weight_kg': row['weight_kg'],
               'cost_cp': row['cost_cp'],
+              ..._magic(row),
             },
             'armor' => {
               'category': row['category'],
@@ -469,6 +477,7 @@ final class PackStore {
               'stealth_disadvantage': row['stealth_disadvantage'] == 1,
               'weight_kg': row['weight_kg'],
               'cost_cp': row['cost_cp'],
+              ..._magic(row),
             },
             'tool' => {
               'category': row['category'],
@@ -574,6 +583,8 @@ final class PackStore {
               'material_consumed': row['material_consumed'] == 1,
               'duration': row['duration'],
               'concentration': row['concentration'] == 1,
+              if (row['classes'] case final String classes)
+                'classes': jsonDecode(classes),
             },
             // Le profil complet ; monster_action n'en est qu'un index.
             'monster' =>
@@ -652,4 +663,10 @@ Variable<Object> _variable(Object? value) => switch (value) {
   final int v => Variable<int>(v),
   final String v => Variable<String>(v),
   _ => throw ArgumentError.value(value),
+};
+
+/// Rareté et harmonisation d'une arme ou d'une armure magique.
+Map<String, Object?> _magic(Map<String, Object?> row) => {
+  'rarity': row['rarity'],
+  if (row['attunement'] != null) 'attunement': row['attunement'] == 1,
 };

@@ -94,7 +94,14 @@ void main() {
   });
 
   test('champ inconnu refusé', () {
-    expect(_issues(_fireball(data: {'classes': <String>[]})), [
+    expect(_issues(_fireball(data: {'subclasses': <String>[]})), [
+      'spell/fireball.json.data.subclasses',
+    ]);
+  });
+
+  test('classes citées (homebrew) : des classes, contrôlées', () {
+    expect(_issues(_fireball(data: {'classes': <String>[]})), isEmpty);
+    expect(_issues(_fireball(data: {'classes': 'wizard'})), [
       'spell/fireball.json.data.classes',
     ]);
   });

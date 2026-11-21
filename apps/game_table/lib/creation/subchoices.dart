@@ -289,8 +289,9 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
 
     final list =
         fixed ?? draft.choices[initiateKey(place, 'list')]?.firstOrNull;
-    final spellList =
-        (content.entity(list ?? '')?.data as ClassData?)?.spellList;
+    final spellList = content.entity(list ?? '')?.data is ClassData
+        ? content.spellList(list!)
+        : null;
     return [
       if (fixed == null)
         section(SubchoiceKind.initiateList, 'list', 1, [
@@ -409,18 +410,22 @@ List<Subchoice> subchoiceSections(CreationDraft draft, ActiveContent content) {
         SubchoiceKind.cantrips,
         cantripsKey,
         cantrips,
-        spellOptions(cls.spellList, 0, cantripsKey),
+        spellOptions(content.spellList(draft.classId!), 0, cantripsKey),
       ),
     if (book > 0)
       pick(
         SubchoiceKind.spellbook,
         spellbookKey,
         book,
-        spellOptions(cls.spellList, 1, spellbookKey),
+        spellOptions(content.spellList(draft.classId!), 1, spellbookKey),
       ),
     if (prepared > 0 && inBook.length == book)
       pick(SubchoiceKind.preparedSpells, preparedKey, prepared, [
-        for (final option in spellOptions(cls.spellList, 1, preparedKey))
+        for (final option in spellOptions(
+          content.spellList(draft.classId!),
+          1,
+          preparedKey,
+        ))
           if (book == 0 || inBook.contains(option.id)) option,
       ]),
     if ('${background?.originFeat}' == magicInitiateFeat)

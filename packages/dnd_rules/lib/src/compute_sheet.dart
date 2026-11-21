@@ -747,7 +747,7 @@ List<_Active> _activeEffects(
   // Un objet magique agit équipé, et harmonisé s'il le demande.
   for (final item in character.items.where((item) => item.equipped)) {
     final data = content.entity(item.itemId)?.data;
-    if (data is MagicItemData && (!data.attunement || item.attuned)) {
+    if (isMagicItem(data) && (!requiresAttunement(data) || item.attuned)) {
       add(
         item.itemId,
         'item',

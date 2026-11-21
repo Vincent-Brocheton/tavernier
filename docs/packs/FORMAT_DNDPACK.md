@@ -76,7 +76,9 @@ La signature Ed25519 (`signature`, `author_public_key`) arrive en M4 (EF-HB-05).
   - `casting_time` et `duration` : texte du SRD, recopié tel quel (les distances d'un déclencheur de réaction y restent en mètres, comme dans le texte de règles) ; `ritual` et `concentration` : booléens ;
   - `range` : `{kind: self | touch | feet | sight | unlimited | special, feet}` (`feet` seulement pour `kind: feet`, en pieds) ;
   - `components` : `{verbal, somatic, material?}` ; `material_cost_cp?` ; `material_consumed`.
-  - Un sort ne cite pas ses classes : la classe porte sa liste de sorts.
+  - Un sort du SRD ne cite pas ses classes : la classe porte sa liste de sorts.
+  - `classes?` (homebrew, US-27) : classes dont la liste reçoit le sort quand son pack est actif. La classe citée n'est pas modifiée ; sa liste devient la sienne, suivie de ces sorts.
+- `weapon` et `armor` : `rarity?` et `attunement?` (homebrew, US-27). Avec une rareté (valeurs de `magic-item`), l'arme ou l'armure est magique : ses `effects` s'appliquent quand elle est équipée, et harmonisée si `attunement` est vrai. Sans rareté, elle est ordinaire. Une arme a toujours une `mastery`.
 - `monster` : profil de jeu, recopié tel qu'imprimé (rien n'est recalculé), distances en pieds :
   - `sizes` : `tiny`, `small`, `medium`, `large`, `huge`, `gargantuan` (une liste, pour « de taille M ou P ») ; `swarm_size?` : taille des créatures d'une nuée (« Nuée de taille G de Bêtes de taille TP » : `sizes` = `[large]`, `swarm_size` = `tiny`) ;
   - `creature_type` : `aberration`, `beast`, `celestial`, `construct`, `dragon`, `elemental`, `fey`, `fiend`, `giant`, `humanoid`, `monstrosity`, `ooze`, `plant` ou `undead` ; `type_tags` : texte entre parenthèses (« Démon ») ; `alignment` : texte ;

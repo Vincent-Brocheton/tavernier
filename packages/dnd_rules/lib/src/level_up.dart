@@ -121,9 +121,8 @@ Set<String> spellsOfList(
   int from,
   int to,
 ) {
-  final data = content.entity(classId)!.data as ClassData;
   return {
-    for (final id in data.spellList)
+    for (final id in content.spellList(classId))
       if (content.entity('$id')?.data case final SpellData spell)
         if (spell.level >= from && spell.level <= to) '$id',
   };

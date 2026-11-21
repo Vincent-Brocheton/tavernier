@@ -183,6 +183,8 @@ _WeaponData _$WeaponDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'mastery',
         'weight_kg',
         'cost_cp',
+        'rarity',
+        'attunement',
       ],
     );
     final val = _WeaponData(
@@ -213,6 +215,11 @@ _WeaponData _$WeaponDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       ),
       weightKg: $checkedConvert('weight_kg', (v) => (v as num?)?.toDouble()),
       costCp: $checkedConvert('cost_cp', (v) => (v as num).toInt()),
+      rarity: $checkedConvert(
+        'rarity',
+        (v) => $enumDecodeNullable(_$RarityEnumMap, v),
+      ),
+      attunement: $checkedConvert('attunement', (v) => v as bool?),
     );
     return val;
   },
@@ -237,6 +244,8 @@ Map<String, dynamic> _$WeaponDataToJson(_WeaponData instance) =>
       'mastery': const ContentIdConverter().toJson(instance.mastery),
       'weight_kg': ?instance.weightKg,
       'cost_cp': instance.costCp,
+      'rarity': ?_$RarityEnumMap[instance.rarity],
+      'attunement': ?instance.attunement,
     };
 
 const _$WeaponCategoryEnumMap = {
@@ -247,6 +256,16 @@ const _$WeaponCategoryEnumMap = {
 const _$WeaponKindEnumMap = {
   WeaponKind.melee: 'melee',
   WeaponKind.ranged: 'ranged',
+};
+
+const _$RarityEnumMap = {
+  Rarity.common: 'common',
+  Rarity.uncommon: 'uncommon',
+  Rarity.rare: 'rare',
+  Rarity.veryRare: 'very_rare',
+  Rarity.legendary: 'legendary',
+  Rarity.artifact: 'artifact',
+  Rarity.varies: 'varies',
 };
 
 _ArmorData _$ArmorDataFromJson(Map<String, dynamic> json) => $checkedCreate(
@@ -263,6 +282,8 @@ _ArmorData _$ArmorDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'stealth_disadvantage',
         'weight_kg',
         'cost_cp',
+        'rarity',
+        'attunement',
       ],
     );
     final val = _ArmorData(
@@ -282,6 +303,11 @@ _ArmorData _$ArmorDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       ),
       weightKg: $checkedConvert('weight_kg', (v) => (v as num).toDouble()),
       costCp: $checkedConvert('cost_cp', (v) => (v as num).toInt()),
+      rarity: $checkedConvert(
+        'rarity',
+        (v) => $enumDecodeNullable(_$RarityEnumMap, v),
+      ),
+      attunement: $checkedConvert('attunement', (v) => v as bool?),
     );
     return val;
   },
@@ -304,6 +330,8 @@ Map<String, dynamic> _$ArmorDataToJson(_ArmorData instance) =>
       'stealth_disadvantage': instance.stealthDisadvantage,
       'weight_kg': instance.weightKg,
       'cost_cp': instance.costCp,
+      'rarity': ?_$RarityEnumMap[instance.rarity],
+      'attunement': ?instance.attunement,
     };
 
 const _$ArmorCategoryEnumMap = {
@@ -429,16 +457,6 @@ const _$MagicItemCategoryEnumMap = {
   MagicItemCategory.potion: 'potion',
   MagicItemCategory.scroll: 'scroll',
   MagicItemCategory.rod: 'rod',
-};
-
-const _$RarityEnumMap = {
-  Rarity.common: 'common',
-  Rarity.uncommon: 'uncommon',
-  Rarity.rare: 'rare',
-  Rarity.veryRare: 'very_rare',
-  Rarity.legendary: 'legendary',
-  Rarity.artifact: 'artifact',
-  Rarity.varies: 'varies',
 };
 
 _ItemQuantity _$ItemQuantityFromJson(Map<String, dynamic> json) =>
@@ -1122,6 +1140,7 @@ _SpellData _$SpellDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'material_consumed',
         'duration',
         'concentration',
+        'classes',
       ],
     );
     final val = _SpellData(
@@ -1147,6 +1166,12 @@ _SpellData _$SpellDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       materialConsumed: $checkedConvert('material_consumed', (v) => v as bool),
       duration: $checkedConvert('duration', (v) => v as String),
       concentration: $checkedConvert('concentration', (v) => v as bool),
+      classes: $checkedConvert(
+        'classes',
+        (v) => (v as List<dynamic>?)
+            ?.map((e) => const ContentIdConverter().fromJson(e as String))
+            .toList(),
+      ),
     );
     return val;
   },
@@ -1157,19 +1182,21 @@ _SpellData _$SpellDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   },
 );
 
-Map<String, dynamic> _$SpellDataToJson(_SpellData instance) =>
-    <String, dynamic>{
-      'level': instance.level,
-      'school': _$SpellSchoolEnumMap[instance.school]!,
-      'casting_time': instance.castingTime,
-      'ritual': instance.ritual,
-      'range': instance.range.toJson(),
-      'components': instance.components.toJson(),
-      'material_cost_cp': ?instance.materialCostCp,
-      'material_consumed': instance.materialConsumed,
-      'duration': instance.duration,
-      'concentration': instance.concentration,
-    };
+Map<String, dynamic> _$SpellDataToJson(
+  _SpellData instance,
+) => <String, dynamic>{
+  'level': instance.level,
+  'school': _$SpellSchoolEnumMap[instance.school]!,
+  'casting_time': instance.castingTime,
+  'ritual': instance.ritual,
+  'range': instance.range.toJson(),
+  'components': instance.components.toJson(),
+  'material_cost_cp': ?instance.materialCostCp,
+  'material_consumed': instance.materialConsumed,
+  'duration': instance.duration,
+  'concentration': instance.concentration,
+  'classes': ?instance.classes?.map(const ContentIdConverter().toJson).toList(),
+};
 
 const _$SpellSchoolEnumMap = {
   SpellSchool.abjuration: 'abjuration',

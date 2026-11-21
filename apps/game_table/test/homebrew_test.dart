@@ -1,6 +1,7 @@
 // Spec homebrew : « Mes packs », « Vérification d'un pack », « Éditeur
 // d'effets », « Éditeur de Don », « Éditeur d'Historique » (US-27 lot a,
-// [H01] à [H03]).
+// [H01] à [H03]) ; « Éditeur de Sort », « Éditeur d'Objet », « Variante
+// d'une entité du SRD » (lot b, [H05]).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -186,6 +187,118 @@ void main() {
       find.textContaining('exactement 3 caractéristiques'),
       findsOneWidget,
     );
+    expect(find.text('Prêt à publier'), findsNothing);
+  });
+
+  _test('Sort : niveau, école, portée et listes de classes', (tester) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Sort'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Lanterne de brume',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      'Une lueur pâle.',
+    );
+    await _tap(tester, find.text('Niveau *'));
+    await _tap(tester, find.text('1er niveau').last);
+    await _tap(tester, find.text('École *'));
+    await _tap(tester, find.text('Illusion').last);
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Temps d’incantation * (ex. action)'),
+      'action',
+    );
+    await _tap(tester, find.text('Portée *'));
+    await _tap(tester, find.text('Distance').last);
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Distance en pieds (5 pieds = 1,5 m)'),
+      '60',
+    );
+    await _tap(tester, find.widgetWithText(FilterChip, 'Verbale'));
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Durée * (ex. 1 heure)'),
+      '1 heure',
+    );
+    await tester.pumpAndSettle();
+    // Seules les classes qui ont une liste de sorts sont proposées.
+    expect(find.widgetWithText(FilterChip, 'Guerrier'), findsNothing);
+    await _tap(tester, find.widgetWithText(FilterChip, 'Magicien'));
+    await _tap(tester, find.text('Enregistrer'));
+
+    final spell = (await _draft(tester)).entities.single;
+    expect(spell['data'], {
+      'ritual': false,
+      'components': {'verbal': true, 'somatic': false},
+      'material_consumed': false,
+      'concentration': false,
+      'level': 1,
+      'school': 'illusion',
+      'casting_time': 'action',
+      'range': {'kind': 'feet', 'feet': 60},
+      'duration': '1 heure',
+      'classes': ['srd:class:wizard'],
+    });
+    expect(find.text('Prêt à publier'), findsOneWidget);
+  });
+
+  _test('[H05] : variante de la Hache d’armes, peu courante, harmonisée', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.text('Dériver d’une entité du SRD'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Rechercher dans le SRD'),
+      'hache d’armes',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Hache d’armes'));
+    expect(
+      find.text(
+        'Variante de Hache d’armes (SRD) · l’original n’est pas modifié',
+      ),
+      findsOneWidget,
+    );
+    // Le genre d'une variante ne se change pas.
+    expect(find.text('Type *'), findsNothing);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Hache des Marches',
+    );
+    await _tap(tester, find.text('Rareté'));
+    await _tap(tester, find.text('Peu courant').last);
+    await _tap(tester, find.text('Harmonisation requise'));
+    await _tap(tester, find.text('Enregistrer'));
+
+    final axe = (await _draft(tester)).entities.single;
+    expect(axe['id'], 'gardiens-des-marches:weapon:hache-des-marches');
+    expect(axe['extends_id'], 'srd:weapon:battleaxe');
+    expect(axe['data'], containsPair('mastery', 'srd:mastery:topple'));
+    expect(axe['data'], containsPair('rarity', 'uncommon'));
+    expect(axe['data'], containsPair('attunement', true));
+    expect(find.text('Prêt à publier'), findsOneWidget);
+    // L'original n'est pas modifié.
+    expect(
+      (_content.entity('srd:weapon:battleaxe')!.data as WeaponData).rarity,
+      isNull,
+    );
+  });
+
+  _test('Arme neuve sans botte : enregistrée, signalée', (tester) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Objet'));
+    expect(find.text('Arme'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextField, 'Nom *'), 'Fléau');
+    expect(
+      find.text('Règle 2024 : une arme a toujours une botte d’arme.'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Enregistrer'));
+    expect((await _draft(tester)).entities.single['type'], 'weapon');
+    expect(find.text('une arme a toujours une botte d’arme'), findsOneWidget);
     expect(find.text('Prêt à publier'), findsNothing);
   });
 }

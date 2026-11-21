@@ -28,13 +28,24 @@ Décisions du porteur de projet du 20 novembre 2026 :
 - **Don** : catégorie obligatoire, prérequis, répétable, effets.
 - **Historique** : exactement 3 caractéristiques, un don de catégorie origine, 2 compétences, un outil, l'équipement et l'or.
 
-### Lot b : Espèce, Sort, Objet, variantes
+### Lot b : Sort, Objet, variantes ; puis Espèce et opérations imbriquées
 
-- **Éditeur d'effets** : les opérations à structure imbriquée du DSL v1.
-- **Espèce** : taille, vitesse, traits, sous-lignées, sans bonus de caractéristique.
-- **Sort** : niveau, école, incantation, portée, composantes, durée, concentration, listes de classes et effets à niveau supérieur.
-- **Objet ([H05])** : type, rareté, harmonisation, propriétés, CA ; une arme a toujours une botte.
-- **Variante d'une entité SRD (EF-HB-02)** : copie de l'entité dans le pack, sous un nouvel identifiant ; l'original n'est pas modifié.
+Décisions du porteur de projet du 21 novembre 2026 (format `.dndpack`, ajouts facultatifs) :
+- **Arme ou armure magique** : `weapon` et `armor` reçoivent `rarity` et `attunement`, facultatifs. Une variante garde son type, avec `extends_id`. Avec une rareté, elle est magique : le moteur applique ses effets quand elle est équipée, et harmonisée si elle le demande, comme pour un objet magique. [H05] est suivi à la lettre.
+- **Listes de classes d'un sort** : `spell` reçoit `classes`, facultatif. La liste d'une classe devient celle de la classe, suivie des sorts actifs qui la citent. Le SRD ne change pas : sa classe porte sa liste.
+
+Le lot b se livre en deux PR :
+- **b1** :
+  - **Format** : les champs ci-dessus, et la base locale v7 qui les garde (colonnes facultatives de `weapon`, `armor` et `spell`).
+  - **Sort** : niveau, école, incantation, rituel, portée, composantes, durée, concentration, listes de classes. Les effets à niveau supérieur restent dans le texte, comme au SRD.
+  - **Objet ([H05])** : arme, armure, objet magique ou objet courant.
+    - Une arme a toujours une botte.
+    - La rareté et l'harmonisation rendent magique une arme ou une armure : ses effets s'appliquent alors.
+    - Le DSL v1 ne calcule pas un bonus aux jets d'attaque et de dégâts propre à une arme : il s'écrit dans le texte.
+  - **Variante d'une entité SRD (EF-HB-02)** : la copie entre dans le pack avec un nouvel identifiant et `extends_id` ; l'original n'est pas modifié.
+- **b2** :
+  - **Espèce** : taille, vitesse et traits, sans bonus de caractéristique. Chaque trait est une entité `feature` du pack ; une sous-lignée est un trait à choix, comme le Lignage elfique du SRD.
+  - **Éditeur d'effets** : les opérations à structure imbriquée du DSL v1.
 
 ### Lot c : Classe et Sous-classe
 
@@ -62,8 +73,9 @@ Le bloc de stats complet :
 
 ## Impact
 
-- **`dnd_content`** : réutilise les modèles, `validatePack` et `validateEffect`, sans changer le format.
-- **`dnd_data`** : table, migration v6, `HomebrewStore`.
+- **`dnd_content`** : réutilise les modèles, `validatePack` et `validateEffect`. Le lot b ajoute au format `rarity` et `attunement` (arme, armure) et `classes` (sort), tous facultatifs.
+- **`dnd_rules`** : effets d'un objet équipé, `ActiveContent.spellList` (lot b).
+- **`dnd_data`** : table, migration v6, `HomebrewStore` ; colonnes v7 (lot b).
 - **App** : `lib/homebrew/` (nouveau), et l'onglet Homebrew de `main.dart`.
 
 ## Hors périmètre
