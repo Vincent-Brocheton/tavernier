@@ -1,7 +1,8 @@
 // Éditeur d'une entité homebrew (US-27, EF-HB-01) : enveloppe commune (nom,
 // texte, effets) et formulaire du type, avec les contraintes 2024 (cahier
-// §7.1). Lot a : Don et Historique ; lot b : Sort, Objet ([H05]) et variante
-// d'une entité du SRD (EF-HB-02). Un brouillon incomplet s'enregistre ; la
+// §7.1). Lot a : Don et Historique ; lot b : Sort, Objet ([H05]), variante
+// d'une entité du SRD (EF-HB-02) et Espèce, dont chaque trait est une entité
+// `feature` du pack. Un brouillon incomplet s'enregistre ; la
 // vérification du pack dit ce qui manque pour publier.
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
@@ -45,6 +46,7 @@ Map<String, Object?> _defaults(String type) => switch (type) {
     'concentration': false,
   },
   'magic-item' => {'attunement': false},
+  'species' => {'creature_type': 'humanoid', 'speed_feet': 30},
   _ => {},
 };
 
@@ -83,6 +85,22 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
       Map<String, Object?>.from(e as Map),
   ];
 
+  /// Traits d'une espèce : ceux du brouillon (JSON, modifiables), ou
+  /// l'identifiant d'un trait d'un autre pack (variante du SRD).
+  late List<Object> _traits = [
+    for (final id in (_data['traits'] as List?) ?? const [])
+      widget.draft.entities.where((e) => e['id'] == id).firstOrNull ?? '$id',
+  ];
+
+  String get _namespace => '${widget.draft.manifest['namespace']}';
+
+  /// Identifiant d'une ressource neuve : `{namespace}:resource:{nom}`.
+  String get _resourceId =>
+      '$_namespace:resource:${slugOf(_name.text).isEmpty ? _type : slugOf(_name.text)}';
+
+  bool _ownTrait(Map<String, Object?> e, String speciesId) =>
+      e['type'] == 'feature' && (e['data'] as Map?)?['source'] == speciesId;
+
   @override
   void dispose() {
     _name.dispose();
@@ -108,32 +126,71 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
   /// Les effets d'une arme ou d'une armure n'agissent que si elle est
   /// magique (moteur : objet équipé, harmonisé s'il le demande).
   bool get _hasEffects => switch (_type) {
-    'background' || 'spell' || 'item' => false,
+    'background' || 'spell' || 'item' || 'species' => false,
     'weapon' || 'armor' => _data['rarity'] != null,
     _ => true,
   };
 
   Future<void> _save() async {
+    final taken = [for (final e in widget.draft.entities) '${e['id']}'];
     final id =
-        _previousId ??
-        homebrewEntityId(
-          '${widget.draft.manifest['namespace']}',
-          _type,
-          _name.text,
-          [for (final e in widget.draft.entities) '${e['id']}'],
-        );
-    await saveEntity(ref, widget.draft, {
+        _previousId ?? homebrewEntityId(_namespace, _type, _name.text, taken);
+    // Les traits du brouillon deviennent des entités `feature` de source
+    // l'espèce, nommées `{espèce}-{trait}` comme au SRD.
+    final traits = <Map<String, Object?>>[];
+    final traitIds = <String>[];
+    if (_type == 'species') {
+      for (final t in _traits) {
+        if (t is String) {
+          traitIds.add(t);
+          continue;
+        }
+        final trait = t as Map<String, Object?>;
+        final traitId =
+            (trait['id'] as String?) ??
+            homebrewEntityId(
+              _namespace,
+              'feature',
+              '${id.split(':').last} ${trait['name']}',
+              [...taken, ...traitIds],
+            );
+        traitIds.add(traitId);
+        traits.add({
+          ...trait,
+          'id': traitId,
+          'type': 'feature',
+          'data': {'source': id, 'level': 1},
+        });
+      }
+    }
+    final entity = {
       'id': id,
       'type': _type,
       'name': _name.text.trim(),
       'extends_id': ?_extends,
-      'data': _data,
+      'data': {..._data, if (_type == 'species') 'traits': traitIds},
       if (_hasEffects && _effects.isNotEmpty) 'effects': _effects,
       if (_text.text.trim().isNotEmpty) 'text': {'fr': _text.text.trim()},
-    }, previousId: _previousId);
+    };
+    await ref
+        .read(homebrewStoreProvider)
+        .save(
+          widget.draft.id,
+          manifest: widget.draft.manifest,
+          entities: [
+            for (final e in widget.draft.entities)
+              if (e['id'] == _previousId) ...[
+                entity,
+                ...traits,
+              ] else if (!_ownTrait(e, id))
+                e,
+            if (_previousId == null) ...[entity, ...traits],
+          ],
+        );
     if (mounted) Navigator.pop(context);
   }
 
+  /// Supprimer une espèce retire aussi ses traits.
   Future<void> _delete() async {
     await ref
         .read(homebrewStoreProvider)
@@ -142,10 +199,31 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
           manifest: widget.draft.manifest,
           entities: [
             for (final e in widget.draft.entities)
-              if (e['id'] != _previousId) e,
+              if (e['id'] != _previousId && !_ownTrait(e, '$_previousId')) e,
           ],
         );
     if (mounted) Navigator.pop(context);
+  }
+
+  Future<void> _editTrait(ActiveContent content, int? index) async {
+    final edited = await Navigator.of(context).push(
+      MaterialPageRoute<Map<String, Object?>>(
+        fullscreenDialog: true,
+        builder: (_) => _TraitPage(
+          content: content,
+          species: _name.text.trim(),
+          resourceId: '$_resourceId-${_traits.length + 1}',
+          trait: index == null ? null : _traits[index] as Map<String, Object?>,
+        ),
+      ),
+    );
+    if (edited == null) return;
+    setState(() {
+      _traits = [
+        for (final (i, t) in _traits.indexed) i == index ? edited : t,
+        if (index == null) edited,
+      ];
+    });
   }
 
   @override
@@ -227,6 +305,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
                 'armor' => _armor(l10n),
                 'magic-item' => _magicItem(l10n),
                 'item' => _gear(l10n),
+                'species' => _species(l10n, content),
                 _ => const <Widget>[],
               }) ...[field, SizedBox(height: AppSpacing.sm)],
             ],
@@ -235,6 +314,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
             SizedBox(height: AppSpacing.sm),
             EffectList(
               content: content,
+              resourceId: _resourceId,
               effects: _effects,
               onChanged: (e) => setState(() => _effects = e),
             ),
@@ -711,6 +791,64 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
     ..._rarity(l10n, required: true),
   ];
 
+  // Espèce (lot b2).
+
+  List<Widget> _species(AppLocalizations l10n, ActiveContent content) {
+    final text = Theme.of(context).textTheme;
+    return [
+      _choice(l10n.speciesCreatureType, _data['creature_type'] as String?, [
+        for (final t in CreatureType.values)
+          (t.name, l10n.creatureType(t.name)),
+      ], (v) => _set('creature_type', v)),
+      _picks(l10n.speciesSizes, 'sizes', [
+        ('P', l10n.sizeSmall),
+        ('M', l10n.sizeMedium),
+      ]),
+      _number(
+        l10n.speciesSpeed,
+        _data['speed_feet'],
+        (v) => _set('speed_feet', v),
+      ),
+      Text(l10n.speciesNoAbilities, style: text.bodySmall),
+      Text(l10n.speciesTraits, style: text.titleMedium),
+      for (final (i, t) in _traits.indexed)
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: Text(
+            t is String ? namesOf(content, [t]) : '${(t as Map)['name']}',
+          ),
+          subtitle: Text(switch (t) {
+            String() => l10n.speciesTraitSrd,
+            {'effects': final List<Object?> effects} => [
+              for (final e in effects)
+                describeEffect(
+                  l10n,
+                  content,
+                  Map<String, Object?>.from(e! as Map),
+                ),
+            ].join(' · '),
+            _ => '',
+          }),
+          onTap: t is String ? null : () => _editTrait(content, i),
+          trailing: IconButton(
+            tooltip: l10n.speciesTraitRemove,
+            icon: const Icon(Icons.delete_outline),
+            onPressed: () =>
+                setState(() => _traits = [..._traits]..removeAt(i)),
+          ),
+        ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: () => _editTrait(content, null),
+          icon: const Icon(Icons.add),
+          label: Text(l10n.speciesTraitAdd),
+        ),
+      ),
+      Text(l10n.speciesLineageHint, style: text.bodySmall),
+    ];
+  }
+
   List<Widget> _gear(AppLocalizations l10n) => [
     _decimal(
       l10n.itemWeight,
@@ -719,4 +857,89 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
     ),
     _cost(l10n.itemCostOptional),
   ];
+}
+
+/// Un trait d'espèce : nom, texte et effets. « Enregistrer le trait » le
+/// rend à l'éditeur d'Espèce, qui l'enregistre avec elle.
+class _TraitPage extends StatefulWidget {
+  const _TraitPage({
+    required this.content,
+    required this.species,
+    required this.resourceId,
+    this.trait,
+  });
+
+  final ActiveContent content;
+  final String species;
+  final String resourceId;
+  final Map<String, Object?>? trait;
+
+  @override
+  State<_TraitPage> createState() => _TraitPageState();
+}
+
+class _TraitPageState extends State<_TraitPage> {
+  late final _name = TextEditingController(
+    text: '${widget.trait?['name'] ?? ''}',
+  );
+  late final _text = TextEditingController(
+    text: '${(widget.trait?['text'] as Map?)?['fr'] ?? ''}',
+  );
+  late List<EffectJson> _effects = [
+    for (final e in (widget.trait?['effects'] as List?) ?? const [])
+      Map<String, Object?>.from(e as Map),
+  ];
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _text.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        leading: const CloseButton(),
+        title: Text(l10n.speciesTraitTitle(widget.species)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, {
+              'id': ?widget.trait?['id'],
+              'name': _name.text.trim(),
+              if (_text.text.trim().isNotEmpty)
+                'text': {'fr': _text.text.trim()},
+              if (_effects.isNotEmpty) 'effects': _effects,
+            }),
+            child: Text(l10n.speciesTraitSave),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(AppSpacing.md),
+        children: [
+          TextField(
+            controller: _name,
+            decoration: InputDecoration(labelText: l10n.homebrewFieldName),
+          ),
+          SizedBox(height: AppSpacing.sm),
+          TextField(
+            controller: _text,
+            minLines: 3,
+            maxLines: null,
+            decoration: InputDecoration(labelText: l10n.homebrewFieldText),
+          ),
+          SizedBox(height: AppSpacing.md),
+          EffectList(
+            content: widget.content,
+            resourceId: widget.resourceId,
+            effects: _effects,
+            onChanged: (e) => setState(() => _effects = e),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -136,6 +136,10 @@ List<ContentIssue> _editorRules(Map<String, Object?> json, String path) {
           'une arme a toujours une botte d’arme',
         ),
     ],
+    'species' => [
+      if (((data['sizes'] as List?) ?? const []).isEmpty)
+        ContentIssue('$path.data.sizes', 'une espèce a au moins une taille'),
+    ],
     _ => const [],
   };
 }

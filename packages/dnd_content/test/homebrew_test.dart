@@ -124,6 +124,44 @@ void main() {
     );
   });
 
+  test('Espèce sans taille : signalée ; avec son trait, prête', () {
+    Map<String, Object?> species(List<String> sizes) => {
+      'id': 'gardiens:species:brumelin',
+      'type': 'species',
+      'name': 'Brumelin',
+      'data': {
+        'creature_type': 'humanoid',
+        'sizes': sizes,
+        'speed_feet': 30,
+        'traits': ['gardiens:feature:brumelin-vision-brumeuse'],
+      },
+    };
+    const trait = {
+      'id': 'gardiens:feature:brumelin-vision-brumeuse',
+      'type': 'feature',
+      'name': 'Vision brumeuse',
+      'data': {'source': 'gardiens:species:brumelin', 'level': 1},
+      'text': {'fr': 'Vous voyez dans la brume.'},
+      'effects': [
+        {'op': 'grant_sense', 'sense': 'darkvision', 'range': 60},
+      ],
+    };
+    expect(
+      checkDraft(manifest, [
+        species([]),
+        trait,
+      ], dependencies: srd).map((i) => i.message),
+      ['une espèce a au moins une taille'],
+    );
+    expect(
+      checkDraft(manifest, [
+        species(['P']),
+        trait,
+      ], dependencies: srd),
+      isEmpty,
+    );
+  });
+
   test('identifiants : slug sans accents, unique dans le pack', () {
     expect(slugOf('Gardiens des Marches'), 'gardiens-des-marches');
     expect(

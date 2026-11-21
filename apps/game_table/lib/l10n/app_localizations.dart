@@ -8370,6 +8370,774 @@ abstract class AppLocalizations {
   /// **'Sens'**
   String get effectFieldSense;
 
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder un don'**
+  String get opGrantFeat;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Formule de Classe d’armure'**
+  String get opAcFormula;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus à un jet'**
+  String get opModifyCheck;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Attaques par action Attaque'**
+  String get opSetAttacks;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Critique amélioré'**
+  String get opSetCritRange;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bottes d’arme'**
+  String get opGrantMasterySlots;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts supplémentaires'**
+  String get opModifyDamage;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ressource à utilisations'**
+  String get opGrantResource;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Accorder un sort'**
+  String get opGrantSpell;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts d’une autre liste'**
+  String get opGrantSpellListAccess;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Soins à l’usage'**
+  String get opConsumableHeal;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objets harmonisés'**
+  String get opModifyAttunement;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Choix'**
+  String get opChoice;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'à partir du niveau {level}'**
+  String effectWhenLevel(int level);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Don : {feat}'**
+  String effectFeat(String feat);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un don de la catégorie {category}'**
+  String effectFeatCategory(String category);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe d’armure de {formula}{shield, select, yes{, bouclier permis} other{}}'**
+  String effectAcFormula(String formula, String shield);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vitesse {mode} égale à votre Vitesse au sol'**
+  String effectSpeedEqual(String mode);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} {scope}'**
+  String effectCheck(String value, String scope);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} attaques quand vous effectuez l’action Attaque'**
+  String effectAttacks(int count);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Coup critique sur un {min} à 20'**
+  String effectCritRange(int min);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bottes d’arme : {count}{melee, select, yes{ (armes de corps à corps)} other{}}'**
+  String effectMasterySlots(String count, String melee);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'+{value} aux dégâts {scope}{type}'**
+  String effectDamage(String value, String scope, String type);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **' ({type})'**
+  String effectDamageType(String type);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisations : {uses} ; récupération : {recharges}'**
+  String effectResource(String uses, String recharges);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort : {spell}'**
+  String effectSpell(String spell);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'toujours préparé'**
+  String get effectSpellPrepared;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'sans emplacement : {count} ; récupération : {recharges}'**
+  String effectSpellFreeCasts(String count, String recharges);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} sort(s) des listes {classes}, {level} au plus'**
+  String effectSpellListAccess(int count, String classes, String level);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Soins à l’usage : {dice}{bonus} ({action})'**
+  String effectHeal(String dice, String bonus, String action);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **' + {bonus}'**
+  String effectHealBonus(String bonus);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu’à {count} objets harmonisés'**
+  String effectAttunementSlots(int count);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{title} : {count} parmi {options}'**
+  String effectChoice(String title, int count, String options);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'action'**
+  String get healAction;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'action Bonus'**
+  String get healBonusAction;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux tests de caractéristique sans maîtrise'**
+  String get scopeUnproficientChecks;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux jets de sauvegarde'**
+  String get scopeSavingThrows;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'au JS de {ability}'**
+  String scopeSavingThrow(String ability);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux jets d’attaque au corps à corps avec une arme'**
+  String get scopeMeleeAttack;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux jets d’attaque à distance avec une arme'**
+  String get scopeRangedAttack;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux jets d’attaque de sort'**
+  String get scopeSpellAttack;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'aux tests de {skill}'**
+  String scopeSkill(String skill);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'des armes de corps à corps'**
+  String get scopeMeleeWeapon;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'des armes à distance'**
+  String get scopeRangedWeapon;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'des Frappes à mains nues'**
+  String get scopeUnarmed;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos court'**
+  String get onShortRest;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Repos long'**
+  String get onLongRest;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jet d’Initiative'**
+  String get onInitiative;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aube'**
+  String get onDawn;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{on, select, short_rest{au Repos court} long_rest{au Repos long} initiative{au jet d’Initiative} dawn{à l’aube} other{}}'**
+  String rechargeAt(String on);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} {at}'**
+  String rechargeEntry(String amount, String at);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'toutes'**
+  String get rechargeAll;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Récupération'**
+  String get rechargeOn;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Quantité (vide : toutes)'**
+  String get rechargeAmount;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une récupération'**
+  String get rechargeAdd;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer la récupération'**
+  String get rechargeRemove;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Non remplaçable'**
+  String get replaceableNever;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplaçable à chaque niveau'**
+  String get replaceableLevelUp;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplaçable au Repos long'**
+  String get replaceableLongRest;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplaçable au Repos court'**
+  String get replaceableShortRest;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre du choix (facultatif)'**
+  String get effectChoiceTitle;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre d’options à choisir'**
+  String get effectChoiceCount;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacement'**
+  String get effectChoiceReplaceable;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom de l’option {n}'**
+  String effectChoiceOptionName(int n);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Option {n}'**
+  String effectChoiceOptionDefault(int n);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Effets de l’option {n}'**
+  String effectChoiceOptionEffects(int n);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une option'**
+  String get effectChoiceOptionAdd;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l’option'**
+  String get effectChoiceOptionRemove;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'À partir du niveau (facultatif)'**
+  String get effectFieldFromLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Don précis'**
+  String get effectFieldFeat;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'ou un don de la catégorie'**
+  String get effectFieldFeatCategory;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Base'**
+  String get effectFieldBase;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques ajoutées'**
+  String get effectFieldAbilities;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bouclier permis'**
+  String get effectFieldAllowsShield;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Égale à la Vitesse au sol'**
+  String get effectFieldEqualWalk;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Portée'**
+  String get effectFieldScope;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre'**
+  String get effectFieldCount;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Coup critique à partir de'**
+  String get effectFieldCritMin;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armes de corps à corps seulement'**
+  String get effectFieldMeleeOnly;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dégâts (ex. 1d8 ou 2)'**
+  String get effectFieldDamage;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de dégâts'**
+  String get effectFieldDamageType;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun'**
+  String get effectFieldNone;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Utilisations'**
+  String get effectFieldUses;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dé de la ressource'**
+  String get effectFieldDie;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sort'**
+  String get effectFieldSpell;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Toujours préparé'**
+  String get effectFieldAlwaysPrepared;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancers sans emplacement de sort'**
+  String get effectFieldFreeCasts;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancers'**
+  String get effectFieldCasts;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique d’incantation'**
+  String get effectFieldSpellAbility;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Listes de sorts'**
+  String get effectFieldClassLists;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de sort maximum'**
+  String get effectFieldMaxLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dés (ex. 2d4)'**
+  String get effectFieldDice;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus'**
+  String get effectFieldBonus;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Action'**
+  String get effectFieldAction;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{label} : calcul'**
+  String valueKindOf(String label);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre'**
+  String get valueNumber;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonus de maîtrise'**
+  String get valueProficiency;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau du personnage'**
+  String get valueCharacterLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de classe'**
+  String get valueClassLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Modificateur de caractéristique'**
+  String get valueAbilityMod;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Table par niveau'**
+  String get valueByLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Multiplicateur (facultatif)'**
+  String get valueTimes;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Minimum (facultatif)'**
+  String get valueMin;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe'**
+  String get valueClass;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau'**
+  String get valueLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un palier'**
+  String get valueAddLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer le palier'**
+  String get valueRemoveLevel;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'bonus de maîtrise'**
+  String get valueProficiencyText;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'niveau'**
+  String get valueCharacterLevelText;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'niveau de {className}'**
+  String valueClassLevelText(String className);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'modificateur de {ability}'**
+  String valueAbilityModText(String ability);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{value} (minimum {min})'**
+  String valueMinText(String value, int min);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{times} × {value}'**
+  String valueTimesText(int times, String value);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'({entries})'**
+  String valueByLevelText(String entries);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'{value} au niveau {level}'**
+  String valueAtLevel(String value, int level);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de créature'**
+  String get speciesCreatureType;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tailles'**
+  String get speciesSizes;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Petite (P)'**
+  String get sizeSmall;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyenne (M)'**
+  String get sizeMedium;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vitesse en pieds (30 pieds = 9 m)'**
+  String get speciesSpeed;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les augmentations de caractéristique viennent de l’Historique (règles 2024).'**
+  String get speciesNoAbilities;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Traits'**
+  String get speciesTraits;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un trait'**
+  String get speciesTraitAdd;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Trait du SRD'**
+  String get speciesTraitSrd;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer le trait'**
+  String get speciesTraitRemove;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Trait de {species}'**
+  String speciesTraitTitle(String species);
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer le trait'**
+  String get speciesTraitSave;
+
+  /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
+  ///
+  /// In fr, this message translates to:
+  /// **'Une sous-lignée est un trait à choix : ajoutez-lui un effet « Choix », avec une option par lignée.'**
+  String get speciesLineageHint;
+
   /// Homebrew (US-27, EF-HB-01, [H01] à [H03]).
   ///
   /// In fr, this message translates to:
