@@ -83,6 +83,7 @@ part 'database.g.dart';
     HomebrewDrafts,
     AuthorIdentities,
     AuthorKeys,
+    PackFiles,
   ],
   include: {'content_search.drift'},
 )
@@ -108,7 +109,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 10;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -163,6 +164,8 @@ class TavernierDatabase extends _$TavernierDatabase {
         await m.addColumn(contentPacks, contentPacks.description);
         await m.addColumn(contentPacks, contentPacks.authorPublicKey);
       }
+      // v10 (US-30) : versions importées des packs, locales.
+      if (from < 10 && to >= 10) await m.createTable(packFiles);
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

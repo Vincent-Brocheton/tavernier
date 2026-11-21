@@ -11,7 +11,7 @@ const userDataVersion = 1;
 
 /// Tables des données de l'utilisateur : les synchronisées et ses
 /// brouillons homebrew. Les clés de pack (`author_identity`, `author_key`)
-/// n'y sont pas.
+/// et les packs importés (`pack_file`) n'y sont pas.
 List<String> userDataTables(TavernierDatabase db) => [
   ...syncedTables,
   db.homebrewDrafts.actualTableName,

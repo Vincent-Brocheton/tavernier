@@ -33028,6 +33028,673 @@ class AuthorKeysCompanion extends UpdateCompanion<AuthorKeyRow> {
   }
 }
 
+class $PackFilesTable extends PackFiles
+    with TableInfo<$PackFilesTable, PackFileRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PackFilesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _packIdMeta = const VerificationMeta('packId');
+  @override
+  late final GeneratedColumn<String> packId = GeneratedColumn<String>(
+    'pack_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sourceIdMeta = const VerificationMeta(
+    'sourceId',
+  );
+  @override
+  late final GeneratedColumn<String> sourceId = GeneratedColumn<String>(
+    'source_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _versionMeta = const VerificationMeta(
+    'version',
+  );
+  @override
+  late final GeneratedColumn<String> version = GeneratedColumn<String>(
+    'version',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _namespaceMeta = const VerificationMeta(
+    'namespace',
+  );
+  @override
+  late final GeneratedColumn<String> namespace = GeneratedColumn<String>(
+    'namespace',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+    'name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _authorPublicKeyMeta = const VerificationMeta(
+    'authorPublicKey',
+  );
+  @override
+  late final GeneratedColumn<String> authorPublicKey = GeneratedColumn<String>(
+    'author_public_key',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _checksumMeta = const VerificationMeta(
+    'checksum',
+  );
+  @override
+  late final GeneratedColumn<String> checksum = GeneratedColumn<String>(
+    'checksum',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _bytesMeta = const VerificationMeta('bytes');
+  @override
+  late final GeneratedColumn<Uint8List> bytes = GeneratedColumn<Uint8List>(
+    'bytes',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _renamesMeta = const VerificationMeta(
+    'renames',
+  );
+  @override
+  late final GeneratedColumn<String> renames = GeneratedColumn<String>(
+    'renames',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('{}'),
+  );
+  static const VerificationMeta _importedAtMeta = const VerificationMeta(
+    'importedAt',
+  );
+  @override
+  late final GeneratedColumn<String> importedAt = GeneratedColumn<String>(
+    'imported_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    packId,
+    sourceId,
+    version,
+    namespace,
+    name,
+    authorPublicKey,
+    checksum,
+    bytes,
+    renames,
+    importedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'pack_file';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PackFileRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('pack_id')) {
+      context.handle(
+        _packIdMeta,
+        packId.isAcceptableOrUnknown(data['pack_id']!, _packIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_packIdMeta);
+    }
+    if (data.containsKey('source_id')) {
+      context.handle(
+        _sourceIdMeta,
+        sourceId.isAcceptableOrUnknown(data['source_id']!, _sourceIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sourceIdMeta);
+    }
+    if (data.containsKey('version')) {
+      context.handle(
+        _versionMeta,
+        version.isAcceptableOrUnknown(data['version']!, _versionMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_versionMeta);
+    }
+    if (data.containsKey('namespace')) {
+      context.handle(
+        _namespaceMeta,
+        namespace.isAcceptableOrUnknown(data['namespace']!, _namespaceMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_namespaceMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('author_public_key')) {
+      context.handle(
+        _authorPublicKeyMeta,
+        authorPublicKey.isAcceptableOrUnknown(
+          data['author_public_key']!,
+          _authorPublicKeyMeta,
+        ),
+      );
+    }
+    if (data.containsKey('checksum')) {
+      context.handle(
+        _checksumMeta,
+        checksum.isAcceptableOrUnknown(data['checksum']!, _checksumMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_checksumMeta);
+    }
+    if (data.containsKey('bytes')) {
+      context.handle(
+        _bytesMeta,
+        bytes.isAcceptableOrUnknown(data['bytes']!, _bytesMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_bytesMeta);
+    }
+    if (data.containsKey('renames')) {
+      context.handle(
+        _renamesMeta,
+        renames.isAcceptableOrUnknown(data['renames']!, _renamesMeta),
+      );
+    }
+    if (data.containsKey('imported_at')) {
+      context.handle(
+        _importedAtMeta,
+        importedAt.isAcceptableOrUnknown(data['imported_at']!, _importedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_importedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  List<Set<GeneratedColumn>> get uniqueKeys => [
+    {packId, version},
+  ];
+  @override
+  PackFileRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PackFileRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      packId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pack_id'],
+      )!,
+      sourceId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}source_id'],
+      )!,
+      version: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}version'],
+      )!,
+      namespace: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}namespace'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      authorPublicKey: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author_public_key'],
+      ),
+      checksum: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}checksum'],
+      )!,
+      bytes: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}bytes'],
+      )!,
+      renames: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}renames'],
+      )!,
+      importedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}imported_at'],
+      )!,
+    );
+  }
+
+  @override
+  $PackFilesTable createAlias(String alias) {
+    return $PackFilesTable(attachedDatabase, alias);
+  }
+}
+
+class PackFileRow extends DataClass implements Insertable<PackFileRow> {
+  final String id;
+
+  /// Identifiant du pack dans la bibliothèque ; diffère de [sourceId] pour
+  /// un pack distinct d'un autre auteur.
+  final String packId;
+  final String sourceId;
+  final String version;
+  final String namespace;
+  final String name;
+  final String? authorPublicKey;
+  final String checksum;
+  final Uint8List bytes;
+
+  /// Noms donnés dans la bibliothèque : identifiant d'entité → nom.
+  final String renames;
+  final String importedAt;
+  const PackFileRow({
+    required this.id,
+    required this.packId,
+    required this.sourceId,
+    required this.version,
+    required this.namespace,
+    required this.name,
+    this.authorPublicKey,
+    required this.checksum,
+    required this.bytes,
+    required this.renames,
+    required this.importedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['pack_id'] = Variable<String>(packId);
+    map['source_id'] = Variable<String>(sourceId);
+    map['version'] = Variable<String>(version);
+    map['namespace'] = Variable<String>(namespace);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || authorPublicKey != null) {
+      map['author_public_key'] = Variable<String>(authorPublicKey);
+    }
+    map['checksum'] = Variable<String>(checksum);
+    map['bytes'] = Variable<Uint8List>(bytes);
+    map['renames'] = Variable<String>(renames);
+    map['imported_at'] = Variable<String>(importedAt);
+    return map;
+  }
+
+  PackFilesCompanion toCompanion(bool nullToAbsent) {
+    return PackFilesCompanion(
+      id: Value(id),
+      packId: Value(packId),
+      sourceId: Value(sourceId),
+      version: Value(version),
+      namespace: Value(namespace),
+      name: Value(name),
+      authorPublicKey: authorPublicKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(authorPublicKey),
+      checksum: Value(checksum),
+      bytes: Value(bytes),
+      renames: Value(renames),
+      importedAt: Value(importedAt),
+    );
+  }
+
+  factory PackFileRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PackFileRow(
+      id: serializer.fromJson<String>(json['id']),
+      packId: serializer.fromJson<String>(json['packId']),
+      sourceId: serializer.fromJson<String>(json['sourceId']),
+      version: serializer.fromJson<String>(json['version']),
+      namespace: serializer.fromJson<String>(json['namespace']),
+      name: serializer.fromJson<String>(json['name']),
+      authorPublicKey: serializer.fromJson<String?>(json['authorPublicKey']),
+      checksum: serializer.fromJson<String>(json['checksum']),
+      bytes: serializer.fromJson<Uint8List>(json['bytes']),
+      renames: serializer.fromJson<String>(json['renames']),
+      importedAt: serializer.fromJson<String>(json['importedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'packId': serializer.toJson<String>(packId),
+      'sourceId': serializer.toJson<String>(sourceId),
+      'version': serializer.toJson<String>(version),
+      'namespace': serializer.toJson<String>(namespace),
+      'name': serializer.toJson<String>(name),
+      'authorPublicKey': serializer.toJson<String?>(authorPublicKey),
+      'checksum': serializer.toJson<String>(checksum),
+      'bytes': serializer.toJson<Uint8List>(bytes),
+      'renames': serializer.toJson<String>(renames),
+      'importedAt': serializer.toJson<String>(importedAt),
+    };
+  }
+
+  PackFileRow copyWith({
+    String? id,
+    String? packId,
+    String? sourceId,
+    String? version,
+    String? namespace,
+    String? name,
+    Value<String?> authorPublicKey = const Value.absent(),
+    String? checksum,
+    Uint8List? bytes,
+    String? renames,
+    String? importedAt,
+  }) => PackFileRow(
+    id: id ?? this.id,
+    packId: packId ?? this.packId,
+    sourceId: sourceId ?? this.sourceId,
+    version: version ?? this.version,
+    namespace: namespace ?? this.namespace,
+    name: name ?? this.name,
+    authorPublicKey: authorPublicKey.present
+        ? authorPublicKey.value
+        : this.authorPublicKey,
+    checksum: checksum ?? this.checksum,
+    bytes: bytes ?? this.bytes,
+    renames: renames ?? this.renames,
+    importedAt: importedAt ?? this.importedAt,
+  );
+  PackFileRow copyWithCompanion(PackFilesCompanion data) {
+    return PackFileRow(
+      id: data.id.present ? data.id.value : this.id,
+      packId: data.packId.present ? data.packId.value : this.packId,
+      sourceId: data.sourceId.present ? data.sourceId.value : this.sourceId,
+      version: data.version.present ? data.version.value : this.version,
+      namespace: data.namespace.present ? data.namespace.value : this.namespace,
+      name: data.name.present ? data.name.value : this.name,
+      authorPublicKey: data.authorPublicKey.present
+          ? data.authorPublicKey.value
+          : this.authorPublicKey,
+      checksum: data.checksum.present ? data.checksum.value : this.checksum,
+      bytes: data.bytes.present ? data.bytes.value : this.bytes,
+      renames: data.renames.present ? data.renames.value : this.renames,
+      importedAt: data.importedAt.present
+          ? data.importedAt.value
+          : this.importedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PackFileRow(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('version: $version, ')
+          ..write('namespace: $namespace, ')
+          ..write('name: $name, ')
+          ..write('authorPublicKey: $authorPublicKey, ')
+          ..write('checksum: $checksum, ')
+          ..write('bytes: $bytes, ')
+          ..write('renames: $renames, ')
+          ..write('importedAt: $importedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    packId,
+    sourceId,
+    version,
+    namespace,
+    name,
+    authorPublicKey,
+    checksum,
+    $driftBlobEquality.hash(bytes),
+    renames,
+    importedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PackFileRow &&
+          other.id == this.id &&
+          other.packId == this.packId &&
+          other.sourceId == this.sourceId &&
+          other.version == this.version &&
+          other.namespace == this.namespace &&
+          other.name == this.name &&
+          other.authorPublicKey == this.authorPublicKey &&
+          other.checksum == this.checksum &&
+          $driftBlobEquality.equals(other.bytes, this.bytes) &&
+          other.renames == this.renames &&
+          other.importedAt == this.importedAt);
+}
+
+class PackFilesCompanion extends UpdateCompanion<PackFileRow> {
+  final Value<String> id;
+  final Value<String> packId;
+  final Value<String> sourceId;
+  final Value<String> version;
+  final Value<String> namespace;
+  final Value<String> name;
+  final Value<String?> authorPublicKey;
+  final Value<String> checksum;
+  final Value<Uint8List> bytes;
+  final Value<String> renames;
+  final Value<String> importedAt;
+  final Value<int> rowid;
+  const PackFilesCompanion({
+    this.id = const Value.absent(),
+    this.packId = const Value.absent(),
+    this.sourceId = const Value.absent(),
+    this.version = const Value.absent(),
+    this.namespace = const Value.absent(),
+    this.name = const Value.absent(),
+    this.authorPublicKey = const Value.absent(),
+    this.checksum = const Value.absent(),
+    this.bytes = const Value.absent(),
+    this.renames = const Value.absent(),
+    this.importedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PackFilesCompanion.insert({
+    required String id,
+    required String packId,
+    required String sourceId,
+    required String version,
+    required String namespace,
+    required String name,
+    this.authorPublicKey = const Value.absent(),
+    required String checksum,
+    required Uint8List bytes,
+    this.renames = const Value.absent(),
+    required String importedAt,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       packId = Value(packId),
+       sourceId = Value(sourceId),
+       version = Value(version),
+       namespace = Value(namespace),
+       name = Value(name),
+       checksum = Value(checksum),
+       bytes = Value(bytes),
+       importedAt = Value(importedAt);
+  static Insertable<PackFileRow> custom({
+    Expression<String>? id,
+    Expression<String>? packId,
+    Expression<String>? sourceId,
+    Expression<String>? version,
+    Expression<String>? namespace,
+    Expression<String>? name,
+    Expression<String>? authorPublicKey,
+    Expression<String>? checksum,
+    Expression<Uint8List>? bytes,
+    Expression<String>? renames,
+    Expression<String>? importedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (packId != null) 'pack_id': packId,
+      if (sourceId != null) 'source_id': sourceId,
+      if (version != null) 'version': version,
+      if (namespace != null) 'namespace': namespace,
+      if (name != null) 'name': name,
+      if (authorPublicKey != null) 'author_public_key': authorPublicKey,
+      if (checksum != null) 'checksum': checksum,
+      if (bytes != null) 'bytes': bytes,
+      if (renames != null) 'renames': renames,
+      if (importedAt != null) 'imported_at': importedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PackFilesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? packId,
+    Value<String>? sourceId,
+    Value<String>? version,
+    Value<String>? namespace,
+    Value<String>? name,
+    Value<String?>? authorPublicKey,
+    Value<String>? checksum,
+    Value<Uint8List>? bytes,
+    Value<String>? renames,
+    Value<String>? importedAt,
+    Value<int>? rowid,
+  }) {
+    return PackFilesCompanion(
+      id: id ?? this.id,
+      packId: packId ?? this.packId,
+      sourceId: sourceId ?? this.sourceId,
+      version: version ?? this.version,
+      namespace: namespace ?? this.namespace,
+      name: name ?? this.name,
+      authorPublicKey: authorPublicKey ?? this.authorPublicKey,
+      checksum: checksum ?? this.checksum,
+      bytes: bytes ?? this.bytes,
+      renames: renames ?? this.renames,
+      importedAt: importedAt ?? this.importedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (packId.present) {
+      map['pack_id'] = Variable<String>(packId.value);
+    }
+    if (sourceId.present) {
+      map['source_id'] = Variable<String>(sourceId.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<String>(version.value);
+    }
+    if (namespace.present) {
+      map['namespace'] = Variable<String>(namespace.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (authorPublicKey.present) {
+      map['author_public_key'] = Variable<String>(authorPublicKey.value);
+    }
+    if (checksum.present) {
+      map['checksum'] = Variable<String>(checksum.value);
+    }
+    if (bytes.present) {
+      map['bytes'] = Variable<Uint8List>(bytes.value);
+    }
+    if (renames.present) {
+      map['renames'] = Variable<String>(renames.value);
+    }
+    if (importedAt.present) {
+      map['imported_at'] = Variable<String>(importedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PackFilesCompanion(')
+          ..write('id: $id, ')
+          ..write('packId: $packId, ')
+          ..write('sourceId: $sourceId, ')
+          ..write('version: $version, ')
+          ..write('namespace: $namespace, ')
+          ..write('name: $name, ')
+          ..write('authorPublicKey: $authorPublicKey, ')
+          ..write('checksum: $checksum, ')
+          ..write('bytes: $bytes, ')
+          ..write('renames: $renames, ')
+          ..write('importedAt: $importedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$TavernierDatabase extends GeneratedDatabase {
   _$TavernierDatabase(QueryExecutor e) : super(e);
   $TavernierDatabaseManager get managers => $TavernierDatabaseManager(this);
@@ -33137,6 +33804,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     this,
   );
   late final $AuthorKeysTable authorKeys = $AuthorKeysTable(this);
+  late final $PackFilesTable packFiles = $PackFilesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -33214,6 +33882,7 @@ abstract class _$TavernierDatabase extends GeneratedDatabase {
     homebrewDrafts,
     authorIdentities,
     authorKeys,
+    packFiles,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -58297,6 +58966,331 @@ typedef $$AuthorKeysTableProcessedTableManager =
       AuthorKeyRow,
       PrefetchHooks Function()
     >;
+typedef $$PackFilesTableCreateCompanionBuilder = PackFilesCompanion Function({
+  required String id,
+  required String packId,
+  required String sourceId,
+  required String version,
+  required String namespace,
+  required String name,
+  Value<String?> authorPublicKey,
+  required String checksum,
+  required Uint8List bytes,
+  Value<String> renames,
+  required String importedAt,
+  Value<int> rowid,
+});
+typedef $$PackFilesTableUpdateCompanionBuilder = PackFilesCompanion Function({
+  Value<String> id,
+  Value<String> packId,
+  Value<String> sourceId,
+  Value<String> version,
+  Value<String> namespace,
+  Value<String> name,
+  Value<String?> authorPublicKey,
+  Value<String> checksum,
+  Value<Uint8List> bytes,
+  Value<String> renames,
+  Value<String> importedAt,
+  Value<int> rowid,
+});
+
+class $$PackFilesTableFilterComposer
+    extends Composer<_$TavernierDatabase, $PackFilesTable> {
+  $$PackFilesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get packId => $composableBuilder(
+    column: $table.packId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get sourceId => $composableBuilder(
+    column: $table.sourceId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get namespace => $composableBuilder(
+    column: $table.namespace,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get checksum => $composableBuilder(
+    column: $table.checksum,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<Uint8List> get bytes => $composableBuilder(
+    column: $table.bytes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get renames => $composableBuilder(
+    column: $table.renames,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get importedAt => $composableBuilder(
+    column: $table.importedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$PackFilesTableOrderingComposer
+    extends Composer<_$TavernierDatabase, $PackFilesTable> {
+  $$PackFilesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get packId => $composableBuilder(
+    column: $table.packId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get sourceId => $composableBuilder(
+    column: $table.sourceId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get namespace => $composableBuilder(
+    column: $table.namespace,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get name => $composableBuilder(
+    column: $table.name,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get checksum => $composableBuilder(
+    column: $table.checksum,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<Uint8List> get bytes => $composableBuilder(
+    column: $table.bytes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get renames => $composableBuilder(
+    column: $table.renames,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get importedAt => $composableBuilder(
+    column: $table.importedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$PackFilesTableAnnotationComposer
+    extends Composer<_$TavernierDatabase, $PackFilesTable> {
+  $$PackFilesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get packId =>
+      $composableBuilder(column: $table.packId, builder: (column) => column);
+
+  GeneratedColumn<String> get sourceId =>
+      $composableBuilder(column: $table.sourceId, builder: (column) => column);
+
+  GeneratedColumn<String> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<String> get namespace =>
+      $composableBuilder(column: $table.namespace, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<String> get authorPublicKey => $composableBuilder(
+    column: $table.authorPublicKey,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get checksum =>
+      $composableBuilder(column: $table.checksum, builder: (column) => column);
+
+  GeneratedColumn<Uint8List> get bytes =>
+      $composableBuilder(column: $table.bytes, builder: (column) => column);
+
+  GeneratedColumn<String> get renames =>
+      $composableBuilder(column: $table.renames, builder: (column) => column);
+
+  GeneratedColumn<String> get importedAt => $composableBuilder(
+    column: $table.importedAt,
+    builder: (column) => column,
+  );
+}
+
+class $$PackFilesTableTableManager
+    extends
+        RootTableManager<
+          _$TavernierDatabase,
+          $PackFilesTable,
+          PackFileRow,
+          $$PackFilesTableFilterComposer,
+          $$PackFilesTableOrderingComposer,
+          $$PackFilesTableAnnotationComposer,
+          $$PackFilesTableCreateCompanionBuilder,
+          $$PackFilesTableUpdateCompanionBuilder,
+          (
+            PackFileRow,
+            BaseReferences<_$TavernierDatabase, $PackFilesTable, PackFileRow>,
+          ),
+          PackFileRow,
+          PrefetchHooks Function()
+        > {
+  $$PackFilesTableTableManager(_$TavernierDatabase db, $PackFilesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PackFilesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PackFilesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PackFilesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> packId = const Value.absent(),
+                Value<String> sourceId = const Value.absent(),
+                Value<String> version = const Value.absent(),
+                Value<String> namespace = const Value.absent(),
+                Value<String> name = const Value.absent(),
+                Value<String?> authorPublicKey = const Value.absent(),
+                Value<String> checksum = const Value.absent(),
+                Value<Uint8List> bytes = const Value.absent(),
+                Value<String> renames = const Value.absent(),
+                Value<String> importedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => PackFilesCompanion(
+                id: id,
+                packId: packId,
+                sourceId: sourceId,
+                version: version,
+                namespace: namespace,
+                name: name,
+                authorPublicKey: authorPublicKey,
+                checksum: checksum,
+                bytes: bytes,
+                renames: renames,
+                importedAt: importedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String packId,
+                required String sourceId,
+                required String version,
+                required String namespace,
+                required String name,
+                Value<String?> authorPublicKey = const Value.absent(),
+                required String checksum,
+                required Uint8List bytes,
+                Value<String> renames = const Value.absent(),
+                required String importedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => PackFilesCompanion.insert(
+                id: id,
+                packId: packId,
+                sourceId: sourceId,
+                version: version,
+                namespace: namespace,
+                name: name,
+                authorPublicKey: authorPublicKey,
+                checksum: checksum,
+                bytes: bytes,
+                renames: renames,
+                importedAt: importedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$PackFilesTable, PackFileRow>(table),
+                  BaseReferences<
+                    _$TavernierDatabase,
+                    $PackFilesTable,
+                    PackFileRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$PackFilesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$TavernierDatabase,
+      $PackFilesTable,
+      PackFileRow,
+      $$PackFilesTableFilterComposer,
+      $$PackFilesTableOrderingComposer,
+      $$PackFilesTableAnnotationComposer,
+      $$PackFilesTableCreateCompanionBuilder,
+      $$PackFilesTableUpdateCompanionBuilder,
+      (
+        PackFileRow,
+        BaseReferences<_$TavernierDatabase, $PackFilesTable, PackFileRow>,
+      ),
+      PackFileRow,
+      PrefetchHooks Function()
+    >;
 
 class $TavernierDatabaseManager {
   final _$TavernierDatabase _db;
@@ -58459,4 +59453,6 @@ class $TavernierDatabaseManager {
       $$AuthorIdentitiesTableTableManager(_db, _db.authorIdentities);
   $$AuthorKeysTableTableManager get authorKeys =>
       $$AuthorKeysTableTableManager(_db, _db.authorKeys);
+  $$PackFilesTableTableManager get packFiles =>
+      $$PackFilesTableTableManager(_db, _db.packFiles);
 }

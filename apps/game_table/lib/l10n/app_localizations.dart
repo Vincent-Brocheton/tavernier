@@ -10116,6 +10116,270 @@ abstract class AppLocalizations {
   /// **'Version {version} publiée et signée.'**
   String publishDone(String version);
 
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer un pack'**
+  String get packImportTitle;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} · {size} Mo'**
+  String packImportFileSize(String name, String size);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier refusé : {reason}'**
+  String packImportRefused(String reason);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'par {author}'**
+  String packImportBy(String author);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'dépend de {names}'**
+  String packImportDependsOn(String names);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'installée : {version}'**
+  String packImportInstalled(String version);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce n’est pas une mise à jour.'**
+  String get packImportNotUpdate;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre pack « {name} » a un autre auteur. Celui-ci est signé par {author} : il sera importé comme un pack distinct, sans toucher au vôtre ni à vos tables.'**
+  String packImportDistinctHint(String name, String author);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom dans votre bibliothèque'**
+  String get packImportLibraryName;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} ({author})'**
+  String packImportDistinctName(String name, String author);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Contenu · 1 entité} other{Contenu · {count} entités}}'**
+  String packImportContent(int count);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'NOUVEAU'**
+  String get packImportNew;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 entité inchangée} other{{count} entités inchangées}}'**
+  String packImportUnchanged(int count);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom déjà utilisé : « {name} »'**
+  String packImportConflict(String name);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le pack {pack} a déjà ce nom ({existing}). Le nouveau : {incoming}.'**
+  String packImportConflictHint(String pack, String existing, String incoming);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Garder les deux'**
+  String get packImportKeepBoth;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Chacun s’affiche avec le badge de son pack'**
+  String get packImportKeepBothHint;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Renommer le nouveau ({type})…'**
+  String packImportRename(String type);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Seulement dans votre bibliothèque'**
+  String get packImportRenameHint;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau nom'**
+  String get packImportNewName;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérifications'**
+  String get packImportChecks;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Taille : {size} Mo'**
+  String packImportSize(String size);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'max. 20 Mo'**
+  String get packImportSizeMax;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Signature : {author}'**
+  String packImportSignature(String author);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Signature absente ou invalide'**
+  String get packImportSignatureInvalid;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Même auteur que la version installée, donc c’est une mise à jour'**
+  String get packImportSameAuthor;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre auteur : il sera importé comme un pack distinct'**
+  String get packImportOtherAuthor;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'La version {version} est déjà installée'**
+  String packImportAlready(String version);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau dans votre bibliothèque'**
+  String get packImportNewPack;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Format et contenu'**
+  String get packImportFormat;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 entité, aucune donnée exécutable} other{{count} entités, aucune donnée exécutable}}'**
+  String packImportFormatOk(int count);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dépendances'**
+  String get packImportDependencies;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Manquante : {ids}'**
+  String packImportMissing(String ids);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos tables restent figées sur la version {old}. Vous pourrez passer chaque table à la {next} depuis sa configuration.'**
+  String packImportFrozen(String old, String next);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer la mise à jour'**
+  String get packImportUpdate;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer comme pack distinct'**
+  String get packImportDistinct;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Importer'**
+  String get packImportButton;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ne pas importer'**
+  String get packImportDont;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} {version} importé.'**
+  String packImportDone(String name, String version);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Packs importés'**
+  String get packImportedPacks;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun pack importé pour l’instant.'**
+  String get packImportedNone;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 version gardée} other{{count} versions gardées}}'**
+  String packImportedVersions(int count);
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dupliquer pour modifier'**
+  String get packImportedFork;
+
+  /// Import d'un pack (US-30, EF-HB-06 à 08, [H08], [H09]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} (copie)'**
+  String packImportedCopyName(String name);
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:

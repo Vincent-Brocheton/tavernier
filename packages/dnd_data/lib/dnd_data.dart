@@ -14,6 +14,7 @@ export 'src/homebrew_store.dart';
 export 'src/ids.dart';
 export 'src/note_store.dart';
 export 'src/npc_store.dart';
+export 'src/pack_library.dart';
 export 'src/pack_store.dart';
 export 'src/powersync.dart';
 export 'src/session_store.dart';
