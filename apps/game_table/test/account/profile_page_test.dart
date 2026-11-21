@@ -123,6 +123,10 @@ void main() {
       await tester.pumpWidget(const SizedBox());
       await pumpApp(tester, prefs);
       expect(find.byType(AlertDialog), findsNothing);
+      // Drift ferme ses requêtes observées (packs des tables) par un
+      // minuteur, qui doit partir avant la vérification finale.
+      await tester.pumpWidget(const SizedBox());
+      await tester.pump(const Duration(seconds: 1));
     });
   });
 

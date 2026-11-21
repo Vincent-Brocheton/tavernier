@@ -10380,6 +10380,60 @@ abstract class AppLocalizations {
   /// **'{name} (copie)'**
   String packImportedCopyName(String name);
 
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’envoi du pack a échoué : vérifiez la connexion. La table n’a pas changé.'**
+  String get tablePacksUploadFailed;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer un pack'**
+  String get tablePacksActivate;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun pack de votre bibliothèque à activer. Importez-en un, ou publiez le vôtre.'**
+  String get tablePacksNone;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Verrouillé, toujours actif'**
+  String get tablePacksSrd;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Version figée : {version}'**
+  String tablePacksPinned(String version);
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer de version'**
+  String get tablePacksVersion;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'{version} (actuelle)'**
+  String tablePacksCurrent(String version);
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer de la table'**
+  String get tablePacksRemove;
+
+  /// Packs d'une table (US-30 lot b, EF-HB-09).
+  ///
+  /// In fr, this message translates to:
+  /// **'Les membres de la table reçoivent ces packs par la synchronisation. Une nouvelle version importée ne change pas la table tant que vous ne la choisissez pas.'**
+  String get tablePacksHint;
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:

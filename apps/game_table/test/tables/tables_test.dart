@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
+import 'package:game_table/homebrew/pack_storage.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:game_table/sheet/history_page.dart';
 import 'package:game_table/tables/create_table_page.dart';
@@ -25,6 +26,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' show User;
 
 import '../account/fakes.dart';
+import '../fake_pack_storage.dart';
 
 final _content = ActiveContent([
   readDndpack(File('assets/packs/srd-5.2.1-fr.dndpack').readAsBytesSync()),
@@ -51,6 +53,9 @@ CharacterInput _aldric() => CharacterInput.fromJson(
 );
 
 const _hugo = '00000000-0000-0000-0000-00000000000b';
+
+/// Stockage des packs, en mémoire.
+var _storage = FakePackStorage();
 
 /// Table du MJ connecté, avec Hugo et sa fiche Aldric dans un emplacement.
 Future<(TavernierDatabase, String, String)> _withAldric(
@@ -132,6 +137,7 @@ Future<TavernierDatabase> _pump(
         currentUserProvider.overrideWith((ref) => Stream.value(_gm)),
         databaseProvider.overrideWithValue(database),
         contentProvider.overrideWith((ref) => _content),
+        packStorageProvider.overrideWithValue(_storage),
       ],
       child: MaterialApp.router(
         routerConfig: router,
@@ -360,6 +366,49 @@ void main() {
       ScoreMethod.standardArray,
     );
     expect(await TableStore(database).activity(id), isEmpty);
+  });
+
+  _testTable('[F6] packs : activer, changer de version, retirer (US-30)', (
+    tester,
+  ) async {
+    _storage = FakePackStorage();
+    final (database, id) = await _openTable(tester);
+    final srd = _content.packs.first.manifest;
+    for (final v in ['0.1.0', '0.2.0']) {
+      final file = (await tester.runAsync(() => gardiensFile(srd, v)))!;
+      await tester.runAsync(() => PackLibrary(database).install(file));
+    }
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    expect(find.text(l10n.srdPackName), findsOneWidget);
+    await _tap(tester, find.text(l10n.tablePacksActivate));
+    await _tap(tester, find.text('Gardiens des Marches').last);
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    final rows = (await tester.runAsync(
+      () => TableStore(database).watchActivePacks().first,
+    ))!.where((p) => p.packId != srd.id).toList();
+    expect(rows.single.version, '0.2.0');
+    expect(_storage.files.keys, [rows.single.fileSha256]);
+    expect(find.text(l10n.tablePacksPinned('0.2.0')), findsOneWidget);
+
+    // Revenir à la 0.1.0 : son fichier part à son tour.
+    await _tap(tester, find.byTooltip(l10n.tablePacksVersion));
+    await _tap(tester, find.text('0.1.0').last);
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.tablePacksPinned('0.1.0')), findsOneWidget);
+    expect(_storage.files, hasLength(2));
+
+    await _tap(tester, find.byTooltip(l10n.tablePacksRemove));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Gardiens des Marches'), findsNothing);
   });
 
   _testTable('archivage : lecture seule, puis restauration', (tester) async {

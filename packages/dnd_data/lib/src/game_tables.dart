@@ -78,6 +78,10 @@ class TablePacks extends Table with IdKey, TableOwned {
   TextColumn get packId => text()();
   TextColumn get pinnedVersion => text().nullable()();
 
+  /// Empreinte sha256 du fichier de la version, dans le bucket `packs`
+  /// (US-30) ; vide pour le SRD embarqué.
+  TextColumn get fileSha256 => text().nullable()();
+
   @override
   List<Set<Column<Object>>> get uniqueKeys => [
     {tableId, packId},

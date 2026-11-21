@@ -56,4 +56,47 @@
 
 ## Lot b : activation et diffusion
 
-Son design se précise à son tour, dans ce change.
+### Supabase (`20261203000000_packs.sql`)
+
+- **`table_pack.file_sha256`** : `text`, nul ou `^[0-9a-f]{64}$`.
+- **Bucket `packs`** : privé, `file_size_limit` 20 Mo, `allowed_mime_types` `application/zip`.
+- **Droits sur `storage.objects`** :
+  - **`packs_insert`** : bucket `packs`, nom `^[0-9a-f]{64}\.dndpack$`, et l'utilisateur est MJ d'au moins une table.
+  - **`packs_read`** : il existe un `table_pack` dont l'empreinte suivie de `.dndpack` donne ce nom, et l'utilisateur est membre ou MJ de sa table.
+  - Pas de droit de modification ni de suppression : un fichier est immuable.
+- **Un dépôt qui ne correspond pas à son nom** ne trompe personne : le client vérifie l'empreinte de ce qu'il télécharge.
+- **Tests pgTAP** : `packs_test.sql`.
+
+### Base v11 (`dnd_data`)
+
+- **`TablePacks.fileSha256`** : sous PowerSync, la colonne entre seule dans le schéma dérivé ; sinon, `addColumn`.
+- **`TableStore`** :
+  - `setPack(tableId, packId, version, fileSha256)` : insère, ou met à jour la ligne de ce pack (unique par table) ;
+  - `removePack(tableId, packId)` ;
+  - `watchActivePacks()` : les lignes de toutes mes tables, en flux.
+- **`PackLibrary.file(packId, version)`** : les octets gardés de cette version.
+
+### App
+
+- **`PackStorage`** (`lib/homebrew/pack_storage.dart`) : `upload(sha, bytes)` et `download(sha)`, sur `Supabase.instance.client.storage.from('packs')`. Le fournisseur est nul sans comptes configurés. Les tests le remplacent par un stockage en mémoire.
+- **`activePacksProvider`** : le flux de `watchActivePacks`.
+- **`contentProvider`** : le SRD embarqué, plus, pour chaque pack actif sur une de mes tables, sa version figée lue dans la bibliothèque.
+  - Si deux tables figent deux versions du même pack, la plus récente est prise. La fiche figée par version (EF-PJ-14) relève du lot c.
+  - Le fournisseur se recalcule quand `table_pack` ou `pack_file` change.
+- **`packDownloaderProvider`** (écouté à la racine, comme les résumés de fiches) : pour chaque pack actif avec une empreinte et dont la version manque à l'appareil :
+  1. télécharge le fichier ;
+  2. vérifie son sha256, puis le lit et vérifie sa signature ;
+  3. l'installe par `PackLibrary.install`.
+
+  Un échec, réseau ou fichier refusé, est réessayé au prochain changement. Il ne bloque rien.
+- **Configuration de la table**, carte « Packs » :
+  - le SRD, verrouillé ;
+  - chaque pack actif avec sa version et un menu des versions installées ;
+  - « Retirer » et « Activer un pack », pour le MJ seulement.
+
+  « Activer » envoie le fichier de la version choisie (sans stockage, en mode local, l'envoi est sauté), puis appelle `setPack`. Une erreur d'envoi laisse la table inchangée et l'affiche.
+- **Publication** : la version publiée est installée par `PackLibrary.install(writeDndpack(signed))`, qui met aussi les tables de contenu à jour. Elle devient activable comme un pack importé.
+
+### Choix
+
+- **Un contenu pour l'appareil, pas par table**, au lot b : les 53 lecteurs de `contentProvider` en profitent sans changer. La limite (deux versions d'un même pack sur deux tables) est levée par le contenu figé par fiche du lot c.

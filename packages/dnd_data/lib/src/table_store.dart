@@ -175,6 +175,15 @@ final class PcSlot {
 /// Pack activé dans une table, à sa version figée (EF-TAB-04).
 typedef TablePackRef = ({String packId, String version});
 
+/// Pack activé sur une de mes tables, avec l'empreinte de son fichier
+/// (US-30, EF-HB-09).
+typedef ActivePack = ({
+  String tableId,
+  String packId,
+  String version,
+  String? fileSha256,
+});
+
 /// Seule voie d'écriture des tables de jeu (cahier §10). Les valeurs sont
 /// stockées par le nom de leur énumération.
 final class TableStore {
@@ -223,6 +232,65 @@ final class TableStore {
     });
     return id;
   }
+
+  /// Active [packId] sur la table [tableId] à [version], ou change sa
+  /// version : une seule ligne par pack et par table (EF-HB-09).
+  Future<void> setPack(
+    String tableId, {
+    required String packId,
+    required String version,
+    String? fileSha256,
+  }) async {
+    final row = await _db
+        .customSelect(
+          'SELECT id FROM table_pack WHERE table_id = ? AND pack_id = ?',
+          variables: [
+            Variable.withString(tableId),
+            Variable.withString(packId),
+          ],
+        )
+        .getSingleOrNull();
+    if (row == null) {
+      await _write(
+        'INSERT INTO table_pack (id, table_id, pack_id, pinned_version, '
+        'file_sha256) VALUES (?, ?, ?, ?, ?)',
+        [uuidV7(), tableId, packId, version, fileSha256],
+      );
+    } else {
+      await _write(
+        'UPDATE table_pack SET pinned_version = ?, file_sha256 = ? '
+        'WHERE id = ?',
+        [version, fileSha256, row.read<String>('id')],
+      );
+    }
+  }
+
+  /// Retire [packId] de la table [tableId].
+  Future<void> removePack(String tableId, String packId) => _write(
+    'DELETE FROM table_pack WHERE table_id = ? AND pack_id = ?',
+    [tableId, packId],
+  );
+
+  /// Packs actifs de toutes les tables de l'appareil, à leur version figée.
+  Stream<List<ActivePack>> watchActivePacks() => _db
+      .customSelect(
+        'SELECT table_id, pack_id, pinned_version, file_sha256 '
+        'FROM table_pack WHERE pinned_version IS NOT NULL '
+        'ORDER BY table_id, pack_id',
+        readsFrom: {_db.tablePacks},
+      )
+      .watch()
+      .map(
+        (rows) => [
+          for (final r in rows)
+            (
+              tableId: r.read<String>('table_id'),
+              packId: r.read<String>('pack_id'),
+              version: r.read<String>('pinned_version'),
+              fileSha256: r.readNullable<String>('file_sha256'),
+            ),
+        ],
+      );
 
   /// Enregistre la configuration de la table [id] et date chaque réglage
   /// changé dans son activité, en une transaction (EF-TAB-11). Le nom et la

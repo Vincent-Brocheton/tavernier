@@ -8,4 +8,13 @@
 
 ## 2. Lot b : activation et diffusion
 
-- [ ] 2.1 Specs et design du lot b, puis tests et implémentation
+- [x] 2.1 Specs et design du lot b
+- [x] 2.2 Migration Supabase : `table_pack.file_sha256`, bucket `packs` et droits, tests pgTAP
+- [x] 2.3 Tests puis base v11, `TableStore` (activer, retirer, suivre), `PackLibrary.file`
+- [x] 2.4 Tests puis contenu actif avec les packs des tables, téléchargement chez les membres
+- [x] 2.5 Tests puis carte « Packs » de la configuration, activation par le MJ, publication dans la bibliothèque
+- [x] 2.6 Suite complète, revue, PR du lot b
+
+## 3. Lot c : bannissement, compendium, contenu figé par fiche
+
+- [ ] 3.1 Specs et design du lot c (EF-HB-10, EF-CMP-01, EF-PJ-14), puis tests et implémentation

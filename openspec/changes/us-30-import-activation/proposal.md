@@ -52,13 +52,24 @@ Décisions du porteur de projet du 21 novembre 2026 :
 
 ### Lot b : activation et diffusion
 
-Ce lot se précise à son tour, dans ce change. Il couvre :
-- l'activation d'un pack importé ou publié sur une table, avec sa version figée ;
-- l'envoi du fichier au bucket `packs` ;
-- l'empreinte dans `table_pack`, avec la migration Supabase et ses droits ;
-- le téléchargement par les membres ;
-- le contenu de la table, construit avec ses packs ;
-- le passage d'une table à une autre version depuis sa configuration.
+Décision du porteur de projet du 21 novembre 2026 : **l'activation d'abord**. Le lot b livre le critère de sortie de M4. Le bannissement d'une entité du SRD (EF-HB-10), le compendium (EF-CMP-01), le contenu figé par fiche et sa migration (EF-PJ-14) suivent au lot c.
+
+- **Supabase** :
+  - `table_pack.file_sha256` ;
+  - bucket privé `packs` (20 Mo, `application/zip`), dont chaque objet s'appelle `{sha256}.dndpack` ;
+  - droits :
+    - un MJ dépose un fichier ;
+    - seuls les membres et le MJ d'une table dont un `table_pack` cite ce fichier le lisent ;
+    - personne ne le modifie ni ne le supprime.
+- **Base v11** : la colonne `file_sha256` de `table_pack` (PowerSync la reçoit seule).
+- **`TableStore`** : activer, changer de version, retirer un pack ; suivre les packs actifs de mes tables.
+- **`PackLibrary`** : le fichier d'une version, pour l'envoyer.
+- **Publication (US-29)** : la version publiée entre aussi dans la bibliothèque, pour s'activer comme un pack importé.
+- **App** :
+  - onglet Configuration d'une table, carte « Packs » : le SRD, verrouillé, et chaque pack actif avec sa version.
+  - Le MJ active un pack de sa bibliothèque, change sa version figée ou le retire. Activer envoie le fichier, puis écrit `table_pack`.
+  - Chez chaque membre, un pack actif absent de l'appareil est téléchargé, vérifié par son empreinte et sa signature, puis installé, sans action de sa part.
+  - **Contenu actif** de l'appareil : le SRD, plus les packs actifs sur mes tables, à leur version figée. Fiches, création, montée de niveau et rencontres en profitent.
 
 ## Capabilities
 

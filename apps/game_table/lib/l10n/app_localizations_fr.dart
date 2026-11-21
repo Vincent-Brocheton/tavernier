@@ -6549,6 +6549,40 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get tablePacksUploadFailed =>
+      'L’envoi du pack a échoué : vérifiez la connexion. La table n’a pas changé.';
+
+  @override
+  String get tablePacksActivate => 'Activer un pack';
+
+  @override
+  String get tablePacksNone =>
+      'Aucun pack de votre bibliothèque à activer. Importez-en un, ou publiez le vôtre.';
+
+  @override
+  String get tablePacksSrd => 'Verrouillé, toujours actif';
+
+  @override
+  String tablePacksPinned(String version) {
+    return 'Version figée : $version';
+  }
+
+  @override
+  String get tablePacksVersion => 'Changer de version';
+
+  @override
+  String tablePacksCurrent(String version) {
+    return '$version (actuelle)';
+  }
+
+  @override
+  String get tablePacksRemove => 'Retirer de la table';
+
+  @override
+  String get tablePacksHint =>
+      'Les membres de la table reçoivent ces packs par la synchronisation. Une nouvelle version importée ne change pas la table tant que vous ne la choisissez pas.';
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override

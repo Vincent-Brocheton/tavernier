@@ -31,8 +31,9 @@ final class PackLibrary {
     }
     final renames = (jsonDecode(row['renames']! as String) as Map)
         .cast<String, String>();
+    // Le manifeste reste celui du fichier : sa signature vaut toujours.
     return ContentPack(
-      manifest: pack.manifest.copyWith(origin: PackOrigin.imported),
+      manifest: pack.manifest,
       entities: [
         for (final e in pack.entities)
           if (renames['${e.id}'] case final name?)
@@ -66,6 +67,14 @@ final class PackLibrary {
         pack: _packOf(row),
       ),
   ];
+
+  /// Le fichier gardé d'une version, tel que reçu, ou `null`.
+  Future<Uint8List?> file(String packId, String version) async {
+    for (final row in await _rows(packId)) {
+      if (row['version'] == version) return row['bytes']! as Uint8List;
+    }
+    return null;
+  }
 
   /// Une version donnée d'un pack, ou `null`.
   Future<ContentPack?> version(String packId, String version) async {
@@ -110,7 +119,22 @@ final class PackLibrary {
       'VALUES (${[for (final _ in row.keys) '?'].join(', ')})',
       row.values.toList(),
     );
+    _db.markTablesUpdated({_db.packFiles});
     if (older.isEmpty) await PackStore(_db).importPack(_packOf(row));
     return id;
   }
+
+  /// Versions gardées (`{packId}@{version}`), en flux.
+  Stream<Set<String>> watchVersions() => _db
+      .customSelect(
+        'SELECT pack_id, version FROM pack_file',
+        readsFrom: {_db.packFiles},
+      )
+      .watch()
+      .map(
+        (rows) => {
+          for (final r in rows)
+            '${r.read<String>('pack_id')}@${r.read<String>('version')}',
+        },
+      );
 }

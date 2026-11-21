@@ -1,4 +1,5 @@
 // Tables de jeu (US-13) : dépôt et listes, au-dessus de la base de l'appareil.
+import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -60,6 +61,7 @@ final defaultTablePacksProvider = FutureProvider<List<TablePackRef>>((
   final content = await ref.watch(contentProvider.future);
   return [
     for (final pack in content.packs)
-      (packId: pack.manifest.id, version: pack.manifest.version),
+      if (pack.manifest.origin == PackOrigin.srd)
+        (packId: pack.manifest.id, version: pack.manifest.version),
   ];
 });

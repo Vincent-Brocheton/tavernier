@@ -109,7 +109,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 10;
+  int get schemaVersion => 11;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -166,6 +166,11 @@ class TavernierDatabase extends _$TavernierDatabase {
       }
       // v10 (US-30) : versions importées des packs, locales.
       if (from < 10 && to >= 10) await m.createTable(packFiles);
+      // v11 (US-30 lot b) : empreinte du fichier d'un pack de table. Avec
+      // PowerSync, la colonne entre seule dans la vue.
+      if (from < 11 && to >= 11 && !syncedTablesByPowerSync) {
+        await m.addColumn(tablePacks, tablePacks.fileSha256);
+      }
     },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');

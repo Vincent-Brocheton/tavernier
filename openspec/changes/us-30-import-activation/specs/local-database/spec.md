@@ -16,3 +16,13 @@ La table locale `pack_file` (schéma v10, non synchronisée) SHALL garder chaque
 #### Scenario: Pack distinct
 - **WHEN** un pack d'un autre auteur est installé sous l'espace de noms `gardiens-karl`
 - **THEN** les tables de contenu portent ses entités sous cet espace de noms, à côté de celles du pack d'origine
+
+### Requirement: Empreinte d'un pack de table
+Le schéma v11 SHALL garder l'empreinte du fichier d'un pack activé sur une table (`table_pack.file_sha256`). `TableStore` SHALL :
+- activer un pack sur une table, à une version et avec une empreinte, ou changer sa version ;
+- le retirer ;
+- suivre les packs actifs de toutes mes tables.
+
+#### Scenario: Activer puis changer de version
+- **WHEN** un pack est activé en 0.1.0 sur une table, puis passé en 0.2.0
+- **THEN** la table n'a qu'une ligne pour ce pack, en 0.2.0, avec l'empreinte de la 0.2.0

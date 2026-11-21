@@ -59,7 +59,8 @@ void main() {
     await library.install(await _file('0.2.0', ['Veilleur', 'Guetteur']));
     final content = (await PackStore(db).exportPack(_id))!;
     expect(content.manifest.version, '0.2.0');
-    expect(content.manifest.origin, PackOrigin.imported);
+    // Le manifeste du fichier, signature comprise, sans changement.
+    expect(await verifyPackSignature(content.manifest), isTrue);
     expect(await names(_id), ['Guetteur', 'Veilleur']);
     final old = (await library.version(_id, '0.1.0'))!;
     expect([for (final e in old.entities) e.name], ['Veilleur']);
@@ -68,6 +69,11 @@ void main() {
       ['0.1.0', '0.2.0'],
     );
     expect(await library.version(_id, '9.9.9'), isNull);
+    expect(
+      readDndpack((await library.file(_id, '0.1.0'))!).manifest.version,
+      '0.1.0',
+    );
+    expect(await library.file(_id, '9.9.9'), isNull);
 
     // Une version plus ancienne importée après ne remplace pas le contenu.
     await library.install(await _file('0.0.9', ['Ancien']));

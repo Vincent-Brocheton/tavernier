@@ -43,3 +43,25 @@ L'aperçu SHALL signaler une entité nouvelle qui porte le nom d'une entité d'u
 #### Scenario: Duplication
 - **WHEN** Camille duplique « Gardiens des Marches » d'Inès
 - **THEN** un brouillon « Gardiens des Marches (copie) » apparaît dans « Mes packs », d'auteur Camille, dont les entités ont l'espace de noms du brouillon
+
+### Requirement: Activer un pack sur une table
+Le MJ SHALL activer, depuis l'onglet Configuration de sa table, un pack de sa bibliothèque (importé ou publié), à une version qu'il choisit et qui reste figée (EF-HB-09). Il SHALL pouvoir passer la table à une autre version installée, ou retirer le pack. Le SRD 5.2.1 y figure toujours, verrouillé. Activer SHALL envoyer le fichier de la version au stockage du serveur, puis l'inscrire dans la table. Sans connexion, l'activation est refusée avec la raison, et rien ne change.
+
+#### Scenario: Activation
+- **WHEN** Camille active « Gardiens des Marches » 0.1.0 sur « Les Marches de Brumeval »
+- **THEN** la carte « Packs » de la table montre « Gardiens des Marches · 0.1.0 », le fichier est dans le stockage sous son empreinte, et `table_pack` cite cette empreinte
+
+#### Scenario: Version figée
+- **WHEN** Camille importe la 0.2.0 du même pack
+- **THEN** la table reste sur la 0.1.0 tant qu'elle ne choisit pas la 0.2.0 dans la configuration
+
+### Requirement: Diffusion aux membres
+Chaque membre d'une table SHALL recevoir les packs actifs de la table sans action de sa part (EF-HB-09). Un pack actif absent de l'appareil SHALL être téléchargé dès que l'appareil est en ligne, vérifié (empreinte et signature) puis installé. Hors ligne, il reste utilisable. Le contenu actif de l'appareil SHALL être le SRD, plus les packs actifs sur ses tables, à leur version figée. Ainsi un PJ utilise une sous-classe homebrew activée sur sa table (critère de sortie de M4).
+
+#### Scenario: Sous-classe homebrew chez un joueur
+- **WHEN** Camille active « Gardiens des Marches » sur sa table, et l'appareil de Hugo, membre de la table, se synchronise
+- **THEN** le pack est installé chez Hugo, et la sous-classe « Gardien du rempart » est proposée pour son Guerrier
+
+#### Scenario: Fichier altéré
+- **WHEN** le fichier téléchargé ne correspond pas à son empreinte ou à sa signature
+- **THEN** il n'est pas installé

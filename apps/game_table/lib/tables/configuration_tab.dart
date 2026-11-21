@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../account/account_providers.dart';
 import '../l10n/app_localizations.dart';
 import 'table_labels.dart';
+import 'table_packs.dart';
 import 'tables_providers.dart';
 
 /// Configuration d'une table [F6], pour son MJ : création des personnages,
@@ -246,7 +247,9 @@ class _ConfigurationTabState extends ConsumerState<ConfigurationTab> {
         ),
       ]),
       SizedBox(height: AppSpacing.md),
-      card(l10n.packsTitle, [Text(l10n.srdPackName, style: text.bodyMedium)]),
+      card(l10n.packsTitle, [
+        TablePacksCard(tableId: widget.table.id, editable: editable),
+      ]),
       SizedBox(height: AppSpacing.md),
       card(l10n.sensitiveZone, [
         ListTile(

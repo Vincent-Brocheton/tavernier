@@ -18215,8 +18215,25 @@ class $TablePacksTable extends TablePacks
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _fileSha256Meta = const VerificationMeta(
+    'fileSha256',
+  );
   @override
-  List<GeneratedColumn> get $columns => [id, tableId, packId, pinnedVersion];
+  late final GeneratedColumn<String> fileSha256 = GeneratedColumn<String>(
+    'file_sha256',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    tableId,
+    packId,
+    pinnedVersion,
+    fileSha256,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -18259,6 +18276,12 @@ class $TablePacksTable extends TablePacks
         ),
       );
     }
+    if (data.containsKey('file_sha256')) {
+      context.handle(
+        _fileSha256Meta,
+        fileSha256.isAcceptableOrUnknown(data['file_sha256']!, _fileSha256Meta),
+      );
+    }
     return context;
   }
 
@@ -18288,6 +18311,10 @@ class $TablePacksTable extends TablePacks
         DriftSqlType.string,
         data['${effectivePrefix}pinned_version'],
       ),
+      fileSha256: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}file_sha256'],
+      ),
     );
   }
 
@@ -18302,11 +18329,16 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
   final String tableId;
   final String packId;
   final String? pinnedVersion;
+
+  /// Empreinte sha256 du fichier de la version, dans le bucket `packs`
+  /// (US-30) ; vide pour le SRD embarqué.
+  final String? fileSha256;
   const TablePackRow({
     required this.id,
     required this.tableId,
     required this.packId,
     this.pinnedVersion,
+    this.fileSha256,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -18316,6 +18348,9 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
     map['pack_id'] = Variable<String>(packId);
     if (!nullToAbsent || pinnedVersion != null) {
       map['pinned_version'] = Variable<String>(pinnedVersion);
+    }
+    if (!nullToAbsent || fileSha256 != null) {
+      map['file_sha256'] = Variable<String>(fileSha256);
     }
     return map;
   }
@@ -18328,6 +18363,9 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
       pinnedVersion: pinnedVersion == null && nullToAbsent
           ? const Value.absent()
           : Value(pinnedVersion),
+      fileSha256: fileSha256 == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fileSha256),
     );
   }
 
@@ -18341,6 +18379,7 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
       tableId: serializer.fromJson<String>(json['tableId']),
       packId: serializer.fromJson<String>(json['packId']),
       pinnedVersion: serializer.fromJson<String?>(json['pinnedVersion']),
+      fileSha256: serializer.fromJson<String?>(json['fileSha256']),
     );
   }
   @override
@@ -18351,6 +18390,7 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
       'tableId': serializer.toJson<String>(tableId),
       'packId': serializer.toJson<String>(packId),
       'pinnedVersion': serializer.toJson<String?>(pinnedVersion),
+      'fileSha256': serializer.toJson<String?>(fileSha256),
     };
   }
 
@@ -18359,6 +18399,7 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
     String? tableId,
     String? packId,
     Value<String?> pinnedVersion = const Value.absent(),
+    Value<String?> fileSha256 = const Value.absent(),
   }) => TablePackRow(
     id: id ?? this.id,
     tableId: tableId ?? this.tableId,
@@ -18366,6 +18407,7 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
     pinnedVersion: pinnedVersion.present
         ? pinnedVersion.value
         : this.pinnedVersion,
+    fileSha256: fileSha256.present ? fileSha256.value : this.fileSha256,
   );
   TablePackRow copyWithCompanion(TablePacksCompanion data) {
     return TablePackRow(
@@ -18375,6 +18417,9 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
       pinnedVersion: data.pinnedVersion.present
           ? data.pinnedVersion.value
           : this.pinnedVersion,
+      fileSha256: data.fileSha256.present
+          ? data.fileSha256.value
+          : this.fileSha256,
     );
   }
 
@@ -18384,13 +18429,15 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
           ..write('id: $id, ')
           ..write('tableId: $tableId, ')
           ..write('packId: $packId, ')
-          ..write('pinnedVersion: $pinnedVersion')
+          ..write('pinnedVersion: $pinnedVersion, ')
+          ..write('fileSha256: $fileSha256')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, tableId, packId, pinnedVersion);
+  int get hashCode =>
+      Object.hash(id, tableId, packId, pinnedVersion, fileSha256);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -18398,7 +18445,8 @@ class TablePackRow extends DataClass implements Insertable<TablePackRow> {
           other.id == this.id &&
           other.tableId == this.tableId &&
           other.packId == this.packId &&
-          other.pinnedVersion == this.pinnedVersion);
+          other.pinnedVersion == this.pinnedVersion &&
+          other.fileSha256 == this.fileSha256);
 }
 
 class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
@@ -18406,12 +18454,14 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
   final Value<String> tableId;
   final Value<String> packId;
   final Value<String?> pinnedVersion;
+  final Value<String?> fileSha256;
   final Value<int> rowid;
   const TablePacksCompanion({
     this.id = const Value.absent(),
     this.tableId = const Value.absent(),
     this.packId = const Value.absent(),
     this.pinnedVersion = const Value.absent(),
+    this.fileSha256 = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   TablePacksCompanion.insert({
@@ -18419,6 +18469,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
     required String tableId,
     required String packId,
     this.pinnedVersion = const Value.absent(),
+    this.fileSha256 = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        tableId = Value(tableId),
@@ -18428,6 +18479,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
     Expression<String>? tableId,
     Expression<String>? packId,
     Expression<String>? pinnedVersion,
+    Expression<String>? fileSha256,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -18435,6 +18487,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
       if (tableId != null) 'table_id': tableId,
       if (packId != null) 'pack_id': packId,
       if (pinnedVersion != null) 'pinned_version': pinnedVersion,
+      if (fileSha256 != null) 'file_sha256': fileSha256,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -18444,6 +18497,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
     Value<String>? tableId,
     Value<String>? packId,
     Value<String?>? pinnedVersion,
+    Value<String?>? fileSha256,
     Value<int>? rowid,
   }) {
     return TablePacksCompanion(
@@ -18451,6 +18505,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
       tableId: tableId ?? this.tableId,
       packId: packId ?? this.packId,
       pinnedVersion: pinnedVersion ?? this.pinnedVersion,
+      fileSha256: fileSha256 ?? this.fileSha256,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -18470,6 +18525,9 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
     if (pinnedVersion.present) {
       map['pinned_version'] = Variable<String>(pinnedVersion.value);
     }
+    if (fileSha256.present) {
+      map['file_sha256'] = Variable<String>(fileSha256.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -18483,6 +18541,7 @@ class TablePacksCompanion extends UpdateCompanion<TablePackRow> {
           ..write('tableId: $tableId, ')
           ..write('packId: $packId, ')
           ..write('pinnedVersion: $pinnedVersion, ')
+          ..write('fileSha256: $fileSha256, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -50639,6 +50698,7 @@ typedef $$TablePacksTableCreateCompanionBuilder = TablePacksCompanion Function({
   required String tableId,
   required String packId,
   Value<String?> pinnedVersion,
+  Value<String?> fileSha256,
   Value<int> rowid,
 });
 typedef $$TablePacksTableUpdateCompanionBuilder = TablePacksCompanion Function({
@@ -50646,6 +50706,7 @@ typedef $$TablePacksTableUpdateCompanionBuilder = TablePacksCompanion Function({
   Value<String> tableId,
   Value<String> packId,
   Value<String?> pinnedVersion,
+  Value<String?> fileSha256,
   Value<int> rowid,
 });
 
@@ -50675,6 +50736,11 @@ class $$TablePacksTableFilterComposer
 
   ColumnFilters<String> get pinnedVersion => $composableBuilder(
     column: $table.pinnedVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get fileSha256 => $composableBuilder(
+    column: $table.fileSha256,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -50707,6 +50773,11 @@ class $$TablePacksTableOrderingComposer
     column: $table.pinnedVersion,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get fileSha256 => $composableBuilder(
+    column: $table.fileSha256,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$TablePacksTableAnnotationComposer
@@ -50729,6 +50800,11 @@ class $$TablePacksTableAnnotationComposer
 
   GeneratedColumn<String> get pinnedVersion => $composableBuilder(
     column: $table.pinnedVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get fileSha256 => $composableBuilder(
+    column: $table.fileSha256,
     builder: (column) => column,
   );
 }
@@ -50768,12 +50844,14 @@ class $$TablePacksTableTableManager
                 Value<String> tableId = const Value.absent(),
                 Value<String> packId = const Value.absent(),
                 Value<String?> pinnedVersion = const Value.absent(),
+                Value<String?> fileSha256 = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TablePacksCompanion(
                 id: id,
                 tableId: tableId,
                 packId: packId,
                 pinnedVersion: pinnedVersion,
+                fileSha256: fileSha256,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -50782,12 +50860,14 @@ class $$TablePacksTableTableManager
                 required String tableId,
                 required String packId,
                 Value<String?> pinnedVersion = const Value.absent(),
+                Value<String?> fileSha256 = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TablePacksCompanion.insert(
                 id: id,
                 tableId: tableId,
                 packId: packId,
                 pinnedVersion: pinnedVersion,
+                fileSha256: fileSha256,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

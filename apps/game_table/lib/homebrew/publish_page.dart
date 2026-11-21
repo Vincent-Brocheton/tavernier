@@ -73,7 +73,9 @@ class _PublishPageState extends ConsumerState<PublishPage> {
       ),
       await authorKeyPair(seed),
     );
-    await PackStore(db).importPack(signed);
+    // Dans la bibliothèque, comme un pack importé : elle s'active sur une
+    // table (US-30) et met les tables de contenu à jour.
+    await PackLibrary(db).install(writeDndpack(signed));
     await ref
         .read(homebrewStoreProvider)
         .save(draft.id, manifest: manifestJson, entities: draft.entities);
