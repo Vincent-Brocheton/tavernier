@@ -286,6 +286,8 @@ class Classes extends Table with ContentEntityColumns {
   TextColumn get weaponProficiencies => text()(); // JSON
   TextColumn get armorTraining => text()(); // JSON
   IntColumn get subclassLevel => integer()();
+  TextColumn get subclassFeatureLevels =>
+      text().withDefault(const Constant('[]'))(); // JSON
   TextColumn get spellcastingAbilityId => text().nullable()();
   TextColumn get toolProficiencies =>
       text().withDefault(const Constant('[]'))(); // JSON

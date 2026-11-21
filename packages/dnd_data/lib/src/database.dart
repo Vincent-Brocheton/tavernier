@@ -107,7 +107,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -150,6 +150,10 @@ class TavernierDatabase extends _$TavernierDatabase {
         await m.addColumn(armors, armors.rarity);
         await m.addColumn(armors, armors.attunement);
         await m.addColumn(spells, spells.classes);
+      }
+      // v8 (US-27 lot c) : niveaux des aptitudes de sous-classe.
+      if (from < 8 && to >= 8) {
+        await m.addColumn(classes, classes.subclassFeatureLevels);
       }
     },
     beforeOpen: (details) async {

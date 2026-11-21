@@ -18,11 +18,15 @@
 - [x] 2.7 Tests puis `checkDraft` : taille d'une espèce
 - [x] 2.8 Tests puis éditeur d'effets : les douze opérations restantes, la valeur et « À partir du niveau »
 - [x] 2.9 Tests puis éditeur d'Espèce, ses traits et sa variante
-- [ ] 2.10 Suite complète, revue, PR du lot b2
+- [x] 2.10 Suite complète, revue, PR du lot b2
 
 ## 3. Lot c : Classe et Sous-classe
 
-- [ ] 3.1 Specs et design du lot c, puis tests et implémentation
+- [x] 3.1 Specs et design du lot c
+- [x] 3.2 Tests puis format : `subclass_feature_levels`, extracteur et Guerrier, base v8
+- [x] 3.3 Tests puis `checkDraft` : progression de classe et niveaux de sous-classe (EF-HB-11)
+- [x] 3.4 Tests puis éditeurs de Classe et de Sous-classe [H02], aptitudes possédées
+- [ ] 3.5 Suite complète, revue, PR du lot c
 
 ## 4. Lot d : Monstre
 

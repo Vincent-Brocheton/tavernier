@@ -81,8 +81,37 @@ L'éditeur d'Espèce SHALL proposer le type de créature, les tailles, la Vitess
 - **WHEN** une espèce est enregistrée sans taille
 - **THEN** la vérification indique « une espèce a au moins une taille »
 
+### Requirement: Éditeur de Classe
+L'éditeur de Classe SHALL proposer :
+- les traits de base : dé de vie, caractéristiques principales, jets de sauvegarde (2), compétences, maîtrises d'armes, d'armures et d'outils, or de départ ;
+- la sous-classe : le niveau où on la choisit, et les niveaux de ses aptitudes ;
+- l'incantation : caractéristique, changement des sorts préparés, emplacements repris d'une classe du contenu, liste de sorts, part du niveau de lanceur en multiclassage ;
+- les colonnes de la table, valeur par valeur ;
+- les 20 niveaux, chacun avec son bonus de maîtrise, tiré du contenu, et ses aptitudes.
+
+Chaque aptitude SHALL être une entité `feature` du pack, de source la classe et du niveau où elle est placée. Une classe sans ses 20 niveaux, ou dont les niveaux de sous-classe ne commencent pas au niveau où on la choisit, SHALL être signalée par la vérification (EF-HB-11).
+
+#### Scenario: Classe lanceuse
+- **WHEN** l'auteur crée la classe « Veilleur », d10, Sagesse, reprend les emplacements du Magicien et place « Œil du guet » au niveau 1
+- **THEN** la classe a ses 20 niveaux, avec 2 emplacements de niveau 1 au niveau 1 et 2 de niveau 3 au niveau 5, un bonus de maîtrise de +3 au niveau 5, et l'aptitude `…:feature:veilleur-oeil-du-guet` de niveau 1
+
+#### Scenario: Progression incomplète
+- **WHEN** une classe n'a que 12 niveaux
+- **THEN** la vérification indique « progression incomplète : une classe a ses 20 niveaux »
+
+### Requirement: Éditeur de Sous-classe
+L'éditeur de Sous-classe ([H02]) SHALL demander la classe parente et rappeler ses niveaux de sous-classe. Il SHALL proposer d'ajouter une aptitude à chacun de ces niveaux. Une aptitude placée à un autre niveau SHALL être signalée, avec « Déplacer au niveau » suivant et « Autre niveau… ». La vérification SHALL signaler une aptitude hors de ces niveaux, et chaque niveau sans aptitude. La sous-classe s'enregistre quand même et se teste (EF-HB-11).
+
+#### Scenario: Gardien du rempart
+- **WHEN** l'auteur crée « Gardien du rempart », sous-classe du Guerrier, avec une aptitude au niveau 3 et une au niveau 10
+- **THEN** l'éditeur rappelle « 3, 7, 10, 15, 18 », le pack contient les deux aptitudes, de source la sous-classe, et la vérification indique « progression incomplète : aucune aptitude aux niveaux 7, 15, 18 »
+
+#### Scenario: Aptitude mal placée
+- **WHEN** une aptitude de niveau 4 est rattachée à une sous-classe du Guerrier
+- **THEN** l'éditeur propose « Déplacer au niveau 7 », et la vérification indique « la classe parente n’accorde pas d’aptitude de sous-classe au niveau 4 »
+
 ### Requirement: Variante d'une entité du SRD
-« Dériver d'une entité du SRD » SHALL copier dans le pack un Don, un Historique, une Espèce, un Sort ou un objet du SRD. Une espèce dérivée garde les traits du SRD, que l'auteur peut retirer ou compléter. La copie reçoit un nouvel identifiant, avec `extends_id` vers l'original. L'original SHALL rester inchangé (EF-HB-02).
+« Dériver d'une entité du SRD » SHALL copier dans le pack un Don, un Historique, une Espèce, une Classe, une Sous-classe, un Sort ou un objet du SRD. Une espèce, une classe ou une sous-classe dérivée garde les traits et les aptitudes du SRD, que l'auteur peut retirer ou compléter. La copie reçoit un nouvel identifiant, avec `extends_id` vers l'original. L'original SHALL rester inchangé (EF-HB-02).
 
 #### Scenario: Hache d'armes peu courante
 - **WHEN** l'auteur dérive la Hache d'armes, la nomme « Hache des Marches », la rend peu courante et demande l'harmonisation

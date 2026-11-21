@@ -57,6 +57,26 @@ void main() {
     expect(c.spellList, isEmpty);
   });
 
+  test('niveaux de sous-classe : lignes « Aptitude de sous-classe »', () {
+    expect(cls('fighter').subclassFeatureLevels, [3, 7, 10, 15, 18]);
+    expect(cls('paladin').subclassFeatureLevels, [3, 7, 15, 20]);
+    expect(cls('rogue').subclassFeatureLevels, [3, 9, 13, 17]);
+    // Chaque sous-classe du SRD a ses aptitudes à ces niveaux, et à tous.
+    for (final e in byId.values) {
+      if (e.data case SubclassData(:final parentClass, :final features)) {
+        final levels = {
+          for (final f in features) (byId['$f']!.data as FeatureData).level,
+        };
+        expect(
+          levels,
+          (byId['$parentClass']!.data as ClassData).subclassFeatureLevels
+              .toSet(),
+          reason: '${e.id}',
+        );
+      }
+    }
+  });
+
   test('seule une aptitude qui accorde un don se répète dans la table', () {
     List<String> at(String slug, int level) =>
         cls(slug).levels[level - 1].features.map((e) => '$e').toList();

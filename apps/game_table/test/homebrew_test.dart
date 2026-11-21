@@ -2,7 +2,8 @@
 // d'effets », « Éditeur de Don », « Éditeur d'Historique » (US-27 lot a,
 // [H01] à [H03]) ; « Éditeur de Sort », « Éditeur d'Objet », « Variante
 // d'une entité du SRD » (lot b, [H05]) ; « Éditeur d'Espèce », ressource et
-// choix imbriqué (lot b2).
+// choix imbriqué (lot b2) ; « Éditeur de Sous-classe » ([H02]) et
+// « Éditeur de Classe » (lot c).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -94,10 +95,10 @@ void main() {
     await _open(tester);
     expect(find.text('Aucun pack pour l’instant.'), findsOneWidget);
     expect(find.textContaining('verrouillé'), findsOneWidget);
-    final classChip = tester.widget<ActionChip>(
-      find.widgetWithText(ActionChip, 'Classe'),
+    final monsterChip = tester.widget<ActionChip>(
+      find.widgetWithText(ActionChip, 'Monstre'),
     );
-    expect(classChip.onPressed, isNull);
+    expect(monsterChip.onPressed, isNull);
 
     await _newPack(tester);
     expect(find.text('Gardiens des Marches'), findsOneWidget);
@@ -504,5 +505,133 @@ void main() {
       (_content.entity('srd:species:elf')!.data as SpeciesData).traits,
       hasLength(5),
     );
+  });
+
+  Future<void> addFeature(WidgetTester tester, int level, String name) async {
+    await _tap(tester, find.text('Ajouter une aptitude au niveau $level'));
+    await tester.enterText(find.widgetWithText(TextField, 'Nom *'), name);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      '$name : texte.',
+    );
+    await _tap(tester, find.text('Enregistrer l’aptitude'));
+  }
+
+  _test('[H02] Sous-classe du Guerrier : aptitudes aux niveaux du parent', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Sous-classe'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Gardien du rempart',
+    );
+    await _tap(tester, find.text('Classe parente *'));
+    await _tap(tester, find.text('Guerrier').last);
+    expect(
+      find.text(
+        'Niveaux de sous-classe de la classe Guerrier : 3, 7, 10, 15, 18',
+      ),
+      findsOneWidget,
+    );
+    await addFeature(tester, 3, 'Rempart vivant');
+    await addFeature(tester, 7, 'Pas de la sentinelle');
+    expect(find.text('Rempart vivant'), findsOneWidget);
+
+    // Sous le Magicien (3, 6, 10, 14), l'aptitude du niveau 7 est mal
+    // placée : elle se déplace au niveau suivant qu'il réserve.
+    await _tap(tester, find.text('Classe parente *'));
+    await _tap(tester, find.text('Magicien').last);
+    expect(
+      find.text(
+        'La classe Magicien n’accorde pas d’aptitude de sous-classe au '
+        'niveau 7.',
+      ),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Déplacer au niveau 10'));
+    expect(find.textContaining('n’accorde pas'), findsNothing);
+    await _tap(tester, find.text('Classe parente *'));
+    await _tap(tester, find.text('Guerrier').last);
+    await _tap(tester, find.text('Enregistrer'));
+
+    final entities = (await _draft(tester)).entities;
+    const id = 'gardiens-des-marches:subclass:gardien-du-rempart';
+    expect(entities.map((e) => e['id']), [
+      id,
+      'gardiens-des-marches:feature:gardien-du-rempart-rempart-vivant',
+      'gardiens-des-marches:feature:gardien-du-rempart-pas-de-la-sentinelle',
+    ]);
+    expect(entities[0]['data'], {
+      'parent_class': 'srd:class:fighter',
+      'features': [entities[1]['id'], entities[2]['id']],
+    });
+    expect(entities[1]['data'], {'source': id, 'level': 3});
+    expect(entities[2]['data'], {'source': id, 'level': 10});
+    // EF-HB-11 : incomplète, elle s'enregistre ; la publication attend.
+    expect(
+      find.text(
+        'progression incomplète : aucune aptitude aux niveaux 7, 15, 18',
+      ),
+      findsOneWidget,
+    );
+  });
+
+  _test('Classe : progression 1 à 20, emplacements repris du Magicien', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Classe'));
+    await tester.enterText(find.widgetWithText(TextField, 'Nom *'), 'Veilleur');
+    await _tap(tester, find.text('Dé de vie *'));
+    await _tap(tester, find.text('d10').last);
+    await _tap(tester, find.widgetWithText(FilterChip, '7'));
+    await _tap(tester, find.text('Caractéristique d’incantation'));
+    await _tap(tester, find.text('Sagesse').last);
+    await _tap(
+      tester,
+      find.text('Reprendre les emplacements et sorts connus de…'),
+    );
+    await _tap(tester, find.text('Magicien').last);
+    expect(find.text('Emplacements de niveau 9'), findsOneWidget);
+    expect(find.text('Niveau 5 · bonus de maîtrise +3'), findsOneWidget);
+    await addFeature(tester, 1, 'Œil du guet');
+    await _tap(tester, find.text('Enregistrer'));
+
+    final entities = (await _draft(tester)).entities;
+    const id = 'gardiens-des-marches:class:veilleur';
+    expect(entities.map((e) => e['id']), [
+      id,
+      'gardiens-des-marches:feature:veilleur-oeil-du-guet',
+    ]);
+    final data = entities[0]['data']! as Map<String, Object?>;
+    expect(data['hit_die'], 10);
+    expect(data['subclass_feature_levels'], [3, 7]);
+    expect(data['spellcasting_ability'], 'srd:ability:wisdom');
+    expect(data['prepared_change'], 'long_rest_all');
+    expect(data['multiclass'], {'caster_divisor': 1});
+    final levels = data['levels']! as List<Object?>;
+    expect(levels, hasLength(20));
+    expect(levels[0], {
+      'level': 1,
+      'proficiency_bonus': 2,
+      'features': ['gardiens-des-marches:feature:veilleur-oeil-du-guet'],
+      'columns': {'cantrips': 3, 'prepared_spells': 4, 'slot_1': 2},
+    });
+    expect(levels[4], {
+      'level': 5,
+      'proficiency_bonus': 3,
+      'features': <Object?>[],
+      'columns': {
+        'cantrips': 4,
+        'prepared_spells': 9,
+        'slot_1': 4,
+        'slot_2': 3,
+        'slot_3': 2,
+      },
+    });
+    expect(entities[1]['data'], {'source': id, 'level': 1});
   });
 }

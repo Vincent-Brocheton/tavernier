@@ -3,6 +3,7 @@
 // sans bloquer l'enregistrement.
 import '../content_issue.dart';
 import '../entities/content_entity.dart';
+import '../entities/entity_data.dart';
 import 'content_pack.dart';
 import 'manifest.dart';
 
@@ -95,6 +96,7 @@ List<ContentIssue> checkDraft(
       parsed.add(entity);
     }
   }
+  issues.addAll(_subclassRules(parsed, dependencies, entities));
   if (parsedManifest.manifest case final m?) {
     issues.addAll(
       validatePack(
@@ -140,6 +142,98 @@ List<ContentIssue> _editorRules(Map<String, Object?> json, String path) {
       if (((data['sizes'] as List?) ?? const []).isEmpty)
         ContentIssue('$path.data.sizes', 'une espèce a au moins une taille'),
     ],
+    'class' => _classRules(data, path),
     _ => const [],
   };
+}
+
+/// EF-HB-11 : une progression de classe incomplète bloque la publication.
+List<ContentIssue> _classRules(Map<String, Object?> data, String path) {
+  final levels = [
+    for (final l in (data['levels'] as List?) ?? const <Object?>[])
+      if (l case {'level': final int level}) level,
+  ];
+  final subclassLevels = [
+    for (final l
+        in (data['subclass_feature_levels'] as List?) ?? const <Object?>[])
+      if (l is int) l,
+  ];
+  return [
+    if (levels.length != 20 ||
+        levels.toSet().length != 20 ||
+        levels.any((l) => l < 1 || l > 20))
+      ContentIssue(
+        '$path.data.levels',
+        'progression incomplète : une classe a ses 20 niveaux',
+      ),
+    if (subclassLevels.firstOrNull != data['subclass_level'])
+      ContentIssue(
+        '$path.data.subclass_feature_levels',
+        'les aptitudes de sous-classe commencent au niveau où on la choisit',
+      )
+    else if ([
+          for (var i = 1; i < subclassLevels.length; i++)
+            subclassLevels[i] <= subclassLevels[i - 1],
+        ].contains(true) ||
+        (subclassLevels.lastOrNull ?? 0) > 20)
+      ContentIssue(
+        '$path.data.subclass_feature_levels',
+        'les niveaux de sous-classe vont croissant, jusqu’au niveau 20',
+      ),
+  ];
+}
+
+/// [H02] : les aptitudes d'une sous-classe tombent aux niveaux que sa
+/// classe parente leur réserve, et chacun de ces niveaux en a au moins une.
+List<ContentIssue> _subclassRules(
+  List<ContentEntity> parsed,
+  Iterable<ContentEntity> dependencies,
+  List<Map<String, Object?>> entities,
+) {
+  final byId = {
+    for (final e in dependencies) '${e.id}': e,
+    for (final e in parsed) '${e.id}': e,
+  };
+  final index = {for (final (i, json) in entities.indexed) '${json['id']}': i};
+  final issues = <ContentIssue>[];
+  for (final sub in parsed) {
+    if (sub.data case SubclassData(:final parentClass, :final features)) {
+      final parent = byId['$parentClass']?.data;
+      if (parent is! ClassData || parent.subclassFeatureLevels.isEmpty) {
+        continue;
+      }
+      final allowed = parent.subclassFeatureLevels;
+      final reached = <int>{};
+      for (final f in features) {
+        final level = switch (byId['$f']?.data) {
+          FeatureData(:final level?) => level,
+          _ => null,
+        };
+        if (level == null) continue;
+        reached.add(level);
+        if (!allowed.contains(level)) {
+          issues.add(
+            ContentIssue(
+              index['$f'] == null
+                  ? 'entities[${index['${sub.id}']}].data.features'
+                  : 'entities[${index['$f']}].data.level',
+              'la classe parente n’accorde pas d’aptitude de sous-classe '
+              'au niveau $level',
+            ),
+          );
+        }
+      }
+      final missing = allowed.where((l) => !reached.contains(l)).toList();
+      if (missing.isNotEmpty) {
+        issues.add(
+          ContentIssue(
+            'entities[${index['${sub.id}']}].data.features',
+            'progression incomplète : aucune aptitude aux niveaux '
+                '${missing.join(', ')}',
+          ),
+        );
+      }
+    }
+  }
+  return issues;
 }

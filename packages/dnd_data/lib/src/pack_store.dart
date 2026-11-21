@@ -214,6 +214,7 @@ final class PackStore {
           'hit_die': c.hitDie,
           'skill_choice_count': c.skillChoiceCount,
           'subclass_level': c.subclassLevel,
+          'subclass_feature_levels': jsonEncode(c.subclassFeatureLevels),
           'spellcasting_ability_id': c.spellcastingAbility?.toString(),
           'tool_proficiencies': jsonEncode(json['tool_proficiencies']),
           'tool_choice_count': c.toolChoiceCount,
@@ -540,6 +541,9 @@ final class PackStore {
               'hit_die': row['hit_die'],
               'skill_choice_count': row['skill_choice_count'],
               'subclass_level': row['subclass_level'],
+              'subclass_feature_levels': jsonDecode(
+                row['subclass_feature_levels']! as String,
+              ),
               'spell_list': [for (final r in of(spellLists)) r['spell_id']],
               'spellcasting_ability': row['spellcasting_ability_id'],
               'tool_proficiencies': jsonDecode(

@@ -368,6 +368,11 @@ abstract class ClassData with _$ClassData implements EntityData {
     required List<String> weaponProficiencies,
     required List<String> armorTraining,
     required int subclassLevel,
+
+    /// Niveaux où la sous-classe accorde ses aptitudes, en commençant par
+    /// [subclassLevel] (Guerrier : 3, 7, 10, 15, 18). Vide dans un pack
+    /// antérieur.
+    @Default(<int>[]) List<int> subclassFeatureLevels,
     required List<ClassLevelData> levels,
 
     /// Liste de sorts de la classe (le sort ne cite pas ses classes).

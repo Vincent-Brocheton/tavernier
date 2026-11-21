@@ -10578,6 +10578,18 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _subclassFeatureLevelsMeta =
+      const VerificationMeta('subclassFeatureLevels');
+  @override
+  late final GeneratedColumn<String> subclassFeatureLevels =
+      GeneratedColumn<String>(
+        'subclass_feature_levels',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+        defaultValue: const Constant('[]'),
+      );
   static const VerificationMeta _spellcastingAbilityIdMeta =
       const VerificationMeta('spellcastingAbilityId');
   @override
@@ -10663,6 +10675,7 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     weaponProficiencies,
     armorTraining,
     subclassLevel,
+    subclassFeatureLevels,
     spellcastingAbilityId,
     toolProficiencies,
     toolChoiceCount,
@@ -10803,6 +10816,15 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
     } else if (isInserting) {
       context.missing(_subclassLevelMeta);
     }
+    if (data.containsKey('subclass_feature_levels')) {
+      context.handle(
+        _subclassFeatureLevelsMeta,
+        subclassFeatureLevels.isAcceptableOrUnknown(
+          data['subclass_feature_levels']!,
+          _subclassFeatureLevelsMeta,
+        ),
+      );
+    }
     if (data.containsKey('spellcasting_ability_id')) {
       context.handle(
         _spellcastingAbilityIdMeta,
@@ -10915,6 +10937,10 @@ class $ClassesTable extends Classes with TableInfo<$ClassesTable, ClassRow> {
         DriftSqlType.int,
         data['${effectivePrefix}subclass_level'],
       )!,
+      subclassFeatureLevels: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}subclass_feature_levels'],
+      )!,
       spellcastingAbilityId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}spellcasting_ability_id'],
@@ -10962,6 +10988,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
   final String weaponProficiencies;
   final String armorTraining;
   final int subclassLevel;
+  final String subclassFeatureLevels;
   final String? spellcastingAbilityId;
   final String toolProficiencies;
   final int toolChoiceCount;
@@ -10982,6 +11009,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     required this.weaponProficiencies,
     required this.armorTraining,
     required this.subclassLevel,
+    required this.subclassFeatureLevels,
     this.spellcastingAbilityId,
     required this.toolProficiencies,
     required this.toolChoiceCount,
@@ -11007,6 +11035,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     map['weapon_proficiencies'] = Variable<String>(weaponProficiencies);
     map['armor_training'] = Variable<String>(armorTraining);
     map['subclass_level'] = Variable<int>(subclassLevel);
+    map['subclass_feature_levels'] = Variable<String>(subclassFeatureLevels);
     if (!nullToAbsent || spellcastingAbilityId != null) {
       map['spellcasting_ability_id'] = Variable<String>(spellcastingAbilityId);
     }
@@ -11039,6 +11068,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       weaponProficiencies: Value(weaponProficiencies),
       armorTraining: Value(armorTraining),
       subclassLevel: Value(subclassLevel),
+      subclassFeatureLevels: Value(subclassFeatureLevels),
       spellcastingAbilityId: spellcastingAbilityId == null && nullToAbsent
           ? const Value.absent()
           : Value(spellcastingAbilityId),
@@ -11077,6 +11107,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       ),
       armorTraining: serializer.fromJson<String>(json['armorTraining']),
       subclassLevel: serializer.fromJson<int>(json['subclassLevel']),
+      subclassFeatureLevels: serializer.fromJson<String>(
+        json['subclassFeatureLevels'],
+      ),
       spellcastingAbilityId: serializer.fromJson<String?>(
         json['spellcastingAbilityId'],
       ),
@@ -11106,6 +11139,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       'weaponProficiencies': serializer.toJson<String>(weaponProficiencies),
       'armorTraining': serializer.toJson<String>(armorTraining),
       'subclassLevel': serializer.toJson<int>(subclassLevel),
+      'subclassFeatureLevels': serializer.toJson<String>(subclassFeatureLevels),
       'spellcastingAbilityId': serializer.toJson<String?>(
         spellcastingAbilityId,
       ),
@@ -11131,6 +11165,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     String? weaponProficiencies,
     String? armorTraining,
     int? subclassLevel,
+    String? subclassFeatureLevels,
     Value<String?> spellcastingAbilityId = const Value.absent(),
     String? toolProficiencies,
     int? toolChoiceCount,
@@ -11151,6 +11186,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     weaponProficiencies: weaponProficiencies ?? this.weaponProficiencies,
     armorTraining: armorTraining ?? this.armorTraining,
     subclassLevel: subclassLevel ?? this.subclassLevel,
+    subclassFeatureLevels: subclassFeatureLevels ?? this.subclassFeatureLevels,
     spellcastingAbilityId: spellcastingAbilityId.present
         ? spellcastingAbilityId.value
         : this.spellcastingAbilityId,
@@ -11195,6 +11231,9 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
       subclassLevel: data.subclassLevel.present
           ? data.subclassLevel.value
           : this.subclassLevel,
+      subclassFeatureLevels: data.subclassFeatureLevels.present
+          ? data.subclassFeatureLevels.value
+          : this.subclassFeatureLevels,
       spellcastingAbilityId: data.spellcastingAbilityId.present
           ? data.spellcastingAbilityId.value
           : this.spellcastingAbilityId,
@@ -11232,6 +11271,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           ..write('weaponProficiencies: $weaponProficiencies, ')
           ..write('armorTraining: $armorTraining, ')
           ..write('subclassLevel: $subclassLevel, ')
+          ..write('subclassFeatureLevels: $subclassFeatureLevels, ')
           ..write('spellcastingAbilityId: $spellcastingAbilityId, ')
           ..write('toolProficiencies: $toolProficiencies, ')
           ..write('toolChoiceCount: $toolChoiceCount, ')
@@ -11257,6 +11297,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
     weaponProficiencies,
     armorTraining,
     subclassLevel,
+    subclassFeatureLevels,
     spellcastingAbilityId,
     toolProficiencies,
     toolChoiceCount,
@@ -11281,6 +11322,7 @@ class ClassRow extends DataClass implements Insertable<ClassRow> {
           other.weaponProficiencies == this.weaponProficiencies &&
           other.armorTraining == this.armorTraining &&
           other.subclassLevel == this.subclassLevel &&
+          other.subclassFeatureLevels == this.subclassFeatureLevels &&
           other.spellcastingAbilityId == this.spellcastingAbilityId &&
           other.toolProficiencies == this.toolProficiencies &&
           other.toolChoiceCount == this.toolChoiceCount &&
@@ -11303,6 +11345,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
   final Value<String> weaponProficiencies;
   final Value<String> armorTraining;
   final Value<int> subclassLevel;
+  final Value<String> subclassFeatureLevels;
   final Value<String?> spellcastingAbilityId;
   final Value<String> toolProficiencies;
   final Value<int> toolChoiceCount;
@@ -11324,6 +11367,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     this.weaponProficiencies = const Value.absent(),
     this.armorTraining = const Value.absent(),
     this.subclassLevel = const Value.absent(),
+    this.subclassFeatureLevels = const Value.absent(),
     this.spellcastingAbilityId = const Value.absent(),
     this.toolProficiencies = const Value.absent(),
     this.toolChoiceCount = const Value.absent(),
@@ -11346,6 +11390,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     required String weaponProficiencies,
     required String armorTraining,
     required int subclassLevel,
+    this.subclassFeatureLevels = const Value.absent(),
     this.spellcastingAbilityId = const Value.absent(),
     this.toolProficiencies = const Value.absent(),
     this.toolChoiceCount = const Value.absent(),
@@ -11378,6 +11423,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Expression<String>? weaponProficiencies,
     Expression<String>? armorTraining,
     Expression<int>? subclassLevel,
+    Expression<String>? subclassFeatureLevels,
     Expression<String>? spellcastingAbilityId,
     Expression<String>? toolProficiencies,
     Expression<int>? toolChoiceCount,
@@ -11402,6 +11448,8 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
         'weapon_proficiencies': weaponProficiencies,
       if (armorTraining != null) 'armor_training': armorTraining,
       if (subclassLevel != null) 'subclass_level': subclassLevel,
+      if (subclassFeatureLevels != null)
+        'subclass_feature_levels': subclassFeatureLevels,
       if (spellcastingAbilityId != null)
         'spellcasting_ability_id': spellcastingAbilityId,
       if (toolProficiencies != null) 'tool_proficiencies': toolProficiencies,
@@ -11428,6 +11476,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     Value<String>? weaponProficiencies,
     Value<String>? armorTraining,
     Value<int>? subclassLevel,
+    Value<String>? subclassFeatureLevels,
     Value<String?>? spellcastingAbilityId,
     Value<String>? toolProficiencies,
     Value<int>? toolChoiceCount,
@@ -11450,6 +11499,8 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
       weaponProficiencies: weaponProficiencies ?? this.weaponProficiencies,
       armorTraining: armorTraining ?? this.armorTraining,
       subclassLevel: subclassLevel ?? this.subclassLevel,
+      subclassFeatureLevels:
+          subclassFeatureLevels ?? this.subclassFeatureLevels,
       spellcastingAbilityId:
           spellcastingAbilityId ?? this.spellcastingAbilityId,
       toolProficiencies: toolProficiencies ?? this.toolProficiencies,
@@ -11503,6 +11554,11 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
     if (subclassLevel.present) {
       map['subclass_level'] = Variable<int>(subclassLevel.value);
     }
+    if (subclassFeatureLevels.present) {
+      map['subclass_feature_levels'] = Variable<String>(
+        subclassFeatureLevels.value,
+      );
+    }
     if (spellcastingAbilityId.present) {
       map['spellcasting_ability_id'] = Variable<String>(
         spellcastingAbilityId.value,
@@ -11545,6 +11601,7 @@ class ClassesCompanion extends UpdateCompanion<ClassRow> {
           ..write('weaponProficiencies: $weaponProficiencies, ')
           ..write('armorTraining: $armorTraining, ')
           ..write('subclassLevel: $subclassLevel, ')
+          ..write('subclassFeatureLevels: $subclassFeatureLevels, ')
           ..write('spellcastingAbilityId: $spellcastingAbilityId, ')
           ..write('toolProficiencies: $toolProficiencies, ')
           ..write('toolChoiceCount: $toolChoiceCount, ')
@@ -44137,6 +44194,7 @@ typedef $$ClassesTableCreateCompanionBuilder = ClassesCompanion Function({
   required String weaponProficiencies,
   required String armorTraining,
   required int subclassLevel,
+  Value<String> subclassFeatureLevels,
   Value<String?> spellcastingAbilityId,
   Value<String> toolProficiencies,
   Value<int> toolChoiceCount,
@@ -44159,6 +44217,7 @@ typedef $$ClassesTableUpdateCompanionBuilder = ClassesCompanion Function({
   Value<String> weaponProficiencies,
   Value<String> armorTraining,
   Value<int> subclassLevel,
+  Value<String> subclassFeatureLevels,
   Value<String?> spellcastingAbilityId,
   Value<String> toolProficiencies,
   Value<int> toolChoiceCount,
@@ -44256,6 +44315,11 @@ class $$ClassesTableFilterComposer
 
   ColumnFilters<int> get subclassLevel => $composableBuilder(
     column: $table.subclassLevel,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get subclassFeatureLevels => $composableBuilder(
+    column: $table.subclassFeatureLevels,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -44382,6 +44446,11 @@ class $$ClassesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get subclassFeatureLevels => $composableBuilder(
+    column: $table.subclassFeatureLevels,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<String> get spellcastingAbilityId => $composableBuilder(
     column: $table.spellcastingAbilityId,
     builder: (column) => ColumnOrderings(column),
@@ -44497,6 +44566,11 @@ class $$ClassesTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get subclassFeatureLevels => $composableBuilder(
+    column: $table.subclassFeatureLevels,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<String> get spellcastingAbilityId => $composableBuilder(
     column: $table.spellcastingAbilityId,
     builder: (column) => column,
@@ -44592,6 +44666,7 @@ class $$ClassesTableTableManager
                 Value<String> weaponProficiencies = const Value.absent(),
                 Value<String> armorTraining = const Value.absent(),
                 Value<int> subclassLevel = const Value.absent(),
+                Value<String> subclassFeatureLevels = const Value.absent(),
                 Value<String?> spellcastingAbilityId = const Value.absent(),
                 Value<String> toolProficiencies = const Value.absent(),
                 Value<int> toolChoiceCount = const Value.absent(),
@@ -44613,6 +44688,7 @@ class $$ClassesTableTableManager
                 weaponProficiencies: weaponProficiencies,
                 armorTraining: armorTraining,
                 subclassLevel: subclassLevel,
+                subclassFeatureLevels: subclassFeatureLevels,
                 spellcastingAbilityId: spellcastingAbilityId,
                 toolProficiencies: toolProficiencies,
                 toolChoiceCount: toolChoiceCount,
@@ -44636,6 +44712,7 @@ class $$ClassesTableTableManager
                 required String weaponProficiencies,
                 required String armorTraining,
                 required int subclassLevel,
+                Value<String> subclassFeatureLevels = const Value.absent(),
                 Value<String?> spellcastingAbilityId = const Value.absent(),
                 Value<String> toolProficiencies = const Value.absent(),
                 Value<int> toolChoiceCount = const Value.absent(),
@@ -44657,6 +44734,7 @@ class $$ClassesTableTableManager
                 weaponProficiencies: weaponProficiencies,
                 armorTraining: armorTraining,
                 subclassLevel: subclassLevel,
+                subclassFeatureLevels: subclassFeatureLevels,
                 spellcastingAbilityId: spellcastingAbilityId,
                 toolProficiencies: toolProficiencies,
                 toolChoiceCount: toolChoiceCount,

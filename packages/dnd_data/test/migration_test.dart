@@ -35,8 +35,8 @@ List<String> _structure(Iterable<Map<String, Object?>> rows) => [
 ];
 
 void main() {
-  test("le schéma du code est celui de l'instantané v7", () async {
-    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(7);
+  test("le schéma du code est celui de l'instantané v8", () async {
+    final snapshot = await SchemaVerifier(GeneratedHelper()).schemaAt(8);
     addTearDown(snapshot.rawDatabase.close);
     final expected = _structure(snapshot.rawDatabase.select(_structureQuery));
 
@@ -46,7 +46,7 @@ void main() {
       for (final row in await db.customSelect(_structureQuery).get()) row.data,
     ]);
 
-    expect(db.schemaVersion, 7);
+    expect(db.schemaVersion, 8);
     expect(actual, expected);
   });
 
@@ -54,7 +54,8 @@ void main() {
   // `combat_view` et `combat_request` ; v4 (US-38) : `group_rest` et
   // `group_rest_done` ; v5 (US-26) : `note.title`, `updated_at`, `conflict` ;
   // v6 (US-27) : `homebrew_draft` ; v7 (US-27) : rareté et harmonisation
-  // des armes et armures, `spell.classes`.
+  // des armes et armures, `spell.classes` ; v8 (US-27) :
+  // `player_class.subclass_feature_levels`.
   for (final (from, to) in [
     (1, 2),
     (1, 3),
@@ -67,6 +68,8 @@ void main() {
     (5, 6),
     (1, 7),
     (6, 7),
+    (1, 8),
+    (7, 8),
   ]) {
     test('une base v$from monte en v$to', () async {
       final verifier = SchemaVerifier(GeneratedHelper());

@@ -5726,6 +5726,191 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sizeMedium => 'Moyenne (M)';
 
   @override
+  String get classHitDieField => 'Dé de vie';
+
+  @override
+  String get classPrimaryAbilities => 'Caractéristiques principales';
+
+  @override
+  String get classPrimaryAny => 'L’une d’elles suffit pour le multiclassage';
+
+  @override
+  String get classSavingThrows => 'Jets de sauvegarde maîtrisés';
+
+  @override
+  String get classSkillCount => 'Compétences à choisir (nombre)';
+
+  @override
+  String get classSkillChoices => 'Compétences proposées';
+
+  @override
+  String get classWeapons => 'Armes maîtrisées';
+
+  @override
+  String get classArmor => 'Formation aux armures';
+
+  @override
+  String get classTools => 'Outils maîtrisés';
+
+  @override
+  String get classStartingGold => 'Équipement de départ : or (po)';
+
+  @override
+  String get classStartingEquipmentKept =>
+      'Équipement de départ repris de l’original.';
+
+  @override
+  String get classSubclassTitle => 'Sous-classe';
+
+  @override
+  String get classSubclassLevel => 'Niveau où l’on choisit la sous-classe';
+
+  @override
+  String get classSubclassLevels => 'Niveaux des aptitudes de sous-classe';
+
+  @override
+  String get classSubclassLevelsHint =>
+      'À ces niveaux, une sous-classe de cette classe accorde au moins une aptitude.';
+
+  @override
+  String get classSpellcasting => 'Incantation';
+
+  @override
+  String get classSpellcastingAbility => 'Caractéristique d’incantation';
+
+  @override
+  String get classNoSpellcasting => 'Aucune (pas de sorts)';
+
+  @override
+  String get classPreparedChange => 'Changer ses sorts préparés';
+
+  @override
+  String get classPreparedLongRestAll => 'Tous, après un Repos long';
+
+  @override
+  String get classPreparedLongRestOne => 'Un seul, après un Repos long';
+
+  @override
+  String get classPreparedLevelUpOne => 'Un seul, en gagnant un niveau';
+
+  @override
+  String get classSlotsLike => 'Reprendre les emplacements et sorts connus de…';
+
+  @override
+  String get classSpellListLike => 'Reprendre la liste de sorts de…';
+
+  @override
+  String classSpellListCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sorts dans la liste',
+      one: '1 sort dans la liste',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get classCasterDivisor => 'Niveau de lanceur en multiclassage';
+
+  @override
+  String get classCasterNone => 'Ne compte pas';
+
+  @override
+  String get classCasterFull => 'Tous les niveaux de la classe';
+
+  @override
+  String get classCasterHalf => 'La moitié des niveaux';
+
+  @override
+  String get classMulticlassTitle => 'En multiclassage';
+
+  @override
+  String get classColumnsTitle => 'Colonnes de la table';
+
+  @override
+  String get classColumnAdd => 'Ajouter une colonne';
+
+  @override
+  String get classColumnName => 'Nom de la colonne';
+
+  @override
+  String get classColumnRemove => 'Retirer la colonne';
+
+  @override
+  String get classColumnCantrips => 'Sorts mineurs';
+
+  @override
+  String get classColumnPrepared => 'Sorts préparés';
+
+  @override
+  String classColumnSlots(int level) {
+    return 'Emplacements de niveau $level';
+  }
+
+  @override
+  String get classColumnPactSlots => 'Emplacements de pacte';
+
+  @override
+  String get classColumnPactLevel => 'Niveau des emplacements de pacte';
+
+  @override
+  String get classProgressionTitle => 'Aptitudes par niveau';
+
+  @override
+  String classLevelHeader(int level, int bonus) {
+    return 'Niveau $level · bonus de maîtrise +$bonus';
+  }
+
+  @override
+  String get classSubclassFeatureHere => 'Aptitude de sous-classe';
+
+  @override
+  String classFeatureAdd(int level) {
+    return 'Ajouter une aptitude au niveau $level';
+  }
+
+  @override
+  String classFeatureTitle(int level, String owner) {
+    return 'Niveau $level · $owner';
+  }
+
+  @override
+  String get classFeatureSave => 'Enregistrer l’aptitude';
+
+  @override
+  String get classFeatureSrd => 'Aptitude du SRD';
+
+  @override
+  String get classFeatureRemove => 'Retirer l’aptitude';
+
+  @override
+  String get subclassParent => 'Classe parente';
+
+  @override
+  String subclassLevelsOf(String name, String levels) {
+    return 'Niveaux de sous-classe de la classe $name : $levels';
+  }
+
+  @override
+  String subclassLevel(int level) {
+    return 'Niveau $level';
+  }
+
+  @override
+  String subclassWrongLevel(String name, int level) {
+    return 'La classe $name n’accorde pas d’aptitude de sous-classe au niveau $level.';
+  }
+
+  @override
+  String subclassMoveTo(int level) {
+    return 'Déplacer au niveau $level';
+  }
+
+  @override
+  String get subclassOtherLevel => 'Autre niveau…';
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override
