@@ -32,6 +32,9 @@ final class PackManifest {
     this.dependencies = const [],
     this.entityCount,
     this.checksum,
+    this.description,
+    this.authorPublicKey,
+    this.signature,
   });
 
   static const format = 'dndpack';
@@ -53,6 +56,43 @@ final class PackManifest {
   final int? entityCount;
   final String? checksum;
 
+  /// Description du pack (EF-HB-04).
+  final String? description;
+
+  /// Clé publique Ed25519 de l'auteur, en base64 (EF-HB-05).
+  final String? authorPublicKey;
+
+  /// Signature Ed25519, en base64, du manifeste sans ce champ.
+  final String? signature;
+
+  /// Copie du manifeste ; [clearSignature] retire la signature.
+  PackManifest copyWith({
+    String? version,
+    String? licence,
+    String? description,
+    PackOrigin? origin,
+    String? authorPublicKey,
+    String? signature,
+    bool clearSignature = false,
+  }) => PackManifest(
+    id: id,
+    namespace: namespace,
+    name: name,
+    version: version ?? this.version,
+    origin: origin ?? this.origin,
+    author: author,
+    licence: licence ?? this.licence,
+    locale: locale,
+    attribution: attribution,
+    dslVersion: dslVersion,
+    dependencies: dependencies,
+    entityCount: entityCount,
+    checksum: checksum,
+    description: description ?? this.description,
+    authorPublicKey: authorPublicKey ?? this.authorPublicKey,
+    signature: clearSignature ? null : signature ?? this.signature,
+  );
+
   PackManifest withContent({
     required int entityCount,
     required String checksum,
@@ -70,6 +110,9 @@ final class PackManifest {
     dependencies: dependencies,
     entityCount: entityCount,
     checksum: checksum,
+    description: description,
+    authorPublicKey: authorPublicKey,
+    signature: signature,
   );
 
   Map<String, Object?> toJson() => {
@@ -82,6 +125,7 @@ final class PackManifest {
     'origin': origin.name,
     'author': author,
     'licence': licence,
+    if (description != null) 'description': description,
     if (attribution != null) 'attribution': attribution,
     'dsl_version': dslVersion,
     'locale': locale,
@@ -91,6 +135,8 @@ final class PackManifest {
     ],
     if (entityCount != null) 'entity_count': entityCount,
     if (checksum != null) 'checksum': checksum,
+    if (authorPublicKey != null) 'author_public_key': authorPublicKey,
+    if (signature != null) 'signature': signature,
   };
 
   static final _fields = {
@@ -139,6 +185,13 @@ final class PackManifest {
     'checksum': FieldSpec(
       patternField(RegExp(r'^sha256:[0-9a-f]{64}$'), 'sha256:<hex>'),
     ),
+    'description': FieldSpec(stringField()),
+    'author_public_key': FieldSpec(
+      patternField(RegExp(r'^[A-Za-z0-9+/]{43}=$'), 'clé Ed25519 en base64'),
+    ),
+    'signature': FieldSpec(
+      patternField(RegExp(r'^[A-Za-z0-9+/]{86}==$'), 'signature Ed25519'),
+    ),
   };
 
   /// Lit un manifeste ; problèmes non vides si le manifeste est invalide.
@@ -176,6 +229,9 @@ final class PackManifest {
         ],
         entityCount: json['entity_count'] as int?,
         checksum: json['checksum'] as String?,
+        description: json['description'] as String?,
+        authorPublicKey: json['author_public_key'] as String?,
+        signature: json['signature'] as String?,
       ),
       issues: const [],
     );

@@ -1,6 +1,7 @@
 /// Base locale Drift : tables, migrations, import/export.
 library;
 
+export 'src/author_key_store.dart';
 export 'src/character_store.dart';
 export 'src/combat_store.dart';
 export 'src/combat_view_store.dart';

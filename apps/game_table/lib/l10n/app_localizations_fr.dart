@@ -6214,6 +6214,140 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sandboxSame => 'inchangé';
 
   @override
+  String get publishTitle => 'Publier une version';
+
+  @override
+  String publishFirst(String version) {
+    return 'Première version : $version';
+  }
+
+  @override
+  String publishFromTo(String from, String to) {
+    return '$from → $to';
+  }
+
+  @override
+  String get publishDescription => 'Description';
+
+  @override
+  String get publishLicence => 'Licence';
+
+  @override
+  String get publishAuthor => 'Auteur · signature';
+
+  @override
+  String publishAuthorValue(String author) {
+    return '$author · clé de cet appareil';
+  }
+
+  @override
+  String get publishBump => 'Type de version';
+
+  @override
+  String get publishPatch => 'Correctif';
+
+  @override
+  String get publishPatchHint =>
+      'Corrections de texte, sans effet sur les règles';
+
+  @override
+  String get publishMinor => 'Mineure';
+
+  @override
+  String get publishMinorHint =>
+      'Ajouts et réglages compatibles avec les fiches';
+
+  @override
+  String get publishMajor => 'Majeure';
+
+  @override
+  String get publishMajorHint => 'Changements qui peuvent invalider des fiches';
+
+  @override
+  String publishChangesSince(String version) {
+    return 'Changements depuis $version';
+  }
+
+  @override
+  String get publishNoChange => 'Aucun changement depuis cette version.';
+
+  @override
+  String get publishAdded => 'AJOUTÉ';
+
+  @override
+  String get publishModified => 'MODIFIÉ';
+
+  @override
+  String get publishRemoved => 'RETIRÉ';
+
+  @override
+  String get publishAttestation =>
+      'J’atteste que ce contenu est original ou libre de droits, et que je peux le partager sous la licence choisie.';
+
+  @override
+  String get publishChecks => 'Contrôles';
+
+  @override
+  String get publishSize => 'Taille';
+
+  @override
+  String publishSizeValue(String size) {
+    return '$size / 20 Mo';
+  }
+
+  @override
+  String get publishEntities => 'Entités';
+
+  @override
+  String publishEntitiesValue(int count) {
+    return '$count / 10 000';
+  }
+
+  @override
+  String get publishRules => 'Règles validées';
+
+  @override
+  String publishRulesValue(int ok, int total) {
+    return '$ok / $total';
+  }
+
+  @override
+  String get publishDependency => 'Dépendance';
+
+  @override
+  String publishBlocked(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count problèmes de la vérification à corriger avant de publier.',
+      one: '1 problème de la vérification à corriger avant de publier.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String publishButton(String version) {
+    return 'Publier la version $version';
+  }
+
+  @override
+  String publishExport(String version) {
+    return 'Exporter le .dndpack signé ($version)';
+  }
+
+  @override
+  String get publishExportNone => 'Exporter le .dndpack signé';
+
+  @override
+  String get publishExportHint =>
+      'L’export ouvre la feuille de partage du système. Il fonctionne aussi hors-ligne.';
+
+  @override
+  String publishDone(String version) {
+    return 'Version $version publiée et signée.';
+  }
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override

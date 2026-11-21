@@ -12,6 +12,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'entity_editor.dart';
+import 'publish_page.dart';
 
 /// Seule voie d'écriture des brouillons (cahier §10).
 final homebrewStoreProvider = Provider<HomebrewStore>(
@@ -436,6 +437,17 @@ class PackPage extends ConsumerWidget {
                 subtitle: Text(where(issue)),
               ),
           Text(l10n.homebrewCheckHint, style: text.bodySmall),
+          SizedBox(height: AppSpacing.md),
+          FilledButton.icon(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                fullscreenDialog: true,
+                builder: (_) => PublishPage(draftId: id),
+              ),
+            ),
+            icon: const Icon(Icons.publish_outlined),
+            label: Text(l10n.publishTitle),
+          ),
         ],
       ),
     );

@@ -9912,6 +9912,210 @@ abstract class AppLocalizations {
   /// **'inchangé'**
   String get sandboxSame;
 
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier une version'**
+  String get publishTitle;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Première version : {version}'**
+  String publishFirst(String version);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{from} → {to}'**
+  String publishFromTo(String from, String to);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get publishDescription;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Licence'**
+  String get publishLicence;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Auteur · signature'**
+  String get publishAuthor;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{author} · clé de cet appareil'**
+  String publishAuthorValue(String author);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de version'**
+  String get publishBump;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Correctif'**
+  String get publishPatch;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrections de texte, sans effet sur les règles'**
+  String get publishPatchHint;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Mineure'**
+  String get publishMinor;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouts et réglages compatibles avec les fiches'**
+  String get publishMinorHint;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Majeure'**
+  String get publishMajor;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changements qui peuvent invalider des fiches'**
+  String get publishMajorHint;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changements depuis {version}'**
+  String publishChangesSince(String version);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun changement depuis cette version.'**
+  String get publishNoChange;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'AJOUTÉ'**
+  String get publishAdded;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'MODIFIÉ'**
+  String get publishModified;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'RETIRÉ'**
+  String get publishRemoved;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'J’atteste que ce contenu est original ou libre de droits, et que je peux le partager sous la licence choisie.'**
+  String get publishAttestation;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contrôles'**
+  String get publishChecks;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Taille'**
+  String get publishSize;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{size} / 20 Mo'**
+  String publishSizeValue(String size);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Entités'**
+  String get publishEntities;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} / 10 000'**
+  String publishEntitiesValue(int count);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Règles validées'**
+  String get publishRules;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{ok} / {total}'**
+  String publishRulesValue(int ok, int total);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dépendance'**
+  String get publishDependency;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 problème de la vérification à corriger avant de publier.} other{{count} problèmes de la vérification à corriger avant de publier.}}'**
+  String publishBlocked(int count);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier la version {version}'**
+  String publishButton(String version);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Exporter le .dndpack signé ({version})'**
+  String publishExport(String version);
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Exporter le .dndpack signé'**
+  String get publishExportNone;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’export ouvre la feuille de partage du système. Il fonctionne aussi hors-ligne.'**
+  String get publishExportHint;
+
+  /// Publication d'un pack (US-29, EF-HB-04, EF-HB-05, [H06]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Version {version} publiée et signée.'**
+  String publishDone(String version);
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:

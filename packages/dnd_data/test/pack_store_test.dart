@@ -157,6 +157,31 @@ void main() {
       );
     });
 
+    test('pack signé : description, clé et signature gardées', () async {
+      final seed = await AuthorKeyStore(db).seed();
+      final signed = await signPack(
+        const ContentPack(
+          manifest: PackManifest(
+            id: '00000000-0000-0000-0000-000000000029',
+            namespace: 'hb',
+            name: 'Gardiens',
+            version: '0.1.0',
+            origin: PackOrigin.local,
+            author: 'Inès',
+            licence: 'CC-BY-4.0',
+            locale: 'fr',
+            description: 'Les veilleurs des Marches.',
+          ),
+          entities: [],
+        ),
+        await authorKeyPair(seed),
+      );
+      await store.importPack(signed);
+      final exported = (await store.exportPack(signed.manifest.id))!;
+      expect(exported.manifest.toJson(), signed.manifest.toJson());
+      expect(await verifyPackSignature(exported.manifest), isTrue);
+    });
+
     test('réimport : aucune entité en double', () async {
       await store.importPack(srdPack);
       await store.importPack(srdPack);

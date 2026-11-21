@@ -1,6 +1,8 @@
 // Brouillons homebrew (US-27, EF-HB-01, EF-HB-11) : un pack en cours
 // d'édition, en JSON brut, et ses problèmes, qui bloquent la publication
 // sans bloquer l'enregistrement.
+import 'dart:convert';
+
 import '../content_issue.dart';
 import '../entities/content_entity.dart';
 import '../entities/entity_data.dart';
@@ -244,4 +246,55 @@ List<ContentIssue> _subclassRules(
     }
   }
   return issues;
+}
+
+/// Type d'une nouvelle version (EF-HB-11).
+enum VersionBump {
+  /// Texte seulement : 2.1.0 → 2.1.1.
+  patch,
+
+  /// Ajouts compatibles : 2.1.0 → 2.2.0.
+  minor,
+
+  /// Peut invalider des fiches : 2.1.0 → 3.0.0.
+  major,
+}
+
+/// Version qui suit [version] pour un changement [bump].
+String nextVersion(String version, VersionBump bump) {
+  final [major, minor, patch] = [
+    for (final n in version.split('.')) int.parse(n),
+  ];
+  return switch (bump) {
+    VersionBump.patch => '$major.$minor.${patch + 1}',
+    VersionBump.minor => '$major.${minor + 1}.0',
+    VersionBump.major => '${major + 1}.0.0',
+  };
+}
+
+/// Entités ajoutées, modifiées et retirées de [previous] à [next], dans
+/// l'ordre de [next] puis de [previous].
+({
+  List<ContentEntity> added,
+  List<ContentEntity> modified,
+  List<ContentEntity> removed,
+})
+packChanges(List<ContentEntity> previous, List<ContentEntity> next) {
+  final before = {for (final e in previous) '${e.id}': e};
+  final after = {for (final e in next) '${e.id}': e};
+  String json(ContentEntity e) => jsonEncode(e.toJson());
+  return (
+    added: [
+      for (final e in next)
+        if (!before.containsKey('${e.id}')) e,
+    ],
+    modified: [
+      for (final e in next)
+        if (before['${e.id}'] case final old? when json(old) != json(e)) e,
+    ],
+    removed: [
+      for (final e in previous)
+        if (!after.containsKey('${e.id}')) e,
+    ],
+  );
 }

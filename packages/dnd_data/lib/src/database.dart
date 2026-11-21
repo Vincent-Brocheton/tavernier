@@ -82,6 +82,7 @@ part 'database.g.dart';
     Notes,
     HomebrewDrafts,
     AuthorIdentities,
+    AuthorKeys,
   ],
   include: {'content_search.drift'},
 )
@@ -107,7 +108,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -154,6 +155,13 @@ class TavernierDatabase extends _$TavernierDatabase {
       // v8 (US-27 lot c) : niveaux des aptitudes de sous-classe.
       if (from < 8 && to >= 8) {
         await m.addColumn(classes, classes.subclassFeatureLevels);
+      }
+      // v9 (US-29) : clé de l'auteur, locale même sous PowerSync ;
+      // description et signature d'un pack.
+      if (from < 9 && to >= 9) {
+        await m.createTable(authorKeys);
+        await m.addColumn(contentPacks, contentPacks.description);
+        await m.addColumn(contentPacks, contentPacks.authorPublicKey);
       }
     },
     beforeOpen: (details) async {

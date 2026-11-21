@@ -52,6 +52,7 @@ void main() {
       'player_class',
       'monster',
       'author_identity',
+      'author_key',
     ]) {
       expect(tables, isNot(contains(content)), reason: content);
     }
