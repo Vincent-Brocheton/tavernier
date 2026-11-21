@@ -116,3 +116,36 @@ L'éditeur de Sous-classe ([H02]) SHALL demander la classe parente et rappeler s
 #### Scenario: Hache d'armes peu courante
 - **WHEN** l'auteur dérive la Hache d'armes, la nomme « Hache des Marches », la rend peu courante et demande l'harmonisation
 - **THEN** l'entité `…:weapon:hache-des-marches` garde la botte Renversement et cite `srd:weapon:battleaxe`, et la Hache d'armes du SRD n'a toujours pas de rareté
+
+### Requirement: Éditeur de Monstre
+L'éditeur de Monstre SHALL proposer le profil de jeu complet :
+- tailles, type, précision du type et alignement ;
+- CA, Initiative, dés de vie, Vitesses ;
+- les six caractéristiques, JS et compétences maîtrisés ;
+- vulnérabilités, résistances et immunités ; sens et langues ;
+- FP, traits et actions (attaque, sauvegarde, usages), actions Légendaires ;
+- informations d'Étude par palier.
+
+Il SHALL calculer, avec les tables du SRD de `dnd_content` :
+- les PX et le bonus de maîtrise du FP ;
+- les PV moyens des dés de vie ;
+- les JS et les compétences, depuis les caractéristiques et les maîtrises ;
+- la Perception passive ;
+- les dégâts moyens d'une attaque.
+
+La CA SHALL être calculée depuis l'armure portée, la Dextérité et le bouclier, avec sa formule affichée ; une CA naturelle porte un libellé. Un monstre sans Intelligence SHALL être signalé par la vérification (DD d'Influence).
+
+#### Scenario: Loup des brumes
+- **WHEN** l'auteur crée un monstre de Dextérité 15, en armure de cuir clouté avec un bouclier, de dés de vie 2d8 + 2, FP 1/4, maîtrisant la Perception, avec une Morsure de 1d6 + 2 perforants et un palier d'Étude de DD 10
+- **THEN** le monstre a une CA de 16 (« Armure de cuir clouté, Bouclier »), 11 PV, 50 PX, un bonus de maîtrise de +2, Perception +2 et une Perception passive de 12, une Morsure de 5 dégâts moyens, et la vérification indique « Prêt à publier »
+
+#### Scenario: Intelligence manquante
+- **WHEN** un monstre n'a pas de valeur d'Intelligence
+- **THEN** la vérification indique « un monstre a une valeur d’Intelligence (DD d’Influence) »
+
+### Requirement: Paliers d'Étude d'un monstre
+Un PNJ créé depuis un monstre SHALL recevoir ses paliers d'Étude en informations cachées, non révélées. L'assistant d'Étude SHALL lire les paliers d'un monstre en combat qui n'a pas de PNJ.
+
+#### Scenario: PNJ d'un monstre homebrew
+- **WHEN** le MJ crée « Grisaille » depuis le Loup des brumes, qui a deux paliers d'Étude
+- **THEN** le PNJ a ces deux informations cachées, à leur DD, non révélées

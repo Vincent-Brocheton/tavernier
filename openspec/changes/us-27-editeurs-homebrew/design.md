@@ -136,10 +136,48 @@ Non proposés :
 
 Une variante garde ces deux champs de l'original.
 
-## Lots suivants
+## Lot d : Monstre
 
-Son design se précise à son tour, dans ce change :
-- **d** : Monstre.
+### Format et base
+
+- **`MonsterData.studyReveals`** (`study_reveals`, liste de `StudyReveal {dc, text}`, vide par défaut).
+- **`validatePack`** : un DD par palier, au moins 1, et un texte.
+- **Base** : `stat_block` garde déjà le profil entier, donc l'export relit le champ sans changement. L'import écrit aussi chaque palier dans `study_reveal` (cahier §11), comme `monster_action` indexe les actions. La table existe déjà, donc pas de migration ; elle part avec le pack, par la cascade.
+- **Tables du SRD exposées** par `dnd_content` pour l'éditeur : `xpByChallenge`, `proficiencyBonusOfChallenge`, `averageOfDice`. `validatePack` s'en sert déjà.
+
+### Vérification
+
+`checkDraft` ajoute, sur le JSON brut : « un monstre a une valeur d’Intelligence (DD d’Influence) ». Le reste vient des contrôles du SRD (PX, BM, PV moyens, JS, Perception passive, dégâts moyens), qui s'appliquent au homebrew.
+
+### App
+
+- **`monster_editor.dart`** (partie d'`entity_editor.dart`) : le profil, saisi par sections.
+- **Valeurs calculées à l'enregistrement** :
+  - **JS et compétences** : modificateur, plus le BM s'ils sont maîtrisés. À la réouverture, une maîtrise se reconnaît à sa valeur.
+  - **Perception passive** : 10 + Perception (ou le modificateur de Sagesse).
+  - **FP** : PX et BM.
+  - **PV** : moyenne des dés de vie.
+  - **Initiative** : vide, elle vaut le modificateur de Dextérité.
+  - **CA portée** : armure de base + Dextérité dans sa limite + bouclier. Sa formule va dans `ac_note`, et l'armure se retrouve par son nom à la réouverture.
+  - **CA naturelle** : valeur et libellé saisis.
+- **Trait ou action** : une feuille par action, avec :
+  - section, nom, texte ;
+  - usages par jour ou recharge ;
+  - jet d'attaque : corps à corps et allonge, ou distance et portées ; bonus ; dégâts et leur type, la moyenne étant calculée ;
+  - jet de sauvegarde.
+- **Paliers d'Étude** : DD et texte, triés par DD.
+- **PNJ** : la création depuis un monstre copie ses paliers en `hiddenInfo`.
+- **Assistant d'Étude** : sans PNJ, il lit les paliers du monstre. Leur révélation reste dans le journal du combat.
+- **Formulaires en dialogue** (`_FieldsDialog`) : ils gardent leurs contrôleurs jusqu'à la fin de leur animation de fermeture. Cela corrige l'ajout d'une colonne de classe du lot c, qui les libérait trop tôt.
+
+Non proposés :
+- PX et usages d'antre ;
+- taille d'une nuée ;
+- note de Vitesse ou de sens ;
+- équipement ;
+- plusieurs lignes de dégâts par attaque.
+
+Une variante du SRD les garde de l'original.
 
 ## Choix
 

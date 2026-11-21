@@ -657,6 +657,17 @@ abstract class MonsterAction with _$MonsterAction {
       _$MonsterActionFromJson(json);
 }
 
+/// Palier d'Étude d'un monstre (homebrew, US-27) : ce qu'apprend un test
+/// d'Étude d'au moins [dc].
+@freezed
+abstract class StudyReveal with _$StudyReveal {
+  const factory StudyReveal({required int dc, required String text}) =
+      _StudyReveal;
+
+  factory StudyReveal.fromJson(Map<String, dynamic> json) =>
+      _$StudyRevealFromJson(json);
+}
+
 /// Profil de jeu (cahier §11.1 `monster`), recopié tel qu'imprimé : rien
 /// n'est recalculé.
 @freezed
@@ -714,6 +725,9 @@ abstract class MonsterData with _$MonsterData implements EntityData {
     int? legendaryUses,
     int? legendaryUsesLair,
     @Default(<MonsterAction>[]) List<MonsterAction> actions,
+
+    /// Informations d'Étude par palier, du DD le plus bas au plus haut.
+    @Default(<StudyReveal>[]) List<StudyReveal> studyReveals,
   }) = _MonsterData;
 
   factory MonsterData.fromJson(Map<String, dynamic> json) =>

@@ -239,7 +239,17 @@ class _StudyState extends ConsumerState<_Study> {
         skills.firstOrNull;
     final bonus = skill == null ? 0 : skillBonus(sheet, skill);
     final total = _dice == null ? null : _dice! + bonus;
-    final tiers = npc?.hiddenInfo ?? const <HiddenInfo>[];
+    // Sans PNJ, les paliers d'Étude du monstre lui-même.
+    final tiers =
+        npc?.hiddenInfo ??
+        switch (target == null
+            ? null
+            : monsterOfCombatant(content, npcs, target)) {
+          final MonsterData m => [
+            for (final r in m.studyReveals) HiddenInfo(dc: r.dc, text: r.text),
+          ],
+          _ => const <HiddenInfo>[],
+        };
     final reached = total == null
         ? const <int>[]
         : [

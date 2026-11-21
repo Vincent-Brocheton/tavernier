@@ -147,6 +147,7 @@ Map<String, Object?> wolf({
             'text': 'Corps à corps : +4, allonge 1,50 m. Touché : 5 (1d6 + 2)…',
           },
         ],
+    'study_reveals': <Object?>[],
     ...data,
   },
 };

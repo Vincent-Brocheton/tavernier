@@ -38,7 +38,7 @@ const entityTypes = [
   'monster',
 ];
 
-/// Types dont l'éditeur est livré (lots a à c).
+/// Types dont l'éditeur est livré : tous (lots a à d).
 const editableTypes = {
   'feat',
   'background',
@@ -47,6 +47,7 @@ const editableTypes = {
   'subclass',
   'spell',
   'item',
+  'monster',
 };
 
 /// Le type de [H01] d'un type d'entité : arme, armure, objet magique et
@@ -72,6 +73,7 @@ const derivableTypes = {
   'armor',
   'magic-item',
   'item',
+  'monster',
 };
 
 String typeLabel(AppLocalizations l10n, String type) =>

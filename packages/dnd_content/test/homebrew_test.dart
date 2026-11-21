@@ -242,6 +242,44 @@ void main() {
     );
   });
 
+  test('Monstre : Intelligence obligatoire, un DD par palier d’Étude', () {
+    Map<String, Object?> monster(Map<String, Object?> data) {
+      final base = wolf(
+        actions: const [],
+        data: {
+          'skills': {'srd:skill:perception': 5},
+          ...data,
+        },
+      );
+      return {...base, 'id': 'gardiens:monster:loup-des-brumes'};
+    }
+
+    List<String> messages(Map<String, Object?> data) => [
+      for (final i in checkDraft(manifest, [monster(data)], dependencies: srd))
+        i.message,
+    ];
+    const reveals = [
+      {'dc': 10, 'text': 'Il chasse en meute.'},
+      {'dc': 15, 'text': 'La brume le cache.'},
+    ];
+    expect(messages({'study_reveals': reveals}), isEmpty);
+    expect(
+      messages({
+        'abilities': {'str': 14, 'dex': 15, 'con': 12, 'wis': 12, 'cha': 6},
+      }),
+      contains('un monstre a une valeur d’Intelligence (DD d’Influence)'),
+    );
+    expect(
+      messages({
+        'study_reveals': [
+          ...reveals,
+          {'dc': 15, 'text': 'Autre chose.'},
+        ],
+      }),
+      ['palier d’Étude : un DD par palier, et un texte'],
+    );
+  });
+
   test('identifiants : slug sans accents, unique dans le pack', () {
     expect(slugOf('Gardiens des Marches'), 'gardiens-des-marches');
     expect(

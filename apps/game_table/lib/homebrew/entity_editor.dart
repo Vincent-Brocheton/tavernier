@@ -2,10 +2,12 @@
 // texte, effets) et formulaire du type, avec les contraintes 2024 (cahier
 // §7.1). Lot a : Don et Historique ; lot b : Sort, Objet ([H05]), variante
 // d'une entité du SRD (EF-HB-02) et Espèce ; lot c : Classe et Sous-classe
-// ([H02], EF-HB-11). Les traits d'une espèce et les aptitudes d'une classe
+// ([H02], EF-HB-11) ; lot d : Monstre. Les traits d'une espèce et les aptitudes d'une classe
 // ou d'une sous-classe sont des entités `feature` du pack, de source leur
 // propriétaire. Un brouillon incomplet s'enregistre ; la
 // vérification du pack dit ce qui manque pour publier.
+import 'dart:math';
+
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
@@ -21,6 +23,7 @@ import 'effect_editor.dart';
 import 'homebrew_page.dart';
 
 part 'class_editor.dart';
+part 'monster_editor.dart';
 
 /// Ouvre l'éditeur d'une entité [type] de [draft] ; neuve sans identifiant
 /// dans [entity] (une variante arrive sans identifiant, avec `extends_id`).
@@ -60,6 +63,14 @@ Map<String, Object?> _defaults(String type) => switch (type) {
     'armor_training': <Object?>[],
     'subclass_level': 3,
     'subclass_feature_levels': [3],
+  },
+  'monster' => {
+    'sizes': ['medium'],
+    'creature_type': 'beast',
+    'abilities': {for (final k in monsterAbilityKeys) k: 10},
+    'speed': {'walk': 30},
+    'hover': false,
+    'cr': '1',
   },
   _ => {},
 };
@@ -173,6 +184,15 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
   bool _ownFeature(Map<String, Object?> e, String ownerId) =>
       e['type'] == 'feature' && (e['data'] as Map?)?['source'] == ownerId;
 
+  /// Monstre : JS et compétences maîtrisés, armure portée (`null` : CA
+  /// naturelle) et bouclier ; les valeurs se recalculent à l'enregistrement.
+  late final Set<String> _proficientSaves = _initialProficientSaves();
+  late final Set<String> _proficientSkills = {
+    for (final k in ((_data['skills'] as Map?) ?? const {}).keys) '$k',
+  };
+  late String? _acArmor = _initialArmor().$1;
+  late bool _acShield = _initialArmor().$2;
+
   /// `setState` pour les formulaires de `class_editor.dart`.
   void _update(VoidCallback change) => setState(change);
 
@@ -206,7 +226,8 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
     'item' ||
     'species' ||
     'class' ||
-    'subclass' => false,
+    'subclass' ||
+    'monster' => false,
     'weapon' || 'armor' => _data['rarity'] != null,
     _ => true,
   };
@@ -255,6 +276,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
         'features': [
           for (final (_, f) in [...placed]..sort((a, b) => a.$1 - b.$1)) f,
         ],
+      if (_type == 'monster') ..._monsterComputed(content!),
       if (_type == 'class')
         'levels': [
           for (var level = 1; level <= 20; level++)
@@ -457,6 +479,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
                 'species' => _species(l10n, content),
                 'class' => _class(l10n, content),
                 'subclass' => _subclass(l10n, content),
+                'monster' => _monster(l10n, content),
                 _ => const <Widget>[],
               }) ...[field, SizedBox(height: AppSpacing.sm)],
             ],
@@ -1094,6 +1117,69 @@ class _FeaturePageState extends State<_FeaturePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Petit formulaire en dialogue : ses champs (libellé, numérique) ; rend
+/// leurs textes, ou `null` à l'annulation. Il garde ses contrôleurs jusqu'à
+/// la fin de son animation de fermeture.
+class _FieldsDialog extends StatefulWidget {
+  const _FieldsDialog({required this.title, required this.fields});
+
+  final String title;
+  final List<(String, bool)> fields;
+
+  @override
+  State<_FieldsDialog> createState() => _FieldsDialogState();
+}
+
+class _FieldsDialogState extends State<_FieldsDialog> {
+  late final _controllers = [
+    for (final _ in widget.fields) TextEditingController(),
+  ];
+
+  @override
+  void dispose() {
+    for (final c in _controllers) {
+      c.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return AlertDialog(
+      title: Text(widget.title),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (final (i, (label, numeric)) in widget.fields.indexed)
+            TextField(
+              controller: _controllers[i],
+              autofocus: i == 0,
+              keyboardType: numeric ? TextInputType.number : null,
+              inputFormatters: numeric
+                  ? [FilteringTextInputFormatter.digitsOnly]
+                  : null,
+              minLines: 1,
+              maxLines: numeric ? 1 : null,
+              decoration: InputDecoration(labelText: label),
+            ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: () =>
+              Navigator.pop(context, [for (final c in _controllers) c.text]),
+          child: Text(widget.title),
+        ),
+      ],
     );
   }
 }

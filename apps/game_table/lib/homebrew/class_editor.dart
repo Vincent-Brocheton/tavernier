@@ -338,30 +338,14 @@ extension _ClassForms on _EntityEditorState {
   }
 
   Future<void> _addColumn(AppLocalizations l10n) async {
-    final controller = TextEditingController();
-    final name = await showDialog<String>(
+    final values = await showDialog<List<String>>(
       context: context,
-      builder: (dialog) => AlertDialog(
-        title: Text(l10n.classColumnAdd),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: InputDecoration(labelText: l10n.classColumnName),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialog),
-            child: Text(l10n.cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(dialog, controller.text),
-            child: Text(l10n.classColumnAdd),
-          ),
-        ],
+      builder: (_) => _FieldsDialog(
+        title: l10n.classColumnAdd,
+        fields: [(l10n.classColumnName, false)],
       ),
     );
-    controller.dispose();
-    final key = slugOf(name ?? '').replaceAll('-', '_');
+    final key = slugOf(values?.single ?? '').replaceAll('-', '_');
     if (key.isEmpty || _columns.containsKey(key)) return;
     _update(() => _columns[key] = List<int?>.filled(20, null));
     await _editColumn(l10n, key);

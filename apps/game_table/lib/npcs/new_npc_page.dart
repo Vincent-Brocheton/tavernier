@@ -67,6 +67,14 @@ class _NewNpcPageState extends ConsumerState<NewNpcPage> {
           folder: folder.isEmpty ? null : folder,
           monsterId: '${_monster!.id}',
           attitude: _attitude,
+          // Les paliers d'Étude du monstre deviennent ses informations
+          // cachées.
+          hiddenInfo: switch (_monster!.data) {
+            MonsterData(:final studyReveals) => [
+              for (final r in studyReveals) HiddenInfo(dc: r.dc, text: r.text),
+            ],
+            _ => const [],
+          },
         );
     if (mounted) {
       context.pushReplacement('/tables/${widget.tableId}/pnj/$id');
