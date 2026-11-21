@@ -13,8 +13,12 @@
 - [x] 2.2 Tests puis format : `rarity` et `attunement` des armes et armures, `classes` des sorts ; base v7
 - [x] 2.3 Tests puis moteur : effets d'un objet équipé, `ActiveContent.spellList`
 - [x] 2.4 Éditeurs de Sort et d'Objet [H05], variante d'une entité SRD
-- [ ] 2.5 Suite complète, revue, PR du lot b1
-- [ ] 2.6 Lot b2 : Espèce et opérations imbriquées de l'éditeur d'effets
+- [x] 2.5 Suite complète, revue, PR du lot b1
+- [x] 2.6 Specs et design du lot b2
+- [x] 2.7 Tests puis `checkDraft` : taille d'une espèce
+- [x] 2.8 Tests puis éditeur d'effets : les douze opérations restantes, la valeur et « À partir du niveau »
+- [x] 2.9 Tests puis éditeur d'Espèce, ses traits et sa variante
+- [ ] 2.10 Suite complète, revue, PR du lot b2
 
 ## 3. Lot c : Classe et Sous-classe
 

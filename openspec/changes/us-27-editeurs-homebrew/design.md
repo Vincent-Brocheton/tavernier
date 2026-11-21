@@ -62,10 +62,36 @@ Une entité homebrew reçoit l'identifiant `{namespace}:{type}:{slug}`, où le s
   - l'éditeur rappelle que l'original n'est pas modifié ;
   - une arme dérivée sans botte propose de reprendre celle de l'original.
 
+## Lot b2 : Espèce, opérations imbriquées
+
+### Espèce
+
+- **Formulaire** : type de créature, tailles (P, M), Vitesse en pieds, et les traits. Pas de bonus de caractéristique : il vient de l'Historique.
+- **Traits** : chacun est une entité `feature` du brouillon, de `source` l'espèce et de `level` 1. L'éditeur d'Espèce les garde avec lui, dans une feuille par trait (nom, texte, effets), et les enregistre avec l'espèce :
+  - identifiant `{namespace}:feature:{espèce}-{trait}`, comme `srd:feature:elf-darkvision` ;
+  - un trait retiré quitte le brouillon ; supprimer l'espèce retire ses traits.
+- **Variante** : une espèce dérivée du SRD garde la liste de ses traits SRD, affichés par leur nom ; l'auteur peut en retirer et en ajouter.
+- **Sous-lignée** : un trait à choix (`choice`), comme le Lignage elfique. La création de personnage sait déjà le proposer.
+- **`checkDraft`** : « une espèce a au moins une taille ».
+- Les traits ne sont pas listés à part dans la page du pack : ils vivent dans leur espèce.
+
+### Éditeur d'effets
+
+Toutes les opérations du DSL v1 deviennent éditables. Les douze nouvelles :
+- `grant_feat` (un don précis ou une catégorie), `ac_formula`, `consumable_heal`, `modify_check`, `set_attacks_per_action`, `set_crit_range`, `grant_mastery_slots`, `modify_damage`, `grant_spell_list_access`, `modify_attunement_slots` ;
+- `grant_resource` : maximum, recharges (`on`, `amount`, `up_to`), dé facultatif. Son identifiant `{namespace}:resource:{slug}` vient du nom de l'entité ;
+- `grant_spell` : sort, toujours préparé, lancers gratuits (nombre et recharges), caractéristique ;
+- `choice` : titre, nombre, remplaçable, et des options nommées qui ont chacune leur liste d'effets, éditée par le même éditeur. Son identifiant est `choix-N`, unique dans la liste.
+
+Deux champs communs :
+- **Valeur** : un nombre, le bonus de maîtrise, le niveau du personnage, un niveau de classe, un modificateur de caractéristique (avec minimum), ou une table par niveau. Les références acceptent un multiplicateur. Elle sert partout où le DSL accepte une expression.
+- **« À partir du niveau »** : `when.level`, sur toute opération.
+
+Non proposés, car facultatifs et rares au SRD : le plafond `up_to` d'une récupération, et les portées `cantrip:` et `spell_school:` de `modify_damage`.
+
 ## Lots suivants
 
 Leur design se précise à leur tour, dans ce change :
-- **b2** : Espèce, opérations imbriquées ;
 - **c** : Classe et Sous-classe ;
 - **d** : Monstre.
 

@@ -5286,6 +5286,477 @@ class AppLocalizationsFr extends AppLocalizations {
   String get effectFieldSense => 'Sens';
 
   @override
+  String get opGrantFeat => 'Accorder un don';
+
+  @override
+  String get opAcFormula => 'Formule de Classe d’armure';
+
+  @override
+  String get opModifyCheck => 'Bonus à un jet';
+
+  @override
+  String get opSetAttacks => 'Attaques par action Attaque';
+
+  @override
+  String get opSetCritRange => 'Critique amélioré';
+
+  @override
+  String get opGrantMasterySlots => 'Bottes d’arme';
+
+  @override
+  String get opModifyDamage => 'Dégâts supplémentaires';
+
+  @override
+  String get opGrantResource => 'Ressource à utilisations';
+
+  @override
+  String get opGrantSpell => 'Accorder un sort';
+
+  @override
+  String get opGrantSpellListAccess => 'Sorts d’une autre liste';
+
+  @override
+  String get opConsumableHeal => 'Soins à l’usage';
+
+  @override
+  String get opModifyAttunement => 'Objets harmonisés';
+
+  @override
+  String get opChoice => 'Choix';
+
+  @override
+  String effectWhenLevel(int level) {
+    return 'à partir du niveau $level';
+  }
+
+  @override
+  String effectFeat(String feat) {
+    return 'Don : $feat';
+  }
+
+  @override
+  String effectFeatCategory(String category) {
+    return 'Un don de la catégorie $category';
+  }
+
+  @override
+  String effectAcFormula(String formula, String shield) {
+    String _temp0 = intl.Intl.selectLogic(shield, {
+      'yes': ', bouclier permis',
+      'other': '',
+    });
+    return 'Classe d’armure de $formula$_temp0';
+  }
+
+  @override
+  String effectSpeedEqual(String mode) {
+    return 'Vitesse $mode égale à votre Vitesse au sol';
+  }
+
+  @override
+  String effectCheck(String value, String scope) {
+    return '+$value $scope';
+  }
+
+  @override
+  String effectAttacks(int count) {
+    return '$count attaques quand vous effectuez l’action Attaque';
+  }
+
+  @override
+  String effectCritRange(int min) {
+    return 'Coup critique sur un $min à 20';
+  }
+
+  @override
+  String effectMasterySlots(String count, String melee) {
+    String _temp0 = intl.Intl.selectLogic(melee, {
+      'yes': ' (armes de corps à corps)',
+      'other': '',
+    });
+    return 'Bottes d’arme : $count$_temp0';
+  }
+
+  @override
+  String effectDamage(String value, String scope, String type) {
+    return '+$value aux dégâts $scope$type';
+  }
+
+  @override
+  String effectDamageType(String type) {
+    return ' ($type)';
+  }
+
+  @override
+  String effectResource(String uses, String recharges) {
+    return 'Utilisations : $uses ; récupération : $recharges';
+  }
+
+  @override
+  String effectSpell(String spell) {
+    return 'Sort : $spell';
+  }
+
+  @override
+  String get effectSpellPrepared => 'toujours préparé';
+
+  @override
+  String effectSpellFreeCasts(String count, String recharges) {
+    return 'sans emplacement : $count ; récupération : $recharges';
+  }
+
+  @override
+  String effectSpellListAccess(int count, String classes, String level) {
+    return '$count sort(s) des listes $classes, $level au plus';
+  }
+
+  @override
+  String effectHeal(String dice, String bonus, String action) {
+    return 'Soins à l’usage : $dice$bonus ($action)';
+  }
+
+  @override
+  String effectHealBonus(String bonus) {
+    return ' + $bonus';
+  }
+
+  @override
+  String effectAttunementSlots(int count) {
+    return 'Jusqu’à $count objets harmonisés';
+  }
+
+  @override
+  String effectChoice(String title, int count, String options) {
+    return '$title : $count parmi $options';
+  }
+
+  @override
+  String get healAction => 'action';
+
+  @override
+  String get healBonusAction => 'action Bonus';
+
+  @override
+  String get scopeUnproficientChecks =>
+      'aux tests de caractéristique sans maîtrise';
+
+  @override
+  String get scopeSavingThrows => 'aux jets de sauvegarde';
+
+  @override
+  String scopeSavingThrow(String ability) {
+    return 'au JS de $ability';
+  }
+
+  @override
+  String get scopeMeleeAttack =>
+      'aux jets d’attaque au corps à corps avec une arme';
+
+  @override
+  String get scopeRangedAttack => 'aux jets d’attaque à distance avec une arme';
+
+  @override
+  String get scopeSpellAttack => 'aux jets d’attaque de sort';
+
+  @override
+  String scopeSkill(String skill) {
+    return 'aux tests de $skill';
+  }
+
+  @override
+  String get scopeMeleeWeapon => 'des armes de corps à corps';
+
+  @override
+  String get scopeRangedWeapon => 'des armes à distance';
+
+  @override
+  String get scopeUnarmed => 'des Frappes à mains nues';
+
+  @override
+  String get onShortRest => 'Repos court';
+
+  @override
+  String get onLongRest => 'Repos long';
+
+  @override
+  String get onInitiative => 'Jet d’Initiative';
+
+  @override
+  String get onDawn => 'Aube';
+
+  @override
+  String rechargeAt(String on) {
+    String _temp0 = intl.Intl.selectLogic(on, {
+      'short_rest': 'au Repos court',
+      'long_rest': 'au Repos long',
+      'initiative': 'au jet d’Initiative',
+      'dawn': 'à l’aube',
+      'other': '',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String rechargeEntry(String amount, String at) {
+    return '$amount $at';
+  }
+
+  @override
+  String get rechargeAll => 'toutes';
+
+  @override
+  String get rechargeOn => 'Récupération';
+
+  @override
+  String get rechargeAmount => 'Quantité (vide : toutes)';
+
+  @override
+  String get rechargeAdd => 'Ajouter une récupération';
+
+  @override
+  String get rechargeRemove => 'Retirer la récupération';
+
+  @override
+  String get replaceableNever => 'Non remplaçable';
+
+  @override
+  String get replaceableLevelUp => 'Remplaçable à chaque niveau';
+
+  @override
+  String get replaceableLongRest => 'Remplaçable au Repos long';
+
+  @override
+  String get replaceableShortRest => 'Remplaçable au Repos court';
+
+  @override
+  String get effectChoiceTitle => 'Titre du choix (facultatif)';
+
+  @override
+  String get effectChoiceCount => 'Nombre d’options à choisir';
+
+  @override
+  String get effectChoiceReplaceable => 'Remplacement';
+
+  @override
+  String effectChoiceOptionName(int n) {
+    return 'Nom de l’option $n';
+  }
+
+  @override
+  String effectChoiceOptionDefault(int n) {
+    return 'Option $n';
+  }
+
+  @override
+  String effectChoiceOptionEffects(int n) {
+    return 'Effets de l’option $n';
+  }
+
+  @override
+  String get effectChoiceOptionAdd => 'Ajouter une option';
+
+  @override
+  String get effectChoiceOptionRemove => 'Retirer l’option';
+
+  @override
+  String get effectFieldFromLevel => 'À partir du niveau (facultatif)';
+
+  @override
+  String get effectFieldFeat => 'Don précis';
+
+  @override
+  String get effectFieldFeatCategory => 'ou un don de la catégorie';
+
+  @override
+  String get effectFieldBase => 'Base';
+
+  @override
+  String get effectFieldAbilities => 'Caractéristiques ajoutées';
+
+  @override
+  String get effectFieldAllowsShield => 'Bouclier permis';
+
+  @override
+  String get effectFieldEqualWalk => 'Égale à la Vitesse au sol';
+
+  @override
+  String get effectFieldScope => 'Portée';
+
+  @override
+  String get effectFieldCount => 'Nombre';
+
+  @override
+  String get effectFieldCritMin => 'Coup critique à partir de';
+
+  @override
+  String get effectFieldMeleeOnly => 'Armes de corps à corps seulement';
+
+  @override
+  String get effectFieldDamage => 'Dégâts (ex. 1d8 ou 2)';
+
+  @override
+  String get effectFieldDamageType => 'Type de dégâts';
+
+  @override
+  String get effectFieldNone => 'Aucun';
+
+  @override
+  String get effectFieldUses => 'Utilisations';
+
+  @override
+  String get effectFieldDie => 'Dé de la ressource';
+
+  @override
+  String get effectFieldSpell => 'Sort';
+
+  @override
+  String get effectFieldAlwaysPrepared => 'Toujours préparé';
+
+  @override
+  String get effectFieldFreeCasts => 'Lancers sans emplacement de sort';
+
+  @override
+  String get effectFieldCasts => 'Lancers';
+
+  @override
+  String get effectFieldSpellAbility => 'Caractéristique d’incantation';
+
+  @override
+  String get effectFieldClassLists => 'Listes de sorts';
+
+  @override
+  String get effectFieldMaxLevel => 'Niveau de sort maximum';
+
+  @override
+  String get effectFieldDice => 'Dés (ex. 2d4)';
+
+  @override
+  String get effectFieldBonus => 'Bonus';
+
+  @override
+  String get effectFieldAction => 'Action';
+
+  @override
+  String valueKindOf(String label) {
+    return '$label : calcul';
+  }
+
+  @override
+  String get valueNumber => 'Nombre';
+
+  @override
+  String get valueProficiency => 'Bonus de maîtrise';
+
+  @override
+  String get valueCharacterLevel => 'Niveau du personnage';
+
+  @override
+  String get valueClassLevel => 'Niveau de classe';
+
+  @override
+  String get valueAbilityMod => 'Modificateur de caractéristique';
+
+  @override
+  String get valueByLevel => 'Table par niveau';
+
+  @override
+  String get valueTimes => 'Multiplicateur (facultatif)';
+
+  @override
+  String get valueMin => 'Minimum (facultatif)';
+
+  @override
+  String get valueClass => 'Classe';
+
+  @override
+  String get valueLevel => 'Niveau';
+
+  @override
+  String get valueAddLevel => 'Ajouter un palier';
+
+  @override
+  String get valueRemoveLevel => 'Retirer le palier';
+
+  @override
+  String get valueProficiencyText => 'bonus de maîtrise';
+
+  @override
+  String get valueCharacterLevelText => 'niveau';
+
+  @override
+  String valueClassLevelText(String className) {
+    return 'niveau de $className';
+  }
+
+  @override
+  String valueAbilityModText(String ability) {
+    return 'modificateur de $ability';
+  }
+
+  @override
+  String valueMinText(String value, int min) {
+    return '$value (minimum $min)';
+  }
+
+  @override
+  String valueTimesText(int times, String value) {
+    return '$times × $value';
+  }
+
+  @override
+  String valueByLevelText(String entries) {
+    return '($entries)';
+  }
+
+  @override
+  String valueAtLevel(String value, int level) {
+    return '$value au niveau $level';
+  }
+
+  @override
+  String get speciesCreatureType => 'Type de créature';
+
+  @override
+  String get speciesSizes => 'Tailles';
+
+  @override
+  String get sizeSmall => 'Petite (P)';
+
+  @override
+  String get sizeMedium => 'Moyenne (M)';
+
+  @override
+  String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
+
+  @override
+  String get speciesNoAbilities =>
+      'Les augmentations de caractéristique viennent de l’Historique (règles 2024).';
+
+  @override
+  String get speciesTraits => 'Traits';
+
+  @override
+  String get speciesTraitAdd => 'Ajouter un trait';
+
+  @override
+  String get speciesTraitSrd => 'Trait du SRD';
+
+  @override
+  String get speciesTraitRemove => 'Retirer le trait';
+
+  @override
+  String speciesTraitTitle(String species) {
+    return 'Trait de $species';
+  }
+
+  @override
+  String get speciesTraitSave => 'Enregistrer le trait';
+
+  @override
+  String get speciesLineageHint =>
+      'Une sous-lignée est un trait à choix : ajoutez-lui un effet « Choix », avec une option par lignée.';
+
+  @override
   String get proficiencySkill => 'Compétence';
 
   @override

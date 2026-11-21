@@ -39,7 +39,7 @@ const entityTypes = [
 ];
 
 /// Types dont l'éditeur est livré (lots a et b).
-const editableTypes = {'feat', 'background', 'spell', 'item'};
+const editableTypes = {'feat', 'background', 'species', 'spell', 'item'};
 
 /// Le type de [H01] d'un type d'entité : arme, armure, objet magique et
 /// objet courant sont des « Objet ».
@@ -56,6 +56,7 @@ String editorTypeOf(String uiType) => uiType == 'item' ? 'weapon' : uiType;
 const derivableTypes = {
   'feat',
   'background',
+  'species',
   'spell',
   'weapon',
   'armor',

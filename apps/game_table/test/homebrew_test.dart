@@ -1,7 +1,8 @@
 // Spec homebrew : « Mes packs », « Vérification d'un pack », « Éditeur
 // d'effets », « Éditeur de Don », « Éditeur d'Historique » (US-27 lot a,
 // [H01] à [H03]) ; « Éditeur de Sort », « Éditeur d'Objet », « Variante
-// d'une entité du SRD » (lot b, [H05]).
+// d'une entité du SRD » (lot b, [H05]) ; « Éditeur d'Espèce », ressource et
+// choix imbriqué (lot b2).
 import 'dart:io';
 
 import 'package:dnd_content/dnd_content.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_table/account/account_providers.dart';
 import 'package:game_table/creation/creation_providers.dart';
+import 'package:game_table/creation/step_layout.dart';
 import 'package:game_table/homebrew/homebrew_page.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:material_ui/material_ui.dart';
@@ -92,10 +94,10 @@ void main() {
     await _open(tester);
     expect(find.text('Aucun pack pour l’instant.'), findsOneWidget);
     expect(find.textContaining('verrouillé'), findsOneWidget);
-    final species = tester.widget<ActionChip>(
-      find.widgetWithText(ActionChip, 'Espèce'),
+    final classChip = tester.widget<ActionChip>(
+      find.widgetWithText(ActionChip, 'Classe'),
     );
-    expect(species.onPressed, isNull);
+    expect(classChip.onPressed, isNull);
 
     await _newPack(tester);
     expect(find.text('Gardiens des Marches'), findsOneWidget);
@@ -300,5 +302,207 @@ void main() {
     expect((await _draft(tester)).entities.single['type'], 'weapon');
     expect(find.text('une arme a toujours une botte d’arme'), findsOneWidget);
     expect(find.text('Prêt à publier'), findsNothing);
+  });
+
+  _test('[H03] : ressource égale au bonus de maîtrise, par Repos long', (
+    tester,
+  ) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Don'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Rempart vivant',
+    );
+    await _tap(tester, find.text('Catégorie *'));
+    await _tap(tester, find.text('Général').last);
+    await _tap(tester, find.text('Ajouter un effet'));
+    await _tap(tester, find.text('Ressource à utilisations'));
+    await _tap(tester, find.text('Utilisations : calcul'));
+    await _tap(tester, find.text('Bonus de maîtrise').last);
+    expect(
+      find.text(
+        'Utilisations : bonus de maîtrise ; récupération : toutes au Repos long',
+      ),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Enregistrer l’effet'));
+    await _tap(tester, find.text('Enregistrer'));
+
+    final feat = (await _draft(tester)).entities.single;
+    expect(feat['effects'], [
+      {
+        'op': 'grant_resource',
+        'id': 'gardiens-des-marches:resource:rempart-vivant',
+        'max': {'ref': 'proficiency_bonus'},
+        'recharge': [
+          {'on': 'long_rest', 'amount': 'all'},
+        ],
+      },
+    ]);
+  });
+
+  _test('Espèce : taille, Vitesse, un trait et une sous-lignée à choix', (
+    tester,
+  ) async {
+    final spells = [
+      for (final e in _content.entities)
+        if (e.type == 'spell') e,
+    ]..sort((a, b) => foldAccents(a.name).compareTo(foldAccents(b.name)));
+    final firstSpell = spells.first;
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.widgetWithText(ActionChip, 'Espèce'));
+    await tester.enterText(find.widgetWithText(TextField, 'Nom *'), 'Brumelin');
+    await _tap(tester, find.widgetWithText(FilterChip, 'Petite (P)'));
+    expect(
+      find.textContaining('viennent de l’Historique (règles 2024)'),
+      findsOneWidget,
+    );
+
+    // Un trait simple.
+    await _tap(tester, find.text('Ajouter un trait'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Vision brumeuse',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      'Vous voyez dans la brume.',
+    );
+    await _tap(tester, find.text('Ajouter un effet'));
+    await _tap(tester, find.text('Accorder un sens'));
+    await _tap(tester, find.text('Sens'));
+    await _tap(tester, find.text('Vision dans le noir').last);
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Distance en pieds (5 pieds = 1,5 m)'),
+      '60',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Enregistrer l’effet'));
+    await _tap(tester, find.text('Enregistrer le trait'));
+    expect(find.text('Vision brumeuse'), findsOneWidget);
+
+    // Une sous-lignée : un trait à choix, dont une option accorde un sort
+    // au niveau 3.
+    await _tap(tester, find.text('Ajouter un trait'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Lignage brumeux',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Texte (ce que le joueur lira)'),
+      'Choisissez un lignage.',
+    );
+    await _tap(tester, find.text('Ajouter un effet'));
+    await _tap(tester, find.text('Choix'));
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Titre du choix (facultatif)'),
+      'Lignage',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextFormField, 'Nom de l’option 1'),
+      'Brume grise',
+    );
+    await tester.pumpAndSettle();
+    // Sous la feuille du choix : le bouton du trait, puis ceux des options.
+    await _tap(tester, find.text('Ajouter un effet').at(1));
+    await _tap(tester, find.text('Accorder un sort'));
+    await _tap(tester, find.text('Sort'));
+    await _tap(tester, find.text(firstSpell.name).last);
+    await tester.enterText(
+      find
+          .widgetWithText(TextFormField, 'À partir du niveau (facultatif)')
+          .last,
+      '3',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Enregistrer l’effet').last);
+    expect(
+      find.text('Lignage : 1 parmi Brume grise / Option 2'),
+      findsOneWidget,
+    );
+    await _tap(tester, find.text('Enregistrer l’effet'));
+    await _tap(tester, find.text('Enregistrer le trait'));
+    await _tap(tester, find.text('Enregistrer'));
+
+    final entities = (await _draft(tester)).entities;
+    expect(entities.map((e) => e['id']), [
+      'gardiens-des-marches:species:brumelin',
+      'gardiens-des-marches:feature:brumelin-vision-brumeuse',
+      'gardiens-des-marches:feature:brumelin-lignage-brumeux',
+    ]);
+    expect(entities[0]['data'], {
+      'creature_type': 'humanoid',
+      'speed_feet': 30,
+      'sizes': ['P'],
+      'traits': [
+        'gardiens-des-marches:feature:brumelin-vision-brumeuse',
+        'gardiens-des-marches:feature:brumelin-lignage-brumeux',
+      ],
+    });
+    expect(entities[1], {
+      'id': 'gardiens-des-marches:feature:brumelin-vision-brumeuse',
+      'name': 'Vision brumeuse',
+      'text': {'fr': 'Vous voyez dans la brume.'},
+      'effects': [
+        {'op': 'grant_sense', 'sense': 'darkvision', 'range': 60},
+      ],
+      'type': 'feature',
+      'data': {'source': 'gardiens-des-marches:species:brumelin', 'level': 1},
+    });
+    expect((entities[2]['effects']! as List).single, {
+      'op': 'choice',
+      'id': 'choix-1',
+      'count': 1,
+      'options': [
+        [
+          {
+            'op': 'grant_spell',
+            'spell': '${firstSpell.id}',
+            'when': {'level': 3},
+          },
+        ],
+        <Object?>[],
+      ],
+      'labels': ['Brume grise', 'Option 2'],
+      'title': 'Lignage',
+    });
+    // Les traits vivent dans leur espèce, pas dans la liste du pack.
+    expect(find.text('Lignage brumeux'), findsNothing);
+    expect(find.text('Prêt à publier'), findsOneWidget);
+  });
+
+  _test('Variante de l’Elfe : traits du SRD gardés, un retiré', (tester) async {
+    await _open(tester);
+    await _newPack(tester);
+    await _tap(tester, find.text('Dériver d’une entité du SRD'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Rechercher dans le SRD'),
+      'elfe',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Elfe'));
+    expect(find.text('Trait du SRD'), findsNWidgets(5));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nom *'),
+      'Elfe des brumes',
+    );
+    await _tap(tester, find.byTooltip('Retirer le trait').last);
+    await _tap(tester, find.text('Enregistrer'));
+
+    final elf = (await _draft(tester)).entities.single;
+    expect(elf['extends_id'], 'srd:species:elf');
+    expect((elf['data']! as Map)['traits'], [
+      'srd:feature:elf-fey-ancestry',
+      'srd:feature:elf-elven-lineage',
+      'srd:feature:elf-keen-senses',
+      'srd:feature:elf-trance',
+    ]);
+    expect(find.text('Prêt à publier'), findsOneWidget);
+    expect(
+      (_content.entity('srd:species:elf')!.data as SpeciesData).traits,
+      hasLength(5),
+    );
   });
 }
