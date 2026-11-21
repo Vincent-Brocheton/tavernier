@@ -12,6 +12,7 @@ import 'package:material_ui/material_ui.dart';
 import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
+import '../src/pop_if_current.dart';
 import 'combat_view.dart';
 import 'condition_sheets.dart';
 
@@ -289,7 +290,7 @@ class _EndOfTurnDialogState extends ConsumerState<_EndOfTurnDialog> {
                   await appendCombat(ref, widget.encounter.id, [
                     (CombatEventType.turnAdvanced, const {}),
                   ]);
-                  if (context.mounted) Navigator.pop(context);
+                  if (context.mounted) popIfCurrent(context);
                 },
           child: Text(l10n.reminderNextTurn(unitLabel(combat, next))),
         ),

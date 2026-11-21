@@ -136,6 +136,17 @@ Future<void> _waitFor(WidgetTester tester, Finder target) async {
   expect(target, findsWidgets);
 }
 
+/// Attend que [target] ait disparu : une feuille se referme après son
+/// écriture, plus lente sur le Web (Safari non isolé).
+Future<void> _waitGone(WidgetTester tester, Finder target) async {
+  m3LastAction = 'Fermeture de $target';
+  for (var i = 0; i < 100 && target.evaluate().isNotEmpty; i++) {
+    await tester.pump(const Duration(milliseconds: 100));
+  }
+  await tester.pumpAndSettle();
+  expect(target, findsNothing);
+}
+
 /// Fait défiler la liste verticale jusqu'à [target] : les listes de 30
 /// combattants ne construisent que ce qui est à l'écran.
 Future<void> _reveal(WidgetTester tester, Finder target) async {
@@ -206,6 +217,7 @@ Future<void> playM3(WidgetTester tester) async {
   await _tap(tester, find.byTooltip('Dégâts'));
   await _keys(tester, '5');
   await _tap(tester, find.text('Appliquer 5 dégâts tranchants'));
+  await _waitGone(tester, find.text('Appliquer 5 dégâts tranchants'));
 
   // Un état sur le vétéran.
   await _tap(tester, find.text('Vétéran'));
@@ -214,6 +226,7 @@ Future<void> playM3(WidgetTester tester) async {
   // Un round par défaut : il expirerait pendant le round joué.
   await _tap(tester, find.text('Indéfinie'));
   await _tap(tester, find.text('Ajouter À terre'));
+  await _waitGone(tester, find.text('Ajouter À terre'));
 
   // Un round entier, unité par unité, puis on annule le dernier tour.
   for (var turn = 0; turn < 40; turn++) {
