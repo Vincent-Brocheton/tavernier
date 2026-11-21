@@ -11,6 +11,7 @@ import '../creation/creation_providers.dart';
 import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../npcs/stat_block_view.dart';
+import '../src/pop_if_current.dart';
 import 'combat_view.dart';
 import 'concentration.dart';
 import 'condition_sheets.dart';
@@ -200,7 +201,7 @@ class _CombatantDetail extends ConsumerWidget {
               await appendCombat(ref, encounter.id, [
                 (CombatEventType.combatantRemoved, {'combatant': c.id}),
               ]);
-              if (context.mounted) Navigator.pop(context);
+              if (context.mounted) popIfCurrent(context);
             },
             icon: const Icon(Icons.person_remove_outlined),
             label: Text(l10n.combatRemove),

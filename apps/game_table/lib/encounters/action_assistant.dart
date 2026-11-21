@@ -12,6 +12,7 @@ import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import '../npcs/npcs_providers.dart';
 import '../sheet/simple_roll.dart';
+import '../src/pop_if_current.dart';
 import 'combat_view.dart';
 import 'encounters_providers.dart';
 
@@ -283,7 +284,7 @@ class _StudyState extends ConsumerState<_Study> {
               ],
             );
       }
-      if (context.mounted) Navigator.pop(context);
+      if (context.mounted) popIfCurrent(context);
     }
 
     return ListView(
@@ -530,7 +531,7 @@ class _InfluenceState extends ConsumerState<_Influence> {
             .read(npcStoreProvider)
             .update(npc.id, attitude: Attitude.parse(after));
       }
-      if (context.mounted) Navigator.pop(context);
+      if (context.mounted) popIfCurrent(context);
     }
 
     /// Dernier échec qui bloque encore l'approche [c], s'il y en a un.
@@ -806,7 +807,7 @@ class _ObservationState extends ConsumerState<_Observation> {
           },
         ),
       ]);
-      if (context.mounted) Navigator.pop(context);
+      if (context.mounted) popIfCurrent(context);
     }
 
     return ListView(

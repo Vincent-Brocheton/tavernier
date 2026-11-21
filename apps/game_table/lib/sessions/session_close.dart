@@ -11,6 +11,7 @@ import '../account/account_providers.dart';
 import '../creation/creation_providers.dart';
 import '../encounters/encounters_providers.dart';
 import '../l10n/app_localizations.dart';
+import '../src/pop_if_current.dart';
 import '../tables/tables_providers.dart';
 import 'sessions_providers.dart';
 
@@ -178,7 +179,7 @@ class _CloseSessionPageState extends ConsumerState<CloseSessionPage> {
       await ref
           .read(sessionStoreProvider)
           .update(session.id, status: SessionStatus.closed);
-      if (context.mounted) Navigator.pop(context);
+      if (context.mounted) popIfCurrent(context);
     }
 
     Widget stat(String value, String label) => Expanded(
