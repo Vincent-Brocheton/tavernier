@@ -1,5 +1,8 @@
 // Spec local-database : « Enregistrement d'un personnage ».
 
+import 'dart:convert';
+
+import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:drift/drift.dart' show Variable;
@@ -40,6 +43,79 @@ void _tests(Future<TavernierDatabase> Function() open) {
         CharacterInput.fromJson(aldricJson()).copyWith(xp: 7475),
         tableId: 't',
       );
+    });
+
+    test('contenu figé : référence, choix inscrit, fiches touchées', () async {
+      const ref = (
+        entityId: 'gardiens:subclass:rempart',
+        packId: 'gardiens',
+        packVersion: '0.1.0',
+        snapshot: <String, Object?>{'entities': <Object?>[]},
+      );
+      await store.saveContentRef('a', ref);
+      await store.saveContentRef('a', ref);
+      final saved = (await store.contentRefs('a')).single;
+      expect(saved.entityId, ref.entityId);
+      expect(saved.packVersion, '0.1.0');
+      expect(saved.snapshot, ref.snapshot);
+      expect(
+        await store.charactersUsing('t', 'gardiens', {
+          'gardiens:subclass:rempart',
+        }),
+        [(id: 'a', name: 'Aldric Varenne')],
+      );
+      expect(await store.charactersUsing('t', 'gardiens', const {}), isEmpty);
+
+      final change = ContentChange(
+        ref: ref,
+        toVersion: '0.2.0',
+        before: parseEntity({
+          'id': 'gardiens:subclass:rempart',
+          'type': 'subclass',
+          'name': 'Gardien du rempart',
+          'data': {
+            'parent_class': 'srd:class:fighter',
+            'features': <Object?>[],
+          },
+        }, 'test').entity!,
+        after: null,
+      );
+      // Garder : la version reste, l'alerte ne revient pas pour 0.2.0.
+      await store.resolveContentChange(
+        'a',
+        change,
+        migrate: false,
+        snapshot: const {'entities': <Object?>[]},
+        authorUserId: 'hugo',
+      );
+      final kept = (await store.contentRefs('a')).single;
+      expect(kept.packVersion, '0.1.0');
+      expect(kept.snapshot['kept'], '0.2.0');
+      // Migrer : la nouvelle version et son instantané.
+      await store.resolveContentChange(
+        'a',
+        change,
+        migrate: true,
+        snapshot: const {'entities': <Object?>[], 'v': 2},
+        authorUserId: 'hugo',
+      );
+      final migrated = (await store.contentRefs('a')).single;
+      expect(migrated.packVersion, '0.2.0');
+      expect(migrated.snapshot['v'], 2);
+      final log = await db
+          .customSelect(
+            "SELECT diff FROM character_change_log WHERE character_id = 'a'",
+          )
+          .get();
+      expect(
+        [
+          for (final r in log)
+            (jsonDecode(r.read<String>('diff')) as Map)['choice'],
+        ],
+        ['keep', 'migrate'],
+      );
+      await store.removeContentRef('a', 'gardiens:subclass:rempart');
+      expect(await store.contentRefs('a'), isEmpty);
     });
 
     test('fiche de PNJ : pas de progression de table (US-18)', () async {

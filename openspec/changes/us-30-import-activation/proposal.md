@@ -86,6 +86,13 @@ c1 :
   - Aucun résultat : « Vouliez-vous dire », l'entité bannie, « Chercher dans tous mes packs ».
   - Fiche de l'entité, avec le bloc de stats d'un monstre.
 
+c2 :
+- **Contenu figé par fiche** (EF-PJ-14) : une fiche garde, dans `character_content_ref` (cahier §11, déjà synchronisée), la version et l'instantané de chaque entité homebrew qu'elle utilise, avec ses aptitudes.
+  - Quand la table passe à une autre version, la fiche se calcule toujours avec son instantané.
+  - Si l'entité a changé, le joueur voit l'alerte « contenu modifié » ([H10]), avec l'ancienne et la nouvelle version, et choisit de migrer ou de garder. Le choix est inscrit dans l'historique de la fiche.
+  - Seul le propriétaire de la fiche décide : le MJ ne peut pas imposer la migration.
+- **Passage de version d'une table** ([H9]) : sur la carte « Packs », une version plus récente installée est annoncée (« Version 0.2.0 importée : 1 ajout, 1 modification »), avec « Passer en 0.2.0 » et le nombre de fiches touchées.
+
 ## Capabilities
 
 ### New Capabilities

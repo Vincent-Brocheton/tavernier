@@ -64,12 +64,25 @@ final tableContentProvider = FutureProvider.autoDispose
       return content.withBanned(banned);
     });
 
-/// Contenu des choix de la fiche [id], selon sa table.
+/// Contenu de la fiche [id] : celui de sa table, sans les entités bannies,
+/// avec les entités homebrew qu'elle a figées (EF-PJ-14).
 final characterContentProvider = FutureProvider.autoDispose
     .family<ActiveContent, String>((ref, id) async {
-      final tableId = (await ref.watch(characterStoreProvider).access(id))
-          ?.tableId;
-      return ref.watch(tableContentProvider(tableId).future);
+      final store = ref.watch(characterStoreProvider);
+      final tableId = (await store.access(id))?.tableId;
+      final content = await ref.watch(tableContentProvider(tableId).future);
+      final refs = await store.contentRefs(id);
+      return content.withOverrides(freezeContent(refs, content).frozen);
+    });
+
+/// Entités de la fiche [id] modifiées par la version de sa table, à décider
+/// par son propriétaire (EF-PJ-14).
+final contentChangesProvider = FutureProvider.autoDispose
+    .family<List<ContentChange>, String>((ref, id) async {
+      final store = ref.watch(characterStoreProvider);
+      final tableId = (await store.access(id))?.tableId;
+      final content = await ref.watch(tableContentProvider(tableId).future);
+      return freezeContent(await store.contentRefs(id), content).changes;
     });
 
 /// Base locale, ouverte au premier usage.

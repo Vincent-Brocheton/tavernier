@@ -132,3 +132,45 @@
     - « Créer en homebrew », qui ouvre l'onglet Homebrew.
   - **Fiche** : feuille adaptative avec le nom, le résumé, la source, « BANNI ICI » et son explication, le texte, et le bloc de stats d'un monstre. Pour un sort : incantation, portée, composantes, durée et listes.
   - « Ajouter à un personnage » et « Dériver en homebrew » de [K1] ne sont pas repris : la création et l'onglet Homebrew les font déjà.
+
+## Lot c2 : contenu figé par fiche
+
+### Moteur (`dnd_rules/lib/src/content_refs.dart`)
+
+- **`usedEntityIds(character)`** : espèce, Historique, classes, sous-classes, dons, sorts (mineurs, préparés, grimoire), objets, armes des bottes.
+- **`entitySnapshot(content, id)`** : `{entities: [l'entité, ses aptitudes (data.source = id)]}` en JSON.
+- **`ContentRef`** : `({String entityId, String packId, String packVersion, Map snapshot})`. L'instantané peut porter `kept`, la version que le joueur a choisi de ne pas prendre.
+- **`freezeContent(refs, content)`** :
+  - une référence est figée quand sa version diffère de celle du pack dans le contenu ;
+  - ses entités vont dans `frozen` ;
+  - elle donne un `ContentChange` (entité, pack, version de la fiche, version du contenu, avant et après) si l'instantané diffère de l'instantané actuel et si `kept` n'est pas la version actuelle.
+- **`contentRefsToRecord(character, content, refs)`**, pour les seules entités homebrew (pack d'origine autre que `srd`) :
+  - **`create`** : entités utilisées sans référence ;
+  - **`follow`** : références dont la version diffère mais dont l'instantané est identique, mises à jour sans rien demander ;
+  - **`remove`** : références d'entités qui ne sont plus utilisées.
+- **`ActiveContent.withOverrides(entities)`** : ajoute un dernier pack qui porte ces entités, et garde les entités bannies.
+
+### Base (`dnd_data`)
+
+- **`CharacterStore.contentRefs(id)`**, **`saveContentRef`** (insère, ou met à jour la référence de cette entité) et **`removeContentRef`**.
+- **`CharacterStore.resolveContentChange(id, change, migrate:, authorUserId:)`** :
+  - migrer : la référence prend la nouvelle version et le nouvel instantané ;
+  - garder : l'instantané reçoit `kept`.
+
+  Une ligne `{kind: content_update, entity, name, pack, from, to, choice}` va au journal.
+- **`CharacterStore.charactersUsing(tableId, packId, entityIds)`** : identifiants et noms des fiches de la table qui citent ces entités.
+
+### App
+
+- **`characterContentProvider(id)`** : le contenu de la table, sans ses entités bannies, avec les entités figées de la fiche (`withOverrides`).
+- **`contentChangesProvider(id)`** : les changements à décider.
+- **À l'ouverture de sa fiche**, le propriétaire enregistre ses références (`contentRefsToRecord`). La fiche est figée dès qu'elle est vue.
+- **Fiche** : pour le propriétaire seulement, une bannière « Contenu modifié » par changement ouvre `ContentChangePage` ([H10]) :
+  - en tête, le nom, le pack et les deux versions ;
+  - puis le texte et les effets (`describeEffect`) de chaque version ;
+  - enfin « Passer à la nouvelle version » et « Garder la version N », et le rappel que le choix est inscrit dans l'historique.
+- **Historique** : les lignes `content_update` (« {nom} : passé de A à B », « {nom} : version A gardée »).
+- **Carte « Packs »** : pour un pack actif dont la bibliothèque a une version plus récente :
+  - « Version N disponible : a ajouts, m modifications » ;
+  - le nombre de fiches touchées (`charactersUsing` sur les entités modifiées) ;
+  - « Passer en N » pour le MJ.

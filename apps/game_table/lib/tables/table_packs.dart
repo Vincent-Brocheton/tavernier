@@ -88,6 +88,22 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
     if (chosen != null) await _activate(chosen.packId, chosen.version);
   }
 
+  /// La version figée et la plus récente de la bibliothèque, si elle est
+  /// plus récente.
+  (InstalledVersion, InstalledVersion)? _newer(
+    List<InstalledVersion> versions,
+    String pinned,
+  ) {
+    final current = versions.where((v) => v.version == pinned).firstOrNull;
+    final newest = versions.firstOrNull;
+    if (current == null ||
+        newest == null ||
+        compareVersions(newest.version, pinned) <= 0) {
+      return null;
+    }
+    return (current, newest);
+  }
+
   /// « Bannir une entité » : une entité du SRD, cherchée par son nom.
   Future<void> _ban(ActiveContent content, List<String> banned) async {
     final id = await showModalBottomSheet<String>(
@@ -209,6 +225,17 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
                   )
                 : null,
           ),
+        // Une version plus récente dans la bibliothèque ([H9], EF-PJ-14).
+        for (final p in active)
+          if (_newer(of(p.packId), p.version) case (final pinned, final newest))
+            _NewVersion(
+              tableId: widget.tableId,
+              pinned: pinned,
+              newest: newest,
+              onSwitch: widget.editable && !_busy
+                  ? () => _activate(p.packId, newest.version)
+                  : null,
+            ),
         if (widget.editable)
           Align(
             alignment: Alignment.centerLeft,
@@ -296,6 +323,92 @@ class _BanPickerState extends State<_BanPicker> {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Fiches de la table qui citent des entités d'un pack : clé
+/// `{table}|{pack}|{id,id…}`.
+final _affectedProvider = FutureProvider.autoDispose
+    .family<List<({String id, String name})>, String>((ref, key) {
+      final [tableId, packId, ids] = key.split('|');
+      return ref
+          .watch(characterStoreProvider)
+          .charactersUsing(tableId, packId, ids.split(',').toSet());
+    });
+
+/// « Version N disponible » : ajouts, modifications, fiches touchées, et
+/// « Passer en N » pour le MJ ([H9]).
+class _NewVersion extends ConsumerWidget {
+  const _NewVersion({
+    required this.tableId,
+    required this.pinned,
+    required this.newest,
+    required this.onSwitch,
+  });
+
+  final String tableId;
+  final InstalledVersion pinned;
+  final InstalledVersion newest;
+  final VoidCallback? onSwitch;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final text = Theme.of(context).textTheme;
+    final changes = packChanges(pinned.pack.entities, newest.pack.entities);
+    // Une aptitude modifiée touche son propriétaire (sous-classe, espèce…).
+    final touched = {
+      for (final e in [...changes.modified, ...changes.removed]) ...[
+        '${e.id}',
+        if (e.data case FeatureData(:final source)) '$source',
+      ],
+    };
+    final affected = touched.isEmpty
+        ? const <({String id, String name})>[]
+        : ref
+                  .watch(
+                    _affectedProvider(
+                      '$tableId|${pinned.packId}|${(touched.toList()..sort()).join(',')}',
+                    ),
+                  )
+                  .value ??
+              const [];
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              l10n.tablePacksNewVersion(
+                pinned.pack.manifest.name,
+                newest.version,
+                changes.added.length,
+                changes.modified.length,
+              ),
+              style: text.bodyMedium,
+            ),
+            if (affected.isNotEmpty)
+              Text(
+                l10n.tablePacksAffects(
+                  affected.length,
+                  newest.version,
+                  affected.map((c) => c.name).join(', '),
+                ),
+                style: text.bodySmall,
+              ),
+            if (onSwitch != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  onPressed: onSwitch,
+                  child: Text(l10n.tablePacksSwitch(newest.version)),
+                ),
+              ),
           ],
         ),
       ),

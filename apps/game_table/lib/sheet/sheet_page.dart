@@ -15,6 +15,7 @@ import '../notes/notes_view.dart';
 import '../sessions/group_rest.dart';
 import 'combat_tab.dart';
 import 'conflicts.dart';
+import 'content_change.dart';
 import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
@@ -110,6 +111,8 @@ class _SheetPageState extends ConsumerState<SheetPage> {
                             ),
                           ],
                         ),
+                      // EF-PJ-14 : contenu modifié, au choix du joueur.
+                      ContentChangeBanners(id: id),
                       Expanded(
                         child: _Sheet(
                           id: id,

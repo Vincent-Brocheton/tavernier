@@ -10458,6 +10458,29 @@ abstract class AppLocalizations {
   /// **'Chercher une entité du SRD'**
   String get tablePacksBanSearch;
 
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{pack} : version {version} disponible — {added, plural, =0{aucun ajout} =1{1 ajout} other{{added} ajouts}}, {modified, plural, =0{aucune modification} =1{1 modification} other{{modified} modifications}}.'**
+  String tablePacksNewVersion(
+    String pack,
+    String version,
+    int added,
+    int modified,
+  );
+
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Passer en {version} touche 1 fiche ({names}).} other{Passer en {version} touche {count} fiches ({names}).}} Leurs joueurs choisiront de migrer ou de garder l’ancienne version.'**
+  String tablePacksAffects(int count, String version, String names);
+
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer en {version}'**
+  String tablePacksSwitch(String version);
+
   /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
   ///
   /// In fr, this message translates to:
@@ -10625,6 +10648,78 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Incantation'**
   String get compendiumCasting;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenu modifié : {name} a changé dans la version de la table.'**
+  String contentChangedBanner(String name);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir et choisir'**
+  String get contentChangedOpen;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenu modifié'**
+  String get contentChangedTitle;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} a changé'**
+  String contentChangedHeading(String name);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{pack} · la table est passée de {from} à {to}'**
+  String contentChangedPack(String pack, String from, String to);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre version · {version}'**
+  String contentChangedYours(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle · {version}'**
+  String contentChangedNew(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos autres contenus ne changent pas. Le choix est inscrit dans l’historique de la fiche.'**
+  String get contentChangedHint;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer à la nouvelle version'**
+  String get contentChangedMigrate;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Garder la version {version}'**
+  String contentChangedKeep(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : passé de {from} à {to}'**
+  String historyContentMigrated(String name, String from, String to);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : version {version} gardée'**
+  String historyContentKept(String name, String version);
 
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///

@@ -7,6 +7,7 @@ export 'src/character_input.dart';
 export 'src/combat.dart';
 export 'src/compute_sheet.dart';
 export 'src/computed_sheet.dart';
+export 'src/content_refs.dart';
 export 'src/creation_choices.dart';
 export 'src/creation_rules.dart';
 export 'src/dice.dart';

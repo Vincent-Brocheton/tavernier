@@ -33,3 +33,10 @@ Le schéma v11 SHALL garder l'empreinte du fichier d'un pack activé sur une tab
 #### Scenario: Bannir deux fois
 - **WHEN** Sommeil est banni deux fois, puis rétabli
 - **THEN** la table n'a eu qu'une ligne pour Sommeil, puis aucune
+
+### Requirement: Références de contenu d'une fiche
+`CharacterStore` SHALL lire et écrire les références de contenu d'une fiche (`character_content_ref`). Il SHALL inscrire le choix du joueur, migrer ou garder, dans `character_change_log`, et lister les fiches d'une table qui utilisent des entités données d'un pack.
+
+#### Scenario: Migrer
+- **WHEN** le joueur migre une entité vers 0.2.0
+- **THEN** la référence porte 0.2.0 et le nouvel instantané, et le journal a une ligne `content_update` avec le choix

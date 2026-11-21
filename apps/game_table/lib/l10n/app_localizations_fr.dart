@@ -6595,6 +6595,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tablePacksBanSearch => 'Chercher une entité du SRD';
 
   @override
+  String tablePacksNewVersion(
+    String pack,
+    String version,
+    int added,
+    int modified,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      added,
+      locale: localeName,
+      other: '$added ajouts',
+      one: '1 ajout',
+      zero: 'aucun ajout',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      modified,
+      locale: localeName,
+      other: '$modified modifications',
+      one: '1 modification',
+      zero: 'aucune modification',
+    );
+    return '$pack : version $version disponible — $_temp0, $_temp1.';
+  }
+
+  @override
+  String tablePacksAffects(int count, String version, String names) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Passer en $version touche $count fiches ($names).',
+      one: 'Passer en $version touche 1 fiche ($names).',
+    );
+    return '$_temp0 Leurs joueurs choisiront de migrer ou de garder l’ancienne version.';
+  }
+
+  @override
+  String tablePacksSwitch(String version) {
+    return 'Passer en $version';
+  }
+
+  @override
   String get compendiumConcentration => 'concentration';
 
   @override
@@ -6707,6 +6747,59 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get compendiumCasting => 'Incantation';
+
+  @override
+  String contentChangedBanner(String name) {
+    return 'Contenu modifié : $name a changé dans la version de la table.';
+  }
+
+  @override
+  String get contentChangedOpen => 'Voir et choisir';
+
+  @override
+  String get contentChangedTitle => 'Contenu modifié';
+
+  @override
+  String contentChangedHeading(String name) {
+    return '$name a changé';
+  }
+
+  @override
+  String contentChangedPack(String pack, String from, String to) {
+    return '$pack · la table est passée de $from à $to';
+  }
+
+  @override
+  String contentChangedYours(String version) {
+    return 'Votre version · $version';
+  }
+
+  @override
+  String contentChangedNew(String version) {
+    return 'Nouvelle · $version';
+  }
+
+  @override
+  String get contentChangedHint =>
+      'Vos autres contenus ne changent pas. Le choix est inscrit dans l’historique de la fiche.';
+
+  @override
+  String get contentChangedMigrate => 'Passer à la nouvelle version';
+
+  @override
+  String contentChangedKeep(String version) {
+    return 'Garder la version $version';
+  }
+
+  @override
+  String historyContentMigrated(String name, String from, String to) {
+    return '$name : passé de $from à $to';
+  }
+
+  @override
+  String historyContentKept(String name, String version) {
+    return '$name : version $version gardée';
+  }
 
   @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';

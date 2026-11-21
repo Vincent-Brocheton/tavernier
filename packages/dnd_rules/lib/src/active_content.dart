@@ -20,6 +20,15 @@ final class ActiveContent {
   ActiveContent withBanned(Set<String> ids) =>
       ids.isEmpty && banned.isEmpty ? this : ActiveContent(packs, banned: ids);
 
+  /// Le même contenu, où [entities] remplacent celles de même identifiant
+  /// (contenu figé d'une fiche, EF-PJ-14).
+  ActiveContent withOverrides(List<ContentEntity> entities) => entities.isEmpty
+      ? this
+      : ActiveContent([
+          ...packs,
+          ContentPack(manifest: packs.first.manifest, entities: entities),
+        ], banned: banned);
+
   final List<ContentPack> packs;
   final Set<String> banned;
   final Map<String, ContentEntity> _byId;

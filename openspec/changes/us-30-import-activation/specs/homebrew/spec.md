@@ -83,3 +83,28 @@ L'onglet Compendium SHALL chercher hors ligne parmi les entités du contenu (EF-
 #### Scenario: Entité bannie
 - **WHEN** Hugo cherche « invisibilté » et que l'Invisibilité est bannie à cette table
 - **THEN** « Aucun résultat » propose « Invisibilité » marquée « BANNI ICI », dont la fiche reste lisible, et « Chercher dans tous mes packs »
+
+### Requirement: Contenu figé par fiche
+Une fiche SHALL garder la version de chaque entité homebrew qu'elle utilise (espèce, Historique, classe, sous-classe, don, sort, objet), avec un instantané de l'entité et de ses aptitudes (EF-PJ-14). Quand le pack passe à une autre version sur la table, la fiche SHALL se calculer avec son instantané tant que son propriétaire n'a pas choisi de migrer. Une entité inchangée suit la nouvelle version sans rien demander.
+
+#### Scenario: Version gardée
+- **WHEN** la table de Hugo passe « Gardiens des Marches » de 0.1.0 à 0.2.0, où « Rempart vivant » donne +2 CA au lieu de +1
+- **THEN** la fiche de Hugo garde +1 CA tant qu'il n'a pas choisi
+
+### Requirement: Alerte « contenu modifié »
+Quand une entité utilisée par une fiche a changé dans la version de la table, la fiche de son propriétaire SHALL montrer l'alerte « Contenu modifié » ([H10]). Elle ouvre la comparaison : le pack et ses deux versions, puis le texte et les effets de chaque version. Le joueur choisit « Passer à la nouvelle version » ou « Garder la version N ». Le choix SHALL être inscrit dans l'historique de la fiche ; après un choix, l'alerte ne revient pas pour cette version. Le MJ, qui lit la fiche, ne voit pas ces boutons.
+
+#### Scenario: Migrer
+- **WHEN** Hugo choisit « Passer à la nouvelle version »
+- **THEN** sa fiche prend +2 CA, et l'historique indique « Rempart vivant : passé de 0.1.0 à 0.2.0 »
+
+#### Scenario: Garder
+- **WHEN** Hugo choisit « Garder la version 0.1.0 »
+- **THEN** sa fiche garde +1 CA, l'alerte disparaît, et l'historique indique « Rempart vivant : version 0.1.0 gardée »
+
+### Requirement: Passer une table à une nouvelle version
+La carte « Packs » SHALL annoncer, pour chaque pack actif, une version plus récente de la bibliothèque, avec ses entités ajoutées et modifiées, et « Passer en N » pour le MJ ([H9]). Elle SHALL indiquer combien de fiches de la table utilisent une entité modifiée, et rappeler que leurs joueurs choisiront.
+
+#### Scenario: Annonce
+- **WHEN** Camille a la 0.2.0 dans sa bibliothèque alors que sa table est figée en 0.1.0, et qu'une fiche de la table utilise « Gardien du rempart », modifié
+- **THEN** la carte indique « Version 0.2.0 disponible : 0 ajout, 1 modification », que le passage touche 1 fiche, et propose « Passer en 0.2.0 »
