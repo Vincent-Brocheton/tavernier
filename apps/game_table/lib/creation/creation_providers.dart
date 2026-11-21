@@ -46,6 +46,45 @@ final contentProvider = FutureProvider<ActiveContent>((ref) async {
   ]);
 });
 
+/// Entités bannies d'une table (EF-HB-10).
+final bannedProvider = StreamProvider.family<Set<String>, String>(
+  (ref, tableId) =>
+      TableStore(ref.watch(databaseProvider)).watchBanned(tableId),
+);
+
+/// Contenu des choix d'un personnage de la table [tableId] : sans les
+/// entités qu'elle bannit (EF-HB-10), lues à l'ouverture de l'écran. Hors
+/// table, le contenu actif.
+final tableContentProvider = FutureProvider.autoDispose
+    .family<ActiveContent, String?>((ref, tableId) async {
+      final content = await ref.watch(contentProvider.future);
+      if (tableId == null) return content;
+      // Par le dépôt des fiches : même base que la fiche elle-même.
+      final banned = await ref.watch(characterStoreProvider).bannedFor(tableId);
+      return content.withBanned(banned);
+    });
+
+/// Contenu de la fiche [id] : celui de sa table, sans les entités bannies,
+/// avec les entités homebrew qu'elle a figées (EF-PJ-14).
+final characterContentProvider = FutureProvider.autoDispose
+    .family<ActiveContent, String>((ref, id) async {
+      final store = ref.watch(characterStoreProvider);
+      final tableId = (await store.access(id))?.tableId;
+      final content = await ref.watch(tableContentProvider(tableId).future);
+      final refs = await store.contentRefs(id);
+      return content.withOverrides(freezeContent(refs, content).frozen);
+    });
+
+/// Entités de la fiche [id] modifiées par la version de sa table, à décider
+/// par son propriétaire (EF-PJ-14).
+final contentChangesProvider = FutureProvider.autoDispose
+    .family<List<ContentChange>, String>((ref, id) async {
+      final store = ref.watch(characterStoreProvider);
+      final tableId = (await store.access(id))?.tableId;
+      final content = await ref.watch(tableContentProvider(tableId).future);
+      return freezeContent(await store.contentRefs(id), content).changes;
+    });
+
 /// Base locale, ouverte au premier usage.
 final databaseProvider = Provider<TavernierDatabase>((ref) {
   final database = openTavernierDatabase();

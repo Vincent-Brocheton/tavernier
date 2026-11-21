@@ -17,4 +17,15 @@
 
 ## 3. Lot c : bannissement, compendium, contenu figé par fiche
 
-- [ ] 3.1 Specs et design du lot c (EF-HB-10, EF-CMP-01, EF-PJ-14), puis tests et implémentation
+- [x] 3.1 Specs et design du lot c1 (EF-HB-10, EF-CMP-01)
+- [x] 3.2 Tests puis `ActiveContent.withBanned`
+- [x] 3.3 Tests puis `TableStore` : bannir, rétablir, suivre
+- [x] 3.4 Tests puis carte « Packs » : entités bannies ; contenu de la création, de la montée de niveau et de la fiche
+- [x] 3.5 Tests puis compendium [K1], [K2], [K5]
+- [x] 3.6 Suite complète, revue, PR du lot c1
+- [x] 3.7 Specs et design du lot c2 (EF-PJ-14, [H9], [H10])
+- [x] 3.8 Tests puis `content_refs.dart` et `ActiveContent.withOverrides`
+- [x] 3.9 Tests puis `CharacterStore` : références, choix et journal, fiches touchées
+- [x] 3.10 Tests puis fiche : contenu figé, alerte et comparaison [H10], historique
+- [x] 3.11 Tests puis carte « Packs » : nouvelle version annoncée [H9]
+- [x] 3.12 Suite complète, revue, PR du lot c2

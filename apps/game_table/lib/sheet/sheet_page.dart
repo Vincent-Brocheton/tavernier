@@ -15,6 +15,7 @@ import '../notes/notes_view.dart';
 import '../sessions/group_rest.dart';
 import 'combat_tab.dart';
 import 'conflicts.dart';
+import 'content_change.dart';
 import 'features_tab.dart';
 import 'history_page.dart';
 import 'inventory_tab.dart';
@@ -59,7 +60,8 @@ class _SheetPageState extends ConsumerState<SheetPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final content = ref.watch(contentProvider).asData?.value;
+    // Sans les entités bannies de sa table (EF-HB-10).
+    final content = ref.watch(characterContentProvider(id)).asData?.value;
     final character = ref.watch(characterProvider(id));
     final exhaustion =
         ref.watch(playStateProvider(id)).asData?.value.exhaustion ?? 0;
@@ -109,6 +111,8 @@ class _SheetPageState extends ConsumerState<SheetPage> {
                             ),
                           ],
                         ),
+                      // EF-PJ-14 : contenu modifié, au choix du joueur.
+                      ContentChangeBanners(id: id),
                       Expanded(
                         child: _Sheet(
                           id: id,

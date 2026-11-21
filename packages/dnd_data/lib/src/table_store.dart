@@ -292,6 +292,43 @@ final class TableStore {
         ],
       );
 
+  /// Bannit [entityId] pour la table [tableId] (EF-HB-10) ; déjà banni,
+  /// rien ne change.
+  Future<void> banEntity(String tableId, String entityId) async {
+    final row = await _db
+        .customSelect(
+          'SELECT id FROM table_banned_entity '
+          'WHERE table_id = ? AND entity_id = ?',
+          variables: [
+            Variable.withString(tableId),
+            Variable.withString(entityId),
+          ],
+        )
+        .getSingleOrNull();
+    if (row != null) return;
+    await _write(
+      'INSERT INTO table_banned_entity (id, table_id, entity_id) '
+      'VALUES (?, ?, ?)',
+      [uuidV7(), tableId, entityId],
+    );
+  }
+
+  /// Rétablit [entityId] pour la table [tableId].
+  Future<void> unbanEntity(String tableId, String entityId) => _write(
+    'DELETE FROM table_banned_entity WHERE table_id = ? AND entity_id = ?',
+    [tableId, entityId],
+  );
+
+  /// Entités bannies de la table [tableId].
+  Stream<Set<String>> watchBanned(String tableId) => _db
+      .customSelect(
+        'SELECT entity_id FROM table_banned_entity WHERE table_id = ?',
+        variables: [Variable.withString(tableId)],
+        readsFrom: {_db.tableBannedEntities},
+      )
+      .watch()
+      .map((rows) => {for (final r in rows) r.read<String>('entity_id')});
+
   /// Enregistre la configuration de la table [id] et date chaque réglage
   /// changé dans son activité, en une transaction (EF-TAB-11). Le nom et la
   /// description ne changent pas ici.

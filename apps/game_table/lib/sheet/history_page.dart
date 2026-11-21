@@ -81,6 +81,16 @@ class HistoryPage extends ConsumerWidget {
     if (detail case {'kind': 'level_up', 'to': final int level}) {
       return l10n.historyLevelUp(level);
     }
+    if (detail case {
+      'kind': 'content_update',
+      'name': final String name,
+      'from': final String from,
+      'to': final String to,
+    }) {
+      return detail['choice'] == 'migrate'
+          ? l10n.historyContentMigrated(name, from, to)
+          : l10n.historyContentKept(name, from);
+    }
     return switch (detail['check']) {
       'level' => l10n.historyDerogationLevel(sheet),
       'method' => l10n.historyDerogationMethod(

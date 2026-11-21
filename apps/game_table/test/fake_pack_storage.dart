@@ -17,41 +17,52 @@ final class FakePackStorage implements PackStorage {
 }
 
 /// Un `.dndpack` signé de « Gardiens des Marches » (graine 1 : Inès),
-/// dépendant de [srd], avec une sous-classe du Guerrier et son aptitude.
-Future<List<int>> gardiensFile(PackManifest srd, String version) async =>
-    writeDndpack(
-      await signPack(
-        ContentPack(
-          manifest: PackManifest(
-            id: '0193a000-0000-7000-8000-000000000030',
-            namespace: 'gardiens',
-            name: 'Gardiens des Marches',
-            version: version,
-            origin: PackOrigin.local,
-            author: 'Inès',
-            licence: 'CC-BY-4.0',
-            locale: 'fr',
-            dependencies: [(id: srd.id, versionRange: '^${srd.version}')],
-          ),
-          entities: [
-            parseEntity({
-              'id': 'gardiens:subclass:rempart',
-              'type': 'subclass',
-              'name': 'Gardien du rempart',
-              'data': {
-                'parent_class': 'srd:class:fighter',
-                'features': ['gardiens:feature:rempart-vivant'],
-              },
-            }, 'test').entity!,
-            parseEntity({
-              'id': 'gardiens:feature:rempart-vivant',
-              'type': 'feature',
-              'name': 'Rempart vivant',
-              'data': {'source': 'gardiens:subclass:rempart', 'level': 3},
-              'text': {'fr': 'Vous protégez vos alliés.'},
-            }, 'test').entity!,
-          ],
-        ),
-        await authorKeyPair(List.filled(32, 1)),
+/// dépendant de [srd], avec une sous-classe du Guerrier et son aptitude,
+/// qui donne [ac] à la CA avec un bouclier.
+Future<List<int>> gardiensFile(
+  PackManifest srd,
+  String version, {
+  int ac = 1,
+}) async => writeDndpack(
+  await signPack(
+    ContentPack(
+      manifest: PackManifest(
+        id: '0193a000-0000-7000-8000-000000000030',
+        namespace: 'gardiens',
+        name: 'Gardiens des Marches',
+        version: version,
+        origin: PackOrigin.local,
+        author: 'Inès',
+        licence: 'CC-BY-4.0',
+        locale: 'fr',
+        dependencies: [(id: srd.id, versionRange: '^${srd.version}')],
       ),
-    );
+      entities: [
+        parseEntity({
+          'id': 'gardiens:subclass:rempart',
+          'type': 'subclass',
+          'name': 'Gardien du rempart',
+          'data': {
+            'parent_class': 'srd:class:fighter',
+            'features': ['gardiens:feature:rempart-vivant'],
+          },
+        }, 'test').entity!,
+        parseEntity({
+          'id': 'gardiens:feature:rempart-vivant',
+          'type': 'feature',
+          'name': 'Rempart vivant',
+          'data': {'source': 'gardiens:subclass:rempart', 'level': 3},
+          'effects': [
+            {
+              'op': 'modify_ac',
+              'value': ac,
+              'when': {'shield': true},
+            },
+          ],
+          'text': {'fr': '+$ac CA avec un bouclier.'},
+        }, 'test').entity!,
+      ],
+    ),
+    await authorKeyPair(List.filled(32, 1)),
+  ),
+);

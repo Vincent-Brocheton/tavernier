@@ -64,6 +64,25 @@ void main() {
         });
       });
 
+      test('entité bannie, une seule fois, puis rétablie (EF-HB-10)', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        await store.banEntity(id, 'srd:spell:sleep');
+        await store.banEntity(id, 'srd:spell:sleep');
+        await store.banEntity(id, 'srd:spell:invisibility');
+        expect(await count('table_banned_entity'), 2);
+        expect(await store.watchBanned(id).first, {
+          'srd:spell:sleep',
+          'srd:spell:invisibility',
+        });
+        expect(await CharacterStore(db).bannedFor(id), hasLength(2));
+        await store.unbanEntity(id, 'srd:spell:sleep');
+        expect(await store.watchBanned(id).first, {'srd:spell:invisibility'});
+      });
+
       test('pack activé, version changée, retiré (US-30)', () async {
         final id = await store.create(
           gmUserId: _gm,

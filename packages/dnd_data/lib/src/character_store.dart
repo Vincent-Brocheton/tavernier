@@ -620,6 +620,142 @@ final class CharacterStore {
               .getSingleOrNull())
           ?.read<String>('pseudonym');
 
+  /// Références de contenu de la fiche [id] (EF-PJ-14).
+  Future<List<ContentRef>> contentRefs(String id) async => [
+    for (final r
+        in await _db
+            .customSelect(
+              'SELECT entity_id, pack_id, pack_version, snapshot '
+              'FROM character_content_ref WHERE character_id = ? '
+              'ORDER BY entity_id',
+              variables: [Variable.withString(id)],
+            )
+            .get())
+      (
+        entityId: r.read<String>('entity_id'),
+        packId: r.read<String>('pack_id'),
+        packVersion: r.read<String>('pack_version'),
+        snapshot: (jsonDecode(r.read<String>('snapshot')) as Map)
+            .cast<String, Object?>(),
+      ),
+  ];
+
+  /// Écrit la référence de [ref.entityId] pour la fiche [id] : une seule
+  /// par entité.
+  Future<void> saveContentRef(String id, ContentRef ref) async {
+    final row = await _db
+        .customSelect(
+          'SELECT id FROM character_content_ref '
+          'WHERE character_id = ? AND entity_id = ?',
+          variables: [
+            Variable.withString(id),
+            Variable.withString(ref.entityId),
+          ],
+        )
+        .getSingleOrNull();
+    final snapshot = jsonEncode(ref.snapshot);
+    if (row == null) {
+      await _db.customStatement(
+        'INSERT INTO character_content_ref (id, character_id, entity_id, '
+        'pack_id, pack_version, snapshot) VALUES (?, ?, ?, ?, ?, ?)',
+        [uuidV7(), id, ref.entityId, ref.packId, ref.packVersion, snapshot],
+      );
+    } else {
+      await _db.customStatement(
+        'UPDATE character_content_ref SET pack_id = ?, pack_version = ?, '
+        'snapshot = ? WHERE id = ?',
+        [ref.packId, ref.packVersion, snapshot, row.read<String>('id')],
+      );
+    }
+    _db.markTablesUpdated({_db.characterContentRefs});
+  }
+
+  /// Retire la référence de [entityId] de la fiche [id].
+  Future<void> removeContentRef(String id, String entityId) async {
+    await _db.customStatement(
+      'DELETE FROM character_content_ref '
+      'WHERE character_id = ? AND entity_id = ?',
+      [id, entityId],
+    );
+    _db.markTablesUpdated({_db.characterContentRefs});
+  }
+
+  /// Choix du joueur devant un contenu modifié (EF-PJ-14) : [migrate] prend
+  /// la nouvelle version ([snapshot] actuel) ; sinon la version est gardée
+  /// et l'alerte ne revient pas. Le choix va dans l'historique.
+  Future<void> resolveContentChange(
+    String id,
+    ContentChange change, {
+    required bool migrate,
+    required Map<String, Object?> snapshot,
+    String? authorUserId,
+  }) async {
+    await saveContentRef(
+      id,
+      migrate
+          ? (
+              entityId: change.entityId,
+              packId: change.ref.packId,
+              packVersion: change.toVersion,
+              snapshot: snapshot,
+            )
+          : (
+              entityId: change.entityId,
+              packId: change.ref.packId,
+              packVersion: change.fromVersion,
+              snapshot: {...change.ref.snapshot, 'kept': change.toVersion},
+            ),
+    );
+    await _log(id, authorUserId, {
+      'kind': 'content_update',
+      'entity': change.entityId,
+      'name': change.before.name,
+      'pack': change.ref.packId,
+      'from': change.fromVersion,
+      'to': change.toVersion,
+      'choice': migrate ? 'migrate' : 'keep',
+    });
+  }
+
+  /// Fiches de la table [tableId] qui citent une des [entityIds] du pack
+  /// [packId] : identifiant et nom.
+  Future<List<({String id, String name})>> charactersUsing(
+    String tableId,
+    String packId,
+    Set<String> entityIds,
+  ) async {
+    if (entityIds.isEmpty) return const [];
+    return [
+      for (final r
+          in await _db
+              .customSelect(
+                'SELECT DISTINCT c.id, c.name FROM character_content_ref r '
+                'JOIN character c ON c.id = r.character_id '
+                'WHERE c.table_id = ? AND r.pack_id = ? AND r.entity_id IN '
+                '(${[for (final _ in entityIds) '?'].join(', ')}) ORDER BY c.name',
+                variables: [
+                  Variable.withString(tableId),
+                  Variable.withString(packId),
+                  for (final e in entityIds) Variable.withString(e),
+                ],
+              )
+              .get())
+        (id: r.read<String>('id'), name: r.read<String>('name')),
+    ];
+  }
+
+  /// Entités bannies de la table [tableId] (EF-HB-10), lues une fois.
+  Future<Set<String>> bannedFor(String tableId) async => {
+    for (final r
+        in await _db
+            .customSelect(
+              'SELECT entity_id FROM table_banned_entity WHERE table_id = ?',
+              variables: [Variable.withString(tableId)],
+            )
+            .get())
+      r.read<String>('entity_id'),
+  };
+
   /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
   /// statut et le commentaire de revue du MJ, et si sa table connue n'a plus
   /// de MJ (compte supprimé) ; `null` si elle n'existe pas.

@@ -20,6 +20,7 @@ import 'account/new_password_page.dart';
 import 'account/profile_page.dart';
 import 'account/sign_in_page.dart';
 import 'account/sync_state.dart';
+import 'compendium/compendium_page.dart';
 import 'creation/creation_page.dart';
 import 'creation/creation_providers.dart';
 import 'creation/step_layout.dart';
@@ -328,6 +329,7 @@ class _ShellState extends ConsumerState<_Shell> {
           0 => const _HomePage(),
           1 => const TablesTab(),
           2 => const _CharactersPage(),
+          3 => const CompendiumPage(),
           4 => const HomebrewPage(),
           _ => _PlaceholderPage(destinations[_selected].$2),
         },

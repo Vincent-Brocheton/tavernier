@@ -1124,13 +1124,13 @@ abstract class AppLocalizations {
   /// **'CA'**
   String get statArmorClass;
 
-  /// Profil.
+  /// Étapes 7 à 9 de la création.
   ///
   /// In fr, this message translates to:
   /// **'Initiative'**
   String get statInitiative;
 
-  /// Profil.
+  /// Étapes 7 à 9 de la création.
   ///
   /// In fr, this message translates to:
   /// **'Vitesse'**
@@ -1951,25 +1951,25 @@ abstract class AppLocalizations {
   /// **'Incantation'**
   String get spellCasting;
 
-  /// Éditeurs homebrew (US-27 lot b).
+  /// Onglet Sorts.
   ///
   /// In fr, this message translates to:
-  /// **'Portée *'**
+  /// **'Portée'**
   String get spellRange;
 
-  /// Éditeurs homebrew (US-27 lot b).
+  /// Onglet Sorts.
   ///
   /// In fr, this message translates to:
   /// **'Composantes'**
   String get spellComponents;
 
-  /// Éditeurs homebrew (US-27 lot b).
+  /// Onglet Sorts.
   ///
   /// In fr, this message translates to:
-  /// **'Durée * (ex. 1 heure)'**
+  /// **'Durée'**
   String get spellDuration;
 
-  /// Éditeurs homebrew (US-27 lot b).
+  /// Onglet Sorts.
   ///
   /// In fr, this message translates to:
   /// **'Composante matérielle'**
@@ -10401,7 +10401,7 @@ abstract class AppLocalizations {
   /// Packs d'une table (US-30 lot b, EF-HB-09).
   ///
   /// In fr, this message translates to:
-  /// **'Verrouillé, toujours actif'**
+  /// **'Toujours actif · désactivable entité par entité'**
   String get tablePacksSrd;
 
   /// Packs d'une table (US-30 lot b, EF-HB-09).
@@ -10433,6 +10433,293 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Les membres de la table reçoivent ces packs par la synchronisation. Une nouvelle version importée ne change pas la table tant que vous ne la choisissez pas.'**
   String get tablePacksHint;
+
+  /// Bannissement d'une entité (US-30 lot c1, EF-HB-10, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Entités bannies pour cette table :'**
+  String get tablePacksBanned;
+
+  /// Bannissement d'une entité (US-30 lot c1, EF-HB-10, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rétablir'**
+  String get tablePacksUnban;
+
+  /// Bannissement d'une entité (US-30 lot c1, EF-HB-10, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Bannir une entité'**
+  String get tablePacksBan;
+
+  /// Bannissement d'une entité (US-30 lot c1, EF-HB-10, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Chercher une entité du SRD'**
+  String get tablePacksBanSearch;
+
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{pack} : version {version} disponible — {added, plural, =0{aucun ajout} =1{1 ajout} other{{added} ajouts}}, {modified, plural, =0{aucune modification} =1{1 modification} other{{modified} modifications}}.'**
+  String tablePacksNewVersion(
+    String pack,
+    String version,
+    int added,
+    int modified,
+  );
+
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Passer en {version} touche 1 fiche ({names}).} other{Passer en {version} touche {count} fiches ({names}).}} Leurs joueurs choisiront de migrer ou de garder l’ancienne version.'**
+  String tablePacksAffects(int count, String version, String names);
+
+  /// Nouvelle version d'un pack de table (US-30 lot c2, EF-PJ-14, [H9]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer en {version}'**
+  String tablePacksSwitch(String version);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'concentration'**
+  String get compendiumConcentration;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'FP {cr} ({xp} PX)'**
+  String compendiumCr(String cr, int xp);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'État'**
+  String get compendiumCondition;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contexte'**
+  String get compendiumContext;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous mes packs'**
+  String get compendiumAllPacks;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contexte : {context} · {packs}'**
+  String compendiumScope(String context, String packs);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une règle, un sort, un monstre…'**
+  String get compendiumSearch;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout'**
+  String get compendiumFilterAll;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts'**
+  String get compendiumFilterSpells;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dons'**
+  String get compendiumFilterFeats;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Objets'**
+  String get compendiumFilterItems;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Monstres'**
+  String get compendiumFilterMonsters;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'États'**
+  String get compendiumFilterConditions;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors-ligne · tout le compendium reste disponible'**
+  String get compendiumOffline;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tapez un nom pour chercher dans le contenu.'**
+  String get compendiumHint;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 résultat · {context}} other{{count} résultats · {context}}}'**
+  String compendiumResults(int count, String context);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 autre résultat dans un pack inactif pour cette table : « {name} » ({pack}).} other{{count} autres résultats dans des packs inactifs pour cette table, dont « {name} » ({pack}).}}'**
+  String compendiumInactive(int count, String name, String pack);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher'**
+  String get compendiumShow;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'BANNI'**
+  String get compendiumBanned;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'BANNI ICI'**
+  String get compendiumBannedHere;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun résultat'**
+  String get compendiumNoResult;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien ne correspond à « {query} » dans vos packs.'**
+  String compendiumNoResultAll(String query);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien ne correspond à « {query} » dans les packs actifs de {table}.'**
+  String compendiumNoResultTable(String query, String table);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vouliez-vous dire'**
+  String get compendiumDidYouMean;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Le MJ l’a banni pour cette table. Vous pouvez toujours lire sa fiche.'**
+  String get compendiumBannedHint;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Chercher dans tous mes packs'**
+  String get compendiumSearchAll;
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Source : {pack}'**
+  String compendiumSource(String pack);
+
+  /// Compendium (US-30 lot c1, EF-CMP-01, [K1], [K2], [K5]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Incantation'**
+  String get compendiumCasting;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenu modifié : {name} a changé dans la version de la table.'**
+  String contentChangedBanner(String name);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir et choisir'**
+  String get contentChangedOpen;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenu modifié'**
+  String get contentChangedTitle;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} a changé'**
+  String contentChangedHeading(String name);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{pack} · la table est passée de {from} à {to}'**
+  String contentChangedPack(String pack, String from, String to);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre version · {version}'**
+  String contentChangedYours(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle · {version}'**
+  String contentChangedNew(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos autres contenus ne changent pas. Le choix est inscrit dans l’historique de la fiche.'**
+  String get contentChangedHint;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Passer à la nouvelle version'**
+  String get contentChangedMigrate;
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'Garder la version {version}'**
+  String contentChangedKeep(String version);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : passé de {from} à {to}'**
+  String historyContentMigrated(String name, String from, String to);
+
+  /// Contenu figé par fiche (US-30 lot c2, EF-PJ-14, [H10]).
+  ///
+  /// In fr, this message translates to:
+  /// **'{name} : version {version} gardée'**
+  String historyContentKept(String name, String version);
 
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
@@ -12074,6 +12361,12 @@ abstract class AppLocalizations {
   /// Éditeurs homebrew (US-27 lot b).
   ///
   /// In fr, this message translates to:
+  /// **'Portée *'**
+  String get spellEditRange;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
   /// **'Distance'**
   String get rangeFeetKind;
 
@@ -12100,6 +12393,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Matériel consommé'**
   String get spellMaterialConsumed;
+
+  /// Éditeurs homebrew (US-27 lot b).
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée * (ex. 1 heure)'**
+  String get spellEditDuration;
 
   /// Éditeurs homebrew (US-27 lot b).
   ///

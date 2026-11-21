@@ -33,7 +33,8 @@ class LevelUpPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final content = ref.watch(contentProvider).asData?.value;
+    // Sans les entités bannies de sa table (EF-HB-10).
+    final content = ref.watch(characterContentProvider(id)).asData?.value;
     final character = ref.watch(characterProvider(id));
     return Scaffold(
       body: SafeArea(

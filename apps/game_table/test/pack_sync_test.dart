@@ -106,4 +106,22 @@ void main() {
     final packs = (await container.read(contentProvider.future)).packs;
     expect(packs.last.manifest.version, '0.2.0');
   });
+
+  test(
+    'entité bannie : hors des choix de la table, lisible (EF-HB-10)',
+    () async {
+      await TableStore(db).banEntity(table, 'srd:spell:sleep');
+      final content = await container.read(tableContentProvider(table).future);
+      expect(
+        content.spellList('srd:class:wizard').map((s) => '$s'),
+        isNot(contains('srd:spell:sleep')),
+      );
+      expect(content.entity('srd:spell:sleep'), isNotNull);
+      final elsewhere = await container.read(tableContentProvider(null).future);
+      expect(
+        elsewhere.spellList('srd:class:wizard').map((s) => '$s'),
+        contains('srd:spell:sleep'),
+      );
+    },
+  );
 }

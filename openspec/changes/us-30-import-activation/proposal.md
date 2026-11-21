@@ -71,6 +71,28 @@ Décision du porteur de projet du 21 novembre 2026 : **l'activation d'abord**. L
   - Chez chaque membre, un pack actif absent de l'appareil est téléchargé, vérifié par son empreinte et sa signature, puis installé, sans action de sa part.
   - **Contenu actif** de l'appareil : le SRD, plus les packs actifs sur mes tables, à leur version figée. Fiches, création, montée de niveau et rencontres en profitent.
 
+### Lot c : bannissement, compendium, contenu figé par fiche
+
+Livré en deux PR :
+- **c1** : bannissement d'une entité par table (EF-HB-10, [H9]) et compendium (EF-CMP-01, [K1], [K2], [K5]) ;
+- **c2** : contenu figé par fiche, alerte « contenu modifié » et passage de version d'une table (EF-PJ-14, [H9], [H10]).
+
+c1 :
+- **Bannir une entité** : le MJ bannit une entité du SRD pour sa table, depuis la carte « Packs » de sa configuration, et peut la rétablir. La table `table_banned_entity` existe déjà, synchronisée, avec ses droits.
+- **Le contenu sait ce qui est banni** : une entité bannie n'apparaît plus dans les listes de choix (création, montée de niveau, sorts) d'un personnage de la table. Elle reste lisible par son identifiant : une fiche qui l'a déjà se calcule comme avant.
+- **Compendium** : l'onglet Compendium cherche hors ligne parmi les packs actifs d'une table (par défaut), ou parmi tous mes packs.
+  - Filtres par type, badge de source, « BANNI ».
+  - Résultats d'un pack inactif signalés.
+  - Aucun résultat : « Vouliez-vous dire », l'entité bannie, « Chercher dans tous mes packs ».
+  - Fiche de l'entité, avec le bloc de stats d'un monstre.
+
+c2 :
+- **Contenu figé par fiche** (EF-PJ-14) : une fiche garde, dans `character_content_ref` (cahier §11, déjà synchronisée), la version et l'instantané de chaque entité homebrew qu'elle utilise, avec ses aptitudes.
+  - Quand la table passe à une autre version, la fiche se calcule toujours avec son instantané.
+  - Si l'entité a changé, le joueur voit l'alerte « contenu modifié » ([H10]), avec l'ancienne et la nouvelle version, et choisit de migrer ou de garder. Le choix est inscrit dans l'historique de la fiche.
+  - Seul le propriétaire de la fiche décide : le MJ ne peut pas imposer la migration.
+- **Passage de version d'une table** ([H9]) : sur la carte « Packs », une version plus récente installée est annoncée (« Version 0.2.0 importée : 1 ajout, 1 modification »), avec « Passer en 0.2.0 » et le nombre de fiches touchées.
+
 ## Capabilities
 
 ### New Capabilities

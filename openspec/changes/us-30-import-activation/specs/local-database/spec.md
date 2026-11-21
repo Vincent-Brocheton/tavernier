@@ -26,3 +26,17 @@ Le schéma v11 SHALL garder l'empreinte du fichier d'un pack activé sur une tab
 #### Scenario: Activer puis changer de version
 - **WHEN** un pack est activé en 0.1.0 sur une table, puis passé en 0.2.0
 - **THEN** la table n'a qu'une ligne pour ce pack, en 0.2.0, avec l'empreinte de la 0.2.0
+
+### Requirement: Entités bannies d'une table
+`TableStore` SHALL bannir et rétablir une entité pour une table (une ligne de `table_banned_entity` par entité et par table), et suivre les entités bannies d'une table.
+
+#### Scenario: Bannir deux fois
+- **WHEN** Sommeil est banni deux fois, puis rétabli
+- **THEN** la table n'a eu qu'une ligne pour Sommeil, puis aucune
+
+### Requirement: Références de contenu d'une fiche
+`CharacterStore` SHALL lire et écrire les références de contenu d'une fiche (`character_content_ref`). Il SHALL inscrire le choix du joueur, migrer ou garder, dans `character_change_log`, et lister les fiches d'une table qui utilisent des entités données d'un pack.
+
+#### Scenario: Migrer
+- **WHEN** le joueur migre une entité vers 0.2.0
+- **THEN** la référence porte 0.2.0 et le nouvel instantané, et le journal a une ligne `content_update` avec le choix
