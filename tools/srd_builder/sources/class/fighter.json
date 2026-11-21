@@ -46,6 +46,7 @@
       ]
     },
     "subclass_level": 3,
+    "subclass_feature_levels": [3, 7, 10, 15, 18],
     "levels": [
       {
         "level": 1,

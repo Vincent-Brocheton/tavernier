@@ -298,6 +298,12 @@
         "tool_choice": [],
         "gold": 50
       }
+    ],
+    "subclass_feature_levels": [
+      3,
+      6,
+      11,
+      17
     ]
   }
 }

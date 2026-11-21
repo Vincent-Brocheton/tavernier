@@ -89,10 +89,56 @@ Deux champs communs :
 
 Non proposés, car facultatifs et rares au SRD : le plafond `up_to` d'une récupération, et les portées `cantrip:` et `spell_school:` de `modify_damage`.
 
+## Lot c : Classe et Sous-classe
+
+### Format et base
+
+- **`ClassData.subclassFeatureLevels`** (`subclass_feature_levels`, liste d'entiers, vide par défaut) : les niveaux où la sous-classe accorde ses aptitudes, en commençant par `subclass_level`.
+- **Extracteur** : il ajoute `subclass_level`, puis chaque niveau dont la table porte « Aptitude de sous-classe ». Le Guerrier, saisi à la main, reçoit les siens, relus dans la table du SRD. Un test vérifie que les aptitudes de chaque sous-classe du SRD tombent exactement à ces niveaux.
+- **Base v8** : `player_class.subclass_feature_levels` (JSON, `[]` par défaut), ajoutée par `addColumn`, et relue par l'export.
+- Le moteur ne change pas : il lit le `level` de chaque aptitude de sous-classe.
+
+### Vérification (EF-HB-11)
+
+`checkDraft` ajoute :
+- **Classe**, sur le JSON brut :
+  - « progression incomplète : une classe a ses 20 niveaux » ;
+  - « les aptitudes de sous-classe commencent au niveau où on la choisit » ;
+  - « les niveaux de sous-classe vont croissant, jusqu’au niveau 20 ».
+- **Sous-classe**, sur les entités lues et les dépendances : la classe parente vient du contenu ou du brouillon.
+  - Pour chaque aptitude hors des niveaux du parent : « la classe parente n’accorde pas d’aptitude de sous-classe au niveau N ».
+  - Pour les niveaux sans aptitude : « progression incomplète : aucune aptitude aux niveaux … ».
+  - Un parent sans `subclass_feature_levels` (pack antérieur) n'est pas contrôlé.
+
+### App
+
+- **Aptitudes possédées** : les traits d'une espèce et les aptitudes d'une classe ou d'une sous-classe suivent un seul modèle dans `entity_editor.dart`.
+  - Chacune a un niveau. Elle est soit une aptitude du brouillon, modifiable dans sa feuille, soit une aptitude d'un autre pack, gardée par une variante.
+  - À l'enregistrement, chaque aptitude du brouillon devient une entité `feature` de source son propriétaire et de `level` son niveau, avec l'identifiant `{namespace}:feature:{propriétaire}-{aptitude}`.
+- **`class_editor.dart`** (partie d'`entity_editor.dart`) : les formulaires de la Classe et de la Sous-classe.
+  - **Classe** :
+    - traits de base ;
+    - niveaux de sous-classe, en puces 3 à 20 ;
+    - incantation :
+      - « Reprendre les emplacements et sorts connus de… » copie les colonnes d'incantation d'une classe du contenu (sorts mineurs, sorts préparés, emplacements, pacte), sa part en multiclassage et son changement de sorts préparés ;
+      - « Reprendre la liste de sorts de… » copie sa liste.
+    - colonnes de la table, chacune éditée niveau par niveau ;
+    - les 20 niveaux, avec leurs aptitudes.
+  - **Le bonus de maîtrise** de chaque niveau vient de la table d'une classe du contenu, et non d'une valeur écrite dans l'app.
+  - **Sous-classe** : classe parente (du contenu ou du brouillon) et ses niveaux, une section par niveau avec « Ajouter une aptitude au niveau N ».
+    - Une aptitude mal placée, par exemple après un changement de parent, montre le message de [H02], « Déplacer au niveau » (le niveau suivant réservé) et « Autre niveau… ».
+- Les effets se posent sur les aptitudes, pas sur la classe ni la sous-classe.
+- « Dériver d'une entité du SRD » accepte une classe et une sous-classe. Leurs aptitudes du SRD sont gardées par identifiant.
+
+Non proposés :
+- l'équipement de départ à objets, réduit à l'or ;
+- les outils à choisir dans une catégorie (Barde).
+
+Une variante garde ces deux champs de l'original.
+
 ## Lots suivants
 
-Leur design se précise à leur tour, dans ce change :
-- **c** : Classe et Sous-classe ;
+Son design se précise à son tour, dans ce change :
 - **d** : Monstre.
 
 ## Choix

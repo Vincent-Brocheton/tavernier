@@ -162,6 +162,86 @@ void main() {
     );
   });
 
+  Map<String, Object?> cls(
+    String id, {
+    int levels = 20,
+    List<int> subclassLevels = const [3, 7, 10, 15, 18],
+  }) => {
+    'id': id,
+    'type': 'class',
+    'name': 'Guerrier',
+    'data': {
+      'primary_abilities': ['srd:ability:str'],
+      'hit_die': 10,
+      'saving_throws': ['srd:ability:str', 'srd:ability:con'],
+      'skill_choice_count': 1,
+      'skill_choices': ['srd:skill:athletics', 'srd:skill:perception'],
+      'weapon_proficiencies': ['simple', 'martial'],
+      'armor_training': ['light'],
+      'subclass_level': 3,
+      'subclass_feature_levels': subclassLevels,
+      'levels': [
+        for (var l = 1; l <= levels; l++)
+          {'level': l, 'proficiency_bonus': 2 + (l - 1) ~/ 4},
+      ],
+    },
+  };
+
+  test('[H02] sous-classe : niveaux alignés sur le parent, tous remplis', () {
+    final deps = [...srd, entity(cls('srd:class:fighter'))];
+    List<Map<String, Object?>> draft(List<int> levels) => [
+      {
+        'id': 'gardiens:subclass:rempart',
+        'type': 'subclass',
+        'name': 'Gardien du rempart',
+        'data': {
+          'parent_class': 'srd:class:fighter',
+          'features': [for (final l in levels) 'gardiens:feature:rempart-$l'],
+        },
+      },
+      for (final l in levels)
+        {
+          'id': 'gardiens:feature:rempart-$l',
+          'type': 'feature',
+          'name': 'Aptitude $l',
+          'data': {'source': 'gardiens:subclass:rempart', 'level': l},
+          'text': {'fr': 'Texte.'},
+        },
+    ];
+    expect(
+      checkDraft(
+        manifest,
+        draft([3, 4, 7]),
+        dependencies: deps,
+      ).map((i) => i.message),
+      [
+        'la classe parente n’accorde pas d’aptitude de sous-classe au niveau 4',
+        'progression incomplète : aucune aptitude aux niveaux 10, 15, 18',
+      ],
+    );
+    expect(
+      checkDraft(manifest, draft([3, 7, 10, 15, 18]), dependencies: deps),
+      isEmpty,
+    );
+  });
+
+  test('classe : 20 niveaux, niveaux de sous-classe dès son choix', () {
+    List<String> messages(Map<String, Object?> c) => [
+      for (final i in checkDraft(manifest, [c], dependencies: srd)) i.message,
+    ];
+    expect(messages(cls('gardiens:class:veilleur')), isEmpty);
+    expect(messages(cls('gardiens:class:veilleur', levels: 12)), [
+      'progression incomplète : une classe a ses 20 niveaux',
+    ]);
+    expect(messages(cls('gardiens:class:veilleur', subclassLevels: [])), [
+      'les aptitudes de sous-classe commencent au niveau où on la choisit',
+    ]);
+    expect(
+      messages(cls('gardiens:class:veilleur', subclassLevels: [3, 9, 6])),
+      ['les niveaux de sous-classe vont croissant, jusqu’au niveau 20'],
+    );
+  });
+
   test('identifiants : slug sans accents, unique dans le pack', () {
     expect(slugOf('Gardiens des Marches'), 'gardiens-des-marches');
     expect(

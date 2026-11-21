@@ -856,6 +856,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'weapon_proficiencies',
         'armor_training',
         'subclass_level',
+        'subclass_feature_levels',
         'levels',
         'spell_list',
         'spellcasting_ability',
@@ -906,6 +907,12 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       subclassLevel: $checkedConvert(
         'subclass_level',
         (v) => (v as num).toInt(),
+      ),
+      subclassFeatureLevels: $checkedConvert(
+        'subclass_feature_levels',
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => (e as num).toInt()).toList() ??
+            const <int>[],
       ),
       levels: $checkedConvert(
         'levels',
@@ -979,6 +986,7 @@ _ClassData _$ClassDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     'weaponProficiencies': 'weapon_proficiencies',
     'armorTraining': 'armor_training',
     'subclassLevel': 'subclass_level',
+    'subclassFeatureLevels': 'subclass_feature_levels',
     'spellList': 'spell_list',
     'spellcastingAbility': 'spellcasting_ability',
     'toolProficiencies': 'tool_proficiencies',
@@ -1007,6 +1015,7 @@ Map<String, dynamic> _$ClassDataToJson(
   'weapon_proficiencies': instance.weaponProficiencies,
   'armor_training': instance.armorTraining,
   'subclass_level': instance.subclassLevel,
+  'subclass_feature_levels': instance.subclassFeatureLevels,
   'levels': instance.levels.map((e) => e.toJson()).toList(),
   'spell_list': instance.spellList
       .map(const ContentIdConverter().toJson)

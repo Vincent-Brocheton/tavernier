@@ -49,7 +49,11 @@ Le lot b se livre en deux PR :
 
 ### Lot c : Classe et Sous-classe
 
-- **Classe** : dé de vie, caractéristique principale, maîtrises, progression de 1 à 20, nombre de bottes, incantation, sous-classe au niveau 3.
+Décisions du porteur de projet du 21 novembre 2026 :
+- **Niveaux de sous-classe** : `class` reçoit `subclass_feature_levels`, facultatif (format `.dndpack`, base locale v8). Ce sont les niveaux où la sous-classe accorde ses aptitudes (Guerrier : 3, 7, 10, 15, 18). L'extracteur les lit dans les lignes « Aptitude de sous-classe » de la table du SRD. Un pack antérieur se lit sans eux.
+- **Éditeur de Classe complet** : incantation et multiclassage compris. L'équipement de départ se réduit à l'or.
+
+- **Classe** : dé de vie, caractéristique principale, maîtrises, progression de 1 à 20, colonnes de la table (bottes, emplacements…), incantation, niveau et niveaux de sous-classe.
 - **Sous-classe ([H02])** : classe parente, et aptitudes par niveau, alignées sur les niveaux de sous-classe de la classe parente.
 - **Progression incomplète (EF-HB-11)** : elle bloque la publication, pas le test.
 

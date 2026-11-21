@@ -127,10 +127,14 @@ List<String> extractClasses({
     // répète ; les autres (Expertise, Métamagie) gardent leur premier niveau
     // et leurs paliers passent par `when.level`.
     final listed = <String>{};
+    final subclassLevels = [data['subclass_level']! as int];
     for (final row in parseProgressionTable(layout, c.table, c.columns)) {
       final features = <String>[];
       for (final name in row.features) {
-        if (name == 'Aptitude de sous-classe') continue;
+        if (name == 'Aptitude de sous-classe') {
+          subclassLevels.add(row.level);
+          continue;
+        }
         final slug = featureSlug(slugs, c.slug, name, row.level);
         if (slug == null) {
           problems.add(
@@ -148,6 +152,7 @@ List<String> extractClasses({
         'columns': row.columns,
       });
     }
+    data['subclass_feature_levels'] = subclassLevels;
     data['levels'] = levels;
     final spells = spellClasses[c.name] ?? const [];
     if (spells.isEmpty) {

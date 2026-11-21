@@ -9084,6 +9084,324 @@ abstract class AppLocalizations {
   /// **'Moyenne (M)'**
   String get sizeMedium;
 
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Dé de vie'**
+  String get classHitDieField;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristiques principales'**
+  String get classPrimaryAbilities;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'L’une d’elles suffit pour le multiclassage'**
+  String get classPrimaryAny;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Jets de sauvegarde maîtrisés'**
+  String get classSavingThrows;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences à choisir (nombre)'**
+  String get classSkillCount;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences proposées'**
+  String get classSkillChoices;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Armes maîtrisées'**
+  String get classWeapons;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Formation aux armures'**
+  String get classArmor;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Outils maîtrisés'**
+  String get classTools;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Équipement de départ : or (po)'**
+  String get classStartingGold;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Équipement de départ repris de l’original.'**
+  String get classStartingEquipmentKept;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-classe'**
+  String get classSubclassTitle;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau où l’on choisit la sous-classe'**
+  String get classSubclassLevel;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveaux des aptitudes de sous-classe'**
+  String get classSubclassLevels;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'À ces niveaux, une sous-classe de cette classe accorde au moins une aptitude.'**
+  String get classSubclassLevelsHint;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Incantation'**
+  String get classSpellcasting;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Caractéristique d’incantation'**
+  String get classSpellcastingAbility;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune (pas de sorts)'**
+  String get classNoSpellcasting;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer ses sorts préparés'**
+  String get classPreparedChange;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous, après un Repos long'**
+  String get classPreparedLongRestAll;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un seul, après un Repos long'**
+  String get classPreparedLongRestOne;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Un seul, en gagnant un niveau'**
+  String get classPreparedLevelUpOne;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre les emplacements et sorts connus de…'**
+  String get classSlotsLike;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre la liste de sorts de…'**
+  String get classSpellListLike;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 sort dans la liste} other{{count} sorts dans la liste}}'**
+  String classSpellListCount(int count);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau de lanceur en multiclassage'**
+  String get classCasterDivisor;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ne compte pas'**
+  String get classCasterNone;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les niveaux de la classe'**
+  String get classCasterFull;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'La moitié des niveaux'**
+  String get classCasterHalf;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'En multiclassage'**
+  String get classMulticlassTitle;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Colonnes de la table'**
+  String get classColumnsTitle;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une colonne'**
+  String get classColumnAdd;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom de la colonne'**
+  String get classColumnName;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer la colonne'**
+  String get classColumnRemove;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts mineurs'**
+  String get classColumnCantrips;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Sorts préparés'**
+  String get classColumnPrepared;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacements de niveau {level}'**
+  String classColumnSlots(int level);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Emplacements de pacte'**
+  String get classColumnPactSlots;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau des emplacements de pacte'**
+  String get classColumnPactLevel;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitudes par niveau'**
+  String get classProgressionTitle;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} · bonus de maîtrise +{bonus}'**
+  String classLevelHeader(int level, int bonus);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitude de sous-classe'**
+  String get classSubclassFeatureHere;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une aptitude au niveau {level}'**
+  String classFeatureAdd(int level);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level} · {owner}'**
+  String classFeatureTitle(int level, String owner);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer l’aptitude'**
+  String get classFeatureSave;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Aptitude du SRD'**
+  String get classFeatureSrd;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l’aptitude'**
+  String get classFeatureRemove;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Classe parente'**
+  String get subclassParent;
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveaux de sous-classe de la classe {name} : {levels}'**
+  String subclassLevelsOf(String name, String levels);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Niveau {level}'**
+  String subclassLevel(int level);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'La classe {name} n’accorde pas d’aptitude de sous-classe au niveau {level}.'**
+  String subclassWrongLevel(String name, int level);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Déplacer au niveau {level}'**
+  String subclassMoveTo(int level);
+
+  /// Homebrew (US-27, EF-HB-11, [H02], lot c).
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre niveau…'**
+  String get subclassOtherLevel;
+
   /// Homebrew (US-27, EF-HB-01, [H03], lot b2).
   ///
   /// In fr, this message translates to:

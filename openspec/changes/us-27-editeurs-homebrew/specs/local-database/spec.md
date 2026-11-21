@@ -13,3 +13,10 @@ Le schéma v7 SHALL garder la rareté et l'harmonisation d'une arme ou d'une arm
 #### Scenario: Aller-retour d'un pack homebrew
 - **WHEN** un pack avec une hache peu courante harmonisée, un bouclier rare et un sort du Magicien est importé après le SRD, puis exporté
 - **THEN** les deux packs exportés sont identiques à ceux qui ont été importés
+
+### Requirement: Niveaux de sous-classe d'une classe
+Le schéma v8 SHALL garder les niveaux d'aptitude de sous-classe d'une classe (`player_class.subclass_feature_levels`). L'export d'un pack importé SHALL les rendre à l'identique ; une base v7 SHALL monter en v8.
+
+#### Scenario: Aller-retour du SRD
+- **WHEN** le pack SRD est importé puis exporté
+- **THEN** le Guerrier exporté a pour niveaux de sous-classe 3, 7, 10, 15 et 18
