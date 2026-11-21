@@ -53,6 +53,7 @@ void main() {
       'monster',
       'author_identity',
       'author_key',
+      'pack_file',
     ]) {
       expect(tables, isNot(contains(content)), reason: content);
     }

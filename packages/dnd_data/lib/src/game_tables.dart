@@ -78,6 +78,10 @@ class TablePacks extends Table with IdKey, TableOwned {
   TextColumn get packId => text()();
   TextColumn get pinnedVersion => text().nullable()();
 
+  /// Empreinte sha256 du fichier de la version, dans le bucket `packs`
+  /// (US-30) ; vide pour le SRD embarqué.
+  TextColumn get fileSha256 => text().nullable()();
+
   @override
   List<Set<Column<Object>>> get uniqueKeys => [
     {tableId, packId},
@@ -536,6 +540,35 @@ class AuthorKeys extends Table with IdKey {
   String get tableName => 'author_key';
   TextColumn get seed => text()();
   TextColumn get publicKey => text()();
+}
+
+/// Une version importée d'un pack (US-30, EF-HB-06 à 09), gardée telle que
+/// reçue : une table reste sur sa version figée quand une autre arrive.
+/// Locale, jamais synchronisée ni exportée.
+@DataClassName('PackFileRow')
+class PackFiles extends Table with IdKey {
+  @override
+  String get tableName => 'pack_file';
+
+  /// Identifiant du pack dans la bibliothèque ; diffère de [sourceId] pour
+  /// un pack distinct d'un autre auteur.
+  TextColumn get packId => text()();
+  TextColumn get sourceId => text()();
+  TextColumn get version => text()();
+  TextColumn get namespace => text()();
+  TextColumn get name => text()();
+  TextColumn get authorPublicKey => text().nullable()();
+  TextColumn get checksum => text()();
+  BlobColumn get bytes => blob()();
+
+  /// Noms donnés dans la bibliothèque : identifiant d'entité → nom.
+  TextColumn get renames => text().withDefault(const Constant('{}'))();
+  TextColumn get importedAt => text()();
+
+  @override
+  List<Set<Column<Object>>> get uniqueKeys => [
+    {packId, version},
+  ];
 }
 
 @DataClassName('AuthorIdentityRow')

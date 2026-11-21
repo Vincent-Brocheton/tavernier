@@ -13,6 +13,7 @@ const gameTables = [
   'character_state', 'character_content_ref', 'character_change_log',
   'character_language', 'character_choice', 'npc_statblock', 'session',
   'encounter', 'encounter_event', 'note', 'author_identity', 'author_key',
+  'pack_file',
 ];
 
 void main() {

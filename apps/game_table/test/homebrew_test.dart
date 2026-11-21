@@ -5,8 +5,11 @@
 // choix imbriqué (lot b2) ; « Éditeur de Sous-classe » ([H02]) et
 // « Éditeur de Classe » (lot c) ; « Éditeur de Monstre » (lot d) ;
 // « Bac à sable d'une entité » (US-28, [H04]) ; « Publier une version »,
-// « Export signé » (US-29, [H06]).
+// « Export signé » (US-29, [H06]) ; « Importer un pack », « Mise à jour du
+// même auteur », « Pack d'un autre auteur », « Conflits de noms »,
+// « Dupliquer un pack importé » (US-30 lot a, [H08], [H09]).
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
@@ -20,6 +23,7 @@ import 'package:game_table/account/data_backup.dart' show saveFileProvider;
 import 'package:game_table/creation/creation_providers.dart';
 import 'package:game_table/creation/step_layout.dart';
 import 'package:game_table/homebrew/homebrew_page.dart';
+import 'package:game_table/homebrew/import_page.dart';
 import 'package:game_table/l10n/app_localizations.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -28,6 +32,9 @@ final _content = ActiveContent([
 ]);
 
 late TavernierDatabase _db;
+
+/// Fichier `.dndpack` que choisit « Importer un pack ».
+({String name, Uint8List bytes})? _packFile;
 
 /// Dernier fichier passé à la feuille de partage.
 (String, List<int>)? _saved;
@@ -44,6 +51,7 @@ Future<void> _open(WidgetTester tester) async {
         databaseProvider.overrideWithValue(_db),
         contentProvider.overrideWith((ref) => _content),
         pseudonymProvider.overrideWith((ref) async => 'Inès'),
+        openPackFileProvider.overrideWithValue(() async => _packFile),
         saveFileProvider.overrideWithValue((name, bytes, _) async {
           _saved = (name, bytes);
           return true;
@@ -926,5 +934,159 @@ void main() {
     expect(stored!.manifest.version, '0.2.0');
     expect(stored.manifest.authorPublicKey, exported.manifest.authorPublicKey);
     expect((await _draft(tester)).manifest['version'], '0.2.0');
+  });
+
+  /// Un `.dndpack` signé de « Gardiens des Marches », d'Inès (graine 1) ou
+  /// de Karl (graine 2).
+  Future<({String name, Uint8List bytes})> gardiens(
+    WidgetTester tester,
+    String version,
+    List<String> feats, {
+    int seed = 1,
+  }) async {
+    final srd = srdManifestOf(_content)!;
+    final bytes = await tester.runAsync(
+      () async => writeDndpack(
+        await signPack(
+          ContentPack(
+            manifest: PackManifest(
+              id: '0193a000-0000-7000-8000-000000000030',
+              namespace: 'gardiens',
+              name: 'Gardiens des Marches',
+              version: version,
+              origin: PackOrigin.local,
+              author: seed == 1 ? 'Inès' : 'Karl',
+              licence: 'CC-BY-4.0',
+              locale: 'fr',
+              dependencies: [(id: srd.id, versionRange: '^${srd.version}')],
+            ),
+            entities: [
+              for (final f in feats)
+                parseEntity({
+                  'id': 'gardiens:feat:${slugOf(f)}',
+                  'type': 'feat',
+                  'name': f,
+                  'data': {'category': 'origin'},
+                  'text': {'fr': '$f : texte.'},
+                }, 'test').entity!,
+            ],
+          ),
+          await authorKeyPair(List.filled(32, seed)),
+        ),
+      ),
+    );
+    return (
+      name: 'gardiens-$version.dndpack',
+      bytes: Uint8List.fromList(bytes!),
+    );
+  }
+
+  Future<List<String>> library(WidgetTester tester) async => [
+    for (final v in (await tester.runAsync(PackLibrary(_db).installed))!)
+      '${v.pack.manifest.name} ${v.version}',
+  ];
+
+  _test('[H08] nouveau pack, puis mise à jour du même auteur', (tester) async {
+    await _open(tester);
+    _packFile = await gardiens(tester, '0.1.0', ['Veilleur']);
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.text('Gardiens des Marches'), findsOneWidget);
+    expect(find.text('NOUVEAU'), findsOneWidget);
+    expect(find.text('Signature : Inès'), findsOneWidget);
+    expect(find.text('Nouveau dans votre bibliothèque'), findsOneWidget);
+    await _tap(tester, find.widgetWithText(FilledButton, 'Importer'));
+    expect(await library(tester), ['Gardiens des Marches 0.1.0']);
+    expect(find.text('PACKS IMPORTÉS'), findsOneWidget);
+
+    _packFile = await gardiens(tester, '0.2.0', ['Veilleur', 'Guetteur']);
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.text('installée : 0.1.0'), findsOneWidget);
+    expect(
+      find.text(
+        'Même auteur que la version installée, donc c’est une mise à jour',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Guetteur'), findsOneWidget);
+    expect(find.text('1 entité inchangée'), findsOneWidget);
+    await _tap(tester, find.text('Importer la mise à jour'));
+    expect(await library(tester), [
+      'Gardiens des Marches 0.1.0',
+      'Gardiens des Marches 0.2.0',
+    ]);
+    expect(find.textContaining('2 versions gardées'), findsOneWidget);
+
+    // La même version une seconde fois : refusée.
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.text('La version 0.2.0 est déjà installée'), findsOneWidget);
+    expect(find.text('Importer la mise à jour'), findsNothing);
+  });
+
+  _test('[H09] même pack signé par Karl : pack distinct', (tester) async {
+    await _open(tester);
+    final ines = await gardiens(tester, '0.1.0', ['Veilleur']);
+    await tester.runAsync(() => PackLibrary(_db).install(ines.bytes));
+    _packFile = await gardiens(tester, '0.3.0', ['Veilleur'], seed: 2);
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.text('Ce n’est pas une mise à jour.'), findsOneWidget);
+    expect(
+      tester
+          .widget<TextField>(
+            find.widgetWithText(TextField, 'Nom dans votre bibliothèque'),
+          )
+          .controller!
+          .text,
+      'Gardiens des Marches (Karl)',
+    );
+    await _tap(tester, find.text('Importer comme pack distinct'));
+    expect(await library(tester), [
+      'Gardiens des Marches 0.1.0',
+      'Gardiens des Marches (Karl) 0.3.0',
+    ]);
+  });
+
+  _test('conflit de nom : renommé dans la bibliothèque seulement', (
+    tester,
+  ) async {
+    await _open(tester);
+    final alert = _content.entity('srd:feat:alert')!.name;
+    _packFile = await gardiens(tester, '0.1.0', [alert]);
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.text('Nom déjà utilisé : « $alert »'), findsOneWidget);
+    await _tap(tester, find.text('Renommer le nouveau (Don)…'));
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Nouveau nom'),
+      '$alert des Marches',
+    );
+    await _tap(tester, find.widgetWithText(FilledButton, 'Importer'));
+    final content = await tester.runAsync(
+      () => PackStore(_db).exportPack('0193a000-0000-7000-8000-000000000030'),
+    );
+    expect(content!.entities.single.name, '$alert des Marches');
+  });
+
+  _test('fichier illisible : refusé, rien à importer', (tester) async {
+    await _open(tester);
+    _packFile = (name: 'faux.dndpack', bytes: Uint8List.fromList([1, 2, 3]));
+    await _tap(tester, find.text('Importer un pack'));
+    expect(find.textContaining('Fichier refusé'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Importer'), findsNothing);
+  });
+
+  _test('dupliquer un pack importé : brouillon à mon nom', (tester) async {
+    await _open(tester);
+    _packFile = await gardiens(tester, '0.2.0', ['Veilleur']);
+    await _tap(tester, find.text('Importer un pack'));
+    await _tap(tester, find.widgetWithText(FilledButton, 'Importer'));
+    await _tap(tester, find.byTooltip('Dupliquer pour modifier'));
+    final draft = await _draft(tester);
+    expect(draft.manifest['name'], 'Gardiens des Marches (copie)');
+    expect(draft.manifest['author'], 'Inès');
+    expect(draft.manifest['version'], '0.1.0');
+    expect(
+      draft.entities.single['id'],
+      'gardiens-des-marches-copie:feat:veilleur',
+    );
+    expect(find.text('Gardiens des Marches (copie)'), findsWidgets);
   });
 }

@@ -83,6 +83,7 @@ part 'database.g.dart';
     HomebrewDrafts,
     AuthorIdentities,
     AuthorKeys,
+    PackFiles,
   ],
   include: {'content_search.drift'},
 )
@@ -108,7 +109,7 @@ class TavernierDatabase extends _$TavernierDatabase {
   }
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 11;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -162,6 +163,13 @@ class TavernierDatabase extends _$TavernierDatabase {
         await m.createTable(authorKeys);
         await m.addColumn(contentPacks, contentPacks.description);
         await m.addColumn(contentPacks, contentPacks.authorPublicKey);
+      }
+      // v10 (US-30) : versions importées des packs, locales.
+      if (from < 10 && to >= 10) await m.createTable(packFiles);
+      // v11 (US-30 lot b) : empreinte du fichier d'un pack de table. Avec
+      // PowerSync, la colonne entre seule dans la vue.
+      if (from < 11 && to >= 11 && !syncedTablesByPowerSync) {
+        await m.addColumn(tablePacks, tablePacks.fileSha256);
       }
     },
     beforeOpen: (details) async {

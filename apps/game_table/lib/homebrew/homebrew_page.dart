@@ -12,6 +12,7 @@ import '../creation/creation_providers.dart';
 import '../creation/step_layout.dart';
 import '../l10n/app_localizations.dart';
 import 'entity_editor.dart';
+import 'import_page.dart';
 import 'publish_page.dart';
 
 /// Seule voie d'écriture des brouillons (cahier §10).
@@ -239,6 +240,14 @@ class HomebrewPage extends ConsumerWidget {
             label: Text(l10n.homebrewNewPack),
           ),
         ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: () => importPackFile(context, ref),
+            icon: const Icon(Icons.file_open_outlined),
+            label: Text(l10n.packImportTitle),
+          ),
+        ),
         SizedBox(height: AppSpacing.md),
         Text(l10n.homebrewMyPacks.toUpperCase(), style: text.labelMedium),
         if (drafts.isEmpty) Text(l10n.homebrewNoPack, style: text.bodySmall),
@@ -274,6 +283,8 @@ class HomebrewPage extends ConsumerWidget {
             ),
           ),
         ],
+        SizedBox(height: AppSpacing.md),
+        ImportedPacks(onFork: (id) => _openPack(context, id)),
         SizedBox(height: AppSpacing.md),
         Text(l10n.homebrewCreateEntity, style: text.titleMedium),
         Text(l10n.homebrewCreateEntityHint, style: text.bodySmall),

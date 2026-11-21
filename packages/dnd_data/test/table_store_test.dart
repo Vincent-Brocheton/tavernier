@@ -64,6 +64,46 @@ void main() {
         });
       });
 
+      test('pack activé, version changée, retiré (US-30)', () async {
+        final id = await store.create(
+          gmUserId: _gm,
+          settings: _brumeval,
+          packs: [_srd],
+        );
+        const gardiens = '0193a000-0000-7000-8000-000000000030';
+        final seen = <List<ActivePack>>[];
+        final subscription = store.watchActivePacks().listen(seen.add);
+        addTearDown(subscription.cancel);
+        await store.setPack(
+          id,
+          packId: gardiens,
+          version: '0.1.0',
+          fileSha256: 'a' * 64,
+        );
+        await store.setPack(
+          id,
+          packId: gardiens,
+          version: '0.2.0',
+          fileSha256: 'b' * 64,
+        );
+        final active = await store.watchActivePacks().first;
+        expect(active.where((p) => p.packId == gardiens).toList(), [
+          (
+            tableId: id,
+            packId: gardiens,
+            version: '0.2.0',
+            fileSha256: 'b' * 64,
+          ),
+        ]);
+        expect(await count('table_pack'), 2);
+        await store.removePack(id, gardiens);
+        expect((await store.watchActivePacks().first).map((p) => p.packId), [
+          _srd.packId,
+        ]);
+        await pumpEventQueue();
+        expect(seen, isNotEmpty);
+      });
+
       test('liste : MJ ou membre, la plus récente d\'abord', () async {
         final first = await store.create(
           gmUserId: _gm,

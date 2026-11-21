@@ -6348,6 +6348,241 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get packImportTitle => 'Importer un pack';
+
+  @override
+  String packImportFileSize(String name, String size) {
+    return '$name · $size Mo';
+  }
+
+  @override
+  String packImportRefused(String reason) {
+    return 'Fichier refusé : $reason';
+  }
+
+  @override
+  String packImportBy(String author) {
+    return 'par $author';
+  }
+
+  @override
+  String packImportDependsOn(String names) {
+    return 'dépend de $names';
+  }
+
+  @override
+  String packImportInstalled(String version) {
+    return 'installée : $version';
+  }
+
+  @override
+  String get packImportNotUpdate => 'Ce n’est pas une mise à jour.';
+
+  @override
+  String packImportDistinctHint(String name, String author) {
+    return 'Votre pack « $name » a un autre auteur. Celui-ci est signé par $author : il sera importé comme un pack distinct, sans toucher au vôtre ni à vos tables.';
+  }
+
+  @override
+  String get packImportLibraryName => 'Nom dans votre bibliothèque';
+
+  @override
+  String packImportDistinctName(String name, String author) {
+    return '$name ($author)';
+  }
+
+  @override
+  String packImportContent(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Contenu · $count entités',
+      one: 'Contenu · 1 entité',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get packImportNew => 'NOUVEAU';
+
+  @override
+  String packImportUnchanged(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count entités inchangées',
+      one: '1 entité inchangée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String packImportConflict(String name) {
+    return 'Nom déjà utilisé : « $name »';
+  }
+
+  @override
+  String packImportConflictHint(String pack, String existing, String incoming) {
+    return 'Le pack $pack a déjà ce nom ($existing). Le nouveau : $incoming.';
+  }
+
+  @override
+  String get packImportKeepBoth => 'Garder les deux';
+
+  @override
+  String get packImportKeepBothHint =>
+      'Chacun s’affiche avec le badge de son pack';
+
+  @override
+  String packImportRename(String type) {
+    return 'Renommer le nouveau ($type)…';
+  }
+
+  @override
+  String get packImportRenameHint => 'Seulement dans votre bibliothèque';
+
+  @override
+  String get packImportNewName => 'Nouveau nom';
+
+  @override
+  String get packImportChecks => 'Vérifications';
+
+  @override
+  String packImportSize(String size) {
+    return 'Taille : $size Mo';
+  }
+
+  @override
+  String get packImportSizeMax => 'max. 20 Mo';
+
+  @override
+  String packImportSignature(String author) {
+    return 'Signature : $author';
+  }
+
+  @override
+  String get packImportSignatureInvalid => 'Signature absente ou invalide';
+
+  @override
+  String get packImportSameAuthor =>
+      'Même auteur que la version installée, donc c’est une mise à jour';
+
+  @override
+  String get packImportOtherAuthor =>
+      'Autre auteur : il sera importé comme un pack distinct';
+
+  @override
+  String packImportAlready(String version) {
+    return 'La version $version est déjà installée';
+  }
+
+  @override
+  String get packImportNewPack => 'Nouveau dans votre bibliothèque';
+
+  @override
+  String get packImportFormat => 'Format et contenu';
+
+  @override
+  String packImportFormatOk(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count entités, aucune donnée exécutable',
+      one: '1 entité, aucune donnée exécutable',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get packImportDependencies => 'Dépendances';
+
+  @override
+  String packImportMissing(String ids) {
+    return 'Manquante : $ids';
+  }
+
+  @override
+  String packImportFrozen(String old, String next) {
+    return 'Vos tables restent figées sur la version $old. Vous pourrez passer chaque table à la $next depuis sa configuration.';
+  }
+
+  @override
+  String get packImportUpdate => 'Importer la mise à jour';
+
+  @override
+  String get packImportDistinct => 'Importer comme pack distinct';
+
+  @override
+  String get packImportButton => 'Importer';
+
+  @override
+  String get packImportDont => 'Ne pas importer';
+
+  @override
+  String packImportDone(String name, String version) {
+    return '$name $version importé.';
+  }
+
+  @override
+  String get packImportedPacks => 'Packs importés';
+
+  @override
+  String get packImportedNone => 'Aucun pack importé pour l’instant.';
+
+  @override
+  String packImportedVersions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count versions gardées',
+      one: '1 version gardée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get packImportedFork => 'Dupliquer pour modifier';
+
+  @override
+  String packImportedCopyName(String name) {
+    return '$name (copie)';
+  }
+
+  @override
+  String get tablePacksUploadFailed =>
+      'L’envoi du pack a échoué : vérifiez la connexion. La table n’a pas changé.';
+
+  @override
+  String get tablePacksActivate => 'Activer un pack';
+
+  @override
+  String get tablePacksNone =>
+      'Aucun pack de votre bibliothèque à activer. Importez-en un, ou publiez le vôtre.';
+
+  @override
+  String get tablePacksSrd => 'Verrouillé, toujours actif';
+
+  @override
+  String tablePacksPinned(String version) {
+    return 'Version figée : $version';
+  }
+
+  @override
+  String get tablePacksVersion => 'Changer de version';
+
+  @override
+  String tablePacksCurrent(String version) {
+    return '$version (actuelle)';
+  }
+
+  @override
+  String get tablePacksRemove => 'Retirer de la table';
+
+  @override
+  String get tablePacksHint =>
+      'Les membres de la table reçoivent ces packs par la synchronisation. Une nouvelle version importée ne change pas la table tant que vous ne la choisissez pas.';
+
+  @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
 
   @override

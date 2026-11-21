@@ -1,3 +1,4 @@
+import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
 import 'package:dnd_rules/dnd_rules.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,10 +9,42 @@ import '../tables/tables_providers.dart';
 import 'creation_draft.dart';
 import 'draft_input.dart';
 
-/// Contenu actif : le pack SRD embarqué, lu sans réseau.
-final contentProvider = FutureProvider<ActiveContent>(
-  (ref) async => ActiveContent([await loadSrdPack()]),
+/// Pack SRD embarqué, lu une fois, sans réseau.
+final srdPackProvider = FutureProvider<ContentPack>((ref) => loadSrdPack());
+
+/// Packs actifs de mes tables, à leur version figée (US-30, EF-HB-09).
+final activePacksProvider = StreamProvider<List<ActivePack>>(
+  (ref) => TableStore(ref.watch(databaseProvider)).watchActivePacks(),
 );
+
+/// Versions de packs gardées par l'appareil (`{packId}@{version}`).
+final libraryVersionsProvider = StreamProvider<Set<String>>(
+  (ref) => PackLibrary(ref.watch(databaseProvider)).watchVersions(),
+);
+
+/// Contenu actif : le SRD embarqué, plus chaque pack actif sur une de mes
+/// tables, à sa version figée, lu dans la bibliothèque de l'appareil. Deux
+/// tables qui figent deux versions d'un même pack : la plus récente (la
+/// fiche figée par version vient avec EF-PJ-14).
+final contentProvider = FutureProvider<ActiveContent>((ref) async {
+  final srd = await ref.watch(srdPackProvider.future);
+  final active = await ref.watch(activePacksProvider.future);
+  await ref.watch(libraryVersionsProvider.future);
+  final pinned = <String, String>{};
+  for (final p in active) {
+    if (p.packId == srd.manifest.id) continue;
+    final known = pinned[p.packId];
+    if (known == null || compareVersions(p.version, known) > 0) {
+      pinned[p.packId] = p.version;
+    }
+  }
+  final library = PackLibrary(ref.watch(databaseProvider));
+  return ActiveContent([
+    srd,
+    for (final MapEntry(:key, :value) in pinned.entries)
+      ?await library.version(key, value),
+  ]);
+});
 
 /// Base locale, ouverte au premier usage.
 final databaseProvider = Provider<TavernierDatabase>((ref) {

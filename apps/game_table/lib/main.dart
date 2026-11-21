@@ -26,6 +26,7 @@ import 'creation/step_layout.dart';
 import 'encounters/combat_page.dart';
 import 'encounters/encounter_page.dart';
 import 'homebrew/homebrew_page.dart';
+import 'homebrew/pack_storage.dart';
 import 'l10n/app_localizations.dart';
 import 'npcs/new_npc_page.dart';
 import 'npcs/npc_page.dart';
@@ -226,6 +227,8 @@ class _GameTableAppState extends ConsumerState<GameTableApp> {
     ref.listen(pendingJoinProvider, (_, _) {});
     // Résumés des fiches de table, pour le groupe (EF-TAB-09).
     ref.listen(summaryPublisherProvider, (_, _) {});
+    // Packs actifs de mes tables, reçus par la synchronisation (EF-HB-09).
+    ref.listen(packDownloaderProvider, (_, _) {});
     final textScale = ref.watch(deviceSettingsProvider).textScale;
     return MaterialApp.router(
       routerConfig: _router,
