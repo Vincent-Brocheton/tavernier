@@ -59,7 +59,8 @@ class _SheetPageState extends ConsumerState<SheetPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final content = ref.watch(contentProvider).asData?.value;
+    // Sans les entités bannies de sa table (EF-HB-10).
+    final content = ref.watch(characterContentProvider(id)).asData?.value;
     final character = ref.watch(characterProvider(id));
     final exhaustion =
         ref.watch(playStateProvider(id)).asData?.value.exhaustion ?? 0;

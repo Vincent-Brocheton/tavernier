@@ -3,10 +3,13 @@
 // le fichier au stockage, puis l'inscrit dans `table_pack`.
 import 'package:dnd_content/dnd_content.dart';
 import 'package:dnd_data/dnd_data.dart';
+import 'package:dnd_rules/dnd_rules.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../creation/creation_providers.dart';
+import '../creation/step_layout.dart' show foldAccents;
+import '../homebrew/homebrew_page.dart' show typeLabel;
 import '../homebrew/import_page.dart' show importedPacksProvider;
 import '../homebrew/pack_storage.dart';
 import '../l10n/app_localizations.dart';
@@ -85,6 +88,18 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
     if (chosen != null) await _activate(chosen.packId, chosen.version);
   }
 
+  /// « Bannir une entité » : une entité du SRD, cherchée par son nom.
+  Future<void> _ban(ActiveContent content, List<String> banned) async {
+    final id = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => _BanPicker(content: content, banned: banned.toSet()),
+    );
+    if (id != null) {
+      await ref.read(tableStoreProvider).banEntity(widget.tableId, id);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -96,6 +111,9 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
         if (p.tableId == widget.tableId && p.packId != srd?.id) p,
     ];
     final versions = ref.watch(importedPacksProvider).value ?? const [];
+    final content = ref.watch(contentProvider).value;
+    final banned = [...?ref.watch(bannedProvider(widget.tableId)).value]
+      ..sort();
     List<InstalledVersion> of(String packId) => [
       for (final v in versions)
         if (v.packId == packId) v,
@@ -119,6 +137,33 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
           title: Text(l10n.srdPackName),
           subtitle: Text(l10n.tablePacksSrd),
         ),
+        // Entités bannies pour la table (EF-HB-10).
+        if (banned.isNotEmpty)
+          Text(l10n.tablePacksBanned, style: text.bodySmall),
+        for (final id in banned)
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            dense: true,
+            leading: const Icon(Icons.block),
+            title: Text(content?.entity(id)?.name ?? id),
+            trailing: widget.editable
+                ? TextButton(
+                    onPressed: () => ref
+                        .read(tableStoreProvider)
+                        .unbanEntity(widget.tableId, id),
+                    child: Text(l10n.tablePacksUnban),
+                  )
+                : null,
+          ),
+        if (widget.editable && content != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: () => _ban(content, banned),
+              icon: const Icon(Icons.block),
+              label: Text(l10n.tablePacksBan),
+            ),
+          ),
         for (final p in active)
           ListTile(
             contentPadding: EdgeInsets.zero,
@@ -175,6 +220,85 @@ class _TablePacksState extends ConsumerState<TablePacksCard> {
           ),
         Text(l10n.tablePacksHint, style: text.bodySmall),
       ],
+    );
+  }
+}
+
+/// Types d'entités qu'un MJ bannit pour sa table.
+const _bannableTypes = {
+  'spell',
+  'feat',
+  'species',
+  'background',
+  'class',
+  'subclass',
+  'weapon',
+  'armor',
+  'magic-item',
+  'item',
+  'monster',
+};
+
+/// Recherche d'une entité du SRD à bannir.
+class _BanPicker extends StatefulWidget {
+  const _BanPicker({required this.content, required this.banned});
+
+  final ActiveContent content;
+  final Set<String> banned;
+
+  @override
+  State<_BanPicker> createState() => _BanPickerState();
+}
+
+class _BanPickerState extends State<_BanPicker> {
+  var _query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final query = foldAccents(_query.trim());
+    final matches = query.isEmpty
+        ? const <ContentEntity>[]
+        : ([
+            for (final e in widget.content.entities)
+              if (e.id.namespace == 'srd' &&
+                  _bannableTypes.contains(e.type) &&
+                  !widget.banned.contains('${e.id}') &&
+                  foldAccents(e.name).contains(query))
+                e,
+          ]..sort((a, b) => a.name.compareTo(b.name))).take(30).toList();
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: l10n.tablePacksBanSearch,
+                ),
+                onChanged: (v) => setState(() => _query = v),
+              ),
+            ),
+            Flexible(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  for (final e in matches)
+                    ListTile(
+                      title: Text(e.name),
+                      subtitle: Text(typeLabel(l10n, e.type)),
+                      onTap: () => Navigator.pop(context, '${e.id}'),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

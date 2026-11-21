@@ -1123,13 +1123,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get spellCasting => 'Incantation';
 
   @override
-  String get spellRange => 'Portée *';
+  String get spellRange => 'Portée';
 
   @override
   String get spellComponents => 'Composantes';
 
   @override
-  String get spellDuration => 'Durée * (ex. 1 heure)';
+  String get spellDuration => 'Durée';
 
   @override
   String get spellMaterial => 'Composante matérielle';
@@ -6560,7 +6560,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Aucun pack de votre bibliothèque à activer. Importez-en un, ou publiez le vôtre.';
 
   @override
-  String get tablePacksSrd => 'Verrouillé, toujours actif';
+  String get tablePacksSrd => 'Toujours actif · désactivable entité par entité';
 
   @override
   String tablePacksPinned(String version) {
@@ -6581,6 +6581,132 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get tablePacksHint =>
       'Les membres de la table reçoivent ces packs par la synchronisation. Une nouvelle version importée ne change pas la table tant que vous ne la choisissez pas.';
+
+  @override
+  String get tablePacksBanned => 'Entités bannies pour cette table :';
+
+  @override
+  String get tablePacksUnban => 'Rétablir';
+
+  @override
+  String get tablePacksBan => 'Bannir une entité';
+
+  @override
+  String get tablePacksBanSearch => 'Chercher une entité du SRD';
+
+  @override
+  String get compendiumConcentration => 'concentration';
+
+  @override
+  String compendiumCr(String cr, int xp) {
+    return 'FP $cr ($xp PX)';
+  }
+
+  @override
+  String get compendiumCondition => 'État';
+
+  @override
+  String get compendiumContext => 'Contexte';
+
+  @override
+  String get compendiumAllPacks => 'Tous mes packs';
+
+  @override
+  String compendiumScope(String context, String packs) {
+    return 'Contexte : $context · $packs';
+  }
+
+  @override
+  String get compendiumSearch => 'Rechercher une règle, un sort, un monstre…';
+
+  @override
+  String get compendiumFilterAll => 'Tout';
+
+  @override
+  String get compendiumFilterSpells => 'Sorts';
+
+  @override
+  String get compendiumFilterFeats => 'Dons';
+
+  @override
+  String get compendiumFilterItems => 'Objets';
+
+  @override
+  String get compendiumFilterMonsters => 'Monstres';
+
+  @override
+  String get compendiumFilterConditions => 'États';
+
+  @override
+  String get compendiumOffline =>
+      'Hors-ligne · tout le compendium reste disponible';
+
+  @override
+  String get compendiumHint => 'Tapez un nom pour chercher dans le contenu.';
+
+  @override
+  String compendiumResults(int count, String context) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count résultats · $context',
+      one: '1 résultat · $context',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String compendiumInactive(int count, String name, String pack) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count autres résultats dans des packs inactifs pour cette table, dont « $name » ($pack).',
+      one:
+          '1 autre résultat dans un pack inactif pour cette table : « $name » ($pack).',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get compendiumShow => 'Afficher';
+
+  @override
+  String get compendiumBanned => 'BANNI';
+
+  @override
+  String get compendiumBannedHere => 'BANNI ICI';
+
+  @override
+  String get compendiumNoResult => 'Aucun résultat';
+
+  @override
+  String compendiumNoResultAll(String query) {
+    return 'Rien ne correspond à « $query » dans vos packs.';
+  }
+
+  @override
+  String compendiumNoResultTable(String query, String table) {
+    return 'Rien ne correspond à « $query » dans les packs actifs de $table.';
+  }
+
+  @override
+  String get compendiumDidYouMean => 'Vouliez-vous dire';
+
+  @override
+  String get compendiumBannedHint =>
+      'Le MJ l’a banni pour cette table. Vous pouvez toujours lire sa fiche.';
+
+  @override
+  String get compendiumSearchAll => 'Chercher dans tous mes packs';
+
+  @override
+  String compendiumSource(String pack) {
+    return 'Source : $pack';
+  }
+
+  @override
+  String get compendiumCasting => 'Incantation';
 
   @override
   String get speciesSpeed => 'Vitesse en pieds (30 pieds = 9 m)';
@@ -7648,6 +7774,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get spellCastingTime => 'Temps d’incantation * (ex. action)';
 
   @override
+  String get spellEditRange => 'Portée *';
+
+  @override
   String get rangeFeetKind => 'Distance';
 
   @override
@@ -7661,6 +7790,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get spellMaterialConsumed => 'Matériel consommé';
+
+  @override
+  String get spellEditDuration => 'Durée * (ex. 1 heure)';
 
   @override
   String get spellClasses => 'Listes de classes';

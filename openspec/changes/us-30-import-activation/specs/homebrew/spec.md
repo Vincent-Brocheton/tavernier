@@ -65,3 +65,21 @@ Chaque membre d'une table SHALL recevoir les packs actifs de la table sans actio
 #### Scenario: Fichier altéré
 - **WHEN** le fichier téléchargé ne correspond pas à son empreinte ou à sa signature
 - **THEN** il n'est pas installé
+
+### Requirement: Bannir une entité pour une table
+Le MJ SHALL pouvoir bannir, pour sa table, une entité du SRD (EF-HB-10). Il le fait depuis la carte « Packs » de la configuration, qui liste les entités bannies ; il peut aussi la rétablir. Une entité bannie SHALL disparaître des listes de choix des personnages de la table (création, montée de niveau, sorts préparés). Elle SHALL rester lisible par son identifiant : une fiche qui l'a déjà ne change pas.
+
+#### Scenario: Sommeil banni
+- **WHEN** Camille bannit Sommeil pour « Les Marches de Brumeval »
+- **THEN** la carte « Packs » montre Sommeil parmi les entités bannies, et la liste de sorts d'un Magicien de la table ne le propose plus
+
+### Requirement: Compendium
+L'onglet Compendium SHALL chercher hors ligne parmi les entités du contenu (EF-CMP-01), par nom, sans tenir compte des accents ni de la casse, avec des filtres par type (sorts, dons, objets, monstres, états). Par défaut, la recherche se limite aux packs actifs de la table choisie, et le contexte est affiché. « Tous mes packs » l'élargit au SRD et à la bibliothèque. Chaque résultat SHALL porter sa source, et « BANNI » s'il est banni dans la table. La fiche d'une entité SHALL rester consultable même bannie.
+
+#### Scenario: Recherche dans une table
+- **WHEN** Hugo cherche « bouclier » dans le contexte des Marches de Brumeval
+- **THEN** les résultats viennent du SRD et des packs actifs de la table, chacun avec sa source, et un résultat d'un pack inactif est signalé avec « Afficher »
+
+#### Scenario: Entité bannie
+- **WHEN** Hugo cherche « invisibilté » et que l'Invisibilité est bannie à cette table
+- **THEN** « Aucun résultat » propose « Invisibilité » marquée « BANNI ICI », dont la fiche reste lisible, et « Chercher dans tous mes packs »

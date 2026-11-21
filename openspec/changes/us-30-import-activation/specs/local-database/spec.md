@@ -26,3 +26,10 @@ Le schéma v11 SHALL garder l'empreinte du fichier d'un pack activé sur une tab
 #### Scenario: Activer puis changer de version
 - **WHEN** un pack est activé en 0.1.0 sur une table, puis passé en 0.2.0
 - **THEN** la table n'a qu'une ligne pour ce pack, en 0.2.0, avec l'empreinte de la 0.2.0
+
+### Requirement: Entités bannies d'une table
+`TableStore` SHALL bannir et rétablir une entité pour une table (une ligne de `table_banned_entity` par entité et par table), et suivre les entités bannies d'une table.
+
+#### Scenario: Bannir deux fois
+- **WHEN** Sommeil est banni deux fois, puis rétabli
+- **THEN** la table n'a eu qu'une ligne pour Sommeil, puis aucune

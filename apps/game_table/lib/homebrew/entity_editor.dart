@@ -772,7 +772,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
       _string(l10n.spellCastingTime, 'casting_time'),
       _switch(l10n.ritual, 'ritual'),
       _choice(
-        l10n.spellRange,
+        l10n.spellEditRange,
         range['kind'] as String?,
         [
           ('self', l10n.rangeSelf),
@@ -824,7 +824,7 @@ class _EntityEditorState extends ConsumerState<EntityEditorPage> {
         ),
         _switch(l10n.spellMaterialConsumed, 'material_consumed'),
       ],
-      _string(l10n.spellDuration, 'duration'),
+      _string(l10n.spellEditDuration, 'duration'),
       _switch(l10n.concentration, 'concentration'),
       _picks(l10n.spellClasses, 'classes', [
         for (final c in _ofType(content, 'class'))

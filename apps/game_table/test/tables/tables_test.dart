@@ -179,7 +179,8 @@ const _brumeval = TableSettings(
 Future<(TavernierDatabase, String)> _openTable(
   WidgetTester tester, {
   String gm = '00000000-0000-0000-0000-00000000000a',
-  Size size = const Size(390, 1800),
+  // Assez haute pour que la configuration tienne sans défiler.
+  Size size = const Size(390, 2600),
 }) async {
   late String id;
   final database = await _pump(
@@ -409,6 +410,35 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('Gardiens des Marches'), findsNothing);
+  });
+
+  _testTable('[H9] bannir Sommeil pour la table, puis le rétablir', (
+    tester,
+  ) async {
+    final (database, id) = await _openTable(tester);
+    await _tap(tester, find.text(l10n.tabConfiguration));
+    await _tap(tester, find.text(l10n.tablePacksBan));
+    await tester.enterText(
+      find.widgetWithText(TextField, l10n.tablePacksBanSearch),
+      'sommeil',
+    );
+    await tester.pumpAndSettle();
+    await _tap(tester, find.text('Sommeil').last);
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.tablePacksBanned), findsOneWidget);
+    expect(
+      await tester.runAsync(() => TableStore(database).watchBanned(id).first),
+      {'srd:spell:sleep'},
+    );
+    await _tap(tester, find.text(l10n.tablePacksUnban));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 50)),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.tablePacksBanned), findsNothing);
   });
 
   _testTable('archivage : lecture seule, puis restauration', (tester) async {

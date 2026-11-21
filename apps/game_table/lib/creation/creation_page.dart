@@ -76,8 +76,14 @@ class CreationPage extends ConsumerWidget {
     }
     return Scaffold(
       body: SafeArea(
+        // Sans les entités bannies de la table (EF-HB-10).
         child: ref
-            .watch(contentProvider)
+            .watch(
+              tableContentProvider(
+                ref.watch(creationProvider.select((d) => d.table?.tableId)) ??
+                    tableId,
+              ),
+            )
             .when(
               data: _Wizard.new,
               loading: () => const Center(child: CircularProgressIndicator()),

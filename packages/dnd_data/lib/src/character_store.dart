@@ -620,6 +620,18 @@ final class CharacterStore {
               .getSingleOrNull())
           ?.read<String>('pseudonym');
 
+  /// Entités bannies de la table [tableId] (EF-HB-10), lues une fois.
+  Future<Set<String>> bannedFor(String tableId) async => {
+    for (final r
+        in await _db
+            .customSelect(
+              'SELECT entity_id FROM table_banned_entity WHERE table_id = ?',
+              variables: [Variable.withString(tableId)],
+            )
+            .get())
+      r.read<String>('entity_id'),
+  };
+
   /// Qui peut modifier la fiche : son propriétaire, le MJ de sa table, son
   /// statut et le commentaire de revue du MJ, et si sa table connue n'a plus
   /// de MJ (compte supprimé) ; `null` si elle n'existe pas.

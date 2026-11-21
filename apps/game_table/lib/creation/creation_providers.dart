@@ -46,6 +46,32 @@ final contentProvider = FutureProvider<ActiveContent>((ref) async {
   ]);
 });
 
+/// Entités bannies d'une table (EF-HB-10).
+final bannedProvider = StreamProvider.family<Set<String>, String>(
+  (ref, tableId) =>
+      TableStore(ref.watch(databaseProvider)).watchBanned(tableId),
+);
+
+/// Contenu des choix d'un personnage de la table [tableId] : sans les
+/// entités qu'elle bannit (EF-HB-10), lues à l'ouverture de l'écran. Hors
+/// table, le contenu actif.
+final tableContentProvider = FutureProvider.autoDispose
+    .family<ActiveContent, String?>((ref, tableId) async {
+      final content = await ref.watch(contentProvider.future);
+      if (tableId == null) return content;
+      // Par le dépôt des fiches : même base que la fiche elle-même.
+      final banned = await ref.watch(characterStoreProvider).bannedFor(tableId);
+      return content.withBanned(banned);
+    });
+
+/// Contenu des choix de la fiche [id], selon sa table.
+final characterContentProvider = FutureProvider.autoDispose
+    .family<ActiveContent, String>((ref, id) async {
+      final tableId = (await ref.watch(characterStoreProvider).access(id))
+          ?.tableId;
+      return ref.watch(tableContentProvider(tableId).future);
+    });
+
 /// Base locale, ouverte au premier usage.
 final databaseProvider = Provider<TavernierDatabase>((ref) {
   final database = openTavernierDatabase();

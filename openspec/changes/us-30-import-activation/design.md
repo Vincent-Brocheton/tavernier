@@ -100,3 +100,35 @@
 ### Choix
 
 - **Un contenu pour l'appareil, pas par table**, au lot b : les 53 lecteurs de `contentProvider` en profitent sans changer. La limite (deux versions d'un même pack sur deux tables) est levée par le contenu figé par fiche du lot c.
+
+## Lot c1 : bannissement et compendium
+
+### Moteur (`dnd_rules`)
+
+- **`ActiveContent(packs, {banned})`** et **`withBanned(ids)`** :
+  - `entities` et `spellList` omettent les entités bannies ;
+  - `entity(id)` les rend toujours, et `isBanned(id)` les signale.
+- **Pourquoi ce choix** : les listes de choix de l'app énumèrent le contenu (`entities`, `spellList`, `featsForCategory`), alors que le calcul d'une fiche résout ses entités par identifiant. Bannir écarte donc l'entité des choix sans casser une fiche qui l'a déjà. Une option nommée en dur dans un `choice` d'un pack n'est pas filtrée.
+
+### Base (`dnd_data`)
+
+- **`TableStore.banEntity(tableId, entityId)`**, **`unbanEntity`** et **`watchBanned(tableId)`** (un ensemble d'identifiants). Ils écrivent `table_banned_entity`, déjà synchronisée, et un bannissement déjà présent n'est pas dupliqué.
+
+### App
+
+- **`bannedProvider(tableId)`** : flux des entités bannies d'une table.
+- **Création** (avec une table), **montée de niveau** et **fiche** d'un personnage de table : le contenu passe par `withBanned`.
+- **Carte « Packs »** :
+  - la ligne du SRD porte « Toujours actif · désactivable entité par entité » et la liste des entités bannies, chacune avec « Rétablir » ;
+  - le MJ a aussi « Bannir une entité » : une recherche parmi les entités du SRD (sorts, dons, espèces, Historiques, classes, sous-classes, objets, monstres).
+- **`lib/compendium/compendium_page.dart`**, l'onglet Compendium (index 3 de la navigation) :
+  - **Contexte** : une table de l'appareil (la première par défaut), ou « Tous mes packs ». Le contexte affiché nomme la table et ses packs.
+  - **Recherche** : par nom, sans accents ni casse (`foldAccents`), filtres Tout, Sorts, Dons, Objets, Monstres, États, avec leur compte.
+  - **Résultats** : nom, résumé, badge de source (« SRD », ou « {auteur} {version} ») et « BANNI ».
+  - **Pack inactif** : dans le contexte d'une table, les correspondances des autres packs de la bibliothèque sont comptées et nommées, avec « Afficher » qui passe à « Tous mes packs ».
+  - **Aucun résultat** ([K5]) :
+    - « Vouliez-vous dire », les noms les plus proches par distance d'édition, bannis compris ;
+    - « Chercher dans tous mes packs » ;
+    - « Créer en homebrew », qui ouvre l'onglet Homebrew.
+  - **Fiche** : feuille adaptative avec le nom, le résumé, la source, « BANNI ICI » et son explication, le texte, et le bloc de stats d'un monstre. Pour un sort : incantation, portée, composantes, durée et listes.
+  - « Ajouter à un personnage » et « Dériver en homebrew » de [K1] ne sont pas repris : la création et l'onglet Homebrew les font déjà.
