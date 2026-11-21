@@ -31,12 +31,14 @@ final class CombatViewStore {
   final TavernierDatabase _db;
 
   /// Publie [payload] pour [encounterId] ; rien n'est écrit s'il n'a pas
-  /// changé. Rend vrai si la vue a été écrite.
+  /// changé. Rend vrai si la vue a été écrite. Lecture et écriture vont
+  /// dans une transaction : deux publications simultanées inséreraient
+  /// sinon chacune la vue (contrainte d'unicité).
   Future<bool> publish({
     required String encounterId,
     required String tableId,
     required Map<String, Object?> payload,
-  }) async {
+  }) => _db.transaction(() async {
     final json = jsonEncode(payload);
     final row = await _db
         .customSelect(
@@ -60,7 +62,7 @@ final class CombatViewStore {
     }
     _db.markTablesUpdated({_db.combatViews});
     return true;
-  }
+  });
 
   /// Retire la vue de [encounterId] : la rencontre est terminée.
   Future<void> remove(String encounterId) async {
