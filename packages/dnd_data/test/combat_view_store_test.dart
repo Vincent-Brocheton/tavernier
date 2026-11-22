@@ -14,6 +14,23 @@ void main() {
       setUp(() async => db = await open());
       tearDown(() => db.close());
 
+      test(
+        'deux publications simultanées : une seule vue, la dernière',
+        () async {
+          final store = CombatViewStore(db);
+          await Future.wait([
+            for (var round = 0; round < 5; round++)
+              store.publish(
+                encounterId: 'relais',
+                tableId: 't',
+                payload: {'round': round},
+              ),
+          ]);
+          final view = await store.watch('relais').first;
+          expect(view?.payload, {'round': 4});
+        },
+      );
+
       test('vue publiée, relue, inchangée non réécrite, retirée', () async {
         final store = CombatViewStore(db);
         expect(
